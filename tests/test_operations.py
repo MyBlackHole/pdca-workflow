@@ -435,6 +435,10 @@ class OperationsTest(unittest.TestCase):
                 },
             }
             (task_dir / "task.json").write_text(json.dumps(task), encoding="utf-8")
+            (task_dir / "prd.md").write_text(
+                "# PRD\n\n## 验收标准\n\n- [ ] AC-1: transition succeeds\n",
+                encoding="utf-8",
+            )
             (task_dir / "clarifications.jsonl").write_text(
                 json.dumps(
                     {

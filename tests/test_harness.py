@@ -18,7 +18,7 @@ class HarnessTest(unittest.TestCase):
             text=True,
         )
         result = json.loads(completed.stdout)
-        self.assertEqual(16, result["fixture_count"])
+        self.assertEqual(22, result["fixture_count"])
         self.assertEqual(0, result["failed"])
 
 if __name__ == "__main__":

@@ -76,7 +76,9 @@ description: 计划阶段执行流：triage、逐轮对齐、PRD、任务拆解�
 {"source":"final_confirmation","summary":"<终审摘要>","response":"confirmed","at":"<ISO 时间>"}
 ```
 
-只有该记录且 `response=confirmed` 才能进入 Do；方向确认或子执行器确认均不能替代。
+优先使用 `python3 "$PDCA_HOME/scripts/append-confirmation.py" --task-dir <task-dir> --source final_confirmation --response confirmed --summary "<终审摘要>"` 自动生成真实 `at`，禁止手写时间戳。
+
+只有该记录且 `response=confirmed` 才能进入 Do；方向确认或子执行器确认均不能替代。`plan -> do` 门禁校验 PRD 的 `## 验收标准` 段必须为 `- [ ] AC-x: ...` checkbox 格式，`### AC-x` 标题式会被拒绝。
 
 ## P7. 推进
 

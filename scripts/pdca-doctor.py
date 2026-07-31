@@ -12,9 +12,28 @@ from pathlib import Path
 
 import yaml
 
-from pdca_core import repo_root
+from pdca_core import repo_root, timeline_issues
 
 REFERENCE_RE = re.compile(r"\$PDCA_HOME/([A-Za-z0-9_./{}<>,*-]+)")
+
+
+def active_task_timeline(root: Path) -> list[dict]:
+    checks: list[dict] = []
+    active_root = root / "pdca/tasks/active"
+    if not active_root.is_dir():
+        return checks
+    for task_dir in sorted(active_root.iterdir()):
+        if not (task_dir / "task.json").is_file():
+            continue
+        issues = timeline_issues(root, task_dir)
+        checks.append(
+            {
+                "task": task_dir.name,
+                "consistent": not issues,
+                "issues": [issue.as_dict() for issue in issues],
+            }
+        )
+    return checks
 
 
 def probe(root: Path, expression: str) -> bool:
@@ -90,6 +109,7 @@ def main() -> int:
         "missing_references": missing_references,
         "capabilities": capabilities,
         "references_checked": len(references),
+        "task_timeline": active_task_timeline(root),
     }
     print(json.dumps(payload, ensure_ascii=False, indent=2))
     return 0 if payload["valid"] else 1

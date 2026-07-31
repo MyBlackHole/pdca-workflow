@@ -63,8 +63,6 @@ def main() -> int:
         if not matches:
             parser.error(f"no evidence entry with id: {args.replace}")
         replaced = matches[0]
-        if replaced.get("superseded_by"):
-            parser.error(f"entry {args.replace} is already superseded by {replaced['superseded_by']}")
         if replaced.get("file") == filename:
             parser.error(f"replacement must use a different --file than the superseded entry")
         if args.id == args.replace:

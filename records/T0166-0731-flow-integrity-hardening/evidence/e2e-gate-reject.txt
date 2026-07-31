@@ -1,0 +1,5 @@
+$ python3 scripts/transition-phase.py /tmp/.../0731-e2e-test --to do
+{"status":"rejected","issues":[{"code":"FINAL_CONFIRMATION_AFTER_TRANSITION","path":"clarifications.jsonl[0]/at","message":"final confirmation cannot be later than the transition moment"}]}
+exit=1
+
+对照：确认时间正常（2026-07-31T16:30:01）→ status=transitioned, exit=0

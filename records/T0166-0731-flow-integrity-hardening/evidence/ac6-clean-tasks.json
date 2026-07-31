@@ -1,0 +1,8 @@
+{
+ "schema": "pdca.doctor-timeline/v1",
+ "clean_tasks": [
+  "0731-pg-physical-ordered",
+  "T0166-0731-flow-integrity-hardening"
+ ],
+ "count": 2
+}

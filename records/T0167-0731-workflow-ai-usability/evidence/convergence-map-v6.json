@@ -1,0 +1,59 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "append-confirmation CLI 落地：AI 不再手写 clarifications.jsonl 时间戳，杜绝编造时间",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "append-confirmation-script",
+        "ai-usability-tests-v3"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "Issue guidance 字段落地：所有 CLI 失败输出含可执行修复指引，降低 AI 试错轮次",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "issue-guidance-v3",
+        "ai-usability-tests-v3"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "evidence 安全替换机制落地：旧条目 superseded 保留审计，AI 无需手工编辑 manifest",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "replace-evidence-v2",
+        "ai-usability-tests-v3"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "PRD 验收标准格式在 plan→do 门禁早期校验：do 快完成才发现格式错误的返工消失",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "prd-gate",
+        "ai-usability-tests-v3"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "四项改进均有对 AI 工作流的提升论证与测试覆盖",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ai-usability-tests-v3"
+      ]
+    }
+  ]
+}

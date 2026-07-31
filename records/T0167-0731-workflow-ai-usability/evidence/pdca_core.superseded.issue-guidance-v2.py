@@ -174,8 +174,6 @@ def evidence_issues(root: Path, task: dict[str, Any]) -> list[Issue]:
     for index, entry in enumerate(entries):
         for issue in schema_issues(root, entry, "evidence-entry.schema.json"):
             issues.append(Issue(issue.code, f"{manifest.relative_to(root)}[{index}]{issue.path}", issue.message))
-        if entry.get("superseded_by"):
-            continue
         evidence_dir = (record_dir / "evidence").resolve()
         artifact = (evidence_dir / str(entry.get("file", ""))).resolve()
         try:
@@ -249,8 +247,7 @@ def convergence_issues(root: Path, task_dir: Path) -> list[Issue]:
     map_entries = [
         entry
         for entry in entries
-        if not entry.get("superseded_by")
-        and entry.get("kind") == "convergence-map"
+        if entry.get("id") == "convergence-map" and entry.get("kind") == "convergence-map"
     ]
     if len(map_entries) != 1:
         issues.append(
@@ -265,9 +262,7 @@ def convergence_issues(root: Path, task_dir: Path) -> list[Issue]:
     support_entries = [
         entry
         for entry in entries
-        if not entry.get("superseded_by")
-        and entry.get("id") != "convergence-map"
-        and entry.get("kind") != "convergence-map"
+        if entry.get("id") != "convergence-map" and entry.get("kind") != "convergence-map"
     ]
     support_by_id = {str(entry.get("id")): entry for entry in support_entries}
     for criterion in criteria:

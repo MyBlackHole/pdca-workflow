@@ -1,0 +1,76 @@
+{
+  "schema": "pdca.doctor/v1",
+  "root": "/home/black/Documents/pdca-workflow",
+  "pdca_home_source": "repository-fallback",
+  "warning": "configure PDCA_HOME for external projects",
+  "valid": true,
+  "missing_required": [],
+  "missing_references": [],
+  "capabilities": [
+    {
+      "name": "filesystem.read",
+      "status": "available",
+      "probe": "repository-readable",
+      "fallback": null
+    },
+    {
+      "name": "filesystem.write",
+      "status": "available",
+      "probe": "repository-writable",
+      "fallback": null
+    },
+    {
+      "name": "process.exec",
+      "status": "available",
+      "probe": "python3",
+      "fallback": null
+    },
+    {
+      "name": "git.versioning",
+      "status": "available",
+      "probe": "git",
+      "fallback": null
+    },
+    {
+      "name": "agent.spawn",
+      "status": "fallback",
+      "probe": "environment:PDCA_AGENT_SPAWN",
+      "fallback": "execute-in-main-session"
+    },
+    {
+      "name": "context.retrieve",
+      "status": "fallback",
+      "probe": "command:pdca",
+      "fallback": "filesystem-search"
+    }
+  ],
+  "references_checked": 57,
+  "task_timeline": [
+    {
+      "task": "0731-pg-physical-ordered",
+      "consistent": true,
+      "issues": []
+    },
+    {
+      "task": "T0164-0731-gm-tls-benchmark",
+      "consistent": false,
+      "issues": [
+        {
+          "code": "STATE_TIME_ORDER",
+          "path": "/states",
+          "message": "timestamps must be nondecreasing"
+        },
+        {
+          "code": "CONFIRMATION_AFTER_PLAN_TO_DO",
+          "path": "clarifications.jsonl[0]/at",
+          "message": "final confirmation is later than the plan→do receipt"
+        }
+      ]
+    },
+    {
+      "task": "T0166-0731-flow-integrity-hardening",
+      "consistent": true,
+      "issues": []
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "schema": "pdca.doctor/v1",
+  "root": "/tmp/opencode/t0166-fixture",
+  "pdca_home_source": "repository-fallback",
+  "warning": "configure PDCA_HOME for external projects",
+  "valid": false,
+  "missing_required": [],
+  "missing_references": [
+    {
+      "source": "AGENTS.md",
+      "reference": "pdca/tasks/archive/",
+      "exists": false
+    },
+    {
+      "source": "AGENTS.md",
+      "reference": "knowledge/",
+      "exists": false
+    },
+    {
+      "source": "AGENTS.md",
+      "reference": "pdca/journal/",
+      "exists": false
+    },
+    {
+      "source": "AGENTS.md",
+      "reference": "skills/advance-phase/SKILL.md",
+      "exists": false
+    },
+    {
+      "source": "AGENTS.md",
+      "reference": "skills/to-tickets/SKILL.md",
+      "exists": false
+    },
+    {
+      "source": "AGENTS.md",
+      "reference": "skills/grilling/SKILL.md",
+      "exists": false
+    },
+    {
+      "source": "AGENTS.md",
+      "reference": "skills/register-evidence/SKILL.md",
+      "exists": false
+    },
+    {
+      "source": "AGENTS.md",
+      "reference": "SKILLS-INDEX.md",
+      "exists": false
+    },
+    {
+      "source": "AGENTS.md",
+      "reference": "scripts/pdca-doctor.py",
+      "exists": false
+    },
+    {
+      "source": "AGENTS.md",
+      "reference": "docs/capability-protocol.md",
+      "exists": false
+    },
+    {
+      "source": "AGENTS.md",
+      "reference": "pdca/CONTEXT.md",
+      "exists": false
+    },
+    {
+      "source": "AGENTS.md",
+      "reference": "docs/adr/",
+      "exists": false
+    },
+    {
+      "source": "AGENTS.md",
+      "reference": "scripts/init-external.sh",
+      "exists": false
+    },
+    {
+      "source": "flows/flow-plan/SKILL.md",
+      "reference": "skills/triage-work/SKILL.md",
+      "exists": false
+    },
+    {
+      "source": "flows/flow-plan/SKILL.md",
+      "reference": "skills/grilling/SKILL.md",
+      "exists": false
+    },
+    {
+      "source": "flows/flow-plan/SKILL.md",
+      "reference": "skills/domain-modeling-work/SKILL.md",
+      "exists": false
+    },
+    {
+      "source": "flows/flow-plan/SKILL.md",
+      "reference": "pdca/CONTEXT.md",
+      "exists": false
+    },
+    {
+      "source": "flows/flow-plan/SKILL.md",
+      "reference": "docs/adr/",
+      "exists": false
+    },
+    {
+      "source": "flows/flow-plan/SKILL.md",
+      "reference": "templates/to-spec/SPEC.md",
+      "exists": false
+    },
+    {
+      "source": "flows/flow-plan/SKILL.md",
+      "reference": "skills/to-tickets/SKILL.md",
+      "exists": false
+    },
+    {
+      "source": "flows/flow-plan/SKILL.md",
+      "reference": "knowledge/",
+      "exists": false
+    },
+    {
+      "source": "flows/flow-plan/SKILL.md",
+      "reference": "skills/advance-phase/SKILL.md",
+      "exists": false
+    }
+  ],
+  "capabilities": [
+    {
+      "name": "filesystem.read",
+      "status": "available",
+      "probe": "repository-readable",
+      "fallback": null
+    },
+    {
+      "name": "filesystem.write",
+      "status": "available",
+      "probe": "repository-writable",
+      "fallback": null
+    },
+    {
+      "name": "process.exec",
+      "status": "available",
+      "probe": "python3",
+      "fallback": null
+    },
+    {
+      "name": "git.versioning",
+      "status": "available",
+      "probe": "git",
+      "fallback": null
+    },
+    {
+      "name": "agent.spawn",
+      "status": "fallback",
+      "probe": "environment:PDCA_AGENT_SPAWN",
+      "fallback": "execute-in-main-session"
+    },
+    {
+      "name": "context.retrieve",
+      "status": "fallback",
+      "probe": "command:pdca",
+      "fallback": "filesystem-search"
+    }
+  ],
+  "references_checked": 26,
+  "task_timeline": [
+    {
+      "task": "0731-stale-task",
+      "consistent": false,
+      "issues": [
+        {
+          "code": "CONFIRMATION_AFTER_PLAN_TO_DO",
+          "path": "clarifications.jsonl[0]/at",
+          "message": "final confirmation is later than the plan→do receipt"
+        }
+      ]
+    }
+  ]
+}
