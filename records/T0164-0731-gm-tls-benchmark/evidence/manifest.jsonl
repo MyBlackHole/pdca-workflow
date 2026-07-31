@@ -1,0 +1,6 @@
+{"id":"tlcp-repro","file":"tlcp_debug.c","kind":"source","size":4121,"digest":"sha256:8abd5d2ae9025362d7ae73296ad9c6ebabdfcb5634af0bd2c84db9baaf51321d","at":"2026-07-31T18:45:08+08:00","criteria":["AC-1"]}
+{"id":"tlcp-regression-test","file":"tlcp_small.c","kind":"source","size":3533,"digest":"sha256:b7850b7e2c0919feb6d3db59e55a36fa0b90a2f8ae3e30d8b40b224b5cf4ed6a","at":"2026-07-31T18:45:08+08:00","criteria":["AC-1"]}
+{"id":"gmssl-tls-fix-patch","file":"gmssl-tls-cbc-overflow-fix.patch","kind":"patch","size":772,"digest":"sha256:2674704228169d93107187b066a18a8949a1f93767d457deaa06b03404b7ee1e","at":"2026-07-31T18:45:08+08:00","criteria":["AC-1"]}
+{"id":"gmssl-lib-fixed","file":"libgmssl-fixed.a","kind":"binary","size":1560980,"digest":"sha256:11a4572964e06b7b0f7bafa3dad1f21a63b3f374bd306094d266edd5afe2b53c","at":"2026-07-31T18:45:08+08:00","criteria":["AC-1"]}
+{"id":"tlcp-fix-run-log","file":"tlcp_fix_run.txt","kind":"run-log","size":1691,"digest":"sha256:5643bb83039285b1f2c552bc6d14e240b39a1f4af3bcb9182547d6eb1ea9eafb","at":"2026-07-31T18:45:08+08:00","criteria":["AC-1"]}
+{"id":"bench-gmssl-full-run","file":"bench_gmssl_full_run.txt","kind":"run-log","size":8997,"digest":"sha256:1a829bf9da3424363ad82720c852616a906838368a78bcce92517144f2bec809","at":"2026-07-31T18:45:09+08:00","criteria":["AC-1"]}
