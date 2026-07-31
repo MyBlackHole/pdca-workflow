@@ -1,0 +1,23 @@
+--- /tmp/opencode/gmssl-src/GmSSL-3.1.1/src/tls.c	2023-12-12 16:05:31.000000000 +0800
++++ /tmp/opencode/gmssl-patched/src/tls.c	2026-07-31 18:25:31.086856864 +0800
+@@ -1717,6 +1717,7 @@
+ 
+ 	uint8_t *record = conn->record;
+ 	size_t recordlen;
++	uint8_t bigbuf[TLS_MAX_CIPHERTEXT_SIZE];
+ 
+ 	if (conn->is_client) {
+ 		hmac_ctx = &conn->server_write_mac_ctx;
+@@ -1737,10 +1738,11 @@
+ 	tls_record_trace(stderr, record, recordlen, 0, 0);
+ 	if (tls_cbc_decrypt(hmac_ctx, dec_key, seq_num, record,
+ 		tls_record_data(record), tls_record_data_length(record),
+-		conn->databuf, &conn->datalen) != 1) {
++		bigbuf, &conn->datalen) != 1) {
+ 		error_print();
+ 		return -1;
+ 	}
++	memcpy(conn->databuf, bigbuf, conn->datalen);
+ 	conn->data = conn->databuf;
+ 	tls_seq_num_incr(seq_num);
+ 

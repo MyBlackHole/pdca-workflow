@@ -1,0 +1,4 @@
+{"id": "evt-scenario-flow-do", "file": "flow-do.md", "kind": "flow-definition", "size": 4123, "digest": "sha256:todo", "at": "2026-07-27"}
+{"id": "evt-scenario-flow-check", "file": "flow-check.md", "kind": "flow-definition", "size": 2185, "digest": "sha256:todo", "at": "2026-07-27"}
+{"id": "evt-scenario-triage", "file": "triage.md", "kind": "skill-definition", "size": 3240, "digest": "sha256:todo", "at": "2026-07-27"}
+{"id": "evt-scenario-flow-plan", "file": "flow-plan.md", "kind": "flow-definition", "size": 2150, "digest": "sha256:todo", "at": "2026-07-27"}

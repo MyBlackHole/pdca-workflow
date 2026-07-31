@@ -1,0 +1,12 @@
+{
+  "schema": "pdca.fixtures/v1",
+  "fixtures": [
+    {"id": "development-normal", "scenario": "development", "kind": "route", "expected": "A"},
+    {"id": "bugfix-normal", "scenario": "bugfix", "kind": "route", "expected": "B"},
+    {"id": "research-normal", "scenario": "research", "kind": "route", "expected": "C"},
+    {"id": "documentation-normal", "scenario": "documentation", "kind": "route", "expected": "D"},
+    {"id": "design-normal", "scenario": "design", "kind": "route", "expected": "E"},
+    {"id": "review-normal", "scenario": "review", "kind": "route", "expected": "F"},
+    {"id": "route-reference-missing", "scenario": "reference", "kind": "reference", "expected": "ROUTE_REFERENCE_MISSING"}
+  ]
+}

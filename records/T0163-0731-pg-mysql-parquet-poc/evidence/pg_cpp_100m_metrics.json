@@ -1,0 +1,59 @@
+{
+  "scenario": "100M 行（1 亿）规模验证",
+  "table": "poc_orders_big",
+  "rows_expected": 100000000,
+  "heap_file": "poc_orders_big_heap_full",
+  "heap_size_bytes": 13653336064,
+  "heap_pages": 1666667,
+  "heap_segments": 13,
+  "created": "2026-07-31T06:19+08:00 容器内建表一次（用户要求只建一次表）",
+  "c_plus_plus_physical_path": {
+    "tool": "pgbin（批处理版：ParseCursor 分批 + 单 FileWriter）",
+    "parquet": "poc_orders_big.parquet",
+    "parquet_size_bytes": 2584010936,
+    "parse_seconds": 17.7694,
+    "text_seconds": 5.7514,
+    "arrays_seconds": 1.7941,
+    "write_seconds": 48.6161,
+    "total_seconds": 74.6909,
+    "throughput_rows_per_second": 1338851.33,
+    "maxrss_mib": 403.4,
+    "rows": 100000000
+  },
+  "d2_duckdb_direct_path": {
+    "tool": "duckdb postgres_scan_pushdown → COPY TO parquet(zstd)",
+    "parquet": "poc_orders_big_d2.parquet",
+    "parquet_size_bytes": 2601325890,
+    "copy_seconds": 86.21,
+    "total_seconds": 86.31,
+    "maxrss_mib": 2084.6,
+    "rows": 100000000
+  },
+  "comparison": {
+    "total_seconds_cpp_vs_d2": "74.69 vs 86.31（C++ 快 13.5%）",
+    "maxrss_mib_cpp_vs_d2": "403.4 vs 2084.6（C++ 为 D2 的 19.4%）",
+    "parquet_size_bytes": "2,584,010,936 vs 2,601,325,890（差异 0.7%，同 zstd）",
+    "note_1m_vs_100m": "1M 时两路径持平（0.674 vs 0.667s）；1 亿时 C++ 反超。机制：D2 读侧 1 亿 ≈13s（PG seqscan）快于 C++ parse 17.8s，但 D2 写侧 ≈72.8s 明显慢于 C++ 写侧 ≈57.9s（text+arrays+write），净差 11.6s；D2 写侧在 1 亿行时劣化（RSS 2GB 级缓冲压力）。"
+  },
+  "verification": {
+    "count": 100000000,
+    "distinct_id": 100000000,
+    "min_id": 1,
+    "max_id": 100000000,
+    "amount_rule_match": 100000000,
+    "status_distribution": {
+      "new": 25000000,
+      "paid": 25000000,
+      "shipped": 25000000,
+      "closed": 25000000
+    },
+    "schema": "id BIGINT / customer_id INTEGER / amount DECIMAL(12,2) / created_at TIMESTAMP / status VARCHAR / payload VARCHAR / active BOOLEAN",
+    "verify_tool": "duckdb read_parquet 全量校验，耗时 5.7s"
+  },
+  "fixes_applied": [
+    "HeapCols 结构体布局 C/C++ 两侧不一致（strbuf 字段位置不同）→ 文本写入 status_off 数组造成污染 → 统一字段顺序",
+    "批量边界游标漏行：goto done 时 cur->next_offnum 已指向下一行 → 每批漏 1 行（1 亿行漏 95 行 = 96 批边界）→ 回退一行 cur->next_offnum = offnum",
+    "main 循环误用 batch 代替 max_rows 控制行数上限"
+  ],
+  "env": "同主机：后台遗留 opencode 进程 ×2、容器内挂起 apt-get；/home 磁盘 94%"
+}

@@ -1,0 +1,34 @@
+{
+  "schema": "pdca.test-result/v1",
+  "at": "2026-07-28T21:24:13+08:00",
+  "commands": [
+    "python3 -m unittest discover -s tests -v",
+    "python3 scripts/run-ai-friendliness-fixtures.py --all",
+    "python3 scripts/generate-skills-index.py --check",
+    "python3 -m py_compile scripts/pdca_core.py scripts/validate-convergence.py tests/test_convergence.py",
+    "python3 scripts/pdca-doctor.py --json"
+  ],
+  "results": {
+    "unit_tests": {
+      "passed": 33,
+      "failed": 0,
+      "convergence_tests": 18
+    },
+    "scenario_fixtures": {
+      "passed": 12,
+      "failed": 0
+    },
+    "skill_index": {
+      "valid": true,
+      "asset_count": 41
+    },
+    "doctor": {
+      "valid": true,
+      "references_checked": 54
+    },
+    "python_compile": {
+      "valid": true
+    },
+    "third_party_dependencies_added": 0
+  }
+}

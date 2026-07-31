@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pdca.local/schemas/task.schema.json",
+  "title": "PDCA strict task",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "slug", "title", "parent", "children", "status", "meta", "states"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^T[0-9]{4,}$"},
+    "slug": {"type": "string", "pattern": "^[0-9]{4}-[a-z0-9][a-z0-9-]*$"},
+    "title": {"type": "string", "minLength": 1},
+    "parent": {"type": ["string", "null"], "pattern": "^T[0-9]{4,}$"},
+    "children": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^T[0-9]{4,}$"},
+      "uniqueItems": true
+    },
+    "status": {"enum": ["Pending", "InProgress", "Completed"]},
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phase", "active", "scenario_type", "created_at", "convergence"],
+      "properties": {
+        "phase": {"enum": ["plan", "do", "check", "act", "archive"]},
+        "active": {"type": "boolean"},
+        "scenario_type": {
+          "enum": ["development", "bugfix", "research", "documentation", "design", "review"]
+        },
+        "created_at": {"type": "string", "format": "date-time"},
+        "convergence": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "improvement_source": {"$ref": "#/$defs/improvement_source"},
+        "completed_at": {"type": "string", "format": "date-time"},
+        "record": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"},
+        "verdict": {"$ref": "#/$defs/verdict"},
+        "disposition": {"$ref": "#/$defs/disposition"}
+      }
+    },
+    "states": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created", "plan", "do", "check", "act", "archive"],
+      "properties": {
+        "created": {"type": "string", "format": "date-time"},
+        "plan": {"type": ["string", "null"], "format": "date-time"},
+        "do": {"type": ["string", "null"], "format": "date-time"},
+        "check": {"type": ["string", "null"], "format": "date-time"},
+        "act": {"type": ["string", "null"], "format": "date-time"},
+        "archive": {"type": ["string", "null"], "format": "date-time"}
+      }
+    }
+  },
+  "$defs": {
+    "verdict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["outcome", "reason", "verdict_id", "at"],
+      "properties": {
+        "outcome": {"enum": ["confirmed", "rejected", "partial"]},
+        "reason": {"type": "string", "minLength": 1},
+        "verdict_id": {"type": "string", "minLength": 1},
+        "at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "disposition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["outcome", "reason", "at"],
+      "properties": {
+        "outcome": {"enum": ["projected", "not_reusable", "task_only"]},
+        "reason": {"type": "string", "minLength": 1},
+        "at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "improvement_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_id", "issue_id", "candidate_id", "decision_id"],
+      "properties": {
+        "record_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"},
+        "issue_id": {"type": "string", "pattern": "^FI-[0-9a-f]{24}$"},
+        "candidate_id": {"type": "string", "pattern": "^FC-[0-9a-f]{24}$"},
+        "decision_id": {"type": "string", "pattern": "^FD-[0-9a-f]{24}$"}
+      }
+    }
+  }
+}

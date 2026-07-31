@@ -1,0 +1,509 @@
+{
+  "schema": "pdca.deletion-manifest/v1",
+  "mode": "dry-run",
+  "scope": "active",
+  "generated_at": "2026-07-28T21:40:17+08:00",
+  "protected_prefixes": [
+    "records/",
+    "knowledge/",
+    "pdca/journal/"
+  ],
+  "target_count": 16,
+  "targets": [
+    {
+      "path": "pdca/tasks/07-26-移植-btree-extent-更新链",
+      "digest": "sha256:e98f9196c8890bbc39990d3089f0a15b39b1ef12c5f4f2ac1b0acd0353a5213d",
+      "tracked_files": 5,
+      "total_files": 5,
+      "git_recoverable": true,
+      "reasons": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "Additional properties are not allowed ('assignee', 'base_branch', 'branch', 'commit', 'completed_at', 'created_at', 'creator', 'description', 'dev_type', 'name', 'notes', 'package', 'pr_url', 'priority', 'related_files', 'scenario', 'scenario_digest', 'scenario_version', 'scope', 'subtasks', 'updated_at', 'worktree_path' were unexpected)"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'slug' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'states' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('activities', 'canonical_record', 'plan_approval', 'record_id', 'record_schema', 'scenario_selection' were unexpected)"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'active' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'scenario_type' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'created_at' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/parent",
+          "message": "'' does not match '^T[0-9]{4,}$'"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/status",
+          "message": "'in_progress' is not one of ['Pending', 'InProgress', 'Completed']"
+        }
+      ],
+      "recovery": "git restore --source=HEAD -- pdca/tasks/07-26-移植-btree-extent-更新链"
+    },
+    {
+      "path": "pdca/tasks/07-26-继续完成-btree-extent-更新链-严格对齐本地-bcachefs",
+      "digest": "sha256:fcfa5a4f9ff0e796353611ca03a5121846112f4ccbe1e145a0fa6dec30024da5",
+      "tracked_files": 6,
+      "total_files": 6,
+      "git_recoverable": true,
+      "reasons": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "Additional properties are not allowed ('assignee', 'base_branch', 'branch', 'commit', 'completed_at', 'created_at', 'creator', 'description', 'dev_type', 'name', 'notes', 'package', 'pr_url', 'priority', 'related_files', 'scenario', 'scenario_digest', 'scenario_version', 'scope', 'subtasks', 'updated_at', 'worktree_path' were unexpected)"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'slug' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'states' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('activities', 'canonical_record', 'plan_approval', 'record_id', 'record_schema', 'scenario_selection' were unexpected)"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'active' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'scenario_type' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'created_at' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/parent",
+          "message": "'' does not match '^T[0-9]{4,}$'"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/status",
+          "message": "'in_progress' is not one of ['Pending', 'InProgress', 'Completed']"
+        }
+      ],
+      "recovery": "git restore --source=HEAD -- pdca/tasks/07-26-继续完成-btree-extent-更新链-严格对齐本地-bcachefs"
+    },
+    {
+      "path": "pdca/tasks/0727-agents-entry-contract",
+      "digest": "sha256:9944993ebdea613cb0377405600e15399433e71c83d3fe109f3dffea0f72aaa4",
+      "tracked_files": 2,
+      "total_files": 2,
+      "git_recoverable": true,
+      "reasons": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property"
+        }
+      ],
+      "recovery": "git restore --source=HEAD -- pdca/tasks/0727-agents-entry-contract"
+    },
+    {
+      "path": "pdca/tasks/0727-backup-transfer-encryption",
+      "digest": "sha256:eca08b7962b4e986bf0daa561e9f9aa72afc2f2a4284f9f03c4f0cdfbf8423f0",
+      "tracked_files": 1,
+      "total_files": 1,
+      "git_recoverable": true,
+      "reasons": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "Additional properties are not allowed ('description', 'records', 'tags' were unexpected)"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'id' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'slug' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'status' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'states' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('completed', 'created', 'source' were unexpected)"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'active' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'created_at' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property"
+        }
+      ],
+      "recovery": "git restore --source=HEAD -- pdca/tasks/0727-backup-transfer-encryption"
+    },
+    {
+      "path": "pdca/tasks/0727-nbu-encryption-review",
+      "digest": "sha256:6fa57587ec58048249eaeacad6844b40747645a6823331bc51d439c9e1e1f7ea",
+      "tracked_files": 4,
+      "total_files": 4,
+      "git_recoverable": true,
+      "reasons": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "Additional properties are not allowed ('acceptance_criteria', 'scope' were unexpected)"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'id' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'slug' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'title' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'parent' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'children' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'status' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'states' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('id', 'title', 'updated_at' were unexpected)"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'active' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta/disposition/outcome",
+          "message": "'knowledge' is not one of ['projected', 'not_reusable', 'task_only']"
+        }
+      ],
+      "recovery": "git restore --source=HEAD -- pdca/tasks/0727-nbu-encryption-review"
+    },
+    {
+      "path": "pdca/tasks/0727-nbu-kb-research",
+      "digest": "sha256:1894d07b09fffe7ddd0c67e834bee523d98ece0e316b2cc8152e1b76bea37fa9",
+      "tracked_files": 3,
+      "total_files": 3,
+      "git_recoverable": true,
+      "reasons": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "Additional properties are not allowed ('acceptance_criteria', 'scope' were unexpected)"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'id' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'slug' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'title' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'parent' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'children' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'status' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'states' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('id', 'title', 'updated_at' were unexpected)"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'active' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta/disposition/outcome",
+          "message": "'knowledge' is not one of ['projected', 'not_reusable', 'task_only']"
+        }
+      ],
+      "recovery": "git restore --source=HEAD -- pdca/tasks/0727-nbu-kb-research"
+    },
+    {
+      "path": "pdca/tasks/0727-pdca-alignment-gates",
+      "digest": "sha256:13f95f51605f59d0ffe13370e66064da4d38a8abeeacbe81a8a00a5f3d79c668",
+      "tracked_files": 2,
+      "total_files": 2,
+      "git_recoverable": true,
+      "reasons": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property"
+        }
+      ],
+      "recovery": "git restore --source=HEAD -- pdca/tasks/0727-pdca-alignment-gates"
+    },
+    {
+      "path": "pdca/tasks/0727-pdca-archive-recovery",
+      "digest": "sha256:94b1147fbce921efe43038766dab254ad3e4f35e92a29266c12eac0e1401cc9c",
+      "tracked_files": 2,
+      "total_files": 2,
+      "git_recoverable": true,
+      "reasons": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property"
+        }
+      ],
+      "recovery": "git restore --source=HEAD -- pdca/tasks/0727-pdca-archive-recovery"
+    },
+    {
+      "path": "pdca/tasks/0727-pdca-archive-regression",
+      "digest": "sha256:ab34f760030515686aea84acc2857d9005f0e9b636ae98830e877a1c4fc08b72",
+      "tracked_files": 2,
+      "total_files": 2,
+      "git_recoverable": true,
+      "reasons": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property"
+        }
+      ],
+      "recovery": "git restore --source=HEAD -- pdca/tasks/0727-pdca-archive-regression"
+    },
+    {
+      "path": "pdca/tasks/0727-pdca-closure-regression",
+      "digest": "sha256:99caba7657fa4b780a3b07510f53c2ce2f1f50b97a68c29a96c47933779c7d47",
+      "tracked_files": 4,
+      "total_files": 4,
+      "git_recoverable": true,
+      "reasons": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "Additional properties are not allowed ('category', 'description', 'priority', 'related_tasks' were unexpected)"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('plan_approval', 'updated_at' were unexpected)"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property"
+        }
+      ],
+      "recovery": "git restore --source=HEAD -- pdca/tasks/0727-pdca-closure-regression"
+    },
+    {
+      "path": "pdca/tasks/0727-pdca-completeness-audit",
+      "digest": "sha256:5f2b158dcd61122216513997ce1ca96fae16ba066c3206d034d963eb2eb8fa08",
+      "tracked_files": 8,
+      "total_files": 8,
+      "git_recoverable": true,
+      "reasons": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "Additional properties are not allowed ('category', 'description', 'priority' were unexpected)"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('plan_approval', 'record_id', 'updated_at' were unexpected)"
+        }
+      ],
+      "recovery": "git restore --source=HEAD -- pdca/tasks/0727-pdca-completeness-audit"
+    },
+    {
+      "path": "pdca/tasks/0727-pdca-content-provenance",
+      "digest": "sha256:7be6a26a6e76169d3103bbc5e921b89689a082a14aae8e3e98bbdbd82e33da87",
+      "tracked_files": 2,
+      "total_files": 2,
+      "git_recoverable": true,
+      "reasons": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property"
+        }
+      ],
+      "recovery": "git restore --source=HEAD -- pdca/tasks/0727-pdca-content-provenance"
+    },
+    {
+      "path": "pdca/tasks/0727-pdca-content-regression",
+      "digest": "sha256:beef5edba93ede936ed38ce8402be671010ff8a2eb42132e4d211578aab5c130",
+      "tracked_files": 2,
+      "total_files": 2,
+      "git_recoverable": true,
+      "reasons": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property"
+        }
+      ],
+      "recovery": "git restore --source=HEAD -- pdca/tasks/0727-pdca-content-regression"
+    },
+    {
+      "path": "pdca/tasks/0727-pdca-gate-regression",
+      "digest": "sha256:e8265ea097f1ca90629d595ee08fb7d4e890056fa0f4765265c93e890e2e4396",
+      "tracked_files": 2,
+      "total_files": 2,
+      "git_recoverable": true,
+      "reasons": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property"
+        }
+      ],
+      "recovery": "git restore --source=HEAD -- pdca/tasks/0727-pdca-gate-regression"
+    },
+    {
+      "path": "pdca/tasks/0727-pdca-parent-child-lifecycle",
+      "digest": "sha256:ba7ac9107002942a341e213d7fa4dc15a6f922bbd139584b1b3fe4548ee13bc0",
+      "tracked_files": 2,
+      "total_files": 2,
+      "git_recoverable": true,
+      "reasons": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property"
+        }
+      ],
+      "recovery": "git restore --source=HEAD -- pdca/tasks/0727-pdca-parent-child-lifecycle"
+    },
+    {
+      "path": "pdca/tasks/0727-pdca-parent-child-regression",
+      "digest": "sha256:a6e9d23eb88523070287ffb6871a0d22620c08a5d3dfd22be0093fb71a53e5af",
+      "tracked_files": 2,
+      "total_files": 2,
+      "git_recoverable": true,
+      "reasons": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property"
+        }
+      ],
+      "recovery": "git restore --source=HEAD -- pdca/tasks/0727-pdca-parent-child-regression"
+    }
+  ]
+}

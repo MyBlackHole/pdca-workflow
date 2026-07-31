@@ -1,0 +1,8 @@
+{"source":"triage","summary":"分类为 enhancement/development；全库 23 个任务中 16 个旧格式活跃任务仅因 SCHEMA_INVALID 失败，49/49 文件均被 Git 跟踪；现有 audit-history 只支持 archive，需增加受保护 active scope","at":"2026-07-28T21:31:45+08:00"}
+{"round":1,"question":"是否批准精确删除 16 个旧格式活跃任务目录（49 个 Git 跟踪文件），并用带 digest、数量确认和路径保护的 active audit scope 执行？","answer":"可以","recommended":"删除全部 16 个固定噪声源，不迁移、不兼容；保留 records、knowledge、journal、archive 和严格任务","source":"grilling","at":"2026-07-28T21:33:02+08:00"}
+{"source":"direction_confirm","summary":"确认 active scope 安全审计、16 个精确可恢复目标、受保护资产不变和清理后全库 invalid_count=0 的方向","response":"confirmed","at":"2026-07-28T21:33:02+08:00"}
+{"source":"final_confirmation","summary":"批准 T0142 完整方案进入 Do：扩展受保护 active audit scope，生成 16 目标/49 文件精确 manifest，以数量、digest、Git 可恢复性和保护摘要门禁执行删除","response":"confirmed","at":"2026-07-28T21:35:53+08:00"}
+{"source":"grill","summary":"Check 自审确认本次只证明确定性全库健康信号恢复，不外推真实 LLM 成功率；恢复必须固定预删除 commit，恢复旧目录会重新引入 schema 错误","at":"2026-07-28T21:45:35+08:00"}
+{"source":"check_confirmation","summary":"用户确认 T0142 清理结论成立，进入 Act","response":"confirmed","at":"2026-07-28T21:46:39+08:00"}
+{"round":2,"question":"是否只沉淀恢复源固定 commit 与 apply 前重验证两条跨任务规则，并将具体 16 个目标留在 record？","answer":"可以","recommended":"新增最小知识单元，避免把一次性目标和未验证规则扩散到长期上下文","source":"grilling","at":"2026-07-28T21:48:18+08:00"}
+{"source":"knowledge_decision","at":"2026-07-28T21:48:18+08:00","action":"wrote","reason":"固定恢复 commit 与执行前状态重验证可跨 active/archive 清理复用，直接降低误删和无效恢复风险；一次性目标不投影。"}

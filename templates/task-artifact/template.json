@@ -1,0 +1,5 @@
+{
+  "name": "task-artifact",
+  "description": "任务生命周期中需要的 markdown 产物模板（prd/design/implement/experience）",
+  "variables": ["title", "id", "record_id", "scenario"]
+}

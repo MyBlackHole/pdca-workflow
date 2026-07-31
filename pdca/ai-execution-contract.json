@@ -1,0 +1,40 @@
+{
+  "schema": "pdca.ai-execution-contract/v1",
+  "flow_document": "flows/flow-do/SKILL.md",
+  "routes": [
+    {
+      "scenario": "development",
+      "route_id": "A",
+      "route_anchor": "路径 A：development（软件功能开发）",
+      "phases": [
+        {"id": "seam", "marker": "确认预先约定的 Seam"},
+        {"id": "red", "marker": "先写失败的行为测试"},
+        {"id": "minimal-change", "marker": "再写最小实现"},
+        {"id": "focused-verification", "marker": "完成每个垂直切片后运行定向测试或 typecheck"},
+        {"id": "full-verification", "marker": "所有切片完成后运行项目支持的全量验证"},
+        {"id": "code-review", "marker": "进入双轴代码审查"}
+      ],
+      "receipt_policy": {
+        "slice": ["focused-verification"],
+        "final": ["full-verification", "code-review"]
+      }
+    },
+    {
+      "scenario": "bugfix",
+      "route_id": "B",
+      "route_anchor": "路径 B：bugfix（Bug 修复）",
+      "phases": [
+        {"id": "seam", "marker": "确认回归 Seam"},
+        {"id": "red", "marker": "先复现并写出失败的回归测试"},
+        {"id": "minimal-change", "marker": "再做最小修复"},
+        {"id": "focused-verification", "marker": "完成每个修复切片后运行定向回归测试或 typecheck"},
+        {"id": "full-verification", "marker": "所有修复切片完成后运行项目支持的全量验证"},
+        {"id": "code-review", "marker": "进入双轴代码审查"}
+      ],
+      "receipt_policy": {
+        "slice": ["focused-verification"],
+        "final": ["full-verification", "code-review"]
+      }
+    }
+  ]
+}

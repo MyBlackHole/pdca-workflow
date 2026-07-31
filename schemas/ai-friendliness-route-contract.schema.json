@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pdca.local/schemas/ai-friendliness-route-contract.schema.json",
+  "title": "PDCA AI-friendliness route contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "flow_document", "routes"],
+  "properties": {
+    "schema": {"const": "pdca.ai-route-contract/v1"},
+    "flow_document": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9_.\\-/]+$"
+    },
+    "routes": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {"$ref": "#/$defs/route"}
+    }
+  },
+  "$defs": {
+    "route": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scenario", "route_id", "anchor", "steps"],
+      "properties": {
+        "scenario": {
+          "enum": ["development", "bugfix", "research", "documentation", "design", "review"]
+        },
+        "route_id": {"enum": ["A", "B", "C", "D", "E", "F"]},
+        "anchor": {"type": "string", "minLength": 1, "maxLength": 160},
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^[A-F][1-9][0-9]*$"}
+        }
+      }
+    }
+  }
+}

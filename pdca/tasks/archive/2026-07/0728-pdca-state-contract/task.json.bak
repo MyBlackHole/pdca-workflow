@@ -1,0 +1,40 @@
+{
+  "id": "T0136",
+  "slug": "0728-pdca-state-contract",
+  "title": "实现严格任务 schema、语义门禁与历史清理",
+  "parent": "T0135",
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-07-28T19:48:58+08:00",
+    "convergence": [
+      "任务结构和跨文件不变量有可执行规范",
+      "非法阶段转换全部被故障夹具拒绝",
+      "历史清理只使用受保护的 dry-run manifest"
+    ],
+    "record": "R0136-pdca-state-contract",
+    "completed_at": "2026-07-28T20:20:37+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "用户确认状态合约与历史清理结论成立",
+      "verdict_id": "V-T0136-20260728",
+      "at": "2026-07-28T20:25:05+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "可复用规则已进入 schema、脚本和父任务方法论，额外知识副本会增加漂移",
+      "at": "2026-07-28T20:26:42+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-07-28T19:48:58+08:00",
+    "plan": "2026-07-28T19:48:58+08:00",
+    "do": "2026-07-28T19:52:50+08:00",
+    "check": "2026-07-28T20:20:37+08:00",
+    "act": "2026-07-28T20:26:12+08:00",
+    "archive": null
+  }
+}

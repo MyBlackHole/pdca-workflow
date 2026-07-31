@@ -1,0 +1,235 @@
+{
+  "schema": "pdca.flow-audit/v1",
+  "task_id": "T0158",
+  "record_id": "T0158",
+  "transitions": {
+    "do-to-check": {
+      "latest": {
+        "at": "2026-07-30T16:59:45+08:00",
+        "from": "do",
+        "to": "check",
+        "passed": false,
+        "checks": [
+          {
+            "id": "evidence-registered",
+            "description": "evidence manifest and referenced artifacts exist",
+            "passed": false,
+            "issues": [
+              {
+                "code": "EVIDENCE_MANIFEST_MISSING",
+                "path": "records/T0158/evidence/manifest.jsonl",
+                "message": "manifest is required"
+              }
+            ]
+          },
+          {
+            "id": "ac-coverage",
+            "description": "every PRD acceptance criterion has non-map evidence",
+            "passed": false,
+            "issues": [
+              {
+                "code": "AC_COVERAGE_UNVERIFIABLE",
+                "path": "records/T0158/evidence/manifest.jsonl",
+                "message": "acceptance coverage cannot be verified without an evidence manifest"
+              }
+            ]
+          },
+          {
+            "id": "evidence-integrity",
+            "description": "evidence size and SHA-256 match the manifest",
+            "passed": false,
+            "issues": [
+              {
+                "code": "EVIDENCE_INTEGRITY_UNVERIFIABLE",
+                "path": "records/T0158/evidence/manifest.jsonl",
+                "message": "evidence integrity cannot be verified without a manifest"
+              }
+            ]
+          },
+          {
+            "id": "convergence-map",
+            "description": "Plan convergence maps to criteria and evidence",
+            "passed": false,
+            "issues": [
+              {
+                "code": "CONVERGENCE_MAP_MISSING",
+                "path": "/home/black/Documents/pdca-workflow/records/T0158/evidence/manifest.jsonl",
+                "message": "registered convergence map is required"
+              }
+            ]
+          },
+          {
+            "id": "audit-record-path",
+            "description": "audit output stays inside records",
+            "passed": true,
+            "issues": []
+          }
+        ],
+        "issues": [
+          {
+            "code": "EVIDENCE_MANIFEST_MISSING",
+            "path": "records/T0158/evidence/manifest.jsonl",
+            "message": "manifest is required"
+          },
+          {
+            "code": "AC_COVERAGE_UNVERIFIABLE",
+            "path": "records/T0158/evidence/manifest.jsonl",
+            "message": "acceptance coverage cannot be verified without an evidence manifest"
+          },
+          {
+            "code": "EVIDENCE_INTEGRITY_UNVERIFIABLE",
+            "path": "records/T0158/evidence/manifest.jsonl",
+            "message": "evidence integrity cannot be verified without a manifest"
+          },
+          {
+            "code": "CONVERGENCE_MAP_MISSING",
+            "path": "/home/black/Documents/pdca-workflow/records/T0158/evidence/manifest.jsonl",
+            "message": "registered convergence map is required"
+          }
+        ]
+      },
+      "attempts": [
+        {
+          "at": "2026-07-30T16:56:19+08:00",
+          "from": "do",
+          "to": "check",
+          "passed": false,
+          "checks": [
+            {
+              "id": "evidence-registered",
+              "description": "evidence manifest and referenced artifacts exist",
+              "passed": false,
+              "issues": [
+                {
+                  "code": "RECORD_MISSING",
+                  "path": "/meta/record",
+                  "message": "record is required after Do"
+                }
+              ]
+            },
+            {
+              "id": "ac-coverage",
+              "description": "every PRD acceptance criterion has non-map evidence",
+              "passed": true,
+              "issues": []
+            },
+            {
+              "id": "evidence-integrity",
+              "description": "evidence size and SHA-256 match the manifest",
+              "passed": true,
+              "issues": []
+            },
+            {
+              "id": "convergence-map",
+              "description": "Plan convergence maps to criteria and evidence",
+              "passed": false,
+              "issues": [
+                {
+                  "code": "CONVERGENCE_MAP_MISSING",
+                  "path": "/meta/record",
+                  "message": "record is required"
+                }
+              ]
+            }
+          ],
+          "issues": [
+            {
+              "code": "RECORD_MISSING",
+              "path": "/meta/record",
+              "message": "record is required after Do"
+            },
+            {
+              "code": "CONVERGENCE_MAP_MISSING",
+              "path": "/meta/record",
+              "message": "record is required"
+            }
+          ]
+        },
+        {
+          "at": "2026-07-30T16:59:45+08:00",
+          "from": "do",
+          "to": "check",
+          "passed": false,
+          "checks": [
+            {
+              "id": "evidence-registered",
+              "description": "evidence manifest and referenced artifacts exist",
+              "passed": false,
+              "issues": [
+                {
+                  "code": "EVIDENCE_MANIFEST_MISSING",
+                  "path": "records/T0158/evidence/manifest.jsonl",
+                  "message": "manifest is required"
+                }
+              ]
+            },
+            {
+              "id": "ac-coverage",
+              "description": "every PRD acceptance criterion has non-map evidence",
+              "passed": false,
+              "issues": [
+                {
+                  "code": "AC_COVERAGE_UNVERIFIABLE",
+                  "path": "records/T0158/evidence/manifest.jsonl",
+                  "message": "acceptance coverage cannot be verified without an evidence manifest"
+                }
+              ]
+            },
+            {
+              "id": "evidence-integrity",
+              "description": "evidence size and SHA-256 match the manifest",
+              "passed": false,
+              "issues": [
+                {
+                  "code": "EVIDENCE_INTEGRITY_UNVERIFIABLE",
+                  "path": "records/T0158/evidence/manifest.jsonl",
+                  "message": "evidence integrity cannot be verified without a manifest"
+                }
+              ]
+            },
+            {
+              "id": "convergence-map",
+              "description": "Plan convergence maps to criteria and evidence",
+              "passed": false,
+              "issues": [
+                {
+                  "code": "CONVERGENCE_MAP_MISSING",
+                  "path": "/home/black/Documents/pdca-workflow/records/T0158/evidence/manifest.jsonl",
+                  "message": "registered convergence map is required"
+                }
+              ]
+            },
+            {
+              "id": "audit-record-path",
+              "description": "audit output stays inside records",
+              "passed": true,
+              "issues": []
+            }
+          ],
+          "issues": [
+            {
+              "code": "EVIDENCE_MANIFEST_MISSING",
+              "path": "records/T0158/evidence/manifest.jsonl",
+              "message": "manifest is required"
+            },
+            {
+              "code": "AC_COVERAGE_UNVERIFIABLE",
+              "path": "records/T0158/evidence/manifest.jsonl",
+              "message": "acceptance coverage cannot be verified without an evidence manifest"
+            },
+            {
+              "code": "EVIDENCE_INTEGRITY_UNVERIFIABLE",
+              "path": "records/T0158/evidence/manifest.jsonl",
+              "message": "evidence integrity cannot be verified without a manifest"
+            },
+            {
+              "code": "CONVERGENCE_MAP_MISSING",
+              "path": "/home/black/Documents/pdca-workflow/records/T0158/evidence/manifest.jsonl",
+              "message": "registered convergence map is required"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

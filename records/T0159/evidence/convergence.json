@@ -1,0 +1,40 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "T0159-0801-pdca-self-optimization-loop",
+      "criteria": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4",
+        "AC-5",
+        "AC-6",
+        "AC-7",
+        "AC-8",
+        "AC-9",
+        "AC-10",
+        "AC-11",
+        "AC-12",
+        "AC-13",
+        "AC-14",
+        "AC-15",
+        "AC-16"
+      ],
+      "evidence_ids": [
+        "occurrence-schema",
+        "decision-schema",
+        "candidate-schema",
+        "verdict-schema",
+        "flow-issue-implementation",
+        "flow-issue-tests",
+        "unittest-results",
+        "flow-issue-fixtures",
+        "verification-report",
+        "code-review",
+        "cutover-receipt"
+      ]
+    }
+  ]
+}

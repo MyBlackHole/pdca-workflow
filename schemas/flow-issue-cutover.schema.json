@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pdca.local/schemas/flow-issue-cutover.schema.json",
+  "title": "Flow Issue cutover receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "commit",
+    "occurrence_schema_version",
+    "fingerprint_version",
+    "started_at"
+  ],
+  "properties": {
+    "schema": {"const": "pdca.flow-issue-cutover/v1"},
+    "commit": {"type": "string", "pattern": "^[0-9a-f]{7,64}$"},
+    "occurrence_schema_version": {"const": "v1"},
+    "fingerprint_version": {"const": "v1"},
+    "started_at": {"type": "string", "format": "date-time"}
+  }
+}

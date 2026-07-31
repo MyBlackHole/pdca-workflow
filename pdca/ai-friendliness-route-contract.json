@@ -1,0 +1,42 @@
+{
+  "schema": "pdca.ai-route-contract/v1",
+  "flow_document": "flows/flow-do/SKILL.md",
+  "routes": [
+    {
+      "scenario": "development",
+      "route_id": "A",
+      "anchor": "路径 A：development（软件功能开发）",
+      "steps": ["A1", "A2", "A3", "A4", "A5"]
+    },
+    {
+      "scenario": "bugfix",
+      "route_id": "B",
+      "anchor": "路径 B：bugfix（Bug 修复）",
+      "steps": ["B1", "B2", "B3", "B4"]
+    },
+    {
+      "scenario": "research",
+      "route_id": "C",
+      "anchor": "路径 C：research（需求调研/技术调研）",
+      "steps": ["C1", "C2"]
+    },
+    {
+      "scenario": "documentation",
+      "route_id": "D",
+      "anchor": "路径 D：documentation（需求转技术文档）",
+      "steps": ["D1", "D2"]
+    },
+    {
+      "scenario": "design",
+      "route_id": "E",
+      "anchor": "路径 E：design（架构设计）",
+      "steps": ["E1", "E2", "E3", "E4"]
+    },
+    {
+      "scenario": "review",
+      "route_id": "F",
+      "anchor": "路径 F：review（代码审查）",
+      "steps": ["F1", "F2", "F3"]
+    }
+  ]
+}

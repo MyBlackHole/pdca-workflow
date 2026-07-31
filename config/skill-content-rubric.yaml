@@ -1,0 +1,31 @@
+schema: pdca.skill-rubric/v1
+dimensions:
+  information_density:
+    question: 必需输入、动作、输出、门禁和失败处理是否占主体？
+    anchors:
+      1: 教程、背景或例子淹没执行协议，关键动作难定位
+      3: 执行协议完整，但仍有可外移的解释和重复
+      5: 主文件几乎全部直接影响选择或执行
+  progressive_disclosure:
+    question: 主文件是否只加载常用路径，详细材料是否按条件引用？
+    anchors:
+      1: 所有场景和背景一次展开
+      3: 有章节和条件引用，但仍加载部分无关内容
+      5: 默认路径最小，例外和深层参考按需加载
+  role_expression:
+    question: AI 能否快速识别输入、责任边界、可调用能力和完成信号？
+    anchors:
+      1: 责任、输入或退出条件模糊
+      3: 大部分边界清楚，少量依赖隐含
+      5: 角色、能力、输入输出和退出条件均显式
+  recovery_clarity:
+    question: 可预期失败是否有结构化、可执行且安全的恢复路径？
+    anchors:
+      1: 失败行为未定义
+      3: 主要失败有提示，但恢复或回滚不完整
+      5: 失败分类、fallback、回滚和证据均明确
+rules:
+  - 每个分数必须引用具体文件章节或行号
+  - 自动指标不得作为 rubric 分数本身
+  - 不计算跨维度综合总分
+  - 无证据时标记 not_rated，不猜测

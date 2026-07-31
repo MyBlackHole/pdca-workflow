@@ -1,0 +1,25 @@
+{
+  "id": "T0164",
+  "slug": "0731-gm-tls-benchmark",
+  "title": "POC 测试启用国密前后传输性能（C demo）",
+  "parent": null,
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "research",
+    "created_at": "2026-07-31T17:00:00+08:00",
+    "convergence": [
+      "T0164-0731-gm-tls-benchmark"
+    ]
+  },
+  "states": {
+    "created": "2026-07-31T17:00:00+08:00",
+    "plan": "2026-07-31T17:15:00+08:00",
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

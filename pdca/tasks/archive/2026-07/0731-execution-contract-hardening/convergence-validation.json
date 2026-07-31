@@ -1,0 +1,6 @@
+{
+  "schema": "pdca.convergence-validation/v1",
+  "task_dir": "pdca/tasks/active/T0161-0731-execution-contract-hardening",
+  "valid": true,
+  "issues": []
+}

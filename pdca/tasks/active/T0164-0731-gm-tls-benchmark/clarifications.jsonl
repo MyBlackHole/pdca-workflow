@@ -1,0 +1,1 @@
+{"source":"final_confirmation","summary":"POC 方案终审：三组端到端（明文TCP/OpenSSL常规TLS/GMSSL TLCP）×3档 + 加密层两测（SM4-GCM吞吐、SM2操作耗时）；OpenSSL 国密 TLS 套件环境不支持，端到端国密由 GMSSL TLCP 实测，OpenSSL 侧仅加密层","response":"confirmed","at":"2026-07-31T17:15:00+08:00"}

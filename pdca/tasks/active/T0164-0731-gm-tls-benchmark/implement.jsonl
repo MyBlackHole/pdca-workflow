@@ -1,0 +1,2 @@
+{"file":"knowledge/nbu/gmssl-tlcp-mtls.md","reason":"GMSSL TLCP API 速查（TLS_CTX/tlcp_do_connect/tls_send），demo 实现直接参考","action":"read","at":"2026-07-31T17:10:00+08:00"}
+{"file":"knowledge/nbu/nbu-dte-architecture.md","reason":"NBU 协商模型背景，确认 POC 范围（不含协商头实现）","action":"read","at":"2026-07-31T17:10:00+08:00"}

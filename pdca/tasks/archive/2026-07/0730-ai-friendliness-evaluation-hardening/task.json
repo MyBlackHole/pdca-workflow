@@ -1,0 +1,38 @@
+{
+  "id": "T0160",
+  "slug": "0730-ai-friendliness-evaluation-hardening",
+  "title": "跟进：AI 友好评测可信度加固",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "development",
+    "created_at": "2026-07-30T21:27:21+08:00",
+    "record": "R0160",
+    "convergence": [
+      "T0160-0730-ai-friendliness-evaluation-hardening"
+    ],
+    "completed_at": "2026-07-30T23:44:37+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "PRD 的 16 条确定性验收标准均由注册证据、收敛映射和公共门禁验证支持；结论明确不外推真实 LLM 表现。",
+      "verdict_id": "V0160",
+      "at": "2026-07-30T23:48:32+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "将可复用的可执行路由、真实生命周期夹具和 fail-closed 内容预算方法更新至现有 AI 友好评测知识资产。",
+      "at": "2026-07-31T05:59:51+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-07-30T21:27:21+08:00",
+    "plan": "2026-07-30T21:27:21+08:00",
+    "do": "2026-07-30T22:27:18+08:00",
+    "check": "2026-07-30T23:44:37+08:00",
+    "act": "2026-07-31T05:58:57+08:00",
+    "archive": "2026-07-31T06:02:50+08:00"
+  }
+}

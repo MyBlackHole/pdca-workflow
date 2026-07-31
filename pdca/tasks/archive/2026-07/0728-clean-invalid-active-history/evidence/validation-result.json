@@ -1,0 +1,16 @@
+{
+  "schema": "pdca.workflow-cleanup-validation/v1",
+  "at": "2026-07-28T21:41:56+08:00",
+  "before": {
+    "task_count": 23,
+    "invalid_count": 16,
+    "active_dry_run_targets": 16
+  },
+  "after": {
+    "valid": true,
+    "task_count": 8,
+    "invalid_count": 0,
+    "active_dry_run_targets": 0
+  },
+  "decision_changed": true
+}

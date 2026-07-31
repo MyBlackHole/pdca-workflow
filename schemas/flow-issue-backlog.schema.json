@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pdca.local/schemas/flow-issue-backlog.schema.json",
+  "title": "Deterministic Flow Issue backlog projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "projection_version",
+    "fingerprint_version",
+    "cutover",
+    "input_digest",
+    "issues"
+  ],
+  "properties": {
+    "schema": {"const": "pdca.flow-issue-backlog/v1"},
+    "projection_version": {"const": "v1"},
+    "fingerprint_version": {"const": "v1"},
+    "cutover": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["commit", "started_at"],
+      "properties": {
+        "commit": {"type": "string", "pattern": "^[0-9a-f]{7,64}$"},
+        "started_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "input_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "issues": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/issue"}
+    }
+  },
+  "$defs": {
+    "issue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "issue_id",
+        "fingerprint",
+        "event_count",
+        "event_ids",
+        "event_paths",
+        "record_ids",
+        "sources",
+        "first_occurred_at",
+        "last_occurred_at"
+      ],
+      "properties": {
+        "issue_id": {"type": "string", "pattern": "^FI-[0-9a-f]{24}$"},
+        "fingerprint": {"$ref": "#/$defs/fingerprint"},
+        "event_count": {"type": "integer", "minimum": 1},
+        "event_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^FE-[0-9a-f]{24}$"}
+        },
+        "event_paths": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^records/[A-Za-z0-9][A-Za-z0-9._-]*/flow-events/FE-[0-9a-f]{24}\\.json$"
+          }
+        },
+        "record_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"}
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["transition-audit", "test", "tool", "agent", "user", "retrospective"]
+          }
+        },
+        "first_occurred_at": {"type": "string", "format": "date-time"},
+        "last_occurred_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "fingerprint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fingerprint_version",
+        "rule_id",
+        "rule_version",
+        "category",
+        "transition",
+        "affected_component",
+        "normalized_location",
+        "issue_code"
+      ],
+      "properties": {
+        "fingerprint_version": {"const": "v1"},
+        "rule_id": {"type": "string", "pattern": "^[a-z][a-z0-9._-]{0,63}$"},
+        "rule_version": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"},
+        "category": {
+          "enum": [
+            "conformance-deviation",
+            "specification-gap",
+            "tooling-failure",
+            "gate-false-positive",
+            "gate-false-negative",
+            "capability-gap",
+            "ai-usability"
+          ]
+        },
+        "transition": {
+          "type": ["string", "null"],
+          "enum": [null, "plan-to-do", "do-to-check", "check-to-act", "act-to-archive"]
+        },
+        "affected_component": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]*$"
+        },
+        "normalized_location": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "issue_code": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]{1,63}$"}
+      }
+    }
+  }
+}

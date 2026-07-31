@@ -1,0 +1,3 @@
+{"id":"content-audit","file":"skill-content-after.json","kind":"metrics","size":17633,"digest":"sha256:363947f904b5e678e8c96670fe0782c6f4839ef98139cceceea85f9da04a79ac","at":"2026-07-28T20:20:05+08:00","criteria":["AC-1","AC-2","AC-3"]}
+{"id":"flow-plan-pairing","file":"flow-plan-pairing.json","kind":"paired-result","size":631,"digest":"sha256:c91cb6d6df6bb15d9bc002e8786161bf991a9e25ed89b7ccfa99d25ab72083ec","at":"2026-07-28T20:20:05+08:00","criteria":["AC-4","AC-5"]}
+{"id":"rubric-review","file":"skill-content-rubric-review.md","kind":"qualitative-review","size":1548,"digest":"sha256:f2c7256ef380db57e99e2a431a122e9bd2f728f30092c458e9ccc9e592c8003e","at":"2026-07-28T20:20:05+08:00","criteria":["AC-3"]}

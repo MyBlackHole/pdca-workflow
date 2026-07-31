@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pdca.local/schemas/ai-execution-contract.schema.json",
+  "title": "PDCA AI execution contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "flow_document", "routes"],
+  "properties": {
+    "schema": {"const": "pdca.ai-execution-contract/v1"},
+    "flow_document": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9_.\\-/]+$"
+    },
+    "routes": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"$ref": "#/$defs/route"},
+      "allOf": [
+        {
+          "contains": {
+            "properties": {"scenario": {"const": "development"}},
+            "required": ["scenario"]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {"scenario": {"const": "bugfix"}},
+            "required": ["scenario"]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "route": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scenario", "route_id", "route_anchor", "phases", "receipt_policy"],
+      "properties": {
+        "scenario": {"enum": ["development", "bugfix"]},
+        "route_id": {"enum": ["A", "B"]},
+        "route_anchor": {"type": "string", "minLength": 1, "maxLength": 160},
+        "phases": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "prefixItems": [
+            {"allOf": [{"$ref": "#/$defs/phase"}, {"properties": {"id": {"const": "seam"}}}]},
+            {"allOf": [{"$ref": "#/$defs/phase"}, {"properties": {"id": {"const": "red"}}}]},
+            {"allOf": [{"$ref": "#/$defs/phase"}, {"properties": {"id": {"const": "minimal-change"}}}]},
+            {"allOf": [{"$ref": "#/$defs/phase"}, {"properties": {"id": {"const": "focused-verification"}}}]},
+            {"allOf": [{"$ref": "#/$defs/phase"}, {"properties": {"id": {"const": "full-verification"}}}]},
+            {"allOf": [{"$ref": "#/$defs/phase"}, {"properties": {"id": {"const": "code-review"}}}]}
+          ],
+          "items": false
+        },
+        "receipt_policy": {"$ref": "#/$defs/receipt_policy"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"scenario": {"const": "development"}}, "required": ["scenario"]},
+          "then": {"properties": {"route_id": {"const": "A"}}}
+        },
+        {
+          "if": {"properties": {"scenario": {"const": "bugfix"}}, "required": ["scenario"]},
+          "then": {"properties": {"route_id": {"const": "B"}}}
+        }
+      ]
+    },
+    "phase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "marker"],
+      "properties": {
+        "id": {
+          "enum": [
+            "seam",
+            "red",
+            "minimal-change",
+            "focused-verification",
+            "full-verification",
+            "code-review"
+          ]
+        },
+        "marker": {"type": "string", "minLength": 1, "maxLength": 160}
+      }
+    },
+    "receipt_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["slice", "final"],
+      "properties": {
+        "slice": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/phase_id"},
+          "const": ["focused-verification"]
+        },
+        "final": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/phase_id"},
+          "const": ["full-verification", "code-review"]
+        }
+      }
+    },
+    "phase_id": {
+      "enum": [
+        "seam",
+        "red",
+        "minimal-change",
+        "focused-verification",
+        "full-verification",
+        "code-review"
+      ]
+    }
+  }
+}

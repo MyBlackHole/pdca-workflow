@@ -1,0 +1,2 @@
+{"id":"fixture-results","file":"fixture-results.json","kind":"test-result","size":2166,"digest":"sha256:b516cf1c3ec8a30f814368b1689f7c35d8d79ff2594319d204764981f2ab60bb","at":"2026-07-28T20:20:05+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"fixture-inputs","file":"ai-friendliness-scenarios.json","kind":"test-input","size":1536,"digest":"sha256:c71feca5e371db0a5fa62fd235ce5594b38c072b7168fec6331d12cc2f9e9bc6","at":"2026-07-28T20:20:05+08:00","criteria":["AC-1","AC-2","AC-3"]}

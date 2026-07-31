@@ -1,0 +1,38 @@
+{
+  "id": "T0159",
+  "slug": "0801-pdca-self-optimization-loop",
+  "title": "跟进：PDCA 问题记录驱动的自我优化闭环",
+  "parent": "T0158",
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-07-30T17:14:30+08:00",
+    "convergence": [
+      "T0159-0801-pdca-self-optimization-loop"
+    ],
+    "record": "T0159",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "PRD 的 16 条验收标准均由已登记的非映射证据和有效收敛映射支持；52 项测试、8 个公开端到端夹具及代码/架构审查均通过。结论限定为 Linux 上的确定性闭环，不外推真实模型成功率或 Windows 运行时。",
+      "verdict_id": "V-T0159-001",
+      "at": "2026-07-30T20:46:16+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "已将 T0159 对不可变事实、确定性投影、精确用户确认、cutover 与效果判定的可复用护栏合并到既有 PDCA 自我优化反馈链知识；Windows 锁适配和真实模型表现不在本轮验证范围。",
+      "at": "2026-07-30T20:51:12+08:00"
+    },
+    "completed_at": "2026-07-30T20:39:58+08:00"
+  },
+  "states": {
+    "created": "2026-07-30T17:14:30+08:00",
+    "plan": "2026-07-30T17:14:30+08:00",
+    "do": "2026-07-30T19:18:20+08:00",
+    "check": "2026-07-30T20:39:58+08:00",
+    "act": "2026-07-30T20:48:55+08:00",
+    "archive": null
+  }
+}

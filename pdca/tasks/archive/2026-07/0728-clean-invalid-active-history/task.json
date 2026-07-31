@@ -1,0 +1,41 @@
+{
+  "id": "T0142",
+  "slug": "0728-clean-invalid-active-history",
+  "title": "清理 16 个旧格式活跃任务并恢复全库严格校验信号",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "development",
+    "created_at": "2026-07-28T21:31:45+08:00",
+    "convergence": [
+      "dry-run 清单只包含当前 16 个严格 schema 无效的活跃任务目录",
+      "每个删除目标都通过 digest、精确数量和 Git 可恢复性校验",
+      "records、knowledge、journal、归档任务和当前严格任务不受影响",
+      "清理后全库严格校验 invalid_count 为 0"
+    ],
+    "record": "R0142-clean-invalid-active-history",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "精确删除 16 个旧格式活跃目录后全库 invalid_count 从 16 降至 0，保护摘要、恢复计划和全部回归验证通过。",
+      "verdict_id": "V0142",
+      "at": "2026-07-28T21:46:39+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "将固定恢复 commit 与 apply 前状态重验证投影为跨清理范围可复用知识；具体删除目标仅保留在 record。",
+      "at": "2026-07-28T21:48:18+08:00"
+    },
+    "completed_at": "2026-07-28T21:45:20+08:00"
+  },
+  "states": {
+    "created": "2026-07-28T21:31:45+08:00",
+    "plan": "2026-07-28T21:31:45+08:00",
+    "do": "2026-07-28T21:36:06+08:00",
+    "check": "2026-07-28T21:45:20+08:00",
+    "act": "2026-07-28T21:47:39+08:00",
+    "archive": "2026-07-28T21:49:46+08:00"
+  }
+}

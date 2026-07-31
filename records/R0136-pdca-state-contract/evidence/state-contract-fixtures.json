@@ -1,0 +1,92 @@
+{
+  "failed": 0,
+  "fixture_count": 12,
+  "passed": 12,
+  "results": [
+    {
+      "expected": "路径 A",
+      "id": "development-normal",
+      "observed": "路径 A",
+      "pass": true,
+      "scenario": "development"
+    },
+    {
+      "expected": "路径 B",
+      "id": "bugfix-normal",
+      "observed": "路径 B",
+      "pass": true,
+      "scenario": "bugfix"
+    },
+    {
+      "expected": "路径 C",
+      "id": "research-normal",
+      "observed": "路径 C",
+      "pass": true,
+      "scenario": "research"
+    },
+    {
+      "expected": "路径 D",
+      "id": "documentation-normal",
+      "observed": "路径 D",
+      "pass": true,
+      "scenario": "documentation"
+    },
+    {
+      "expected": "路径 E",
+      "id": "design-normal",
+      "observed": "路径 E",
+      "pass": true,
+      "scenario": "design"
+    },
+    {
+      "expected": "路径 F",
+      "id": "review-normal",
+      "observed": "路径 F",
+      "pass": true,
+      "scenario": "review"
+    },
+    {
+      "expected": "FINAL_CONFIRMATION_MISSING",
+      "id": "development-fault-rejected-confirmation",
+      "observed": "FINAL_CONFIRMATION_MISSING",
+      "pass": true,
+      "scenario": "development"
+    },
+    {
+      "expected": "PRD_MISSING",
+      "id": "bugfix-fault-missing-prd",
+      "observed": "PRD_MISSING",
+      "pass": true,
+      "scenario": "bugfix"
+    },
+    {
+      "expected": "REFERENCE_MISSING",
+      "id": "research-fault-missing-reference",
+      "observed": "REFERENCE_MISSING",
+      "pass": true,
+      "scenario": "research"
+    },
+    {
+      "expected": "SCHEMA_INVALID",
+      "id": "documentation-fault-unknown-scenario",
+      "observed": "SCHEMA_INVALID",
+      "pass": true,
+      "scenario": "documentation"
+    },
+    {
+      "expected": "FUTURE_STATE_SET",
+      "id": "design-fault-future-state",
+      "observed": "FUTURE_STATE_SET",
+      "pass": true,
+      "scenario": "design"
+    },
+    {
+      "expected": "STATUS_PHASE_MISMATCH",
+      "id": "review-fault-archive-mismatch",
+      "observed": "STATUS_PHASE_MISMATCH",
+      "pass": true,
+      "scenario": "review"
+    }
+  ],
+  "schema": "pdca.fixture-results/v1"
+}

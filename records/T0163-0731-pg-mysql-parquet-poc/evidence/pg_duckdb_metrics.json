@@ -1,0 +1,86 @@
+{
+  "database": "PostgreSQL",
+  "duckdb": "1.5.5",
+  "rows_target": 1000000,
+  "python": "3.14.6",
+  "platform": "Linux-7.1.5-arch1-1-x86_64-with-glibc2.44",
+  "stages": {
+    "d1_csv_seconds": 1.2348244990134845,
+    "d1_csv_throughput_rows_per_second": 809831.6811813432,
+    "d2_pg_seconds": 1.33291429100791,
+    "d2_pg_throughput_rows_per_second": 750235.785411101
+  },
+  "files": {
+    "d1_csv_parquet_bytes": 26021511,
+    "d2_pg_parquet_bytes": 26010015
+  },
+  "validation": {
+    "d1_csv_parquet_rows": 1000000,
+    "d1_csv_row_count_match": true,
+    "d1_csv_schema": [
+      {
+        "name": "id",
+        "type": "BIGINT"
+      },
+      {
+        "name": "customer_id",
+        "type": "INTEGER"
+      },
+      {
+        "name": "amount",
+        "type": "DECIMAL(12,2)"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP"
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "payload",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "active",
+        "type": "BOOLEAN"
+      }
+    ],
+    "d2_pg_parquet_rows": 1000000,
+    "d2_pg_row_count_match": true,
+    "d2_pg_schema": [
+      {
+        "name": "id",
+        "type": "BIGINT"
+      },
+      {
+        "name": "customer_id",
+        "type": "INTEGER"
+      },
+      {
+        "name": "amount",
+        "type": "DECIMAL(12,2)"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP"
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "payload",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "active",
+        "type": "BOOLEAN"
+      }
+    ],
+    "source_rows": 1000000
+  },
+  "total_seconds": 2.7323468620015774,
+  "max_rss_mb": 882.375
+}

@@ -1,0 +1,89 @@
+{
+  "schema": "pdca.repeat-trial/v1",
+  "trials_per_path": 3,
+  "unit": "seconds (end-to-end, 1M rows, zstd)",
+  "environment_note": "测量窗口内存在遗留 opencode 进程(CPU 164%)与容器内挂起 apt-get；filedump run3(6.168s) 与 run6 受其干扰，已复测 3 轮；/tmp 为 tmpfs，大中间文件清理后复测",
+  "results": {
+    "csv": {
+      "runs": [
+        7.861,
+        8.08,
+        8.421
+      ],
+      "median": 8.08,
+      "mean": 8.12,
+      "min": 7.861,
+      "max": 8.421,
+      "std": 0.282
+    },
+    "direct": {
+      "runs": [
+        4.993,
+        4.944,
+        5.096
+      ],
+      "median": 4.993,
+      "mean": 5.011,
+      "min": 4.944,
+      "max": 5.096,
+      "std": 0.078
+    },
+    "d1_duckdb_from_csv": {
+      "runs": [
+        0.873,
+        0.778,
+        0.881
+      ],
+      "median": 0.873,
+      "mean": 0.844,
+      "min": 0.778,
+      "max": 0.881,
+      "std": 0.057
+    },
+    "d2_duckdb_from_pg": {
+      "runs": [
+        0.78,
+        0.666,
+        0.667
+      ],
+      "median": 0.667,
+      "mean": 0.704,
+      "min": 0.666,
+      "max": 0.78,
+      "std": 0.065
+    },
+    "filedump": {
+      "runs": [
+        3.355,
+        3.222,
+        2.363,
+        2.401,
+        3.064,
+        6.168
+      ],
+      "median": 3.143,
+      "mean": 3.429,
+      "min": 2.363,
+      "max": 6.168,
+      "std": 1.405
+    },
+    "cpp": {
+      "runs": [
+        0.708,
+        0.671,
+        0.674
+      ],
+      "median": 0.674,
+      "mean": 0.684,
+      "min": 0.671,
+      "max": 0.708,
+      "std": 0.021
+    }
+  },
+  "d2_breakdown_probe": {
+    "read_side_seconds": 0.134,
+    "full_seconds": 0.783,
+    "read_side": "postgres_scan_pushdown count(*)",
+    "note": "单次探针, 仅用于解释持平机制"
+  }
+}

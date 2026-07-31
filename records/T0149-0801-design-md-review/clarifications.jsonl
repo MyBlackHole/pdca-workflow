@@ -1,0 +1,2 @@
+{"source": "grill", "round": 1, "question": "最终设计的适用范围与限制是什么？", "answer": "单端口协商模型适用于本系统自有协议链（RPC/SBT 可扩展能力宣告头）；限制：存量客户端无协商头时服务端默认按明文兼容，TLCP 双证书若验收强制需另行评估", "recommended": "单证书国密套件模式先行，TLCP 双证书留待验收确认", "at": "2026-07-31T12:00:00+08:00"}
+{"source": "knowledge_decision", "at": "2026-07-31T12:00:00+08:00", "action": "skipped", "reason": "NBU 单端口协商/免重启/纵深防御知识已沉淀于 knowledge/nbu/nbu-dte-architecture.md（T0163），本任务无新增可复用知识"}

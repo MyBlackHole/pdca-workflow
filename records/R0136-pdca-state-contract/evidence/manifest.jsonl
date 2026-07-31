@@ -1,0 +1,3 @@
+{"id":"state-contract-fixtures","file":"state-contract-fixtures.json","kind":"test-result","size":2166,"digest":"sha256:b516cf1c3ec8a30f814368b1689f7c35d8d79ff2594319d204764981f2ab60bb","at":"2026-07-28T20:20:04+08:00","criteria":["AC-1","AC-2"]}
+{"id":"deletion-manifest","file":"deletion-manifest.json","kind":"dry-run","size":13260,"digest":"sha256:d4b66af9485f5cfac674aefc370e42f218abaf00157adb184f601e8cf7dd0f84","at":"2026-07-28T20:20:04+08:00","criteria":["AC-3","AC-4"]}
+{"id":"deletion-result","file":"deletion-result.json","kind":"execution-result","size":290,"digest":"sha256:7db1dd65bfe5026110591667e42a0ec9f297803c868237b53fccd1bb0c30d7aa","at":"2026-07-28T20:20:04+08:00","criteria":["AC-5"]}

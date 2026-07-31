@@ -1,0 +1,6 @@
+{"source":"final_confirmation","summary":"父任务 T0135 终审覆盖本子任务：六场景确定性 harness 和标准化 Agent 实验协议","response":"confirmed","parent":"T0135","at":"2026-07-28T19:52:50+08:00"}
+{"source":"scope_change","summary":"删除没有当前 runner 的 Agent 实验协议和 trial 资产；本子任务只保留可立即执行并提高验证准确度的确定性 harness","response":"confirmed","at":"2026-07-28T20:10:25+08:00"}
+{"source":"grill","summary":"自审确认 12 个夹具具备固定输入和机器判定；限制为模型无关流程基准，不测真实 LLM 成功率或延迟","at":"2026-07-28T20:22:00+08:00"}
+{"source":"check_confirmation","summary":"父任务 T0135 的用户确认覆盖本子任务结论","response":"confirmed","parent":"T0135","at":"2026-07-28T20:25:05+08:00"}
+{"source":"grill","summary":"Act 自审确认 runner 和 fixtures 本身是可执行知识，不再创建叙述性副本","at":"2026-07-28T20:26:42+08:00"}
+{"source":"knowledge_decision","action":"skipped","reason":"可复用行为已编码为 runner、fixtures 与父任务方法论","at":"2026-07-28T20:26:42+08:00"}

@@ -1,0 +1,32 @@
+{
+  "schema": "pdca.protected-comparison/v1",
+  "at": "2026-07-28T21:41:56+08:00",
+  "all_unchanged": true,
+  "assets": {
+    "records": {
+      "files": 154,
+      "before": "sha256:559c72385c188ff913986341be78928d4bb73994ebbc53676259b50b2971ed56",
+      "after": "sha256:559c72385c188ff913986341be78928d4bb73994ebbc53676259b50b2971ed56"
+    },
+    "knowledge": {
+      "files": 18,
+      "before": "sha256:8ff6069dc6333bec294d5452463a2f6affd3e208fbc0e84577fb8e8d63dce9dd",
+      "after": "sha256:8ff6069dc6333bec294d5452463a2f6affd3e208fbc0e84577fb8e8d63dce9dd"
+    },
+    "journal": {
+      "files": 3,
+      "before": "sha256:6b4723352c248ef99bdf428e6b5a083ce0a83b4624738dca1e434c9cb7199734",
+      "after": "sha256:6b4723352c248ef99bdf428e6b5a083ce0a83b4624738dca1e434c9cb7199734"
+    },
+    "archive": {
+      "files": 80,
+      "before": "sha256:5c1834f259f1aac6110af16e4af1cc6c25acdd1fb5aec42bd908a21826987130",
+      "after": "sha256:5c1834f259f1aac6110af16e4af1cc6c25acdd1fb5aec42bd908a21826987130"
+    },
+    "current_task": {
+      "files": 10,
+      "before": "sha256:bb3c068df259a98b123d18681036893be577901253ed7e96e8ccbdd1f8b26831",
+      "after": "sha256:bb3c068df259a98b123d18681036893be577901253ed7e96e8ccbdd1f8b26831"
+    }
+  }
+}

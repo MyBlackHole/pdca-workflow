@@ -1,0 +1,4 @@
+{"source":"knowledge","file":"knowledge/ai-efficiency/ai-friendliness-review-methodology.md","reason":"本任务直接采用其 GQM、确定性夹具、内容 bytes 代理、控制产物不可自证和不外推真实模型成功率的边界。","action":"loaded","at":"2026-07-30T22:08:27+08:00"}
+{"source":"knowledge","file":"knowledge/pdca-flow/self-optimization-loop.md","reason":"复用其不可变事实、明确 cutover、外部证据和候选不能自证的原则，约束本任务的 baseline 与 fixture 不循环证明自身。","action":"loaded","at":"2026-07-30T22:08:27+08:00"}
+{"source":"implementation","summary":"新增严格路由合约与公共 resolver；重写 AI 友好夹具以调用 resolver、真实断链和 public transition；新增逐资产内容 baseline 与 fail-closed 预算检查。","action":"completed","at":"2026-07-30T23:30:42+08:00"}
+{"source":"verification","summary":"新增 8 项加固回归测试，覆盖映射漂移、生命周期成功/失败、内容增长和 baseline 无法掩盖行为回归；全量 unittest、fixture、预算、doctor 和索引检查通过。","action":"completed","at":"2026-07-30T23:30:42+08:00"}

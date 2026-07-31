@@ -1,0 +1,60 @@
+{
+  "context_bytes": {
+    "list": 603,
+    "show": 1218
+  },
+  "failed": 0,
+  "fixture_count": 8,
+  "passed": 8,
+  "results": [
+    {
+      "expected": "CUTOVER_MISSING",
+      "id": "midphase-before-cutover",
+      "observed": "CUTOVER_MISSING",
+      "pass": true
+    },
+    {
+      "expected": "created",
+      "id": "cutover-create",
+      "observed": "created",
+      "pass": true
+    },
+    {
+      "expected": "created",
+      "id": "midphase-after-cutover",
+      "observed": "created",
+      "pass": true
+    },
+    {
+      "expected": "unchanged",
+      "id": "idempotent-retry",
+      "observed": "unchanged",
+      "pass": true
+    },
+    {
+      "expected": "generated",
+      "id": "deterministic-projection",
+      "observed": "generated",
+      "pass": true
+    },
+    {
+      "expected": "ok",
+      "id": "compact-query",
+      "observed": "ok",
+      "pass": true
+    },
+    {
+      "expected": "PATH_INVALID",
+      "id": "path-attack",
+      "observed": "PATH_INVALID",
+      "pass": true
+    },
+    {
+      "expected": "created",
+      "id": "end-to-end-feedback-loop",
+      "observed": "created",
+      "pass": true
+    }
+  ],
+  "schema": "pdca.flow-issue-fixture-results/v1"
+}

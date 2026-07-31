@@ -1,0 +1,22 @@
+schema: pdca.capabilities/v1
+capabilities:
+  filesystem.read:
+    required: true
+    probe: repository-readable
+  filesystem.write:
+    required: true
+    probe: repository-writable
+  process.exec:
+    required: true
+    probe: python3
+  git.versioning:
+    required: true
+    probe: git
+  agent.spawn:
+    required: false
+    probe: environment:PDCA_AGENT_SPAWN
+    fallback: execute-in-main-session
+  context.retrieve:
+    required: false
+    probe: command:pdca
+    fallback: filesystem-search

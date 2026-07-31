@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pdca.local/schemas/skill-invocation-contract.schema.json",
+  "title": "PDCA skill invocation contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "entry_document", "aliases", "edges"],
+  "properties": {
+    "schema": {"const": "pdca.skill-invocation-contract/v1"},
+    "entry_document": {"$ref": "#/$defs/path"},
+    "aliases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/alias"}
+    },
+    "edges": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/edge"}
+    }
+  },
+  "$defs": {
+    "asset_name": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+    "path": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9_.\\-/]+$"
+    },
+    "alias": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["alias", "target"],
+      "properties": {
+        "alias": {"$ref": "#/$defs/asset_name"},
+        "target": {"$ref": "#/$defs/asset_name"}
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from", "to", "document"],
+      "properties": {
+        "from": {"$ref": "#/$defs/asset_name"},
+        "to": {"$ref": "#/$defs/asset_name"},
+        "document": {"$ref": "#/$defs/path"}
+      }
+    }
+  }
+}
