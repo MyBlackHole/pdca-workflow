@@ -7,3 +7,7 @@
 {"file":"crates/subvol/src/{btree/update.rs,btree/bset.rs,btree/types.rs,engine.rs}","reason":"实现 member attach、transactional runner、alloc/backpointer 派生 btree 与 norun 测试；恢复 rebuild 尚未开始。","action":"modified","at":"2026-08-02T07:02:00+08:00"}
 {"file":"/home/black/Documents/bcachefs-tools/fs/init/recovery.c","reason":"对照 journal replay 使用 norun 后由显式 recovery pass 重建派生状态的边界。","action":"read","at":"2026-08-02T07:34:00+08:00"}
 {"file":"crates/subvol/src/{btree/update.rs,engine.rs}","reason":"实现清空派生树、复制 packed key 的 header/value 后从 primary pointer 重建，并在 recover/open_persistent 发布前执行；新增显式 rebuild 回归。","action":"modified","at":"2026-08-02T07:34:00+08:00"}
+{"file":"/home/black/Documents/bcachefs-tools/fs/btree/{interior.c,bkey_methods.h}","reason":"对照节点写回阶段的 bch2_key_trigger_old/new 调用顺序及 deleted-key 构造，确认不应在仅含 mem_ptr 的 split 路径提前触发。","action":"read","at":"2026-08-02T08:10:00+08:00"}
+{"file":"crates/subvol/src/btree/update.rs","reason":"增加与上游 bkey_methods.h 对应的显式 old/new trigger 入口；覆盖物理 interior btree pointer 的插入/移除对 alloc/backpointer 的同事务维护。","action":"modified","at":"2026-08-02T08:10:00+08:00"}
+{"file":"/home/black/Documents/bcachefs-tools/fs/alloc/backpointers.h","reason":"核对 bch2_extent_ptr_to_bp()：level 非零时 bucket_len 必须取固定 btree_sectors(c)，不能读取 key.size。","action":"read","at":"2026-08-02T08:23:00+08:00"}
+{"file":"crates/subvol/src/btree/update.rs","reason":"修正 interior pointer 的 alloc dirty_sectors/backpointer bucket_len 为 superblock btree node size；回归覆盖 8-sector fixture。","action":"modified","at":"2026-08-02T08:23:00+08:00"}
