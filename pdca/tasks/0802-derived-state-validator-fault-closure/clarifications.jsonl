@@ -1,0 +1,1 @@
+{"source":"direction_confirm","summary":"创建 T0185，聚焦 alloc/backpointer 派生状态独立校验与 journal/rebuild/publication 故障恢复闭环；不重复 T0182，不实现 allocator/GC/stripe/LRU/VFS。","response":"confirmed","at":"2026-08-02T07:39:03+08:00"}

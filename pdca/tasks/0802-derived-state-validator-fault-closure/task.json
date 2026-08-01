@@ -1,0 +1,25 @@
+{
+  "id": "T0185",
+  "slug": "0802-derived-state-validator-fault-closure",
+  "title": "实现 alloc/backpointer 派生状态校验与故障恢复闭环",
+  "parent": "T0180",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-02T07:39:03+08:00",
+    "convergence": [
+      "T0185-0802-derived-state-validator-fault-closure"
+    ]
+  },
+  "states": {
+    "created": "2026-08-02T07:39:03+08:00",
+    "plan": "2026-08-02T07:39:03+08:00",
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}
