@@ -1,0 +1,1 @@
+{"source":"direction_confirm","summary":"创建 T0186，公开 T0185 派生校验、提供结构化 mismatch，并覆盖 recovery journal durable/rebuild/publication fault matrix；不扩大到 allocator、GC、LRU、stripe、VFS。","response":"confirmed","at":"2026-08-02T07:52:41+08:00"}
