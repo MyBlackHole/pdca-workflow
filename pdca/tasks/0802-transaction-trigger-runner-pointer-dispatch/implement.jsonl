@@ -1,0 +1,7 @@
+{"file":"knowledge/core/physical-pointer-derived-state-recovery-boundary.md","reason":"定义 runner 前的主/派生状态边界与交付顺序。","action":"read","at":"2026-08-02T06:33:20+08:00"}
+{"file":"knowledge/core/recovery-derived-state-publication-gate.md","reason":"约束 norun replay 后 rebuild/validate/publication gate。","action":"read","at":"2026-08-02T06:33:20+08:00"}
+{"file":"knowledge/core/device-bucket-geometry-pointer-contract.md","reason":"提供 members-v2 geometry、member-live/online 与 pointer→bucket 映射前置。","action":"read","at":"2026-08-02T06:33:20+08:00"}
+{"file":"/home/black/Documents/bcachefs-tools/fs/btree/commit.c","reason":"逐段对照 run_one_trans_trigger 与 bch2_trans_commit_run_triggers 的 sort-order、多轮、norun 及 trigger 状态机。","action":"read","at":"2026-08-02T07:02:00+08:00"}
+{"file":"/home/black/Documents/bcachefs-tools/fs/alloc/buckets.c","reason":"对照 bch2_trigger_extent()/bch2_trigger_pointer() 的 old/new 顺序、member/bucket 错误分支及同事务派生写入边界。","action":"read","at":"2026-08-02T07:02:00+08:00"}
+{"file":"/home/black/Documents/bcachefs-tools/fs/alloc/backpointers.{h,c}","reason":"对照 physical pointer 到 backpointer owner identity 的字段、position 和 insert/remove 行为。","action":"read","at":"2026-08-02T07:02:00+08:00"}
+{"file":"crates/subvol/src/{btree/update.rs,btree/bset.rs,btree/types.rs,engine.rs}","reason":"实现 member attach、transactional runner、alloc/backpointer 派生 btree 与 norun 测试；恢复 rebuild 尚未开始。","action":"modified","at":"2026-08-02T07:02:00+08:00"}
