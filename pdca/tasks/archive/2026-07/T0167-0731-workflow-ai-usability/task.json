@@ -1,0 +1,42 @@
+{
+  "id": "T0167",
+  "slug": "0731-workflow-ai-usability",
+  "title": "PDCA 工作流 AI 可用性提升：确认 CLI / guidance 字段 / 证据替换 / PRD 早期校验",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "record": "T0167-0731-workflow-ai-usability",
+    "scenario_type": "development",
+    "created_at": "2026-07-31T20:59:00+08:00",
+    "convergence": [
+      "append-confirmation CLI 落地：AI 不再手写 clarifications.jsonl 时间戳，杜绝编造时间",
+      "Issue guidance 字段落地：所有 CLI 失败输出含可执行修复指引，降低 AI 试错轮次",
+      "evidence 安全替换机制落地：旧条目 superseded 保留审计，AI 无需手工编辑 manifest",
+      "PRD 验收标准格式在 plan→do 门禁早期校验：do 快完成才发现格式错误的返工消失",
+      "四项改进均有对 AI 工作流的提升论证与测试覆盖"
+    ],
+    "completed_at": "2026-07-31T21:21:52+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "AC-1~AC-6 全部验收通过：83 tests passed，convergence valid=true，端到端验证四项改进（真实时间戳登记、guidance 输出、--replace 审计链、plan→do 格式门禁）",
+      "verdict_id": "V-T0167-001",
+      "at": "2026-07-31T21:26:06+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "四项机制改进均沉淀为可复用资产：knowledge/pdca-workflow/ai-friendly-confirmation.md + register-evidence SKILL + flow-plan 门禁文档；后续任务自动受益",
+      "at": "2026-07-31T21:26:43+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-07-31T20:59:00+08:00",
+    "plan": "2026-07-31T20:59:00+08:00",
+    "do": "2026-07-31T21:04:19+08:00",
+    "check": "2026-07-31T21:21:52+08:00",
+    "act": "2026-07-31T21:26:07+08:00",
+    "archive": "2026-07-31T21:26:43+08:00"
+  }
+}

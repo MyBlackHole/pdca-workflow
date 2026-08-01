@@ -1,0 +1,6 @@
+{"source":"triage","summary":"T0174 暴露：kmalloc 扩容失败 -12 硬失败，bcachefs 为 restart_mem_realloced 可重试","response":"bug_confirmed","at":"2026-08-01T18:31:27+08:00"}
+{"source":"final_confirmation","summary":"PRD 终审通过：三处改动（kmalloc restart 传播 + trans_begin 扩容 + subbuf -4 传播），AC-1 T0174 通过为验收","response":"confirmed","at":"2026-08-01T18:31:27+08:00"}
+{"source":"check_confirmation","summary":"check 阶段确认：convergence valid=true，AC 全达标，evidence 已登记","response":"confirmed","at":"2026-08-01T20:08:20+08:00"}
+{"source":"grilling","summary":"commit 循环改动超出 PRD（原方案声明不改 commit 循环），为何扩大？","answer":"subbuf 传播 -4 外，其余 kmalloc 消费路径仍可能直接返回 -12；仅靠 -4 重试会漏网。改为 -4 || (-12 && restarted!=0) 兜底，以 restarted 标志区分真 OOM（保持硬失败）与扩容需求，避免无限重试","recommended":"-4 || (-12 && restarted!=0) 兜底","at":"2026-08-01T20:10:00+08:00"}
+{"source":"grilling","summary":"真 OOM 与扩容请求如何区分，防止无限重试？","answer":"restarted==0 时 -12 硬失败（首分配失败/超 BTREE_TRANS_MEM_MAX）；restarted!=0 时 -12 纳入重试（kmalloc 已设置 5，trans_begin 消费扩容）；重试后空间满足即成功，不满足则再次 restart，有限次数收敛","recommended":"restarted 标志区分，真 OOM 保持硬失败","at":"2026-08-01T20:10:00+08:00"}
+{"source":"knowledge_decision","summary":"T0174/T0175 知识沉淀","answer":"wrote","recommended":"knowledge/core/btree-split-proptest-enomem-restart-pattern.md（两任务合并沉淀同一模式文件）","at":"2026-08-01T20:10:00+08:00"}

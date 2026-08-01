@@ -1,0 +1,6 @@
+{"source":"grilling","summary":"R2/R3 校验强度：新转换 fail-closed（含修复指引），存量任务 doctor 非阻断警告，不阻断存量转换","response":"confirmed","at":"2026-07-31T20:15:00+08:00"}
+{"source":"grilling","summary":"R4 convergence 占位符：不修改 schema、不修存量，作为已知缺陷在 occurrence 登记时一并记录","response":"confirmed","at":"2026-07-31T20:16:00+08:00"}
+{"source":"grilling","summary":"T0164 处置：照常推进 check/act，check 时列出违规与 occurrence 引用由用户确认 verdict","response":"confirmed","at":"2026-07-31T20:17:00+08:00"}
+{"source":"direction_confirm","summary":"R1+R2+R3 方案方向确认：登记 T0164 违规 occurrence；transition plan→do 加确认时间不晚于转换时刻的 fail-closed 校验；doctor 加存量时间线一致性体检（非阻断）","response":"confirmed","at":"2026-07-31T20:20:00+08:00"}
+{"source":"final_confirmation","summary":"终审批准 R1+R2+R3：登记 2 条 occurrence；plan→do 门禁加确认时间 fail-closed 校验；doctor 加存量时间线体检；不做 schema 收紧/回滚/哈希链","response":"confirmed","at":"2026-07-31T20:21:00+08:00"}
+{"source":"check_confirmation","summary":"6 项 AC 全通过、收敛条件满足，用户确认结论进入 Act","response":"confirmed","at":"2026-07-31T20:47:00+08:00"}

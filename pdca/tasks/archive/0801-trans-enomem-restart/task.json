@@ -1,0 +1,37 @@
+{
+  "id": "T0175",
+  "slug": "0801-trans-enomem-restart",
+  "title": "修复事务 commit 循环未将 -ENOMEM 纳入 restart 导致分裂路径硬失败（T0174 暴露）",
+  "parent": "T0174",
+  "children": [],
+  "status": "InProgress",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "scenario_type": "bugfix",
+    "created_at": "2026-08-01T19:30:00+08:00",
+    "convergence": [
+      "T0175-0801-trans-enomem-restart"
+    ],
+    "record": "T0175-0801-trans-enomem-restart",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "convergence valid=true；5/5 AC 达标（split_stress 不再 Transaction(-12)、全量回归绿+fmt、扩容仅 restart 时发生、5 轮稳定、bcachefs 语义对齐）",
+      "verdict_id": "V-T0175-001",
+      "at": "2026-08-01T20:05:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "修复 T0174 暴露的三类缺陷（节点 4KB 几何/trans ENOMEM restart/journal reclaim 语义），T0174 获得属性级回归保障；经验沉淀待 knowledge 目录",
+      "at": "2026-08-01T20:05:00+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-01T19:30:00+08:00",
+    "plan": "2026-08-01T18:31:27+08:00",
+    "do": "2026-08-01T18:31:27+08:00",
+    "check": "2026-08-01T20:05:00+08:00",
+    "act": "2026-08-01T20:05:00+08:00",
+    "archive": "2026-08-01T20:05:00+08:00"
+  }
+}
