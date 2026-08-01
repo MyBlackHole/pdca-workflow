@@ -6,7 +6,7 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "check",
+    "phase": "act",
     "active": true,
     "scenario_type": "bugfix",
     "created_at": "2026-08-01T23:26:34+08:00",
@@ -16,6 +16,11 @@
       "reason": "用户接受 Check 结论：恢复前布局校验已按 bcachefs journal_validate_key 的适用分支隔离零长度、越界与非当前 format key；合法邻键保持可恢复，178 个单测与 10 个属性/集成测试通过。",
       "verdict_id": "V-T0178-001",
       "at": "2026-08-01T23:57:52+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "journal key 布局校验的 bcachefs 对齐边界、独立 btree-id 不可直接复用 fs 层语义的限制，以及 Rust 精确长度 buffer 的最小 header 检查均可跨后续恢复路径任务复用，已沉淀到 knowledge/core/journal-key-layout-validation.md。",
+      "at": "2026-08-01T23:58:18+08:00"
     },
     "convergence": [
       "T0178-journal-bkey-validation"
@@ -27,7 +32,7 @@
     "plan": "2026-08-01T23:26:34+08:00",
     "do": "2026-08-01T23:49:41+08:00",
     "check": "2026-08-01T23:57:08+08:00",
-    "act": null,
+    "act": "2026-08-01T23:58:04+08:00",
     "archive": null
   }
 }
