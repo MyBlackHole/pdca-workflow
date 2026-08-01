@@ -1,0 +1,4 @@
+{"source":"triage","summary":"本地源码与当前代码足以界定审计范围；不存在需要用户决策的架构取舍。","response":"not_needed","at":"2026-08-02T00:02:13+08:00"}
+{"source":"final_confirmation","summary":"批准 T0179：先审计 transaction/gc trigger 链对当前独立键模型的适用性；仅在证据确认缺口时创建后续最小 bugfix，不直接移植 fs 层 trigger 链。","response":"confirmed","at":"2026-08-02T00:06:10+08:00"}
+{"source":"check_confirmation","summary":"确认 T0179 结论为 partial：原审计正确覆盖当前 cookie/deleted 与 snapshot 原子路径，但遗漏 extent、alloc、内部 btree pointer 及 backpointer 派生更新；不以无缺口结论归档，创建完整审计后续 Plan。","response":"confirmed","at":"2026-08-02T00:16:39+08:00"}
+{"source":"direction_confirm","summary":"根据 partial verdict 创建跟进任务 T0180，覆盖 extent、alloc、内部 btree pointer、backpointer/stripe-backpointer、accounting、journal/recovery 与 GC 的完整 trigger 依赖审计。","response":"confirmed","at":"2026-08-02T00:18:52+08:00"}

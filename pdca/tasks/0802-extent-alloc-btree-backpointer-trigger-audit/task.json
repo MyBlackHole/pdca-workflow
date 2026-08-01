@@ -1,0 +1,25 @@
+{
+  "id": "T0180",
+  "slug": "0802-extent-alloc-btree-backpointer-trigger-audit",
+  "title": "跟进：审计 extent/alloc/btree/backpointer trigger 依赖链",
+  "parent": "T0179",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "review",
+    "created_at": "2026-08-02T00:17:58+08:00",
+    "convergence": [
+      "T0180-0802-extent-alloc-btree-backpointer-trigger-audit"
+    ]
+  },
+  "states": {
+    "created": "2026-08-02T00:17:58+08:00",
+    "plan": "2026-08-02T00:17:58+08:00",
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}
