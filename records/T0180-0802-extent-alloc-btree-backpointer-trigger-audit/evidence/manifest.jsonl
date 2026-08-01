@@ -1,0 +1,4 @@
+{"id":"evt-001","file":"research-report.md","kind":"research","size":5974,"digest":"sha256:abe1ea196e8f934d33934f8ee72f6555a7a369de6ae6ef698969a5ec5f4d1b9a","at":"2026-08-02T00:27:54+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"evt-002","file":"t0181-task.json","kind":"artifact","size":627,"digest":"sha256:9cdd27971567ce0cf3bcdd69f72b51a31f876c530bb2edd6d29b7b47e71125d9","at":"2026-08-02T00:27:55+08:00","criteria":["AC-5"]}
+{"id":"evt-003","file":"verification.md","kind":"test","size":671,"digest":"sha256:2092595d9378551d782f46c9b4c0c1cd80655e94aa4498af586d8a56b179f694","at":"2026-08-02T00:27:55+08:00","criteria":["AC-6"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":283,"digest":"sha256:0aaaffc688a64e9799a0d09257eda8cbd15ee200b83741ebc65683193367e33c","at":"2026-08-02T00:28:26+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6"]}
