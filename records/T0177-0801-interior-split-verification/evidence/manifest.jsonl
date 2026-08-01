@@ -1,0 +1,4 @@
+{"id":"e1-t0177-diff","file":"t0177-diff.patch","kind":"test-diff","size":100365,"digest":"sha256:74c78d1a41d430f61908fc84a6197d8d2f98bd0f5fbd4086a1e5518394bea35d","at":"2026-08-01T23:06:46+08:00","criteria":["AC-1","AC-2","AC-4"]}
+{"id":"e2-t0177-verification","file":"t0177-verification.md","kind":"test-run-log","size":4070,"digest":"sha256:f1ca81bc0c1f6380ee76c340d5a8aa996e823b2ca15f50dea9f754e233e6f077","at":"2026-08-01T23:06:46+08:00","criteria":["AC-4","AC-5"]}
+{"id":"e3-t0177-conclusion","file":"conclusion.md","kind":"conclusion-doc","size":4725,"digest":"sha256:f40ee18731ccab24556ffba969cbd2406936d8a419bb261d45c4cdbe41ab23d2","at":"2026-08-01T23:07:03+08:00","criteria":["AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":370,"digest":"sha256:34f024b5d389ca9999b7e22684fbb63f241b2344da4308b5b90b705d3f7a9fb3","at":"2026-08-01T23:07:03+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}
