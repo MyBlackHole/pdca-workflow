@@ -11,3 +11,5 @@
 {"file":"crates/subvol/src/btree/update.rs","reason":"增加与上游 bkey_methods.h 对应的显式 old/new trigger 入口；覆盖物理 interior btree pointer 的插入/移除对 alloc/backpointer 的同事务维护。","action":"modified","at":"2026-08-02T08:10:00+08:00"}
 {"file":"/home/black/Documents/bcachefs-tools/fs/alloc/backpointers.h","reason":"核对 bch2_extent_ptr_to_bp()：level 非零时 bucket_len 必须取固定 btree_sectors(c)，不能读取 key.size。","action":"read","at":"2026-08-02T08:23:00+08:00"}
 {"file":"crates/subvol/src/btree/update.rs","reason":"修正 interior pointer 的 alloc dirty_sectors/backpointer bucket_len 为 superblock btree node size；回归覆盖 8-sector fixture。","action":"modified","at":"2026-08-02T08:23:00+08:00"}
+{"file":"/home/black/Documents/bcachefs-tools/fs/btree/interior.c","reason":"对照 btree_update_nodes_written_trans() 的先 old trigger+overwrite journal、后 new trigger+btree_keys/root journal 的物理节点写回事务顺序。","action":"read","at":"2026-08-02T08:38:00+08:00"}
+{"file":"crates/subvol/src/btree/update.rs","reason":"增加物理 interior pointer 的事务发布边界：按上游顺序执行 old/new trigger，并复制非连续 packed key 的 header/value 写入 overwrite、btree_keys/root journal；新增 journal 与派生态同事务回归。","action":"modified","at":"2026-08-02T08:38:00+08:00"}
