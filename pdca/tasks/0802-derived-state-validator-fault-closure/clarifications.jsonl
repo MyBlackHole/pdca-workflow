@@ -1,2 +1,4 @@
 {"source":"direction_confirm","summary":"创建 T0185，聚焦 alloc/backpointer 派生状态独立校验与 journal/rebuild/publication 故障恢复闭环；不重复 T0182，不实现 allocator/GC/stripe/LRU/VFS。","response":"confirmed","at":"2026-08-02T07:39:03+08:00"}
+{"source":"knowledge_decision","action":"wrote","reason":"primary authority、派生集合校验字段与 recovery publication gate 可复用于后续存储一致性任务。","at":"2026-08-02T07:50:30+08:00"}
 {"source":"final_confirmation","summary":"用户确认 T0185 完整 PRD：独立校验 alloc/backpointer 派生集合，覆盖 journal durable、rebuild、publication 前故障恢复；范围不含 allocator、GC、stripe、LRU、VFS。","response":"confirmed","at":"2026-08-02T07:39:57+08:00"}
+{"source":"check_confirmation","summary":"用户确认 AC-3 corruption seam 已补齐；validator 对删除 alloc 派生记录稳定报告 mismatch，T0185 全量测试通过，可进入 Act。","response":"confirmed","at":"2026-08-02T07:50:11+08:00"}
