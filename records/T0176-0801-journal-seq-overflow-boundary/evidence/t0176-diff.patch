@@ -1,0 +1,140 @@
+commit 8c75f24d758b9f6473de6cfff6e51c73a93d15e7
+Author: black <1358244533@qq.com>
+Date:   Sat Aug 1 20:39:47 2026 +0800
+
+    【F-T0176】engine: 新增 journal seq 溢出边界测试锁定 shutdown 语义（D2 纠误）, 0.1.0 -> 0.1.0
+    
+    需求描述
+    - T0168 review-report D2 声称"seq 达上限硬失败，bcachefs seq_blacklist.c
+      支持环回，长期运行可靠性受限"。对照本地 bcachefs 源码后该描述与事实
+      不符，需验证真实语义边界并用单测锁定。
+    
+    背景
+    - JOURNAL_SEQ_MAX = (1ULL << 56) - 1（fs/journal/types.h:18）：u64 空间
+      下溢出几乎不可达，仅防御性边界，永远无需环回。
+    - 溢出语义对齐 journal.c:442：journal_cur_seq >= JOURNAL_SEQ_MAX →
+      日志 + emergency_read_only + 返回 shutdown 类错误（非环回）。项目
+      journal.rs:1184 new_seq > JOURNAL_SEQ_MAX → -2 与此一致。
+    - seq_blacklist（seq_blacklist.c:13-38）用途是崩溃后忽略比最新成功
+      journal 条目更新的 bset（btree 先落盘场景）；项目为 write-ahead 顺序
+      （journal 先落盘 → checkpoint 才 flush btree pins → 才推进 last_seq），
+      bset 永不先于 journal 落盘，blacklist 前提不成立。
+    
+    实现
+    - journal.rs 新增测试 flush_returns_shutdown_at_seq_overflow：seq 置为
+      JOURNAL_SEQ_MAX 后 bch2_journal_flush 返回 -2 且 seq 不推进（同步
+      ring[1].seq 满足 flush 内 old_buf.seq 断言）。
+    - 新增测试 journal_read_rejects_seq_above_max：设备 bucket 起始写
+      seq = JOURNAL_SEQ_MAX + 1 记录，bch2_journal_read 返回 -5（恢复路径
+      journal.rs:1349 同条件组拒绝）且 cur_seq 不推进。
+    
+    影响范围
+    - 仅测试代码（journal.rs +92 行），无引擎行为修改。
+    - 无格式变更，单一版本。
+    
+    测试验证
+    - 新增 2 测试单独通过；lib 全量 175/175 绿。
+    - 集成 btree_proptest 10/10（105.18s）稳定。
+    - cargo fmt --check 干净。
+
+diff --git a/crates/subvol/src/journal.rs b/crates/subvol/src/journal.rs
+index 167c97f..c5b00cd 100644
+--- a/crates/subvol/src/journal.rs
++++ b/crates/subvol/src/journal.rs
+@@ -3103,4 +3103,96 @@ mod tests {
+             bch2_free_super(&mut replay.disk_sb);
+         }
+     }
++
++    #[test]
++    fn flush_returns_shutdown_at_seq_overflow() {
++        /* 对齐 journal.c:442：journal_cur_seq >= JOURNAL_SEQ_MAX 时
++         * emergency read-only（返回 shutdown 类错误），而非环回。
++         * JOURNAL_SEQ_MAX = (1<<56)-1（journal/types.h:18），
++         * 溢出即拒绝推进 seq。flush 的 old_idx 来自 reservations 状态
++         * （default() 为 idx=1），同步 ring[1].seq 满足 1007 行断言。 */
++        let j = journal::default();
++        j.seq.store(JOURNAL_SEQ_MAX, Ordering::Release);
++        j.ring[1].seq.store(JOURNAL_SEQ_MAX, Ordering::Release);
++        assert_eq!(bch2_journal_flush(&j), -2);
++        assert_eq!(j.seq.load(Ordering::Acquire), JOURNAL_SEQ_MAX);
++    }
++
++    #[test]
++    fn journal_read_rejects_seq_above_max() {
++        /* 恢复路径对超上限 seq 的拒绝（journal.rs:1349 同条件组：
++         * seq == 0 或 seq > JOURNAL_SEQ_MAX 均返回 -5）。在 bucket
++         * 起始写一条 seq = JOURNAL_SEQ_MAX + 1 的记录，read 应拒绝。 */
++        use crate::btree::types::bch_fs;
++        use crate::sb::io::{bch2_free_super, bch2_sb_field_resize_id, bch2_sb_realloc};
++        use crate::sb::{
++            bch_member, bch_sb_field_journal_v2, bch_sb_field_journal_v2_entry,
++            bch_sb_field_members_v2, BCH_SB_FIELD_journal_v2, BCH_SB_FIELD_members_v2,
++        };
++        use std::os::unix::fs::FileExt;
++
++        unsafe {
++            let path = std::env::temp_dir().join(format!(
++                "subvol-journal-seq-overflow-{}",
++                std::process::id()
++            ));
++            let file = std::fs::OpenOptions::new()
++                .create(true)
++                .truncate(true)
++                .read(true)
++                .write(true)
++                .open(&path)
++                .unwrap();
++            file.set_len(128 * 512).unwrap();
++
++            let mut c = bch_fs::default();
++            c.disk_sb.s_bdev_file = Box::into_raw(Box::new(file.try_clone().unwrap())).cast();
++            assert_eq!(bch2_sb_realloc(&mut c.disk_sb, 0), 0);
++            (*c.disk_sb.sb).version = crate::sb::bcachefs_metadata_version_current;
++            (*c.disk_sb.sb).uuid = [0x42; 16];
++            (*c.disk_sb.sb).dev_idx = 0;
++            (*c.disk_sb.sb).nr_devices = 1;
++            (*c.disk_sb.sb).block_size = 1;
++
++            let members_u64s = (core::mem::size_of::<bch_sb_field_members_v2>()
++                + core::mem::size_of::<bch_member>())
++            .div_ceil(8) as u32;
++            let members =
++                bch2_sb_field_resize_id(&mut c.disk_sb, BCH_SB_FIELD_members_v2, members_u64s)
++                    .cast::<bch_sb_field_members_v2>();
++            (*members).member_bytes = core::mem::size_of::<bch_member>() as u16;
++            *members
++                .cast::<u8>()
++                .add(core::mem::size_of::<bch_sb_field_members_v2>())
++                .cast::<bch_member>() = bch_member {
++                nbuckets: 64,
++                first_bucket: 8,
++                bucket_size: 2,
++                ..Default::default()
++            };
++
++            let journal = bch2_sb_field_resize_id(&mut c.disk_sb, BCH_SB_FIELD_journal_v2, 3)
++                .cast::<bch_sb_field_journal_v2>();
++            *journal
++                .cast::<u8>()
++                .add(core::mem::size_of::<bch_sb_field_journal_v2>())
++                .cast::<bch_sb_field_journal_v2_entry>() =
++                bch_sb_field_journal_v2_entry { start: 32, nr: 4 };
++
++            let uuid_lo = u64::from_le_bytes((&[0x42u8; 16])[..8].try_into().unwrap());
++            let mut disk = vec![0u64; 16];
++            disk[2] = uuid_lo ^ JSET_MAGIC;
++            disk[3] = JOURNAL_SEQ_MAX + 1;
++            disk[4] = crate::sb::bcachefs_metadata_version_current as u64
++                | (crate::checksum::BCH_CSUM_xxhash as u64) << 32;
++            let bytes = core::slice::from_raw_parts(disk.as_ptr().cast::<u8>(), disk.len() * 8);
++            assert_eq!(file.write_at(bytes, 32 * 2 * 512).unwrap(), disk.len() * 8);
++
++            let mut start = journal_start_info::default();
++            assert_eq!(bch2_journal_read(&mut c, &mut start), -5);
++            assert_eq!(start.cur_seq, 0);
++
++            bch2_free_super(&mut c.disk_sb);
++        }
++    }
+ }
