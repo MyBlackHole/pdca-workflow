@@ -8,7 +8,7 @@
   ],
   "status": "Completed",
   "meta": {
-    "phase": "act",
+    "phase": "check",
     "active": true,
     "record": "T0182",
     "scenario_type": "development",
@@ -22,11 +22,6 @@
       "reason": "Check 结论获用户确认；6 项 AC 均有证据，收敛验证有效，workspace 184 个单测与 10 个属性测试通过。",
       "verdict_id": "V-T0182-001",
       "at": "2026-08-02T07:32:24+08:00"
-    },
-    "disposition": {
-      "outcome": "projected",
-      "reason": "已将 transactional pointer runner、norun recovery 与 interior publication 顺序沉淀到可复用 knowledge/core 资产。",
-      "at": "2026-08-02T07:33:31+08:00"
     }
   },
   "states": {
@@ -34,7 +29,7 @@
     "plan": "2026-08-02T00:25:38+08:00",
     "do": "2026-08-02T06:35:10+08:00",
     "check": "2026-08-02T07:31:28+08:00",
-    "act": "2026-08-02T07:32:34+08:00",
+    "act": null,
     "archive": null
   }
 }
