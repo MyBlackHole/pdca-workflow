@@ -3,7 +3,9 @@
   "slug": "0802-transaction-trigger-runner-pointer-dispatch",
   "title": "实现 transaction trigger runner 与 pointer/extent dispatch",
   "parent": "T0180",
-  "children": [],
+  "children": [
+    "T0184"
+  ],
   "status": "Pending",
   "meta": {
     "phase": "plan",

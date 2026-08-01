@@ -1,0 +1,2 @@
+{"file":"knowledge/core/recovery-derived-state-publication-gate.md","reason":"geometry 必须跨 journal/recovery 保持 pointer→bucket 映射，且派生状态在验证完成前不可发布。","action":"read","at":"2026-08-02T06:27:00+08:00"}
+{"file":"knowledge/core/physical-pointer-derived-state-recovery-boundary.md","reason":"device bucket geometry 是 physical pointer 驱动 alloc/backpointer 派生状态的缺失前置。","action":"read","at":"2026-08-02T06:27:00+08:00"}

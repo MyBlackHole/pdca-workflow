@@ -1,0 +1,38 @@
+{
+  "id": "T0184",
+  "slug": "0802-device-bucket-geometry-contract",
+  "title": "定义设备 bucket 几何与 physical pointer 映射合约",
+  "parent": "T0182",
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "scenario_type": "design",
+    "created_at": "2026-08-02T06:27:00+08:00",
+    "record": "T0184-0802-device-bucket-geometry-contract",
+    "convergence": [
+      "T0184-0802-device-bucket-geometry-contract"
+    ],
+    "completed_at": "2026-08-02T06:31:24+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "用户确认 members-v2 为持久化 bucket geometry 权威，pointer bucket 按 offset/bucket_size 映射；T0182 必须建立 member-alive/devs_online attach 后实现合并范围。",
+      "verdict_id": "V-T0184-001",
+      "at": "2026-08-02T06:31:55+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "将 members-v2 geometry 和 member-live/online pointer 前置沉淀为知识，并投射到合并后的 T0182 实现范围。",
+      "at": "2026-08-02T06:32:15+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-02T06:27:00+08:00",
+    "plan": "2026-08-02T06:27:00+08:00",
+    "do": "2026-08-02T06:29:46+08:00",
+    "check": "2026-08-02T06:31:24+08:00",
+    "act": "2026-08-02T06:32:05+08:00",
+    "archive": null
+  }
+}
