@@ -1,0 +1,2 @@
+{"id":"source-audit","file":"source-audit.md","kind":"source-audit","size":1208,"digest":"sha256:b200bd560dbbca9f15db008e7164e799505e56ec70518cd15168ae9ea7c1f196","at":"2026-08-02T07:45:17+08:00","criteria":["AC-1"]}
+{"id":"verification","file":"verification.md","kind":"test-report","size":952,"digest":"sha256:bc020b387889ecf13864b4b0b283b8df520e3fbdccccd2f1e917d28bc76dbd6b","at":"2026-08-02T07:45:17+08:00","criteria":["AC-2","AC-4","AC-5"]}
