@@ -1,0 +1,3 @@
+{"id":"fix-commits","file":"t0169-fix-commits.md","kind":"code-review","size":3737,"digest":"sha256:4c11df36b0b1b79c5d126fc6f39265c33064e4ad233991903a35406c561c4233","at":"2026-08-01T11:11:14+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"test-result","file":"t0169-test-result.md","kind":"test-result","size":1253,"digest":"sha256:082c5c0f9d26065ae121bee34c4287d320aa0dc699b993074fc37738a38f14a7","at":"2026-08-01T11:11:14+08:00","criteria":["AC-5"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":250,"digest":"sha256:4fbfd0b7e6cfac52e1304d131bece93a00ad95e94e743b33aa7a3ac4c2d85395","at":"2026-08-01T11:11:42+08:00","criteria":["AC-1"]}

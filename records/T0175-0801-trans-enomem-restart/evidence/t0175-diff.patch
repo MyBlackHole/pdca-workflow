@@ -1,0 +1,214 @@
+diff --git a/crates/subvol/src/btree/iter.rs b/crates/subvol/src/btree/iter.rs
+index 5a1ffd5..65481d0 100644
+--- a/crates/subvol/src/btree/iter.rs
++++ b/crates/subvol/src/btree/iter.rs
+@@ -530,6 +530,41 @@ pub unsafe fn bch2_trans_begin(trans: *mut btree_trans) -> u32 {
+     }
+     super::update::bch2_trans_reset_updates(trans);
+     (*trans).mem_top = 0;
++    if (*trans).restarted == 5 && (*trans).realloc_bytes_required != 0 {
++        /* 对齐 iter.c:3913-3933：restart 原因为 mem_realloced 时消费
++         * realloc_bytes_required 扩容 trans 内存；realloc 失败降级为
++         * 直接分配 BTREE_TRANS_MEM_MAX（对应 mempool 兜底语义），
++         * 兜底也失败则保留原 mem，由下一次 kmalloc 请求重试。 */
++        let new_bytes = (*trans).realloc_bytes_required as usize;
++        (*trans).realloc_bytes_required = 0;
++        let old_bytes = (*trans).mem_bytes as usize;
++        if old_bytes != 0 && !(*trans).mem.is_null() {
++            if let Ok(old_layout) =
++                std::alloc::Layout::from_size_align(old_bytes, core::mem::align_of::<u64>())
++            {
++                let p = std::alloc::realloc((*trans).mem, old_layout, new_bytes);
++                if !p.is_null() {
++                    (*trans).mem = p;
++                    (*trans).mem_bytes = new_bytes as u32;
++                } else if let Ok(max_layout) = std::alloc::Layout::from_size_align(
++                    super::update::BTREE_TRANS_MEM_MAX as usize,
++                    core::mem::align_of::<u64>(),
++                ) {
++                    let q = std::alloc::alloc(max_layout);
++                    if !q.is_null() {
++                        core::ptr::copy_nonoverlapping(
++                            (*trans).mem,
++                            q,
++                            old_bytes.min(super::update::BTREE_TRANS_MEM_MAX as usize),
++                        );
++                        std::alloc::dealloc((*trans).mem, old_layout);
++                        (*trans).mem = q;
++                        (*trans).mem_bytes = super::update::BTREE_TRANS_MEM_MAX as u32;
++                    }
++                }
++            }
++        }
++    }
+     (*trans).realloc_bytes_required = 0;
+     if (*trans).journal_replay_not_finished
+         && (*trans).c != core::ptr::null_mut()
+diff --git a/crates/subvol/src/btree/update.rs b/crates/subvol/src/btree/update.rs
+index d43697c..bbfe069 100644
+--- a/crates/subvol/src/btree/update.rs
++++ b/crates/subvol/src/btree/update.rs
+@@ -26,7 +26,7 @@ use crate::lock::six::{
+ };
+ 
+ const UPDATE_KEY_OWNED: usize = usize::MAX;
+-const BTREE_TRANS_MEM_MAX: u32 = 1 << 16;
++pub(crate) const BTREE_TRANS_MEM_MAX: u32 = 1 << 16;
+ 
+ #[allow(dead_code)]
+ unsafe fn need_whiteout_for_snapshot(
+@@ -98,6 +98,10 @@ pub unsafe fn __bch2_trans_kmalloc(trans: *mut btree_trans, size: usize, zero: b
+     }
+     if (*trans).mem_bytes != 0 {
+         (*trans).realloc_bytes_required = (top + size) as u32;
++        /* 对齐 iter.c:3798-3800：mem 已存在且需扩容时返回
++         * BCH_ERR_transaction_restart_mem_realloced（restart 类），
++         * 由 bch2_trans_begin 消费 realloc_bytes_required 扩容后重试。 */
++        (*trans).restarted = 5;
+         return core::ptr::null_mut();
+     }
+     let new_bytes = (top + size).next_power_of_two();
+@@ -216,6 +220,12 @@ pub unsafe fn bch2_trans_subbuf_reserve(
+ ) -> i32 {
+     if (*buf).u64s as usize + u64s as usize > (*buf).size as usize {
+         if __bch2_trans_subbuf_alloc(trans, buf, u64s).is_null() {
++            /* 对齐 commit.c:1319-1320：扩容请求（kmalloc 设置
++             * restarted）传播为 restart（-4）由 commit 循环重试；
++             * 真 OOM（超 BTREE_TRANS_MEM_MAX 上限）保持 -12 硬失败。 */
++            if (*trans).restarted != 0 {
++                return -4;
++            }
+             return -12;
+         }
+     }
+@@ -845,11 +855,15 @@ unsafe fn __btree_node_flush(
+     let c = (j.cast::<u8>())
+         .sub(core::mem::offset_of!(super::types::bch_fs, journal))
+         .cast::<super::types::bch_fs>();
+-    if (*b).flags & (1usize << super::io::BTREE_NODE_dirty) == 0
+-        || btree_node_write_idx(b) != i
+-        || (*pin).seq != seq
+-    {
+-        return if (*pin).seq == seq { -1 } else { 0 };
++    if (*b).flags & (1usize << super::io::BTREE_NODE_dirty) == 0 {
++        /* 对齐 __btree_node_flush()（fs/btree/commit.c:254）：节点已写完，
++         * 该 pin 视为完成返回 0，flush_pins 继续处理其余 pin。 */
++        return 0;
++    }
++    if btree_node_write_idx(b) != i || (*pin).seq != seq {
++        /* 节点仍 dirty 但 write_idx 已翻转（上次写盘失败）或 pin 已被
++         * 重新 pin：保持 pin 在 unflushed 列表，由后续 reclaim 重试。 */
++        return -1;
+     }
+ 
+     let ret = six_lock_read(&(*b).c.lock);
+@@ -866,11 +880,13 @@ unsafe fn __btree_node_flush(
+         super::io::BTREE_WRITE_only_if_need,
+     );
+     six_unlock_read(&(*b).c.lock);
+-    if (*pin).seq == seq {
+-        -1
+-    } else {
+-        0
++    if (*b).flags & (1usize << super::io::BTREE_NODE_dirty) != 0 {
++        /* 写盘失败（__bch2_btree_node_write 失败时恢复 dirty 标志）：
++         * 返回错误让 flush_pins 中断，pin 保留在 unflushed 列表，下次
++         * reclaim 重试（bcachefs flush 失败同样 break）。 */
++        return -5;
+     }
++    0
+ }
+ 
+ pub unsafe extern "C" fn bch2_btree_node_flush0(
+diff --git a/crates/subvol/src/engine.rs b/crates/subvol/src/engine.rs
+index 4942fb2..6ee17d3 100644
+--- a/crates/subvol/src/engine.rs
++++ b/crates/subvol/src/engine.rs
+@@ -408,9 +408,11 @@ impl StorageEngine {
+                 return Err(EngineError::Transaction(ret));
+             }
+             (*fs.disk_sb.sb).block_size = 1;
+-            /* This is the same node-buffer geometry used by the port's btree
+-             * cache and fake-root recovery tests. */
+-            (*fs.disk_sb.sb).flags[0] = 1 << 12;
++            /* 4KB node buffer: BCH_SB_BTREE_NODE_SIZE occupies flags[0]
++             * bits 12-27 in units of sectors (bcachefs_format.h:1223,
++             * sb/io.rs:256), and the port's btree cache and fake-root
++             * recovery tests use the same 8-sector geometry. */
++            (*fs.disk_sb.sb).flags[0] = 8 << 12;
+ 
+             let ret = bch2_fs_btree_cache_init(&mut *fs);
+             if ret != 0 {
+@@ -867,11 +869,26 @@ impl StorageEngine {
+                     ret = bch2_trans_commit(&mut trans);
+                     crate::rewrite_log_debug!("transaction commit ret={ret}");
+                 }
++                if ret != 0 && ret != -4 {
++                    crate::rewrite_log_error!(
++                        "transaction failed ret={ret} restarted={} req={} mem_bytes={} nr_updates={}",
++                        trans.restarted,
++                        trans.realloc_bytes_required,
++                        trans.mem_bytes,
++                        trans.nr_updates
++                    );
++                }
+ 
+-                if ret == -4 {
++                /* 对齐 commit.c:1319-1320：ENOMEM 与 transaction_restart 同级
++                 * 均纳入重试。restart 必须由 trans_begin 消费
++                 * realloc_bytes_required 扩容后才能成功；真 OOM（首次分配
++                 * 失败，restarted 未设置）保持 -12 硬失败，避免无限重试。 */
++                if ret == -4 || (ret == -12 && trans.restarted != 0) {
+                     crate::rewrite_log_debug!(
+-                        "transaction restart nr_updates={}",
+-                        trans.nr_updates
++                        "transaction restart nr_updates={} restarted={} req={}",
++                        trans.nr_updates,
++                        trans.restarted,
++                        trans.realloc_bytes_required
+                     );
+                     /* The local commit/replay loops begin a fresh transaction
+                      * before retraversing every iterator path.  Do this while
+diff --git a/crates/subvol/src/journal.rs b/crates/subvol/src/journal.rs
+index cbcccfa..167c97f 100644
+--- a/crates/subvol/src/journal.rs
++++ b/crates/subvol/src/journal.rs
+@@ -875,6 +875,9 @@ pub fn journal_res_get_fast(j: &journal, res: &mut journal_res, flags: u32) -> b
+ pub fn bch2_journal_res_get(j: &journal, res: &mut journal_res, u64s: u16, flags: u32) -> i32 {
+     assert!(!res.ref_);
+     res.u64s = u64s;
++    /* 对齐 journal.c res_get_slowpath() 的 total_wait =
++     * max(max_dev_latency * 2, HZ * 10)：回收无法推进时的等待上限。 */
++    let deadline = std::time::Instant::now() + std::time::Duration::from_secs(10);
+     loop {
+         if journal_res_get_fast(j, res, flags) {
+             return 0;
+@@ -888,7 +891,14 @@ pub fn bch2_journal_res_get(j: &journal, res: &mut journal_res, u64s: u16, flags
+             if j.nr_direct_reclaim.load(Ordering::Acquire) != reclaimed {
+                 continue;
+             }
+-            return -9;
++            /* 对齐 journal.c res_get_slowpath()：direct reclaim 未推进时
++             * 等待（后台/后续回收让出节点锁）并重试，而非立即失败。 */
++            bch2_journal_update_last_seq(j);
++            if std::time::Instant::now() >= deadline {
++                return -9;
++            }
++            std::thread::sleep(std::time::Duration::from_millis(1));
++            continue;
+         }
+         let ret = bch2_journal_flush(j);
+         if ret == -9 {
+@@ -900,6 +910,12 @@ pub fn bch2_journal_res_get(j: &journal, res: &mut journal_res, u64s: u16, flags
+             if j.nr_direct_reclaim.load(Ordering::Acquire) != reclaimed {
+                 continue;
+             }
++            bch2_journal_update_last_seq(j);
++            if std::time::Instant::now() >= deadline {
++                return -9;
++            }
++            std::thread::sleep(std::time::Duration::from_millis(1));
++            continue;
+         }
+         if ret != 0 {
+             return ret;

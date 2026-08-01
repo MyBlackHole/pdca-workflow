@@ -1,0 +1,3 @@
+{"id":"e1-reclaim-proptest-diff","file":"t0173-diff.patch","kind":"test-diff","size":2719,"digest":"sha256:a9f9dff942ce2e2efd2fa858ce333a702b1fe1ae517bbf005762bed0ac62f3db","at":"2026-08-01T18:00:34+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"e2-verification-run","file":"t0173-verification.md","kind":"test-run-log","size":205477,"digest":"sha256:44773019a55000bfd471e01b0954aea052192b844fad33eac64209055b5e9d8b","at":"2026-08-01T18:00:46+08:00","criteria":["AC-4","AC-5"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":273,"digest":"sha256:89ffd6f4408414a8d60975fa54e85ea2d7dd4c8846c5834aadcfc581c13fed94","at":"2026-08-01T18:01:11+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}
