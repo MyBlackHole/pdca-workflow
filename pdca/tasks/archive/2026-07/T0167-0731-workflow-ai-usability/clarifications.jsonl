@@ -1,6 +1,0 @@
-{"source":"grilling","summary":"guidance 设为可选字段，旧 consumer 向后兼容，仅输出增加字段","response":"confirmed","at":"2026-07-31T21:00:00+08:00"}
-{"source":"grilling","summary":"--replace 采用文件+manifest 双保留：旧文件重命名 .superseded，旧 manifest 行加 superseded_by，新条目追加","response":"confirmed","at":"2026-07-31T21:01:00+08:00"}
-{"source":"grilling","summary":"PRD 格式校验加在 plan→do 门禁（acceptance_criteria 可解析），内容校验仍由 do→check convergence 负责","response":"confirmed","at":"2026-07-31T21:02:00+08:00"}
-{"source":"direction_confirm","summary":"四项方案范围确认：A append-confirmation CLI（真实时间戳）/ B Issue 可选 guidance / C evidence 双保留替换 / D plan→do PRD 格式校验","response":"confirmed","at":"2026-07-31T21:03:00+08:00"}
-{"source":"final_confirmation","summary":"T0167 PRD 四方案与 T4-A~T4-E 拆解终审确认，进入 Do","response":"confirmed","at":"2026-07-31T21:04:10+08:00"}
-{"source":"check_confirmation","summary":"T0167 结论展示：83 passed、convergence valid=true、AC-1~AC-6 全 PASS，附 AI 工作流提升自证","response":"confirmed","at":"2026-07-31T21:23:11+08:00"}
