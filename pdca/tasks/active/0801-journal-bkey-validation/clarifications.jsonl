@@ -1,0 +1,5 @@
+{"source":"triage","at":"2026-08-01T23:26:34+08:00","summary":"无需额外事实澄清：恢复循环缺逐键语义校验及 bcachefs 对应 validator 已由本地源码核验；实现范围以当前 subvol 支持的 key/type 集合为界。"}
+{"source":"final_confirmation","summary":"用户确认 T0178 完整方案：以本地 bcachefs journal_validate_key/journal_entry_btree_keys_validate 与 bch2_bkey_validate 为依据，补齐恢复前逐键语义校验并用确定性损坏记录验证。","response":"confirmed","at":"2026-08-01T23:28:58+08:00"}
+{"source":"direction_confirm","summary":"用户确认收窄范围：仅实现 bcachefs journal_validate_key 的 btree-id 无关布局分支（零 u64s、越界、非当前 format），不移植会误拒 subvol 自定义树语义的 fs 层 type/size/snapshot 规则。","response":"confirmed","at":"2026-08-01T23:49:40+08:00"}
+{"source":"knowledge_decision","at":"2026-08-01T23:58:18+08:00","action":"wrote","reason":"journal 恢复前布局校验顺序、独立 btree-id 的 fs 层 validator 边界以及 Rust 精确长度 buffer 的最小 header 检查可跨后续恢复任务复用。"}
+{"source":"check_confirmation","summary":"用户接受 T0178 Check 结论：journal btree key 布局校验已隔离零长度、越界和非当前 format 输入，合法邻键保持可恢复；178 个单测与 10 个属性/集成测试通过。","response":"confirmed","at":"2026-08-01T23:57:52+08:00"}
