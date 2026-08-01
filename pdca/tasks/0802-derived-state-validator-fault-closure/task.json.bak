@@ -4,29 +4,22 @@
   "title": "实现 alloc/backpointer 派生状态校验与故障恢复闭环",
   "parent": "T0180",
   "children": [],
-  "status": "Completed",
+  "status": "InProgress",
   "meta": {
-    "phase": "check",
+    "phase": "do",
     "active": true,
     "scenario_type": "development",
     "created_at": "2026-08-02T07:39:03+08:00",
     "record": "T0185-0802-derived-state-validator-fault-closure",
-    "verdict": {
-      "outcome": "partial",
-      "reason": "validator、recovery gate、源码审计和全量测试完成；AC-3 缺少故意破坏派生记录后的独立回归测试。",
-      "verdict_id": "V-T0185-001",
-      "at": "2026-08-02T07:47:01+08:00"
-    },
     "convergence": [
       "T0185-0802-derived-state-validator-fault-closure"
-    ],
-    "completed_at": "2026-08-02T07:46:41+08:00"
+    ]
   },
   "states": {
     "created": "2026-08-02T07:39:03+08:00",
     "plan": "2026-08-02T07:39:03+08:00",
     "do": "2026-08-02T07:39:57+08:00",
-    "check": "2026-08-02T07:46:41+08:00",
+    "check": null,
     "act": null,
     "archive": null
   }
