@@ -5,3 +5,5 @@
 {"file":"/home/black/Documents/bcachefs-tools/fs/alloc/buckets.c","reason":"对照 bch2_trigger_extent()/bch2_trigger_pointer() 的 old/new 顺序、member/bucket 错误分支及同事务派生写入边界。","action":"read","at":"2026-08-02T07:02:00+08:00"}
 {"file":"/home/black/Documents/bcachefs-tools/fs/alloc/backpointers.{h,c}","reason":"对照 physical pointer 到 backpointer owner identity 的字段、position 和 insert/remove 行为。","action":"read","at":"2026-08-02T07:02:00+08:00"}
 {"file":"crates/subvol/src/{btree/update.rs,btree/bset.rs,btree/types.rs,engine.rs}","reason":"实现 member attach、transactional runner、alloc/backpointer 派生 btree 与 norun 测试；恢复 rebuild 尚未开始。","action":"modified","at":"2026-08-02T07:02:00+08:00"}
+{"file":"/home/black/Documents/bcachefs-tools/fs/init/recovery.c","reason":"对照 journal replay 使用 norun 后由显式 recovery pass 重建派生状态的边界。","action":"read","at":"2026-08-02T07:34:00+08:00"}
+{"file":"crates/subvol/src/{btree/update.rs,engine.rs}","reason":"实现清空派生树、复制 packed key 的 header/value 后从 primary pointer 重建，并在 recover/open_persistent 发布前执行；新增显式 rebuild 回归。","action":"modified","at":"2026-08-02T07:34:00+08:00"}
