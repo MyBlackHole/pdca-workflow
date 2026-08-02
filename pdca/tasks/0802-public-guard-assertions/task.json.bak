@@ -4,22 +4,29 @@
   "title": "公开守卫断言套件：open/not_rw 不复用与 drop 无泄漏",
   "parent": "T0192",
   "children": [],
-  "status": "InProgress",
+  "status": "Completed",
   "meta": {
-    "phase": "do",
+    "phase": "check",
     "active": true,
     "scenario_type": "development",
     "created_at": "2026-08-02T10:30:00+08:00",
     "convergence": [
       "T0193-0802-public-guard-assertions"
     ],
-    "record": "T0193-0802-public-guard-assertions"
+    "record": "T0193-0802-public-guard-assertions",
+    "completed_at": "2026-08-02T10:42:55+08:00",
+    "verdict": {
+      "verdict_id": "V-T0193-001",
+      "outcome": "confirmed",
+      "reason": "AC-1..AC-6 全部满足：verify_guard_invariants 聚合断言与 open_bucket_count/discard_queue_empty 查询均与上游语义对齐（check_allocations pass/bucket_is_open_safe/ioref skip/umount/while-耗尽）；既有测试全部切换公共断言；208 lib + 10 集成 + fmt 全绿（≤1min）；review-report 0 blocking 0 MEDIUM 0 LOW。",
+      "at": "2026-08-02T10:45:00+08:00"
+    }
   },
   "states": {
     "created": "2026-08-02T10:30:00+08:00",
     "plan": "2026-08-02T10:30:00+08:00",
     "do": "2026-08-02T10:42:49+08:00",
-    "check": null,
+    "check": "2026-08-02T10:42:55+08:00",
     "act": null,
     "archive": null
   }
