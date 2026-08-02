@@ -6,8 +6,8 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "act",
-    "active": true,
+    "phase": "archive",
+    "active": false,
     "scenario_type": "development",
     "record": "T0192-0802-open-bucket-lifecycle-device-rw",
     "disposition": {
@@ -33,6 +33,6 @@
     "do": "2026-08-02T10:11:26+08:00",
     "check": "2026-08-02T10:24:34+08:00",
     "act": "2026-08-02T10:25:02+08:00",
-    "archive": null
+    "archive": "2026-08-02T10:26:05+08:00"
   }
 }

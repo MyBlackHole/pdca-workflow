@@ -6,10 +6,15 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "check",
+    "phase": "act",
     "active": true,
     "scenario_type": "development",
     "record": "T0192-0802-open-bucket-lifecycle-device-rw",
+    "disposition": {
+      "outcome": "projected",
+      "reason": "生命周期模式沉淀为 core/open-bucket-lifecycle-and-device-rw.md；多设备成员定向测试与守卫断言套件留待后续 allocator 任务，不新建跟进任务",
+      "at": "2026-08-02T10:26:00+08:00"
+    },
     "verdict": {
       "outcome": "confirmed",
       "reason": "AC-1..AC-6 全部满足：drop 泄漏检测、rw_devs 按 devs_online 推导、设备下线拒绝 -16 均与上游语义对齐；205 lib + 10 集成 + fmt 全绿；review-report 0 blocking（锁序 MEDIUM 已修复复测）。",
@@ -27,7 +32,7 @@
     "plan": "2026-08-02T10:06:00+08:00",
     "do": "2026-08-02T10:11:26+08:00",
     "check": "2026-08-02T10:24:34+08:00",
-    "act": null,
+    "act": "2026-08-02T10:25:02+08:00",
     "archive": null
   }
 }
