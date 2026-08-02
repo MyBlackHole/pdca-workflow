@@ -1,0 +1,25 @@
+{
+  "id": "T0198",
+  "slug": "0802-fsck-repair",
+  "title": "fsck 修复路径：索引不一致 repair 模式（对齐 fix_errors=yes 语义）",
+  "parent": "T0197",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-02T12:59:13.084579+08:00",
+    "convergence": [
+      "T0198-0802-fsck-repair"
+    ]
+  },
+  "states": {
+    "created": "2026-08-02T12:59:13.084579+08:00",
+    "plan": "2026-08-02T12:59:13.084579+08:00",
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}
