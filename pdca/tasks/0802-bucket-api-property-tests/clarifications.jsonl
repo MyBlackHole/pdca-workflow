@@ -1,0 +1,1 @@
+{"source":"triage","summary":"T0188 承接 T0187：补公开 bucket allocation/reclaim API 的端到端、故障注入与属性模型测试，不扩展完整 discard worker/GC。","response":"confirmed","at":"2026-08-02T08:33:56+08:00"}
