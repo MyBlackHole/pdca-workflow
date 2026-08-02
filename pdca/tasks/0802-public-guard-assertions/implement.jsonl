@@ -1,0 +1,3 @@
+{"file":"knowledge/core/discard-boundary-guards.md","reason":"open/not_rw 不变量语义（-16/-11 守卫、bch2_bucket_is_open_safe、dev_get_ioref 锚点）为 AC-2 断言实现依据","action":"沿用","at":"2026-08-02T10:32:00+08:00"}
+{"file":"knowledge/core/open-bucket-lifecycle-and-device-rw.md","reason":"drop 无泄漏语义（bch2_open_buckets_stop umount、Drop 校验位置）为 AC-3 断言实现依据","action":"沿用","at":"2026-08-02T10:32:00+08:00"}
+{"file":"knowledge/core/discard-worker-fifo-fairness.md","reason":"while-耗尽语义与 EAGAIN 轮转（-11 时队列非空合法）为 AC-4 查询式断言的边界依据","action":"沿用","at":"2026-08-02T10:32:00+08:00"}

@@ -1,0 +1,25 @@
+{
+  "id": "T0193",
+  "slug": "0802-public-guard-assertions",
+  "title": "公开守卫断言套件：open/not_rw 不复用与 drop 无泄漏",
+  "parent": "T0192",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-02T10:30:00+08:00",
+    "convergence": [
+      "T0193-0802-public-guard-assertions"
+    ]
+  },
+  "states": {
+    "created": "2026-08-02T10:30:00+08:00",
+    "plan": "2026-08-02T10:30:00+08:00",
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}
