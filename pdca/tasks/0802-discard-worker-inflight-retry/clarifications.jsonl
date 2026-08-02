@@ -1,0 +1,1 @@
+{"source":"triage","summary":"T0190 承接 T0189：实现 engine-local discard worker in-flight 去重、EEXIST/EAGAIN 重试与重启恢复，不接入真实 block-device TRIM。","response":"confirmed","at":"2026-08-02T08:55:00+08:00"}

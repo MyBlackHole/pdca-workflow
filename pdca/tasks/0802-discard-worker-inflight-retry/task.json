@@ -1,0 +1,23 @@
+{
+  "id": "T0190",
+  "slug": "0802-discard-worker-inflight-retry",
+  "title": "实现 discard worker in-flight 去重与重试恢复",
+  "parent": "T0189",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-02T08:55:00+08:00",
+    "convergence": ["T0190-0802-discard-worker-inflight-retry"]
+  },
+  "states": {
+    "created": "2026-08-02T08:55:00+08:00",
+    "plan": "2026-08-02T08:55:00+08:00",
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}
