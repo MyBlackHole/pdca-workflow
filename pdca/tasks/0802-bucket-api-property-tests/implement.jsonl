@@ -1,0 +1,2 @@
+{"file":"pdca/tasks/0802-bucket-allocation-reclaim-backpointer-chain/source-audit.md","reason":"复用 T0187 已确认的本地 bcachefs bucket/ref、alloc、backpointer、discard 与 recovery 语义锚点。","action":"对照公开 API 测试预期与错误边界，避免引入新存储语义。","at":"2026-08-02T08:37:00+08:00"}
+{"file":"crates/subvol/src/engine.rs","reason":"现有 StorageEngine fault points、persistent journal 与 verify_bucket_indexes 是 T0188 端到端夹具的唯一项目接口。","action":"扩展 engine tests，不改变 allocator/reclaim 生产路径。","at":"2026-08-02T08:37:00+08:00"}
