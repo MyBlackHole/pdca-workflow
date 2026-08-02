@@ -1,0 +1,38 @@
+{
+  "id": "T0200",
+  "slug": "0802-fsck-repair-faults",
+  "title": "fsck 修复路径故障注入：修复事务中断与落盘失败的恢复验证",
+  "parent": "T0199",
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-02T13:49:37.143475+08:00",
+    "convergence": [
+      "T0200-0802-fsck-repair-faults"
+    ],
+    "record": "T0200-0802-fsck-repair-faults",
+    "verdict": {
+      "verdict_id": "V-T0200-001",
+      "outcome": "confirmed",
+      "reason": "AC-1..AC-6 全部满足：FsckFaultPoint 三注入点（DuringRepairRestart -4 / DuringRepairOom 硬-12 / AfterRepairBeforeFlush）对齐 trans_maybe_inject_restart（commit.c:1390）与 lockrestart_do 重试（iter.h:1115-1127）；修复 T0198 缺口（bit_mod_sync 补 -4 重试分支）；公开 fsck_image 零改动；4 测试全绿含重跑恢复 + verify_all 实测（未落盘修复被 journal 回放丢弃语义确认）；243 全绿（228 lib+10 proptest+5 cli，proptest 39.92s<=1min）+ fmt；审查 0 blocking。",
+      "at": "2026-08-02T14:10:22.236579+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "修复路径故障注入（FsckFaultPoint + 重跑恢复）沉淀为知识；模型 op 域扩展、持久化并发交错留待后续任务",
+      "at": "2026-08-02T14:12:04.992160+08:00"
+    },
+    "completed_at": "2026-08-02T14:12:47.129636+08:00"
+  },
+  "states": {
+    "created": "2026-08-02T13:49:37.143475+08:00",
+    "plan": "2026-08-02T13:49:37.143475+08:00",
+    "do": "2026-08-02T13:50:27+08:00",
+    "check": "2026-08-02T14:03:00+08:00",
+    "act": "2026-08-02T14:11:57+08:00",
+    "archive": null
+  }
+}
