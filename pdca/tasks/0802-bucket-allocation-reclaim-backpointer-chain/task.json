@@ -1,0 +1,25 @@
+{
+  "id": "T0187",
+  "slug": "0802-bucket-allocation-reclaim-backpointer-chain",
+  "title": "实现桶分配回收与反向引用 bucket btree 完整链路",
+  "parent": "T0180",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-02T08:02:33+08:00",
+    "convergence": [
+      "T0187-0802-bucket-allocation-reclaim-backpointer-chain"
+    ]
+  },
+  "states": {
+    "created": "2026-08-02T08:02:33+08:00",
+    "plan": "2026-08-02T08:02:33+08:00",
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

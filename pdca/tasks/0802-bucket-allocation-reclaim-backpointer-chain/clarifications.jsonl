@@ -1,0 +1,1 @@
+{"source":"direction_confirm","summary":"创建 T0187，开发最小 bucket candidate/占用/释放/generation 复用与 backpointer bucket btree 闭环；严格对照本地 buckets/background/backpointers/discard/recovery 代码，不实现完整 GC/LRU/VFS。","response":"confirmed","at":"2026-08-02T08:02:33+08:00"}
