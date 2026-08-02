@@ -1,0 +1,4 @@
+{"source": "triage", "at": "2026-08-02T11:02:30+08:00", "question": "T0195 承接 T0194 disposition 建议（verify_all 暴露到 CLI/诊断层作为健康检查入口），是否立项？", "answer": "立项：feature/development，parent=T0194，AC-1..AC-6 六项验收标准，范围含 subvol-fsck bin、退出码分层、no-repair 模式、集成测试"}
+{"source": "grilling", "at": "2026-08-02T11:03:00+08:00", "round": 1, "question": "退出码方案？（上游 fsck.rs process::exit(ret) 单一非零码；打开失败与校验失败分开更利于脚本诊断）", "answer": "0/1/2 分层：0=通过，1=校验失败（verify_all Err），2=打开/IO 错误；对齐 exit(ret) 非零退出语义但区分失败类型"}
+{"source": "grilling", "at": "2026-08-02T11:03:30+08:00", "round": 2, "question": "参数解析依赖？（subvol 库零依赖，CLI 是否引入 clap）", "answer": "手写解析（std 仅），保持零依赖与库一致；参数表对齐上游 fsck：-n/--no-repair、-f/--force、路径"}
+{"source":"final_confirmation","summary":"T0195 方案终审确认：subvol-fsck bin 打开持久化引擎运行 verify_all（库 API 与 verify_all 行为不变）；退出码 0/1/2 分层；仅 no-repair 模式对齐上游 -n；手写参数解析零依赖；集成测试覆盖健康与损坏文件；workspace 门禁 ≤1 分钟；范围外修复/online/多设备。","response":"confirmed","at":"2026-08-02T11:03:28+08:00"}
