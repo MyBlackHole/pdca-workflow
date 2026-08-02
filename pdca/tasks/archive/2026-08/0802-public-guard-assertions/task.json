@@ -6,8 +6,8 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "act",
-    "active": true,
+    "phase": "archive",
+    "active": false,
     "scenario_type": "development",
     "created_at": "2026-08-02T10:30:00+08:00",
     "convergence": [
@@ -22,11 +22,9 @@
       "at": "2026-08-02T10:45:00+08:00"
     },
     "disposition": {
-      "projected": {
-        "description": "verify_guard_invariants 与 verify_bucket_indexes 合并为单一 verify_all 入口；属性模型注入守卫决策；worker 变体复用队列空断言",
-        "target": "T0194"
-      },
-      "at": "2026-08-02T10:47:00+08:00"
+      "outcome": "projected",
+      "reason": "断言模式沉淀为 core/public-guard-assertions.md；verify_all 合并入口、模型守卫注入与 worker 变体复用留待后续校验/worker 任务，不新建跟进任务",
+      "at": "2026-08-02T10:47:30+08:00"
     }
   },
   "states": {
@@ -35,6 +33,6 @@
     "do": "2026-08-02T10:42:49+08:00",
     "check": "2026-08-02T10:42:55+08:00",
     "act": "2026-08-02T10:43:49+08:00",
-    "archive": null
+    "archive": "2026-08-02T10:45:18+08:00"
   }
 }
