@@ -1,0 +1,38 @@
+{
+  "id": "T0198",
+  "slug": "0802-fsck-repair",
+  "title": "fsck 修复路径：索引不一致 repair 模式（对齐 fix_errors=yes 语义）",
+  "parent": "T0197",
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "development",
+    "created_at": "2026-08-02T12:59:13.084579+08:00",
+    "convergence": [
+      "T0198-0802-fsck-repair"
+    ],
+    "record": "T0198-0802-fsck-repair",
+    "completed_at": "2026-08-02T13:09:21+08:00",
+    "verdict": {
+      "verdict_id": "V-T0198-001",
+      "outcome": "confirmed",
+      "reason": "AC-1..AC-6 全部满足：fsck_image FixErrors::No/Yes 单入口（对齐 FSCK_FIX_no/yes），repair_derived_indexes 双向修复（stale 删除+缺失补齐，每键单事务，对齐 check.c:175-188/352-386/388-423），修复后 flush_journal 落盘+复验；守卫错误名不修复（skip 语义）；CLI -y/-n 互斥+退出码分层；235 测试全绿（单项 44.04s<=1min）+ fmt；双轴审查 0 blocking。",
+      "at": "2026-08-02T13:09:30+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "fsck 修复路径（FixErrors 模式、双向修复、落盘复验、-y CLI）沉淀为知识；loom 并发交错、模型状态机扩展、修复故障注入留待后续任务",
+      "at": "2026-08-02T13:10:10+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-02T12:59:13.084579+08:00",
+    "plan": "2026-08-02T12:59:13.084579+08:00",
+    "do": "2026-08-02T13:00:08+08:00",
+    "check": "2026-08-02T13:09:21+08:00",
+    "act": "2026-08-02T13:09:48+08:00",
+    "archive": "2026-08-02T13:10:11+08:00"
+  }
+}

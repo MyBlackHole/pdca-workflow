@@ -1,0 +1,22 @@
+{
+    "schema": "pdca.convergence/v1",
+    "items": [
+        {
+            "index": 1,
+            "text": "T0198-0802-fsck-repair",
+            "criteria": [
+                "AC-1",
+                "AC-2",
+                "AC-3",
+                "AC-4",
+                "AC-5",
+                "AC-6"
+            ],
+            "evidence_ids": [
+                "ac1-source-anchors",
+                "E-0001",
+                "E-0002"
+            ]
+        }
+    ]
+}
