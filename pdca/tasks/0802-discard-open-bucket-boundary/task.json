@@ -8,8 +8,8 @@
   ],
   "status": "Completed",
   "meta": {
-    "phase": "act",
-    "active": true,
+    "phase": "archive",
+    "active": false,
     "scenario_type": "development",
     "record": "T0189-0802-discard-open-bucket-boundary",
     "disposition": {
@@ -35,6 +35,6 @@
     "do": "2026-08-02T08:50:20+08:00",
     "check": "2026-08-02T10:01:23+08:00",
     "act": "2026-08-02T10:02:53+08:00",
-    "archive": null
+    "archive": "2026-08-02T10:04:29+08:00"
   }
 }
