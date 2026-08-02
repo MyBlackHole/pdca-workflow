@@ -13,5 +13,9 @@
 - `fs/alloc/discard.c`：need_discard 到 free 的回收前置条件与 open bucket 保护。
 - `fs/init/recovery.c:68-118`：recovery explicit allocation/backpointer passes。
 
-当前 Rust 已有 pointer-derived alloc/backpointer、generation 校验与 recovery validator；
-T0187 尚未开始实现 bucket candidate、state transition、freespace/generation index 或 reclaim。
+Rust 对应实现锚点：`crates/subvol/src/engine.rs:614-815` 提供 freespace 索引校验、
+candidate 优先选择、free→btree 占用和 need_discard→free 回收；`crates/subvol/src/engine.rs:1467-1635`
+在 recovery rebuild 中清理并重建 alloc/backpointer/freespace 派生树，保留 alloc 的
+`data_type/gen/oldest_gen` 主状态；`crates/subvol/src/btree/update.rs` 的 bucket 状态测试覆盖
+单事务状态序列与 stale-generation 拒绝。实现仍是 PRD 明确的最小 allocator/reclaim 核心，
+不包含完整 discard worker/open-bucket GC。
