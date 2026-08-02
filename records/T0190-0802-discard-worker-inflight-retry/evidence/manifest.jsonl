@@ -1,0 +1,2 @@
+{"id":"E-T0190-CHECK-001","file":"check-evidence.md","kind":"test","size":675,"digest":"sha256:200ae8b458c8cea1272068194ca97e27960b61a9b916644e523e886738d87028","at":"2026-08-02T09:03:33+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":256,"digest":"sha256:a7c7d060b3268047c54dcb331f1c3926acc3566005c5e8edfc7ebf7f6679e57e","at":"2026-08-02T09:03:33+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6"]}
