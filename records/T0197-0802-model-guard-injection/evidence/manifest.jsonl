@@ -1,0 +1,4 @@
+{"id":"E-0001","file":"check-evidence.md","kind":"traceability","size":4688,"digest":"sha256:76b95f843973ff4ae03d1eb3732539a5082ee28d6dc04a62be56716717d9660d","at":"2026-08-02T12:52:32+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6"]}
+{"id":"E-0002","file":"review-report.md","kind":"code-review","size":2504,"digest":"sha256:610ae34c7a342551eed8eb60cb7a336c21dee352961bc85d8b68a946f7b032d4","at":"2026-08-02T12:52:32+08:00","criteria":["双轴审查"]}
+{"id":"ac1-source-anchors","file":"ac1-source-anchors.md","kind":"audit","size":2264,"digest":"sha256:a6d08a222fb4c7b05f979d719b0220913239347cbfa3cbc298f58cf05eada0b1","at":"2026-08-02T12:52:33+08:00","criteria":["AC-1"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":479,"digest":"sha256:dcf17858fa8ae4e7643f27fac1d88bf8fc1cd412a6401fc6a8c6fa6667518fb7","at":"2026-08-02T12:53:10+08:00","criteria":["AC-1"]}
