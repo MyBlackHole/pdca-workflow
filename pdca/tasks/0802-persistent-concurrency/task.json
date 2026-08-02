@@ -1,0 +1,25 @@
+{
+  "id": "T0201",
+  "slug": "0802-persistent-concurrency",
+  "title": "持久化并发交错：并发写者 + 崩溃恢复的组合验证",
+  "parent": "T0200",
+  "children": [],
+  "status": "InProgress",
+  "meta": {
+    "phase": "do",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-02T14:17:12.142092+08:00",
+    "convergence": [
+      "T0201-0802-persistent-concurrency"
+    ]
+  },
+  "states": {
+    "created": "2026-08-02T14:17:12.142092+08:00",
+    "plan": "2026-08-02T14:17:12.142092+08:00",
+    "do": "2026-08-02T14:18:38+08:00",
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}
