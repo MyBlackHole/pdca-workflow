@@ -1,0 +1,4 @@
+{"file": "knowledge/core/model-guard-decision-injection.md", "reason": "T0197 模型 op 域 0..8 与影子状态结构，直接决定 T0202 组合模型三态设计的基线", "action": "复用其影子状态数组/alloc 树投影/裁决模式", "at": "2026-08-02T16:10:00+08:00"}
+{"file": "knowledge/core/persistent-concurrency-crash-recovery.md", "reason": "T0201 崩溃点与恢复断言模式（verify_all/无泄漏/队列排空），T0202 崩溃恢复精确断言沿用其恢复矩阵形态", "action": "复用 sync 点/恢复断言形态，但断言更严格（精确对照）", "at": "2026-08-02T16:10:00+08:00"}
+{"file": "knowledge/core/discard-worker-fifo-fairness.md", "reason": "queue_discard/run_discard_worker 的 FIFO 与 -17/-11 错误语义，T0202 组合模型中 queue/worker op 的期望裁决依据", "action": "复用队列语义与错误码期望", "at": "2026-08-02T16:10:00+08:00"}
+{"file": "knowledge/core/journal-reclaim-proptest-pattern.md", "reason": "proptest 模型 + journal 持久化的既有属性测试模式（sync 点/恢复对照），T0202 崩溃恢复组合的对齐依据", "action": "复用 sync 点快照与恢复对照形态", "at": "2026-08-02T16:10:00+08:00"}

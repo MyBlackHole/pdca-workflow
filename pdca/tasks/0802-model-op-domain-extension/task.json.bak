@@ -1,0 +1,25 @@
+{
+  "id": "T0202",
+  "slug": "0802-model-op-domain-extension",
+  "title": "属性测试模型 op 域扩展：btree × alloc 组合与崩溃恢复对照",
+  "parent": "T0201",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-02T16:04:11.754711+08:00",
+    "convergence": [
+      "T0202-0802-model-op-domain-extension"
+    ]
+  },
+  "states": {
+    "created": "2026-08-02T16:04:11.754711+08:00",
+    "plan": "2026-08-02T16:04:11.754711+08:00",
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}
