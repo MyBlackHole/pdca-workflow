@@ -3,20 +3,32 @@
   "slug": "0802-discard-open-bucket-boundary",
   "title": "实现 discard 边界与 open-bucket 回收保护",
   "parent": "T0188",
-  "children": [],
-  "status": "Pending",
+  "children": [
+    "T0190"
+  ],
+  "status": "Completed",
   "meta": {
-    "phase": "plan",
+    "phase": "check",
     "active": true,
     "scenario_type": "development",
+    "record": "T0189-0802-discard-open-bucket-boundary",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "AC-1..AC-6 全部满足：open/不可写设备守卫三路径错误码语义与上游一致，fault 无半状态与属性模型均通过，200 lib + 10 集成 + fmt 全绿；review-report 0 blocking。",
+      "verdict_id": "V-T0189-001",
+      "at": "2026-08-02T10:03:00+08:00"
+    },
     "created_at": "2026-08-02T08:50:00+08:00",
-    "convergence": ["T0189-0802-discard-open-bucket-boundary"]
+    "convergence": [
+      "T0189-0802-discard-open-bucket-boundary"
+    ],
+    "completed_at": "2026-08-02T10:01:23+08:00"
   },
   "states": {
     "created": "2026-08-02T08:50:00+08:00",
     "plan": "2026-08-02T08:50:00+08:00",
-    "do": null,
-    "check": null,
+    "do": "2026-08-02T08:50:20+08:00",
+    "check": "2026-08-02T10:01:23+08:00",
     "act": null,
     "archive": null
   }
