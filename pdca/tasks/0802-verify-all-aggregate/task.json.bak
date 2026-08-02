@@ -4,9 +4,9 @@
   "title": "verify_all 聚合入口：合并全部一致性校验",
   "parent": "T0193",
   "children": [],
-  "status": "InProgress",
+  "status": "Pending",
   "meta": {
-    "phase": "do",
+    "phase": "plan",
     "active": true,
     "scenario_type": "development",
     "created_at": "2026-08-02T10:48:30+08:00",
@@ -17,7 +17,7 @@
   "states": {
     "created": "2026-08-02T10:48:30+08:00",
     "plan": "2026-08-02T10:48:30+08:00",
-    "do": "2026-08-02T10:49:48+08:00",
+    "do": null,
     "check": null,
     "act": null,
     "archive": null
