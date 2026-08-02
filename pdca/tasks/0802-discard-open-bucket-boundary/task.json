@@ -1,0 +1,23 @@
+{
+  "id": "T0189",
+  "slug": "0802-discard-open-bucket-boundary",
+  "title": "实现 discard 边界与 open-bucket 回收保护",
+  "parent": "T0188",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-02T08:50:00+08:00",
+    "convergence": ["T0189-0802-discard-open-bucket-boundary"]
+  },
+  "states": {
+    "created": "2026-08-02T08:50:00+08:00",
+    "plan": "2026-08-02T08:50:00+08:00",
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

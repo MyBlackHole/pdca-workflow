@@ -3,7 +3,7 @@
   "slug": "0802-bucket-api-property-tests",
   "title": "桶分配回收公开 API 端到端与属性测试",
   "parent": "T0187",
-  "children": [],
+  "children": ["T0189"],
   "status": "Completed",
   "meta": {
     "phase": "archive",
