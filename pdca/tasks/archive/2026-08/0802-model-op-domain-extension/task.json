@@ -1,0 +1,38 @@
+{
+  "id": "T0202",
+  "slug": "0802-model-op-domain-extension",
+  "title": "属性测试模型 op 域扩展：btree × alloc 组合与崩溃恢复对照",
+  "parent": "T0201",
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "development",
+    "created_at": "2026-08-02T16:04:11.754711+08:00",
+    "convergence": [
+      "T0202-0802-model-op-domain-extension"
+    ],
+    "record": "T0202-0802-model-op-domain-extension",
+    "verdict": {
+      "verdict_id": "V-T0202-001",
+      "outcome": "confirmed",
+      "reason": "AC-1..AC-6 全部满足（AC-5 偏离经用户裁决确认：add_free_bucket 从 mod tests 提升为公开测试设施，逻辑零变化、doc 注释明确非运行时路径，理由为 btree 模块私有致集成测试无法初始化桶状态）：组合 op 域模型（put/delete × allocate/reclaim/queue_discard/run_discard_worker_once × flush sync 点）实现于 f9df169；崩溃点三态精确断言（btree scan + alloc 树投影 + discover 重新入队同步 + 队列清空）；discover_discard_buckets 入队语义实测确认（engine.rs:1309，首跑捕获模型失配后修正）；4 个确定性边界用例（-28/-17/-11/回旋/全链路）；249 全绿（229 lib + 15 btree_proptest 44.46s + 5 cli）+ fmt；审查 0 blocking。",
+      "at": "2026-08-02T17:20:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "组合 op 域模型知识沉淀（combined-op-domain-model.md）；后续候选：并发组合序列（多写者 × alloc op）、真实磁盘故障模拟、op 域扩展至 open/close/set_rw 组合（T0197 守卫 × btree 交错）",
+      "at": "2026-08-02T17:23:00+08:00"
+    },
+    "completed_at": "2026-08-02T17:23:00+08:00"
+  },
+  "states": {
+    "created": "2026-08-02T16:04:11.754711+08:00",
+    "plan": "2026-08-02T16:04:11.754711+08:00",
+    "do": "2026-08-02T16:10:14+08:00",
+    "check": "2026-08-02T17:10:00+08:00",
+    "act": "2026-08-02T17:19:51+08:00",
+    "archive": "2026-08-02T17:20:48+08:00"
+  }
+}
