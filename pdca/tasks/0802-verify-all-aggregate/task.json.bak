@@ -4,20 +4,21 @@
   "title": "verify_all 聚合入口：合并全部一致性校验",
   "parent": "T0193",
   "children": [],
-  "status": "Pending",
+  "status": "InProgress",
   "meta": {
-    "phase": "plan",
+    "phase": "do",
     "active": true,
     "scenario_type": "development",
     "created_at": "2026-08-02T10:48:30+08:00",
     "convergence": [
       "T0194-0802-verify-all-aggregate"
-    ]
+    ],
+    "record": "T0194-0802-verify-all-aggregate"
   },
   "states": {
     "created": "2026-08-02T10:48:30+08:00",
     "plan": "2026-08-02T10:48:30+08:00",
-    "do": null,
+    "do": "2026-08-02T10:49:48+08:00",
     "check": null,
     "act": null,
     "archive": null
