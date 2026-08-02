@@ -6,8 +6,8 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "act",
-    "active": true,
+    "phase": "archive",
+    "active": false,
     "scenario_type": "development",
     "created_at": "2026-08-02T19:10:00+08:00",
     "record": "T0204-0802-btree-merge-shrink",
@@ -33,6 +33,6 @@
     "do": "2026-08-02T19:15:00+08:00",
     "check": "2026-08-02T21:28:16+08:00",
     "act": "2026-08-02T21:29:24+08:00",
-    "archive": null
+    "archive": "2026-08-02T21:31:47+08:00"
   }
 }

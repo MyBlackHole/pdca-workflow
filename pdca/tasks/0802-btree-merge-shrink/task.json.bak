@@ -6,7 +6,7 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "check",
+    "phase": "act",
     "active": true,
     "scenario_type": "development",
     "created_at": "2026-08-02T19:10:00+08:00",
@@ -20,6 +20,11 @@
       "reason": "AC-1..AC-5 验收通过无偏离；lib 233/233（串行 25.61s/并行 13.5s）、proptest 15、fsck_cli 5；收敛 valid:true；Grill 2 项接受",
       "verdict_id": "V-T0204-01",
       "at": "2026-08-02T21:29:23+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "merge 挂载语义链沉淀 knowledge/core/foreground-merge-mount-semantics.md (K-T0204-001)；后续候选：merge 失败路径定向注入、3→2 打包降级路径验证、并行 flaky 基线专项",
+      "at": "2026-08-02T21:31:09+08:00"
     }
   },
   "states": {
@@ -27,7 +32,7 @@
     "plan": "2026-08-02T19:10:00+08:00",
     "do": "2026-08-02T19:15:00+08:00",
     "check": "2026-08-02T21:28:16+08:00",
-    "act": null,
+    "act": "2026-08-02T21:29:24+08:00",
     "archive": null
   }
 }
