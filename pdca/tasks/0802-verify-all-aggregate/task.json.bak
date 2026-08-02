@@ -4,22 +4,29 @@
   "title": "verify_all 聚合入口：合并全部一致性校验",
   "parent": "T0193",
   "children": [],
-  "status": "InProgress",
+  "status": "Completed",
   "meta": {
-    "phase": "do",
+    "phase": "check",
     "active": true,
     "scenario_type": "development",
     "created_at": "2026-08-02T10:48:30+08:00",
     "convergence": [
       "T0194-0802-verify-all-aggregate"
     ],
-    "record": "T0194-0802-verify-all-aggregate"
+    "record": "T0194-0802-verify-all-aggregate",
+    "completed_at": "2026-08-02T10:58:47+08:00",
+    "verdict": {
+      "verdict_id": "V-T0194-001",
+      "outcome": "confirmed",
+      "reason": "AC-1..AC-6 全部满足：verify_all 聚合入口按依赖序执行全部校验、首个错误优先（对齐 recovery.c:68-98 ?: 模式）；35 处断言切换 + 3 新定向测试验证顺序；211 lib + 10 集成 + fmt 全绿（≤1min）；review-report 0 blocking 0 MEDIUM 0 LOW。",
+      "at": "2026-08-02T10:59:00+08:00"
+    }
   },
   "states": {
     "created": "2026-08-02T10:48:30+08:00",
     "plan": "2026-08-02T10:48:30+08:00",
     "do": "2026-08-02T10:49:48+08:00",
-    "check": null,
+    "check": "2026-08-02T10:58:47+08:00",
     "act": null,
     "archive": null
   }
