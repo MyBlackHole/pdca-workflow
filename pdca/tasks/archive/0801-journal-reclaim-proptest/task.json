@@ -1,0 +1,37 @@
+{
+  "id": "T0173",
+  "slug": "0801-journal-reclaim-proptest",
+  "title": "新增 journal reclaim 压力属性测试验证裁剪后崩溃恢复不丢键（T0169 回归保障）",
+  "parent": null,
+  "children": [],
+  "status": "InProgress",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-01T10:20:00+08:00",
+    "convergence": [
+      "T0173-0801-journal-reclaim-proptest"
+    ],
+    "record": "T0173-0801-journal-reclaim-proptest",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "convergence valid=true；5/5 AC 达标（last_seq_ondisk 单调、crash/最终恢复模型一致、全量回归绿+fmt、8 轮稳定）",
+      "verdict_id": "V-T0173-001",
+      "at": "2026-08-01T18:03:32+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "经验沉淀为 knowledge/core/journal-reclaim-proptest-pattern.md（显式触发+公开计数器断言模式）；T0169 修复获得属性级回归保障",
+      "at": "2026-08-01T18:03:32+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-01T10:20:00+08:00",
+    "plan": "2026-08-01T17:54:57+08:00",
+    "do": "2026-08-01T17:54:57+08:00",
+    "check": "2026-08-01T18:01:52+08:00",
+    "act": "2026-08-01T18:03:32+08:00",
+    "archive": "2026-08-01T18:03:32+08:00"
+  }
+}

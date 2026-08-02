@@ -1,12 +1,2 @@
-target/
-.codex/
 __pycache__/
 *.pyc
-pdca/state.log
-pdca/tasks/archive/
-records/R0098-0727-malloc-consolidate/
-# 其他 session 产物
-pdca/tasks/0727-backup-transfer-encryption/
-pdca/tasks/0727-nbu-encryption-review/
-pdca/tasks/0727-nbu-kb-research/
-knowledge/nbu/

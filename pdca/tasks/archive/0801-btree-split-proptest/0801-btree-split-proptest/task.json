@@ -1,0 +1,39 @@
+{
+  "id": "T0174",
+  "slug": "0801-btree-split-proptest",
+  "title": "新增 btree 分裂压力属性测试验证多级分裂后崩溃恢复不丢键（T0168 P1 前置）",
+  "parent": null,
+  "children": [
+    "T0175"
+  ],
+  "status": "InProgress",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-01T19:00:00+08:00",
+    "convergence": [
+      "T0174-0801-btree-split-proptest"
+    ],
+    "record": "T0174-0801-btree-split-proptest",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "convergence valid=true；5/5 AC 达标（容量算术保证深度≥2 分裂、crash/最终恢复 assert_model、全量回归绿+fmt、5 轮稳定）",
+      "verdict_id": "V-T0174-001",
+      "at": "2026-08-01T20:03:30+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "T0174 暴露 T0175 缺陷（节点 512B 容量/trans ENOMEM restart/journal -9）并已修复；测试提交【F-T0174】提供分裂路径属性级回归保障；proptest-regressions 记录修复前失败用例",
+      "at": "2026-08-01T20:03:30+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-01T19:00:00+08:00",
+    "plan": "2026-08-01T18:07:14+08:00",
+    "do": "2026-08-01T18:07:14+08:00",
+    "check": "2026-08-01T20:02:54+08:00",
+    "act": "2026-08-01T20:03:30+08:00",
+    "archive": "2026-08-01T20:03:30+08:00"
+  }
+}

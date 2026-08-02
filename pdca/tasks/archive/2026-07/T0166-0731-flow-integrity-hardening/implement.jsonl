@@ -1,0 +1,3 @@
+{"file":"knowledge/pdca-flow/self-optimization-loop.md","reason":"T0159 六层闭环的机制与 occurrence 登记规范，R1 直接复用","action":"read","at":"2026-07-31T20:22:00+08:00"}
+{"file":"knowledge/pdca-flow/runtime-transition-coordinator.md","reason":"转换协调器与 receipt 语义，R2 门禁改动的权威依据","action":"read","at":"2026-07-31T20:22:00+08:00"}
+{"file":"scripts/pdca_core.py","reason":"gate_issues/confirmation_time_issues 现有实现，R2 改动的接缝","action":"read","at":"2026-07-31T20:22:00+08:00"}

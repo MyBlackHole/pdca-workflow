@@ -1,0 +1,33 @@
+{
+  "id": "T0191",
+  "slug": "0802-discard-worker-fairness-property",
+  "title": "多桶 discard worker 公平性与并发属性验证",
+  "parent": "T0190",
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "check",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-02T09:06:00+08:00",
+    "convergence": [
+      "T0191-0802-discard-worker-fairness-property"
+    ],
+    "record": "T0191-0802-discard-worker-fairness-property",
+    "completed_at": "2026-08-02T09:37:34+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "AC-1..AC-6 全部有证据支撑：FIFO 公平性、EAGAIN 轮转不阻塞、并发收敛、属性测试模型一致、门禁全绿；审查修正的 while-耗尽语义已重测通过；已知测试边界如实记录",
+      "verdict_id": "V-T0191-001",
+      "at": "2026-08-02T09:39:12+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-02T09:06:00+08:00",
+    "plan": "2026-08-02T09:06:00+08:00",
+    "do": "2026-08-02T09:15:46+08:00",
+    "check": "2026-08-02T09:37:34+08:00",
+    "act": null,
+    "archive": null
+  }
+}

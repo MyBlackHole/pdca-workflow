@@ -1,0 +1,41 @@
+{
+  "id": "T0166",
+  "slug": "0731-flow-integrity-hardening",
+  "title": "修复 T0164 流程违规并加固流程文件时间线一致性校验（含 AI 价值审核）",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "record": "T0166-0731-flow-integrity-hardening",
+    "scenario_type": "development",
+    "created_at": "2026-07-31T20:13:12+08:00",
+    "convergence": [
+      "T0164 plan→do 违规已登记为不可变 Flow Issue Occurrence 并回链证据",
+      "时间线一致性校验落地：final_confirmation.at 不晚于 plan→do receipt.at；states 时间单调",
+      "pdca-doctor 可检测既有任务的回填/矛盾并输出 AI 可执行的修复指引",
+      "每个修复项通过 AI 价值论证与 AI 友好性评估（fail-closed、机器可读、低认知负担）"
+    ],
+    "completed_at": "2026-07-31T20:44:46+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "6 项 AC 全通过，收敛条件满足，证据链完整；AI 价值与友好性审核通过",
+      "verdict_id": "V-T0166-001",
+      "at": "2026-07-31T20:47:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "门禁校验（R2）与 doctor 体检（R3）已落地并测试；知识沉淀 knowledge/pdca-flow/timeline-integrity-gates.md；occurrence 已登记。test_harness 既有失败与 convergence 占位符已知缺陷登记在案，留待后续 Improvement Task",
+      "at": "2026-07-31T20:48:00+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-07-31T20:13:12+08:00",
+    "plan": "2026-07-31T20:13:12+08:00",
+    "do": "2026-07-31T20:21:03+08:00",
+    "check": "2026-07-31T20:44:46+08:00",
+    "act": "2026-07-31T20:45:25+08:00",
+    "archive": "2026-07-31T20:45:50+08:00"
+  }
+}

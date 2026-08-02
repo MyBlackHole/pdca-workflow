@@ -1,1 +1,2 @@
 {"source":"triage","summary":"T0189 承接 T0187/T0188：补最小 discard boundary 与 open-bucket 保护，严格对照本地 discard.c/background.c，不实现真实 TRIM/完整 GC。","response":"confirmed","at":"2026-08-02T08:50:00+08:00"}
+{"source":"final_confirmation","summary":"用户批准 T0189：实现最小 discard boundary 与 open-bucket 回收保护，覆盖 journal/device/live-reference 前置条件和 fault/restart 测试；真实 TRIM、完整 GC/LRU、stripe/EC、VFS 排除。","response":"confirmed","at":"2026-08-02T08:50:20+08:00"}

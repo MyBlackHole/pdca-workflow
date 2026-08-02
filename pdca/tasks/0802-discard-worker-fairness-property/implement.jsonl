@@ -1,0 +1,3 @@
+{"file":"knowledge/core/journal-reclaim-proptest-pattern.md","reason":"属性测试设计模式：直接路径 + 公开计数器断言，无自造检查逻辑（约束12/13）","action":"参考","at":"2026-08-02T09:15:20+08:00"}
+{"file":"knowledge/core/device-bucket-geometry-pointer-contract.md","reason":"bucket 几何与指针派生契约，多桶属性测试的 alloc/need_discard/freespace/generation 集合断言依据","action":"参考","at":"2026-08-02T09:15:20+08:00"}
+{"file":"records/T0190-0802-discard-worker-inflight-retry/conclusion.md","reason":"前置任务结论：in-flight 去重、EEXIST/EAGAIN 边界与重启再发现的既定 seam","action":"沿用","at":"2026-08-02T09:15:20+08:00"}
