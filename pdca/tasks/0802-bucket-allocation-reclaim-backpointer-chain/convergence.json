@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "T0187-0802-bucket-allocation-reclaim-backpointer-chain",
+      "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5", "AC-6"],
+      "evidence_ids": ["E-T0187-CHECK-001"]
+    }
+  ]
+}
