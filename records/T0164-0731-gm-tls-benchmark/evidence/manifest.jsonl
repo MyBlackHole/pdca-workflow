@@ -4,3 +4,4 @@
 {"id":"gmssl-lib-fixed","file":"libgmssl-fixed.a","kind":"binary","size":1560980,"digest":"sha256:11a4572964e06b7b0f7bafa3dad1f21a63b3f374bd306094d266edd5afe2b53c","at":"2026-07-31T18:45:08+08:00","criteria":["AC-1"]}
 {"id":"tlcp-fix-run-log","file":"tlcp_fix_run.txt","kind":"run-log","size":1691,"digest":"sha256:5643bb83039285b1f2c552bc6d14e240b39a1f4af3bcb9182547d6eb1ea9eafb","at":"2026-07-31T18:45:08+08:00","criteria":["AC-1"]}
 {"id":"bench-gmssl-full-run","file":"bench_gmssl_full_run.txt","kind":"run-log","size":8997,"digest":"sha256:1a829bf9da3424363ad82720c852616a906838368a78bcce92517144f2bec809","at":"2026-07-31T18:45:09+08:00","criteria":["AC-1"]}
+{"id":"tlcp-regression-final-lib","file":"regression_final_lib.txt","kind":"run-log","size":299,"digest":"sha256:9c6a9d2dce44974d9ca1350eafd0578ddd6791a1fe5326c78bdef37a4694567e","at":"2026-08-03T10:14:43+08:00","criteria":["AC-1"]}
