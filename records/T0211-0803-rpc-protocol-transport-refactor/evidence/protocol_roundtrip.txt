@@ -1,0 +1,78 @@
+[PASS] base uiMT roundtrip
+[PASS] base uiLEN roundtrip
+[PASS] base_resp uiMT roundtrip
+[PASS] base_resp uiLEN roundtrip
+[PASS] base_resp uiResult roundtrip
+[PASS] new_conn uiMT set by hton
+[PASS] new_conn conn_id roundtrip
+[PASS] new_conn flags roundtrip
+[PASS] new_conn keepalive roundtrip
+[PASS] new_conn rcvtimeo roundtrip
+[PASS] new_conn sndtimeo roundtrip
+[PASS] cmd opt roundtrip
+[PASS] cmd cmd_len roundtrip
+[PASS] cmd command data roundtrip
+[PASS] cmd_resp opt_resp roundtrip
+[PASS] cmd_resp stat roundtrip
+[PASS] cmd_resp msg_len roundtrip
+[PASS] cmd_resp buff roundtrip
+[PASS] scp_download api_stat
+[PASS] scp_download is_compress
+[PASS] scp_download is_encrypt
+[PASS] scp_download is_checksum
+[PASS] scp_download block_id
+[PASS] scp_download file_name_checksum
+[PASS] scp_download name_len
+[PASS] scp_download file_name data
+[PASS] scp_upload mode
+[PASS] scp_upload gid
+[PASS] scp_upload uid
+[PASS] scp_upload total_size_high
+[PASS] scp_upload total_size_low
+[PASS] scp_upload is_compress
+[PASS] scp_upload is_encrypt
+[PASS] scp_upload is_checksum
+[PASS] scp_upload checksum
+[PASS] scp_upload is_link
+[PASS] scp_upload atim sec
+[PASS] scp_upload atim nsec
+[PASS] scp_upload mtim sec
+[PASS] scp_upload mtim nsec
+[PASS] scp_upload ctim sec
+[PASS] scp_upload ctim nsec
+[PASS] scp_upload block_id
+[PASS] scp_upload original_len
+[PASS] scp_upload data_len
+[PASS] scp_upload data
+[PASS] download_block opt_type
+[PASS] download_block is_compress
+[PASS] download_block is_encrypt
+[PASS] download_block is_checksum
+[PASS] download_block block_num
+[PASS] download_block data_len
+[PASS] download_block data
+[PASS] download_block_resp opt_type
+[PASS] download_block_resp is_compress
+[PASS] download_block_resp is_encrypt
+[PASS] download_block_resp is_checksum
+[PASS] download_block_resp checksum
+[PASS] download_block_resp block_num
+[PASS] download_block_resp original_len
+[PASS] download_block_resp data_len
+[PASS] download_block_resp data
+[PASS] nc_extend_resp rate (uint64)
+[PASS] nc_extend_resp data_len
+[PASS] nc_extend_resp data
+[PASS] ioctl_fsbackup opt_type
+[PASS] ioctl_fsbackup decr
+[PASS] ioctl_fsbackup data_len
+[PASS] ioctl_fsbackup data
+[PASS] ioctl_fsbackup_resp err_no
+[PASS] ioctl_fsbackup_resp count
+[PASS] ioctl_fsbackup_resp data_len
+[PASS] ioctl_fsbackup_resp data
+[PASS] dir_tree flags
+[PASS] dir_tree path_len
+[PASS] data_block offset roundtrip
+[PASS] data_block size roundtrip
+protocol_roundtrip: all tests passed

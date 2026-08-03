@@ -1,0 +1,4 @@
+{"source":"final_confirmation","summary":"终审批准：rpc 协议层与传输层重构完整方案（16B 帧头/流式块传输 4MB/请求级 deadline/心跳 Ping-Pong/错误码体系/传输层修复/epoll 单 Reactor+有界线程池与队列+连接上限 8/客户端同步 API 不变/序列化层保持 C+传输调度层 C++ 分层），17 项验收标准，用户明确批准","response":"confirmed","at":"2026-08-03T22:39:57+08:00"}
+{"source":"check_confirmation","summary":"结论成立：基础设施层（帧协议/流帧/心跳/错误码/epoll 调度）全部完成且有测试锁定；模块⑦业务流式化等作为下一轮建议","response":"confirmed","at":"2026-08-03T23:45:30+08:00"}
+{"source": "grill", "at": "2026-08-03T23:46:53.888180+08:00", "response": "scope", "summary": "Grill: 结论适用边界=协议原语层与调度层独立验证，生产路径（rpc-server thread-per-conn、SCP 业务流式化）未接入；可复用洞察=帧校验顺序先校验后分配、size_t 输出参数栈溢出陷阱、epoll 有界队列+连接所有权模式；流程改进=release 模式测试必须纳入回归（debug 掩盖栈溢出）"}
+{"source": "knowledge_decision", "at": "2026-08-03T23:47:15.204988+08:00", "action": "wrote", "reason": "size_t 输出参数陷阱、帧校验顺序、字节序辅助函数配套往返测试——跨项目可复用"}

@@ -1,0 +1,19 @@
+[PASS] ping body timestamp encoded
+[PASS] ping frame sent
+[PASS] pong frame received
+[PASS] pong type correct
+[PASS] pong msg_id echoed
+[PASS] pong timestamp preserved
+[2026-08-03 23:39:36]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140095617234624| read packet header F:4 E:Success
+[PASS] error frame sent
+[PASS] error frame received
+[PASS] error frame is RESPONSE
+[PASS] ERROR flag set
+[PASS] error frame msg_id echoed
+[PASS] error frame parse ok
+[PASS] error code RPC_ERR_TIMEOUT
+[PASS] error detail string intact
+[PASS] plain response sent
+[PASS] plain response received
+[PASS] plain response rejected as error frame
+heart_beat: all tests passed

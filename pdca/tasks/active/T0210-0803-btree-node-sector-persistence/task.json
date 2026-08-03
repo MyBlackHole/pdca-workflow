@@ -1,0 +1,26 @@
+{
+  "id": "T0210",
+  "slug": "0803-btree-node-sector-persistence",
+  "title": "btree 节点实体落盘（allocator 子集 + 节点写盘 + root 驱动恢复）：节点从 mem_ptr 改为磁盘扇区 ptr",
+  "parent": null,
+  "children": [],
+  "status": "InProgress",
+  "meta": {
+    "phase": "do",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-03T21:40:00+08:00",
+    "record": "T0210-0803-btree-node-sector-persistence",
+    "convergence": [
+      "T0210-0803-btree-node-sector-persistence"
+    ]
+  },
+  "states": {
+    "created": "2026-08-03T21:40:00+08:00",
+    "plan": "2026-08-03T21:40:00+08:00",
+    "do": "2026-08-03T21:44:06+08:00",
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

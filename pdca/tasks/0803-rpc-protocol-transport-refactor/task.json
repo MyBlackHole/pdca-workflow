@@ -1,0 +1,38 @@
+{
+  "id": "T0211",
+  "slug": "0803-rpc-protocol-transport-refactor",
+  "title": "rpc 协议层与传输层重构：帧头演进（魔数/版本/上限/流式/心跳/错误码）+ 纯 C++ 化 + 服务端 IO 线程模型（epoll+线程池）",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-03T22:00:00+08:00",
+    "record": "T0211-0803-rpc-protocol-transport-refactor",
+    "convergence": [
+      "T0211-0803-rpc-protocol-transport-refactor"
+    ],
+    "completed_at": "2026-08-03T23:43:55+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "Do 阶段模块①-⑥+⑧全部完成，151 断言+16 evidence+convergence valid，17 AC 覆盖；模块⑦业务流式化与 rpc-server 迁移作为下一轮建议，边界已在 conclusion.md 声明",
+      "verdict_id": "T0211-0803-v1",
+      "at": "2026-08-03T23:47:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "基础设施层交付并归档，模块⑦业务流式化+SCP 路径改造作为独立跟进任务 T0212",
+      "at": "2026-08-03T23:47:22.926188+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-03T22:00:00+08:00",
+    "plan": "2026-08-03T22:39:57+08:00",
+    "do": "2026-08-03T22:40:41+08:00",
+    "check": "2026-08-03T23:43:55+08:00",
+    "act": "2026-08-03T23:46:34+08:00",
+    "archive": null
+  }
+}

@@ -1,0 +1,14 @@
+[PASS] valid frame parses
+[PASS] magic field ok
+[PASS] version field ok
+[PASS] type field ok
+[PASS] flags field ok
+[PASS] total_len field ok
+[PASS] msg_id field ok
+[PASS] bad magic rejected
+[PASS] version mismatch rejected
+[PASS] over-limit frame rejected
+[PASS] boundary frame accepted
+[PASS] total_len below header rejected
+[PASS] truncated header rejected
+frame_validation: all tests passed

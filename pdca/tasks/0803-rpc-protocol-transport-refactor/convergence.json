@@ -1,0 +1,29 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "T0211-0803-rpc-protocol-transport-refactor",
+      "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5", "AC-6", "AC-7", "AC-8", "AC-9", "AC-10", "AC-11", "AC-12", "AC-13", "AC-14", "AC-15", "AC-16", "AC-17"],
+      "evidence_ids": [
+        "ev-frame-validation",
+        "ev-overlimit-reject",
+        "ev-roundtrip",
+        "ev-io-partial",
+        "ev-frame-flags",
+        "ev-max-conn-v2",
+        "ev-epoll-heartbeat-v2",
+        "ev-regression-baseline",
+        "ev-naming",
+        "ev-full-regression",
+        "ev-bench-throughput",
+        "ev-stream-sequence",
+        "ev-stream-memory-peak",
+        "ev-queue-full-v2",
+        "ev-init-timeout-ms",
+        "ev-heartbeat-pingpong",
+        "ev-error-code-detail"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+[PASS] client connected
+[PASS] request sent
+[PASS] echo received
+[PASS] echo type/msg_id intact
+[PASS] echo body intact
+[PASS] second request sent
+[2026-08-03 23:39:36]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140505748858560| read packet header F:6 E:Resource temporarily unavailable
+[2026-08-03 23:39:36]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140505748858560| read packet header F:6 E:Resource temporarily unavailable
+[PASS] second echo received
+[2026-08-03 23:39:36]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140505748858560| read packet header F:6 E:Resource temporarily unavailable
+[2026-08-03 23:39:36]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140505740465856| read packet header F:6 E:Success
+[PASS] first two connections accepted
+[PASS] two connections active
+[PASS] third connection tcp-established
+[2026-08-03 23:39:36]|Info|rpc/rpc-epoll.cpp:252 reactor_main|140505732073152| max_conn reached, reject 10
+[PASS] third connection closed by server
+[2026-08-03 23:39:36]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140505748858560| read packet header F:7 E:Success
+[2026-08-03 23:39:36]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140505740465856| read packet header F:8 E:Bad file descriptor
+[2026-08-03 23:39:36]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140505740465856| read packet header F:7 E:Bad file descriptor
+[PASS] first connection accepted
+[PASS] first request sent
+[PASS] second connection accepted
+[PASS] second request sent
+[PASS] third connection accepted
+[PASS] third request sent
+[2026-08-03 23:39:37]|Info|rpc/rpc-epoll.cpp:301 reactor_main|140505740465856| queue full, reject conn 10
+[PASS] queue-full error frame received
+[PASS] error frame flags
+[PASS] queue-full code RPC_ERR_QUEUE_FULL
+[PASS] heartbeat client connected
+[PASS] keepalive ping received
+[PASS] pong sent
+[PASS] request after pong sent
+[2026-08-03 23:39:38]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140505740465856| read packet header F:6 E:Resource temporarily unavailable
+[PASS] echo after pong received
+[2026-08-03 23:39:38]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140505748858560| read packet header F:6 E:Success
+[PASS] client connected before stop
+[PASS] new connection refused after stop
+[PASS] all connections cleaned up
+conn_limit: all tests passed
