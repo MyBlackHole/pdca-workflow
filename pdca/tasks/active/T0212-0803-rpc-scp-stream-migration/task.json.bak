@@ -6,7 +6,7 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "check",
+    "phase": "act",
     "active": true,
     "scenario_type": "development",
     "created_at": "2026-08-03T23:50:00+08:00",
@@ -20,6 +20,11 @@
       "reason": "用户确认：10 AC 证据链完整，convergence-map-v2 验证 valid: True，scp_stream 8 用例 0 FAIL",
       "verdict_id": "v-703b61bb",
       "at": "2026-08-04T07:04:35+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "流帧集成陷阱沉淀为知识，T0213（rpc-server 迁 epoll）承接调度层",
+      "at": "2026-08-04T07:10:00+08:00"
     }
   },
   "states": {
@@ -27,7 +32,7 @@
     "plan": "2026-08-03T23:50:00+08:00",
     "do": "2026-08-03T23:53:43+08:00",
     "check": "2026-08-04T01:08:04+08:00",
-    "act": null,
+    "act": "2026-08-04T07:04:52+08:00",
     "archive": null
   }
 }
