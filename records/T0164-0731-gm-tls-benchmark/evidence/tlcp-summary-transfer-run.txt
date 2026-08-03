@@ -1,0 +1,138 @@
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+Connection Established!
+
+Connection established!
+[gmssl_client] sent=134217728
+[gmssl_server] got=134217728
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+Connection Established!
+
+Connection established!
+[gmssl_client] sent=134217728
+[gmssl_server] got=134217728
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+Connection Established!
+
+Connection established!
+[gmssl_client] sent=134217728
+[gmssl_server] got=134217728
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+Connection Established!
+
+Connection established!
+[gmssl_client] sent=536870912
+[gmssl_server] got=536870912
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+Connection Established!
+
+Connection established!
+[gmssl_client] sent=536870912
+[gmssl_server] got=536870912
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+Connection Established!
+
+Connection established!
+[gmssl_client] sent=536870912
+[gmssl_server] got=536870912
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+Connection Established!
+
+Connection established!
+[gmssl_client] sent=1073741824
+[gmssl_server] got=1073741824
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+Connection Established!
+
+Connection established!
+[gmssl_client] sent=1073741824
+[gmssl_server] got=1073741824
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/pem.c:88:pem_read():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+/home/black/.xmake/cache/packages/2607/g/gmssl/v3.1.1/source/src/x509_cer.c:1735:x509_cert_check():
+Connection Established!
+
+Connection established!
+[gmssl_client] sent=1073741824
+[gmssl_server] got=1073741824
+== transfer 128 MB ==
+  plain  median 54.1 ms  (2367.3 MB/s)
+  ossl   median 131.9 ms  (970.4 MB/s)
+  gmssl  median 2284.0 ms  (56.0 MB/s)
+== transfer 512 MB ==
+  plain  median 211.6 ms  (2419.4 MB/s)
+  ossl   median 548.2 ms  (933.9 MB/s)
+  gmssl  median 9262.7 ms  (55.3 MB/s)
+== transfer 1024 MB ==
+  plain  median 434.8 ms  (2355.4 MB/s)
+  ossl   median 1040.6 ms  (984.0 MB/s)
+  gmssl  median 18741.9 ms  (54.6 MB/s)
