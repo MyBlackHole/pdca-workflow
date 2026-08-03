@@ -1,6 +1,6 @@
 # btree 节点重写 key 构造的 extent 保留契约
 
-来源：T0206 部分完成 PDCA（AC-5 验证测试失败暴露）。
+来源：T0206 部分完成 PDCA（AC-5 验证测试失败暴露）+ T0207 修复收尾。
 
 ## 事实
 
@@ -28,7 +28,28 @@ T0205 引入的 `bch2_btree_node_rewrite` root 分支（interior.rs）用
 - **验证方式**：重写后从 slot 取 key → mem_ptr 清零 → 重新
   root_read 必须成功（`rewritten_node_revalidates_on_reopen` 测试）。
 
-## 修复方向
+## 修复方向（T0207 已实施）
 
 root 分支 bkey_copy 前合并旧 extent ptr（从 b.key 拷贝 extent 到
-child_ptr(n) 生成的键）。
+child_ptr(n) 生成的键）——`interior.rs` child_ptr 闭包经
+`bch2_bkey_ptrs_c` 取旧键 extent，非空则 `bch2_bkey_append_ptr`
+合并（对齐 `interior.c:515-518` `bch2_alloc_sectors_append_ptrs`
+语义）。
+
+## 落盘与重开语义（T0207 补充）
+
+- **重写仅 set_dirty**（journal-first）：节点落盘由事务提交/日志
+  flush 驱动，对应 `__btree_node_flush`（fs/btree/commit.c:254）
+  → `bch2_btree_node_write_trans`。
+- **写盘更新 key 的 sectors_written**（io.rs:431）：重开用的持久化
+  root 记录必须在 flush 之后从节点 key 序列化，否则
+  sectors_written=0 → 重开读后 ptr_written==0 触发二次重写
+  （seq 再递增）。上游同样：关闭时经 io.c `bch2_write_super`
+  → `bch2_btree_roots` 从内存节点 key 序列化 root 记录，而非
+  持续同步 root slot（slot.key 是重写时快照）。
+- **验证链路**（AC-5）：构造损坏 root → root_read 重写 →
+  模拟提交 flush 写盘 → 关闭序列化 root 记录（mem_ptr 清零）
+  → 重开 root_read 重新校验（magic/seq/level/范围逐项）→
+  无 need_rewrite（磁盘字节干净）、seq 持久化、键集正确、
+  拓扑校验通过。
+

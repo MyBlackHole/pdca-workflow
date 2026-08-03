@@ -1,0 +1,26 @@
+{
+  "id": "T0207",
+  "slug": "0803-fsck-scrub-rewrite-followup",
+  "title": "跟进：T0206 收尾——root 重写 extent 保留修复 + AC-5/AC-6 完成",
+  "parent": "T0206",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-03T19:18:00+08:00",
+    "record": "T0207-0803-fsck-scrub-rewrite-followup",
+    "convergence": [
+      "T0207-0803-fsck-scrub-rewrite-followup"
+    ]
+  },
+  "states": {
+    "created": "2026-08-03T19:18:00+08:00",
+    "plan": "2026-08-03T19:18:00+08:00",
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}
