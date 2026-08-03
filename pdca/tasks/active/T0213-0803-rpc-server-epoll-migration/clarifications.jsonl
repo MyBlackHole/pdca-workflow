@@ -1,3 +1,6 @@
 {"source": "grilling", "question": "迁移范围：仅 TCP 主服务 or 含 Unix socket？", "answer": "仅 TCP 主服务（推荐）", "at": "2026-08-04T07:11:53.671343+08:00"}
 {"source": "direction_confirm", "summary": "rpc-epoll 接管 TCP 主服务：单 Reactor+worker 池+max_conn+心跳替代 SO_KEEPALIVE；StartRPCServiceWoker 改单次请求处理；rpc-config 扩展；aio-speedd 链接；Unix socket 不动", "response": "confirmed", "at": "2026-08-04T07:11:53.671343+08:00"}
-{"source":"final_confirmation","summary":"rpc-epoll 接管 TCP 主服务；单次请求处理；rpc-config 4 字段；心跳替代 SO_KEEPALIVE；aio-speedd 链接；11 项 AC","response":"confirmed","at":"2026-08-04T07:13:17+08:00"}
+{"source": "final_confirmation", "summary": "rpc-epoll 接管 TCP 主服务；单次请求处理；rpc-config 4 字段；心跳替代 SO_KEEPALIVE；aio-speedd 链接；11 项 AC", "response": "confirmed", "at": "2026-08-04T07:13:17+08:00"}
+{"source": "check_confirmation", "summary": "11 AC 达成（AC-7 按协议修正：真实服务禁用帧心跳+SO_KEEPALIVE，调度层心跳由 conn_limit 覆盖），全量回归 18/18，用户判定 confirmed", "response": "confirmed", "at": "2026-08-04T07:54:38+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-04T07:57:09.920724+08:00", "action": "wrote", "reason": "O_NONBLOCK↔阻塞读冲突是非阻塞调度层迁移的通用陷阱，修复模式可复用", "knowledge": "knowledge/debugging/rpc-epoll-blocking-fd-trap.md"}
+{"source": "grill", "at": "2026-08-04T07:57:09.920724+08:00", "q": "结论适用范围/限制？", "a": "适用于非阻塞事件循环+阻塞业务层迁移；若调度与业务 fd 状态竞争则需 partial-read 状态机，此模式不适用。帧协议统一（心跳帧与裸消息协议）留作后续课题。"}
