@@ -1,0 +1,3 @@
+{"file": "knowledge/debugging/c-buffer-api-size_t-frame-validation.md", "reason": "size_t 输出参数栈溢出陷阱与先校验后分配规则，流帧解析必须遵守", "action": "遵守规则", "at": "2026-08-03T23:52:51.802474+08:00"}
+{"file": "records/T0211-0803-rpc-protocol-transport-refactor/conclusion.md", "reason": "T0211 交付边界与下一轮建议，T0212 承接", "action": "引用", "at": "2026-08-03T23:52:51.802535+08:00"}
+{"file": "docs/adr/ADR-0011-rpc-server-io-thread-model.md", "reason": "调度层设计上下文（T0213 相关），流式化与调度解耦的边界依据", "action": "引用", "at": "2026-08-03T23:52:51.802554+08:00"}

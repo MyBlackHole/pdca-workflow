@@ -1,0 +1,4 @@
+{"source": "grilling", "at": "2026-08-03T23:50:22.938493+08:00", "response": "split", "summary": "范围取舍：T0212 聚焦 SCP 流式化(a)，rpc-server 迁移(b)拆出为独立任务 T0213"}
+{"source": "grilling", "at": "2026-08-03T23:50:46.612922+08:00", "response": "direct_replace", "summary": "协议兼容：直接替换 msg_scp_upload_t 旧路径，帧头 version 升级，客户端/服务端同版本成对切换，无兼容期"}
+{"source":"direction_confirm","summary":"方向确认：上传=客户端 push STREAM INIT(带元数据)/DATA/END；下载=服务端 push STREAM 帧序列；直接替换删除旧消息类型；验收 10 项；断点续传不入范围；帧 version 1→2","response":"confirmed","at":"2026-08-03T23:52:20+08:00"}
+{"source":"final_confirmation","summary":"终审批准：SCP 流式化完整方案（STREAM INIT v2 带元数据 + 直接替换删旧类型 + ADR-0012 + 10 项 checkbox AC + scp_stream.cpp 测试）","response":"confirmed","at":"2026-08-03T23:53:28+08:00"}
