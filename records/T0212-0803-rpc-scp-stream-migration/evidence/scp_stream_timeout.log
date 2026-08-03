@@ -1,0 +1,4 @@
+[PASS] server returns error frame
+[PASS] error code is RPC_ERR_TIMEOUT
+[PASS] error code is RPC_ERR_TIMEOUT
+[PASS] partial file cleaned

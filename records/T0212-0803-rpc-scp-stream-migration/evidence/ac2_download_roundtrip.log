@@ -1,0 +1,5 @@
+[PASS] server ret 0
+[PASS] download ret 0
+[PASS] server ret 0
+[PASS] download content match
+[PASS] download size

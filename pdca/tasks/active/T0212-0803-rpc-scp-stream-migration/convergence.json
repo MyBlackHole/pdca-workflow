@@ -1,0 +1,33 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "T0212-0803-rpc-scp-stream-migration",
+      "criteria": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4",
+        "AC-5",
+        "AC-6",
+        "AC-7",
+        "AC-8",
+        "AC-9",
+        "AC-10"
+      ],
+      "evidence_ids": [
+        "scp-stream-full-suite",
+        "scp-download-roundtrip",
+        "scp-meta-preserved",
+        "scp-switch-combos",
+        "scp-link-upload",
+        "scp-stream-timeout",
+        "scp-halfwrite-cleanup",
+        "full-regression",
+        "scp-throughput",
+        "ac10-old-types-grep"
+      ]
+    }
+  ]
+}
