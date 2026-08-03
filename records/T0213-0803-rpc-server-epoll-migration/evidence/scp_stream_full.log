@@ -1,0 +1,562 @@
+[PASS] create source file
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] socketpair
+[PASS] spawn srv
+[2026-08-04 07:48:03]|Info|rpc/rpc-command.cpp:433 do_scp_upload|140691807430528| upload /tmp/t0213-test/src_upload.bin begin bytes: 67108864
+[2026-08-04 07:48:03]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140691799799488| begin upload file [/tmp/t0213-test/dst_upload.bin]
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:548 do_scp_upload|140691807430528| upload file:/tmp/t0213-test/src_upload.bin completed [upload_size: 67108864, f_size: 67108864]
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:1736 OnMsgScpUpload|140691799799488| upload file [/tmp/t0213-test/dst_upload.bin] completed [recv_bytes: 67108864, f_size: 67108864]
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:562 do_scp_upload|140691807430528| rpc upload [/tmp/t0213-test/dst_upload.bin] completed success elapse 1 s, 67108864 bytes, 64.00 M/s
+[PASS] upload ret 0
+[PASS] server ret 0
+[PASS] upload content match
+[PASS] upload size
+[PASS] create source file
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] socketpair
+[PASS] spawn srv
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:976 rpc_scp_download|140691799799488| begin download file [/tmp/t0213-test/src_dl.bin]
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:1159 rpc_scp_download|140691799799488| download file [/tmp/t0213-test/src_dl.bin] complete success, send_bytes: 67108864, f_size: 67108864
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:299 do_scp_download|140691807430528| scp download [/tmp/t0213-test/dst_dl.bin from /tmp/t0213-test/src_dl.bin], status completed success, elapse 1 s, f_size 67108864 bytes, recv 67108864 bytes, 64.00 M/s
+[PASS] download ret 0
+[PASS] server ret 0
+[PASS] download content match
+[PASS] download size
+[PASS] create source file
+[PASS] write chunk
+[PASS] socketpair
+[PASS] spawn srv
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:433 do_scp_upload|140691807430528| upload /tmp/t0213-test/src_meta.bin begin bytes: 1048576
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140691799799488| begin upload file [/tmp/t0213-test/dst_meta.bin]
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:548 do_scp_upload|140691807430528| upload file:/tmp/t0213-test/src_meta.bin completed [upload_size: 1048576, f_size: 1048576]
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:1736 OnMsgScpUpload|140691799799488| upload file [/tmp/t0213-test/dst_meta.bin] completed [recv_bytes: 1048576, f_size: 1048576]
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:562 do_scp_upload|140691807430528| rpc upload [/tmp/t0213-test/dst_meta.bin] completed success elapse 1 s, 1048576 bytes, 1.00 M/s
+[PASS] upload ret 0
+[PASS] dst stat
+[PASS] mode preserved
+[PASS] size preserved
+[PASS] mtime preserved
+[PASS] create source file
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] socketpair
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:433 do_scp_upload|140691807430528| upload /tmp/t0213-test/sw_src.bin begin bytes: 8388608
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140691799799488| begin upload file [/tmp/t0213-test/sw_dst.bin]
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:548 do_scp_upload|140691807430528| upload file:/tmp/t0213-test/sw_src.bin completed [upload_size: 8388608, f_size: 8388608]
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:1736 OnMsgScpUpload|140691799799488| upload file [/tmp/t0213-test/sw_dst.bin] completed [recv_bytes: 8388608, f_size: 8388608]
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:562 do_scp_upload|140691807430528| rpc upload [/tmp/t0213-test/sw_dst.bin] completed success elapse 1 s, 8388608 bytes, 8.00 M/s
+[PASS] upload[compress] ret
+[PASS] upload srv ret
+[PASS] socketpair2
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:976 rpc_scp_download|140691799799488| begin download file [/tmp/t0213-test/sw_dst.bin]
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:1159 rpc_scp_download|140691799799488| download file [/tmp/t0213-test/sw_dst.bin] complete success, send_bytes: 8388608, f_size: 8388608
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:299 do_scp_download|140691807430528| scp download [/tmp/t0213-test/sw_back.bin from /tmp/t0213-test/sw_dst.bin], status completed success, elapse 1 s, f_size 8388608 bytes, recv 8388608 bytes, 8.00 M/s
+[PASS] download[compress] ret
+[PASS] roundtrip content match
+[PASS] socketpair
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:433 do_scp_upload|140691807430528| upload /tmp/t0213-test/sw_src.bin begin bytes: 8388608
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140691799799488| begin upload file [/tmp/t0213-test/sw_dst.bin]
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:548 do_scp_upload|140691807430528| upload file:/tmp/t0213-test/sw_src.bin completed [upload_size: 8388608, f_size: 8388608]
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:1736 OnMsgScpUpload|140691799799488| upload file [/tmp/t0213-test/sw_dst.bin] completed [recv_bytes: 8388608, f_size: 8388608]
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:562 do_scp_upload|140691807430528| rpc upload [/tmp/t0213-test/sw_dst.bin] completed success elapse 1 s, 8388608 bytes, 8.00 M/s
+[PASS] upload[encrypt] ret
+[PASS] upload srv ret
+[PASS] socketpair2
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:976 rpc_scp_download|140691799799488| begin download file [/tmp/t0213-test/sw_dst.bin]
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:1159 rpc_scp_download|140691799799488| download file [/tmp/t0213-test/sw_dst.bin] complete success, send_bytes: 8388608, f_size: 8388608
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:299 do_scp_download|140691807430528| scp download [/tmp/t0213-test/sw_back.bin from /tmp/t0213-test/sw_dst.bin], status completed success, elapse 1 s, f_size 8388608 bytes, recv 8388608 bytes, 8.00 M/s
+[PASS] download[encrypt] ret
+[PASS] roundtrip content match
+[PASS] socketpair
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:433 do_scp_upload|140691807430528| upload /tmp/t0213-test/sw_src.bin begin bytes: 8388608
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140691799799488| begin upload file [/tmp/t0213-test/sw_dst.bin]
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:548 do_scp_upload|140691807430528| upload file:/tmp/t0213-test/sw_src.bin completed [upload_size: 8388608, f_size: 8388608]
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:1736 OnMsgScpUpload|140691799799488| upload file [/tmp/t0213-test/sw_dst.bin] completed [recv_bytes: 8388608, f_size: 8388608]
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:562 do_scp_upload|140691807430528| rpc upload [/tmp/t0213-test/sw_dst.bin] completed success elapse 1 s, 8388608 bytes, 8.00 M/s
+[PASS] upload[checksum] ret
+[PASS] upload srv ret
+[PASS] socketpair2
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:976 rpc_scp_download|140691799799488| begin download file [/tmp/t0213-test/sw_dst.bin]
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:1159 rpc_scp_download|140691799799488| download file [/tmp/t0213-test/sw_dst.bin] complete success, send_bytes: 8388608, f_size: 8388608
+[2026-08-04 07:48:04]|Info|rpc/rpc-command.cpp:299 do_scp_download|140691807430528| scp download [/tmp/t0213-test/sw_back.bin from /tmp/t0213-test/sw_dst.bin], status completed success, elapse 1 s, f_size 8388608 bytes, recv 8388608 bytes, 8.00 M/s
+[PASS] download[checksum] ret
+[PASS] roundtrip content match
+[PASS] create source file
+[PASS] write chunk
+[PASS] socketpair
+[PASS] spawn srv
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:1542 OnMsgScpUpload|140691799799488| begin upload link [/tmp/t0213-test/link_entry -> /tmp/t0213-test/link_target.bin]
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:1588 OnMsgScpUpload|140691799799488| upload link [/tmp/t0213-test/link_entry] complete success
+[PASS] link upload ret 0
+[PASS] symlink created
+[PASS] link target correct
+[PASS] create source file
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] socketpair
+[PASS] spawn srv
+[PASS] send REQUEST
+[PASS] send INIT
+[PASS] send DATA
+[2026-08-04 07:48:04]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140691799799488| begin upload file [/tmp/t0213-test/to_dst.bin]
+[2026-08-04 07:48:05]|Error|rpc/rpc-server.cpp:1466 OnMsgScpUpload|140691799799488| upload file [/tmp/t0213-test/to_dst.bin] recv stream time out.
+[PASS] server returns error frame
+[PASS] error code is RPC_ERR_TIMEOUT
+[PASS] error code is RPC_ERR_TIMEOUT
+[PASS] partial file cleaned
+[PASS] create source file
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] socketpair
+[PASS] spawn srv
+[PASS] send REQUEST
+[PASS] put subtype
+[PASS] put block_count
+[PASS] put block_size
+[PASS] put timeout
+[PASS] put meta_len
+[PASS] put meta
+[PASS] put name
+[PASS] send INIT
+[PASS] put sub
+[PASS] put data
+[PASS] send DATA
+[2026-08-04 07:48:05]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140691799799488| begin upload file [/tmp/t0213-test/ps_dst.bin]
+[2026-08-04 07:48:05]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140691799799488| read packet header F:3 E:Success
+[2026-08-04 07:48:05]|Error|rpc/rpc-server.cpp:1486 OnMsgScpUpload|140691799799488| upload file [/tmp/t0213-test/ps_dst.bin] rpc recv failure: Success(errno: 0) ret:-1
+[2026-08-04 07:48:05]|Error|rpc/rpc-server.cpp:1787 OnMsgScpUpload|140691799799488| upload file [/tmp/t0213-test/ps_dst.bin] failure, half-written file removed
+[PASS] server detects broken stream
+[PASS] half-written file cleaned
+[PASS] create source file
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] socketpair
+[PASS] spawn srv
+[2026-08-04 07:48:06]|Info|rpc/rpc-command.cpp:433 do_scp_upload|140691807430528| upload /tmp/t0213-test/tp_src.bin begin bytes: 268435456
+[2026-08-04 07:48:06]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140691799799488| begin upload file [/tmp/t0213-test/tp_dst.bin]
+[2026-08-04 07:48:06]|Info|rpc/rpc-command.cpp:548 do_scp_upload|140691807430528| upload file:/tmp/t0213-test/tp_src.bin completed [upload_size: 268435456, f_size: 268435456]
+[2026-08-04 07:48:06]|Info|rpc/rpc-server.cpp:1736 OnMsgScpUpload|140691799799488| upload file [/tmp/t0213-test/tp_dst.bin] completed [recv_bytes: 268435456, f_size: 268435456]
+[2026-08-04 07:48:06]|Info|rpc/rpc-command.cpp:562 do_scp_upload|140691807430528| rpc upload [/tmp/t0213-test/tp_dst.bin] completed success elapse 1 s, 268435456 bytes, 256.00 M/s
+[PASS] upload ret 0
+[INFO] upload 256MB in 0.447s = 573.1 MB/s
+[PASS] throughput >= 400 MB/s
+
+0 failure(s)

@@ -1,0 +1,1178 @@
+running tests ...
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test bench_throughput/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test conn_limit/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test dir_utils_dir_copy_test/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test frame_validation/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test fs_meta_comprehensive_test/default[0m
+开始测试目录复制功能...
+测试目录: /tmp/aio/rpc/rpc_test
+目标目录: /tmp/aio/rpc/copy_test
+返回值: 0
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test heart_beat/default[0m
+[PASS] valid frame parses
+[PASS] magic field ok
+[PASS] version field ok
+[PASS] type field ok
+[PASS] flags field ok
+[PASS] total_len field ok
+[PASS] msg_id field ok
+[PASS] bad magic rejected
+[PASS] version mismatch rejected
+[PASS] over-limit frame rejected
+[PASS] boundary frame accepted
+[PASS] total_len below header rejected
+[PASS] truncated header rejected
+frame_validation: all tests passed
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test io_partial/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test lmdb_dict_test/default[0m
+[PASS] ping body timestamp encoded
+[PASS] ping frame sent
+[PASS] pong frame received
+[PASS] pong type correct
+[PASS] pong msg_id echoed
+[PASS] pong timestamp preserved
+[2026-08-04 07:46:26]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|139867906373312| read packet header F:8 E:Success
+[PASS] error frame sent
+[PASS] error frame received
+[PASS] error frame is RESPONSE
+[PASS] ERROR flag set
+[PASS] error frame msg_id echoed
+[PASS] error frame parse ok
+[PASS] error code RPC_ERR_TIMEOUT
+[PASS] error detail string intact
+[PASS] plain response sent
+[PASS] plain response received
+[PASS] plain response rejected as error frame
+heart_beat: all tests passed
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test logger_test/default[0m
+[PASS] send returns total frame len
+[PASS] recv returns total frame len
+[PASS] recv buf is body only
+[PASS] payload roundtrip through frame
+[PASS] partial header still assembles full frame
+[PASS] body length ok
+[PASS] body content ok
+[2026-08-04 07:46:26]|Error|rpc/rpc-msg.c:173 rpc_recv_frame|140292339877760| frame parse failed F:8 R:-3
+[PASS] over-limit frame rejected before allocation
+[PASS] no data buffered on rejection
+[2026-08-04 07:46:26]|Error|rpc/rpc-msg.c:173 rpc_recv_frame|140292339877760| frame parse failed F:8 R:-1
+[PASS] bad magic rejected on recv
+[PASS] no data buffered on bad magic
+[PASS] conn still usable after bad frame
+[PASS] legit frame after bad frame ok
+[PASS] payload after bad frame ok
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test LRUCache_test/default[0m
+========================================
+       FsMeta Test Suite
+========================================
+
+=== TEST: TYPE_UPDATE - Fragmented ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_06
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test lstat/default[0m
+Running logger tests...
+Tests passed: 11, failed: 0
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test mkdir_path_test/default[0m
+[PASS] large message send completes
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test protocol_roundtrip/default[0m
+PASS
+
+=== TEST: TYPE_UPDATE - 1M File Overwrite at 500K ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_27
+[PASS] large message recv completes
+[PASS] large body content intact
+io_partial: all tests passed
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test rdb_config_test/default[0m
+/proc/self/exe: size=0, mode=120777, atime=1785800786, mtime=1785800786, ctime=140098701228257
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test rpc_server_epoll_integration/default[0m
+[PASS] base uiMT roundtrip
+[PASS] base uiLEN roundtrip
+[PASS] base_resp uiMT roundtrip
+[PASS] base_resp uiLEN roundtrip
+[PASS] base_resp uiResult roundtrip
+[PASS] new_conn uiMT set by hton
+[PASS] new_conn conn_id roundtrip
+[PASS] new_conn flags roundtrip
+[PASS] new_conn keepalive roundtrip
+[PASS] new_conn rcvtimeo roundtrip
+[PASS] new_conn sndtimeo roundtrip
+[PASS] cmd opt roundtrip
+[PASS] cmd cmd_len roundtrip
+[PASS] cmd command data roundtrip
+[PASS] cmd_resp opt_resp roundtrip
+[PASS] cmd_resp stat roundtrip
+[PASS] cmd_resp msg_len roundtrip
+[PASS] cmd_resp buff roundtrip
+[PASS] scp_download api_stat
+[PASS] scp_download is_compress
+[PASS] scp_download is_encrypt
+[PASS] scp_download is_checksum
+[PASS] scp_download block_id
+[PASS] scp_download file_name_checksum
+[PASS] scp_download name_len
+[PASS] scp_download file_name data
+[PASS] stream_meta mode
+[PASS] stream_meta gid
+[PASS] stream_meta uid
+[PASS] stream_meta total_size_high
+[PASS] stream_meta total_size_low
+[PASS] stream_meta is_link
+[PASS] stream_meta is_compress
+[PASS] stream_meta is_encrypt
+[PASS] stream_meta is_checksum
+[PASS] stream_meta atim sec
+[PASS] stream_meta atim nsec
+[PASS] stream_meta mtim sec
+[PASS] stream_meta mtim nsec
+[PASS] stream_meta ctim sec
+[PASS] stream_meta ctim nsec
+[PASS] download_block opt_type
+[PASS] download_block is_compress
+[PASS] download_block is_encrypt
+[PASS] download_block is_checksum
+[PASS] download_block block_num
+[PASS] download_block data_len
+[PASS] download_block data
+[PASS] download_block_resp opt_type
+[PASS] download_block_resp is_compress
+[PASS] download_block_resp is_encrypt
+[PASS] download_block_resp is_checksum
+[PASS] download_block_resp checksum
+[PASS] download_block_resp block_num
+[PASS] download_block_resp original_len
+[PASS] download_block_resp data_len
+[PASS] download_block_resp data
+[PASS] nc_extend_resp rate (uint64)
+[PASS] nc_extend_resp data_len
+[PASS] nc_extend_resp data
+[PASS] ioctl_fsbackup opt_type
+[PASS] ioctl_fsbackup decr
+[PASS] ioctl_fsbackup data_len
+[PASS] ioctl_fsbackup data
+[PASS] ioctl_fsbackup_resp err_no
+[PASS] ioctl_fsbackup_resp count
+[PASS] ioctl_fsbackup_resp data_len
+[PASS] ioctl_fsbackup_resp data
+[PASS] dir_tree flags
+[PASS] dir_tree path_len
+[PASS] data_block offset roundtrip
+[PASS] data_block size roundtrip
+protocol_roundtrip: all tests passed
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test scp_stream/default[0m
+=== rdb-config test ===
+
+Running parse_and_get_int... PASSED
+Running config_get_int_default... PASSED
+Running config_get_string... PASSED
+Running config_get_string_null_for_missing... PASSED
+Running config_get_string_global_fallback... PASSED
+Running config_set_string... PASSED
+Running config_section_count_and_entry... PASSED
+Running parse_nonexistent_file... PASSED
+Running init_config_from_env... PASSED
+Running parse_config_twice... PASSED
+Running config_get_int_trailing_spaces... PASSED
+
+=== 11 passed, 0 failed ===
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test stream_blocks/default[0m
+PASS
+
+=== TEST: TYPE_NEW - Small File (Full Download) ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_01
+=== 手动事务示例 ===
+批量写入完成，共100条记录
+批量读取完成，找到 100/100 条记录
+
+=== 游标遍历示例 ===
+正向遍历:
+  Key: cursor_key_0, Value: cursor_value_0
+  Key: cursor_key_1, Value: cursor_value_1
+  Key: cursor_key_2, Value: cursor_value_2
+  Key: cursor_key_3, Value: cursor_value_3
+  Key: cursor_key_4, Value: cursor_value_4
+[PASS] init default config
+[PASS] write config file
+[PASS] parse config
+[PASS] max_conn=16
+[PASS] max_workers=3
+[PASS] queue_capacity=12
+[PASS] start epoll service
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:93 RpcEpollThread|140668693378752| rpc epoll service start, port: 19161, max_conn: 8, max_workers: 4, queue_capacity: 8
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test tls_cert_test/default[0m
+PASS
+
+=== TEST: TYPE_NEW - Write Zero ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_02
+PASS
+
+=== TEST: TYPE_UPDATE - Basic ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_03
+PASS
+
+=== TEST: TYPE_UPDATE - Within Size ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_04
+[PASS] stream send completes
+[PASS] stream recv no error
+[PASS] stream msg_id preserved
+[PASS] init block_count correct
+[PASS] init block_size correct
+[PASS] init timeout_ms correct
+[PASS] init file name correct
+[PASS] all DATA blocks received
+[PASS] END flag on last block
+[PASS] last block size correct
+[PASS] memory peak is block-level (no whole-file buffering)
+PASS
+
+=== TEST: TYPE_UPDATE - Extend (size_ext - size) ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_05
+[PASS] empty stream init sent
+[PASS] empty stream init received
+[PASS] empty stream subtype init
+[PASS] empty stream block count zero
+stream_blocks: all tests passed
+=== TLS Cert Unit Tests ===
+
+CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+Using CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+Running tls_cert_init_disabled... PASSED
+Running tls_cert_init_missing_ca... CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+PASSED
+Running tls_cert_init_missing_cert... PASSED
+Running tls_cert_init_cleanup... PASSED
+Running tls_server_init... CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+PASSED
+Running tls_server_missing_ca... PASSED
+Running tls_server_missing_cert... CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+PASSED
+Running tls_server_missing_key... CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+PASSED
+Running tls_empty_cert_dir... CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+PASSED
+Running tls_invalid_ca_cert_format... CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+PASSED
+Running tls_client_with_server_cert_env... CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+Client can init with server cert (not recommended but should work)
+PASSED
+Running tls_server_with_cert_dir_env... CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+Server can init with cert_dir (will load first matching cert)
+PASSED
+Running tls_cert_select_callback... CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+TLS cert callback test passed
+PASSED
+Running tls_mtls_handshake... CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+mtls: server initialized
+mtls: server listening on port 14449
+PASS
+
+=== TEST: TYPE_UPDATE - Large Data Write ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_10
+PASS
+
+=== TEST: TYPE_UPDATE - Large Data Write Overwrite Partial ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_25
+PASS
+
+=== TEST: TYPE_UPDATE - 1M File Overwrite Single Write ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_26
+PASS
+
+=== TEST: BOUNDARY - Max Block Size 16K ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_09
+PASS
+
+=== TEST: BOUNDARY - Max Block Size 64K ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_10
+PASS
+
+=== TEST: TRUNCATE ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_11
+PASS
+
+=== TEST: CURSOR REUSE ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_12
+PASS
+
+=== TEST: TYPE_DEL ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_14
+PASS
+
+=== TEST: VARIOUS OFFSETS - 偏移组合 ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_15
+PASS
+
+=== TEST: VARIOUS SIZES - 不同文件大小 ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_16
+[PASS] tcp connect
+[PASS] create source file
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[2026-08-04 07:46:26]|Info|rpc/rpc-command.cpp:433 do_scp_upload|140668700776320| upload /tmp/t0213-test/ep_src.bin begin bytes: 16777216
+PASS
+
+=== TEST: OVERWRITE - 同一偏移重复写入 ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_17
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:378 rpc_epoll_conn_handler|140668659807936| client connection, addr: [127.0.0.1:46760].
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:179 process_single_request|140668659807936| process request start, type [1105], addr: [127.0.0.1:46760].
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140668659807936| begin upload file [/tmp/t0213-test/ep_dst.bin]
+PASS
+
+=== TEST: MIXED OPERATIONS - 混合操作序列 ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_18
+PASS
+
+=== TEST: SPARSE FILE - 稀疏文件 ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_19
+PASS
+
+=== TEST: OUT_OF_ORDER WRITE - 乱序写入 ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_20
+PASS
+
+=== TEST: ZERO OFFSET + VARIOUS COUNT - 零偏移+不同大小 ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_21
+PASS
+
+=== TEST: LARGE GAP - 大间隔写入 ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_22
+PASS
+
+=== TEST: TYPE_NEW - Multi Write ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_23
+PASS
+
+=== TEST: TYPE_NEW - Reopen ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_24
+[PASS] create source file
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] socketpair
+[PASS] spawn srv
+[2026-08-04 07:46:26]|Info|rpc/rpc-command.cpp:433 do_scp_upload|140140176287616| upload /tmp/t0212-test/src_upload.bin begin bytes: 67108864
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140140169131712| begin upload file [/tmp/t0212-test/dst_upload.bin]
+PASS
+
+=== TEST: TYPE_NEW - Delete ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_25
+[2026-08-04 07:46:26]|Info|rpc/rpc-command.cpp:548 do_scp_upload|140668700776320| upload file:/tmp/t0213-test/ep_src.bin completed [upload_size: 16777216, f_size: 16777216]
+PASS
+
+=== TEST: TYPE_UPDATE - Delete ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_26
+PASS
+
+=== TEST: DELETE then CREATE ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_27
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:1736 OnMsgScpUpload|140668659807936| upload file [/tmp/t0213-test/ep_dst.bin] completed [recv_bytes: 16777216, f_size: 16777216]
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:348 process_single_request|140668659807936| process request end, type [1105], addr: [127.0.0.1:46760].
+[2026-08-04 07:46:26]|Info|rpc/rpc-command.cpp:562 do_scp_upload|140668700776320| rpc upload [/tmp/t0213-test/ep_dst.bin] completed success elapse 1 s, 16777216 bytes, 16.00 M/s
+PASS
+
+=== TEST: DELETE then MODIFY ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_28
+PASS
+
+=== TEST: OPEN EXIST ===
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_30
+PASS
+
+=== TEST: RANDOM WRITE ===
+  After OnOpen: type=1 size=5000 size_ext=5000 byte_id=0
+  GetVal returns 0, type=1
+  OnWriteFile ret=0
+  After OnWriteFile: type=1 size=5000 size_ext=5000 byte_id=0
+[2026-08-04 07:46:26]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|440865792| delete /tmp/fs_meta_test_31
+PASS
+
+========================================
+       Results: 0 failures
+========================================
+[PASS] client connected
+[PASS] request sent
+[PASS] echo received
+[PASS] echo type/msg_id intact
+[PASS] echo body intact
+[PASS] second request sent
+[2026-08-04 07:46:26]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140179253745344| read packet header F:10 E:Resource temporarily unavailable
+[PASS] second echo received
+[2026-08-04 07:46:26]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140179253745344| read packet header F:10 E:Resource temporarily unavailable
+[PASS] epoll scp upload ret 0
+[PASS] epoll upload content match
+[PASS] epoll upload size
+[PASS] epoll mode preserved
+[PASS] epoll mtime preserved
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:179 process_single_request|140668659807936| process request start, type [1102], addr: [127.0.0.1:46760].
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:976 rpc_scp_download|140668659807936| begin download file [/tmp/t0213-test/ep_dst.bin]
+CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6110/release/libs/tests/certs
+mtls: client initialized
+mtls: client connected to server
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:1159 rpc_scp_download|140668659807936| download file [/tmp/t0213-test/ep_dst.bin] complete success, send_bytes: 16777216, f_size: 16777216
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:348 process_single_request|140668659807936| process request end, type [1102], addr: [127.0.0.1:46760].
+mtls: client handshake success
+mtls: client wrote 22 bytes
+mtls server: handshake success
+mtls server received: Hello from mtls client
+mtls: client read 22 bytes: Hello from mtls server
+mtls: server thread returned 0
+PASSED
+
+=== Results ===
+Passed: 14
+Failed: 0
+
+All tests PASSED!
+[2026-08-04 07:46:26]|Info|rpc/rpc-command.cpp:299 do_scp_download|140668700776320| scp download [/tmp/t0213-test/ep_back.bin from /tmp/t0213-test/ep_dst.bin], status completed success, elapse 1 s, f_size 16777216 bytes, recv 16777216 bytes, 16.00 M/s
+[2026-08-04 07:46:26]|Info|rpc/rpc-command.cpp:548 do_scp_upload|140140176287616| upload file:/tmp/t0212-test/src_upload.bin completed [upload_size: 67108864, f_size: 67108864]
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:1736 OnMsgScpUpload|140140169131712| upload file [/tmp/t0212-test/dst_upload.bin] completed [recv_bytes: 67108864, f_size: 67108864]
+[2026-08-04 07:46:26]|Info|rpc/rpc-command.cpp:562 do_scp_upload|140140176287616| rpc upload [/tmp/t0212-test/dst_upload.bin] completed success elapse 1 s, 67108864 bytes, 64.00 M/s
+[PASS] epoll scp download ret 0
+[PASS] epoll download content match
+[2026-08-04 07:46:26]|Error|rpc/rpc-io.cpp:46 rpc_recv|140668668200640| receive failure.  nread: 0,  addr: [127.0.0.1:46760],  status(Success, errno: 0)
+[2026-08-04 07:46:26]|Error|rpc/rpc-io.cpp:56 rpc_recv|140668668200640| receive failure bytes: 0 != (int)sizeof(msg_net_length): 4, addr: [127.0.0.1:46760], status: Success(errno: 0)
+[2026-08-04 07:46:26]|Error|rpc/rpc-server.cpp:171 process_single_request|140668668200640| recv request failure for bad network. bytes: -100
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:420 rpc_epoll_conn_handler|140668668200640| close client connection, addr: [127.0.0.1:46760].
+[PASS] start epoll service (19162)
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:93 RpcEpollThread|140668433331904| rpc epoll service start, port: 19162, max_conn: 8, max_workers: 4, queue_capacity: 8
+[PASS] tcp connect
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:378 rpc_epoll_conn_handler|140668399761088| client connection, addr: [127.0.0.1:43836].
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:179 process_single_request|140668399761088| process request start, type [111a], addr: [127.0.0.1:43836].
+[PASS] req#1 GET_TIME
+[PASS] req#1 timestamp
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:341 process_single_request|140668399761088| get time, timestamp: 1785800786
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:348 process_single_request|140668399761088| process request end, type [111a], addr: [127.0.0.1:43836].
+[PASS] first two connections accepted
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:179 process_single_request|140668399761088| process request start, type [111a], addr: [127.0.0.1:43836].
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:341 process_single_request|140668399761088| get time, timestamp: 1785800786
+[2026-08-04 07:46:26]|Info|rpc/rpc-server.cpp:348 process_single_request|140668399761088| process request end, type [111a], addr: [127.0.0.1:43836].
+[PASS] req#2 GET_TIME
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:179 process_single_request|140668424939200| process request start, type [111a], addr: [127.0.0.1:43836].
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:341 process_single_request|140668424939200| get time, timestamp: 1785800787
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:348 process_single_request|140668424939200| process request end, type [111a], addr: [127.0.0.1:43836].
+[PASS] two connections active
+[PASS] third connection tcp-established
+[2026-08-04 07:46:27]|Info|rpc/rpc-epoll.cpp:252 reactor_main|140179245352640| max_conn reached, reject 14
+[PASS] third connection closed by server
+[2026-08-04 07:46:27]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140179262138048| read packet header F:11 E:Success
+[2026-08-04 07:46:27]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140179262138048| read packet header F:11 E:Success
+[2026-08-04 07:46:27]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140179253745344| read packet header F:12 E:Success
+[2026-08-04 07:46:27]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140179253745344| read packet header F:11 E:Success
+[PASS] upload ret 0
+[PASS] server ret 0
+[PASS] upload content match
+[PASS] upload size
+[PASS] create source file
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] socketpair
+[PASS] spawn srv
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:976 rpc_scp_download|140140169131712| begin download file [/tmp/t0212-test/src_dl.bin]
+[PASS] req#3 GET_TIME
+[PASS] create source file
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:179 process_single_request|140668416546496| process request start, type [1102], addr: [127.0.0.1:43836].
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:976 rpc_scp_download|140668416546496| begin download file [/tmp/t0213-test/mr_src.bin]
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1159 rpc_scp_download|140668416546496| download file [/tmp/t0213-test/mr_src.bin] complete success, send_bytes: 4194304, f_size: 4194304
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:348 process_single_request|140668416546496| process request end, type [1102], addr: [127.0.0.1:43836].
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:299 do_scp_download|140668700776320| scp download [/tmp/t0213-test/mr_dst.bin from /tmp/t0213-test/mr_src.bin], status completed success, elapse 1 s, f_size 4194304 bytes, recv 4194304 bytes, 4.00 M/s
+[PASS] req#4 SCP download (multi-request reuse)
+[PASS] download content match
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:179 process_single_request|140668399761088| process request start, type [111a], addr: [127.0.0.1:43836].
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:341 process_single_request|140668399761088| get time, timestamp: 1785800787
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:348 process_single_request|140668399761088| process request end, type [111a], addr: [127.0.0.1:43836].
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1159 rpc_scp_download|140140169131712| download file [/tmp/t0212-test/src_dl.bin] complete success, send_bytes: 67108864, f_size: 67108864
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:299 do_scp_download|140140176287616| scp download [/tmp/t0212-test/dst_dl.bin from /tmp/t0212-test/src_dl.bin], status completed success, elapse 1 s, f_size 67108864 bytes, recv 67108864 bytes, 64.00 M/s
+[PASS] req#5 GET_TIME after SCP
+[2026-08-04 07:46:27]|Error|rpc/rpc-io.cpp:46 rpc_recv|140668399761088| receive failure.  nread: 0,  addr: [127.0.0.1:43836],  status(Success, errno: 0)
+[2026-08-04 07:46:27]|Error|rpc/rpc-io.cpp:56 rpc_recv|140668399761088| receive failure bytes: 0 != (int)sizeof(msg_net_length): 4, addr: [127.0.0.1:43836], status: Success(errno: 0)
+[2026-08-04 07:46:27]|Error|rpc/rpc-server.cpp:171 process_single_request|140668399761088| recv request failure for bad network. bytes: -100
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:420 rpc_epoll_conn_handler|140668399761088| close client connection, addr: [127.0.0.1:43836].
+[PASS] first connection accepted
+[PASS] first request sent
+[PASS] start epoll service (19163)
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:93 RpcEpollThread|140668382975680| rpc epoll service start, port: 19163, max_conn: 2, max_workers: 2, queue_capacity: 2
+[PASS] two connections within max_conn
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:378 rpc_epoll_conn_handler|140667963569856| client connection, addr: [127.0.0.1:54320].
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:179 process_single_request|140667963569856| process request start, type [111a], addr: [127.0.0.1:54320].
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:341 process_single_request|140667963569856| get time, timestamp: 1785800787
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:348 process_single_request|140667963569856| process request end, type [111a], addr: [127.0.0.1:54320].
+[PASS] conn1 GET_TIME ok
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:378 rpc_epoll_conn_handler|140667963569856| client connection, addr: [127.0.0.1:54326].
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:179 process_single_request|140667963569856| process request start, type [111a], addr: [127.0.0.1:54326].
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:341 process_single_request|140667963569856| get time, timestamp: 1785800787
+[PASS] conn2 GET_TIME ok
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:348 process_single_request|140667963569856| process request end, type [111a], addr: [127.0.0.1:54326].
+[PASS] conn3 accepted (close after accept)
+[2026-08-04 07:46:27]|Info|rpc/rpc-epoll.cpp:252 reactor_main|140667946784448| max_conn reached, reject 18
+[PASS] conn3 rejected (no response)
+[2026-08-04 07:46:27]|Error|rpc/rpc-io.cpp:46 rpc_recv|140667955177152| receive failure.  nread: 0,  addr: [127.0.0.1:54320],  status(Success, errno: 0)
+[2026-08-04 07:46:27]|Error|rpc/rpc-io.cpp:56 rpc_recv|140667955177152| receive failure bytes: 0 != (int)sizeof(msg_net_length): 4, addr: [127.0.0.1:54320], status: Success(errno: 0)
+[2026-08-04 07:46:27]|Error|rpc/rpc-server.cpp:171 process_single_request|140667955177152| recv request failure for bad network. bytes: -100
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:420 rpc_epoll_conn_handler|140667955177152| close client connection, addr: [127.0.0.1:54320].
+[PASS] start epoll service (19164)
+[2026-08-04 07:46:27]|Error|rpc/rpc-io.cpp:46 rpc_recv|140667955177152| receive failure.  nread: 0,  addr: [127.0.0.1:54326],  status(Success, errno: 0)
+[2026-08-04 07:46:27]|Error|rpc/rpc-io.cpp:56 rpc_recv|140667955177152| receive failure bytes: 0 != (int)sizeof(msg_net_length): 4, addr: [127.0.0.1:54326], status: Success(errno: 0)
+[2026-08-04 07:46:27]|Error|rpc/rpc-server.cpp:171 process_single_request|140667955177152| recv request failure for bad network. bytes: -100
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:420 rpc_epoll_conn_handler|140667955177152| close client connection, addr: [127.0.0.1:54326].
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:93 RpcEpollThread|140667938391744| rpc epoll service start, port: 19164, max_conn: 4, max_workers: 1, queue_capacity: 1
+[PASS] download ret 0
+[PASS] server ret 0
+[PASS] download content match
+[PASS] download size
+[PASS] create source file
+[PASS] write chunk
+[PASS] socketpair
+[PASS] spawn srv
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:433 do_scp_upload|140140176287616| upload /tmp/t0212-test/src_meta.bin begin bytes: 1048576
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140140169131712| begin upload file [/tmp/t0212-test/dst_meta.bin]
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1736 OnMsgScpUpload|140140169131712| upload file [/tmp/t0212-test/dst_meta.bin] completed [recv_bytes: 1048576, f_size: 1048576]
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:548 do_scp_upload|140140176287616| upload file:/tmp/t0212-test/src_meta.bin completed [upload_size: 1048576, f_size: 1048576]
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:562 do_scp_upload|140140176287616| rpc upload [/tmp/t0212-test/dst_meta.bin] completed success elapse 1 s, 1048576 bytes, 1.00 M/s
+[PASS] conn1/conn2 connected
+[PASS] conn1 INIT sent
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:378 rpc_epoll_conn_handler|140667929999040| client connection, addr: [127.0.0.1:50226].
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:179 process_single_request|140667929999040| process request start, type [1105], addr: [127.0.0.1:50226].
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140667929999040| begin upload file [/tmp/t0213-test/qf_a.bin]
+[PASS] upload ret 0
+[PASS] dst stat
+[PASS] mode preserved
+[PASS] size preserved
+[PASS] mtime preserved
+[PASS] create source file
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] socketpair
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:433 do_scp_upload|140140176287616| upload /tmp/t0212-test/sw_src.bin begin bytes: 8388608
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140140169131712| begin upload file [/tmp/t0212-test/sw_dst.bin]
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:548 do_scp_upload|140140176287616| upload file:/tmp/t0212-test/sw_src.bin completed [upload_size: 8388608, f_size: 8388608]
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1736 OnMsgScpUpload|140140169131712| upload file [/tmp/t0212-test/sw_dst.bin] completed [recv_bytes: 8388608, f_size: 8388608]
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:562 do_scp_upload|140140176287616| rpc upload [/tmp/t0212-test/sw_dst.bin] completed success elapse 1 s, 8388608 bytes, 8.00 M/s
+[PASS] upload[compress] ret
+[PASS] upload srv ret
+[PASS] socketpair2
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:976 rpc_scp_download|140140169131712| begin download file [/tmp/t0212-test/sw_dst.bin]
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1159 rpc_scp_download|140140169131712| download file [/tmp/t0212-test/sw_dst.bin] complete success, send_bytes: 8388608, f_size: 8388608
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:299 do_scp_download|140140176287616| scp download [/tmp/t0212-test/sw_back.bin from /tmp/t0212-test/sw_dst.bin], status completed success, elapse 1 s, f_size 8388608 bytes, recv 8388608 bytes, 8.00 M/s
+[PASS] second connection accepted
+[PASS] second request sent
+[PASS] download[compress] ret
+[PASS] roundtrip content match
+[PASS] socketpair
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:433 do_scp_upload|140140176287616| upload /tmp/t0212-test/sw_src.bin begin bytes: 8388608
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140140169131712| begin upload file [/tmp/t0212-test/sw_dst.bin]
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:548 do_scp_upload|140140176287616| upload file:/tmp/t0212-test/sw_src.bin completed [upload_size: 8388608, f_size: 8388608]
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1736 OnMsgScpUpload|140140169131712| upload file [/tmp/t0212-test/sw_dst.bin] completed [recv_bytes: 8388608, f_size: 8388608]
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:562 do_scp_upload|140140176287616| rpc upload [/tmp/t0212-test/sw_dst.bin] completed success elapse 1 s, 8388608 bytes, 8.00 M/s
+[PASS] upload[encrypt] ret
+[PASS] upload srv ret
+[PASS] socketpair2
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:976 rpc_scp_download|140140169131712| begin download file [/tmp/t0212-test/sw_dst.bin]
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1159 rpc_scp_download|140140169131712| download file [/tmp/t0212-test/sw_dst.bin] complete success, send_bytes: 8388608, f_size: 8388608
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:299 do_scp_download|140140176287616| scp download [/tmp/t0212-test/sw_back.bin from /tmp/t0212-test/sw_dst.bin], status completed success, elapse 1 s, f_size 8388608 bytes, recv 8388608 bytes, 8.00 M/s
+[PASS] download[encrypt] ret
+[PASS] roundtrip content match
+[PASS] socketpair
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:433 do_scp_upload|140140176287616| upload /tmp/t0212-test/sw_src.bin begin bytes: 8388608
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140140169131712| begin upload file [/tmp/t0212-test/sw_dst.bin]
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:548 do_scp_upload|140140176287616| upload file:/tmp/t0212-test/sw_src.bin completed [upload_size: 8388608, f_size: 8388608]
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1736 OnMsgScpUpload|140140169131712| upload file [/tmp/t0212-test/sw_dst.bin] completed [recv_bytes: 8388608, f_size: 8388608]
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:562 do_scp_upload|140140176287616| rpc upload [/tmp/t0212-test/sw_dst.bin] completed success elapse 1 s, 8388608 bytes, 8.00 M/s
+[PASS] upload[checksum] ret
+[PASS] upload srv ret
+[PASS] socketpair2
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:976 rpc_scp_download|140140169131712| begin download file [/tmp/t0212-test/sw_dst.bin]
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1159 rpc_scp_download|140140169131712| download file [/tmp/t0212-test/sw_dst.bin] complete success, send_bytes: 8388608, f_size: 8388608
+[PASS] third connection accepted
+[PASS] third request sent
+[2026-08-04 07:46:27]|Info|rpc/rpc-epoll.cpp:301 reactor_main|140179253745344| queue full, reject conn 14
+[PASS] queue-full error frame received
+[PASS] error frame flags
+[PASS] queue-full code RPC_ERR_QUEUE_FULL
+[2026-08-04 07:46:27]|Info|rpc/rpc-command.cpp:299 do_scp_download|140140176287616| scp download [/tmp/t0212-test/sw_back.bin from /tmp/t0212-test/sw_dst.bin], status completed success, elapse 1 s, f_size 8388608 bytes, recv 8388608 bytes, 8.00 M/s
+[PASS] download[checksum] ret
+[PASS] roundtrip content match
+[PASS] create source file
+[PASS] write chunk
+[PASS] socketpair
+[PASS] spawn srv
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1542 OnMsgScpUpload|140140169131712| begin upload link [/tmp/t0212-test/link_entry -> /tmp/t0212-test/link_target.bin]
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1588 OnMsgScpUpload|140140169131712| upload link [/tmp/t0212-test/link_entry] complete success
+[PASS] link upload ret 0
+[PASS] symlink created
+[PASS] link target correct
+[PASS] create source file
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] socketpair
+[PASS] spawn srv
+[PASS] send REQUEST
+[PASS] send INIT
+[PASS] send DATA
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140140169131712| begin upload file [/tmp/t0212-test/to_dst.bin]
+[PASS] heartbeat client connected
+[PASS] conn2 INIT sent
+[PASS] conn3 connected
+[PASS] conn3 INIT sent
+[2026-08-04 07:46:27]|Info|rpc/rpc-epoll.cpp:301 reactor_main|140667921606336| queue full, reject conn 21
+[INFO] conn3 err frame code: -8
+[PASS] conn3 got RPC_ERR_QUEUE_FULL
+[2026-08-04 07:46:27]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140667929999040| read packet header F:17 E:Success
+[2026-08-04 07:46:27]|Error|rpc/rpc-server.cpp:1486 OnMsgScpUpload|140667929999040| upload file [/tmp/t0213-test/qf_a.bin] rpc recv failure: Success(errno: 0) ret:-1
+[2026-08-04 07:46:27]|Error|rpc/rpc-server.cpp:1787 OnMsgScpUpload|140667929999040| upload file [/tmp/t0213-test/qf_a.bin] failure, half-written file removed
+[2026-08-04 07:46:27]|Error|rpc/rpc-server.cpp:207 process_single_request|140667929999040| upload file failure.
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:420 rpc_epoll_conn_handler|140667929999040| close client connection, addr: [127.0.0.1:50226].
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:378 rpc_epoll_conn_handler|140667929999040| client connection, addr: [127.0.0.1:50238].
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:179 process_single_request|140667929999040| process request start, type [1105], addr: [127.0.0.1:50238].
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140667929999040| begin upload file [/tmp/t0213-test/qf_b.bin]
+[2026-08-04 07:46:27]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140667929999040| read packet header F:18 E:Success
+[2026-08-04 07:46:27]|Error|rpc/rpc-server.cpp:1486 OnMsgScpUpload|140667929999040| upload file [/tmp/t0213-test/qf_b.bin] rpc recv failure: Success(errno: 0) ret:-1
+[2026-08-04 07:46:27]|Error|rpc/rpc-server.cpp:1787 OnMsgScpUpload|140667929999040| upload file [/tmp/t0213-test/qf_b.bin] failure, half-written file removed
+[2026-08-04 07:46:27]|Error|rpc/rpc-server.cpp:207 process_single_request|140667929999040| upload file failure.
+[2026-08-04 07:46:27]|Info|rpc/rpc-server.cpp:420 rpc_epoll_conn_handler|140667929999040| close client connection, addr: [127.0.0.1:50238].
+[2026-08-04 07:46:28]|Error|rpc/rpc-server.cpp:1466 OnMsgScpUpload|140140169131712| upload file [/tmp/t0212-test/to_dst.bin] recv stream time out.
+[PASS] keepalive ping received
+[PASS] pong sent
+[PASS] request after pong sent
+[2026-08-04 07:46:28]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140179262138048| read packet header F:10 E:Resource temporarily unavailable
+[PASS] echo after pong received
+[2026-08-04 07:46:28]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140179262138048| read packet header F:10 E:Resource temporarily unavailable
+[PASS] start epoll service (19165)
+[2026-08-04 07:46:28]|Info|rpc/rpc-server.cpp:93 RpcEpollThread|140667913213632| rpc epoll service start, port: 19165, max_conn: 4, max_workers: 1, queue_capacity: 1
+[PASS] tcp connect
+[2026-08-04 07:46:28]|Info|rpc/rpc-server.cpp:378 rpc_epoll_conn_handler|140667493807808| client connection, addr: [127.0.0.1:60530].
+[2026-08-04 07:46:28]|Info|rpc/rpc-server.cpp:179 process_single_request|140667493807808| process request start, type [111a], addr: [127.0.0.1:60530].
+[2026-08-04 07:46:28]|Info|rpc/rpc-server.cpp:341 process_single_request|140667493807808| get time, timestamp: 1785800788
+[2026-08-04 07:46:28]|Info|rpc/rpc-server.cpp:348 process_single_request|140667493807808| process request end, type [111a], addr: [127.0.0.1:60530].
+[PASS] timeout client connected
+[PASS] server returns error frame
+[PASS] error code is RPC_ERR_TIMEOUT
+[PASS] error code is RPC_ERR_TIMEOUT
+[PASS] partial file cleaned
+[PASS] create source file
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] socketpair
+[PASS] spawn srv
+[PASS] send REQUEST
+[PASS] put subtype
+[PASS] put block_count
+[PASS] put block_size
+[PASS] put timeout
+[PASS] put meta_len
+[PASS] put meta
+[PASS] put name
+[PASS] send INIT
+[PASS] put sub
+[PASS] put data
+[PASS] send DATA
+[2026-08-04 07:46:28]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140140169131712| begin upload file [/tmp/t0212-test/ps_dst.bin]
+[2026-08-04 07:46:28]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140140169131712| read packet header F:7 E:Success
+[2026-08-04 07:46:28]|Error|rpc/rpc-server.cpp:1486 OnMsgScpUpload|140140169131712| upload file [/tmp/t0212-test/ps_dst.bin] rpc recv failure: Success(errno: 0) ret:-1
+[2026-08-04 07:46:28]|Error|rpc/rpc-server.cpp:1787 OnMsgScpUpload|140140169131712| upload file [/tmp/t0212-test/ps_dst.bin] failure, half-written file removed
+[bench] receiver: 1073746218 bytes via 0 frames
+[bench] 1GB stream: 2.32 s, send throughput 462.8 MB/s (frame overhead 4394 bytes)
+[PASS] stream throughput above 100 MB/s floor
+bench_throughput: all tests passed
+[PASS] ping received (no pong reply)
+[PASS] server detects broken stream
+[PASS] half-written file cleaned
+[PASS] create source file
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] socketpair
+[PASS] spawn srv
+[2026-08-04 07:46:29]|Info|rpc/rpc-command.cpp:433 do_scp_upload|140140176287616| upload /tmp/t0212-test/tp_src.bin begin bytes: 268435456
+[2026-08-04 07:46:29]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140140169131712| begin upload file [/tmp/t0212-test/tp_dst.bin]
+[2026-08-04 07:46:29]|Info|rpc/rpc-command.cpp:548 do_scp_upload|140140176287616| upload file:/tmp/t0212-test/tp_src.bin completed [upload_size: 268435456, f_size: 268435456]
+[2026-08-04 07:46:29]|Info|rpc/rpc-server.cpp:1736 OnMsgScpUpload|140140169131712| upload file [/tmp/t0212-test/tp_dst.bin] completed [recv_bytes: 268435456, f_size: 268435456]
+[2026-08-04 07:46:29]|Info|rpc/rpc-command.cpp:562 do_scp_upload|140140176287616| rpc upload [/tmp/t0212-test/tp_dst.bin] completed success elapse 1 s, 268435456 bytes, 256.00 M/s
+[PASS] GET_TIME ok
+[PASS] no Ping frame pollutes idle connection
+[2026-08-04 07:46:29]|Info|rpc/rpc-server.cpp:179 process_single_request|140667493807808| process request start, type [111a], addr: [127.0.0.1:60530].
+[2026-08-04 07:46:29]|Info|rpc/rpc-server.cpp:341 process_single_request|140667493807808| get time, timestamp: 1785800789
+[2026-08-04 07:46:29]|Info|rpc/rpc-server.cpp:348 process_single_request|140667493807808| process request end, type [111a], addr: [127.0.0.1:60530].
+[PASS] connection still healthy after idle
+
+0 failure(s)
+[2026-08-04 07:46:29]|Error|rpc/rpc-io.cpp:46 rpc_recv|140667493807808| receive failure.  nread: 0,  addr: [127.0.0.1:60530],  status(Success, errno: 0)
+[2026-08-04 07:46:29]|Error|rpc/rpc-io.cpp:56 rpc_recv|140667493807808| receive failure bytes: 0 != (int)sizeof(msg_net_length): 4, addr: [127.0.0.1:60530], status: Success(errno: 0)
+[2026-08-04 07:46:29]|Error|rpc/rpc-server.cpp:171 process_single_request|140667493807808| recv request failure for bad network. bytes: -100
+[2026-08-04 07:46:29]|Info|rpc/rpc-server.cpp:420 rpc_epoll_conn_handler|140667493807808| close client connection, addr: [127.0.0.1:60530].
+[PASS] upload ret 0
+[INFO] upload 256MB in 0.462s = 554.7 MB/s
+[PASS] throughput >= 400 MB/s
+
+0 failure(s)
+[2026-08-04 07:46:30]|Info|rpc/rpc-epoll.cpp:124 heartbeat_tick|140179245352640| keepalive: conn 10 unresponsive, closing
+[PASS] unresponsive connection closed by keepalive
+[PASS] client connected before stop
+[PASS] new connection refused after stop
+[PASS] all connections cleaned up
+conn_limit: all tests passed
+
+report of tests:
+[0m[38;2;0;255;0;1m[  5%]:[0m dir_utils_dir_copy_test/default ..... [38;2;0;255;0;1mpassed[0m [1m0.027s[0m
+[0m[38;2;0;255;0;1m[ 11%]:[0m frame_validation/default ............ [38;2;0;255;0;1mpassed[0m [1m0.026s[0m
+[0m[38;2;0;255;0;1m[ 16%]:[0m heart_beat/default .................. [38;2;0;255;0;1mpassed[0m [1m0.022s[0m
+[0m[38;2;0;255;0;1m[ 22%]:[0m LRUCache_test/default ............... [38;2;0;255;0;1mpassed[0m [1m0.017s[0m
+[0m[38;2;0;255;0;1m[ 27%]:[0m logger_test/default ................. [38;2;0;255;0;1mpassed[0m [1m0.018s[0m
+[0m[38;2;0;255;0;1m[ 33%]:[0m io_partial/default .................. [38;2;0;255;0;1mpassed[0m [1m0.021s[0m
+[0m[38;2;0;255;0;1m[ 38%]:[0m mkdir_path_test/default ............. [38;2;0;255;0;1mpassed[0m [1m0.014s[0m
+[0m[38;2;0;255;0;1m[ 44%]:[0m lstat/default ....................... [38;2;0;255;0;1mpassed[0m [1m0.016s[0m
+[0m[38;2;0;255;0;1m[ 50%]:[0m protocol_roundtrip/default .......... [38;2;0;255;0;1mpassed[0m [1m0.013s[0m
+[0m[38;2;0;255;0;1m[ 55%]:[0m rdb_config_test/default ............. [38;2;0;255;0;1mpassed[0m [1m0.011s[0m
+[0m[38;2;0;255;0;1m[ 61%]:[0m lmdb_dict_test/default .............. [38;2;0;255;0;1mpassed[0m [1m0.020s[0m
+[0m[38;2;0;255;0;1m[ 66%]:[0m stream_blocks/default ............... [38;2;0;255;0;1mpassed[0m [1m0.026s[0m
+[0m[38;2;0;255;0;1m[ 72%]:[0m fs_meta_comprehensive_test/default .. [38;2;0;255;0;1mpassed[0m [1m0.181s[0m
+[0m[38;2;0;255;0;1m[ 77%]:[0m tls_cert_test/default ............... [38;2;0;255;0;1mpassed[0m [1m0.253s[0m
+[0m[38;2;0;255;0;1m[ 83%]:[0m bench_throughput/default ............ [38;2;0;255;0;1mpassed[0m [1m2.327s[0m
+[0m[38;2;0;255;0;1m[ 88%]:[0m rpc_server_epoll_integration/default  [38;2;0;255;0;1mpassed[0m [1m3.194s[0m
+[0m[38;2;0;255;0;1m[ 94%]:[0m scp_stream/default .................. [38;2;0;255;0;1mpassed[0m [1m3.278s[0m
+[0m[38;2;0;255;0;1m[100%]:[0m conn_limit/default .................. [38;2;0;255;0;1mpassed[0m [1m4.954s[0m
+[0m
+[38;2;0;255;0;1m100%[0m tests passed, [38;2;255;0;0;1m0[0m test(s) failed out of [1m18[0m, spent [1m4.957s[0m

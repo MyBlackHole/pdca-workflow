@@ -1,0 +1,3 @@
+{"source": "grilling", "question": "迁移范围：仅 TCP 主服务 or 含 Unix socket？", "answer": "仅 TCP 主服务（推荐）", "at": "2026-08-04T07:11:53.671343+08:00"}
+{"source": "direction_confirm", "summary": "rpc-epoll 接管 TCP 主服务：单 Reactor+worker 池+max_conn+心跳替代 SO_KEEPALIVE；StartRPCServiceWoker 改单次请求处理；rpc-config 扩展；aio-speedd 链接；Unix socket 不动", "response": "confirmed", "at": "2026-08-04T07:11:53.671343+08:00"}
+{"source":"final_confirmation","summary":"rpc-epoll 接管 TCP 主服务；单次请求处理；rpc-config 4 字段；心跳替代 SO_KEEPALIVE；aio-speedd 链接；11 项 AC","response":"confirmed","at":"2026-08-04T07:13:17+08:00"}

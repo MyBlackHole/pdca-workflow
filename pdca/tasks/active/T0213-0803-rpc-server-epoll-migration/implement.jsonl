@@ -1,0 +1,2 @@
+{"knowledge": "knowledge/debugging/c-buffer-api-size_t-frame-validation.md", "reason": "handler 收帧解析复用 buf API，避免 size_t 输出参数栈溢出", "note": "T0211 已验证的帧级 buffer 陷阱，迁移后分发链仍在同一缓冲区语义下运行", "action": "review", "at": "2026-08-04T07:20:00+08:00"}
+{"knowledge": "knowledge/debugging/stream-frame-integration-traps.md", "reason": "单次请求处理中帧缓冲复用须 buf_clear；SCP 流式请求与 handler 循环集成", "note": "T0212 流帧集成 5 类陷阱，SCP 业务经 epoll 调度后同样适用", "action": "review", "at": "2026-08-04T07:20:00+08:00"}

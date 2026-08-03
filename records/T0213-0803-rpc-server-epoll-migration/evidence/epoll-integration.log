@@ -1,0 +1,156 @@
+[PASS] init default config
+[PASS] write config file
+[PASS] parse config
+[PASS] max_conn=16
+[PASS] max_workers=3
+[PASS] queue_capacity=12
+[PASS] start epoll service
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:93 RpcEpollThread|140400377460416| rpc epoll service start, port: 19161, max_conn: 8, max_workers: 4, queue_capacity: 8
+[PASS] tcp connect
+[PASS] create source file
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[2026-08-04 07:46:57]|Info|rpc/rpc-command.cpp:433 do_scp_upload|140400385107840| upload /tmp/t0213-test/ep_src.bin begin bytes: 16777216
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:378 rpc_epoll_conn_handler|140400343889600| client connection, addr: [127.0.0.1:40226].
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:179 process_single_request|140400343889600| process request start, type [1105], addr: [127.0.0.1:40226].
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140400343889600| begin upload file [/tmp/t0213-test/ep_dst.bin]
+[2026-08-04 07:46:57]|Info|rpc/rpc-command.cpp:548 do_scp_upload|140400385107840| upload file:/tmp/t0213-test/ep_src.bin completed [upload_size: 16777216, f_size: 16777216]
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:1736 OnMsgScpUpload|140400343889600| upload file [/tmp/t0213-test/ep_dst.bin] completed [recv_bytes: 16777216, f_size: 16777216]
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:348 process_single_request|140400343889600| process request end, type [1105], addr: [127.0.0.1:40226].
+[2026-08-04 07:46:57]|Info|rpc/rpc-command.cpp:562 do_scp_upload|140400385107840| rpc upload [/tmp/t0213-test/ep_dst.bin] completed success elapse 1 s, 16777216 bytes, 16.00 M/s
+[PASS] epoll scp upload ret 0
+[PASS] epoll upload content match
+[PASS] epoll upload size
+[PASS] epoll mode preserved
+[PASS] epoll mtime preserved
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:179 process_single_request|140400360675008| process request start, type [1102], addr: [127.0.0.1:40226].
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:976 rpc_scp_download|140400360675008| begin download file [/tmp/t0213-test/ep_dst.bin]
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:1159 rpc_scp_download|140400360675008| download file [/tmp/t0213-test/ep_dst.bin] complete success, send_bytes: 16777216, f_size: 16777216
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:348 process_single_request|140400360675008| process request end, type [1102], addr: [127.0.0.1:40226].
+[2026-08-04 07:46:57]|Info|rpc/rpc-command.cpp:299 do_scp_download|140400385107840| scp download [/tmp/t0213-test/ep_back.bin from /tmp/t0213-test/ep_dst.bin], status completed success, elapse 1 s, f_size 16777216 bytes, recv 16777216 bytes, 16.00 M/s
+[PASS] epoll scp download ret 0
+[PASS] epoll download content match
+[2026-08-04 07:46:57]|Error|rpc/rpc-io.cpp:46 rpc_recv|140400352282304| receive failure.  nread: 0,  addr: [127.0.0.1:40226],  status(Success, errno: 0)
+[2026-08-04 07:46:57]|Error|rpc/rpc-io.cpp:56 rpc_recv|140400352282304| receive failure bytes: 0 != (int)sizeof(msg_net_length): 4, addr: [127.0.0.1:40226], status: Success(errno: 0)
+[2026-08-04 07:46:57]|Error|rpc/rpc-server.cpp:171 process_single_request|140400352282304| recv request failure for bad network. bytes: -100
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:420 rpc_epoll_conn_handler|140400352282304| close client connection, addr: [127.0.0.1:40226].
+[PASS] start epoll service (19162)
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:93 RpcEpollThread|140400257918656| rpc epoll service start, port: 19162, max_conn: 8, max_workers: 4, queue_capacity: 8
+[PASS] tcp connect
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:378 rpc_epoll_conn_handler|140400241133248| client connection, addr: [127.0.0.1:41030].
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:179 process_single_request|140400241133248| process request start, type [111a], addr: [127.0.0.1:41030].
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:341 process_single_request|140400241133248| get time, timestamp: 1785800817
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:348 process_single_request|140400241133248| process request end, type [111a], addr: [127.0.0.1:41030].
+[PASS] req#1 GET_TIME
+[PASS] req#1 timestamp
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:179 process_single_request|140400241133248| process request start, type [111a], addr: [127.0.0.1:41030].
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:341 process_single_request|140400241133248| get time, timestamp: 1785800817
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:348 process_single_request|140400241133248| process request end, type [111a], addr: [127.0.0.1:41030].
+[PASS] req#2 GET_TIME
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:179 process_single_request|140400249525952| process request start, type [111a], addr: [127.0.0.1:41030].
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:341 process_single_request|140400249525952| get time, timestamp: 1785800817
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:348 process_single_request|140400249525952| process request end, type [111a], addr: [127.0.0.1:41030].
+[PASS] req#3 GET_TIME
+[PASS] create source file
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[PASS] write chunk
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:179 process_single_request|140400232740544| process request start, type [1102], addr: [127.0.0.1:41030].
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:976 rpc_scp_download|140400232740544| begin download file [/tmp/t0213-test/mr_src.bin]
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:1159 rpc_scp_download|140400232740544| download file [/tmp/t0213-test/mr_src.bin] complete success, send_bytes: 4194304, f_size: 4194304
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:348 process_single_request|140400232740544| process request end, type [1102], addr: [127.0.0.1:41030].
+[2026-08-04 07:46:57]|Info|rpc/rpc-command.cpp:299 do_scp_download|140400385107840| scp download [/tmp/t0213-test/mr_dst.bin from /tmp/t0213-test/mr_src.bin], status completed success, elapse 1 s, f_size 4194304 bytes, recv 4194304 bytes, 4.00 M/s
+[PASS] req#4 SCP download (multi-request reuse)
+[PASS] download content match
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:179 process_single_request|140400232740544| process request start, type [111a], addr: [127.0.0.1:41030].
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:341 process_single_request|140400232740544| get time, timestamp: 1785800817
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:348 process_single_request|140400232740544| process request end, type [111a], addr: [127.0.0.1:41030].
+[PASS] req#5 GET_TIME after SCP
+[2026-08-04 07:46:57]|Error|rpc/rpc-io.cpp:46 rpc_recv|140400249525952| receive failure.  nread: 0,  addr: [127.0.0.1:41030],  status(Success, errno: 0)
+[2026-08-04 07:46:57]|Error|rpc/rpc-io.cpp:56 rpc_recv|140400249525952| receive failure bytes: 0 != (int)sizeof(msg_net_length): 4, addr: [127.0.0.1:41030], status: Success(errno: 0)
+[2026-08-04 07:46:57]|Error|rpc/rpc-server.cpp:171 process_single_request|140400249525952| recv request failure for bad network. bytes: -100
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:420 rpc_epoll_conn_handler|140400249525952| close client connection, addr: [127.0.0.1:41030].
+[PASS] start epoll service (19163)
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:93 RpcEpollThread|140399595222720| rpc epoll service start, port: 19163, max_conn: 2, max_workers: 2, queue_capacity: 2
+[PASS] two connections within max_conn
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:378 rpc_epoll_conn_handler|140399578437312| client connection, addr: [127.0.0.1:40176].
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:179 process_single_request|140399578437312| process request start, type [111a], addr: [127.0.0.1:40176].
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:341 process_single_request|140399578437312| get time, timestamp: 1785800817
+[2026-08-04 07:46:57]|Info|rpc/rpc-server.cpp:348 process_single_request|140399578437312| process request end, type [111a], addr: [127.0.0.1:40176].
+[PASS] conn1 GET_TIME ok
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:378 rpc_epoll_conn_handler|140399578437312| client connection, addr: [127.0.0.1:40178].
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:179 process_single_request|140399578437312| process request start, type [111a], addr: [127.0.0.1:40178].
+[PASS] conn2 GET_TIME ok
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:341 process_single_request|140399578437312| get time, timestamp: 1785800818
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:348 process_single_request|140399578437312| process request end, type [111a], addr: [127.0.0.1:40178].
+[PASS] conn3 accepted (close after accept)
+[2026-08-04 07:46:58]|Info|rpc/rpc-epoll.cpp:252 reactor_main|140399570044608| max_conn reached, reject 14
+[PASS] conn3 rejected (no response)
+[2026-08-04 07:46:58]|Error|rpc/rpc-io.cpp:46 rpc_recv|140399578437312| receive failure.  nread: 0,  addr: [127.0.0.1:40176],  status(Success, errno: 0)
+[2026-08-04 07:46:58]|Error|rpc/rpc-io.cpp:56 rpc_recv|140399578437312| receive failure bytes: 0 != (int)sizeof(msg_net_length): 4, addr: [127.0.0.1:40176], status: Success(errno: 0)
+[2026-08-04 07:46:58]|Error|rpc/rpc-server.cpp:171 process_single_request|140399578437312| recv request failure for bad network. bytes: -100
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:420 rpc_epoll_conn_handler|140399578437312| close client connection, addr: [127.0.0.1:40176].
+[PASS] start epoll service (19164)
+[2026-08-04 07:46:58]|Error|rpc/rpc-io.cpp:46 rpc_recv|140399586830016| receive failure.  nread: 0,  addr: [127.0.0.1:40178],  status(Success, errno: 0)
+[2026-08-04 07:46:58]|Error|rpc/rpc-io.cpp:56 rpc_recv|140399586830016| receive failure bytes: 0 != (int)sizeof(msg_net_length): 4, addr: [127.0.0.1:40178], status: Success(errno: 0)
+[2026-08-04 07:46:58]|Error|rpc/rpc-server.cpp:171 process_single_request|140399586830016| recv request failure for bad network. bytes: -100
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:420 rpc_epoll_conn_handler|140399586830016| close client connection, addr: [127.0.0.1:40178].
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:93 RpcEpollThread|140399561651904| rpc epoll service start, port: 19164, max_conn: 4, max_workers: 1, queue_capacity: 1
+[PASS] conn1/conn2 connected
+[PASS] conn1 INIT sent
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:378 rpc_epoll_conn_handler|140399553259200| client connection, addr: [127.0.0.1:55032].
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:179 process_single_request|140399553259200| process request start, type [1105], addr: [127.0.0.1:55032].
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140399553259200| begin upload file [/tmp/t0213-test/qf_a.bin]
+[PASS] conn2 INIT sent
+[PASS] conn3 connected
+[PASS] conn3 INIT sent
+[2026-08-04 07:46:58]|Info|rpc/rpc-epoll.cpp:301 reactor_main|140399544866496| queue full, reject conn 17
+[INFO] conn3 err frame code: -8
+[PASS] conn3 got RPC_ERR_QUEUE_FULL
+[2026-08-04 07:46:58]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140399553259200| read packet header F:13 E:Success
+[2026-08-04 07:46:58]|Error|rpc/rpc-server.cpp:1486 OnMsgScpUpload|140399553259200| upload file [/tmp/t0213-test/qf_a.bin] rpc recv failure: Success(errno: 0) ret:-1
+[2026-08-04 07:46:58]|Error|rpc/rpc-server.cpp:1787 OnMsgScpUpload|140399553259200| upload file [/tmp/t0213-test/qf_a.bin] failure, half-written file removed
+[2026-08-04 07:46:58]|Error|rpc/rpc-server.cpp:207 process_single_request|140399553259200| upload file failure.
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:420 rpc_epoll_conn_handler|140399553259200| close client connection, addr: [127.0.0.1:55032].
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:378 rpc_epoll_conn_handler|140399553259200| client connection, addr: [127.0.0.1:55042].
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:179 process_single_request|140399553259200| process request start, type [1105], addr: [127.0.0.1:55042].
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:1605 OnMsgScpUpload|140399553259200| begin upload file [/tmp/t0213-test/qf_b.bin]
+[2026-08-04 07:46:58]|Error|rpc/rpc-msg.c:165 rpc_recv_frame|140399553259200| read packet header F:14 E:Success
+[2026-08-04 07:46:58]|Error|rpc/rpc-server.cpp:1486 OnMsgScpUpload|140399553259200| upload file [/tmp/t0213-test/qf_b.bin] rpc recv failure: Success(errno: 0) ret:-1
+[2026-08-04 07:46:58]|Error|rpc/rpc-server.cpp:1787 OnMsgScpUpload|140399553259200| upload file [/tmp/t0213-test/qf_b.bin] failure, half-written file removed
+[2026-08-04 07:46:58]|Error|rpc/rpc-server.cpp:207 process_single_request|140399553259200| upload file failure.
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:420 rpc_epoll_conn_handler|140399553259200| close client connection, addr: [127.0.0.1:55042].
+[PASS] start epoll service (19165)
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:93 RpcEpollThread|140399192569536| rpc epoll service start, port: 19165, max_conn: 4, max_workers: 1, queue_capacity: 1
+[PASS] tcp connect
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:378 rpc_epoll_conn_handler|140399184176832| client connection, addr: [127.0.0.1:49270].
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:179 process_single_request|140399184176832| process request start, type [111a], addr: [127.0.0.1:49270].
+[PASS] GET_TIME ok
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:341 process_single_request|140399184176832| get time, timestamp: 1785800818
+[2026-08-04 07:46:58]|Info|rpc/rpc-server.cpp:348 process_single_request|140399184176832| process request end, type [111a], addr: [127.0.0.1:49270].
+[PASS] no Ping frame pollutes idle connection
+[2026-08-04 07:47:00]|Info|rpc/rpc-server.cpp:179 process_single_request|140399184176832| process request start, type [111a], addr: [127.0.0.1:49270].
+[2026-08-04 07:47:00]|Info|rpc/rpc-server.cpp:341 process_single_request|140399184176832| get time, timestamp: 1785800820
+[2026-08-04 07:47:00]|Info|rpc/rpc-server.cpp:348 process_single_request|140399184176832| process request end, type [111a], addr: [127.0.0.1:49270].
+[PASS] connection still healthy after idle
+
+0 failure(s)
+[2026-08-04 07:47:00]|Error|rpc/rpc-io.cpp:46 rpc_recv|140399184176832| receive failure.  nread: 0,  addr: [127.0.0.1:49270],  status(Success, errno: 0)
+[2026-08-04 07:47:00]|Error|rpc/rpc-io.cpp:56 rpc_recv|140399184176832| receive failure bytes: 0 != (int)sizeof(msg_net_length): 4, addr: [127.0.0.1:49270], status: Success(errno: 0)
+[2026-08-04 07:47:00]|Error|rpc/rpc-server.cpp:171 process_single_request|140399184176832| recv request failure for bad network. bytes: -100
+[2026-08-04 07:47:00]|Info|rpc/rpc-server.cpp:420 rpc_epoll_conn_handler|140399184176832| close client connection, addr: [127.0.0.1:49270].

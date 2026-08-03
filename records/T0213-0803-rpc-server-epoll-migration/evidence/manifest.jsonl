@@ -1,0 +1,5 @@
+{"id": "epoll-integration", "file": "epoll-integration.log", "size": 14889, "digest": "sha256:58b8db10532fda6be2e2493892527de01bde02ee028431e03d3b40ee700e860e", "kind": "test-log", "criteria": ["AC-2", "AC-3", "AC-4", "AC-5", "AC-6", "AC-7", "AC-8"], "at": "2026-08-04T07:48:03.759330+08:00"}
+{"id": "scp-stream", "file": "scp_stream_full.log", "size": 18198, "digest": "sha256:32e7845962f59a2d2af0672db817ee2b58628a9855040b271902f8747ee3d9df", "kind": "test-log", "criteria": ["AC-2", "AC-11"], "at": "2026-08-04T07:48:03.759330+08:00"}
+{"id": "full-regression", "file": "xmake_test_full.log", "size": 53550, "digest": "sha256:2cd03cb9aa438b97f3a60bb9b0f484c5964a90a235e6c32a8d8332220f203e5d", "kind": "test-log", "criteria": ["AC-11"], "at": "2026-08-04T07:48:03.759330+08:00"}
+{"id": "ac1-epoll-startup", "file": "", "kind": "code-fact", "criteria": ["AC-1", "AC-10"], "at": "2026-08-04T07:48:03.759330+08:00"}
+{"id": "ac9-build-link", "file": "", "kind": "code-fact", "criteria": ["AC-9"], "at": "2026-08-04T07:48:03.759330+08:00"}
