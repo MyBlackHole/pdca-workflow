@@ -1,0 +1,11 @@
+=== run (含 GMSSL SM4-GCM) ===
+GMSSL sm4_cbc        :   112.7 MB/s
+GMSSL sm3            :   147.1 MB/s
+GMSSL sm3_hmac       :   143.7 MB/s
+GMSSL sm4_cbc+hmac   :    61.0 MB/s
+GMSSL sm4-gcm        :    31.0 MB/s
+OpenSSL aes-128-gcm  :  2335.0 MB/s
+OpenSSL sm4-cbc      :    94.3 MB/s
+OpenSSL sm4-gcm      :    99.3 MB/s
+OpenSSL sm3          :   216.4 MB/s
+OpenSSL sm4_cbc+hmac :    72.5 MB/s
