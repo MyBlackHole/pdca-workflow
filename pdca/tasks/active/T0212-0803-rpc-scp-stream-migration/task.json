@@ -4,14 +4,16 @@
   "title": "跟进：SCP 业务流式化（do_scp_upload/download → STREAM 帧）+ rpc-server 迁移到 rpc-epoll 调度层",
   "parent": "T0211",
   "children": [],
-  "status": "Planned",
+  "status": "Pending",
   "meta": {
     "phase": "plan",
     "active": true,
     "scenario_type": "development",
     "created_at": "2026-08-03T23:50:00+08:00",
     "record": "T0212-0803-rpc-scp-stream-migration",
-    "convergence": []
+    "convergence": [
+      "T0212-0803-rpc-scp-stream-migration"
+    ]
   },
   "states": {
     "created": "2026-08-03T23:50:00+08:00",
