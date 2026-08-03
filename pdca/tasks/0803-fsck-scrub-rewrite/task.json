@@ -1,0 +1,38 @@
+{
+  "id": "T0206",
+  "slug": "0803-fsck-scrub-rewrite",
+  "title": "fsck/scrub 自动触发 btree 节点重写（need_rewrite 消费路径）",
+  "parent": "T0205",
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "development",
+    "created_at": "2026-08-03T05:33:29+08:00",
+    "record": "T0206-0803-fsck-scrub-rewrite",
+    "convergence": [
+      "T0206-0803-fsck-scrub-rewrite"
+    ],
+    "completed_at": "2026-08-03T19:16:18+08:00",
+    "verdict": {
+      "outcome": "partial",
+      "reason": "部分完成 PDCA：AC-1..AC-4 完成（D1-D9 锚点 + AC-3 3 测试 + 收敛 valid:true）；AC-5 部分（rewritten_node_revalidates_on_reopen 失败暴露 root 分支 extent 缺陷：重写后 slot.key 仅 mem_ptr 无 extent ptr → 重开 root_read 读盘 -2 io.rs:454，上游 set_root 保留原 extent 覆盖写语义）；AC-6 未开始。用户确认 partial，进入 Act 创建跟进任务。",
+      "verdict_id": "V-T0206-001",
+      "at": "2026-08-03T19:16:08+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "T0206 partial 处置：AC-1..AC-4 已并入 btree 主干（读完成触发 pending queue + D9 差异判定）；可复用洞察（root 重写 extent 保留契约）已沉淀 knowledge/core/btree-node-rewrite-key-extent-contract.md（manifest 已登记）；未完成部分（AC-5 root extent 修复 + verify_all + AC-6 门禁）移交跟进任务 T0207（0803-fsck-scrub-rewrite-followup，phase=plan）。",
+      "at": "2026-08-03T19:19:00+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-03T05:33:29+08:00",
+    "plan": "2026-08-03T05:33:29+08:00",
+    "do": "2026-08-03T05:38:59+08:00",
+    "check": "2026-08-03T19:16:18+08:00",
+    "act": "2026-08-03T19:16:38+08:00",
+    "archive": "2026-08-03T19:19:59+08:00"
+  }
+}
