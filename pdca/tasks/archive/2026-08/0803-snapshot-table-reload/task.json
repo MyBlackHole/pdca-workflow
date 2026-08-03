@@ -1,0 +1,26 @@
+{
+  "id": "T0209",
+  "slug": "0803-snapshot-table-reload",
+  "title": "快照表启动重建（对齐 bch2_snapshots_read）：重开后 ancestor 语义与 filter_snapshots 真实生效",
+  "parent": null,
+  "children": [],
+  "status": "Archived",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "development",
+    "created_at": "2026-08-03T20:30:00+08:00",
+    "record": "T0209-0803-snapshot-table-reload",
+    "convergence": [
+      "T0209-0803-snapshot-table-reload"
+    ]
+  },
+  "states": {
+    "created": "2026-08-03T20:30:00+08:00",
+    "plan": "2026-08-03T20:30:00+08:00",
+    "do": "2026-08-03T20:35:00+08:00",
+    "check": "2026-08-03T20:55:00+08:00",
+    "act": "2026-08-03T21:00:00+08:00",
+    "archive": "2026-08-03T21:00:00+08:00"
+  }
+}

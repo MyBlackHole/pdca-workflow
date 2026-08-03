@@ -1,0 +1,7 @@
+{
+  "transition": "check->act",
+  "task": "T0209-0803-snapshot-table-reload",
+  "at": "2026-08-03T20:58:00+08:00",
+  "confirmation": "user",
+  "note": "用户确认 verdict=complete（V-T0209-001），进入知识登记与归档"
+}
