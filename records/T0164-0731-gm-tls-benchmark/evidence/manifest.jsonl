@@ -5,3 +5,5 @@
 {"id":"tlcp-fix-run-log","file":"tlcp_fix_run.txt","kind":"run-log","size":1691,"digest":"sha256:5643bb83039285b1f2c552bc6d14e240b39a1f4af3bcb9182547d6eb1ea9eafb","at":"2026-07-31T18:45:08+08:00","criteria":["AC-1"]}
 {"id":"bench-gmssl-full-run","file":"bench_gmssl_full_run.txt","kind":"run-log","size":8997,"digest":"sha256:1a829bf9da3424363ad82720c852616a906838368a78bcce92517144f2bec809","at":"2026-07-31T18:45:09+08:00","criteria":["AC-1"]}
 {"id":"tlcp-regression-final-lib","file":"regression_final_lib.txt","kind":"run-log","size":299,"digest":"sha256:9c6a9d2dce44974d9ca1350eafd0578ddd6791a1fe5326c78bdef37a4694567e","at":"2026-08-03T10:14:43+08:00","criteria":["AC-1"]}
+{"id":"crypto-bench-openssl-sm4-sm3-src","file":"crypto_bench_openssl_sm4_sm3.c","kind":"source","size":3680,"digest":"sha256:fa1eb35c85c26a6334f8534f533feaa7be0516bd8415db6330de8450f98cdba8","at":"2026-08-03T10:24:46+08:00","criteria":["AC-2"]}
+{"id":"crypto-bench-openssl-sm4-sm3-run","file":"crypto_bench_openssl_sm4_sm3_run.txt","kind":"run-log","size":674,"digest":"sha256:ead4c57b8b2b79c376ce11ef610bacba6980e51aae365319bd6dda157ac3b6d1","at":"2026-08-03T10:24:46+08:00","criteria":["AC-2"]}
