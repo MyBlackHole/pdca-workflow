@@ -2,3 +2,7 @@
 {"source": "grilling", "at": "2026-08-03T23:50:46.612922+08:00", "response": "direct_replace", "summary": "协议兼容：直接替换 msg_scp_upload_t 旧路径，帧头 version 升级，客户端/服务端同版本成对切换，无兼容期"}
 {"source":"direction_confirm","summary":"方向确认：上传=客户端 push STREAM INIT(带元数据)/DATA/END；下载=服务端 push STREAM 帧序列；直接替换删除旧消息类型；验收 10 项；断点续传不入范围；帧 version 1→2","response":"confirmed","at":"2026-08-03T23:52:20+08:00"}
 {"source":"final_confirmation","summary":"终审批准：SCP 流式化完整方案（STREAM INIT v2 带元数据 + 直接替换删旧类型 + ADR-0012 + 10 项 checkbox AC + scp_stream.cpp 测试）","response":"confirmed","at":"2026-08-03T23:53:28+08:00"}
+{"q": "下载 push 路径（rpc_scp_download）是否有超时执行语义？", "a": "无——超时执行（AC-6）仅实现于上传流 OnMsgScpUpload（INIT 后 deadline 每帧前检查）；下载为服务端主动 push，沿用旧协议无 timeout 语义，客户端以 read_timeout 兜底。PRD AC-6 指上传方向，覆盖成立", "source": "grill", "at": "2026-08-04T01:10:00+08:00"}
+{"q": "下载端半写清理（客户端侧 remove）是否有测试覆盖？", "a": "未直接测试：do_scp_download 在 ret!=0 时 remove(local_file) 为旧逻辑保留，scp_stream 未覆盖客户端侧中断场景；服务端侧半写清理（AC-7）已测试锁定", "source": "grill", "at": "2026-08-04T01:10:00+08:00"}
+{"q": "测试服务端线程模拟与真实入口是否一致？", "a": "下载侧 server_thread 先 rpc_recv 填 net_buf 再调 rpc_scp_download，与 rpc-server.cpp 分发循环（rpc_recv→msg_base_ntoh→rpc_scp_download）一致；上传侧直接调 OnMsgScpUpload（内部自收帧），与真实入口一致", "source": "grill", "at": "2026-08-04T01:10:00+08:00"}
+{"q": "4096 对齐与 4MB 块安全边界？", "a": "LZ4_compress_default 输出缓冲 block_size+1MB 有界；DATA 帧 payload 无长度前缀由 buf_ptr/buf_len 直接定位；校验和经 msg_id 传递无额外分配", "source": "grill", "at": "2026-08-04T01:10:00+08:00"}
