@@ -6,8 +6,8 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "check",
-    "active": true,
+    "phase": "archive",
+    "active": false,
     "scenario_type": "development",
     "created_at": "2026-08-03T22:00:00+08:00",
     "record": "T0211-0803-rpc-protocol-transport-refactor",
@@ -20,6 +20,11 @@
       "reason": "Do 阶段模块①-⑥+⑧全部完成，151 断言+16 evidence+convergence valid，17 AC 覆盖；模块⑦业务流式化与 rpc-server 迁移作为下一轮建议，边界已在 conclusion.md 声明",
       "verdict_id": "T0211-0803-v1",
       "at": "2026-08-03T23:47:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "基础设施层交付并归档，模块⑦业务流式化+SCP 路径改造作为独立跟进任务 T0212",
+      "at": "2026-08-03T23:47:22.926188+08:00"
     }
   },
   "states": {
@@ -27,7 +32,7 @@
     "plan": "2026-08-03T22:39:57+08:00",
     "do": "2026-08-03T22:40:41+08:00",
     "check": "2026-08-03T23:43:55+08:00",
-    "act": null,
-    "archive": null
+    "act": "2026-08-03T23:46:34+08:00",
+    "archive": "2026-08-03T23:48:35+08:00"
   }
 }
