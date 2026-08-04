@@ -1,0 +1,3 @@
+{"source":"final_confirmation","summary":"批准 T0215 三份子方案契约文档：Web API/Collection Service/CLI 契约落 aio-cdm 本仓主方案同目录，以主方案为唯一事实源，AC-1~AC-5 覆盖契约项，不引入新范围","response":"confirmed","at":"2026-08-04T17:16:23+08:00"}
+{"source":"check_confirmation","summary":"Check 判定 confirmed：三份契约文档完整覆盖主方案契约项，5 项 AC 全 PASS，convergence valid；进入 Act","response":"confirmed","at":"2026-08-04T17:22:17+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-04T17:23:00+08:00", "action": "skipped", "reason": "三份契约文档是 aio-cdm 项目交付物而非可复用流程知识；契约锚点已沉淀于 knowledge/report-center/report-center-decomposition-index.md"}
