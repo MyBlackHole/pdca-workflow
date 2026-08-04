@@ -15,7 +15,7 @@
   ],
   "status": "Completed",
   "meta": {
-    "phase": "check",
+    "phase": "act",
     "active": true,
     "record": "T0214-0804-cdm-report-center-analyse",
     "scenario_type": "development",
@@ -32,6 +32,11 @@
       "reason": "8 个子任务拆解完整、6 项 AC 全 PASS、convergence valid，结论成立",
       "verdict_id": "V-T0214-20260804-01",
       "at": "2026-08-04T17:09:30+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "拆解模式与 8 子任务索引沉淀至 knowledge/report-center/report-center-decomposition-index.md，供后续实施复用",
+      "at": "2026-08-04T17:11:40+08:00"
     }
   },
   "states": {
@@ -39,7 +44,7 @@
     "plan": "2026-08-04T16:40:00+08:00",
     "do": "2026-08-04T17:06:21+08:00",
     "check": "2026-08-04T17:08:29+08:00",
-    "act": null,
+    "act": "2026-08-04T17:10:32+08:00",
     "archive": null
   }
 }
