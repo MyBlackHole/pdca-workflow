@@ -1,0 +1,32 @@
+[PASS] client connected
+[PASS] request sent
+[PASS] echo received
+[PASS] echo type/msg_id intact
+[PASS] echo body intact
+[PASS] second request sent
+[PASS] second echo received
+[PASS] first two connections accepted
+[PASS] two connections active
+[PASS] third connection tcp-established
+[PASS] third connection closed by server
+[PASS] first connection accepted
+[PASS] first request sent
+[PASS] second connection accepted
+[PASS] second request sent
+[PASS] third connection accepted
+[PASS] third request sent
+[PASS] queue-full error frame received
+[PASS] error frame flags
+[PASS] queue-full code RPC_ERR_QUEUE_FULL
+[PASS] heartbeat client connected
+[PASS] keepalive ping received
+[PASS] pong sent
+[PASS] request after pong sent
+[PASS] echo after pong received
+[PASS] timeout client connected
+[PASS] ping received (no pong reply)
+[PASS] unresponsive connection closed by keepalive
+[PASS] client connected before stop
+[PASS] new connection refused after stop
+[PASS] all connections cleaned up
+conn_limit: all tests passed
