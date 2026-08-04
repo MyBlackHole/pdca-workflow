@@ -6,7 +6,7 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "check",
+    "phase": "act",
     "active": true,
     "scenario_type": "development",
     "created_at": "2026-08-04T08:11:59+08:00",
@@ -20,6 +20,11 @@
       "verdict_id": "V-T0214-confirmed-0804",
       "at": "2026-08-04T20:34:35+08:00"
     },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "知识已沉淀至 linux-epoll-eventloop/dynamic-deadline-wakeup.md（eventfd 唤醒缺口 + 最小堆定时器 + data.ptr 模式）；ADR-0013 记录架构决策；建议项（心跳第二级精确 2xinterval、fdmap 高负载压测）低优先不入 backlog",
+      "at": "2026-08-04T20:35:50+08:00"
+    },
     "completed_at": "2026-08-04T20:32:39+08:00"
   },
   "states": {
@@ -27,7 +32,7 @@
     "plan": "2026-08-04T08:11:59+08:00",
     "do": "2026-08-04T08:17:00+08:00",
     "check": "2026-08-04T20:32:39+08:00",
-    "act": null,
+    "act": "2026-08-04T20:34:59+08:00",
     "archive": null
   }
 }
