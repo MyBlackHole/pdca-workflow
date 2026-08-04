@@ -1,0 +1,2 @@
+{"file": "knowledge/report-center/report-center-decomposition-index.md", "reason": "含 T0215 契约锚点（周期/超时/JSONL/RPC 章节索引）与三份子方案契约基线，直接影响本任务文档编写范围", "action": "注入", "at": "2026-08-04T17:15:00+08:00"}
+{"file": "cdm-report-center-final-technical-solution.md", "reason": "主方案（需求 140）是三份子方案契约的唯一事实源，按 §1/§3.4/§4.2/§6.2 提炼", "action": "注入", "at": "2026-08-04T17:15:00+08:00"}

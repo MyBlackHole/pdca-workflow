@@ -1,0 +1,38 @@
+{
+  "id": "T0215",
+  "slug": "0804-report-subscheme-docs",
+  "title": "补齐三份报表中心子方案契约文档",
+  "parent": "T0214",
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "record": "T0215-0804-report-subscheme-docs",
+    "scenario_type": "development",
+    "created_at": "2026-08-04T16:55:00+08:00",
+    "convergence": [
+      "三份子方案文档存在且与主方案契约一致"
+    ],
+    "completed_at": "2026-08-04T17:21:34+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "三份契约文档完整覆盖主方案契约项，5 项 AC 全 PASS，convergence valid",
+      "verdict_id": "V-T0215-20260804-01",
+      "at": "2026-08-04T17:22:20+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "三份契约文档作为交付物随任务归档，供 T0216~T0220 作为实现基线",
+      "at": "2026-08-04T17:23:10+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-04T16:55:00+08:00",
+    "plan": "2026-08-04T17:16:23+08:00",
+    "do": "2026-08-04T17:16:44+08:00",
+    "check": "2026-08-04T17:21:34+08:00",
+    "act": "2026-08-04T17:22:29+08:00",
+    "archive": null
+  }
+}
