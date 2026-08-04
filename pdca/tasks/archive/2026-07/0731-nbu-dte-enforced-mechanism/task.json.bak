@@ -1,0 +1,42 @@
+{
+  "id": "T0163",
+  "slug": "0731-nbu-dte-enforced-mechanism",
+  "title": "NBU 强制加密（Enforced）服务端实现机制与重启需求调研",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "scenario_type": "research",
+    "created_at": "2026-07-31T11:20:00+08:00",
+    "convergence": [
+      "绘制 Enforced 配置的存储/下发/执行链路",
+      "明确 refreshDteCache 缓存机制与刷新时机",
+      "明确强制守卫执行点（调度期/连接期）",
+      "给出修改 Enforced 是否需重启的明确结论",
+      "澄清 Enforced 与 insecurecommunication off 的关系"
+    ],
+    "record": "T0163-0731-nbu-dte-enforced-mechanism",
+    "completed_at": "2026-07-31T11:23:08+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "Enforced 改配置即热刷新（nbseccmd→bprd→nbjm/nbemm）无需重启；强制守卫在作业调度期；安全分析覆盖四层纵深防御+双层缓存+直改不可行",
+      "verdict_id": "V-T0163-001",
+      "at": "2026-07-31T12:10:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "Enforced 热刷新机制+安全纵深防御+双层缓存读取结论可复用：NBU 生产切换指导（无需重启，先 Preferred On 观察）+ 自研加密系统设计参照",
+      "at": "2026-07-31T12:12:00+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-07-31T11:20:00+08:00",
+    "plan": "2026-07-31T11:24:00+08:00",
+    "do": "2026-07-31T11:24:00+08:00",
+    "check": "2026-07-31T11:30:00+08:00",
+    "act": "2026-07-31T12:08:25+08:00",
+    "archive": null
+  }
+}

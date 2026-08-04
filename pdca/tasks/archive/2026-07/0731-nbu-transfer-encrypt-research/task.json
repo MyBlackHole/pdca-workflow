@@ -1,0 +1,38 @@
+{
+  "id": "T0148",
+  "slug": "0731-nbu-transfer-encrypt-research",
+  "title": "NBU 备份传输加密（DTE）逻辑调研",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "research",
+    "created_at": "2026-07-30T10:00:00+08:00",
+    "convergence": [
+      "0731-nbu-transfer-encrypt-research"
+    ],
+    "record": "T0148-0731-nbu-transfer-encrypt-research",
+    "completed_at": "2026-07-30T15:41:40+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "调研结论成立：DTE 架构、加密库、证书体系、实验验证、安全风险分析均与目标环境一致，11项验收标准全部通过",
+      "verdict_id": "v001",
+      "at": "2026-07-30T15:45:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "调研结论可复用：NBU DTE 架构、加密库、证书体系、实验验证、安全风险分析全部完成，知识库已更新",
+      "at": "2026-07-30T15:46:00+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-07-30T10:00:00+08:00",
+    "plan": "2026-07-30T14:00:00+08:00",
+    "do": "2026-07-30T15:36:39+08:00",
+    "check": "2026-07-30T15:41:40+08:00",
+    "act": "2026-07-30T15:43:53+08:00",
+    "archive": "2026-07-30T15:46:37+08:00"
+  }
+}

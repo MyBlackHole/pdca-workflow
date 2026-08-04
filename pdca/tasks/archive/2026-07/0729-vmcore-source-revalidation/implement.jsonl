@@ -1,0 +1,2 @@
+{"file":"knowledge/pdca-flow/external-evidence-collection.md","reason":"crash transcript 产生于 workflow root 外的远端 tmux pane，中央 evidence manifest 只能登记 workflow root 内安全相对路径。","action":"Do 阶段保留远端/终端原始输出，并复制到当前 task 的 evidence 目录后登记，不登记绝对路径或符号链接。","at":"2026-07-29T12:36:55+08:00"}
+{"file":"knowledge/pdca-flow/opencode-tmux-executor-adapter.md","reason":"任务通过交互式 tmux pane 控制长时间运行的 crash，需要可观测会话边界、超时与现场保留。","action":"为新 crash 会话加入边界标记，持续 capture-pane，超时或异常时先保留输出再恢复，且由主流程复核关键结果。","at":"2026-07-29T12:36:55+08:00"}

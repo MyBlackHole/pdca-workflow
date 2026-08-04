@@ -1,0 +1,2 @@
+{"source":"knowledge_injection","file":"knowledge/data-formats/parquet-technical-reference.md","reason":"提供 Parquet 写入参数、SDK 推荐和数据库转换专题索引","action":"use_as_reference_for_poc_design","at":"2026-07-31T10:13:00+08:00"}
+{"source":"knowledge_injection","file":"parquet-production-cases.md","reason":"包含 PostgreSQL/MySQL 到 Parquet 的方案对比、类型映射、分片和风险","action":"use_as_reference_for_experiment_matrix","at":"2026-07-31T10:13:00+08:00"}

@@ -1,0 +1,26 @@
+{
+  "id": "T0219",
+  "slug": "0804-report-web",
+  "title": "report-web 登录鉴权与备份域管理服务",
+  "parent": "T0214",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "record": "T0219-0804-report-web",
+    "scenario_type": "development",
+    "created_at": "2026-08-04T16:55:00+08:00",
+    "convergence": [
+      "验证码登录/Token 鉴权/改密流程；域 CRUD 与启停；RPC 连通性测试；保存报告"
+    ]
+  },
+  "states": {
+    "created": "2026-08-04T16:55:00+08:00",
+    "plan": null,
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

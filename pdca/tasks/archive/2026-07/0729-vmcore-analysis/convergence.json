@@ -1,0 +1,29 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "crash 工具成功加载 vmcore 并提取关键信息",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["E001-crash-report"]
+    },
+    {
+      "index": 2,
+      "text": "崩溃线程的堆栈回溯已获取",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["E001-crash-report"]
+    },
+    {
+      "index": 3,
+      "text": "堆栈每一帧对应到 kernel-rpm 源码具体位置（文件:行号）",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["E001-crash-report"]
+    },
+    {
+      "index": 4,
+      "text": "根因分析逻辑完整，定位到问题函数",
+      "criteria": ["AC-4"],
+      "evidence_ids": ["E001-crash-report"]
+    }
+  ]
+}

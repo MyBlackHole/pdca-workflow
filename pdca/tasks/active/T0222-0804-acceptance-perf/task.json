@@ -1,0 +1,26 @@
+{
+  "id": "T0222",
+  "slug": "0804-acceptance-perf",
+  "title": "容量模型与验收压测基线",
+  "parent": "T0214",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "record": "T0222-0804-acceptance-perf",
+    "scenario_type": "development",
+    "created_at": "2026-08-04T16:55:00+08:00",
+    "convergence": [
+      "100 域容量模型；20 域/6000 万事实压测；扩展拐点实测"
+    ]
+  },
+  "states": {
+    "created": "2026-08-04T16:55:00+08:00",
+    "plan": null,
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

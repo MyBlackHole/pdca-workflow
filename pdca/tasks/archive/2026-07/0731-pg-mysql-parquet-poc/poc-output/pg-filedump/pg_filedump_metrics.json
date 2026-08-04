@@ -1,0 +1,87 @@
+{
+  "database": "PostgreSQL",
+  "method": "pg_filedump direct heap file decode (physical path, no SQL server involvement)",
+  "rows_target": 1000000,
+  "python": "3.14.6",
+  "platform": "Linux-7.1.5-arch1-1-x86_64-with-glibc2.44",
+  "duckdb": "1.5.5",
+  "heap_bytes": 136536064,
+  "stages": {
+    "filedump_decode_seconds": 1.4645388149947394,
+    "tsv_clean_seconds": 0.6309384769992903,
+    "duckdb_convert_seconds": 1.1659908209985588
+  },
+  "files": {
+    "filedump_tsv_bytes": 197241611,
+    "clean_tsv_bytes": 119667766,
+    "parquet_bytes": 26020890
+  },
+  "validation": {
+    "parquet_rows": 1000000,
+    "row_count_match": true,
+    "schema": [
+      {
+        "name": "id",
+        "type": "BIGINT"
+      },
+      {
+        "name": "customer_id",
+        "type": "INTEGER"
+      },
+      {
+        "name": "amount",
+        "type": "DECIMAL(12,2)"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP"
+      },
+      {
+        "name": "status",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "payload",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "active",
+        "type": "BOOLEAN"
+      }
+    ],
+    "sample": [
+      [
+        "1",
+        "1",
+        "0.01",
+        "2026-01-01 00:00:01",
+        "paid",
+        "c4ca4238a0b923820dcc509a6f75849bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "False"
+      ],
+      [
+        "2",
+        "2",
+        "0.02",
+        "2026-01-01 00:00:02",
+        "shipped",
+        "c81e728d9d4c2f636f067f89cc14862cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "True"
+      ],
+      [
+        "3",
+        "3",
+        "0.03",
+        "2026-01-01 00:00:03",
+        "closed",
+        "eccbc87e4b5ce2fe28308fd9f2a7baf3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "False"
+      ]
+    ]
+  },
+  "total_seconds": 3.3230617650115164,
+  "throughput_rows_per_second_total": 300927.2985922169,
+  "throughput_rows_per_second_decode": 682808.8062681985,
+  "throughput_rows_per_second_convert": 857639.6846277026,
+  "max_rss_mb": 911.25
+}

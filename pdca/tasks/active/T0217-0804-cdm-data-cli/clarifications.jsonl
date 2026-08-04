@@ -1,0 +1,2 @@
+{"source":"grilling","summary":"发现 origin/feature/F-140-report-center 分支存在 cdm-data-cli 完整历史实现（48 源码+31 测试），本地工作区被 reset 仅剩 .pyc 残留；用户决策：忽略历史实现，从零重写，不参考远端分支","response":"decided-ignore-history","at":"2026-08-04T17:25:00+08:00"}
+{"source":"final_confirmation","summary":"T0217 终审 confirmed：cdm-data-cli 从零重写（忽略远端历史实现），三 Topic+verify-credentials、白名单参数、Keyset/JSONL/entity_key 按 T0215 契约；7 项 AC；批准进入 Do","response":"confirmed","at":"2026-08-04T17:33:37+08:00"}

@@ -1,0 +1,26 @@
+{
+  "id": "T0221",
+  "slug": "0804-deployment-install",
+  "title": "两包两阶段安装部署与配置校验",
+  "parent": "T0214",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "record": "T0221-0804-deployment-install",
+    "scenario_type": "development",
+    "created_at": "2026-08-04T16:55:00+08:00",
+    "convergence": [
+      "预安装/正式安装两阶段；bclinux x86_64/aarch64；升级回退；配置校验命令"
+    ]
+  },
+  "states": {
+    "created": "2026-08-04T16:55:00+08:00",
+    "plan": null,
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

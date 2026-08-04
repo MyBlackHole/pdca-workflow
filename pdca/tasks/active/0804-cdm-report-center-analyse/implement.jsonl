@@ -1,0 +1,4 @@
+{"file": "knowledge/nbu/nbu-dte-architecture.md", "reason": "评估 NBU DTE 传输加密资产是否影响报表中心拆解；主方案仅借鉴 OpsCenter 采集架构思想，DTE 与本拆解无关", "action": "不注入", "at": "2026-08-04T16:58:00+08:00"}
+{"file": "knowledge/data-formats/parquet-technical-reference.md", "reason": "主方案采集/导出链路为 JSONL/CSV/PDF，不使用 Parquet，与本拆解无关", "action": "不注入", "at": "2026-08-04T16:58:00+08:00"}
+{"file": "knowledge/pdca-workflow/architecture.md", "reason": "PDCA 工作流通用架构资产，不影响报表中心拆解内容决策", "action": "不注入", "at": "2026-08-04T16:58:00+08:00"}
+{"file": "knowledge/", "reason": "全面搜索未发现与报表中心/采集调度/JSONL 契约直接相关的既有资产；本次拆解结论来自主方案文档 + 用户决策", "action": "无注入资产", "at": "2026-08-04T16:58:00+08:00"}

@@ -1,0 +1,35 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "绘制 Enforced 配置的存储/下发/执行链路",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["evt-001"]
+    },
+    {
+      "index": 2,
+      "text": "明确 refreshDteCache 缓存机制与刷新时机",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["evt-001"]
+    },
+    {
+      "index": 3,
+      "text": "明确强制守卫执行点（调度期/连接期）",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["evt-001"]
+    },
+    {
+      "index": 4,
+      "text": "给出修改 Enforced 是否需重启的明确结论",
+      "criteria": ["AC-4"],
+      "evidence_ids": ["evt-001"]
+    },
+    {
+      "index": 5,
+      "text": "澄清 Enforced 与 insecurecommunication off 的关系",
+      "criteria": ["AC-5"],
+      "evidence_ids": ["evt-001"]
+    }
+  ]
+}

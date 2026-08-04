@@ -30,6 +30,14 @@
 | **Improvement Task** | Improvement Candidate 经用户确认后创建的正式 PDCA 任务；只有该任务能在既有门禁下实施流程改动 |
 | **Effectiveness Verdict** | Improvement Task 部署后的跨周期效果判定；基于预先声明的 baseline、指标、规则版本和观察窗口，结果为 improved、neutral 或 regressed |
 | **逻辑导出** | 通过数据库 SQL、COPY、dump、JDBC、客户端查询或官方导出工具按逻辑行/列读取数据并输出到中间格式或目标格式；区别于直接复制数据库物理数据文件或 WAL/binlog 原始日志。 |
+| **报表中心 (Report Center)** | CDM 报表中心，需求 140；由 `report-web` 与 `collection-service` 两个应用 + Report DB 组成，中心化采集备份域数据并查询 |
+| **report-web** | 报表中心 Web/API 服务：验证码登录、Token 鉴权、备份域管理、RPC 连通性测试、固定报表查询/同步导出 |
+| **collection-service** | 报表中心采集调度服务：APScheduler 周期调度、50 线程池、固定 Topic Worker、JSONL 校验入库；唯一实例 |
+| **cdm-data-cli** | CDM 侧受控 CLI，固定 Topic 子命令输出 JSONL，经既有 rpc 工具通道被调用 |
+| **既有 rpc 工具（agent）** | 各 CDM 主机已部署的 RPC 通道，执行固定命令并缓冲返回退出码/stdout/stderr；报表中心只复用该通道 |
+| **Report DB** | 报表中心独立数据库，一期唯一实现 PostgreSQL 17；维度/事实/聚合/控制表统一经 Repository/Adapter 访问 |
+| **JSONL 采集** | CLI stdout 逐行 JSON 输出 → Collection Service 本地临时文件 → 校验 → 批量事务 Upsert |
+| **Topic** | 固定采集主题：`resource`（资源快照）/`task`（任务增量）/`capacity`（容量样本） |
 
 ## 约定
 

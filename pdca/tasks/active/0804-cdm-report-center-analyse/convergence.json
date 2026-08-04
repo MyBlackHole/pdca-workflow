@@ -1,0 +1,29 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "8 个一级子任务全部创建且 parent/children 双向一致",
+      "criteria": ["AC-1", "AC-2"],
+      "evidence_ids": ["e1-decomposition-checklist"]
+    },
+    {
+      "index": 2,
+      "text": "每个子 PRD 验收标准为 checkbox 格式并引用主方案章节",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["e1-decomposition-checklist"]
+    },
+    {
+      "index": 3,
+      "text": "仓库归属（CLI 本仓 + 其余 report-center）落入 ADR-0013",
+      "criteria": ["AC-6"],
+      "evidence_ids": ["e1-decomposition-checklist"]
+    },
+    {
+      "index": 4,
+      "text": "首个子任务为三份子方案契约文档，作为实现对齐基线",
+      "criteria": ["AC-4"],
+      "evidence_ids": ["e1-decomposition-checklist"]
+    }
+  ]
+}

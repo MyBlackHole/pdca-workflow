@@ -1,0 +1,26 @@
+{
+  "id": "T0215",
+  "slug": "0804-report-subscheme-docs",
+  "title": "补齐三份报表中心子方案契约文档",
+  "parent": "T0214",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "record": "T0215-0804-report-subscheme-docs",
+    "scenario_type": "development",
+    "created_at": "2026-08-04T16:55:00+08:00",
+    "convergence": [
+      "三份子方案文档存在且与主方案契约一致"
+    ]
+  },
+  "states": {
+    "created": "2026-08-04T16:55:00+08:00",
+    "plan": null,
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

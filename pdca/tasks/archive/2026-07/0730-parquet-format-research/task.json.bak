@@ -1,0 +1,46 @@
+{
+  "id": "T0150",
+  "slug": "0730-parquet-format-research",
+  "title": "Parquet 文件格式深度技术调研",
+  "parent": null,
+  "children": [
+    "T0151",
+    "T0152",
+    "T0153",
+    "T0154",
+    "T0155",
+    "T0156",
+    "T0157"
+  ],
+  "status": "Completed",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "scenario_type": "research",
+    "record": "T0150",
+    "created_at": "2026-07-30T18:00:00+08:00",
+    "convergence": [
+      "T0150-0730-parquet-format-research"
+    ],
+    "completed_at": "2026-07-30T16:33:56+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "7篇专题文档完成，10项验收标准全部满足，收敛验证通过。文档覆盖Parquet物理结构、编码压缩、调优参数、Schema类型系统、SDK生态、谓词下推原理及生产案例与数据库转换实践。",
+      "verdict_id": "V-T0150-01",
+      "at": "2026-07-30T16:35:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "7篇专题文档产出完整，可作为Oracle/PG/MySQL→Parquet数据迁移的技术基准。关键结论沉淀至knowledge/data-formats/。",
+      "at": "2026-07-30T16:38:00+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-07-30T16:00:00+08:00",
+    "plan": "2026-07-30T16:15:00+08:00",
+    "do": "2026-07-30T16:27:37+08:00",
+    "check": "2026-07-30T16:33:56+08:00",
+    "act": "2026-07-30T16:37:33+08:00",
+    "archive": null
+  }
+}

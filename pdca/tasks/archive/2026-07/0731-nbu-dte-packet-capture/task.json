@@ -1,0 +1,36 @@
+{
+  "id": "T0162",
+  "slug": "0731-nbu-dte-packet-capture",
+  "title": "抓包验证 NBU DTE 单端口 TLS/明文协商机制",
+  "parent": null,
+  "children": [],
+  "status": "InProgress",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "research",
+    "created_at": "2026-07-31T10:04:00+08:00",
+    "convergence": [
+      "T0162-0731-nbu-dte-packet-capture"
+    ],
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "单端口明文头协商+TLS升级机制已通过抓包实证，5项验收标准全部通过",
+      "verdict_id": "V-T0162-001",
+      "at": "2026-07-31T11:05:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "NBU VNET 协议实证结论可复用：明文头格式、dte_mode 字段、STARTTLS 式升级机制",
+      "at": "2026-07-31T11:05:00+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-07-31T10:04:00+08:00",
+    "plan": "2026-07-31T10:07:00+08:00",
+    "do": "2026-07-31T10:07:00+08:00",
+    "check": "2026-07-31T11:05:00+08:00",
+    "act": "2026-07-31T11:05:00+08:00",
+    "archive": "2026-07-31T11:12:00+08:00"
+  }
+}

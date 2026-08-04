@@ -1,0 +1,5 @@
+{"source": "git_diff", "file": "rpc/rpc-io.h", "description": "添加 addr_to_str() 和 addr_port() 内联辅助函数", "timestamp": "2026-07-30T07:00:00Z"}
+{"source": "git_diff", "file": "rpc/rpc-io.cpp", "description": "客户端 connect_server/connect_server2 改用 inet_pton 直接填充地址；rpc_recv/rpc_send 日志改用 addr_to_str/addr_port", "timestamp": "2026-07-30T07:00:00Z"}
+{"source": "git_diff", "file": "rpc/rpc-server.h", "description": "struct sockaddr_in serv → struct sockaddr_storage serv", "timestamp": "2026-07-30T07:00:00Z"}
+{"source": "git_diff", "file": "rpc/rpc-server.cpp", "description": "服务端 AF_INET6 + in6addr_any + IPV6_V6ONLY=0 双栈；日志改用 addr_to_str/addr_port", "timestamp": "2026-07-30T07:00:00Z"}
+{"source": "build", "target": "rpc aio-speedd aio-speed", "result": "passed", "description": "xmake release 编译全部通过，零错误", "timestamp": "2026-07-30T07:02:00Z"}

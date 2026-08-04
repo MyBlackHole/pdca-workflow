@@ -1,0 +1,26 @@
+{
+  "id": "T0220",
+  "slug": "0804-report-templates-query-export",
+  "title": "报表模板注册表、16 套固定查询与 CSV/PDF 同步导出",
+  "parent": "T0214",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "record": "T0220-0804-report-templates-query-export",
+    "scenario_type": "development",
+    "created_at": "2026-08-04T16:55:00+08:00",
+    "convergence": [
+      "TemplateRegistry 16 模板；Handler golden 响应；Keyset/归并；CSV/PDF 导出与配额"
+    ]
+  },
+  "states": {
+    "created": "2026-08-04T16:55:00+08:00",
+    "plan": null,
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}
