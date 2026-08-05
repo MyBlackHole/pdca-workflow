@@ -1,0 +1,18 @@
+T0219 Do S1 切片结果（安全工具 + 认证服务层）
+===============================================
+
+命令：.venv/bin/python -m pytest tests/test_security_tools.py tests/test_auth_service.py -q
+结果：24 passed + 42 passed
+
+S1a 安全工具（24 passed）：
+- report_center_db/security/aes.py（AESCipher AES-GCM 加密解密）
+- report_center_db/security/password.py（PasswordHasher argon2id + 复杂度校验）
+- report_center_db/security/jwt.py（TokenSigner/TokenVerifier RS256 + TokenType）
+
+S1b 认证服务层（42 passed）：
+- services/redis_store.py（RedisKeyStore 通用 KV + TTL）
+- services/auth_service.py
+  - CaptchaService：验证码摘要 Redis TTL 5 分钟、5 秒刷新限制
+  - RedisTokenStore：token 签发/校验/撤销
+  - AuthService：登录（含 20 分钟 5 次锁定、成功清除计数、大小写归一化）、
+    登出、改密（must_change_password 流程）、TTL 由 ttl_provider 注入

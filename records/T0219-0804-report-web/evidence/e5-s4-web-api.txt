@@ -1,0 +1,17 @@
+T0219 Do S4 切片结果（Web API 层）
+===================================
+
+命令：.venv/bin/python -m pytest tests/test_report_web_api.py -q
+结果：16 passed（含 8 个 Blocking 修复后的新增用例，回归后共 20+ passed 并入全量 237）
+
+report_web/app.py（create_app + FastAPI 路由）
+- 依赖注入：factory / aes_key_base64 / private_key_pem / redis_url / scheduler_factory /
+  template_registry / connectivity_factory / captcha_enabled / bootstrap_admin
+- bootstrap_admin：启动时幂等创建 admin（hasher 注入修复）
+- ttl_provider：登录签发 TTL 读系统设置（PUT TTL 仅影响新会话）
+- 路由：
+  - /auth/captcha、/auth/login、/auth/logout、/auth/change-password
+  - /domains CRUD + 启停 + 连通性测试
+  - /saved-reports GET/POST、/saved-reports/{id} GET/PATCH/DELETE
+  - /system-settings/report-access-token-ttl GET/PUT
+- 错误码统一映射（CollectionError.error_code → HTTP 4xx/5xx + error_code）

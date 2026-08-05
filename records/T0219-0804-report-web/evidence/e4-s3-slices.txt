@@ -1,0 +1,13 @@
+T0219 Do S3 切片结果（保存报告服务层）
+========================================
+
+命令：.venv/bin/python -m pytest tests/test_saved_report_service.py -q
+结果：8 passed
+
+services/saved_report_service.py（SavedReportService）
+- 按 Token sub 隔离（owner_subject_id 过滤）
+- 名称 2~30 字符、per-owner 唯一（V002 迁移：(owner_subject_id, LOWER(report_name))）
+- 保存快照（filters/view + template_code + template_version）
+- 打开按保存快照重建 QuerySpec 查最新数据（TemplateRegistry 协议注入，
+  T0220 后真实验证）
+- 新增跨用户同名允许测试（test_same_name_across_owners_allowed）

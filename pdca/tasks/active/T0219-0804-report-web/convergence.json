@@ -1,0 +1,17 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "验证码登录/Token 鉴权/改密流程；域 CRUD 与启停；RPC 连通性测试；保存报告",
+      "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5", "AC-6", "AC-7", "AC-8"],
+      "evidence_ids": [
+        "e1-pytest-full",
+        "e2-s1-slices",
+        "e3-s2-slices",
+        "e4-s3-slices",
+        "e5-s4-web-api"
+      ]
+    }
+  ]
+}

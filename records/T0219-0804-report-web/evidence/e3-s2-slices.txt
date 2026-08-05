@@ -1,0 +1,21 @@
+T0219 Do S2 切片结果（域 CRUD + RPC 客户端 + 域服务编排）
+============================================================
+
+命令：.venv/bin/python -m pytest tests/test_domain_repo.py tests/test_rpc_clients.py tests/test_domain_service.py -q
+结果：9 passed + 9 passed + 18 passed
+
+S2a 域 CRUD repository（9 passed）：
+- services/domain_repository.py（PostgreSQLDomainRepository）
+  - AES 密码加密存储；名称 2~30 字符、全局唯一（含已删除）
+  - 模糊搜索（name/ip/username）；创建域唯一冲突精确捕获 UniqueViolation
+
+S2b RPC 客户端 + 域服务编排（9 + 18 passed）：
+- services/rpc_clients.py
+  - CollectionSchedulerRPCClient：ensure_domain_schedule_config / add_job / remove_job
+  - CDMRpcConnectivityClient：test（verify-credentials、10 秒超时、四类失败分类，
+    超时→RPC_TIMEOUT，连接拒绝→RPC_CONNECT_FAILED，无副作用）
+- services/rpc_errors.py（RPC 错误码与分类）
+- services/domain_service.py（DomainService）
+  - 创建（ensure_domain_schedule_config，失败补偿回滚）
+  - 启停（add_job / remove_job，失败补偿回滚）
+  - 删除（逻辑删除先生效 → 删三 Job + 周期文件尽力而为）

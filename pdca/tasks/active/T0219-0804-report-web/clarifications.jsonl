@@ -1,3 +1,7 @@
 {"source": "grill", "at": "2026-08-05T14:55:00+08:00", "topic": "技术栈依赖", "summary": "report-web 新增依赖 FastAPI/uvicorn/redis-py/argon2-cffi/pycryptodome/fakeredis 全部加入 report-center venv；生产 redis-py、测试 fakeredis", "response": "confirmed"}
 {"source": "grill", "at": "2026-08-05T14:57:00+08:00", "topic": "T0219/T0220 边界", "summary": "AC-7 保存报告用 TemplateRegistry 协议接口注入（轻量协议校验），T0220 完成后真实验证；T0219 实现保存报告 CRUD + sub 隔离", "response": "confirmed"}
 {"source":"final_confirmation","summary":"T0219 PRD 终审通过：依赖齐备（T0215/T0216/T0217/T0218），技术栈决策与 T0219/T0220 边界协议注入确认","response":"confirmed","at":"2026-08-05T14:57:19+08:00"}
+{"source": "grill", "at": "2026-08-05T16:22:00+08:00", "topic": "AC-7 打开重建真实验证边界", "summary": "AC-7 打开按快照重建 QuerySpec 查最新数据目前仅协议接口+保存快照测试覆盖，真实端到端依赖 T0220 模板。用户判定标记 partial 记入 conclusion，T0220 闭环。", "response": "partial"}
+{"source": "check_confirmation", "at": "2026-08-05T16:26:00+08:00", "topic": "T0219 Check verdict", "summary": "结论确认：AC-1~AC-6/AC-8 confirmed，AC-7 partial（T0220 闭环）。全量 237 passed。", "response": "confirmed"}
+{"source": "grill", "at": "2026-08-05T17:17:00+08:00", "topic": "知识沉淀方向", "summary": "T0219 可复用洞察：report-web 认证服务模式（验证码+限流+Token 撤销+TTL 注入）、域服务 RPC 补偿回滚模式、per-owner 唯一迁移（V002）。评估：认证与 RPC 模式跨任务可复用，写 knowledge；V002 属本任务特定，不单独沉淀。", "response": "confirmed"}
+{"source": "knowledge_decision", "at": "2026-08-05T17:18:00+08:00", "action": "wrote", "reason": "认证服务模式（验证码+限流+Token 撤销+TTL 注入）、RPC 补偿回滚与通道异常分类、per-owner 唯一迁移、测试基建经验可跨 T0220~T0222 复用"}
