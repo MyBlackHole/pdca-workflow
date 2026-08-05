@@ -6,8 +6,8 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "act",
-    "active": true,
+    "phase": "archive",
+    "active": false,
     "record": "T0217-0804-cdm-data-cli",
     "scenario_type": "development",
     "created_at": "2026-08-04T16:55:00+08:00",
@@ -33,6 +33,6 @@
     "do": "2026-08-05T10:05:45+08:00",
     "check": "2026-08-05T10:09:04+08:00",
     "act": "2026-08-05T10:13:05+08:00",
-    "archive": null
+    "archive": "2026-08-05T10:14:32+08:00"
   }
 }
