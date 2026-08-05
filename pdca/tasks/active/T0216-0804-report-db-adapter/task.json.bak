@@ -6,7 +6,7 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "check",
+    "phase": "act",
     "active": true,
     "record": "T0216-0804-report-db-adapter",
     "scenario_type": "development",
@@ -20,6 +20,11 @@
       "reason": "62 契约测试全绿（PG18.4 实测）；AC-1~AC-7 逐条核对满足；convergence valid:true（convergence-map + e1/e2/e3 已登记）；PG17 差异留 T0221 补验已明确",
       "verdict_id": "V-T0216-confirmed-0805",
       "at": "2026-08-05T11:40:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "知识已沉淀至 report-center/db-adapter-pg-practices.md（迁移审计保留策略、父表主键、字段映射、批次号填充、测试隔离）；改进项已由 T0218~T0222 backlog 承接，无需新增任务",
+      "at": "2026-08-05T11:47:00+08:00"
     }
   },
   "states": {
@@ -27,7 +32,7 @@
     "plan": "2026-08-04T16:55:00+08:00",
     "do": "2026-08-05T10:47:18+08:00",
     "check": "2026-08-05T11:27:38+08:00",
-    "act": null,
+    "act": "2026-08-05T11:42:14+08:00",
     "archive": null
   }
 }
