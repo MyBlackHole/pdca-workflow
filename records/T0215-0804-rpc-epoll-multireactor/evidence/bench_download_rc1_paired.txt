@@ -1,0 +1,4 @@
+[bench] 256 MB download: avg 866.0 MB/s (min 806.5 / max 969.3)
+[bench] 256 MB download: avg 945.2 MB/s (min 909.1 / max 981.2)
+[bench] 256 MB download: avg 967.6 MB/s (min 886.3 / max 1004.4)
+[bench] 256 MB download: avg 882.6 MB/s (min 848.5 / max 942.4)

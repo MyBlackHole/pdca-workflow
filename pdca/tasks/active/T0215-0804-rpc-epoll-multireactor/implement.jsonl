@@ -1,0 +1,2 @@
+{"file":"linux-epoll-eventloop/dynamic-deadline-wakeup.md","reason":"eventfd 唤醒机制（T0214 沉淀）——stop 唤醒从 1 个 reactor 扩展为唤醒 N 个 reactor，复用同模式","action":"参考 wakefd 唤醒模式实现 N reactor 的 stop/join"}
+{"file":"debugging/rpc-epoll-blocking-fd-trap.md","reason":"阻塞 fd 陷阱——多 reactor 下 accept 在各自 reactor 内，连接 fd 非阻塞设置仍关键","action":"保持 set_nonblock 语义，多 reactor 回归时验证"}

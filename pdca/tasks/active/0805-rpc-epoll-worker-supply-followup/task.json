@@ -1,0 +1,25 @@
+{
+  "id": "T0216",
+  "slug": "0805-rpc-epoll-worker-supply-followup",
+  "title": "跟进：rpc-epoll worker 供给策略优化（低并发劣化消除，ADR-0014 遗留）",
+  "parent": "T0215",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-05T08:17:32+08:00",
+    "record": null,
+    "convergence": [],
+    "completed_at": null
+  },
+  "states": {
+    "created": "2026-08-05T08:17:32+08:00",
+    "plan": null,
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}
