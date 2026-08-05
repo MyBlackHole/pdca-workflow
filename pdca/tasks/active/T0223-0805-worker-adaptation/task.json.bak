@@ -4,9 +4,9 @@
   "title": "collection-service worker 接线适配层（跟进 T0218 已知限制）",
   "parent": "T0214",
   "children": [],
-  "status": "InProgress",
+  "status": "Pending",
   "meta": {
-    "phase": "do",
+    "phase": "plan",
     "active": true,
     "record": "T0223-0805-worker-adaptation",
     "scenario_type": "development",
@@ -18,7 +18,7 @@
   "states": {
     "created": "2026-08-05T13:45:00+08:00",
     "plan": "2026-08-05T13:58:47+08:00",
-    "do": "2026-08-05T14:00:04+08:00",
+    "do": null,
     "check": null,
     "act": null,
     "archive": null
