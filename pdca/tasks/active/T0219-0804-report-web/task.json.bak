@@ -6,7 +6,7 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "check",
+    "phase": "act",
     "active": true,
     "record": "T0219-0804-report-web",
     "scenario_type": "development",
@@ -16,6 +16,11 @@
       "reason": "AC-1~AC-6、AC-8 confirmed；AC-7 打开按快照重建 QuerySpec 查最新数据仅协议接口+保存快照测试，端到端真实验证依赖 T0220 模板，作为已知边界记入 conclusion（用户确认后整体 verdict=confirmed，AC-7 边界由 T0220 闭环）。全量 237 passed",
       "verdict_id": "T0219-verified-20260805",
       "at": "2026-08-05T16:26:00+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "T0219 实现与审查证据归档至 records；可复用模式已沉淀至 knowledge/report-center/auth-rpc-compensation-patterns.md；AC-7 端到端验证留待既有下游 T0220 闭环，无需新建跟进任务",
+      "at": "2026-08-05T17:19:00+08:00"
     },
     "convergence": [
       "验证码登录/Token 鉴权/改密流程；域 CRUD 与启停；RPC 连通性测试；保存报告"
@@ -27,7 +32,7 @@
     "plan": "2026-08-05T14:57:00+08:00",
     "do": "2026-08-05T14:57:25+08:00",
     "check": "2026-08-05T16:20:59+08:00",
-    "act": null,
+    "act": "2026-08-05T17:16:15+08:00",
     "archive": null
   }
 }
