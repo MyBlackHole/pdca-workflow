@@ -1,0 +1,9 @@
+{
+  "schema": "pdca.transition/v1",
+  "task_id": "T0218",
+  "from": "plan",
+  "to": "do",
+  "before_digest": "sha256:696ade5b9184d58fb6b0055eee8f7d6efcb46dfdf49d469cae0aa5d87fdd3f11",
+  "after_digest": "sha256:ca334cc332afb647a5daaf642f59b77361a536eaa70d80199f061ccfc4878e50",
+  "at": "2026-08-05T12:00:01+08:00"
+}
