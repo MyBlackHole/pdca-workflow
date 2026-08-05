@@ -1,0 +1,3 @@
+{"round": 1, "question": "真实 Worker 如何接入 JobHandlerRegistry？", "answer": "A. handler 工厂闭包", "recommended": "闭包最贴合 _run_job 现有签名 registry.get(topic)(spec)，依赖在装配点一次性注入；3 个 worker 用 WorkerBinder 多层抽象收益低", "source": "grilling", "at": "2026-08-05T14:10:00+08:00"}
+{"source":"direction_confirm","summary":"worker 接线适配层：真实 Worker 注册（handler 闭包）+ Ingester JSONL→对象转换复用 write.py + 端到端测试；复用 T0216 PostgreSQLCollectionTaskRepository/ReportWriteRepository","response":"confirmed","at":"2026-08-05T13:48:46+08:00"}
+{"source":"final_confirmation","summary":"T0223 终审批准：Worker 注册（handler 闭包）+ PostgreSQLLineIngester（JSONL→对象→write.py 入库）+ TaskRepository 复用注入 + 端到端测试，AC-1~AC-4","response":"confirmed","at":"2026-08-05T13:58:47+08:00"}
