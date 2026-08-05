@@ -1,2 +1,10 @@
 __pycache__/
 *.pyc
+
+# POC 大数据产物（不入库）
+**/poc-output/**/*.csv
+**/poc-output/**/*.tsv
+**/poc-output/**/*.parquet
+
+# 静态库编译产物
+*.a
