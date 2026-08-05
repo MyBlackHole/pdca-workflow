@@ -1,0 +1,22 @@
+{
+  "id": "T0219",
+  "slug": "0806-rpc-arm-interop-verify",
+  "title": "rpc 小端协议 ARM 跨机互通实测（x86↔ARM 混跑验证）",
+  "parent": null,
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "research",
+    "created_at": "2026-08-06T07:57:07.089684+08:00",
+    "record": "T0219-0806-rpc-arm-interop-verify",
+    "convergence": [
+      "T0219-0806-rpc-arm-interop-verify"
+    ],
+    "followup_of": "T0217-0805-rpc-serialization-hardening"
+  },
+  "states": {
+    "created": "2026-08-06T07:57:07.089684+08:00"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "T0218",
+  "slug": "0806-buf-layer-endianness",
+  "title": "buf 层(rpc_conn_* 高层)字节序统一切小端：84 处 buf_put_u32/get_u32 全套切换",
+  "parent": null,
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-06T07:56:29.478481+08:00",
+    "record": "T0218-0806-buf-layer-endianness",
+    "convergence": [
+      "T0218-0806-buf-layer-endianness"
+    ],
+    "followup_of": "T0217-0805-rpc-serialization-hardening"
+  },
+  "states": {
+    "created": "2026-08-06T07:56:29.478481+08:00"
+  }
+}
