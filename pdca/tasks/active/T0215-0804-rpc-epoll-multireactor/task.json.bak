@@ -6,7 +6,7 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "check",
+    "phase": "act",
     "active": true,
     "scenario_type": "development",
     "created_at": "2026-08-04T21:00:00+08:00",
@@ -20,6 +20,11 @@
       "reason": "AC-1~AC-6 全部通过：multi_reactor 8 轮全过（AC-1/4/5）、8 客户端聚合 0.986 + 32 客户端 RPS 1.22x（AC-2）、配对对比 0.984（AC-3）、全量 22/23 PASS 仅既有 dir_utils 环境问题（AC-6）。低并发 rc4<rc1 为 worker 池按 Reactor 全额放大的已知行为，ADR-0014 记录为遗留，不属验收范围",
       "verdict_id": "v-20260805-confirmed",
       "at": "2026-08-05T08:14:18+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "结论 confirmed：AC-1~6 全过，SO_REUSEPORT 多 Reactor 模式沉淀为可复用知识；worker 供给优化作为跟进任务（ADR-0014 遗留）",
+      "at": "2026-08-05T08:17:08+08:00"
     }
   },
   "states": {
@@ -27,7 +32,7 @@
     "plan": "2026-08-04T21:00:00+08:00",
     "do": "2026-08-04T21:02:17+08:00",
     "check": "2026-08-05T08:08:21+08:00",
-    "act": null,
+    "act": "2026-08-05T08:15:45+08:00",
     "archive": null
   }
 }
