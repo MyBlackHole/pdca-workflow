@@ -1,0 +1,59 @@
+diff --git a/rpc/rpc-common.cpp b/rpc/rpc-common.cpp
+index a1467e3a..8c6c9abb 100644
+--- a/rpc/rpc-common.cpp
++++ b/rpc/rpc-common.cpp
+@@ -480,12 +480,12 @@ int file_stat_item_t::Serialize(char *buf, int &off, const int buflen)
+ 		return -1;
+ 	}
+ 
+-	*((int *)(buf + off)) = htonl(f_name.size());
++	*((int *)(buf + off)) = htole32(f_name.size());
+ 	off += sizeof(int);
+ 	memcpy((buf + off), f_name.c_str(), f_name.size());
+ 	off += f_name.size();
+ 
+-	*((int *)(buf + off)) = htonl(sizeof(st));
++	*((int *)(buf + off)) = htole32(sizeof(st));
+ 	off += sizeof(int);
+ 
+ 	file_stat_hton((buf + off), &data_len, &st);
+@@ -501,7 +501,7 @@ int file_stat_item_t::Deserialize(const char *buf, int &off, const int buflen)
+ 	if (buflen < (int)(off + sizeof(int))) {
+ 		return -1;
+ 	}
+-	bytes = ntohl(*((int *)(buf + off)));
++	bytes = le32toh(*((int *)(buf + off)));
+ 	off += sizeof(int);
+ 	if (buflen < off + bytes) {
+ 		return -1;
+@@ -513,7 +513,7 @@ int file_stat_item_t::Deserialize(const char *buf, int &off, const int buflen)
+ 	if (buflen < (int)(off + sizeof(int))) {
+ 		return -1;
+ 	}
+-	bytes = ntohl(*((int *)(buf + off)));
++	bytes = le32toh(*((int *)(buf + off)));
+ 	off += sizeof(int);
+ 	file_stat_ntoh((buf + off), &data_len, &st);
+ 	////memcpy(&st, (buf + off), bytes);
+diff --git a/rpc/rpc-io.cpp b/rpc/rpc-io.cpp
+index b35e009d..fe139a1f 100644
+--- a/rpc/rpc-io.cpp
++++ b/rpc/rpc-io.cpp
+@@ -60,7 +60,7 @@ int rpc_recv(int fd, void *buf, const int buflen, int flags)
+ 		return -100;
+ 	}
+ 
+-	const int msg_length = ntohl(msg_net_length);
++	const int msg_length = le32toh(msg_net_length);
+ 	if (buflen < msg_length) {
+ 		getpeername(fd, (struct sockaddr *)&serv, &serv_len);
+ 		ErrorLog(
+@@ -110,7 +110,7 @@ int rpc_send(int fd, void *buf, const int len, int flags)
+ {
+ 	int bytes = 0;
+ 	int nwrite = 0;
+-	const int msg_length = htonl(len);
++	const int msg_length = htole32(len);
+ 	int opt_status = 0;
+ 	struct sockaddr_in serv;
+ 	socklen_t serv_len = sizeof(serv);

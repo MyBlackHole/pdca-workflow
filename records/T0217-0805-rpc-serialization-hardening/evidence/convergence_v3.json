@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "T0217-0805-rpc-serialization-hardening",
+      "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5", "AC-6", "AC-7", "AC-8", "AC-9", "AC-10", "AC-11"],
+      "evidence_ids": [
+        "rt_inplace_v",
+        "rt_ac3_v",
+        "rpc_sep_v",
+        "le_residue_v",
+        "frame_validation_v",
+        "scp_stream_v",
+        "misc_le_test_v",
+        "io_common_v",
+        "protocol_roundtrip_rt",
+        "stream_blocks_v",
+        "io_partial_v"
+      ]
+    }
+  ]
+}

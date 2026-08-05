@@ -1,0 +1,20 @@
+[PASS] send returns total frame len
+[PASS] recv returns total frame len
+[PASS] recv buf is body only
+[PASS] payload roundtrip through frame
+[PASS] partial header still assembles full frame
+[PASS] body length ok
+[PASS] body content ok
+[2026-08-06 06:24:20]|Error|rpc/rpc-msg.c:194 rpc_recv_frame|139935723517824| frame parse failed F:4 R:-3
+[PASS] over-limit frame rejected before allocation
+[PASS] no data buffered on rejection
+[2026-08-06 06:24:20]|Error|rpc/rpc-msg.c:194 rpc_recv_frame|139935723517824| frame parse failed F:4 R:-1
+[PASS] bad magic rejected on recv
+[PASS] no data buffered on bad magic
+[PASS] conn still usable after bad frame
+[PASS] legit frame after bad frame ok
+[PASS] payload after bad frame ok
+[PASS] large message send completes
+[PASS] large message recv completes
+[PASS] large body content intact
+io_partial: all tests passed
