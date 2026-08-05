@@ -1,0 +1,4 @@
+{"file":"knowledge/report-center/db-adapter-pg-practices.md","reason":"Repository/Adapter 分层 + PG 迁移模式与 Keyset，指导 ReportReadRepository 固定 SQL 与 seed fixture","action":"load","at":"2026-08-05T17:34:00+08:00"}
+{"file":"knowledge/report-center/auth-rpc-compensation-patterns.md","reason":"同仓库 report-web 认证/服务模式与测试基建经验，沿用 create_app 注入 + conftest 全量迁移","action":"load","at":"2026-08-05T17:34:00+08:00"}
+{"file":"cdm_report_center_web_api_subscheme.md","reason":"§4 报表查询/导出 HTTP 契约、错误码映射（TEMPLATE_NOT_FOUND/QUERY_BUSY/QUERY_TIMEOUT 等）","action":"load","at":"2026-08-05T17:34:00+08:00"}
+{"file":"cdm-report-center-final-technical-solution.md","reason":"§8.1~§8.6 模板注册表、16 套固定映射、QuerySpec、Keyset、CSV/PDF、配额、data_state 规格","action":"load","at":"2026-08-05T17:34:00+08:00"}

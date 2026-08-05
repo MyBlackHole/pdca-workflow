@@ -4,9 +4,9 @@
   "title": "报表模板注册表、16 套固定查询与 CSV/PDF 同步导出",
   "parent": "T0214",
   "children": [],
-  "status": "InProgress",
+  "status": "Pending",
   "meta": {
-    "phase": "do",
+    "phase": "plan",
     "active": true,
     "record": "T0220-0804-report-templates-query-export",
     "scenario_type": "development",
@@ -18,7 +18,7 @@
   "states": {
     "created": "2026-08-04T16:55:00+08:00",
     "plan": "2026-08-05T17:43:29+08:00",
-    "do": "2026-08-05T17:44:44+08:00",
+    "do": null,
     "check": null,
     "act": null,
     "archive": null
