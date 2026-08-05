@@ -4,9 +4,9 @@
   "title": "collection-service 调度采集入库服务",
   "parent": "T0214",
   "children": [],
-  "status": "Pending",
+  "status": "InProgress",
   "meta": {
-    "phase": "plan",
+    "phase": "do",
     "active": true,
     "record": "T0218-0804-collection-service",
     "scenario_type": "development",
@@ -18,7 +18,7 @@
   "states": {
     "created": "2026-08-04T16:55:00+08:00",
     "plan": "2026-08-04T16:55:00+08:00",
-    "do": null,
+    "do": "2026-08-05T12:00:01+08:00",
     "check": null,
     "act": null,
     "archive": null

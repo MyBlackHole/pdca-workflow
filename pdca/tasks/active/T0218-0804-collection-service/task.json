@@ -4,22 +4,23 @@
   "title": "collection-service 调度采集入库服务",
   "parent": "T0214",
   "children": [],
-  "status": "InProgress",
+  "status": "Completed",
   "meta": {
-    "phase": "do",
+    "phase": "check",
     "active": true,
     "record": "T0218-0804-collection-service",
     "scenario_type": "development",
     "created_at": "2026-08-04T16:55:00+08:00",
     "convergence": [
       "三 Topic Job 调度与防重入；11 类失败处理；重启恢复；JSONL 校验入库"
-    ]
+    ],
+    "completed_at": "2026-08-05T12:41:28+08:00"
   },
   "states": {
     "created": "2026-08-04T16:55:00+08:00",
     "plan": "2026-08-04T16:55:00+08:00",
     "do": "2026-08-05T12:00:01+08:00",
-    "check": null,
+    "check": "2026-08-05T12:41:28+08:00",
     "act": null,
     "archive": null
   }
