@@ -1,3 +1,4 @@
 {"at": "2026-08-05T14:20:00+08:00", "knowledge": "knowledge/report-center/db-adapter-pg-practices.md", "reason": "PostgreSQLReportWriteRepository/PostgreSQLCollectionTaskRepository 的入库模式与 7 坑位，Ingester/TaskRepository 接线直接复用", "action": "reuse"}
 {"at": "2026-08-05T14:20:00+08:00", "knowledge": "knowledge/report-center/cli-from-scratch-lazy-import.md", "reason": "CLI JSONL 行输出契约（serialization/collector 返回 table+row）与惰性导入架构，Ingester 行解析映射依据", "action": "reuse"}
 {"at": "2026-08-05T14:36:00+08:00", "action": "evidence", "ids": ["e1-pytest-full", "convergence-map"], "result": "134 passed, convergence valid:true", "note": "A2 三 seam 全绿 + A3 全量 134 + A4 双轴 Blocking=0"}
+{"at": "2026-08-05T14:43:00+08:00", "action": "check-ch1", "ids": ["e1-pytest-full-rev2", "convergence-map-rev2"], "result": "135 passed, convergence valid:true", "note": "Ch1 发现并修复 task 缺 source_update_time→SOURCE_UPDATE_TIME_MISSING；Grill 记录 CLI 一致性为已知限制"}
