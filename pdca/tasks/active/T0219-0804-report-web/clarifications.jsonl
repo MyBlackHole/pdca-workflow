@@ -1,0 +1,3 @@
+{"source": "grill", "at": "2026-08-05T14:55:00+08:00", "topic": "技术栈依赖", "summary": "report-web 新增依赖 FastAPI/uvicorn/redis-py/argon2-cffi/pycryptodome/fakeredis 全部加入 report-center venv；生产 redis-py、测试 fakeredis", "response": "confirmed"}
+{"source": "grill", "at": "2026-08-05T14:57:00+08:00", "topic": "T0219/T0220 边界", "summary": "AC-7 保存报告用 TemplateRegistry 协议接口注入（轻量协议校验），T0220 完成后真实验证；T0219 实现保存报告 CRUD + sub 隔离", "response": "confirmed"}
+{"source":"final_confirmation","summary":"T0219 PRD 终审通过：依赖齐备（T0215/T0216/T0217/T0218），技术栈决策与 T0219/T0220 边界协议注入确认","response":"confirmed","at":"2026-08-05T14:57:19+08:00"}

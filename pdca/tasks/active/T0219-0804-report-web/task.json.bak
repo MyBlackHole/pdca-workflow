@@ -4,9 +4,9 @@
   "title": "report-web 登录鉴权与备份域管理服务",
   "parent": "T0214",
   "children": [],
-  "status": "InProgress",
+  "status": "Pending",
   "meta": {
-    "phase": "do",
+    "phase": "plan",
     "active": true,
     "record": "T0219-0804-report-web",
     "scenario_type": "development",
@@ -18,7 +18,7 @@
   "states": {
     "created": "2026-08-04T16:55:00+08:00",
     "plan": "2026-08-05T14:58:00+08:00",
-    "do": "2026-08-05T14:57:25+08:00",
+    "do": null,
     "check": null,
     "act": null,
     "archive": null
