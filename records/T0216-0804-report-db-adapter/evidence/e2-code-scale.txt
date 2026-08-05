@@ -1,0 +1,33 @@
+T0216 Report DB Adapter — 代码规模统计
+
+目录: /home/black/Downloads/report-center
+结构: pyproject.toml / report_center_db/ / tests/ / migrations/postgresql/
+
+report_center_db 源码: 31 个 .py 文件, 2132 行
+  - config.py               配置
+  - protocol/               公共契约（无驱动依赖）
+      models.py             领域 dataclass（BackupDomain/TaskFact/CapacityFact/...）
+      query.py              QuerySpec/QueryFilter/QuerySort/KeysetCursor/TaskIncrementCursor
+      capabilities.py       max_partition_batch=260
+      interfaces.py         8 个 runtime_checkable Protocol
+  - postgres/               PG Adapter 实现
+      connection.py         psycopg_pool 连接池 + 失效销毁
+      transaction.py        PostgreSQLTransactionManager
+      dialect.py            方言抽象
+      errors.py             错误码映射
+      write.py              ResourceSnapshot / 分区 / 任务 Upsert+聚合重建 / 容量
+      read.py               QuerySpec+keyset+域权限+任务增量游标
+      preference.py / user.py / collection_task.py / jobstore.py
+  - migration/
+      runner.py             discover_migrations（成对/哈希/排序）
+  - postgres/migrations.py  up/down 执行 + rpt_schema_migration 审计
+
+migrations/postgresql/
+  V001__init.up.sql   612 行   pg_trgm 扩展 / 6 张 rpt_* 控制表 / 8 张 dim_* /
+                             2 张 rel_* / dwd_task_run 周分区父表(主键
+                             (task_time,backup_domain_id,task_run_key)) + 基线分区
+                             20260803/20260810 / dwd_storage_worker_capacity_daily /
+                             agg_task_daily / 索引 / CHECK(含 entity_key 组装一致)
+  V001__init.down.sql   19 行   逆序 DROP（审计表 rpt_schema_migration 保留）
+
+tests/ 9 个文件 62 测试全绿（PG18.4 实测）

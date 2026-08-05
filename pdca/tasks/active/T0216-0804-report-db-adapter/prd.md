@@ -20,7 +20,9 @@
 
 ## 实现决策
 
-- 落地仓库：**report-center 新仓库**。
+- 落地仓库：**report-center 新仓库**（`/home/black/Downloads/report-center`，已 git init）。
+- 技术栈：Python 3.14 + **psycopg v3（同步）** 公共接口 Adapter；APScheduler `SQLAlchemyJobStore`（SQLAlchemy 2.0）供 `SchedulerJobStoreFactory` 使用；迁移用原生 SQL + `rpt_schema_migration` 审计。
+- 测试环境：本机 PostgreSQL 18.4（podman 容器 `t0216-pg`，127.0.0.1:5433，库 `report_test`）；PG17 镜像拉取网络超时，**AC-6 调整为本环境 PG18 实测 + PG17 生产验证（T0221 部署时补验）**。
 - 依赖契约：T0215（Collection Service 子方案、Web API 子方案中 DB 相关部分）。
 - 表范围（主方案 §3.5）：`rpt_backup_domain`、`rpt_report_user`、`rpt_system_setting`、`rpt_saved_report`、`rpt_collection_task`、`rpt_schema_migration`、`dim_*` 8 张、`rel_protection_instance`/`rel_protection_policy`、`dwd_task_run`（周分区父表+基线分区）、`dwd_storage_worker_capacity_daily`、`agg_task_daily`。
 - 禁止 `ON DELETE CASCADE`；公共字段/entity_key CHECK/复合外键按 §3.5.2/3.5.3。
@@ -37,7 +39,7 @@
 - [ ] AC-3: `dwd_task_run` 创建分区父表 + 当前/下一周基线分区，`ensure_task_time_partitions` 运行期建分区、单批次上限 260、超限 `TASK_PARTITION_SPAN_EXCEEDED`（§3.5.5）。
 - [ ] AC-4: 资源快照整文件单事务 + 缺失对账逻辑删除同事务提交（§7.1）。
 - [ ] AC-5: 任务事实 `(task_time, backup_domain_id, task_run_key)` 主键幂等 Upsert，批量预查旧值用于聚合重建（§7、§3.5.6）。
-- [ ] AC-6: 契约测试在 PG17 实测通过；其他数据库不实现、不宣称支持（§3.4.2）。
+- [ ] AC-6: 契约测试在本机 PG18.4 实测通过；其他数据库不实现、不宣称支持（§3.4.2）；PG17 于 T0221 部署时补验。
 - [ ] AC-7: 全部 Repository 方法不泄露驱动/方言类型；连接失效销毁不归还池（§3.4）。
 
 ## 范围外

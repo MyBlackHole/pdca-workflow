@@ -4,23 +4,22 @@
   "title": "Report DB 接口层与 PostgreSQL 17 Adapter + Migrations",
   "parent": "T0214",
   "children": [],
-  "status": "Completed",
+  "status": "InProgress",
   "meta": {
-    "phase": "check",
+    "phase": "do",
     "active": true,
     "record": "T0216-0804-report-db-adapter",
     "scenario_type": "development",
     "created_at": "2026-08-04T16:55:00+08:00",
     "convergence": [
       "Repository 契约测试通过；migration 成对 up/down；PG 实测（本机 PG18.4，PG17 留 T0221 补验）"
-    ],
-    "completed_at": "2026-08-05T11:27:38+08:00"
+    ]
   },
   "states": {
     "created": "2026-08-04T16:55:00+08:00",
     "plan": "2026-08-04T16:55:00+08:00",
     "do": "2026-08-05T10:47:18+08:00",
-    "check": "2026-08-05T11:27:38+08:00",
+    "check": null,
     "act": null,
     "archive": null
   }

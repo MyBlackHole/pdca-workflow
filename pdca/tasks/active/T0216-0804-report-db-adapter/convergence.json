@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "Repository 契约测试通过；migration 成对 up/down；PG 实测（本机 PG18.4，PG17 留 T0221 补验）",
+      "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5", "AC-6", "AC-7"],
+      "evidence_ids": ["e1-pytest-full-revised", "e2-code-scale", "e3-migrations"]
+    }
+  ]
+}
