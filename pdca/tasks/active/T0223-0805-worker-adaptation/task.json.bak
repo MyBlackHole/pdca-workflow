@@ -4,22 +4,29 @@
   "title": "collection-service worker 接线适配层（跟进 T0218 已知限制）",
   "parent": "T0214",
   "children": [],
-  "status": "InProgress",
+  "status": "Completed",
   "meta": {
-    "phase": "do",
+    "phase": "check",
     "active": true,
     "record": "T0223-0805-worker-adaptation",
     "scenario_type": "development",
     "created_at": "2026-08-05T13:45:00+08:00",
     "convergence": [
       "真实 Worker 接入调度链路；TaskRepository 持久化；Ingester 入库事务"
-    ]
+    ],
+    "completed_at": "2026-08-05T14:35:52+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "AC-1~AC-4 满足，135 passed（含 PG18.4 端到端闭环 + 重试）；Worker 注册 + Ingester 入库接线完成，T0218 已知限制闭合",
+      "verdict_id": "T0223-verified-20260805",
+      "at": "2026-08-05T14:45:46+08:00"
+    }
   },
   "states": {
     "created": "2026-08-05T13:45:00+08:00",
     "plan": "2026-08-05T13:58:47+08:00",
     "do": "2026-08-05T14:00:04+08:00",
-    "check": null,
+    "check": "2026-08-05T14:35:52+08:00",
     "act": null,
     "archive": null
   }

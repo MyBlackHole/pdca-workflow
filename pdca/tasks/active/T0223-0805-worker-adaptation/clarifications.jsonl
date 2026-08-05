@@ -2,3 +2,5 @@
 {"source":"direction_confirm","summary":"worker 接线适配层：真实 Worker 注册（handler 闭包）+ Ingester JSONL→对象转换复用 write.py + 端到端测试；复用 T0216 PostgreSQLCollectionTaskRepository/ReportWriteRepository","response":"confirmed","at":"2026-08-05T13:48:46+08:00"}
 {"source":"final_confirmation","summary":"T0223 终审批准：Worker 注册（handler 闭包）+ PostgreSQLLineIngester（JSONL→对象→write.py 入库）+ TaskRepository 复用注入 + 端到端测试，AC-1~AC-4","response":"confirmed","at":"2026-08-05T13:58:47+08:00"}
 {"round": 2, "question": "Ingester 的 JSONL 行与真实 cdm-data-cli 输出一致性——S2/S3 测试行为手工构造（对齐 CLI 契约测试），未用真实 CDM 主机输出验证？", "answer": "记录为已知限制", "recommended": "CLI 行 schema 以 T0217 test_cli_contract 为契约基准；真实 CDM 主机端到端属 T0221 部署环境验证", "source": "grilling", "at": "2026-08-05T14:42:00+08:00"}
+{"source":"check_confirmation","summary":"T0223 Check 判定 confirmed：AC-1~AC-4 满足，135 passed（含 PG18.4 端到端闭环 + 重试）；Worker 注册 + Ingester 入库接线完成，T0218 已知限制闭合","response":"confirmed","at":"2026-08-05T14:45:46+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-05T14:47:00+08:00", "action": "skipped", "reason": "用户决策：结论已入 conclusion.md，Ingester 映射坑与 Worker 闭包绑定模式留待后续同类任务实践验证"}
