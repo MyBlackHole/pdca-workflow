@@ -6,8 +6,8 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "act",
-    "active": true,
+    "phase": "archive",
+    "active": false,
     "record": "T0223-0805-worker-adaptation",
     "scenario_type": "development",
     "created_at": "2026-08-05T13:45:00+08:00",
@@ -33,6 +33,6 @@
     "do": "2026-08-05T14:00:04+08:00",
     "check": "2026-08-05T14:35:52+08:00",
     "act": "2026-08-05T14:46:18+08:00",
-    "archive": null
+    "archive": "2026-08-05T14:48:02+08:00"
   }
 }
