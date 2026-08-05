@@ -1,2 +1,6 @@
 {"source":"grilling","summary":"发现 origin/feature/F-140-report-center 分支存在 cdm-data-cli 完整历史实现（48 源码+31 测试），本地工作区被 reset 仅剩 .pyc 残留；用户决策：忽略历史实现，从零重写，不参考远端分支","response":"decided-ignore-history","at":"2026-08-04T17:25:00+08:00"}
 {"source":"final_confirmation","summary":"T0217 终审 confirmed：cdm-data-cli 从零重写（忽略远端历史实现），三 Topic+verify-credentials、白名单参数、Keyset/JSONL/entity_key 按 T0215 契约；7 项 AC；批准进入 Do","response":"confirmed","at":"2026-08-04T17:33:37+08:00"}
+{"source":"check_confirmation","summary":"69 项测试全过 + 8 场景冒烟全绿，双轴审查 Blocking=0，收敛验证 valid:true","response":"confirmed","at":"2026-08-05T10:12:54+08:00"}
+{"source": "grilling", "at": "2026-08-05T10:13:46+08:00", "q": "可复用知识", "a": "① CLI 从零重写 + 惰性导入 + 构造器注入使核心层无生产依赖可测；② Keyset 无 offset 分页替代深 offset；③ fromisoformat 3.6 兼容（strptime 回退）；④ 结构化错误码 stderr 替代裸退出，可脚本断言"}
+{"source": "grilling", "at": "2026-08-05T10:13:46+08:00", "q": "流程改进", "a": "do 阶段 task.json 被外部破坏时用 transition-receipt 的 digest 核对 + 补写 states 重跑 transition 恢复；确认记录一律走 append-confirmation.py，手写时间戳会被 schema 拒"}
+{"source": "knowledge_decision", "at": "2026-08-05T10:13:46+08:00", "action": "wrote", "reason": "惰性导入/DI 测试隔离、Keyset 分页、ISO 3.6 兼容为普遍可复用模式，写入 report-center/cli-from-scratch-lazy-import.md"}

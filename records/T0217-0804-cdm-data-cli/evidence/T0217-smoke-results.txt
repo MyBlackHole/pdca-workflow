@@ -1,0 +1,8 @@
+AC-1 resource JSONL: exit=0 {"backup_domain_id":12,"source_table":"data_source","source_id":7,"source_create_time":"2026-08-01","source_update_time":"2026-08-02","attribute":{},"data_source_key":"12:data_source:7","data_source_name":"ds1","db_type":null,"data_source_type":null,"host_address":null,"service_port":null,"status":null}
+AC-4 task>=10:30 (应仅k2): exit=0 {"task_run_key":"k2","backup_domain_id":12,"protection_object_key":null,"protection_object_name":null,"db_type":null,"task_scene":null,"task_type":null,"task_status":"failed","task_time":null,"start_time":null,"end_time":null,"duration_seconds":null,"data_size_kb":null,"task_num":null,"initiator":null,"execute_type":null,"failure_reason":null,"sub_task_count":0,"success_sub_task_count":0,"failed_sub_task_count":0,"running_sub_task_count":0,"canceled_sub_task_count":0,"error_summary":"","aggregation_version":null,"attribute":{},"source_create_time":null,"source_update_time":"2026-08-04T11:00:00+00:00"}
+AC-7 capacity: exit=0 {"stat_date":null,"backup_domain_id":12,"storage_worker_key":"12:aio_data_nodes:1","total_capacity_bytes":100,"used_capacity_bytes":40,"collection_time":null}
+AC-1 未知Topic→TOPIC_UNSUPPORTED: exit=1 {"error_code":"TOPIC_UNSUPPORTED","message":"No such command 'evil'."}
+AC-1 未知参数→RPC_ARGUMENT_INVALID: exit=1 {"error_code":"RPC_ARGUMENT_INVALID","message":"No such option: --x"}
+AC-4 非法cursor→RPC_ARGUMENT_INVALID: exit=1 {"error_code":"RPC_ARGUMENT_INVALID","message":"invalid cursor value: 'not-a-time'"}
+AC-7 凭据拒绝→CLI_AUTH_FAILED: exit=1 {"error_code":"CLI_AUTH_FAILED","message":"credentials are not active"}
+AC-7 无runtime→CLI_EXEC_FAILED: exit=1 {"error_code":"CLI_EXEC_FAILED","message":"credential validator is not configured on this host"}

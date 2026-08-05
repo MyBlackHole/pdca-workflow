@@ -4,22 +4,29 @@
   "title": "cdm-data-cli 受控采集 CLI（Topic/JSONL/Keyset）",
   "parent": "T0214",
   "children": [],
-  "status": "Pending",
+  "status": "Completed",
   "meta": {
-    "phase": "plan",
+    "phase": "check",
     "active": true,
     "record": "T0217-0804-cdm-data-cli",
     "scenario_type": "development",
     "created_at": "2026-08-04T16:55:00+08:00",
     "convergence": [
       "三 Topic 子命令输出符合 JSONL 契约；参数白名单生效；复用既有 ORM 不改"
-    ]
+    ],
+    "completed_at": "2026-08-05T10:09:04+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "69 项测试全过 + 8 场景冒烟全绿；双轴审查 Blocking=0 且规范轴复审 PASS；收敛验证 valid:true（convergence-map + e1/e2/e3 已登记）",
+      "verdict_id": "V-T0217-confirmed-0805",
+      "at": "2026-08-05T10:12:02+08:00"
+    }
   },
   "states": {
     "created": "2026-08-04T16:55:00+08:00",
     "plan": "2026-08-04T16:55:00+08:00",
-    "do": null,
-    "check": null,
+    "do": "2026-08-05T10:05:45+08:00",
+    "check": "2026-08-05T10:09:04+08:00",
     "act": null,
     "archive": null
   }
