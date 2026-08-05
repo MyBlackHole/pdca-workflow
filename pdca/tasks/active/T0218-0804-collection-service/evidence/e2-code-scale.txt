@@ -1,0 +1,15 @@
+collection_service 代码规模（D1-D7 实现）
+   74 collection_service/job_spec.py
+  137 collection_service/jsonl.py
+  105 collection_service/recovery.py
+  134 collection_service/scheduler.py
+ 2202 总计
+---测试规模---
+   62 tests/test_filelock.py
+  150 tests/test_scheduler_jobs.py
+  159 tests/test_rpc_job_contract.py
+  103 tests/test_jsonl.py
+  243 tests/test_workers.py
+   97 tests/test_recovery.py
+  133 tests/test_app_start_safe.py
+  947 总计

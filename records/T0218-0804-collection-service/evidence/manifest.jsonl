@@ -1,0 +1,3 @@
+{"id":"e1-pytest-full","file":"e1-pytest-full.txt","kind":"pytest","size":1572,"digest":"sha256:29cb75171928a853d6208f2d5a2d77125903601a44ec0e862798d296473d0178","at":"2026-08-05T12:39:08+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6","AC-7","AC-8","AC-9"]}
+{"id":"e2-code-scale","file":"e2-code-scale.txt","kind":"code-scale","size":460,"digest":"sha256:65bf96ed18ae837aa73610bbf2758b0859fff9d9429c30c3d5562519defcd98a","at":"2026-08-05T12:39:17+08:00","criteria":["AC-4","AC-6","AC-7"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":343,"digest":"sha256:3d9dc0372848bb851fc17a0ee8bec466724b4a8ffb75983a7ff03fe2f038f8bf","at":"2026-08-05T12:40:21+08:00","criteria":["convergence-map"]}
