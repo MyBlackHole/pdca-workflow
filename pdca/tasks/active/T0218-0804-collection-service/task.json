@@ -6,8 +6,8 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "act",
-    "active": true,
+    "phase": "archive",
+    "active": false,
     "record": "T0218-0804-collection-service",
     "scenario_type": "development",
     "created_at": "2026-08-04T16:55:00+08:00",
@@ -33,6 +33,6 @@
     "do": "2026-08-05T12:00:01+08:00",
     "check": "2026-08-05T12:41:28+08:00",
     "act": "2026-08-05T13:36:55+08:00",
-    "archive": null
+    "archive": "2026-08-05T13:41:16+08:00"
   }
 }
