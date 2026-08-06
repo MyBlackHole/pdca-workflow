@@ -2,58 +2,65 @@
 
 ## 问题陈述
 
-rpc-epoll 调度层（T0213/T0214/T0215 完成，含 ONESHOT 事件、有界队列、
-worker 池、定时器堆、fdmap）已具备成熟事件循环骨架，但**未真正对接业务**：
+rpc-epoll 调度层（T0213/T0214/T0215 完成）已具备成熟事件循环骨架，但**未真正对接业务**：
 
-1. `rpc_conn_handler` 是"连接级一次性回调"：epoll 事件 → worker 出队 → 调用
-   handler 一次 → handler 返回后归还连接。
-2. `rpc_epoll_conn_handler`（rpc-server.cpp L360）在 handler 内把连接 fd
-   **强制恢复 O_NONBLOCK 清除（阻塞模式）**（L394-398），随后同步调用
-   `process_single_request`。
-3. `process_single_request`（L152，206 行）是巨型分发函数：`rpc_recv` 阻塞
-   读完整请求 → 同步处理 → 写回，17 个 `MT_*` 分支。业务无状态机，无半包
-   缓冲，无分段处理。
-4. 结果：epoll 仅用于 accept + 分发，业务实质仍是"每连接一 worker 阻塞式
-   同步服务器"。长耗时业务（大文件下载/上传）会长时间独占 worker，
-   reactor_count 扩展只对短请求生效。
+1. `rpc_conn_handler` 是"连接级一次性回调"：epoll 事件 → worker 出队 → 调用 handler 一次 → 归还。
+2. `rpc_epoll_conn_handler`（rpc-server.cpp L360）把连接 fd 强制恢复阻塞模式（L394-398），同步调用 `process_single_request`。
+3. `process_single_request`（L152，206 行）巨型分发：rpc_recv 阻塞读完整请求 → 同步处理 → 写回，17 个 MT_* 分支。业务无状态机、无半包缓冲、无分段处理。
+4. 客户端（rpc.cpp 13+ 处 rpc_conn_recv_msg、do_scp_*、fs-backup）全部同步阻塞。
+5. 结果：epoll 仅用于 accept+分发，业务实质是"每连接一 worker 阻塞式同步服务器"。长耗时业务独占 worker。
+
+## 决策（用户确认，P2 Grill 记录于 clarifications.jsonl）
+
+1. **重构范围：服务端 + 客户端都重构**（彻底异步化，wire 格式不变）
+2. **客户端形态：全部一次性重写**（rpc.cpp / do_scp_* / fs_backup 全改回调式）
+3. **worker 模型：去 worker 纯事件驱动**（单线程事件循环，类似 node.js/redis；事件回调驱动状态机，无业务线程独占）
+4. **TLS 异步化纳入本任务**（非阻塞 SSL_accept + 事件驱动，否则握手阻塞事件循环）
 
 ## 重构目标
 
-- **事件级回调**：epoll 层提供 readable/writable 事件回调（替代连接级一次性 handler）
-- **状态机驱动**：每个连接持有协议状态机（半包缓冲、帧解析状态、业务子状态），
-  由事件驱动推进，不阻塞 worker
-- **异步化**：大块传输（SCP 流）改为分段读写（read/write 可重入），worker 可
-  被其他连接复用
-- **保持协议兼容**：wire 格式不变（小端、T0217 已落地），仅重构服务端处理架构
+- **事件级回调**：epoll 层提供 readable/writable/close 事件回调，替代连接级一次性 handler
+- **纯事件驱动**：去掉 worker 池，业务全部在 reactor 线程事件回调中执行（短任务快速推进，无阻塞调用）
+- **状态机驱动**：每个连接持有协议状态机（半包缓冲 + 帧解析状态 + 业务子状态），事件驱动推进
+- **连接保持非阻塞**：删除 rpc_epoll_conn_handler 的阻塞模式恢复
+- **客户端异步化**：rpc_conn_* / do_scp_* / fs_backup 重写为回调式异步 API
+- **大块传输分段化**：SCP 流分段读写（read/write 可重入），事件驱动推进
+- **保持协议兼容**：wire 格式不变（T0217 小端已落地），仅重构处理架构
 
 ## 已知信息
 
 - epoll 层：`rpc_conn_handler` 签名 `int (*)(int connfd, void *ctx)`（rpc-epoll.h L25）
-- handler 一次性调用：worker_main L349 `r->ep->handler(connfd, r->ep->handler_ctx)`
-- ONESHOT 事件模型：`c->busy=1` 标记 worker 独占，事件循环不触碰（rpc-epoll.cpp L465-469）
-- 业务分发：`process_single_request`（rpc-server.cpp L152-357），17 个 MT 分支
-- 连接上下文：`rpc_service_woker_info`（conn_ctx_get/put/remove）
-- TLS 握手在 handler 内同步完成（tls_cert_server_handshake）
-- 既有测试：rpc_server_epoll_integration（65 PASS）、scp_stream（509 PASS）
-  均基于当前阻塞式 handler，重构后需适配
+- worker_main L349 一次性调用 handler；`keep!=0` 关闭连接，`keep==0` 归还重挂 EPOLLIN|ONESHOT
+- epoll 层仅挂 EPOLLIN|EPOLLONESHOT（L365/L446），无 EPOLLOUT 支持（需新增）
+- 连接上下文 `rpc_service_woker_info`（conn_ctx_get/put/remove）
+- TLS：tls_cert_server_handshake 同步 SSL_accept（rpc-server.cpp L403）
+- 客户端调用面：rpc.cpp 13+ 处 rpc_conn_recv_msg、rpc-command.cpp do_scp_download/upload（rpc_recv_frame 循环）、fs-backup/fsdeamon/fs_service.cpp rpc_recv/rpc_send
+- 既有测试：rpc_server_epoll_integration（65 PASS）、scp_stream（509 PASS）、multi_reactor、conn_limit、heart_beat、bench_*（全部基于当前阻塞 handler，重构后需重写适配）
 - T0217 已切协议层小端 + 帧头字节序无关 magic，wire 稳定
 
-## 信息缺口（P1 待核实）
+## 信息缺口（P1 已解部分）
 
-- epoll 层需新增的最小事件接口形态（readable/writable 回调如何挂载到现有
-  fdmap/ONESHOT 模型）
-- 大块传输（SCP upload/download）状态机如何与现有 rpc_io/rpc-command 的
-  长度前缀 + STREAM 帧协议对接
-- worker 归还语义调整（busy 标记何时释放：状态机挂起 vs 完成）
-- TLS 握手异步化是否纳入本任务范围
-- 既有 509/65 测试如何适配新回调模型
+- ~~重构范围边界~~ → 服务端+客户端都重构（用户确认）
+- ~~客户端形态~~ → 全部一次性重写（用户确认）
+- ~~worker 模型~~ → 去 worker 纯事件驱动（用户确认）
+- ~~TLS 异步化~~ → 纳入本任务（用户确认）
+- 剩余：SCP 流式状态机与现有 STREAM 帧协议/长度前缀对接的具体设计；epoll 事件接口最小形态；测试重写策略
 
-## 验收标准（草案，待 P1 澄清）
+## 验收标准（P2 更新版）
 
-- [ ] AC-1: epoll 层提供事件级回调（readable/writable），替代连接级一次性 handler
-- [ ] AC-2: 业务协议解析改为状态机（半包缓冲 + 帧解析状态 + 业务子状态）
-- [ ] AC-3: 连接 fd 保持非阻塞，删除 rpc_epoll_conn_handler 的阻塞模式恢复
-- [ ] AC-4: process_single_request 巨型分发重构为按消息类型的处理函数注册表/回调
-- [ ] AC-5: 大块传输（SCP 流）分段读写，worker 可被其他连接复用
-- [ ] AC-6: 全量回归通过（rpc_server_epoll_integration/scp_stream 等适配后全绿）
-- [ ] AC-7: 性能不劣化（bench_download/bench_concurrent 与 T0215 基线对比）
+- [ ] AC-1: epoll 层提供事件级回调（readable/writable/close），替代连接级一次性 handler
+- [ ] AC-2: 去掉 worker 池，业务在 reactor 线程事件驱动中执行（纯事件驱动，无业务线程独占）
+- [ ] AC-3: 业务协议解析改为状态机（半包缓冲 + 帧解析状态 + 业务子状态）
+- [ ] AC-4: 连接 fd 保持非阻塞，删除 rpc_epoll_conn_handler 的阻塞模式恢复
+- [ ] AC-5: process_single_request 巨型分发重构为按消息类型的处理函数注册表/回调
+- [ ] AC-6: 大块传输（SCP 流）分段读写，事件驱动推进
+- [ ] AC-7: 客户端异步化：rpc_conn_* / do_scp_* / fs_backup 重写为回调式异步 API
+- [ ] AC-8: TLS 握手异步化（非阻塞 SSL_accept + 事件驱动）
+- [ ] AC-9: 全量回归通过（rpc_server_epoll_integration/scp_stream 等适配后全绿）
+- [ ] AC-10: 性能不劣化（bench_download/bench_concurrent/RPS 与 T0215 基线对比）
+
+## 风险
+
+- 纯事件驱动下 CPU 密集任务阻塞事件循环（bench_rps 的 echo 场景不受影响，但加密/校验和密集操作需评估）
+- 客户端一次性重写影响面大，需同步迁移所有调用方
+- TLS 异步化（SSL_read/SSL_write 非阻塞）复杂度高，需保留非 TLS 路径回归保障

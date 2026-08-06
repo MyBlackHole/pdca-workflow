@@ -1,0 +1,2 @@
+{"round": 1, "source": "grilling", "question": "重构范围边界？", "answer": "服务端+客户端都重构（彻底异步化）", "recommended": "纯服务端重构", "at": "2026-08-06T08:08:51.275709+08:00"}
+{"round": 2, "source": "grilling", "question": "客户端异步化 API 形态？", "answer": "全部一次性重写（rpc.cpp/do_scp_*/fs_backup 全改回调式）", "recommended": "新增异步 API 分阶段迁移", "at": "2026-08-06T08:08:51.275709+08:00"}
