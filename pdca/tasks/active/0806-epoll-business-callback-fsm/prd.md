@@ -46,7 +46,7 @@ rpc-epoll 调度层（T0213/T0214/T0215 完成）已具备成熟事件循环骨�
 - ~~TLS 异步化~~ → 纳入本任务（用户确认）
 - 剩余：SCP 流式状态机与现有 STREAM 帧协议/长度前缀对接的具体设计；epoll 事件接口最小形态；测试重写策略
 
-## 验收标准（P2 更新版）
+## 验收标准
 
 - [ ] AC-1: epoll 层提供事件级回调（readable/writable/close），替代连接级一次性 handler
 - [ ] AC-2: 去掉 worker 池，业务回调在 Reactor 事件循环内非阻塞推进（nginx worker 模型，无业务线程独占）
