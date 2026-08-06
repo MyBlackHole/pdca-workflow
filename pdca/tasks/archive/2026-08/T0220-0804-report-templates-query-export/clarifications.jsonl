@@ -9,5 +9,5 @@
 {"source":"check_confirmation","summary":"T0220 Check verdict confirmed：8 条 AC 全达成，Check 阶段新增 16 套全模板 PG 冒烟+6 精确单测，修复 3 个真实 SQL bug（子串误判/域列歧义/常量 GROUP BY），收敛 map v4 valid:true","response":"confirmed","at":"2026-08-06T12:00:45+08:00"}
 {"source": "grilling", "topic": "知识沉淀范围", "question": "Check 阶段修复的报表 SQL 构建类坑（别名子串误判/JOIN 域列歧义/常量 GROUP BY）是否值得沉淀为可复用知识？", "recommended": "沉淀报表 SQL 坑位", "answer": "沉淀报表 SQL 坑位", "summary": "沉淀到 report-center/report-web-report-sql-patterns.md，覆盖固定报表 SQL 构建三类坑 + keyset 分批导出共识模式，供 T0221~ 报表任务复用", "at": "2026-08-06T13:58:21+0800", "response": "confirmed"}
 {"source": "knowledge_decision", "at": "2026-08-06T14:00:35+0800", "action": "wrote", "reason": "报表 SQL 构建三类坑+keyset 导出共识可复用"}
-{"source": "grill", "topic": "架构改进跟进", "question": "Ac4 架构改进遗留项（异步导出/分布式配额/参数化）是否创建跟进任务？", "recommended": "创建 T0223", "answer": "创建 T0223 跟进", "summary": "创建 T0223-0804-async-export 挂 T0220 children（异步/后台导出、分布式配额、超时/截断参数化），phase=plan", "at": "2026-08-06T14:24:34+0800", "response": "confirmed"}
-{"source": "followup", "topic": "跟进任务", "followup_task": "T0223-0804-async-export", "at": "2026-08-06T14:24:34+0800"}
+{"source": "grill", "topic": "架构改进跟进", "question": "Ac4 架构改进遗留项（异步导出/分布式配额/参数化）是否创建跟进任务？", "recommended": "创建 T0224", "answer": "创建 T0224 跟进", "summary": "创建 T0224-0804-async-export 挂 T0220 children（异步/后台导出、分布式配额、超时/截断参数化），phase=plan", "at": "2026-08-06T14:24:34+0800", "response": "confirmed"}
+{"source": "followup", "topic": "跟进任务", "followup_task": "T0224-0804-async-export", "at": "2026-08-06T14:24:34+0800"}

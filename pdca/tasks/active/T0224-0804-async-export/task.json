@@ -1,5 +1,5 @@
 {
-  "id": "T0223",
+  "id": "T0224",
   "slug": "0804-async-export",
   "title": "跟进：异步导出与分布式配额（T0220 遗留架构改进）",
   "parent": "T0220",
@@ -8,7 +8,7 @@
   "meta": {
     "phase": "plan",
     "active": true,
-    "record": "T0223-0804-async-export",
+    "record": "T0224-0804-async-export",
     "scenario_type": "development",
     "created_at": "2026-08-06T12:06:00+08:00",
     "convergence": [
