@@ -3,10 +3,10 @@
   "slug": "0804-report-templates-query-export",
   "title": "报表模板注册表、16 套固定查询与 CSV/PDF 同步导出",
   "parent": "T0214",
-  "children": [],
+  "children": ["T0223"],
   "status": "Completed",
   "meta": {
-    "phase": "check",
+    "phase": "act",
     "active": true,
     "record": "T0220-0804-report-templates-query-export",
     "scenario_type": "development",
@@ -20,6 +20,11 @@
       "reason": "8 条 AC 全达成；Check 新增 16 套全模板 PG 冒烟+6 精确单测，修复 3 个真实 SQL bug（子串别名误判/域列歧义/常量 GROUP BY）；全量 284 passed；收敛 map v4 valid:true；Grill 确认 4 项关键决策",
       "verdict_id": "T0220-check-20260806",
       "at": "2026-08-06T12:00:45+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "结论成立且沉淀可复用知识：报表 SQL 构建三类坑 + keyset 批次导出共识写入 knowledge/report-center/report-web-report-sql-patterns.md，供 T0221 及后续报表任务复用",
+      "at": "2026-08-06T12:05:00+08:00"
     }
   },
   "states": {
@@ -27,7 +32,7 @@
     "plan": "2026-08-05T17:43:29+08:00",
     "do": "2026-08-05T17:44:44+08:00",
     "check": "2026-08-06T10:04:06+08:00",
-    "act": null,
+    "act": "2026-08-06T12:01:19+08:00",
     "archive": null
   }
 }
