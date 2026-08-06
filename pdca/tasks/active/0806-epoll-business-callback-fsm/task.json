@@ -1,0 +1,22 @@
+{
+  "id": "T0222",
+  "slug": "0806-epoll-business-callback-fsm",
+  "title": "rpc-epoll 对接业务：协议业务重构为回调 + 状态机（取代阻塞式 handler）",
+  "parent": null,
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-06T08:05:18.313773+08:00",
+    "record": "T0222-0806-epoll-business-callback-fsm",
+    "convergence": [
+      "T0222-0806-epoll-business-callback-fsm"
+    ],
+    "followup_of": null
+  },
+  "states": {
+    "created": "2026-08-06T08:05:18.313773+08:00"
+  }
+}

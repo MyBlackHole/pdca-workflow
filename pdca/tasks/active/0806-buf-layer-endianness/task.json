@@ -4,7 +4,7 @@
   "title": "buf 层(rpc_conn_* 高层)字节序统一切小端：84 处 buf_put_u32/get_u32 全套切换",
   "parent": null,
   "children": [],
-  "status": "Pending",
+  "status": "Paused",
   "meta": {
     "phase": "plan",
     "active": true,
@@ -14,7 +14,9 @@
     "convergence": [
       "T0218-0806-buf-layer-endianness"
     ],
-    "followup_of": "T0217-0805-rpc-serialization-hardening"
+    "followup_of": "T0217-0805-rpc-serialization-hardening",
+    "paused_at": "2026-08-06T08:04:49.825798+08:00",
+    "paused_reason": "优先架构重构（epoll 业务对接+回调状态机），字节序细节让位，Plan 阶段保留"
   },
   "states": {
     "created": "2026-08-06T07:56:29.478481+08:00"
