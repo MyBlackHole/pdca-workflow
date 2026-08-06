@@ -1,0 +1,1 @@
+{"round": 1, "source": "triage", "question": "buf_put_u32/get_u32 被 rdbcomm 共享，字节序统一策略？", "answer": "全局切小端同步改 rdbcomm（两端同步升级）", "recommended": "rpc 层隔离改 LE（rdbcomm 影响为零）", "at": "2026-08-06T07:59:34.682958+08:00"}

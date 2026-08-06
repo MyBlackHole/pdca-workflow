@@ -3,31 +3,36 @@
 ## 问题陈述
 
 T0217 已完成协议层（rpc-protocol/rpc-msg/帧头/STREAM INIT body）小端化，
-但 rpc_conn_* 高层封装的 buf 层（conn->msgw/msgr）仍保持大端
-（buf_put_u32/buf_get_u32），共 84 处调用（rpc-server.cpp 为主）。
-当前状态：buf 层收发对称自洽，本机测试通过，但 wire 格式混杂大端（buf 层）
-与小端（协议层），存在跨机异构风险与维护负担。
+但 buf 工具（libs/buf.h 的 buf_put_u32/buf_get_u32）仍保持大端，被 rpc_conn_*
+高层封装（84 处调用）与 rdbcomm 协议（server.c/client.c）共享。当前 wire
+格式混杂大端（buf 层）与小端（协议层），存在跨机异构风险与维护负担。
+
+## 决策（用户确认）
+
+**全局切小端同步改 rdbcomm**：buf_put_u32/get_u32 全套切换为小端，
+同步修改 rdbcomm/server.c + client.c 的 RDBCOMM 协议编解码（两端同步升级），
+wire 格式完全统一。
 
 ## 已知信息
 
-- buf 层 API：buf_put_u32/buf_get_u32/buf_put_u16/buf_get_u16 等位于 libs/ 或 rpc 公共头
-- 84 处调用点集中在 rpc-server.cpp 的 rpc_conn_* 高层封装（lstat/chmod/chown/access/upload/download 等）
-- 需要协调 rdbcomm 共用方（同一 buf 工具被 rdbcomm 模块使用，需确认改动是否波及其 wire 格式）
-- STREAM INIT body 已用 buf_put_u32_le/buf_get_u32_le 切换（T0217 完成），可作参照
-- 用户决策（T0217 Ac1）：纳入后续任务处理
+- buf API：libs/buf.h（buf_put_u32/buf_get_u32/buf_put_u16/buf_get_u16/buf_put_u8 等）
+- buf_put_u32 调用方：rpc/（rpc-server.cpp rpc_conn_* 高层、rpc-command.cpp、rpc.cpp、rpc-msg.c）、rdbcomm/（server.c、client.c）、fs-backup/fsdeamon/unix_server.cpp、libs/unix_ipc.c
+- rdbcomm 用 buf_put_u32 构建 RDBCOMM_MSG_STATUS/HANDLE 消息（server.c L371-373/L403-405），get_u32 解析（L470/L574-576）
+- STREAM INIT body 已用 buf_put_u32_le 切换（T0217 完成，rpc-msg.h L107）
+- 协议层零大端残留已验证（T0217 AC-4）
+- T0217 提交 c4549f4a，buf_put_u32_le/buf_get_u32_le 变体已存在
 
-## 信息缺口
+## 信息缺口（P1 待核实）
 
-- buf_put_u32/get_u32 的调用方完整清单（84 处逐一核对收发对称）
-- rdbcomm 是否使用 buf_put_u32 及其 wire 格式是否与 rpc 共享
-- 是否有既有测试覆盖 buf 层大端路径（download_fileats/upload_fileats 等）
-- RPC_FRAME_VERSION 是否需再提升（buf 层 wire 变更属不兼容变更）
+- fs-backup/fsdeamon/unix_server.cpp、libs/unix_ipc.c 的 buf_put_u32 用途（是否 rdbcomm 相关或独立协议）
+- rdbcomm 是否有独立测试覆盖（wire 格式断言）
+- 全局 buf 切 LE 是否影响 RPC_FRAME_VERSION 判断（buf 层 wire 变更属不兼容变更，两端同步升级即可）
 
-## 验收标准（草案，待 P1 澄清）
+## 验收标准（P1 更新版）
 
-- [ ] AC-1: buf_put_u32/get_u32 全套切换为 LE（含 u16/u64 变体）
-- [ ] AC-2: 84 处调用点逐一核对收发对称，无半边改半边
-- [ ] AC-3: rdbcomm 共用方兼容性确认（不受影响或已协调）
-- [ ] AC-4: 协议版本提升（如需）混跑返回 PROTO_VERSION
-- [ ] AC-5: 全量回归通过（含 download/upload 流路径）
-- [ ] AC-6: buf 层大端零残留静态扫描
+- [ ] AC-1: buf_put_u32/get_u32/buf_put_u16/get_u16 全套切换为 LE
+- [ ] AC-2: rpc_conn_* 高层 84 处调用点逐核对，收发对称无半边改半边
+- [ ] AC-3: rdbcomm server.c/client.c RDBCOMM 协议编解码同步切 LE，两端同步升级
+- [ ] AC-4: fs-backup/unix_ipc 等其余调用方核对（是否受影响或同步）
+- [ ] AC-5: 全量回归通过（rpc 全部测试 + rdbcomm 相关 + download/upload 流路径）
+- [ ] AC-6: 全仓库 buf 大端调用零残留静态扫描
