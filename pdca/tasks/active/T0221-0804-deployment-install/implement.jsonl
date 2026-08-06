@@ -1,0 +1,3 @@
+{"file": "knowledge/report-center/report-center-decomposition-index.md", "reason": "T0221 为 T0214 拆解子任务，索引提供与 T0215~T0222 边界衔接", "action": "read", "at": "2026-08-06T17:00:57+0800"}
+{"file": "knowledge/report-center/db-adapter-pg-practices.md", "reason": "升级/回退依赖 migration up/down+rollback 模式（V001/V002 down.sql），设计沿用", "action": "read", "at": "2026-08-06T17:00:57+0800"}
+{"file": "knowledge/report-center/cli-from-scratch-lazy-import.md", "reason": "rdb-report-collection --check-config 命令入口与惰性导入模式参考", "action": "read", "at": "2026-08-06T17:00:57+0800"}

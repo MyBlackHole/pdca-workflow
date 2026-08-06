@@ -4,9 +4,9 @@
   "title": "两包两阶段安装部署与配置校验",
   "parent": "T0214",
   "children": [],
-  "status": "InProgress",
+  "status": "Pending",
   "meta": {
-    "phase": "do",
+    "phase": "plan",
     "active": true,
     "record": "T0221-0804-deployment-install",
     "scenario_type": "development",
@@ -18,7 +18,7 @@
   "states": {
     "created": "2026-08-04T16:55:00+08:00",
     "plan": "2026-08-05T09:52:00+08:00",
-    "do": "2026-08-06T17:02:28+08:00",
+    "do": null,
     "check": null,
     "act": null,
     "archive": null
