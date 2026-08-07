@@ -1,0 +1,6 @@
+{"source": "direction_confirm", "summary": "异步导出:落盘文件+下载端点;自建进程内后台队列+任务状态表(rpt_export_task);读池配额Redis分布式租约(复用RedisKeyStore);超时/截断/配额全量接入report.cfg(web.export与web.quota);既有同步导出保留,超限自动转异步", "response": "confirmed", "at": "2026-08-07T10:10:36+08:00"}
+{"source": "final_confirmation", "summary": "异步导出(落盘+下载端点/进程内队列/rpt_export_task表/超限自动转异步/不受30s与4000行限制)+Redis分布式租约配额+导出参数接入report.cfg[web.export][web.quota]，7条AC终审通过", "response": "confirmed", "at": "2026-08-07T10:12:46+08:00"}
+{"source": "grill", "q": "异步导出任务的读池配额保护是否到位？", "a": "异步任务不经 export_guard 配额限制，但 ExportJobQueue workers 默认 1 天然串行限流；若运维调大 workers 需显式接入配额。风险已在 commit 中标注为中等，依赖默认配置可控。", "at": "2026-08-07T10:59:00+08:00"}
+{"source": "grill", "q": "无 Redis 时配额分布式失效是否影响正确性？", "a": "fallback 本地 BoundedSemaphore 保证单实例正确性与原行为一致，多实例退化为各自为政（同 T0220 现状），需配置告警提示 Redis 缺失。", "at": "2026-08-07T10:59:00+08:00"}
+{"source": "check_confirmation", "reason": "用户确认结论成立，进入 Act 完成知识沉淀与归档", "at": "2026-08-07T11:00:00+08:00", "response": "confirmed", "summary": "用户确认 T0224 结论成立"}
+{"source": "knowledge_decision", "at": "2026-08-07T11:12:00+08:00", "action": "wrote", "reason": "异步后台队列+状态机+落盘清理+Redis分布式配额租约+独立表迁移回滚适配四类模式，供后续报表/服务层复用"}

@@ -1,0 +1,15 @@
+{"file": "knowledge/report-center/report-web-report-sql-patterns.md", "reason": "keyset 导出/CSV-PDF 同步导出的 SQL 三类坑共识，异步导出复用 _iter_all 需沿用", "action": "read", "at": "2026-08-07T10:15:00+0800"}
+{"file": "knowledge/report-center/db-adapter-pg-practices.md", "reason": "V002__export_task 迁移 up/down 成对+审计，沿用 db-adapter 迁移实践", "action": "read", "at": "2026-08-07T10:15:00+0800"}
+{"file": "knowledge/report-center/report-center-decomposition-index.md", "reason": "report-web 与 collection-service 边界，异步导出只在 report-web 进程内", "action": "read", "at": "2026-08-07T10:15:00+0800"}
+{"file": "knowledge/report-center/deployment-assembly-patterns.md", "reason": "report.cfg 配置接线与 systemd 零参启动回退模式，参数可配置化参照", "action": "read", "at": "2026-08-07T10:15:00+0800"}
+{"file": "migrations/postgresql/V003__export_task.up.sql/down.sql", "reason": "AC-1/AC-7 rpt_export_task 表（任务状态持久化）迁移 up/down 成对", "action": "write", "at": "2026-08-07T11:20:00+0800"}
+{"file": "report_center_db/postgres/export_task.py", "reason": "AC-1/AC-2 rpt_export_task 仓库 CRUD/状态流转 CAS/过期查询", "action": "write", "at": "2026-08-07T11:20:00+0800"}
+{"file": "report_center_db/protocol/models.py", "reason": "ExportTask 领域模型（dataclass）", "action": "update", "at": "2026-08-07T11:20:00+0800"}
+{"file": "report_web/report/export_async.py", "reason": "AC-1/AC-2/AC-4 进程内后台队列+状态机+落盘+过期清理（cleanup 周期线程）", "action": "write", "at": "2026-08-07T11:20:00+0800"}
+{"file": "report_web/report/quota.py", "reason": "AC-5 ReadPoolQuota 双后端：本地 BoundedSemaphore fallback + Redis 分布式租约（INCR/DECR+TTL）", "action": "update", "at": "2026-08-07T11:20:00+0800"}
+{"file": "report_web/app.py", "reason": "AC-1/2/3/6 异步端点+超限转异步+create_app 参数接线（_load_web_config）+ExportJobQueue 装配", "action": "update", "at": "2026-08-07T11:20:00+0800"}
+{"file": "report_web/report/export_service.py", "reason": "AC-4/AC-6 支持 csv_max_rows=None 不限行 + batch_size 可配置（替换硬编码 _BATCH_SIZE）", "action": "update", "at": "2026-08-07T11:20:00+0800"}
+{"file": "deploy/conf/report.cfg.example", "reason": "AC-6 [web.export]/[web.quota] section 示例", "action": "update", "at": "2026-08-07T11:20:00+0800"}
+{"file": "tests/test_migrations.py", "reason": "AC-7 test_down_rolls_back_tables 适配 V003 独立表（倒序回滚全部 specs）", "action": "update", "at": "2026-08-07T11:20:00+0800"}
+{"file": "tests/conftest.py", "reason": "rpt_export_task 加入清表列表", "action": "update", "at": "2026-08-07T11:20:00+0800"}
+{"file": "docs/adr/ADR-0015-async-export-distributed-quota.md", "reason": "异步导出+分布式配额架构决策记录", "action": "write", "at": "2026-08-07T11:20:00+0800"}
