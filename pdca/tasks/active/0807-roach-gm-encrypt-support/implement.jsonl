@@ -1,0 +1,3 @@
+# 知识注入
+{"record":"T0148-0731-nbu-transfer-encrypt-research/evidence/prd.md","reason":"NBU 传输加密调研方法（DTE 模型、库栈、证书体系）与本任务方法同源，但对象不同","action":"参考其静态分析+证书取证的方法与结论结构","at":"2026-08-07T15:10:00+08:00"}
+{"record":"T0164-0731-gm-tls-benchmark/evidence/tlcp-summary-report.md","reason":"国密 TLCP 套件吞吐/算法实现背景，用于理解 SM4/SM2 性能与链路成本","action":"参考国密套件命名(ECC-SM4-SM3)与性能边界","at":"2026-08-07T15:10:00+08:00"}
