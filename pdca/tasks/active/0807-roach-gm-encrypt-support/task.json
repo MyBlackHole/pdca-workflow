@@ -6,8 +6,8 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "act",
-    "active": true,
+    "phase": "archive",
+    "active": false,
     "record": "T0228-0807-roach-gm-encrypt-support",
     "scenario_type": "research",
     "created_at": "2026-08-07T14:49:00+08:00",
@@ -36,6 +36,6 @@
     "do": "2026-08-07T15:09:05+08:00",
     "check": "2026-08-07T15:15:24+08:00",
     "act": "2026-08-07T15:43:39+08:00",
-    "archive": null
+    "archive": "2026-08-07T15:46:32+08:00"
   }
 }
