@@ -1,0 +1,6 @@
+{"round":1,"question":"调研报告的产出位置与形式？","answer":"任务目录内 research-report.md + 关键结论沉淀到 knowledge/","recommended":"任务目录内 research-report.md + 沉淀 knowledge","source":"grilling","at":"2026-08-07T00:00:00+08:00"}
+{"round":2,"question":"调研范围？","answer":"全链路：捕获+准备+恢复","recommended":"全链路","source":"grilling","at":"2026-08-07T00:00:00+08:00"}
+{"source":"direction_confirm","summary":"目标=确立XtraBackup8.0.25支持的增量实现方案清单;范围=备份侧增量捕获(LSN对比/page-tracking redo归档)+增量prepare(apply-log-only/delta/redo-lag/rollback-only)+incremental-history元数据,产出支持矩阵与各方案技术要点;产出=任务目录research-report.md+沉淀knowledge","response":"confirmed","at":"2026-08-07T00:00:00+08:00"}
+{"round":3,"question":"增量方案的调研边界？","answer":"需补充第三方/业界其它增量技术,以及本项目缺失(未实现)的增量方案,通过联网调查","recommended":"补充第三方与缺失方案","source":"grilling","at":"2026-08-07T00:00:00+08:00"}
+{"source":"final_confirmation","summary":"T0225 XBack8.0增量实现方案调研：方案清单+技术要点+第三方/缺失方案+支持矩阵；AC1-9全齐；用户批准进入Do","response":"confirmed","at":"2026-08-07T10:28:16+08:00"}
+{"round":4,"question":"（Ch2 grill自审）调研方法是否充分？是否有遗漏关键信息来源？结论是否有替代解释？","answer":"方法=源码逐行锚点+联网官方文档双向佐证；缺失项(--page-tracking/rollback-only/redo-lag)经本仓grep实检确认非转述；唯一已知边界=未实际编译运行。","recommended":"结论可靠，标注静态分析边界","source":"grill","at":"2026-08-07T00:00:00+08:00"}

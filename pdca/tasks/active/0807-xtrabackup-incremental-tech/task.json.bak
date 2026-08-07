@@ -1,0 +1,26 @@
+{
+  "id": "T0225",
+  "slug": "0807-xtrabackup-incremental-tech",
+  "title": "GoldendB-XtraBackup 8.0 增量实现技术调研",
+  "parent": null,
+  "children": [],
+  "status": "InProgress",
+  "meta": {
+    "phase": "do",
+    "active": true,
+    "scenario_type": "research",
+    "record": "T0225",
+    "created_at": "2026-08-07T10:20:00+08:00",
+    "convergence": [
+      "T0225-0807-xtrabackup-incremental-tech"
+    ]
+  },
+  "states": {
+    "created": "2026-08-07T10:20:00+08:00",
+    "plan": "2026-08-07T10:28:00+08:00",
+    "do": "2026-08-07T10:28:52+08:00",
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

@@ -1,12 +1,12 @@
 {
-  "id": "T0225",
+  "id": "T0227",
   "slug": "0807-rpc-socket-reuse-idle-reclaim",
   "title": "研究：rpc 复用 socket 无关闭时机的空闲回收方案",
   "parent": null,
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "check",
+    "phase": "act",
     "active": true,
     "scenario_type": "research",
     "created_at": "2026-08-07T10:14:01+08:00",
@@ -22,6 +22,11 @@
       "verdict_id": "verdict-20260807-rpc-idle",
       "at": "2026-08-07T11:27:13+08:00"
     },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "方案方向已确认且可实施，随实现跟进任务推进；知识已沉淀至 linux-epoll-eventloop/rpc-conn-idle-reclaim.md",
+      "at": "2026-08-07T11:31:00+08:00"
+    },
     "completed_at": "2026-08-07T10:38:33+08:00"
   },
   "states": {
@@ -29,7 +34,7 @@
     "plan": "2026-08-07T10:14:01+08:00",
     "do": "2026-08-07T10:36:13+08:00",
     "check": "2026-08-07T10:38:33+08:00",
-    "act": null,
+    "act": "2026-08-07T11:27:39+08:00",
     "archive": null
   }
 }
