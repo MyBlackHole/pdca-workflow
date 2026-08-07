@@ -24,7 +24,13 @@
 |------|-----------|:---:|----------|------|
 | 全表扫描比对页 LSN 增量（default） | InnoDB 页 | ✅ 已实现 | `--incremental(-basedir/-lsn)` | 无 |
 | Changed-Page-Bitmap 加速增量 | Percona 页跟踪位图 | ✅ 已实现 | 同上 + Server 开启 `innodb_track_changed_pages=ON` | **Percona Server 8.0** |
+| Redo Log Archiving（归档支撑） | MySQL 8.0 redo 归档 | ✅ 已实现 | `innodb_redo_log_archive_dirs` + 备份 | MySQL 8.0 架构 |
+| 增量 prepare（delta 应用） | PXB | ✅ 已实现 | `--prepare --apply-log-only` + `--incremental-dir` | 基线全备 |
+| 历史元数据增量起点 | PXB 历史表 | ✅ 已实现 | `--incremental-history-name/-uuid` | Percona Schema 历史表 |
 | 官方 page tracking 页级增量 | MySQL 8.0.17+ | ❌ 缺失（8.0.27+） | `--page-tracking` | mysqlbackup 组件 |
+| 并行 delta 合并 prepare | — | ❌ 缺失（8.4.0-3+） | `--prepare --parallel` | 新版本 |
+| binlog / PITR 增量 | binlog | 🟢 互补 | `mysqlbinlog` 回放 | 逻辑级 |
+> `🟢 互补`：XtraBackup 会复制 redo/binlog 供回放，但逻辑回放本身名称归属 binlog 工具链。
 
 > **🅰️ 口径澄清（重要）**：若以「**真增量 = 免全表扫描、只读变化页**（page tracking / bitmap）」为界，剔除「LSN 全表扫描」后：本项目 8.0.25 的**真增量仅支持 Percona Server**（changed-page bitmap）；官方 MySQL 与 MariaDB(10.2+) 在 8.0.25 上**没有真增量**——官方 MySQL 需升级 8.0.27+ 用官方 page-tracking，MariaDB 始终只能用 LSN 全扫描（无官方 page tracking、无 bitmap）。本报告其余部分同时保留「LSN 全扫描增量」作为基础能力口径；两档均已在支持矩阵中标注。
 
@@ -42,8 +48,14 @@
 | 4 | **官方 page tracking（引擎位图）** | MySQL | 8.0.17 | —（引擎内部，Clone 引入） | ✅ | ❌（引擎在，PXB 端 8.0.27+） |
 | 5 | **MEB 消费官方 page tracking** | MySQL（商业） | MEB 8.0.18 | `mysqlbackup --incremental=page-track` | ✅ | ❌（需 MEB） |
 | 6 | **PXB 消费官方 page tracking** | MySQL / Percona | PXB 8.0.27 | `--page-tracking` | ✅ | ❌（8.0.25 缺失） |
+| 7 | **redo 归档（增量支撑）** | MySQL 8.0 / PXB | MySQL 8.0.17 | `innodb_redo_log_archive_dirs` | —（支撑机制） | ✅ 已实现 |
+| 8 | **增量 prepare（delta 合并）** | PXB | 8.0（全系） | `--prepare --apply-log-only --incremental-dir` | —（还原阶段） | ✅ 已实现 |
+| 9 | **历史元数据续作** | PXB | 8.0（全系） | `--incremental-history-name/-uuid` | —（LSN 选取） | ✅ 已实现 |
+| 10 | **并行 delta 合并 prepare** | PXB | 8.4.0-3+ | `--prepare --parallel` | —（还原阶段） | ❌ 缺失 |
+| 11 | **binlog / PITR 逻辑增量** | MySQL / MariaDB | 任意 | `mysqlbinlog ... \| mysql` | 逻辑级（非物理） | 🟢 互补 |
+| 12 | **mysqlbinlog --flashback 闪回** | MySQL | 官方补丁（bug#65178） | 逆序 binlog 反操作 | 逻辑级 | ❌（非官方） |
 
-> 真增量口径=免全表扫描、只读变化页。增量 prepare / 并行 delta 合并 / binlog 逻辑 / flashback / 历史元数据(LSN 起点选取) 均属**还原或逻辑级**辅助阶段，不计入本总表。
+> 真增量口径=免全表扫描、只读变化页；逻辑级/还原机制标注「—」。
 
 ---
 
@@ -63,6 +75,7 @@
     0xFFFFFFFF   空槽结束标记 (finalize)
   配套 <name>.meta 元信息（page_size/space_id/space_flags, 由 xb_write_delta_metadata 写）
   ```
+- **prepare 回写**：`xtrabackup_apply_delta()`（xtrabackup.cc:5393）读 delta 块、解析页号表并覆写目标页（5505-5572，含压缩页 punched-hole 5105-5571）。
 - **开关**：`--incremental-force-scan` 强制忽略位图/页跟踪、走全扫描（xtrabackup.cc:884-888，4013-4018）。
 - **局限**：全表扫描读全部页，变化页占比低时 IO 开销大。
 
@@ -75,6 +88,29 @@
 - **版本依赖**：Percona Server 8.0（XtraDB 在线日志位图；此算法 Per-8.0.27 起被官方 page tracking 取代，其在官方 PS 已废弃）。
 - **局限**：无此变量则全扫描；位图区间缺失会打 warning 并回退全扫描（changed_page_bitmap.cc:623-719）。
 
+#### A3 Redo Log Archive（redo 归档支撑机制）
+
+- **触发**：服务端配置 `innodb_redo_log_archive_dirs`（`label:dir;`）；`Archived_Redo_Log_Monitor` 线程解析并启动（redo_log.cc:639-651,653）。
+- **动作**：归档线程调用 `innodb_redo_log_archive_start(label, subdir)` 由服务端把 redo 持续写归档子目录（redo_log.cc:700-736）。
+- **一致性意义**：备份期间 redo 可能被回收覆盖；归档使其可被继续读取，保证增量 prepare 的 redo 前滚不缺段。当主 redo 落后归档区时，`copy_once()` 切换为读归档（redo_log.cc:1073-1105,1034-1059）。
+- **不依赖增量特有的**：全量/增量备份均可启用；增量 prerto 以该机制获取一致性 redo 位。
+
+#### A4 增量 prepare（合并与还原链路）
+
+- **`--apply-log-only`**：pre 加管理距离 `srv_apply_log_only`（xtrabackup.cc:6580），仅前滚 redo/合并 delta、**不**把数据页刷盘，以便继续叠加下一个增量；每层增量 prepare 后元数据写 `log-applied`（xtrabackup.cc:6748）。
+- **delta 应用**：对所有增量目录，`xtrabackup_apply_deltas()`（xtrabackup.cc:6535-6561）→ 每个 delta 空间 `xtrabackup_apply_delta()` 按页号回写。
+- **LSN 重定向**：prepare 增量时以 `incremental_to_lsn / incremental_last_lsn` 的较大值作为前滚起点（xtrabackup.cc:2324-2340）；恢复完成后校验 `log_get_lsn >= incremental_to_lsn`（6709-6721）。
+- **checkpoint 读取：**`xtrabackup_read_metadata()` 从 deltas 目录 `xtrabackup_checkpoints` 读 `from_lsn/to_lsn/last_lsn/flushed_lsn`（xtrabackup.cc:7571-7583，其赋值在 7581-7583）。
+- **还原收尾**：最后一次不带 `--apply-log-only` 的 prepare 执行 finalize（xtrabackup.cc:6787-6813）。
+- **❗已移除项（在本版本缺失）**：`--rollback-only`、`--redo-lag` 在 8.0.25-17 中**无实现**（全仓无对应符号），已在 PRD 中被列为 A4 支持项、此为 Do 期修正为「缺失」。如需回滚未提交事务 / 限速合并，须依赖 `--apply-log` 内建崩溃恢复与运维限速而非这些开关。
+
+#### A5 基于历史备份元数据
+
+- **触发**：`--incremental-history-name` 或 `--incremental-history-uuid`（xtrabackup.cc:403-404,1112-1133）。
+- **取 LSN**：`select_incremental_lsn_from_history()`（backup_mysql.cc:792-846）查询 `PERCONA_SCHEMA.xtrabackup_history` 取 `innodb_to_lsn`，按 name（798-808）或 uuid（811-822）；输出 `incremental_lsn`（836）作为本次增量起点。
+- **建表/写入**：`insert_history_record` 及 `xtrabackup_history` 建表（backup_mysql.cc:1872-1926）。
+- **意义**：免人工维护增量起始 LSN，按「最近一次历史备份」自动续作。
+
 ---
 
 ### 二.5 MySQL 与 MariaDB 增量方案对照（含 changed-page-bitmap 边界澄清）
@@ -84,6 +120,7 @@
 | LSN 全表扫描物理增量（PXB / mariadb-backup `--incremental`） | ✅ | ✅（10.2+ 默认且唯一） |
 | Changed-Page-Bitmap 位图加速 | ❌（仅 Percona Server 专有） | ❌（仅 10.1/XtraDB 支持，10.2+ 移除） |
 | 官方 page tracking（MySQL 8.0.17+，`--page-tracking`） | ⚠️ 仅 MEB 或 PXB≥8.0.27 | ❌ |
+| binlog / PITR 逻辑增量 | ✅（官方无内置命令，靠 `mysqlbinlog`） | ✅ |
 
 **关键澄清**：
 - Changed-Page-Bitmap 源自 **XtraDB（Percona）**：Percona Server 全系、MariaDB 10.1（XtraDB 时代）支持；官方 MySQL 从未支持（无 `innodb_track_changed_pages` 变量，代码见 backup_mysql.cc:683-685 → 恒 false → 回退全扫描）。Percona Server 于 **5.5.27** 首引入 XtraDB changed page tracking（配合 `INNODB_CHANGED_PAGES`），5.6/5.7/8.0 沿续。
@@ -125,21 +162,27 @@
 | 1 | **官方 page tracking 页级增量**（`--page-tracking`） | ❌缺失 | MySQL 8.0.17+ 的 IO 层按 LSN 记录落盘页，服务端返回页 list；只拷变化页，免全扫。8.0.27 起支持；需 mysqlbackup 组件、单文件系统表空间；有 DDL bug(#106163) | docs.percona.com/percona-xtrabackup/8.0/page-tracking.html |
 | 2 | **MySQL Enterprise Backup (MEB) 增量** | ❌(需 MEB) | `mysqlbackup --incremental=page-track|full-scan|optimistic`；page-track 用官方页跟踪+redo 前滚，optimistic 受堵自动退化 full-scan；商业 | dev.mysql.com/doc/mysql-enterprise-backup/8.4/en/mysqlbackup.incremental.html |
 | 3 | **MEB optimistic / full-scan 变异** | ❌(需 MEB) | 与 XtraFullScan 思路相似，但三态+自动退化更健壮 | backup-incremental-options.html |
+| 4 | **并行 delta 合并 prepare** | ❌(8.4.0-3+) | 增量 prepare 阶段并发应用 `.delta`，多表并行加速 | percona.com/percona-xtrabackup/8.4/release-notes/8.4.0-3.html |
+| 5 | **binlog / PITR 逻辑增量** | 🟢互补 | 物理/逻辑全备 + `mysqlbinlog ... | mysql` 回放到事故点；秒级时间点，属逻辑回放 | refman/8.0/en/point-in-time-recovery-binlog.html |
+| 6 | **mysqlbinlog --flashback / 闪回** | ❌ | 逆序 binlog 生成反操作；官方仅 bug#65178 补丁，云/发行版提供 | bugs.mysql.com/bug.php?id=65178 |
+
+> 🟢`互补`：XBK 复制 redo（含归档）供回放，但回放本身靠 binlog 工具链。
 
 ---
 
 ### 四、结论与建议
 
-1. **本项目（8.0.25）物理增量能力 = 「全表扫描比对页 LSN」+ （Percona Server）changed-page bitmap**；其余为还原阶段（prepare）与备份一致性（Redo Log Archive）通用机制。
+1. **本项目（8.0.25）实用增量能力 = 「全表扫描比对页 LSN」物理增量 + （Percona Server）changed-page bitmap 加速 + redo 归档保障 + —apply-log-only 增量合并 + history 续作**。这是可开箱即用的官方增量方案。
 2. **最值得补齐的缺失特性 = 官方 page tracking（`--page-tracking`）**：自 8.0.27 起的核心能力，能显著降低增量 IO；本项目(8.0.25)尚需升级到 ≥8.0.27 才能获得。
-3. 其他差距（MEB 三态算法）为「版本/商业」差异，不影响 8.0.25 作为基础增量工具使用；`--rollback-only/--redo-lag` 在本版本已移除。
+3. 其他差距（并行 delta 合并、MEB 三态算法）为「版本/商业」差异，不影响 8.0.25 作为基础增量工具使用；`--rollback-only/--redo-lag` 在本版本已移除。
+4. **与逻辑级（binlog/PITR）互补而非冲突**：物理增量负责快速恢复，逻辑级负责秒级时间点，可按 RTO/RPO 组合选型。
 
 ## 参考资料
 
 - 本项目源码：`storage/innobase/xtrabackup/src/`（write_filt / read_filt / changed_page_bitmap / redo_log / backup_mysql / xtrabackup）
 - Percona 官方文档：page-tracking（https://docs.percona.com/percona-xtrabackup/8.0/page-tracking.html）；create-incremental-backup（.../8.0/create-incremental-backup.html）
 - Percona 发布说明 8.4.0-3 / 8.4.0-6（docs.percona.com/percona-xtrabackup/8.4/release-notes/...）
-- MySQL 官方：MEB incremental（dev.mysql.com/doc/mysql-enterprise-backup/8.4/en/mysqlbackup.incremental.html）；InnoDB Clone & page tracking 博客（dev.mysql.com/blog-archive/innodb-clone-and-page-tracking/）
+- MySQL 官方：PITR binlog（dev.mysql.com/doc/refman/8.0/en/point-in-time-recovery-binlog.html）；MEB incremental（dev.mysql.com/doc/mysql-enterprise-backup/8.4/en/mysqlbackup.incremental.html）；InnoDB Clone & page tracking 博客（dev.mysql.com/blog-archive/innodb-clone-and-page-tracking/）；bug#65178
 
 ---
 
@@ -238,6 +281,83 @@ bool flush_changed_page_bitmaps() {
         xb_page_bitmap_range_get_next_bit(ctxt->bitmap_range, FALSE);
 ```
 
+### A3. Redo Log Archive（归档支撑）
+
+**1. 解析 `label:dir`** — `redo_log.cc:639-651`（`parse_archive_dirs()`，以 `;` 分割、`:` 拆 label/dir）
+
+**2. 归档子目录创建** — `redo_log.cc:700-709`
+
+**3. 主 redo 落后切换归档 reader** — `redo_log.cc:1073-1099`
+```c
+  if (archived_log_state == ARCHIVED_LOG_POSITIONED) {
+    auto &archive_reader = archived_log_monitor.get_reader();
+    if (archive_reader.seek_logfile(start_lsn)) {
+      auto len = archive_reader.read_logfile(finished);
+      ...
+        reader.seek_logfile(archive_reader.get_contiguous_lsn());
+        return (true);
+```
+（切换判定 `track_archived_log()` 见 `redo_log.cc:1034-1059`）
+
+### A4. 增量 prepare（合并 + 还原）
+
+**1. `--apply-log-only` → 只前滚不刷盘** — `xtrabackup.cc:6580`
+```c
+  srv_apply_log_only = (ibool)xtrabackup_apply_log_only;
+```
+
+**2. delta 应用入口** — `xtrabackup.cc:5393-5402`（`xtrabackup_apply_delta()`），批量调用见 `6546`
+
+**3. 逐页覆写 + 压缩页 punch-hole** — `xtrabackup.cc:5542-5567`
+```c
+      const page_t *page = incremental_buffer + page_in_buffer * page_size;
+      const ulint offset_on_page =
+          mach_read_from_4(incremental_buffer + page_in_buffer * 4);
+      if (offset_on_page == 0xFFFFFFFFUL) break;
+      const auto offset_in_file = offset_on_page << page_size_shift;
+      success = os_file_write(write_request, dst_path, dst_file, page,
+                              offset_in_file, page_size);
+      ...
+      if (IORequest::is_punch_hole_supported() && (is_compressed_page || ...))
+        if (os_file_punch_hole(dst_file.m_file, offset_in_file + compressed_len,
+                               page_size - compressed_len) != DB_SUCCESS) ...
+```
+
+**4. LSN 起点取较大值** — `xtrabackup.cc:2334-2336`
+```c
+      to_lsn = incremental_last_lsn < incremental_to_lsn ? incremental_to_lsn
+                                                         : incremental_last_lsn;
+```
+
+**5. 恢复后 LSN 校验** — `xtrabackup.cc:6709-6712`
+```c
+  if ((xtrabackup_incremental && log_get_lsn(*log_sys) < incremental_to_lsn) ||
+      (!xtrabackup_incremental && log_get_lsn(*log_sys) < metadata_to_lsn)) {
+    msg("xtrabackup: error: The transaction log file is corrupted.\n");
+```
+
+**6. `log-applied` 元数据** — `xtrabackup.cc:6747-6748`
+```c
+    strcpy(metadata_type_str,
+           srv_apply_log_only ? "log-applied" : "full-prepared");
+```
+
+**7. checkpoint 读取** — `xtrabackup.cc:7573-7583`（读 `xtrabackup_checkpoints` → `incremental_lsn/to_lsn/last_lsn`）
+
+### A5. 历史元数据续作
+
+**1. 参数定义** — `xtrabackup.cc:403-404`（`opt_incremental_history_name/uuid`）
+
+**2. 查询上次备份 `innodb_to_lsn`（name/uuid 两分支）** — `backup_mysql.cc:803-822`
+```c
+             "SELECT innodb_to_lsn "
+             "FROM PERCONA_SCHEMA.xtrabackup_history "
+             "WHERE name = '%s' "
+             "AND innodb_to_lsn IS NOT NULL "
+             "ORDER BY innodb_to_lsn DESC LIMIT 1",
+```
+（uuid 分支见 `811-822`；建表 `1872-1926`、写入 `1885-1892`）
+
 ### 缺口断言（全仓检索，主证）
 
 | 缺失项 | 检索结果 |
@@ -246,4 +366,4 @@ bool flush_changed_page_bitmaps() {
 | `--redo-lag` / `redo_lag` | xtrabackup 目录无符号（NDB 的 `c_max_redo_lag` 无关） |
 | `--page-tracking` CLI | xtrabackup 目录无该选项；仅文档提及 Percona changed page tracking（`doc/`）；引擎 `ha_innodb.cc:3950-4070` 存在 page_track API 但 xtrabackup 端无消费 |
 
-> **佐证分级**：本附录 A1-A2 及缺口检索均为**源码主证**；MariaDB 10.1 XtraDB 插件、MEB/page-tracking 版本能力为**联网佐证**（见正文二.5 分级说明）。
+> **佐证分级**：本附录 A1-A5 及缺口检索均为**源码主证**；MariaDB 10.1 XtraDB 插件、MEB/page-tracking 版本能力为**联网佐证**（见正文二.5 分级说明）。

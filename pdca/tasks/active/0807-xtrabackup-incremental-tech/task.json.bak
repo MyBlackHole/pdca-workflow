@@ -4,22 +4,29 @@
   "title": "GoldendB-XtraBackup 8.0 增量实现技术调研",
   "parent": null,
   "children": [],
-  "status": "InProgress",
+  "status": "Completed",
   "meta": {
-    "phase": "do",
+    "phase": "check",
     "active": true,
     "scenario_type": "research",
     "record": "T0225",
     "created_at": "2026-08-07T10:20:00+08:00",
     "convergence": [
       "T0225-0807-xtrabackup-incremental-tech"
-    ]
+    ],
+    "completed_at": "2026-08-07T10:37:03+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "用户确认结论成立：PXB 8.0.25 真增量=免全扫描只读变化页，仅 Percona Server changed-page bitmap；LSN 全扫描为基础；官方 page tracking 需 8.0.27+；MariaDB 10.1 历史有位图插件后移除",
+      "verdict_id": "V-T0225-20260807",
+      "at": "2026-08-07T14:03:10+08:00"
+    }
   },
   "states": {
     "created": "2026-08-07T10:20:00+08:00",
     "plan": "2026-08-07T10:28:00+08:00",
     "do": "2026-08-07T10:28:52+08:00",
-    "check": null,
+    "check": "2026-08-07T10:37:03+08:00",
     "act": null,
     "archive": null
   }

@@ -24,6 +24,7 @@
 |------|-----------|:---:|----------|------|
 | 全表扫描比对页 LSN 增量（default） | InnoDB 页 | ✅ 已实现 | `--incremental(-basedir/-lsn)` | 无 |
 | Changed-Page-Bitmap 加速增量 | Percona 页跟踪位图 | ✅ 已实现 | 同上 + Server 开启 `innodb_track_changed_pages=ON` | **Percona Server 8.0** |
+| 历史元数据增量起点 | PXB 历史表 | ✅ 已实现 | `--incremental-history-name/-uuid` | Percona Schema 历史表 |
 | 官方 page tracking 页级增量 | MySQL 8.0.17+ | ❌ 缺失（8.0.27+） | `--page-tracking` | mysqlbackup 组件 |
 
 > **🅰️ 口径澄清（重要）**：若以「**真增量 = 免全表扫描、只读变化页**（page tracking / bitmap）」为界，剔除「LSN 全表扫描」后：本项目 8.0.25 的**真增量仅支持 Percona Server**（changed-page bitmap）；官方 MySQL 与 MariaDB(10.2+) 在 8.0.25 上**没有真增量**——官方 MySQL 需升级 8.0.27+ 用官方 page-tracking，MariaDB 始终只能用 LSN 全扫描（无官方 page tracking、无 bitmap）。本报告其余部分同时保留「LSN 全扫描增量」作为基础能力口径；两档均已在支持矩阵中标注。
@@ -42,8 +43,9 @@
 | 4 | **官方 page tracking（引擎位图）** | MySQL | 8.0.17 | —（引擎内部，Clone 引入） | ✅ | ❌（引擎在，PXB 端 8.0.27+） |
 | 5 | **MEB 消费官方 page tracking** | MySQL（商业） | MEB 8.0.18 | `mysqlbackup --incremental=page-track` | ✅ | ❌（需 MEB） |
 | 6 | **PXB 消费官方 page tracking** | MySQL / Percona | PXB 8.0.27 | `--page-tracking` | ✅ | ❌（8.0.25 缺失） |
+| 7 | **历史元数据续作（增量起点选取）** | PXB | 8.0（全系） | `--incremental-history-name/-uuid` | —（增量起点） | ✅ 已实现 |
 
-> 真增量口径=免全表扫描、只读变化页。增量 prepare / 并行 delta 合并 / binlog 逻辑 / flashback / 历史元数据(LSN 起点选取) 均属**还原或逻辑级**辅助阶段，不计入本总表。
+> 真增量口径=免全表扫描、只读变化页。增量 prepare / 并行 delta 合并 / binlog 逻辑 / flashback 均属**还原或逻辑级**阶段，不计入本总表；历史元数据为增量起点选取辅助项。
 
 ---
 
@@ -74,6 +76,13 @@
 - **关键作用**：用服务端页位图直接定位「变化页」，绕开全表 LSN 逐页扫描，大表增量显著提速。
 - **版本依赖**：Percona Server 8.0（XtraDB 在线日志位图；此算法 Per-8.0.27 起被官方 page tracking 取代，其在官方 PS 已废弃）。
 - **局限**：无此变量则全扫描；位图区间缺失会打 warning 并回退全扫描（changed_page_bitmap.cc:623-719）。
+
+#### A3 基于历史备份元数据
+
+- **触发**：`--incremental-history-name` 或 `--incremental-history-uuid`（xtrabackup.cc:403-404,1112-1133）。
+- **取 LSN**：`select_incremental_lsn_from_history()`（backup_mysql.cc:792-846）查询 `PERCONA_SCHEMA.xtrabackup_history` 取 `innodb_to_lsn`，按 name（798-808）或 uuid（811-822）；输出 `incremental_lsn`（836）作为本次增量起点。
+- **建表/写入**：`insert_history_record` 及 `xtrabackup_history` 建表（backup_mysql.cc:1872-1926）。
+- **意义**：免人工维护增量起始 LSN，按「最近一次历史备份」自动续作。
 
 ---
 
@@ -130,7 +139,7 @@
 
 ### 四、结论与建议
 
-1. **本项目（8.0.25）物理增量能力 = 「全表扫描比对页 LSN」+ （Percona Server）changed-page bitmap**；其余为还原阶段（prepare）与备份一致性（Redo Log Archive）通用机制。
+1. **本项目（8.0.25）物理增量能力 = 「全表扫描比对页 LSN」+ （Percona Server）changed-page bitmap + history 续作**；其余为还原阶段（prepare）与备份一致性（Redo Log Archive）通用机制。
 2. **最值得补齐的缺失特性 = 官方 page tracking（`--page-tracking`）**：自 8.0.27 起的核心能力，能显著降低增量 IO；本项目(8.0.25)尚需升级到 ≥8.0.27 才能获得。
 3. 其他差距（MEB 三态算法）为「版本/商业」差异，不影响 8.0.25 作为基础增量工具使用；`--rollback-only/--redo-lag` 在本版本已移除。
 
@@ -238,6 +247,20 @@ bool flush_changed_page_bitmaps() {
         xb_page_bitmap_range_get_next_bit(ctxt->bitmap_range, FALSE);
 ```
 
+### A3. 历史元数据续作
+
+**1. 参数定义** — `xtrabackup.cc:403-404`（`opt_incremental_history_name/uuid`）
+
+**2. 查询上次备份 `innodb_to_lsn`（name/uuid 两分支）** — `backup_mysql.cc:803-822`
+```c
+             "SELECT innodb_to_lsn "
+             "FROM PERCONA_SCHEMA.xtrabackup_history "
+             "WHERE name = '%s' "
+             "AND innodb_to_lsn IS NOT NULL "
+             "ORDER BY innodb_to_lsn DESC LIMIT 1",
+```
+（uuid 分支见 `811-822`；建表 `1872-1926`、写入 `1885-1892`）
+
 ### 缺口断言（全仓检索，主证）
 
 | 缺失项 | 检索结果 |
@@ -246,4 +269,4 @@ bool flush_changed_page_bitmaps() {
 | `--redo-lag` / `redo_lag` | xtrabackup 目录无符号（NDB 的 `c_max_redo_lag` 无关） |
 | `--page-tracking` CLI | xtrabackup 目录无该选项；仅文档提及 Percona changed page tracking（`doc/`）；引擎 `ha_innodb.cc:3950-4070` 存在 page_track API 但 xtrabackup 端无消费 |
 
-> **佐证分级**：本附录 A1-A2 及缺口检索均为**源码主证**；MariaDB 10.1 XtraDB 插件、MEB/page-tracking 版本能力为**联网佐证**（见正文二.5 分级说明）。
+> **佐证分级**：本附录 A1-A5 及缺口检索均为**源码主证**；MariaDB 10.1 XtraDB 插件、MEB/page-tracking 版本能力为**联网佐证**（见正文二.5 分级说明）。
