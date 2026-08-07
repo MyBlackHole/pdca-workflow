@@ -6,7 +6,7 @@
  "children": [],
  "status": "Completed",
  "meta": {
-  "phase": "act",
+  "phase": "check",
   "active": true,
   "scenario_type": "development",
   "created_at": "2026-08-07T11:28:43+08:00",
@@ -21,11 +21,6 @@
    "reason": "EOF判定修复实机验证通过：误报 bad network 消除、EOF 走 Info 干净关闭；冗余日志收敛。verdict=confirmed",
    "verdict_id": "verdict-20260807-rpc-eof",
    "at": "2026-08-07T11:50:30+08:00"
-  },
-  "disposition": {
-   "outcome": "projected",
-   "reason": "EOF判定修复已实现并实机验证：rpc_recv 区分 EOF(IO_EOF) 与网络错误，服务端主循环识别对端关闭消除 bad network 误报，调用点零改动；空闲主动回收留待后续任务",
-   "at": "2026-08-07T11:52:30+08:00"
   }
  },
  "states": {
@@ -33,7 +28,7 @@
   "plan": "2026-08-07T11:40:00+08:00",
   "do": "2026-08-07T11:45:27+08:00",
   "check": "2026-08-07T11:50:00+08:00",
-  "act": "2026-08-07T11:51:45+08:00",
+  "act": null,
   "archive": null
  }
 }

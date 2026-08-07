@@ -1,7 +1,8 @@
 # rpc 复用连接空闲回收与时序（POLLRDHUP/EOF）
 
 ## 来源
-- 记录：`records/2026-08-07-rpc-idle-reclaim/conclusion.md`
+- 记录：`records/2026-08-07-rpc-idle-reclaim/conclusion.md`（研究/决策）
+- 记录：`records/2026-08-07-rpc-conn-idle-implement/conclusion.md`（EOF 判定实现）
 - ADR：`docs/adr/ADR-0016-rpc-conn-idle-reclaim.md`
 - POC 实证：私有仓库 `POC`（2026-08-07，4 场景全通过）
 - 适用范围：F/131 rpc（及同类"客户端复用长连接 + 服务端 worker 长驻"模型）
@@ -29,13 +30,18 @@
 | POLLRDHUP 与残留数据并存？ | 并存时 poll 按可读优先，先读走残留完整消息再轮询 RDHUP；单 poll 单次 recv 循环自洽，不丢数据 |
 | EOF 判定 | `recv` 返回 0 是"正常关闭"，不应与 `recv<0`（网络错误）混淆 |
 
-## 4. 既有瑕疵与修复方向
+## 4. 既有瑕疵与已落地修复
 
 - 症状：客户端正常关闭→服务端 `rpc_recv` 打 3 条 Error 噪音
   （`receive failure nread:0` / `bytes:0!=4` / `recv request failure for bad
   network`、rpc-io.cpp:47,57 / rpc-server.cpp:222），把 EOF 当坏网络。
-- 修复：`rpc_recv` 区分 `nread==0`（EOF，返回非错语义）与 `nread<0`（错误）；
-  worker 对正常 FIN 走干净关闭路径。
+- 修复（已落地，T0226，rpc-io.h/cpp + rpc-server.cpp）：
+  - `rpc_recv` 区分 `nread==0`（EOF）与 `nread<0`（网络错误）；EOF 返回专用负值
+    枚举 `IO_EOF`（`0xfffffffd`，-3，区别于网络错误 -100/-200/IO_TRUNCATE）。
+  - 库函数内部 EOF 不打日志（静默，由调用方语义化）。
+  - 服务端 worker 主循环显式识别 `bytes==(int)IO_EOF`→`Info("connection closed
+    by peer (EOF)")`→`return`（rpc-server.cpp），不再误打 bad network。
+  - 既有调用点 `<0`/`<1` 判定行为不变（IO_EOF<0），零调用点改动，编译与回归通过。
 
 ## 局限
 
@@ -43,3 +49,5 @@
   F/131 真实代码中隔离回归。
 - 面向"每调用方单连接"形态，非集中式连接池；若有多空闲连接池需另设计后台
   巡检。
+- 空闲主动回收（客户端 last_used/idle_timeout）仍为实现方向，未落地（T0226
+  收缩为只修 EOF；如需主动回收另立任务）。
