@@ -6,7 +6,7 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "check",
+    "phase": "act",
     "active": true,
     "record": "T0221-0804-deployment-install",
     "scenario_type": "development",
@@ -20,6 +20,11 @@
       "reason": "7条AC中6条实证通过(测试+演练)，AC-7设计留档延后T0222；313 passed(+17)，convergence-map valid:true，规范轴Blocking(install-do)缺口已修复",
       "verdict_id": "v-t0221-001",
       "at": "2026-08-07T09:30:29+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "部署装配链路实证通过，知识已沉淀；AC-7双平台实机验收延后T0222，健康检查占位探针待服务侧装配补齐",
+      "at": "2026-08-07T09:31:40+08:00"
     }
   },
   "states": {
@@ -27,7 +32,7 @@
     "plan": "2026-08-05T09:52:00+08:00",
     "do": "2026-08-06T17:02:28+08:00",
     "check": "2026-08-06T18:40:40+08:00",
-    "act": null,
+    "act": "2026-08-07T09:31:02+08:00",
     "archive": null
   }
 }
