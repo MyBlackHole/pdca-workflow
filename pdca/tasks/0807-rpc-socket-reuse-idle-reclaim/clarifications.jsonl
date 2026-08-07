@@ -1,0 +1,10 @@
+{"round":1,"question":"本次 PDCA 研究的交付边界是什么？","answer":"只出方案与选型（研究产出），不做代码改动","recommended":"只出方案与选型（研究产出）","source":"grilling","at":"2026-08-07T10:20:00+08:00"}
+{"round":2,"question":"复用连接的持有形态是？","answer":"单个 conn 惰性回收（推荐）","recommended":"单个 conn 惰性回收（推荐）","source":"grilling","at":"2026-08-07T10:22:00+08:00"}
+{"round":3,"question":"空闲回收超时阈值如何处理？","answer":"可配置 + 默认 300s（推荐）","recommended":"可配置 + 默认 300s（推荐）","source":"grilling","at":"2026-08-07T10:24:00+08:00"}
+{"round":4,"question":"服务端 worker 回收缺口：确认 return__ 有 close，但仅由 read_timeout=120s 或对端关闭触发，无独立空闲回收，且客户端惰性回收与服务端 read_timeout 未对齐","answer":"用户指出客户端主动告知服务端不用（底层 POLLRDHUP 已支持）+ 服务端 StartRPCServiceWorker 回收时机缺失，需一并纳入方案","recommended":"","source":"grilling","at":"2026-08-07T10:30:00+08:00"}
+{"source":"direction_confirm","summary":"客户端主动FIN主导空闲回收，服务端read_timeout兜底，不加协议，仅研究产出","response":"confirmed","at":"2026-08-07T10:36:00+08:00"}
+{"round":5,"question":"客户端 close 服务端是否必有 POLLRDHUP？POLLRDHUP 并存残留数据问题？","answer":"已验证：无 SO_LINGER→FIN 必然触发 POLLRDHUP；POLLIN 优先读完残留再轮回 RDHUP；空闲 FIN 与半包竞争归零，rpc_recv -100 后正常 return__ 不挂死。已修订 PRD(AC-5)/ADR-0016。","recommended":"","source":"grilling","at":"2026-08-07T10:48:00+08:00"}
+{"round":6,"question":"客户端正常关闭服务端报错输出？","answer":"实测日志：rpc_recv nread:0→-100→recv request failure(bad network) 3条Error噪音后正常关闭。归因：EOF(正常FIN)被当错误。ADR-0016解决该关没关，本症状是已关被判错，同一收口点(rpc_recv nread<1分支)，需一并纳入。","recommended":"rpc_recv 区分 nread==0(EOF)与nread<0(错误)","source":"grilling","at":"2026-08-07T10:52:00+08:00"}
+{"source":"final_confirmation","summary":"rpc 复用 socket 空闲回收：客户端 FIN 主导 + 服务端 read_timeout 兜底 + EOF 判定并入；研究产出，改码","response":"confirmed","at":"2026-08-07T10:35:33+08:00"}
+{"source":"check_confirmation","summary":"研究结论 + POC 实证获确认：客户端FIN主动空闲回收+服务端read_timeout兑底+EOF判定修复","response":"confirmed","at":"2026-08-07T11:27:13+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-07T11:30:00+08:00", "action": "wrote", "reason": "空闲回收时序与POLLRDHUP/EOF结论可复用于同类复用长连接+worker模型"}

@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "明确 rpc 复用连接的持有/回收责任边界",
+      "criteria": ["AC-1", "AC-2"],
+      "evidence_ids": ["research-report"]
+    },
+    {
+      "index": 2,
+      "text": "选定的空闲回收方案与其关闭时机",
+      "criteria": ["AC-1", "AC-2", "AC-4", "AC-5"],
+      "evidence_ids": ["research-report"]
+    },
+    {
+      "index": 3,
+      "text": "在现有 rpc_conn_close/keepalive 基础上的落点",
+      "criteria": ["AC-3", "AC-6"],
+      "evidence_ids": ["research-report", "adr-0016"]
+    }
+  ]
+}

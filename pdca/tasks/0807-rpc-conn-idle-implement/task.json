@@ -1,0 +1,28 @@
+{
+  "id": "T0226",
+  "slug": "0807-rpc-conn-idle-implement",
+  "title": "跟进：rpc 复用连接空闲回收 + EOF 判定实现（T0225 方案落地）",
+  "parent": "T0227",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-07T11:28:43+08:00",
+    "convergence": [
+      "客户端 rpc_conn 增加 last_used/idle_timeout 惰性回收",
+      "rpc_recv 区分 EOF(nread==0) 与网络错误(nread<0)",
+      "两端超时对齐与配置化"
+    ],
+    "record": null
+  },
+  "states": {
+    "created": "2026-08-07T11:28:43+08:00",
+    "plan": null,
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}
