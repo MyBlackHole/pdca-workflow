@@ -1,2 +1,2 @@
-{"id": "do", "file": "do.md", "kind": "report", "size": 2051, "digest": "sha256:2ced038c6c79ebc897c003da38fefc425d01d55bb14ec78a734aee51e19cebb6", "at": "2026-08-07T11:43:00+08:00", "criteria": ["AC-1", "AC-2", "AC-3", "AC-4"]}
+{"id": "do", "file": "do.md", "kind": "report", "size": 2431, "digest": "sha256:70f6201ece4f4bda619820c87ed73e32fd2b0395369b82eaf918b9bc814255e5", "at": "2026-08-07T11:43:00+08:00", "criteria": ["AC-1", "AC-2", "AC-3", "AC-4"]}
 {"id": "convergence-map", "file": "convergence.json", "kind": "convergence-map", "size": 416, "digest": "sha256:1d83448c4f5afd15540752fd36536b7ff1c360f19e2022f74ab0d79cf5d65e89", "at": "2026-08-07T11:45:00+08:00", "criteria": ["AC-1", "AC-2", "AC-3", "AC-4"]}

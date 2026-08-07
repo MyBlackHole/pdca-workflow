@@ -7,11 +7,14 @@
   - body 循环：`nread==0` → `eof=1; break`（同）。
   - `bytes != sizeof(msg_net_length)` 分支：`eof ? (静默) return IO_EOF : ErrorLog+return -100`。
   - `bytes != msg_length` 分支：`eof ? (静默) return IO_EOF : ErrorLog + return IO_TRUNCATE`。
-  - 库函数 EOF 路径不打日志（供调用方语义化），减少重复输出。
-- `rpc/rpc-server.cpp` 服务端 worker 主循环（StartRPCServiceWoker 请求接收点）：
-  - `bytes == (int)IO_EOF` → `InfoLog`（connection closed by peer） + `goto return__`，
-    消除"recv request failure for bad network"误报 Error（rpc-io.cpp:44-51 原噪音源）。
+  - 库函数 EOF 路径不打日志（调用方语义化；EOF 属正常关闭，已有 close 日志表达回收）。
+- `rpc/rpc-server.cpp` 服务端 worker 主循环（StartRPCServiceWoker 请求接收点，rpc-server.cpp:220）：
+  - `bytes == (int)IO_EOF` → 静默 `goto return__`（EOF 正常关闭，close 由既有 close-client 日志体现）。
+- `rpc/rpc-server.cpp` `OnMsgScpUpload` 上传接收循环（rpc-server.cpp:1591）：
+  - `bytes == (int)IO_EOF` → 静默 `ret=-1; goto return__`（上传中断时对端关闭，非坏网络）。
 - 既有网络错误路径（EINTR/EAGAIN → WarningLog+continue；RST/错误 → ErrorLog+break）未改。
+- EOF 非协议多读：客户端必发 LAST_BLOCK（含整数倍/空文件边界），服务端遇 LAST break；
+  EOF 误报根源是对端正常关闭（连接回收），静默处理正确。
 
 ## E2. 验证
 - `xmake build rpc`：build ok，librpc.a 归档成功（rpc-io.cpp + rpc-server.cpp 均通过；IO_EOF 比较用 `(int)IO_EOF` 强转规避 -Werror sign-compare）。
