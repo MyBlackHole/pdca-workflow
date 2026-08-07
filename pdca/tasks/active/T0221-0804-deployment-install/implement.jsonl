@@ -1,3 +1,25 @@
 {"file": "knowledge/report-center/report-center-decomposition-index.md", "reason": "T0221 为 T0214 拆解子任务，索引提供与 T0215~T0222 边界衔接", "action": "read", "at": "2026-08-06T17:00:57+0800"}
 {"file": "knowledge/report-center/db-adapter-pg-practices.md", "reason": "升级/回退依赖 migration up/down+rollback 模式（V001/V002 down.sql），设计沿用", "action": "read", "at": "2026-08-06T17:00:57+0800"}
 {"file": "knowledge/report-center/cli-from-scratch-lazy-import.md", "reason": "rdb-report-collection --check-config 命令入口与惰性导入模式参考", "action": "read", "at": "2026-08-06T17:00:57+0800"}
+{"file": "tests/test_deploy_check.py", "reason": "T0221 AC-6 配置校验单测（9 用例：超时顺序/周期目录/域延迟）", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "collection_service/deploy_check.py", "reason": "T0221 AC-6 CheckReport 配置校验核心（INI+YAML+三阶段超时）", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "tests/test_cli_check_config.py", "reason": "T0221 AC-6 CLI 入口测试（OK/非法/缺目录/install-db 参数校验，6 用例）", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "collection_service/cli.py", "reason": "T0221 rdb-report-collection --check-config/--install-db CLI", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "tests/test_deploy_health.py", "reason": "T0221 AC-5 健康检查探针框架单测（5 用例）", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "collection_service/deploy_health.py", "reason": "T0221 AC-5 HealthReport 8 探针框架", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "collection_service/__main__.py", "reason": "T0221 --check-config 可用、--start 装配骨架", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "tests/test_deploy_install.py", "reason": "T0221 AC-4 install-do 迁移+admin 幂等测试（3 用例）", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "collection_service/deploy_install.py", "reason": "T0221 AC-4 install-do DB 初始化（迁移应用+admin 创建）", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "deploy/bin/1.pre_install", "reason": "T0221 AC-1 预安装：发行版/架构检测+依赖清单+失败非零", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "deploy/bin/2.install", "reason": "T0221 AC-2 初始化系统用户/venv，不建 Schema", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "deploy/bin/install.sh", "reason": "T0221 AC-3/4/5/6 正式安装编排：完整性→manifest→平台→预装→部署→check-config→install-db→健康检查门禁→标记", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "deploy/bin/check-config.sh", "reason": "T0221 AC-6 独立配置校验脚本入口", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "deploy/bin/healthcheck.sh", "reason": "T0221 AC-5 健康检查脚本（8 探针，失败非零）", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "deploy/conf/report.cfg.example", "reason": "T0221 AC-6 配置模板（INI，三阶段超时）", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "deploy/conf/collection-jobs.d/1.yaml.example", "reason": "T0221 AC-6 域周期配置模板（YAML）", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "deploy/systemd/rdb-report-web.service", "reason": "T0221 report-web systemd 单元（uvicorn --factory）", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "deploy/systemd/rdb-report-collection.service", "reason": "T0221 collection systemd 单元", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "deploy/manifest", "reason": "T0221 AC-3 包文件清单", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "deploy/version.txt", "reason": "T0221 包版本 0.4.0", "action": "write", "at": "2026-08-06T18:35:00+0800"}
+{"file": "deploy/bin/install.sh", "reason": "演练修复：healthcheck 传 --install-dir；AC-4 占位替换为真实 --install-db 调用（PY 解析提前复用）", "action": "update", "at": "2026-08-06T18:35:00+0800"}
+{"file": "collection_service/cli.py", "reason": "新增 --install-db 子命令（AC-4 install-do CLI 入口）", "action": "update", "at": "2026-08-06T18:35:00+0800"}
