@@ -6,8 +6,8 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "act",
-    "active": true,
+    "phase": "archive",
+    "active": false,
     "scenario_type": "development",
     "created_at": "2026-08-08T18:30:00+08:00",
     "record": "T0225-0808-core-tech-poc",
@@ -32,6 +32,6 @@
     "do": "2026-08-08T19:05:54+08:00",
     "check": "2026-08-08T19:49:36+08:00",
     "act": "2026-08-08T19:50:16+08:00",
-    "archive": null
+    "archive": "2026-08-08T19:53:19+08:00"
   }
 }
