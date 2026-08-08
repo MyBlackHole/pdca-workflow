@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "T0225-0808-core-tech-poc",
+      "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5", "AC-6", "AC-7"],
+      "evidence_ids": ["sc12-main", "sc13-main", "sc14-main", "sc15-main", "sc16-main", "sc17-main", "maketest"]
+    }
+  ]
+}
