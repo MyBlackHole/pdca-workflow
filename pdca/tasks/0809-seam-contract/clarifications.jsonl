@@ -1,0 +1,10 @@
+{"round": 1, "question": "seam 确认位置", "answer": "P3 PRD 合成后、P4 拆解前（推荐）", "recommended": "P3 后 P4 前", "source": "grilling", "at": "2026-08-09T11:42:00.254257+08:00"}
+{"round": 1, "question": "seam 解析方式", "answer": "明确 seam 清单（机器可读）（推荐）", "recommended": "明确 seam 清单", "source": "grilling", "at": "2026-08-09T11:42:00.254257+08:00"}
+{"round": 1, "question": "契约测试覆盖范围", "answer": "仅 development/bugfix（推荐）", "recommended": "仅 dev/bugfix", "source": "grilling", "at": "2026-08-09T11:42:00.254257+08:00"}
+{"round": 1, "question": "历史 spec 追溯", "answer": "不追溯，只约束新 spec（推荐）", "recommended": "不追溯", "source": "grilling", "at": "2026-08-09T11:42:00.254257+08:00"}
+{"round": 2, "question": "seam 清单格式", "answer": "固定子节 + - seam: 行（推荐）", "recommended": "固定子节+seam 行", "source": "grilling", "at": "2026-08-09T11:42:32.122197+08:00"}
+{"round": 2, "question": "契约测试断言", "answer": "测试文件存在 + 被测模块一致（推荐）", "recommended": "文件+模块一致", "source": "grilling", "at": "2026-08-09T11:42:32.122197+08:00"}
+{"round": 2, "question": "flow-plan 改动", "answer": "P3.5 确认步骤 + P6 门禁（推荐）", "recommended": "P3.5+门禁", "source": "grilling", "at": "2026-08-09T11:42:32.122197+08:00"}
+{"round": 2, "question": "测试文件位置", "answer": "独立 tests/test_seam_contract.py（推荐）", "recommended": "独立文件", "source": "grilling", "at": "2026-08-09T11:42:32.122197+08:00"}
+{"source": "direction_confirm", "summary": "seam 确认门禁 + PRD seam 契约方向确认", "response": "confirmed", "at": "2026-08-09T11:43:27.925131+08:00"}
+{"source":"final_confirmation","summary":"seam 确认门禁 + PRD seam 契约完整方案终审批准","response":"confirmed","at":"2026-08-09T11:44:00+08:00"}

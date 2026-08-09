@@ -1,0 +1,2 @@
+{"file": "knowledge/ai-efficiency/ticket-dag-ready-set.md", "reason": "契约测试模式（机器可读清单 + 一致性断言）可复用于 seam 契约", "action": "参考契约测试模式", "at": "2026-08-09T11:43:44.846567+08:00"}
+{"file": "knowledge/ai-efficiency/frontier-batch-grilling.md", "reason": "source 术语契约测试先例，同构 seam 契约", "action": "参考同构机制", "at": "2026-08-09T11:43:44.846567+08:00"}
