@@ -26,6 +26,12 @@ source_ids: [T0230-0809-ai-efficiency-proof]
 - `clarification.schema.json` 只 `required: ["source","at"]`，`round` 为非约束字段。
 - `append-confirmation.py` 只校验 `source`/`response`，`transition-phase.py` 不解析 `round` 字段——同轮共 round 不会误触任何门禁。
 
+## source 术语一致性（T0231 补充）
+
+- 所有 flow 的 Q&A 记录统一用 `source: "grilling"`（冒号 + 引号），与 grilling 技能规则 6 一致；不残留旧 `"grill"`，不用 `source=grilling` 等号语法。
+- 一致性由契约测试守护（`SourceConsistencyContractTest`）：flow-act/flow-check/flow-plan 任一回归旧术语即失败。
+- `source` 是自由字符串（非 schema 枚举），此修复是术语治理而非 schema 变更；术语漂移会误导后续会话与日志解析。
+
 ## 效率证明方法
 
 收益不能只靠断言，必须可复现：
@@ -33,6 +39,8 @@ source_ids: [T0230-0809-ai-efficiency-proof]
 - **轮数模型单测**：对 `{决策数, 每轮批量容量}` 断言轮数 = `ceil(决策数 / 容量)`，并对依赖分批场景断言按依赖批次数。见 `tests/test_grilling_efficiency.py`。
 - **真实会话轮数统计**：脚本读 `clarifications.jsonl`，统计 distinct round（批量问法轮数）与条目数（一次一问轮数），输出压缩比。见 `scripts/grilling-rounds-demo.py`。
 - **T0230 实测**：Plan+Check 共 11 条记录；round 1–6 为逐问（6 轮），round 7 一次覆盖 4 个独立问题。批量 8 轮 vs 一次一问 11 轮，压缩 **1.375x**。
+- **T0231 Ac1 实测**：flow-act Ac1 的 3 条独立追问同轮批量问，轮数 1 vs 3（3.0x），payload 194 vs 252 bytes（1.30x）。
+- **bytes 代理**：上下文成本用 UTF-8 bytes 作零模型依赖代理，非真实 token 计数；仅当 tokenizer 会改变决策时才引入真实 tokenizer（沿用 ai-friendliness-review-methodology 的内容成本约定）。
 
 ## 适用边界
 

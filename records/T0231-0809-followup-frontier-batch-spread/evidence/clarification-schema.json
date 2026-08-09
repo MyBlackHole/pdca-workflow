@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pdca.local/schemas/clarification.schema.json",
+  "title": "PDCA clarification entry",
+  "type": "object",
+  "required": ["source", "at"],
+  "properties": {
+    "source": {"type": "string", "minLength": 1},
+    "at": {"type": "string", "format": "date-time"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"source": {"const": "final_confirmation"}}, "required": ["source"]},
+      "then": {
+        "required": ["summary", "response"],
+        "properties": {"response": {"const": "confirmed"}}
+      }
+    },
+    {
+      "if": {"properties": {"source": {"const": "check_confirmation"}}, "required": ["source"]},
+      "then": {
+        "required": ["summary", "response"],
+        "properties": {"response": {"enum": ["confirmed", "rejected", "partial"]}}
+      }
+    },
+    {
+      "if": {"properties": {"source": {"const": "user_decision"}}, "required": ["source"]},
+      "then": {
+        "required": ["summary", "response", "decision"],
+        "properties": {
+          "response": {"const": "confirmed"},
+          "decision": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["action", "issue_id", "candidate_id"],
+            "properties": {
+              "action": {
+                "enum": [
+                  "false-positive",
+                  "accepted-risk",
+                  "close",
+                  "set-impact",
+                  "promote-candidate"
+                ]
+              },
+              "issue_id": {"type": "string", "pattern": "^FI-[0-9a-f]{24}$"},
+              "candidate_id": {"type": ["string", "null"], "pattern": "^FC-[0-9a-f]{24}$"}
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {"action": {"const": "promote-candidate"}},
+                  "required": ["action"]
+                },
+                "then": {
+                  "properties": {"candidate_id": {"type": "string", "pattern": "^FC-[0-9a-f]{24}$"}}
+                },
+                "else": {"properties": {"candidate_id": {"type": "null"}}}
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

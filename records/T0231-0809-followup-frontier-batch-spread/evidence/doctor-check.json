@@ -1,0 +1,343 @@
+{
+  "schema": "pdca.doctor/v1",
+  "root": "/home/black/Documents/pdca-workflow",
+  "pdca_home_source": "environment",
+  "warning": null,
+  "valid": true,
+  "missing_required": [],
+  "missing_references": [],
+  "capabilities": [
+    {
+      "name": "filesystem.read",
+      "status": "available",
+      "probe": "repository-readable",
+      "fallback": null
+    },
+    {
+      "name": "filesystem.write",
+      "status": "available",
+      "probe": "repository-writable",
+      "fallback": null
+    },
+    {
+      "name": "process.exec",
+      "status": "available",
+      "probe": "python3",
+      "fallback": null
+    },
+    {
+      "name": "git.versioning",
+      "status": "available",
+      "probe": "git",
+      "fallback": null
+    },
+    {
+      "name": "agent.spawn",
+      "status": "fallback",
+      "probe": "environment:PDCA_AGENT_SPAWN",
+      "fallback": "execute-in-main-session"
+    },
+    {
+      "name": "context.retrieve",
+      "status": "fallback",
+      "probe": "command:pdca",
+      "fallback": "filesystem-search"
+    }
+  ],
+  "references_checked": 58,
+  "task_timeline": [
+    {
+      "task": "0731-pg-physical-ordered",
+      "consistent": true,
+      "issues": []
+    },
+    {
+      "task": "0804-cdm-report-center-analyse",
+      "consistent": true,
+      "issues": []
+    },
+    {
+      "task": "0805-rpc-epoll-worker-supply-followup",
+      "consistent": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta/completed_at",
+          "message": "None is not of type 'string'",
+          "guidance": "fix the field at /meta/completed_at in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta/convergence",
+          "message": "[] should be non-empty",
+          "guidance": "fix the field at /meta/convergence in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta/record",
+          "message": "None is not of type 'string'",
+          "guidance": "fix the field at /meta/record in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task": "0806-aio-speed-link-fix",
+      "consistent": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('followup_of' was unexpected)",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'plan' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'do' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'check' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'act' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'archive' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task": "0806-buf-layer-endianness",
+      "consistent": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('followup_of', 'paused_at', 'paused_reason' were unexpected)",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'plan' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'do' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'check' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'act' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'archive' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/status",
+          "message": "'Paused' is not one of ['Pending', 'InProgress', 'Completed']",
+          "guidance": "fix the field at /status in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task": "0806-epoll-business-callback-fsm",
+      "consistent": true,
+      "issues": []
+    },
+    {
+      "task": "0806-rpc-arm-interop-verify",
+      "consistent": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('followup_of' was unexpected)",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'plan' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'do' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'check' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'act' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'archive' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task": "0806-rpc-benchmark-review",
+      "consistent": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('followup_of' was unexpected)",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'plan' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'do' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'check' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'act' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'archive' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task": "0807-xtrabackup-incremental-tech",
+      "consistent": true,
+      "issues": []
+    },
+    {
+      "task": "0808-backup-server-architecture",
+      "consistent": true,
+      "issues": []
+    },
+    {
+      "task": "0808-core-tech-poc-2",
+      "consistent": true,
+      "issues": []
+    },
+    {
+      "task": "0808-seda-pipeline",
+      "consistent": true,
+      "issues": []
+    },
+    {
+      "task": "T0164-0731-gm-tls-benchmark",
+      "consistent": false,
+      "issues": [
+        {
+          "code": "STATE_TIME_ORDER",
+          "path": "/states",
+          "message": "timestamps must be nondecreasing"
+        },
+        {
+          "code": "CONFIRMATION_AFTER_PLAN_TO_DO",
+          "path": "clarifications.jsonl[0]/at",
+          "message": "final confirmation is later than the plan→do receipt"
+        }
+      ]
+    },
+    {
+      "task": "T0210-0803-btree-node-sector-persistence",
+      "consistent": true,
+      "issues": []
+    },
+    {
+      "task": "T0210b-0806-btree-root-driven-recovery",
+      "consistent": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/id",
+          "message": "'T0210b' does not match '^T[0-9]{4,}$'",
+          "guidance": "fix the field at /id in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('progress' was unexpected)",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task": "T0215-0804-report-subscheme-docs",
+      "consistent": true,
+      "issues": []
+    },
+    {
+      "task": "T0215-0804-rpc-epoll-multireactor",
+      "consistent": true,
+      "issues": []
+    },
+    {
+      "task": "T0222-0804-acceptance-perf",
+      "consistent": false,
+      "issues": [
+        {
+          "code": "STATE_TIMESTAMP_MISSING",
+          "path": "/states/plan",
+          "message": "required in plan"
+        }
+      ]
+    }
+  ]
+}
