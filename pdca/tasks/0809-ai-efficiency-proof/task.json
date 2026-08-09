@@ -1,0 +1,26 @@
+{
+  "id": "T0230",
+  "slug": "0809-ai-efficiency-proof",
+  "title": "借鉴 mattpocock/skills 审查 PDCA 工作流 AI 提效空间，落地有可证明效率收益的修改",
+  "parent": null,
+  "children": [],
+  "status": "InProgress",
+  "meta": {
+    "phase": "do",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-09T09:42:00+08:00",
+    "record": "T0230-0809-ai-efficiency-proof",
+    "convergence": [
+      "T0230-0809-ai-efficiency-proof"
+    ]
+  },
+  "states": {
+    "created": "2026-08-09T09:42:00+08:00",
+    "plan": "2026-08-09T09:42:00+08:00",
+    "do": "2026-08-09T09:51:01+08:00",
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

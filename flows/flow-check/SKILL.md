@@ -36,7 +36,7 @@ description: |
 - `evidence/manifest.jsonl` — 证据清单
 
 ### Ch2. Grill
-加载 `$PDCA_HOME/skills/grilling/SKILL.md`，追问结论可靠性。
+加载 `$PDCA_HOME/skills/grilling/SKILL.md`，按 round 批量追问所有当前可答的结论可靠性问题。
 
 场景感知的追问：
 

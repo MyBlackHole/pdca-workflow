@@ -1,0 +1,7 @@
+{"round": 1, "question": "本次修改的范围边界怎么定？", "answer": "先研究 https://github.com/mattpocock/skills 仓库", "recommended": "聚焦上下文成本类资产（AGENTS.md、SKILLS-INDEX、writing-great-skills）", "source": "grilling", "at": "2026-08-09T09:46:00+08:00"}
+{"round": 2, "question": "研究后最认同哪个借鉴点作为核心？", "answer": "grilling 批量问法（frontier 批量问）", "recommended": "grilling 批量问法", "source": "grilling", "at": "2026-08-09T09:52:00+08:00"}
+{"round": 3, "question": "有证明如何落地？", "answer": "轮数对比测试（fixture 断言批量问法用 R 轮覆盖 N 个决策，旧法需 N 轮）", "recommended": "轮数对比测试", "source": "grilling", "at": "2026-08-09T09:53:00+08:00"}
+{"round": 4, "question": "修改范围覆盖哪些文件？", "answer": "三文件 + 测试（grilling/SKILL.md + flow-plan + flow-check + 新测试）", "recommended": "三文件 + 测试", "source": "grilling", "at": "2026-08-09T09:56:00+08:00"}
+{"round": 5, "question": "批量问时 clarifications.jsonl 的 round 如何记录？", "answer": "同轮共 round（每个问题一条 JSONL，共享同一 round 号）", "recommended": "同轮共 round", "source": "grilling", "at": "2026-08-09T09:57:00+08:00"}
+{"round": 6, "question": "方向理解是否正确？", "answer": "确认，进入 PRD", "recommended": "确认", "source": "direction_confirm", "at": "2026-08-09T10:02:00+08:00"}
+{"source":"final_confirmation","summary":"借鉴 mattpocock grilling frontier 批量问法：改 grilling/SKILL.md 为核心批量问、同步 flow-plan/flow-check 引用、新增轮数对比测试证明效率提升","response":"confirmed","at":"2026-08-09T09:50:33+08:00"}

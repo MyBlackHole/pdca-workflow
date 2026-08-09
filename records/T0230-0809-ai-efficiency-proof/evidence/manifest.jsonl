@@ -1,0 +1,7 @@
+{"id":"grilling-skill","file":"SKILL.md","kind":"doc","size":3703,"digest":"sha256:1fd5b5a1886bcdc76bfdd3070fdd463882616ac83e106f2e34d74364e61a2a3a","at":"2026-08-09T09:56:51+08:00","criteria":["AC-1"]}
+{"id":"flow-plan-ref","file":"flow-plan-ref.md","kind":"doc","size":3914,"digest":"sha256:93822e8814d8e171a80b55ae84cca269685828f040b3d3b4cda66d8a91193ec0","at":"2026-08-09T09:56:57+08:00","criteria":["AC-2"]}
+{"id":"grilling-efficiency-test","file":"test_grilling_efficiency.py","kind":"test","size":4429,"digest":"sha256:eacfe55aaa6561997868eaf133c48cd58b5f87bba56f61d95b8bbdcb559a8e93","at":"2026-08-09T09:56:58+08:00","criteria":["AC-3"]}
+{"id":"research-report","file":"research-report.md","kind":"doc","size":4285,"digest":"sha256:504259c36de7c7df3fe5d5d307e1046bc90392cff2820c1f40b5d5b647e6cb98","at":"2026-08-09T09:57:02+08:00","criteria":["AC-4"]}
+{"id":"full-test-result","file":"full-test-result.txt","kind":"test","size":179,"digest":"sha256:330070c3ace7494729a9ef9940cc2b5370e054753195c42cf1467d4c0bba522a","at":"2026-08-09T09:58:16+08:00","criteria":["AC-5"]}
+{"id":"clarifications-log","file":"clarifications-log.jsonl","kind":"doc","size":1748,"digest":"sha256:2b58ebf886883de78447f84f1b4ac71864b952c3b00e6b1964796774b5061945","at":"2026-08-09T09:58:23+08:00","criteria":["AC-6"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":405,"digest":"sha256:1bc1dc4a25b5a79b4438a1f20a9b484d6e0cf0a2ff60e7121213d499bb99bb2b","at":"2026-08-09T09:58:34+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6"]}
