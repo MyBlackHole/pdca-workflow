@@ -5,3 +5,10 @@
 {"round": 5, "question": "批量问时 clarifications.jsonl 的 round 如何记录？", "answer": "同轮共 round（每个问题一条 JSONL，共享同一 round 号）", "recommended": "同轮共 round", "source": "grilling", "at": "2026-08-09T09:57:00+08:00"}
 {"round": 6, "question": "方向理解是否正确？", "answer": "确认，进入 PRD", "recommended": "确认", "source": "direction_confirm", "at": "2026-08-09T10:02:00+08:00"}
 {"source":"final_confirmation","summary":"借鉴 mattpocock grilling frontier 批量问法：改 grilling/SKILL.md 为核心批量问、同步 flow-plan/flow-check 引用、新增轮数对比测试证明效率提升","response":"confirmed","at":"2026-08-09T09:50:33+08:00"}
+{"round": 7, "question": "Q1：轮数对比测试能否充分证明效率提升？", "answer": "需补充计时", "recommended": "充分（纯函数模型测试证明机制性质）", "source": "grill", "at": "2026-08-09T10:02:00+08:00"}
+{"round": 7, "question": "Q2：triage-work/wayfinding 引用是否需要同步？", "answer": "无需改", "recommended": "无需改（仅委托调用技能文件）", "source": "grill", "at": "2026-08-09T10:02:00+08:00"}
+{"round": 7, "question": "Q3：同轮共 round 是否会被门禁误解析？", "answer": "需额外验证", "recommended": "兼容（门禁只校验 source/response）", "source": "grill", "at": "2026-08-09T10:02:00+08:00"}
+{"round": 7, "question": "Q4：规则 1 的否定式是否可接受？", "answer": "符合原则", "recommended": "符合原则（硬护栏+正面目标配对）", "source": "grill", "at": "2026-08-09T10:02:00+08:00"}
+{"source":"check_confirmation","summary":"Check 阶段批量问 Q1-Q4：Q1 需补充计时（已实现 grilling-rounds-demo.py 真实会话轮数统计，batch=8 vs one_at_a_time=11，压缩 1.375x，已登记证据 rounds-demo-script/grilling-test-result 并纳入单测，全量 94 通过）；Q2 无需修改；Q3 需额外验证（已确认 append-confirmation 与 transition-phase 不解析 round 字段，同轮共 round 不触发门禁；convergence 校验 valid=true）；Q4 符合原则。结论：条件确认，进入 Act。","response":"partial","at":"2026-08-09T10:07:47+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-09T10:09:41+08:00", "action": "wrote", "reason": "grilling frontier 批量问法+轮数压缩证明可复用，沉淀到 knowledge/ai-efficiency/frontier-batch-grilling.md"}
+{"source": "followup_task", "at": "2026-08-09T10:09:41+08:00", "task_id": "T0231", "title": "评估推广 frontier 批量问法到 flow-do/flow-check 之外交互点"}

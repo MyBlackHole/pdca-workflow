@@ -7,7 +7,11 @@
 
 from __future__ import annotations
 
+import json
 import math
+import subprocess
+import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -111,6 +115,45 @@ class GrillingDocumentContractTest(unittest.TestCase):
     def test_round_shared_within_batch_semantics_documented(self) -> None:
         text = (ROOT / "skills/grilling/SKILL.md").read_text(encoding="utf-8")
         self.assertIn("round", text)
+
+
+class RealSessionRoundsDemoTest(unittest.TestCase):
+    """Q1 补充证据：从真实 clarifications 会话统计批量问法轮数压缩。
+
+    同一轮内批量提出的问题共享 round 号，因此批量问法轮数（distinct round）
+    严格小于"一次一问"轮数（条目数）。
+    """
+
+    def setUp(self) -> None:
+        self.temporary = tempfile.TemporaryDirectory()
+        self.session = Path(self.temporary.name) / "clarifications.jsonl"
+        entries = [
+            {"round": 1, "source": "grilling", "question": "a", "answer": "x", "at": "2026-08-09T00:00:00+08:00"},
+            {"round": 1, "source": "grilling", "question": "b", "answer": "y", "at": "2026-08-09T00:00:00+08:00"},
+            {"round": 1, "source": "grilling", "question": "c", "answer": "z", "at": "2026-08-09T00:00:00+08:00"},
+            {"round": 2, "source": "grilling", "question": "d", "answer": "w", "at": "2026-08-09T00:00:01+08:00"},
+        ]
+        self.session.write_text(
+            "\n".join(json.dumps(e, ensure_ascii=False) for e in entries) + "\n",
+            encoding="utf-8",
+        )
+
+    def tearDown(self) -> None:
+        self.temporary.cleanup()
+
+    def test_demo_script_compresses_rounds(self) -> None:
+        proc = subprocess.run(
+            [sys.executable, str(ROOT / "scripts/grilling-rounds-demo.py"), str(self.temporary.name)],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        line = json.loads(proc.stdout.splitlines()[-1])
+        # 4 个条目、2 轮批量问（round 1 含 3 问），压缩比 = 4/2 = 2.0
+        self.assertEqual(line["entries"], 4)
+        self.assertEqual(line["batch_rounds"], 2)
+        self.assertEqual(line["one_at_a_time_rounds"], 4)
+        self.assertGreater(line["compression"], 1.0)
 
 
 if __name__ == "__main__":

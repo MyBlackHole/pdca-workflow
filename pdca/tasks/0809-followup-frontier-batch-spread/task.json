@@ -1,0 +1,25 @@
+{
+  "id": "T0231",
+  "slug": "0809-followup-frontier-batch-spread",
+  "title": "跟进：评估将 grilling frontier 批量问法推广到 flow-do/flow-check 之外交互点",
+  "parent": "T0230",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-09T10:09:00+08:00",
+    "convergence": [
+      "T0231-0809-followup-frontier-batch-spread"
+    ]
+  },
+  "states": {
+    "created": "2026-08-09T10:09:00+08:00",
+    "plan": null,
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}
