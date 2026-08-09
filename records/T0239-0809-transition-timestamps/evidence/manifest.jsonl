@@ -1,0 +1,3 @@
+{"id": "impl-backfill", "file": "transition-phase.py", "kind": "implementation", "size": 5352, "digest": "sha256:44ed2723282136fb859cc62c08320ff267b562675dff828c05c4a96a686e1d60", "at": "2026-08-09T15:52:23+08:00", "criteria": ["AC-1"]}
+{"id": "tests-backfill", "file": "test_operations.py", "kind": "test", "size": 26614, "digest": "sha256:e703e1ac573991aed97211119f15842118f4a8956401725993426dd4babcb337", "at": "2026-08-09T15:52:23+08:00", "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5"]}
+{"id": "convergence-map", "file": "convergence.json", "kind": "convergence-map", "size": 326, "digest": "sha256:853feb0cf37bf2ff7849875e85d727dd4243c13383d0ea4c84d9d10e2433d216", "at": "2026-08-09T15:53:17+08:00", "criteria": ["CC-1"]}
