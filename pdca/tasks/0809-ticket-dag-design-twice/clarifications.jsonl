@@ -1,0 +1,14 @@
+{"round": 1, "question": "blocking edges 落地形态", "answer": "扩展 to-tickets（推荐）", "recommended": "扩展 to-tickets", "source": "grilling", "at": "2026-08-09T11:03:43.157714+08:00"}
+{"round": 1, "question": "依赖边载体", "answer": "子 task.json 自声明 dependencies 数组（推荐）", "recommended": "子 task.json 自声明", "source": "grilling", "at": "2026-08-09T11:03:43.157714+08:00"}
+{"round": 1, "question": "测试 fixture 构造", "answer": "纯函数 compute_frontier + 四类 fixture（推荐）", "recommended": "纯函数四类 fixture", "source": "grilling", "at": "2026-08-09T11:03:43.157714+08:00"}
+{"round": 1, "question": "design-it-twice 落地", "answer": "独立技能 + 词汇契约校验器（推荐）", "recommended": "独立技能+校验器", "source": "grilling", "at": "2026-08-09T11:03:43.157714+08:00"}
+{"round": 2, "question": "dependencies 语义", "answer": "仅直接前置，传递闭包由校验器推导（推荐）", "recommended": "仅直接前置", "source": "grilling", "at": "2026-08-09T11:15:00.159709+08:00"}
+{"round": 2, "question": "frontier 计算位置", "answer": "技能规则 + 可独立调用脚本（推荐）", "recommended": "两者", "source": "grilling", "at": "2026-08-09T11:15:00.159709+08:00"}
+{"round": 2, "question": "词汇契约范围", "answer": "仅 design-it-twice 技能产出（推荐）", "recommended": "仅该技能产出", "source": "grilling", "at": "2026-08-09T11:15:00.159709+08:00"}
+{"round": 2, "question": "词汇表来源", "answer": "直接采用 mattpocock 词汇（推荐）", "recommended": "直接采用", "source": "grilling", "at": "2026-08-09T11:15:00.159709+08:00"}
+{"round": 3, "question": "DAG 无环校验时机", "answer": "拆解完成后立即校验（推荐）", "recommended": "拆解后即校验", "source": "grilling", "at": "2026-08-09T11:24:47.606550+08:00"}
+{"round": 3, "question": "frontier 术语消歧", "answer": "ready-set 新术语（推荐）", "recommended": "ready-set 新术语", "source": "grilling", "at": "2026-08-09T11:24:47.606550+08:00"}
+{"round": 3, "question": "design-it-twice 并行机制", "answer": "复用 to-tickets dispatch 模式（推荐）", "recommended": "复用 dispatch 模式", "source": "grilling", "at": "2026-08-09T11:24:47.606550+08:00"}
+{"round": 3, "question": "词汇契约校验器形态", "answer": "Python 脚本（推荐）", "recommended": "Python 脚本", "source": "grilling", "at": "2026-08-09T11:24:47.606550+08:00"}
+{"source": "direction_confirm", "summary": "to-tickets blocking edges + design-it-twice 方向确认", "response": "confirmed", "at": "2026-08-09T11:25:29.352782+08:00"}
+{"source":"final_confirmation","summary":"to-tickets blocking edges + design-it-twice 完整方案终审批准","response":"confirmed","at":"2026-08-09T11:26:15+08:00"}

@@ -20,6 +20,7 @@
 | skill | `commit-format` | `automatic` | [skills/commit-format/SKILL.md](skills/commit-format/SKILL.md) | 按照仓库规范生成 Git 提交信息。当用户要求"commit"、"提交"、"生成提交信息"时触发。 |
 | skill | `context-orchestration` | `automatic` | [skills/drafts/context-orchestration/SKILL.md](skills/drafts/context-orchestration/SKILL.md) | 知识资产分层、溯源、检索评估与 AI 提效方法调研 |
 | skill | `context-retrieval` | `automatic` | [skills/context-retrieval/SKILL.md](skills/context-retrieval/SKILL.md) | 按任务场景、阶段、标签和来源链选择最小可信 AI 上下文 |
+| skill | `design-it-twice` | `automatic` | [skills/design-it-twice/SKILL.md](skills/design-it-twice/SKILL.md) | 接口双方案设计。设计模块接口时并行产出 2 个以上根本不同的候选方案， 用强制词汇表（module/interface/seam/adapter/depth）对比后给出推荐。 使用场景：设计或重构任何带接口的模块、决定接缝位置、提升可测试性。 |
 | skill | `diagnosing-bugs` | `automatic` | [skills/diagnosing-bugs/SKILL.md](skills/diagnosing-bugs/SKILL.md) | Structured diagnosis loop for hard bugs and performance regressions — build a tight feedback loop, reproduce, hypothesise, instrument, fix, regression-test. Use when the user reports something broken, throwing, failing, or slow. |
 | skill | `domain-modeling` | `manual` | [skills/domain-modeling/SKILL.md](skills/domain-modeling/SKILL.md) | 在 Grill 过程中或独立对话中，主动构建和打磨项目的共享语言。 模糊术语落定后立即写入 CONTEXT.md，硬决策记录为 ADR。 |
 | skill | `domain-modeling-work` | `automatic` | [skills/domain-modeling-work/SKILL.md](skills/domain-modeling-work/SKILL.md) | Maintain the shared project language and ADRs while planning or executing work. |
