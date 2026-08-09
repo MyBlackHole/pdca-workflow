@@ -48,4 +48,4 @@
 | skill | `web-research` | `automatic` | [skills/web-research/SKILL.md](skills/web-research/SKILL.md) | 网络资料调研辅助技能。当实验阶段的场景为网络调研时，提供问题拆解、搜索策略、信息整理和结论输出的结构化指导。 |
 | skill | `write-conclusion` | `automatic` | [skills/write-conclusion/SKILL.md](skills/write-conclusion/SKILL.md) | Write records/<record-id>/conclusion.md with structured findings, then record verdict in task.json. Use at end of Check phase. |
 | skill | `write-journal` | `automatic` | [skills/write-journal/SKILL.md](skills/write-journal/SKILL.md) | Append a task summary or daily note to pdca/journal/YYYY-MM-DD.md. Use when closing a task (flow-act) or when the user says "写日志" / "记日志". |
-| skill | `writing-great-skills` | `manual` | [skills/writing-great-skills/SKILL.md](skills/writing-great-skills/SKILL.md) | 参考指南——如何编写和维护高质量的 PDCA 技能文件。定义了信息层级、极简原则、拆分规则和失败模式。 |
+| skill | `writing-great-skills` | `manual` | [skills/writing-great-skills/SKILL.md](skills/writing-great-skills/SKILL.md) | 参考指南——如何编写和维护高质量的 PDCA 技能文件。定义了信息层级、极简原则、锚定词、指针措辞、双负载、拆分规则和失败模式。 |

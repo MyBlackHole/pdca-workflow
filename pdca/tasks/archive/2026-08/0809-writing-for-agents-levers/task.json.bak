@@ -1,0 +1,38 @@
+{
+  "id": "T0245",
+  "slug": "0809-writing-for-agents-levers",
+  "title": "审查+增强 writing-great-skills：增补 writing-for-agents 4 杠杆（锚定词/指针措辞/双负载/no-op 模型相对）",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-09T19:20:00+08:00",
+    "record": "T0245-0809-writing-for-agents-levers",
+    "convergence": [
+      "T0245-0809-writing-for-agents-levers"
+    ],
+    "completed_at": "2026-08-09T19:36:46+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "writing-great-skills 增补 writing-for-agents 4 杠杆（L1 锚定词/L2 指针措辞/L3 双负载/L4 no-op 模型相对）；13 契约测试 + 全量 170 passed，baseline 豁免 2409→4890",
+      "verdict_id": "V-T0245-001",
+      "at": "2026-08-09T19:37:44+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "writing-for-agents 4 杠杆增补至 skills/writing-great-skills/SKILL.md（契约测试守护）；方法论沉淀至 knowledge/ai-efficiency/writing-for-agents-levers.md；baseline 豁免按 ADR-0007 记录",
+      "at": "2026-08-09T19:38:43.651632+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-09T19:20:00+08:00",
+    "plan": "2026-08-09T19:31:45+08:00",
+    "do": "2026-08-09T19:32:12+08:00",
+    "check": "2026-08-09T19:36:46+08:00",
+    "act": "2026-08-09T19:37:45+08:00",
+    "archive": null
+  }
+}
