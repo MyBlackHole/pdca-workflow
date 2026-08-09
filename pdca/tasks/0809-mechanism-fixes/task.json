@@ -1,0 +1,26 @@
+{
+  "id": "T0238",
+  "slug": "0809-mechanism-fixes",
+  "title": "机制修正：词汇契约适用范围（仅 design 文档）+ 时间戳写入自动化",
+  "parent": null,
+  "children": [],
+  "status": "InProgress",
+  "meta": {
+    "phase": "do",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-09T15:05:29.946332+08:00",
+    "record": "T0238-0809-mechanism-fixes",
+    "convergence": [
+      "T0238-0809-mechanism-fixes"
+    ]
+  },
+  "states": {
+    "created": "2026-08-09T15:05:29.946332+08:00",
+    "plan": "2026-08-09T15:08:38+08:00",
+    "do": "2026-08-09T15:09:26+08:00",
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

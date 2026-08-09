@@ -1,0 +1,22 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "T0238-0809-mechanism-fixes",
+      "criteria": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4",
+        "AC-5",
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "vocab-scope",
+        "time-guidance",
+        "mechanism-tests"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+{"source": "direction_confirm", "summary": "T0238 方向确认：1) check-design-vocab 默认跳过非 design 类文档（design.md/*.SKILL.md 才检查），测试覆盖两分支；2) 时间戳校验层增强 guidance + 补 STATE_TIME_ORDER 测试；3) 范围=仅脚本+测试", "response": "confirmed", "at": "2026-08-09T15:07:03.152305+08:00"}
+{"source":"final_confirmation","summary":"T0238 方案终审批准：词汇契约 --doc-type 场景限定 + STATE_TIME_ORDER guidance 增强","response":"confirmed","at":"2026-08-09T15:08:38+08:00"}

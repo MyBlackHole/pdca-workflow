@@ -1,0 +1,4 @@
+{"id":"vocab-scope","file":"check-design-vocab.py","kind":"script","size":2999,"digest":"sha256:d06a35c798a694dfb7a8cae83994e4f9d7e8a6f213823c19e142c6e8e3e4eff7","at":"2026-08-09T15:15:11+08:00","criteria":["AC-1","AC-2"]}
+{"id":"time-guidance","file":"pdca_core.py","kind":"script","size":24854,"digest":"sha256:b0ee73f21ef39158b145708e2b49aae07147cab689069629b7ba969aa7ab6f07","at":"2026-08-09T15:15:11+08:00","criteria":["AC-4"]}
+{"id":"mechanism-tests","file":"test_mechanism_fixes.py","kind":"test","size":4826,"digest":"sha256:5554a0e23a59c0a0d64afb7c290e9092800180cfd73842dde3847bd60f98ccca","at":"2026-08-09T15:15:12+08:00","criteria":["AC-5","AC-6","AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":359,"digest":"sha256:602d58ec372fbd3252fffefb80f5a1010379b443ff21c7e747c55cb3644d69b4","at":"2026-08-09T15:15:21+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6"]}
