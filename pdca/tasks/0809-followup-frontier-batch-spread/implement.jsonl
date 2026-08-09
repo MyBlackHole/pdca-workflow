@@ -1,3 +1,0 @@
-{"file": "knowledge/ai-efficiency/frontier-batch-grilling.md", "reason": "T0230 沉淀的批量问法核心做法与日志约定，本任务修复 source 一致性的依据", "action": "apply", "at": "2026-08-09T10:33:00+08:00"}
-{"file": "knowledge/ai-efficiency/ai-friendliness-review-methodology.md", "reason": "内容成本约定：UTF-8 bytes 作为零模型依赖代理，不引入真实 tokenizer", "action": "apply", "at": "2026-08-09T10:33:00+08:00"}
-{"file": "knowledge/ai-efficiency/ai-execution-and-invocation-contracts.md", "reason": "契约与门禁约定：source 术语修改不影响 schema 校验", "action": "apply", "at": "2026-08-09T10:33:00+08:00"}
