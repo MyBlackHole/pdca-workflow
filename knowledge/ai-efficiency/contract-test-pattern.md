@@ -5,7 +5,7 @@ summary: 契约测试模式——用"机器可读清单 + 一致性断言"把文
 tags: [ai-efficiency, contract, testing, pdca, seames, vocabulary]
 scenarios: [plan, check]
 phases: [plan, check]
-source_ids: [T0233-0809-seam-contract, T0231-0809-followup-frontier-batch-spread, T0232-0809-ticket-dag-design-twice, T0240-0809-seam-ci-gate, T0241-0809-seam-doctor-gate]
+source_ids: [T0233-0809-seam-contract, T0231-0809-followup-frontier-batch-spread, T0232-0809-ticket-dag-design-twice, T0240-0809-seam-ci-gate, T0241-0809-seam-doctor-gate, T0244-0809-pdca-flow-impl-review]
 ---
 
 # 契约测试模式（Contract Test Pattern）
@@ -68,3 +68,24 @@ doctor 是每次体检都跑的既有入口，无需 CI 也能自动拦截漂移
 
 - 任何"文档声明 vs 实际实现"的一致性守护：API 合约、路由契约、命名规范。
 - CI 门禁：对每个 development spec 运行 seam_contract.py。
+
+## CI 就绪度审查（T0244）
+
+落地 CI 前审查 PDCA 流程实现，三个结论：
+
+1. **门禁完整**：`pdca_core.gate_issues()` 覆盖 5 阶段 16 项检查
+   （plan: final_confirmation；do: PRD+evidence+convergence；check:
+   conclusion+verdict+check_confirmation；act: disposition；archive: 全量），
+   无可绕过路径。`validate-workflow.py --gate` 可单任务批检。
+2. **doctor 与门禁分离**：`pdca-doctor.py` 是"体检"（capabilities/references/
+   timeline/seam），**不调用 gate_issues**——不检查任务门禁合规
+   （convergence/verdict/disposition 存在性）。CI 若只跑 doctor 会漏掉
+   门禁违规。
+3. **CI 就绪度**：可直接落地 CI，但需补 doctor 门禁段。方案 A（推荐）：
+   doctor 新增 `gate` 段聚合活跃任务 gate_issues（与 seam_contracts 同构）；
+   方案 B：CI 额外跑 validate-workflow.py --gate。
+   成本极低：纯 Python 标准库 + pytest，脚本均 `Path(__file__).parent`
+   定位（T0241 已解耦，无 cwd 假设）。
+
+**经验教训**：体检入口（doctor）与门禁校验（gate_issues）是两个不同概念，
+接入 CI 时要确认自动化入口覆盖的是哪一类，避免"跑通了但没检查该检查的"。
