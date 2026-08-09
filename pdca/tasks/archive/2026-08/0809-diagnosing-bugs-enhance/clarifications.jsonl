@@ -1,0 +1,2 @@
+{"source":"final_confirmation","summary":"确认 diagnosing-bugs 增强任务：按 D1>D3>D2>D4>D5>D6 优先级落地 6 处差异，PRD 含 8 AC + 3 CC + seam 声明","response":"confirmed","at":"2026-08-09T17:26:37+08:00"}
+{"source":"check_confirmation","summary":"结论确认：D1-D6 落地完整，10 契约测试 + 全量 157 passed，baseline 豁免已记录","response":"confirmed","at":"2026-08-09T17:38:57+08:00"}
