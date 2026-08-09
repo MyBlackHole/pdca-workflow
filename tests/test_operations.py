@@ -474,5 +474,175 @@ class OperationsTest(unittest.TestCase):
             self.assertEqual([], task_issues(root, task_dir, include_phase_requirements=False))
 
 
+class PlanTimestampBackfillTest(unittest.TestCase):
+    ROOT = Path(__file__).resolve().parents[1]
+
+    def _scaffold(self, root: Path, task_dir: Path, states: dict) -> None:
+        (root / "flows/flow-plan").mkdir(parents=True)
+        (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+        shutil.copytree(ROOT / "schemas", root / "schemas")
+        (root / "records").mkdir()
+        task_dir.mkdir(parents=True)
+        task = {
+            "id": "T9999",
+            "slug": "0809-backfill-test",
+            "title": "backfill fixture",
+            "parent": None,
+            "children": [],
+            "status": "Pending",
+            "meta": {
+                "phase": "plan",
+                "active": True,
+                "scenario_type": "development",
+                "created_at": "2026-07-28T10:00:00+08:00",
+                "convergence": ["backfill succeeds"],
+            },
+            "states": states,
+        }
+        (task_dir / "task.json").write_text(json.dumps(task), encoding="utf-8")
+        (task_dir / "prd.md").write_text(
+            "# PRD\n\n## 验收标准\n\n- [ ] AC-1: backfill succeeds\n",
+            encoding="utf-8",
+        )
+
+    def test_plan_backfilled_from_confirmation_moment(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            task_dir = root / "pdca/tasks/0809-backfill-test"
+            self._scaffold(
+                root,
+                task_dir,
+                {
+                    "created": "2026-07-28T10:00:00+08:00",
+                    "plan": None,
+                    "do": None,
+                    "check": None,
+                    "act": None,
+                    "archive": None,
+                },
+            )
+            (task_dir / "clarifications.jsonl").write_text(
+                json.dumps(
+                    {
+                        "source": "final_confirmation",
+                        "summary": "approved",
+                        "response": "confirmed",
+                        "at": "2026-07-28T10:05:00+08:00",
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            command = [
+                "python3",
+                str(self.ROOT / "scripts/transition-phase.py"),
+                str(task_dir),
+                "--to",
+                "do",
+                "--root",
+                str(root),
+            ]
+            result = subprocess.run(command, capture_output=True, text=True)
+            self.assertEqual("transitioned", json.loads(result.stdout)["status"])
+            updated = json.loads((task_dir / "task.json").read_text(encoding="utf-8"))
+            self.assertEqual("2026-07-28T10:05:00+08:00", updated["states"]["plan"])
+
+    def test_plan_backfilled_to_now_without_confirmation(self) -> None:
+        import importlib.util
+
+        scripts_dir = self.ROOT / "scripts"
+        sys.path.insert(0, str(scripts_dir))
+        try:
+            spec = importlib.util.spec_from_file_location(
+                "transition_phase", scripts_dir / "transition-phase.py"
+            )
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+        finally:
+            sys.path.remove(str(scripts_dir))
+        backfill_plan_timestamp = module.backfill_plan_timestamp
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            task_dir = root / "pdca/tasks/0809-backfill-test"
+            task_dir.mkdir(parents=True)
+            task = {
+                "id": "T9999",
+                "slug": "0809-backfill-test",
+                "title": "backfill fixture",
+                "parent": None,
+                "children": [],
+                "status": "Pending",
+                "meta": {"phase": "plan", "active": True, "scenario_type": "development"},
+                "states": {
+                    "created": "2026-07-28T10:00:00+08:00",
+                    "plan": None,
+                    "do": None,
+                    "check": None,
+                    "act": None,
+                    "archive": None,
+                },
+            }
+            (task_dir / "task.json").write_text(json.dumps(task), encoding="utf-8")
+            (task_dir / "clarifications.jsonl").write_text(
+                json.dumps(
+                    {
+                        "source": "clarification",
+                        "summary": "a question",
+                        "response": "answered",
+                        "at": "2026-07-28T10:01:00+08:00",
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            value = backfill_plan_timestamp(task_dir, task, task_dir / "task.json")
+            self.assertIsNotNone(value)
+            updated = json.loads((task_dir / "task.json").read_text(encoding="utf-8"))
+            self.assertIsNotNone(updated["states"]["plan"])
+
+    def test_existing_plan_timestamp_not_overwritten(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            task_dir = root / "pdca/tasks/0809-backfill-test"
+            self._scaffold(
+                root,
+                task_dir,
+                {
+                    "created": "2026-07-28T10:00:00+08:00",
+                    "plan": "2026-07-28T10:02:00+08:00",
+                    "do": None,
+                    "check": None,
+                    "act": None,
+                    "archive": None,
+                },
+            )
+            (task_dir / "clarifications.jsonl").write_text(
+                json.dumps(
+                    {
+                        "source": "final_confirmation",
+                        "summary": "approved",
+                        "response": "confirmed",
+                        "at": "2026-07-28T10:05:00+08:00",
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            command = [
+                "python3",
+                str(self.ROOT / "scripts/transition-phase.py"),
+                str(task_dir),
+                "--to",
+                "do",
+                "--root",
+                str(root),
+            ]
+            result = subprocess.run(command, capture_output=True, text=True)
+            self.assertEqual("transitioned", json.loads(result.stdout)["status"])
+            updated = json.loads((task_dir / "task.json").read_text(encoding="utf-8"))
+            self.assertEqual("2026-07-28T10:02:00+08:00", updated["states"]["plan"])
+
+
 if __name__ == "__main__":
     unittest.main()

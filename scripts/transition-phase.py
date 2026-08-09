@@ -13,8 +13,32 @@ import tempfile
 from datetime import datetime
 from pathlib import Path
 
-from pdca_core import PHASES, Issue, acceptance_criteria, gate_issues, load_json, repo_root, schema_issues
+from pdca_core import PHASES, Issue, acceptance_criteria, gate_issues, load_json, load_jsonl, repo_root, schema_issues
 from flow_audit import audit_transition
+
+
+def backfill_plan_timestamp(task_dir: Path, task: dict, task_path: Path) -> str | None:
+    """若 states.plan 缺失，用 final_confirmation.at（Plan 真实完成时刻）补写；
+    无 confirmation 记录时兜底用当前时刻。补写后原子落盘。
+    返回补写值（未补写则返回 None）。"""
+    if task.get("states", {}).get("plan") is not None:
+        return None
+    path = task_dir / "clarifications.jsonl"
+    confirmed_at = None
+    if path.is_file():
+        try:
+            for entry in load_jsonl(path):
+                if entry.get("source") == "final_confirmation":
+                    confirmed_at = entry.get("at")
+                    if confirmed_at is not None:
+                        break
+        except ValueError:
+            pass
+    if confirmed_at is None:
+        confirmed_at = datetime.now().astimezone().isoformat(timespec="seconds")
+    task.setdefault("states", {})["plan"] = confirmed_at
+    atomic_json(task_path, task)
+    return confirmed_at
 
 
 def digest(path: Path) -> str:
@@ -53,6 +77,8 @@ def main() -> int:
     if current_index + 1 >= len(PHASES) or PHASES[current_index + 1] != args.to:
         print(json.dumps({"status": "rejected", "error": "NON_ADJACENT_TRANSITION", "from": current, "to": args.to}))
         return 1
+    if args.to == "do":
+        backfill_plan_timestamp(task_dir, task, task_path)
     try:
         audit_transition(root, task_dir, args.to)
     except Exception as exc:  # Audit findings are non-blocking; the transition gate remains authoritative.
