@@ -1,2 +1,7 @@
 {"source": "direction_confirm", "summary": "T0238 方向确认：1) check-design-vocab 默认跳过非 design 类文档（design.md/*.SKILL.md 才检查），测试覆盖两分支；2) 时间戳校验层增强 guidance + 补 STATE_TIME_ORDER 测试；3) 范围=仅脚本+测试", "response": "confirmed", "at": "2026-08-09T15:07:03.152305+08:00"}
 {"source":"final_confirmation","summary":"T0238 方案终审批准：词汇契约 --doc-type 场景限定 + STATE_TIME_ORDER guidance 增强","response":"confirmed","at":"2026-08-09T15:08:38+08:00"}
+{"source":"check_confirmation","summary":"T0238 结论确认：词汇契约场景限定 + STATE_TIME_ORDER guidance 修复完成，全部 AC 通过","response":"confirmed","at":"2026-08-09T15:16:49+08:00"}
+{"round": 1, "question": "Ac1-适用范围与限制", "answer": "词汇契约仅约束设计文档（doc-type=design），其他文档需显式 other 跳过；guidance 不改门禁强度", "recommended": "接受", "source": "grilling", "at": "2026-08-09T15:17:07.356197+08:00"}
+{"round": 1, "question": "Ac2-可复用知识", "answer": "沉淀为机制修正知识：契约场景限定原则 + 时间戳自动化教训（transition 补写 plan 时间戳候选）", "recommended": "沉淀", "source": "grilling", "at": "2026-08-09T15:17:07.356197+08:00"}
+{"round": 1, "question": "Ac3-流程改进", "answer": "transition 自动补写 states.plan 时间戳；seam_contract 集成 CI", "recommended": "接受", "source": "grilling", "at": "2026-08-09T15:17:07.356197+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-09T15:17:35.207982+08:00", "action": "wrote", "reason": "契约场景限定原则沉淀"}
