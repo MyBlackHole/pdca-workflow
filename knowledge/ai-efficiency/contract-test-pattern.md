@@ -5,7 +5,7 @@ summary: 契约测试模式——用"机器可读清单 + 一致性断言"把文
 tags: [ai-efficiency, contract, testing, pdca, seames, vocabulary]
 scenarios: [plan, check]
 phases: [plan, check]
-source_ids: [T0233-0809-seam-contract, T0231-0809-followup-frontier-batch-spread, T0232-0809-ticket-dag-design-twice, T0240-0809-seam-ci-gate]
+source_ids: [T0233-0809-seam-contract, T0231-0809-followup-frontier-batch-spread, T0232-0809-ticket-dag-design-twice, T0240-0809-seam-ci-gate, T0241-0809-seam-doctor-gate]
 ---
 
 # 契约测试模式（Contract Test Pattern）
@@ -46,6 +46,12 @@ source_ids: [T0233-0809-seam-contract, T0231-0809-followup-frontier-batch-spread
   "测试文件缺失"，防"声明了 seam 但测试未落地"的漏检。
 - base-dir 默认 = 仓库根（不随调用者 cwd 变化），避免 --root 与
   --base-dir 不一致的配置坑。
+
+**自动触发点（T0241）**：仓库无 CI 基础设施时，把契约校验接入既有体检入口
+`pdca-doctor.py --json`（新增 `seam_contracts` 段，失败即 valid=false）。
+doctor 是每次体检都跑的既有入口，无需 CI 也能自动拦截漂移。校验脚本用
+`Path(__file__).parent` 定位（与被检 root 解耦），避免临时 root 无 scripts/
+导致加载失败。
 
 ## 可证明方式
 

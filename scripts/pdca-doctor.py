@@ -4,10 +4,12 @@
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import os
 import re
 import shutil
+import sys
 from pathlib import Path
 
 import yaml
@@ -15,6 +17,38 @@ import yaml
 from pdca_core import repo_root, timeline_issues
 
 REFERENCE_RE = re.compile(r"\$PDCA_HOME/([A-Za-z0-9_./{}<>,*-]+)")
+
+
+def load_seam_contracts_module():
+    """用 importlib 加载同目录 check-seam-contracts.py（连字符文件名不能直接 import）。"""
+    path = Path(__file__).resolve().parent / "check-seam-contracts.py"
+    if not path.is_file():
+        return None
+    sys_path_saved = list(sys.path)
+    sys.path.insert(0, str(path.parent))
+    try:
+        spec = importlib.util.spec_from_file_location("check_seam_contracts", path)
+        if spec is None or spec.loader is None:
+            return None
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module
+    finally:
+        sys.path[:] = sys_path_saved
+
+
+def seam_contracts_checks(root: Path) -> dict:
+    """批量校验活跃任务 spec 的 seam 声明，返回报告段。"""
+    module = load_seam_contracts_module()
+    if module is None:
+        return {"checked": 0, "clean": [], "issues": {}}
+    specs = module.find_active_specs(root)
+    issues_per_spec, clean_specs = module.check_all(specs, root)
+    return {
+        "checked": len(specs),
+        "clean": clean_specs,
+        "issues": issues_per_spec,
+    }
 
 
 def active_task_timeline(root: Path) -> list[dict]:
@@ -99,17 +133,20 @@ def main() -> int:
 
     references = local_references(root)
     missing_references = [item for item in references if not item["exists"]]
+    seam_checks = seam_contracts_checks(root)
+    seam_broken = bool(seam_checks["issues"])
     payload = {
         "schema": "pdca.doctor/v1",
         "root": str(root),
         "pdca_home_source": "repository-fallback" if fallback_used else "environment",
         "warning": "configure PDCA_HOME for external projects" if fallback_used else None,
-        "valid": not missing_required and not missing_references,
+        "valid": not missing_required and not missing_references and not seam_broken,
         "missing_required": missing_required,
         "missing_references": missing_references,
         "capabilities": capabilities,
         "references_checked": len(references),
         "task_timeline": active_task_timeline(root),
+        "seam_contracts": seam_checks,
     }
     print(json.dumps(payload, ensure_ascii=False, indent=2))
     return 0 if payload["valid"] else 1

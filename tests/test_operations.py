@@ -81,6 +81,63 @@ class OperationsTest(unittest.TestCase):
         self.assertEqual("execute-in-main-session", capabilities["agent.spawn"]["fallback"])
         self.assertEqual("filesystem-search", capabilities["context.retrieve"]["fallback"])
 
+    def test_doctor_reports_seam_contracts_segment(self) -> None:
+        environment = {
+            key: value
+            for key, value in os.environ.items()
+            if key not in {"PDCA_HOME", "PDCA_AGENT_SPAWN", "PDCA_NETWORK_FETCH"}
+        }
+        completed = subprocess.run(
+            ["python3", "scripts/pdca-doctor.py", "--json"],
+            cwd=ROOT,
+            env=environment,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        result = json.loads(completed.stdout)
+        self.assertIn("seam_contracts", result)
+        self.assertIsInstance(result["seam_contracts"]["checked"], int)
+        self.assertIsInstance(result["seam_contracts"]["issues"], dict)
+
+    def test_doctor_invalid_when_seam_broken(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "flows/flow-plan").mkdir(parents=True)
+            (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+            (root / "AGENTS.md").write_text(
+                "# AGENTS\n\nminimal fixture, no references.\n",
+                encoding="utf-8",
+            )
+            shutil.copytree(ROOT / "schemas", root / "schemas")
+            shutil.copytree(ROOT / "config", root / "config")
+            (root / "records").mkdir()
+            task_dir = root / "pdca/tasks/0809-broken-seam"
+            task_dir.mkdir(parents=True)
+            (task_dir / "prd.md").write_text(
+                "# PRD\n\n### 声明的测试接缝\n\n- seam: tests/missing_test.py -> src/x.py\n",
+                encoding="utf-8",
+            )
+            environment = {
+                key: value
+                for key, value in os.environ.items()
+                if key not in {"PDCA_HOME", "PDCA_AGENT_SPAWN", "PDCA_NETWORK_FETCH"}
+            }
+            completed = subprocess.run(
+                ["python3", "scripts/pdca-doctor.py", "--json", "--root", str(root)],
+                env=environment,
+                capture_output=True,
+                text=True,
+            )
+            result = json.loads(completed.stdout)
+            self.assertFalse(result["valid"])
+            self.assertTrue(any(
+                "测试文件缺失" in issue
+                for issues in result["seam_contracts"]["issues"].values()
+                for issue in issues
+            ))
+            self.assertNotEqual(0, completed.returncode)
+
     def test_generated_index_is_current(self) -> None:
         subprocess.run(
             ["python3", "scripts/generate-skills-index.py", "--check"],
