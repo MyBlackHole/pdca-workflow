@@ -1,0 +1,38 @@
+{
+  "id": "T0241",
+  "slug": "0809-seam-doctor-gate",
+  "title": "seam 门禁接入 pdca-doctor：doctor --json 自动批量校验",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-09T16:35:28.346675+08:00",
+    "record": "T0241-0809-seam-doctor-gate",
+    "convergence": [
+      "T0241-0809-seam-doctor-gate"
+    ],
+    "completed_at": "2026-08-09T16:45:25+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "AC-1..AC-5 全部通过：doctor seam_contracts 段 + 失败阻断 + 向后兼容 + 全量 147 无回归",
+      "verdict_id": "T0241-CK-20260809-01",
+      "at": "2026-08-09T16:47:41.299896+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "doctor 自动门禁机制沉淀至 knowledge/ai-efficiency/contract-test-pattern.md（自动触发点小节，source_ids 含 T0241）；seam 门禁闭环：P6 单任务 + 仓库级批量 + doctor 自动入口",
+      "at": "2026-08-09T16:48:14.958929+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-09T16:35:28.346675+08:00",
+    "plan": "2026-08-09T16:39:31+08:00",
+    "do": "2026-08-09T16:39:54+08:00",
+    "check": "2026-08-09T16:45:25+08:00",
+    "act": "2026-08-09T16:47:41+08:00",
+    "archive": null
+  }
+}
