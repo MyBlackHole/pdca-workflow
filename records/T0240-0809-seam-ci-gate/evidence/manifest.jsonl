@@ -1,0 +1,3 @@
+{"id": "ci-script", "file": "check-seam-contracts.py", "kind": "implementation", "size": 2773, "digest": "sha256:b664b18cc37729be49848acfe48db47ad8f3e8ae54468165c84efa63c5b8e0dc", "at": "2026-08-09T16:09:41+08:00", "criteria": ["AC-1", "AC-2", "AC-4"]}
+{"id": "ci-tests", "file": "test_seam_ci_gate.py", "kind": "test", "size": 4994, "digest": "sha256:c35481edec8d0e0e5d2ba9030c8f68870d4bc7624faee7b3727f4aa34d85908e", "at": "2026-08-09T16:09:41+08:00", "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5"]}
+{"id": "convergence-map", "file": "convergence.json", "kind": "convergence-map", "size": 307, "digest": "sha256:1ab643528cda9fa1b23dcedfe16e3da23c48d130062197c332a465201146b947", "at": "2026-08-09T16:09:57+08:00", "criteria": ["CC-1"]}

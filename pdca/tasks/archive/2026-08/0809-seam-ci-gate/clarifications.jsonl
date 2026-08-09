@@ -1,0 +1,2 @@
+{"source":"final_confirmation","summary":"确认 T0240 决策：校验范围仅活跃任务；CI 形态为脚本+测试（无 GitHub Actions）","response":"confirmed","at":"2026-08-09T16:05:26+08:00"}
+{"source":"check_confirmation","summary":"T0240 结论确认：seam_contract 仓库级门禁完成，145 测试通过","response":"confirmed","at":"2026-08-09T16:30:02+08:00"}

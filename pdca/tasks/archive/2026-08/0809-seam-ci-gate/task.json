@@ -1,0 +1,38 @@
+{
+  "id": "T0240",
+  "slug": "0809-seam-ci-gate",
+  "title": "seam_contract 集成 CI 门禁：批量校验 spec seam 声明",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "development",
+    "created_at": "2026-08-09T16:03:57.479255+08:00",
+    "record": "T0240-0809-seam-ci-gate",
+    "convergence": [
+      "T0240-0809-seam-ci-gate"
+    ],
+    "completed_at": "2026-08-09T16:10:07+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "AC-1..AC-5 全部通过：批量 seam 校验脚本 + 5 新测试 + 归档范围限定 + 全量 145 无回归",
+      "verdict_id": "T0240-CK-20260809-01",
+      "at": "2026-08-09T16:30:02.266352+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "仓库级 seam 门禁机制沉淀至 knowledge/ai-efficiency/contract-test-pattern.md（新增仓库级批量门禁小节，source_ids 含 T0240）；T0233 conclusion 的 CI 门禁建议已落实",
+      "at": "2026-08-09T16:31:23.150330+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-09T16:03:57.479255+08:00",
+    "plan": "2026-08-09T16:05:26+08:00",
+    "do": "2026-08-09T16:05:52+08:00",
+    "check": "2026-08-09T16:10:07+08:00",
+    "act": "2026-08-09T16:30:02+08:00",
+    "archive": "2026-08-09T16:31:23+08:00"
+  }
+}
