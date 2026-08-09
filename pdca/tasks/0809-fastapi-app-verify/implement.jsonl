@@ -1,0 +1,3 @@
+{"file": "knowledge/ai-efficiency/contract-test-pattern.md", "reason": "seam 契约/词汇契约三例模式，指导本任务契约测试实现", "action": "load", "at": "2026-08-09T12:54:50.216856+08:00"}
+{"file": "knowledge/ai-efficiency/ticket-dag-ready-set.md", "reason": "ready-set 计算与依赖分批，指导 P4 拆解调度", "action": "load", "at": "2026-08-09T12:54:50.216856+08:00"}
+{"file": "knowledge/ai-efficiency/frontier-batch-grilling.md", "reason": "批量问法（round 合并），指导 Plan 阶段对齐效率", "action": "load", "at": "2026-08-09T12:54:50.216856+08:00"}

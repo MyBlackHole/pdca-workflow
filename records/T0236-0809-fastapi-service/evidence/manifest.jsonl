@@ -1,0 +1,2 @@
+{"id":"service-impl/AC-1","file":"service.py","kind":"implementation","size":1959,"digest":"sha256:c76734704f10ac29bf6d1000f100714e093950ff1ea8dd7946472246c8f5cff6","at":"2026-08-09T13:09:14+08:00","criteria":["service.py 提供 TodoService（依赖 storage）"]}
+{"id":"service-tests/AC-3","file":"test_service.py","kind":"test","size":2299,"digest":"sha256:23b5af29f0716c24f7781b3195bb346173bbd1bbb22056a5e3e0c1429c3e43fc","at":"2026-08-09T13:09:14+08:00","criteria":["tests/test_service.py 10 测试通过（校验规则 + NotFound + 集成）"]}

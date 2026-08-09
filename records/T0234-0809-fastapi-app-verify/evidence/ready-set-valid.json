@@ -1,0 +1,25 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "T0234-0809-fastapi-app-verify",
+      "criteria": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4",
+        "AC-5",
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ready-set-valid",
+        "seam-contract-valid",
+        "vocab-contract-demo",
+        "app-tests-pass",
+        "bug-found",
+        "subtask-evidence"
+      ]
+    }
+  ]
+}

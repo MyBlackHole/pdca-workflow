@@ -1,0 +1,2 @@
+{"id":"api-impl/AC-1","file":"main.py","kind":"implementation","size":2732,"digest":"sha256:ce26f3b1b7f3de677a978692ca8acbfe4c71f5ab8b176771c008a29618ffc91e","at":"2026-08-09T13:11:59+08:00","criteria":["main.py 定义 FastAPI app + 5 个 CRUD 端点 + Pydantic 模型"]}
+{"id":"api-tests/AC-3","file":"test_api.py","kind":"test","size":3321,"digest":"sha256:9d14c70c8c78c592f08116c052e0120edfb373b513114ea51788b5293a3a0334","at":"2026-08-09T13:12:00+08:00","criteria":["tests/test_api.py 11 测试通过（TestClient 全端点集成）；发现并修复 get_db 缺 commit 的真实 bug"]}

@@ -1,0 +1,7 @@
+{"source": "direction_confirm", "summary": "T0234 方向确认：仓内 apps/todo-fastapi/ 用 FastAPI+SQLAlchemy+SQLite 实现 TODO 待办 CRUD；按 router/service/storage 三模块拆解，每模块一个 seam；启用词汇契约（check-design-vocab）；TestClient 集成测试；范围=实现+机制验证", "response": "confirmed", "at": "2026-08-09T12:44:17.730336+08:00"}
+{"source":"final_confirmation","summary":"T0234 方案终审批准：FastAPI TODO 应用三模块拆解，ready-set 分批 [[T0235],[T0236],[T0237]]，三 seam 契约 + 词汇契约启用","response":"confirmed","at":"2026-08-09T13:03:52+08:00"}
+{"source":"check_confirmation","summary":"T0234 结论确认：三机制（ready-set/seam/词汇契约）在真实工程实测有效，发现词汇契约适用范围边界 + get_db bug 真实捕获","response":"confirmed","at":"2026-08-09T14:35:05+08:00"}
+{"round": 1, "question": "Ac1-适用范围与限制", "answer": "新机制（ready-set/seam/词汇契约）在真实 development 任务全部有效；词汇契约需限定设计文档场景，不误用于需求文档", "recommended": "接受", "source": "grilling", "at": "2026-08-09T14:36:11.051511+08:00"}
+{"round": 1, "question": "Ac2-可复用知识", "answer": "沉淀为外部项目模式验证 + 词汇契约适用范围教训 + 集成测试捕获 bug 实例", "recommended": "沉淀", "source": "grilling", "at": "2026-08-09T14:36:11.051511+08:00"}
+{"round": 1, "question": "Ac3-流程改进", "answer": "修正 check-design-vocab 适用场景；seam_contract 集成 CI", "recommended": "接受", "source": "grilling", "at": "2026-08-09T14:36:11.051511+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-09T14:36:51.130011+08:00", "action": "wrote", "reason": "真实工程机制验证结果沉淀"}
