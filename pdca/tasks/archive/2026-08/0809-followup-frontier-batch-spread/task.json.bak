@@ -1,0 +1,38 @@
+{
+  "id": "T0231",
+  "slug": "0809-followup-frontier-batch-spread",
+  "title": "修复 grilling source 术语漂移并验证 flow-act Ac1 批量问法收益",
+  "parent": "T0230",
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-09T10:09:00+08:00",
+    "record": "T0231-0809-followup-frontier-batch-spread",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "source 术语统一（flow-act/flow-check/flow-plan 均用 source: grilling，契约测试守护）+ Ac1 批量收益验证（轮数 3x、bytes 1.3x）+ 全量 102 passed + 13 subtests 无回归 + validate-convergence valid=true",
+      "verdict_id": "T0231-CK-20260809-01",
+      "at": "2026-08-09T10:39:30+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "source 术语一致性约定与 Ac1 轮数/bytes 实测补充至 knowledge/ai-efficiency/frontier-batch-grilling.md（revision 2），供后续交互型技能/flow 复用",
+      "at": "2026-08-09T10:40:00+08:00"
+    },
+    "convergence": [
+      "T0231-0809-followup-frontier-batch-spread"
+    ],
+    "completed_at": "2026-08-09T10:37:57+08:00"
+  },
+  "states": {
+    "created": "2026-08-09T10:09:00+08:00",
+    "plan": "2026-08-09T10:09:00+08:00",
+    "do": "2026-08-09T10:33:40+08:00",
+    "check": "2026-08-09T10:37:57+08:00",
+    "act": "2026-08-09T10:39:37+08:00",
+    "archive": null
+  }
+}

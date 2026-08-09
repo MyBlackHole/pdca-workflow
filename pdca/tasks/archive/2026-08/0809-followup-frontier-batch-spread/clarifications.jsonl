@@ -1,0 +1,12 @@
+{"round": 1, "source": "grilling", "question": "T0231 目标形态？", "answer": "分阶段：flow-act 先行，flow-do/to-tickets 后跟", "at": "2026-08-09T10:13:30+08:00"}
+{"round": 1, "source": "grilling", "question": "推广范围？", "answer": "本轮仅 flow-act Ac1 Grill，其余创建跟进任务", "at": "2026-08-09T10:13:30+08:00"}
+{"round": 1, "source": "grilling", "question": "效率证明方式？", "answer": "轮数 + 上下文 token 双重指标", "at": "2026-08-09T10:13:30+08:00"}
+{"source":"direction_confirm","summary":"方向确认：修复 flow-act/flow-check 的 source 术语漂移(grill→grilling) + 新增契约测试与 Ac1 轮数/bytes 双指标验证；不推广 flow-do/to-tickets","response":"confirmed","at":"2026-08-09T10:32:51+08:00"}
+{"source":"final_confirmation","summary":"终审批准：修复 flow-act/flow-check source 术语漂移 + 新增契约测试与 Ac1 轮数/bytes 双指标验证，AC-1~AC-6，不推广 flow-do/to-tickets","response":"confirmed","at":"2026-08-09T10:33:11+08:00"}
+{"round": 7, "source": "grilling", "question": "结论可靠性：修复 source 一致性 + 验证 Ac1 批量收益是否充分支撑结论？", "answer": "结论可靠", "at": "2026-08-09T10:38:53+08:00"}
+{"round": 7, "source": "grilling", "question": "知识沉淀：本次 source 术语一致性修复是否需补充到可复用知识？", "answer": "补充知识", "at": "2026-08-09T10:38:53+08:00"}
+{"round": 7, "source": "grilling", "question": "流程改进：下次类似术语漂移如何预防？", "answer": "已够用", "at": "2026-08-09T10:38:53+08:00"}
+{"source":"check_confirmation","summary":"结论确认：source 术语统一（flow-act/check/plan 均用 source: grilling）+ Ac1 批量收益验证（轮数 3x、bytes 1.3x）+ 全量 102 passed 无回归 + 收敛 valid=true","response":"confirmed","at":"2026-08-09T10:39:27+08:00"}
+{"round": 8, "source": "grilling", "question": "source 术语一致性修复沉淀到哪里？", "answer": "补充到既有知识 frontier-batch-grilling.md", "at": "2026-08-09T10:45:54+08:00"}
+{"round": 8, "source": "grilling", "question": "补充哪些内容到知识文件？", "answer": "三条要点：source 统一 grilling、契约测试守护、bytes 代理非真实 token", "at": "2026-08-09T10:45:54+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-09T10:46:17+08:00", "action": "wrote", "reason": "补充 source 术语一致性约定与 Ac1 轮数/bytes 实测到 knowledge/ai-efficiency/frontier-batch-grilling.md"}
