@@ -1,11 +1,11 @@
 ---
 schema: pdca.asset/v1
 id: knowledge.ai-efficiency.contract-test-pattern
-summary: 契约测试模式——用"机器可读清单 + 一致性断言"把文档/术语/seam 声明与实际实现的一致性做成可回归验证的硬指标（T0231/T0232/T0233 三例已验证）
+summary: 契约测试模式——用"机器可读清单 + 一致性断言"把文档/术语/seam 声明与实际实现的一致性做成可回归验证的硬指标（T0231/T0232/T0233 三例已验证，T0240 扩展为仓库级批量门禁）
 tags: [ai-efficiency, contract, testing, pdca, seames, vocabulary]
 scenarios: [plan, check]
 phases: [plan, check]
-source_ids: [T0233-0809-seam-contract, T0231-0809-followup-frontier-batch-spread, T0232-0809-ticket-dag-design-twice]
+source_ids: [T0233-0809-seam-contract, T0231-0809-followup-frontier-batch-spread, T0232-0809-ticket-dag-design-twice, T0240-0809-seam-ci-gate]
 ---
 
 # 契约测试模式（Contract Test Pattern）
@@ -33,6 +33,19 @@ source_ids: [T0233-0809-seam-contract, T0231-0809-followup-frontier-batch-spread
    旧任务不强制补齐）。
 5. **去重**。契约测试应引用实现的纯函数（parse/check），不重复定义，
    避免两处漂移。
+
+## 仓库级批量门禁（T0240 扩展）
+
+单任务门禁（P6）防单个任务漏检；**仓库级批量门禁**防跨任务回归：
+
+- `check-seam-contracts.py` 扫描活跃任务 spec 批量校验，任一失败退出非 0。
+- **范围限定到活跃任务**（archive 不扫）：归档 spec 的 seam 指向的历史
+  测试文件可能随外部项目生命周期移除（T0234 FastAPI 实例），且归档 spec
+  为不可变记录不应修改——含归档校验会持续误报。
+- 开发期即拦截：新任务 PRD 声明 seam 后、测试落地前，门禁即报
+  "测试文件缺失"，防"声明了 seam 但测试未落地"的漏检。
+- base-dir 默认 = 仓库根（不随调用者 cwd 变化），避免 --root 与
+  --base-dir 不一致的配置坑。
 
 ## 可证明方式
 
