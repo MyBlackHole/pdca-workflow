@@ -1,7 +1,0 @@
-{"round":1,"question":"EOF 判定与空闲回收的改动收敛面？","answer":"集中两层收口（rpc-conn/rpc-io），调用点不逐一改","recommended":"集中两层收口","source":"grilling","at":"2026-08-07T11:35:00+08:00"}
-{"round":2,"question":"rpc_recv 对 EOF 的返回码设计？","answer":"负值区分 EOF（-101）区别于错误(-100)，既有调用无关；rpc_recv 内 EOF 仅 Note 不打 Error 消除噪音","recommended":"负值区分 EOF","source":"grilling","at":"2026-08-07T11:36:00+08:00"}
-{"round":3,"question":"idle_timeout 能否省？","answer":"范围收缩：只修 EOF，不新增空闲回收/配置","recommended":"只修 EOF","source":"grilling","at":"2026-08-07T11:38:00+08:00"}
-{"source":"final_confirmation","summary":"T0226 范围收缩为只修 rpc_recv EOF 判定（IO_EOF 负值+不打 ErrorLog），不新增空闲回收/配置；经 3 轮 grilling 用户确认","response":"confirmed","at":"2026-08-07T11:41:00+08:00"}
-{"source":"check_confirmation","summary":"T0226 EOF判定修复实机验证通过：误报 Error 消除、EOF 走 Info 干净关闭；冗余日志收敛。verdict=confirmed","response":"confirmed","at":"2026-08-07T11:50:30+08:00"}
-{"source":"knowledge_decision","at":"2026-08-07T11:52:00+08:00","action":"wrote","reason":"EOF 判定(IO_EOF 区分 EOF 与网络错误+IO主循环识别对端关闭消误报)可复用于同类连接复用模型"}
-{"source":"grill","question":"EOF 判定适用范围与限制？","answer":"面向 rpc_recv+worker 长驻会话模型；EOF 误报消除已实机验证；空闲主动回收未落地留待跟进","at":"2026-08-07T11:52:30+08:00"}
