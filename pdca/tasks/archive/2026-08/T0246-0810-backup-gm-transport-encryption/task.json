@@ -6,8 +6,8 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "check",
-    "active": true,
+    "phase": "archive",
+    "active": false,
     "record": "T0246-0810-backup-gm-transport-encryption",
     "scenario_type": "documentation",
     "created_at": "2026-08-10T14:18:25+08:00",
@@ -22,6 +22,11 @@
       "reason": "用户确认 Check 阶段结论成立：总文档覆盖六类对象与独立场景，拓扑符合全部轮次修正，OB/gaussDB 传输不可国密结论与调研一致，11 项 AC 全覆盖，convergence valid:true",
       "verdict_id": "V-T0246-20260811-001",
       "at": "2026-08-11T11:58:33+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "结论经用户 confirmed 认可；介质国密承接模型已沉淀到 knowledge/backup-crypto/medium-model.md（并在 manifest.jsonl 登记），总文档作为 record 归档",
+      "at": "2026-08-11T12:12:45+08:00"
     }
   },
   "states": {
@@ -29,7 +34,7 @@
     "plan": "2026-08-10T15:03:26+08:00",
     "do": "2026-08-10T15:04:36+08:00",
     "check": "2026-08-10T17:11:17+08:00",
-    "act": null,
-    "archive": null
+    "act": "2026-08-11T12:06:31+08:00",
+    "archive": "2026-08-11T12:17:14+08:00"
   }
 }
