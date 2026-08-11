@@ -5,7 +5,7 @@
 
 ## 一句话结论
 
-**gs_roach 备份工具本身不支持国密（备份传输 + 备份集 AK/SK 存储加密均为 AES）；而数据源 gaussdb 引擎（TDE 透明加密）支持国密存储加密（SM4_CTR / SM4_CTR_SM3_HMAC），国密 SSL/TLCP 仅 gsql/JDBC 客户端与服务端之间支持。**
+**gs_roach 备份工具本身不支持国密（备份传输 + 备份集 AK/SK 存储加密均为 AES）；国密 SSL/TLCP 仅 gsql/JDBC 客户端与服务端之间支持（管理/访问面，不作用于备份链路）。备份集存储国密需介质侧（后端 ZFS 承载）承担。**
 
 ## 分层结论
 
@@ -13,8 +13,8 @@
 |----|---------|---------|
 | gs_roach 备份传输 | SSL 默认开启，套件硬编码 AES（ECDHE-ECDSA-AES128-GCM-SHA256 等 + TLS_AES_128/256_GCM） | 不支持国密 |
 | gs_roach 备份集存储 |透明加密 AK/SK（roach_ak_sk.key），AES-128-CBC | 不支持国密 |
-| gaussdb 引擎存储 | TDE 表级透明加密：enable_tde + tde_key_info(KMS) + encrypt_algo | 支持 SM4_CTR、SM4_CTR_SM3_HMAC |
-| gsql/JDBC 传输 | SUPPORT SSL/TLCP |支持国密（ECC-SM4-* / ECDHE-SM4-*） |
+| gaussdb 引擎存储（源 TDE） | TDE 表级透明加密：enable_tde + tde_key_info(KMS) + encrypt_algo；属库自身能力 | 源 TDE 支持 SM4_CTR，但**不以源 TDE 沿袭作为备份国密路径** |
+| gsql/JDBC 传输 | SUPPORT SSL/TLCP |支持国密（ECC-SM4-* / ECDHE-SM4-*），不作用于备份链路 |
 
 ## 关键证据（现场二进制 505.2.1 build 1da42ed9）
 
@@ -38,5 +38,5 @@
 
 ## 场景建议（如需端到端国密）
 
-- 数据源：用引擎 TDE（encrypt_algo='SM4_CTR'）+ gsql/JDBC 国密 TLS/TLCP 认证。
-- 备份链路：gs_roach 自身不可国密，需上层替代——备份链路前置国密 TLS 网关/隧道，或备份集导出后以 SM4 加密归档。
+- 备份链路：gs_roach 自身不可国密，需上层替代——备份链路前置国密 TLS 网关/隧道，或备份集导出后以 SM4 加密归档；备份集落盘由介质侧（后端 ZFS 承载）承担存储国密。
+- 源引擎 TDE（gaussdb 引擎 SM4_CTR）为数据库自有能力，属独立于备份工具的现实存在，可作为数据源静态加密背景，但**不纳入备份方案国密实现路径**。
