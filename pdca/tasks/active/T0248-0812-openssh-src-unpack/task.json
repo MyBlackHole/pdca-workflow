@@ -6,8 +6,8 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "act",
-    "active": true,
+    "phase": "archive",
+    "active": false,
     "record": "T0248-0812-openssh-src-unpack",
     "scenario_type": "development",
     "created_at": "2026-08-12T14:30:15+08:00",
@@ -33,6 +33,6 @@
     "do": "2026-08-12T14:40:34+08:00",
     "check": "2026-08-12T14:46:27+08:00",
     "act": "2026-08-12T14:48:51+08:00",
-    "archive": null
+    "archive": "2026-08-12T14:51:53+08:00"
   }
 }
