@@ -24,11 +24,13 @@
 > 规律：国产 CPU 指令覆盖集中在 SM4/SM3；SM2 非对称运算当前靠软件（GmSSL/Tongsuo/BabaSSL）或硬件密码模块。评估国密性能时按算法分列判断。
 
 ### 3. Linux 定制版 NFS 内核国密边界
-- 内核 crypto 层**已注册国密**（`crypto/sm4.c`、sm3、架构级 SM4 硬件加速模板）；
+- 内核 crypto 层**已注册国密**（`crypto/sm4.c`、sm3、sm2、架构级 SM4 硬件加速模板）；
 - 但 NFS 的 RPCSEC_GSS/krb5（`gss_krb5`）enctype 算法名**白名单仅含国际算法**（`cts(cbc(aes))`、`cts(cbc(camellia))`、`hmac(sha1/sha256/sha384)`），**从不请求 `sm4`/`sm3`**；
 - 结论：**内核 crypto 层注册了国密、NFS 不调用**——仅改造内核模板无法使 NFS 协商出国密；NFS 国密需链路层叠加（RFC 8998 国密 TLS 隧道 / 国密 IPsec / 商密 VPN 或安全存储网关）。
 
-> 规律：注册能力 ≠ 协议调用路径。判定某协议是否可国密，看其算法白名单/协商表而不是底层 crypto 注册表；华为 OceanStor 国密同样集中在管理面/块复制 IPsec/静态介质，NFS 数据面无国密开关。
+> **OLK-6.6 源码实证（T0249）**：`net/sunrpc/auth_gss/gss_krb5_mech.c` `supported_gss_krb5_enctypes[]`（L33）6 项 enctype 全为国际算法（aes128/256-cts、camellia128/256-cts-cmac、aes128-cts-sha256、aes256-cts-sha384，RFC 3962/6803/8009）；`rg 'sm4|sm3|sm2' fs/nfs fs/nfsd net/sunrpc` → 0 命中。**叠加前提**：NFS 支持 `xprtsec=tls/mtls`（fs/nfs/fs_context.c:290-299，RPC_AUTH_TLS）且 net/tls 注册 SM4-GCM/CCM（tls_main.c:106-107，`gcm(sm4)`/`ccm(sm4)`，offloadable=false）→ **NFS-over-国密-TLS 内核机制齐备**。边界：内核只发起握手（`tls_client_hello_anon/x509`，证书/私钥取自 keyring），完整协商在用户态 tlshd；落地需用户态 TLS 栈支持 RFC 8998 且服务端可配 SM4。
+
+> 规律：注册能力 ≠ 协议调用路径。判定某协议是否可国密，看其算法白名单/协商表而不是底层 crypto 注册表；华为 OceanStor 国密同样集中在管理面/块复制 IPsec/静态介质，NFS 数据面无国密开关。NFS 国密落地首选 xprtsec=tls 叠加 SM4 或 IPsec（OLK-6.6 xfrm 已注册 `cbc(sm4)`/`hmac(sm3)`）。
 
 ## 复用场景
 - 备份集落 S3 时的介质静态加密选型（国内对象存储可 SM4，标准 S3 不能）。
@@ -39,3 +41,4 @@
 - S3 SM4 能力以各厂商最新文档为准（腾讯 COS SM4 仅 API、华为 OBS SSE-KMS SM4 区域受限）。
 - CPU 指令集覆盖随时间演进（兆芯 GMI 下一代表功能含 SM2）。
 - 不涉及密码卡/PKCS#11 等硬件密码模块部署细节。
+- NFS-over-TLS(SM4) 为内核机制前提，完整落地依赖用户态 TLS 栈（RFC 8998 国密套件）与服务端支持，需实测确认。

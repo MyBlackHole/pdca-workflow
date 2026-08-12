@@ -1,0 +1,38 @@
+{
+  "id": "T0249",
+  "slug": "0812-kernel-nfs-gm-research",
+  "title": "研究 kernel-OLK-6.6 的 NFS 是否支持国密",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "record": "T0249-0812-kernel-nfs-gm-research",
+    "scenario_type": "research",
+    "created_at": "2026-08-12T15:09:38+08:00",
+    "convergence": [
+      "基于 kernel-OLK-6.6 源码实证 NFS 协议层国密（SM2/SM3/SM4）支持状态"
+    ],
+    "completed_at": "2026-08-12T15:54:19+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "用户确认 Check 结论成立：OLK-6.6 NFS 数据面不支持原生国密（GSS/krb5 enctype 白名单仅国际算法、fs-nfs/fs-nfsd/sunrpc 零 sm 引用）；xprtsec=tls/mtls + net/tls SM4-GCM/CCM 提供 NFS-over-国密-TLS 实现前提（非已支持，协商依赖用户态 tlshd）；AC-1~AC-5 达成，收敛链 valid:true",
+      "verdict_id": "V-T0249-20260812-001",
+      "at": "2026-08-12T16:12:58+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "结论经用户 confirmed 认可；OLK-6.6 NFS 国密结论沉淀：既有 gm-support-surfaces.md 第 3 节更新至 revision 2，补充 enctype 白名单源码证据、零引用实证与 xprtsec=tls+net/tls SM4 叠加前提（用户态 tlshd 边界）；convergence valid:true",
+      "at": "2026-08-12T16:14:45+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-12T15:09:38+08:00",
+    "plan": "2026-08-12T15:37:22+08:00",
+    "do": "2026-08-12T15:37:41+08:00",
+    "check": "2026-08-12T15:54:19+08:00",
+    "act": "2026-08-12T16:13:35+08:00",
+    "archive": null
+  }
+}
