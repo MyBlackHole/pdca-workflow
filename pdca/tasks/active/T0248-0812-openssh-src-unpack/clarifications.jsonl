@@ -1,0 +1,4 @@
+{"source":"direction_confirm","summary":"方向确认：解压 openssh-9.6p1-16.oe2403sp4.src.rpm 到 /home/black/Downloads/openssh-9.6p1-src/（src/ 源码树 + patches/ 补件），尝试 .asc 校验失败不阻塞，展开 tar 源码树；用途为 openssh 国密（SM2/SM3/SM4）支持审计，输出支持清单","response":"confirmed","at":"2026-08-12T14:38:32+08:00"}
+{"source":"final_confirmation","summary":"用户批准 PRD 全案：解压到 /home/black/Downloads/openssh-9.6p1-src/（src/ 源码树 + patches/ 补件 + spec），.asc 校验失败不阻塞，产出 SM2/SM3/SM4 国密支持清单，AC-1~AC-5","response":"confirmed","at":"2026-08-12T14:40:23+08:00"}
+{"source":"check_confirmation","summary":"用户确认 Check 结论成立：openssh-9.6p1-16.oe2403sp4 支持国密（SM2 密钥/sm2-sm3 KEX/sm4-ctr/hmac-sm3+SM3，含 OpenSSL3.x EVP 适配），AC-1~AC-5 达成，收敛链 valid:true","response":"confirmed","at":"2026-08-12T14:48:17+08:00"}
+{"source":"knowledge_decision","at":"2026-08-12T14:50:28+08:00","action":"wrote","reason":"OpenSSH 国密支持面（SM2/SM3/SM4 算法标识+OpenSSL3.x SM2 EVP 适配坑）沉淀为 knowledge/backup-crypto/openssh-gm-support.md，供移植/审计复用"}
