@@ -1,0 +1,40 @@
+{
+  "id": "T0249",
+  "slug": "0814-lmdb-no-mmap-round63",
+  "title": "Round 63：切换 LMDB no-mmap 分支并验证内存边界",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "scenario_type": "development",
+    "record": "T0249-0814-lmdb-no-mmap-round63",
+    "verdict": {
+      "outcome": "partial",
+      "reason": "构建门禁、mmap 专用逻辑清理及 SQLite/TLS/checkpoint 回归通过；真实 MDB_VL32 no-mmap 分支缺失，运行矩阵与性能验证延期。",
+      "verdict_id": "V-T0249-20260814-065018",
+      "at": "2026-08-14T06:50:18+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "沉淀 MDB_VL32 构建探针和 mmap-only adapter 边界；通过 T0250 跟进任务完成真实 no-mmap 运行与性能验证。",
+      "at": "2026-08-14T06:51:00+08:00"
+    },
+    "convergence": [
+      "LMDB 构建和运行时明确使用 no-mmap 分支，普通 mmap LMDB 不再被误认为符合部署要求",
+      "no-mmap LMDB 在 SQLite/旧缓存/故障回滚和海量增量扫描中保持正确事务语义",
+      "no-mmap backend 的 RSS、吞吐、checkpoint 和全量回归结果可复核并形成明确取舍"
+    ],
+    "created_at": "2026-08-14T06:34:26+08:00",
+    "completed_at": "2026-08-14T06:48:59+08:00"
+  },
+  "states": {
+    "created": "2026-08-14T06:34:26+08:00",
+    "plan": "2026-08-14T06:35:55+08:00",
+    "do": "2026-08-14T06:35:56+08:00",
+    "check": "2026-08-14T06:48:59+08:00",
+    "act": "2026-08-14T06:50:31+08:00",
+    "archive": null
+  }
+}

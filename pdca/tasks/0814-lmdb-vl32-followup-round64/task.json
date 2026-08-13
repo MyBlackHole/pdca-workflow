@@ -1,0 +1,28 @@
+{
+  "id": "T0250",
+  "slug": "0814-lmdb-vl32-followup-round64",
+  "title": "Round 64 跟进：接入 MDB_VL32 no-mmap 分支并完成运行验证",
+  "parent": "T0249",
+  "children": [],
+  "status": "InProgress",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "record": "T0250-0814-lmdb-vl32-followup-round64",
+    "convergence": [
+      "MDB_VL32 no-mmap 分支可被 Make/CMake 探测、构建并在运行时启用",
+      "no-mmap LMDB 的事务、旧缓存重建、故障回滚和 TREE checkpoint 语义通过验证",
+      "no-mmap LMDB 与 SQLite 的 100k benchmark、RSS 和吞吐差异可复核"
+    ],
+    "created_at": "2026-08-14T06:51:00+08:00"
+  },
+  "states": {
+    "created": "2026-08-14T06:51:00+08:00",
+    "plan": "2026-08-14T06:51:00+08:00",
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

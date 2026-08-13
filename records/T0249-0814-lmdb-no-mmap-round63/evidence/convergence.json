@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "LMDB 构建和运行时明确使用 no-mmap 分支，普通 mmap LMDB 不再被误认为符合部署要求",
+      "criteria": ["AC-1", "AC-2"],
+      "evidence_ids": ["build-guard", "api-scan"]
+    },
+    {
+      "index": 2,
+      "text": "no-mmap LMDB 在 SQLite/旧缓存/故障回滚和海量增量扫描中保持正确事务语义",
+      "criteria": ["AC-3", "AC-5"],
+      "evidence_ids": ["fallback-regression", "do-summary"]
+    },
+    {
+      "index": 3,
+      "text": "no-mmap backend 的 RSS、吞吐、checkpoint 和全量回归结果可复核并形成明确取舍",
+      "criteria": ["AC-4", "AC-6"],
+      "evidence_ids": ["benchmark-gap", "fallback-regression"]
+    }
+  ]
+}
