@@ -6,7 +6,7 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "check",
+    "phase": "act",
     "active": true,
     "scenario_type": "development",
     "record": "T0246-0813-small-writer-pool",
@@ -15,6 +15,11 @@
       "reason": "AC-1 至 AC-7 全部通过；默认 workers=0 保持不变，显式 workers=4 作为当前基准下的候选值。",
       "verdict_id": "V-T0246-20260813-confirmed",
       "at": "2026-08-13T21:41:34+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "终审结论成立；将小文件 writer pool 的首错边界、顺序屏障和配对并行度基准沉淀为可复用知识，具体吞吐数字留在本轮 record。",
+      "at": "2026-08-13T21:42:29+08:00"
     },
     "created_at": "2026-08-13T21:02:59+08:00",
     "convergence": [
@@ -28,7 +33,7 @@
     "plan": "2026-08-13T21:11:26+08:00",
     "do": "2026-08-13T21:11:59+08:00",
     "check": "2026-08-13T21:40:26+08:00",
-    "act": null,
+    "act": "2026-08-13T21:41:45+08:00",
     "archive": null
   }
 }
