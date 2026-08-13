@@ -1,0 +1,12 @@
+{"round":1,"question":"是否按先建立测量和正确性契约，再决定调参或实现优化的方向推进？","answer":"可以；确认该方向。","recommended":"是：先固定背压、错误传播、顺序屏障和可重复基准，再依据证据修改策略。","source":"grilling","at":"2026-08-13T21:06:11+08:00"}
+{"round":1,"question":"是否接受本轮暂不修改默认 --small-file-workers 0，仅在证据支持时调整可选参数行为？","answer":"可以；确认保持默认值。","recommended":"是：保持默认关闭，避免改变普通 GET 的线程和资源行为。","source":"grilling","at":"2026-08-13T21:06:11+08:00"}
+{"round":2,"question":"writer 失败策略是否采用首错 fail-fast：停止接收后续小文件，等待活动 worker 回收，跳过后续硬链接/目录元数据/TREE_END 动作并保留首个错误？","answer":"可以；确认采用。","recommended":"是：错误边界明确，避免不完整树继续执行顺序相关动作。","source":"grilling","at":"2026-08-13T21:10:25+08:00"}
+{"round":2,"question":"指标是否继续通过 --progress 输出 workers、enqueued、completed、peak_queue、peak_active、backpressure_waits、failed，且不新增协议或独立 metrics 通道？","answer":"可以；确认采用。","recommended":"是：复用现有诊断出口，避免扩大协议和控制面。","source":"grilling","at":"2026-08-13T21:10:25+08:00"}
+{"round":2,"question":"基准是否采用 workers=0/1/2/4/8 的无校验 durability=none 基线，并对 workers=0/4 增加 checksum 与 durability=strict 聚焦样本？","answer":"可以；确认采用。","recommended":"是：覆盖并行度主变量，同时控制总运行量并保留高成本模式验证。","source":"grilling","at":"2026-08-13T21:10:25+08:00"}
+{"round":3,"question":"是否确认声明的测试接缝：tests/tls_tree_small_pack_integration.sh -> backupctl；tests/benchmark_tree.sh -> backupctl？","answer":"可以；确认接缝清单。","recommended":"是：前者覆盖真实树恢复和失败/顺序行为，后者覆盖配对性能测量。","source":"grilling","at":"2026-08-13T21:10:25+08:00"}
+{"source":"final_confirmation","summary":"确认 Round 60 客户端小文件 writer pool 方案：首错 fail-fast、活动 worker 回收、progress 指标、配对 benchmark；保持协议与默认 workers=0 不变。","response":"confirmed","at":"2026-08-13T21:11:26+08:00"}
+{"source":"check_confirmation","summary":"终审结论成立：AC-1 至 AC-7 全部通过；默认 workers=0 保持不变，显式 workers=4 作为当前基准下的候选值。","response":"confirmed","at":"2026-08-13T21:41:34+08:00"}
+{"round":4,"question":"本轮结论的适用范围是否限定为当前主机、10000 个小文件和四对样本，不把 worker=4 的收益外推为默认策略？","answer":"确认；保留该边界并维持默认 workers=0。","recommended":"是：将 worker=4 记录为部署候选，目标主机仍需重跑配对矩阵。","source":"grilling","at":"2026-08-13T21:42:29+08:00"}
+{"round":4,"question":"哪些结果值得沉淀为可复用知识：首错 fail-fast、顺序屏障、指标观测和配对并行度基准？","answer":"确认；写入 benchmark/small-writer-pool-parallelism.md。","recommended":"是：这些原则跨实现可复用，具体吞吐数字只保留在本轮 record。","source":"grilling","at":"2026-08-13T21:42:29+08:00"}
+{"round":4,"question":"下一轮流程是否先在目标存储设备复测，再考虑改变默认并行度？","answer":"确认；本轮不创建架构跟进任务。","recommended":"是：先扩大设备和文件分布样本，避免把单机 benchmark 误当成普遍结论。","source":"grilling","at":"2026-08-13T21:42:29+08:00"}
+{"source":"knowledge_decision","at":"2026-08-13T21:42:29+08:00","action":"wrote","reason":"首错 fail-fast、顺序屏障、指标观测和配对并行度基准可跨小文件落盘池实现复用；本轮具体吞吐数字仍保留在 record。"}

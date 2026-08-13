@@ -1,0 +1,23 @@
+make: Nothing to be done for 'all'.
+make: Nothing to be done for 'all'.
+[  3%] Built target backupstream-event-bench
+[ 37%] Built target backupstream_common
+[ 41%] Built target backupstream-mux-bench
+[ 56%] Built target backupctl
+[ 81%] Built target backup-agent
+[ 84%] Built target backupstream-reactor-post-bench
+[ 88%] Built target backupstream-callback-bench
+[ 92%] Built target backupstream-work-pool-completion-bench
+[ 96%] Built target backupstream-unit
+[100%] Built target backupstream-reactor-connect-test
+[  3%] Built target backupstream-event-bench
+[  7%] Built target backupstream-mux-bench
+[ 42%] Built target backupstream_common
+[ 56%] Built target backupctl
+[ 78%] Built target backup-agent
+[ 82%] Built target backupstream-callback-bench
+[ 85%] Built target backupstream-reactor-post-bench
+[ 89%] Built target backupstream-work-pool-completion-bench
+[ 92%] Built target backupstream-unit
+[ 96%] Built target backupstream-reactor-connect-test
+[100%] Built target backupstream-tls-reactor-test

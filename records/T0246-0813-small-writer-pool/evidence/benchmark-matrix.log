@@ -1,0 +1,34 @@
+# paired tree benchmark: files=10000 pairs=4
+# baseline matrix: checksum=0 durability=none workers=0/1/2/4/8
+pair=baseline-0 candidate=1 sample=1 baseline=0.300099s candidate=0.308821s
+pair=baseline-0 candidate=1 sample=2 baseline=0.283914s candidate=0.315499s
+pair=baseline-0 candidate=1 sample=3 baseline=0.276261s candidate=0.300696s
+pair=baseline-0 candidate=1 sample=4 baseline=0.278820s candidate=0.319362s
+summary=none-worker-0 samples=4 mean=0.284774s min=0.276261s max=0.300099s files_per_sec_mean=35115
+summary=none-worker-1 samples=4 mean=0.311094s min=0.300696s max=0.319362s files_per_sec_mean=32144
+pair=baseline-0 candidate=2 sample=1 baseline=0.278735s candidate=0.230817s
+pair=baseline-0 candidate=2 sample=2 baseline=0.280318s candidate=0.223985s
+pair=baseline-0 candidate=2 sample=3 baseline=0.272148s candidate=0.214627s
+pair=baseline-0 candidate=2 sample=4 baseline=0.279415s candidate=0.217374s
+summary=none-worker-0 samples=4 mean=0.277654s min=0.272148s max=0.280318s files_per_sec_mean=36016
+summary=none-worker-2 samples=4 mean=0.221701s min=0.214627s max=0.230817s files_per_sec_mean=45105
+pair=baseline-0 candidate=4 sample=1 baseline=0.281075s candidate=0.207436s
+pair=baseline-0 candidate=4 sample=2 baseline=0.272605s candidate=0.220282s
+pair=baseline-0 candidate=4 sample=3 baseline=0.271786s candidate=0.202123s
+pair=baseline-0 candidate=4 sample=4 baseline=0.293641s candidate=0.188665s
+summary=none-worker-0 samples=4 mean=0.279777s min=0.271786s max=0.293641s files_per_sec_mean=35742
+summary=none-worker-4 samples=4 mean=0.204626s min=0.188665s max=0.220282s files_per_sec_mean=48869
+pair=baseline-0 candidate=8 sample=1 baseline=0.283936s candidate=0.214501s
+pair=baseline-0 candidate=8 sample=2 baseline=0.281491s candidate=0.229513s
+pair=baseline-0 candidate=8 sample=3 baseline=0.279939s candidate=0.220836s
+pair=baseline-0 candidate=8 sample=4 baseline=0.273559s candidate=0.220944s
+summary=none-worker-0 samples=4 mean=0.279731s min=0.273559s max=0.283936s files_per_sec_mean=35748
+summary=none-worker-8 samples=4 mean=0.221448s min=0.214501s max=0.229513s files_per_sec_mean=45157
+# focused matrix: workers=0/4 checksum=1 durability=strict
+pair=baseline-0 candidate=4 sample=1 checksum=1 durability=strict baseline=0.302905s candidate=0.218659s
+pair=baseline-0 candidate=4 sample=2 checksum=1 durability=strict baseline=0.319612s candidate=0.227115s
+pair=baseline-0 candidate=4 sample=3 checksum=1 durability=strict baseline=0.294876s candidate=0.224589s
+pair=baseline-0 candidate=4 sample=4 checksum=1 durability=strict baseline=0.303556s candidate=0.224663s
+summary=strict-checksum-worker-0 samples=4 mean=0.305237s min=0.294876s max=0.319612s files_per_sec_mean=32761
+summary=strict-checksum-worker-4 samples=4 mean=0.223756s min=0.218659s max=0.227115s files_per_sec_mean=44691
+benchmark tree paired: PASS files=10000 pairs=4 full_put=0.2874s incremental_unchanged=0.1069s
