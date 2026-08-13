@@ -1,0 +1,22 @@
+# paired tree benchmark: files=10000 pairs=4 baseline=/tmp/backupstream-round60/build-make candidate=./build-make
+# implementation matrix: workers=0/4 checksum=0 durability=none
+pair=baseline-old candidate=new workers=0 sample=1 baseline=0.443938s candidate=0.450916s baseline_rss_kib=7552 candidate_rss_kib=7444
+pair=baseline-old candidate=new workers=0 sample=2 baseline=0.428769s candidate=0.462327s baseline_rss_kib=7704 candidate_rss_kib=7232
+pair=baseline-old candidate=new workers=0 sample=3 baseline=0.442821s candidate=0.451014s baseline_rss_kib=7444 candidate_rss_kib=7544
+pair=baseline-old candidate=new workers=0 sample=4 baseline=0.465947s candidate=0.450654s baseline_rss_kib=7576 candidate_rss_kib=7340
+summary=old-workers-0 samples=4 mean=0.445369s min=0.428769s max=0.465947s files_per_sec_mean=22453 rss_kib_mean=7569 rss_kib_max=7704
+summary=new-workers-0 samples=4 mean=0.453728s min=0.450654s max=0.462327s files_per_sec_mean=22039 rss_kib_mean=7390 rss_kib_max=7544
+pair=baseline-old candidate=new workers=4 sample=1 baseline=0.336579s candidate=0.313327s baseline_rss_kib=7556 candidate_rss_kib=7428
+pair=baseline-old candidate=new workers=4 sample=2 baseline=0.314846s candidate=0.305479s baseline_rss_kib=7572 candidate_rss_kib=7356
+pair=baseline-old candidate=new workers=4 sample=3 baseline=0.312634s candidate=0.308341s baseline_rss_kib=7504 candidate_rss_kib=7496
+pair=baseline-old candidate=new workers=4 sample=4 baseline=0.304786s candidate=0.341931s baseline_rss_kib=7540 candidate_rss_kib=7328
+summary=old-workers-4 samples=4 mean=0.317211s min=0.304786s max=0.336579s files_per_sec_mean=31524 rss_kib_mean=7543 rss_kib_max=7572
+summary=new-workers-4 samples=4 mean=0.317269s min=0.305479s max=0.341931s files_per_sec_mean=31518 rss_kib_mean=7402 rss_kib_max=7496
+# focused matrix: implementation old/new workers=4 checksum=1 durability=strict
+pair=baseline-old candidate=new workers=4 sample=1 checksum=1 durability=strict baseline=0.272330s candidate=0.247127s baseline_rss_kib=9944 candidate_rss_kib=9360
+pair=baseline-old candidate=new workers=4 sample=2 checksum=1 durability=strict baseline=0.235550s candidate=0.209036s baseline_rss_kib=9892 candidate_rss_kib=9664
+pair=baseline-old candidate=new workers=4 sample=3 checksum=1 durability=strict baseline=0.197343s candidate=0.212548s baseline_rss_kib=9680 candidate_rss_kib=9504
+pair=baseline-old candidate=new workers=4 sample=4 checksum=1 durability=strict baseline=0.204324s candidate=0.200288s baseline_rss_kib=9896 candidate_rss_kib=9496
+summary=old-strict-checksum-workers-4 samples=4 mean=0.227387s min=0.197343s max=0.272330s files_per_sec_mean=43977 rss_kib_mean=9853 rss_kib_max=9944
+summary=new-strict-checksum-workers-4 samples=4 mean=0.217250s min=0.200288s max=0.247127s files_per_sec_mean=46029 rss_kib_mean=9506 rss_kib_max=9664
+benchmark tree paired: PASS files=10000 pairs=4 full_put=0.4661s incremental_unchanged=0.1828s
