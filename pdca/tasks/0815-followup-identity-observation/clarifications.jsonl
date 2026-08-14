@@ -1,0 +1,6 @@
+{"at":"2026-08-15T05:39:12+08:00","source":"task_identity","summary":"created with record identity T0263-0815-followup-identity-observation"}
+{"round": 1, "source": "grilling", "at": "2026-08-15T06:38:29.188552+08:00", "question": "Q1-观察窗口触发条件", "answer": "14 天或累计 20 个真实新任务，以先到者为准", "recommended": "延续 T0262 conclusion 建议，以先到者触发观察结论"}
+{"round": 1, "source": "grilling", "at": "2026-08-15T06:38:29.188552+08:00", "question": "Q2-观察指标口径", "answer": "沿用 T0262 baseline 四维（dup IDs/dup slugs/event path mismatch/record mismatch）+ 新增创建成功率（创建失败次数、人工恢复次数、convergence 填写缺失率）", "recommended": "四维 baseline 对比 + 创建成功率"}
+{"round": 1, "source": "grilling", "at": "2026-08-15T06:38:29.188552+08:00", "question": "Q3-结论出具时点", "answer": "观察窗触发后（14 天或 20 任务先到者）出具 effectiveness verdict", "recommended": "当前完成 Plan 并挂起，窗口触发后出具"}
+{"source":"direction_confirm","summary":"观察协议确认：无代码改动，14 天或 20 个真实新任务先到者触发，沿用 T0262 baseline 四维对比 + 创建成功率指标，research 场景跳过 seam，PRD 定稿","response":"confirmed","at":"2026-08-15T06:39:33+08:00"}
+{"source":"final_confirmation","summary":"T0263 终审批准：无代码改动观察任务，6 条 AC，14 天或 20 个真实新任务先到者触发，沿用 T0262 baseline 四维 + 成功率指标，按 real-usage 分层出 verdict；任务保持 plan 挂起至观察窗触发","response":"confirmed","at":"2026-08-15T06:40:31+08:00"}
