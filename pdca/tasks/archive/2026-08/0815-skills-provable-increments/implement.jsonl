@@ -1,0 +1,4 @@
+{"file": "/tmp/opencode/mattpocock-skills/skills/engineering/triage/SKILL.md", "reason": "AGENT-BRIEF 结构化模板与 durability-over-precision 原则的直接来源。", "action": "按上游模板落地到 triage-work 并加可 grep 质量约束。", "at": "2026-08-15T07:03:46.507138+08:00"}
+{"file": "/tmp/opencode/mattpocock-skills/skills/engineering/to-tickets/SKILL.md", "reason": "wide-refactor expand→分批迁移→contract 序列化与 blast radius 分批的直接来源。", "action": "落地到 to-tickets 加 wide-refactor 分支。", "at": "2026-08-15T07:03:46.507179+08:00"}
+{"file": "/tmp/opencode/mattpocock-skills/skills/engineering/wayfinder/SKILL.md", "reason": "ticket claim（assign 即 claim）与并发 session 跳过机制的来源。", "action": "落地到 wayfinding-work 加 claim 字段与冲突检测。", "at": "2026-08-15T07:03:46.507193+08:00"}
+{"file": "records/T0232-0809-ticket-dag-design-twice/conclusion.md", "reason": "该任务曾将 expand-contract 列为不落地；本任务重新决策落地。", "action": "在 PRD 与 conclusion 中记录推翻理由（逐批 CI 绿可证明）。", "at": "2026-08-15T07:03:46.507206+08:00"}

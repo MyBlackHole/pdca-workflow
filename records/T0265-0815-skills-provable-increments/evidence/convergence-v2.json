@@ -1,0 +1,53 @@
+{
+ "schema": "pdca.convergence/v1",
+ "items": [
+  {
+   "index": 1,
+   "text": "triage-work 补 AGENT-BRIEF 结构化模板与可检查质量约束",
+   "criteria": [
+    "AC-1",
+    "AC-2"
+   ],
+   "evidence_ids": [
+    "ac1-brief-template",
+    "ac2-brief-constraints"
+   ]
+  },
+  {
+   "index": 2,
+   "text": "to-tickets 补 wide-refactor 保绿序列化（expand→分批迁移→contract）",
+   "criteria": [
+    "AC-3",
+    "AC-4"
+   ],
+   "evidence_ids": [
+    "ac3-refactor-branch",
+    "ac4-refactor-metrics"
+   ]
+  },
+  {
+   "index": 3,
+   "text": "wayfinding-work 补 ticket claim 并发防冲突",
+   "criteria": [
+    "AC-5",
+    "AC-6"
+   ],
+   "evidence_ids": [
+    "ac5-claim-mechanism",
+    "ac6-claim-conflict"
+   ]
+  },
+  {
+   "index": 4,
+   "text": "每个增量有可证明的硬指标与测试",
+   "criteria": [
+    "AC-7",
+    "AC-8"
+   ],
+   "evidence_ids": [
+    "ac7-tests",
+    "ac8-no-regression"
+   ]
+  }
+ ]
+}

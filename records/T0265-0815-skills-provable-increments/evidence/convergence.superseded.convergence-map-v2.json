@@ -1,0 +1,53 @@
+{
+ "schema": "pdca.convergence/v1",
+ "items": [
+  {
+   "index": 1,
+   "text": "triage-work 补 AGENT-BRIEF 结构化模板（category/scenario_type/summary/current/desired/key interfaces/AC/out of scope 等 11 字段）与可检查质量约束（AC 可测性、durability over precision 禁 :line/文件路径、ready-to-plan 必带 brief）",
+   "criteria": [
+    "AC-1",
+    "AC-2"
+   ],
+   "evidence_ids": [
+    "ac1-brief-template",
+    "ac2-brief-constraints"
+   ]
+  },
+  {
+   "index": 2,
+   "text": "to-tickets 补 wide-refactor 保绿序列化（expand→分批迁移→contract→integrate），依赖边声明 + 逐批 CI 绿 100% 硬指标与 expand 阶段旧形式契约测试说明",
+   "criteria": [
+    "AC-3",
+    "AC-4"
+   ],
+   "evidence_ids": [
+    "ac3-refactor-branch",
+    "ac4-refactor-metrics"
+   ]
+  },
+  {
+   "index": 3,
+   "text": "wayfinding-work 补 ticket claim 并发防冲突（claimed-by/in-progress 字段、只有 unclaimed 票可取、并发 session 跳过），冲突检测脚本可证明",
+   "criteria": [
+    "AC-5",
+    "AC-6"
+   ],
+   "evidence_ids": [
+    "ac5-claim-mechanism",
+    "ac6-claim-conflict"
+   ]
+  },
+  {
+   "index": 4,
+   "text": "每个增量有可证明硬指标与测试：tests/test_skills_increments.py 断言三 skill 结构契约 + claim 状态机行为，10 测试全绿且全量测试无回归",
+   "criteria": [
+    "AC-7",
+    "AC-8"
+   ],
+   "evidence_ids": [
+    "ac7-tests",
+    "ac8-no-regression"
+   ]
+  }
+ ]
+}
