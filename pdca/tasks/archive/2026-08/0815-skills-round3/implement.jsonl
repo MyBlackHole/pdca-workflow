@@ -1,0 +1,4 @@
+{"file": "/tmp/opencode/mattpocock-skills/skills/engineering/triage/OUT-OF-SCOPE.md", "reason": "out-of-scope 概念聚合/反污染/dedup surfacing 的直接来源。", "action": "落地到 triage-work wontfix 分支 + out-of-scope-manager.py。", "at": "2026-08-15T07:38:11.506967+08:00"}
+{"file": "/tmp/opencode/mattpocock-skills/skills/engineering/resolving-merge-conflicts/SKILL.md", "reason": "intent-based 五步解析（primary source/保留意图/绝不 abort/自动化检查）的直接来源。", "action": "重写本仓库 resolving-merge-conflicts skill。", "at": "2026-08-15T07:38:11.506967+08:00"}
+{"file": "/tmp/opencode/mattpocock-skills/skills/engineering/codebase-design/DEEPENING.md", "reason": "依赖分类/删减测试/seam 纪律/replace-dont-layer 的直接来源。", "action": "落地到 design-it-twice 深化测试策略章节。", "at": "2026-08-15T07:38:11.506967+08:00"}
+{"file": "knowledge/pdca-workflow/provable-skill-increments.md", "reason": "T0265 沉淀的可证明增量方法论，本轮三个增量的可证明性延续其行为级/结构级分级。", "action": "按方法论实现行为级硬指标。", "at": "2026-08-15T07:38:11.506967+08:00"}
