@@ -1,0 +1,8 @@
+[0;32m[PASS][0m xmake build oss 成功
+[0;32m[PASS][0m 产物存在: build/linux/x86_64/release/aio-oss
+[0;32m[PASS][0m --version 含 1.0.0.0 (实际: aio-oss version 1.0.0.0)
+[0;32m[PASS][0m --help 含 server 子命令
+[0;32m[PASS][0m 版本文件 aio-oss.version = 1.0.0.0
+[0;32m[PASS][0m cd oss && go build -mod=vendor 独立构建回归通过
+----------------------------------------
+RESULT: ALL PASS

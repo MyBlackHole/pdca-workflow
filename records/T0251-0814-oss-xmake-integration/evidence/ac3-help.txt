@@ -1,0 +1,15 @@
+NAME:
+   aio-oss - A new cli application
+
+USAGE:
+   aio-oss [global options] [command [command options]] [arguments...]
+
+VERSION:
+   1.0.0.0
+
+COMMANDS:
+   server  start object storage server
+
+GLOBAL OPTIONS:
+   --help, -h     show help (default: false)
+   --version, -v  print the version (default: false)

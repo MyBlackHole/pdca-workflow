@@ -1,0 +1,11 @@
+{"id":"e-build-test","file":"build-oss-test.log","kind":"test-log","size":417,"digest":"sha256:c8cea200537415e85061796292f5a3ffeaf28b3d680b811dd0507ac10a67b643","at":"2026-08-14T10:23:32+08:00","criteria":["AC-1"]}
+{"id":"e-version","file":"ac2-version.txt","kind":"artifact","size":24,"digest":"sha256:8a26173078a796eba1cc06907feac22fbdd05e6dffd8192a8db6bef44e6ab400","at":"2026-08-14T10:23:56+08:00","criteria":["AC-2"]}
+{"id":"e-help","file":"ac3-help.txt","kind":"artifact","size":306,"digest":"sha256:b6f7a49bd3c1522abf69c1b69d13ae8c29a73b35831d46b711ec9b71a65ae390","at":"2026-08-14T10:23:57+08:00","criteria":["AC-3"]}
+{"id":"e-install","file":"ac4-install.txt","kind":"artifact","size":129,"digest":"sha256:53823eb811621abf1407cb96dbb0cd117305528f36984786491a1f33abf01bd0","at":"2026-08-14T10:23:57+08:00","criteria":["AC-4"]}
+{"id":"e-version-h","file":"version-h.log","kind":"artifact","size":33,"digest":"sha256:d466e9bf40871137e967d72e567b37f59c85010f989cb7236fc6333722645abc","at":"2026-08-14T10:23:57+08:00","criteria":["AC-5"]}
+{"id":"e-version-log","file":"version-log.log","kind":"artifact","size":21,"digest":"sha256:7a76e64af75e442aa3b256caaf528f7d80517ff8f7bfaae95c9a5b33632309db","at":"2026-08-14T10:23:57+08:00","criteria":["AC-5"]}
+{"id":"e-debug","file":"ac6-debug.txt","kind":"artifact","size":24,"digest":"sha256:8a26173078a796eba1cc06907feac22fbdd05e6dffd8192a8db6bef44e6ab400","at":"2026-08-14T10:23:58+08:00","criteria":["AC-6"]}
+{"id":"e-standalone","file":"ac7-standalone.txt","kind":"artifact","size":27,"digest":"sha256:d32b4445fb74efb4888b6cc49ef4df5eb48e74c12134cbb6a01b290954d5bb5e","at":"2026-08-14T10:23:58+08:00","criteria":["AC-7"]}
+{"id":"e-script","file":"ac8-pass-count.txt","kind":"artifact","size":2,"digest":"sha256:10159baf262b43a92d95db59dae1f72c645127301661e0a3ce4e38b295a97c58","at":"2026-08-14T10:23:58+08:00","criteria":["AC-8"]}
+{"id":"e-commit","file":"commit.log","kind":"artifact","size":100,"digest":"sha256:1b9ab5126b18e136a43f30d4ea66ad50da710056e4f7a2c9eb9eab67d6ffb905","at":"2026-08-14T10:23:58+08:00","criteria":["AC-1"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":1031,"digest":"sha256:d63c898ee9875eda422a6f736510ad3ad49813850e48e22f6eca398ad6ddb91c","at":"2026-08-14T10:24:21+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6","AC-7","AC-8"]}

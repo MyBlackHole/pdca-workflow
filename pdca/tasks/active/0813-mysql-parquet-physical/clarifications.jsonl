@@ -1,0 +1,22 @@
+{"round":1,"question":"调研范围：PG+MySQL 全量重研 vs MySQL 为主+PG 参照？","answer":"PG+MySQL 全量重研","recommended":"MySQL 为主+PG 参照","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":1,"question":"转换边界：严格物理文件解析 vs 含逻辑层官方工具？","answer":"严格物理文件解析","recommended":"严格物理文件解析","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":1,"question":"调研深度：文档调研 vs 含实测 PoC？","answer":"深度实测 PoC","recommended":"文档调研为主+关键路径小实测","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":1,"question":"交付物：调研报告 vs 报告+原型代码？","answer":"报告+原型代码","recommended":"调研报告+knowledge 沉淀","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":1,"question":"与 active 的 T0165 关系？","answer":"并行独立","recommended":"并行独立","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":2,"question":"PG 侧物理直读实现方式：复用 T0163 原型 vs 全新重写？","answer":"全新重写 PG 侧","recommended":"复用 T0163 原型并纳入统一基准","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":2,"question":"InnoDB .ibd 原型语言/工具链？","answer":"C/C++ 对齐 pgbin","recommended":"C/C++ 对齐 pgbin","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":2,"question":"目标 MySQL 版本与行格式？","answer":"需要支持 mysql 5.x、8.x 各个版本","recommended":"MySQL 8.0 + Dynamic/Compact","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":2,"question":"实测规模与一致性策略？","answer":"1M 全路径 + 100M 首选；shutdown 后快照","recommended":"同左","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":2,"question":"原型代码交付范围？","answer":"MySQL 原型 + PG 复用统一评测","recommended":"同左","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":3,"question":"PG 侧矛盾澄清：重写实现 vs 复用？","answer":"重写 PG 模块 + 双库统一评测","recommended":"同左","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":3,"question":"MySQL 版本矩阵落地？","answer":"四版本全量（5.6/5.7/8.0/8.4）","recommended":"5.7+8.0 两代代表","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":3,"question":"schema 元数据来源？","answer":"CLI 参数化传入","recommended":"同左","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":3,"question":"页压缩/TDE 是否纳入 PoC？","answer":"纳入验证","recommended":"不入 PoC 记录为风险","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":3,"question":"MySQL 侧基准路径？","answer":"物理直读 + DuckDB mysql_scanner 对照","recommended":"同左","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":4,"question":"MVCC 可见性处理？","answer":"启发式可见性 + 统计对照","recommended":"同左","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":4,"question":"off-page 大字段处理？","answer":"off-page 溢出页解码","recommended":"同左","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"round":4,"question":"边界表内容范围？","answer":"标准边界集","recommended":"同左","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"source":"grilling","round":5,"question":"方向确认时用户提出一致性质疑：正常关闭后只靠数据文件获取所有可见数据，可见性是否有问题？","answer":"待分析确认——需正视并补强可见性验证","recommended":"将可见性等价性列为硬性验收，补充事务场景实验","source":"grilling","at":"2026-08-13T00:00:00+08:00"}
+{"source":"direction_confirm","summary":"调研并实测 MySQL、PG 数据文件（物理文件）直接转 Parquet，双库全量重研；PG 模块重写（CLOG 提交状态判断）+ InnoDB .ibd 物理直读；MySQL 四版本（5.7/8.0 全量性能、5.6/8.4 可读性、100M 在 8.0）；页压缩/TDE/off-page 解码纳入；schema CLI 传入；shutdown(=1) 后 .ibd 快照；可见性设为硬性验收（双库各 4 事务场景 count 全量对照=0）；对照 DuckDB scanner；7 列模型+边界表；代码放当前目录建仓","response":"confirmed","at":"2026-08-13T00:00:00+08:00"}
+{"source":"direction_confirm","summary":"调研并实测 MySQL、PG 数据文件直接转 Parquet；双库全量重研","response":"confirmed","at":"2026-08-13T11:01:17+08:00"}
+{"source":"final_confirmation","summary":"批准 T0250 完整方案：双库数据文件直接转 Parquet（PG CLOG+MySQL InnoDB .ibd），9 项验收，四版本+100M+压缩TDE+off-page，可见性硬性验收","response":"confirmed","at":"2026-08-13T11:07:49+08:00"}

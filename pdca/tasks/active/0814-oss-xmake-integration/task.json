@@ -1,0 +1,42 @@
+{
+  "id": "T0251",
+  "slug": "0814-oss-xmake-integration",
+  "title": "将 oss（Aliyun OSS Emulator）接入根 xmake 构建体系",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "record": "T0251-0814-oss-xmake-integration",
+    "scenario_type": "development",
+    "created_at": "2026-08-14T10:00:00+08:00",
+    "convergence": [
+      "xmake 根目录构建成功产出 aio-oss 且 --version 显示 1.0.0.0",
+      "aio-oss --help 正常、xmake install 后 aio-oss/<arch>/ 下含 aio-oss 与 aio-oss.version",
+      "version.h 含 OSS_VERSION 宏、version.log 含 aio-oss 条目",
+      "debug 模式构建成功、cd oss && go build 独立构建回归通过",
+      "oss/test/build_oss.sh 全部断言通过"
+    ],
+    "completed_at": "2026-08-14T10:24:38+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "8 项验收全部 PASS 且有独立 evidence 支撑；结论可靠",
+      "verdict_id": "V-T0251-1",
+      "at": "2026-08-14T10:26:49+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "多包 go module 接入 xmake 的完整模式沉淀为 build-config/go-module-in-xmake.md，含 on_clean 危险警示，可跨项目复用",
+      "at": "2026-08-14T10:28:00+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-14T10:00:00+08:00",
+    "plan": "2026-08-14T10:04:15+08:00",
+    "do": "2026-08-14T10:04:34+08:00",
+    "check": "2026-08-14T10:24:38+08:00",
+    "act": "2026-08-14T10:27:34+08:00",
+    "archive": null
+  }
+}

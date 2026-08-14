@@ -1,0 +1,3 @@
+/tmp/opencode/ac4-install/aio-oss/x86_64/aio-oss
+/tmp/opencode/ac4-install/aio-oss/x86_64/aio-oss.version
+version内容: 1.0.0.0

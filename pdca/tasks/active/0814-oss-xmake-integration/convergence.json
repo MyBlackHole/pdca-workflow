@@ -1,0 +1,35 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "xmake 根目录构建成功产出 aio-oss 且 --version 显示 1.0.0.0",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["e-commit"]
+    },
+    {
+      "index": 2,
+      "text": "aio-oss --help 正常、xmake install 后 aio-oss/<arch>/ 下含 aio-oss 与 aio-oss.version",
+      "criteria": ["AC-3", "AC-4"],
+      "evidence_ids": ["e-help", "e-install"]
+    },
+    {
+      "index": 3,
+      "text": "version.h 含 OSS_VERSION 宏、version.log 含 aio-oss 条目",
+      "criteria": ["AC-5"],
+      "evidence_ids": ["e-version-h", "e-version-log"]
+    },
+    {
+      "index": 4,
+      "text": "debug 模式构建成功、cd oss && go build 独立构建回归通过",
+      "criteria": ["AC-6", "AC-7"],
+      "evidence_ids": ["e-debug", "e-standalone"]
+    },
+    {
+      "index": 5,
+      "text": "oss/test/build_oss.sh 全部断言通过",
+      "criteria": ["AC-2", "AC-8"],
+      "evidence_ids": ["e-version", "e-script"]
+    }
+  ]
+}

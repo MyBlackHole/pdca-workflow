@@ -1,0 +1,40 @@
+{
+  "id": "T0244",
+  "slug": "0812-rpc-metadata-analysis",
+  "title": "分析 rpc/rpc-metadata.c 的海量文件元数据管理",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "scenario_type": "research",
+    "created_at": "2026-08-12T13:51:43+08:00",
+    "record": "R0244-rpc-metadata-analysis",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "用户确认精简后的文件元信息管理分析结论成立。",
+      "verdict_id": "V-T0244-20260812",
+      "at": "2026-08-12T14:17:57+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "精简后的文件元信息管理模型可复用于后续元数据设计、容量评估和代码评审；具体源码结论保留在本任务记录中。",
+      "at": "2026-08-12T14:18:30+08:00"
+    },
+    "convergence": [
+      "分析文档覆盖元数据模型、生命周期、查询遍历、事务和容量机制",
+      "海量文件场景的复杂度、风险和建议均有源码证据或明确标注为推断",
+      "文档完成 Check 复核并满足 PRD 验收标准"
+    ],
+    "completed_at": "2026-08-12T13:54:25+08:00"
+  },
+  "states": {
+    "created": "2026-08-12T13:51:43+08:00",
+    "plan": "2026-08-12T13:51:43+08:00",
+    "do": "2026-08-12T13:52:32+08:00",
+    "check": "2026-08-12T13:54:25+08:00",
+    "act": "2026-08-12T14:18:16+08:00",
+    "archive": null
+  }
+}

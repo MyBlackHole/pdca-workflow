@@ -1,0 +1,5 @@
+{"file": "knowledge/data-formats/pg-heap-physical-read-notes.md", "reason": "PG heap 物理直读工程要点（T0163）：batch bug 教训、内存上下文、可见性启发式局限——重写 PG 模块时规避并升级为 CLOG", "action": "reference", "at": "2026-08-13"}
+{"file": "knowledge/data-formats/pg-to-parquet-path-benchmark.md", "reason": "PG→Parquet 六路径实测对照（T0163）：评测方法论（三轮中位数/规模敏感/建议矩阵），作为 PG 侧交叉核对基线与统一口径", "action": "reference", "at": "2026-08-13"}
+{"file": "knowledge/data-formats/parquet-technical-reference.md", "reason": "Parquet 技术参考索引（T0150）：类型映射、压缩编码、Row Group 调优，用于 Arrow 写出层参数决策", "action": "reference", "at": "2026-08-13"}
+{"file": "records/T0150/evidence/parquet-production-cases.md", "reason": "数据库转换生产案例（T0150）：PG/MySQL 映射表与踩坑，用于双库 schema 映射", "action": "reference", "at": "2026-08-13"}
+{"file": "knowledge/backup/xtrabackup-incremental-schemes.md", "reason": "MySQL 物理备份方案（T0225）：InnoDB 页 LSN/位图/版本差异背景，用于 InnoDB 页结构解析", "action": "context", "at": "2026-08-13"}
