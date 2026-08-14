@@ -39,8 +39,19 @@ Load `$PDCA_HOME/skills/grilling/SKILL.md` to fill gaps. Log Q&A to `clarificati
 
 ### 5. Output
 
-**ready-to-plan**: create `$PDCA_HOME/pdca/tasks/<MMDD-slug>/` with:
-- `task.json` — `meta.phase: "plan"`, `status: "Pending"`, category + scenario_type
+**ready-to-plan**: create the task through the uniform identity entrypoint (repository-level lock + ID reservation + immutable record identity):
+
+```bash
+python3 "$PDCA_HOME/scripts/task_identity.py" create \
+  --slug <MMDD-slug> \
+  --title "<短标题>" \
+  --scenario-type <development|bugfix|research|documentation|design|review> \
+  --created-at <ISO now>
+```
+
+The entrypoint assigns the global unique task ID, derives the immutable `meta.record` (`T<id>-<MMDD>-<slug>`), creates `records/<record>/`, and writes `task.json` / `clarifications.jsonl` / `prd.md` atomically. **Never scan-and-write `task.json` directly** — that race produced historical duplicate IDs.
+
+Then append:
 - `prd.md` — skeleton (problem + known info + gaps)
 - `triager-brief.md` — classification, verification result, information gaps, dedup results, recommended next steps
 

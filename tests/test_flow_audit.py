@@ -11,6 +11,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
+# seam 契约锚点：被测模块 scripts/flow_audit.py（flow_audit.py 为被测模块）
+SEAM_TARGET = "scripts/flow_audit.py"
+
 
 class FlowAuditTest(unittest.TestCase):
     def test_audit_confines_malicious_record_id_to_records(self) -> None:
@@ -73,7 +76,78 @@ class FlowAuditTest(unittest.TestCase):
             )
             self.assertNotEqual(0, completed.returncode)
             self.assertFalse((root / "flow-audit.json").exists())
-            self.assertTrue((root / "records/T9004/flow-audit.json").is_file())
+            self.assertFalse((root / "records/T9004/flow-audit.json").exists())
+            self.assertTrue((root / "records/__quarantine/flow-audit.json").is_file())
+
+    def test_audit_fails_closed_when_record_is_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "flows/flow-plan").mkdir(parents=True)
+            (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+            shutil.copytree(ROOT / "schemas", root / "schemas")
+            task_dir = root / "pdca/tasks/active/0730-missing-record"
+            task_dir.mkdir(parents=True)
+            task = {
+                "id": "T9005",
+                "slug": "0730-missing-record",
+                "title": "missing record fixture",
+                "parent": None,
+                "children": [],
+                "status": "Pending",
+                "meta": {
+                    "phase": "plan",
+                    "active": True,
+                    "scenario_type": "development",
+                    "created_at": "2026-07-30T10:00:00+08:00",
+                    "convergence": ["no fallback identity"],
+                },
+                "states": {
+                    "created": "2026-07-30T10:00:00+08:00",
+                    "plan": "2026-07-30T10:00:00+08:00",
+                    "do": None,
+                    "check": None,
+                    "act": None,
+                    "archive": None,
+                },
+            }
+            (task_dir / "task.json").write_text(json.dumps(task), encoding="utf-8")
+            (task_dir / "prd.md").write_text("# PRD\n\n## 验收标准\n- [ ] no fallback\n", encoding="utf-8")
+            (task_dir / "clarifications.jsonl").write_text(
+                json.dumps(
+                    {
+                        "source": "final_confirmation",
+                        "summary": "approved",
+                        "response": "confirmed",
+                        "at": "2026-07-30T10:00:01+08:00",
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            completed = subprocess.run(
+                [
+                    "python3",
+                    str(ROOT / "scripts/transition-phase.py"),
+                    str(task_dir),
+                    "--to",
+                    "do",
+                    "--root",
+                    str(root),
+                ],
+                capture_output=True,
+                text=True,
+            )
+            self.assertFalse((root / "records/T9005/flow-audit.json").exists())
+            self.assertFalse((root / "records/T9005/flow-events").exists())
+            quarantine = root / "records/__quarantine/flow-audit.json"
+            self.assertTrue(quarantine.is_file())
+            payload = json.loads(quarantine.read_text(encoding="utf-8"))
+            self.assertIsNone(payload["record_id"])
+            latest = payload["transitions"]["plan-to-do"]["latest"]
+            self.assertFalse(latest["passed"])
+            codes = [issue["code"] for issue in latest["issues"]]
+            self.assertIn("RECORD_MISSING", codes)
+            self.assertTrue((root / "pdca/tasks/active/0730-missing-record/task.json").is_file())
 
     def test_cli_audits_all_transitions_and_preserves_failed_attempts(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

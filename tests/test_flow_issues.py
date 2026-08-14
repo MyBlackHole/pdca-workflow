@@ -10,6 +10,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
+# seam 契约锚点：被测模块 scripts/flow_issues.py（flow_issues.py 为被测模块）
+SEAM_TARGET = "scripts/flow_issues.py"
+
 
 class FlowIssueCliTest(unittest.TestCase):
     def setUp(self) -> None:

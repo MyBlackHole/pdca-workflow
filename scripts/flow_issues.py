@@ -17,6 +17,7 @@ from typing import Any
 
 import fcntl
 
+from task_identity import TaskIdentityError, _create_task_unlocked
 from pdca_core import load_json, load_jsonl, repo_root, schema_issues
 
 
@@ -893,19 +894,6 @@ def _find_promoted_task(
     return None
 
 
-def _next_task_id(root: Path) -> str:
-    highest = 0
-    for task_path in (root / "pdca" / "tasks").glob("**/task.json"):
-        try:
-            task = load_json(task_path)
-        except (OSError, json.JSONDecodeError):
-            continue
-        task_id = task.get("id")
-        if isinstance(task_id, str) and re.fullmatch(r"T[0-9]{4,}", task_id):
-            highest = max(highest, int(task_id[1:]))
-    return f"T{highest + 1:04d}"
-
-
 def _write_new_file(path: Path, content: bytes) -> None:
     descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
     try:
@@ -979,73 +967,43 @@ def promote_candidate(
         destination = active_root / slug
         if destination.exists():
             raise FlowIssueError("TASK_PATH_CONFLICT", destination.relative_to(root).as_posix(), "slug already exists")
-        task_id = _next_task_id(root)
         source = {
             "record_id": record_id,
             "issue_id": candidate["issue_id"],
             "candidate_id": candidate_id,
             "decision_id": decision_id,
         }
-        task = {
-            "id": task_id,
-            "slug": slug,
-            "title": title.strip(),
-            "parent": None,
-            "children": [],
-            "status": "Pending",
-            "meta": {
-                "phase": "plan",
-                "active": True,
-                "scenario_type": "development",
-                "created_at": created_at,
-                "convergence": [f"{candidate_id} effectiveness verification"],
-                "improvement_source": source,
-            },
-            "states": {
-                "created": created_at,
-                "plan": created_at,
-                "do": None,
-                "check": None,
-                "act": None,
-                "archive": None,
-            },
+        clarification = {
+            "source": "promotion",
+            "summary": f"created from {candidate_id} and {decision_id}",
+            "at": created_at,
         }
-        _validate(root, task, "task.schema.json", "task.json")
+        prd = (
+            f"# {title.strip()}\n\n"
+            "## 问题陈述\n\n"
+            f"由 Improvement Candidate `{candidate_id}` 晋级，来源 issue 为 `{candidate['issue_id']}`。\n\n"
+            "## 验收标准\n\n"
+            "- [ ] 在 Plan 阶段完成该改进的独立需求澄清、设计与最终确认。\n"
+        )
         try:
-            destination.mkdir()
-        except FileExistsError as exc:
-            raise FlowIssueError(
-                "TASK_PATH_CONFLICT",
-                destination.relative_to(root).as_posix(),
-                "slug already exists",
-            ) from exc
-        try:
-            _write_new_file(destination / "task.json", canonical_bytes(task))
-            clarification = {
-                "source": "promotion",
-                "summary": f"created from {candidate_id} and {decision_id}",
-                "at": created_at,
-            }
-            _write_new_file(destination / "clarifications.jsonl", canonical_bytes(clarification))
-            prd = (
-                f"# {title.strip()}\n\n"
-                "## 问题陈述\n\n"
-                f"由 Improvement Candidate `{candidate_id}` 晋级，来源 issue 为 `{candidate['issue_id']}`。\n\n"
-                "## 验收标准\n\n"
-                "- [ ] 在 Plan 阶段完成该改进的独立需求澄清、设计与最终确认。\n"
+            result = _create_task_unlocked(
+                root,
+                slug=slug,
+                title=title,
+                scenario_type="development",
+                created_at=created_at,
+                extra_meta={"convergence": [f"{candidate_id} effectiveness verification"], "improvement_source": source},
+                initial_clarification=clarification,
+                initial_prd=prd,
+                task_root=active_root,
             )
-            _write_new_file(destination / "prd.md", prd.encode("utf-8"))
-            _fsync_directory(destination)
-            _fsync_directory(active_root)
-        except Exception:
-            for child in destination.iterdir() if destination.exists() else []:
-                child.unlink(missing_ok=True)
-            destination.rmdir()
-            raise
+        except TaskIdentityError as exc:
+            raise FlowIssueError(exc.code, exc.path, exc.message) from exc
         return {
             "status": "created",
-            "task_id": task_id,
-            "path": destination.relative_to(root).as_posix(),
+            "task_id": result["task_id"],
+            "path": result["path"],
+            "record": result["record"],
             "source": source,
         }
 

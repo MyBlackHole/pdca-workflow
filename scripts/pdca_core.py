@@ -567,3 +567,102 @@ def gate_issues(root: Path, task_dir: Path) -> tuple[str | None, list[Issue]]:
 def path_is_protected(root: Path, target: Path) -> bool:
     relative = target.resolve().relative_to(root.resolve()).as_posix()
     return any(relative == prefix or relative.startswith(prefix + "/") for prefix in PROTECTED_PREFIXES)
+
+
+def identity_diagnostics(root: Path) -> dict[str, Any]:
+    """Global task/record identity health report.
+
+    Walks every task.json under pdca/tasks to find duplicate task IDs and
+    duplicate slugs, and every records/*/flow-events/*.json to verify that the
+    payload record_id equals the containing directory. Emits machine-readable
+    findings; historical occurrences are never rewritten here.
+    """
+
+    task_id_paths: dict[str, list[str]] = {}
+    slug_paths: dict[str, list[str]] = {}
+    tasks_root = root / "pdca" / "tasks"
+    if tasks_root.is_dir():
+        for task_path in sorted(tasks_root.glob("**/task.json")):
+            try:
+                task = load_json(task_path)
+            except (OSError, json.JSONDecodeError):
+                continue
+            task_id = task.get("id")
+            slug = task.get("slug")
+            relative = task_path.relative_to(root).as_posix()
+            if isinstance(task_id, str) and task_id:
+                task_id_paths.setdefault(task_id, []).append(relative)
+            if isinstance(slug, str) and slug:
+                slug_paths.setdefault(slug, []).append(relative)
+
+    duplicate_task_ids = [
+        {"task_id": task_id, "paths": paths}
+        for task_id, paths in sorted(task_id_paths.items())
+        if len(paths) > 1
+    ]
+    duplicate_slugs = [
+        {"slug": slug, "paths": paths}
+        for slug, paths in sorted(slug_paths.items())
+        if len(paths) > 1
+    ]
+    record_derived_mismatches: list[dict[str, Any]] = []
+    tasks_root = root / "pdca" / "tasks"
+    if tasks_root.is_dir():
+        for task_path in sorted(tasks_root.glob("**/task.json")):
+            try:
+                task = load_json(task_path)
+            except (OSError, json.JSONDecodeError):
+                continue
+            task_id = task.get("id")
+            meta = task.get("meta") or {}
+            slug = meta.get("slug") or task.get("slug")
+            record = meta.get("record")
+            expected = f"{task_id}-{slug}" if isinstance(task_id, str) and isinstance(slug, str) else None
+            if record and record != expected:
+                record_derived_mismatches.append(
+                    {
+                        "path": task_path.relative_to(root).as_posix(),
+                        "task_id": task_id,
+                        "record": record,
+                        "expected": expected,
+                    }
+                )
+
+    event_path_mismatches: list[dict[str, Any]] = []
+    records_root = root / "records"
+    if records_root.is_dir():
+        for event_path in sorted(records_root.glob("*/flow-events/*.json")):
+            directory_record_id = event_path.parts[-3]
+            try:
+                value = load_json(event_path)
+            except (OSError, json.JSONDecodeError):
+                continue
+            payload_record_id = value.get("record_id")
+            if payload_record_id != directory_record_id:
+                event_path_mismatches.append(
+                    {
+                        "path": event_path.relative_to(root).as_posix(),
+                        "directory_record_id": directory_record_id,
+                        "payload_record_id": payload_record_id,
+                    }
+                )
+
+    valid = (
+        not duplicate_task_ids
+        and not duplicate_slugs
+        and not event_path_mismatches
+        and not record_derived_mismatches
+    )
+    return {
+        "valid": valid,
+        "duplicate_task_ids": duplicate_task_ids,
+        "duplicate_slugs": duplicate_slugs,
+        "event_path_mismatches": event_path_mismatches,
+        "record_derived_mismatches": record_derived_mismatches,
+        "summary": {
+            "duplicate_task_ids": len(duplicate_task_ids),
+            "duplicate_slugs": len(duplicate_slugs),
+            "event_path_mismatches": len(event_path_mismatches),
+            "record_derived_mismatches": len(record_derived_mismatches),
+        },
+    }

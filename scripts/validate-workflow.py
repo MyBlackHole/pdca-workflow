@@ -7,7 +7,7 @@ import argparse
 import json
 from pathlib import Path
 
-from pdca_core import gate_issues, repo_root, task_issues
+from pdca_core import gate_issues, identity_diagnostics, repo_root, task_issues
 
 
 def result(task_dir: Path, issues: list) -> dict:
@@ -44,10 +44,12 @@ def main() -> int:
     for task_path in sorted((root / "pdca/tasks").glob("**/task.json")):
         task_dir = task_path.parent
         payloads.append(result(task_dir.relative_to(root), task_issues(root, task_dir)))
+    identity = identity_diagnostics(root)
     summary = {
-        "valid": all(item["valid"] for item in payloads),
+        "valid": all(item["valid"] for item in payloads) and identity["valid"],
         "task_count": len(payloads),
         "invalid_count": sum(not item["valid"] for item in payloads),
+        "identity": identity,
         "tasks": payloads,
     }
     print(json.dumps(summary, ensure_ascii=False, indent=2))

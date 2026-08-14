@@ -68,7 +68,15 @@ description: |
 ### Ac2b. 部分沉淀 + 跟进（仅 partial，跳过步骤 Ac1）
 结论部分成立时：
 1. 仅沉淀确凿可复用的部分到 `$PDCA_HOME/knowledge/<topic>/<slug>.md`
-2. 创建跟进任务处理未完成部分（在 `pdca/tasks/` 下创建新任务，`title` 中包含"跟进"标记，`meta.phase: plan`）
+2. 创建跟进任务处理未完成部分——必须经统一 identity 入口创建（仓库锁 + 全局 ID + 不可变 record），`title` 中包含"跟进"标记，`meta.phase: plan`：
+   ```bash
+   python3 "$PDCA_HOME/scripts/task_identity.py" create \
+     --slug <MMDD-followup-slug> \
+     --title "跟进：<未完成部分>" \
+     --parent <当前 task ID> \
+     --scenario-type <development|research|...> \
+     --created-at <ISO now>
+   ```
 3. 在 `clarifications.jsonl` 中记录跟进任务 ID
 
 ### Ac3. 记录处置

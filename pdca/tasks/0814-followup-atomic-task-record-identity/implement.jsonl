@@ -1,0 +1,2 @@
+{"file":"knowledge/pdca-flow/task-record-identity-invariants.md","reason":"本任务全部验收标准直接源于此 I1-I5 不变量：锁内统一创建、record 出生不可变、audit 禁 fallback、path==payload、历史 receipt 边界。","action":"以 I1-I5 作为实现与测试的唯一事实源；开发先写失败测试再实现。","at":"2026-08-14T22:10:00+08:00"}
+{"file":"knowledge/pdca-flow/real-usage-effectiveness-audit.md","reason":"AC-8 观察窗的统计口径（duplicate ID、missing record、path mismatch、创建失败、人工恢复）沿用 T0260/T0261 的 real-usage 五轴记录契约，避免另立指标。","action":"在 follow-up 观察任务复用同一五轴口径与 T0261 冻结 baseline 配对。","at":"2026-08-14T22:10:00+08:00"}

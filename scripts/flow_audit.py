@@ -233,26 +233,53 @@ CHECKS: dict[str, Callable[[Path, Path, dict[str, Any]], list[dict[str, Any]]]] 
 }
 
 
+def _quarantine_audit(
+    root: Path,
+    task: dict[str, Any],
+    transition: str,
+    attempt: dict[str, Any],
+) -> Path:
+    quarantine_dir = root / "records" / "__quarantine"
+    quarantine_dir.mkdir(parents=True, exist_ok=True)
+    path = quarantine_dir / "flow-audit.json"
+    payload = {
+        "schema": "pdca.flow-audit/v1",
+        "task_id": task["id"],
+        "record_id": None,
+        "transitions": {transition: {"latest": attempt, "attempts": [attempt]}},
+    }
+    _atomic_json(path, payload)
+    return path
+
+
 def audit_transition(root: Path, task_dir: Path, target: str) -> Path:
     task = load_json(task_dir / "task.json")
     transition = f"{task['meta']['phase']}-to-{target}"
     checks = CHECKS[transition](root, task_dir, task)
-    requested_record_id = task.get("meta", {}).get("record") or task["id"]
+    record_id = task.get("meta", {}).get("record")
     records_root = (root / "records").resolve()
-    record_dir = (records_root / str(requested_record_id)).resolve()
     record_path_issues: list[dict[str, str]] = []
-    if record_dir.parent != records_root:
+    record_dir: Path | None = None
+    if not record_id:
         record_path_issues.append(
             _issue(
-                "AUDIT_RECORD_PATH_INVALID",
+                "RECORD_MISSING",
                 "/meta/record",
-                "audit record must be a direct child of records; task ID fallback was used",
+                "record identity is missing; no task.id fallback is allowed",
             )
         )
-        record_id = task["id"]
-        record_dir = records_root / record_id
     else:
-        record_id = requested_record_id
+        candidate_dir = (records_root / str(record_id)).resolve()
+        if candidate_dir.parent != records_root:
+            record_path_issues.append(
+                _issue(
+                    "AUDIT_RECORD_PATH_INVALID",
+                    "/meta/record",
+                    "audit record must be a direct child of records",
+                )
+            )
+        else:
+            record_dir = candidate_dir
     checks.append(_check("audit-record-path", "audit output stays inside records", record_path_issues))
     issues = [issue for check in checks for issue in check["issues"]]
     attempt = {
@@ -264,7 +291,11 @@ def audit_transition(root: Path, task_dir: Path, target: str) -> Path:
         "issues": issues,
     }
     if cutover_is_active(root):
-        return _record_cutover_occurrences(root, task, record_id, attempt)
+        if record_dir is not None:
+            return _record_cutover_occurrences(root, task, record_id or "", attempt)
+        return _quarantine_audit(root, task, transition, attempt)
+    if record_dir is None:
+        return _quarantine_audit(root, task, transition, attempt)
 
     path = record_dir / "flow-audit.json"
     if path.is_file():

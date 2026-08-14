@@ -1,0 +1,1815 @@
+{
+  "valid": false,
+  "task_count": 146,
+  "invalid_count": 36,
+  "identity": {
+    "valid": false,
+    "duplicate_task_ids": [
+      {
+        "task_id": "T0142",
+        "paths": [
+          "pdca/tasks/archive/2026-07/0728-clean-invalid-active-history/task.json",
+          "pdca/tasks/archive/2026-07/0729-vmcore-analysis/task.json"
+        ]
+      },
+      {
+        "task_id": "T0163",
+        "paths": [
+          "pdca/tasks/archive/2026-07/0731-nbu-dte-enforced-mechanism/task.json",
+          "pdca/tasks/archive/2026-07/0731-pg-mysql-parquet-poc/task.json"
+        ]
+      },
+      {
+        "task_id": "T0174",
+        "paths": [
+          "pdca/tasks/archive/0801-btree-split-proptest/0801-btree-split-proptest/task.json",
+          "pdca/tasks/archive/0801-btree-split-proptest/task.json"
+        ]
+      },
+      {
+        "task_id": "T0175",
+        "paths": [
+          "pdca/tasks/archive/0801-trans-enomem-restart/0801-trans-enomem-restart/task.json",
+          "pdca/tasks/archive/0801-trans-enomem-restart/task.json"
+        ]
+      },
+      {
+        "task_id": "T0214",
+        "paths": [
+          "pdca/tasks/active/0804-cdm-report-center-analyse/task.json",
+          "pdca/tasks/archive/2026-08/0804-cdm-report-center-analyse/task.json",
+          "pdca/tasks/archive/2026-08/T0214-0804-rpc-epoll-industrial-align/task.json"
+        ]
+      },
+      {
+        "task_id": "T0215",
+        "paths": [
+          "pdca/tasks/active/T0215-0804-report-subscheme-docs/task.json",
+          "pdca/tasks/archive/2026-08/T0215-0804-report-subscheme-docs/task.json",
+          "pdca/tasks/archive/2026-08/T0215-0804-rpc-epoll-multireactor/task.json"
+        ]
+      },
+      {
+        "task_id": "T0216",
+        "paths": [
+          "pdca/tasks/active/0805-rpc-epoll-worker-supply-followup/task.json",
+          "pdca/tasks/archive/2026-08/T0216-0804-report-db-adapter/task.json"
+        ]
+      },
+      {
+        "task_id": "T0217",
+        "paths": [
+          "pdca/tasks/archive/2026-08/0805-rpc-serialization-hardening/task.json",
+          "pdca/tasks/archive/2026-08/T0217-0804-cdm-data-cli/task.json"
+        ]
+      },
+      {
+        "task_id": "T0218",
+        "paths": [
+          "pdca/tasks/active/0806-buf-layer-endianness/task.json",
+          "pdca/tasks/active/0808-backup-server-architecture/task.json",
+          "pdca/tasks/archive/2026-08/T0218-0804-collection-service/task.json"
+        ]
+      },
+      {
+        "task_id": "T0219",
+        "paths": [
+          "pdca/tasks/active/0806-rpc-arm-interop-verify/task.json",
+          "pdca/tasks/archive/2026-08/T0219-0804-report-web/task.json"
+        ]
+      },
+      {
+        "task_id": "T0220",
+        "paths": [
+          "pdca/tasks/active/0806-rpc-benchmark-review/task.json",
+          "pdca/tasks/archive/2026-08/T0220-0804-report-templates-query-export/task.json"
+        ]
+      },
+      {
+        "task_id": "T0221",
+        "paths": [
+          "pdca/tasks/active/0806-aio-speed-link-fix/task.json",
+          "pdca/tasks/archive/2026-08/T0221-0804-deployment-install/task.json"
+        ]
+      },
+      {
+        "task_id": "T0222",
+        "paths": [
+          "pdca/tasks/active/0806-epoll-business-callback-fsm/task.json",
+          "pdca/tasks/active/T0222-0804-acceptance-perf/task.json"
+        ]
+      },
+      {
+        "task_id": "T0224",
+        "paths": [
+          "pdca/tasks/archive/2026-08/0808-bwlimit-poc/task.json",
+          "pdca/tasks/archive/2026-08/T0224-0804-async-export/task.json"
+        ]
+      },
+      {
+        "task_id": "T0225",
+        "paths": [
+          "pdca/tasks/archive/2026-08/0807-xtrabackup-incremental-tech/task.json",
+          "pdca/tasks/archive/2026-08/0808-core-tech-poc/task.json"
+        ]
+      },
+      {
+        "task_id": "T0228",
+        "paths": [
+          "pdca/tasks/active/0808-seda-pipeline/task.json",
+          "pdca/tasks/archive/2026-08/0807-roach-gm-encrypt-support/task.json"
+        ]
+      },
+      {
+        "task_id": "T0229",
+        "paths": [
+          "pdca/tasks/active/0808-core-tech-poc-2/task.json",
+          "pdca/tasks/archive/2026-08/T0229-0810-ob-backup-gm-encrypt-verify/task.json"
+        ]
+      },
+      {
+        "task_id": "T0244",
+        "paths": [
+          "pdca/tasks/archive/2026-08/0809-pdca-flow-impl-review/task.json",
+          "pdca/tasks/archive/2026-08/0812-rpc-metadata-analysis/task.json"
+        ]
+      },
+      {
+        "task_id": "T0246",
+        "paths": [
+          "pdca/tasks/archive/2026-08/0813-small-writer-pool/task.json",
+          "pdca/tasks/archive/2026-08/T0246-0810-backup-gm-transport-encryption/task.json"
+        ]
+      },
+      {
+        "task_id": "T0247",
+        "paths": [
+          "pdca/tasks/archive/2026-08/0813-small-writer-pool-round61/task.json",
+          "pdca/tasks/archive/2026-08/T0247-0811-backup-doc-optimize/task.json"
+        ]
+      },
+      {
+        "task_id": "T0248",
+        "paths": [
+          "pdca/tasks/0813-lmdb-tree-resume-round62/task.json",
+          "pdca/tasks/archive/2026-08/T0248-0812-openssh-src-unpack/task.json"
+        ]
+      },
+      {
+        "task_id": "T0249",
+        "paths": [
+          "pdca/tasks/archive/2026-08/0814-lmdb-no-mmap-round63/task.json",
+          "pdca/tasks/archive/2026-08/T0249-0812-kernel-nfs-gm-research/task.json"
+        ]
+      },
+      {
+        "task_id": "T0250",
+        "paths": [
+          "pdca/tasks/0814-lmdb-vl32-followup-round64/task.json",
+          "pdca/tasks/active/0813-mysql-parquet-physical/task.json"
+        ]
+      },
+      {
+        "task_id": "T0251",
+        "paths": [
+          "pdca/tasks/archive/2026-08/0814-oss-xmake-integration/task.json",
+          "pdca/tasks/archive/2026-08/0814-production-observability-round65/task.json"
+        ]
+      },
+      {
+        "task_id": "T0252",
+        "paths": [
+          "pdca/tasks/0814-tree-checkpoint-paged-round66/task.json",
+          "pdca/tasks/archive/2026-08/0814-inih-hide-symbols/task.json"
+        ]
+      }
+    ],
+    "duplicate_slugs": [
+      {
+        "slug": "0801-btree-split-proptest",
+        "paths": [
+          "pdca/tasks/archive/0801-btree-split-proptest/0801-btree-split-proptest/task.json",
+          "pdca/tasks/archive/0801-btree-split-proptest/task.json"
+        ]
+      },
+      {
+        "slug": "0801-trans-enomem-restart",
+        "paths": [
+          "pdca/tasks/archive/0801-trans-enomem-restart/0801-trans-enomem-restart/task.json",
+          "pdca/tasks/archive/0801-trans-enomem-restart/task.json"
+        ]
+      },
+      {
+        "slug": "0804-cdm-report-center-analyse",
+        "paths": [
+          "pdca/tasks/active/0804-cdm-report-center-analyse/task.json",
+          "pdca/tasks/archive/2026-08/0804-cdm-report-center-analyse/task.json"
+        ]
+      },
+      {
+        "slug": "0804-report-subscheme-docs",
+        "paths": [
+          "pdca/tasks/active/T0215-0804-report-subscheme-docs/task.json",
+          "pdca/tasks/archive/2026-08/T0215-0804-report-subscheme-docs/task.json"
+        ]
+      }
+    ],
+    "event_path_mismatches": [
+      {
+        "path": "records/T0252-0814-inih-hide-symbols/flow-events/FE-21a18c9e9551bebd2776f45a.json",
+        "directory_record_id": "T0252-0814-inih-hide-symbols",
+        "payload_record_id": "T0252"
+      },
+      {
+        "path": "records/T0252-0814-inih-hide-symbols/flow-events/FE-4615d27e38e94325bb8e4a29.json",
+        "directory_record_id": "T0252-0814-inih-hide-symbols",
+        "payload_record_id": "T0252"
+      },
+      {
+        "path": "records/T0252-0814-inih-hide-symbols/flow-events/FE-a8f3befb157a3b3501d6c1f9.json",
+        "directory_record_id": "T0252-0814-inih-hide-symbols",
+        "payload_record_id": "T0252"
+      },
+      {
+        "path": "records/T0252-0814-inih-hide-symbols/flow-events/FE-c5ba091121c1d364651b87e7.json",
+        "directory_record_id": "T0252-0814-inih-hide-symbols",
+        "payload_record_id": "T0252"
+      },
+      {
+        "path": "records/T0252-0814-inih-hide-symbols/flow-events/FE-e76840081631fa1995ce08f5.json",
+        "directory_record_id": "T0252-0814-inih-hide-symbols",
+        "payload_record_id": "T0252"
+      }
+    ],
+    "record_derived_mismatches": [
+      {
+        "path": "pdca/tasks/archive/2026-07/0728-agent-workflow-landscape/task.json",
+        "task_id": "T0140",
+        "record": "R0140-agent-workflow-landscape",
+        "expected": "T0140-0728-agent-workflow-landscape"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-07/0728-ai-friendliness-hardening/task.json",
+        "task_id": "T0135",
+        "record": "R0135-ai-friendliness-hardening",
+        "expected": "T0135-0728-ai-friendliness-hardening"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-07/0728-ai-friendliness-harness/task.json",
+        "task_id": "T0139",
+        "record": "R0139-ai-friendliness-harness",
+        "expected": "T0139-0728-ai-friendliness-harness"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-07/0728-clean-invalid-active-history/task.json",
+        "task_id": "T0142",
+        "record": "R0142-clean-invalid-active-history",
+        "expected": "T0142-0728-clean-invalid-active-history"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-07/0728-convergence-validator/task.json",
+        "task_id": "T0141",
+        "record": "R0141-convergence-validator",
+        "expected": "T0141-0728-convergence-validator"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-07/0728-pdca-capability-doctor/task.json",
+        "task_id": "T0137",
+        "record": "R0137-pdca-capability-doctor",
+        "expected": "T0137-0728-pdca-capability-doctor"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-07/0728-pdca-state-contract/task.json",
+        "task_id": "T0136",
+        "record": "R0136-pdca-state-contract",
+        "expected": "T0136-0728-pdca-state-contract"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-07/0728-skill-content-audit/task.json",
+        "task_id": "T0138",
+        "record": "R0138-skill-content-audit",
+        "expected": "T0138-0728-skill-content-audit"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-07/0729-vmcore-analysis/task.json",
+        "task_id": "T0142",
+        "record": "R0142-vmcore-analysis",
+        "expected": "T0142-0729-vmcore-analysis"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-07/0729-vmcore-deep/task.json",
+        "task_id": "T0143",
+        "record": "R0143",
+        "expected": "T0143-0729-vmcore-deep"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-07/0730-ai-friendliness-evaluation-hardening/task.json",
+        "task_id": "T0160",
+        "record": "R0160",
+        "expected": "T0160-0730-ai-friendliness-evaluation-hardening"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-07/0730-parquet-format-research/task.json",
+        "task_id": "T0150",
+        "record": "T0150",
+        "expected": "T0150-0730-parquet-format-research"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-07/0731-execution-contract-hardening/task.json",
+        "task_id": "T0161",
+        "record": "R0161",
+        "expected": "T0161-0731-execution-contract-hardening"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-07/0801-pdca-process-audit/task.json",
+        "task_id": "T0158",
+        "record": "T0158",
+        "expected": "T0158-0801-pdca-process-audit"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-07/0801-pdca-self-optimization-loop/task.json",
+        "task_id": "T0159",
+        "record": "T0159",
+        "expected": "T0159-0801-pdca-self-optimization-loop"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-08/0802-transaction-trigger-runner-pointer-dispatch/task.json",
+        "task_id": "T0182",
+        "record": "T0182",
+        "expected": "T0182-0802-transaction-trigger-runner-pointer-dispatch"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-08/0807-rpc-conn-idle-implement/task.json",
+        "task_id": "T0226",
+        "record": "2026-08-07-rpc-conn-idle-implement",
+        "expected": "T0226-0807-rpc-conn-idle-implement"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-08/0807-rpc-socket-reuse-idle-reclaim/task.json",
+        "task_id": "T0227",
+        "record": "2026-08-07-rpc-idle-reclaim",
+        "expected": "T0227-0807-rpc-socket-reuse-idle-reclaim"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-08/0807-xtrabackup-incremental-tech/task.json",
+        "task_id": "T0225",
+        "record": "T0225",
+        "expected": "T0225-0807-xtrabackup-incremental-tech"
+      },
+      {
+        "path": "pdca/tasks/archive/2026-08/0812-rpc-metadata-analysis/task.json",
+        "task_id": "T0244",
+        "record": "R0244-rpc-metadata-analysis",
+        "expected": "T0244-0812-rpc-metadata-analysis"
+      }
+    ],
+    "summary": {
+      "duplicate_task_ids": 25,
+      "duplicate_slugs": 4,
+      "event_path_mismatches": 5,
+      "record_derived_mismatches": 20
+    }
+  },
+  "tasks": [
+    {
+      "task_dir": "pdca/tasks/0813-lmdb-tree-resume-round62",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/0814-backup-catalog-restore-round67f",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'children' is a required property",
+          "guidance": "fix the field at / in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'created_at' is a required property",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'archive' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/0814-durable-segment-protocol-round67b",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'children' is a required property",
+          "guidance": "fix the field at / in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'created_at' is a required property",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'archive' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/0814-followup-atomic-task-record-identity",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/0814-generation-publish-gc-restore-round67e",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'children' is a required property",
+          "guidance": "fix the field at / in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'created_at' is a required property",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'archive' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/0814-immutable-object-manifest-store-round67d",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'children' is a required property",
+          "guidance": "fix the field at / in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'created_at' is a required property",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'archive' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/0814-lmdb-vl32-followup-round64",
+      "valid": false,
+      "issues": [
+        {
+          "code": "STATUS_PHASE_MISMATCH",
+          "path": "/status",
+          "message": "plan requires Pending"
+        },
+        {
+          "code": "CLARIFICATIONS_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "file is required"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/0814-resumable-enumerator-segments-round67a",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'children' is a required property",
+          "guidance": "fix the field at / in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'created_at' is a required property",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'archive' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/0814-resume-production-architecture-round67",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('category' was unexpected)",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/0814-resume-rollout-benchmark-round67c",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/",
+          "message": "'children' is a required property",
+          "guidance": "fix the field at / in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'created_at' is a required property",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "'convergence' is a required property",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'archive' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/0814-tree-checkpoint-paged-round66",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/active/0731-pg-physical-ordered",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/active/0804-cdm-report-center-analyse",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/active/0805-rpc-epoll-worker-supply-followup",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta/completed_at",
+          "message": "None is not of type 'string'",
+          "guidance": "fix the field at /meta/completed_at in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta/convergence",
+          "message": "[] should be non-empty",
+          "guidance": "fix the field at /meta/convergence in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta/record",
+          "message": "None is not of type 'string'",
+          "guidance": "fix the field at /meta/record in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/active/0806-aio-speed-link-fix",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('followup_of' was unexpected)",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'plan' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'do' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'check' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'act' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'archive' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/active/0806-buf-layer-endianness",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('followup_of', 'paused_at', 'paused_reason' were unexpected)",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'plan' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'do' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'check' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'act' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'archive' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/status",
+          "message": "'Paused' is not one of ['Pending', 'InProgress', 'Completed']",
+          "guidance": "fix the field at /status in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/active/0806-epoll-business-callback-fsm",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/active/0806-rpc-arm-interop-verify",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('followup_of' was unexpected)",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'plan' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'do' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'check' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'act' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'archive' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/active/0806-rpc-benchmark-review",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('followup_of' was unexpected)",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'plan' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'do' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'check' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'act' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/states",
+          "message": "'archive' is a required property",
+          "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/active/0808-backup-server-architecture",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/active/0808-core-tech-poc-2",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/active/0808-seda-pipeline",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/active/0813-mysql-parquet-physical",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/active/T0164-0731-gm-tls-benchmark",
+      "valid": false,
+      "issues": [
+        {
+          "code": "STATE_TIME_ORDER",
+          "path": "/states",
+          "message": "timestamps must be nondecreasing",
+          "guidance": "state timestamps must be written by scripts/transition-phase.py as a single ordered sequence; never hand-write states timestamps. If a hand-written timestamp (e.g. with microseconds) is newer than the auto-written transition timestamp, align /states to the transition receipt times (see transition-receipts/) and re-run the transition."
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/active/T0210-0803-btree-node-sector-persistence",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/active/T0210b-0806-btree-root-driven-recovery",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/id",
+          "message": "'T0210b' does not match '^T[0-9]{4,}$'",
+          "guidance": "fix the field at /id in task.schema.json to satisfy the schema"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/meta",
+          "message": "Additional properties are not allowed ('progress' was unexpected)",
+          "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/active/T0215-0804-report-subscheme-docs",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/active/T0222-0804-acceptance-perf",
+      "valid": false,
+      "issues": [
+        {
+          "code": "STATE_TIMESTAMP_MISSING",
+          "path": "/states/plan",
+          "message": "required in plan"
+        },
+        {
+          "code": "CLARIFICATIONS_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "file is required"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/0801-btree-commit-space-check-fix",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/0801-btree-core-completeness",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/0801-btree-split-proptest/0801-btree-split-proptest",
+      "valid": false,
+      "issues": [
+        {
+          "code": "STATUS_PHASE_MISMATCH",
+          "path": "/status",
+          "message": "act requires Completed"
+        },
+        {
+          "code": "FUTURE_STATE_SET",
+          "path": "/states/archive",
+          "message": "must be null in act"
+        },
+        {
+          "code": "CLARIFICATIONS_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "file is required"
+        },
+        {
+          "code": "FINAL_CONFIRMATION_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "confirmed response is required"
+        },
+        {
+          "code": "CHECK_CONFIRMATION_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "check confirmation is required"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/0801-btree-split-proptest",
+      "valid": false,
+      "issues": [
+        {
+          "code": "STATUS_PHASE_MISMATCH",
+          "path": "/status",
+          "message": "act requires Completed"
+        },
+        {
+          "code": "FUTURE_STATE_SET",
+          "path": "/states/archive",
+          "message": "must be null in act"
+        },
+        {
+          "code": "FINAL_CONFIRMATION_TIME_ORDER",
+          "path": "clarifications.jsonl[2]/at",
+          "message": "final confirmation cannot predate task creation"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/0801-interior-split-verification",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/0801-journal-reclaim-proptest",
+      "valid": false,
+      "issues": [
+        {
+          "code": "STATUS_PHASE_MISMATCH",
+          "path": "/status",
+          "message": "act requires Completed"
+        },
+        {
+          "code": "FUTURE_STATE_SET",
+          "path": "/states/archive",
+          "message": "must be null in act"
+        },
+        {
+          "code": "CHECK_CONFIRMATION_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "check confirmation is required"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/0801-journal-seq-overflow-boundary",
+      "valid": false,
+      "issues": [
+        {
+          "code": "STATUS_PHASE_MISMATCH",
+          "path": "/status",
+          "message": "act requires Completed"
+        },
+        {
+          "code": "FUTURE_STATE_SET",
+          "path": "/states/archive",
+          "message": "must be null in act"
+        },
+        {
+          "code": "FINAL_CONFIRMATION_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "confirmed response is required"
+        },
+        {
+          "code": "CHECK_CONFIRMATION_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "check confirmation is required"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/0801-trans-enomem-restart/0801-trans-enomem-restart",
+      "valid": false,
+      "issues": [
+        {
+          "code": "STATUS_PHASE_MISMATCH",
+          "path": "/status",
+          "message": "act requires Completed"
+        },
+        {
+          "code": "FUTURE_STATE_SET",
+          "path": "/states/archive",
+          "message": "must be null in act"
+        },
+        {
+          "code": "CLARIFICATIONS_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "file is required"
+        },
+        {
+          "code": "FINAL_CONFIRMATION_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "confirmed response is required"
+        },
+        {
+          "code": "CHECK_CONFIRMATION_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "check confirmation is required"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/0801-trans-enomem-restart",
+      "valid": false,
+      "issues": [
+        {
+          "code": "STATUS_PHASE_MISMATCH",
+          "path": "/status",
+          "message": "act requires Completed"
+        },
+        {
+          "code": "FUTURE_STATE_SET",
+          "path": "/states/archive",
+          "message": "must be null in act"
+        },
+        {
+          "code": "FINAL_CONFIRMATION_TIME_ORDER",
+          "path": "clarifications.jsonl[1]/at",
+          "message": "final confirmation cannot predate task creation"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0728-agent-workflow-landscape",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0728-ai-friendliness-hardening",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0728-ai-friendliness-harness",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0728-clean-invalid-active-history",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0728-convergence-validator",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0728-pdca-capability-doctor",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0728-pdca-state-contract",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0728-skill-content-audit",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0729-vmcore-analysis",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0729-vmcore-deep",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0729-vmcore-source-revalidation",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0730-ai-friendliness-evaluation-hardening",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0730-parquet-format-research",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0730-vmcore-report-difference",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0731-execution-contract-hardening",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0731-nbu-dte-enforced-mechanism",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0731-nbu-dte-packet-capture",
+      "valid": false,
+      "issues": [
+        {
+          "code": "STATUS_PHASE_MISMATCH",
+          "path": "/status",
+          "message": "archive requires Completed"
+        },
+        {
+          "code": "RECORD_MISSING",
+          "path": "/meta/record",
+          "message": "record is required after Do"
+        },
+        {
+          "code": "CONCLUSION_MISSING",
+          "path": "records/None/conclusion.md",
+          "message": "conclusion is required"
+        },
+        {
+          "code": "CHECK_CONFIRMATION_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "check confirmation is required"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0731-nbu-transfer-encrypt-research",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0731-pg-mysql-parquet-poc",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0801-pdca-process-audit",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/0801-pdca-self-optimization-loop",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/T0146-0730-rpc-ipv6-support",
+      "valid": false,
+      "issues": [
+        {
+          "code": "STATUS_PHASE_MISMATCH",
+          "path": "/status",
+          "message": "archive requires Completed"
+        },
+        {
+          "code": "STATE_TIMESTAMP_MISSING",
+          "path": "/states/archive",
+          "message": "required in archive"
+        },
+        {
+          "code": "RECORD_MISSING",
+          "path": "/meta/record",
+          "message": "record is required after Do"
+        },
+        {
+          "code": "CONCLUSION_MISSING",
+          "path": "records/None/conclusion.md",
+          "message": "conclusion is required"
+        },
+        {
+          "code": "CHECK_CONFIRMATION_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "check confirmation is required"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/T0149-0801-design-md-review",
+      "valid": false,
+      "issues": [
+        {
+          "code": "FINAL_CONFIRMATION_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "confirmed response is required"
+        },
+        {
+          "code": "RECORD_MISSING",
+          "path": "/meta/record",
+          "message": "record is required after Do"
+        },
+        {
+          "code": "CONCLUSION_MISSING",
+          "path": "records/None/conclusion.md",
+          "message": "conclusion is required"
+        },
+        {
+          "code": "CHECK_CONFIRMATION_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "check confirmation is required"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/T0166-0731-flow-integrity-hardening",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-07/T0167-0731-workflow-ai-usability",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0801-journal-bkey-validation",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-alloc-backpointer-derived-recovery",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-btree-merge-shrink",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-btree-node-rewrite",
+      "valid": false,
+      "issues": [
+        {
+          "code": "CHECK_CONFIRMATION_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "check confirmation is required"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-bucket-allocation-reclaim-backpointer-chain",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-bucket-api-property-tests",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-concurrency-interleave",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-concurrent-combined-sequence",
+      "valid": false,
+      "issues": [
+        {
+          "code": "FINAL_CONFIRMATION_TIME_ORDER",
+          "path": "clarifications.jsonl[1]/at",
+          "message": "final confirmation cannot predate task creation"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-derived-state-validator-fault-closure",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-device-bucket-geometry-contract",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-discard-open-bucket-boundary",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-discard-worker-fairness-property",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-discard-worker-inflight-retry",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-extent-alloc-btree-backpointer-trigger-audit",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-fsck-cli",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-fsck-repair",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-fsck-repair-faults",
+      "valid": false,
+      "issues": [
+        {
+          "code": "ACTIVE_PHASE_MISMATCH",
+          "path": "/meta/active",
+          "message": "archive requires active=False"
+        },
+        {
+          "code": "STATE_TIMESTAMP_MISSING",
+          "path": "/states/archive",
+          "message": "required in archive"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-model-guard-injection",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-model-op-domain-extension",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-open-bucket-lifecycle-device-rw",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-persistent-concurrency",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-physical-pointer-derived-state-contract",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-public-guard-assertions",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-recovery-fault-matrix-public-validator",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-transaction-trigger-runner-pointer-dispatch",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-trigger-chain-applicability-audit",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-verify-all-aggregate",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0802-worker-verify-checkpoint",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0803-btree-random-op-consistency",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/status",
+          "message": "'Archived' is not one of ['Pending', 'InProgress', 'Completed']",
+          "guidance": "fix the field at /status in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0803-fsck-scrub-rewrite",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0803-fsck-scrub-rewrite-followup",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/status",
+          "message": "'Archived' is not one of ['Pending', 'InProgress', 'Completed']",
+          "guidance": "fix the field at /status in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0803-rpc-protocol-transport-refactor",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0803-snapshot-table-reload",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "/status",
+          "message": "'Archived' is not one of ['Pending', 'InProgress', 'Completed']",
+          "guidance": "fix the field at /status in task.schema.json to satisfy the schema"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0804-cdm-report-center-analyse",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0805-rpc-serialization-hardening",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0807-roach-gm-encrypt-support",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0807-rpc-conn-idle-implement",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0807-rpc-socket-reuse-idle-reclaim",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0807-xtrabackup-incremental-tech",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0808-bwlimit-poc",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0808-core-tech-poc",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0809-ai-efficiency-proof",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0809-diagnosing-bugs-enhance",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0809-fastapi-api",
+      "valid": false,
+      "issues": [
+        {
+          "code": "STATUS_PHASE_MISMATCH",
+          "path": "/status",
+          "message": "plan requires Pending"
+        },
+        {
+          "code": "STATE_TIMESTAMP_MISSING",
+          "path": "/states/plan",
+          "message": "required in plan"
+        },
+        {
+          "code": "CLARIFICATIONS_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "file is required"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0809-fastapi-app-verify",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0809-fastapi-service",
+      "valid": false,
+      "issues": [
+        {
+          "code": "STATUS_PHASE_MISMATCH",
+          "path": "/status",
+          "message": "plan requires Pending"
+        },
+        {
+          "code": "STATE_TIMESTAMP_MISSING",
+          "path": "/states/plan",
+          "message": "required in plan"
+        },
+        {
+          "code": "CLARIFICATIONS_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "file is required"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0809-fastapi-storage",
+      "valid": false,
+      "issues": [
+        {
+          "code": "STATUS_PHASE_MISMATCH",
+          "path": "/status",
+          "message": "plan requires Pending"
+        },
+        {
+          "code": "STATE_TIMESTAMP_MISSING",
+          "path": "/states/plan",
+          "message": "required in plan"
+        },
+        {
+          "code": "CLARIFICATIONS_MISSING",
+          "path": "clarifications.jsonl",
+          "message": "file is required"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0809-followup-frontier-batch-spread",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0809-mechanism-fixes",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0809-pdca-flow-impl-review",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0809-seam-ci-gate",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0809-seam-contract",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0809-seam-doctor-gate",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0809-skills-candidates-review",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0809-ticket-dag-design-twice",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0809-transition-timestamps",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0809-writing-for-agents-levers",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0812-rpc-metadata-analysis",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0813-small-writer-pool",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0813-small-writer-pool-round61",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0814-followup-task-record-identity",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0814-inih-hide-symbols",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0814-lmdb-no-mmap-round63",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0814-oss-xmake-integration",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0814-production-observability-round65",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/0814-self-improvement-effectiveness-audit",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0212-0803-rpc-scp-stream-migration",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0213-0803-rpc-server-epoll-migration",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0214-0804-rpc-epoll-industrial-align",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0215-0804-report-subscheme-docs",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0215-0804-rpc-epoll-multireactor",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0216-0804-report-db-adapter",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0217-0804-cdm-data-cli",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0218-0804-collection-service",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0219-0804-report-web",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0220-0804-report-templates-query-export",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "clarifications.jsonl[5]/at",
+          "message": "'2026-08-06T10:49:35+0800' is not a 'date-time'"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "clarifications.jsonl[6]/at",
+          "message": "'2026-08-06T11:25:23+0800' is not a 'date-time'"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "clarifications.jsonl[7]/at",
+          "message": "'2026-08-06T11:27:41+0800' is not a 'date-time'"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "clarifications.jsonl[9]/at",
+          "message": "'2026-08-06T13:58:21+0800' is not a 'date-time'"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "clarifications.jsonl[10]/at",
+          "message": "'2026-08-06T14:00:35+0800' is not a 'date-time'"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "clarifications.jsonl[11]/at",
+          "message": "'2026-08-06T14:24:34+0800' is not a 'date-time'"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "clarifications.jsonl[12]/at",
+          "message": "'2026-08-06T14:24:34+0800' is not a 'date-time'"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0221-0804-deployment-install",
+      "valid": false,
+      "issues": [
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "clarifications.jsonl[0]/at",
+          "message": "'2026-08-06T16:56:12+0800' is not a 'date-time'"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "clarifications.jsonl[1]/at",
+          "message": "'2026-08-06T16:56:12+0800' is not a 'date-time'"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "clarifications.jsonl[2]/at",
+          "message": "'2026-08-06T16:56:12+0800' is not a 'date-time'"
+        },
+        {
+          "code": "SCHEMA_INVALID",
+          "path": "clarifications.jsonl[5]/at",
+          "message": "'2026-08-06T17:28:02+0800' is not a 'date-time'"
+        }
+      ]
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0223-0805-worker-adaptation",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0224-0804-async-export",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0229-0810-ob-backup-gm-encrypt-verify",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0246-0810-backup-gm-transport-encryption",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0247-0811-backup-doc-optimize",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0248-0812-openssh-src-unpack",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "task_dir": "pdca/tasks/archive/2026-08/T0249-0812-kernel-nfs-gm-research",
+      "valid": true,
+      "issues": []
+    }
+  ]
+}

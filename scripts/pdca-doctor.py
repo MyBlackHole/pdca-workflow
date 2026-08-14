@@ -14,7 +14,7 @@ from pathlib import Path
 
 import yaml
 
-from pdca_core import repo_root, timeline_issues
+from pdca_core import identity_diagnostics, repo_root, timeline_issues
 
 REFERENCE_RE = re.compile(r"\$PDCA_HOME/([A-Za-z0-9_./{}<>,*-]+)")
 
@@ -135,18 +135,24 @@ def main() -> int:
     missing_references = [item for item in references if not item["exists"]]
     seam_checks = seam_contracts_checks(root)
     seam_broken = bool(seam_checks["issues"])
+    identity = identity_diagnostics(root)
     payload = {
         "schema": "pdca.doctor/v1",
         "root": str(root),
         "pdca_home_source": "repository-fallback" if fallback_used else "environment",
         "warning": "configure PDCA_HOME for external projects" if fallback_used else None,
-        "valid": not missing_required and not missing_references and not seam_broken,
+        "valid": (
+            not missing_required
+            and not missing_references
+            and not seam_broken
+        ),
         "missing_required": missing_required,
         "missing_references": missing_references,
         "capabilities": capabilities,
         "references_checked": len(references),
         "task_timeline": active_task_timeline(root),
         "seam_contracts": seam_checks,
+        "identity": identity,
     }
     print(json.dumps(payload, ensure_ascii=False, indent=2))
     return 0 if payload["valid"] else 1
