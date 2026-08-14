@@ -76,5 +76,9 @@
 
 - `src/` 关键源码（mysqlbin / pgbin / 统一 Arrow writer）
 - `evidence/` 验收证据与调研报告（ac1 四版本 / ac5 1M 四路径 / ac7 100M 对照 / EVIDENCE /
-  ac10 PG frozen 回归 / research-report）
-- `poc_offpage64k.schema` CLI schema 示例
+  ac10 PG frozen 回归 / research-report / manifest）
+- `bench/` 数据生成脚本与 schema（gen_mysql/gen_mysql_versions/gen_mysql_scenarios/
+  gen_scenarios_pg + *.schema）
+- `tools/` 页/记录验证工具（dump_ibd/hexpage/trav/parse_rec/probe/tde_decrypt.py 等）
+- 注：测试数据（.ibd 快照 / parquet 输出 / 100M 基准 json）不入此仓库，保留于源项目
+  `/home/black/Documents/database_转换_parquet/evidence/` 与 `data/100m/`（见 manifest.jsonl 资产清单）

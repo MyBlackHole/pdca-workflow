@@ -1,0 +1,3 @@
+id:int:pk
+s:varchar(64)
+t:text
