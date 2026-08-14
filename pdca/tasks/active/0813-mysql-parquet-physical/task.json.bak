@@ -4,9 +4,9 @@
   "title": "调研 MySQL、PG 数据文件直接转换 Parquet（InnoDB 物理路径为主）",
   "parent": null,
   "children": [],
-  "status": "Pending",
+  "status": "InProgress",
   "meta": {
-    "phase": "plan",
+    "phase": "do",
     "active": true,
     "record": "T0250-0813-mysql-parquet-physical",
     "scenario_type": "research",
@@ -22,7 +22,7 @@
   "states": {
     "created": "2026-08-13T00:00:00+08:00",
     "plan": "2026-08-13T11:07:49+08:00",
-    "do": null,
+    "do": "2026-08-13T11:08:15+08:00",
     "check": null,
     "act": null,
     "archive": null

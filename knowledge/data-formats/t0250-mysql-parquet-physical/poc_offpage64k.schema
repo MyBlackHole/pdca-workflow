@@ -1,0 +1,3 @@
+# poc_offpage64k 表 schema（AC-8 64KB off-page 多段 LOB 验证；MEDIUMTEXT 物理格式同 TEXT）
+id:bigint:pk
+payload:text
