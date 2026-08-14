@@ -59,6 +59,23 @@ python3 scripts/compute-frontier.py < dag.json
 - `dependencies` 只存直接前置；禁止写入传递依赖全集。
 - 拆解完成后必须通过 DAG 校验（`scripts/compute-frontier.py` 返回 `valid: true`）。
 
+## Wide-refactor 分支（保绿序列化）
+
+当重构的 **blast radius 横跨全库**（全局改名 / 改类型 / 改接口签名），
+禁止单提交打穿全部调用点；按 expand → 分批迁移 → contract 序列化，逐批保持 CI 绿：
+
+1. **expand**（1 个子任务）：新旧形式并存。新增新接口/新名，保留旧形式；旧形式仍被契约测试覆盖（断言旧接口未被删除）。
+2. **分批迁移**（按 blast radius 分批，每批 1 个子任务，`blocked by expand`）：每批迁移一批调用点后跑完整测试，提交时 CI 必须保持绿（逐批绿）。
+3. **contract**（1 个子任务，`blocked by` 全部迁移批）：无调用者后删除旧形式，做收尾清理。
+4. **批次内无法保绿时**：合并到共享集成分支，末尾加 `integrate-and-verify` 子任务统一验证。
+
+`dependencies` 声明这批 blocking edges：`expand → 迁移批 → contract`，只存直接前置。
+
+**硬指标**：
+- 逐批 CI 绿比例 = 100%（每批提交必须跑完整测试，可用脚本断言每批都绿）。
+- expand 阶段旧形式仍在 → 契约测试可断言旧接口存在（未过早删除）。
+- 单批迁移调用点数可审计（批定义含调用点清单）。
+
 ## Dispatch（仅在 P6 终审后）
 
 Read the doctor result for the abstract `agent.spawn` capability. When available, pass each confirmed child PRD through the current environment Adapter. When unavailable, execute child tasks sequentially in the main session.
