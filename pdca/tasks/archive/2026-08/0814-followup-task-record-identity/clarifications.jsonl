@@ -1,0 +1,12 @@
+{"round":1,"question":"本轮只验证根因和修复方案，还是直接实施？","answer":"按推荐执行：先做 research，不实施。","recommended":"当前尚未排除旧迁移、复制和 record 生命周期漂移，先验证再实施。","source":"grilling","at":"2026-08-14T21:25:43+08:00"}
+{"round":1,"question":"是否禁止重命名、删除或改写既有 task、record、occurrence？","answer":"按推荐执行：禁止。","recommended":"通过新不变量、派生投影或显式兼容边界处理历史事实。","source":"grilling","at":"2026-08-14T21:25:43+08:00"}
+{"round":1,"question":"是否要求至少复现一个真实创建路径的冲突或漂移，或明确记录所有被排除的假设？","answer":"按推荐执行：是。","recommended":"不能仅凭缺少统一分配器直接判定根因。","source":"grilling","at":"2026-08-14T21:25:43+08:00"}
+{"round":1,"question":"是否至少比较全局原子 ID 分配器与不可变 record identity 为主的两类方案？","answer":"按推荐执行：是。","recommended":"同时评价并发、迁移、失败恢复和历史兼容性。","source":"grilling","at":"2026-08-14T21:25:43+08:00"}
+{"round":1,"question":"本轮是否只产出证据化根因、方案权衡、前后配对测试设计和 Improvement Candidate 草案，不直接修代码？","answer":"按推荐执行：是。","recommended":"真正实施仍需独立 development 任务及 seam 确认。","source":"grilling","at":"2026-08-14T21:25:43+08:00"}
+{"round":2,"question":"自我审查真的有效吗？","answer":"不能默认有效。T0260 的真实参照集只支持 partial：曾发现 T0164→T0166，但 5 项参照中漏报 4 项。T0261 必须增加独立证伪层，不能由同一描述或结论自证。","recommended":"只承认可执行复现、历史事实、独立不变量检查、负对照和用户结论确认支持的发现；缺少外部 oracle 时标记 inconclusive。","source":"grilling","at":"2026-08-14T21:28:04+08:00"}
+{"round":3,"question":"本轮是否只把独立证伪作为硬门禁，不再重复泛化的自我审查准确率评估？","answer":"按推荐执行：是。","recommended":"T0260 已完成首轮准确性审计；T0261 聚焦 P0 根因并用独立证伪约束可信度。","source":"grilling","at":"2026-08-14T21:30:14+08:00"}
+{"round":3,"question":"若所有可执行复现都无法证明当前创建路径仍会产生冲突，是否接受历史问题、当前根因 inconclusive，并停止提出代码修复？","answer":"按推荐执行：接受。","recommended":"不为了产出改进而制造改进。","source":"grilling","at":"2026-08-14T21:30:14+08:00"}
+{"source":"direction_confirm","summary":"用户确认 T0261 方向：聚焦 P0 task/record identity 当前根因；自我审查只提假设，根因必须由真实历史、可执行复现、跨文件不变量或正常负对照独立支持；先冻结预测再验证，无 oracle 标记 inconclusive，当前路径不可复现则停止提出代码修复；只比较方案并在证据通过时产出 Improvement Candidate 草案，不修改代码、历史记录或正式 backlog。","response":"confirmed","at":"2026-08-14T21:32:31+08:00"}
+{"source":"final_confirmation","summary":"用户批准 T0261 完整方案：冻结 H1-H4，通过真实历史、可执行复现、跨文件不变量和正常负对照独立验证 task/record identity 根因；分类 23 个冲突 ID 与 5 个 mismatch event，比较全局原子 task ID 和不可变 record identity 方案；不修改正式数据，无独立 oracle 时结论 inconclusive 且不提出代码修复。","response":"confirmed","at":"2026-08-14T21:34:28+08:00"}
+{"source":"check_confirmation","summary":"用户允许按 partial 结论写入正式 conclusion 并进入 Act","response":"partial","at":"2026-08-14T21:44:19+08:00"}
+{"source":"check_confirmation","summary":"Act partial 跟进任务已创建：T0262，负责统一 task/record identity 创建事务与真实观察","response":"partial","at":"2026-08-14T21:46:40+08:00"}

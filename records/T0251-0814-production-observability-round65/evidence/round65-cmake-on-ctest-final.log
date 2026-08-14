@@ -1,0 +1,75 @@
+Test project /home/black/Downloads/backupstream/build-round65-cmake-on
+      Start  1: unit
+ 1/35 Test  #1: unit ......................................   Passed    0.03 sec
+      Start  2: logging_integration
+ 2/35 Test  #2: logging_integration .......................   Passed    0.21 sec
+      Start  3: reactor_connect
+ 3/35 Test  #3: reactor_connect ...........................   Passed    0.11 sec
+      Start  4: core_integration
+ 4/35 Test  #4: core_integration ..........................   Passed    1.33 sec
+      Start  5: tree_integration
+ 5/35 Test  #5: tree_integration ..........................   Passed    2.67 sec
+      Start  6: production_integration
+ 6/35 Test  #6: production_integration ....................   Passed    3.52 sec
+      Start  7: metadata_index_integration
+ 7/35 Test  #7: metadata_index_integration ................   Passed    1.57 sec
+      Start  8: metadata_backend_integration
+ 8/35 Test  #8: metadata_backend_integration ..............   Passed    0.02 sec
+      Start  9: system_rpc_integration
+ 9/35 Test  #9: system_rpc_integration ....................   Passed    0.53 sec
+      Start 10: session_pool_integration
+10/35 Test #10: session_pool_integration ..................   Passed    4.15 sec
+      Start 11: exec_admission_integration
+11/35 Test #11: exec_admission_integration ................   Passed    1.26 sec
+      Start 12: event_backend_integration
+12/35 Test #12: event_backend_integration .................   Passed    0.67 sec
+      Start 13: data_lane_integration
+13/35 Test #13: data_lane_integration .....................   Passed    1.35 sec
+      Start 14: callback_reactor_integration
+14/35 Test #14: callback_reactor_integration ..............   Passed    0.03 sec
+      Start 15: style_check
+15/35 Test #15: style_check ...............................   Passed    0.41 sec
+      Start 16: tls_integration
+16/35 Test #16: tls_integration ...........................   Passed    3.11 sec
+      Start 17: tls_control_reactor_integration
+17/35 Test #17: tls_control_reactor_integration ...........   Passed    2.95 sec
+      Start 18: tls_data_lane_reactor_integration
+18/35 Test #18: tls_data_lane_reactor_integration .........   Passed    2.09 sec
+      Start 19: tls_reactor_sharding_integration
+19/35 Test #19: tls_reactor_sharding_integration ..........   Passed    1.06 sec
+      Start 20: tls_data_lane_resume_sparse_integration
+20/35 Test #20: tls_data_lane_resume_sparse_integration ...   Passed    6.92 sec
+      Start 21: tls_exec_reactor_integration
+21/35 Test #21: tls_exec_reactor_integration ..............   Passed    4.82 sec
+      Start 22: tls_client_reactor_integration
+22/35 Test #22: tls_client_reactor_integration ............   Passed    1.79 sec
+      Start 23: tls_tree_reactor_integration
+23/35 Test #23: tls_tree_reactor_integration ..............   Passed    0.92 sec
+      Start 24: tls_tree_pool_isolation_integration
+24/35 Test #24: tls_tree_pool_isolation_integration .......   Passed    1.76 sec
+      Start 25: tls_tree_native_fsm_integration
+25/35 Test #25: tls_tree_native_fsm_integration ...........   Passed    1.21 sec
+      Start 26: tls_tree_regular_fsm_integration
+26/35 Test #26: tls_tree_regular_fsm_integration ..........   Passed    1.90 sec
+      Start 27: tls_tree_small_pack_integration
+27/35 Test #27: tls_tree_small_pack_integration ...........   Passed    1.82 sec
+      Start 28: tls_regular_io_metrics_integration
+28/35 Test #28: tls_regular_io_metrics_integration ........   Passed    0.75 sec
+      Start 29: tls_regular_io_pipeline_integration
+29/35 Test #29: tls_regular_io_pipeline_integration .......   Passed    1.18 sec
+      Start 30: tls_lane_worker_fairness_integration
+30/35 Test #30: tls_lane_worker_fairness_integration ......   Passed    1.57 sec
+      Start 31: tls_storage_scheduler_integration
+31/35 Test #31: tls_storage_scheduler_integration .........   Passed    1.45 sec
+      Start 32: tls_cpu_scheduler_integration
+32/35 Test #32: tls_cpu_scheduler_integration .............   Passed    1.50 sec
+      Start 33: tls_execution_pool_split_integration
+33/35 Test #33: tls_execution_pool_split_integration ......   Passed    0.89 sec
+      Start 34: tls_adaptive_storage_integration
+34/35 Test #34: tls_adaptive_storage_integration ..........   Passed    1.35 sec
+      Start 35: tls_reactor_state_machine
+35/35 Test #35: tls_reactor_state_machine .................   Passed    0.59 sec
+
+100% tests passed out of 35
+
+Total Test time (real) =  57.54 sec

@@ -1,0 +1,3 @@
+{"file":"knowledge/pdca-flow/self-optimization-loop.md","reason":"定义被审计的完整反馈链、治理边界及真实后周期效果证据要求。","action":"apply","at":"2026-08-14T21:05:31+08:00"}
+{"file":"knowledge/ai-efficiency/ai-friendliness-review-methodology.md","reason":"约束真实 AI 效率结论的 GQM、配对证据、内容成本和 fixture 外推边界。","action":"apply","at":"2026-08-14T21:05:31+08:00"}
+{"file":"knowledge/ai-efficiency/ai-execution-and-invocation-contracts.md","reason":"明确确定性合约不能证明真实 LLM token、延迟、成功率或多 Agent 效果。","action":"apply","at":"2026-08-14T21:05:31+08:00"}

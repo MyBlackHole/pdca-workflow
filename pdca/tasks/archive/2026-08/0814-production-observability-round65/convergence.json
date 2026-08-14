@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "backupctl 与 backup-agent 具备统一、线程安全、可配置的结构化日志输出",
+      "criteria": ["AC-1", "AC-2", "AC-3"],
+      "evidence_ids": ["logger-unit-integration-style", "concurrent-rotation-permissions", "cmake-tls-on-regression", "cmake-tls-off-regression"]
+    },
+    {
+      "index": 2,
+      "text": "海量增量与 TREE 断点续传的关键阶段、跳过、恢复、失败和提交结果可关联观测",
+      "criteria": ["AC-4"],
+      "evidence_ids": ["event-and-compat-regression", "checkpoint-100k-recovery"]
+    },
+    {
+      "index": 3,
+      "text": "日志开销、并发回归和错误可诊断性有可复核证据，不破坏现有输出兼容性",
+      "criteria": ["AC-5", "AC-6"],
+      "evidence_ids": ["metadata-100k-log-overhead", "checkpoint-100k-recovery", "make-full-regression", "cmake-tls-on-regression", "cmake-tls-off-regression"]
+    }
+  ]
+}

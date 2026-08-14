@@ -1,0 +1,452 @@
+g++ -O3 -DNDEBUG -std=c++11 -Wall -Wextra -Wpedantic -pthread -D_FILE_OFFSET_BITS=64 -DBACKUPSTREAM_VERSION=\"59.0.0\" -fno-exceptions -fno-rtti -Isrc -DBACKUPSTREAM_ENABLE_TLS=1 -MMD -MP -MF build-make/backupctl.o.d -MT build-make/backupctl.o -c src/backupctl.cpp -o build-make/backupctl.o
+g++ -O3 -DNDEBUG -std=c++11 -Wall -Wextra -Wpedantic -pthread -D_FILE_OFFSET_BITS=64 -DBACKUPSTREAM_VERSION=\"59.0.0\" -fno-exceptions -fno-rtti -Isrc -DBACKUPSTREAM_ENABLE_TLS=1 tools/bench_event.cpp -o build-make/backupstream-event-bench -pthread -lrt
+g++ -O3 -DNDEBUG -std=c++11 -Wall -Wextra -Wpedantic -pthread -D_FILE_OFFSET_BITS=64 -DBACKUPSTREAM_VERSION=\"59.0.0\" -fno-exceptions -fno-rtti -Isrc -DBACKUPSTREAM_ENABLE_TLS=1 tools/bench_callback.cpp build-make/common.o build-make/error.o build-make/log.o build-make/cpu_resources.o build-make/reactor.o build-make/reactor_connect.o build-make/reactor_group.o build-make/work_pool.o build-make/adaptive_window.o build-make/cpu_scheduler.o build-make/storage_backend.o build-make/channel.o build-make/data_lane.o build-make/transfer.o build-make/regular_file_io.o build-make/metadata_index.o build-make/metadata_store.o build-make/event_wait.o build-make/tls_reactor.o build-make/tls_sync_bridge.o -o build-make/backupstream-callback-bench -pthread -lrt -lsqlite3 -lssl -lcrypto
+g++ -O3 -DNDEBUG -std=c++11 -Wall -Wextra -Wpedantic -pthread -D_FILE_OFFSET_BITS=64 -DBACKUPSTREAM_VERSION=\"59.0.0\" -fno-exceptions -fno-rtti -Isrc -DBACKUPSTREAM_ENABLE_TLS=1 tools/bench_reactor_post.cpp build-make/common.o build-make/error.o build-make/log.o build-make/cpu_resources.o build-make/reactor.o build-make/reactor_connect.o build-make/reactor_group.o build-make/work_pool.o build-make/adaptive_window.o build-make/cpu_scheduler.o build-make/storage_backend.o build-make/channel.o build-make/data_lane.o build-make/transfer.o build-make/regular_file_io.o build-make/metadata_index.o build-make/metadata_store.o build-make/event_wait.o build-make/tls_reactor.o build-make/tls_sync_bridge.o -o build-make/backupstream-reactor-post-bench -pthread -lrt -lsqlite3 -lssl -lcrypto
+g++ -O3 -DNDEBUG -std=c++11 -Wall -Wextra -Wpedantic -pthread -D_FILE_OFFSET_BITS=64 -DBACKUPSTREAM_VERSION=\"59.0.0\" -fno-exceptions -fno-rtti -Isrc -DBACKUPSTREAM_ENABLE_TLS=1 tools/bench_work_pool_completion.cpp build-make/common.o build-make/error.o build-make/log.o build-make/cpu_resources.o build-make/reactor.o build-make/reactor_connect.o build-make/reactor_group.o build-make/work_pool.o build-make/adaptive_window.o build-make/cpu_scheduler.o build-make/storage_backend.o build-make/channel.o build-make/data_lane.o build-make/transfer.o build-make/regular_file_io.o build-make/metadata_index.o build-make/metadata_store.o build-make/event_wait.o build-make/tls_reactor.o build-make/tls_sync_bridge.o -o build-make/backupstream-work-pool-completion-bench -pthread -lrt -lsqlite3 -lssl -lcrypto
+g++ -O3 -DNDEBUG -std=c++11 -Wall -Wextra -Wpedantic -pthread -D_FILE_OFFSET_BITS=64 -DBACKUPSTREAM_VERSION=\"59.0.0\" -fno-exceptions -fno-rtti -Isrc -DBACKUPSTREAM_ENABLE_TLS=1 tools/bench_mux.cpp -o build-make/backupstream-mux-bench -pthread -lrt
+g++ -O3 -DNDEBUG -std=c++11 -Wall -Wextra -Wpedantic -pthread -D_FILE_OFFSET_BITS=64 -DBACKUPSTREAM_VERSION=\"59.0.0\" -fno-exceptions -fno-rtti -Isrc -DBACKUPSTREAM_ENABLE_TLS=1 build-make/backupctl.o build-make/client_config.o build-make/client_data_lane_runtime.o build-make/client_exec_reactor.o build-make/client_control_reactor.o build-make/client_legacy_exec.o build-make/client_system_rpc.o build-make/common.o build-make/error.o build-make/log.o build-make/cpu_resources.o build-make/reactor.o build-make/reactor_connect.o build-make/reactor_group.o build-make/work_pool.o build-make/adaptive_window.o build-make/cpu_scheduler.o build-make/storage_backend.o build-make/channel.o build-make/data_lane.o build-make/transfer.o build-make/regular_file_io.o build-make/metadata_index.o build-make/metadata_store.o build-make/event_wait.o build-make/tls_reactor.o build-make/tls_sync_bridge.o -o build-make/backupctl -pthread -lrt -lsqlite3 -lssl -lcrypto
+g++ -O3 -DNDEBUG -std=c++11 -Wall -Wextra -Wpedantic -pthread -D_FILE_OFFSET_BITS=64 -DBACKUPSTREAM_VERSION=\"59.0.0\" -fno-exceptions -fno-rtti -Isrc -DBACKUPSTREAM_ENABLE_TLS=1 tests/unit.cpp build-make/common.o build-make/error.o build-make/log.o build-make/cpu_resources.o build-make/reactor.o build-make/reactor_connect.o build-make/reactor_group.o build-make/work_pool.o build-make/adaptive_window.o build-make/cpu_scheduler.o build-make/storage_backend.o build-make/channel.o build-make/data_lane.o build-make/transfer.o build-make/regular_file_io.o build-make/metadata_index.o build-make/metadata_store.o build-make/event_wait.o build-make/tls_reactor.o build-make/tls_sync_bridge.o -o build-make/backupstream-unit -pthread -lrt -lsqlite3 -lssl -lcrypto
+./build-make/backupstream-unit
+{"timestamp":"2026-08-13T23:19:10.005Z","level":"info","component":"unit","event":"logger_contract","message":"structured event","pid":162406,"tid":"162406:139922646128704","escaped":"quote \" newline\n"}
+{"timestamp":"2026-08-13T23:19:10.005Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"0"}
+{"timestamp":"2026-08-13T23:19:10.005Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"1"}
+{"timestamp":"2026-08-13T23:19:10.005Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"2"}
+{"timestamp":"2026-08-13T23:19:10.005Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"3"}
+{"timestamp":"2026-08-13T23:19:10.005Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"4"}
+{"timestamp":"2026-08-13T23:19:10.005Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"5"}
+{"timestamp":"2026-08-13T23:19:10.005Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"6"}
+{"timestamp":"2026-08-13T23:19:10.005Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"7"}
+{"timestamp":"2026-08-13T23:19:10.005Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"8"}
+{"timestamp":"2026-08-13T23:19:10.005Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"9"}
+{"timestamp":"2026-08-13T23:19:10.005Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"10"}
+{"timestamp":"2026-08-13T23:19:10.005Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"11"}
+{"timestamp":"2026-08-13T23:19:10.006Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"12"}
+{"timestamp":"2026-08-13T23:19:10.006Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"13"}
+{"timestamp":"2026-08-13T23:19:10.006Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"14"}
+{"timestamp":"2026-08-13T23:19:10.006Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"15"}
+{"timestamp":"2026-08-13T23:19:10.006Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"16"}
+{"timestamp":"2026-08-13T23:19:10.006Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"0"}
+{"timestamp":"2026-08-13T23:19:10.006Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"1"}
+{"timestamp":"2026-08-13T23:19:10.006Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"2"}
+{"timestamp":"2026-08-13T23:19:10.006Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"3"}
+{"timestamp":"2026-08-13T23:19:10.006Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"0"}
+{"timestamp":"2026-08-13T23:19:10.006Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"1"}
+{"timestamp":"2026-08-13T23:19:10.006Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"2"}
+{"timestamp":"2026-08-13T23:19:10.006Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"3"}
+{"timestamp":"2026-08-13T23:19:10.006Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"4"}
+{"timestamp":"2026-08-13T23:19:10.006Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"5"}
+{"timestamp":"2026-08-13T23:19:10.006Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"17"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"18"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"19"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"20"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"21"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"22"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922623162048","worker":"1","sequence":"23"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"0"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"1"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"2"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"3"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"4"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"6"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"7"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"8"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"9"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"10"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"11"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"12"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"13"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"14"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"15"}
+{"timestamp":"2026-08-13T23:19:10.007Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"16"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"17"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"18"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"19"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"4"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"5"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"5"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"6"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"7"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"8"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"9"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"10"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"11"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"12"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"13"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"14"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"15"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"16"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"17"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"18"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"19"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"20"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"21"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"22"}
+{"timestamp":"2026-08-13T23:19:10.008Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922631554752","worker":"0","sequence":"23"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"20"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"21"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"22"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922518308544","worker":"3","sequence":"23"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"6"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"7"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"8"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"9"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"10"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"11"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"12"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"13"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"14"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"15"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"16"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"17"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"18"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"19"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"20"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"21"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"22"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"debug","component":"unit","event":"concurrent","message":"atomic log line","pid":162406,"tid":"162406:139922478462656","worker":"2","sequence":"23"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"info","component":"unit","event":"rotation","message":"rotation payload that exceeds the small test sink threshold","pid":162406,"tid":"162406:139922646128704"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"info","component":"unit","event":"rotation","message":"rotation payload that exceeds the small test sink threshold","pid":162406,"tid":"162406:139922646128704"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"info","component":"unit","event":"rotation","message":"rotation payload that exceeds the small test sink threshold","pid":162406,"tid":"162406:139922646128704"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"info","component":"unit","event":"rotation","message":"rotation payload that exceeds the small test sink threshold","pid":162406,"tid":"162406:139922646128704"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"info","component":"unit","event":"rotation","message":"rotation payload that exceeds the small test sink threshold","pid":162406,"tid":"162406:139922646128704"}
+{"timestamp":"2026-08-13T23:19:10.009Z","level":"info","component":"unit","event":"rotation","message":"rotation payload that exceeds the small test sink threshold","pid":162406,"tid":"162406:139922646128704"}
+{"timestamp":"2026-08-13T23:19:10.010Z","level":"info","component":"unit","event":"rotation","message":"rotation payload that exceeds the small test sink threshold","pid":162406,"tid":"162406:139922646128704"}
+{"timestamp":"2026-08-13T23:19:10.010Z","level":"info","component":"unit","event":"rotation","message":"rotation payload that exceeds the small test sink threshold","pid":162406,"tid":"162406:139922646128704"}
+{"timestamp":"2026-08-13T23:19:10.010Z","level":"info","component":"unit","event":"rotation","message":"rotation payload that exceeds the small test sink threshold","pid":162406,"tid":"162406:139922646128704"}
+{"timestamp":"2026-08-13T23:19:10.010Z","level":"info","component":"unit","event":"rotation","message":"rotation payload that exceeds the small test sink threshold","pid":162406,"tid":"162406:139922646128704"}
+{"timestamp":"2026-08-13T23:19:10.010Z","level":"info","component":"unit","event":"rotation","message":"rotation payload that exceeds the small test sink threshold","pid":162406,"tid":"162406:139922646128704"}
+{"timestamp":"2026-08-13T23:19:10.010Z","level":"info","component":"unit","event":"rotation","message":"rotation payload that exceeds the small test sink threshold","pid":162406,"tid":"162406:139922646128704"}
+unit: PASS
+./tests/logging_integration.sh ./build-make
+logging integration: PASS client_events=2 agent_events=3
+g++ -O3 -DNDEBUG -std=c++11 -Wall -Wextra -Wpedantic -pthread -D_FILE_OFFSET_BITS=64 -DBACKUPSTREAM_VERSION=\"59.0.0\" -fno-exceptions -fno-rtti -Isrc -DBACKUPSTREAM_ENABLE_TLS=1 tests/reactor_connect_test.cpp build-make/common.o build-make/error.o build-make/log.o build-make/cpu_resources.o build-make/reactor.o build-make/reactor_connect.o build-make/reactor_group.o build-make/work_pool.o build-make/adaptive_window.o build-make/cpu_scheduler.o build-make/storage_backend.o build-make/channel.o build-make/data_lane.o build-make/transfer.o build-make/regular_file_io.o build-make/metadata_index.o build-make/metadata_store.o build-make/event_wait.o build-make/tls_reactor.o build-make/tls_sync_bridge.o -o build-make/backupstream-reactor-connect-test -pthread -lrt -lsqlite3 -lssl -lcrypto
+./build-make/backupstream-reactor-connect-test
+reactor_connect: PASS success/refused/timeout/cancel
+./tests/integration.sh ./build-make
+[2026-08-13T23:19:11.241Z] info backupctl operation_start: backup operation started pid=162710 tid=162710:140410828716096 command="caps" args="0" tls="0" flags="5171"
+[2026-08-13T23:19:11.242Z] info backupctl operation_complete: backup operation completed pid=162710 tid=162710:140410828716096
+[2026-08-13T23:19:11.249Z] info backupctl operation_start: backup operation started pid=162711 tid=162711:140116598917184 command="exec" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:11.253Z] info backupctl operation_complete: backup operation completed pid=162711 tid=162711:140116598917184
+[2026-08-13T23:19:11.260Z] info backupctl operation_start: backup operation started pid=162720 tid=162720:140394354133056 command="exec" args="3" tls="0" flags="5171"
+[2026-08-13T23:19:11.369Z] info backupctl operation_complete: backup operation completed pid=162720 tid=162720:140394354133056
+[2026-08-13T23:19:11.379Z] info backupctl operation_start: backup operation started pid=162729 tid=162729:140506583210048 command="exec" args="3" tls="0" flags="5171"
+[2026-08-13T23:19:11.474Z] info backupctl operation_complete: backup operation completed pid=162729 tid=162729:140506583210048
+[2026-08-13T23:19:11.482Z] info backupctl operation_start: backup operation started pid=162736 tid=162736:139895957596224 command="exec" args="3" tls="0" flags="5171"
+[2026-08-13T23:19:11.587Z] info backupctl operation_complete: backup operation completed pid=162736 tid=162736:139895957596224
+[2026-08-13T23:19:11.595Z] info backupctl operation_start: backup operation started pid=162744 tid=162744:140560152873024 command="exec" args="3" tls="0" flags="5171"
+[2026-08-13T23:19:11.605Z] info backupctl operation_complete: backup operation completed pid=162744 tid=162744:140560152873024
+[2026-08-13T23:19:11.615Z] info backupctl operation_start: backup operation started pid=162752 tid=162752:139853987240000 command="put" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:11.620Z] info backupctl transfer_summary: tree transfer committed pid=162752 tid=162752:139853987240000 files="1" dirs="0" logical_bytes="19" wire_bytes="19" resumed_bytes="0" skipped_files="0"
+[2026-08-13T23:19:11.620Z] info backupctl operation_complete: backup operation completed pid=162752 tid=162752:139853987240000
+[2026-08-13T23:19:11.626Z] info backupctl operation_start: backup operation started pid=162753 tid=162753:139823203493952 command="get" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:11.628Z] info backupctl operation_complete: backup operation completed pid=162753 tid=162753:139823203493952
+[2026-08-13T23:19:11.635Z] info backupctl operation_start: backup operation started pid=162755 tid=162755:139853819480128 command="stat" args="1" tls="0" flags="5171"
+[2026-08-13T23:19:11.635Z] info backupctl operation_complete: backup operation completed pid=162755 tid=162755:139853819480128
+[2026-08-13T23:19:11.643Z] info backupctl operation_start: backup operation started pid=162757 tid=162757:139785867540544 command="stat" args="1" tls="0" flags="5171"
+[2026-08-13T23:19:11.643Z] info backupctl operation_complete: backup operation completed pid=162757 tid=162757:139785867540544
+[2026-08-13T23:19:11.652Z] info backupctl operation_start: backup operation started pid=162759 tid=162759:140159200618560 command="time" args="0" tls="0" flags="5171"
+[2026-08-13T23:19:11.653Z] info backupctl operation_complete: backup operation completed pid=162759 tid=162759:140159200618560
+[2026-08-13T23:19:11.672Z] info backupctl operation_start: backup operation started pid=162767 tid=162767:140676932839488 command="exec" args="3" tls="0" flags="5171"
+[2026-08-13T23:19:11.674Z] info backupctl operation_start: backup operation started pid=162771 tid=162771:140628324972608 command="exec" args="3" tls="0" flags="5171"
+[2026-08-13T23:19:11.674Z] info backupctl operation_start: backup operation started pid=162788 tid=162788:140002547382336 command="exec" args="3" tls="0" flags="5171"
+[2026-08-13T23:19:11.674Z] info backupctl operation_start: backup operation started pid=162778 tid=162778:139917388531776 command="exec" args="3" tls="0" flags="5171"
+[2026-08-13T23:19:11.674Z] info backupctl operation_start: backup operation started pid=162785 tid=162785:140696789903424 command="exec" args="3" tls="0" flags="5171"
+[2026-08-13T23:19:11.674Z] info backupctl operation_start: backup operation started pid=162793 tid=162793:140126572959808 command="exec" args="3" tls="0" flags="5171"
+[2026-08-13T23:19:11.676Z] info backupctl operation_start: backup operation started pid=162775 tid=162775:139737833551936 command="exec" args="3" tls="0" flags="5171"
+[2026-08-13T23:19:11.676Z] info backupctl operation_start: backup operation started pid=162787 tid=162787:140109038807104 command="exec" args="3" tls="0" flags="5171"
+[2026-08-13T23:19:11.700Z] info backupctl operation_complete: backup operation completed pid=162771 tid=162771:140628324972608
+[2026-08-13T23:19:11.701Z] info backupctl operation_complete: backup operation completed pid=162778 tid=162778:139917388531776
+[2026-08-13T23:19:11.799Z] info backupctl operation_complete: backup operation completed pid=162767 tid=162767:140676932839488
+[2026-08-13T23:19:11.800Z] info backupctl operation_complete: backup operation completed pid=162788 tid=162788:140002547382336
+[2026-08-13T23:19:11.803Z] info backupctl operation_complete: backup operation completed pid=162793 tid=162793:140126572959808
+[2026-08-13T23:19:11.803Z] info backupctl operation_complete: backup operation completed pid=162785 tid=162785:140696789903424
+[2026-08-13T23:19:11.803Z] info backupctl operation_complete: backup operation completed pid=162787 tid=162787:140109038807104
+[2026-08-13T23:19:11.805Z] info backupctl operation_complete: backup operation completed pid=162775 tid=162775:139737833551936
+[2026-08-13T23:19:12.076Z] info backupctl operation_start: backup operation started pid=162974 tid=162974:140440554625088 command="exec" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:12.182Z] info backupctl operation_complete: backup operation completed pid=162974 tid=162974:140440554625088
+integration: PASS
+./tests/tree_integration.sh ./build-make
+[2026-08-13T23:19:12.550Z] info backupctl operation_start: backup operation started pid=163127 tid=163127:140444829509696 command="put" args="2" tls="0" flags="5691"
+[2026-08-13T23:19:12.621Z] info backupctl transfer_summary: tree transfer committed pid=163127 tid=163127:140444829509696 files="3" dirs="2" logical_bytes="19922956" wire_bytes="3149836" resumed_bytes="0" skipped_files="0"
+[2026-08-13T23:19:12.622Z] info backupctl operation_complete: backup operation completed pid=163127 tid=163127:140444829509696
+[2026-08-13T23:19:12.669Z] info backupctl operation_start: backup operation started pid=163136 tid=163136:140697153484864 command="get" args="2" tls="0" flags="5691"
+[2026-08-13T23:19:12.734Z] info backupctl operation_complete: backup operation completed pid=163136 tid=163136:140697153484864
+[2026-08-13T23:19:12.843Z] info backupctl operation_start: backup operation started pid=163155 tid=163155:140639332898880 command="put" args="2" tls="0" flags="5299"
+[2026-08-13T23:19:12.845Z] info backupctl transfer_summary: tree transfer committed pid=163155 tid=163155:140639332898880 files="0" dirs="0" logical_bytes="0" wire_bytes="0" resumed_bytes="0" skipped_files="1"
+[2026-08-13T23:19:12.845Z] info backupctl operation_complete: backup operation completed pid=163155 tid=163155:140639332898880
+[2026-08-13T23:19:12.853Z] info backupctl operation_start: backup operation started pid=163157 tid=163157:139708010772544 command="put" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:12.856Z] info backupctl transfer_summary: tree transfer committed pid=163157 tid=163157:139708010772544 files="1" dirs="0" logical_bytes="5" wire_bytes="5" resumed_bytes="0" skipped_files="0"
+[2026-08-13T23:19:12.856Z] info backupctl operation_complete: backup operation completed pid=163157 tid=163157:139708010772544
+[2026-08-13T23:19:12.872Z] info backupctl operation_start: backup operation started pid=163161 tid=163161:139646485784640 command="put" args="2" tls="0" flags="5153"
+[2026-08-13T23:19:12.883Z] info backupctl transfer_summary: tree transfer committed pid=163161 tid=163161:139646485784640 files="1" dirs="0" logical_bytes="4194304" wire_bytes="4194304" resumed_bytes="0" skipped_files="0"
+[2026-08-13T23:19:12.884Z] info backupctl operation_complete: backup operation completed pid=163161 tid=163161:139646485784640
+tree integration: PASS
+./tests/production_integration.sh ./build-make
+[2026-08-13T23:19:16.069Z] info backupctl operation_start: backup operation started pid=163206 tid=163206:139999821178944 command="caps" args="0" tls="0" flags="5171"
+[2026-08-13T23:19:16.070Z] info backupctl operation_complete: backup operation completed pid=163206 tid=163206:139999821178944
+[2026-08-13T23:19:17.150Z] info backupctl operation_start: backup operation started pid=163220 tid=163220:139796829366336 command="put" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:17.159Z] info backupctl transfer_summary: tree transfer committed pid=163220 tid=163220:139796829366336 files="10" dirs="2" logical_bytes="71" wire_bytes="71" resumed_bytes="0" skipped_files="0"
+[2026-08-13T23:19:17.159Z] info backupctl operation_complete: backup operation completed pid=163220 tid=163220:139796829366336
+[2026-08-13T23:19:17.167Z] info backupctl operation_start: backup operation started pid=163225 tid=163225:140500214134848 command="get" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:17.172Z] info backupctl operation_complete: backup operation completed pid=163225 tid=163225:140500214134848
+[2026-08-13T23:19:17.184Z] info backupctl operation_start: backup operation started pid=163228 tid=163228:139678931667008 command="put" args="2" tls="0" flags="7219"
+[2026-08-13T23:19:17.186Z] info backupctl transfer_summary: tree transfer committed pid=163228 tid=163228:139678931667008 files="0" dirs="2" logical_bytes="0" wire_bytes="0" resumed_bytes="0" skipped_files="10"
+[2026-08-13T23:19:17.186Z] info backupctl operation_complete: backup operation completed pid=163228 tid=163228:139678931667008
+[2026-08-13T23:19:17.194Z] info backupctl operation_start: backup operation started pid=163234 tid=163234:140425503148096 command="put" args="2" tls="0" flags="1139"
+[2026-08-13T23:19:17.197Z] info backupctl transfer_summary: tree transfer committed pid=163234 tid=163234:140425503148096 files="1" dirs="0" logical_bytes="6" wire_bytes="6" resumed_bytes="0" skipped_files="0"
+[2026-08-13T23:19:17.197Z] info backupctl operation_complete: backup operation completed pid=163234 tid=163234:140425503148096
+[2026-08-13T23:19:17.223Z] info backupctl operation_start: backup operation started pid=163240 tid=163240:139764237572160 command="put" args="2" tls="0" flags="1073"
+[2026-08-13T23:19:17.227Z] info backupctl transfer_summary: tree transfer committed pid=163240 tid=163240:139764237572160 files="1" dirs="0" logical_bytes="524288" wire_bytes="8192" resumed_bytes="0" skipped_files="0"
+[2026-08-13T23:19:17.227Z] info backupctl operation_complete: backup operation completed pid=163240 tid=163240:139764237572160
+[2026-08-13T23:19:17.237Z] info backupctl operation_start: backup operation started pid=163247 tid=163247:140563952937024 command="stat" args="1" tls="0" flags="5171"
+[2026-08-13T23:19:17.237Z] info backupctl operation_complete: backup operation completed pid=163247 tid=163247:140563952937024
+[2026-08-13T23:19:17.288Z] info backupctl operation_start: backup operation started pid=163264 tid=163264:139944972658752 command="put" args="2" tls="0" flags="1075"
+[2026-08-13T23:19:17.291Z] info backupctl transfer_summary: tree transfer committed pid=163264 tid=163264:139944972658752 files="1" dirs="0" logical_bytes="9" wire_bytes="9" resumed_bytes="0" skipped_files="0"
+[2026-08-13T23:19:17.291Z] info backupctl operation_complete: backup operation completed pid=163264 tid=163264:139944972658752
+[2026-08-13T23:19:17.313Z] info backupctl operation_start: backup operation started pid=163277 tid=163277:139687706228800 command="exec" args="3" tls="0" flags="5171"
+[2026-08-13T23:19:18.320Z] info backupctl operation_complete: backup operation completed pid=163277 tid=163277:139687706228800
+production integration: PASS
+./tests/metadata_index_integration.sh ./build-make sqlite
+[2026-08-13T23:19:18.898Z] info backupctl operation_start: backup operation started pid=163463 tid=163463:140422502062144 command="put" args="2" tls="0" flags="17467"
+[2026-08-13T23:19:18.899Z] info backupctl checkpoint_recovery: created or reset TREE checkpoint pid=163463 tid=163463:140422502062144
+[2026-08-13T23:19:18.961Z] info backupctl transfer_summary: tree transfer committed pid=163463 tid=163463:140422502062144 files="1000" dirs="2" logical_bytes="16999" wire_bytes="16999" resumed_bytes="0" skipped_files="0" checkpoint_hits="0" checkpoint_checks="1002"
+[2026-08-13T23:19:18.961Z] info backupctl incremental_scan_summary: local incremental metadata scan completed pid=163463 tid=163463:140422502062144 scanned_entries="1002" cache_entries="1002" baseline_valid="0" mode="scratch"
+[2026-08-13T23:19:18.962Z] info backupctl operation_complete: backup operation completed pid=163463 tid=163463:140422502062144
+[2026-08-13T23:19:19.069Z] info backupctl operation_start: backup operation started pid=163476 tid=163476:140526457907264 command="put" args="2" tls="0" flags="1075"
+[2026-08-13T23:19:19.072Z] info backupctl transfer_summary: tree transfer committed pid=163476 tid=163476:140526457907264 files="1" dirs="0" logical_bytes="6" wire_bytes="6" resumed_bytes="0" skipped_files="0"
+[2026-08-13T23:19:19.072Z] info backupctl operation_complete: backup operation completed pid=163476 tid=163476:140526457907264
+[2026-08-13T23:19:19.193Z] info backupctl operation_start: backup operation started pid=163481 tid=163481:139900410038336 command="put" args="2" tls="0" flags="17459"
+[2026-08-13T23:19:19.197Z] info backupctl checkpoint_recovery: created or reset TREE checkpoint pid=163481 tid=163481:139900410038336
+[2026-08-13T23:19:19.208Z] info backupctl transfer_summary: tree transfer committed pid=163481 tid=163481:139900410038336 files="1" dirs="0" logical_bytes="5" wire_bytes="5" resumed_bytes="0" skipped_files="999" checkpoint_hits="0" checkpoint_checks="1002"
+[2026-08-13T23:19:19.208Z] info backupctl incremental_scan_summary: local incremental metadata scan completed pid=163481 tid=163481:139900410038336 scanned_entries="1002" cache_entries="1002" baseline_valid="1" mode="inplace"
+[2026-08-13T23:19:19.208Z] info backupctl operation_complete: backup operation completed pid=163481 tid=163481:139900410038336
+metadata index integration: PASS backend=sqlite
+./tests/metadata_backend_integration.sh ./build-make sqlite
+metadata backend integration: PASS
+./tests/system_rpc_integration.sh ./build-make
+[2026-08-13T23:19:19.964Z] info backupctl operation_start: backup operation started pid=163645 tid=163645:140608434972736 command="caps" args="0" tls="0" flags="5171"
+[2026-08-13T23:19:19.964Z] info backupctl operation_complete: backup operation completed pid=163645 tid=163645:140608434972736
+[2026-08-13T23:19:19.985Z] info backupctl operation_start: backup operation started pid=163650 tid=163650:140160842590272 command="mkdir" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:19.986Z] info backupctl operation_complete: backup operation completed pid=163650 tid=163650:140160842590272
+[2026-08-13T23:19:19.994Z] info backupctl operation_start: backup operation started pid=163651 tid=163651:139970057689152 command="put" args="2" tls="0" flags="1075"
+[2026-08-13T23:19:20.001Z] info backupctl transfer_summary: tree transfer committed pid=163651 tid=163651:139970057689152 files="1" dirs="0" logical_bytes="6" wire_bytes="6" resumed_bytes="0" skipped_files="0"
+[2026-08-13T23:19:20.001Z] info backupctl operation_complete: backup operation completed pid=163651 tid=163651:139970057689152
+[2026-08-13T23:19:20.009Z] info backupctl operation_start: backup operation started pid=163652 tid=163652:139950608721984 command="chmod" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:20.010Z] info backupctl operation_complete: backup operation completed pid=163652 tid=163652:139950608721984
+[2026-08-13T23:19:20.021Z] info backupctl operation_start: backup operation started pid=163654 tid=163654:140569333348416 command="truncate" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:20.021Z] info backupctl operation_complete: backup operation completed pid=163654 tid=163654:140569333348416
+[2026-08-13T23:19:20.031Z] info backupctl operation_start: backup operation started pid=163656 tid=163656:140344429369408 command="link" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:20.032Z] info backupctl operation_complete: backup operation completed pid=163656 tid=163656:140344429369408
+[2026-08-13T23:19:20.045Z] info backupctl operation_start: backup operation started pid=163659 tid=163659:140584756717632 command="stat" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:20.046Z] info backupctl operation_complete: backup operation completed pid=163659 tid=163659:140584756717632
+[2026-08-13T23:19:20.063Z] info backupctl operation_start: backup operation started pid=163663 tid=163663:140471190882368 command="symlink" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:20.064Z] info backupctl operation_complete: backup operation completed pid=163663 tid=163663:140471190882368
+[2026-08-13T23:19:20.072Z] info backupctl operation_start: backup operation started pid=163664 tid=163664:140458473736256 command="readlink" args="1" tls="0" flags="5171"
+[2026-08-13T23:19:20.073Z] info backupctl operation_complete: backup operation completed pid=163664 tid=163664:140458473736256
+[2026-08-13T23:19:20.081Z] info backupctl operation_start: backup operation started pid=163665 tid=163665:140314071148608 command="stat" args="1" tls="0" flags="5171"
+[2026-08-13T23:19:20.082Z] info backupctl operation_complete: backup operation completed pid=163665 tid=163665:140314071148608
+[2026-08-13T23:19:20.090Z] info backupctl operation_start: backup operation started pid=163667 tid=163667:140642019399744 command="statfs" args="1" tls="0" flags="5171"
+[2026-08-13T23:19:20.091Z] info backupctl operation_complete: backup operation completed pid=163667 tid=163667:140642019399744
+[2026-08-13T23:19:20.099Z] info backupctl operation_start: backup operation started pid=163669 tid=163669:139659659089984 command="ls" args="1" tls="0" flags="5171"
+[2026-08-13T23:19:20.100Z] info backupctl operation_complete: backup operation completed pid=163669 tid=163669:139659659089984
+[2026-08-13T23:19:20.118Z] info backupctl operation_start: backup operation started pid=163673 tid=163673:139834972375104 command="uname" args="0" tls="0" flags="5171"
+[2026-08-13T23:19:20.119Z] info backupctl operation_complete: backup operation completed pid=163673 tid=163673:139834972375104
+[2026-08-13T23:19:20.127Z] info backupctl operation_start: backup operation started pid=163675 tid=163675:139986414348352 command="xattr-set" args="3" tls="0" flags="5171"
+[2026-08-13T23:19:20.127Z] info backupctl operation_complete: backup operation completed pid=163675 tid=163675:139986414348352
+[2026-08-13T23:19:20.135Z] info backupctl operation_start: backup operation started pid=163676 tid=163676:139645750802496 command="xattr-get" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:20.136Z] info backupctl operation_complete: backup operation completed pid=163676 tid=163676:139645750802496
+[2026-08-13T23:19:20.143Z] info backupctl operation_start: backup operation started pid=163677 tid=163677:139998493644864 command="xattr-list" args="1" tls="0" flags="5171"
+[2026-08-13T23:19:20.143Z] info backupctl operation_complete: backup operation completed pid=163677 tid=163677:139998493644864
+[2026-08-13T23:19:20.149Z] info backupctl operation_start: backup operation started pid=163679 tid=163679:140040382457920 command="xattr-remove" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:20.150Z] info backupctl operation_complete: backup operation completed pid=163679 tid=163679:140040382457920
+[2026-08-13T23:19:20.163Z] info backupctl operation_start: backup operation started pid=163681 tid=163681:139855778662464 command="rename" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:20.164Z] info backupctl operation_complete: backup operation completed pid=163681 tid=163681:139855778662464
+[2026-08-13T23:19:20.171Z] info backupctl operation_start: backup operation started pid=163682 tid=163682:139978734295104 command="unlink" args="1" tls="0" flags="5171"
+[2026-08-13T23:19:20.172Z] info backupctl operation_complete: backup operation completed pid=163682 tid=163682:139978734295104
+[2026-08-13T23:19:20.179Z] info backupctl operation_start: backup operation started pid=163683 tid=163683:140212463933504 command="unlink" args="1" tls="0" flags="5171"
+[2026-08-13T23:19:20.180Z] info backupctl operation_complete: backup operation completed pid=163683 tid=163683:140212463933504
+[2026-08-13T23:19:20.187Z] info backupctl operation_start: backup operation started pid=163684 tid=163684:139895663941696 command="unlink" args="1" tls="0" flags="5171"
+[2026-08-13T23:19:20.187Z] info backupctl operation_complete: backup operation completed pid=163684 tid=163684:139895663941696
+[2026-08-13T23:19:20.196Z] info backupctl operation_start: backup operation started pid=163685 tid=163685:140258208278592 command="rmdir" args="1" tls="0" flags="5171"
+[2026-08-13T23:19:20.197Z] info backupctl operation_complete: backup operation completed pid=163685 tid=163685:140258208278592
+system_rpc_integration_ok
+./tests/session_pool_integration.sh ./build-make
+[2026-08-13T23:19:23.078Z] info backupctl operation_start: backup operation started pid=163706 tid=163706:140466940713024 command="caps" args="0" tls="0" flags="5171"
+[2026-08-13T23:19:23.079Z] info backupctl operation_complete: backup operation completed pid=163706 tid=163706:140466940713024
+session_pool_integration_ok
+./tests/exec_admission_integration.sh ./build-make
+[2026-08-13T23:19:25.594Z] info backupctl operation_start: backup operation started pid=163747 tid=163747:139791828895808 command="exec" args="2" tls="0" flags="5171"
+[2026-08-13T23:19:25.598Z] info backupctl operation_complete: backup operation completed pid=163747 tid=163747:139791828895808
+exec_admission_integration_ok
+./tests/event_backend_integration.sh ./build-make
+[2026-08-13T23:19:25.829Z] info backupctl operation_start: backup operation started pid=163890 tid=163890:140577588598848 command="caps" args="0" tls="0" flags="5171"
+[2026-08-13T23:19:25.830Z] info backupctl operation_complete: backup operation completed pid=163890 tid=163890:140577588598848
+[2026-08-13T23:19:26.049Z] info backupctl operation_start: backup operation started pid=164022 tid=164022:139712677165120 command="caps" args="0" tls="0" flags="5171"
+[2026-08-13T23:19:26.049Z] info backupctl operation_complete: backup operation completed pid=164022 tid=164022:139712677165120
+[2026-08-13T23:19:26.265Z] info backupctl operation_start: backup operation started pid=164155 tid=164155:139624363165760 command="caps" args="0" tls="0" flags="5171"
+[2026-08-13T23:19:26.265Z] info backupctl operation_complete: backup operation completed pid=164155 tid=164155:139624363165760
+event_backend_integration_ok
+./tests/data_lane_integration.sh ./build-make
+[2026-08-13T23:19:26.796Z] info backupctl operation_start: backup operation started pid=164293 tid=164293:139959291541568 command="put" args="2" tls="0" flags="5154"
+[2026-08-13T23:19:26.860Z] info backupctl operation_complete: backup operation completed pid=164293 tid=164293:139959291541568
+[2026-08-13T23:19:26.899Z] info backupctl operation_start: backup operation started pid=164299 tid=164299:139866242979904 command="get" args="2" tls="0" flags="5154"
+[2026-08-13T23:19:26.954Z] info backupctl operation_complete: backup operation completed pid=164299 tid=164299:139866242979904
+[2026-08-13T23:19:27.026Z] info backupctl operation_start: backup operation started pid=164308 tid=164308:140229944191040 command="put" args="2" tls="0" flags="5154"
+[2026-08-13T23:19:27.182Z] info backupctl operation_complete: backup operation completed pid=164308 tid=164308:140229944191040
+[2026-08-13T23:19:27.189Z] info backupctl operation_start: backup operation started pid=164313 tid=164313:140399972530240 command="get" args="2" tls="0" flags="5154"
+[2026-08-13T23:19:27.338Z] info backupctl operation_complete: backup operation completed pid=164313 tid=164313:140399972530240
+data lane integration: PASS
+./tests/callback_reactor_integration.sh ./build-make
+connections=8 bytes_per_connection=1048576 reactor_shards=2 io_budget_kib=256
+callback_seconds=0.003084 callback_gbit_s=21.761 callbacks=80 nvcsw=1 nivcsw=0
+blocking_seconds=0.001841 blocking_gbit_s=36.451 nvcsw=131 nivcsw=17
+callback_reactor_integration: PASS
+./tests/style_check.sh .
+style_check_ok
+g++ -O3 -DNDEBUG -std=c++11 -Wall -Wextra -Wpedantic -pthread -D_FILE_OFFSET_BITS=64 -DBACKUPSTREAM_VERSION=\"59.0.0\" -fno-exceptions -fno-rtti -Isrc -DBACKUPSTREAM_ENABLE_TLS=1 tests/tls_reactor_state_machine.cpp build-make/common.o build-make/error.o build-make/log.o build-make/cpu_resources.o build-make/reactor.o build-make/reactor_connect.o build-make/reactor_group.o build-make/work_pool.o build-make/adaptive_window.o build-make/cpu_scheduler.o build-make/storage_backend.o build-make/channel.o build-make/data_lane.o build-make/transfer.o build-make/regular_file_io.o build-make/metadata_index.o build-make/metadata_store.o build-make/event_wait.o build-make/tls_reactor.o build-make/tls_sync_bridge.o -o build-make/backupstream-tls-reactor-test -pthread -lrt -lsqlite3 -lssl -lcrypto
+./tests/tls_reactor_state_machine.sh ./build-make
+tls_reactor_state_machine: PASS threads=1 payload_mib=64
+./tests/tls_integration.sh ./build-make
+[2026-08-13T23:19:31.898Z] info backupctl operation_start: backup operation started pid=164536 tid=164536:139786653165632 command="exec" args="2" tls="1" flags="5171"
+[2026-08-13T23:19:31.949Z] info backupctl operation_complete: backup operation completed pid=164536 tid=164536:139786653165632
+[2026-08-13T23:19:31.960Z] info backupctl operation_start: backup operation started pid=164543 tid=164543:140446344644672 command="exec" args="3" tls="1" flags="5171"
+[2026-08-13T23:19:32.100Z] info backupctl operation_complete: backup operation completed pid=164543 tid=164543:140446344644672
+[2026-08-13T23:19:32.110Z] info backupctl operation_start: backup operation started pid=164550 tid=164550:140195227486272 command="exec" args="3" tls="1" flags="5171"
+[2026-08-13T23:19:32.304Z] info backupctl operation_complete: backup operation completed pid=164550 tid=164550:140195227486272
+[2026-08-13T23:19:32.323Z] info backupctl operation_start: backup operation started pid=164560 tid=164560:140549643200576 command="put" args="2" tls="1" flags="5171"
+[2026-08-13T23:19:32.358Z] info backupctl transfer_summary: tree transfer committed pid=164560 tid=164560:140549635962560 files="2" dirs="2" logical_bytes="1048584" wire_bytes="1048584" resumed_bytes="0" skipped_files="0"
+[2026-08-13T23:19:32.358Z] info backupctl operation_complete: backup operation completed pid=164560 tid=164560:140549643200576
+[2026-08-13T23:19:32.367Z] info backupctl operation_start: backup operation started pid=164562 tid=164562:140530157299776 command="get" args="2" tls="1" flags="5171"
+[2026-08-13T23:19:32.462Z] info backupctl operation_complete: backup operation completed pid=164562 tid=164562:140530157299776
+[2026-08-13T23:19:32.956Z] info backupctl operation_start: backup operation started pid=164612 tid=164612:140485257242688 command="put" args="2" tls="1" flags="5154"
+[2026-08-13T23:19:33.065Z] info backupctl operation_complete: backup operation completed pid=164612 tid=164612:140485257242688
+[2026-08-13T23:19:33.074Z] info backupctl operation_start: backup operation started pid=164621 tid=164621:139740315424832 command="get" args="2" tls="1" flags="5154"
+[2026-08-13T23:19:33.166Z] info backupctl operation_complete: backup operation completed pid=164621 tid=164621:139740315424832
+tls integration: PASS
+./tests/tls_control_reactor_integration.sh ./build-make
+[2026-08-13T23:19:35.841Z] info backupctl operation_start: backup operation started pid=164702 tid=164702:140548545333312 command="stat" args="128" tls="1" flags="5171"
+[2026-08-13T23:19:35.859Z] info backupctl operation_complete: backup operation completed pid=164702 tid=164702:140548545333312
+[2026-08-13T23:19:35.878Z] info backupctl operation_start: backup operation started pid=164707 tid=164707:140413878614080 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:35.891Z] info backupctl operation_complete: backup operation completed pid=164707 tid=164707:140413878614080
+[2026-08-13T23:19:35.901Z] info backupctl operation_start: backup operation started pid=164710 tid=164710:140181111707712 command="uname" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:35.912Z] info backupctl operation_complete: backup operation completed pid=164710 tid=164710:140181111707712
+[2026-08-13T23:19:35.922Z] info backupctl operation_start: backup operation started pid=164715 tid=164715:139630747588672 command="ls" args="1" tls="1" flags="5171"
+[2026-08-13T23:19:35.948Z] info backupctl operation_complete: backup operation completed pid=164715 tid=164715:139630747588672
+tls control reactor integration: PASS baseline_threads=45 active_threads=45 ls_peak=45 channels=128 readdir_entries=2300
+./tests/tls_data_lane_reactor_integration.sh ./build-make
+[2026-08-13T23:19:36.640Z] info backupctl operation_start: backup operation started pid=164796 tid=164796:139960037406784 command="get" args="2" tls="1" flags="5154"
+[2026-08-13T23:19:36.827Z] info backupctl operation_complete: backup operation completed pid=164796 tid=164796:139960037406784
+tls data lane reactor integration: PASS server_baseline=13 single_peak=13 server_put_peak=13 server_get_peak=13 client_put_peak=9 client_get_peak=9 lanes=1,4 network_reactors=2 lane_workers=2 tx_direct=180 tx_inline=175 tx_avoided=4 tx_queue_peak=2 tx_outstanding_peak=2097184 tx_high_rejects=276 tx_bp_epochs=184 tx_bp_recoveries=184 tx_bp_max_wait_ns=7799263 tx_bp_compat=0 get_wait_completions=92 get_pressure_hits=180 get_gated=88 get_gated_bytes=92274688
+./tests/tls_reactor_sharding_integration.sh ./build-make
+tls reactor sharding integration: PASS handoffs=4 client_control_acquires=1 client_data_acquires=4 server_control_acquires=5 server_data_acquires=4 single_reactor_handoffs=0
+./tests/tls_data_lane_resume_sparse_integration.sh ./build-make
+tls data lane resume/sparse integration: PASS baseline=13 peak=13 put_resumed=13787136 get_resumed=12775424 remote_blocks=6144 local_blocks=6144
+./tests/tls_exec_reactor_integration.sh ./build-make
+[2026-08-13T23:19:48.601Z] info backupctl operation_start: backup operation started pid=165972 tid=165972:140672398727232 command="exec" args="3" tls="1" flags="5171"
+[2026-08-13T23:19:48.688Z] info backupctl operation_complete: backup operation completed pid=165972 tid=165972:140672398727232
+tls exec reactor integration: PASS baseline_threads=13 peak_threads=13 full_duplex_bytes=8388608 timeout_rc=124 disconnect_reaped=1 shutdown_reaped=1
+./tests/tls_client_reactor_integration.sh ./build-make
+[2026-08-13T23:19:52.303Z] info backupctl operation_start: backup operation started pid=166236 tid=166236:140203661371456 command="stat" args="260" tls="1" flags="5171"
+[2026-08-13T23:19:52.325Z] info backupctl operation_complete: backup operation completed pid=166236 tid=166236:140203661371456
+[2026-08-13T23:19:52.341Z] info backupctl operation_start: backup operation started pid=166250 tid=166250:140098211293248 command="mkdir" args="2" tls="1" flags="5171"
+[2026-08-13T23:19:52.352Z] info backupctl operation_complete: backup operation completed pid=166250 tid=166250:140098211293248
+[2026-08-13T23:19:52.360Z] info backupctl operation_start: backup operation started pid=166252 tid=166252:140316333799488 command="chmod" args="2" tls="1" flags="5171"
+[2026-08-13T23:19:52.369Z] info backupctl operation_complete: backup operation completed pid=166252 tid=166252:140316333799488
+[2026-08-13T23:19:52.379Z] info backupctl operation_start: backup operation started pid=166255 tid=166255:140290845128768 command="truncate" args="2" tls="1" flags="5171"
+[2026-08-13T23:19:52.390Z] info backupctl operation_complete: backup operation completed pid=166255 tid=166255:140290845128768
+[2026-08-13T23:19:52.399Z] info backupctl operation_start: backup operation started pid=166258 tid=166258:140082477467712 command="symlink" args="2" tls="1" flags="5171"
+[2026-08-13T23:19:52.409Z] info backupctl operation_complete: backup operation completed pid=166258 tid=166258:140082477467712
+[2026-08-13T23:19:52.414Z] info backupctl operation_start: backup operation started pid=166260 tid=166260:139806327597120 command="readlink" args="1" tls="1" flags="5171"
+[2026-08-13T23:19:52.423Z] info backupctl operation_complete: backup operation completed pid=166260 tid=166260:139806327597120
+[2026-08-13T23:19:52.432Z] info backupctl operation_start: backup operation started pid=166262 tid=166262:139755623684160 command="statfs" args="1" tls="1" flags="5171"
+[2026-08-13T23:19:52.445Z] info backupctl operation_complete: backup operation completed pid=166262 tid=166262:139755623684160
+[2026-08-13T23:19:52.451Z] info backupctl operation_start: backup operation started pid=166265 tid=166265:140226527430720 command="uname" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:52.461Z] info backupctl operation_complete: backup operation completed pid=166265 tid=166265:140226527430720
+[2026-08-13T23:19:52.471Z] info backupctl operation_start: backup operation started pid=166268 tid=166268:140141480790080 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:52.484Z] info backupctl operation_complete: backup operation completed pid=166268 tid=166268:140141480790080
+[2026-08-13T23:19:52.492Z] info backupctl operation_start: backup operation started pid=166271 tid=166271:140368875804736 command="unlink" args="1" tls="1" flags="5171"
+[2026-08-13T23:19:52.503Z] info backupctl operation_complete: backup operation completed pid=166271 tid=166271:140368875804736
+[2026-08-13T23:19:52.511Z] info backupctl operation_start: backup operation started pid=166273 tid=166273:139709281650752 command="unlink" args="1" tls="1" flags="5171"
+[2026-08-13T23:19:52.524Z] info backupctl operation_complete: backup operation completed pid=166273 tid=166273:139709281650752
+[2026-08-13T23:19:52.533Z] info backupctl operation_start: backup operation started pid=166275 tid=166275:140076374583360 command="rmdir" args="1" tls="1" flags="5171"
+[2026-08-13T23:19:52.546Z] info backupctl operation_complete: backup operation completed pid=166275 tid=166275:140076374583360
+[2026-08-13T23:19:52.558Z] info backupctl operation_start: backup operation started pid=166278 tid=166278:139776132900928 command="ls" args="1" tls="1" flags="5171"
+[2026-08-13T23:19:52.573Z] info backupctl operation_complete: backup operation completed pid=166278 tid=166278:139776132900928
+tls client reactor integration: PASS exec_peak_threads=4 control_peak_threads=2 stat_channels=260 unary_control=1
+./tests/tls_tree_reactor_integration.sh ./build-make
+tls tree reactor integration: PASS baseline_threads=12 peak_threads=12 bytes=67108864
+./tests/tls_tree_pool_isolation_integration.sh ./build-make
+[2026-08-13T23:19:54.319Z] info backupctl operation_start: backup operation started pid=166396 tid=166396:140296186550336 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.333Z] info backupctl operation_complete: backup operation completed pid=166396 tid=166396:140296186550336
+[2026-08-13T23:19:54.343Z] info backupctl operation_start: backup operation started pid=166400 tid=166400:140555409176640 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.357Z] info backupctl operation_complete: backup operation completed pid=166400 tid=166400:140555409176640
+[2026-08-13T23:19:54.365Z] info backupctl operation_start: backup operation started pid=166403 tid=166403:139997614901312 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.376Z] info backupctl operation_complete: backup operation completed pid=166403 tid=166403:139997614901312
+[2026-08-13T23:19:54.386Z] info backupctl operation_start: backup operation started pid=166406 tid=166406:140167432128576 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.396Z] info backupctl operation_complete: backup operation completed pid=166406 tid=166406:140167432128576
+[2026-08-13T23:19:54.404Z] info backupctl operation_start: backup operation started pid=166409 tid=166409:139709516585024 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.414Z] info backupctl operation_complete: backup operation completed pid=166409 tid=166409:139709516585024
+[2026-08-13T23:19:54.422Z] info backupctl operation_start: backup operation started pid=166412 tid=166412:139813795371072 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.432Z] info backupctl operation_complete: backup operation completed pid=166412 tid=166412:139813795371072
+[2026-08-13T23:19:54.442Z] info backupctl operation_start: backup operation started pid=166415 tid=166415:139990868334656 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.455Z] info backupctl operation_complete: backup operation completed pid=166415 tid=166415:139990868334656
+[2026-08-13T23:19:54.465Z] info backupctl operation_start: backup operation started pid=166418 tid=166418:140306295842880 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.476Z] info backupctl operation_complete: backup operation completed pid=166418 tid=166418:140306295842880
+[2026-08-13T23:19:54.486Z] info backupctl operation_start: backup operation started pid=166421 tid=166421:140205794986048 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.499Z] info backupctl operation_complete: backup operation completed pid=166421 tid=166421:140205794986048
+[2026-08-13T23:19:54.507Z] info backupctl operation_start: backup operation started pid=166424 tid=166424:139884802791488 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.517Z] info backupctl operation_complete: backup operation completed pid=166424 tid=166424:139884802791488
+[2026-08-13T23:19:54.528Z] info backupctl operation_start: backup operation started pid=166427 tid=166427:139952410789952 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.539Z] info backupctl operation_complete: backup operation completed pid=166427 tid=166427:139952410789952
+[2026-08-13T23:19:54.550Z] info backupctl operation_start: backup operation started pid=166430 tid=166430:140121578063936 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.563Z] info backupctl operation_complete: backup operation completed pid=166430 tid=166430:140121578063936
+[2026-08-13T23:19:54.572Z] info backupctl operation_start: backup operation started pid=166433 tid=166433:140387141376064 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.582Z] info backupctl operation_complete: backup operation completed pid=166433 tid=166433:140387141376064
+[2026-08-13T23:19:54.593Z] info backupctl operation_start: backup operation started pid=166436 tid=166436:139709085956160 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.606Z] info backupctl operation_complete: backup operation completed pid=166436 tid=166436:139709085956160
+[2026-08-13T23:19:54.617Z] info backupctl operation_start: backup operation started pid=166439 tid=166439:139672555554880 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.630Z] info backupctl operation_complete: backup operation completed pid=166439 tid=166439:139672555554880
+[2026-08-13T23:19:54.639Z] info backupctl operation_start: backup operation started pid=166442 tid=166442:140452051048512 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.648Z] info backupctl operation_complete: backup operation completed pid=166442 tid=166442:140452051048512
+[2026-08-13T23:19:54.659Z] info backupctl operation_start: backup operation started pid=166445 tid=166445:140000555468864 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.674Z] info backupctl operation_complete: backup operation completed pid=166445 tid=166445:140000555468864
+[2026-08-13T23:19:54.685Z] info backupctl operation_start: backup operation started pid=166448 tid=166448:140432198588480 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.697Z] info backupctl operation_complete: backup operation completed pid=166448 tid=166448:140432198588480
+[2026-08-13T23:19:54.707Z] info backupctl operation_start: backup operation started pid=166451 tid=166451:139727321401408 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.720Z] info backupctl operation_complete: backup operation completed pid=166451 tid=166451:139727321401408
+[2026-08-13T23:19:54.732Z] info backupctl operation_start: backup operation started pid=166454 tid=166454:140248361302080 command="time" args="0" tls="1" flags="5171"
+[2026-08-13T23:19:54.745Z] info backupctl operation_complete: backup operation completed pid=166454 tid=166454:140248361302080
+tls tree pool isolation integration: PASS control_workers=1 tree_workers=1 tree_queue=1 control_rpcs=20 shutdown_cancel=1
+./tests/tls_tree_native_fsm_integration.sh ./build-make
+[2026-08-13T23:19:56.142Z] info backupctl operation_start: backup operation started pid=166521 tid=166521:140533330274368 command="put" args="2" tls="1" flags="5171"
+[2026-08-13T23:19:56.205Z] info backupctl transfer_summary: tree transfer committed pid=166521 tid=166521:140533314983616 files="1" dirs="2" logical_bytes="16777216" wire_bytes="16777216" resumed_bytes="0" skipped_files="0"
+[2026-08-13T23:19:56.206Z] info backupctl operation_complete: backup operation completed pid=166521 tid=166521:140533330274368
+[2026-08-13T23:19:56.235Z] info backupctl operation_start: backup operation started pid=166526 tid=166526:140592291686464 command="get" args="2" tls="1" flags="5171"
+[2026-08-13T23:19:56.302Z] info backupctl operation_complete: backup operation completed pid=166526 tid=166526:140592291686464
+tls tree native fsm integration: PASS tree_workers=1 put_stall_released=1 get_stall_released=1 put_regular_native_return=1 get_regular_native_return=1
+./tests/tls_tree_regular_fsm_integration.sh ./build-make
+[2026-08-13T23:19:57.180Z] info backupctl operation_start: backup operation started pid=166573 tid=166573:139634333026368 command="put" args="2" tls="1" flags="5171"
+[2026-08-13T23:19:57.325Z] info backupctl transfer_summary: tree transfer committed pid=166573 tid=166573:139634324641472 files="1" dirs="1" logical_bytes="50331648" wire_bytes="44498944" resumed_bytes="5832704" skipped_files="0"
+[2026-08-13T23:19:57.325Z] info backupctl operation_complete: backup operation completed pid=166573 tid=166573:139634333026368
+[2026-08-13T23:19:57.482Z] info backupctl operation_start: backup operation started pid=166596 tid=166596:139719867254848 command="get" args="2" tls="1" flags="5171"
+[2026-08-13T23:19:57.722Z] info backupctl operation_complete: backup operation completed pid=166596 tid=166596:139719867254848
+[2026-08-13T23:19:57.782Z] info backupctl operation_start: backup operation started pid=166606 tid=166606:140033790744640 command="put" args="2" tls="1" flags="5171"
+[2026-08-13T23:19:57.938Z] info backupctl transfer_summary: tree transfer committed pid=166606 tid=166606:140033775474368 files="1" dirs="1" logical_bytes="67108864" wire_bytes="8192" resumed_bytes="0" skipped_files="0"
+[2026-08-13T23:19:57.938Z] info backupctl operation_complete: backup operation completed pid=166606 tid=166606:140033790744640
+[2026-08-13T23:19:57.950Z] info backupctl operation_start: backup operation started pid=166610 tid=166610:140101700737088 command="get" args="2" tls="1" flags="5171"
+[2026-08-13T23:19:58.188Z] info backupctl operation_complete: backup operation completed pid=166610 tid=166610:140101700737088
+tls tree regular fsm integration: PASS tree_workers=1 put_stall_released=1 get_stall_released=1 resume=1 sparse=1 bytes=50331648
+./tests/tls_regular_io_metrics_integration.sh ./build-make
+tls regular io metrics integration: PASS
+./tests/tls_regular_io_pipeline_integration.sh ./build-make
+tls regular io pipeline integration: PASS
+./tests/tls_lane_worker_fairness_integration.sh ./build-make
+tls lane worker fairness integration: PASS lanes=16 workers=4
+./tests/tls_storage_scheduler_integration.sh ./build-make
+tls storage scheduler integration: PASS lanes=16 server_workers=1 client_deferred=0 server_deferred=95
+./tests/tls_cpu_scheduler_integration.sh ./build-make
+tls cpu scheduler integration: PASS lanes=16 server_workers=1 client_cpu_submitted=128 server_deferred=88 server_queue_rejected=239
+./tests/tls_execution_pool_split_integration.sh ./build-make
+tls execution pool split integration: PASS lanes=8 total_workers=4 io_workers=2 cpu_workers=2 baseline_threads=17 active_threads=17
+./tests/tls_adaptive_storage_integration.sh ./build-make
+tls adaptive storage integration: PASS lanes=16 workers=1 storage_decreases=3 worker_busy=61

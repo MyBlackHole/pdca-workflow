@@ -1,0 +1,2 @@
+{"path":"knowledge/core/concurrent-combined-commit-log.md","reason":"线程并发日志的完整记录与提交边界参考","action":"consult","at":"2026-08-14T06:56:00+08:00"}
+{"path":"docs/PRODUCTION.md","reason":"对齐现有生产可观测和兼容性约束","action":"consult","at":"2026-08-14T06:56:00+08:00"}

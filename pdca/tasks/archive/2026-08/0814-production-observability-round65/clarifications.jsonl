@@ -1,0 +1,6 @@
+{"source":"final_confirmation","summary":"批准 T0251 完整方案：统一结构化日志、JSONL/file sink、轮转、生命周期/增量/checkpoint 关键事件及兼容性与性能回归；TREE checkpoint 全量内存改造作为独立跟进切片。","response":"confirmed","at":"2026-08-14T06:59:00+08:00"}
+{"round":1,"question":"适用边界：本轮日志性能证据是否不得解释为 checkpoint 内存问题已解决，并将其独立进入 T0252？","answer":"按推荐项执行；未提出修订，保留 checkpoint 全量内存风险为独立跟进。","recommended":"同意，将内存问题拆为独立任务。","source":"grilling","at":"2026-08-14T07:26:02+08:00"}
+{"round":1,"question":"可复用知识：是否沉淀统一日志 API、JSONL 稳定事件、0600 文件 sink、轮转/并发写入和中位数开销验证方法？","answer":"按推荐项执行；未提出修订，沉淀为 observability/structured-logging-jsonl-rotation.md。","recommended":"同意，作为后续备份工具可复用基线。","source":"grilling","at":"2026-08-14T07:26:02+08:00"}
+{"round":1,"question":"流程改进：后续每轮是否把吞吐、CPU、RSS 拆成独立验收轴，并至少测试 100k 与 1M 两档规模？","answer":"按推荐项执行；未提出修订，T0252 将把 RSS 与恢复吞吐列为独立验收项。","recommended":"同意，避免日志回归掩盖内存线性增长。","source":"grilling","at":"2026-08-14T07:26:02+08:00"}
+{"source":"knowledge_decision","at":"2026-08-14T07:26:02+08:00","action":"wrote","reason":"结构化日志的并发、权限、轮转、敏感字段和性能验证边界可复用于后续备份工具轮次；同时记录 checkpoint 内存问题的明确证据边界。"}
+{"source":"check_confirmation","summary":"确认 T0251 Check 结论：日志模块及全部六项 AC 通过；checkpoint 全量内存风险保留为独立跟进任务。","response":"confirmed","at":"2026-08-14T07:25:40+08:00"}

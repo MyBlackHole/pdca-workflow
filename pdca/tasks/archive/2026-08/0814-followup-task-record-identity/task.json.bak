@@ -1,0 +1,42 @@
+{
+  "id": "T0261",
+  "slug": "0814-followup-task-record-identity",
+  "title": "跟进：task/record identity 冲突根因与修复方案验证",
+  "parent": null,
+  "children": [
+    "T0262"
+  ],
+  "dependencies": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "scenario_type": "research",
+    "created_at": "2026-08-14T21:19:40+08:00",
+    "record": "T0261-0814-followup-task-record-identity",
+    "verdict": {
+      "outcome": "partial",
+      "reason": "H1、H2、H4 及当前 record identity 分裂机制均由真实历史、可执行复现和负对照支持；但 T0252 的具体历史搬移命令与 23 个冲突的逐项创建者缺少 receipt，且推荐修复尚无 post-change 数据，因此只能判定 partial。",
+      "verdict_id": "V-T0261-001",
+      "at": "2026-08-14T21:44:24+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "已证实的 task/record identity 不变量沉淀至 knowledge/pdca-flow/task-record-identity-invariants.md；未证实的历史操作者归因未沉淀；开发与真实观察由 T0262 跟进。",
+      "at": "2026-08-14T21:46:40+08:00"
+    },
+    "convergence": [
+      "用可复查历史与并发复现验证 task ID 冲突及 event path mismatch 的根因",
+      "形成不改写不可变历史且可前后配对验证的 P0 修复方案"
+    ],
+    "completed_at": "2026-08-14T21:43:40+08:00"
+  },
+  "states": {
+    "created": "2026-08-14T21:19:40+08:00",
+    "plan": "2026-08-14T21:19:40+08:00",
+    "do": "2026-08-14T21:34:28+08:00",
+    "check": "2026-08-14T21:43:40+08:00",
+    "act": "2026-08-14T21:45:15+08:00",
+    "archive": null
+  }
+}

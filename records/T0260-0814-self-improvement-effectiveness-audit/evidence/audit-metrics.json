@@ -1,0 +1,71 @@
+{
+  "schema": "pdca.self-improvement-audit/v1",
+  "window": {
+    "cutover_at": "2026-07-30T20:27:22+08:00",
+    "first_occurrence_at": "2026-07-31T11:21:13+08:00",
+    "last_occurrence_at": "2026-08-14T11:13:12+08:00"
+  },
+  "real_task_population": {
+    "task_files_after_cutover": 120,
+    "unique_slugs_after_cutover": 116,
+    "unique_task_ids_after_cutover": 93,
+    "grilling_entries_after_cutover": 296,
+    "structured_token_telemetry": null,
+    "structured_elapsed_time_telemetry": null,
+    "structured_tool_call_telemetry": null
+  },
+  "occurrences": {
+    "total": 199,
+    "record_ids": 41,
+    "task_ids": 33,
+    "sources": {
+      "transition-audit": 197,
+      "agent": 2
+    },
+    "categories": {
+      "conformance-deviation": 198,
+      "ai-usability": 1
+    },
+    "same_record_same_timestamp_burst_groups": 31,
+    "events_in_same_timestamp_bursts": 153,
+    "events_linked_to_eventually_confirmed_tasks": 154,
+    "events_without_unique_final_outcome": 45
+  },
+  "projection": {
+    "formal_backlog_issue_count": 14,
+    "formal_backlog_event_count": 34,
+    "formal_backlog_event_coverage": 0.1708542714,
+    "formal_backlog_last_occurrence_at": "2026-07-31T17:00:00+08:00",
+    "isolated_full_rebuild_status": "rejected",
+    "isolated_full_rebuild_error": "EVENT_PATH_MISMATCH",
+    "isolated_full_rebuild_error_path": "records/T0252-0814-inih-hide-symbols/flow-events/FE-21a18c9e9551bebd2776f45a.json",
+    "event_path_mismatch_count": 5
+  },
+  "identity": {
+    "task_ids_used_by_multiple_distinct_slugs": 23,
+    "note": "Collision count spans repository history; it is not asserted that every collision caused an event mismatch."
+  },
+  "governance": {
+    "flow_improvement_artifact_files": 0,
+    "tasks_with_improvement_source": 0,
+    "real_decisions": 0,
+    "real_candidates": 0,
+    "real_effectiveness_verdicts": 0
+  },
+  "deterministic_verification": {
+    "unittest_test_flow_issues": {
+      "tests": 12,
+      "passed": 12
+    },
+    "flow_issue_fixtures": {
+      "fixtures": 8,
+      "passed": 8
+    }
+  },
+  "measurement_limits": {
+    "token": "unknown",
+    "elapsed_time": "unknown",
+    "tool_calls": "unknown",
+    "reason": "No structured runner telemetry with task identity was found in records, tasks, or journal. UTF-8 bytes and filesystem mtime were not substituted."
+  }
+}

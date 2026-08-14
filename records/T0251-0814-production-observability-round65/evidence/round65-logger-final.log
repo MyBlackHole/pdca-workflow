@@ -1,0 +1,13 @@
+### unit
+unit=PASS
+### logging integration
+logging integration: PASS client_events=2 agent_events=3
+### style
+style_check_ok
+### diff check
+git_diff_check=PASS
+### source lines
+  1800 src/backupctl.cpp
+  1292 src/backup_agent.cpp
+   303 src/log.cpp
+  3395 total

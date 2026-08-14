@@ -1,0 +1,3 @@
+{"file":"knowledge/pdca-flow/real-usage-effectiveness-audit.md","reason":"提供独立参照集、非循环自证、运行数据可用性和 unknown 证据边界。","action":"apply","at":"2026-08-14T21:32:39+08:00"}
+{"file":"knowledge/pdca-flow/self-optimization-loop.md","reason":"约束不可变事实、可重建投影、候选治理及后周期效果验证。","action":"apply","at":"2026-08-14T21:32:39+08:00"}
+{"file":"knowledge/pdca-flow/runtime-transition-coordinator.md","reason":"提供跨文件并发、共享锁、CAS、receipt 和恢复语义的已验证设计原则。","action":"apply","at":"2026-08-14T21:32:39+08:00"}
