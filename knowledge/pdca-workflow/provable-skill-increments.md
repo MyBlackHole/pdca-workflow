@@ -78,3 +78,58 @@ python3 scripts/check-ticket-claims.py resolve --ticket TK-1 --by sess-a
 - AGENT-BRIEF 质量约束接入自动门禁（triage 产出时拦截）。
 - claim 状态机进程级文件锁（消除极端并发竞态）。
 - wide-refactor 逐批 CI 绿脚本化（记录每批提交 → 校验每批测试 → 输出绿比例）。
+
+## 第二轮：行为级可证明增量（T0266）
+
+> 来源：T0266（0815-skills-round3）。三个增量全部为**行为级**硬指标（真实状态机 fixture / 确定性决策表），比 T0265 的文档结构契约更硬。
+
+### 机制四：out-of-scope 概念聚合知识库（triage-work）
+
+**目的**：被拒绝特性请求的概念级聚合，供 triage dedup surfacing 历史拒绝理由。
+
+- **一个概念一个文件**：`knowledge/out-of-scope/<concept>.md`（kebab-case）。
+- **同概念追加**：第二次拒绝追加到已有文件 `## Prior requests`（文件数不变）；不同概念才新建。
+- **反污染**：因"已实现"而拒绝的请求**禁止**写入（会污染 dedup 造成假拒绝），脚本 `--implemented` 标志直接拒绝。
+- **dedup 前置检查**：triage 时按概念相似度匹配（非关键词），命中则 surfacing 给用户。
+- **写入条件**：仅 enhancement（非 bug）被 wontfix 拒绝时写入；reason 必须 durable（"现在太忙"是 deferral 非拒绝）。
+
+**实现**：`scripts/out-of-scope-manager.py` add/check/list。
+
+**可证明硬指标**：聚合状态机（同概念文件数不变/不同概念新建）；反污染（--implemented 拒绝写入）；check surfacing 历史理由——全部脚本可断言。
+
+### 机制五：merge-conflicts intent-based 解析
+
+**目的**：从策略表（ours/theirs/manual）升级为按意图解析，保留双方真实意图。
+
+- **找 primary source**：读 commit/PR/issue 理解每侧原始意图。
+- **保留双方意图**：可兼得则兼得；不兼容选符合 merge 目标的并记录权衡。
+- **绝不 --abort**：merge 冲突是状态不是错误。
+- **跑自动化检查**：typecheck → tests → format，修复 merge 破坏。
+
+**可证明硬指标**：真实 git fixture 断言——解析完成不 abort、`git diff --check` 无残留标记、双方意图均保留。
+
+### 机制六：DEEPENING 深化测试策略（design-it-twice）
+
+**目的**：安全深化浅模块集群的确定性决策表。
+
+| 依赖类别 | 测试策略 | adapter |
+|---|---|---|
+| in-process | 合并模块，直接经新接口测试 | 否 |
+| local-substitutable | 本地替身测；内部接缝，外部接口无 port | 否 |
+| remote-owned | 接缝定义 port，注入 adapter；测试用内存 adapter | 是 |
+| true-external | 注入为 port；测试提供 mock adapter | 是 |
+
+- **seam 纪律**：one adapter = 假设性接缝；two adapters = 真实接缝。
+- **deletion test**：删掉模块复杂度消失 = pass-through 不挣存在；散布到 N 调用点 = 挣存在。
+- **replace, don't layer**：深化接口测试存在后删除浅模块旧单测；接口就是测试面；测试挺过内部重构。
+
+**可证明硬指标**：依赖分类→测试策略的确定性映射可脚本断言（4 类互异）。
+
+## 方法论演进（T0265 → T0266）
+
+| 维度 | T0265（文档结构级） | T0266（行为级） |
+|---|---|---|
+| 指标类型 | grep 结构契约（文档含某字段） | 状态机行为 + 真实 git fixture + 确定性决策表 |
+| 测试载体 | 读文件断言 marker | 临时目录状态机、真实 git merge 冲突、决策表映射 |
+| 强度 | 可接受（文档存在性） | 更硬（行为可观察、可复现） |
+| 共同点 | 失败驱动实现、可证明优先、seam 契约 | 同左 |
