@@ -6,7 +6,7 @@
   "children": [],
   "status": "Completed",
   "meta": {
-    "phase": "check",
+    "phase": "act",
     "active": true,
     "record": "T0251-0814-oss-xmake-integration",
     "scenario_type": "development",
@@ -24,6 +24,11 @@
       "reason": "8 项验收全部 PASS 且有独立 evidence 支撑；结论可靠",
       "verdict_id": "V-T0251-1",
       "at": "2026-08-14T10:26:49+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "多包 go module 接入 xmake 的完整模式沉淀为 build-config/go-module-in-xmake.md，含 on_clean 危险警示，可跨项目复用",
+      "at": "2026-08-14T10:28:00+08:00"
     }
   },
   "states": {
@@ -31,7 +36,7 @@
     "plan": "2026-08-14T10:04:15+08:00",
     "do": "2026-08-14T10:04:34+08:00",
     "check": "2026-08-14T10:24:38+08:00",
-    "act": null,
+    "act": "2026-08-14T10:27:34+08:00",
     "archive": null
   }
 }
