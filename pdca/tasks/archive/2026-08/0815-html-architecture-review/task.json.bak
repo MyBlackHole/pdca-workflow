@@ -1,0 +1,43 @@
+{
+ "children": [],
+ "dependencies": [],
+ "id": "T0264",
+ "meta": {
+  "active": true,
+  "convergence": [
+   "热点定位基于近 N 天 git log 频次返回高变更路径，无 git 历史回退全量语义",
+   "HTML 报告自包含含候选卡片与 before/after 可视化，写入任务目录可提交",
+   "结构化指标区可被机器解析，审查结果可经 register-evidence 登记为 evidence",
+   "skill 完整描述热点扫描到 HTML 生成到指标登记到设计闭环流程，既有四维静态能力不退化",
+   "真实 PDCA 仓库运行完整审查，HTML 报告产出且指标区非空"
+  ],
+  "created_at": "2026-08-15T05:48:14+08:00",
+  "phase": "act",
+  "record": "T0264-0815-html-architecture-review",
+  "scenario_type": "development",
+  "completed_at": "2026-08-15T06:27:25+08:00",
+  "verdict": {
+   "outcome": "confirmed",
+   "reason": "All AC-1..AC-8 satisfied: hotspots/HTML render/metrics parse/skill rewrite/arch-report evidence/real-run all verified; task_identity convergence fix included; 190 tests passed",
+   "verdict_id": "T0264-vd-001",
+   "at": "2026-08-15T06:29:00+08:00"
+  },
+  "disposition": {
+   "outcome": "projected",
+   "reason": "HTML 架构审查报告 + 可证明指标机制已落地并验证；知识沉淀 architecture-review-metrics.md 可作为后续审查的参考；Metrics 跨轮次趋势聚合留作后续候选",
+   "at": "2026-08-15T06:31:30.130209+08:00"
+  }
+ },
+ "parent": null,
+ "slug": "0815-html-architecture-review",
+ "states": {
+  "act": "2026-08-15T06:29:17+08:00",
+  "archive": null,
+  "check": "2026-08-15T06:27:25+08:00",
+  "created": "2026-08-15T05:48:14+08:00",
+  "do": "2026-08-15T06:01:04+08:00",
+  "plan": "2026-08-15T05:48:14+08:00"
+ },
+ "status": "Completed",
+ "title": "跟进：HTML 可视化架构审查报告 + 可证明审查指标"
+}

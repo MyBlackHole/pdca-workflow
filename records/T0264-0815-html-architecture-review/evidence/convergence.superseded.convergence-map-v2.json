@@ -1,0 +1,35 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "热点定位基于近 N 天 git log 频次返回高变更路径，无 git 历史回退全量语义",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["test-hotspots"]
+    },
+    {
+      "index": 2,
+      "text": "HTML 报告自包含含候选卡片与 before/after 可视化，写入任务目录可提交",
+      "criteria": ["AC-2", "AC-3"],
+      "evidence_ids": ["test-html", "arch-report"]
+    },
+    {
+      "index": 3,
+      "text": "结构化指标区可被机器解析，审查结果可经 register-evidence 登记为 evidence",
+      "criteria": ["AC-4", "AC-6"],
+      "evidence_ids": ["test-metrics", "arch-report-as-evidence"]
+    },
+    {
+      "index": 4,
+      "text": "skill 完整描述热点扫描到 HTML 生成到指标登记到设计闭环流程，既有四维静态能力不退化",
+      "criteria": ["AC-5", "AC-7"],
+      "evidence_ids": ["skill-rewrite", "test-suite"]
+    },
+    {
+      "index": 5,
+      "text": "真实 PDCA 仓库运行完整审查，HTML 报告产出且指标区非空",
+      "criteria": ["AC-8"],
+      "evidence_ids": ["arch-report-live"]
+    }
+  ]
+}
