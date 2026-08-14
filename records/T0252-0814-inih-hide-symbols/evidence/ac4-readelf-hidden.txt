@@ -1,0 +1,5 @@
+对照实验（A/B）确认根因:
+- 仅 -fvisibility=hidden 的包(6f0a3f82): ini_parse = GLOBAL DEFAULT  (INI_API macro == visibility("default") 覆盖)
+- 加 -DINI_API= 的包(6d047740):     ini_parse = GLOBAL HIDDEN
+readelf -s 实测:
+    18: 0000000000001140   103 FUNC    GLOBAL HIDDEN     1 ini_parse

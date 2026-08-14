@@ -1,0 +1,2 @@
+libxbsa64.so 链接命令(关键行):
+  -L/home/black/.xmake/packages/i/inih/60/6d0477408b0a402aa2b29d44bbe7b217/lib -s -ltbox -linih

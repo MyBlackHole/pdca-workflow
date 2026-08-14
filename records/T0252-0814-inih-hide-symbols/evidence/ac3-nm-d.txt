@@ -1,0 +1,2 @@
+--- libxbsa64.so 动态符号表 inih 检查 ---
+PASS: 无 ini_* 导出

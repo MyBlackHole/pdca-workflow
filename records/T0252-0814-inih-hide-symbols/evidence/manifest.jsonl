@@ -1,0 +1,9 @@
+{"id":"e-ac1-count","file":"ac1-inihstatic-count.txt","kind":"result","size":28,"digest":"sha256:ad85001cebde3eadf37f75fa86a00eb59a1ceb1dfad37d3a5b38ee664c9c45bf","at":"2026-08-14T11:05:06+08:00","criteria":["AC-1"]}
+{"id":"e-ac2-build","file":"ac2-build.log","kind":"test-log","size":76,"digest":"sha256:8d057c1b6272f3002dcf77aab222aa775aeae3e67e33ddb56a6218c960405403","at":"2026-08-14T11:05:06+08:00","criteria":["AC-2"]}
+{"id":"e-ac3-nmd","file":"ac3-nm-d.txt","kind":"test-log","size":72,"digest":"sha256:b98a06631890567f48c6b4d8ca3cd0adbd28943a15bacb034df91d6f558b2b2d","at":"2026-08-14T11:05:06+08:00","criteria":["AC-3"]}
+{"id":"e-ac4-readelf","file":"ac4-readelf-hidden.txt","kind":"analysis","size":308,"digest":"sha256:9170f408bc55382656f924ced2a20b90efc4c3297607e1e2b25664fc577f35ac","at":"2026-08-14T11:05:06+08:00","criteria":["AC-3"]}
+{"id":"e-ac5-linkcmd","file":"ac5-link-cmd.txt","kind":"analysis","size":134,"digest":"sha256:9e1e180b28e7f7023ae399c6c6f342e44dd7b6b5dde0e71a9d893171492acea5","at":"2026-08-14T11:05:07+08:00","criteria":["AC-3"]}
+{"id":"e-ac6-install","file":"ac6-install.txt","kind":"result","size":235,"digest":"sha256:95530d659623b97ea978b0e09256ca1f4a786c4324a76f6b9abe485e51baf281","at":"2026-08-14T11:05:07+08:00","criteria":["AC-4"]}
+{"id":"e-ac7-version","file":"ac7-version.txt","kind":"result","size":41,"digest":"sha256:9808bfa0a7f51328c4e4a431f426a6aa9ea0ea2591aca64250f944731ee56f10","at":"2026-08-14T11:05:07+08:00","criteria":["AC-4"]}
+{"id":"e-ac8-rootcause","file":"ac8-rootcause.md","kind":"analysis","size":769,"digest":"sha256:32eef94ea4a81809acd686b5fe56f37d42508a97ae9e45e7aeee974a333a87a9","at":"2026-08-14T11:05:07+08:00","criteria":["AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":853,"digest":"sha256:5831f4c33e1f63384e1f584d2d436cd607ec1a377f934d3659112a9c864b76f9","at":"2026-08-14T11:05:55+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}

@@ -3,3 +3,9 @@
 {"file": "knowledge/data-formats/parquet-technical-reference.md", "reason": "Parquet 技术参考索引（T0150）：类型映射、压缩编码、Row Group 调优，用于 Arrow 写出层参数决策", "action": "reference", "at": "2026-08-13"}
 {"file": "records/T0150/evidence/parquet-production-cases.md", "reason": "数据库转换生产案例（T0150）：PG/MySQL 映射表与踩坑，用于双库 schema 映射", "action": "reference", "at": "2026-08-13"}
 {"file": "knowledge/backup/xtrabackup-incremental-schemes.md", "reason": "MySQL 物理备份方案（T0225）：InnoDB 页 LSN/位图/版本差异背景，用于 InnoDB 页结构解析", "action": "context", "at": "2026-08-13"}
+{"file": "src/mysql/mysql_parse_pages.c", "reason": "JSON binary 解析重写为 MySQL json_binary.cc 镜像实现（parse_binary→parse_value→parse_scalar/parse_array_or_object + Value::element/key + inlined_type/read_variable_length），支持 JSONB 列直读；poc_types.ibd j 列输出 {\"k\":[1,2,3]} / [1,\"x\"] 与 SQL 一致", "action": "implement", "at": "2026-08-14T10:30:23+08:00"}
+{"file": "evidence/mysql/poc_types.ibd", "reason": "含 JSON 列（j）、各数值/时间类型的 8.0 表，用于 JSON 解码与类型映射回归", "action": "implement", "at": "2026-08-14T10:30:23+08:00"}
+{"file": "evidence/mysql/ac5_benchmark.md", "reason": "AC-5 四路径 1M 性能对照完成：M-phys 1.789s/559K rows/s、P-phys 1.061s/942K、M-duck 4.64s/216K、P-duck 1.30s/768K，行数全 1M 校验一致，产出含 3 轮中位数/RSS/Parquet 大小", "action": "implement", "at": "2026-08-14T10:37:17+08:00"}
+{"file": "src/mysql/mysql_sdi.c", "reason": "AC-1 新增 mysql_layout_from_schema_file()（CLI schema 参数化，5.6/5.7 无 SDI 用），layout=PK+DB_TRX_ID+DB_ROLL_PTR+其余 与 SDI 一致", "action": "implement", "at": "2026-08-14T10:59:19+08:00"}
+{"file": "src/mysql/mysqlbin.cpp", "reason": "AC-1 新增 --schema=/--rows= 参数解析（修复 argv[3] 被 schema 占用致 rows=0）；schema 文件 bench/poc_orders.schema", "action": "implement", "at": "2026-08-14T10:59:19+08:00"}
+{"file": "evidence/mysql/ac1_four_versions.md", "reason": "AC-1 四版本 5.6/5.7/8.0/8.4 各 1M 行 .ibd 物理直读 rows 全 1M，聚合与 SQL 一致（差异=0）", "action": "implement", "at": "2026-08-14T10:59:19+08:00"}

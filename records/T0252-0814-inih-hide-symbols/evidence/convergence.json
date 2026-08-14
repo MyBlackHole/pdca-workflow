@@ -1,0 +1,29 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "全仓 7 处 add_requires/add_packages 统一为 inih + 静态连接，无 inih_static 残留",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["e-ac1-count"]
+    },
+    {
+      "index": 2,
+      "text": "xmake build 全量构建成功",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["e-ac2-build"]
+    },
+    {
+      "index": 3,
+      "text": "libxbsa64.so 动态符号表不再导出 ini_* 符号（nm -D 验证）",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["e-ac3-nmd", "e-ac4-readelf", "e-ac5-linkcmd", "e-ac8-rootcause"]
+    },
+    {
+      "index": 4,
+      "text": "xmake install -D -o install 成功且 fs-cli/s3-tool --version 回归正常",
+      "criteria": ["AC-4"],
+      "evidence_ids": ["e-ac6-install", "e-ac7-version"]
+    }
+  ]
+}
