@@ -120,6 +120,7 @@ def create_task(
     initial_clarification: dict[str, Any] | None = None,
     initial_prd: str | None = None,
     task_root: Path | None = None,
+    convergence: tuple[str, ...] | None = None,
 ) -> dict[str, Any]:
     if not re.fullmatch(r"^[0-9]{4}-[a-z0-9][a-z0-9-]*$", slug):
         raise TaskIdentityError("TASK_SLUG_INVALID", "--slug", "must be a strict PDCA task slug (MMDD-name)")
@@ -145,6 +146,7 @@ def create_task(
             initial_clarification=initial_clarification,
             initial_prd=initial_prd,
             task_root=task_root,
+            convergence=convergence,
         )
 
 
@@ -162,6 +164,7 @@ def _create_task_unlocked(
     initial_clarification: dict[str, Any] | None = None,
     initial_prd: str | None = None,
     task_root: Path | None = None,
+    convergence: tuple[str, ...] | None = None,
 ) -> dict[str, Any]:
     tasks_root = root / "pdca" / "tasks"
     tasks_root.mkdir(parents=True, exist_ok=True)
@@ -191,12 +194,13 @@ def _create_task_unlocked(
         raise TaskIdentityError("RECORD_OCCUPIED", "--record", "record directory already owns a task")
 
     extra = dict(extra_meta or {})
+    convergence_items = list(convergence) if convergence else ["task identity is unique and immutable"]
     meta: dict[str, Any] = {
         "phase": "plan",
         "active": True,
         "scenario_type": scenario_type,
         "created_at": created_at,
-        "convergence": ["task identity is unique and immutable"],
+        "convergence": convergence_items,
         "record": record,
         **extra,
     }
@@ -338,6 +342,7 @@ def _build_create(parse: Callable[[], dict[str, str | None]]) -> dict[str, Any]:
     title = values["title"]
     scenario_type = values["scenario-type"]
     created_at = values["created-at"]
+    convergence = options.get("convergence")
     assert slug is not None and title is not None and scenario_type is not None and created_at is not None
     return create_task(
         resolved,
@@ -349,6 +354,7 @@ def _build_create(parse: Callable[[], dict[str, str | None]]) -> dict[str, Any]:
         dependencies=_parse_dependencies(options.get("dependencies")),
         extra_meta=_parse_extra_meta(options.get("extra-meta")),
         forced_record=forced_record,
+        convergence=tuple(item.strip() for item in convergence.split("|")) if convergence else None,
     )
 
 

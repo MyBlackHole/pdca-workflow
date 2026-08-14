@@ -134,6 +134,27 @@ class TaskIdentityCliTest(unittest.TestCase):
         self.assertEqual(1, second.returncode, second.stdout)
         self.assertTrue(sealed.read_text(encoding="utf-8").startswith("# conclusion"))
 
+    def test_create_task_accepts_explicit_convergence(self) -> None:
+        completed = self.run_create(
+            "0814-convergence",
+            "--convergence",
+            "hotspots 基于近 N 天 git log 频次返回高变更路径|HTML 报告写入任务目录可提交",
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        task = json.loads((self.root / "pdca/tasks" / "0814-convergence" / "task.json").read_text(encoding="utf-8"))
+        self.assertEqual(
+            ["hotspots 基于近 N 天 git log 频次返回高变更路径", "HTML 报告写入任务目录可提交"],
+            task["meta"]["convergence"],
+        )
+
+    def test_create_task_defaults_convergence_to_identity_invariant(self) -> None:
+        completed = self.run_create("0814-convergence-default")
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        task = json.loads(
+            (self.root / "pdca/tasks" / "0814-convergence-default" / "task.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(["task identity is unique and immutable"], task["meta"]["convergence"])
+
 
 if __name__ == "__main__":
     unittest.main()
