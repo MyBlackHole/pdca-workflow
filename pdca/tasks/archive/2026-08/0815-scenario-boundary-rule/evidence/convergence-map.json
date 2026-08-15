@@ -1,0 +1,41 @@
+{
+ "schema": "pdca.convergence/v1",
+ "items": [
+  {
+   "index": 1,
+   "text": "scenario-boundary-check.py 提供机械的场景归属判定（可测试代码产出→development，纯结论→research）",
+   "criteria": [
+    "AC-1",
+    "AC-2"
+   ],
+   "evidence_ids": [
+    "ac1-v2"
+   ]
+  },
+  {
+   "index": 2,
+   "text": "历史错配任务 T0268-T0272 判定为 development，纯 research 任务判定为 research（回归夹具验证）",
+   "criteria": [
+    "AC-3",
+    "AC-4"
+   ],
+   "evidence_ids": [
+    "ac3",
+    "ac4"
+   ]
+  },
+  {
+   "index": 3,
+   "text": "判定脚本接入校验器链，测试通过且全量回归无新增失败",
+   "criteria": [
+    "AC-5",
+    "AC-6"
+   ],
+   "evidence_ids": [
+    "ac5",
+    "ac6",
+    "regression"
+   ]
+  }
+ ]
+}

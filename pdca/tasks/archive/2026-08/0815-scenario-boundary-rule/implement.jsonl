@@ -1,0 +1,5 @@
+{"file": "flows/flow-do/SKILL.md", "reason": "六场景路径定义与 scenario_type 路由语义（A-F 路径，research C 路径仅调研+报告）", "action": "参照设计边界判定规则", "at": "2026-08-15T02:40:00+00:00"}
+{"file": "skills/triage-work/SKILL.md", "reason": "分类表与 ready-to-plan 流程，边界判定应落在此", "action": "参照分类逻辑与校验接入", "at": "2026-08-15T02:40:00+00:00"}
+{"file": "skills/register-evidence/SKILL.md", "reason": "do 阶段证据登记方式（--file/--replace）", "action": "do 阶段使用", "at": "2026-08-15T02:40:00+00:00"}
+{"file": "tests/test_triage_brief.py", "reason": "check-triage-brief 接入模式：subprocess 调用脚本 + 回归夹具固化基线", "action": "参照此模式写判定脚本测试", "at": "2026-08-15T02:40:00+00:00"}
+{"file": "pdca/tasks/archive/2026-08/0815-self-audit/task.json", "reason": "元审查系列 T0268-T0272 实际 scenario_type=research 但产出可测试代码，是边界判定规则的直接证据源", "action": "构造回归夹具（期望 development）", "at": "2026-08-15T02:40:00+00:00"}

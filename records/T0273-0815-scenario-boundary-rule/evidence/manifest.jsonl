@@ -1,0 +1,8 @@
+{"id":"ac6","file":"test_scenario_boundary_check.py","kind":"test","size":3548,"digest":"sha256:5c37c0f93e2f917586ddc21de115555415f54a1f23ba22b983e5b6e9af49d784","at":"2026-08-15T10:42:14+08:00","criteria":["AC-6"]}
+{"id":"ac1","file":"scenario-boundary-check.py","kind":"implementation","size":3143,"digest":"sha256:24a978b55125af6f9a8288dfb70938663f7b3d0a8148ac66f201818f60f52b10","at":"2026-08-15T10:42:14+08:00","criteria":["AC-1,AC-2"],"superseded_by":"ac1-v2"}
+{"id":"ac3","file":"ac3-fixtures.md","kind":"test","size":928,"digest":"sha256:9792e979be24b5011d2d1ed151e77a4bb1184d8a93f18e44124cf6eacdb98dab","at":"2026-08-15T10:42:23+08:00","criteria":["AC-3"]}
+{"id":"ac4","file":"ac4-research.md","kind":"test","size":485,"digest":"sha256:11238c72c4a356741f7c090019d305fc676b4882a5043bb792f790a6ea733d55","at":"2026-08-15T10:42:23+08:00","criteria":["AC-4"]}
+{"id":"ac5","file":"ac5-validator-chain.md","kind":"implementation","size":493,"digest":"sha256:fad534908c688640b912fdfbcda51d34c6f9444b4b57555a94d2f91859183a48","at":"2026-08-15T10:42:36+08:00","criteria":["AC-5"]}
+{"id":"regression","file":"regression.md","kind":"test","size":352,"digest":"sha256:912d6aed0e1741d04925b42345f5040eb6871467716fee5b8a4e711f83b318d6","at":"2026-08-15T10:42:36+08:00","criteria":["全量回归"]}
+{"id":"convergence-map","file":"convergence-map.json","kind":"convergence-map","size":772,"digest":"sha256:edc9fdc1023382efb73667f8a672f87f3699f5457a47ff2f6af9df4f8a0c4153","at":"2026-08-15T02:44:30Z","criteria":["AC-1,AC-2,AC-3,AC-4,AC-5,AC-6"]}
+{"id":"ac1-v2","file":"scenario-boundary-check-v2.py","kind":"implementation","size":3143,"digest":"sha256:24a978b55125af6f9a8288dfb70938663f7b3d0a8148ac66f201818f60f52b10","at":"2026-08-15T10:45:23+08:00","criteria":["AC-1","AC-2"]}
