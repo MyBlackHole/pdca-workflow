@@ -1,0 +1,757 @@
+{
+  "schema": "pdca.self-audit/v1",
+  "generated_at": "deterministic",
+  "summary": {
+    "total_issues": 77,
+    "by_category": {
+      "schema": 8,
+      "id_collision": 23,
+      "record_mismatch": 20,
+      "event_mismatch": 5,
+      "seam": 9,
+      "legacy_no_gate": 7,
+      "exemption": 5
+    },
+    "by_severity": {
+      "integrity": 42,
+      "blocking": 23,
+      "noise": 12
+    },
+    "by_root_cause": {
+      "real-defect": 5,
+      "legacy": 63,
+      "external-project": 9
+    }
+  },
+  "gate_coverage": {
+    "total": 152,
+    "with_receipts": 125,
+    "with_verdict": 123,
+    "with_convergence": 145,
+    "with_final_confirmation": 130,
+    "rejected_receipts": 10,
+    "receipts_pct": 82.2,
+    "verdict_pct": 80.9
+  },
+  "issues": [
+    {
+      "category": "schema",
+      "task_id": "0805-rpc-epoll-worker-supply-followup",
+      "slug": "0805-rpc-epoll-worker-supply-followup",
+      "detail": "SCHEMA_INVALID",
+      "count": 3,
+      "severity": "integrity",
+      "root_cause": "real-defect"
+    },
+    {
+      "category": "schema",
+      "task_id": "0806-aio-speed-link-fix",
+      "slug": "0806-aio-speed-link-fix",
+      "detail": "SCHEMA_INVALID",
+      "count": 6,
+      "severity": "integrity",
+      "root_cause": "real-defect"
+    },
+    {
+      "category": "schema",
+      "task_id": "0806-buf-layer-endianness",
+      "slug": "0806-buf-layer-endianness",
+      "detail": "SCHEMA_INVALID",
+      "count": 7,
+      "severity": "integrity",
+      "root_cause": "real-defect"
+    },
+    {
+      "category": "schema",
+      "task_id": "0806-rpc-arm-interop-verify",
+      "slug": "0806-rpc-arm-interop-verify",
+      "detail": "SCHEMA_INVALID",
+      "count": 6,
+      "severity": "integrity",
+      "root_cause": "real-defect"
+    },
+    {
+      "category": "schema",
+      "task_id": "0806-rpc-benchmark-review",
+      "slug": "0806-rpc-benchmark-review",
+      "detail": "SCHEMA_INVALID",
+      "count": 6,
+      "severity": "integrity",
+      "root_cause": "real-defect"
+    },
+    {
+      "category": "schema",
+      "task_id": "T0164-0731-gm-tls-benchmark",
+      "slug": "T0164-0731-gm-tls-benchmark",
+      "detail": "CONFIRMATION_AFTER_PLAN_TO_DO; STATE_TIME_ORDER",
+      "count": 2,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "schema",
+      "task_id": "T0210b-0806-btree-root-driven-recovery",
+      "slug": "T0210b-0806-btree-root-driven-recovery",
+      "detail": "SCHEMA_INVALID",
+      "count": 2,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "schema",
+      "task_id": "T0222-0804-acceptance-perf",
+      "slug": "T0222-0804-acceptance-perf",
+      "detail": "STATE_TIMESTAMP_MISSING",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0142",
+      "slug": "0728-clean-invalid-active-history / 0729-vmcore-analysis",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0163",
+      "slug": "0731-nbu-dte-enforced-mechanism / 0731-pg-mysql-parquet-poc",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0214",
+      "slug": "0804-cdm-report-center-analyse / T0214-0804-rpc-epoll-industrial-align",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0215",
+      "slug": "T0215-0804-report-subscheme-docs / T0215-0804-rpc-epoll-multireactor",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0216",
+      "slug": "0805-rpc-epoll-worker-supply-followup / T0216-0804-report-db-adapter",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0217",
+      "slug": "0805-rpc-serialization-hardening / T0217-0804-cdm-data-cli",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0218",
+      "slug": "0806-buf-layer-endianness / 0808-backup-server-architecture / T0218-0804-collection-service",
+      "detail": "同一 task_id 出现在 3 个目录",
+      "count": 2,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0219",
+      "slug": "0806-rpc-arm-interop-verify / T0219-0804-report-web",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0220",
+      "slug": "0806-rpc-benchmark-review / T0220-0804-report-templates-query-export",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0221",
+      "slug": "0806-aio-speed-link-fix / T0221-0804-deployment-install",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0222",
+      "slug": "0806-epoll-business-callback-fsm / T0222-0804-acceptance-perf",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0224",
+      "slug": "0808-bwlimit-poc / T0224-0804-async-export",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0225",
+      "slug": "0807-xtrabackup-incremental-tech / 0808-core-tech-poc",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0228",
+      "slug": "0808-seda-pipeline / 0807-roach-gm-encrypt-support",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0229",
+      "slug": "0808-core-tech-poc-2 / T0229-0810-ob-backup-gm-encrypt-verify",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0244",
+      "slug": "0809-pdca-flow-impl-review / 0812-rpc-metadata-analysis",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0246",
+      "slug": "0813-small-writer-pool / T0246-0810-backup-gm-transport-encryption",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0247",
+      "slug": "0813-small-writer-pool-round61 / T0247-0811-backup-doc-optimize",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0248",
+      "slug": "0813-lmdb-tree-resume-round62 / T0248-0812-openssh-src-unpack",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0249",
+      "slug": "0814-lmdb-no-mmap-round63 / T0249-0812-kernel-nfs-gm-research",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0250",
+      "slug": "0814-lmdb-vl32-followup-round64 / 0813-mysql-parquet-physical",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0251",
+      "slug": "0814-oss-xmake-integration / 0814-production-observability-round65",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "id_collision",
+      "task_id": "T0252",
+      "slug": "0814-tree-checkpoint-paged-round66 / 0814-inih-hide-symbols",
+      "detail": "同一 task_id 出现在 2 个目录",
+      "count": 1,
+      "severity": "blocking",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0140",
+      "slug": "0728-agent-workflow-landscape",
+      "detail": "record=R0140-agent-workflow-landscape 期望=T0140-0728-agent-workflow-landscape",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0135",
+      "slug": "0728-ai-friendliness-hardening",
+      "detail": "record=R0135-ai-friendliness-hardening 期望=T0135-0728-ai-friendliness-hardening",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0139",
+      "slug": "0728-ai-friendliness-harness",
+      "detail": "record=R0139-ai-friendliness-harness 期望=T0139-0728-ai-friendliness-harness",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0142",
+      "slug": "0728-clean-invalid-active-history",
+      "detail": "record=R0142-clean-invalid-active-history 期望=T0142-0728-clean-invalid-active-history",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0141",
+      "slug": "0728-convergence-validator",
+      "detail": "record=R0141-convergence-validator 期望=T0141-0728-convergence-validator",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0137",
+      "slug": "0728-pdca-capability-doctor",
+      "detail": "record=R0137-pdca-capability-doctor 期望=T0137-0728-pdca-capability-doctor",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0136",
+      "slug": "0728-pdca-state-contract",
+      "detail": "record=R0136-pdca-state-contract 期望=T0136-0728-pdca-state-contract",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0138",
+      "slug": "0728-skill-content-audit",
+      "detail": "record=R0138-skill-content-audit 期望=T0138-0728-skill-content-audit",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0142",
+      "slug": "0729-vmcore-analysis",
+      "detail": "record=R0142-vmcore-analysis 期望=T0142-0729-vmcore-analysis",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0143",
+      "slug": "0729-vmcore-deep",
+      "detail": "record=R0143 期望=T0143-0729-vmcore-deep",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0160",
+      "slug": "0730-ai-friendliness-evaluation-hardening",
+      "detail": "record=R0160 期望=T0160-0730-ai-friendliness-evaluation-hardening",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0150",
+      "slug": "0730-parquet-format-research",
+      "detail": "record=T0150 期望=T0150-0730-parquet-format-research",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0161",
+      "slug": "0731-execution-contract-hardening",
+      "detail": "record=R0161 期望=T0161-0731-execution-contract-hardening",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0158",
+      "slug": "0801-pdca-process-audit",
+      "detail": "record=T0158 期望=T0158-0801-pdca-process-audit",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0159",
+      "slug": "0801-pdca-self-optimization-loop",
+      "detail": "record=T0159 期望=T0159-0801-pdca-self-optimization-loop",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0182",
+      "slug": "0802-transaction-trigger-runner-pointer-dispatch",
+      "detail": "record=T0182 期望=T0182-0802-transaction-trigger-runner-pointer-dispatch",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0226",
+      "slug": "0807-rpc-conn-idle-implement",
+      "detail": "record=2026-08-07-rpc-conn-idle-implement 期望=T0226-0807-rpc-conn-idle-implement",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0227",
+      "slug": "0807-rpc-socket-reuse-idle-reclaim",
+      "detail": "record=2026-08-07-rpc-idle-reclaim 期望=T0227-0807-rpc-socket-reuse-idle-reclaim",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0225",
+      "slug": "0807-xtrabackup-incremental-tech",
+      "detail": "record=T0225 期望=T0225-0807-xtrabackup-incremental-tech",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "record_mismatch",
+      "task_id": "T0244",
+      "slug": "0812-rpc-metadata-analysis",
+      "detail": "record=R0244-rpc-metadata-analysis 期望=T0244-0812-rpc-metadata-analysis",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "event_mismatch",
+      "task_id": "T0252",
+      "slug": "flow-events",
+      "detail": "目录 record=T0252-0814-inih-hide-symbols payload=T0252",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "event_mismatch",
+      "task_id": "T0252",
+      "slug": "flow-events",
+      "detail": "目录 record=T0252-0814-inih-hide-symbols payload=T0252",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "event_mismatch",
+      "task_id": "T0252",
+      "slug": "flow-events",
+      "detail": "目录 record=T0252-0814-inih-hide-symbols payload=T0252",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "event_mismatch",
+      "task_id": "T0252",
+      "slug": "flow-events",
+      "detail": "目录 record=T0252-0814-inih-hide-symbols payload=T0252",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "event_mismatch",
+      "task_id": "T0252",
+      "slug": "flow-events",
+      "detail": "目录 record=T0252-0814-inih-hide-symbols payload=T0252",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "seam",
+      "task_id": "T0248",
+      "slug": "0813-lmdb-tree-resume-round62",
+      "detail": "测试文件缺失: tests/metadata_backend_integration.sh; 测试文件缺失: tests/benchmark_metadata_index.sh; 测试文件缺失: tests/tls_tree_checkpoint_resume_integration.sh",
+      "count": 4,
+      "severity": "integrity",
+      "root_cause": "external-project"
+    },
+    {
+      "category": "seam",
+      "task_id": "T0259",
+      "slug": "0814-backup-catalog-restore-round67f",
+      "detail": "测试文件缺失: tests/tls_tree_checkpoint_resume_integration.sh; 测试文件缺失: tests/tls_tree_checkpoint_resume_integration.sh",
+      "count": 2,
+      "severity": "integrity",
+      "root_cause": "external-project"
+    },
+    {
+      "category": "seam",
+      "task_id": "T0255",
+      "slug": "0814-durable-segment-protocol-round67b",
+      "detail": "测试文件缺失: tests/tls_tree_checkpoint_resume_integration.sh",
+      "count": 1,
+      "severity": "integrity",
+      "root_cause": "external-project"
+    },
+    {
+      "category": "seam",
+      "task_id": "T0258",
+      "slug": "0814-generation-publish-gc-restore-round67e",
+      "detail": "测试文件缺失: tests/tls_tree_checkpoint_resume_integration.sh; 测试文件缺失: tests/tls_tree_checkpoint_resume_integration.sh",
+      "count": 2,
+      "severity": "integrity",
+      "root_cause": "external-project"
+    },
+    {
+      "category": "seam",
+      "task_id": "T0257",
+      "slug": "0814-immutable-object-manifest-store-round67d",
+      "detail": "测试文件缺失: tests/tree_checkpoint_paged_benchmark.sh; 测试文件缺失: tests/unit.cpp",
+      "count": 2,
+      "severity": "integrity",
+      "root_cause": "external-project"
+    },
+    {
+      "category": "seam",
+      "task_id": "T0254",
+      "slug": "0814-resumable-enumerator-segments-round67a",
+      "detail": "测试文件缺失: tests/tls_tree_checkpoint_resume_integration.sh; 测试文件缺失: tests/tree_checkpoint_paged_benchmark.sh; 测试文件缺失: tests/unit.cpp",
+      "count": 3,
+      "severity": "integrity",
+      "root_cause": "external-project"
+    },
+    {
+      "category": "seam",
+      "task_id": "T0253",
+      "slug": "0814-resume-production-architecture-round67",
+      "detail": "测试文件缺失: tests/tls_tree_checkpoint_resume_integration.sh; 测试文件缺失: tests/tls_tree_checkpoint_resume_integration.sh; 测试文件缺失: tests/tree_checkpoint_paged_benchmark.sh",
+      "count": 4,
+      "severity": "integrity",
+      "root_cause": "external-project"
+    },
+    {
+      "category": "seam",
+      "task_id": "T0256",
+      "slug": "0814-resume-rollout-benchmark-round67c",
+      "detail": "测试文件缺失: tests/tls_tree_checkpoint_resume_integration.sh; 测试文件缺失: tests/tls_tree_checkpoint_resume_integration.sh; 测试文件缺失: tests/tree_checkpoint_paged_benchmark.sh",
+      "count": 3,
+      "severity": "integrity",
+      "root_cause": "external-project"
+    },
+    {
+      "category": "seam",
+      "task_id": "T0252",
+      "slug": "0814-tree-checkpoint-paged-round66",
+      "detail": "测试文件缺失: tests/tls_tree_checkpoint_resume_integration.sh; 测试文件缺失: tests/tree_checkpoint_paged_benchmark.sh; 测试文件缺失: tests/unit.cpp",
+      "count": 3,
+      "severity": "integrity",
+      "root_cause": "external-project"
+    },
+    {
+      "category": "legacy_no_gate",
+      "task_id": "T0174",
+      "slug": "0801-btree-split-proptest",
+      "detail": "机制前任务无 transition receipts",
+      "count": 1,
+      "severity": "noise",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "legacy_no_gate",
+      "task_id": "T0173",
+      "slug": "0801-journal-reclaim-proptest",
+      "detail": "机制前任务无 transition receipts",
+      "count": 1,
+      "severity": "noise",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "legacy_no_gate",
+      "task_id": "T0176",
+      "slug": "0801-journal-seq-overflow-boundary",
+      "detail": "机制前任务无 transition receipts",
+      "count": 1,
+      "severity": "noise",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "legacy_no_gate",
+      "task_id": "T0175",
+      "slug": "0801-trans-enomem-restart",
+      "detail": "机制前任务无 transition receipts",
+      "count": 1,
+      "severity": "noise",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "legacy_no_gate",
+      "task_id": "T0162",
+      "slug": "0731-nbu-dte-packet-capture",
+      "detail": "机制前任务无 transition receipts",
+      "count": 1,
+      "severity": "noise",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "legacy_no_gate",
+      "task_id": "T0146",
+      "slug": "T0146-0730-rpc-ipv6-support",
+      "detail": "机制前任务无 transition receipts",
+      "count": 1,
+      "severity": "noise",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "exemption",
+      "task_id": "T0149",
+      "slug": "T0149-0801-design-md-review",
+      "detail": "早期任务（T0149-0801-design-md-review）record=None 无 conclusion，缺 final_confirmation 属",
+      "count": 1,
+      "severity": "noise",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "legacy_no_gate",
+      "task_id": "T0203",
+      "slug": "0802-concurrent-combined-sequence",
+      "detail": "机制前任务无 transition receipts",
+      "count": 1,
+      "severity": "noise",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "exemption",
+      "task_id": "T0200",
+      "slug": "0802-fsck-repair-faults",
+      "detail": "早期任务缺 act-to-archive receipt（仅 plan-to-do/check-to-act），无过渡记录依据，如实豁免不伪造",
+      "count": 1,
+      "severity": "noise",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "exemption",
+      "task_id": "T0208",
+      "slug": "0803-btree-random-op-consistency",
+      "detail": "补 verdict 完成；缺 final_confirmation/act-to-archive 属门禁机制建立前记录不全，conclusion 已含完整 Ve",
+      "count": 1,
+      "severity": "noise",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "exemption",
+      "task_id": "T0207",
+      "slug": "0803-fsck-scrub-rewrite-followup",
+      "detail": "补 verdict 完成；缺 final_confirmation/act-to-archive 属门禁机制建立前记录不全，conclusion 已含完整 Ve",
+      "count": 1,
+      "severity": "noise",
+      "root_cause": "legacy"
+    },
+    {
+      "category": "exemption",
+      "task_id": "T0209",
+      "slug": "0803-snapshot-table-reload",
+      "detail": "补 verdict 完成；缺 final_confirmation/act-to-archive 属门禁机制建立前记录不全，conclusion 已含完整 Ve",
+      "count": 1,
+      "severity": "noise",
+      "root_cause": "legacy"
+    }
+  ],
+  "candidates": [
+    {
+      "title": "ID 撞车清理",
+      "basis": "23 组 task_id 重复（跨目录），identity 歧义影响可追溯性",
+      "scope": "为每组冲突决定保留/重命名，更新依赖引用与记录",
+      "priority": "high"
+    },
+    {
+      "title": "schema 一致性修复",
+      "basis": "8 项 schema/时序不一致任务",
+      "scope": "区分机制前遗留与真缺陷，对齐 states/receipts 时间序",
+      "priority": "medium"
+    },
+    {
+      "title": "record 派生一致性修复",
+      "basis": "20 项 record 字段与派生规则不符",
+      "scope": "按 identity 派生规则修正 task.json meta.record",
+      "priority": "medium"
+    },
+    {
+      "title": "seam 契约补齐",
+      "basis": "9 项声明的测试接缝与实际测试不一致",
+      "scope": "补齐缺失测试文件或修正 seam 声明（外部项目需确认测试位置）",
+      "priority": "medium"
+    }
+  ]
+}

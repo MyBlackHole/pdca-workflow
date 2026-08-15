@@ -1,0 +1,45 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "self-audit.py 全量扫描产出健康度报告（JSON+Markdown 双输出），四类异常各含数量统计",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ac1"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "异常按三级分级（阻断/数据完整性/噪音）与根因分类（机制前遗留/外部项目/真缺陷），可按维度过滤",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ac2"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "报告输出修复候选清单（依据+建议任务范围，不执行）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ac3"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "新增测试通过，复现性验证 + 全量 4 既有失败非回归",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ac4"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{"file": "knowledge/pdca-workflow/provable-skill-increments.md", "reason": "机制九至十三：审计/修复/豁免原则复用，self-audit 聚合诊断沿用同样方法论", "action": "read", "at": "2026-08-15T09:50:00+08:00"}
+{"file": "records/T0270-0815-gate-compliance-audit/gate-compliance-audit.md", "reason": "门禁覆盖率基线（receipts/verdict/convergence/final_conf）与异常分类方法", "action": "read", "at": "2026-08-15T09:50:00+08:00"}
+{"file": "records/T0271-0815-gate-compliance-remediation/conclusion.md", "reason": "修复后状态基线（gate_incomplete 0/archive_dup 0/active_stale 0/豁免 5）", "action": "read", "at": "2026-08-15T09:50:00+08:00"}
+{"file": "scripts/audit-gate-compliance.py", "reason": "复用门禁/归档/豁免扫描逻辑", "action": "read", "at": "2026-08-15T09:50:00+08:00"}
+{"file": "scripts/pdca-doctor.py", "reason": "复用 schema 一致性与 identity 扫描", "action": "read", "at": "2026-08-15T09:50:00+08:00"}
