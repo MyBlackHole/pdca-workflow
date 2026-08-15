@@ -1,0 +1,24 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0271",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "EVIDENCE_FILE_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0271-0815-gate-compliance-remediation/evidence/convergence-map.json",
+      "message": "artifact is missing"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-1",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow/records/T0271-0815-gate-compliance-remediation/evidence/convergence-map.json",
+      "message": "[Errno 2] No such file or directory: '/home/black/Documents/pdca-workflow/records/T0271-0815-gate-compliance-remediation/evidence/convergence-map.json'"
+    }
+  ],
+  "at": "2026-08-15T09:35:04.541748+08:00"
+}

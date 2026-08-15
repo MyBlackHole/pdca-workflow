@@ -13,7 +13,17 @@
     "record": "T0209-0803-snapshot-table-reload",
     "convergence": [
       "T0209-0803-snapshot-table-reload"
-    ]
+    ],
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "backfilled from T0209-0803-snapshot-table-reload/conclusion.md Verdict section",
+      "verdict_id": "V-T0209-001",
+      "at": "2026-08-15T09:23:10+08:00"
+    },
+    "gate_exemption": {
+      "reason": "补 verdict 完成；缺 final_confirmation/act-to-archive 属门禁机制建立前记录不全，conclusion 已含完整 Verdict，如实豁免",
+      "at": "2026-08-15T09:24:07+08:00"
+    }
   },
   "states": {
     "created": "2026-08-03T20:30:00+08:00",

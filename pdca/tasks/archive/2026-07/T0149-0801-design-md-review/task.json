@@ -23,6 +23,10 @@
       "outcome": "projected",
       "reason": "design.md 终态 106 行已提交（aio/F/139 730f013）。后续实现任务（tls_cert 国密套件、tls-keygen SM2）需单独立项；docs/ 提交与 TLCP 评估留待下轮 PDCA。",
       "at": "2026-07-31T12:00:00+08:00"
+    },
+    "gate_exemption": {
+      "reason": "早期任务（T0149-0801-design-md-review）record=None 无 conclusion，缺 final_confirmation 属历史未纳入门禁，如实豁免不伪造",
+      "at": "2026-08-15T09:23:10+08:00"
     }
   },
   "states": {

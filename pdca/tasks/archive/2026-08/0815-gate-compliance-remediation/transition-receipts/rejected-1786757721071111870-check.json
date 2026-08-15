@@ -1,0 +1,20 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0271",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-1",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0271-0815-gate-compliance-remediation/evidence/convergence-map.json[1]",
+      "message": "listed evidence does not support AC-1",
+      "guidance": "re-register the supporting evidence with --criterion AC-1, or fix the map to cite evidence that actually covers it"
+    }
+  ],
+  "at": "2026-08-15T09:35:21.071075+08:00"
+}

@@ -1,0 +1,44 @@
+{
+  "children": [],
+  "dependencies": [
+    "T0270"
+  ],
+  "id": "T0271",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "audit 脚本修正：check 阶段无 verdict 不判违规 + meta.gate_exemption 豁免识别 + 报告豁免清单",
+      "修复脚本 remediate-gate-compliance.py：--dry-run 预览 + apply 执行（补 verdict×3 / 豁免×2 / 删嵌套副本×2 / 移 active 残留×2）",
+      "修复前后 audit 对比：gate_incomplete 6→0、archive_dup 2→0、active_stale 2→0，合规度可量化提升可复现",
+      "新增测试通过（audit 修正/豁免识别/修复 dry-run），全量 4 失败保持非回归"
+    ],
+    "created_at": "2026-08-15T09:16:28+08:00",
+    "phase": "act",
+    "record": "T0271-0815-gate-compliance-remediation",
+    "scenario_type": "research",
+    "completed_at": "2026-08-15T09:35:39+08:00",
+    "verdict": {
+      "verdict_id": "T0271-vd-001",
+      "outcome": "confirmed",
+      "reason": "T0270 审计发现的存量违规全部修复：gate_incomplete 6→0、archive_dup 2→0、active_stale 2→0；豁免 5 项如实标记不伪造；拒绝留痕 receipts 2 条证明机制生效",
+      "at": "2026-08-15T09:42:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "存量违规清零（gate_incomplete 6→0/archive_dup 2→0/active_stale 2→0），修复方法与豁免原则沉淀为机制十三；id 撞车 25 组清理、拒收率回读另立任务",
+      "at": "2026-08-15T09:44:00+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0815-gate-compliance-remediation",
+  "states": {
+    "created": "2026-08-15T09:16:28+08:00",
+    "plan": "2026-08-15T09:16:28+08:00",
+    "do": "2026-08-15T09:17:21+08:00",
+    "check": "2026-08-15T09:35:39+08:00",
+    "act": "2026-08-15T09:41:45+08:00",
+    "archive": null
+  },
+  "status": "Completed",
+  "title": "门禁合规存量修复：真违规补 verdict + 归档一致性清理（第七轮）"
+}
