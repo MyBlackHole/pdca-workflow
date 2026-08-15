@@ -78,12 +78,12 @@ def test_json_scan_baseline_structure(tmp_path):
 
 
 def test_historical_baseline_no_regression():
-    """历史全量回溯基线固化：93 个 brief（T0272 新增 self-audit 后），核心三字段全含率不低于当前值。"""
+    """历史全量回溯基线固化：94 个 brief（T0273 新增边界判定后），核心三字段全含率不低于当前值。"""
     r = run("--scan", str(ROOT / "pdca" / "tasks"), "--json")
     d = json.loads(r.stdout)
-    assert d["total"] >= 93, f"期望 >=93 个 brief，实得 {d['total']}"
-    assert d["core_fields_full"] >= 53, f"核心三字段全含数回退: {d['core_fields_full']}"
-    assert d["core_coverage"] >= 57.0, f"核心覆盖率回退: {d['core_coverage']}%"
+    assert d["total"] >= 94, f"期望 >=94 个 brief，实得 {d['total']}"
+    assert d["core_fields_full"] >= 54, f"核心三字段全含数回退: {d['core_fields_full']}"
+    assert d["core_coverage"] >= 57.4, f"核心覆盖率回退: {d['core_coverage']}%"
 
 
 def test_field_coverage_bounds():
@@ -91,6 +91,6 @@ def test_field_coverage_bounds():
     r = run("--scan", str(ROOT / "pdca" / "tasks"), "--json")
     d = json.loads(r.stdout)
     cov = d["field_coverage"]
-    assert cov["category"] >= 76.3, cov
-    assert cov["evidence"] >= 79.6, cov
-    assert cov["dedup"] >= 76.3, cov
+    assert cov["category"] >= 76.6, cov
+    assert cov["evidence"] >= 79.8, cov
+    assert cov["dedup"] >= 76.6, cov
