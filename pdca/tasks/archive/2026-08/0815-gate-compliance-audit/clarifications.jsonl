@@ -1,0 +1,8 @@
+{"at": "2026-08-15T09:01:22.777+08:00", "source": "task_identity", "summary": "created with record identity T0270-0815-gate-compliance-audit"}
+{"at": "2026-08-15T09:01:56.976827+08:00", "source": "triage", "summary": "查重通过：scripts/tests 无 gate compliance/gate-rejection 机制；transition-receipts 只存成功。真实信号：T0208/207/209 无 verdict 归档、14 id 撞车、嵌套重复归档、active 残留。T0263 观察窗未触发不冲突", "response": "new_task"}
+{"at": "2026-08-15T09:01:56.976902+08:00", "source": "grill", "summary": "G1 合规异常分类：机制前任务（早期 T0xxx 未纳入门禁）仅报告不判违规，真违规（phase 前进但缺要素）进清单", "response": "confirmed"}
+{"at": "2026-08-15T09:01:56.976939+08:00", "source": "grill", "summary": "G2 拒绝留痕不破坏成功路径：rejected receipt 纳秒时间戳唯一命名，与成功 receipt 并存", "response": "confirmed"}
+{"at": "2026-08-15T09:01:56.976963+08:00", "source": "grill", "summary": "G3 存量任务不直接修改：审计只出清单与建议，修复动作交后续任务", "response": "confirmed"}
+{"at": "2026-08-15T09:01:56.976984+08:00", "source": "direction_confirmation", "summary": "方向确认：门禁合规扫描（覆盖/异常分类/报告）+ transition 拒绝留痕（rejected receipt）+ 拒收统计；research 场景跳过 seam；存量任务不改", "response": "confirmed"}
+{"at": "2026-08-15T09:01:56.977007+08:00", "source": "final_confirmation", "summary": "PRD 确认：AC-1..AC-7，门禁有效性审计+拒绝留痕，异常分类机制前 vs 真违规，存量不改，无 seam", "response": "confirmed"}
+{"source":"check_confirmation","summary":"Check 结论确认：7 AC 全 Passed（合规扫描 154 任务、真违规 6、拒绝留痕上线、252 passed/4 既有失败非回归）","response":"confirmed","at":"2026-08-15T09:12:00+08:00"}

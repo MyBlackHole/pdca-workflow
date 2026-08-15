@@ -1,0 +1,41 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0270",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "门禁合规扫描：audit-gate-compliance.py 采集全量任务 receipts/verdict/convergence/final_confirmation/id 唯一性/归档一致性，异常分类（机制前 vs 真违规）",
+      "transition 拒绝留痕：transition-phase.py 4 拒绝点写 rejected receipt（schema pdca.gate-rejection/v1，纳秒唯一），成功路径不受影响",
+      "拒收统计可复现（rejected 数量 + 拒收率）写入报告，门禁拦截可计数可审计"
+    ],
+    "created_at": "2026-08-15T09:01:22+08:00",
+    "phase": "archive",
+    "record": "T0270-0815-gate-compliance-audit",
+    "scenario_type": "research",
+    "completed_at": "2026-08-15T09:10:44+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "All AC-1..AC-7 satisfied: gate compliance scan over 154 tasks (receipts 81.2%/verdict 79.2%/convergence 95.5%/final-conf 84.4%); 6 gate_incomplete real violations identified; transition rejection leak-in mechanism live (4 rejection points write rejected receipts, schema pdca.gate-rejection/v1); 6 new tests green; full tests/ 252 passed / 4 pre-existing failures",
+      "verdict_id": "T0270-vd-001",
+      "at": "2026-08-15T09:12:01.086500+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "产出确定性与基线：门禁合规扫描可复现（覆盖率/异常分类/报告）+ transition 拒绝留痕机制上线（拦截可计数）；真违规修复（T0207/208/209 verdict）、id 撞车清理、归档一致性修复、拒收率回读留作后续",
+      "at": "2026-08-15T09:12:31.189612+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0815-gate-compliance-audit",
+  "states": {
+    "created": "2026-08-15T09:01:22+08:00",
+    "plan": "2026-08-15T09:01:22+08:00",
+    "do": "2026-08-15T09:02:08+08:00",
+    "check": "2026-08-15T09:10:44+08:00",
+    "act": "2026-08-15T09:12:01+08:00",
+    "archive": "2026-08-15T09:12:31+08:00"
+  },
+  "status": "Completed",
+  "title": "门禁有效性审计 + transition 拒绝留痕机制（第六轮：流程门禁元审计）"
+}
