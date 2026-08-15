@@ -1,0 +1,41 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0268",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "triager-brief 采用度结构化：check-triage-brief.py 字段契约 + 历史全量回溯基线（93 brief / 58.1% 核心字段）固化测试",
+      "AGENT-BRIEF 真实效果审计：三层证据（实现正确+运行数据可用成立、效果闭环缺失）+ 四轴评分，verdict=partial（T0260 口径）",
+      "每个增量有可复现硬指标与测试（6 新测试全绿，全量 239 passed / 4 既有失败非回归）"
+    ],
+    "created_at": "2026-08-15T08:30:50+08:00",
+    "phase": "archive",
+    "record": "T0268-0815-brief-effectiveness-audit",
+    "scenario_type": "research",
+    "completed_at": "2026-08-15T08:40:00+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "All AC-1..AC-6 satisfied: triager-brief adoption baseline structured (93 brief / 58.1% core fields, fixed in tests); AGENT-BRIEF effectiveness audit per real-usage protocol (three evidence layers + four axes) yielding verdict=partial (implementation correct + runtime data usable, effect loop missing); 6 new tests green; full suite 239 passed / 4 pre-existing failures; convergence valid",
+      "verdict_id": "T0268-vd-001",
+      "at": "2026-08-15T08:41:07.689244+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "产出确定性与基线：AGENT-BRIEF effectiveness verdict=partial（有采用有转化、效果闭环缺失）+ 采用度基线固化测试（93 brief/58.1%）；效果回读闭环、T0263 identity 审计复用、out-of-scope/claim 触发场景审计留作扩展",
+      "at": "2026-08-15T08:41:46.565023+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0815-brief-effectiveness-audit",
+  "states": {
+    "created": "2026-08-15T08:30:50+08:00",
+    "plan": "2026-08-15T08:30:50+08:00",
+    "do": "2026-08-15T08:33:16+08:00",
+    "check": "2026-08-15T08:40:00+08:00",
+    "act": "2026-08-15T08:41:07+08:00",
+    "archive": "2026-08-15T08:41:46+08:00"
+  },
+  "status": "Completed",
+  "title": "AGENT-BRIEF 真实效果审计 + 采用度结构化（第四轮：确定提升作用）"
+}

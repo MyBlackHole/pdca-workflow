@@ -1,0 +1,1325 @@
+{
+  "total": 93,
+  "field_counts": {
+    "category": 71,
+    "evidence": 75,
+    "dedup": 71,
+    "scenario": 74,
+    "priority": 52,
+    "actionable": 62
+  },
+  "field_coverage": {
+    "category": 76.3,
+    "evidence": 80.6,
+    "dedup": 76.3,
+    "scenario": 79.6,
+    "priority": 55.9,
+    "actionable": 66.7
+  },
+  "core_fields_full": 54,
+  "core_coverage": 58.1,
+  "items": [
+    {
+      "task": "0813-lmdb-tree-resume-round62",
+      "path": "pdca/tasks/0813-lmdb-tree-resume-round62/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0814-resume-production-architecture-round67",
+      "path": "pdca/tasks/0814-resume-production-architecture-round67/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0814-tree-checkpoint-paged-round66",
+      "path": "pdca/tasks/0814-tree-checkpoint-paged-round66/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0731-pg-physical-ordered",
+      "path": "pdca/tasks/active/0731-pg-physical-ordered/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": false,
+        "dedup": true,
+        "scenario": false,
+        "priority": true,
+        "actionable": false
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0804-cdm-report-center-analyse",
+      "path": "pdca/tasks/active/0804-cdm-report-center-analyse/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0806-aio-speed-link-fix",
+      "path": "pdca/tasks/active/0806-aio-speed-link-fix/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0806-buf-layer-endianness",
+      "path": "pdca/tasks/active/0806-buf-layer-endianness/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0806-epoll-business-callback-fsm",
+      "path": "pdca/tasks/active/0806-epoll-business-callback-fsm/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0806-rpc-arm-interop-verify",
+      "path": "pdca/tasks/active/0806-rpc-arm-interop-verify/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0806-rpc-benchmark-review",
+      "path": "pdca/tasks/active/0806-rpc-benchmark-review/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0808-core-tech-poc-2",
+      "path": "pdca/tasks/active/0808-core-tech-poc-2/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": false
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0808-seda-pipeline",
+      "path": "pdca/tasks/active/0808-seda-pipeline/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0813-mysql-parquet-physical",
+      "path": "pdca/tasks/active/0813-mysql-parquet-physical/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0801-btree-core-completeness",
+      "path": "pdca/tasks/archive/0801-btree-core-completeness/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": false,
+        "dedup": true,
+        "scenario": false,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 1,
+      "all_core": false
+    },
+    {
+      "task": "0801-btree-split-proptest",
+      "path": "pdca/tasks/archive/0801-btree-split-proptest/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0801-journal-reclaim-proptest",
+      "path": "pdca/tasks/archive/0801-journal-reclaim-proptest/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0801-trans-enomem-restart",
+      "path": "pdca/tasks/archive/0801-trans-enomem-restart/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0728-agent-workflow-landscape",
+      "path": "pdca/tasks/archive/2026-07/0728-agent-workflow-landscape/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0728-ai-friendliness-hardening",
+      "path": "pdca/tasks/archive/2026-07/0728-ai-friendliness-hardening/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": false
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0728-clean-invalid-active-history",
+      "path": "pdca/tasks/archive/2026-07/0728-clean-invalid-active-history/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0728-convergence-validator",
+      "path": "pdca/tasks/archive/2026-07/0728-convergence-validator/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0729-vmcore-analysis",
+      "path": "pdca/tasks/archive/2026-07/0729-vmcore-analysis/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": false,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": false
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0729-vmcore-deep",
+      "path": "pdca/tasks/archive/2026-07/0729-vmcore-deep/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": false,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": false
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0729-vmcore-source-revalidation",
+      "path": "pdca/tasks/archive/2026-07/0729-vmcore-source-revalidation/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0730-ai-friendliness-evaluation-hardening",
+      "path": "pdca/tasks/archive/2026-07/0730-ai-friendliness-evaluation-hardening/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0730-parquet-format-research",
+      "path": "pdca/tasks/archive/2026-07/0730-parquet-format-research/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": false,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0730-vmcore-report-difference",
+      "path": "pdca/tasks/archive/2026-07/0730-vmcore-report-difference/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0731-execution-contract-hardening",
+      "path": "pdca/tasks/archive/2026-07/0731-execution-contract-hardening/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0731-nbu-dte-enforced-mechanism",
+      "path": "pdca/tasks/archive/2026-07/0731-nbu-dte-enforced-mechanism/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0731-nbu-dte-packet-capture",
+      "path": "pdca/tasks/archive/2026-07/0731-nbu-dte-packet-capture/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0731-pg-mysql-parquet-poc",
+      "path": "pdca/tasks/archive/2026-07/0731-pg-mysql-parquet-poc/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0801-pdca-process-audit",
+      "path": "pdca/tasks/archive/2026-07/0801-pdca-process-audit/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": false,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0801-pdca-self-optimization-loop",
+      "path": "pdca/tasks/archive/2026-07/0801-pdca-self-optimization-loop/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": false,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "T0166-0731-flow-integrity-hardening",
+      "path": "pdca/tasks/archive/2026-07/T0166-0731-flow-integrity-hardening/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": false,
+        "dedup": true,
+        "scenario": false,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 1,
+      "all_core": false
+    },
+    {
+      "task": "T0167-0731-workflow-ai-usability",
+      "path": "pdca/tasks/archive/2026-07/T0167-0731-workflow-ai-usability/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": false,
+        "dedup": true,
+        "scenario": false,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 1,
+      "all_core": false
+    },
+    {
+      "task": "0801-journal-bkey-validation",
+      "path": "pdca/tasks/archive/2026-08/0801-journal-bkey-validation/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": false,
+        "scenario": true,
+        "priority": true,
+        "actionable": false
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0802-btree-merge-shrink",
+      "path": "pdca/tasks/archive/2026-08/0802-btree-merge-shrink/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": false,
+        "dedup": false,
+        "scenario": false,
+        "priority": false,
+        "actionable": false
+      },
+      "core_fields": 0,
+      "all_core": false
+    },
+    {
+      "task": "0802-btree-node-rewrite",
+      "path": "pdca/tasks/archive/2026-08/0802-btree-node-rewrite/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": false,
+        "dedup": false,
+        "scenario": false,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 0,
+      "all_core": false
+    },
+    {
+      "task": "0802-bucket-api-property-tests",
+      "path": "pdca/tasks/archive/2026-08/0802-bucket-api-property-tests/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": false
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0802-concurrency-interleave",
+      "path": "pdca/tasks/archive/2026-08/0802-concurrency-interleave/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": true,
+        "dedup": false,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 1,
+      "all_core": false
+    },
+    {
+      "task": "0802-concurrent-combined-sequence",
+      "path": "pdca/tasks/archive/2026-08/0802-concurrent-combined-sequence/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": true,
+        "dedup": false,
+        "scenario": false,
+        "priority": false,
+        "actionable": false
+      },
+      "core_fields": 1,
+      "all_core": false
+    },
+    {
+      "task": "0802-discard-open-bucket-boundary",
+      "path": "pdca/tasks/archive/2026-08/0802-discard-open-bucket-boundary/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": false
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0802-discard-worker-fairness-property",
+      "path": "pdca/tasks/archive/2026-08/0802-discard-worker-fairness-property/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": false
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0802-discard-worker-inflight-retry",
+      "path": "pdca/tasks/archive/2026-08/0802-discard-worker-inflight-retry/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": false
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0802-extent-alloc-btree-backpointer-trigger-audit",
+      "path": "pdca/tasks/archive/2026-08/0802-extent-alloc-btree-backpointer-trigger-audit/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": false,
+        "scenario": true,
+        "priority": true,
+        "actionable": false
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0802-fsck-cli",
+      "path": "pdca/tasks/archive/2026-08/0802-fsck-cli/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": false
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0802-fsck-repair",
+      "path": "pdca/tasks/archive/2026-08/0802-fsck-repair/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": false
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0802-fsck-repair-faults",
+      "path": "pdca/tasks/archive/2026-08/0802-fsck-repair-faults/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": true,
+        "dedup": false,
+        "scenario": false,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 1,
+      "all_core": false
+    },
+    {
+      "task": "0802-model-guard-injection",
+      "path": "pdca/tasks/archive/2026-08/0802-model-guard-injection/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": false
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0802-model-op-domain-extension",
+      "path": "pdca/tasks/archive/2026-08/0802-model-op-domain-extension/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": false,
+        "dedup": false,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 0,
+      "all_core": false
+    },
+    {
+      "task": "0802-open-bucket-lifecycle-device-rw",
+      "path": "pdca/tasks/archive/2026-08/0802-open-bucket-lifecycle-device-rw/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": false
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0802-persistent-concurrency",
+      "path": "pdca/tasks/archive/2026-08/0802-persistent-concurrency/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": true,
+        "dedup": false,
+        "scenario": false,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 1,
+      "all_core": false
+    },
+    {
+      "task": "0802-public-guard-assertions",
+      "path": "pdca/tasks/archive/2026-08/0802-public-guard-assertions/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": false
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0802-trigger-chain-applicability-audit",
+      "path": "pdca/tasks/archive/2026-08/0802-trigger-chain-applicability-audit/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": false,
+        "scenario": true,
+        "priority": true,
+        "actionable": false
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0802-verify-all-aggregate",
+      "path": "pdca/tasks/archive/2026-08/0802-verify-all-aggregate/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": false
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0802-worker-verify-checkpoint",
+      "path": "pdca/tasks/archive/2026-08/0802-worker-verify-checkpoint/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": false
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0803-fsck-scrub-rewrite",
+      "path": "pdca/tasks/archive/2026-08/0803-fsck-scrub-rewrite/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": false,
+        "dedup": true,
+        "scenario": false,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 1,
+      "all_core": false
+    },
+    {
+      "task": "0803-rpc-protocol-transport-refactor",
+      "path": "pdca/tasks/archive/2026-08/0803-rpc-protocol-transport-refactor/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0804-cdm-report-center-analyse",
+      "path": "pdca/tasks/archive/2026-08/0804-cdm-report-center-analyse/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0805-rpc-serialization-hardening",
+      "path": "pdca/tasks/archive/2026-08/0805-rpc-serialization-hardening/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0807-roach-gm-encrypt-support",
+      "path": "pdca/tasks/archive/2026-08/0807-roach-gm-encrypt-support/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": false,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0807-rpc-conn-idle-implement",
+      "path": "pdca/tasks/archive/2026-08/0807-rpc-conn-idle-implement/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0807-rpc-socket-reuse-idle-reclaim",
+      "path": "pdca/tasks/archive/2026-08/0807-rpc-socket-reuse-idle-reclaim/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0807-xtrabackup-incremental-tech",
+      "path": "pdca/tasks/archive/2026-08/0807-xtrabackup-incremental-tech/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": false,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0808-bwlimit-poc",
+      "path": "pdca/tasks/archive/2026-08/0808-bwlimit-poc/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0808-core-tech-poc",
+      "path": "pdca/tasks/archive/2026-08/0808-core-tech-poc/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": false,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": false
+      },
+      "core_fields": 1,
+      "all_core": false
+    },
+    {
+      "task": "0809-ai-efficiency-proof",
+      "path": "pdca/tasks/archive/2026-08/0809-ai-efficiency-proof/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0809-diagnosing-bugs-enhance",
+      "path": "pdca/tasks/archive/2026-08/0809-diagnosing-bugs-enhance/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": false,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0809-fastapi-app-verify",
+      "path": "pdca/tasks/archive/2026-08/0809-fastapi-app-verify/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": false,
+        "scenario": true,
+        "priority": true,
+        "actionable": false
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0809-mechanism-fixes",
+      "path": "pdca/tasks/archive/2026-08/0809-mechanism-fixes/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": false,
+        "scenario": true,
+        "priority": true,
+        "actionable": false
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0809-pdca-flow-impl-review",
+      "path": "pdca/tasks/archive/2026-08/0809-pdca-flow-impl-review/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": false,
+        "dedup": false,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 1,
+      "all_core": false
+    },
+    {
+      "task": "0809-seam-ci-gate",
+      "path": "pdca/tasks/archive/2026-08/0809-seam-ci-gate/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": true,
+        "dedup": false,
+        "scenario": false,
+        "priority": true,
+        "actionable": false
+      },
+      "core_fields": 1,
+      "all_core": false
+    },
+    {
+      "task": "0809-seam-contract",
+      "path": "pdca/tasks/archive/2026-08/0809-seam-contract/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0809-seam-doctor-gate",
+      "path": "pdca/tasks/archive/2026-08/0809-seam-doctor-gate/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": true,
+        "dedup": false,
+        "scenario": false,
+        "priority": true,
+        "actionable": false
+      },
+      "core_fields": 1,
+      "all_core": false
+    },
+    {
+      "task": "0809-skills-candidates-review",
+      "path": "pdca/tasks/archive/2026-08/0809-skills-candidates-review/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": false,
+        "dedup": false,
+        "scenario": false,
+        "priority": true,
+        "actionable": false
+      },
+      "core_fields": 0,
+      "all_core": false
+    },
+    {
+      "task": "0809-ticket-dag-design-twice",
+      "path": "pdca/tasks/archive/2026-08/0809-ticket-dag-design-twice/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0809-transition-timestamps",
+      "path": "pdca/tasks/archive/2026-08/0809-transition-timestamps/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": true,
+        "dedup": false,
+        "scenario": false,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 1,
+      "all_core": false
+    },
+    {
+      "task": "0809-writing-for-agents-levers",
+      "path": "pdca/tasks/archive/2026-08/0809-writing-for-agents-levers/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": false,
+        "dedup": false,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 1,
+      "all_core": false
+    },
+    {
+      "task": "0812-rpc-metadata-analysis",
+      "path": "pdca/tasks/archive/2026-08/0812-rpc-metadata-analysis/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0813-small-writer-pool",
+      "path": "pdca/tasks/archive/2026-08/0813-small-writer-pool/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0813-small-writer-pool-round61",
+      "path": "pdca/tasks/archive/2026-08/0813-small-writer-pool-round61/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0814-followup-task-record-identity",
+      "path": "pdca/tasks/archive/2026-08/0814-followup-task-record-identity/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": true,
+        "dedup": true,
+        "scenario": false,
+        "priority": true,
+        "actionable": false
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0814-inih-hide-symbols",
+      "path": "pdca/tasks/archive/2026-08/0814-inih-hide-symbols/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0814-lmdb-no-mmap-round63",
+      "path": "pdca/tasks/archive/2026-08/0814-lmdb-no-mmap-round63/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": false,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0814-oss-xmake-integration",
+      "path": "pdca/tasks/archive/2026-08/0814-oss-xmake-integration/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "0814-production-observability-round65",
+      "path": "pdca/tasks/archive/2026-08/0814-production-observability-round65/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": false,
+        "dedup": true,
+        "scenario": false,
+        "priority": true,
+        "actionable": false
+      },
+      "core_fields": 2,
+      "all_core": false
+    },
+    {
+      "task": "0814-self-improvement-effectiveness-audit",
+      "path": "pdca/tasks/archive/2026-08/0814-self-improvement-effectiveness-audit/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": false,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "T0215-0804-rpc-epoll-multireactor",
+      "path": "pdca/tasks/archive/2026-08/T0215-0804-rpc-epoll-multireactor/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "T0223-0805-worker-adaptation",
+      "path": "pdca/tasks/archive/2026-08/T0223-0805-worker-adaptation/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "T0246-0810-backup-gm-transport-encryption",
+      "path": "pdca/tasks/archive/2026-08/T0246-0810-backup-gm-transport-encryption/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "T0247-0811-backup-doc-optimize",
+      "path": "pdca/tasks/archive/2026-08/T0247-0811-backup-doc-optimize/triager-brief.md",
+      "fields": {
+        "category": true,
+        "evidence": true,
+        "dedup": true,
+        "scenario": true,
+        "priority": true,
+        "actionable": true
+      },
+      "core_fields": 3,
+      "all_core": true
+    },
+    {
+      "task": "T0248-0812-openssh-src-unpack",
+      "path": "pdca/tasks/archive/2026-08/T0248-0812-openssh-src-unpack/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": false,
+        "dedup": true,
+        "scenario": false,
+        "priority": true,
+        "actionable": false
+      },
+      "core_fields": 1,
+      "all_core": false
+    },
+    {
+      "task": "T0249-0812-kernel-nfs-gm-research",
+      "path": "pdca/tasks/archive/2026-08/T0249-0812-kernel-nfs-gm-research/triager-brief.md",
+      "fields": {
+        "category": false,
+        "evidence": true,
+        "dedup": true,
+        "scenario": false,
+        "priority": true,
+        "actionable": false
+      },
+      "core_fields": 2,
+      "all_core": false
+    }
+  ]
+}
