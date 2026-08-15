@@ -1,0 +1,51 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "决策兑现回读闭环：recall-brief-decisions.py 提取 triager-brief 推荐方向/已验证问题/信息缺口决策句 + 在任务产出中命中检测，生成矩阵骨架",
+      "criteria": [
+        "AC-1",
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ac1-recall-script",
+        "ac2-hit-detect"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "回读矩阵 recall-matrix.md：每决策行含兑现状态（fulfilled/partial/not-fulfilled/unknown）+ 依据引用；兑现率统计可复现；未兑现原因记录",
+      "criteria": [
+        "AC-3",
+        "AC-4",
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ac3-recall-matrix",
+        "ac4-fulfillment-rate",
+        "ac6-unfulfilled-reasons"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "AGENT-BRIEF verdict 更新：基于回读证据判定决策兑现维度，结果验证维度标注待样本任务完成",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ac5-verdict-update"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "新增测试通过（决策提取/命中检测/矩阵结构断言），全量 4 既有失败保持非回归",
+      "criteria": [
+        "AC-7"
+      ],
+      "evidence_ids": [
+        "ac7-full-suite"
+      ]
+    }
+  ]
+}
