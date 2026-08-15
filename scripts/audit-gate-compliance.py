@@ -69,6 +69,7 @@ def scan_task(root: Path, task_path: Path) -> dict:
     tid = task.get("id") or "?"
     phase = (task.get("meta") or {}).get("phase") or "?"
     verdict = bool((task.get("meta") or {}).get("verdict"))
+    exemption = (task.get("meta") or {}).get("gate_exemption") or {}
     convergence = (task.get("meta") or {}).get("convergence") or []
     receipts_dir = task_dir / "transition-receipts"
     receipts = sorted(receipts_dir.glob("*-to-*.json")) if receipts_dir.is_dir() else []
@@ -85,6 +86,8 @@ def scan_task(root: Path, task_path: Path) -> dict:
         "receipt_count": len(receipts),
         "rejected_count": len(rejected),
         "verdict": verdict,
+        "gate_exemption": bool(exemption),
+        "gate_exemption_reason": str(exemption.get("reason", "")) if exemption else "",
         "convergence_count": len(convergence),
         "final_confirmation": "final_confirmation" in sources,
         "has_plan_to_do": "plan-to-do" in receipt_names,
@@ -96,10 +99,13 @@ def scan_task(root: Path, task_path: Path) -> dict:
 
 def classify(item: dict) -> list[str]:
     issues: list[str] = []
+    if item["gate_exemption"]:
+        return issues
     if item["receipt_count"] == 0:
         issues.append("legacy_no_gate")
     else:
-        if item["phase"] in {"check", "act", "archive"}:
+        # check 阶段进行中本就无 verdict（check→act 前才要求），仅 act/archive 判违规
+        if item["phase"] in {"act", "archive"}:
             if not item["verdict"]:
                 issues.append("gate_incomplete:no-verdict")
             if not item["final_confirmation"]:
@@ -220,6 +226,17 @@ def render_report(result: dict) -> str:
     for slug, paths in sorted(result["active_stale"].items()):
         lines.append(f"- `{slug}` active 残留: " + "; ".join(paths))
     if not result["archive_dup"] and not result["active_stale"]:
+        lines.append("- 无")
+
+    lines += [
+        "",
+        "### 豁免清单（meta.gate_exemption）",
+        "",
+    ]
+    exempted = [i for i in result["items"] if i["gate_exemption"]]
+    for i in sorted(exempted, key=lambda x: x["id"]):
+        lines.append(f"- `{i['id']}` (`{i['phase']}`): {i['gate_exemption_reason']}")
+    if not exempted:
         lines.append("- 无")
 
     lines += [
