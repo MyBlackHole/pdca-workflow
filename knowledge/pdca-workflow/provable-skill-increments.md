@@ -171,3 +171,37 @@ Anthropic 内部经验"Gotchas 是 skill 最高信号内容"——从真实失�
 | 覆盖广度 | 单 skill | 单 skill 行为 | 全量 skill 仓库质量底线 |
 | 强度 | 可接受 | 更硬（行为） | 硬（机器可判定）+ 溯源（真实性） |
 | 来源 | mattpocock | mattpocock | Anthropic 官方/内部 + pedronauck + agentskills.io |
+
+## 第四轮：AGENT-BRIEF 真实效果审计 + 采用度结构化（T0268）
+
+### 机制九：采用度结构化（scripts/check-triage-brief.py）
+
+把"机制是否被用"变成可量化复现的指标：
+
+- 契约解析：triager-brief.md 6 字段宽松匹配（category/evidence/dedup/scenario/priority/actionable），兼容中英文早期格式。
+- 历史全量回溯：扫描 pdca/tasks 全量（含归档）93 个 brief，核心三字段全含 58.1%。
+- 基线固化：采用率写入测试（>= 下限防回归），后续轮次可对比演进。
+
+### 审计结论：AGENT-BRIEF effectiveness verdict = partial
+
+按 real-usage-effectiveness-audit 三层口径：
+
+- **实现正确性** ✓：契约测试全绿。
+- **运行数据可用性** ✓：93 brief 可重建；T0265 落地后 round62/66/67 核心字段 100%。
+- **效果闭环** ✗：无 decision→candidate→Improvement Task→effectiveness verdict 反馈链。
+
+**提升作用判定**：AGENT-BRIEF 的"结构化采用"维度成立（supported，有真实采用 + brief→design→evidence 转化证据）；"效果验证"维度未闭环（partial）。四轮增量均属"实现正确 + 运行可用"层，缺第三层。
+
+### 审计方法论教训
+
+- **前置误判**：初版"机制采用率=0"是 grep 关键词误判（产出文件名 triager-brief.md ≠ 机制名 AGENT-BRIEF）。审计须按产出物实际命名/形态判定，不能按机制名 grep。
+- **三层证据不可互相替代**：fixture 全绿与真实采用可以同时一真一假；运行可用与效果闭环也可同时一真一假（T0260/T0268 实例）。
+
+## 方法论演进（T0265 → T0268）
+
+| 维度 | T0265-T0267（实现/结构/行为契约） | T0268（效果审计层） |
+|---|---|---|
+| 证明对象 | 机制存在且符合契约 | 机制是否被真实采用 + 是否有提升作用 |
+| 方法 | 测试/脚本断言 | 历史全量回溯 + 三层证据 + 四轴评分 + verdict |
+| 结论形态 | supported（可证明落地） | partial（有采用、无闭环） |
+| 价值 | 质量底线 | 确定性（区分"实现正确"与"效果有效"） |
