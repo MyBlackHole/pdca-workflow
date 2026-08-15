@@ -133,3 +133,41 @@ python3 scripts/check-ticket-claims.py resolve --ticket TK-1 --by sess-a
 | 测试载体 | 读文件断言 marker | 临时目录状态机、真实 git merge 冲突、决策表映射 |
 | 强度 | 可接受（文档存在性） | 更硬（行为可观察、可复现） |
 | 共同点 | 失败驱动实现、可证明优先、seam 契约 | 同左 |
+
+## 第三轮：skill 结构契约 + Gotchas 段机制（T0267）
+
+### 机制七：skill 结构契约检查器（scripts/check-skill-structure.py）
+
+Anthropic skill authoring best practices + agentskills.io 规范（pedronauck
+validate-metadata.py 同源）脚本化，对 `skills/*/SKILL.md` 全量断言：
+
+- **硬错误**（exit-code 1）：name 格式/长度（`^[a-z0-9]+(-[a-z0-9]+)*$`、1-64）、description 长度（<=1024）、XML 指令标记、SKILL.md <=500 行、Windows 路径（盘符正则 `[A-Za-z]:[\\/]`）、gotchas 段缺失/过短。
+- **软警告**（报告不阻塞，`--exit-code` 计入）：description 第一/二人称、缺触发词、无显式完成准则（completion criterion 启发式）。
+
+**可证明硬指标**：违规 fixture 逐项报告并 rc=1；全量 39 正式 skills error_count=0；
+`--json` 结构化输出供断言。
+
+### 机制八：Gotchas 段机制（全量强制 + 核心溯源）
+
+Anthropic 内部经验"Gotchas 是 skill 最高信号内容"——从真实失败点积累：
+
+- 每个 skill 含非空 `## 已知坑`/`## Gotchas` 段（双语段名检查器都认）。
+- 核心 9 个 skill 的 gotchas 从历史任务真实失败点提取，含记录级来源引用：
+  - convergence 文本须与 task.json 逐字一致（CONVERGENCE_TEXT_MISMATCH）
+  - `git merge` 冲突返回码 1 是正常状态需 `git_allow_failure`
+  - 改 skill 后 SKILLS-INDEX.md 过期需重新生成
+  - register-evidence `--file` 须唯一文件名
+  - check_confirmation 须带 response 字段
+- 抽检：正则提取 T0xxx 记录 id，records/ 前缀匹配或归档 task.json id 匹配。
+
+**可证明硬指标**：段存在性 + 核心 9 来源 token 在段内 + 引用目标目录存在。
+
+## 方法论演进（T0265 → T0267）
+
+| 维度 | T0265（文档结构级） | T0266（行为级） | T0267（skill 结构契约层） |
+|---|---|---|---|
+| 指标类型 | 单 skill 文档 grep 契约 | 状态机/git fixture/决策表 | 全量 39 skills 机器可判定契约 + gotchas 段溯源 |
+| 测试载体 | 读单文件断言 marker | 临时目录/真实 git | 全量扫描 + 违规 fixture + subprocess CLI |
+| 覆盖广度 | 单 skill | 单 skill 行为 | 全量 skill 仓库质量底线 |
+| 强度 | 可接受 | 更硬（行为） | 硬（机器可判定）+ 溯源（真实性） |
+| 来源 | mattpocock | mattpocock | Anthropic 官方/内部 + pedronauck + agentskills.io |
