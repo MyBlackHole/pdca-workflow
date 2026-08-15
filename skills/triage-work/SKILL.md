@@ -24,6 +24,15 @@ Two categories: `bug` (existing behaviour broken) or `enhancement` (new/improvem
 | Refactor / optimisation | `enhancement` | `development` |
 | Uncertain | keep `needs-triage` | leave blank |
 
+**边界判定规则**（T0273）：当输入形态落在 `research` 与 `development` 之间时，用可测试代码产出裁决——**含脚本/测试/可回归验证产物 → `development`**；**纯结论性调研/报告 → `research`**。机械判定运行：
+
+```bash
+python3 "$PDCA_HOME/scripts/scenario-boundary-check.py" --judge --desc "<任务描述>" \
+  [--code-scripts "<脚本产出>"] [--code-tests "<测试产出>"]
+```
+
+已知错配实例：T0268-T0272 标 research 但产出脚本+测试（应为 development）；T0163 POC 含 `pg_poc.py`/`mysql_poc.py` 等代码但标 research（应为 development）。新任务 triage 时若产出倾向代码，优先按 development 走 A 路径（含 TDD/回归验证），避免 research 路径缺测试环节。
+
 ### 2. Deduplicate
 
 Search: `$PDCA_HOME/pdca/tasks/**/task.json` (incl. archive), `$PDCA_HOME/knowledge/out-of-scope/`, `$PDCA_HOME/knowledge/**/*.md`.
