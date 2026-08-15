@@ -242,3 +242,42 @@ Anthropic 内部经验"Gotchas 是 skill 最高信号内容"——从真实失�
 | 方法 | 测试/脚本断言 | 历史全量回溯 + 三层证据 + 四轴评分 | 决策回读矩阵 + 兑现率 + 依据引用 |
 | 结论形态 | supported（可证明落地） | partial（有采用、无闭环） | partial-progressed（兑现环闭合，验证环 pending） |
 | 价值 | 质量底线 | 确定性 | 从"被采用"到"被兑现"的闭环证据 |
+
+## 第六轮：门禁有效性审计 + transition 拒绝留痕（T0270）
+
+### 机制十一：门禁合规扫描（scripts/audit-gate-compliance.py）
+
+把"门禁是否被执行"变成全局可审计指标：
+
+- 全量扫描 154 任务：receipts/verdict/convergence/final_confirmation 覆盖率 + id 唯一性 + 归档一致性。
+- 异常分类：legacy_no_gate（机制前任务仅报告）vs gate_incomplete（真违规候选）vs id_collision/archive_dup/active_stale。
+- 报告含覆盖率、阶段分布、异常清单、结论。
+
+### 机制十二：transition 拒绝留痕（rejected receipt）
+
+门禁拦截首次可计数：
+
+- 4 拒绝点（NON_ADJACENT/PRD/gate_issues/schema）统一写 `transition-receipts/rejected-<ns>-<to>.json`（schema pdca.gate-rejection/v1）。
+- 纳秒时间戳保证多次拒绝不覆盖；成功路径不变。
+
+### 审计结论
+
+- 门禁覆盖率：receipts 81.2%、verdict 79.2%、convergence 95.5%、final_confirmation 84.4% —— 门禁在近 8 成任务完整执行。
+- 真违规 6 个（gate_incomplete）：T0207/T0208/T0209 归档但无 verdict（check→act 门禁要素缺失）最高优先。
+- id 撞车 25 组 + 重复归档 2 + active 残留 2：T0262 identity 机制上线前的存量缺陷。
+- 历史 rejected receipts=0：此前拦截无留痕（第五轮多次被拒均未记录），机制上线后可计数。
+
+### 审计方法论教训
+
+- **门禁有效性需双向证明**：覆盖率（被执行）+ 拒收留痕（拦截被记录）缺一不可；光有覆盖率无法证明拦截真实发生。
+- **分类先行**：机制前任务与真违规必须区分，否则审计报告会被历史噪音淹没。
+- **变更安全**：给核心脚本（transition-phase）加拒绝留痕时，成功路径必须有对照测试兜底，避免破坏既有语义。
+
+## 方法论演进（T0265 → T0270）
+
+| 维度 | T0265-T0267 | T0268-T0269 | T0270（流程元审计） |
+|---|---|---|---|
+| 证明对象 | 机制存在且符合契约 / 被采用 / 被兑现 | 机制效果闭环 | **门禁体系本身被完整执行且拦截可审计** |
+| 方法 | 测试/回读 | 三层证据/回读矩阵 | 全量合规扫描 + 拒绝留痕 + 异常分类 |
+| 结论形态 | supported / partial-progressed | 效果闭环推进 | 门禁有效性确立（覆盖 8 成 + 拦截留痕） |
+| 价值 | 质量底线 → 确定性 | 闭环证据 | 流程可信度的元验证 |
