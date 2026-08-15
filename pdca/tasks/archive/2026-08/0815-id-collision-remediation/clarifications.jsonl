@@ -1,0 +1,11 @@
+{"at":"2026-08-15T03:04:00+00:00","source":"task_identity","summary":"created with record identity T0274-0815-id-collision-remediation"}
+{"source": "grilling", "question": "23 组 ID 撞车采用哪种修复策略？", "answer": "全链路重分配 ID（task.json/records/引用链同步）", "at": "2026-08-15T03:00:00+00:00"}
+{"source": "grilling", "question": "涉及活跃任务的撞车组如何处理？", "answer": "跳过活跃任务，只处理全归档组（12/23），活跃组记录待办", "at": "2026-08-15T03:00:00+00:00"}
+{"source": "grilling", "question": "处置报告的产出深度？", "answer": "完整处置报告：逐组判定保留方/重分配方/新ID/引用链/执行顺序/验证", "at": "2026-08-15T03:00:00+00:00"}
+{"source":"direction_confirm","summary":"12 组可处置：rpc-epoll/round/backup/元审查链保留原 ID，CDM/报表/独立调研重分配为 T0275-T0286；11 组含活跃任务跳过待办；逐组同步 task.json/records/引用链","response":"confirmed","at":"2026-08-15T11:12:37+08:00"}
+{"source":"final_confirmation","summary":"用户批准 T0274 完整方案：新增 remediate-id-collisions.py（幂等+dry-run）；12 组重分配 T0275-T0286 同步 task.json/records/目录/引用链；11 组活跃待办；AC-1~7","response":"confirmed","at":"2026-08-15T11:14:34+08:00"}
+{"source":"check_confirmation","summary":"用户确认 T0274 检查结论：7/7 AC Passed，上下文感知引用替换解决 CDM/RPC 树纠缠，doctor duplicate_task_ids 23→11 仅剩活跃待办组，全量 279/4 无新增回归","response":"confirmed","at":"2026-08-15T11:48:51+08:00"}
+{"round": 1, "question": "上下文感知引用判定（CDM/RPC 特征词）是否可作为通用方法论沉淀？其适用范围与限制？", "answer": "可沉淀。适用于撞车组内两棵任务树共用同一 ID 且各自子任务 parent 均指向该 ID 的场景。限制：依赖 slug 特征词区分归属，需人工核定特征词；无法区分时须回退到显式枚举引用者。", "recommended": "沉淀为 knowledge，含特征词判定模板与人工核定步骤", "source": "grilling", "at": "2026-08-15T11:50:05+08:00"}
+{"round": 1, "question": "重分配脚本的幂等性设计（后缀匹配目录定位）是否可复用于后续 11 组活跃撞车清理？", "answer": "可复用。脚本 REASSIGNMENTS 裁决表 + check-cover/check-disposable/check-deferred 三校验模式是完整模板，后续活跃组归档后追加裁决表项即可复用。", "recommended": "沉淀裁决表维护指引", "source": "grilling", "at": "2026-08-15T11:50:05+08:00"}
+{"round": 1, "question": "records 重命名的 R 前缀/裸 Txxxx 旧格式统一是否有风险？", "answer": "已验证无风险：3 个旧格式（R0142/R0244/裸 T0225）均无外部引用，统一为 Txxxx-slug 规范格式符合 identity 合约。风险点在于引用扫描须在重命名前完成。", "recommended": "记录经验：先引用扫描后重命名", "source": "grilling", "at": "2026-08-15T11:50:05+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-15T11:50:55+08:00", "action": "wrote", "reason": "ID 撞车重分配+上下文感知引用判定方法论沉淀可复用"}

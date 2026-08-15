@@ -1,0 +1,39 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0274",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-15T03:04:00+00:00",
+    "phase": "archive",
+    "record": "T0274-0815-id-collision-remediation",
+    "scenario_type": "development",
+    "completed_at": "2026-08-15T11:46:39+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "verdict_id": "T0274-vd-001",
+      "reason": "7/7 AC Passed，上下文感知引用替换解决 CDM/RPC 树纠缠，doctor duplicate_task_ids 23→11 仅剩活跃待办组，无新增回归",
+      "at": "2026-08-15T11:49:02+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "7/7 AC Passed；doctor duplicate_task_ids 23→11 显著改善；上下文感知引用判定方法论已沉淀至 knowledge；11 组活跃撞车待办后续处理",
+      "at": "2026-08-15T11:51:06+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0815-id-collision-remediation",
+  "states": {
+    "act": "2026-08-15T11:49:14+08:00",
+    "archive": "2026-08-15T11:52:19+08:00",
+    "check": "2026-08-15T11:46:39+08:00",
+    "created": "2026-08-15T03:04:00+00:00",
+    "do": "2026-08-15T11:14:34+08:00",
+    "plan": "2026-08-15T03:04:00+00:00"
+  },
+  "status": "Completed",
+  "title": "ID 撞车清理：全链路重分配 23 组重复 task_id"
+}

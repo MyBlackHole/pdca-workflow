@@ -1,0 +1,5 @@
+{"file": "scripts/pdca_core.py", "reason": "identity 校验逻辑：duplicate_task_ids 全量扫描；record 须=task_id-slug；record_derived_mismatches 校验", "action": "处置脚本须同步 id 与 record 使 doctor valid", "at": "2026-08-15T03:10:00+00:00"}
+{"file": "scripts/task_identity.py", "reason": "统一身份入口：ID 唯一性校验、record 派生规则、_record_from_id_and_slug", "action": "重分配后的新 ID 须通过唯一性检查，record 按规则派生", "at": "2026-08-15T03:10:00+00:00"}
+{"file": "scripts/transition-phase.py", "reason": "阶段推进门禁，rejected 留痕机制", "action": "不改变任务阶段，仅 ID/目录；保留方不动", "at": "2026-08-15T03:10:00+00:00"}
+{"file": "tests/test_identity_diagnostics.py", "reason": "identity 相关测试模式", "action": "参照写 remediate 测试", "at": "2026-08-15T03:10:00+00:00"}
+{"file": "records/T0272-0815-self-audit/health-audit.json", "reason": "23 组撞车明细与根因分类的权威数据源", "action": "构造裁决表与验证基线", "at": "2026-08-15T03:10:00+00:00"}
