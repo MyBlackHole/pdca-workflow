@@ -1,0 +1,41 @@
+{
+    "children": [],
+    "dependencies": [
+        "T0290"
+    ],
+    "id": "T0291",
+    "meta": {
+        "active": true,
+        "convergence": [
+            "task identity is unique and immutable"
+        ],
+        "created_at": "2026-08-15T16:20:19+08:00",
+        "phase": "act",
+        "record": "T0291-0815-v81-control-frame",
+        "scenario_type": "development",
+        "completed_at": "2026-08-15T17:44:53+08:00",
+        "verdict": {
+            "outcome": "partial",
+            "reason": "AC-1/2/3/4/6 Passed 且证据可信；AC-5 Failed（control-plane 对称负载线程 7>v80 4、RSS+1.5%），根因判据口径不适配共享 work 池，核心实现仍有效。",
+            "verdict_id": "V-T0291-001",
+            "at": "2026-08-15T17:45:47+08:00"
+        },
+        "disposition": {
+            "outcome": "projected",
+            "reason": "v81 后续控制帧非阻塞化核心实现有效(AC-1/2/3/4/6 Passed)；AC-5 线程判据口径不适配共享 work 池，需修正判据或固定可比基线，已创建跟进任务 T0292 承接。沉淀知识 control-plane-nonblocking-ingress/v81-control-frame-nonblocking.md。",
+            "at": "2026-08-15T17:48:46+08:00"
+        }
+    },
+    "parent": "T0288",
+    "slug": "0815-v81-control-frame",
+    "states": {
+        "act": "2026-08-15T17:45:52+08:00",
+        "archive": null,
+        "check": "2026-08-15T17:44:53+08:00",
+        "created": "2026-08-15T16:20:19+08:00",
+        "do": "2026-08-15T16:22:39+08:00",
+        "plan": "2026-08-15T16:20:19+08:00"
+    },
+    "status": "Completed",
+    "title": "v81 架构演进：后续控制帧非阻塞化"
+}

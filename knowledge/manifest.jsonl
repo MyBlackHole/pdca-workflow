@@ -121,3 +121,13 @@
 {"version":1,"revision":1,"at":"2026-08-15T02:55:05Z","knowledge":"pdca-workflow/scenario-boundary-rule.md","knowledge_digest":"sha256:b2c8b834a2f7d29bb2d0f3d30d8af7c18f74065ed25482cf404f2d67ce1f62e6","source_record":"records/T0273-0815-scenario-boundary-rule/conclusion.md","source_digest":"sha256:a9d3a9340e4224d04bf31dabb2f9f1164eee9cec6b3297562f5d9b9b7d2b8e35","reason":"可测试代码产出→development，纯结论→research，供 triage 复用"}
 {"version": 1, "revision": 1, "at": "2026-08-15T11:50:55+08:00", "knowledge": "knowledge/pdca-workflow/id-collision-remediation.md", "knowledge_digest": "sha256:c27f949fe93a43e0ad48dfa229427cff21cc345d54343fd0a3baef38a0fa74b3", "source_record": "records/T0274-0815-id-collision-remediation/conclusion.md", "source_digest": "sha256:aabe273b47568a93d18d212bb8fc7f64063abb20eae410f935455ddf56a7db26", "reason": "上下文感知引用判定解决撞车组多树纠缠，主流方判定规则+幂等脚本模板可复用"}
 {"version":1,"revision":1,"at":"2026-08-15T15:24:00+08:00","knowledge":"linux-epoll-eventloop/backupstream-plain-tls-ingress.md","knowledge_digest":"sha256:b163c1222f19043be9543afd6dd9f9cac81b02f88b5c372fa9365f32b1f48ff6","source_record":"records/T0287-0815-backupstream-architecture/conclusion.md","source_digest":"sha256:6b5c3e3ac78590335f484202a8e82f84eb9dd5da99073985a1d6b18b6eb2f70d","reason":"plain/TLS双路径ingress与弹性会话池线程模型跨项目可复用"}
+{
+  "version": 1,
+  "revision": 1,
+  "at": "2026-08-15T17:46:21+08:00",
+  "knowledge": "knowledge/control-plane-nonblocking-ingress/v81-control-frame-nonblocking.md",
+  "knowledge_digest": "sha256:90cf5f65755e5ba7c3d28d8a8bd2eafad6f311384eaa6c21c7b343746bf59260",
+  "source_record": "records/T0291-0815-v81-control-frame/conclusion.md",
+  "source_digest": "sha256:593b0350713ac80626717552d21c60dec334933b1e1ced69ec213a35b2a5deef",
+  "reason": "共享 work 池非阻塞化 + parked 移交秩序陷阱 + 线程判据口径教训，可复用"
+}

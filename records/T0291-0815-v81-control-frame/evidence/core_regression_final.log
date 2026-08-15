@@ -1,0 +1,8 @@
+== integration.sh ==
+integration: PASS
+== plain_ingress_integration.sh ==
+plain ingress integration: PASS baseline=3 partial_hello=3 partial_open=3 fragmented=1 timeout=1
+== system_rpc_integration.sh ==
+system_rpc_integration_ok
+== protocol_version_integration.sh ==
+protocol_version_integration_ok

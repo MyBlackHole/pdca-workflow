@@ -1,0 +1,6 @@
+{"at":"2026-08-15T16:20:19+08:00","source":"task_identity","summary":"created with record identity T0291-0815-v81-control-frame"}
+{"source":"final_confirmation","summary":"v81后续控制帧非阻塞化完整实现","response":"confirmed","at":"2026-08-15T16:22:34+08:00"}
+{"source":"check_confirmation","summary":"结论确认：AC-1/2/3/4/6 Passed，AC-5 Failed（线程判据与共享 work 池口径不适配）；整体 verdict=partial（核心有效+AC-5 判据需修正）","response":"confirmed","at":"2026-08-15T17:45:39+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-15T17:46:21+08:00", "action": "wrote", "reason": "共享 work 池非阻塞化 + parked 移交秩序陷阱可复用；AC-5 判据口径教训入知识"}
+{"source": "followup_task", "at": "2026-08-15T17:46:26+08:00", "task_id": "T0292", "slug": "0815-v81-ac5-criterion", "reason": "AC-5 Failed：线程判据与共享 work 池口径不适配，需修正判据或固定可比基线后重测"}
+{"source": "followup_task", "at": "2026-08-15T17:46:31+08:00", "task_id": "T0292", "slug": "0815-v81-ac5-criterion", "reason": "AC-5 Failed：线程判据与共享 work 池口径不适配，需修正判据或固定可比基线后重测"}
