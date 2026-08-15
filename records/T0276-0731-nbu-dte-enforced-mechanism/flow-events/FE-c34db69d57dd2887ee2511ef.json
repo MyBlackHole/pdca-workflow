@@ -1,0 +1,30 @@
+{
+ "affected_component": "scripts.transition-phase",
+ "category": "conformance-deviation",
+ "event_id": "FE-c34db69d57dd2887ee2511ef",
+ "evidence_refs": [
+  "audit:do-to-check:0e94e4908767ce61117074a1"
+ ],
+ "facts": {
+  "after_state": "check",
+  "before_state": "do",
+  "confidence": "observed",
+  "exit_code": null,
+  "gate_effect": "blocked"
+ },
+ "idempotency_key": "audit:T0163:do-to-check:0e94e4908767ce61117074a1",
+ "issue_code": "ACCEPTANCE_CRITERIA_MISSING",
+ "normalized_location": "audit/acceptance_criteria_missing-6e412141465c0151",
+ "occurred_at": "2026-07-31T11:21:50+08:00",
+ "phase": "do",
+ "record_id": "T0276-0731-nbu-dte-enforced-mechanism",
+ "rule": {
+  "id": "transition-audit",
+  "version": "v2"
+ },
+ "schema": "pdca.flow-issue-occurrence/v1",
+ "source": "transition-audit",
+ "summary": "## 验收标准 must contain Markdown checkboxes",
+ "task_id": "T0276",
+ "transition": "do-to-check"
+}

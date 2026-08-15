@@ -1,0 +1,30 @@
+{
+ "affected_component": "scripts.transition-phase",
+ "category": "conformance-deviation",
+ "event_id": "FE-333f84ed835995c4f4531f7b",
+ "evidence_refs": [
+  "audit:check-to-act:2f7ccce392bba25e8cf7a090"
+ ],
+ "facts": {
+  "after_state": "act",
+  "before_state": "check",
+  "confidence": "observed",
+  "exit_code": null,
+  "gate_effect": "blocked"
+ },
+ "idempotency_key": "audit:T0246:check-to-act:2f7ccce392bba25e8cf7a090",
+ "issue_code": "VERDICT_MISSING",
+ "normalized_location": "audit/verdict_missing-acf7ca09e3c286b8",
+ "occurred_at": "2026-08-11T11:59:34+08:00",
+ "phase": "check",
+ "record_id": "T0283-0810-backup-gm-transport-encryption",
+ "rule": {
+  "id": "transition-audit",
+  "version": "v2"
+ },
+ "schema": "pdca.flow-issue-occurrence/v1",
+ "source": "transition-audit",
+ "summary": "verdict is required",
+ "task_id": "T0283",
+ "transition": "check-to-act"
+}

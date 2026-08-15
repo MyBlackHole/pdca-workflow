@@ -1,0 +1,30 @@
+{
+ "affected_component": "scripts.transition-phase",
+ "category": "conformance-deviation",
+ "event_id": "FE-19df2b49222fb9f89c48dd54",
+ "evidence_refs": [
+  "audit:do-to-check:b4c78dea24b1b3ef79d0c203"
+ ],
+ "facts": {
+  "after_state": "check",
+  "before_state": "do",
+  "confidence": "observed",
+  "exit_code": null,
+  "gate_effect": "blocked"
+ },
+ "idempotency_key": "audit:T0163:do-to-check:b4c78dea24b1b3ef79d0c203",
+ "issue_code": "ACCEPTANCE_CRITERION_UNCOVERED",
+ "normalized_location": "audit/acceptance_criterion_uncovered-721898da8f7364e3",
+ "occurred_at": "2026-07-31T11:22:58+08:00",
+ "phase": "do",
+ "record_id": "T0276-0731-nbu-dte-enforced-mechanism",
+ "rule": {
+  "id": "transition-audit",
+  "version": "v2"
+ },
+ "schema": "pdca.flow-issue-occurrence/v1",
+ "source": "transition-audit",
+ "summary": "criterion must be covered by non-map evidence",
+ "task_id": "T0276",
+ "transition": "do-to-check"
+}

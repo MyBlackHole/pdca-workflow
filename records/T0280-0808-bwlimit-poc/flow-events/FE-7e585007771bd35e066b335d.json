@@ -1,0 +1,30 @@
+{
+ "affected_component": "scripts.transition-phase",
+ "category": "conformance-deviation",
+ "event_id": "FE-7e585007771bd35e066b335d",
+ "evidence_refs": [
+  "audit:do-to-check:eb8622e754d7e91167caf552"
+ ],
+ "facts": {
+  "after_state": "check",
+  "before_state": "do",
+  "confidence": "observed",
+  "exit_code": null,
+  "gate_effect": "blocked"
+ },
+ "idempotency_key": "audit:T0224:do-to-check:eb8622e754d7e91167caf552",
+ "issue_code": "CONVERGENCE_MAP_MISSING",
+ "normalized_location": "audit/convergence_map_missing-4f622b390440d062",
+ "occurred_at": "2026-08-08T18:04:23+08:00",
+ "phase": "do",
+ "record_id": "T0280-0808-bwlimit-poc",
+ "rule": {
+  "id": "transition-audit",
+  "version": "v2"
+ },
+ "schema": "pdca.flow-issue-occurrence/v1",
+ "source": "transition-audit",
+ "summary": "exactly one entry with id and kind convergence-map is required",
+ "task_id": "T0280",
+ "transition": "do-to-check"
+}

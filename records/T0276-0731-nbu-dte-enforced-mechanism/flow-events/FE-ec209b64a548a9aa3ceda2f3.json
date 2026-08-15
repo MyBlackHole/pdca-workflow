@@ -1,0 +1,30 @@
+{
+ "affected_component": "scripts.transition-phase",
+ "category": "conformance-deviation",
+ "event_id": "FE-ec209b64a548a9aa3ceda2f3",
+ "evidence_refs": [
+  "audit:do-to-check:063e9bf43ae34d60ec232b8b"
+ ],
+ "facts": {
+  "after_state": "check",
+  "before_state": "do",
+  "confidence": "observed",
+  "exit_code": null,
+  "gate_effect": "blocked"
+ },
+ "idempotency_key": "audit:T0163:do-to-check:063e9bf43ae34d60ec232b8b",
+ "issue_code": "CONVERGENCE_CRITERION_UNKNOWN",
+ "normalized_location": "audit/convergence_criterion_unknown-6e34be301845ea07",
+ "occurred_at": "2026-07-31T11:21:43+08:00",
+ "phase": "do",
+ "record_id": "T0276-0731-nbu-dte-enforced-mechanism",
+ "rule": {
+  "id": "transition-audit",
+  "version": "v2"
+ },
+ "schema": "pdca.flow-issue-occurrence/v1",
+ "source": "transition-audit",
+ "summary": "AC-4 is not defined by the PRD",
+ "task_id": "T0276",
+ "transition": "do-to-check"
+}
