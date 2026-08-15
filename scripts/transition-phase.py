@@ -10,6 +10,7 @@ import os
 import shutil
 import sys
 import tempfile
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -45,6 +46,24 @@ def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def write_rejected_receipt(task_dir: Path, task_id: str, current: str, to: str, payload: dict) -> None:
+    """过渡被拒时写拒绝留痕 receipt（schema pdca.gate-rejection/v1）。
+
+    纳秒时间戳保证文件名唯一（多次拒绝不覆盖）；不影响成功路径。
+    """
+    receipt_dir = task_dir / "transition-receipts"
+    receipt_dir.mkdir(exist_ok=True)
+    receipt = {
+        "schema": "pdca.gate-rejection/v1",
+        "task_id": task_id,
+        "from": current,
+        "to": to,
+        **payload,
+        "at": datetime.now().astimezone().isoformat(timespec="microseconds"),
+    }
+    atomic_json(receipt_dir / f"rejected-{time.time_ns()}-{to}.json", receipt)
+
+
 def atomic_json(path: Path, value: dict) -> None:
     descriptor, name = tempfile.mkstemp(prefix=path.name + ".", dir=path.parent)
     try:
@@ -75,6 +94,8 @@ def main() -> int:
         return 0
     current_index = PHASES.index(current)
     if current_index + 1 >= len(PHASES) or PHASES[current_index + 1] != args.to:
+        write_rejected_receipt(task_dir, task["id"], current, args.to,
+                               {"error": "NON_ADJACENT_TRANSITION", "from": current, "to": args.to})
         print(json.dumps({"status": "rejected", "error": "NON_ADJACENT_TRANSITION", "from": current, "to": args.to}))
         return 1
     if args.to == "do":
@@ -92,10 +113,14 @@ def main() -> int:
                 else issue
                 for issue in prd_issues
             ]
+            write_rejected_receipt(task_dir, task["id"], current, args.to,
+                                   {"issues": [issue.as_dict() for issue in prd_issues]})
             print(json.dumps({"status": "rejected", "issues": [issue.as_dict() for issue in prd_issues]}, ensure_ascii=False, indent=2))
             return 1
     _, issues = gate_issues(root, task_dir)
     if issues:
+        write_rejected_receipt(task_dir, task["id"], current, args.to,
+                               {"issues": [issue.as_dict() for issue in issues]})
         print(json.dumps({"status": "rejected", "issues": [issue.as_dict() for issue in issues]}, ensure_ascii=False, indent=2))
         return 1
 
@@ -116,6 +141,8 @@ def main() -> int:
 
     validation = schema_issues(root, task, "task.schema.json")
     if validation:
+        write_rejected_receipt(task_dir, task["id"], current, args.to,
+                               {"issues": [issue.as_dict() for issue in validation]})
         print(json.dumps({"status": "rejected", "issues": [issue.as_dict() for issue in validation]}, ensure_ascii=False, indent=2))
         return 1
 
