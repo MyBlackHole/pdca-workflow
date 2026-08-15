@@ -281,3 +281,38 @@ Anthropic 内部经验"Gotchas 是 skill 最高信号内容"——从真实失�
 | 方法 | 测试/回读 | 三层证据/回读矩阵 | 全量合规扫描 + 拒绝留痕 + 异常分类 |
 | 结论形态 | supported / partial-progressed | 效果闭环推进 | 门禁有效性确立（覆盖 8 成 + 拦截留痕） |
 | 价值 | 质量底线 → 确定性 | 闭环证据 | 流程可信度的元验证 |
+
+## 第七轮：门禁合规存量修复（T0271）
+
+### 机制十三：存量修复执行与豁免原则（scripts/remediate-gate-compliance.py）
+
+把"审计发现问题"变成"可安全执行的修复"：
+
+- `--dry-run` 预览修复计划（补 verdict/豁免/删副本/移残留）不实际改动；`--apply` 执行且幂等（重跑全部 skip）。
+- **补 verdict 有据**：只从 conclusion.md 的 Verdict 段提取（verdict_id/outcome/at 齐全）回填，禁止编造。
+- **豁免如实不伪造**：无历史依据的缺失（record=None、缺 receipts、机制前记录不全）标记 `meta.gate_exemption` 并写 reason，audit 单列"豁免清单"，不伪装成"已合规"。
+- 执行发现：补 verdict 后 audit 复查又暴露 final_confirmation/act-to-archive 缺失（mechanism 上线前的记录不全），按同一豁免原则扩展处理——**审计→修复→再审计的闭环会暴露第一轮修复的残留**。
+
+### 修复后效果（可量化）
+
+| 指标 | 修复前 | 修复后 |
+|---|---|---|
+| gate_incomplete | 6 | 0 |
+| archive_dup | 2 | 0 |
+| active_stale | 2 | 0 |
+| 拒绝留痕 receipts | 0 | 2（T0270/T0271 计划阶段被拒真实写入） |
+
+### 修复方法论教训
+
+- **删除残留前必须 diff 验证**（active 残留与 archive 无差异才安全移除），且要注意被删目录内 triager-brief 会改变历史基线（93→92 brief，测试基线须同步更新）。
+- **clas.jsonl/证据登记与过渡校验的关系**：register-evidence 的 kind 必须与 transition 校验一致（convergence-map 须 kind=convergence-map 而非 data）；--replace 无法换同名文件，手动同步 manifest size/digest 是可行修复。
+- **修复即再审计**：每轮修复都要重新跑审计脚本对照前后，第一轮修复未消除的全部暴露出来。
+
+## 方法论演进（T0265 → T0271）
+
+| 维度 | T0265-T0267 | T0268-T0269 | T0270（审计） | T0271（修复） |
+|---|---|---|---|---|
+| 证明对象 | 机制存在/采用/兑现 | 效果闭环 | 门禁执行与拦截可审计 | **存量缺陷清零且不伪造** |
+| 方法 | 测试/回读 | 三层证据/回读矩阵 | 全量扫描+拒绝留痕+分类 | 有据回填+如实豁免+再审计闭环 |
+| 结论形态 | supported / partial-progressed | 闭环推进 | 门禁有效性确立 | 合规态修复（gate_incomplete 0） |
+| 价值 | 质量底线 → 确定性 | 闭环证据 | 流程可信度元验证 | 从"可发现"到"可治愈" |
