@@ -1,0 +1,42 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0267",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "skill 结构契约检查器全量 39 正式 skills 无 error（name/description/体积/引用深度/gotchas 契约）",
+      "全量 39 skills 各含非空 gotchas 段（## 已知坑 / ## Gotchas 双语段名）",
+      "核心 9 个 skill 的 gotchas 段从历史任务真实失败点提取且来源引用抽检存在",
+      "新增 18 测试全绿（test_skill_structure + test_gotchas_contract），既有 4 失败非回归"
+    ],
+    "created_at": "2026-08-15T08:00:06+08:00",
+    "phase": "archive",
+    "record": "T0267-0815-skills-structure-gotchas",
+    "scenario_type": "development",
+    "completed_at": "2026-08-15T08:19:13+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "All AC-1..AC-7 satisfied: skill structure contract checker (full 39 official skills, 0 errors; violation fixtures rejected with rc=1), all 39 skills have non-empty gotchas sections, core 9 gotchas from real historical failure points with source audit passing; 18 new tests green; full suite 233 passed / 4 pre-existing failures / 13 subtests; convergence valid",
+      "verdict_id": "T0267-vd-001",
+      "at": "2026-08-15T08:20:31.336636+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "两个可证明增量落地并验证：skill 结构契约检查器（全量 39 无 error + 违规 fixture 拒绝）与 Gotchas 段机制（全量强制 + 核心 9 真实失败点溯源）；触发词/完成准则软警告升级、其余 skill gotchas 溯源化、接入门禁链留作扩展",
+      "at": "2026-08-15T08:21:26.820510+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0815-skills-structure-gotchas",
+  "states": {
+    "created": "2026-08-15T08:00:06+08:00",
+    "plan": "2026-08-15T08:00:06+08:00",
+    "do": "2026-08-15T08:04:39+08:00",
+    "check": "2026-08-15T08:19:13+08:00",
+    "act": "2026-08-15T08:20:31+08:00",
+    "archive": "2026-08-15T08:21:27+08:00"
+  },
+  "status": "Completed",
+  "title": "skill 结构契约检查器 + Gotchas 段机制（第三轮：Anthropic 官方 + pedronauck 借鉴）"
+}

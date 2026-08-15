@@ -1,0 +1,52 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "skill 结构契约检查器全量 39 正式 skills 无 error（name/description/体积/引用深度/gotchas 契约）",
+      "criteria": [
+        "AC-1",
+        "AC-2",
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ac1-check-structure-script",
+        "ac2-fixture-rejection",
+        "ac3-all-pass-contract",
+        "ac3-structure-report"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "全量 39 skills 各含非空 gotchas 段（## 已知坑 / ## Gotchas 双语段名）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ac4-all-gotchas"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "核心 9 个 skill 的 gotchas 段从历史任务真实失败点提取且来源引用抽检存在",
+      "criteria": [
+        "AC-5",
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ac5-core-references",
+        "ac6-source-audit"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "新增 18 测试全绿（test_skill_structure + test_gotchas_contract），既有 4 失败非回归",
+      "criteria": [
+        "AC-7"
+      ],
+      "evidence_ids": [
+        "ac7-full-suite-green"
+      ]
+    }
+  ]
+}

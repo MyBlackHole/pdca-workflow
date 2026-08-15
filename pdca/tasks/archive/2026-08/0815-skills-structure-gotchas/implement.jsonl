@@ -1,0 +1,2 @@
+{"file": "knowledge/workflow/skill-invocation-convention.md", "reason": "frontmatter 契约先例（invocation 字段解析），检查器复用 YAML 解析模式", "action": "read", "at": "2026-08-15T08:04:14.307+08:00"}
+{"file": "knowledge/pdca-workflow/provable-skill-increments.md", "reason": "方法论沉淀模板，Do 完成后追加第三轮机制（检查器 + gotchas）", "action": "read+append", "at": "2026-08-15T08:04:14.307+08:00"}
