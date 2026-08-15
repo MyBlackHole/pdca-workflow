@@ -113,3 +113,8 @@ design-it-twice 是设计阶段（Do E 路径前的方案生成），code-review
 - 产出一个以上候选方案 + 对比 + 明确推荐
 - 产出文档通过词汇契约校验（`vocab_ok: true`）
 - 决策记录到 task 目录与 ADR（如不可逆）
+
+## 已知坑
+
+- 修改/新增 skill 后 `SKILLS-INDEX.md` 会过期，`test_generated_index_is_current` 捕获——用 `generate-skills-index.py` 重新生成（T0266 唯一真实回归）。
+- DEEPENING 深化模块时，深化接口落地后浅模块旧单测变废物，须删除而非保留。

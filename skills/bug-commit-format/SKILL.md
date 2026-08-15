@@ -31,3 +31,7 @@ description: Use when fixing bugs and committing changes — commit messages mus
 - 标题 ≤72 字符，动词开头（fix/修复）
 - 根因 ≠ 现象，必须追到代码层面
 - 影响范围必须有具体模块名
+
+## 已知坑
+
+- commit 信息必须含 bug 描述、根因、解决方案、影响范围与性能影响；缺根因说明的提交会被驳回。

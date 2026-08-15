@@ -44,3 +44,9 @@ bash "$PDCA_HOME/scripts/rollback-phase.sh" <task-dir>
 - `task.json` 满足严格 schema。
 - `states.<target>`、status、active 与目标 phase 一致。
 - `transition-receipts/<from>-to-<target>.json` 存在。
+
+## 已知坑
+
+- check_confirmation 必须带 `response` 字段，缺 response 会被 transition 拒绝（T0265 教训）。
+- PRD `## 验收标准` 必须是 `- [ ] AC-x: ...` checkbox 格式；`### AC-x` 标题式会被拒。
+- development/bugfix 场景 PRD 必须含 `### 声明的测试接缝` 子节，缺失即拒绝。

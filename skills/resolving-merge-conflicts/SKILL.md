@@ -59,3 +59,8 @@ git diff --check          # 无残留冲突标记
 3. 不发明新行为。
 4. 解析后**必须**跑 typecheck/tests/format 并修复破坏。
 5. 不确定的 hunk 标注 `// TODO: resolve — <file>:<line>` 留给人工，不静默猜测。
+
+## 已知坑
+
+- `git merge` 出现冲突时返回码 1 是**正常状态**，不是错误：测试脚本需 `git_allow_failure()` 接受，否则误判失败（T0266）。
+- 测试 fixture 若用 setUpClass 共享 git 仓库会被测试间污染（单跑过、全跑挂）——每个测试用独立临时仓库（T0266）。

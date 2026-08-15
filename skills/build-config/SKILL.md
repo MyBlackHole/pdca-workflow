@@ -45,3 +45,7 @@ xmake test
 | C/C++ (Clang) | `-fsanitize=address,undefined` |
 | Rust | 默认安全（unsafe 例外） |
 | Go | 默认 W^X |
+
+## 已知坑
+
+- 依赖版本勿随意跳大版本；构建系统切换须保持全仓一致，混用会引入不可复现构建。

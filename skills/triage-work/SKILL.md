@@ -117,3 +117,8 @@ python3 "$PDCA_HOME/scripts/out-of-scope-manager.py" add \
 ## Exit
 - `ready-to-plan` → Plan phase
 - `wontfix` → archive, no further action
+
+## 已知坑
+
+- 曾经只写 `<slug>.md` 不做概念级聚合，导致同一概念重复文件、dedup 失效——务必聚合到 `knowledge/out-of-scope/<concept>.md`（T0266）。
+- "已实现"的拒绝禁止写入 out-of-scope：会污染 dedup 造成假拒绝；关闭评论应指向功能已存在位置（T0266）。

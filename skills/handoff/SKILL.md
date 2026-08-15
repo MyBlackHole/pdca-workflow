@@ -5,3 +5,7 @@ invocation: manual
 ---
 
 Run `$PDCA_HOME/skills/handoff-work/SKILL.md`.
+
+## 已知坑
+
+- 压缩对话勿丢关键决策与未竟事项；交接文档须 redact 敏感信息。

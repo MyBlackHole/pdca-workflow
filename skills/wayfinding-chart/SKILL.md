@@ -52,3 +52,7 @@ open | in-progress | resolved
 
 ### 5. 并行执行 Research 票
 `agent.spawn` 可用时通过当前环境 Adapter 并行解决 research 票；不可用时由主 session 按风险优先级顺序执行。
+
+## 已知坑
+
+- 由 wayfinder 委托加载，勿在 flow 中直接触发；绕过委托会破坏调用契约。

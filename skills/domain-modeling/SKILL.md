@@ -7,3 +7,7 @@ invocation: manual
 ---
 
 Run `$PDCA_HOME/skills/domain-modeling-work/SKILL.md`.
+
+## 已知坑
+
+- 共享语言勿造生僻自造词；每个术语须有明确定义，模糊术语立即更新 CONTEXT.md。

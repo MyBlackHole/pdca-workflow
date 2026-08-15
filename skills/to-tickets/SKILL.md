@@ -87,3 +87,8 @@ Read the doctor result for the abstract `agent.spawn` capability. When available
 - After all subagents complete, merge evidence back to parent task's evidence/
 - Never dispatch before the parent P6 final confirmation
 - Never guess or call a platform-specific tool when `agent.spawn` is unavailable
+
+## 已知坑
+
+- 子任务在父 P6 final_confirmation 前**禁止调度**（T0265）。
+- `agent.spawn` 不可用时不猜平台工具，由主 session 顺序执行。

@@ -23,3 +23,7 @@ description: Use when setting up a project for Chinese-speaking developers, or w
 - [ ] 代码注释引用 `code-comments` 或使用 `// 备注:` 前缀
 - [ ] 保留代码中原始英文注释
 - [ ] locale 和时区设置为中国标准
+
+## 已知坑
+
+- 全中文环境勿在文档/注释/提交中混入未定义的英文术语；命名与术语表保持一致。

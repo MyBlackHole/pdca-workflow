@@ -51,3 +51,7 @@ python3 "$PDCA_HOME/scripts/validate-convergence.py" --task-dir <task-dir>
 证据内容是否足以支持结论。
 
 完成条件：命令返回 `valid: true`，且 Do→Check 阶段转换通过同一核心门禁。
+
+## 已知坑
+
+- convergence 文本必须与 task.json `meta.convergence` 逐字一致（CONVERGENCE_TEXT_MISMATCH）；convergence-map 不能作为自身证据。

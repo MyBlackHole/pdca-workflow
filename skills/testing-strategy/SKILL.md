@@ -49,3 +49,7 @@ description: Use when designing test plans, deciding what/how to test, choosing 
 - 测试依赖实现细节（过度 Mock）
 - 测试共享可变状态导致顺序依赖
 - 断言模糊（用 `==` 而非 `inDelta`/`contains`）
+
+## 已知坑
+
+- 测试框架/范围选择须看既有先例与仓库约定，勿为凑数写无效或无断言的测试。

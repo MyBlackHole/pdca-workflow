@@ -18,3 +18,7 @@ description: Investigate a question against high-trust primary sources and captu
 ## Exit
 
 Findings written to research-report.md and registered as evidence.
+
+## 已知坑
+
+- 只采信高信任 primary source；二手转述/低信源结论须标注置信度，勿当作事实。

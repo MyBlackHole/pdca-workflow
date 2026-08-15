@@ -9,7 +9,7 @@
 | flow | `flow-do` | `automatic` | [flows/flow-do/SKILL.md](flows/flow-do/SKILL.md) | 执行阶段执行流。根据 meta.scenario_type 选择执行路径。 覆盖 development（编码）、bugfix（诊断修复）、research（调研）、 documentation（文档）、design（设计）、review（审查）六种场景。 |
 | flow | `flow-plan` | `automatic` | [flows/flow-plan/SKILL.md](flows/flow-plan/SKILL.md) | 计划阶段执行流：triage、逐轮对齐、PRD、任务拆解、知识注入和唯一终审门禁。 |
 | skill | `advance-phase` | `automatic` | [skills/advance-phase/SKILL.md](skills/advance-phase/SKILL.md) | 通过严格 schema、语义门禁和原子 receipt 将任务推进到相邻 PDCA 阶段。 |
-| skill | `ask-matt` | `manual` | [skills/ask-matt/SKILL.md](skills/ask-matt/SKILL.md) | 根据你的描述，推荐合适的 PDCA 入口。初次使用或不确定从哪开始时，从这里入手。 |
+| skill | `ask-matt` | `manual` | [skills/ask-matt/SKILL.md](skills/ask-matt/SKILL.md) | 根据用户描述推荐合适的 PDCA 入口。初次使用或不确定从哪开始时，从这里入手。 |
 | skill | `bug-analysis` | `automatic` | [skills/bug-analysis/SKILL.md](skills/bug-analysis/SKILL.md) | 用于缺陷、异常和回归问题的根因分析；先收集证据，再区分假设、实验和过程原因。 |
 | skill | `bug-commit-format` | `automatic` | [skills/bug-commit-format/SKILL.md](skills/bug-commit-format/SKILL.md) | Use when fixing bugs and committing changes — commit messages must include bug description, root cause, solution, impact scope, and performance impact |
 | skill | `build-config` | `automatic` | [skills/build-config/SKILL.md](skills/build-config/SKILL.md) | Use when setting up build configuration for new projects, adding/managing dependencies, or switching between C/C++/Rust/Go/Python build systems |

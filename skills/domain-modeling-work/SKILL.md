@@ -78,3 +78,7 @@ Grill 是提问引擎，domain-modeling-work 是知识沉淀层。
 每个 grill session 结束后应当报告：
 - 新增/更新了哪些术语
 - 是否记录了新的 ADR
+
+## 已知坑
+
+- 术语变更须同步 `pdca/CONTEXT.md`；架构级硬决策须同步 `docs/adr/`，只改 skill 不落记录会导致漂移。

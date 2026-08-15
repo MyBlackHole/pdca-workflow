@@ -35,3 +35,7 @@ Ticket 类型：
 
 - **已有地图**（`$PDCA_HOME/pdca/tasks/wayfinder-*/MAP.md` 存在）→ 加载 `$PDCA_HOME/skills/wayfinding-work/SKILL.md`
 - **无地图** → 加载 `$PDCA_HOME/skills/wayfinding-chart/SKILL.md` 绘制新地图
+
+## 已知坑
+
+- 拆解粒度以"多 session 可推进"为界，勿过度拆解成碎片化决策票。

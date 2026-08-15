@@ -30,3 +30,7 @@ description: Use when conducting code reviews, reviewing pull requests, or perfo
 - [ ] 编译通过，测试通过
 - [ ] 无 TODO/FIXME/调试代码
 - [ ] 无硬编码密钥/敏感信息
+
+## 已知坑
+
+- checklist 必须逐项过并给出依据；跳过或"通过"无依据的审查无价值。

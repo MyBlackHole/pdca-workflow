@@ -56,3 +56,7 @@ Add for cross-cutting concerns: concurrency model, error propagation, data lifec
 ## Verification
 
 After editing, re-read the file to confirm all original English comments are preserved word-for-word. Zero code modified.
+
+## 已知坑
+
+- 中文注释解释 **why** 而非翻译 what；给显而易见的代码加注释是噪音。

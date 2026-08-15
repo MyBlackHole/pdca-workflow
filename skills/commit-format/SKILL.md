@@ -81,3 +81,7 @@ feat(auth): 添加 OAuth 登录支持
 
 BREAKING CHANGE: `POST /auth/login` 改为 `POST /api/v1/auth/login`
 ```
+
+## 已知坑
+
+- 提交前检查 `git status`/`git diff`，只 stage 预期文件，勿提交 secrets；仓库 hook 拒绝时修复后新提交而非 amend 失败提交。

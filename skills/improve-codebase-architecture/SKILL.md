@@ -75,3 +75,7 @@ python3 "$PDCA_HOME/scripts/register-evidence.py" \
 - [ ] 报告已生成并含 Metrics 区（候选数、Strong/Worth/Speculative、Top 推荐）
 - [ ] 指标已登记 evidence
 - [ ] 选定候选已走完 grilling/design-it-twice 设计树
+
+## 已知坑
+
+- 审查先按近 30 天 git 变更热点聚焦扫描范围，勿全仓摊大饼；范围过大会稀释结论。

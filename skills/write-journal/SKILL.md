@@ -31,3 +31,8 @@ Append a lightweight entry to `$PDCA_HOME/pdca/journal/YYYY-MM-DD.md`（不存�
 - 已有当日日志 → 追加到末尾
 - 无当日日志 → 创建文件，以 `# YYYY-MM-DD` 开头
 - 不要覆盖之前的内容
+
+## 已知坑
+
+- 已有当日日志必须**追加**到末尾，不得覆盖历史内容（T0264）。
+- 无当日日志时创建文件须以 `# YYYY-MM-DD` 开头。

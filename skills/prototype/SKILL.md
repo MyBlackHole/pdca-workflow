@@ -22,3 +22,7 @@ Build throwaway code that answers a single question, then capture the answer.
 ## Exit
 
 Question answered and validated decisions folded into real code. Prototype committed to a throwaway branch.
+
+## 已知坑
+
+- throwaway 原型回答完设计问题即弃，勿演化为生产代码——它未经过生产级审查。

@@ -29,3 +29,7 @@ description: Use when implementing new features and committing changes — commi
 - 标题 ≤72 字符，动词开头（feat/添加/实现）
 - 实现方案需说明关键设计决策及替代方案
 - 影响范围列出新增和修改的主要模块
+
+## 已知坑
+
+- commit 信息须含需求描述、背景、实现、影响范围与测试验证；缺验证说明的新功能提交会被驳回。

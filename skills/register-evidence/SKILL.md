@@ -33,3 +33,9 @@ an explicit failure; Do→Check 不接受仅在结论中解释的未覆盖 AC。
 After substantive evidence is registered, use `verify-convergence` to create and
 register the fixed `convergence-map` control artifact. A convergence map is
 excluded from acceptance coverage and cannot count as evidence for itself.
+
+## 已知坑
+
+- `--file` 必须唯一文件名：同源多证据用 id 前缀（如 ac2-triage-work-SKILL.md），重复文件名会被拒绝（T0266）。
+- convergence-map 文本必须与 task.json `meta.convergence` **逐字一致**，否则报 CONVERGENCE_TEXT_MISMATCH；用 `--replace` + 新 id 修正（T0266）。
+- `--source` 必须实际存在的文件路径，不存在即失败。

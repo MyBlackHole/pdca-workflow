@@ -35,3 +35,7 @@ description: Use when reviewing code for security vulnerabilities, implementing 
 - 敏感信息不在日志中输出（密码、token、密钥）
 - 认证与会话: JWT 签名验证、CSRF 保护、httpOnly Cookie
 - 密钥管理: 环境变量或密钥管理服务，禁止硬编码
+
+## 已知坑
+
+- 审查勿只盯注入类漏洞；低置信的"疑似"问题勿当作已证实漏洞上报（误报破坏信任）。

@@ -70,3 +70,7 @@ Write regression test at the correct seam (one that exercises the real bug patte
 ## Exit
 
 Bug fixed, regression test added, hypothesis recorded.
+
+## 已知坑
+
+- 先复现再修复；无复现条件下乱改代码会引入回归且无法验证。

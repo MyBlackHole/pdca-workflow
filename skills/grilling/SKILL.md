@@ -64,3 +64,7 @@ Each round, the answers reshape the tree — settled decisions push the frontier
 
 Fuzzy terms → update `$PDCA_HOME/pdca/CONTEXT.md` immediately.
 Irreversible decisions → create ADR in `$PDCA_HOME/docs/adr/`.
+
+## 已知坑
+
+- 每轮批量询问当前可答的所有决策问题并附推荐；勿单轮纠缠单个问题拖慢收敛。

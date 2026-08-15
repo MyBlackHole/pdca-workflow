@@ -33,3 +33,8 @@ Then record verdict in `task.json` `meta.verdict`:
 ```
 
 Completion criterion: conclusion.md exists and verdict is recorded.
+
+## 已知坑
+
+- conclusion.md 必须给出 verdict（verdict_id/outcome/reason/at 四字段）与逐条 AC 判定；缺 verdict 或含糊判定会导致 Check 无法通过（T0265）。
+- 结论中不得仅解释未覆盖的 AC——每个 AC 须有证据或显式失败。

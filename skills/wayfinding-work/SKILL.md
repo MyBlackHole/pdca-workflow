@@ -48,3 +48,8 @@ python3 "$PDCA_HOME/scripts/check-ticket-claims.py" resolve --ticket TK-1 --by s
 - claim → resolve 的单票完成时间可归因到 session（可证明指标）。
 
 **规则**：每 session 只解决一张票（research 除外可并行）。地图清空后，最终输出进入正常 PDCA Plan → Do → Check → Act。
+
+## 已知坑
+
+- 两 session 同时 claim 同一票时后者被拒（冲突检测）；勿重复认领在途票（T0265）。
+- `tickets/claims.jsonl` 是唯一状态源；绕过 claim 直接改票文件会被并发状态机覆盖。
