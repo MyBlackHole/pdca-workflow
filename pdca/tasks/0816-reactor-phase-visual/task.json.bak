@@ -10,7 +10,7 @@
       "两份图文版分别登记为 T0295/T0296 evidence 新版本并建立收敛支撑链"
     ],
     "created_at": "2026-08-16T08:45:10+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T0297-0816-reactor-phase-visual",
     "scenario_type": "documentation",
     "completed_at": "2026-08-16T08:55:25+08:00",
@@ -19,12 +19,17 @@
       "reason": "两份图文版(16图全通过mmdc验证/每图≤20行/中文标签/图例)产出并登记为T0295/T0296 evidence新版本；附录A补充方法论完整度；收敛验证valid:true",
       "verdict_id": "T0297-V001",
       "at": "2026-08-16T08:59:32+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "沉淀报告图形化改造方法论到 knowledge/reporting/report-graphical-transformation.md（Mermaid规范/渲染验证/事实核验/登记安排），已登记 manifest；两份图文版作为 T0295/T0296 evidence 新版本归档",
+      "at": "2026-08-16T09:02:00+08:00"
     }
   },
   "parent": null,
   "slug": "0816-reactor-phase-visual",
   "states": {
-    "act": null,
+    "act": "2026-08-16T09:00:38+08:00",
     "archive": null,
     "check": "2026-08-16T08:55:25+08:00",
     "created": "2026-08-16T08:45:10+08:00",
