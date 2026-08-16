@@ -8,7 +8,7 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-16T10:03:49+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T0299-0816-transport-ownership",
     "scenario_type": "research",
     "completed_at": "2026-08-16T10:24:13+08:00",
@@ -17,12 +17,17 @@
       "reason": "两容器+一抽象+一契约所有权模型结论成立，7条AC全过，6处源码锚点补充核验一致",
       "verdict_id": "T0299-confirmed-20260816",
       "at": "2026-08-16T10:27:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "结论 confirmed，已沉淀 transport-ownership-model.md 到 knowledge/linux-epoll-eventloop/，报告+审查+风险清单存档于 records",
+      "at": "2026-08-16T10:34:00+08:00"
     }
   },
   "parent": null,
   "slug": "0816-transport-ownership",
   "states": {
-    "act": null,
+    "act": "2026-08-16T10:31:05+08:00",
     "archive": null,
     "check": "2026-08-16T10:24:13+08:00",
     "created": "2026-08-16T10:03:49+08:00",

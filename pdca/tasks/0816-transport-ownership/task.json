@@ -3,12 +3,12 @@
   "dependencies": [],
   "id": "T0299",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-16T10:03:49+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T0299-0816-transport-ownership",
     "scenario_type": "research",
     "completed_at": "2026-08-16T10:24:13+08:00",
@@ -28,7 +28,7 @@
   "slug": "0816-transport-ownership",
   "states": {
     "act": "2026-08-16T10:31:05+08:00",
-    "archive": null,
+    "archive": "2026-08-16T10:45:54+08:00",
     "check": "2026-08-16T10:24:13+08:00",
     "created": "2026-08-16T10:03:49+08:00",
     "do": "2026-08-16T10:09:00+08:00",
