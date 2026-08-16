@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0299",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "clarifications.jsonl[7]/",
+      "message": "'summary' is a required property"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "clarifications.jsonl[7]/",
+      "message": "'response' is a required property"
+    }
+  ],
+  "at": "2026-08-16T10:30:50.352673+08:00"
+}

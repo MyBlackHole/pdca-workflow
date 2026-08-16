@@ -1,0 +1,11 @@
+{"at":"2026-08-16T10:03:49+08:00","source":"task_identity","summary":"created with record identity T0299-0816-transport-ownership"}
+{"source":"grilling","question":"T0299 传输所有权设计分析的方向与范围是否确认？","response":"补充信息","note":"用户要求补充信息后再确认","at":"2026-08-16T10:10:00+08:00"}
+{"source":"grilling","question":"补充信息后是否足以确认 T0299 方向？","response":"图示优先","note":"用户要求报告以图示(Mermaid)为核心载体，类似 T0296/T0297 图形化处理","at":"2026-08-16T10:13:00+08:00"}
+{"source":"final_confirmation","summary":"T0299 传输所有权设计分析终审通过：图示优先方案，7 条验收标准","response":"confirmed","at":"2026-08-16T10:08:49+08:00"}
+{"source":"grilling","round":1,"question":"T0299 结论可靠性 Grill 是否批准全部通过？","answer":"需补充核验","recommended":"全部通过","at":"2026-08-16T10:25:00+08:00"}
+{"source":"grilling","round":1,"question":"Ch4 结论文档内容是否确认？","answer":"确认结论文档内容","recommended":"确认结论文档内容","at":"2026-08-16T10:25:00+08:00"}
+{"source":"grilling","round":2,"question":"补充核验结果确认","answer":"6 处源码锚点复核全部一致（plain fd/source、TLS fd/ssl+require_owner、EXEC handoff 序列、work pool 回穿、TLS make_lane_transport、TLS EXEC transport=&s->transport）","recommended":"确认通过","at":"2026-08-16T10:26:00+08:00"}
+{"source":"check_confirmation","summary":"T0299 传输所有权设计分析结论判定 confirmed：7条AC全过，补充核验一致","response":"confirmed","at":"2026-08-16T10:30:46+08:00"}
+{"source":"grilling","round":3,"question":"所有权模型两容器+一抽象+一契约可提炼为可复用知识吗？","answer":"沉淀所有权模型","recommended":"沉淀所有权模型","at":"2026-08-16T10:32:00+08:00"}
+{"source":"grilling","round":3,"question":"流程上有改进吗（evidence 源文件位置冲突、check_confirmation 字段缺失）？","answer":"记录惯例","recommended":"记录惯例","at":"2026-08-16T10:32:00+08:00"}
+{"source":"knowledge_decision","action":"wrote","reason":"两容器+一抽象+一契约所有权模型是跨项目可复用的并发安全传输所有权方法论","at":"2026-08-16T10:33:00+08:00"}

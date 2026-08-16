@@ -1,0 +1,17 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "task identity is unique and immutable",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["ac-report-transport-ownership"]
+    },
+    {
+      "index": 1,
+      "text": "task identity is unique and immutable",
+      "criteria": ["AC-2", "AC-3", "AC-4", "AC-5", "AC-6", "AC-7"],
+      "evidence_ids": ["ac-c2-review"]
+    }
+  ]
+}
