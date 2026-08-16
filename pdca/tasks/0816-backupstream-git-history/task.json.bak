@@ -11,7 +11,7 @@
       "v91无独立提交的事实说明"
     ],
     "created_at": "2026-08-16T07:53:14+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T0295-0816-backupstream-git-history",
     "scenario_type": "research",
     "completed_at": "2026-08-16T08:08:39+08:00",
@@ -20,12 +20,17 @@
       "reason": "36提交逐一覆盖(AC-1)、三要素齐全(AC-2)、4条演进主线+全景图(AC-3/AC-4)、v91无提交已说明(AC-5)、git diff为事实来源并发现文档-代码漂移(AC-6)；grill修正后重登记v3证据，convergence验证valid:true",
       "verdict_id": "T0295-check-v1",
       "at": "2026-08-16T08:16:01+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "四类可复用架构模式已沉淀到 knowledge/linux-epoll-eventloop/backupstream-v65-v101-arch-evolution.md，记录报告本身为归档依据",
+      "at": "2026-08-16T08:21:30+08:00"
     }
   },
   "parent": null,
   "slug": "0816-backupstream-git-history",
   "states": {
-    "act": null,
+    "act": "2026-08-16T08:19:18+08:00",
     "archive": null,
     "check": "2026-08-16T08:08:39+08:00",
     "created": "2026-08-16T07:53:14+08:00",
