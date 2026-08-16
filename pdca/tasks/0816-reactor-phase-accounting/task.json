@@ -3,7 +3,7 @@
   "dependencies": [],
   "id": "T0296",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "覆盖 v101 相位会计完整链路(reactor实现/agent_observability采集/backup_observe diagnose消费)",
       "守恒不变量 callback+phase+residual==wait 的推导与会计域不相交语义",
@@ -11,7 +11,7 @@
       "改进建议清单(含位置与理由)与文档-实现一致性核验"
     ],
     "created_at": "2026-08-16T08:28:46+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T0296-0816-reactor-phase-accounting",
     "scenario_type": "research",
     "completed_at": "2026-08-16T08:35:48+08:00",
@@ -31,7 +31,7 @@
   "slug": "0816-reactor-phase-accounting",
   "states": {
     "act": "2026-08-16T08:41:42+08:00",
-    "archive": null,
+    "archive": "2026-08-16T08:43:23+08:00",
     "check": "2026-08-16T08:35:48+08:00",
     "created": "2026-08-16T08:28:46+08:00",
     "do": "2026-08-16T08:31:27+08:00",

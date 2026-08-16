@@ -11,7 +11,7 @@
       "改进建议清单(含位置与理由)与文档-实现一致性核验"
     ],
     "created_at": "2026-08-16T08:28:46+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T0296-0816-reactor-phase-accounting",
     "scenario_type": "research",
     "completed_at": "2026-08-16T08:35:48+08:00",
@@ -20,12 +20,17 @@
       "reason": "6条AC全部满足：完整链路剖析(AC-1/AC-2)、守恒推导+会计域不相交(AC-3)、方法论提炼(AC-4)、改进建议5条(AC-5)、文档-实现一致性核验9项一致(AC-6)；grill补充producer端深入与架构图后重登记v3，收敛映射v3 valid:true",
       "verdict_id": "T0296-check-v1",
       "at": "2026-08-16T08:41:25+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "事件循环时间守恒分解方法论已沉淀到 knowledge/linux-epoll-eventloop/event-loop-time-conservation.md，记录报告本身为归档依据",
+      "at": "2026-08-16T08:42:30+08:00"
     }
   },
   "parent": null,
   "slug": "0816-reactor-phase-accounting",
   "states": {
-    "act": null,
+    "act": "2026-08-16T08:41:42+08:00",
     "archive": null,
     "check": "2026-08-16T08:35:48+08:00",
     "created": "2026-08-16T08:28:46+08:00",
