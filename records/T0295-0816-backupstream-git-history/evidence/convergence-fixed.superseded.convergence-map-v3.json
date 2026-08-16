@@ -1,0 +1,29 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "36个提交(v65-v101)逐一分析，每节含修改内容/修改作用/架构变更三要素",
+      "criteria": ["AC-1", "AC-2"],
+      "evidence_ids": ["git-history-learning-v2"]
+    },
+    {
+      "index": 2,
+      "text": "v65→v101整体架构演进主线汇总(目录队列→dirty journal→Reactor迁移→observability)",
+      "criteria": ["AC-3", "AC-4"],
+      "evidence_ids": ["git-history-learning-v2"]
+    },
+    {
+      "index": 3,
+      "text": "以git diff为事实来源、ROUND文档为背景补充",
+      "criteria": ["AC-6"],
+      "evidence_ids": ["git-history-learning-v2"]
+    },
+    {
+      "index": 4,
+      "text": "v91无独立提交的事实说明",
+      "criteria": ["AC-5"],
+      "evidence_ids": ["git-history-learning-v2"]
+    }
+  ]
+}

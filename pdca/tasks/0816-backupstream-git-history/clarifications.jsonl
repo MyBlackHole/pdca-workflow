@@ -1,0 +1,11 @@
+{"at":"2026-08-16T07:53:14+08:00","source":"task_identity","summary":"created with record identity T0295-0816-backupstream-git-history"}
+{"round":1,"question":"Q1 学习产出位置","answer":"PDCA 记录目录","recommended":"A: 项目 docs/ + PDCA records 双写","source":"grilling","at":"2026-08-16T07:55:00+08:00"}
+{"round":1,"question":"Q2 分析粒度与深度","answer":"全部 36 个提交逐一分析","recommended":"A: 全部 36 个逐一分析（工作量大但最完整）","source":"grilling","at":"2026-08-16T07:55:00+08:00"}
+{"round":1,"question":"Q3 参考来源","answer":"git diff 为主 + ROUND 文档为辅","recommended":"A: git diff 为事实来源，ROUND 文档补充设计意图与背景","source":"grilling","at":"2026-08-16T07:55:00+08:00"}
+{"source": "direction_confirm", "summary": "学习报告存放 PDCA records；全部36提交逐一分析；git diff为主、ROUND文档为辅", "response": "confirmed", "at": "2026-08-16T07:55:00+08:00"}
+{"source": "final_confirmation", "summary": "学习报告存 PDCA records；36提交逐一分析三要素；git diff为主ROUND为辅；含演进主线汇总；6条AC", "response": "confirmed", "at": "2026-08-16T07:54:20+08:00"}
+{"source":"check_confirmation","summary":"Ch4结论经用户确认(verdict=confirmed)。Ch2 grill：报告方法/可靠性评估=需修正，结论适用范围=限当前版本。修正内容已落地为报告v3：核对diff准确性发现ROUND文档声称删除的模块(agent_tree_legacy/agent_plain_control/agent_session_pool)物理文件仍保留为死代码(git无删除记录、仅移除编译接线)；补充演进全景ASCII时间线、文档-代码漂移观察表、v70/v86/v87/v88/v101关键版本函数级源码证据；主线结论新增第7条dead-code化原则。报告重登记为git-history-learning-v3(48363B)，收敛映射convergence-map-v3，validate-convergence返回valid:true。","response":"confirmed","at":"2026-08-16T08:16:01+08:00"}
+{"round": 4, "question": "结论适用范围与限制", "answer": "限当前版本", "recommended": "限当前版本（报告描述v65-v101现状，未来版本需重新核验）", "source": "grilling", "at": "2026-08-16T08:20:18.126807+08:00"}
+{"round": 4, "question": "可复用知识范围", "answer": "四类全部提炼", "recommended": "四类全部提炼（Reactor迁移/dirty journal/观测驱动/架构纪律）", "source": "grilling", "at": "2026-08-16T08:20:18.126807+08:00"}
+{"round": 4, "question": "下次流程改进", "answer": "RSP doc vs git 物理状态需交叉核验", "recommended": "阅读历史时以编译产物为准，diff准确性优先", "source": "grilling", "at": "2026-08-16T08:20:18.126807+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-16T08:20:45.752531+08:00", "action": "wrote", "reason": "四类可复用架构模式(Reactor迁移/dirty journal/观测驱动/架构纪律)经用户确认全部提炼"}

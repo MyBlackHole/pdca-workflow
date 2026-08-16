@@ -131,3 +131,5 @@
   "source_digest": "sha256:593b0350713ac80626717552d21c60dec334933b1e1ced69ec213a35b2a5deef",
   "reason": "共享 work 池非阻塞化 + parked 移交秩序陷阱 + 线程判据口径教训，可复用"
 }
+{"version": 1, "revision": 1, "at": "2026-08-15T18:34:31+08:00", "knowledge": "control-plane-nonblocking-ingress/v81-control-plane-perf-fastpath.md", "knowledge_digest": "sha256:3a79db1fe1444c43472331d86a961f4b39f424f949e8874320238b9ab16a9413", "source_record": "records/T0293-0815-v81-cp-perf/conclusion.md", "source_digest": "sha256:4997bfb6b8089f29b6d20ec4a85ee4884cc6f59f1b70c27beb63043eb2135302", "reason": "控制面非阻塞性能提升可复用"}
+{"version": 1, "revision": 1, "at": "2026-08-16T08:20:45.752531+08:00", "knowledge": "knowledge/linux-epoll-eventloop/backupstream-v65-v101-arch-evolution.md", "knowledge_digest": "sha256:3009bad7f1fcca90c2b0de173e58d029c39d3dbc205ae5cda44b3d019ccbdc94", "source_record": "records/T0295-0816-backupstream-git-history/conclusion.md", "source_digest": "sha256:9587e4b85f95b368f1626cedeea46673c25f0dedd3d68ce987d37ee18060ada2", "reason": "四类架构演进模式跨项目可复用(Reactor/FSM迁移、inotify dirty journal、观测驱动演进、架构纪律)"}

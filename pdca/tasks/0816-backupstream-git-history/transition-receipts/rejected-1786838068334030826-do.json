@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0295",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "CLARIFICATIONS_INVALID",
+      "path": "clarifications.jsonl",
+      "message": "/home/black/Documents/pdca-workflow/pdca/tasks/0816-backupstream-git-history/clarifications.jsonl:5: invalid JSON: Extra data"
+    },
+    {
+      "code": "FINAL_CONFIRMATION_MISSING",
+      "path": "clarifications.jsonl",
+      "message": "confirmed response is required"
+    }
+  ],
+  "at": "2026-08-16T07:54:28.333999+08:00"
+}
