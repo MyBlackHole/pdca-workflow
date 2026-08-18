@@ -24,7 +24,12 @@
       "verdict_id": "verdict-t0250-20260814-confirmed",
       "at": "2026-08-14T18:12:38+08:00"
     },
-    "completed_at": "2026-08-14T17:13:11+08:00"
+    "completed_at": "2026-08-14T17:13:11+08:00",
+    "disposition": {
+      "outcome": "projected",
+      "reason": "结论已沉淀为可复用知识: mysql-innodb-physical-read-notes.md(版本差异矩阵) + t0250-mysql-parquet-physical/ 源码副本(版本特性按文件名标注), 并登记 knowledge/manifest.jsonl; 预期供后续 MySQL/PG 数据文件转换任务直接复用",
+      "at": "2026-08-18T10:10:00+08:00"
+    }
   },
   "states": {
     "created": "2026-08-13T00:00:00+08:00",
