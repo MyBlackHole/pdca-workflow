@@ -1,0 +1,2 @@
+{"path":"knowledge/rpc-rdbcomm/mtls-review-fd-session-boundary.md","reason":"继承 T0310 对 fd/session 边界和 mTLS 数据面的约束。","action":"测试必须验证应用帧走 rpc_io_t，不允许仅验证握手成功。","at":"2026-08-18T14:53:00+08:00"}
+{"path":"knowledge/rpc-rdbcomm/mtls-review-fd-session-boundary.md","reason":"继承 CA-CN 由握手结果决定证书选择的结论。","action":"fixture 按 ca_cn 建目录并设置多个客户端证书，断言选择结果。","at":"2026-08-18T14:53:00+08:00"}

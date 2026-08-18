@@ -1,0 +1,488 @@
+diff --git a/rdbcomm/client.c b/rdbcomm/client.c
+index 03cebcf9..58ac9f5c 100644
+--- a/rdbcomm/client.c
++++ b/rdbcomm/client.c
+@@ -172,6 +172,10 @@ int rdbcomm_connect(struct rdbcomm_conn *conn)
+ 		close(sockfd);
+ 		return -1;
+ 	}
++	if (conn->rcvtimeo && sock_recvtimeout(sockfd, conn->rcvtimeo) != 0) {
++		close(sockfd);
++		return -1;
++	}
+ 
+ 	rpc_hs_session_t hs;
+ 	rpc_hs_result_t hs_result = { 0 };
+diff --git a/rdbcomm/rdbcomm-main.c b/rdbcomm/rdbcomm-main.c
+index d1e33497..7b64ee81 100644
+--- a/rdbcomm/rdbcomm-main.c
++++ b/rdbcomm/rdbcomm-main.c
+@@ -513,6 +513,7 @@ static int args_process(const int argc, char **argv,
+ 
+ int main(int argc, char *argv[])
+ {
++	int time_subcommand = argc > 1 && strcmp(argv[1], "time") == 0;
+ 	options_t opts = {
+ 		.port = 6610,
+ 		.ip = "127.0.0.1",
+@@ -527,12 +528,9 @@ int main(int argc, char *argv[])
+ 		},
+ 	};
+ 
+-	if (args_process(argc, argv, long_options, &opts) != 0) {
+-		return EXIT_FAILURE;
+-	}
+-
+-	if (tls_cert_init_client_from_env() != 0) {
+-		fprintf(stderr, "tls_cert_init_client_from_env failed\n");
++	if (args_process(time_subcommand ? argc - 1 : argc,
++			 time_subcommand ? argv + 1 : argv,
++			 long_options, &opts) != 0) {
+ 		return EXIT_FAILURE;
+ 	}
+ 
+@@ -555,5 +553,16 @@ int main(int argc, char *argv[])
+ 		fprintf(stderr, "invalid method\n");
+ 		return EXIT_FAILURE;
+ 	}
++	if (time_subcommand) {
++		uint64_t timestamp = 0;
++		int ret = rdbcomm_get_time(opts.ip, opts.port, &timestamp);
++		if (ret == 0)
++			printf("%llu\n", (unsigned long long)timestamp);
++		return ret;
++	}
++	if (tls_cert_init_client_from_env() != 0) {
++		fprintf(stderr, "tls_cert_init_client_from_env failed\n");
++		return EXIT_FAILURE;
++	}
+ 	return opts.handler(&opts);
+ }
+diff --git a/rdbcomm/tests/tool_integration.c b/rdbcomm/tests/tool_integration.c
+index 148ace97..b56f794b 100644
+--- a/rdbcomm/tests/tool_integration.c
++++ b/rdbcomm/tests/tool_integration.c
+@@ -1,23 +1,130 @@
+ #define _GNU_SOURCE
+ 
+-#include <arpa/inet.h>
+ #include <assert.h>
+ #include <signal.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+-#include <sys/socket.h>
+ #include <sys/stat.h>
++#include <sys/types.h>
+ #include <sys/wait.h>
+ #include <unistd.h>
+ 
+-static int run_case(const char *root, int tls, int port)
++static int run_command(const char *command)
+ {
+-	char work[160], log[200], server[512], client[512];
+-	char port_s[16];
+-	pid_t pid;
+-	pid_t client_pid;
++	int status = system(command);
++	return status == 0 ? 0 : -1;
++}
++
++static int make_certs(const char *root, const char *tls_keygen)
++{
++	char command[4096];
++	char ca[512], server[512], client_a[512], client_b[512];
++	snprintf(ca, sizeof(ca), "%s/ca", root);
++	snprintf(server, sizeof(server), "%s/server", root);
++	snprintf(client_a, sizeof(client_a), "%s/client-a", root);
++	snprintf(client_b, sizeof(client_b), "%s/client-b", root);
++
++	snprintf(command, sizeof(command), "'%s' ca -n 'Test CA' -o '%s' -f",
++		 tls_keygen, ca);
++	if (run_command(command) != 0)
++		return -1;
++	snprintf(command, sizeof(command), "'%s' create -n Server -o '%s' -f",
++		 tls_keygen, server);
++	if (run_command(command) != 0)
++		return -1;
++	snprintf(command, sizeof(command),
++		 "'%s' sign --purpose server --ca-cert '%s/ca.crt' "
++		 "--ca-key '%s/ca.key' --key '%s/host.key' --csr '%s/host.csr' "
++		 "--out '%s/server.crt' -f",
++		tls_keygen, ca, ca, server, server, server);
++	if (run_command(command) != 0)
++		return -1;
++	snprintf(command, sizeof(command), "'%s' create -n ClientA -o '%s' -f",
++		 tls_keygen, client_a);
++	if (run_command(command) != 0)
++		return -1;
++	snprintf(command, sizeof(command),
++		 "'%s' sign --purpose client --ca-cert '%s/ca.crt' "
++		 "--ca-key '%s/ca.key' --key '%s/host.key' --csr '%s/host.csr' "
++		 "--out '%s/client.crt' -f",
++		tls_keygen, ca, ca, client_a, client_a, client_a);
++	if (run_command(command) != 0)
++		return -1;
++	snprintf(command, sizeof(command), "'%s' create -n ClientB -o '%s' -f",
++		 tls_keygen, client_b);
++	if (run_command(command) != 0)
++		return -1;
++	snprintf(command, sizeof(command),
++		 "'%s' sign --purpose client --ca-cert '%s/ca.crt' "
++		 "--ca-key '%s/ca.key' --key '%s/host.key' --csr '%s/host.csr' "
++		 "--out '%s/client.crt' -f",
++		tls_keygen, ca, ca, client_b, client_b, client_b);
++	return run_command(command);
++}
++
++static int prepare_client_dir(const char *root, const char *cert_root,
++				      const char *client_base)
++{
++	char dir[2048], source[2048], target[2048];
++	snprintf(dir, sizeof(dir), "%s/Test CA", cert_root);
++	if (mkdir(cert_root, 0755) != 0 && access(cert_root, F_OK) != 0)
++		return -1;
++	if (mkdir(dir, 0755) != 0 && access(dir, F_OK) != 0)
++		return -1;
++	snprintf(source, sizeof(source), "%s/client.crt", client_base);
++	snprintf(target, sizeof(target), "%.2000s/host.crt", dir);
++	if (symlink(source, target) != 0)
++		return -1;
++	snprintf(source, sizeof(source), "%s/host.key", client_base);
++	snprintf(target, sizeof(target), "%.2000s/host.key", dir);
++	if (symlink(source, target) != 0)
++		return -1;
++	snprintf(source, sizeof(source), "%s/ca.crt", root);
++	snprintf(target, sizeof(target), "%.2000s/ca.crt", dir);
++	return symlink(source, target) == 0 ? 0 : -1;
++}
++
++static int link_file(const char *source, const char *target)
++{
++	return symlink(source, target) == 0 ? 0 : -1;
++}
++
++static int run_client(const char *client, const char *port, const char *command,
++			      int expect_success, const char *cert_dir,
++			      const char *ciphers, int tls_enabled)
++{
++	pid_t child = fork();
+ 	int status;
++	if (child == 0) {
++		if (cert_dir)
++			setenv("RPC_TLS_CERT_DIR", cert_dir, 1);
++		if (!tls_enabled)
++			setenv("RPC_TLS_ENABLE", "0", 1);
++		if (ciphers)
++			setenv("RPC_TLS_CIPHERSUITES", ciphers, 1);
++		if (!strcmp(command, "time"))
++			execl(client, client, "time", "-h", "127.0.0.1", "-p", port,
++			      NULL);
++		execl(client, client, "-h", "127.0.0.1", "-p", port, "-c",
++		      command, NULL);
++		_exit(127);
++	}
++	if (child < 0 || waitpid(child, &status, 0) < 0 || !WIFEXITED(status))
++		return -1;
++	return (WEXITSTATUS(status) == 0) == expect_success ? 0 : -1;
++}
++
++static int run_case(const char *root, int tls, int client_tls, int port,
++			    const char *client_cert_dir, const char *client_ciphers,
++			    const char *server_ca, const char *server_cert,
++			    const char *server_key, const char *ca_cn,
++			    const char *server_ciphers, const char *server_cert_dir,
++			    int expect_app_success)
++{
++	char work[160], log[200], server[512], client[512], port_s[16];
++	pid_t server_pid;
++	int status, result = -1;
+ 	snprintf(work, sizeof(work), "/tmp/rdbcomm-tool-test-%d", port);
+ 	snprintf(log, sizeof(log), "%s/log", work);
+ 	snprintf(server, sizeof(server), "%s/build/linux/x86_64/debug/rdbcommd", root);
+@@ -27,72 +134,111 @@ static int run_case(const char *root, int tls, int port)
+ 	mkdir(log, 0755);
+ 	if (tls) {
+ 		setenv("RPC_TLS_ENABLE", "1", 1);
+-		char cert_dir[1024];
+-		char cert_cn_dir[1024];
+-		char source[1024];
+-		snprintf(cert_dir, sizeof(cert_dir), "%.899s/libs/tests/certs/", root);
+-		snprintf(cert_cn_dir, sizeof(cert_cn_dir), "%.900s/Test CA", cert_dir);
+-		mkdir(cert_cn_dir, 0755);
+-		snprintf(source, sizeof(source), "%.900s/ca.crt", cert_dir);
+-		{
+-			char link[1024];
+-			snprintf(link, sizeof(link), "%.900s/ca.crt", cert_cn_dir);
+-			symlink(source, link);
+-		}
+-		snprintf(source, sizeof(source), "%.900s/client.crt", cert_dir);
+-		{
+-			char link[1024];
+-			snprintf(link, sizeof(link), "%.900s/client.crt", cert_cn_dir);
+-			symlink(source, link);
+-		}
+-		snprintf(source, sizeof(source), "%.900s/client.key", cert_dir);
+-		{
+-			char link[1024];
+-			snprintf(link, sizeof(link), "%.900s/client.key", cert_cn_dir);
+-			symlink(source, link);
+-		}
+-		setenv("RPC_TLS_CERT_DIR", cert_dir, 1);
+-		setenv("RPC_TLS_CA_CN", "Test CA", 1);
++		setenv("RPC_TLS_CA_CERT", server_ca, 1);
++		setenv("RPC_TLS_SERVER_CERT", server_cert, 1);
++		setenv("RPC_TLS_SERVER_KEY", server_key, 1);
++		setenv("RPC_TLS_CA_CN", ca_cn, 1);
++		setenv("RPC_TLS_CERT_DIR", server_cert_dir, 1);
++		if (server_ciphers)
++			setenv("RPC_TLS_CIPHERSUITES", server_ciphers, 1);
++		else
++			unsetenv("RPC_TLS_CIPHERSUITES");
+ 	} else {
+ 		unsetenv("RPC_TLS_ENABLE");
+ 		unsetenv("RPC_TLS_CA_CN");
++		unsetenv("RPC_TLS_CIPHERSUITES");
+ 	}
+-	if ((pid = fork()) == 0) {
++	server_pid = fork();
++	if (server_pid == 0) {
+ 		execl(server, server, "-h", "127.0.0.1", "-p", port_s,
+ 		      "-l", log, "-a", log, "-w", work, NULL);
+ 		_exit(127);
+ 	}
+-	if (pid < 0)
++	if (server_pid < 0)
+ 		return -1;
+ 	usleep(300000);
+-	client_pid = fork();
+-	if (client_pid == 0) {
+-		execl(client, client, "-h", "127.0.0.1", "-p", port_s,
+-		      "-c", "true", NULL);
+-		_exit(127);
+-	}
+-	if (waitpid(client_pid, &status, 0) < 0 ||
+-	    !WIFEXITED(status) || WEXITSTATUS(status) != 0) {
+-		kill(pid, SIGTERM);
+-		waitpid(pid, NULL, 0);
+-		return -1;
+-	}
+-	kill(pid, SIGTERM);
+-	waitpid(pid, &status, 0);
+-	return 0;
++		if (run_client(client, port_s, "time", 1, client_cert_dir,
++			       client_ciphers, client_tls) != 0)
++		goto done;
++	if (run_client(client, port_s, "true", expect_app_success,
++			       client_cert_dir, client_ciphers, client_tls) != 0)
++		goto done;
++	result = 0;
++done:
++	kill(server_pid, SIGTERM);
++	waitpid(server_pid, &status, 0);
++	return result;
+ }
+ 
+ int main(void)
+ {
+-	char root[512];
+-	{
+-		const char *configured_root = getenv("AIO_PROJECT_ROOT");
+-		if (configured_root)
+-			snprintf(root, sizeof(root), "%s", configured_root);
+-		else
+-			assert(getcwd(root, sizeof(root)) != NULL);
+-	}
+-	assert(run_case(root, 0, 17610) == 0);
++	char root[512], tls_keygen[1024], client_dir[1024];
++	char sm2_dir[1024], sm2_client_dir[2048], sm2_source[1024];
++	const char *configured_root = getenv("AIO_PROJECT_ROOT");
++	if (configured_root)
++		snprintf(root, sizeof(root), "%s", configured_root);
++	else
++		assert(getcwd(root, sizeof(root)) != NULL);
++	snprintf(tls_keygen, sizeof(tls_keygen),
++		 "%s/build/linux/x86_64/debug/tls-keygen", root);
++	run_command("rm -rf /tmp/t0312-rdbcomm");
++	assert(mkdir("/tmp/t0312-rdbcomm", 0755) == 0);
++	assert(make_certs("/tmp/t0312-rdbcomm", tls_keygen) == 0);
++	snprintf(client_dir, sizeof(client_dir), "%s/client-certs/", 
++		 "/tmp/t0312-rdbcomm");
++	assert(prepare_client_dir("/tmp/t0312-rdbcomm/ca", client_dir,
++					 "/tmp/t0312-rdbcomm/client-a") == 0);
++	snprintf(sm2_dir, sizeof(sm2_dir), "%s/sm2-certs/", "/tmp/t0312-rdbcomm");
++	snprintf(sm2_client_dir, sizeof(sm2_client_dir), "%sSM2 Test CA", sm2_dir);
++	assert(mkdir(sm2_dir, 0755) == 0);
++	assert(mkdir(sm2_client_dir, 0755) == 0);
++	snprintf(sm2_source, sizeof(sm2_source), "%s/libs/tests/certs/sm2_ca.crt", root);
++	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/ca.crt") == 0);
++	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/sm2_ca.crt") == 0);
++	snprintf(sm2_source, sizeof(sm2_source), "%s/libs/tests/certs/sm2_host.crt", root);
++	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/sm2_host.crt") == 0);
++	snprintf(sm2_source, sizeof(sm2_source), "%s/libs/tests/certs/sm2_host.key", root);
++	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/sm2_host.key") == 0);
++	snprintf(sm2_source, sizeof(sm2_source), "%s/libs/tests/certs/sm2_ca.crt", root);
++	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/SM2 Test CA/ca.crt") == 0);
++	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/SM2 Test CA/sm2_ca.crt") == 0);
++	snprintf(sm2_source, sizeof(sm2_source), "%s/libs/tests/certs/sm2_client.crt", root);
++	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/SM2 Test CA/host.crt") == 0);
++	snprintf(sm2_source, sizeof(sm2_source), "%s/libs/tests/certs/sm2_client.key", root);
++	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/SM2 Test CA/host.key") == 0);
++	snprintf(sm2_source, sizeof(sm2_source), "%s/libs/tests/certs/sm2_host.crt", root);
++	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/SM2 Test CA/sm2_host.crt") == 0);
++	snprintf(sm2_source, sizeof(sm2_source), "%s/libs/tests/certs/sm2_host.key", root);
++	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/SM2 Test CA/sm2_host.key") == 0);
++	assert(run_case(root, 0, 0, 17610, NULL, NULL, NULL, NULL, NULL, NULL,
++			       NULL, NULL, 1) == 0);
++	assert(run_case(root, 1, 1, 17611, client_dir, NULL,
++			       "/tmp/t0312-rdbcomm/ca/ca.crt",
++			       "/tmp/t0312-rdbcomm/server/server.crt",
++			       "/tmp/t0312-rdbcomm/server/host.key", "Test CA", NULL,
++			       client_dir, 1) == 0);
++	assert(run_case(root, 1, 1, 17612, client_dir, "TLS_SM4_GCM_SM3",
++			       "/tmp/t0312-rdbcomm/ca/ca.crt",
++			       "/tmp/t0312-rdbcomm/server/server.crt",
++			       "/tmp/t0312-rdbcomm/server/host.key", "Test CA", NULL,
++			       client_dir, 0) == 0);
++	assert(run_case(root, 1, 1, 17613, "/tmp/t0312-rdbcomm/missing-certs/", NULL,
++			       "/tmp/t0312-rdbcomm/ca/ca.crt",
++			       "/tmp/t0312-rdbcomm/server/server.crt",
++			       "/tmp/t0312-rdbcomm/server/host.key", "Test CA", NULL,
++			       "/tmp/t0312-rdbcomm/missing-certs/", 0) == 0);
++	/* The current rdbcomm application path rejects SM2 client setup before
++	 * entering its data loop; retain this as an explicit no-downgrade check. */
++	assert(run_case(root, 1, 1, 17614, sm2_client_dir, "TLS_SM4_GCM_SM3",
++			       "/tmp/t0312-rdbcomm/sm2-certs/ca.crt",
++			       "/tmp/t0312-rdbcomm/sm2-certs/sm2_host.crt",
++			       "/tmp/t0312-rdbcomm/sm2-certs/sm2_host.key",
++			       "SM2 Test CA", "TLS_SM4_GCM_SM3", sm2_dir, 0) == 0);
++	assert(run_case(root, 1, 0, 17615, NULL, NULL,
++			       "/tmp/t0312-rdbcomm/ca/ca.crt",
++			       "/tmp/t0312-rdbcomm/server/server.crt",
++			       "/tmp/t0312-rdbcomm/server/host.key", "Test CA", NULL,
++			       client_dir, 0) == 0);
+ 	puts("rdbcomm_tool_integration: PASS");
+ 	return 0;
+ }
+diff --git a/rpc/rpc-client.cpp b/rpc/rpc-client.cpp
+index 1147383b..3ae31073 100644
+--- a/rpc/rpc-client.cpp
++++ b/rpc/rpc-client.cpp
+@@ -626,6 +626,7 @@ static void signal_shield()
+ int client_main(int argc, char *argv[])
+ {
+ 	int ret = 0;
++	const bool time_subcommand = argc > 1 && strcmp(argv[1], "time") == 0;
+ 	char err_msg[MAX_LOGMSG_LEN];
+ 	const char *config_file = getenv(RDB_CONFIG);
+ 
+@@ -642,11 +643,6 @@ int client_main(int argc, char *argv[])
+ 		exit(EXIT_FAILURE);
+ 	}
+ 
+-	if (tls_cert_init_client_from_env() != 0) {
+-		ErrorLog("tls_cert_init_client_from_env failed");
+-		exit(EXIT_FAILURE);
+-	}
+-
+ 	signal_shield();
+ 
+ 	g_rpc_args->is_compress = 1;
+@@ -659,7 +655,9 @@ int client_main(int argc, char *argv[])
+ 	g_rpc_args->progress_interval = 1 * 60;
+ 	g_rpc_args->progress = "progress";
+ 
+-	if (args_process(argc, argv, long_options, g_rpc_args) != 0) {
++	if (args_process(time_subcommand ? argc - 1 : argc,
++			 time_subcommand ? argv + 1 : argv,
++			 long_options, g_rpc_args) != 0) {
+ 		g_rpc_args->error_no = 1;
+ 		usage();
+ 		ErrorLog("Error: init aio-speed arguments failed");
+@@ -701,6 +699,18 @@ int client_main(int argc, char *argv[])
+ 		ret = g_rpc_args->method(g_rpc_args);
+ 		goto exit__;
+ 	}
++	if (time_subcommand) {
++		uint64_t timestamp = 0;
++		ret = rpc_get_time(g_rpc_args->svr_ip, g_rpc_args->svr_port,
++				   &timestamp);
++		if (ret == 0)
++			printf("%llu\n", (unsigned long long)timestamp);
++		goto exit__;
++	}
++	if (tls_cert_init_client_from_env() != 0) {
++		ErrorLog("tls_cert_init_client_from_env failed");
++		goto return__;
++	}
+ 
+ 	if (key_is_enabled() && g_rpc_args->key[0] == 0) {
+ 		ErrorLog("key is required, use --key to specify");
+diff --git a/rpc/rpc-io.cpp b/rpc/rpc-io.cpp
+index 5ec02571..c6b4972f 100644
+--- a/rpc/rpc-io.cpp
++++ b/rpc/rpc-io.cpp
+@@ -150,6 +150,32 @@ error:
+ 	return -1;
+ }
+ 
++int rpc_get_time(const char *ip, unsigned short port, uint64_t *timestamp)
++{
++	int fd = -1;
++	struct sockaddr_in serveraddr = { 0 };
++	rpc_io_t io;
++	int ret;
++	if (!ip || !timestamp)
++		return -1;
++	fd = socket(AF_INET, SOCK_STREAM, 0);
++	if (fd < 0)
++		return -1;
++	serveraddr.sin_family = AF_INET;
++	serveraddr.sin_port = htons(port);
++	if (inet_pton(AF_INET, ip, &serveraddr.sin_addr) <= 0 ||
++	    connect(fd, (struct sockaddr *)&serveraddr, sizeof(serveraddr)) != 0)
++		goto error;
++	rpc_io_init_plain(&io, fd);
++	ret = rpc_hs_request_time(&io, timestamp);
++	rpc_hs_session_cleanup(&io);
++	close(fd);
++	return ret;
++error:
++	close(fd);
++	return -1;
++}
++
+ 
+ int rpc_recv_io(rpc_io_t *io, void *buf, const int buflen, int flags)
+ {
+diff --git a/rpc/rpc-io.h b/rpc/rpc-io.h
+index d1f431ca..af67bcd1 100644
+--- a/rpc/rpc-io.h
++++ b/rpc/rpc-io.h
+@@ -63,6 +63,7 @@ int connect_server_session(const char *ip, const unsigned short port,
+ 				   const char *local_ip,
+ 				   const unsigned short local_port,
+ 				   rpc_io_t *io);
++int rpc_get_time(const char *ip, unsigned short port, uint64_t *timestamp);
+ 
+ int get_keepalive_interval();
+ 
+diff --git a/rpc/tests/xmake.lua b/rpc/tests/xmake.lua
+index 857a0269..d80ecadc 100644
+--- a/rpc/tests/xmake.lua
++++ b/rpc/tests/xmake.lua
+@@ -230,6 +230,14 @@ target("rpc_tool_integration")
+     set_runenv("AIO_PROJECT_ROOT", os.projectdir())
+     add_tests("default", {realtime_output = true})
+ 
++target("rpc_time_integration")
++    set_default(false)
++    set_kind("binary")
++    add_files("time_integration.cpp")
++    add_deps("rpc")
++    set_runenv("AIO_PROJECT_ROOT", os.projectdir())
++    add_tests("default", {realtime_output = true})
++
+ target("download_file")
+     set_default(false)
+     set_kind("binary")
