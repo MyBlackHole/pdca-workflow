@@ -1,0 +1,28 @@
+{
+  "id": "T0255",
+  "slug": "0814-tls-keygen-sm2",
+  "title": "tls_keygen 新增 SM2 子命令与证书链签发",
+  "parent": "T0253",
+  "children": [],
+  "dependencies": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-14T11:35:34+08:00",
+    "convergence": null,
+    "improvement_source": null,
+    "record": null,
+    "verdict": null,
+    "disposition": null
+  },
+  "states": {
+    "created": "2026-08-14T11:35:34+08:00",
+    "plan": null,
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

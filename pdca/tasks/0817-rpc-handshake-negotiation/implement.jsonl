@@ -1,0 +1,14 @@
+{"file":"knowledge/nbu/nbu-dte-architecture.md","reason":"NBU 单端口协商实证模型（T0162 抓包确认同连接升级 TLS、配置热刷新）为本任务单端口协商的对齐基准","action":"对齐协商时序与失败语义设计","at":"2026-08-17T11:10:00+08:00"}
+{"file":"knowledge/nbu/gmssl-tlcp-mtls.md","reason":"GMSSL 与 OpenSSL API 差异及国密套件承载方式，TLS 升级复用的底层事实","action":"确认 TLS 升级复用 tls_cert 库而非重实现","at":"2026-08-17T11:10:00+08:00"}
+{"file":"docs/adr/ADR-0001-openssl4-单库替代gmssl双后端.md","reason":"F-139 仓库已用 OpenSSL 4.0 单库承载国密（TLS1.3 RFC 8998 单证书），明确 TLS 升级技术底座","action":"作为 TLS 升级技术底座事实","at":"2026-08-17T11:10:00+08:00"}{"file":"rpc/rpc-negotiate.cpp","reason":"协商头编解码 + rpc_decide_transport + rpc_negotiate_client/server（含半头超时归为 RPC_NEG_ERR_TIMEOUT 修复）","action":"实现协商协议","at":"2026-08-17T15:30:00+08:00"}
+{"file":"rpc/tests/rpc_negotiate_test.cpp","reason":"16/16 单测绿：编解码/判定/双线程配对（明文/SM 升级/TLS 升级/能力缺失拒绝/客户端明文）/服务端坏头 VER/半头超时","action":"测试优先验证协商","at":"2026-08-17T15:35:00+08:00"}
+{"file":"rpc/rpc-io.cpp","reason":"fd→SSL 绑定表（rpc_ssl_bind/unbind/lookup/cleanup_fd）+ rpc_recv/rpc_send 查表透明走加密 + connect_server/connect_server2 协商块接入","action":"实现数据面透明加密路径","at":"2026-08-17T15:40:00+08:00"}
+{"file":"rpc/rpc-server.cpp","reason":"StartRPCServiceWoker 服务端协商接入 + 协商错误（GENERIC/VER/损坏头）一律拒绝防降级明文（ENC-004）","action":"服务端协商接入 + 安全修复","at":"2026-08-17T15:45:00+08:00"}
+{"file":"rpc/rpc.cpp","reason":"session/rpc_conn SSL 生命周期统一（stop/restart/error__ 绑定表残留释放）+ do_remote_mkdir/unlink + rpc_file_existed/fsbacup_dev_ioctl 短连接 cleanup","action":"SSL 生命周期与短连接清理","at":"2026-08-17T15:50:00+08:00"}
+{"file":"libs/rdb-config.h","reason":"sec_tool_tls_enabled/sec_tool_tls_ciphersuites 工具级配置读取（cli>工具键>全局>[auth]>默认关）","action":"工具级 TLS 配置接口","at":"2026-08-17T15:55:00+08:00"}
+{"file":"rpc/rpc-config.cpp","reason":"rpc_tls_config_set 修复：仅更新显式传入参数避免命令行顺序覆盖 ciphersuites","action":"配置更新语义修复","at":"2026-08-17T16:00:00+08:00"}
+{"file":"rpc/tests/rpc_tls_e2e_test.cpp","reason":"端到端：真实 TCP+协商（SM 升级）+TLS 握手+加密往返+明文协商，2/2 绿","action":"端到端验证数据面加密","at":"2026-08-17T16:05:00+08:00"}
+{"file":"fs-backup/fsclient/main.cpp","reason":"--tls-enable(1032)/--tls-ciphersuites(1033) 命令行解析接 rpc_tls_config_set","action":"客户端命令行接线","at":"2026-08-17T16:10:00+08:00"}
+{"file":"fs-backup/fsdeamon/main.cpp","reason":"--tls-enable(2004)/--tls-ciphersuites(2005) 命令行解析（static cli_tls_enable 缓存避免顺序依赖，extern rpc_tls_config_set 绕开宏冲突）","action":"服务端命令行接线","at":"2026-08-17T16:15:00+08:00"}
+{"file":"$PDCA_HOME/pdca/tasks/0817-rpc-handshake-negotiation/prd.md","reason":"PRD 第4点同步为数据面 SSL 加密决策（绑定表透明 + session/rpc_conn 显式持 SSL），不再 detach","action":"PRD 与实现对齐","at":"2026-08-17T16:20:00+08:00"}
+{"file":"rpc/tests/rpc_negotiate_test.cpp","reason":"A4 双轴审查后 16/16 绿 + 全量 xmake test 34/34 绿（含 download_link 适配 session 重构）","action":"A3 最终回归验证","at":"2026-08-17T16:25:00+08:00"}

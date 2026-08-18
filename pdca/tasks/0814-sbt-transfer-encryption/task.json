@@ -1,0 +1,35 @@
+{
+  "id": "T0253",
+  "slug": "0814-sbt-transfer-encryption",
+  "title": "备份复制传输加密：SBT 链路国密 TLS 支持（tls_cert 双后端 + tls_keygen SM2 + dmsbtex/libobk 协商升级）",
+  "parent": null,
+  "children": [
+    "T0254",
+    "T0255",
+    "T0256",
+    "T0257",
+    "T0258",
+    "T0259",
+    "T0260"
+  ],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-14T11:29:19+08:00",
+    "convergence": null,
+    "improvement_source": null,
+    "record": null,
+    "verdict": null,
+    "disposition": null
+  },
+  "states": {
+    "created": "2026-08-14T11:29:19+08:00",
+    "plan": null,
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

@@ -1,0 +1,11 @@
+{"round":1,"question":"RPC 层协商触发时机：当前 RPC 层 sec_tls_enabled() 时直接 TLS 握手无协商。新方案何时发协商头？","answer":"所有连接先协商再决定（单端口加密/明文并存）","recommended":"所有连接先协商再决定","source":"grilling","at":"2026-08-17T11:05:00+08:00"}
+{"round":1,"question":"协商失败（配置开启但目标不支持国密）语义，设计文档 ENC-004 要求失败不降级明文？","answer":"作业失败，连接关闭，不降级明文","recommended":"作业失败，连接关闭","source":"grilling","at":"2026-08-17T11:05:10+08:00"}
+{"round":2,"question":"协商头协议形态：父任务 round2 针对 SBT 链路口径是复用现有协议头扩展；RPC 层本任务如何选？","answer":"独立专用协商头（magic+版本+capability），与 RPC 消息帧独立；TLS 升级后帧格式仍为 rpc_send/recv","recommended":"独立专用协商头","source":"grilling","at":"2026-08-17T11:05:20+08:00"}
+{"round":2,"question":"加密开关配置来源：复用 T0256 的 [security] 传输加密开关还是自带？","answer":"连接时读 [security] 开关，依赖 T0256","recommended":"连接时读 [security] 开关","source":"grilling","at":"2026-08-17T11:05:30+08:00"}
+{"round":3,"question":"每个工具要支持自己的配置项控制 TLS 是否开启——配置形态如何选？","answer":"配置文件每工具键 + 命令行参数（--tls-enable 0/1）","recommended":"配置文件每工具键 + 命令行参数","source":"grilling","at":"2026-08-17T11:20:00+08:00"}
+{"round":3,"question":"工具独立配置与全局 [security] tls_enable 优先级？","answer":"工具键优先，全局兜底（命令行 > 工具配置键 > 全局默认）","recommended":"工具键优先，全局兜底","source":"grilling","at":"2026-08-17T11:20:05+08:00"}
+{"round":3,"question":"覆盖工具范围？","answer":"全部数据链路工具（aio-speed/aio-speedd/dmsbtex/libobk/oss/dm-ftp/FileTransferAgent）","recommended":"全部数据链路工具","source":"grilling","at":"2026-08-17T11:20:10+08:00"}
+{"round":4,"question":"每个工具还需支持算法配置——形态如何选？","answer":"套件字符串配置，同开关优先级（命令行 > 工具键 > 全局 [security] ciphersuites 兜底）","recommended":"套件字符串配置，同开关优先级","source":"grilling","at":"2026-08-17T11:30:00+08:00"}
+{"round":4,"question":"算法配置与 TLS 开关的关系？","answer":"开关决定是否加密，算法决定套件；协商头 capability 按算法配置声明国密/常规就绪","recommended":"开关决定是否加密，算法决定套件","source":"grilling","at":"2026-08-17T11:30:05+08:00"}
+{"round":5,"question":"算法配置的默认值？","answer":"默认算法为国密（未显式配置时按国密套件 TLS_SM 声明并升级）","recommended":"默认算法为国密","source":"grilling","at":"2026-08-17T11:40:00+08:00"}
+{"source":"final_confirmation","summary":"最终方案终审通过：独立协商头+单端口并存+ENC-004 失败语义+每工具独立开关/算法配置（命令行>工具键>全局兜底）+默认算法为国密，12 项 AC","response":"confirmed","at":"2026-08-17T11:10:07+08:00"}

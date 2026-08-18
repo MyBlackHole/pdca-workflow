@@ -1,0 +1,50 @@
+{
+  "id": "T0260",
+  "slug": "0817-rpc-handshake-negotiation",
+  "title": "RPC 层自定义握手包协商：单端口加密/明文并存（aio-speed↔aio-speedd）",
+  "parent": "T0253",
+  "children": [],
+  "dependencies": [
+    "T0256"
+  ],
+  "status": "InProgress",
+  "meta": {
+    "phase": "do",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-17T11:00:00+08:00",
+    "convergence": [
+      "RPC 层连接建立路径插入独立协商层，配置关闭时明文路径行为与现状一致",
+      "协商头（AIO-NEG1+capability）可抓包验证，升级 TLS 后 RPC 帧格式不变",
+      "每工具独立开关/算法配置，优先级命令行>工具键>全局兜底，默认算法国密",
+      "ENC-004 语义：配置开启目标不支持所选算法时作业失败不降级明文",
+      "配置变更不重启，新连接按新配置协商，存量连接不受影响"
+    ],
+    "improvement_source": {
+      "record_id": "T0260-0817-rpc-handshake-negotiation",
+      "issue_id": "FI-000000000000000000000000",
+      "candidate_id": "FC-000000000000000000000000",
+      "decision_id": "FD-000000000000000000000000"
+    },
+    "record": "T0260-0817-rpc-handshake-negotiation",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "待 Check 阶段填充",
+      "verdict_id": "V0260",
+      "at": "2026-08-17T11:00:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "待 Act 阶段填充",
+      "at": "2026-08-17T11:00:00+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-17T11:00:00+08:00",
+    "plan": "2026-08-17T11:10:07+08:00",
+    "do": "2026-08-17T11:12:23+08:00",
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}
