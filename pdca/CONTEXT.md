@@ -41,6 +41,9 @@
 | **Report DB** | 报表中心独立数据库，一期唯一实现 PostgreSQL 17；维度/事实/聚合/控制表统一经 Repository/Adapter 访问 |
 | **JSONL 采集** | CLI stdout 逐行 JSON 输出 → Collection Service 本地临时文件 → 校验 → 批量事务 Upsert |
 | **Topic** | 固定采集主题：`resource`（资源快照）/`task`（任务增量）/`capacity`（容量样本） |
+| **统一第一阶段握手** | rpc 与 rdbcomm 在 TLS/mTLS 和 APP 原始数据帧之前共用的明文协议阶段；识别获取时间、mTLS 升级或错误三类结果。 |
+| **APP 原始数据帧** | 完成第一阶段握手后，由具体 rpc 或 rdbcomm 继续使用的既有业务数据帧，不纳入统一握手头。 |
+| **ca_cn** | 第一阶段 mTLS 协商中服务端指定的 CA CN；客户端使用该 CN 匹配 `cert_dir/<ca_cn>/` 下的证书材料。不同于服务端证书 CN 和客户端证书 CN。 |
 
 ## 约定
 

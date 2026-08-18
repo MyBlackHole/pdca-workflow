@@ -1,0 +1,25 @@
+2026-08-18
+
+Test certificate source:
+  Generated with tls-keygen: CA `Real Test CA`, server `Real Server`,
+  client certificate under `cert_dir/Real Test CA/`.
+
+Real process tests:
+  1. Started aio-speedd and rdbcommd on loopback with TLS disabled.
+     - RPC TIME: PASS; connection closed after unified time response.
+     - rdbcomm TIME: PASS; connection closed after unified time response.
+     - RPC unknown operation: PASS; result 0x8003 and connection close.
+     - rdbcomm unknown operation: PASS; result 0x8003 and connection close.
+     - RPC default plaintext NEGOTIATE: PASS; result OK_PLAIN.
+     - rdbcomm default plaintext NEGOTIATE: PASS; result OK_PLAIN.
+
+  2. Started aio-speedd and rdbcommd with RPC_TLS_ENABLE=1,
+     RPC_TLS_CA_CN=Real Test CA and generated certificate paths.
+     - RPC: PASS; response ca_cn=Real Test CA, client selected
+       cert_dir/Real Test CA/, TLSv1.3 TLS_AES_256_GCM_SHA384.
+     - rdbcomm: PASS; response ca_cn=Real Test CA, client selected
+       cert_dir/Real Test CA/, TLSv1.3 TLS_AES_256_GCM_SHA384.
+     - Post-upgrade encrypted APP probe sent through TLS sockets.
+
+  Build prerequisite:
+    xmake -b aio-speedd rdbcommd

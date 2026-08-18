@@ -1,0 +1,11 @@
+2026-08-18
+
+Commands:
+  xmake -b rpc rdbcomm rdbcommd rpc_handshake_test
+  xmake run rpc_handshake_test
+  git diff --check
+
+Results:
+  build ok
+  rpc_handshake_test: PASS
+  git diff --check: PASS

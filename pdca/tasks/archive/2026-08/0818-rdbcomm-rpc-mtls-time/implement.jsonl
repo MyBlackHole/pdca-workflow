@@ -1,0 +1,3 @@
+{"file":"knowledge/nbu/nbu-dte-architecture.md","reason":"单端口连接内先明文协商、再按结果升级 TLS 的实证模型","action":"用于确定第一阶段与第二阶段时序、配置只影响新连接的边界","at":"2026-08-18T11:38:00+08:00"}
+{"file":"knowledge/nbu/gmssl-tlcp-mtls.md","reason":"GMSSL TLCP mTLS API、双证书和算法差异","action":"复用现有 tls_cert 后端，约束算法能力与 TLS 生命周期适配","at":"2026-08-18T11:38:00+08:00"}
+{"file":"$PDCA_HOME/pdca/tasks/0817-rpc-handshake-negotiation/prd.md","reason":"既有 RPC 协商任务已明确 RPC 连接接入与 ENC-004 失败语义","action":"避免重复设计并将范围扩展到 rdbcomm/统一时间协议","at":"2026-08-18T11:38:00+08:00"}

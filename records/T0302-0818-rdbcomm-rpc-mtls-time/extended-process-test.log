@@ -1,0 +1,15 @@
+2026-08-18
+
+Extended real-process coverage:
+  - RPC and rdbcomm bad magic: explicit frame error 0x8007, then close.
+  - RPC and rdbcomm half header followed by client close: PASS; subsequent
+    TIME request remained live and passed.
+  - RPC and rdbcomm algorithm mismatch (SM requested against classic server):
+    explicit algorithm error 0x8005, then close.
+  - RPC and rdbcomm server-forced mTLS without client request: explicit
+    mTLS-required error 0x8004, then close; no plaintext downgrade.
+  - `rdb_config_test`: 11 passed, 0 failed.
+
+  Client configuration uses the existing tool parameters only:
+  `RPC_TLS_ENABLE` controls enablement and `RPC_TLS_CIPHERSUITES` selects
+  the algorithm capability; no new client configuration parameter is added.

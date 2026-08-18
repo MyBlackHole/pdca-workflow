@@ -1,0 +1,35 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "RPC 层连接建立路径插入独立协商层，配置关闭时明文路径行为与现状一致",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["negotiate-impl", "negotiate-hdr", "rpc-io-ssl", "neg-tests"]
+    },
+    {
+      "index": 2,
+      "text": "协商头（AIO-NEG1+capability）可抓包验证，升级 TLS 后 RPC 帧格式不变",
+      "criteria": ["AC-2", "AC-3"],
+      "evidence_ids": ["negotiate-hdr", "negotiate-impl", "e2e-tests", "neg-tests"]
+    },
+    {
+      "index": 3,
+      "text": "每工具独立开关/算法配置，优先级命令行>工具键>全局兜底，默认算法国密",
+      "criteria": ["AC-8", "AC-9", "AC-10", "AC-12"],
+      "evidence_ids": ["tool-config", "rpc-config", "cli-args", "daemon-args", "neg-tests"]
+    },
+    {
+      "index": 4,
+      "text": "ENC-004 语义：配置开启目标不支持所选算法时作业失败不降级明文",
+      "criteria": ["AC-4", "AC-6", "AC-11"],
+      "evidence_ids": ["negotiate-impl", "server-negotiate", "rpc-io-ssl", "neg-tests", "e2e-tests"]
+    },
+    {
+      "index": 5,
+      "text": "配置变更不重启，新连接按新配置协商，存量连接不受影响",
+      "criteria": ["AC-5", "AC-7", "AC-8"],
+      "evidence_ids": ["rpc-io-ssl", "server-negotiate", "tool-config", "neg-tests", "e2e-tests"]
+    }
+  ]
+}

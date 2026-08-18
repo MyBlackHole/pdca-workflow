@@ -8,7 +8,7 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-18T11:04:00+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T0301-0818-pg-version-convert-test",
     "scenario_type": "development",
     "completed_at": "2026-08-18T13:54:30+08:00",
@@ -17,12 +17,17 @@
       "reason": "三版本(9.6/11/18)全量 1M×7 逐字段差异=0+聚合 PASS, AC-1~6 全部通过; 接受版本差异假设修正(heap 头布局/varlena 编码各版本一致, CLOG 目录为唯一差异; --pg-version 降级为源版本标注)",
       "verdict_id": "V-T0301-20260818-1",
       "at": "2026-08-18T14:02:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "结论 confirmed: 三版本全量对照差异=0; 知识沉淀(data-formats/t0301-pg-version-convert-test.md)+工具(pg_clog_legacy/pgbin 简化自解码)+实测事实(布局/varlena 一致)可复用",
+      "at": "2026-08-18T14:10:00+08:00"
     }
   },
   "parent": "T0250",
   "slug": "0818-pg-version-convert-test",
   "states": {
-    "act": null,
+    "act": "2026-08-18T13:54:41+08:00",
     "archive": null,
     "check": "2026-08-18T13:54:30+08:00",
     "created": "2026-08-18T11:04:00+08:00",
