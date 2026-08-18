@@ -1,0 +1,28 @@
+git diff --check rc=0
+rpc/rpc-io.cpp:84:	rpc_hs_client_config_t config = {
+rpc/rpc-io.cpp:85:		.mtls_enabled = sec_tls_enabled(),
+rpc/rpc-io.cpp:91:	if (rpc_hs_client_negotiate_config(&session, &config, &result) != 0)
+rpc/rpc-io.cpp:111:	rpc_hs_client_config_t config = { 0 };
+rpc/rpc-io.cpp:136:	config.mtls_enabled = sec_tls_enabled();
+rpc/rpc-io.cpp:140:	if (rpc_hs_client_negotiate_config(io, &config, &result) != 0)
+rdbcomm/client.h:14:	int mtls_enabled;
+rdbcomm/client.h:15:	uint16_t tls_algorithm;
+rdbcomm/client.h:35:	rpc_hs_client_config_t hs_config;
+rdbcomm/client.c:102:	conn->hs_config.mtls_enabled = options->mtls_enabled;
+rdbcomm/client.c:103:	conn->hs_config.algorithm = options->tls_algorithm ?
+rdbcomm/client.c:104:		options->tls_algorithm : RPC_HS_ALG_CLASSIC;
+rdbcomm/client.c:186:	if (rpc_hs_client_negotiate_config(&hs, &conn->hs_config,
+libs/rpc-handshake.h:82:	int mtls_enabled;
+libs/rpc-handshake.h:84:} rpc_hs_client_config_t;
+libs/rpc-handshake.h:90:} rpc_hs_server_config_t;
+libs/rpc-handshake.h:106:int rpc_hs_client_negotiate_config(rpc_hs_session_t *session,
+libs/rpc-handshake.h:107:				   const rpc_hs_client_config_t *config,
+libs/rpc-handshake.h:117:int rpc_hs_server_accept(rpc_hs_session_t *session, int fd,
+libs/rpc-handshake.h:118:			 const rpc_hs_server_config_t *config,
+rdbcomm/rdbcomm-main.c:564:	opts.copts.mtls_enabled = sec_tls_enabled();
+rdbcomm/rdbcomm-main.c:565:	opts.copts.tls_algorithm = sec_tls_ciphersuites() &&
+libs/rpc-handshake.c:290:int rpc_hs_client_negotiate_config(rpc_hs_session_t *session,
+libs/rpc-handshake.c:291:				   const rpc_hs_client_config_t *config,
+libs/rpc-handshake.c:296:	return rpc_hs_client_negotiate(session, config->mtls_enabled,
+libs/rpc-handshake.c:355:int rpc_hs_server_accept(rpc_hs_session_t *session, int fd,
+libs/rpc-handshake.c:356:			 const rpc_hs_server_config_t *config,

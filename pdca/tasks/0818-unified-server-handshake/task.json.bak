@@ -1,0 +1,39 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0317",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-18T16:00:00+08:00",
+    "phase": "act",
+    "record": "T0317-0818-unified-server-handshake",
+    "scenario_type": "development",
+    "completed_at": "2026-08-18T16:33:34+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "用户确认所有验收标准通过，客户端与服务端显式握手参数及统一 mTLS 编排满足需求。",
+      "verdict_id": "T0317-check-20260818",
+      "at": "2026-08-18T16:34:35+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "用户明确不将本次实现提炼为团队通用知识，保留代码提交、证据与结论作为任务级记录。",
+      "at": "2026-08-18T16:38:00+08:00"
+    }
+  },
+  "parent": "T0315",
+  "slug": "0818-unified-server-handshake",
+  "states": {
+    "act": "2026-08-18T16:37:02+08:00",
+    "archive": null,
+    "check": "2026-08-18T16:33:34+08:00",
+    "created": "2026-08-18T16:00:00+08:00",
+    "do": "2026-08-18T16:11:41+08:00",
+    "plan": "2026-08-18T16:00:00+08:00"
+  },
+  "status": "Completed",
+  "title": "统一 RPC/rdbcomm 服务端 mTLS 握手入口"
+}

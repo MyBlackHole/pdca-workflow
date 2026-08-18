@@ -1,0 +1,11 @@
+{"at":"2026-08-18T16:00:00+08:00","source":"task_identity","summary":"created with record identity T0317-0818-unified-server-handshake"}
+{"source":"final_confirmation","summary":"确认服务端 mTLS 策略：显式算法校验证书链，未配置算法默认 AES/CLASSIC；强制 mTLS 缺证书则启动失败，非强制模式允许明文并在证书可用时支持客户端主动 mTLS，失败不降级。","response":"confirmed","at":"2026-08-18T16:11:41+08:00"}
+{"source":"direction_confirm","summary":"范围补充：RPC/rdbcomm 客户端与服务端通过显式握手配置结构传递 mTLS 开关和算法；工具保留各自配置入口，不新增 CLI 参数、不改变协议字段。","response":"confirmed","at":"2026-08-18T16:26:49+08:00"}
+{"source":"check_confirmation","summary":"用户确认参数增量与统一握手实现的 Check 结论：客户端/服务端显式配置参数、明文与 mTLS 策略、时间功能、真实工具测试均满足要求。","response":"confirmed","at":"2026-08-18T16:34:35+08:00"}
+{"round":1,"question":"证书链缺失时，非强制 mTLS 是否保持仅明文可用、mTLS 请求明确失败？","answer":"是","recommended":"是，避免静默降级掩盖配置问题。","source":"grilling","at":"2026-08-18T16:34:35+08:00"}
+{"round":1,"question":"mTLS 升级后是否以 SSL session 作为后续读写唯一通道？","answer":"是","recommended":"是，禁止回退原始 fd。","source":"grilling","at":"2026-08-18T16:34:35+08:00"}
+{"round":1,"question":"是否继续复用既有算法配置并通过显式客户端/服务端配置结构传递，不增加 CLI 参数或协议字段？","answer":"客户端、服务端需要增加参数支持，采用显式配置结构。","recommended":"使用统一客户端/服务端配置结构，由工具既有配置转换传入。","source":"grilling","at":"2026-08-18T16:34:35+08:00"}
+{"round":2,"question":"握手配置结构与 TLS session 升级是否作为后续工具接入的通用模式？","answer":"否","recommended":"是","source":"grilling","at":"2026-08-18T16:38:00+08:00"}
+{"round":2,"question":"证书链缺失时仅明文可用、mTLS 明确失败的边界是否写入团队知识？","answer":"否","recommended":"是","source":"grilling","at":"2026-08-18T16:38:00+08:00"}
+{"round":2,"question":"新增算法是否必须同步配置结构、证书校验和真实工具测试？","answer":"否","recommended":"是","source":"grilling","at":"2026-08-18T16:38:00+08:00"}
+{"source":"knowledge_decision","at":"2026-08-18T16:38:00+08:00","action":"skipped","reason":"用户明确选择不沉淀为团队通用知识，本次结论仅保留在任务记录中。"}
