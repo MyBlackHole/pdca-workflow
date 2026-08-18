@@ -418,7 +418,14 @@ static int fsp_bytes(int fsp) {
   return 0;
 }
 
-/* rec_init_offsets_comp_ordinary：计算各字段物理偏移 */
+/* rec_init_offsets_comp_ordinary：计算各字段物理偏移
+ * 备注：版本差异——本函数为 COMPACT/DYNAMIC 统一实现（5.6 COMPACT 与
+ *  5.7/8.0/8.4 DYNAMIC 记录头与长度数组布局一致，AC-1 四版本实测通过）；
+ *  版本差异不在记录层，而在：① 表定义来源（5.6/5.7 schema vs 8.0+ SDI，
+ *  见 mysql_layout_from_schema_file / mysql_layout_from_ibd）；② off-page
+ *  LOB 页格式（本实现仅 8.0.13+ 新版，见 read_lob）。DYNAMIC 与 COMPACT 的
+ *  行外存储差别由变长字段 external 位（DATA_BIG_COL 2B 高位置 0x4000）表达，
+ *  故同一套 offsets 计算即可覆盖四版本。 */
 static int rec_offsets(const uint8_t *page, uint16_t org, const MysqlLayout *L,
                        ColSpec *out) {
   uint16_t nulls = org - 6;
@@ -544,7 +551,12 @@ static int64_t dec_datetime(const uint8_t *b, uint16_t off, uint8_t base,
  *  DATA_LEN@52 2B, NEXT@6 6B fil_addr)；entry 依 next 指针串成段链，首段
  *  (PAGE_NO==LOB_FIRST 自身) 数据位于页内 @696，其余段命中 LOB_DATA 页时
  *  payload 位于页内 @49（本版本实测，与 MySQL 8.0 LOB 物理格式对齐）。
- *  各段依链表顺序拼接写入 dst，总长经 out_len 返回。 */
+ *  各段依链表顺序拼接写入 dst，总长经 out_len 返回。
+ *
+ *  备注：版本差异边界——本实现仅支持 8.0.13+ 新版 LOB（LOB_FIRST=24/LOB_DATA=23）。
+ *  8.0.13 之前及 5.6/5.7 的旧 BLOB 页（FIL_PAGE_TYPE_BLOB=22）格式不同，
+ *  本函数对非 LOB_FIRST 页直接返回 -1（记录该字段解码失败），未做旧格式适配；
+ *  如需支持旧版本 off-page 大值需单独逆向 BLOB 页布局（AC-8 验证范围外）。 */
 static int read_lob(const uint8_t *map, size_t map_len, uint16_t pageno,
                     uint8_t *dst, size_t dst_cap, uint32_t *out_len) {
   size_t pg_off = (size_t)pageno * MYSQL_PS;

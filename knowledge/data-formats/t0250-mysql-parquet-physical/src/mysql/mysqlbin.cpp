@@ -163,6 +163,11 @@ int main(int argc, char **argv)
 	MysqlLayout L;
 	memset(&L, 0, sizeof(L));
 	int layout_rc = 0;
+	// 备注：版本差异分派——表定义来源决定布局构建路径：
+	// 备注：  8.0+（含 8.4）：SDI 页内嵌 JSON 表定义，自动解析（mysql_layout_from_ibd）
+	// 备注：  5.6/5.7      ：无 SDI（表定义在 .frm），必须 --schema= 显式传入
+	// 备注：                （布局 = PK + DB_TRX_ID 6B + DB_ROLL_PTR 7B + 其余列，与 SDI 一致）
+	// 备注：              若传 --schema 则优先 schema 路径；否则尝试 SDI（8.0+）
 	if (schema_file)
 		layout_rc = mysql_layout_from_schema_file(schema_file, &L);
 	else

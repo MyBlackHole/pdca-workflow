@@ -15,6 +15,13 @@
  *
  * 本实现读取与 PostgreSQL 一致的提交状态，供 heap 直读做精确 MVCC 可见性判断
  * （T0250 相对 T0163 启发式的核心升级点）。
+ *
+ * 备注：版本差异——CLOG 目录名随 PG 版本迁移：
+ *   PG 9.x 及更早：PGDATA/pg_clog/
+ *   PG 10+       ：PGDATA/pg_xact/（本实现按 PG10+ 布局，实测 PG18.4）
+ * 段文件与 2-bit 状态编码各版本一致；SLRU 段大小（32 页）与页内布局同源，
+ * 仅目录名与 BLCKSZ 随编译配置变化。调用方传入的 pgxact_dir 必须指向
+ * 与 heap 同快照的 CLOG 目录（见 pg_heap_reader.c 可见性注释）。
  */
 #include "pg_clog_reader.h"
 

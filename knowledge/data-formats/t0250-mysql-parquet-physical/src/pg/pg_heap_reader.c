@@ -193,6 +193,14 @@ typedef struct { size_t page_idx; uint16 next_offnum; } ParseCursor;
  * 无 hint bits（page 未被并发访问写 XMIN_COMMITTED 等）时完全依赖 CLOG；
  * 有 hint bits 时以其为准（与 PG 运行时一致）。
  *
+ * 备注：版本差异——t_infomask 等 heap 头字段通过编译期 PG 官方头文件
+ *  (HeapTupleHeaderData) 访问，其字节偏移随 PG 版本变化：
+ *    PG12+  : t_infomask 位于偏移 20（T0250 实测 PG18.4）
+ *    旧文档 : 记作偏移 24（PG11 及更早布局）
+ *  硬编码旧偏移会把 frozen 行误判（AC-10 根因之一），务必以目标 PG 版本头
+ *  编译；CLOG 目录亦随版本迁移：PG9.x 及更早 pg_clog、PG10+ pg_xact
+ *  （pg_clog_reader.c 已按 PG10+ 布局实现）。
+ *
  * 规则（等效 HeapTupleSatisfiesMVCC 的 commit 判断）：
  *   xmin 状态：
  *     - HEAP_XMIN_FROZEN（INVALID|COMMITTED 同置）→ 可见（VACUUM freeze）
