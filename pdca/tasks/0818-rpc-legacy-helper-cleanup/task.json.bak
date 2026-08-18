@@ -8,7 +8,7 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-18T15:50:00+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T0316-0818-rpc-legacy-helper-cleanup",
     "scenario_type": "development",
     "verdict": {
@@ -17,12 +17,17 @@
       "verdict_id": "T0316-V1",
       "at": "2026-08-18T15:53:16+08:00"
     },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "内部死代码与公共 ABI 的分类清理规则可复用于后续 RPC/rdbcomm 遗留代码审查。",
+      "at": "2026-08-18T15:54:00+08:00"
+    },
     "completed_at": "2026-08-18T15:52:36+08:00"
   },
   "parent": "T0315",
   "slug": "0818-rpc-legacy-helper-cleanup",
   "states": {
-    "act": null,
+    "act": "2026-08-18T15:53:31+08:00",
     "archive": null,
     "check": "2026-08-18T15:52:36+08:00",
     "created": "2026-08-18T15:50:00+08:00",
