@@ -8,7 +8,7 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-18T15:33:00+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T0314-0818-remove-enc-error-codes",
     "scenario_type": "development",
     "verdict": {
@@ -17,12 +17,17 @@
       "verdict_id": "T0314-V1",
       "at": "2026-08-18T15:39:15+08:00"
     },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "结构化 TLS/mTLS 失败日志模式可复用于后续 RPC 和 rdbcomm 安全链路；代码行为与测试证据已固化。",
+      "at": "2026-08-18T15:40:00+08:00"
+    },
     "completed_at": "2026-08-18T15:37:55+08:00"
   },
   "parent": "T0313",
   "slug": "0818-remove-enc-error-codes",
   "states": {
-    "act": null,
+    "act": "2026-08-18T15:39:28+08:00",
     "archive": null,
     "check": "2026-08-18T15:37:55+08:00",
     "created": "2026-08-18T15:33:00+08:00",
