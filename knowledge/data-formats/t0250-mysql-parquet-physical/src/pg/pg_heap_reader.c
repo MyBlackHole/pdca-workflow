@@ -8,6 +8,8 @@
  * 复用官方 heap_deform_tuple（PG 18.4 源码）实现列布局/对齐/varlena 解码；
  * 页面解析用 storage/bufpage.h；numeric 解码为 Decimal128。
  */
+#include "pg_versions.h"
+
 #include <fcntl.h>
 #include <inttypes.h>
 #include <limits.h>
@@ -193,13 +195,12 @@ typedef struct { size_t page_idx; uint16 next_offnum; } ParseCursor;
  * 无 hint bits（page 未被并发访问写 XMIN_COMMITTED 等）时完全依赖 CLOG；
  * 有 hint bits 时以其为准（与 PG 运行时一致）。
  *
- * 备注：版本差异——t_infomask 等 heap 头字段通过编译期 PG 官方头文件
- *  (HeapTupleHeaderData) 访问，其字节偏移随 PG 版本变化：
- *    PG12+  : t_infomask 位于偏移 20（T0250 实测 PG18.4）
- *    旧文档 : 记作偏移 24（PG11 及更早布局）
- *  硬编码旧偏移会把 frozen 行误判（AC-10 根因之一），务必以目标 PG 版本头
- *  编译；CLOG 目录亦随版本迁移：PG9.x 及更早 pg_clog、PG10+ pg_xact
- *  （pg_clog_reader.c 已按 PG10+ 布局实现）。
+ * 备注：版本差异（详见 pg_versions.h 版本特性矩阵）——t_infomask 等 heap
+ *  头字段通过编译期 PG 官方头（HeapTupleHeaderData）访问，字节偏移随版本
+ *  变化（PG12+ 偏移 20，PG11 及更早 24，本工程编译依据 PG18.4）；禁止硬编码
+ *  旧偏移，否则 frozen 行误判（AC-10 根因之一）。CLOG 目录亦随版本迁移：
+ *  PG10+ pg_xact/（pg_clog_reader.c 已实现）、PG9.x 及更早 pg_clog/
+ *  （pg_clog_legacy.c 未实现）。
  *
  * 规则（等效 HeapTupleSatisfiesMVCC 的 commit 判断）：
  *   xmin 状态：

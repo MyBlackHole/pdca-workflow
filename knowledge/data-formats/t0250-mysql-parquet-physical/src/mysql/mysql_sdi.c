@@ -1,5 +1,11 @@
 /*
- * mysql_sdi.c — 从 .ibd SDI 页（zlib 压缩的 JSON 表定义）构建物理布局。
+ * mysql_sdi.c — MySQL 8.0+ 表定义布局解析（SDI 驱动，版本特性文件）。
+ *
+ * 版本背景：8.0+ 表定义内嵌于 .ibd 的 FIL_PAGE_SDI 页（zlib 压缩 JSON），
+ * 本文件负责从 SDI 页自动构建 MysqlLayout。5.6/5.7 无 SDI（表定义在 .frm），
+ * 请用 mysql_layout_schema.c（--schema= 文件，版本特性文件）。
+ * 类型 → InnoDB 物理语义的工具函数（map_mtype/d2b/int_bytes/fsp_bytes）
+ * 为四版本公共（声明于 mysql_sdi.h，供本文件与 schema 布局共用）。
  *
  * SDI 记录解析照 ibd2sdi：FIL_PAGE_SDI 页内 record 首 4B 为 (type,type2,id)，
  * partial-length 编码与普通 record 一致，压缩 payload 在 rec+33 起。
@@ -177,7 +183,7 @@ static const JVal *j_get(const JVal *o, const char *key) {
 }
 
 /* ---------------- 类型映射 ---------------- */
-static int map_mtype(int dd) {
+int map_mtype(int dd) {
   switch (dd) {
     case 2: case 3: case 4: case 9: case 10: case 11: case 12: case 13:
     case 14: case 22: case 23: case 8:
@@ -198,14 +204,14 @@ static int map_mtype(int dd) {
   }
 }
 
-static int d2b(int d) {
+int d2b(int d) {
   if (d <= 1) return d;
   if (d <= 2) return 1;
   if (d <= 4) return 2;
   if (d <= 6) return 3;
   return 4;
 }
-static int int_bytes(int dd) {
+int int_bytes(int dd) {
   switch (dd) {
     case 2: return 1;  /* TINYINT */
     case 3: return 2;  /* SMALLINT */
@@ -218,7 +224,7 @@ static int int_bytes(int dd) {
     default: return 8;
   }
 }
-static int fsp_bytes(int fsp) {
+int fsp_bytes(int fsp) {
   if (fsp >= 5) return 3;
   if (fsp >= 3) return 2;
   if (fsp >= 1) return 1;
@@ -485,155 +491,4 @@ void mysql_layout_free(MysqlLayout *l) {
   free(l->fields);
   l->fields = NULL;
   l->n_fields = 0;
-}
-
-/* ---------------- CLI schema 文件（5.6/5.7 无 SDI，schema 由命令行传入） ----------------
- * 格式（每行一列，`#` 注释，顺序 = 建表列序）：
- *   name:type[:attr...]
- *   type ∈ bigint|int|int24|smallint|tinyint|year|float|double|decimal(p,s)|
- *         datetime(fsp)|timestamp(fsp)|time(fsp)|varchar(n)|char(n)|text|blob|bool
- *   attr ∈ unsigned|null|pk
- * 示例：
- *   id:bigint:pk
- *   customer_id:int
- *   amount:decimal(12,2)
- *   created_at:datetime(6)
- *   status:varchar(16)
- *   payload:varchar(96)
- *   active:bool
- * 布局 = PK 列(建表序) + DB_TRX_ID(6B) + DB_ROLL_PTR(7B) + 其余列(建表序)，
- * 与 8.0 SDI 生成的物理列序一致。 */
-static int schema_dd_type(const char *type) {
-  if (!strcmp(type, "tinyint")) return 2;
-  if (!strcmp(type, "smallint")) return 3;
-  if (!strcmp(type, "int")) return 4;
-  if (!strcmp(type, "float")) return 5;
-  if (!strcmp(type, "double")) return 6;
-  if (!strcmp(type, "bigint")) return 9;
-  if (!strcmp(type, "int24")) return 10;
-  if (!strcmp(type, "year")) return 14;
-  if (!strcmp(type, "varchar")) return 16;
-  if (!strcmp(type, "text") || !strcmp(type, "blob")) return 24;
-  if (!strcmp(type, "timestamp")) return 18;
-  if (!strcmp(type, "datetime")) return 19;
-  if (!strcmp(type, "time")) return 20;
-  if (!strcmp(type, "decimal")) return 21;
-  if (!strcmp(type, "char")) return 29;
-  if (!strcmp(type, "bool")) return 4;   /* tinyint(1) → INT，is_bool 标记 */
-  return -1;
-}
-
-int mysql_layout_from_schema_file(const char *path, MysqlLayout *out) {
-  memset(out, 0, sizeof(*out));
-  FILE *fp = fopen(path, "r");
-  if (!fp) return -1;
-  const int MAXC = 128;
-  MysqlField tmp[MAXC];
-  int pkmark[MAXC];
-  int n = 0, n_pk = 0;
-  char line[512];
-  while (fgets(line, sizeof(line), fp) && n < MAXC) {
-    char *p = line;
-    while (*p == ' ' || *p == '\t') p++;
-    if (*p == '#' || *p == '\n' || *p == '\r' || *p == 0) continue;
-    char *eol = strpbrk(p, "\r\n");
-    if (eol) *eol = 0;
-    /* 去掉尾部注释 */
-    char *hash = strchr(p, '#');
-    if (hash) *hash = 0;
-    char name[128], type[32];
-    int is_pk = 0, is_null = 0, is_unsigned = 0;
-    long prec = 0, scale = 0, fsp = 0, clen = 0;
-    char *colon = strchr(p, ':');
-    if (!colon) continue;
-    size_t nl = (size_t)(colon - p);
-    if (nl >= sizeof(name)) nl = sizeof(name) - 1;
-    memcpy(name, p, nl); name[nl] = 0;
-    /* 解析类型 + 属性 */
-    char *tp = colon + 1;
-    char tbase[32] = {0};
-    int tlen = 0;
-    char *lp = tp;
-    while (*lp && *lp != ':' && *lp != '(') tbase[tlen++] = *lp++;
-    tbase[tlen] = 0;
-    if (*lp == '(') {
-      lp++;
-      long a = strtol(lp, &lp, 10);
-      if (*lp == ',') { scale = strtol(lp + 1, &lp, 10); prec = a; }
-      else { fsp = a; prec = a; }
-      if (*lp == ')') lp++;
-    }
-    /* 剩余属性 */
-    while (*lp) {
-      if (*lp != ':') { lp++; continue; }
-      lp++;
-      if (!strncmp(lp, "pk", 2) && (lp[2] == 0 || lp[2] == ':')) { is_pk = 1; lp += 2; continue; }
-      if (!strncmp(lp, "unsigned", 8)) { is_unsigned = 1; lp += 8; continue; }
-      if (!strncmp(lp, "null", 4)) { is_null = 1; lp += 4; continue; }
-      if (!strncmp(lp, "bool", 4)) { is_unsigned = 1; lp += 4; continue; }
-      lp++;
-    }
-    (void)clen;
-    int dd = schema_dd_type(tbase);
-    if (dd < 0) continue;
-    memset(&tmp[n], 0, sizeof(MysqlField));
-    tmp[n].name = strdup(name);
-    tmp[n].dd_type = (uint8_t)dd;
-    tmp[n].mtype = (uint8_t)map_mtype(dd);
-    tmp[n].nullable = (uint8_t)is_null;
-    tmp[n].is_unsigned = (uint8_t)is_unsigned;
-    if (!strcmp(tbase, "bool")) tmp[n].is_bool = 1;
-    if (!strcmp(tbase, "decimal")) { tmp[n].precision = (uint16_t)prec; tmp[n].scale = (uint8_t)scale; }
-    if (!strcmp(tbase, "datetime") || !strcmp(tbase, "timestamp") || !strcmp(tbase, "time"))
-      tmp[n].fsp = (uint8_t)fsp;
-    if (!strcmp(tbase, "varchar") || !strcmp(tbase, "char"))
-      tmp[n].charlen = (uint32_t)prec;
-    if (is_pk) n_pk++;
-    pkmark[n] = is_pk;
-    switch (tmp[n].mtype) {
-      case MF_INT:
-        if (tmp[n].is_bool) tmp[n].fixed = 1;
-        else tmp[n].fixed = (uint16_t)int_bytes(dd);
-        break;
-      case MF_FLOAT: tmp[n].fixed = 4; break;
-      case MF_DOUBLE: tmp[n].fixed = 8; break;
-      case MF_DECIMAL:
-        tmp[n].fixed = (uint16_t)(1 + d2b(tmp[n].precision - tmp[n].scale) + d2b(tmp[n].scale));
-        break;
-      case MF_DATETIME2: case MF_TIMESTAMP2:
-        tmp[n].fixed = (uint16_t)(5 + fsp_bytes(tmp[n].fsp)); break;
-      case MF_TIME2:
-        tmp[n].fixed = (uint16_t)(3 + fsp_bytes(tmp[n].fsp)); break;
-      case MF_STRING:
-        tmp[n].fixed = (uint16_t)prec; tmp[n].charlen = (uint32_t)prec; break;
-      case MF_VARCHAR:
-        tmp[n].fixed = 0; break;
-      case MF_BLOB: tmp[n].fixed = 0; break;
-      default: break;
-    }
-    tmp[n].is_big = (tmp[n].mtype == MF_BLOB) || (tmp[n].fixed > 255) || (tmp[n].charlen > 255);
-    n++;
-  }
-  fclose(fp);
-  if (n == 0) return -1;
-
-  /* 物理列序：PK 列（保持 schema 序）+ 系统列 + 非 PK 列（保持 schema 序） */
-  MysqlField tmp2[MAXC];
-  int m = 0;
-  for (int i = 0; i < n; i++) if (pkmark[i]) tmp2[m++] = tmp[i];
-  /* DB_TRX_ID 6B + DB_ROLL_PTR 7B 占位 */
-  memset(&tmp2[m], 0, sizeof(MysqlField)); tmp2[m].name = strdup("DB_TRX_ID");
-  tmp2[m].sys = 1; tmp2[m].fixed = 6; tmp2[m].mtype = MF_INT; m++;
-  memset(&tmp2[m], 0, sizeof(MysqlField)); tmp2[m].name = strdup("DB_ROLL_PTR");
-  tmp2[m].sys = 2; tmp2[m].fixed = 7; tmp2[m].mtype = MF_INT; m++;
-  for (int i = 0; i < n; i++) if (!pkmark[i]) tmp2[m++] = tmp[i];
-
-  out->n_fields = (uint16_t)m;
-  out->n_pk = (uint16_t)n_pk;
-  out->n_nullable = 0;
-  out->fields = calloc(m, sizeof(MysqlField));
-  memcpy(out->fields, tmp2, m * sizeof(MysqlField));
-  for (int i = 0; i < m; i++)
-    if (out->fields[i].nullable) out->n_nullable++;
-  return 0;
 }

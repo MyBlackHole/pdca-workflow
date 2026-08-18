@@ -8,18 +8,30 @@
 #ifndef MYSQL_SDI_H
 #define MYSQL_SDI_H
 
+#include "mysql_versions.h"
+
 #include <stddef.h>
 #include <stdint.h>
 
 #define MYSQL_PS 16384
-#define FIL_PAGE_TYPE_INDEX 17855
-#define FIL_PAGE_TYPE_SDI 17853
-#define FIL_PAGE_TYPE_LOB_FIRST 24
-#define FIL_PAGE_TYPE_LOB_DATA 23
 #define PAGE_NEW_INFIMUM 99
 #define PAGE_HEADER 38
 #define PAGE_N_RECS_OFF (PAGE_HEADER + 16)
 #define PAGE_LEVEL_OFF (PAGE_HEADER + 26)
+
+/* 大端读取工具（解析公共依赖，多文件共用） */
+static inline uint32_t be16(const uint8_t *p) { return ((uint32_t)p[0] << 8) | p[1]; }
+static inline uint32_t be32(const uint8_t *p) {
+  return ((uint32_t)p[0] << 24) | ((uint32_t)p[1] << 16) |
+         ((uint32_t)p[2] << 8) | p[3];
+}
+
+/* 布局构建公共工具（由 mysql_layout_schema.c 与 mysql_sdi.c 共用；
+ * 依赖 SDI/表定义的类型元数据 → InnoDB data0type 语义映射） */
+int map_mtype(int dd);
+int d2b(int d);
+int int_bytes(int dd);
+int fsp_bytes(int fsp);
 
 /* dd enum_column_types 的物理分类（与 data0type 对应） */
 enum { MF_INT = 0, MF_FLOAT, MF_DOUBLE, MF_DECIMAL, MF_DATETIME2, MF_TIMESTAMP2,

@@ -18,6 +18,7 @@ extern "C"
 {
 #include "mysql_parse_pages.h"
 #include "mysql_sdi.h"
+#include "mysql_layout_schema.h"
 }
 
 #include "tde_decrypt.h"

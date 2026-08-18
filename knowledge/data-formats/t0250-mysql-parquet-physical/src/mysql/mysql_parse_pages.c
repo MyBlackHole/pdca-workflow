@@ -1,5 +1,5 @@
 /*
- * mysql_parse_pages.c — T0250 MySQL InnoDB 通用物理直读（SDI 驱动）。
+ * mysql_parse_pages.c — T0250 MySQL InnoDB 通用物理直读（页记录解码核心）。
  *
  * 记录 offsets 计算照 InnoDB 源码 rec_init_offsets_comp_ordinary 语义：
  *   nulls = rec-6；lens = nulls - ⌈n_null/8⌉；NULL 位图 LSB 起（byte 溢出向前）；
@@ -9,9 +9,20 @@
  *   - 有符号整数/DATETIME/DECIMAL 首字节 ^0x80 符号位翻转
  *   - decimal2bin：负数逐字节按位取反
  *   - DATETIME2 5B 位域 ym<<22|day<<17|hour<<12|min<<6|sec
- *   - off-page LOB：8.0 新版 LOB_FIRST 页 data@696，DATA_LEN@54
+ *   - off-page LOB：8.0.13+ 新版 LOB_FIRST 页 data@696，DATA_LEN@54，
+ *     读取实现拆分至 mysql_lob_read.c（版本特性文件）；旧 BLOB 页（type 22）
+ *     见 mysql_lob_legacy.c（未实现）。
+ *
+ * 版本拆分索引（文件即版本特性）：
+ *   mysql_versions.h        — 版本特性矩阵/页类型常量
+ *   mysql_sdi.c             — 8.0+ SDI 布局（表定义内嵌页）
+ *   mysql_layout_schema.c   — 5.6/5.7 schema 布局（--schema= 文件）
+ *   mysql_lob_read.c        — 8.0.13+ 新版 LOB 多段读取
+ *   mysql_lob_legacy.c      — 旧 BLOB 页（type 22）占位（未实现）
+ * 四版本行格式 COMPACT/DYNAMIC 记录层一致，本文件统一解码（rec_offsets）。
  */
 #include "mysql_sdi.h"
+#include "mysql_lob_read.h"
 
 #include <fcntl.h>
 #include <inttypes.h>
@@ -49,10 +60,6 @@ typedef struct {
   uint8_t kind; /* 0 FIX, 1 NULL, 2 VAR1, 3 VAR2, 4 EXT, 5 SYS */
 } ColSpec;
 
-static inline uint32_t be16(const uint8_t *p) { return ((uint32_t)p[0] << 8) | p[1]; }
-static inline uint32_t be32(const uint8_t *p) {
-  return ((uint32_t)p[0] << 24) | ((uint32_t)p[1] << 16) | ((uint32_t)p[2] << 8) | p[3];
-}
 static inline uint64_t be64(const uint8_t *p) {
   return ((uint64_t)be32(p) << 32) | be32(p + 4);
 }
@@ -404,20 +411,6 @@ static int json_to_text(const uint8_t *doc, size_t len, char *out, size_t cap) {
   return 0;
 }
 
-static int d2b(int d) {
-  if (d <= 1) return d;
-  if (d <= 2) return 1;
-  if (d <= 4) return 2;
-  if (d <= 6) return 3;
-  return 4;
-}
-static int fsp_bytes(int fsp) {
-  if (fsp >= 5) return 3;
-  if (fsp >= 3) return 2;
-  if (fsp >= 1) return 1;
-  return 0;
-}
-
 /* rec_init_offsets_comp_ordinary：计算各字段物理偏移
  * 备注：版本差异——本函数为 COMPACT/DYNAMIC 统一实现（5.6 COMPACT 与
  *  5.7/8.0/8.4 DYNAMIC 记录头与长度数组布局一致，AC-1 四版本实测通过）；
@@ -545,58 +538,6 @@ static int64_t dec_datetime(const uint8_t *b, uint16_t off, uint8_t base,
   return (int64_t)epoch * 1000000LL + us;
 }
 
-/* off-page LOB 多段读取：
- *  由 index list 驱动 —— LOB_FIRST 页内 flst base@64(len 4B + first fil_addr
- *  6B = page 4B + off 2B)，每 entry 60B (index_entry_t: PAGE_NO@48 4B,
- *  DATA_LEN@52 2B, NEXT@6 6B fil_addr)；entry 依 next 指针串成段链，首段
- *  (PAGE_NO==LOB_FIRST 自身) 数据位于页内 @696，其余段命中 LOB_DATA 页时
- *  payload 位于页内 @49（本版本实测，与 MySQL 8.0 LOB 物理格式对齐）。
- *  各段依链表顺序拼接写入 dst，总长经 out_len 返回。
- *
- *  备注：版本差异边界——本实现仅支持 8.0.13+ 新版 LOB（LOB_FIRST=24/LOB_DATA=23）。
- *  8.0.13 之前及 5.6/5.7 的旧 BLOB 页（FIL_PAGE_TYPE_BLOB=22）格式不同，
- *  本函数对非 LOB_FIRST 页直接返回 -1（记录该字段解码失败），未做旧格式适配；
- *  如需支持旧版本 off-page 大值需单独逆向 BLOB 页布局（AC-8 验证范围外）。 */
-static int read_lob(const uint8_t *map, size_t map_len, uint16_t pageno,
-                    uint8_t *dst, size_t dst_cap, uint32_t *out_len) {
-  size_t pg_off = (size_t)pageno * MYSQL_PS;
-  if (pg_off + MYSQL_PS > map_len) return -1;
-  const uint8_t *pg = map + pg_off;
-  uint32_t ftype = be16(pg + 24);
-  if (ftype != FIL_PAGE_TYPE_LOB_FIRST) return -1;
-
-  size_t used = 0;
-
-  uint32_t nseg = be32(pg + 64); /* index list 段数 */
-  if (nseg > 10) nseg = 10;      /* index array 固定 600B/60B = 10 entry */
-  uint32_t npage = be32(pg + 68);
-  uint16_t noff = be16(pg + 72);
-  for (uint32_t i = 0; i < nseg; i++) {
-    if (npage == 0xFFFFFFFFu && noff == 0xFFFF) break;
-    size_t e_off = (size_t)npage * MYSQL_PS + noff;
-    if (e_off + 60 > map_len) return -1;
-    const uint8_t *e = map + e_off;
-    uint32_t seg_page = be32(e + 48);
-    uint32_t seg_len = be16(e + 52);
-    size_t spg_off = (size_t)seg_page * MYSQL_PS;
-    if (spg_off + MYSQL_PS > map_len) return -1;
-    const uint8_t *spg = map + spg_off;
-    if (seg_page == pageno) {
-      if (used + seg_len > dst_cap) return -1;
-      memcpy(dst + used, spg + 696, seg_len);
-    } else {
-      if (be16(spg + 24) != FIL_PAGE_TYPE_LOB_DATA) return -1;
-      if (used + seg_len > dst_cap) return -1;
-      memcpy(dst + used, spg + 49, seg_len);
-    }
-    used += seg_len;
-    npage = be32(e + 6);
-    noff = be16(e + 10);
-  }
-  *out_len = (uint32_t)used;
-  return 0;
-}
-
 /* 页压缩(FIL_PAGE_COMPRESSED=14)解压为普通页。
  * 控制信息 V1(fil0types.h): version@26 u8, alg@27 u8(1=zlib),
  *   orig_type@28 u16, orig_size@30 u16, comp_size@32 u16;
@@ -643,7 +584,7 @@ static int decode_field(const uint8_t *page, uint16_t org, const ColSpec *cs,
     const uint8_t *ref = src;
     uint16_t pageno = (uint16_t)be32(ref + 4);
     uint32_t llen = 0;
-    if (read_lob(map, map_len, pageno, (uint8_t *)strbuf + *strbuf_used,
+    if (mysql_lob_read(map, map_len, pageno, (uint8_t *)strbuf + *strbuf_used,
                  strbuf_cap - *strbuf_used, &llen) != 0) return -1;
     cell->kind = 3;
     cell->off = (uint32_t)*strbuf_used;
