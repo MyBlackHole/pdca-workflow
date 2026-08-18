@@ -25,7 +25,9 @@
 - **类型解码**：INT/BIGINT/DECIMAL(12,2)/DATETIME(6)/TIME2/ENUM/SET/VARCHAR/TEXT/BLOB 全类型，
   整数与 DECIMAL 首字节 ^0x80 符号位翻转；DATETIME2 5B 位域 + fsp 分数缩放；TIME2 负值反码补码。
 - **版本探测**：5.6/5.7（无 SDI，走 `--schema=` CLI 参数化）/ 8.0 / 8.4 各 1M 行均可解析，
-  行数与 SQL count 一致（差异=0，AC-1）。
+  行数与 SQL count 一致（差异=0，AC-1）。**版本差异要点**：5.6 默认 COMPACT（其余 DYNAMIC），
+  8.0+ SDI 页内嵌表定义（5.6/5.7 在 .frm，需 schema 参数化）；页/记录编码四版本一致；
+  off-page LOB 仅验证 8.0.13+ 新版（type 24/23），旧 BLOB 页（type 22）未覆盖。
 - **可见性**：关闭后无活跃事务，聚簇索引记录非 delete-mark 即可见；`REC_INFO_DELETED_FLAG` 过滤，
   UPDATE/DELETE/ROLLBACK/ReadView 冻结 5 场景物理直读行数 == SQL count（差异=0，AC-4）。
 - **off-page**：新版 LOB（8.0.13+）TEXT 大值经 20B REF 定位 LOB_FIRST 页 data@696；
@@ -43,6 +45,8 @@
 工具：`build/pgbin`（heap + pg_xact→Parquet）。
 
 - heap 页遍历 + 行头 xmin/xmax；**CLOG（pg_xact）精确判断提交状态**（非启发式）。
+  **PG12+ heap 头 t_infomask 偏移 20（非旧文档 24）**；FROZEN hint-bit（INVALID|COMMITTED
+  同置）需先判 FROZEN 再判 INVALID（AC-10 修复）。
 - 1M 行与 PG count 一致；四事务场景（INSERT/UPDATE/DELETE/ROLLBACK）visible == SQL count
   差异=0。关键前提：**heap 与 pg_xact 必须同快照**（只拷 heap 不重拷 CLOG 会误判全 invisible）。
 - 边界：TOAST 压缩 varlena 识别跳过计数、NULL/空串/emoji/numeric 极值/历史时间戳正确。

@@ -64,6 +64,42 @@
   → 再拷 .ibd。`fast_shutdown=2`/redo 重放范围外。
 - 大文件勿放 tmpfs（实测 5.3G ibd 被截断致行数减半，对比 SHOW TABLE STATUS 暴露）。
 
+## MySQL / PG 版本差异（实测矩阵）
+
+### MySQL InnoDB（AC-1 四版本各 1M 行实测）
+
+| 维度 | 5.6.51 | 5.7.44 | 8.0 | 8.4.11 |
+|---|---|---|---|---|
+| 默认行格式 | **COMPACT** | DYNAMIC | DYNAMIC | DYNAMIC |
+| 表定义位置 | .frm（外部） | .frm（外部） | **SDI 页**（.ibd 内） | SDI 页 |
+| 解析方式 | `--schema=` CLI | `--schema=` CLI | SDI 自动布局 | SDI 自动布局 |
+| 页类型含 SDI(17853) | 无 | 无 | 有 | 有 |
+| 1M 吞吐（实测） | 636K/s | 302K/s | 937K/s | 389K/s |
+
+- **行格式差异是最大解析分支**：COMPACT（5.6 默认）与 DYNAMIC 的记录 offsets/NULL 位图布局
+  不同，统一解析器按格式分支处理；5.6 的 COMPACT 与 5.7+ 的 DYNAMIC 均在统一工具下正确解码。
+- **数据字典**：8.0 起 SDI 页内嵌 zlib JSON 表定义，可自动推导物理布局；5.6/5.7 无 SDI，
+  表定义在 .frm，必须 `--schema=` 显式传入（布局 = PK + DB_TRX_ID 6B + DB_ROLL_PTR 7B + 其余列）。
+- **off-page LOB**：8.0.13+ 新版 LOB（LOB_FIRST/LOB_DATA，type 24/23）为本次全档实测范围
+  （8192B~100KB 逐字节一致）；**5.6/5.7 及 8.0.13 之前的旧 BLOB 页（type 22 FIL_PAGE_TYPE_BLOB）
+  未纳入 AC 验证，若需支持需单独逆向**（见"适用边界"）。
+- 页/记录其余常量（FIL_PAGE_TYPE、PAGE_N_RECS、记录头、整数/DECIMAL/DATETIME 编码）四版本一致。
+
+### PostgreSQL（PG18.4 实测 + 版本注意）
+
+| 维度 | 旧版（PG11 及之前） | PG12+（本次实测 PG18.4） |
+|---|---|---|
+| heap 头 t_infomask 偏移 | 旧文档 24 | **20**（按实测） |
+| FROZEN hint-bit | 存在 | 存在（INVALID\|COMMITTED 同置，需先判 FROZEN 再判 INVALID） |
+| CLOG 文件 | pg_clog | pg_xact（SLRU，段文件名与旧版不同） |
+
+- **PG12+ heap 头布局变更**：t_infomask 等字段偏移与旧文档不同（实测 20 而非 24），
+  按旧文档硬编码会导致可见性误判。
+- **FROZEN 判定顺序**（任何含 VACUUM freeze 的 PG 版本均适用）：HEAP_XMIN_FROZEN 两 bit 同置，
+  必须先排除 FROZEN（→可见）再判纯 INVALID（→aborted）；AC-10 实测旧顺序漏读 34.4% 行。
+- **方法差异（非版本差异）**：T0163/T0165 遗留实现用启发式可见性，T0250 改为 CLOG（pg_xact）
+  精确判断，版本兼容性以"heap 与 pg_xact 同快照"为前提。
+
 ## 性能基线（本机，ZSTD）
 
 - 1M 行：MySQL 1.789s/558K rows/s（RSS 1138MB，mmap+Arrow 缓冲）；PG 1.061s/942K rows/s；
