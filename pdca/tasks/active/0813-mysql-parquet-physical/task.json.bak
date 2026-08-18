@@ -4,9 +4,9 @@
   "title": "调研 MySQL、PG 数据文件直接转换 Parquet（InnoDB 物理路径为主）",
   "parent": null,
   "children": [],
-  "status": "InProgress",
+  "status": "Completed",
   "meta": {
-    "phase": "do",
+    "phase": "act",
     "active": true,
     "record": "T0250-0813-mysql-parquet-physical",
     "scenario_type": "research",
@@ -17,14 +17,26 @@
       "双库 4 事务场景（INSERT/UPDATE/DELETE/回滚残留）可见性对照差异=0",
       "双库统一四路径 1M 性能对照（≥3 轮中位数）与 8.0 100M 首选路径对照",
       "页压缩/TDE/off-page 解码验证通过；调研报告与 knowledge 沉淀交付"
-    ]
+    ],
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "AC-1~AC-9 全部验收达成且差异=0(四版本 1M/CLOG/PG 四场景/四路径中位数/100M 两路径/压缩+TDE+off-page 16 档逐字节); AC-10 PG 100M frozen 回归修复 rows 65.6M->100M; AC-8 档位样本量判定放宽并记录、AC-9 knowledge 资产补登、100M 吞吐口径以 3 份 json 为准更正",
+      "verdict_id": "verdict-t0250-20260814-confirmed",
+      "at": "2026-08-14T18:12:38+08:00"
+    },
+    "completed_at": "2026-08-14T17:13:11+08:00",
+    "disposition": {
+      "outcome": "projected",
+      "reason": "结论已沉淀为可复用知识: mysql-innodb-physical-read-notes.md(版本差异矩阵) + t0250-mysql-parquet-physical/ 源码副本(版本特性按文件名标注), 并登记 knowledge/manifest.jsonl; 预期供后续 MySQL/PG 数据文件转换任务直接复用",
+      "at": "2026-08-18T10:10:00+08:00"
+    }
   },
   "states": {
     "created": "2026-08-13T00:00:00+08:00",
     "plan": "2026-08-13T11:07:49+08:00",
     "do": "2026-08-13T11:08:15+08:00",
-    "check": null,
-    "act": null,
+    "check": "2026-08-14T17:13:11+08:00",
+    "act": "2026-08-18T10:29:50+08:00",
     "archive": null
   }
 }
