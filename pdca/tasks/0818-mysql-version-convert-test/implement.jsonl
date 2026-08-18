@@ -1,0 +1,4 @@
+{"file":"knowledge/data-formats/mysql-innodb-physical-read-notes.md","reason":"版本差异矩阵(5.6/5.7 schema vs 8.0+ SDI; COMPACT/DYNAMIC; LOB 8.0.13+; 旧 BLOB type22 未支持)决定四版本测试的解析路径与预期","action":"复用","at":"2026-08-18T10:36:15+08:00"}
+{"file":"knowledge/data-formats/t0250-mysql-parquet-physical/bench/gen_mysql_versions.py","reason":"四版本通用灌数脚本(六表 CROSS JOIN 倍增 1M, 无 WITH RECURSIVE), 如提取失败重灌用","action":"复用","at":"2026-08-18T10:36:15+08:00"}
+{"file":"knowledge/data-formats/t0250-mysql-parquet-physical/bench/poc_orders.schema","reason":"5.6/5.7 无 SDI 需 --schema= 文本布局(PK+系统列+其余), 全量对照的列序依据","action":"复用","at":"2026-08-18T10:36:15+08:00"}
+{"file":"records/T0250-0813-mysql-parquet-physical/conclusion.md","reason":"AC-1 四版本解析已验证 rows=1M 一致, 本轮为逐版本转换测试+全量对照的增量验证","action":"参考","at":"2026-08-18T10:36:15+08:00"}

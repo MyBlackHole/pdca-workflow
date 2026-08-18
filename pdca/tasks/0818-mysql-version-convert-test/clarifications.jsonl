@@ -1,0 +1,12 @@
+{"at":"2026-08-18T10:33:10+08:00","source":"task_identity","summary":"created with record identity T0300-0818-mysql-version-convert-test"}
+{"source":"direction_confirm","summary":"方向确认: 提取既有库(volume unshare); 验证深度=全量对照(每版本 1M 行逐字段 vs SQL); 8.0 聚合同口径补测","response":"confirmed","at":"2026-08-18T10:35:18+08:00"}
+{"source":"final_confirmation","summary":"终审确认: 四版本逐版本 .ibd→Parquet 转换测试(全量对照 1M×7×4=0 差异)+8.0 聚合同口径补测+每版本产物/记录入 evidence; AC-1~AC-6","response":"confirmed","at":"2026-08-18T10:38:51+08:00"}
+{"round":1,"question":"Q1 对照基准: SQL 基准取自容器运行期导出, .ibd 取自干净关闭快照, 期间无写入. 是否作为全量逐字段对照可信基准?","answer":"接受","recommended":"接受(一致性已核实, 无写入)","source":"grilling","at":"2026-08-18T10:56:43+08:00"}
+{"round":1,"question":"Q2 知识沉淀: 物理页序≠主键序发现是否补入 evidence/mysql/EVIDENCE.md?","answer":"补入 EVIDENCE.md","recommended":"补入(顺序敏感消费警示)","source":"grilling","at":"2026-08-18T10:56:43+08:00"}
+{"round":1,"question":"Q3 吞吐: 并行争用致 275~277K rows/s, 是否单实例重测?","answer":"不需重测","recommended":"不需(吞吐非 AC; AC-5 已覆盖; 记录已注明)","source":"grilling","at":"2026-08-18T10:56:43+08:00"}
+{"round":1,"question":"Q4 测试数据: 1.2G .ibd+SQL 基准不入 git, 是否保留工作区?","answer":"保留在工作区","recommended":"保留(供复验, 不入 git)","source":"grilling","at":"2026-08-18T10:56:43+08:00"}
+{"source":"check_confirmation","summary":"Check verdict confirmed: 四版本逐版本转换测试全 PASS(rows=1M/全量差异=0/聚合含 8.0 一致/AC-1~AC-6 通过), 版本拆分无回归, 页序陷阱已沉淀","response":"confirmed","at":"2026-08-18T10:58:30+08:00"}
+{"round":2,"question":"Q1 知识沉淀: 是否立 knowledge/data-formats/t0300-mysql-version-convert-test.md?","answer":"立 knowledge 文件","recommended":"立(结论+页序陷阱+工具用法, 与 T0250 风格一致)","source":"grilling","at":"2026-08-18T10:59:14+08:00"}
+{"round":2,"question":"Q2 工具登记: extract/verify 脚本是否随知识沉淀登记?","answer":"随知识沉淀","recommended":"随知识沉淀(记录路径与调用方式)","source":"grilling","at":"2026-08-18T10:59:14+08:00"}
+{"round":2,"question":"Q3 流程改进: 多版本转换测试标准模板(逐版本+全量对照+按主键排序)记入 journal?","answer":"记入 journal","recommended":"记入 journal","source":"grilling","at":"2026-08-18T10:59:14+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-18T10:59:36+08:00", "action": "wrote", "reason": "四版本逐版本转换测试流程/页序陷阱/提取对照工具为可复用知识, 立 knowledge/data-formats/t0300-mysql-version-convert-test.md"}
