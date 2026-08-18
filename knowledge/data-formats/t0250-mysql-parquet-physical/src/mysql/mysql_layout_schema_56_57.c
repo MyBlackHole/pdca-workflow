@@ -1,5 +1,5 @@
 /*
- * mysql_layout_schema.c — MySQL 5.6/5.7 表定义布局解析（版本特性文件）。
+ * mysql_layout_schema_56_57.c — MySQL 5.6/5.7 表定义布局解析（版本特性文件）。
  *
  * 版本背景：5.6/5.7 无 SDI 页（表定义在外部 .frm），本文件从 CLI
  * --schema= 文本文件构建 MysqlLayout。schema 文件每行一列：
@@ -7,10 +7,10 @@
  * 类型 → dd::enum_column_types 编码（schema_dd_type），再经公共工具
  * （mysql_sdi.h: map_mtype/int_bytes/d2b/fsp_bytes）落为物理字段属性；
  * 物理列序 = PK 列 → DB_TRX_ID(6B) → DB_ROLL_PTR(7B) → 其余列，
- * 与 8.0+ SDI 布局（mysql_sdi.c）完全一致，故 rec_offsets 一套计算
+ * 与 8.0+ SDI 布局（mysql_sdi_80.c）完全一致，故 rec_offsets 一套计算
  * 即可覆盖 5.6/5.7/8.0/8.4。
  */
-#include "mysql_layout_schema.h"
+#include "mysql_layout_schema_56_57.h"
 
 #include <stdio.h>
 #include <stdlib.h>

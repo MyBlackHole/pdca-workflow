@@ -3,7 +3,7 @@
  *
  * 版本背景：8.0+ 表定义内嵌于 .ibd 的 FIL_PAGE_SDI 页（zlib 压缩 JSON），
  * 本文件负责从 SDI 页自动构建 MysqlLayout。5.6/5.7 无 SDI（表定义在 .frm），
- * 请用 mysql_layout_schema.c（--schema= 文件，版本特性文件）。
+ * 请用 mysql_layout_schema_56_57.c（--schema= 文件，版本特性文件）。
  * 类型 → InnoDB 物理语义的工具函数（map_mtype/d2b/int_bytes/fsp_bytes）
  * 为四版本公共（声明于 mysql_sdi.h，供本文件与 schema 布局共用）。
  *

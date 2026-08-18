@@ -10,19 +10,19 @@
  *   - decimal2bin：负数逐字节按位取反
  *   - DATETIME2 5B 位域 ym<<22|day<<17|hour<<12|min<<6|sec
  *   - off-page LOB：8.0.13+ 新版 LOB_FIRST 页 data@696，DATA_LEN@54，
- *     读取实现拆分至 mysql_lob_read.c（版本特性文件）；旧 BLOB 页（type 22）
- *     见 mysql_lob_legacy.c（未实现）。
+ *     读取实现拆分至 mysql_lob_read_8013.c（版本特性文件）；旧 BLOB 页（type 22）
+ *     见 mysql_lob_legacy_pre8013.c（未实现）。
  *
  * 版本拆分索引（文件即版本特性）：
  *   mysql_versions.h        — 版本特性矩阵/页类型常量
- *   mysql_sdi.c             — 8.0+ SDI 布局（表定义内嵌页）
- *   mysql_layout_schema.c   — 5.6/5.7 schema 布局（--schema= 文件）
- *   mysql_lob_read.c        — 8.0.13+ 新版 LOB 多段读取
- *   mysql_lob_legacy.c      — 旧 BLOB 页（type 22）占位（未实现）
+ *   mysql_sdi_80.c             — 8.0+ SDI 布局（表定义内嵌页）
+ *   mysql_layout_schema_56_57.c   — 5.6/5.7 schema 布局（--schema= 文件）
+ *   mysql_lob_read_8013.c        — 8.0.13+ 新版 LOB 多段读取
+ *   mysql_lob_legacy_pre8013.c      — 旧 BLOB 页（type 22）占位（未实现）
  * 四版本行格式 COMPACT/DYNAMIC 记录层一致，本文件统一解码（rec_offsets）。
  */
 #include "mysql_sdi.h"
-#include "mysql_lob_read.h"
+#include "mysql_lob_read_8013.h"
 
 #include <fcntl.h>
 #include <inttypes.h>

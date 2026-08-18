@@ -27,7 +27,7 @@
 #include "storage/bufpage.h"
 #include "utils/memutils.h"
 
-#include "pg_clog_reader.h"
+#include "pg_clog_reader_pg10.h"
 
 /* c.h 把 fprintf 替换为 pg_fprintf，这里解除 */
 #ifdef fprintf
@@ -199,8 +199,8 @@ typedef struct { size_t page_idx; uint16 next_offnum; } ParseCursor;
  *  头字段通过编译期 PG 官方头（HeapTupleHeaderData）访问，字节偏移随版本
  *  变化（PG12+ 偏移 20，PG11 及更早 24，本工程编译依据 PG18.4）；禁止硬编码
  *  旧偏移，否则 frozen 行误判（AC-10 根因之一）。CLOG 目录亦随版本迁移：
- *  PG10+ pg_xact/（pg_clog_reader.c 已实现）、PG9.x 及更早 pg_clog/
- *  （pg_clog_legacy.c 未实现）。
+ *  PG10+ pg_xact/（pg_clog_reader_pg10.c 已实现）、PG9.x 及更早 pg_clog/
+ *  （pg_clog_legacy_pg9.c 未实现）。
  *
  * 规则（等效 HeapTupleSatisfiesMVCC 的 commit 判断）：
  *   xmin 状态：

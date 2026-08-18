@@ -8,7 +8,7 @@
 #ifndef PG_CLOG_LEGACY_H
 #define PG_CLOG_LEGACY_H
 
-#include "pg_clog_reader.h"
+#include "pg_clog_reader_pg10.h"
 
 /* 旧 CLOG（PG9.x 及更早，pg_clog 目录）读取占位：未实现，恒返回 -1。
  * 签名与 pg_clog_xid_status 一致，便于版本分派处无缝切换。 */

@@ -1,5 +1,5 @@
 /*
- * pg_clog_reader.c — 直接读取 PostgreSQL CLOG（pg_xact）提交日志。
+ * pg_clog_reader_pg10.c — 直接读取 PostgreSQL CLOG（pg_xact）提交日志。
  *
  * CLOG 物理格式（PG 10+，pg_xact 目录）:
  *   - SLRU 段文件：每段 32 页，每页 BLCKSZ=8192 字节；
@@ -23,7 +23,7 @@
  * 仅目录名与 BLCKSZ 随编译配置变化。调用方传入的 pgxact_dir 必须指向
  * 与 heap 同快照的 CLOG 目录（见 pg_heap_reader.c 可见性注释）。
  */
-#include "pg_clog_reader.h"
+#include "pg_clog_reader_pg10.h"
 
 #include <fcntl.h>
 #include <inttypes.h>

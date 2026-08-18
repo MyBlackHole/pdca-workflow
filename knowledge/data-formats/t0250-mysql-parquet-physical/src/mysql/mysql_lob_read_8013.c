@@ -1,8 +1,8 @@
 /*
- * mysql_lob_read.c — MySQL off-page 大值多段读取（8.0.13+ 新版 LOB，版本特性文件）。
+ * mysql_lob_read_8013.c — MySQL off-page 大值多段读取（8.0.13+ 新版 LOB，版本特性文件）。
  *
  * 版本背景：8.0.13+ 大值行外存储用新版 LOB（LOB_FIRST=24 / LOB_DATA=23）。
- * 8.0.13 之前及 5.6/5.7 为旧 BLOB 页（type 22，见 mysql_lob_legacy.c）。
+ * 8.0.13 之前及 5.6/5.7 为旧 BLOB 页（type 22，见 mysql_lob_legacy_pre8013.c）。
  * 本实现仅覆盖 8.0.13+ 新版（AC-8 验证范围），旧格式未适配。
  *
  * 物理布局：由 index list 驱动 —— LOB_FIRST 页内 flst base@64（len 4B +
@@ -12,7 +12,7 @@
  * LOB_DATA 页时 payload 位于页内 @49（本版本实测，与 MySQL 8.0 LOB 物理
  * 格式对齐）。各段依链表顺序拼接写入 dst。
  */
-#include "mysql_lob_read.h"
+#include "mysql_lob_read_8013.h"
 
 #include "mysql_sdi.h"
 #include "mysql_versions.h"

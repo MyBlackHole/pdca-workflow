@@ -4,8 +4,8 @@
  * 拆分原则：凡随 PG 版本变化的物理解析事实集中在此，并在文件名/文件头
  * 标注对应版本；解析实现按版本特性拆分为独立文件：
  *   heap 头/可见性（t_infomask 偏移）   → pg_heap_reader.c（PG12+ 实测）
- *   CLOG 提交日志：PG10+ pg_xact        → pg_clog_reader.c（已实现）
- *   CLOG 提交日志：PG9.x 及更早 pg_clog  → pg_clog_legacy.c（未实现）
+ *   CLOG 提交日志：PG10+ pg_xact        → pg_clog_reader_pg10.c（已实现）
+ *   CLOG 提交日志：PG9.x 及更早 pg_clog  → pg_clog_legacy_pg9.c（未实现）
  *
  * 版本事实（T0250 实测/逆向）：
  *   - t_infomask 偏移随 PG 版本变化：PG12+ 为 20，PG11 及更早为 24。

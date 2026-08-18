@@ -29,8 +29,8 @@ gcc $CFLAGS -c "$PGSRC/snprintf.c" -o "$OUT/pg_snprintf.o"
 
 echo "== 编译本项目源码 =="
 gcc $CFLAGS -c "$ROOT/src/pg/pg_heap_reader.c" -o "$OUT/pg_heap_reader.o"
-gcc $CFLAGS -c "$ROOT/src/pg/pg_clog_reader.c" -o "$OUT/pg_clog_reader.o"
-gcc $CFLAGS -c "$ROOT/src/pg/pg_clog_legacy.c" -o "$OUT/pg_clog_legacy.o"
+gcc $CFLAGS -c "$ROOT/src/pg/pg_clog_reader_pg10.c" -o "$OUT/pg_clog_reader.o"
+gcc $CFLAGS -c "$ROOT/src/pg/pg_clog_legacy_pg9.c" -o "$OUT/pg_clog_legacy.o"
 gcc $CFLAGS -c "$ROOT/src/pg/stub_pg.c" -o "$OUT/stub_pg.o"
 g++ $CXXFLAGS -c "$ROOT/src/pg/pgbin.cpp" -o "$OUT/pgbin.o"
 

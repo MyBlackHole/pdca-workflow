@@ -26,7 +26,7 @@ static inline uint32_t be32(const uint8_t *p) {
          ((uint32_t)p[2] << 8) | p[3];
 }
 
-/* 布局构建公共工具（由 mysql_layout_schema.c 与 mysql_sdi.c 共用；
+/* 布局构建公共工具（由 mysql_layout_schema_56_57.c 与 mysql_sdi_80.c 共用；
  * 依赖 SDI/表定义的类型元数据 → InnoDB data0type 语义映射） */
 int map_mtype(int dd);
 int d2b(int d);
