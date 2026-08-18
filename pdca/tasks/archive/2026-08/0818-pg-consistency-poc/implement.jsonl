@@ -1,0 +1,13 @@
+{"file": "knowledge/data-formats/t0301-pg-version-convert-test.md", "reason": "PG 转换校验上下文: 布局/varlena 事实+对照流程+规范化内核来源", "action": "参考", "at": "2026-08-18"}
+{"file": "knowledge/data-formats/pg-heap-physical-read-notes.md", "reason": "heap 物理直读与字段解码细节, 校验维度设计依据", "action": "参考", "at": "2026-08-18"}
+{"file": "knowledge/data-formats/parquet-technical-reference.md", "reason": "parquet schema/类型映射语义, schema 元数据校验维度依据", "action": "参考", "at": "2026-08-18"}
+{"file": "bench/gen_consistency.py", "reason": "POC 灌数脚本（10 万行形态覆盖）", "action": "编写", "at": "2026-08-18"}
+{"file": "evidence/pg/consistency/poc_consistency.sql.tsv", "reason": "SQL 基准导出（100000 行）", "action": "导出", "at": "2026-08-18"}
+{"file": "src/pg/pg_heap_reader.c", "reason": "缺陷#1a nullbit 判定反转 + #1b t_bits 偏移 24->23 + #3 未初始化哨兵/null 位图", "action": "修复", "at": "2026-08-18"}
+{"file": "src/pg/pgbin.cpp", "reason": "缺陷#2 写 parquet validity buffer（NULL 语义）", "action": "修复", "at": "2026-08-18"}
+{"file": "src/pg/pg_versions.h", "reason": "PG_HEAP_HEADER_SIZE 24->23（t_bits offsetof）", "action": "修复", "at": "2026-08-18"}
+{"file": "evidence/pg/consistency/poc_consistency.parquet", "reason": "修复后全量转换（100000 行, NULL 分布与灌数一致）", "action": "生成", "at": "2026-08-18"}
+{"file": "bench/verify_consistency.py", "reason": "五维校验（行数/逐字段/聚合/schema/类型语义），全 PASS", "action": "编写+运行", "at": "2026-08-18"}
+{"file": "bench/mutate_consistency.py", "reason": "mutation 注入 12 类，捕获率 12/12=100%", "action": "编写+运行", "at": "2026-08-18"}
+{"file": "evidence/pg/consistency/research-report.md", "reason": "校验方法评估报告（盲区清单+固化建议）", "action": "编写", "at": "2026-08-18"}
+{"file": "records/T0311-0818-pg-consistency-poc/evidence/", "reason": "8 件证据登记 + convergence-map（valid:true）", "action": "登记", "at": "2026-08-18"}
