@@ -1,0 +1,213 @@
+af7134be refactor: remove unused rpc helpers
+ libs/rpc-net.c    | 87 -------------------------------------------------------
+ libs/tls_keygen.c | 22 +++++++-------
+ 2 files changed, 11 insertions(+), 98 deletions(-)
+commit af7134be10661384438a203e30cde47cecb61b3d
+Author:     black <1358244533@qq.com>
+AuthorDate: Tue Aug 18 15:52:11 2026 +0800
+Commit:     black <1358244533@qq.com>
+CommitDate: Tue Aug 18 15:52:11 2026 +0800
+
+    refactor: remove unused rpc helpers
+
+diff --git a/libs/rpc-net.c b/libs/rpc-net.c
+index d1bbe35c..8c4deb8f 100644
+--- a/libs/rpc-net.c
++++ b/libs/rpc-net.c
+@@ -11,93 +11,6 @@
+ #include <netinet/in.h>
+ #include <sys/socket.h>
+ 
+-static __attribute__((unused)) int rpc_recv(int fd, void *buf, const int buflen, int flags)
+-{
+-	int bytes = 0;
+-	int nread = 0;
+-	int msg_net_length = 0;
+-
+-	while (bytes < (int)sizeof(msg_net_length)) {
+-		nread = recv(fd, ((char *)&msg_net_length) + bytes,
+-			     (sizeof(msg_net_length) - bytes), flags);
+-		if (nread < 1) {
+-			if (errno == EINTR || errno == EAGAIN) {
+-				continue;
+-			}
+-			break;
+-		}
+-		bytes += nread;
+-	}
+-	if (bytes != (int)sizeof(msg_net_length)) {
+-		return -1;
+-	}
+-
+-	const int msg_length = ntohl(msg_net_length);
+-	if (buflen < msg_length) {
+-		return -2;
+-	}
+-
+-	bytes = 0;
+-	nread = 0;
+-	while (bytes < msg_length) {
+-		nread = recv(fd, (char *)buf + bytes, (msg_length - bytes),
+-			     flags);
+-		if (nread < 1) {
+-			if (errno == EINTR || errno == EAGAIN) {
+-				continue;
+-			}
+-			break;
+-		}
+-		bytes += nread;
+-	}
+-	if (bytes != msg_length) {
+-		return -3;
+-	}
+-
+-	return bytes;
+-}
+-
+-static __attribute__((unused)) int rpc_send(int fd, void *buf, const int len, int flags)
+-{
+-	int bytes = 0;
+-	int nwrite = 0;
+-	const int msg_length = htonl(len);
+-
+-	while (bytes < (int)sizeof(msg_length)) {
+-		nwrite = send(fd, ((char *)&msg_length) + bytes,
+-			      (sizeof(msg_length) - bytes), flags);
+-		if (nwrite < 1) {
+-			if (errno == EINTR || errno == EAGAIN) {
+-				continue;
+-			}
+-
+-			break;
+-		}
+-		bytes += nwrite;
+-	}
+-	if (bytes != (int)sizeof(msg_length)) {
+-		return -100;
+-	}
+-
+-	bytes = 0;
+-	nwrite = 0;
+-	while (bytes < len) {
+-		nwrite = send(fd, (char *)buf + bytes, len - bytes, flags);
+-		if (nwrite < 1) {
+-			if (errno == EINTR || errno == EAGAIN) {
+-				continue;
+-			}
+-			break;
+-		}
+-		bytes += nwrite;
+-	}
+-
+-	if (len != bytes) {
+-		return -1;
+-	}
+-	return bytes;
+-}
+-
+ int rpc_get_time(int sockfd, uint64_t *timestamp)
+ {
+ 	rpc_hs_session_t session;
+diff --git a/libs/tls_keygen.c b/libs/tls_keygen.c
+index 21ed629f..22fec4c2 100644
+--- a/libs/tls_keygen.c
++++ b/libs/tls_keygen.c
+@@ -563,7 +563,7 @@ int tls_keygen_sign_with_algo(const char *ca_cert_path,
+ typedef enum { CMD_NONE, CMD_CREATE, CMD_CA, CMD_SIGN, CMD_INSPECT,
+ 	       CMD_MTLS } subcommand_t;
+ 
+-static void __attribute__((unused)) print_create_usage(const char *prog)
++static void print_create_usage(const char *prog)
+ {
+ 	printf("Usage: %s create [OPTIONS]\n", prog);
+ 	printf("Options:\n");
+@@ -593,7 +593,7 @@ static void __attribute__((unused)) print_create_usage(const char *prog)
+ 	printf("  %s create -f\n", prog);
+ }
+ 
+-static void __attribute__((unused)) print_ca_usage(const char *prog)
++static void print_ca_usage(const char *prog)
+ {
+ 	printf("Usage: %s ca [OPTIONS]\n", prog);
+ 	printf("Options:\n");
+@@ -622,7 +622,7 @@ static void __attribute__((unused)) print_ca_usage(const char *prog)
+ 	printf("  %s ca -n \"My Root CA\" --days 3650\n", prog);
+ }
+ 
+-static void __attribute__((unused)) print_sign_usage(const char *prog)
++static void print_sign_usage(const char *prog)
+ {
+ 	printf("Usage: %s sign [OPTIONS]\n", prog);
+ 	printf("Options:\n");
+@@ -666,7 +666,7 @@ static void __attribute__((unused)) print_sign_usage(const char *prog)
+ 	printf("  %s sign --days 730\n", prog);
+ }
+ 
+-static void __attribute__((unused)) print_global_help(const char *prog)
++static void print_global_help(const char *prog)
+ {
+ 	printf("Usage: %s <subcommand> [OPTIONS]\n", prog);
+ 	printf("Subcommands:\n");
+@@ -697,7 +697,7 @@ static void __attribute__((unused)) print_global_help(const char *prog)
+ 	       prog);
+ }
+ 
+-static int __attribute__((unused)) handle_create(int argc, char *argv[])
++static int handle_create(int argc, char *argv[])
+ {
+ 	int force = 0;
+ 	char *output_path = NULL;
+@@ -819,7 +819,7 @@ static int __attribute__((unused)) handle_create(int argc, char *argv[])
+ 	return 0;
+ }
+ 
+-static int __attribute__((unused)) handle_ca(int argc, char *argv[])
++static int handle_ca(int argc, char *argv[])
+ {
+ 	int force = 0;
+ 	int days = 3650;
+@@ -932,7 +932,7 @@ static int __attribute__((unused)) handle_ca(int argc, char *argv[])
+ 	return 0;
+ }
+ 
+-static int __attribute__((unused)) handle_sign(int argc, char *argv[])
++static int handle_sign(int argc, char *argv[])
+ {
+ 	int force = 0;
+ 	int days = 365;
+@@ -1104,7 +1104,7 @@ static int __attribute__((unused)) handle_sign(int argc, char *argv[])
+ 	return 0;
+ }
+ 
+-static void __attribute__((unused)) print_inspect_usage(const char *prog)
++static void print_inspect_usage(const char *prog)
+ {
+ 	printf("Usage: %s inspect <file> [OPTIONS]\n", prog);
+ 	printf("Show details of a certificate (PEM) or private key (PEM).\n");
+@@ -1247,7 +1247,7 @@ static int inspect_cert_file(const char *path)
+ 	return 0;
+ }
+ 
+-static int __attribute__((unused)) handle_inspect(int argc, char *argv[])
++static int handle_inspect(int argc, char *argv[])
+ {
+ 	const char *path = NULL;
+ 	int force_key = 0, force_cert = 0;
+@@ -1315,7 +1315,7 @@ static int __attribute__((unused)) handle_inspect(int argc, char *argv[])
+ 	return 1;
+ }
+ 
+-static void __attribute__((unused)) print_mtls_usage(const char *prog)
++static void print_mtls_usage(const char *prog)
+ {
+ 	printf("Usage: %s mtls [OPTIONS]\n", prog);
+ 	printf("Self-test: verify an mTLS handshake between two certificates\n"
+@@ -1496,7 +1496,7 @@ static int mtls_do_test(const char *ca, const char *server_cert,
+ 	return 0;
+ }
+ 
+-static int __attribute__((unused)) handle_mtls(int argc, char *argv[])
++static int handle_mtls(int argc, char *argv[])
+ {
+ 	const char *ca = NULL;
+ 	const char *server_cert = NULL, *server_key = NULL;
