@@ -1,0 +1,34 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0301",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-18T11:04:00+08:00",
+    "phase": "check",
+    "record": "T0301-0818-pg-version-convert-test",
+    "scenario_type": "development",
+    "completed_at": "2026-08-18T13:54:30+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "三版本(9.6/11/18)全量 1M×7 逐字段差异=0+聚合 PASS, AC-1~6 全部通过; 接受版本差异假设修正(heap 头布局/varlena 编码各版本一致, CLOG 目录为唯一差异; --pg-version 降级为源版本标注)",
+      "verdict_id": "V-T0301-20260818-1",
+      "at": "2026-08-18T14:02:00+08:00"
+    }
+  },
+  "parent": "T0250",
+  "slug": "0818-pg-version-convert-test",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-18T13:54:30+08:00",
+    "created": "2026-08-18T11:04:00+08:00",
+    "do": "2026-08-18T11:11:16+08:00",
+    "plan": "2026-08-18T11:04:00+08:00"
+  },
+  "status": "Completed",
+  "title": "PostgreSQL 各个版本数据文件转换测试（heap+CLOG 物理直读→Parquet 逐版本验证）"
+}

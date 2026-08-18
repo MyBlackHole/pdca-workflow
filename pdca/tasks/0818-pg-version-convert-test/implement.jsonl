@@ -1,0 +1,4 @@
+{"file":"knowledge/data-formats/pg-heap-physical-read-notes.md","reason":"PG heap 物理直读要点(批量游标/结构体/可见性), 决定字段自解码与版本偏移分派的实现基线","action":"复用","at":"2026-08-18T11:07:48+08:00"}
+{"file":"knowledge/data-formats/t0300-mysql-version-convert-test.md","reason":"多版本转换测试流程模板(全量对照/按主键排序/固化提取), 类比应用到 PG 三版本","action":"复用","at":"2026-08-18T11:07:48+08:00"}
+{"file":"knowledge/data-formats/t0250-mysql-parquet-physical/bench/verify_version_convert.py","reason":"全量逐字段对照脚本模板(三路验证), 直接复用为 PG 版本对照工具","action":"复用","at":"2026-08-18T11:07:48+08:00"}
+{"file":"knowledge/data-formats/t0250-mysql-parquet-physical/evidence/pg/ac10_pg_100m_frozen_fix.md","reason":"PG12+ vs PG9- heap 头布局差异(t_infomask 偏移20/24, t_hoff)与 FROZEN 判定顺序, 运行时适配的版本事实依据","action":"参考","at":"2026-08-18T11:07:48+08:00"}
