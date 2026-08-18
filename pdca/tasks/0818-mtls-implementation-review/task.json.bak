@@ -8,14 +8,9 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-18T14:00:00+08:00",
-    "phase": "act",
+    "phase": "check",
     "record": "T0309-0818-mtls-implementation-review",
     "scenario_type": "review",
-    "disposition": {
-      "outcome": "task_only",
-      "reason": "本轮审查结论部分成立；确凿的连接所有权/I-O 边界经验已沉淀，未完成的 RPC session 化和真实回归转入 T0310。",
-      "at": "2026-08-18T14:13:40+08:00"
-    },
     "verdict": {
       "outcome": "partial",
       "reason": "基础协议与部分密文路径成立，但 RPC 全量 mTLS 存在已证实的 fd-only 连接缺陷，需后续修复和真实业务回归。",
@@ -27,7 +22,7 @@
   "parent": null,
   "slug": "0818-mtls-implementation-review",
   "states": {
-    "act": "2026-08-18T14:12:45+08:00",
+    "act": null,
     "archive": null,
     "check": "2026-08-18T14:11:15+08:00",
     "created": "2026-08-18T14:00:00+08:00",

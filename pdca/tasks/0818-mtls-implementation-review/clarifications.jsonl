@@ -1,1 +1,6 @@
 {"at":"2026-08-18T14:00:00+08:00","source":"task_identity","summary":"created with record identity T0309-0818-mtls-implementation-review"}
+{"round":1,"question":"基线核对范围：是否严格核对 RPC/rdbcomm 相关条款，并单独列出 SBT/UI/国密工具链等范围外差距？","answer":"可以；按该方式审查。","recommended":"同意：对 RPC/rdbcomm 相关条款给出满足性结论，对范围外条款给出边界差距清单。","source":"grilling","at":"2026-08-18T14:05:00+08:00"}
+{"round":2,"question":"结论可靠性：是否接受整体为部分满足，最高问题为 RPC fd-only 连接/业务路径导致 mTLS 不可用，并将 session 化和真实业务回归列为后续？","answer":"partial","recommended":"接受 partial；保留已证实的基础协议结论，将未完成项转入跟进任务。","source":"grilling","at":"2026-08-18T14:12:45+08:00"}
+{"source":"followup_task","task_id":"T0310","summary":"统一 RPC fd-only 与 session mTLS 数据面并补真实回归","parent":"T0309","at":"2026-08-18T14:13:20+08:00"}
+{"source":"final_confirmation","summary":"确认按 RPC/rdbcomm 相关条款严格审查，并单列 SBT/UI/国密工具链等范围外差距；不修改代码。","response":"confirmed","at":"2026-08-18T14:06:51+08:00"}
+{"source":"check_confirmation","summary":"结论部分成立：统一协议、时间功能和部分密文路径通过；RPC 全业务 mTLS 因 fd-only 连接路径仍不满足，需后续修复与真实业务回归。","response":"partial","at":"2026-08-18T14:12:45+08:00"}
