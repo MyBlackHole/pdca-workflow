@@ -1,0 +1,137 @@
+ed95f61c refactor: clarify tls failure diagnostics
+ libs/tests/tls_cert_test.c |  2 +-
+ libs/tls_cert.c            | 41 +++++++++++++++++++++++++++--------------
+ 2 files changed, 28 insertions(+), 15 deletions(-)
+commit ed95f61c08cae18766e2863c3f0832c2c105d4e7
+Author:     black <1358244533@qq.com>
+AuthorDate: Tue Aug 18 15:36:55 2026 +0800
+Commit:     black <1358244533@qq.com>
+CommitDate: Tue Aug 18 15:36:55 2026 +0800
+
+    refactor: clarify tls failure diagnostics
+
+diff --git a/libs/tests/tls_cert_test.c b/libs/tests/tls_cert_test.c
+index 6435f15c..9397cccb 100644
+--- a/libs/tests/tls_cert_test.c
++++ b/libs/tests/tls_cert_test.c
+@@ -862,7 +862,7 @@ TEST(tls_sm2_chain_missing_fails)
+ 
+ 	setenv("RPC_TLS_ENABLE", "1", 1);
+ 	setenv("RPC_TLS_CIPHERSUITES", "TLS_SM4_GCM_SM3", 1);
+-	/* cert_dir 指向空目录：SM2 证书缺失 -> ENC-005, init 失败不降级 */
++	/* cert_dir 指向空目录：SM2 证书缺失，初始化失败且不降级。 */
+ 	char empty_dir[] = "/tmp/tls_sm2_empty_dir";
+ 	mkdir(empty_dir, 0700);
+ 	unsetenv("RPC_TLS_CA_CERT");
+diff --git a/libs/tls_cert.c b/libs/tls_cert.c
+index 30b55e9e..e652248b 100644
+--- a/libs/tls_cert.c
++++ b/libs/tls_cert.c
+@@ -62,7 +62,9 @@ static void tls_cert_log_ssl_errors(const char *where, int ssl_error)
+ {
+ 	unsigned long error;
+ 	char message[256];
+-	ErrorLog("TLS handshake failed at %s: ssl_error=%d", where,
++	const char *algorithm = sec_tls_ciphersuites();
++	ErrorLog("TLS handshake failed: role=%s stage=handshake algorithm=%s ssl_error=%d",
++		 where ? where : "unknown", algorithm ? algorithm : "default",
+ 		 ssl_error);
+ 	while ((error = ERR_get_error()) != 0) {
+ 		ERR_error_string_n(error, message, sizeof(message));
+@@ -497,26 +499,30 @@ static int tls_cert_sm_ciphersuites_configured(void)
+  *
+  * 配置了国密套件时，将 SM2 证书链（sm2_ca.crt / sm2_host.crt / sm2_host.key）
+  * 叠加到 SSL_CTX：加载 SM2 主机证书+私钥、设置 SM2 CA 信任链。
+- * 任一 SM2 证书缺失或加载失败返回 0（上层按 ENC-005 作业失败，不降级明文）。
++ * 任一 SM2 证书缺失或加载失败返回 0（上层作业失败，不降级明文）。
+  */
+ static int tls_cert_load_sm2_chain(SSL_CTX *ctx, const char *ca_cert,
+ 				   const char *cert, const char *key)
+ {
+ 	if (!ca_cert || !cert || !key) {
++		ErrorLog("SM2 TLS setup failed: stage=certificate-chain reason=missing path ca=%s cert=%s key=%s",
++			 ca_cert ? ca_cert : "<null>", cert ? cert : "<null>",
++			 key ? key : "<null>");
+ 		return 0;
+ 	}
+ 
+ 	/* SM2 主机证书链（host 证书 + 私钥），覆盖同 SSL_CTX 上的普通证书 */
+ 	if (SSL_CTX_use_certificate_chain_file(ctx, cert) != 1 ||
+ 	    SSL_CTX_use_PrivateKey_file(ctx, key, SSL_FILETYPE_PEM) != 1) {
+-		ErrorLog("Failed to load SM2 host certificate chain (%s/%s)",
+-			 cert, key);
++		ErrorLog("SM2 TLS setup failed: stage=certificate-or-key reason=load failed ca=%s cert=%s key=%s",
++			 ca_cert, cert, key);
+ 		return 0;
+ 	}
+ 
+ 	/* SM2 CA 信任链：覆盖 verify locations 为 SM2 CA */
+ 	if (SSL_CTX_load_verify_locations(ctx, ca_cert, NULL) != 1) {
+-		ErrorLog("Failed to load SM2 CA certificate (%s)", ca_cert);
++		ErrorLog("SM2 TLS setup failed: stage=ca-certificate reason=load failed ca=%s cert=%s key=%s",
++			 ca_cert, cert, key);
+ 		return 0;
+ 	}
+ 
+@@ -541,7 +547,8 @@ static int tls_cert_load_sm2_chain(SSL_CTX *ctx, const char *ca_cert,
+  * > 证书目录默认 sm2_ca.crt / sm2_host.crt / sm2_host.key。
+  */
+ static int tls_cert_apply_sm2_if_configured(SSL_CTX *ctx,
+-					    const char *cert_dir)
++						    const char *cert_dir,
++						    const char *role)
+ {
+ 	if (!tls_cert_sm_ciphersuites_configured()) {
+ 		return 1;
+@@ -570,8 +577,10 @@ static int tls_cert_apply_sm2_if_configured(SSL_CTX *ctx,
+ 	}
+ 
+ 	if (!tls_cert_load_sm2_chain(ctx, ca, cert, key)) {
+-		ErrorLog(
+-			"SM2 ciphersuites configured but SM2 certificate chain unavailable (ENC-005)");
++		const char *algorithm = sec_tls_ciphersuites();
++		ErrorLog("SM2 TLS setup failed: role=%s stage=certificate-chain algorithm=%s ca=%s cert=%s key=%s reason=required certificate chain unavailable",
++			 role ? role : "unknown", algorithm ? algorithm : "default", ca,
++			 cert, key);
+ 		return 0;
+ 	}
+ 
+@@ -648,9 +657,9 @@ int tls_cert_init_client(void)
+ 				   SSL_VERIFY_FAIL_IF_NO_PEER_CERT,
+ 			   NULL);
+ 
+-	/* 配置国密套件时叠加 SM2 证书链（ENC-005：缺失则失败，不降级明文） */
++	/* 配置国密套件时叠加 SM2 证书链，缺失则失败且不降级明文。 */
+ 	if (!tls_cert_apply_sm2_if_configured(g_ctx->ssl_ctx,
+-					      g_ctx->cert_dir)) {
++					      g_ctx->cert_dir, "client")) {
+ 		SSL_CTX_free(g_ctx->ssl_ctx);
+ 		free(g_ctx->cert_dir);
+ 		free(g_ctx);
+@@ -737,9 +746,9 @@ int tls_cert_init_server(void)
+ 				   SSL_VERIFY_FAIL_IF_NO_PEER_CERT,
+ 			   NULL);
+ 
+-	/* 配置国密套件时叠加 SM2 证书链（ENC-005：缺失则失败，不降级明文） */
++	/* 配置国密套件时叠加 SM2 证书链，缺失则失败且不降级明文。 */
+ 	if (!tls_cert_apply_sm2_if_configured(g_ctx->ssl_ctx,
+-					      g_ctx->cert_dir)) {
++					      g_ctx->cert_dir, "server")) {
+ 		SSL_CTX_free(g_ctx->ssl_ctx);
+ 		free(g_ctx->cert_dir);
+ 		free(g_ctx);
+@@ -913,8 +922,12 @@ SSL *tls_cert_server_handshake(int fd, tls_cert_result_t *result)
+ 	    SSL_get_verify_result(ssl) != X509_V_OK) {
+ 		if (ret != 1)
+ 			tls_cert_log_ssl_errors("server", SSL_get_error(ssl, ret));
+-		else if (SSL_get_verify_result(ssl) != X509_V_OK)
+-			tls_cert_log_ssl_errors("server certificate verify", 0);
++		else if (SSL_get_verify_result(ssl) != X509_V_OK) {
++			const char *algorithm = sec_tls_ciphersuites();
++			ErrorLog("TLS certificate verification failed: role=server stage=peer-certificate algorithm=%s verify_result=%ld client_cn=%s",
++				 algorithm ? algorithm : "default",
++				 SSL_get_verify_result(ssl), cert_cn);
++		}
+ 		tls_cert_log_auth_result(cert_cn, client_ip, client_port, 0);
+ 		if (client_cert)
+ 			X509_free(client_cert);

@@ -1,0 +1,6 @@
+{"id":"xmake-full","file":"t0314-full.log","kind":"test-log","size":117214,"digest":"sha256:900fcc853f7304052851f277c98991314d37a5d31e4e6bd575313f696aaa4580","at":"2026-08-18T15:37:22+08:00","criteria":["AC-1","AC-2","AC-3"]}
+{"id":"enc-scan","file":"t0314-enc-scan.log","kind":"source-scan","size":0,"digest":"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","at":"2026-08-18T15:37:23+08:00","criteria":["AC-1"]}
+{"id":"tls-logs","file":"tls_cert.c","kind":"source","size":24333,"digest":"sha256:d7001e0c8251892402b7f2f761e1a8e232e132b628ca54e447d9956c6a8c3537","at":"2026-08-18T15:37:23+08:00","criteria":["AC-2","AC-3"]}
+{"id":"tls-test","file":"tls_cert_test.c","kind":"source","size":26498,"digest":"sha256:30ca30e02696cafa9f43d8c73961cde9c5335cd0e865465a4fbc3ec40f4e6a40","at":"2026-08-18T15:37:23+08:00","criteria":["AC-3"]}
+{"id":"implementation-diff","file":"t0314-implementation.txt","kind":"implementation","size":6007,"digest":"sha256:dd86b96773769ba0f130e195fb3160e48f6e48287572af10d97a0d6cf7bd6b56","at":"2026-08-18T15:37:33+08:00","criteria":["AC-1","AC-2","AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":246,"digest":"sha256:da5a2e9518759f3fffd858c708b09e693cfa010fcb7289d6a16cc0a56e235199","at":"2026-08-18T15:37:45+08:00","criteria":["AC-1","AC-2","AC-3"]}
