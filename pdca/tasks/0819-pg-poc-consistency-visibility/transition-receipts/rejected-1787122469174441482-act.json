@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0325",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "VERDICT_MISSING",
+      "path": "/meta/verdict",
+      "message": "verdict is required"
+    },
+    {
+      "code": "CHECK_CONFIRMATION_MISSING",
+      "path": "clarifications.jsonl",
+      "message": "check confirmation is required"
+    }
+  ],
+  "at": "2026-08-19T14:54:29.174423+08:00"
+}
