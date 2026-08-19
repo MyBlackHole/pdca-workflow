@@ -1,0 +1,1329 @@
+[0m[38;2;0;255;0;1m[ 56%]:[0m [2m[38;2;255;0;255;1m<rpc_handshake_test>[0m cache compiling.debug libs/tests/rpc_handshake_test.c[0m
+/usr/bin/gcc -c -m64 -g -Wall -Werror -O0 -std=c99 -Ibuild -Ilibs -D_GNU_SOURCE -Wno-error=deprecated-declarations -fno-strict-aliasing -o build/.objs/rpc_handshake_test/linux/x86_64/debug/libs/tests/rpc_handshake_test.c.o libs/tests/rpc_handshake_test.c
+[0m[38;2;0;255;0;1m[ 94%]:[0m [2m[38;2;255;0;255;1m<rpc_handshake_test>[0m [38;2;255;0;255;1mlinking.debug rpc_handshake_test[0m
+/usr/bin/g++ -o build/linux/x86_64/debug/rpc_handshake_test build/.objs/rpc_handshake_test/linux/x86_64/debug/libs/tests/rpc_handshake_test.c.o build/.objs/rpc_handshake_test/linux/x86_64/debug/libs/rpc-handshake.c.o -m64 -L/home/black/Public/aio/aio-tools/6200/F/139/build/.packages/o/openssl4/4.0.1/a0ad9752864d40bc9c63e8c80dd903ef/lib -Lbuild/linux/x86_64/debug -L/home/black/.xmake/packages/i/inih/60/58bfa2fd0db24b9c8296483d0cf055a3/lib -ltls_cert -lssl -lcrypto -llogger -lrdb-config -linih -ldl -lpthread
+running tests ...
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test LRUCache_test/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test access/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test chmod/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test chown/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test dir_tree/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test dir_utils_dir_copy_test/default[0m
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:4185 rpc_conn_srv_chmod|140300760639168| chmod /tmp/tmp1/cv_debug:511 success.
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test download_file/default[0m
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:4233 rpc_conn_srv_chown|140417817372352| chmod /tmp/tmp1/cv_debug:1000 success.
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test download_file_dir/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test download_fileat/default[0m
+/tmp/rpc_dir_tree_test/file1.txt
+/tmp/rpc_dir_tree_test/sub1/file2.txt
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test download_fileats/default[0m
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:994 rpc_scp_download|140663251269312| begin download file [/tmp/test_scp_download_file_src]
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test download_link/default[0m
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:1178 rpc_scp_download|140663251269312| download file [/tmp/test_scp_download_file_src] complete success, send_bytes: 30, f_size: 30
+[2026-08-18 18:28:07]|Info|rpc/rpc-command.cpp:236 do_scp_download|140663242876608| scp download [/tmp/test_scp_download_file_dst from /tmp/test_scp_download_file_src], status completed success, elapse 1 s, f_size 30 bytes, recv 30 bytes, 0.00 M/s
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test execute_command/default[0m
+test [download_file_exists] PASSED
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:994 rpc_scp_download|140663242876608| begin download file [/nonexistent/remote]
+[2026-08-18 18:28:07]|Warning|rpc/rpc-server.cpp:1013 rpc_scp_download|140663242876608| local_file: [/nonexistent/remote] not existed, errno:2)
+[2026-08-18 18:28:07]|Warning|rpc/rpc-server.cpp:1029 rpc_scp_download|140663242876608| local_file: [/nonexistent/remote] not existed.
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:1178 rpc_scp_download|140663242876608| download file [/nonexistent/remote] complete success, send_bytes: 0, f_size: 0
+[2026-08-18 18:28:07]|Info|rpc/rpc-command.cpp:236 do_scp_download|140663251269312| scp download [/tmp/test_scp_download_file_dst2 from /nonexistent/remote], status completed success, elapse 1 s, f_size 0 bytes, recv 0 bytes, 0.00 M/s
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test fchmodats/default[0m
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:3705 rpc_conn_srv_download_fileats|139889140033216| openat test1.txt success.
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:3734 rpc_conn_srv_download_fileats|139889140033216| read test1.txt success.
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:3705 rpc_conn_srv_download_fileats|139889140033216| openat test2.txt success.
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:3734 rpc_conn_srv_download_fileats|139889140033216| read test2.txt success.
+[2026-08-18 18:28:07]|Info|rpc/rpc.cpp:2815 rpc_conn_cli_download_fileats|139889148425920| download_fileat /tmp/download_fileats_jAWgDg/src/:test1.txt success.
+[2026-08-18 18:28:07]|Info|rpc/rpc.cpp:2815 rpc_conn_cli_download_fileats|139889148425920| download_fileat /tmp/download_fileats_jAWgDg/src/:test2.txt success.
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test fchownats/default[0m
+test [download_not_exist_api_stat_0] PASSED
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:994 rpc_scp_download|140663251269312| begin download file [/nonexistent/remote]
+[2026-08-18 18:28:07]|Warning|rpc/rpc-server.cpp:1013 rpc_scp_download|140663251269312| local_file: [/nonexistent/remote] not existed, errno:2)
+[2026-08-18 18:28:07]|Error|rpc/rpc-command.cpp:139 do_scp_download|140663242876608| download /nonexistent/remote failure
+[2026-08-18 18:28:07]|Error|rpc/rpc-server.cpp:1034 rpc_scp_download|140663251269312| local_file: [/nonexistent/remote] not existed.
+test [download_not_exist_api_stat_1] PASSED
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test fs_meta_comprehensive_test/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test lmdb_dict_test/default[0m
+[2026-08-18 18:28:07]|Info|rpc/rpc-command.cpp:461 do_scp_download_link|139775017215680| scp download link [/tmp/test_scp_download_link_src -> /tmp/test_scp_download_link_out] success
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:3614 rpc_conn_srv_fchmodats|140173564176064| fchownat test_chmod.txt:508 success.
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:3614 rpc_conn_srv_fchmodats|140173564176064| fchownat test_chmod2.txt:493 success.
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test lmdb_sort_test/default[0m
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:709 execute_cmd|139898759669440| execute:[cmd_len:35, command:echo 'execute_shell_script_test_ok']
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:867 my_popen|139898759669440| cmd echo 'execute_shell_script_test_ok' pipe[0]:9, pipe[1]:10
+[0m[38;2;0;255;0;1m[  0%]:[0m [2mrunning.test logger_test/default[0m
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:723 execute_cmd|139898759669440| generate subprocess: 864832
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:3526 rpc_conn_srv_fchownats|140608935028416| fchownat test_chown.txt:1000:1000 success.
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:3526 rpc_conn_srv_fchownats|140608935028416| fchownat test_chown2.txt:1000:1000 success.
+[0m[38;2;0;255;0;1m[  2%]:[0m [2mrunning.test lstat/default[0m
+开始测试目录复制功能...
+测试目录: /tmp/aio/rpc/rpc_test
+目标目录: /tmp/aio/rpc/copy_test
+返回值: 0
+[0m[38;2;0;255;0;1m[  5%]:[0m [2mrunning.test metadata/default[0m
+========================================
+       FsMeta Test Suite
+========================================
+
+=== TEST: TYPE_UPDATE - Fragmented ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_06
+[2026-08-18 18:28:07]|Warning|rpc/rpc-server.cpp:784 execute_cmd|139898759669440| execute_shell_script_test_ok
+
+execute_shell_script_test_ok
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:805 execute_cmd|139898759669440| [echo 'execute_shell_script_test_ok'] completed, return value:0
+Running logger tests...
+Tests passed: 11, failed: 0
+execute_shell_script test PASSED
+[0m[38;2;0;255;0;1m[  8%]:[0m [2mrunning.test mkdir/default[0m
+[0m[38;2;0;255;0;1m[ 11%]:[0m [2mrunning.test mkdir_path_test/default[0m
+PASS
+
+=== TEST: TYPE_UPDATE - 1M File Overwrite at 500K ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_27
+[0m[38;2;0;255;0;1m[ 13%]:[0m [2mrunning.test mkdirall/default[0m
+/proc/self/exe: size=0, mode=120777, atime=1787048887, mtime=1787048887, ctime=139637650756673
+[0m[38;2;0;255;0;1m[ 16%]:[0m [2mrunning.test pread/default[0m
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:3451 rpc_conn_srv_mkdir|140364123989696| mkdir /tmp/tmp1/cv_debug:511 success.
+[0m[38;2;0;255;0;1m[ 19%]:[0m [2mrunning.test pwrite/default[0m
+=== 手动事务示例 ===
+批量写入完成，共100条记录
+批量读取完成，找到 100/100 条记录
+
+=== 游标遍历示例 ===
+正向遍历:
+  Key: cursor_key_0, Value: cursor_value_0
+  Key: cursor_key_1, Value: cursor_value_1
+  Key: cursor_key_2, Value: cursor_value_2
+  Key: cursor_key_3, Value: cursor_value_3
+  Key: cursor_key_4, Value: cursor_value_4
+[0m[38;2;0;255;0;1m[ 22%]:[0m [2mrunning.test rdb_config_test/default[0m
+PASS
+
+=== TEST: TYPE_NEW - Small File (Full Download) ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_01
+[0m[38;2;0;255;0;1m[ 25%]:[0m [2mrunning.test rdbcomm_tool_integration/default[0m
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:4139 rpc_conn_srv_mkdirall|140108642641600| mkdirall /tmp/tmp1/cv_debug:0 success.
+[0m[38;2;0;255;0;1m[ 27%]:[0m [2mrunning.test readdir/default[0m
+=== rdb-config test ===
+
+Running parse_and_get_int... PASSED
+Running config_get_int_default... PASSED
+Running config_get_string... PASSED
+Running config_get_string_null_for_missing... PASSED
+Running config_get_string_global_fallback... PASSED
+Running config_set_string... PASSED
+Running config_section_count_and_entry... PASSED
+Running parse_nonexistent_file... PASSED
+Running init_config_from_env... PASSED
+Running parse_config_twice... PASSED
+Running config_get_int_trailing_spaces... PASSED
+Running tool_tls_config_isolated_and_prioritized... PASSED
+
+=== 12 passed, 0 failed ===
+[0m[38;2;0;255;0;1m[ 30%]:[0m [2mrunning.test readdir_tree/default[0m
+do_remote_pread success
+PASS
+
+=== TEST: TYPE_NEW - Write Zero ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_02
+do_remote_pwrite success
+[0m[38;2;0;255;0;1m[ 33%]:[0m [2mrunning.test readlink/default[0m
+[0m[38;2;0;255;0;1m[ 36%]:[0m [2mrunning.test rpc_handshake_test/default[0m
+[0m[38;2;0;255;0;1m[ 38%]:[0m [2mrunning.test rpc_time_integration/default[0m
+PASS
+
+=== TEST: TYPE_UPDATE - Basic ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_03
+[0m[38;2;0;255;0;1m[ 41%]:[0m [2mrunning.test rpc_tool_integration/default[0m
+[0m[38;2;0;255;0;1m[ 44%]:[0m [2mrunning.test symlink/default[0m
+[2026-08-18 18:28:07]|Info|libs/tls_cert.c:716 tls_cert_init_server|140281189771136| Optional server mTLS unavailable: certificate chain is not configured; plain connections remain enabled
+t0312-rdbcomm: size=40, mode=40755, atime=1787048887, mtime=1787048887, ctime=140726460966791
+lmdb_sort_test: size=80, mode=40755, atime=1787048887, mtime=1787048887, ctime=140726460966791
+pread_test_dst.bin: size=29, mode=100644, atime=1787048887, mtime=1787048887, ctime=140726460966791
+rpc_metadata_test_0t86Ky: size=80, mode=40700, atime=1787048887, mtime=1787048887, ctime=140726460966791
+fchownats_test_LRezNC: size=80, mode=40700, atime=1787048887, mtime=1787048887, ctime=140726460966791
+fchmodats_test_sCryfO: size=80, mode=40700, atime=1787048887, mtime=1787048887, ctime=140726460966791
+download_fileats_jAWgDg: size=80, mode=40700, atime=1787048887, mtime=1787048887, ctime=140726460966791
+t0320-test-final.log: size=10458, mode=100644, atime=1787048885, mtime=1787048887, ctime=140726460966791
+t0320-build-final.log: size=3235, mode=100644, atime=1787048882, mtime=1787048885, ctime=140726460966791
+upload_fileats_9cX8OJ: size=80, mode=40700, atime=1787048775, mtime=1787048775, ctime=140726460966791
+rpc_metadata_test_NW8CKK: size=80, mode=40700, atime=1787048775, mtime=1787048775, ctime=140726460966791
+fchownats_test_vYmMMS: size=80, mode=40700, atime=1787048775, mtime=1787048775, ctime=140726460966791
+fchmodats_test_vuijcz: size=80, mode=40700, atime=1787048775, mtime=1787048775, ctime=140726460966791
+download_fileats_aoyiK3: size=80, mode=40700, atime=1787048775, mtime=1787048775, ctime=140726460966791
+t0320-test.log: size=140501, mode=100644, atime=1787048778, mtime=1787048778, ctime=140726460966791
+t0320-build.log: size=9217, mode=100644, atime=1787048762, mtime=1787048770, ctime=140726460966791
+preamble-498885.pch: size=7561952, mode=100644, atime=1787048147, mtime=1787048147, ctime=140726460966791
+upload_fileats_eVSwfs: size=80, mode=40700, atime=1787047760, mtime=1787047760, ctime=140726460966791
+rpc_metadata_test_79UnD1: size=80, mode=40700, atime=1787047760, mtime=1787047760, ctime=140726460966791
+fchownats_test_krSIAq: size=80, mode=40700, atime=1787047760, mtime=1787047760, ctime=140726460966791
+fchmodats_test_dmCrml: size=80, mode=40700, atime=1787047760, mtime=1787047760, ctime=140726460966791
+download_fileats_waiV6u: size=80, mode=40700, atime=1787047760, mtime=1787047760, ctime=140726460966791
+t0319-test-final.log: size=127509, mode=100644, atime=1787047843, mtime=1787047762, ctime=140726460966791
+t0319-build-final.log: size=5941, mode=100644, atime=1787047843, mtime=1787047756, ctime=140726460966791
+t0319-rpc-test.log: size=2046, mode=100644, atime=1787047843, mtime=1787047686, ctime=140726460966791
+t0319-rpc-build.log: size=350, mode=100644, atime=1787047683, mtime=1787047684, ctime=140726460966791
+upload_fileats_T95RRi: size=80, mode=40700, atime=1787047548, mtime=1787047548, ctime=140726460966791
+rpc_metadata_test_REhe9g: size=80, mode=40700, atime=1787047548, mtime=1787047548, ctime=140726460966791
+fchownats_test_AooMUu: size=80, mode=40700, atime=1787047548, mtime=1787047548, ctime=140726460966791
+fchmodats_test_mP7tpT: size=80, mode=40700, atime=1787047548, mtime=1787047548, ctime=140726460966791
+download_fileats_PwiwXx: size=80, mode=40700, atime=1787047548, mtime=1787047548, ctime=140726460966791
+upload_fileats_ZCnMAl: size=80, mode=40700, atime=1787047464, mtime=1787047464, ctime=140726460966791
+rpc_metadata_test_VOn2Tr: size=80, mode=40700, atime=1787047464, mtime=1787047464, ctime=140726460966791
+fchownats_test_4e9aeg: size=80, mode=40700, atime=1787047464, mtime=1787047464, ctime=140726460966791
+fchmodats_test_ZGBi5y: size=80, mode=40700, atime=1787047464, mtime=1787047464, ctime=140726460966791
+download_fileats_eEW8x6: size=80, mode=40700, atime=1787047464, mtime=1787047464, ctime=140726460966791
+upload_fileats_GvYHIG: size=80, mode=40700, atime=1787047281, mtime=1787047281, ctime=140726460966791
+rpc_metadata_test_ZUapud: size=80, mode=40700, atime=1787047281, mtime=1787047281, ctime=140726460966791
+fchownats_test_Ig3LIl: size=80, mode=40700, atime=1787047281, mtime=1787047281, ctime=140726460966791
+fchmodats_test_YEBibw: size=80, mode=40700, atime=1787047281, mtime=1787047281, ctime=140726460966791
+download_fileats_0UcXt3: size=80, mode=40700, atime=1787047281, mtime=1787047281, ctime=140726460966791
+t0319-test-1.log: size=138271, mode=100644, atime=1787047282, mtime=1787047282, ctime=140726460966791
+t0319-build-3.log: size=5869, mode=100644, atime=1787047208, mtime=1787047208, ctime=140726460966791
+ccPG6dOD.s: size=0, mode=100600, atime=1787047141, mtime=1787047141, ctime=140726460966791
+ccs6riui.cdtor.o: size=0, mode=100600, atime=1787047141, mtime=1787047141, ctime=140726460966791
+cciyJded.cdtor.c: size=0, mode=100600, atime=1787047141, mtime=1787047141, ctime=140726460966791
+cc1nUAv5.res: size=0, mode=100600, atime=1787047141, mtime=1787047141, ctime=140726460966791
+cc8TY1Rs.cdtor.o: size=0, mode=100600, atime=1787047141, mtime=1787047141, ctime=140726460966791
+ccflCCB3.cdtor.c: size=0, mode=100600, atime=1787047141, mtime=1787047141, ctime=140726460966791
+ccbOYSKC.res: size=0, mode=100600, atime=1787047141, mtime=1787047141, ctime=140726460966791
+ccOzFx9t.cdtor.o: size=0, mode=100600, atime=1787047141, mtime=1787047141, ctime=140726460966791
+ccUXXSWU.cdtor.c: size=0, mode=100600, atime=1787047141, mtime=1787047141, ctime=140726460966791
+cc37M07o.res: size=0, mode=100600, atime=1787047141, mtime=1787047141, ctime=140726460966791
+ccTlgfVA.cdtor.o: size=0, mode=100600, atime=1787047141, mtime=1787047141, ctime=140726460966791
+ccDKc6Fr.cdtor.c: size=0, mode=100600, atime=1787047141, mtime=1787047141, ctime=140726460966791
+cc8qSD8P.res: size=0, mode=100600, atime=1787047141, mtime=1787047141, ctime=140726460966791
+ccSjKPNQ.res: size=0, mode=100600, atime=1787047140, mtime=1787047140, ctime=140726460966791
+ccErlA4g.res: size=0, mode=100600, atime=1787047140, mtime=1787047140, ctime=140726460966791
+ccXaUenA.res: size=0, mode=100600, atime=1787047140, mtime=1787047140, ctime=140726460966791
+cccssL6t.s: size=0, mode=100600, atime=1787047138, mtime=1787047138, ctime=140726460966791
+cca8kjQt.s: size=0, mode=100600, atime=1787047138, mtime=1787047138, ctime=140726460966791
+ccJBXTnS.s: size=0, mode=100600, atime=1787047138, mtime=1787047138, ctime=140726460966791
+ccRBbHBk.s: size=0, mode=100600, atime=1787047136, mtime=1787047137, ctime=140726460966791
+ccCH3h3c.s: size=929792, mode=100600, atime=1787047135, mtime=1787047142, ctime=140726460966791
+ccGKqcoI.s: size=0, mode=100600, atime=1787047135, mtime=1787047135, ctime=140726460966791
+ccg7IvnN.s: size=483328, mode=100600, atime=1787047134, mtime=1787047142, ctime=140726460966791
+ccsCDHNl.s: size=315392, mode=100600, atime=1787047134, mtime=1787047142, ctime=140726460966791
+ccsXNyrq.s: size=311296, mode=100600, atime=1787047134, mtime=1787047142, ctime=140726460966791
+cclmMhkC.s: size=573440, mode=100600, atime=1787047134, mtime=1787047142, ctime=140726460966791
+t0319-build-2.log: size=7732, mode=100644, atime=1787047142, mtime=1787047141, ctime=140726460966791
+cc365RgE.s: size=1195405, mode=100600, atime=1787047006, mtime=1787047010, ctime=140726460966791
+cc9xyIOq.s: size=1331200, mode=100600, atime=1787047006, mtime=1787047010, ctime=140726460966791
+ccWnJyIb.s: size=0, mode=100600, atime=1787047006, mtime=1787047006, ctime=140726460966791
+ccCZXUx5.s: size=458752, mode=100600, atime=1787047006, mtime=1787047010, ctime=140726460966791
+ccdlP8cq.s: size=360448, mode=100600, atime=1787047006, mtime=1787047010, ctime=140726460966791
+ccdR4h6h.s: size=1443743, mode=100600, atime=1787047006, mtime=1787047010, ctime=140726460966791
+ccMM0Nrv.s: size=0, mode=100600, atime=1787047006, mtime=1787047006, ctime=140726460966791
+ccaTXIHi.s: size=0, mode=100600, atime=1787047006, mtime=1787047006, ctime=140726460966791
+ccYehu67.s: size=0, mode=100600, atime=1787047006, mtime=1787047006, ctime=140726460966791
+ccuXgN90.s: size=294912, mode=100600, atime=1787047006, mtime=1787047010, ctime=140726460966791
+cccauD8q.s: size=0, mode=100600, atime=1787047006, mtime=1787047006, ctime=140726460966791
+ccihrUSF.s: size=0, mode=100600, atime=1787047006, mtime=1787047006, ctime=140726460966791
+ccPMS6dS.s: size=0, mode=100600, atime=1787047006, mtime=1787047006, ctime=140726460966791
+ccjQYEWU.s: size=0, mode=100600, atime=1787047005, mtime=1787047006, ctime=140726460966791
+ccXrLbJq.s: size=1196524, mode=100600, atime=1787047005, mtime=1787047009, ctime=140726460966791
+cc6e2j84.s: size=0, mode=100600, atime=1787047004, mtime=1787047004, ctime=140726460966791
+cc5GyZmH.s: size=1855975, mode=100600, atime=1787047004, mtime=1787047008, ctime=140726460966791
+ccj6ajdY.s: size=0, mode=100600, atime=1787047004, mtime=1787047004, ctime=140726460966791
+ccNTgD4p.s: size=1409901, mode=100600, atime=1787047004, mtime=1787047008, ctime=140726460966791
+ccP1X6uz.s: size=943920, mode=100600, atime=1787047006, mtime=1787047006, ctime=140726460966791
+ccgH1UMX.s: size=737280, mode=100600, atime=1787047003, mtime=1787047010, ctime=140726460966791
+ccXAWwx5.s: size=466944, mode=100600, atime=1787047003, mtime=1787047010, ctime=140726460966791
+ccWTgCb3.s: size=24, mode=100600, atime=1787047003, mtime=1787047006, ctime=140726460966791
+ccsAmWoy.s: size=1855975, mode=100600, atime=1787047003, mtime=1787047006, ctime=140726460966791
+t0319-build-1.log: size=6282, mode=100644, atime=1787047010, mtime=1787047010, ctime=140726460966791
+upload_fileats_4qLBH2: size=80, mode=40700, atime=1787044174, mtime=1787044174, ctime=140726460966791
+rpc_metadata_test_QUfwIB: size=80, mode=40700, atime=1787044174, mtime=1787044174, ctime=140726460966791
+fchownats_test_aQKtC7: size=80, mode=40700, atime=1787044174, mtime=1787044174, ctime=140726460966791
+fchmodats_test_nvYReo: size=80, mode=40700, atime=1787044174, mtime=1787044174, ctime=140726460966791
+download_fileats_tJ7ySy: size=80, mode=40700, atime=1787044174, mtime=1787044174, ctime=140726460966791
+t0318-implementation.txt: size=16033, mode=100644, atime=1787043492, mtime=1787043471, ctime=140726460966791
+t0318-scan.log: size=3160, mode=100644, atime=1787043492, mtime=1787043471, ctime=140726460966791
+upload_fileats_Hlsqrf: size=80, mode=40700, atime=1787043422, mtime=1787043422, ctime=140726460966791
+rpc_metadata_test_aRyLx4: size=80, mode=40700, atime=1787043422, mtime=1787043422, ctime=140726460966791
+fchownats_test_HsayqH: size=80, mode=40700, atime=1787043422, mtime=1787043422, ctime=140726460966791
+fchmodats_test_3a4lAp: size=80, mode=40700, atime=1787043422, mtime=1787043422, ctime=140726460966791
+download_fileats_RWLlNi: size=80, mode=40700, atime=1787043422, mtime=1787043422, ctime=140726460966791
+upload_fileats_o3SDTk: size=80, mode=40700, atime=1787043366, mtime=1787043366, ctime=140726460966791
+rpc_metadata_test_iVftCy: size=80, mode=40700, atime=1787043366, mtime=1787043366, ctime=140726460966791
+fchownats_test_L5RA2n: size=80, mode=40700, atime=1787043366, mtime=1787043366, ctime=140726460966791
+fchmodats_test_CwizDl: size=80, mode=40700, atime=1787043366, mtime=1787043366, ctime=140726460966791
+download_fileats_9OfyT1: size=80, mode=40700, atime=1787043366, mtime=1787043366, ctime=140726460966791
+t0318-test.log: size=103300, mode=100644, atime=1787043491, mtime=1787043424, ctime=140726460966791
+t0318-build.log: size=3234, mode=100644, atime=1787043492, mtime=1787043420, ctime=140726460966791
+t0317-param-implementation.txt: size=6505, mode=100644, atime=1787041931, mtime=1787041907, ctime=140726460966791
+t0317-param-scan.log: size=1862, mode=100644, atime=1787041931, mtime=1787041907, ctime=140726460966791
+t0317-param-check.log: size=0, mode=100644, atime=1787041907, mtime=1787041907, ctime=140726460966791
+upload_fileats_fxQ6tF: size=80, mode=40700, atime=1787041844, mtime=1787041844, ctime=140726460966791
+rpc_metadata_test_zsaJ2z: size=80, mode=40700, atime=1787041844, mtime=1787041844, ctime=140726460966791
+fchownats_test_DnuzGZ: size=80, mode=40700, atime=1787041844, mtime=1787041844, ctime=140726460966791
+fchmodats_test_aWVguD: size=80, mode=40700, atime=1787041844, mtime=1787041844, ctime=140726460966791
+download_fileats_i1vnfV: size=80, mode=40700, atime=1787041844, mtime=1787041844, ctime=140726460966791
+t0317-param-test.log: size=133324, mode=100644, atime=1787041930, mtime=1787041847, ctime=140726460966791
+ccJW1eg5.s: size=0, mode=100600, atime=1787041766, mtime=1787041766, ctime[0m[38;2;0;255;0;1m[ 47%]:[0m [2mrunning.test tls_cert_test/default[0m
+=140726460966791
+ccLIXw9J.s: size=1596439, mode=100600, atime=1787041765, mtime=1787041773, ctime=140726460966791
+cccelXxh.s: size=12031575, mode=100600, atime=1787041765, mtime=1787041778, ctime=140726460966791
+ccUJFpoc.s: size=13373738, mode=100600, atime=1787041765, mtime=1787041778, ctime=140726460966791
+cce7fIFy.s: size=4650311, mode=100600, atime=1787041763, mtime=1787041771, ctime=140726460966791
+cc3Ttb3t.s: size=5116902, mode=100600, atime=1787041762, mtime=1787041772, ctime=140726460966791
+ccwJzTfc.s: size=3448406, mode=100600, atime=1787041761, mtime=1787041769, ctime=140726460966791
+ccvxAqBS.s: size=449849, mode=100600, atime=1787041761, mtime=1787041767, ctime=140726460966791
+ccpTXXuR.s: size=6435114, mode=100600, atime=1787041761, mtime=1787041773, ctime=140726460966791
+ccml5niG.s: size=3448406, mode=100600, atime=1787041759, mtime=1787041766, ctime=140726460966791
+ccWPHYBq.s: size=3448406, mode=100600, atime=1787041759, mtime=1787041767, ctime=140726460966791
+ccdqT6US.s: size=5116902, mode=100600, atime=1787041759, mtime=1787041769, ctime=140726460966791
+t0317-param-build.log: size=4376, mode=100644, atime=1787041931, mtime=1787041826, ctime=140726460966791
+t0317-implementation.txt: size=18106, mode=100644, atime=1787041186, mtime=1787041160, ctime=140726460966791
+t0317-scan.log: size=1750, mode=100644, atime=1787041186, mtime=1787041160, ctime=140726460966791
+upload_fileats_BiCHvb: size=80, mode=40700, atime=1787041139, mtime=1787041139, ctime=140726460966791
+rpc_metadata_test_9n2bwe: size=80, mode=40700, atime=1787041139, mtime=1787041139, ctime=140726460966791
+fchownats_test_N79MGn: size=80, mode=40700, atime=1787041139, mtime=1787041139, ctime=140726460966791
+fchmodats_test_qhE2jc: size=80, mode=40700, atime=1787041139, mtime=1787041139, ctime=140726460966791
+download_fileats_WanYdG: size=80, mode=40700, atime=1787041139, mtime=1787041139, ctime=140726460966791
+upload_fileats_Cxy6sa: size=80, mode=40700, atime=1787041054, mtime=1787041054, ctime=140726460966791
+rpc_metadata_test_HukTX1: size=80, mode=40700, atime=1787041054, mtime=1787041054, ctime=140726460966791
+fchownats_test_7RiEb5: size=80, mode=40700, atime=1787041054, mtime=1787041054, ctime=140726460966791
+fchmodats_test_aqByxF: size=80, mode=40700, atime=1787041054, mtime=1787041054, ctime=140726460966791
+download_fileats_34cnQM: size=80, mode=40700, atime=1787041054, mtime=1787041054, ctime=140726460966791
+upload_fileats_enK1JM: size=80, mode=40700, atime=1787041007, mtime=1787041007, ctime=140726460966791
+rpc_metadata_test_TaXKSa: size=80, mode=40700, atime=1787041007, mtime=1787041007, ctime=140726460966791
+fchownats_test_t0PypO: size=80, mode=40700, atime=1787041007, mtime=1787041007, ctime=140726460966791
+fchmodats_test_h82NUL: size=80, mode=40700, atime=1787041007, mtime=1787041007, ctime=140726460966791
+download_fileats_nhsXaM: size=80, mode=40700, atime=1787041007, mtime=1787041007, ctime=140726460966791
+upload_fileats_7VXNGl: size=80, mode=40700, atime=1787040909, mtime=1787040909, ctime=140726460966791
+rpc_metadata_test_lZocYr: size=80, mode=40700, atime=1787040909, mtime=1787040909, ctime=140726460966791
+fchownats_test_kXodab: size=80, mode=40700, atime=1787040909, mtime=1787040909, ctime=140726460966791
+fchmodats_test_fcp3LG: size=80, mode=40700, atime=1787040909, mtime=1787040909, ctime=140726460966791
+download_fileats_PNVmWo: size=80, mode=40700, atime=1787040909, mtime=1787040909, ctime=140726460966791
+ccDCB79F.res: size=0, mode=100600, atime=1787040862, mtime=1787040862, ctime=140726460966791
+ccmI3isv.res: size=0, mode=100600, atime=1787040862, mtime=1787040862, ctime=140726460966791
+ccOrBdhD.res: size=0, mode=100600, atime=1787040862, mtime=1787040862, ctime=140726460966791
+ccoOGAHu.res: size=0, mode=100600, atime=1787040861, mtime=1787040861, ctime=140726460966791
+ccyf61GE.res: size=0, mode=100600, atime=1787040861, mtime=1787040861, ctime=140726460966791
+cckVUNwt.res: size=0, mode=100600, atime=1787040861, mtime=1787040861, ctime=140726460966791
+ccXIhLIm.res: size=0, mode=100600, atime=1787040861, mtime=1787040861, ctime=1407====================================
+  LMDB 默认排序 (memcmp) 验证测试
+====================================
+
+=== 测试 1: LMDB 默认字典序 (路径 key) ===
+  遍历结果:
+    [0] key='/a'
+    [1] key='/a/b'
+    [2] key='/a/bb'
+    [3] key='/a/bb/c'
+    [4] key='/a/bc'
+    [5] key='/a/c'
+    [6] key='/aa'
+  ✓ 字典序验证通过: 7 个 key 按正确顺序排列
+
+=== 测试 2: 子路径连续性 (目录分组) ===
+  遍历结果:
+    [0] key='/'
+    [1] key='/a'
+    [2] key='/a/b'
+    [3] key='/a/b/c'
+    [4] key='/a/b/d'
+    [5] key='/a/c'
+    [6] key='/b'
+    [7] key='/b/a'
+    [8] key='/ba'
+  /a 的子路径范围: [2..5]
+    '/a/b' — starts with '/a/'
+    '/a/b/c' — starts with '/a/'
+    '/a/b/d' — starts with '/a/'
+    '/a/c' — starts with '/a/'
+  /b 的子路径范围: [7..7]
+    '/b/a' — starts with '/b/'
+  ✓ 子路径连续性验证通过
+
+=== 测试 3: null 终止符对排序的影响 ===
+  遍历结果:
+    [0] key='/a'
+    [1] key='/a/b'
+    [2] key='/aa'
+
+  关键验证:
+    '/a' < '/a/b' : \0(0x00) < '/'(0x2f)
+                  → 目录自身先于其子路径
+    '/a/b' < '/aa' : '/'(0x2f) < 'a'(0x61)
+                  → 子路径先于同名前缀兄弟
+
+  ✓ null 终止符排序影响验证通过
+
+====================================
+  全部测试通过!
+====================================
+26460966791
+ccIxkKmW.res: size=0, mode=100600, atime=1787040861, mtime=1787040861, ctime=140726460966791
+ccDlk6Wv.res: size=0, mode=100600, atime=1787040860, mtime=1787040860, ctime=140726460966791
+ccB0EOlB.s: size=430543, mode=100600, atime=1787040860, mtime=1787040862, ctime=140726460966791
+t0317-full.log: size=105159, mode=100644, atime=1787041185, mtime=1787041141, ctime=140726460966791
+t0317-build.log: size=3818, mode=100644, atime=1787041186, mtime=1787041132, ctime=140726460966791
+t0317-flow-plan.txt: size=4593, mode=100644, atime=1787040254, mtime=1787040254, ctime=140726460966791
+t0316-implementation.txt: size=6126, mode=100644, atime=1787039543, mtime=1787039542, ctime=140726460966791
+t0316-helper-scan.log: size=109, mode=100644, atime=1787039542, mtime=1787039531, ctime=140726460966791
+upload_fileats_kMvKPA: size=80, mode=40700, atime=1787039521, mtime=1787039521, ctime=140726460966791
+rpc_metadata_test_FObJBE: size=80, mode=40700, atime=1787039521, mtime=1787039521, ctime=140726460966791
+fchownats_test_dltshI: size=80, mode=40700, atime=1787039521, mtime=1787039521, ctime=140726460966791
+fchmodats_test_ehels2: size=80, mode=40700, atime=1787039521, mtime=1787039521, ctime=140726460966791
+download_fileats_gaxzNu: size=80, mode=40700, atime=1787039521, mtime=1787039521, ctime=140726460966791
+t0316-full.log: size=116579, mode=100644, atime=1787039542, mtime=1787039524, ctime=140726460966791
+t0316-build.log: size=4607, mode=100644, atime=1787039542, mtime=1787039512, ctime=140726460966791
+t0315-implementation.txt: size=3905, mode=100644, atime=1787039226, mtime=1787039225, ctime=140726460966791
+t0315-ref-scan.log: size=19, mode=100644, atime=1787039225, mtime=1787039213, ctime=140726460966791
+upload_fileats_IChB3o: size=80, mode=40700, atime=1787039198, mtime=1787039198, ctime=140726460966791
+rpc_metadata_test_zIsBxb: size=80, mode=40700, atime=1787039198, mtime=1787039198, ctime=140726460966791
+fchownats_test_bmAOxB: size=80, mode=40700, atime=1787039198, mtime=1787039198, ctime=140726460966791
+fchmodats_test_2mTjpw: size=80, mode=40700, atime=1787039198, mtime=1787039198, ctime=140726460966791
+download_fileats_8cDVlr: size=80, mode=40700, atime=1787039198, mtime=1787039198, ctime=140726460966791
+t0315-full.log: size=119505, mode=100644, atime=1787039226, mtime=1787039201, ctime=140726460966791
+t0315-build.log: size=4376, mode=100644, atime=1787039225, mtime=1787039189, ctime=140726460966791
+upload_fileats_CQqcht: size=80, mode=40700, atime=1787038763, mtime=1787038763, ctime=140726460966791
+rpc_metadata_test_vlJ3Zn: size=80, mode=40700, atime=1787038763, mtime=1787038763, ctime=140726460966791
+fchownats_test_np1zIl: size=80, mode=40700, atime=1787038763, mtime=1787038763, ctime=140726460966791
+fchmodats_test_vMxltz: size=80, mode=40700, atime=1787038763, mtime=1787038763, ctime=140726460966791
+download_fileats_2w1H0b: size=80, mode=40700, atime=1787038763, mtime=1787038763, ctime=140726460966791
+t0314-implementation.txt: size=6007, mode=100644, atime=1787038653, mtime=1787038653, ctime=140726460966791
+t0314-enc-scan.log: size=0, mode=100644, atime=1787038643, mtime=1787038606, ctime=140726460966791
+upload_fileats_UKrZRD: size=80, mode=40700, atime=1787038597, mtime=1787038597, ctime=140726460966791
+rpc_metadata_test_O2phwP: size=80, mode=40700, atime=1787038597, mtime=1787038597, ctime=140726460966791
+fchownats_test_cjZ7SY: size=80, mode=40700, atime=1787038597, mtime=1787038597, ctime=140726460966791
+fchmodats_test_U0MGvP: size=80, mode=40700, atime=1787038597, mtime=1787038597, ctime=140726460966791
+download_fileats_Kc33Od: size=80, mode=40700, atime=1787038597, mtime=1787038597, ctime=140726460966791
+t0314-full.log: size=117214, mode=100644, atime=1787038642, mtime=1787038600, ctime=140726460966791
+t0313-implementation.diff: size=8636, mode=100644, atime=1787038206, mtime=1787038205, ctime=140726460966791
+upload_fileats_HsbZU6: size=80, mode=40700, atime=1787038204, mtime=1787038204, ctime=140726460966791
+rpc_metadata_test_Sa3IM3: size=80, mode=40700, atime=1787038203, mtime=1787038203, ctime=140726460966791
+fchownats_test_RgvgW0: size=80, mode=40700, atime=1787038203, mtime=1787038203, ctime=140726460966791
+fchmodats_test_ha17RW: size=80, mode=40700, atime=1787038203, mtime=1787038203, ctime=140726460966791
+download_fileats_KQGL1Z: size=80, mode=40700, atime=1787038203, mtime=1787038203, ctime=140726460966791
+upload_fileats_bZir1x: size=80, mode=40700, atime=1787038193, mtime=1787038193, ctime=140726460966791
+rpc_metadata_test_n3RYyh: size=80, mode=40700, atime=1787038193, mtime=1787038193, ctime=140726460966791
+fchownats_test_OuAQIC: size=80, mode=40700, atime=1787038193, mtime=1787038193, ctime=140726460966791
+fchmodats_test_EGMHmp: size=80, mode=40700, atime=1787038193, mtime=1787038193, ctime=140726460966791
+download_fileats_wqc8Ao: size=80, mode=40700, atime=1787038193, mtime=1787038193, ctime=140726460966791
+upload_fileats_O9mZS1: size=80, mode=40700, atime=1787038148, mtime=1787038148, ctime=140726460966791
+rpc_metadata_test_lncmLO: size=80, mode=40700, atime=1787038148, mtime=1787038148, ctime=140726460966791
+fchownats_test_Kw5OMl: size=80, mode=40700, atime=1787038148, mtime=1787038148, ctime=140726460966791
+fchmodats_test_2e9QUI: size=80, mode=40700, atime=1787038148, mtime=1787038148, ctime=140726460966791
+download_fileats_tfMWuI: size=80, mode=40700, atime=1787038148, mtime=1787038148, ctime=140726460966791
+t0313-full-final.log: size=116663, mode=100644, atime=1787038206, mtime=1787038195, ctime=140726460966791
+t0313-rdb-final.log: size=5286, mode=100644, atime=1787038136, mtime=1787038136, ctime=140726460966791
+upload_fileats_Um5HiN: size=80, mode=40700, atime=1787038113, mtime=1787038113, ctime=140726460966791
+rpc_metadata_test_vQp0Mu: size=80, mode=40700, atime=1787038113, mtime=1787038113, ctime=140726460966791
+fchownats_test_57cGOy: size=80, mode=40700, atime=1787038113, mtime=1787038113, ctime=140726460966791
+fchmodats_test_OaQh3z: size=80, mode=40700, atime=1787038113, mtime=1787038113, ctime=140726460966791
+download_fileats_Lw0iD8: size=80, mode=40700, atime=1787038113, mtime=1787038113, ctime=140726460966791
+t0313-full-test.log: size=113847, mode=100644, atime=1787038116, mtime=1787038116, ctime=140726460966791
+t0313-sm2.log: size=6372, mode=100644, atime=1787038065, mtime=1787038065, ctime=140726460966791
+t0313-build.log: size=2235, mode=100644, atime=1787038007, mtime=1787038034, ctime=140726460966791
+t0313-sm2-red.log: size=4749, mode=100644, atime=1787037846, mtime=1787037842, ctime=140726460966791
+upload_fileats_4LTRkx: size=80, mode=40700, atime=1787037946, mtime=1787037116, ctime=140726460966791
+rpc_metadata_test_xAkZNi: size=80, mode=40700, atime=1787037946, mtime=1787037116, ctime=140726460966791
+fchownats_test_3OZxBn: size=80, mode=40700, atime=1787037946, mtime=1787037116, ctime=140726460966791
+fchmodats_test_dmhtU4: size=80, mode=40700, atime=1787037946, mtime=1787037116, ctime=140726460966791
+download_fileats_qzKrX7: size=80, mode=40700, atime=1787037946, mtime=1787037116, ctime=140726460966791
+upload_fileats_zz4g26: size=80, mode=40700, atime=1787037946, mtime=1787036970, ctime=140726460966791
+rpc_metadata_test_0xUyTD: size=80, mode=40700, atime=1787037946, mtime=1787036970, ctime=140726460966791
+fchownats_test_tt2fLd: size=80, mode=40700, atime=1787037946, mtime=1787036970, ctime=140726460966791
+fchmodats_test_8GUWNO: size=80, mode=40700, atime=1787037946, mtime=1787036970, ctime=140726460966791
+download_fileats_Of2xDN: size=80, mode=40700, atime=1787037946, mtime=1787036970, ctime=140726460966791
+t0312-evidence: size=100, mode=40755, atime=1787037946, mtime=1787036972, ctime=140726460966791
+rdbcomm-tool-test-17615: size=60, mode=40755, atime=1787037946, mtime=1787036886, ctime=140726460966791
+rdbcomm-tool-test-17614: size=60, mode=40755, atime=1787037946, mtime=1787036745, ctime=140726460966791
+upload_fileats_LxERR2: size=80, mode=40700, atime=1787037946, mtime=1787036637, ctime=140726460966791
+rpc_metadata_test_UZjHmz: size=80, mode=40700, atime=1787037946, mtime=1787036637, ctime=140726460966791
+fchownats_test_Cesesz: size=80, mode=40700, atime=1787037946, mtime=1787036637, ctime=1407PASS
+
+=== TEST: TYPE_UPDATE - Within Size ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_04
+26460966791
+fchmodats_test_VMvXcY: size=80, mode=40700, atime=1787037946, mtime=1787036637, ctime=140726460966791
+download_fileats_5QFjok: size=80, mode=40700, atime=1787037946, mtime=1787036637, ctime=140726460966791
+rdbcomm-tool-test-17613: size=60, mode=40755, atime=1787037946, mtime=1787036539, ctime=140726460966791
+rdbcomm-tool-test-17612: size=60, mode=40755, atime=1787037946, mtime=1787036496, ctime=140726460966791
+t0312-rpc-time: size=100, mode=40755, atime=1787047563, mtime=1787048776, ctime=140726460966791
+t0312-rpc: size=100, mode=40755, atime=1787037946, mtime=1787036075, ctime=140726460966791
+t0312-rdb: size=80, mode=40755, atime=1787037946, mtime=1787036067, ctime=140726460966791
+xmake-full.log: size=5900, mode=100644, atime=1787035680, mtime=1787035680, ctime=140726460966791
+cc0SoQUs.s: size=449818, mode=100600, atime=1787035633, mtime=1787035635, ctime=140726460966791
+ccZVIdrD.s: size=17, mode=100600, atime=1787035633, mtime=1787035635, ctime=140726460966791
+ccn0PL68.s: size=17, mode=100600, atime=1787035632, mtime=1787035634, ctime=140726460966791
+ccNm58q3.s: size=449849, mode=100600, atime=1787035632, mtime=1787035634, ctime=140726460966791
+cc9pTUPV.s: size=449818, mode=100600, atime=1787035628, mtime=1787035630, ctime=140726460966791
+ccxQ4ngA.s: size=17, mode=100600, atime=1787035628, mtime=1787035630, ctime=140726460966791
+ccmzJPsm.s: size=449849, mode=100600, atime=1787035626, mtime=1787035629, ctime=140726460966791
+cck9gNIs.s: size=17, mode=100600, atime=1787035626, mtime=1787035629, ctime=140726460966791
+cc61QaGj.s: size=12031575, mode=100600, atime=1787035554, mtime=1787035560, ctime=140726460966791
+ccgeuXHl.s: size=0, mode=100600, atime=1787035514, mtime=1787035514, ctime=140726460966791
+ccl4U2IV.s: size=0, mode=100600, atime=1787035514, mtime=1787035514, ctime=140726460966791
+ccsg5ERk.s: size=0, mode=100600, atime=1787035514, mtime=1787035514, ctime=140726460966791
+cc0Mu10F.s: size=27, mode=100600, atime=1787035513, mtime=1787035515, ctime=140726460966791
+ccQaynR5.s: size=0, mode=100600, atime=1787035512, mtime=1787035512, ctime=140726460966791
+ccWxdJYs.s: size=0, mode=100600, atime=1787035512, mtime=1787035512, ctime=140726460966791
+cc7VjE2U.s: size=0, mode=100600, atime=1787035512, mtime=1787035512, ctime=140726460966791
+ccr4Ld0H.s: size=0, mode=100600, atime=1787035512, mtime=1787035512, ctime=140726460966791
+cc5oH2Oj.s: size=0, mode=100600, atime=1787035512, mtime=1787035512, ctime=140726460966791
+ccA3BJrL.s: size=1596361, mode=100600, atime=1787035492, mtime=1787035495, ctime=140726460966791
+cchNbtJI.s: size=12024429, mode=100600, atime=1787035492, mtime=1787035499, ctime=140726460966791
+ccUrFHfe.s: size=6430088, mode=100600, atime=1787035492, mtime=1787035496, ctime=140726460966791
+cc8uY8ss.s: size=27, mode=100600, atime=1787035491, mtime=1787035492, ctime=140726460966791
+ccL4EiQ3.s: size=1596439, mode=100600, atime=1787035490, mtime=1787035494, ctime=140726460966791
+ccplbbD9.s: size=27, mode=100600, atime=1787035490, mtime=1787035495, ctime=140726460966791
+cchIWrYB.s: size=12029378, mode=100600, atime=1787035490, mtime=1787035498, ctime=140726460966791
+cc7NJd0w.s: size=6435114, mode=100600, atime=1787035490, mtime=1787035496, ctime=140726460966791
+ccageCQW.s: size=449849, mode=100600, atime=1787035490, mtime=1787035493, ctime=140726460966791
+ccgYTjhf.s: size=0, mode=100600, atime=1787035396, mtime=1787035396, ctime=140726460966791
+ccMaRWID.s: size=27, mode=100600, atime=1787035396, mtime=1787035400, ctime=140726460966791
+ccju30XJ.s: size=449818, mode=100600, atime=1787035396, mtime=1787035399, ctime=140726460966791
+ccHRTECg.s: size=6430088, mode=100600, atime=1787035396, mtime=1787035401, ctime=140726460966791
+cclpqSAh.s: size=27, mode=100600, atime=1787035395, mtime=1787035397, ctime=140726460966791
+ccyGOfEb.s: size=1596439, mode=100600, atime=1787035394, mtime=1787035398, ctime=140726460966791
+ccU5Hnuw.s: size=12029378, mode=100600, atime=1787035394, mtime=1787035403, ctime=140726460966791
+ccI1vpSy.s: size=27, mode=100600, atime=1787035394, mtime=1787035399, ctime=140726460966791
+cch6ruht.s: size=449849, mode=100600, atime=1787035394, mtime=1787035398, ctime=140726460966791
+ccnfnMdq.s: size=6435114, mode=100600, atime=1787035394, mtime=1787035400, ctime=140726460966791
+rpc-tool-test.out: size=6677, mode=100644, atime=1787035345, mtime=1787035345, ctime=140726460966791
+rdbmanual4: size=80, mode=40755, atime=1787037946, mtime=1787035156, ctime=140726460966791
+rdbmanual3: size=60, mode=40755, atime=1787037946, mtime=1787035146, ctime=140726460966791
+rdbmanual2: size=80, mode=40755, atime=1787037946, mtime=1787035117, ctime=140726460966791
+rdbcomm-tool-test-17611: size=60, mode=40755, atime=1787037946, mtime=1787035031, ctime=140726460966791
+cc72xfXO.s: size=1596361, mode=100600, atime=1787035019, mtime=1787035023, ctime=140726460966791
+cctcxNUy.s: size=6430088, mode=100600, atime=1787035019, mtime=1787035025, ctime=140726460966791
+cc206L9g.s: size=449818, mode=100600, atime=1787035019, mtime=1787035023, ctime=140726460966791
+ccmcnAnz.res: size=0, mode=100600, atime=1787035019, mtime=1787035019, ctime=140726460966791
+ccqLA8zi.s: size=27, mode=100600, atime=1787035019, mtime=1787035020, ctime=140726460966791
+ccdVrYMw.s: size=12029378, mode=100600, atime=1787035017, mtime=1787035026, ctime=140726460966791
+cc9RBnz2.s: size=27, mode=100600, atime=1787035017, mtime=1787035023, ctime=140726460966791
+ccsDomqC.s: size=1596439, mode=100600, atime=1787035017, mtime=1787035022, ctime=140726460966791
+ccHLlr4g.s: size=6435114, mode=100600, atime=1787035017, mtime=1787035023, ctime=140726460966791
+ccUidUIJ.s: size=449849, mode=100600, atime=1787035017, mtime=1787035021, ctime=140726460966791
+rdbtest: size=60, mode=40755, atime=1787037946, mtime=1787035013, ctime=140726460966791
+rdbcomm-tool-test-17610: size=60, mode=40755, atime=1787037946, mtime=1787035000, ctime=140726460966791
+ccikpev3.cdtor.o: size=0, mode=100600, atime=1787034825, mtime=1787034825, ctime=140726460966791
+cck7qMUW.cdtor.c: size=0, mode=100600, atime=1787034825, mtime=1787034825, ctime=140726460966791
+ccNs5xTM.s: size=0, mode=100600, atime=1787034825, mtime=1787034825, ctime=140726460966791
+ccVTpV2b.res: size=0, mode=100600, atime=1787034825, mtime=1787034825, ctime=140726460966791
+cce1P346.cdtor.o: size=0, mode=100600, atime=1787034825, mtime=1787034825, ctime=140726460966791
+ccUGt5Pu.cdtor.c: size=0, mode=100600, atime=1787034825, mtime=1787034825, ctime=140726460966791
+ccZsx6Co.res: size=0, mode=100600, atime=1787034825, mtime=1787034825, ctime=140726460966791
+ccgQjfUC.s: size=0, mode=100600, atime=1787034657, mtime=1787034657, ctime=140726460966791
+ccTYNTmr.s: size=688128, mode=100600, atime=1787034655, mtime=1787034657, ctime=140726460966791
+ccJoS2Gf.s: size=1363968, mode=100600, atime=1787034653, mtime=1787034657, ctime=140726460966791
+ccmSKcp1.s: size=1581056, mode=100600, atime=1787034653, mtime=1787034657, ctime=140726460966791
+ccro3mSp.s: size=3448406, mode=100600, atime=1787034657, mtime=1787034656, ctime=140726460966791
+cc7Py2oB.s: size=4648288, mode=100600, atime=1787034657, mtime=1787034656, ctime=140726460966791
+ccfnyog7.s: size=0, mode=100600, atime=1787034497, mtime=1787034497, ctime=140726460966791
+cc3ZxZml.s: size=0, mode=100600, atime=1787034497, mtime=1787034497, ctime=140726460966791
+ccLAKhcJ.s: size=0, mode=100600, atime=1787034497, mtime=1787034497, ctime=140726460966791
+ccJeJpRS.s: size=0, mode=100600, atime=1787034496, mtime=1787034496, ctime=140726460966791
+cca4G8Xr.s: size=0, mode=100600, atime=1787034496, mtime=1787034496, ctime=140726460966791
+ccBkZDDX.s: size=24, mode=100600, atime=1787034496, mtime=1787034497, ctime=140726460966791
+ccaoqrp3.s: size=385024, mode=100600, atime=1787034496, mtime=1787034497, ctime=140726460966791
+ccTO5LsD.s: size=1855424, mode=100600, atime=1787034495, mtime=1787034497, ctime=140726460966791
+rpc_daemon.pid: size=6, mode=100640, atime=1787033370, mtime=1787033370, ctime=140726460966791
+.bcddd5fffc8ffb7f-00000001.so: size=5576816, mode=100644, atime=1787032947, mtime=1787032947, ctime=140726460966791
+.9adfd8fff7eaedff-00000000.so: size=13745312, mode=100644, atime=1787032944, mtime=1787032944, ctime=140726460966791
+upload_fileats_8gR1nf: size=80, mode=40700, atime=1787037946, mtime=1787032765, ctime=140726460966791
+rpc_metadata_test_tuyn2Y: size=80, mode=40700, atime=1787037946, mtime=1787032765, ctime=140726460966791
+fchownats_test_gbSxRB: size=80, mode=40700, atime=1787037946, mtime=1787032765, ctime=140726460966791
+fchmodats_test_9EzJpd: size=80, mode=40700, atime=1787037946, mtime=1787032765, ctime=140726460966791
+download_fileats_sB8wmD: size=80, mode=40700, atime=1787037946, mtime=1787032765, ctime=140726460966791
+ccvqfdQa.s: size=29, mode=100600, atime=1787032665, mtime=1787032665, ctime=140726460966791
+upload_fileats_mOHdXm: size=80, mode=40700, atime=1787037946, mtime=1787032604, ctime=140726460966791
+rpc_metadata_test_1gQdjE: size=80, mode=40700, atime=1787037946, mtime=1787032604, ctime=140726460966791
+fchownats_test_5cOe47: size=80, mode=40700, atime=1787037946, mtime=1787032604, ctime=140726460966791
+fchmodats_test_YxYpYq: size=80, mode=40700, atime=1787037946, mtime=1787032604, ctime=140726460966791
+download_fileats_nH6MDl: size=80, mode=40700, atime=1787037946, mtime=1787032604, ctime=140726460966791
+upload_fileats_PCeNsE: size=80, mode=40700, atime=1787037946, mtime=1787032600, ctime=140726460966791
+rpc_metadata_test_xKaHAN: size=80, mode=40700, atime=1787037946, mtime=1787032600, ctime=140726460966791
+fchownats_test_EwMO1T: size=80, mode=40700, atime=1787037946, mtime=1787032600, ctime=140726460966791
+fchmodats_test_cpqi5j: size=80, mode=40700, atime=1787037946, mtime=1787032600, ctime=140726460966791
+download_fileats_fmZkFw: size=80, mode=40700, atime=1787037946, mtime=1787032600, ctime=140726460966791
+preamble-7d1b52.pch: size=8184436, mode=100644, atime=1787032533, mtime=1787032533, ctime=140726460966791
+preamble-3f6fd9.pch: size=5024504, mode=100644, atime=1787032531, mtime=1787032531, ctime=140726460966791
+preamble-79200e.pch: size=5222536, mode=100644, atime=1787032520, mtime=1787032520, ctime=140726460966791
+preamble-a77fd5.pch: size=633608, mode=100644, atime=1787032352, mtime=1787032352, ctime=140726460966791
+preamble-f398d7.pch: size=4697436, mode=100644, atime=1787032296, mtime=1787032296, ctime=140726460966791
+aio-missing-debug.sr2KUK: size=100, mode=40700, atime=1787037946, mtime=1787032059, ctime=140726460966791
+aio-missing-run.EHBnXu: size=160, mode=40700, atime=1787037946, mtime=1787032016, ctime=140726460966791
+aio-missing-run.ojiFhl: size=160, mode=40700, atime=1787037946, mtime=1787031960, ctime=140726460966791
+aio-force-run.gX7YBj: size=160, mode=40700, atime=1787037946, mtime=1787031942, ctime=140726460966791
+aio-errors-run.eUikWH: size=160, mode=40700, atime=1787037946, mtime=1787031924, ctime=140726460966791
+aio-errors-run.SKHFtj: size=160, mode=40700, atime=1787037946, mtime=1787031907, ctime=140726460966791
+preamble-dabf1e.pch: size=4769200, mode=100644, atime=1787031858, mtime=1787031858, ctime=140726460966791
+preamble-4b3d87.pch: size=2785924, mode=100644, atime=1787031727, mtime=1787031727, ctime=140726460966791
+aio-plain-run.8kNj4W: size=160, mode=40700, atime=1787037946, mtime=1787031721, ctime=140726460966791
+preamble-ccff77.pch: size=4702532, mode=100644, atime=1787031718, mtime=1787031718, ctime=140726460966791
+preamble-e142da.pch: size=4643980, mode=100644, atime=1787031710, mtime=1787031710, ctime=140726460966791
+aio-mtls-run.GiENb3: size=160, mode=40700, atime=1787037946, mtime=1787031701, ctime=140726460966791
+preamble-572b5f.pch: size=4703656, mode=100644, atime=1787031666, mtime=1787031666, ctime=140726460966791
+aio-rdb-mtls-debug.gTE4aH: size=100, mode=40700, atime=1787037946, mtime=1787031663, ctime=140726460966791
+aio-rdb-mtls-debug.KoN2qr: size=100, mode=40700, atime=1787037946, mtime=1787031647, ctime=140726460966791
+aio-mtls-run.APbUja: size=160, mode=40700, atime=1787037946, mtime=1787031630, ctime=140726460966791
+preamble-5a6edf.pch: size=8258652, mode=100644, atime=1787031616, mtime=1787031616, ctime=140726460966791
+aio-mtls-run.1XuRdV: size=160, mode=40700, atime=1787037946, mtime=1787031608, ctime=140726460966791
+aio-real-run.jWzo4Q: size=160, mode=40700, atime=1787037946, mtime=1787031585, ctime=140726460966791
+aio-real-run.PUZbuC: size=160, mode=40700, atime=1787037946, mtime=1787031567, ctime=140726460966791
+aio-real-run.27PCkv: size=160, mode=40700, atime=1787037946, mtime=1787031527, ctime=140726460966791
+aio-real-run.kdYHfJ: size=140, mode=40700, atime=1787037946, mtime=1787031491, ctime=140726460966791
+aio-real-run.VyJqgm: size=140, mode=40700, atime=1787037946, mtime=1787031469, ctime=140726460966791
+aio-mtls-real-current: size=26, mode=100644, atime=1787032059, mtime=1787031435, ctime=140726460966791
+aio-mtls-real.92Orrw: size=120, mode=40700, atime=1787037946, mtime=1787031435, ctime=140726460966791
+cctKCFOi.s: size=5116902, mode=100600, atime=1787027682, mtime=1787027685, ctime=140726460966791
+ccV5PSQ0.s: size=3448406, mode=100600, atime=1787027682, mtime=1787027684, ctime=140726460966791
+ccXDcTF4.s: size=4647799, mode=100600, atime=1787027682, mtime=1787027684, ctime=140726460966791
+t0302-build.log: size=1247, mode=100644, atime=1787026988, mtime=1787026988, ctime=140726460966791
+ccWVGqhN.s: size=547304, mode=100600, atime=1787026815, mtime=1787026816, ctime=140726460966791
+ccnUGvtd.s: size=1499351, mode=100600, atime=1787026815, mtime=1787026817, ctime=140726460966791
+ccWdO7MQ.s: size=1443743, mode=100600, atime=1787026815, mtime=1787026817, ctime=140726460966791
+ccuKQdRD.s: size=1290996, mode=100600, atime=1787026815, mtime=1787026817, ctime=140726460966791
+ccUUUJar.s: size=4645835, mode=100600, atime=1787026815, mtime=1787026817, ctime=140726460966791
+ccXq62TY.s: size=1851825, mode=100600, atime=1787026815, mtime=1787026817, ctime=140726460966791
+cc3CSYn0.s: size=940915, mode=100600, atime=1787026815, mtime=1787026816, ctime=140726460966791
+ccqLImPN.s: size=18, mode=100600, atime=1787026815, mtime=1787026816, ctime=140726460966791
+ccGdPtTb.s: size=1403837, mode=100600, atime=1787026815, mtime=1787026817, ctime=140726460966791
+ccDR1Ufa.s: size=547785, mode=100600, atime=1787026815, mtime=1787026816, ctime=140726460966791
+ccxYv426.s: size=1502788, mode=100600, atime=1787026815, mtime=1787026817, ctime=140726460966791
+ccV68LZ9.s: size=1291189, mode=100600, atime=1787026815, mtime=1787026816, ctime=140726460966791
+cc5vxwh3.s: size=1447645, mode=100600, atime=1787026815, mtime=1787026816, ctime=140726460966791
+ccmjjku1.res: size=0, mode=100600, atime=1787026815, mtime=1787026815, ctime=140726460966791
+ccTHutIi.s: size=0, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+cc3DpK7u.s: size=0, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+ccpyT7ex.s: size=0, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+cctFOJVH.s: size=0, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+ccsJX6Gx.s: size=0, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+ccx9akr9.s: size=0, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+ccPrhtWP.s: size=0, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+ccAysYVa.s: size=0, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+ccoNZZnF.s: size=0, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+ccxZCcs5.s: size=0, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+ccL9Y9u3.s: size=0, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+ccDonktr.s: size=0, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+cctFZ42Z.s: size=0, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+ccLZv5NZ.s: size=0, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+cciAE0tq.s: size=15, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+ccwXI2It.s: size=0, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+ccblgw4B.s: size=0, mode=100600, atime=1787026807, mtime=1787026807, ctime=140726460966791
+ccjYAsxm.s: size=116774, mode=100600, atime=1787026807, mtime=1787026808, ctime=140726460966791
+ccOVImpC.s: size=1443743, mode=100600, atime=1787026386, mtime=1787026387, ctime=140726460966791
+cczzKCYn.s: size=17, mode=100600, atime=1787026386, mtime=1787026386, ctime=140726460966791
+cc37wJhY.s: size=24, mode=100600, atime=1787026386, mtime=1787026386, ctime=140726460966791
+ccRe0LUH.s: size=25, mode=100600, atime=1787026385, mtime=1787026386, ctime=140726460966791
+ccILR4fV.s: size=24, mode=100600, atime=1787026385, mtime=1787026386, ctime=140726460966791
+ccwiXxwp.s: size=1502788, mode=100600, atime=1787026385, mtime=1787026386, ctime=140726460966791
+ccEJF9q0.s: size=1447645, mode=100600, atime=1787026386, mtime=1787026386, ctime=140726460966791
+ccLPnbZz.s: size=1499351, mode=100600, atime=1787026374, mtime=1787026376, ctime=140726460966791
+ccZIuAmd.s: size=24, mode=100600, atime=1787026374, mtime=1787026376, ctime=140726460966791
+cc8TOUKI.s: size=25, mode=100600, atime=1787026374, mtime=1787026376, ctime=140726460966791
+cc3hIWoB.s: size=17, mode=100600, atime=1787026374, mtime=1787026376, ctime=140726460966791
+ccFyDcWs.s: size=24, mode=100600, atime=1787026374, mtime=1787026376, ctime=140726460966791
+ccFb0f2B.s: size=1443743, mode=100600, atime=1787026374, mtime=1787026376, ctime=140726460966791
+ccWRQI6R.s: size=24, mode=100600, atime=1787026374, mtime=1787026376, ctime=140726460966791
+ccoW7HaB.s: size=17, mode=100600, atime=1787026374, mtime=1787026375, ctime=140726460966791
+cci6QSw6.s: size=25, mode=100600, atime=1787026374, mtime=1787026375, ctime=140726460966791
+ccJD2Nvd.s: size=24, mode=100600, atime=1787026374, mtime=1787026375, ctime=140726460966791
+ccHaSrJ7.s: size=22, mode=100600, atime=1787026374, mtime=1787026375, ctime=140726460966791
+ccXvkzGc.s: size=1502788, mode=100600, atime=1787026374, mtime=1787026376, ctime=140726460966791
+ccRY8dzg.s: size=1447645, mode=100600, atime=1787026374, mtime=1787026376, ctime=140726460966791
+ccvrBlb9.s: size=5113266, mode=100600, atime=1787026324, mtime=1787026329, ctime=140726460966791
+ccsyhFQn.s: size=1849861, mode=100600, atime=1787026323, mtime=1787026327, ctime=140726460966791
+cc4AQkbx.s: size=940915, mode=100600, atime=1787026323, mtime=1787026325, ctime=140726460966791
+ccaooibk.s: size=4645835, mode=100600, atime=1787026323, mtime=1787026328, ctime=140726460966791
+ccWTbVWq.s: size=1402295, mode=100600, atime=1787026323, mtime=1787026326, ctime=140726460966791
+ccA2yOod.s: size=1291189, mode=100600, atime=1787026323, mtime=1787026325, ctime=140726460966791
+cc17jTvh.s: size=1500818, mode=100600, atime=1787026323, mtime=1787026326, ctime=140726460966791
+ccnLDnWh.s: size=1445428, mode=100600, atime=1787026323, mtime=1787026325, ctime=140726460966791
+ccOg6vak.s: size=872498, mode=100600, atime=1787026324, mtime=1787026324, ctime=140726460966791
+ccmWBhHK.s: size=3444794, mode=100600, atime=1787026323, mtime=1787026328, ctime=140726460966791
+ccif24Wb.s: size=0, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+cclV94px.s: size=0, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+cco8ICIS.s: size=23488, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+cckDX7ts.s: size=65998, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+cc8eOAk2.s: size=0, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+ccidJVXG.s: size=0, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+ccnDMxec.s: size=0, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+ccNZ2JPm.s: size=0, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+ccBRnkoR.s: size=0, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+ccYwdKdn.s: size=0, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+ccOH4c6e.s: size=0, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+ccV6sZ1I.s: size=0, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+cc2g5T7W.s: size=0, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+ccYeGTCl.s: size=0, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+ccEYgA2r.s: size=0, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+cciadQ0l.s: size=0, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+ccb3dhrm.s: size=0, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+ccQynQ0R.s: size=0, mode=100600, atime=1787023792, mtime=1787023792, ctime=140726460966791
+ccHtOiWC.s: size=0, mode=100600, atime=1787023791, mtime=1787023791, ctime=140726460966791
+ccPpW4hG.s: size=18, mode=100600, atime=1787023791, mtime=1787023792, ctime=140726460966791
+cc2HmDur.s: size=65953, mode=100600, atime=1787023791, mtime=1787023792, ctime=140726460966791
+ccwUoS8g.s: size=0, mode=100600, atime=1787023791, mtime=1787023791, ctime=140726460966791
+ccTRT3ox.s: size=0, mode=100600, atime=1787023791, mtime=1787023791, ctime=140726460966791
+ccSFxBP3.s: size=0, mode=100600, atime=1787023791, mtime=1787023791, ctime=140726460966791
+ccRb7Qh7.s: size=65536, mode=100600, atime=1787023791, mtime=1787023792, ctime=140726460966791
+ccQQRFoM.s: size=0, mode=100600, atime=1787023791, mtime=1787023791, ctime=140726460966791
+ccOhgd2t.s: size=20480, mode=100600, atime=1787023791, mtime=1787023792, ctime=140726460966791
+ccYPZNLo.s: size=0, mode=100600, atime=1787023791, mtime=1787023791, ctime=140726460966791
+cc3sYD3n.s: size=0, mode=100600, atime=1787023791, mtime=1787023791, ctime=140726460966791
+cckK9r9n.s: size=132841, mode=100600, atime=1787023791, mtime=1787023792, ctime=140726460966791
+ccDdSNKa.s: size=0, mode=100600, atime=1787023791, mtime=1787023791, ctime=140726460966791
+cc78UV93.s: size=1402496, mode=100600, atime=1787023565, mtime=1787023566, ctime=140726460966791
+ccpQRV5k.s: size=1409922, mode=100600, atime=1787023565, mtime=1787023566, ctime=140726460966791
+ccemPys6.s: size=30, mode=100600, atime=1787023564, mtime=1787023565, ctime=140726460966791
+cc0zimJO.s: size=206875, mode=100600, atime=1787023369, mtime=1787023370, ctime=140726460966791
+ccDfXZER.s: size=165015, mode=100600, atime=1787023369, mtime=1787023370, ctime=140726460966791
+ccvV6x0d.s: size=1848488, mode=100600, atime=1787023369, mtime=1787023372, ctime=140726460966791
+ccb0Jt51.s: size=946109, mode=100600, atime=1787023369, mtime=1787023371, ctime=140726460966791
+ccV1WhpS.s: size=1300931, mode=100600, atime=1787023369, mtime=1787023371, ctime=140726460966791
+ccqcXieF.s: size=1410118, mode=100600, atime=1787023369, mtime=1787023371, ctime=140726460966791
+ccgP6TZV.s: size=872498, mode=100600, atime=1787023369, mtime=1787023370, ctime=140726460966791
+ccjT5Hq7.s: size=554304, mode=100600, atime=1787023285, mtime=1787023286, ctime=140726460966791
+ccLrjWSh.s: size=4649613, mode=100600, atime=1787023285, mtime=1787023287, ctime=140726460966791
+ccX9VouU.s: size=5116802, mode=100600, atime=1787023284, mtime=1787023288, ctime=140726460966791
+ccP3rTbm.s: size=284316, mode=100600, atime=1787023198, mtime=1787023207, ctime=140726460966791
+ccQ1RXnv.s: size=30941, mode=100600, atime=1787023198, mtime=1787023201, ctime=140726460966791
+ccnUHMcK.s: size=225488, mode=100600, atime=1787023198, mtime=1787023208, ctime=140726460966791
+ccERby0x.s: size=255036, mode=100600, atime=1787023198, mtime=1787023207, ctime=140726460966791
+ccsEkA37.s: size=248048, mode=100600, atime=1787023198, mtime=1787023208, ctime=140726460966791
+ccKKaZO9.s: size=441586, mode=100600, atime=1787023198, mtime=1787023209, ctime=140726460966791
+ccgiz7vu.s: size=30941, mode=100600, atime=1787023198, mtime=1787023203, ctime=140726460966791
+ccgZ3QWt.s: size=26735, mode=100600, atime=1787023198, mtime=1787023201, ctime=140726460966791
+cclDqBwX.s: size=97102, mode=100600, atime=1787023198, mtime=1787023204, ctime=140726460966791
+ccZC1VKN.s: size=97102, mode=100600, atime=1787023198, mtime=1787023204, ctime=140726460966791
+ccQKtP0A.s: size=81357, mode=100600, atime=1787023198, mtime=1787023202, ctime=140726460966791
+ccLD5Lp5.s: size=24, mode=100600, atime=1787023198, mtime=1787023203, ctime=140726460966791
+ccXIffUW.s: size=441586, mode=100600, atime=1787023197, mtime=1787023209, ctime=140726460966791
+ccUb6vQB.s: size=27, mode=100600, atime=1787023197, mtime=1787023198, ctime=140726460966791
+cczL4klT.s: size=20, mode=100600, atime=1787023197, mtime=1787023199, ctime=140726460966791
+cc5TamUv.s: size=248048, mode=100600, atime=1787023197, mtime=1787023207, ctime=140726460966791
+cclzgX4f.s: size=81357, mode=100600, atime=1787023197, mtime=1787023202, ctime=140726460966791
+ccXzk16T.s: size=284316, mode=100600, atime=1787023197, mtime=1787023205, ctime=140726460966791
+ccKgXIuM.s: size=690720, mode=100600, atime=1787023197, mtime=1787023210, ctime=140726460966791
+cchurEgo.s: size=26735, mode=100600, atime=1787023197, mtime=1787023201, ctime=140726460966791
+cctdOZh9.s: size=30941, mode=100600, atime=1787023197, mtime=1787023200, ctime=140726460966791
+ccZPwxWH.s: size=97102, mode=100600, atime=1787023197, mtime=1787023202, ctime=140726460966791
+ccJQK1vk.s: size=97102, mode=100600, atime=1787023197, mtime=1787023202, ctime=140726460966791
+ccFOdWsP.s: size=81357, mode=100600, atime=1787023197, mtime=1787023202, ctime=140726460966791
+ccRZk6Ff.s: size=225488, mode=100600, atime=1787023197, mtime=1787023206, ctime=140726460966791
+cc3NgIQv.s: size=30941, mode=100600, atime=1787023197, mtime=1787023200, ctime=140726460966791
+ccjuChpd.s: size=255036, mode=100600, atime=1787023197, mtime=1787023206, ctime=140726460966791
+ccEByvVT.s: size=248048, mode=100600, atime=1787023196, mtime=1787023207, ctime=140726460966791
+ccXJFjq0.s: size=24, mode=100600, atime=1787023196, mtime=1787023198, ctime=140726460966791
+.bcddc7ffbc9dfebf-00000001.so: size=5576816, mode=100644, atime=1787022941, mtime=1787022941, ctime=140726460966791
+.9adfcffdeffdff87-00000000.so: size=13745312, mode=100644, atime=1787022936, mtime=1787022936, ctime=140726460966791
+com.microsoft.Edge.QwCG4s: size=80, mode=40700, atime=1787037946, mtime=1787021367, ctime=140726460966791
+pyright-516314-pd6YbL1lmDgX: size=40, mode=40700, atime=1787037946, mtime=1787021133, ctime=140726460966791
+pdca-task-identity-0e73a54cf0ba2a78f24936698bf7dd779208d391ff9365e8cd89af4a61658101.lock: size=0, mode=100600, atime=1787020390, mtime=1787020390, ctime=140726460966791
+upload_fileats_wpQs1O: size=80, mode=40700, atime=1787037946, mtime=1787019549, ctime=140726460966791
+rpc_metadata_test_Idoc91: size=80, mode=40700, atime=1787037946, mtime=1787019549, ctime=140726460966791
+fchownats_test_DRhe9O: size=80, mode=40700, atime=1787037946, mtime=1787019549, ctime=140726460966791
+fchmodats_test_CAXrNk: size=80, mode=40700, atime=1787037946, mtime=1787019549, ctime=140726460966791
+download_fileats_I5Z7zs: size=80, mode=40700, atime=1787037946, mtime=1787019549, ctime=140726460966791
+upload_fileats_sRAsWm: size=80, mode=40700, atime=1787037946, mtime=1787019392, ctime=140726460966791
+rpc_metadata_test_hw3DdM: size=80, mode=40700, atime=1787037946, mtime=1787019392, ctime=140726460966791
+fchownats_test_5sAnKc: size=80, mode=40700, atime=1787037946, mtime=1787019392, ctime=140726460966791
+fchmodats_test_cSCgrm: size=80, mode=40700, atime=1787037946, mtime=1787019392, ctime=140726460966791
+download_fileats_hMrJgH: size=80, mode=40700, atime=1787037946, mtime=1787019392, ctime=140726460966791
+ccpXWSob.s: size=690720, mode=100600, atime=1787019308, mtime=1787019314, ctime=140726460966791
+cc2RC0IJ.s: size=690720, mode=100600, atime=1787019176, mtime=1787019183, ctime=140726460966791
+cczbu470.s: size=690720, mode=100600, atime=1787019173, mtime=1787019181, ctime=140726460966791
+ccv7LkGN.s: size=322135, mode=100600, atime=1787019173, mtime=1787019176, ctime=140726460966791
+ccAtT8Jc.s: size=690720, mode=100600, atime=1787019143, mtime=1787019151, ctime=140726460966791
+ccYqkbop.s: size=97102, mode=100600, atime=1787019143, mtime=1787019145, ctime=140726460966791
+ccZAklVt.s: size=17, mode=100600, atime=1787019142, mtime=1787019144, ctime=140726460966791
+cccsASuq.s: size=690720, mode=100600, atime=1787019141, mtime=1787019149, ctime=140726460966791
+cckcXYcl.s: size=81357, mode=100600, atime=1787019141, mtime=1787019143, ctime=140726460966791
+cct94gK1.s: size=322135, mode=100600, atime=1787019141, mtime=1787019145, ctime=140726460966791
+cchXak0j.s: size=97102, mode=100600, atime=1787019140, mtime=1787019143, ctime=140726460966791
+upload_fileats_7ACURQ: size=80, mode=40700, atime=1787037946, mtime=1787018220, ctime=140726460966791
+rpc_metadata_test_lAPzdF: size=80, mode=40700, atime=1787037946, mtime=1787018220, ctime=140726460966791
+fchownats_test_7fFkHt: size=80, mode=40700, atime=1787037946, mtime=1787018220, ctime=140726460966791
+fchmodats_test_2qwceu: size=80, mode=40700, atime=1787037946, mtime=1787018220, ctime=140726460966791
+download_fileats_WI01LV: size=80, mode=40700, atime=1787037946, mtime=1787018220, ctime=140726460966791
+upload_fileats_6dvfIy: size=80, mode=40700, atime=1787037946, mtime=1787018170, ctime=140726460966791
+rpc_metadata_test_4JTLlr: size=80, mode=40700, atime=1787037946, mtime=1787018170, ctime=140726460966791
+fchownats_test_xhuBld: size=80, mode=40700, atime=1787037946, mtime=1787018170, ctime=140726460966791
+fchmodats_test_EcUGk1: size=80, mode=40700, atime=1787037946, mtime=1787018170, ctime=140726460966791
+download_fileats_WrodNV: size=80, mode=40700, atime=1787037946, mtime=1787018170, ctime=140726460966791
+ccnFQKpQ.s: size=48656, mode=100600, atime=1787018134, mtime=1787018136, ctime=140726460966791
+cc8sQaDA.res: size=0, mode=100600, atime=1787018134, mtime=1787018134, ctime=140726460966791
+ccHmnKcZ.res: size=0, mode=100600, atime=1787018134, mtime=1787018134, ctime=140726460966791
+ccYYHbNF.res: size=0, mode=100600, atime=1787018134, mtime=1787018134, ctime=140726460966791
+cckPdsip.res: size=0, mode=100600, atime=1787018134, mtime=1787018134, ctime=140726460966791
+ccuaE1qd.res: size=0, mode=100600, atime=1787018134, mtime=1787018134, ctime=140726460966791
+ccJSWPjp.res: size=0, mode=100600, atime=1787018134, mtime=1787018134, ctime=140726460966791
+cceI2ni4.res: size=0, mode=100600, atime=1787018134, mtime=1787018134, ctime=140726460966791
+ccCk8w8F.res: size=0, mode=100600, atime=1787018074, mtime=1787018074, ctime=140726460966791
+ccf68W2J.res: size=0, mode=100600, atime=1787018073, mtime=1787018073, ctime=140726460966791
+cckPNFux.res: size=0, mode=100600, atime=1787018073, mtime=1787018073, ctime=140726460966791
+ccPyGIMZ.res: size=0, mode=100600, atime=1787018073, mtime=1787018073, ctime=140726460966791
+ccEEa0ML.res: size=0, mode=100600, atime=1787018073, mtime=1787018073, ctime=140726460966791
+ccLjUjqs.s: size=30, mode=100600, atime=1787018073, mtime=1787018074, ctime=140726460966791
+ccdSunxU.res: size=0, mode=100600, atime=1787018073, mtime=1787018073, ctime=140726460966791
+ccGVA4Uw.res: size=0, mode=100600, atime=1787018072, mtime=1787018072, ctime=140726460966791
+ccpE7XMc.res: size=0, mode=100600, atime=1787018072, mtime=1787018072, ctime=140726460966791
+ccHQnzbj.res: size=0, mode=100600, atime=1787018072, mtime=1787018072, ctime=140726460966791
+ccOywi70.res: size=0, mode=100600, atime=1787018072, mtime=1787018072, ctime=140726460966791
+cctPhdk4.res: size=0, mode=100600, atime=1787018072, mtime=1787018072, ctime=140726460966791
+cc6jtOSD.res: size=0, mode=100600, atime=1787018072, mtime=1787018072, ctime=140726460966791
+ccXgWy9k.res: size=0, mode=100600, atime=1787018072, mtime=1787018072, ctime=140726460966791
+ccIevulh.res: size=0, mode=100600, atime=1787018072, mtime=1787018072, ctime=140726460966791
+.bcddc77ef7a5b7bc-00000001.so: size=5576816, mode=100644, atime=1787017987, mtime=1787017987, ctime=140726460966791
+.9adfcbfbf3eeed97-00000000.so: size=13745312, mode=100644, atime=1787017983, mtime=1787017983, ctime=140726460966791
+msg_bin2.strace: size=1340, mode=100644, atime=1787017610, mtime=1787017610, ctime=140726460966791
+msg_bin.strace: size=1340, mode=100644, atime=1787017599, mtime=1787017599, ctime=140726460966791
+msg_test.strace: size=101932, mode=100644, atime=1787017584, mtime=1787017584, ctime=140726460966791
+ccUbvxTb.s: size=75450, mode=100600, atime=1787017414, mtime=1787017415, ctime=140726460966791
+ccnzCKVj.s: size=9775, mode=100600, atime=1787017414, mtime=1787017414, ctime=140726460966791
+ccicMEOU.s: size=75450, mode=100600, atime=1787017414, mtime=1787017415, ctime=140726460966791
+ccph1VCf.s: size=25423, mode=100600, atime=1787017414, mtime=1787017415, ctime=140726460966791
+ccLaq6h1.s: size=78353, mode=100600, atime=1787017414, mtime=1787017415, ctime=140726460966791
+upload_fileats_nzhQFv: size=80, mode=40700, atime=1787037946, mtime=1786961811, ctime=140726460966791
+rpc_metadata_test_6sM51d: size=80, mode=40700, atime=1787037946, mtime=1786961811, ctime=140726460966791
+fchownats_test_lzGm76: size=80, mode=40700, atime=1787037946, mtime=1786961811, ctime=140726460966791
+fchmodats_test_xwd1qX: size=80, mode=40700, atime=1787037946, mtime=1786961811, ctime=140726460966791
+download_fileats_u7h3zf: size=80, mode=40700, atime=1787037946, mtime=1786961811, ctime=140726460966791
+upload_fileats_xGrWIl: size=80, mode=40700, atime=1787037946, mtime=1786959748, ctime=140726460966791
+rpc_metadata_test_C2Qx6H: size=80, mode=40700, atime=1787037946, mtime=1786959748, ctime=140726460966791
+fchownats_test_yBKnFt: size=80, mode=40700, atime=1787037946, mtime=1786959748, ctime=140726460966791
+fchmodats_test_ecSrue: size=80, mode=40700, atime=1787037946, mtime=1786959748, ctime=140726460966791
+download_fileats_PuM38j: size=80, mode=40700, atime=1787037946, mtime=1786959748, ctime=140726460966791
+.bcddcddff79ff73c-00000001.so: size=5576816, mode=100644, atime=1786959128, mtime=1786959128, ctime=140726460966791
+.9adfcdfbe3e9efa7-00000000.so: size=13745312, mode=100644, atime=1786959123, mtime=1786959123, ctime=140726460966791
+upload_fileats_jDRMzu: size=80, mode=40700, atime=1787037946, mtime=1786958727, ctime=140726460966791
+rpc_metadata_test_pfdLjh: size=80, mode=40700, atime=1787037946, mtime=1786958727, ctime=140726460966791
+fchownats_test_nvxelJ: size=80, mode=40700, atime=1787037946, mtime=1786958727, ctime=140726460966791
+fchmodats_test_JU70YN: size=80, mode=40700, atime=1787037946, mtime=1786958727, ctime=140726460966791
+download_fileats_z89N9C: size=80, mode=40700, atime=1787037946, mtime=1786958727, ctime=140726460966791
+.bcddcd5ebdddf73e-00000001.so: size=5576816, mode=100644, atime=1786958536, mtime=1786958536, ctime=140726460966791
+.9adfcdf9eee4ef8f-00000000.so: size=13745312, mode=100644, atime=1786958531, mtime=1786958531, ctime=140726460966791
+upload_fileats_bWuHBo: size=80, mode=40700, atime=1787037946, mtime=1786958405, ctime=140726460966791
+rpc_metadata_test_rwlBSi: size=80, mode=40700, atime=1787037946, mtime=1786958405, ctime=140726460966791
+fchownats_test_FlJHrE: size=80, mode=40700, atime=1787037946, mtime=1786958405, ctime=140726460966791
+fchmodats_test_5luWyj: size=80, mode=40700, atime=1787037946, mtime=1786958405, ctime=140726460966791
+download_fileats_He8vLn: size=80, mode=40700, atime=1787037946, mtime=1786958405, ctime=140726460966791
+upload_fileats_XdKJjg: size=80, mode=40700, atime=1787037946, mtime=1786951429, ctime=140726460966791
+rpc_metadata_test_z88bQj: size=80, mode=40700, atime=1787037946, mtime=1786951429, ctime=140726460966791
+fchownats_test_mEUFZl: size=80, mode=40700, atime=1787037946, mtime=1786951429, ctime=140726460966791
+fchmodats_test_9f6SEA: size=80, mode=40700, atime=1787037946, mtime=1786951429, ctime=140726460966791
+download_fileats_XzdhhO: size=80, mode=40700, atime=1787037946, mtime=1786951429, ctime=140726460966791
+upload_fileats_Q703j8: size=80, mode=40700, atime=1787037946, mtime=1786950956, ctime=140726460966791
+rpc_metadata_test_r7xLKS: size=80, mode=40700, atime=1787037946, mtime=1786950956, ctime=140726460966791
+fchownats_test_BvHJjL: size=80, mode=40700, atime=1787037946, mtime=1786950956, ctime=140726460966791
+fchmodats_test_HIGgk0: size=80, mode=40700, atime=1787037946, mtime=1786950956, ctime=140726460966791
+download_fileats_4mmU1p: size=80, mode=40700, atime=1787037946, mtime=1786950956, ctime=140726460966791
+upload_fileats_pyAJPF: size=80, mode=40700, atime=1787037946, mtime=1786948411, ctime=140726460966791
+rpc_metadata_test_cwXKIT: size=80, mode=40700, atime=1787037946, mtime=1786948411, ctime=140726460966791
+fchownats_test_zM145V: size=80, mode=40700, atime=1787037946, mtime=1786948411, ctime=140726460966791
+fchmodats_test_kRwQ9m: size=80, mode=40700, atime=1787037946, mtime=1786948411, ctime=140726460966791
+download_fileats_hR7822: size=80, mode=40700, atime=1787037946, mtime=1786948411, ctime=140726460966791
+upload_fileats_hUAfka: size=80, mode=40700, atime=1787037946, mtime=1786945838, ctime=140726460966791
+rpc_metadata_test_v5abuw: size=80, mode=40700, atime=1787037946, mtime=1786945838, ctime=140726460966791
+fchownats_test_6en68H: size=80, mode=40700, atime=1787037946, mtime=1786945838, ctime=140726460966791
+fchmodats_test_id7mV1: size=80, mode=40700, atime=1787037946, mtime=1786945838, ctime=140726460966791
+download_fileats_FiHNAa: size=80, mode=40700, atime=1787037946, mtime=1786945838, ctime=140726460966791
+upload_fileats_7skUeI: size=80, mode=40700, atime=1787037946, mtime=1786945702, ctime=140726460966791
+rpc_metadata_test_hzeuzs: size=80, mode=40700, atime=1787037946, mtime=1786945702, ctime=140726460966791
+fchownats_test_kJGNNm: size=80, mode=40700, atime=1787037946, mtime=1786945702, ctime=140726460966791
+fchmodats_test_0GRfnS: size=80, mode=40700, atime=1787037946, mtime=1786945702, ctime=140726460966791
+download_fileats_qL7WhW: size=80, mode=40700, atime=1787037946, mtime=1786945702, ctime=140726460966791
+ccSnAzte.s: size=321843, mode=100600, atime=1786945480, mtime=1786945482, ctime=140726460966791
+convergence-map.json: size=1413, mode=100644, atime=1786943146, mtime=1786943137, ctime=140726460966791
+upload_fileats_4qxy2x: size=80, mode=40700, atime=1787037946, mtime=1786942595, ctime=140726460966791
+rpc_metadata_test_YT2GfA: size=80, mode=40700, atime=1787037946, mtime=1786942595, ctime=140726460966791
+fchownats_test_p5KHjp: size=80, mode=40700, atime=1787037946, mtime=1786942595, ctime=140726460966791
+fchmodats_test_JqzU71: size=80, mode=40700, atime=1787037946, mtime=1786942595, ctime=140726460966791
+download_fileats_NjWnkP: size=80, mode=40700, atime=1787037946, mtime=1786942595, ctime=140726460966791
+upload_fileats_slLkyR: size=80, mode=40700, atime=1787037946, mtime=1786941992, ctime=140726460966791
+rpc_metadata_test_Lo2gke: size=80, mode=40700, atime=1787037946, mtime=1786941992, ctime=140726460966791
+fchownats_test_AxDMzJ: size=80, mode=40700, atime=1787037946, mtime=1786941992, ctime=140726460966791
+fchmodats_test_LHjzwz: size=80, mode=40700, atime=1787037946, mtime=1786941992, ctime=140726460966791
+download_fileats_UD2nAQ: size=80, mode=40700, atime=1787037946, mtime=1786941992, ctime=140726460966791
+upload_fileats_PXNZ09: size=80, mode=40700, atime=1787037946, mtime=1786941973, ctime=140726460966791
+rpc_metadata_test_ML1yE9: size=80, mode=40700, atime=1787037946, mtime=1786941973, ctime=140726460966791
+fchownats_test_KmvVXP: size=80, mode=40700, atime=1787037946, mtime=1786941973, ctime=140726460966791
+fchmodats_test_hjkUkz: size=80, mode=40700, atime=1787037946, mtime=1786941973, ctime=140726460966791
+download_fileats_DGglaW: size=80, mode=40700, atime=1787037946, mtime=1786941973, ctime=140726460966791
+upload_fileats_7HsT2R: size=80, mode=40700, atime=1787037946, mtime=1786941955, ctime=140726460966791
+cv_debug.log.tmp: size=9, mode=100644, atime=1786941955, mtime=1787048887, ctime=140726460966791
+preamble-6376a5.pch: size=9, mode=100644, atime=1787048887, mtime=1787048887, ctime=140726460966791
+pread_test_src.bin: size=29, mode=100644, atime=1787048887, mtime=1787048887, ctime=140726460966791
+obt: size=60, mode=40755, atime=1787037946, mtime=1786941955, ctime=140726460966791
+rpc_metadata_test_KZkfaj: size=80, mode=40700, atime=1787037946, mtime=1786941955, ctime=140726460966791
+logger_test.audit.log: size=8550, mode=100644, atime=1787048887, mtime=1787048887, ctime=140726460966791
+test_logger.log: size=0, mode=100644, atime=1786941955, mtime=1786941955, ctime=140726460966791
+fchownats_test_Q0gUAx: size=80, mode=40700, atime=1787037946, mtime=1786941955, ctime=140726460966791
+fchmodats_test_047qim: size=80, mode=40700, atime=1787037946, mtime=1786941955, ctime=140726460966791
+aio: size=60, mode=40755, atime=1787037946, mtime=1786941955, ctime=140726460966791
+test_file_3.bin: size=6, mode=100644, atime=1786941955, mtime=1787048887, ctime=140726460966791
+download_fileats_wmfBdA: size=80, mode=40700, atime=1787037946, mtime=1786941955, ctime=140726460966791
+tmp2: size=60, mode=40755, atime=1787037946, mtime=1786941955, ctime=140726460966791
+cc4phy5E.s: size=29, mode=100644, atime=1787048887, mtime=1787048887, ctime=140726460966791
+tmp1: size=120, mode=40755, atime=1787037946, mtime=1787048887, ctime=140726460966791
+ccWBkHty.res: size=0, mode=100600, atime=1786941923, mtime=1786941923, ctime=140726460966791
+cczW5jXo.res: size=0, mode=100600, atime=1786941923, mtime=1786941923, ctime=140726460966791
+ccj7hpTQ.res: size=0, mode=100600, atime=1786941923, mtime=1786941923, ctime=140726460966791
+ccKv2mU3.s: size=98596, mode=100600, atime=1786941921, mtime=1786941924, ctime=140726460966791
+ccZjA6AM.s: size=167702, mode=100600, atime=1786941921, mtime=1786941923, ctime=140726460966791
+cc2qtocr.res: size=0, mode=100600, atime=1786941888, mtime=1786941888, ctime=140726460966791
+cczUdNuM.res: size=0, mode=100600, atime=1786941888, mtime=1786941888, ctime=140726460966791
+ccI4lUq7.res: size=0, mode=100600, atime=1786941888, mtime=1786941888, ctime=140726460966791
+ccSEcvnb.res: size=0, mode=100600, atime=1786941888, mtime=1786941888, ctime=140726460966791
+ccssf99S.res: size=0, mode=100600, atime=1786941888, mtime=1786941888, ctime=140726460966791
+ccTRjnD7.res: size=0, mode=100600, atime=1786941888, mtime=1786941888, ctime=140726460966791
+ccc1WnYj.res: size=0, mode=100600, atime=1786941888, mtime=1786941888, ctime=140726460966791
+cc5Fpiz0.res: size=0, mode=100600, atime=1786941888, mtime=1786941888, ctime=140726460966791
+ccybvvE8.s: size=23664, mode=100600, atime=1786941888, mtime=1786941889, ctime=140726460966791
+ccmYHrXE.res: size=0, mode=100600, atime=1786941887, mtime=1786941887, ctime=140726460966791
+ccUie661.res: size=0, mode=100600, atime=1786941887, mtime=1786941887, ctime=140726460966791
+ccjkwyg6.res: size=0, mode=100600, atime=1786941887, mtime=1786941887, ctime=140726460966791
+ccWs5rhU.s: size=5319, mode=100600, atime=1786941887, mtime=1786941888, ctime=140726460966791
+cc6bHact.s: size=93943, mode=100600, atime=1786941887, mtime=1786941889, ctime=140726460966791
+ccxNDuNa.s: size=54566, mode=100600, atime=1786941886, mtime=1786941889, ctime=140726460966791
+ccKwcKMN.s: size=167702, mode=100600, atime=1786941885, mtime=1786941889, ctime=140726460966791
+ccqKDAZY.s: size=98596, mode=100600, atime=1786941885, mtime=1786941889, ctime=140726460966791
+ccxw9xau.s: size=1369513, mode=100600, atime=1786941136, mtime=1786941149, ctime=140726460966791
+cckk352T.s: size=1165671, mode=100600, atime=1786941136, mtime=1786941149, ctime=140726460966791
+ccyaZU2g.s: size=826546, mode=100600, atime=1786941135, mtime=1786941145, ctime=140726460966791
+ccawuXJ4.s: size=826546, mode=100600, atime=1786941076, mtime=1786941088, ctime=140726460966791
+ccyk7cj0.s: size=38097, mode=100600, atime=1786941076, mtime=1786941080, ctime=140726460966791
+ccHJNBsb.s: size=1165671, mode=100600, atime=1786941075, mtime=1786941090, ctime=140726460966791
+cc3IIkKJ.s: size=1369513, mode=100600, atime=1786941075, mtime=1786941091, ctime=140726460966791
+ccBGaIUF.s: size=33364, mode=100600, atime=1786941075, mtime=1786941078, ctime=140726460966791
+cc39ppVL.s: size=826546, mode=100600, atime=1786941075, mtime=1786941086, ctime=140726460966791
+ccPvXE51.s: size=38097, mode=100600, atime=1786941075, mtime=1786941078, ctime=140726460966791
+ccq6Qulo.s: size=38097, mode=100600, atime=1786941059, mtime=1786941063, ctime=140726460966791
+ccaQTcRH.s: size=826546, mode=100600, atime=1786941059, mtime=1786941070, ctime=140726460966791
+cccgyEnV.s: size=1369513, mode=100600, atime=1786941059, mtime=1786941074, ctime=140726460966791
+ccS5cgM1.s: size=1369513, mode=100600, atime=1786941058, mtime=1786941073, ctime=140726460966791
+cckdVyrW.s: size=1165671, mode=100600, atime=1786941058, mtime=1786941072, ctime=140726460966791
+ccL4W3dY.s: size=33364, mode=100600, atime=1786941058, mtime=1786941062, ctime=140726460966791
+ccAx2W2j.s: size=38097, mode=100600, atime=1786941057, mtime=1786941060, ctime=140726460966791
+cceB8O1J.s: size=826546, mode=100600, atime=1786941057, mtime=1786941068, ctime=140726460966791
+.bcddfdfefd87bbfd-00000001.so: size=5576816, mode=100644, atime=1786940480, mtime=1786940480, ctime=140726460966791
+.9adf7cfdf7f4fdef-00000000.so: size=13745312, mode=100644, atime=1786940476, mtime=1786940476, ctime=140726460966791
+rpc_dir_tree_test: size=100, mode=40755, atime=1787048887, mtime=1786939236, ctime=140726460966791
+ccX0zWG2.s: size=441586, mode=100600, atime=1786938950, mtime=1786938962, ctime=140726460966791
+ccC1TnCV.s: size=248048, mode=100600, atime=1786938950, mtime=1786938959, ctime=140726460966791
+cct6xryB.s: size=690056, mode=100600, atime=1786938950, mtime=1786938963, ctime=140726460966791
+ccFRXxkB.s: size=288933, mode=100600, atime=1786938950, mtime=1786938956, ctime=140726460966791
+ccPFCBBB.s: size=81357, mode=100600, atime=1786938950, mtime=1786938953, ctime=140726460966791
+ccjcU05P.s: size=225488, mode=100600, atime=1786938950, mtime=1786938958, ctime=140726460966791
+ccOa8Vos.s: size=320733, mode=100600, atime=1786938950, mtime=1786938957, ctime=140726460966791
+ccRuJzry.s: size=255036, mode=100600, atime=1786938950, mtime=1786938958, ctime=140726460966791
+ccJFT0gJ.s: size=441586, mode=100600, atime=1786937637, mtime=1786937650, ctime=140726460966791
+ccv4zi7J.s: size=248048, mode=100600, atime=1786937637, mtime=1786937648, ctime=140726460966791
+cclEyHs5.s: size=690012, mode=100600, atime=1786937637, mtime=1786937651, ctime=140726460966791
+ccLv6Xti.s: size=286527, mode=100600, atime=1786937637, mtime=1786937645, ctime=140726460966791
+ccePWCab.s: size=80823, mode=100600, atime=1786937637, mtime=1786937640, ctime=140726460966791
+ccgtdTGJ.s: size=320713, mode=100600, atime=1786937637, mtime=1786937644, ctime=140726460966791
+cc5whcBC.s: size=225488, mode=100600, atime=1786937637, mtime=1786937647, ctime=140726460966791
+ccFAFGGn.s: size=96928, mode=100600, atime=1786937637, mtime=1786937640, ctime=140726460966791
+ccVGbmkB.s: size=255036, mode=100600, atime=1786937637, mtime=1786937647, ctime=140726460966791
+e2e: size=80, mode=40755, atime=1787037946, mtime=1786934812, ctime=140726460966791
+fix: size=80, mode=40755, atime=1787037946, mtime=1786934734, ctime=140726460966791
+ccn: size=100, mode=40755, atime=1787037946, mtime=1786933847, ctime=140726460966791
+.xmake1000: size=60, mode=40755, atime=1787037946, mtime=1787017063, ctime=140726460966791
+cntest: size=80, mode=40755, atime=1787037946, mtime=1786933087, ctime=140726460966791
+.bcddf71effa5f7fd-00000001.so: size=5576816, mode=100644, atime=1786932975, mtime=1786932975, ctime=140726460966791
+.9adf7eb9eef5efa7-00000000.so: size=13745312, mode=100644, atime=1786932971, mtime=1786932971, ctime=140726460966791
+cg: size=100, mode=40755, atime=1787037946, mtime=1786932924, ctime=140726460966791
+client_gen: size=100, mode=40755, atime=1787037946, mtime=1786932803, ctime=140726460966791
+MicrosoftEdgeDownloads: size=80, mode=40700, atime=1787037946, mtime=1786933481, ctime=140726460966791
+.bcddf59ff6cfb73f-00000001.so: size=5576816, mode=100644, atime=1786932471, mtime=1786932471, ctime=140726460966791
+.9adf7dbdf2f4efcf-00000000.so: size=13745312, mode=100644, atime=1786932466, mtime=1786932466, ctime=140726460966791
+oh-my-opencode.log: size=1287, mode=100644, atime=1786932364, mtime=1787032948, ctime=140726460966791
+.bcddf59efdb5febd-00000001.so: size=5576816, mode=100644, atime=1786932363, mtime=1786932363, ctime=140726460966791
+node-compile-cache: size=60, mode=40755, atime=1787037946, mtime=1786932361, ctime=140726460966791
+.9adf7dbbfbeaed87-00000000.so: size=13745312, mode=100644, atime=1786932358, mtime=1786932358, ctime=140726460966791
+opencode: size=1460, mode=40755, atime=1787037946, mtime=1787045929, ctime=140726460966791
+tmux-1000: size=60, mode=40700, atime=1787037946, mtime=1786932331, ctime=140726460966791
+.org.chromium.Chromium.edTumG: size=80, mode=40700, atime=1787037946, mtime=1786931309, ctime=140726460966791
+.ses: size=51, mode=100644, atime=1787021427, mtime=1787021427, ctime=140726460966791
+cv_debug.log: size=2928, mode=100644, atime=1786930371, mtime=1787041341, ctime=140726460966791
+systemd-private-ac22a77786d44a3d9eff9fb6522c9e98-upower.service-VKX1A2: size=60, mode=40700, atime=1786930342, mtime=1786930342, ctime=140726460966791
+com.microsoft.Edge.k9Y345: size=80, mode=40700, atime=1787037946, mtime=1786930341, ctime=140726460966791
+FlClashSocket_4604.sock: size=0, mode=140755, atime=1786930103, mtime=1786930103, ctime=140726460966791
+systemd-private-ac22a77786d44a3d9eff9fb6522c9e98-polkit.service-c2EnxI: size=60, mode=40700, atime=1786930101, mtime=1786930101, ctime=140726460966791
+.X1-lock: size=11, mode=100444, atime=1786930101, mtime=1786930101, ctime=140726460966791
+sddm-:0-DQALgu: size=0, mode=140700, atime=1786930096, mtime=1786930096, ctime=140726460966791
+sddm-auth-58641754-6c4d-4301-b2aa-01332fd2decd: size=0, mode=140755, atime=1786930100, mtime=1786930095, ctime=140726460966791
+systemd-private-ac22a77786d44a3d9eff9fb6522c9e98-systemd-logind.service-QDXr9w: size=60, mode=40700, atime=1786930095, mtime=1786930095, ctime=140726460966791
+systemd-private-ac22a77786d44a3d9eff9fb6522c9e98-iwd.service-Q6eysX: size=60, mode=40700, atime=1786930095, mtime=1786930095, ctime=140726460966791
+systemd-private-ac22a77786d44a3d9eff9fb6522c9e98-bluetooth.service-f2ugrH: size=60, mode=40700, atime=1786930095, mtime=1786930095, ctime=140726460966791
+.font-unix: size=40, mode=41777, atime=1787037946, mtime=1786930094, ctime=140726460966791
+.XIM-unix: size=40, mode=41777, atime=1787037946, mtime=1786930094, ctime=140726460966791
+.ICE-unix: size=40, mode=41777, atime=1787037946, mtime=1786930094, ctime=140726460966791
+.X11-unix: size=80, mode=41777, atime=1787037946, mtime=1786930101, ctime=140726460966791
+[0m[38;2;0;255;0;1m[ 50%]:[0m [2mrunning.test upload_fileats/default[0m
+[2026-08-18 18:28:07]|Info|rpc/main.cpp:358 main|140077255518080| change to working directory:[/tmp/t0312-rpc-time] success.
+[2026-08-18 18:28:07]|Info|libs/tls_cert.c:710 tls_cert_init_server|140077255518080| Optional server mTLS unavailable: SM2 certificate chain is not configured; plain connections remain enabled
+PASS
+
+=== TEST: TYPE_UPDATE - Extend (size_ext - size) ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_05
+========================================
+  rpc_conn_cli_readdir_tree 集成测试
+========================================
+
+=== Test 1: basic tree traversal ===
+  OK: 6 entries returned
+
+=== Test 2: stat metadata ===
+  OK: file types and sizes
+
+=== Test 3: empty directory ===
+  OK: empty dir returns 0 entries
+
+========================================
+  ALL TESTS PASSED
+[2026-08-18 18:28:07]|Info|rpc/rpc.cpp:2959 rpc_conn_cli_upload_fileats|139684965512896| upload_fileat /tmp/upload_fileats_LW5t9c/dst/:test1.txt success.
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:3866 rpc_conn_srv_upload_fileats|139684957120192| openat test1.txt success.
+[2026-08-18 18:28:07]|Info|rpc/rpc.cpp:2959 rpc_conn_cli_upload_fileats|139684965512896| upload_fileat /tmp/upload_fileats_LW5t9c/dst/:test2.txt success.
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:3889 rpc_conn_srv_upload_fileats|139684957120192| upload_fileat /tmp/upload_fileats_LW5t9c/dst/:test1.txt success.
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:3866 rpc_conn_srv_upload_fileats|139684957120192| openat test2.txt success.
+[2026-08-18 18:28:07]|Info|rpc/rpc-server.cpp:3889 rpc_conn_srv_upload_fileats|139684957120192| upload_fileat /tmp/upload_fileats_LW5t9c/dst/:test2.txt success.
+Creating CA (ed25519)... done
+CA private key: /tmp/t0312-rdbcomm/ca/ca.key
+CA certificate: /tmp/t0312-rdbcomm/ca/ca.crt
+PASS
+
+=== TEST: TYPE_UPDATE - Large Data Write ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_10
+PASS
+
+=== TEST: TYPE_UPDATE - Large Data Write Overwrite Partial ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_25
+PASS
+
+=== TEST: TYPE_UPDATE - 1M File Overwrite Single Write ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_26
+Generating private key: /tmp/t0312-rdbcomm/server/host.key
+Generating CSR: /tmp/t0312-rdbcomm/server/host.csr
+Generating private key (ed25519)... done
+Generating CSR... done
+Private key: /tmp/t0312-rdbcomm/server/host.key
+CSR: /tmp/t0312-rdbcomm/server/host.csr
+PASS
+
+=== TEST: BOUNDARY - Max Block Size 16K ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_09
+=== TLS Cert Unit Tests ===
+
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+Using CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+Running tls_cert_init_disabled... PASSED
+Running tls_cert_init_missing_ca... CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+PASSED
+Running tls_cert_init_missing_cert... PASSED
+Running tls_cert_init_cleanup... PASSED
+Running tls_server_init... CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+PASSED
+Running tls_server_missing_ca... PASSED
+Running tls_server_missing_cert... CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+PASSED
+Running tls_server_missing_key... CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+PASSED
+Running tls_empty_cert_dir... CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+PASSED
+Running tls_invalid_ca_cert_format... CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+PASSED
+Running tls_client_with_server_cert_env... CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+Client can init with server cert (not recommended but should work)
+PASSED
+Running tls_server_with_cert_dir_env... CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+Server can init with cert_dir (will load first matching cert)
+PASSED
+Running tls_cert_select_callback... CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+TLS cert callback test passed
+PASSED
+Running tls_ciphersuites_default_null... PASSED
+Running tls_ciphersuites_from_env... CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+[2026-08-18 18:28:07]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|140409426323328| Applied ciphersuites config: TLS_SM4_GCM_SM3:TLS_AES_256_GCM_SHA384
+PASS
+
+=== TEST: BOUNDARY - Max Block Size 64K ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_10
+[2026-08-18 18:28:07]|Info|libs/tls_cert.c:549 tls_cert_load_sm2_chain|140409426323328| Loaded SM2 certificate chain: ca=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/sm2_ca.crt cert=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/sm2_host.crt key=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/sm2_host.key
+PASSED
+Running tls_ciphersuites_invalid_ignored... CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+[2026-08-18 18:28:07]|Error|libs/tls_cert.c:489 tls_cert_set_ciphersuites_from_conf|140409426323328| Failed to apply ciphersuites config: TLS_THIS_SUITE_DOES_NOT_EXIST
+PASSED
+Running tls_sm2_chain_loaded_with_ciphersuites... CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+[2026-08-18 18:28:07]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|140409426323328| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-18 18:28:07]|Info|libs/tls_cert.c:549 tls_cert_load_sm2_chain|140409426323328| Loaded SM2 certificate chain: ca=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/sm2_ca.crt cert=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/sm2_host.crt key=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/sm2_host.key
+PASSED
+Running tls_sm2_chain_missing_fails... [2026-08-18 18:28:07]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|140409426323328| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-18 18:28:07]|Error|libs/tls_cert.c:530 tls_cert_load_sm2_chain|140409426323328| SM2 TLS setup failed: stage=certificate-or-key reason=load failed ca=/tmp/tls_sm2_empty_dir/sm2_ca.crt cert=/tmp/tls_sm2_empty_dir/sm2_host.crt key=/tmp/tls_sm2_empty_dir/sm2_host.key
+[2026-08-18 18:28:07]|Error|libs/tls_cert.c:594 tls_cert_apply_sm2_if_configured|140409426323328| SM2 TLS setup failed: role=client stage=certificate-chain algorithm=TLS_SM4_GCM_SM3 ca=/tmp/tls_sm2_empty_dir/sm2_ca.crt cert=/tmp/tls_sm2_empty_dir/sm2_host.crt key=/tmp/tls_sm2_empty_dir/sm2_host.key reason=required certificate chain unavailable
+PASSED
+Running tls_sm2_server_chain_loaded... CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+[2026-08-18 18:28:07]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|140409426323328| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-18 18:28:07]|Info|libs/tls_cert.c:549 tls_cert_load_sm2_chain|140409426323328| Loaded SM2 certificate chain: ca=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/sm2_ca.crt cert=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/sm2_host.crt key=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/sm2_host.key
+PASS
+
+=== TEST: TRUNCATE ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_11
+PASSED
+Running tls_mtls_handshake... CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+mtls: server initialized
+mtls: server listening on port 14449
+Signing certificate... done
+Certificate: /tmp/t0312-rdbcomm/server/server.crt
+PASS
+
+=== TEST: CURSOR REUSE ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_12
+PASS
+
+=== TEST: TYPE_DEL ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_14
+rpc_handshake_test: PASS
+Generating private key: /tmp/t0312-rdbcomm/client-a/host.key
+Generating CSR: /tmp/t0312-rdbcomm/client-a/host.csr
+Generating private key (ed25519)... done
+Generating CSR... done
+Private key: /tmp/t0312-rdbcomm/client-a/host.key
+CSR: /tmp/t0312-rdbcomm/client-a/host.csr
+PASS
+
+=== TEST: VARIOUS OFFSETS - 偏移组合 ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_15
+PASS
+
+=== TEST: VARIOUS SIZES - 不同文件大小 ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_16
+PASS
+
+=== TEST: OVERWRITE - 同一偏移重复写入 ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_17
+Signing certificate... done
+Certificate: /tmp/t0312-rdbcomm/client-a/client.crt
+PASS
+
+=== TEST: MIXED OPERATIONS - 混合操作序列 ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_18
+PASS
+
+=== TEST: SPARSE FILE - 稀疏文件 ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_19
+PASS
+
+=== TEST: OUT_OF_ORDER WRITE - 乱序写入 ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_20
+Generating private key: /tmp/t0312-rdbcomm/client-b/host.key
+Generating CSR: /tmp/t0312-rdbcomm/client-b/host.csr
+Generating private key (ed25519)... done
+Generating CSR... done
+Private key: /tmp/t0312-rdbcomm/client-b/host.key
+CSR: /tmp/t0312-rdbcomm/client-b/host.csr
+PASS
+
+=== TEST: ZERO OFFSET + VARIOUS COUNT - 零偏移+不同大小 ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_21
+PASS
+
+=== TEST: LARGE GAP - 大间隔写入 ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_22
+PASS
+
+=== TEST: TYPE_NEW - Multi Write ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_23
+Signing certificate... done
+Certificate: /tmp/t0312-rdbcomm/client-b/client.crt
+PASS
+
+=== TEST: TYPE_NEW - Reopen ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_24
+PASS
+
+=== TEST: TYPE_NEW - Delete ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_25
+PASS
+
+=== TEST: TYPE_UPDATE - Delete ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_26
+Creating CA (sm2)... done
+CA private key: /tmp/t0312-rdbcomm/sm2/ca/ca.key
+CA certificate: /tmp/t0312-rdbcomm/sm2/ca/ca.crt
+PASS
+
+=== TEST: DELETE then CREATE ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_27
+PASS
+
+=== TEST: DELETE then MODIFY ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_28
+Generating private key: /tmp/t0312-rdbcomm/sm2/server/host.key
+Generating CSR: /tmp/t0312-rdbcomm/sm2/server/host.csr
+Generating private key (sm2)... done
+Generating CSR... done
+Private key: /tmp/t0312-rdbcomm/sm2/server/host.key
+CSR: /tmp/t0312-rdbcomm/sm2/server/host.csr
+PASS
+
+=== TEST: OPEN EXIST ===
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_30
+PASS
+
+=== TEST: RANDOM WRITE ===
+  After OnOpen: type=1 size=5000 size_ext=5000 byte_id=0
+  GetVal returns 0, type=1
+  OnWriteFile ret=0
+  After OnWriteFile: type=1 size=5000 size_ext=5000 byte_id=0
+[2026-08-18 18:28:07]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|450094080| delete /tmp/fs_meta_test_31
+PASS
+
+========================================
+       Results: 0 failures
+========================================
+Signing certificate... done
+Certificate: /tmp/t0312-rdbcomm/sm2/server/server.crt
+Generating private key: /tmp/t0312-rdbcomm/sm2/client/host.key
+Generating CSR: /tmp/t0312-rdbcomm/sm2/client/host.csr
+Generating private key (sm2)... done
+Generating CSR... done
+Private key: /tmp/t0312-rdbcomm/sm2/client/host.key
+CSR: /tmp/t0312-rdbcomm/sm2/client/host.csr
+Signing certificate... done
+Certificate: /tmp/t0312-rdbcomm/sm2/client/client.crt
+[2026-08-18 18:28:07]|Info|rdbcomm/rdbcommd-main.c:269 main|140546656724864| change to working directory:[/tmp/rdbcomm-tool-test-17610] success.
+[2026-08-18 18:28:07]|Info|libs/tls_cert.c:710 tls_cert_init_server|140546656724864| Optional server mTLS unavailable: SM2 certificate chain is not configured; plain connections remain enabled
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+mtls: client initialized
+mtls: client connected to server
+mtls: client handshake success
+mtls: client wrote 22 bytes
+mtls server: handshake success
+mtls server received: Hello from mtls client
+mtls: client read 22 bytes: Hello from mtls server
+mtls: server thread returned 0
+PASSED
+Running tls_sm2_mtls_handshake... CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+[2026-08-18 18:28:07]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|140409426323328| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-18 18:28:07]|Info|libs/tls_cert.c:549 tls_cert_load_sm2_chain|140409426323328| Loaded SM2 certificate chain: ca=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/sm2_ca.crt cert=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/sm2_host.crt key=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/sm2_host.key
+sm2 mtls: server initialized with SM2 chain
+sm2 mtls: server listening on port 14451
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+[2026-08-18 18:28:08]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|140409426323328| Applied ciphersuites config: TLS_SM4_GCM_SM3
+1787048888
+[2026-08-18 18:28:08]|Info|libs/tls_cert.c:549 tls_cert_load_sm2_chain|140409426323328| Loaded SM2 certificate chain: ca=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/sm2_ca.crt cert=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/sm2_host.crt key=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/sm2_host.key
+sm2 mtls: client initialized with SM2 chain
+sm2 mtls: client connected to server
+sm2 mtls: negotiated cipher = TLS_SM4_GCM_SM3
+sm2 mtls: client wrote 21 bytes
+1787048888
+mtls server: handshake success
+mtls server received: Hello from sm2 client
+sm2 mtls: client read 22 bytes: Hello from mtls server
+sm2 mtls: server thread returned 0
+PASSED
+
+=== Results ===
+Passed: 21
+Failed: 0
+
+All tests PASSED!
+beforeSleep 0
+signal 15 received, exit...
+[2026-08-18 18:28:08]|Info|rpc/main.cpp:358 main|139976816592768| change to working directory:[/tmp/t0312-rpc-time] success.
+[2026-08-18 18:28:08]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|139976816592768| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-18 18:28:08]|Info|rpc/main.cpp:383 main|139976816592768| TLS/mTLS enabled
+[2026-08-18 18:28:08]|Info|rdbcomm/rdbcommd-main.c:269 main|139763077883776| change to working directory:[/tmp/rdbcomm-tool-test-17611] success.
+[2026-08-18 18:28:08]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|139763077883776| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-18 18:28:08]|Info|rdbcomm/rdbcommd-main.c:293 main|139763077883776| TLS/mTLS enabled for rdbcommd
+1787048888
+[2026-08-18 18:28:08]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|140155872327552| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+1787048888
+[2026-08-18 18:28:08]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|140267733555072| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-18 18:28:08]|Info|rdbcomm/rdbcommd-main.c:269 main|139651102447488| change to working directory:[/tmp/rdbcomm-tool-test-17612] success.
+[2026-08-18 18:28:08]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|139651102447488| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-18 18:28:08]|Info|rdbcomm/rdbcommd-main.c:293 main|139651102447488| TLS/mTLS enabled for rdbcommd
+beforeSleep 0
+signal 15 received, exit...
+rpc_time_integration: PASS
+1787048889
+[2026-08-18 18:28:09]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|140272087189376| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-18 18:28:09]|Error|libs/tls_cert.c:530 tls_cert_load_sm2_chain|140272087189376| SM2 TLS setup failed: stage=certificate-or-key reason=load failed ca=/tmp/t0312-rdbcomm/client-certs//sm2_ca.crt cert=/tmp/t0312-rdbcomm/client-certs//sm2_host.crt key=/tmp/t0312-rdbcomm/client-certs//sm2_host.key
+[2026-08-18 18:28:09]|Error|libs/tls_cert.c:594 tls_cert_apply_sm2_if_configured|140272087189376| SM2 TLS setup failed: role=client stage=certificate-chain algorithm=TLS_SM4_GCM_SM3 ca=/tmp/t0312-rdbcomm/client-certs//sm2_ca.crt cert=/tmp/t0312-rdbcomm/client-certs//sm2_host.crt key=/tmp/t0312-rdbcomm/client-certs//sm2_host.key reason=required certificate chain unavailable
+tls_cert_init_client_from_env failed
+[2026-08-18 18:28:09]|Info|rdbcomm/rdbcommd-main.c:269 main|140165162358656| change to working directory:[/tmp/rdbcomm-tool-test-17613] success.
+[2026-08-18 18:28:09]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|140165162358656| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-18 18:28:09]|Info|rdbcomm/rdbcommd-main.c:293 main|140165162358656| TLS/mTLS enabled for rdbcommd
+1787048889
+[2026-08-18 18:28:09]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|140057809192832| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+connect server failed
+[2026-08-18 18:28:09]|Info|rdbcomm/rdbcommd-main.c:269 main|139951483021184| change to working directory:[/tmp/rdbcomm-tool-test-17614] success.
+[2026-08-18 18:28:09]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|139951483021184| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-18 18:28:09]|Info|libs/tls_cert.c:549 tls_cert_load_sm2_chain|139951483021184| Loaded SM2 certificate chain: ca=/tmp/t0312-rdbcomm/sm2-certs//sm2_ca.crt cert=/tmp/t0312-rdbcomm/sm2-certs//sm2_host.crt key=/tmp/t0312-rdbcomm/sm2-certs//sm2_host.key
+[2026-08-18 18:28:09]|Info|rdbcomm/rdbcommd-main.c:293 main|139951483021184| TLS/mTLS enabled for rdbcommd
+1787048889
+[2026-08-18 18:28:09]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|139835167111040| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-18 18:28:09]|Info|libs/tls_cert.c:549 tls_cert_load_sm2_chain|139835167111040| Loaded SM2 certificate chain: ca=/tmp/t0312-rdbcomm/sm2-certs//sm2_ca.crt cert=/tmp/t0312-rdbcomm/sm2-certs//sm2_host.crt key=/tmp/t0312-rdbcomm/sm2-certs//sm2_host.key
+[2026-08-18 18:28:09]|Info|rdbcomm/rdbcommd-main.c:269 main|140461525747584| change to working directory:[/tmp/rdbcomm-tool-test-17615] success.
+[2026-08-18 18:28:09]|Info|libs/tls_cert.c:491 tls_cert_set_ciphersuites_from_conf|140461525747584| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-18 18:28:09]|Info|rdbcomm/rdbcommd-main.c:293 main|140461525747584| TLS/mTLS enabled for rdbcommd
+1787048890
+connect server failed
+rdbcomm_tool_integration: PASS
+
+report of tests:
+[0m[38;2;0;255;0;1m[  2%]:[0m [2mLRUCache_test/default ............. [38;2;0;255;0;1mpassed[0m [1m0.039s[0m
+[0m[38;2;0;255;0;1m[  5%]:[0m [2maccess/default .................... [38;2;0;255;0;1mpassed[0m [1m0.040s[0m
+[0m[38;2;0;255;0;1m[  8%]:[0m [2mchmod/default ..................... [38;2;0;255;0;1mpassed[0m [1m0.040s[0m
+[0m[38;2;0;255;0;1m[ 11%]:[0m [2mchown/default ..................... [38;2;0;255;0;1mpassed[0m [1m0.039s[0m
+[0m[38;2;0;255;0;1m[ 13%]:[0m [2mdir_tree/default .................. [38;2;0;255;0;1mpassed[0m [1m0.039s[0m
+[0m[38;2;0;255;0;1m[ 16%]:[0m [2mdownload_file_dir/default ......... [38;2;0;255;0;1mpassed[0m [1m0.034s[0m
+[0m[38;2;0;255;0;1m[ 19%]:[0m [2mdownload_fileat/default ........... [38;2;0;255;0;1mpassed[0m [1m0.033s[0m
+[0m[38;2;0;255;0;1m[ 22%]:[0m [2mdownload_file/default ............. [38;2;0;255;0;1mpassed[0m [1m0.040s[0m
+[0m[38;2;0;255;0;1m[ 25%]:[0m [2mdownload_fileats/default .......... [38;2;0;255;0;1mpassed[0m [1m0.034s[0m
+[0m[38;2;0;255;0;1m[ 27%]:[0m [2mdownload_link/default ............. [38;2;0;255;0;1mpassed[0m [1m0.033s[0m
+[0m[38;2;0;255;0;1m[ 30%]:[0m [2mfchmodats/default ................. [38;2;0;255;0;1mpassed[0m [1m0.029s[0m
+[0m[38;2;0;255;0;1m[ 33%]:[0m [2mfchownats/default ................. [38;2;0;255;0;1mpassed[0m [1m0.029s[0m
+[0m[38;2;0;255;0;1m[ 36%]:[0m [2mdir_utils_dir_copy_test/default ... [38;2;0;255;0;1mpassed[0m [1m0.050s[0m
+[0m[38;2;0;255;0;1m[ 38%]:[0m [2mlogger_test/default ............... [38;2;0;255;0;1mpassed[0m [1m0.023s[0m
+[0m[38;2;0;255;0;1m[ 41%]:[0m [2mexecute_command/default ........... [38;2;0;255;0;1mpassed[0m [1m0.039s[0m
+[0m[38;2;0;255;0;1m[ 44%]:[0m [2mmetadata/default .................. [38;2;0;255;0;1mpassed[0m [1m0.024s[0m
+[0m[38;2;0;255;0;1m[ 47%]:[0m [2mlstat/default ..................... [38;2;0;255;0;1mpassed[0m [1m0.028s[0m
+[0m[38;2;0;255;0;1m[ 50%]:[0m [2mlmdb_dict_test/default ............ [38;2;0;255;0;1mpassed[0m [1m0.035s[0m
+[0m[38;2;0;255;0;1m[ 52%]:[0m [2mmkdir/default ..................... [38;2;0;255;0;1mpassed[0m [1m0.029s[0m
+[0m[38;2;0;255;0;1m[ 55%]:[0m [2mmkdirall/default .................. [38;2;0;255;0;1mpassed[0m [1m0.026s[0m
+[0m[38;2;0;255;0;1m[ 58%]:[0m [2mrdb_config_test/default ........... [38;2;0;255;0;1mpassed[0m [1m0.021s[0m
+[0m[38;2;0;255;0;1m[ 61%]:[0m [2mpread/default ..................... [38;2;0;255;0;1mpassed[0m [1m0.025s[0m
+[0m[38;2;0;255;0;1m[ 63%]:[0m [2mmkdir_path_test/default ........... [38;2;0;255;0;1mpassed[0m [1m0.028s[0m
+[0m[38;2;0;255;0;1m[ 66%]:[0m [2mpwrite/default .................... [38;2;0;255;0;1mpassed[0m [1m0.023s[0m
+[0m[38;2;0;255;0;1m[ 69%]:[0m [2mreadlink/default .................. [38;2;0;255;0;1mpassed[0m [1m0.015s[0m
+[0m[38;2;0;255;0;1m[ 72%]:[0m [2mlmdb_sort_test/default ............ [38;2;0;255;0;1mpassed[0m [1m0.038s[0m
+[0m[38;2;0;255;0;1m[ 75%]:[0m [2mreaddir/default ................... [38;2;0;255;0;1mpassed[0m [1m0.020s[0m
+[0m[38;2;0;255;0;1m[ 77%]:[0m [2msymlink/default ................... [38;2;0;255;0;1mpassed[0m [1m0.014s[0m
+[0m[38;2;0;255;0;1m[ 80%]:[0m [2mreaddir_tree/default .............. [38;2;0;255;0;1mpassed[0m [1m0.024s[0m
+[0m[38;2;0;255;0;1m[ 83%]:[0m [2mupload_fileats/default ............ [38;2;0;255;0;1mpassed[0m [1m0.014s[0m
+[0m[38;2;0;255;0;1m[ 86%]:[0m [2mrpc_handshake_test/default ........ [38;2;0;255;0;1mpassed[0m [1m0.065s[0m
+[0m[38;2;0;255;0;1m[ 88%]:[0m [2mrpc_tool_integration/default ...... [38;2;0;255;0;1mpassed[0m [1m0.067s[0m
+[0m[38;2;0;255;0;1m[ 91%]:[0m [2mfs_meta_comprehensive_test/default  [38;2;0;255;0;1mpassed[0m [1m0.178s[0m
+[0m[38;2;0;255;0;1m[ 94%]:[0m [2mtls_cert_test/default ............. [38;2;0;255;0;1mpassed[0m [1m0.514s[0m
+[0m[38;2;0;255;0;1m[ 97%]:[0m [2mrpc_time_integration/default ...... [38;2;0;255;0;1mpassed[0m [1m1.141s[0m
+[0m[38;2;0;255;0;1m[100%]:[0m [2mrdbcomm_tool_integration/default .. [38;2;0;255;0;1mpassed[0m [1m2.549s[0m
+[0m
+[38;2;0;255;0;1m100%[0m tests passed, [38;2;255;0;0;1m0[0m test(s) failed out of [1m36[0m, spent [1m2.602s[0m

@@ -3,12 +3,12 @@
   "dependencies": [],
   "id": "T0308",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-18T14:10:00+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T0308-0818-pg-varlena-toast-followup",
     "scenario_type": "development",
     "completed_at": "2026-08-19T10:10:20+08:00",
@@ -28,7 +28,7 @@
   "slug": "0818-pg-varlena-toast-followup",
   "states": {
     "act": "2026-08-19T10:18:20+08:00",
-    "archive": null,
+    "archive": "2026-08-19T10:21:21+08:00",
     "check": "2026-08-19T10:10:20+08:00",
     "created": "2026-08-18T14:10:00+08:00",
     "do": "2026-08-18T16:41:45+08:00",

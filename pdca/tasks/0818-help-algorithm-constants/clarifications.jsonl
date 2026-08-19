@@ -1,0 +1,2 @@
+{"at":"2026-08-18T18:12:00+08:00","source":"task_identity","summary":"created with record identity T0320-0818-help-algorithm-constants"}
+{"source":"final_confirmation","summary":"确认四个工具名、section、mTLS/算法环境变量名及具体算法值统一宏化，并补齐 help 与回归测试。","response":"confirmed","at":"2026-08-18T18:18:03+08:00"}

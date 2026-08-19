@@ -8,21 +8,20 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-18T15:13:10+08:00",
-    "phase": "check",
+    "phase": "do",
     "record": "T0313-0818-rpc-rdbcomm-sm2-app-frame-followup",
-    "scenario_type": "development",
-    "completed_at": "2026-08-18T15:30:17+08:00"
+    "scenario_type": "development"
   },
   "parent": "T0312",
   "slug": "0818-rpc-rdbcomm-sm2-app-frame-followup",
   "states": {
     "act": null,
     "archive": null,
-    "check": "2026-08-18T15:30:17+08:00",
+    "check": null,
     "created": "2026-08-18T15:13:10+08:00",
     "do": "2026-08-18T15:23:02+08:00",
     "plan": "2026-08-18T15:13:10+08:00"
   },
-  "status": "Completed",
+  "status": "InProgress",
   "title": "跟进：修复 rdbcomm SM2 真实应用帧握手失败"
 }

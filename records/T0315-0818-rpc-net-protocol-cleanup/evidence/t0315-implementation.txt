@@ -1,0 +1,144 @@
+d10bca6b refactor: remove legacy rpc net protocol
+ libs/rpc-net-protocol.c | 46 ----------------------------------------------
+ libs/rpc-net-protocol.h | 39 ---------------------------------------
+ libs/rpc-net.c          |  4 +++-
+ libs/xmake.lua          |  1 -
+ 4 files changed, 3 insertions(+), 87 deletions(-)
+commit d10bca6b4d84c9d6e0a63da7f5b44c63f48dd111
+Author:     black <1358244533@qq.com>
+AuthorDate: Tue Aug 18 15:46:53 2026 +0800
+Commit:     black <1358244533@qq.com>
+CommitDate: Tue Aug 18 15:46:53 2026 +0800
+
+    refactor: remove legacy rpc net protocol
+
+diff --git a/libs/rpc-net-protocol.c b/libs/rpc-net-protocol.c
+deleted file mode 100644
+index 0ec98637..00000000
+--- a/libs/rpc-net-protocol.c
++++ /dev/null
+@@ -1,46 +0,0 @@
+-#include "rpc-net-protocol.h"
+-
+-#include <pthread.h>
+-#include <stdint.h>
+-
+-static __inline__ uint64_t htonll(uint64_t n)
+-{
+-	return ((((uint64_t)htonl(n)) << 32) + htonl(n >> 32));
+-}
+-
+-static __inline__ uint64_t ntohll(uint64_t n)
+-{
+-	return ((((uint64_t)ntohl(n)) << 32) + ntohl(n >> 32));
+-}
+-
+-void msg_get_time_hton(msg_get_time_t *host, msg_get_time_t *net)
+-{
+-	host->uiMT = MT_GET_TIME;
+-	host->uiLEN = sizeof(*host);
+-	net->uiMT = htonl(host->uiMT);
+-	net->uiLEN = htonl(host->uiLEN);
+-}
+-
+-void msg_get_time_ntoh(msg_get_time_t *host, msg_get_time_t *net)
+-{
+-	host->uiMT = ntohl(net->uiMT);
+-	host->uiLEN = ntohl(net->uiLEN);
+-}
+-
+-void msg_get_time_resp_hton(msg_get_time_resp_t *host, msg_get_time_resp_t *net)
+-{
+-	host->uiMT = MT_GET_TIME_RESP;
+-	host->uiLEN = sizeof(*host);
+-	net->uiMT = htonl(host->uiMT);
+-	net->uiLEN = htonl(host->uiLEN);
+-	net->uiResult = htonl(host->uiResult);
+-	net->timestamp = htonll(host->timestamp);
+-}
+-
+-void msg_get_time_resp_ntoh(msg_get_time_resp_t *host, msg_get_time_resp_t *net)
+-{
+-	host->uiMT = ntohl(net->uiMT);
+-	host->uiLEN = ntohl(net->uiLEN);
+-	host->uiResult = ntohl(net->uiResult);
+-	host->timestamp = ntohll(net->timestamp);
+-}
+diff --git a/libs/rpc-net-protocol.h b/libs/rpc-net-protocol.h
+deleted file mode 100644
+index 34ac3740..00000000
+--- a/libs/rpc-net-protocol.h
++++ /dev/null
+@@ -1,39 +0,0 @@
+-#ifndef __RPC__PROTOCOL_H__
+-#define __RPC__PROTOCOL_H__
+-
+-#ifdef __cplusplus
+-extern "C" {
+-#endif
+-
+-#include <arpa/inet.h>
+-#include <sys/stat.h>
+-
+-#define NORMAL_RESP 0x80000000
+-
+-#define MT_GET_TIME 0x0000111A
+-#define MT_GET_TIME_RESP ((NORMAL_RESP) | MT_GET_TIME)
+-
+-typedef struct msg_get_time__ {
+-	unsigned int uiMT;
+-	unsigned int uiLEN;
+-} msg_get_time_t;
+-
+-typedef struct msg_get_time_resp__ {
+-	unsigned int uiMT;
+-	unsigned int uiLEN;
+-	unsigned int uiResult;
+-	uint64_t timestamp;
+-} msg_get_time_resp_t;
+-
+-void msg_get_time_hton(msg_get_time_t *host, msg_get_time_t *net);
+-void msg_get_time_ntoh(msg_get_time_t *host, msg_get_time_t *net);
+-void msg_get_time_resp_hton(msg_get_time_resp_t *host,
+-			    msg_get_time_resp_t *net);
+-void msg_get_time_resp_ntoh(msg_get_time_resp_t *host,
+-			    msg_get_time_resp_t *net);
+-
+-#ifdef __cplusplus
+-}
+-#endif
+-
+-#endif //__RPC__PROTOCOL_H__
+diff --git a/libs/rpc-net.c b/libs/rpc-net.c
+index 342a1a47..d1bbe35c 100644
+--- a/libs/rpc-net.c
++++ b/libs/rpc-net.c
+@@ -1,13 +1,15 @@
+ #include "common.h"
+ #include "tls_cert.h"
+ #include "rdb-config.h"
+-#include "rpc-net-protocol.h"
+ #include "rpc-handshake.h"
+ #include "rpc-net.h"
+ 
+ #include <string.h>
+ #include <stdint.h>
+ #include <unistd.h>
++#include <arpa/inet.h>
++#include <netinet/in.h>
++#include <sys/socket.h>
+ 
+ static __attribute__((unused)) int rpc_recv(int fd, void *buf, const int buflen, int flags)
+ {
+diff --git a/libs/xmake.lua b/libs/xmake.lua
+index 02c6e896..a3079f51 100644
+--- a/libs/xmake.lua
++++ b/libs/xmake.lua
+@@ -150,7 +150,6 @@ target("rpc-net")
+     set_version(rpc_version, {soname = true})
+     add_defines("_GNU_SOURCE")
+     add_files(
+-        "rpc-net-protocol.c",
+         "rpc-handshake.c",
+         "common.c",
+         "rpc-net.c"

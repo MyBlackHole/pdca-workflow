@@ -1,0 +1,1 @@
+{"knowledge":"rpc-rdbcomm/mtls-review-fd-session-boundary.md","reason":"T0309 已证实 fd-only API 无法承载 SSL 所有权，且测试不能替代真实业务链路。","action":"将 transport session 作为唯一 RPC 业务 I/O，按统一 cleanup 和真实进程矩阵实施。","at":"2026-08-18T14:18:10+08:00"}

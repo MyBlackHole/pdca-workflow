@@ -1,0 +1,28 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0320",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-18T18:12:00+08:00",
+    "phase": "check",
+    "record": "T0320-0818-help-algorithm-constants",
+    "scenario_type": "development",
+    "completed_at": "2026-08-18T18:29:35+08:00"
+  },
+  "parent": null,
+  "slug": "0818-help-algorithm-constants",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-18T18:29:35+08:00",
+    "created": "2026-08-18T18:12:00+08:00",
+    "do": "2026-08-18T18:18:03+08:00",
+    "plan": "2026-08-18T18:12:00+08:00"
+  },
+  "status": "Completed",
+  "title": "补齐工具 mTLS help 并集中算法常量"
+}

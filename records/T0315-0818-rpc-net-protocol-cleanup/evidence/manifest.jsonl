@@ -1,0 +1,5 @@
+{"id":"reference-scan","file":"t0315-ref-scan.log","kind":"source-scan","size":19,"digest":"sha256:7b7230c8fec2a453e4bbc786811f8143efe27eca897d8e47eccd509a9f17b051","at":"2026-08-18T15:47:05+08:00","criteria":["AC-1"]}
+{"id":"xmake-build","file":"t0315-build.log","kind":"build-log","size":4376,"digest":"sha256:7fc42d698c9cf776e96d6ec159d3f91a5e421fecb36738e628c161d3a911cd2f","at":"2026-08-18T15:47:05+08:00","criteria":["AC-2"]}
+{"id":"xmake-full","file":"t0315-full.log","kind":"test-log","size":119505,"digest":"sha256:97bcfa3855d6e855b20ed2393aed7a15628eac046a9eb9708051075914cbe508","at":"2026-08-18T15:47:06+08:00","criteria":["AC-3"]}
+{"id":"implementation-diff","file":"t0315-implementation.txt","kind":"implementation","size":3905,"digest":"sha256:3bb3d4a781dfecd792c4fd8d4275d319b92507d57ac568d07963c88e32d334bb","at":"2026-08-18T15:47:06+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":286,"digest":"sha256:c36f5aa3b08a661499439fb2954436e2b30292a3e187bbfd7f8a5798348dffd6","at":"2026-08-18T15:47:20+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}

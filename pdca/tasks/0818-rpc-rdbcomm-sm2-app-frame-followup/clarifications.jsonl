@@ -1,1 +1,2 @@
 {"at":"2026-08-18T15:13:10+08:00","source":"task_identity","summary":"created with record identity T0313-0818-rpc-rdbcomm-sm2-app-frame-followup"}
+{"source":"final_confirmation","summary":"确认修复真实 rdbcomm SM2 mTLS 应用帧失败：补充 TLS 诊断、修复 session 数据面并回归 RPC/rdbcomm 全量测试。","response":"confirmed","at":"2026-08-18T15:23:02+08:00"}

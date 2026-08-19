@@ -1,0 +1,184 @@
+commit d857890f3dd65f764374406512409827830be6c9
+Author:     black <1358244533@qq.com>
+AuthorDate: Tue Aug 18 15:29:42 2026 +0800
+Commit:     black <1358244533@qq.com>
+CommitDate: Tue Aug 18 15:29:42 2026 +0800
+
+    task T0313: fix SM2 ca-cn tool certificate fixture
+
+diff --git a/libs/tls_cert.c b/libs/tls_cert.c
+index e0c7f30b..30b55e9e 100644
+--- a/libs/tls_cert.c
++++ b/libs/tls_cert.c
+@@ -58,6 +58,18 @@ struct tls_cert_ctx {
+ 
+ static tls_cert_ctx_t *g_ctx = NULL;
+ 
++static void tls_cert_log_ssl_errors(const char *where, int ssl_error)
++{
++	unsigned long error;
++	char message[256];
++	ErrorLog("TLS handshake failed at %s: ssl_error=%d", where,
++		 ssl_error);
++	while ((error = ERR_get_error()) != 0) {
++		ERR_error_string_n(error, message, sizeof(message));
++		ErrorLog("TLS OpenSSL error: %s", message);
++	}
++}
++
+ // CA 证书缓存：CN -> CA 证书
+ typedef struct {
+ 	char cn[256];
+@@ -814,9 +826,13 @@ static SSL *tls_cert_client_handshake_impl(int fd, const char *ca_cn,
+ 		EVP_PKEY *pkey = NULL;
+ 		X509 *cert_dup = NULL;
+ 		EVP_PKEY *pkey_dup = NULL;
+-		if (get_host_cert_from_cache(g_ctx->cert_dir, ca_cn, &cert,
+-					     &pkey) != 0 || !cert || !pkey ||
+-			(cert_dup = X509_dup(cert)) == NULL ||
++		int cert_ret = get_host_cert_from_cache(g_ctx->cert_dir, ca_cn,
++						 &cert, &pkey);
++		if (cert_ret != 0 || !cert || !pkey) {
++			SSL_free(ssl);
++			return NULL;
++		}
++		if ((cert_dup = X509_dup(cert)) == NULL ||
+ 			(pkey_dup = EVP_PKEY_dup(pkey)) == NULL ||
+ 			SSL_use_certificate(ssl, cert_dup) != 1 ||
+ 			SSL_use_PrivateKey(ssl, pkey_dup) != 1) {
+@@ -831,6 +847,7 @@ static SSL *tls_cert_client_handshake_impl(int fd, const char *ca_cn,
+ 
+ 	int ret = SSL_connect(ssl);
+ 	if (ret != 1) {
++		tls_cert_log_ssl_errors("client", SSL_get_error(ssl, ret));
+ 		SSL_free(ssl);
+ 		return NULL;
+ 	}
+@@ -894,6 +911,10 @@ SSL *tls_cert_server_handshake(int fd, tls_cert_result_t *result)
+ 
+ 	if (ret != 1 || !client_cert ||
+ 	    SSL_get_verify_result(ssl) != X509_V_OK) {
++		if (ret != 1)
++			tls_cert_log_ssl_errors("server", SSL_get_error(ssl, ret));
++		else if (SSL_get_verify_result(ssl) != X509_V_OK)
++			tls_cert_log_ssl_errors("server certificate verify", 0);
+ 		tls_cert_log_auth_result(cert_cn, client_ip, client_port, 0);
+ 		if (client_cert)
+ 			X509_free(client_cert);
+diff --git a/rdbcomm/tests/tool_integration.c b/rdbcomm/tests/tool_integration.c
+index 290b152c..0fb1d91d 100644
+--- a/rdbcomm/tests/tool_integration.c
++++ b/rdbcomm/tests/tool_integration.c
+@@ -63,6 +63,43 @@ static int make_certs(const char *root, const char *tls_keygen)
+ 	return run_command(command);
+ }
+ 
++static int make_sm2_certs(const char *root, const char *tls_keygen)
++{
++	char command[4096];
++	char ca[512], server[512], client[512];
++	snprintf(ca, sizeof(ca), "%s/sm2/ca", root);
++	snprintf(server, sizeof(server), "%s/sm2/server", root);
++	snprintf(client, sizeof(client), "%s/sm2/client", root);
++	snprintf(command, sizeof(command),
++		 "'%s' ca -n 'SM2 Test CA' -o '%s' -a sm2 -f",
++		tls_keygen, ca);
++	if (run_command(command) != 0)
++		return -1;
++	snprintf(command, sizeof(command),
++		 "'%s' create -n Server -o '%s' -a sm2 -f",
++		tls_keygen, server);
++	if (run_command(command) != 0)
++		return -1;
++	snprintf(command, sizeof(command),
++		 "'%s' sign --purpose server --algo sm2 --ca-cert '%s/ca.crt' "
++		 "--ca-key '%s/ca.key' --key '%s/host.key' --csr '%s/host.csr' "
++		 "--out '%s/server.crt' -f",
++		tls_keygen, ca, ca, server, server, server);
++	if (run_command(command) != 0)
++		return -1;
++	snprintf(command, sizeof(command),
++		 "'%s' create -n Client -o '%s' -a sm2 -f",
++		tls_keygen, client);
++	if (run_command(command) != 0)
++		return -1;
++	snprintf(command, sizeof(command),
++		 "'%s' sign --purpose client --algo sm2 --ca-cert '%s/ca.crt' "
++		 "--ca-key '%s/ca.key' --key '%s/host.key' --csr '%s/host.csr' "
++		 "--out '%s/client.crt' -f",
++		tls_keygen, ca, ca, client, client, client);
++	return run_command(command);
++}
++
+ static int prepare_client_dir(const char *root, const char *cert_root,
+ 				      const char *client_base)
+ {
+@@ -174,6 +211,7 @@ int main(void)
+ {
+ 	char root[512], tls_keygen[1024], client_dir[1024];
+ 	char sm2_dir[1024], sm2_client_dir[2048], sm2_source[1024];
++	char sm2_ca[1024], sm2_server[1024], sm2_client[1024];
+ 	const char *configured_root = getenv("AIO_PROJECT_ROOT");
+ 	if (configured_root)
+ 		snprintf(root, sizeof(root), "%s", configured_root);
+@@ -184,31 +222,35 @@ int main(void)
+ 	run_command("rm -rf /tmp/t0312-rdbcomm");
+ 	assert(mkdir("/tmp/t0312-rdbcomm", 0755) == 0);
+ 	assert(make_certs("/tmp/t0312-rdbcomm", tls_keygen) == 0);
++	assert(make_sm2_certs("/tmp/t0312-rdbcomm", tls_keygen) == 0);
+ 	snprintf(client_dir, sizeof(client_dir), "%s/client-certs/",
+ 		 "/tmp/t0312-rdbcomm");
+ 	assert(prepare_client_dir("/tmp/t0312-rdbcomm/ca", client_dir,
+ 					 "/tmp/t0312-rdbcomm/client-a") == 0);
+ 	snprintf(sm2_dir, sizeof(sm2_dir), "%s/sm2-certs/", "/tmp/t0312-rdbcomm");
+ 	snprintf(sm2_client_dir, sizeof(sm2_client_dir), "%sSM2 Test CA", sm2_dir);
++	snprintf(sm2_ca, sizeof(sm2_ca), "%s/sm2/ca", "/tmp/t0312-rdbcomm");
++	snprintf(sm2_server, sizeof(sm2_server), "%s/sm2/server", "/tmp/t0312-rdbcomm");
++	snprintf(sm2_client, sizeof(sm2_client), "%s/sm2/client", "/tmp/t0312-rdbcomm");
+ 	assert(mkdir(sm2_dir, 0755) == 0);
+ 	assert(mkdir(sm2_client_dir, 0755) == 0);
+-	snprintf(sm2_source, sizeof(sm2_source), "%s/libs/tests/certs/sm2_ca.crt", root);
++	snprintf(sm2_source, sizeof(sm2_source), "%.1000s/ca.crt", sm2_ca);
+ 	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/ca.crt") == 0);
+ 	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/sm2_ca.crt") == 0);
+-	snprintf(sm2_source, sizeof(sm2_source), "%s/libs/tests/certs/sm2_host.crt", root);
++	snprintf(sm2_source, sizeof(sm2_source), "%.1000s/server.crt", sm2_server);
+ 	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/sm2_host.crt") == 0);
+-	snprintf(sm2_source, sizeof(sm2_source), "%s/libs/tests/certs/sm2_host.key", root);
++	snprintf(sm2_source, sizeof(sm2_source), "%.1000s/host.key", sm2_server);
+ 	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/sm2_host.key") == 0);
+-	snprintf(sm2_source, sizeof(sm2_source), "%s/libs/tests/certs/sm2_ca.crt", root);
++	snprintf(sm2_source, sizeof(sm2_source), "%.1000s/ca.crt", sm2_ca);
+ 	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/SM2 Test CA/ca.crt") == 0);
+ 	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/SM2 Test CA/sm2_ca.crt") == 0);
+-	snprintf(sm2_source, sizeof(sm2_source), "%s/libs/tests/certs/sm2_client.crt", root);
++	snprintf(sm2_source, sizeof(sm2_source), "%.1000s/client.crt", sm2_client);
+ 	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/SM2 Test CA/host.crt") == 0);
+-	snprintf(sm2_source, sizeof(sm2_source), "%s/libs/tests/certs/sm2_client.key", root);
++	snprintf(sm2_source, sizeof(sm2_source), "%.1000s/host.key", sm2_client);
+ 	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/SM2 Test CA/host.key") == 0);
+-	snprintf(sm2_source, sizeof(sm2_source), "%s/libs/tests/certs/sm2_host.crt", root);
++	snprintf(sm2_source, sizeof(sm2_source), "%.1000s/server.crt", sm2_server);
+ 	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/SM2 Test CA/sm2_host.crt") == 0);
+-	snprintf(sm2_source, sizeof(sm2_source), "%s/libs/tests/certs/sm2_host.key", root);
++	snprintf(sm2_source, sizeof(sm2_source), "%.1000s/host.key", sm2_server);
+ 	assert(link_file(sm2_source, "/tmp/t0312-rdbcomm/sm2-certs/SM2 Test CA/sm2_host.key") == 0);
+ 	assert(run_case(root, 0, 0, 17610, NULL, NULL, NULL, NULL, NULL, NULL,
+ 			       NULL, NULL, 1) == 0);
+@@ -227,13 +269,12 @@ int main(void)
+ 			       "/tmp/t0312-rdbcomm/server/server.crt",
+ 			       "/tmp/t0312-rdbcomm/server/host.key", "Test CA", NULL,
+ 			       "/tmp/t0312-rdbcomm/missing-certs/", 0) == 0);
+-	/* The current rdbcomm application path rejects SM2 client setup before
+-	 * entering its data loop; retain this as an explicit no-downgrade check. */
+-	assert(run_case(root, 1, 1, 17614, sm2_client_dir, "TLS_SM4_GCM_SM3",
++	/* SM2 must complete the same application-frame path as classic mTLS. */
++	assert(run_case(root, 1, 1, 17614, sm2_dir, "TLS_SM4_GCM_SM3",
+ 			       "/tmp/t0312-rdbcomm/sm2-certs/ca.crt",
+ 			       "/tmp/t0312-rdbcomm/sm2-certs/sm2_host.crt",
+ 			       "/tmp/t0312-rdbcomm/sm2-certs/sm2_host.key",
+-			       "SM2 Test CA", "TLS_SM4_GCM_SM3", sm2_dir, 0) == 0);
++			       "SM2 Test CA", "TLS_SM4_GCM_SM3", sm2_dir, 1) == 0);
+ 	assert(run_case(root, 1, 0, 17615, NULL, NULL,
+ 			       "/tmp/t0312-rdbcomm/ca/ca.crt",
+ 			       "/tmp/t0312-rdbcomm/server/server.crt",

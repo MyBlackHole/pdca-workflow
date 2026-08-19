@@ -1,0 +1,2 @@
+{"knowledge":"rpc-rdbcomm/unified-first-stage-mtls-time.md","reason":"约束 TIME-only、ca_cn 选择和 mTLS 后应用帧必须使用 session I/O。","action":"先复现真实工具，再检查 session 切换和关闭路径。","at":"2026-08-18T15:15:00+08:00"}
+{"knowledge":"rpc-rdbcomm/mtls-review-fd-session-boundary.md","reason":"提供 rdbcomm/RPC mTLS 的 SSL 生命周期与裸 fd 禁止边界。","action":"将诊断和修复限定在 transport session 边界，不扩大为 CLI 改造。","at":"2026-08-18T15:15:00+08:00"}
