@@ -1,0 +1,5 @@
+[80] rows: parquet=1000000 sql=1000000
+[80] 全量逐字段差异: 0 (必须=0)
+[80] 聚合对照: PASS
+[80]   count=1000000 sum_amount=499995000.00 distinct_status=['closed', 'new', 'paid', 'shipped'] active_true=500000 id=[1,1000000]
+[80] RESULT: PASS

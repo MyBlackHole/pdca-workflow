@@ -1,0 +1,5 @@
+{"at":"2026-08-19T10:28:38+08:00","source":"task_identity","summary":"created with record identity T0325-0819-pg-poc-consistency-visibility"}
+{"source":"final_confirmation","summary":"T0325 终审 confirmed: 双链路(PG三版本+MySQL四版本) 正常关闭场景, 一致性端到端POC + 可见性矩阵(PG 6类行/MySQL delete-mark), AC-1~7 全可判定, 不改生产代码, 缺陷才修","response":"confirmed","at":"2026-08-19T11:14:45+08:00"}
+{"round": 2, "source": "grilling", "at": "2026-08-19T11:39:21.381085+08:00", "question": "Q1 可见性矩阵的替代解释是否排除(如 A 行实际走 hint 而非 clog)?", "recommended": "pageinspect 已在复制前核对 hint 位(A 行 XMIN_COMMITTED=0 证实走 clog), 排除", "answer": "pageinspect 证实 A 无 hint 走 clog"}
+{"round": 2, "source": "grilling", "at": "2026-08-19T11:39:21.381085+08:00", "question": "Q2 调研是否遗漏关键来源(如 MySQL 未提交事务可见性)?", "recommended": "MySQL MVCC(undo/trx_sys)已声明范围外并注明另立项, 关闭场景下 delete-mark 过滤等价成立", "answer": "MySQL 未提交 MVCC 已声明范围外"}
+{"round": 2, "source": "grilling", "at": "2026-08-19T11:39:21.381085+08:00", "question": "Q3 PG 矩阵断言是否依赖随机因素(HOT 与否影响计数)?", "recommended": "UPDATE 旧版本可能 HOT 被 redirect 不计; 实测 skipped_invisible=3 与 expected 精确一致, 且 parquet==可见行集证明计数正确", "answer": "断言与实测一致, 可见行集对照佐证"}

@@ -1,0 +1,9 @@
+== vis_matrix 页 0（pageinspect，正常关闭前核对）==
+lp | t_xmin | t_xmax | t_ctid | XMIN_COMMITTED(256) | XMIN_INVALID(512) | XMAX_INVALID(2048) | XMAX_COMMITTED(8192)
+1  | 29251  | 0      | (0,1)  | 256                 | 0                 | 2048               | 0     -> G 基线 hint置位
+2  | 29251  | 0      | (0,2)  | 0                   | 0                 | 2048               | 0     -> A 无hint 走clog
+3  | 29251  | 0      | (0,3)  | 256                 | 0                 | 2048               | 0     -> B hint置位
+4  | 29251  | 29251  | (0,4)  | 0                   | 0                 | 0                  | 0     -> C DELETE旧版本 xmax committed
+5  | 29251  | 29251  | (0,6)  | 0                   | 0                 | 0                  | 0     -> D UPDATE旧版本 xmax committed ctid->(0,6)
+6  | 29251  | 0      | (0,6)  | 0                   | 0                 | 2048               | 0     -> D UPDATE新版本
+7  | 29252  | 0      | (0,7)  | 0                   | 0                 | 2048               | 8192  -> F ROLLBACK aborted(xmin 29252)

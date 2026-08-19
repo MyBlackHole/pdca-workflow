@@ -1,0 +1,37 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "task identity is unique and immutable",
+      "criteria": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4",
+        "AC-5",
+        "AC-6",
+        "AC-7"
+      ],
+      "evidence_ids": [
+        "pg-consistency-18",
+        "pg-consistency-11",
+        "pg-consistency-96",
+        "pg-vis-pageinspect",
+        "pg-vis-expected",
+        "pg-vis-pgbin",
+        "pg-vis-verify",
+        "mysql-consistency-56",
+        "mysql-consistency-57",
+        "mysql-consistency-80",
+        "mysql-consistency-84",
+        "verify-mysql-scen",
+        "mysql-vis-v2-verify",
+        "mysql-vis-v3-verify",
+        "mysql-vis-v4-verify",
+        "mysql-vis-v5-verify",
+        "research-report"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+rows: parquet=1 sql=1 逐字段差异=0
+RESULT: PASS

@@ -1,0 +1,14 @@
+[info] src PG version: 18 (heap/varlena layout same across PG9.6/11/18; CLOG dir taken from positional arg)
+{
+  "rows": 4,
+  "parse_seconds": 0.0001,
+  "text_seconds": 0.0000,
+  "arrays_seconds": 0.0001,
+  "write_seconds": 0.0007,
+  "total_seconds": 0.0021,
+  "throughput_rows_per_second": 1916.91,
+  "seen_total": 7,
+  "skipped_invisible": 3,
+  "skipped_dead": 0,
+  "skipped_toast": 0
+}

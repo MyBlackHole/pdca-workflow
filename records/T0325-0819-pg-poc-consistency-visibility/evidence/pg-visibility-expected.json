@@ -1,0 +1,11 @@
+{"table":"vis_matrix","pg_version":18,"scenario":"graceful shutdown",
+"rows":[
+ {"lp":1,"id":1,"class":"G 基线","xmin":29251,"hint_bit":true,"expected":"visible","path":"infomask"},
+ {"lp":2,"id":2,"class":"A 已提交无hint","xmin":29251,"hint_bit":false,"expected":"visible","path":"clog"},
+ {"lp":3,"id":3,"class":"B 已提交有hint","xmin":29251,"hint_bit":true,"expected":"visible","path":"infomask"},
+ {"lp":4,"id":4,"class":"C DELETE旧版本","xmin":29251,"xmax":29251,"expected":"invisible"},
+ {"lp":5,"id":5,"class":"D UPDATE旧版本","xmin":29251,"xmax":29251,"ctid":"(0,6)","expected":"invisible"},
+ {"lp":6,"id":5,"class":"D UPDATE新版本","xmin":29251,"expected":"visible"},
+ {"lp":7,"id":6,"class":"F ROLLBACK中止","xmin":29252,"expected":"invisible"}
+],
+"assert":{"rows":4,"skipped_invisible":3,"skipped_dead":0}}
