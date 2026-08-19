@@ -1,0 +1,4 @@
+{"knowledge": "data-formats/pg-heap-null-bitmap.md", "reason": "TOAST external 头/位布局解码依据, 版本分支时复核", "action": "read", "at": "2026-08-18T16:38:19+08:00"}
+{"knowledge": "data-formats/pg-consistency-verification-method.md", "reason": "五维校验+mutation 基线直接复用为 T0308 校验", "action": "read", "at": "2026-08-18T16:38:19+08:00"}
+{"knowledge": "data-formats/t0301-pg-version-convert-test.md", "reason": "9.6/11/18 heap 布局与 CLOG 目录差异事实, 三版本回归参考", "action": "read", "at": "2026-08-18T16:38:19+08:00"}
+{"knowledge": "data-formats/pg-heap-physical-read-notes.md", "reason": "heap 页解析/pg_xact 可见性框架, toast 表遍历复用", "action": "read", "at": "2026-08-18T16:38:19+08:00"}

@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "task identity is unique and immutable",
+      "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5", "AC-6", "AC-7", "AC-8"],
+      "evidence_ids": ["gen-toast-script", "research-report", "review-report", "verify-18", "verify-11", "verify-96", "mutate-18", "mutate-11", "mutate-96", "regress-T0311", "regress-T0301-96", "regress-T0301-11", "regress-T0301-18"]
+    }
+  ]
+}

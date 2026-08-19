@@ -1,0 +1,16 @@
+基线(未变异) verify: PASS
+  caught: m01_change_value
+  caught: m02_value_to_null
+  caught: m03_ts_precision_loss
+  caught: m04_delete_row
+  caught: m05_dup_row
+  caught: m06_swap_id_customer
+  caught: m07_amount_precision
+  caught: m08_bool_flip
+  caught: m09_null_to_empty
+  caught: m10_payload_truncate
+  caught: m11_id_shift
+  caught: m12_trailing_space
+
+== mutation 捕获汇总: 12/12 ==
+捕获率 100% -> PASS
