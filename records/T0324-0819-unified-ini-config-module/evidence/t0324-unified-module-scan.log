@@ -1,0 +1,6 @@
+fs-backup/fsdeamon/unix_server.cpp:48:	config_show_section(g_pConfig->ini_config, "fsdeamon", msg, sizeof(msg));
+fs-backup/fsdeamon/fs_source.cpp:1117:	config_show_section(g_pConfig->ini_config, "fsdeamon", err_msg,
+rpc/main.cpp:328:	config_show_section(g_rpc_config->ini_config, rpc_get_section_name(), msg,
+./libs/xmake.lua:4:add_requires("inih 60", { system = false, configs = { shared = false, cxflags = "-fvisibility=hidden -DINI_API=" }, debug = is_mode("debug") })
+./libs/xmake.lua:132:    add_packages("inih")
+./xbsa/src/xbsa/xmake.lua:1:add_requires("inih 60", {system = false, configs = {shared = false, cxflags = "-fvisibility=hidden -DINI_API="}, debug = is_mode("debug")})

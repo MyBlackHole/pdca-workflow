@@ -1,0 +1,27 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0323",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-19T12:50:00+08:00",
+    "phase": "do",
+    "record": "T0323-0819-fsdeamon-snapshot-socket-leak",
+    "scenario_type": "bugfix"
+  },
+  "parent": null,
+  "slug": "0819-fsdeamon-snapshot-socket-leak",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-08-19T12:50:00+08:00",
+    "do": "2026-08-19T13:57:31+08:00",
+    "plan": "2026-08-19T12:50:00+08:00"
+  },
+  "status": "InProgress",
+  "title": "修复 fsdeamon snapshot 引发的 socket 泄漏"
+}

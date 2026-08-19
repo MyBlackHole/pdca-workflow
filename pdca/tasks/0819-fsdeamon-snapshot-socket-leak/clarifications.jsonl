@@ -1,0 +1,1 @@
+{"source":"final_confirmation","summary":"P6 终审批准：方案B仅主动释放，FilesMeta新增CloseSession，SnapshotSync/SnapshotEnd/SnapshotFailed三处释放ver/bak session；DEFAULT常驻。AC-1~AC-6验收。","response":"confirmed","at":"2026-08-19T13:57:10+08:00"}

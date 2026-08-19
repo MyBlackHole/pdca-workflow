@@ -1,0 +1,10 @@
+./libs/aio-ini-config.c:4:#include <ini.h>
+./libs/aio-ini-config.c:29:static int aio_ini_parse(int (*parser)(const char *, ini_handler, void *),
+./libs/aio-ini-config.c:55:	return aio_ini_parse(ini_parse, path, out, err_msg, err_len);
+./libs/aio-ini-config.c:61:	return aio_ini_parse(ini_parse_string, text, out, err_msg, err_len);
+./xbsa/src/xbsa/xbsa.c:8:#include <ini.h>
+./xbsa/src/xbsa/mini.c:5:#include <ini.h>
+./xbsa/src/xbsa/mini.c:65:	if (ini_parse(config_file, inid_handler, config) < 0) {
+./libs/xmake.lua:4:add_requires("inih 60", { system = false, configs = { shared = false, cxflags = "-fvisibility=hidden -DINI_API=" }, debug = is_mode("debug") })
+./libs/xmake.lua:142:    add_packages("inih")
+./xbsa/src/xbsa/xmake.lua:1:add_requires("inih 60", {system = false, configs = {shared = false, cxflags = "-fvisibility=hidden -DINI_API="}, debug = is_mode("debug")})

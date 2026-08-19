@@ -1,0 +1,9 @@
+[0m[38;2;0;255;0;1m[ 53%]:[0m [38;2;255;0;255;1m<fs-cli>[0m cache compiling.debug fs-backup/fsclient/config.cpp[0m
+[0m[38;2;0;255;0;1m[ 63%]:[0m [38;2;255;0;255;1m<fsdeamon>[0m cache compiling.debug fs-backup/fsdeamon/config.cpp[0m
+[0m[38;2;0;255;0;1m[ 67%]:[0m [38;2;255;0;255;1m<s3file>[0m cache compiling.debug s3tools/s3file/config.cpp[0m
+[0m[38;2;0;255;0;1m[ 72%]:[0m [38;2;255;0;255;1m<s3mount>[0m cache compiling.debug s3tools/s3mount/config.cpp[0m
+[0m[38;2;0;255;0;1m[ 89%]:[0m [38;2;255;0;255;1m<s3mount>[0m [38;2;255;0;255;1mlinking.debug s3mount[0m
+[0m[38;2;0;255;0;1m[ 89%]:[0m [38;2;255;0;255;1m<fs-cli>[0m [38;2;255;0;255;1mlinking.debug fs-cli[0m
+[0m[38;2;0;255;0;1m[ 90%]:[0m [38;2;255;0;255;1m<fsdeamon>[0m [38;2;255;0;255;1mlinking.debug fsdeamon[0m
+[0m[38;2;0;255;0;1m[ 93%]:[0m [38;2;255;0;255;1m<s3file>[0m [38;2;255;0;255;1mlinking.debug s3file[0m
+[0m[38;2;0;255;0;1m[100%]:[0m [38;2;0;255;0;1mbuild ok, spent 1.634s[0m

@@ -1,0 +1,6 @@
+{"at":"2026-08-19T10:28:19+08:00","source":"task_identity","summary":"created with record identity T0324-0819-unified-ini-config-module"}
+
+{"source":"grilling","round":1,"question":"共享模块是否采用不透明配置对象和显式生命周期？","answer":"是，采用统一模块和显式生命周期。","recommended":"采用不透明配置对象并由调用方显式 load/free，避免全局状态。","at":"2026-08-19T10:30:25+08:00"}
+{"source":"grilling","round":1,"question":"是否保留旧 rdb-config 兼容 API？","answer":"不需要兼容 API。","recommended":"不保留旧兼容 API，所有调用方直接迁移，减少长期双轨实现。","at":"2026-08-19T10:30:25+08:00"}
+{"source":"grilling","round":1,"question":"INI 配置文件格式是否保持不变？","answer":"保持不变。","recommended":"保持 section、键名、值格式、默认值和优先级不变，只替换解析实现。","at":"2026-08-19T10:30:25+08:00"}
+{"source":"final_confirmation","summary":"确认全项目所有直接使用 INI 的模块统一迁移到共享配置模块；INI 格式、section、key、默认值、优先级、CLI 语义和业务协议保持不变，不保留旧兼容 API。","response":"confirmed","at":"2026-08-19T10:33:33+08:00"}
