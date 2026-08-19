@@ -1,0 +1,5 @@
+{"at":"2026-08-19T00:00:00+08:00","source":"task_identity","summary":"created with record identity T0328-0819-dmsbtex-libobk-mtls"}
+{"source":"final_confirmation","summary":"确认默认明文、开启后同连接强制 mTLS 且失败不降级；复用现有 tls_cert；dmsbtex/libobk 业务帧统一走 TLS I/O；覆盖两条真实链路与明文/失败回归。","response":"confirmed","at":"2026-08-19T15:04:01+08:00"}
+{"round":1,"question":"两条 SBT 链路的启用模型：是否默认明文，配置开启后同连接协商并强制 mTLS，失败不降级？","answer":"确认。默认明文；开启后强制 mTLS，失败不降级。","recommended":"采用默认明文、开启强制 mTLS 的同连接协商模型，以保留存量客户端兼容。","source":"grilling","at":"2026-08-19T15:04:01+08:00"}
+{"round":1,"question":"TLS 实现边界：是否复用当前 tls_cert 证书加载/握手能力，不在本任务新增 GMSSL/TLCP 后端？","answer":"确认。复用现有 tls_cert。","recommended":"复用现有 tls_cert，避免扩展到证书后端改造。","source":"grilling","at":"2026-08-19T15:04:01+08:00"}
+{"round":1,"question":"mTLS 握手后的业务 I/O：是否要求协议头和业务帧统一通过 TLS session，不允许回到裸 fd？","answer":"确认。全部业务 I/O 走 TLS session。","recommended":"将 fd 与 SSL 所有权绑定到 transport session，统一读写和清理。","source":"grilling","at":"2026-08-19T15:04:01+08:00"}

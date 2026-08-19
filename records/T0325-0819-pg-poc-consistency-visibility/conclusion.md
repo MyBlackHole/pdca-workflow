@@ -42,8 +42,14 @@ T0325（parent T0301）：双链路（PG+MySQL）一致性 + 可见性 POC，场
 （无）
 
 ## 适用边界
-- 场景仅覆盖**正常关闭**：PG 无未提交活跃残留；MySQL 不可见行必 delete-marked。运行中复制（未提交事务）在 PG 走 clog=IN_PROGRESS 不可见、MySQL 需 undo/trx_sys（范围外）。
-- 可见性矩阵为 PG18 单版本；MySQL 矩阵为 8.0 单版本（其余版本一致性已验证，delete-mark 过滤逻辑统一）。
+- 场景仅覆盖**正常关闭**（PG smart/fast 优雅关闭 + shutdown checkpoint；MySQL mysqladmin
+  shutdown 回滚所有未提交事务）：PG 无未提交活跃残留（clog 无 IN_PROGRESS）；MySQL 不可见行
+  必 delete-marked。**因此 undo/trx_sys 与 PG IN_PROGRESS/ItemIdIsDead 均无需考虑**——
+  未提交事务已回滚/未落盘，无并发快照（详见 research-report 与 knowledge/
+  mysql/normal-shutdown-visibility-scope.md、knowledge/pg/visibility-clog-infomask.md）。
+  运行中复制（未提交事务）在 PG 走 clog=IN_PROGRESS 不可见、MySQL 需 undo/trx_sys（范围外）。
+- 可见性矩阵为 PG18 单版本；MySQL 矩阵为 8.0 单版本（其余版本一致性已验证，delete-mark 过滤逻辑统一，
+  且 56/57/84 删除场景已复验）。
 - verify 对照依赖 --pg-dsn（information_schema）/SQL 导出基准，仅验证关闭后快照。
 
 ## 下一轮建议

@@ -33,6 +33,14 @@
 5. **VACUUM (FREEZE)**：行 infomask 变为 XMIN_COMMITTED|XMIN_INVALID（0x0300），
    pg_tuple_visible 判为可见（不得误判 invisible）。
 
+## 正常关闭语义（为什么 IN_PROGRESS / ItemIdIsDead 可忽略）
+"正常关闭"（PG `-m smart` 等待事务结束 / `-m fast` 中止活动事务 + shutdown checkpoint）后：
+- 所有事务在 clog 中要么 committed 要么 aborted，**不可能存在 IN_PROGRESS** → 该判定分支
+  不触发（IN_PROGRESS 只在数据库运行期间复制时出现）。
+- 无并发快照引用死行 → VACUUM 会把死行清理为 unused，**ItemIdIsDead / skipped_dead 不出现**。
+因此正常关闭快照下，可见性判定只需覆盖 committed(hint/clog)/aborted/dead 已提交旧版本三路，
+无需 IN_PROGRESS 与 ItemIdIsDead 分支。仅异常关闭（crash/`-m immediate`）后复制才需要这两者。
+
 ## 验证方法
 - pageinspect：`heap_page_items(get_raw_page('t',0))` 核对 lp/xmin/xmax/infomask，
   与 pgbin 统计断言对照。

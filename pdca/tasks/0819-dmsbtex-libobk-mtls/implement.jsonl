@@ -1,0 +1,3 @@
+{"knowledge":"rpc-rdbcomm/mtls-review-fd-session-boundary.md","reason":"已验证 mTLS 成功后裸 fd API 无法表达 SSL 所有权，业务帧必须使用连接 session。","action":"为 dmsbtex/libobk 设计统一 transport session，禁止握手后绕过 SSL 读写，并覆盖真实业务链路。","at":"2026-08-19T15:04:01+08:00"}
+{"knowledge":"tls/structured-mtls-failure-diagnostics.md","reason":"握手失败需要区分角色、阶段、算法和证书路径，便于 SBT 作业诊断。","action":"在客户端/服务端握手失败路径保留结构化日志与 OpenSSL 错误队列，不记录私钥内容。","at":"2026-08-19T15:04:01+08:00"}
+{"knowledge":"linux-epoll-eventloop/transport-ownership-model.md","reason":"fd 与 SSL 必须有唯一释放点，避免业务层和 transport 双重 close/free。","action":"明确 session 所有权和统一 cleanup，覆盖握手失败、业务初始化失败、正常关闭和线程退出。","at":"2026-08-19T15:04:01+08:00"}
