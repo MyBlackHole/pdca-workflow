@@ -1,0 +1,4 @@
+{"at":"2026-08-20T19:10:30+08:00","file":"knowledge/linux-epoll-eventloop/backupstream-plain-tls-ingress.md","action":"loaded","reason":"提供 80.0.0 的 plain/TLS 双路径 ingress 与线程模型既有洞察，作为 171.0.0 演进对照基线"}
+{"at":"2026-08-20T19:10:30+08:00","file":"knowledge/linux-epoll-eventloop/backupstream-v65-v101-arch-evolution.md","action":"loaded","reason":"提供 Reactor/FSM 迁移、inotify dirty journal、观测驱动演进、架构纪律四类可复用模式，辅助图表组织"}
+{"at":"2026-08-20T19:53:00+08:00","file":"docs/ARCH_DIAGRAMS.md","action":"created","reason":"T0300 主产出物：十大章、60 张 Mermaid 图、5 类对象生命周期图、全部源码引用经存在性核验"}
+{"at":"2026-08-20T19:53:00+08:00","file":"pdca/tasks/0820-backupstream-arch-diagram/research-report.md","action":"created","reason":"research 路径 C1 调研报告，登记为 evidence research-report-v1"}

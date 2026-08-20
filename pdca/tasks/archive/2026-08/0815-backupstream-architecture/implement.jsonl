@@ -1,0 +1,2 @@
+{"file":"knowledge/linux-epoll-eventloop/multireactor-so-reuseport.md","reason":"React/多 Reactor 分片、SO_REUSEPORT 分流、worker 供给与连接数匹配的既有结论，与本项目 reactor_group_t 分片与 elastic session pool 直接相关，用于线程/事件架构分析的对照框架","action":"参考","at":"2026-08-15T15:05:00+08:00"}
+{"file":"knowledge/linux-epoll-eventloop/dynamic-deadline-wakeup.md","reason":"epoll 事件循环最小堆定时器 + eventfd 唤醒 + data.ptr 工业对齐，与本项目 reactor_t 的 timer_heap/eventfd post/wake 机制可对照","action":"参考","at":"2026-08-15T15:05:00+08:00"}
