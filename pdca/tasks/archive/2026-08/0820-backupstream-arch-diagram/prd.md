@@ -85,7 +85,7 @@ research 场景无测试产物，跳过。
 - [ ] AC-14: 文档正文为中文，术语首次出现含英文原名；不修改任何 `src/` 源码与既有 `docs/` 文档
 - [ ] AC-15: 资源元抽象关系图：含 lane↔socket 独立连接映射（N+1 条 TCP/TLS）、会话→通道→lane→socket 资源层级链、lane 三层并发分用模型（各至少一张图）
 - [ ] AC-16: 海量小文件并发处理章节：含客户端单线程生产者+流水线帧、小文件三级聚合（512KB 判定/1024 文件包/8 文件 task）、TREE_BARRIER 累积栅栏、inflight 128/64 水位、SmallLocalWriterPool 接收并发
-- [ ] AC-17: 渲染兼容性：所有 subgraph ID 使用 ASCII（不含中文），全部图在 mmdc 下渲染成功且 SVG 产物生成
+- [ ] AC-17: 渲染兼容性：所有 subgraph ID 使用 ASCII（不含中文），全部图在 Mermaid 9.4.3 / 10.9.1 / 11.16.0 三版本下渲染成功且 SVG 产物生成（mermaid-cli 逐图验证）
 
 ## 范围外
 
