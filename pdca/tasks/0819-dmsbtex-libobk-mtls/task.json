@@ -8,20 +8,21 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-19T00:00:00+08:00",
-    "phase": "do",
+    "phase": "check",
     "record": "T0328-0819-dmsbtex-libobk-mtls",
-    "scenario_type": "development"
+    "scenario_type": "development",
+    "completed_at": "2026-08-19T15:10:17+08:00"
   },
   "parent": null,
   "slug": "0819-dmsbtex-libobk-mtls",
   "states": {
     "act": null,
     "archive": null,
-    "check": null,
+    "check": "2026-08-19T15:10:17+08:00",
     "created": "2026-08-19T00:00:00+08:00",
     "do": "2026-08-19T15:04:41+08:00",
     "plan": "2026-08-19T00:00:00+08:00"
   },
-  "status": "InProgress",
+  "status": "Completed",
   "title": "dmsbtex、libobk 接入 mTLS 握手"
 }

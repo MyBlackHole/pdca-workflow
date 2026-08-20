@@ -1,0 +1,11 @@
+Command:
+rg -n "\\b(send|recv)\\(" dmsbtex libobk/lib --glob '*.[ch]'
+
+Result:
+No direct socket send/recv calls found in dmsbtex or libobk/lib; packet I/O delegates through rpc_hs_session_t read/write callbacks.
+
+Command:
+rg -n "g_lock|g_slots|slot_t|pthread_mutex_t.*(lock|g_)" dmsbtex libobk/lib libobk/include
+
+Result:
+No transport lock or fd/session slot mapping added. Existing libobk logging/directory mutexes are unrelated to transport session state.

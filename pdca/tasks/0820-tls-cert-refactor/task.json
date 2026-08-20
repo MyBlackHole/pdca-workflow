@@ -1,0 +1,28 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0332",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-20T10:04:30+08:00",
+    "phase": "check",
+    "record": "T0332-0820-tls-cert-refactor",
+    "scenario_type": "development",
+    "completed_at": "2026-08-20T12:24:56+08:00"
+  },
+  "parent": null,
+  "slug": "0820-tls-cert-refactor",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-20T12:24:56+08:00",
+    "created": "2026-08-20T10:04:30+08:00",
+    "do": "2026-08-20T10:57:35+08:00",
+    "plan": "2026-08-20T10:04:30+08:00"
+  },
+  "status": "Completed",
+  "title": "重构 tls_cert 模块"
+}

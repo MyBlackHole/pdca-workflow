@@ -1,0 +1,3 @@
+{"file":"knowledge/tls/structured-mtls-failure-diagnostics.md","reason":"错误码分类只能表达语义不能替代定位；日志需含 role/stage/algorithm/证书路径；重构保留失败不降级语义","action":"应用于错误码重排与日志格式","at":"2026-08-20T10:30:47+08:00"}
+{"file":"knowledge/rpc-rdbcomm/internal-dead-code-vs-public-abi.md","reason":"删除公共头文件接口前需确认外部 ABI 引用；已验证 6+1 个接口无外部调用","action":"应用于删除接口清单确认","at":"2026-08-20T10:30:47+08:00"}
+{"file":"knowledge/tooling/cli-tls-mtls-configuration.md","reason":"配置优先级约定由调用方持有；tls_cert 通过 options 接收已解析配置","action":"应用于调用方 options 适配","at":"2026-08-20T10:30:47+08:00"}
