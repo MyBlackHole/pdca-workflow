@@ -1,0 +1,479 @@
+diff --git a/libs/logger.c b/libs/logger.c
+index 0fece143..ce62e8a0 100644
+--- a/libs/logger.c
++++ b/libs/logger.c
+@@ -116,7 +116,9 @@ int init_audit_logger(const char *dir_path, const char *app_name)
+ 		return 0;
+ 	}
+ 
+-	if (!sec_audit_enabled()) {
++	if (!sec_tool_enabled(SEC_GLOBAL_SECTION, SEC_GLOBAL_AUDIT_KEY,
++			      SEC_MASTER_SECTION, SEC_MASTER_ENABLE_KEY,
++			      AUDIT_ENABLE_ENV, 0)) {
+ 		pthread_mutex_unlock(&g_audit_mutex);
+ 		return 0;
+ 	}
+diff --git a/libs/rdb-config.c b/libs/rdb-config.c
+index 6c0037e0..fdb0c3ed 100644
+--- a/libs/rdb-config.c
++++ b/libs/rdb-config.c
+@@ -192,76 +192,48 @@ int init_config(const char *config_file, char *err_msg, int len)
+ 	return 0;
+ }
+ 
+-static int sec_enabled_with_master(const char *sec_key, const char *env_name)
++int sec_tool_enabled(const char *tool_section, const char *tool_key,
++		     const char *global_section, const char *global_key,
++		     const char *env_name, int default_val)
+ {
+-	/* 第1层：独立开关（env + 独立配置项） */
+-	int val = config_get_int_env(get_config_store(), "security", sec_key,
+-				     env_name, -1);
+-	if (val >= 0)
+-		return val;
+-
+-	/* 第2层：总开关 [auth] enable */
+-	val = config_get_int(get_config_store(), "auth", "enable", -1);
+-	if (val >= 0)
+-		return val;
+-
+-	/* 第3层：默认关闭 */
+-	return 0;
+-}
+-
+-static int tls_enabled_cache = -1;
+-static int auth_enabled_cache = -1;
+-static int audit_enabled_cache = -1;
+-static const char *ciphersuites_cache = NULL;
+-static int cli_mtls_set = 0;
+-static int cli_mtls_enabled = 0;
+-static const char *cli_algorithm = NULL;
++	/* 第1层：env */
++	if (env_name != NULL) {
++		const char *env_val = getenv(env_name);
++		if (env_val != NULL && env_val[0] != '\0')
++			return atoi(env_val);
++	}
+ 
+-void sec_cache_reset(void)
+-{
+-	tls_enabled_cache = -1;
+-	auth_enabled_cache = -1;
+-	audit_enabled_cache = -1;
+-	ciphersuites_cache = NULL;
+-	cli_mtls_set = 0;
+-	cli_algorithm = NULL;
+-}
++	/* 第2层：工具 section 的独立开关 */
++	if (tool_section != NULL && tool_key != NULL) {
++		int val = config_get_int(get_config_store(), tool_section,
++					 tool_key, -1);
++		if (val >= 0)
++			return val;
++	}
+ 
+-int sec_tls_enabled(void)
+-{
+-	if (tls_enabled_cache < 0)
+-		tls_enabled_cache = sec_enabled_with_master("tls_enable",
+-							    "RPC_TLS_ENABLE");
+-	return tls_enabled_cache;
+-}
++	/* 第3层：全局 section 的总开关 */
++	if (global_section != NULL && global_key != NULL) {
++		int val = config_get_int(get_config_store(), global_section,
++					 global_key, -1);
++		if (val >= 0)
++			return val;
++	}
+ 
+-int sec_auth_enabled(void)
+-{
+-	if (auth_enabled_cache < 0)
+-		auth_enabled_cache = sec_enabled_with_master("auth_enable",
+-							     "AUTH_ENABLE");
+-	/* audit 依赖 key：audit 开启时 key 也必须开启 */
+-	if (!auth_enabled_cache && sec_audit_enabled())
+-		auth_enabled_cache = 1;
+-	return auth_enabled_cache;
++	/* 第4层：默认值 */
++	return default_val;
+ }
+ 
+-int sec_audit_enabled(void)
+-{
+-	if (audit_enabled_cache < 0)
+-		audit_enabled_cache = sec_enabled_with_master("audit_enable",
+-							      "AUDIT_ENABLE");
+-	return audit_enabled_cache;
+-}
++static const char *ciphersuites_cache = NULL;
+ 
+ const char *sec_tls_ciphersuites(void)
+ {
+ 	if (!ciphersuites_cache) {
+-		/* 环境变量优先，其次配置文件 [security] ciphersuites */
+-		const char *val = getenv("RPC_TLS_CIPHERSUITES");
++		/* 环境变量优先，其次配置文件全局 section 的 ciphersuites */
++		const char *val = getenv(RPC_TLS_CIPHERSUITES_ENV);
+ 		if (val == NULL || val[0] == '\0') {
+-			val = config_get_string(get_config_store(), "security",
+-						"ciphersuites");
++			val = config_get_string(get_config_store(),
++						SEC_GLOBAL_SECTION,
++						SEC_GLOBAL_CIPHERSUITES_KEY);
+ 		}
+ 		if (val != NULL && val[0] != '\0') {
+ 			/* config_get_string 返回 store 内指针，生命周期随 store；
+@@ -274,39 +246,17 @@ const char *sec_tls_ciphersuites(void)
+ 
+ const char *sec_tls_ca_cn(void)
+ {
+-	const char *value = getenv("RPC_TLS_CA_CN");
++	const char *value = getenv(RPC_TLS_CA_CN_ENV);
+ 	if (value && value[0])
+ 		return value;
+-	return config_get_string(get_config_store(), "security", "tls_ca_cn");
+-}
+-
+-int sec_tool_tls_enabled(const char *section, const char *env_name)
+-{
+-	const char *env_value;
+-	int value;
+-
+-	if (cli_mtls_set)
+-		return cli_mtls_enabled;
+-	if (env_name != NULL) {
+-		env_value = getenv(env_name);
+-		if (env_value != NULL)
+-			return atoi(env_value);
+-	}
+-	if (section != NULL) {
+-		value = config_get_int(get_config_store(), section,
+-					       "mtls_enable", -1);
+-		if (value >= 0)
+-			return value;
+-	}
+-	return sec_tls_enabled();
++	return config_get_string(get_config_store(), SEC_GLOBAL_SECTION,
++				 SEC_GLOBAL_CA_CN_KEY);
+ }
+ 
+ const char *sec_tool_tls_algorithm(const char *section, const char *env_name)
+ {
+ 	const char *value;
+ 
+-	if (cli_algorithm != NULL)
+-		return cli_algorithm;
+ 	if (env_name != NULL) {
+ 		value = getenv(env_name);
+ 		if (value != NULL && value[0] != '\0')
+@@ -314,7 +264,7 @@ const char *sec_tool_tls_algorithm(const char *section, const char *env_name)
+ 	}
+ 	if (section != NULL) {
+ 		value = config_get_string(get_config_store(), section,
+-						  "tls_algorithm");
++					  SEC_TOOL_ALGORITHM_KEY);
+ 		if (value != NULL && value[0] != '\0')
+ 			return value;
+ 	}
+@@ -322,21 +272,6 @@ const char *sec_tool_tls_algorithm(const char *section, const char *env_name)
+ 	return value != NULL && value[0] != '\0' ? value : RPC_TLS_ALGORITHM_DEFAULT;
+ }
+ 
+-int sec_tool_tls_set_cli_overrides(int mtls_set, int mtls_enabled,
+-					const char *algorithm)
+-{
+-	if (mtls_set && mtls_enabled != 0 && mtls_enabled != 1)
+-		return -1;
+-	if (algorithm != NULL && strcmp(algorithm, RPC_TLS_ALGORITHM_SM4_GCM_SM3) != 0 &&
+-	    strcmp(algorithm, RPC_TLS_ALGORITHM_AES_256_GCM_SHA384) != 0)
+-		return -1;
+-	sec_cache_reset();
+-	cli_mtls_set = mtls_set;
+-	cli_mtls_enabled = mtls_enabled;
+-	cli_algorithm = algorithm;
+-	return 0;
+-}
+-
+ const char *sec_tls_cert_path(const char *env_var, const char *default_path)
+ {
+ 	const char *env = env_var ? getenv(env_var) : NULL;
+@@ -355,8 +290,8 @@ static int sec_join_path(char *buf, size_t sz, const char *dir,
+ int sec_tls_client_cert_paths(char *cert_buf, size_t cert_sz, char *key_buf,
+ 			      size_t key_sz, const char *ca_cn)
+ {
+-	const char *cert = getenv("RPC_TLS_CLIENT_CERT");
+-	const char *key = getenv("RPC_TLS_CLIENT_KEY");
++	const char *cert = getenv(RPC_TLS_CLIENT_CERT_ENV);
++	const char *key = getenv(RPC_TLS_CLIENT_KEY_ENV);
+ 	const char *file = CERT_FILE_HOST;
+ 	const char *key_file = CERT_FILE_HOST_KEY;
+ 
+@@ -366,7 +301,7 @@ int sec_tls_client_cert_paths(char *cert_buf, size_t cert_sz, char *key_buf,
+ 		return 0;
+ 	}
+ 
+-	const char *cert_dir = sec_tls_cert_path("RPC_TLS_CERT_DIR",
++	const char *cert_dir = sec_tls_cert_path(RPC_TLS_CERT_DIR_ENV,
+ 						  DEFAULT_CERT_DIR);
+ 	if (!ca_cn || !ca_cn[0]) {
+ 		return -1;
+@@ -380,6 +315,11 @@ int sec_tls_client_cert_paths(char *cert_buf, size_t cert_sz, char *key_buf,
+ 	return 0;
+ }
+ 
++void sec_cache_reset(void)
++{
++	ciphersuites_cache = NULL;
++}
++
+ __attribute__((constructor)) static void rdb_auto_init(void)
+ {
+ 	char err[256];
+diff --git a/libs/rdb-config.h b/libs/rdb-config.h
+index 73ca5d79..c07928d4 100644
+--- a/libs/rdb-config.h
++++ b/libs/rdb-config.h
+@@ -16,6 +16,26 @@ typedef struct {
+ 
+ #define RDB_CONFIG "RDB_CONFIG"
+ #define DEFAULT_RDB_CONFIG_PATH "/opt/aio/cfg/rdb.conf"
++
++/* 全局安全配置 schema（集中定义，调用方引用宏而非硬编码字符串） */
++#define SEC_GLOBAL_SECTION "security"
++#define SEC_GLOBAL_TLS_KEY "tls_enable"
++#define SEC_GLOBAL_AUTH_KEY "auth_enable"
++#define SEC_GLOBAL_AUDIT_KEY "audit_enable"
++#define SEC_GLOBAL_CIPHERSUITES_KEY "ciphersuites"
++#define SEC_GLOBAL_CA_CN_KEY "tls_ca_cn"
++#define SEC_MASTER_SECTION "auth"
++#define SEC_MASTER_ENABLE_KEY "enable"
++#define SEC_TOOL_MTLS_KEY "mtls_enable"
++#define SEC_TOOL_ALGORITHM_KEY "tls_algorithm"
++#define RPC_TLS_ENABLE_ENV "RPC_TLS_ENABLE"
++#define RPC_TLS_CIPHERSUITES_ENV "RPC_TLS_CIPHERSUITES"
++#define RPC_TLS_CA_CN_ENV "RPC_TLS_CA_CN"
++#define RPC_TLS_CLIENT_CERT_ENV "RPC_TLS_CLIENT_CERT"
++#define RPC_TLS_CLIENT_KEY_ENV "RPC_TLS_CLIENT_KEY"
++#define RPC_TLS_CERT_DIR_ENV "RPC_TLS_CERT_DIR"
++#define AUTH_ENABLE_ENV "AUTH_ENABLE"
++#define AUDIT_ENABLE_ENV "AUDIT_ENABLE"
+ #include "common.h"
+ 
+ /* Tool-scoped TLS configuration identifiers. Keep these names centralized so
+@@ -71,25 +91,18 @@ int config_get_int_env(config_kv_store *store, const char *section,
+ 		       const char *key, const char *env_name, int default_val);
+ 
+ /**
+- * sec_tls_enabled - 统一查询 TLS 是否启用
+- *
+- * 优先级：RPC_TLS_ENABLE env / [security] tls_enable > [auth] enable 总开关 > 0
+- */
+-int sec_tls_enabled(void);
+-
+-/**
+- * sec_auth_enabled - 统一查询 key/auth 是否启用
+- *
+- * 优先级：AUTH_ENABLE env / [security] auth_enable > [auth] enable 总开关 > 0
+- */
+-int sec_auth_enabled(void);
+-
+-/**
+- * sec_audit_enabled - 统一查询 audit 是否启用
++ * sec_tool_enabled - 通用开关解析（不硬编码任何 section/key/env 字符串，
++ *                    全部由调用方传入）
++ * @tool_section / @tool_key:  工具级开关的 ini section 与 key（可为 NULL 跳过该层）
++ * @global_section / @global_key: 全局总开关的 ini section 与 key（可为 NULL 跳过该层）
++ * @env_name:                  环境变量名（NULL 表示不检查环境变量）
++ * @default_val:               全部未命中时的默认值
+  *
+- * 优先级：AUDIT_ENABLE env / [security] audit_enable > [auth] enable 总开关 > 0
++ * 优先级：env > 工具 section 的 key > 全局 section 的 key > 默认值
+  */
+-int sec_audit_enabled(void);
++int sec_tool_enabled(const char *tool_section, const char *tool_key,
++		     const char *global_section, const char *global_key,
++		     const char *env_name, int default_val);
+ 
+ /**
+  * sec_tls_ciphersuites - 获取 TLS1.3 ciphersuites 算法参数列表
+@@ -101,10 +114,7 @@ int sec_audit_enabled(void);
+  */
+ const char *sec_tls_ciphersuites(void);
+ const char *sec_tls_ca_cn(void);
+-int sec_tool_tls_enabled(const char *section, const char *env_name);
+ const char *sec_tool_tls_algorithm(const char *section, const char *env_name);
+-int sec_tool_tls_set_cli_overrides(int mtls_set, int mtls_enabled,
+-					const char *algorithm);
+ 
+ /**
+  * sec_tls_cert_path - 解析证书文件路径
+diff --git a/libs/tests/rdb_config_test.c b/libs/tests/rdb_config_test.c
+index ccbc8ce9..80bfe782 100644
+--- a/libs/tests/rdb_config_test.c
++++ b/libs/tests/rdb_config_test.c
+@@ -297,13 +297,13 @@ TEST(tool_tls_config_isolated_and_prioritized)
+ 	assert(parse_config(path, err, sizeof(err)) == 0);
+ 	sec_cache_reset();
+ 
+-	assert(sec_tool_tls_enabled(RDBCOMM_TOOL_SECTION,
+-						 RDBCOMM_MTLS_ENABLE_ENV) == 1);
++	assert(sec_tool_enabled(RDBCOMM_TOOL_SECTION, SEC_TOOL_MTLS_KEY, SEC_GLOBAL_SECTION,
++			 SEC_GLOBAL_TLS_KEY, RDBCOMM_MTLS_ENABLE_ENV, 0) == 1);
+ 	assert(strcmp(sec_tool_tls_algorithm(RDBCOMM_TOOL_SECTION,
+ 						 RDBCOMM_TLS_ALGORITHM_ENV),
+ 		       RPC_TLS_ALGORITHM_AES_256_GCM_SHA384) == 0);
+-	assert(sec_tool_tls_enabled(AIO_SPEED_TOOL_SECTION,
+-						 AIO_SPEED_MTLS_ENABLE_ENV) == 0);
++	assert(sec_tool_enabled(AIO_SPEED_TOOL_SECTION, SEC_TOOL_MTLS_KEY, SEC_GLOBAL_SECTION,
++			 SEC_GLOBAL_TLS_KEY, AIO_SPEED_MTLS_ENABLE_ENV, 0) == 0);
+ 	assert(strcmp(sec_tool_tls_algorithm(AIO_SPEED_TOOL_SECTION,
+ 						 AIO_SPEED_TLS_ALGORITHM_ENV),
+ 		       RPC_TLS_ALGORITHM_SM4_GCM_SM3) == 0);
+@@ -311,20 +311,21 @@ TEST(tool_tls_config_isolated_and_prioritized)
+ 	setenv(RDBCOMM_MTLS_ENABLE_ENV, "0", 1);
+ 	setenv(RDBCOMM_TLS_ALGORITHM_ENV, RPC_TLS_ALGORITHM_SM4_GCM_SM3, 1);
+ 	sec_cache_reset();
+-	assert(sec_tool_tls_enabled(RDBCOMM_TOOL_SECTION,
+-						 RDBCOMM_MTLS_ENABLE_ENV) == 0);
++	assert(sec_tool_enabled(RDBCOMM_TOOL_SECTION, SEC_TOOL_MTLS_KEY, SEC_GLOBAL_SECTION,
++			 SEC_GLOBAL_TLS_KEY, RDBCOMM_MTLS_ENABLE_ENV, 0) == 0);
+ 	assert(strcmp(sec_tool_tls_algorithm(RDBCOMM_TOOL_SECTION,
+ 						 RDBCOMM_TLS_ALGORITHM_ENV),
+ 		       RPC_TLS_ALGORITHM_SM4_GCM_SM3) == 0);
+-	assert(sec_tool_tls_set_cli_overrides(1, 1,
+-						 RPC_TLS_ALGORITHM_AES_256_GCM_SHA384) == 0);
+-	assert(sec_tool_tls_enabled(RDBCOMM_TOOL_SECTION,
+-						 RDBCOMM_MTLS_ENABLE_ENV) == 1);
++
++	/* env 优先于 config section（无 CLI 覆盖状态） */
++	setenv(RDBCOMM_MTLS_ENABLE_ENV, "1", 1);
++	setenv(RDBCOMM_TLS_ALGORITHM_ENV, RPC_TLS_ALGORITHM_AES_256_GCM_SHA384, 1);
++	sec_cache_reset();
++	assert(sec_tool_enabled(RDBCOMM_TOOL_SECTION, SEC_TOOL_MTLS_KEY, SEC_GLOBAL_SECTION,
++			 SEC_GLOBAL_TLS_KEY, RDBCOMM_MTLS_ENABLE_ENV, 0) == 1);
+ 	assert(strcmp(sec_tool_tls_algorithm(RDBCOMM_TOOL_SECTION,
+ 						 RDBCOMM_TLS_ALGORITHM_ENV),
+ 		       RPC_TLS_ALGORITHM_AES_256_GCM_SHA384) == 0);
+-	assert(sec_tool_tls_set_cli_overrides(1, 2, NULL) != 0);
+-	assert(sec_tool_tls_set_cli_overrides(0, 0, "TLS_UNKNOWN") != 0);
+ 
+ 	unsetenv(RDBCOMM_MTLS_ENABLE_ENV);
+ 	unsetenv(RDBCOMM_TLS_ALGORITHM_ENV);
+diff --git a/libs/timed_key.c b/libs/timed_key.c
+index adc0cd51..8f2a8914 100644
+--- a/libs/timed_key.c
++++ b/libs/timed_key.c
+@@ -224,6 +224,8 @@ uint32_t timed_key_get_timestamp(const char *key)
+ 
+ bool key_is_enabled(void)
+ {
+-	return sec_auth_enabled();
++	return sec_tool_enabled(SEC_GLOBAL_SECTION, SEC_GLOBAL_AUTH_KEY,
++				SEC_MASTER_SECTION, SEC_MASTER_ENABLE_KEY, AUTH_ENABLE_ENV,
++				0) != 0;
+ }
+ #endif
+diff --git a/libs/timed_net_key.c b/libs/timed_net_key.c
+index 062db517..1c5b5fb5 100644
+--- a/libs/timed_net_key.c
++++ b/libs/timed_net_key.c
+@@ -8,12 +8,36 @@
+ #include <string.h>
+ #include <unistd.h>
+ 
++/* TLS 配置：由 timed_net_key_tls_config_init() 填充，timed_net_key_create
++ * 每次调用时构造局部 cfg 并填充，从字段读取，无持久模块状态。 */
++int timed_net_key_tls_config_init(timed_net_key_tls_config_t *cfg)
++{
++	const char *alg_name = sec_tool_tls_algorithm(NULL,
++						       "RPC_TLS_ALGORITHM");
++	const char *v = getenv("RPC_MTLS_ENABLE");
++	memset(cfg, 0, sizeof(*cfg));
++	cfg->mtls_enabled = v && atoi(v) != 0;
++	snprintf(cfg->algorithm_name, sizeof(cfg->algorithm_name), "%s",
++		 alg_name);
++	snprintf(cfg->ca_cn, sizeof(cfg->ca_cn), "%s", sec_tls_ca_cn());
++	snprintf(cfg->ca_cert, sizeof(cfg->ca_cert), "%s",
++		 sec_tls_cert_path("RPC_TLS_CA_CERT", CA_CERT_PATH));
++	snprintf(cfg->client_cert, sizeof(cfg->client_cert), "%s",
++		 sec_tls_cert_path("RPC_TLS_CLIENT_CERT", ""));
++	snprintf(cfg->client_key, sizeof(cfg->client_key), "%s",
++		 sec_tls_cert_path("RPC_TLS_CLIENT_KEY", ""));
++	snprintf(cfg->cert_dir, sizeof(cfg->cert_dir), "%s",
++		 sec_tls_cert_path("RPC_TLS_CERT_DIR", DEFAULT_CERT_DIR));
++	return 0;
++}
++
+ __attribute__((visibility("default"))) int
+ timed_net_key_create(const char *host, const uint16_t port,
+ 		     uint32_t expire_hours, char *output)
+ {
+ 	tls_cert_ctx_t *ctx = NULL;
+ 	tls_cert_client_options_t opts = { 0 };
++	timed_net_key_tls_config_t tls_cfg;
+ 	int fd;
+ 
+ 	if (!key_is_enabled()) {
+@@ -21,21 +45,18 @@ timed_net_key_create(const char *host, const uint16_t port,
+ 		return TIMED_KEY_OK;
+ 	}
+ 
+-	opts.mtls_enabled = sec_tool_tls_enabled(NULL, "RPC_MTLS_ENABLE");
+-	if (opts.mtls_enabled && getenv("RPC_TLS_CLIENT_CERT") &&
+-	    getenv("RPC_TLS_CLIENT_KEY")) {
++	timed_net_key_tls_config_init(&tls_cfg);
++	opts.mtls_enabled = tls_cfg.mtls_enabled;
++	if (opts.mtls_enabled && tls_cfg.client_cert[0] &&
++	    tls_cfg.client_key[0]) {
+ 		char client_cert[512], client_key[512];
+-		const char *alg_name = sec_tool_tls_algorithm(NULL,
+-			"RPC_TLS_ALGORITHM");
+-		opts.profiles[0].algorithm = alg_name;
+-		opts.profiles[0].ca_cn = sec_tls_ca_cn();
+-		opts.profiles[0].ca_cert = sec_tls_cert_path("RPC_TLS_CA_CERT",
+-							    CA_CERT_PATH);
+-		if (sec_tls_client_cert_paths(client_cert, sizeof(client_cert),
+-					      client_key, sizeof(client_key),
+-					      sec_tls_ca_cn()) != 0) {
+-			return TIMED_KEY_TLS_INVALID;
+-		}
++		opts.profiles[0].algorithm = tls_cfg.algorithm_name;
++		opts.profiles[0].ca_cn = tls_cfg.ca_cn;
++		opts.profiles[0].ca_cert = tls_cfg.ca_cert;
++		snprintf(client_cert, sizeof(client_cert), "%s",
++			 tls_cfg.client_cert);
++		snprintf(client_key, sizeof(client_key), "%s",
++			 tls_cfg.client_key);
+ 		opts.profiles[0].cert = client_cert;
+ 		opts.profiles[0].key = client_key;
+ 		opts.profile_count = 1;
+diff --git a/libs/timed_net_key.h b/libs/timed_net_key.h
+index dc0f12f1..0c2de2c5 100644
+--- a/libs/timed_net_key.h
++++ b/libs/timed_net_key.h
+@@ -7,8 +7,23 @@ extern "C" {
+ 
+ #include <timed_key.h>
+ 
++/* TLS 配置：由 timed_net_key_tls_config_init() 填充，由调用方（或
++ * timed_net_key_create 内部局部变量）持有，消费函数从字段读取。 */
++typedef struct {
++	int mtls_enabled;
++	char algorithm_name[128];
++	char ca_cn[256];
++	char ca_cert[512];
++	char client_cert[512];
++	char client_key[512];
++	char cert_dir[512];
++} timed_net_key_tls_config_t;
++
+ int timed_net_key_create(const char *host, const uint16_t port,
+ 			 uint32_t expire_hours, char *output);
++
++/* 解析 env/config 默认值，填充调用方持有的 cfg 结构体。 */
++int timed_net_key_tls_config_init(timed_net_key_tls_config_t *cfg);
+ #ifdef __cplusplus
+ }
+ #endif

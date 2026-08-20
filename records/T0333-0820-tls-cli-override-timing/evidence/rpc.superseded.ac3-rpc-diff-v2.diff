@@ -1,0 +1,276 @@
+diff --git a/rpc/main.cpp b/rpc/main.cpp
+index 6953419b..af152c3f 100644
+--- a/rpc/main.cpp
++++ b/rpc/main.cpp
+@@ -397,31 +397,47 @@ int main(int argc, char *argv[])
+ 	}
+ 
+ 	signal_shield();
+-	if (sec_tool_tls_set_cli_overrides(
+-			g_rpc_config->cli_mtls_set,
+-			g_rpc_config->cli_mtls_enabled,
+-			g_rpc_config->cli_algorithm[0] ?
+-			g_rpc_config->cli_algorithm : NULL) != 0) {
+-		ErrorLog("aio-speedd: invalid TLS command-line configuration");
+-		return EXIT_FAILURE;
++
++	/* TLS 配置：CLI 存在则覆盖 env/config 默认值；证书路径等内部参数
++	 * 由工具解析 env 后显式填入 g_rpc_config，消费点从结构体读取。 */
++	{
++		int mtls_enabled = sec_tool_tls_enabled(
++			AIO_SPEEDD_TOOL_SECTION, AIO_SPEEDD_MTLS_ENABLE_ENV);
++		const char *alg = sec_tool_tls_algorithm(
++			AIO_SPEEDD_TOOL_SECTION, AIO_SPEEDD_TLS_ALGORITHM_ENV);
++		if (g_rpc_config->cli_mtls_set)
++			mtls_enabled = g_rpc_config->cli_mtls_enabled;
++		if (g_rpc_config->cli_algorithm[0])
++			alg = g_rpc_config->cli_algorithm;
++		g_rpc_config->mtls_enabled = mtls_enabled;
++		snprintf(g_rpc_config->tls_algorithm,
++			 sizeof(g_rpc_config->tls_algorithm), "%s", alg);
++		snprintf(g_rpc_config->ca_cn, sizeof(g_rpc_config->ca_cn), "%s",
++			 sec_tls_ca_cn());
++		snprintf(g_rpc_config->ca_cert, sizeof(g_rpc_config->ca_cert),
++			 "%s", sec_tls_cert_path("RPC_TLS_CA_CERT",
++						 CA_CERT_PATH));
++		snprintf(g_rpc_config->server_cert,
++			 sizeof(g_rpc_config->server_cert), "%s",
++			 sec_tls_cert_path("RPC_TLS_SERVER_CERT",
++					   HOST_CERT_PATH));
++		snprintf(g_rpc_config->server_key,
++			 sizeof(g_rpc_config->server_key), "%s",
++			 sec_tls_cert_path("RPC_TLS_SERVER_KEY",
++					   HOST_KEY_PATH));
+ 	}
+ 
+-	tool_mtls_enabled = sec_tool_tls_enabled(
+-		AIO_SPEEDD_TOOL_SECTION, AIO_SPEEDD_MTLS_ENABLE_ENV);
++	tool_mtls_enabled = g_rpc_config->mtls_enabled;
+ 	tool_algorithm = rpc_hs_algorithm_from_name(
+-		sec_tool_tls_algorithm(AIO_SPEEDD_TOOL_SECTION,
+-						 AIO_SPEEDD_TLS_ALGORITHM_ENV));
++		g_rpc_config->tls_algorithm);
+ 	if (tool_mtls_enabled) {
+ 		tls_cert_server_options_t server_opts = { 0 };
+ 		server_opts.mtls_enabled = 1;
+ 		server_opts.profiles[0].algorithm = rpc_hs_algorithm_name(tool_algorithm);
+-		server_opts.profiles[0].ca_cn = sec_tls_ca_cn();
+-		server_opts.profiles[0].ca_cert = sec_tls_cert_path(
+-			"RPC_TLS_CA_CERT", CA_CERT_PATH);
+-		server_opts.profiles[0].cert = sec_tls_cert_path(
+-			"RPC_TLS_SERVER_CERT", HOST_CERT_PATH);
+-		server_opts.profiles[0].key = sec_tls_cert_path(
+-			"RPC_TLS_SERVER_KEY", HOST_KEY_PATH);
++		server_opts.profiles[0].ca_cn = g_rpc_config->ca_cn;
++		server_opts.profiles[0].ca_cert = g_rpc_config->ca_cert;
++		server_opts.profiles[0].cert = g_rpc_config->server_cert;
++		server_opts.profiles[0].key = g_rpc_config->server_key;
+ 		server_opts.profile_count = 1;
+ 		if ((ret = tls_cert_init_server(&server_opts, &g_rpc_server_tls_ctx)) != 0) {
+ 			ErrorLog("cert init failed");
+diff --git a/rpc/rpc-client.cpp b/rpc/rpc-client.cpp
+index f1c9e8da..7bff1cab 100644
+--- a/rpc/rpc-client.cpp
++++ b/rpc/rpc-client.cpp
+@@ -629,8 +629,6 @@ static void signal_shield()
+ int client_main(int argc, char *argv[])
+ {
+ 	int ret = 0;
+-	int tool_mtls_enabled = 0;
+-	uint16_t tool_algorithm = RPC_HS_ALG_DEFAULT;
+ 	const bool time_subcommand = argc > 1 && strcmp(argv[1], "time") == 0;
+ 	char err_msg[MAX_LOGMSG_LEN];
+ 	const char *config_file = getenv(RDB_CONFIG);
+@@ -668,12 +666,34 @@ int client_main(int argc, char *argv[])
+ 		ErrorLog("Error: init aio-speed arguments failed");
+ 		goto return__;
+ 	}
+-	if (sec_tool_tls_set_cli_overrides(g_rpc_args->cli_mtls_set,
+-						 g_rpc_args->cli_mtls_enabled,
+-						 g_rpc_args->cli_algorithm.empty() ?
+-						 NULL : g_rpc_args->cli_algorithm.c_str()) != 0) {
+-		ErrorLog("aio-speed: invalid TLS command-line configuration");
+-		goto return__;
++	/* TLS 配置：CLI 存在则覆盖 env/config 默认值；证书路径等内部参数
++	 * 由工具解析 env 后显式填入 g_rpc_config，消费点从结构体读取。 */
++	{
++		int mtls_enabled = sec_tool_tls_enabled(
++			AIO_SPEED_TOOL_SECTION, AIO_SPEED_MTLS_ENABLE_ENV);
++		const char *alg = sec_tool_tls_algorithm(
++			AIO_SPEED_TOOL_SECTION, AIO_SPEED_TLS_ALGORITHM_ENV);
++		if (g_rpc_args->cli_mtls_set)
++			mtls_enabled = g_rpc_args->cli_mtls_enabled;
++		if (!g_rpc_args->cli_algorithm.empty())
++			alg = g_rpc_args->cli_algorithm.c_str();
++		g_rpc_config->mtls_enabled = mtls_enabled;
++		snprintf(g_rpc_config->tls_algorithm,
++			 sizeof(g_rpc_config->tls_algorithm), "%s", alg);
++		snprintf(g_rpc_config->ca_cn, sizeof(g_rpc_config->ca_cn), "%s",
++			 sec_tls_ca_cn());
++		snprintf(g_rpc_config->ca_cert, sizeof(g_rpc_config->ca_cert),
++			 "%s", sec_tls_cert_path("RPC_TLS_CA_CERT",
++						 CA_CERT_PATH));
++		snprintf(g_rpc_config->cert_dir, sizeof(g_rpc_config->cert_dir),
++			 "%s", sec_tls_cert_path("RPC_TLS_CERT_DIR",
++						 DEFAULT_CERT_DIR));
++		snprintf(g_rpc_config->client_cert,
++			 sizeof(g_rpc_config->client_cert), "%s",
++			 sec_tls_cert_path("RPC_TLS_CLIENT_CERT", ""));
++		snprintf(g_rpc_config->client_key,
++			 sizeof(g_rpc_config->client_key), "%s",
++			 sec_tls_cert_path("RPC_TLS_CLIENT_KEY", ""));
+ 	}
+ 
+ 	// 本地操作
+@@ -719,46 +739,8 @@ int client_main(int argc, char *argv[])
+ 			printf("%llu\n", (unsigned long long)timestamp);
+ 		goto exit__;
+ 	}
+-	tool_mtls_enabled = sec_tool_tls_enabled(
+-		AIO_SPEED_TOOL_SECTION, AIO_SPEED_MTLS_ENABLE_ENV);
+-	tool_algorithm = rpc_hs_algorithm_from_name(
+-		sec_tool_tls_algorithm(AIO_SPEED_TOOL_SECTION,
+-						 AIO_SPEED_TLS_ALGORITHM_ENV));
+-	if (tool_mtls_enabled) {
+-		tls_cert_ctx_t *verify_ctx = NULL;
+-		tls_cert_client_options_t verify_opts = { 0 };
+-		char client_cert[512], client_key[512];
+-		const char *alg_name = rpc_hs_algorithm_name(tool_algorithm);
+-		const char *ca_cn = sec_tls_ca_cn();
+-		verify_opts.mtls_enabled = 1;
+-		verify_opts.profiles[0].algorithm = alg_name;
+-		verify_opts.profiles[0].ca_cn = ca_cn;
+-		verify_opts.profiles[0].ca_cert = sec_tls_cert_path(
+-			"RPC_TLS_CA_CERT", CA_CERT_PATH);
+-		/* ca_cn 由服务端握手时下发，连接前可能未知；此时仅显式
+-		 * RPC_TLS_CLIENT_CERT/KEY 可静态校验，否则交由握手路径。 */
+-		if (getenv("RPC_TLS_CLIENT_CERT") &&
+-		    getenv("RPC_TLS_CLIENT_KEY")) {
+-			if (sec_tls_client_cert_paths(client_cert,
+-						      sizeof(client_cert),
+-						      client_key,
+-						      sizeof(client_key),
+-						      ca_cn) != 0) {
+-				ErrorLog("tls_cert_init_client failed: no "
+-					 "client certificate configured");
+-				goto return__;
+-			}
+-			verify_opts.profiles[0].cert = client_cert;
+-			verify_opts.profiles[0].key = client_key;
+-			verify_opts.profile_count = 1;
+-			if (tls_cert_init_client(&verify_opts,
+-						 &verify_ctx) != 0) {
+-				ErrorLog("tls_cert_init_client failed");
+-				goto return__;
+-			}
+-			tls_cert_cleanup(verify_ctx);
+-		}
+-	}
++	/* 客户端证书可用性/预校验由 rpc-io（连接层）在连接时自行检查，
++	 * 工具 main 仅负责将 TLS 参数填入 g_rpc_config。 */
+ 
+ 	if (key_is_enabled() && g_rpc_args->key[0] == 0) {
+ 		ErrorLog("key is required, use --key to specify");
+diff --git a/rpc/rpc-config.h b/rpc/rpc-config.h
+index 61bcdaee..5b5dd86b 100644
+--- a/rpc/rpc-config.h
++++ b/rpc/rpc-config.h
+@@ -22,6 +22,15 @@ typedef struct rpc_config {
+ 	int cli_mtls_set;
+ 	int cli_mtls_enabled;
+ 	char cli_algorithm[128];
++	int mtls_enabled;
++	char tls_algorithm[128];
++	char ca_cn[256];
++	char ca_cert[PATH_LEN];
++	char client_cert[PATH_LEN];
++	char client_key[PATH_LEN];
++	char cert_dir[PATH_LEN];
++	char server_cert[PATH_LEN];
++	char server_key[PATH_LEN];
+ 	char id_file[256];
+ 	int parallel;
+ 	int read_timeout;
+diff --git a/rpc/rpc-io.cpp b/rpc/rpc-io.cpp
+index 2cc46b2c..66fc9bfb 100644
+--- a/rpc/rpc-io.cpp
++++ b/rpc/rpc-io.cpp
+@@ -82,11 +82,9 @@ static int rpc_connect_first_stage(int fd)
+ 	rpc_hs_session_t session;
+ 	rpc_hs_result_t result = { 0 };
+ 	rpc_hs_client_config_t config = {
+-		.mtls_enabled = sec_tool_tls_enabled(AIO_SPEED_TOOL_SECTION,
+-									 AIO_SPEED_MTLS_ENABLE_ENV),
+-		.algorithm = rpc_hs_algorithm_from_name(sec_tool_tls_algorithm(
+-									 AIO_SPEED_TOOL_SECTION,
+-									 AIO_SPEED_TLS_ALGORITHM_ENV)),
++		.mtls_enabled = g_rpc_config->mtls_enabled,
++		.algorithm = rpc_hs_algorithm_from_name(
++			g_rpc_config->tls_algorithm),
+ 	};
+ 	rpc_hs_session_init_plain(&session, fd);
+ 	if (rpc_hs_client_negotiate_config(&session, &config, &result) != 0)
+@@ -134,11 +132,9 @@ int connect_server_session(const char *ip, const unsigned short port,
+ 	    connect(fd, (struct sockaddr *)&serveraddr, sizeof(serveraddr)) != 0)
+ 		goto error;
+ 	rpc_io_init_plain(io, fd);
+-	config.mtls_enabled = sec_tool_tls_enabled(AIO_SPEED_TOOL_SECTION,
+-									 AIO_SPEED_MTLS_ENABLE_ENV);
+-	config.algorithm = rpc_hs_algorithm_from_name(sec_tool_tls_algorithm(
+-									 AIO_SPEED_TOOL_SECTION,
+-									 AIO_SPEED_TLS_ALGORITHM_ENV));
++	config.mtls_enabled = g_rpc_config->mtls_enabled;
++	config.algorithm = rpc_hs_algorithm_from_name(
++		g_rpc_config->tls_algorithm);
+ 	if (rpc_hs_client_negotiate_config(io, &config, &result) != 0)
+ 		goto error_session;
+ 	if (result.result == RPC_HS_OK_MTLS) {
+@@ -150,12 +146,22 @@ int connect_server_session(const char *ip, const unsigned short port,
+ 		opts.mtls_enabled = 1;
+ 		opts.profiles[0].algorithm = alg_name;
+ 		opts.profiles[0].ca_cn = result.ca_cn;
+-		opts.profiles[0].ca_cert = sec_tls_cert_path("RPC_TLS_CA_CERT",
+-							    CA_CERT_PATH);
+-		if (sec_tls_client_cert_paths(client_cert, sizeof(client_cert),
+-					      client_key, sizeof(client_key),
+-					      result.ca_cn) != 0)
++		opts.profiles[0].ca_cert = g_rpc_config->ca_cert;
++		if (g_rpc_config->client_cert[0] && g_rpc_config->client_key[0]) {
++			snprintf(client_cert, sizeof(client_cert), "%s",
++				 g_rpc_config->client_cert);
++			snprintf(client_key, sizeof(client_key), "%s",
++				 g_rpc_config->client_key);
++		} else if (g_rpc_config->cert_dir[0] && result.ca_cn[0]) {
++			if (sec_tls_client_cert_paths(client_cert,
++						      sizeof(client_cert),
++						      client_key,
++						      sizeof(client_key),
++						      result.ca_cn) != 0)
++				goto error_session;
++		} else {
+ 			goto error_session;
++		}
+ 		opts.profiles[0].cert = client_cert;
+ 		opts.profiles[0].key = client_key;
+ 		opts.profile_count = 1;
+diff --git a/rpc/rpc-server.cpp b/rpc/rpc-server.cpp
+index c37b86a4..633e7213 100644
+--- a/rpc/rpc-server.cpp
++++ b/rpc/rpc-server.cpp
+@@ -193,12 +193,10 @@ void *RpcService::StartRPCServiceWoker(void *arg)
+ 	char *resp_host_buf = woker_info->resp_host_buf;
+ 	rpc_hs_result_t hs_result = { 0 };
+ 	rpc_hs_server_config_t hs_config = {
+-		.mtls_required = sec_tool_tls_enabled(AIO_SPEEDD_TOOL_SECTION,
+-									  AIO_SPEEDD_MTLS_ENABLE_ENV),
+-		.algorithm = rpc_hs_algorithm_from_name(sec_tool_tls_algorithm(
+-									  AIO_SPEEDD_TOOL_SECTION,
+-									  AIO_SPEEDD_TLS_ALGORITHM_ENV)),
+-		.ca_cn = sec_tls_ca_cn(),
++		.mtls_required = g_rpc_config->mtls_enabled,
++		.algorithm = rpc_hs_algorithm_from_name(
++			g_rpc_config->tls_algorithm),
++		.ca_cn = g_rpc_config->ca_cn,
+ 	};
+ 
+ 	msg_base_t *msg_base_host = (msg_base_t *)host_buf;

@@ -1,0 +1,10 @@
+=== rdbcomm ===
+build/linux/x86_64/debug/rdbcomm: invalid --tls-algorithm: BAD_ALG
+=== rdbcommd ===
+build/linux/x86_64/debug/rdbcommd: invalid --tls-algorithm: BAD_ALG
+[2026-08-20 16:05:56]|Error|rdbcomm/rdbcommd-main.c:267 main|140393264920448| args process failed
+=== aio-speed ===
+[2026-08-20 16:05:56]|Error|rpc/rpc-client.cpp:1208 args_process|139793580087168| aio-speed: invalid --tls-algorithm: BAD_ALG
+usage: command args ...
+=== aio-speedd ===
+aio-speedd: invalid --tls-algorithm: BAD_ALG

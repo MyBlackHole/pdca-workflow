@@ -1,0 +1,217 @@
+diff --git a/libs/logger.c b/libs/logger.c
+index ce62e8a0..03238d9e 100644
+--- a/libs/logger.c
++++ b/libs/logger.c
+@@ -116,7 +116,7 @@ int init_audit_logger(const char *dir_path, const char *app_name)
+ 		return 0;
+ 	}
+ 
+-	if (!sec_tool_enabled(SEC_GLOBAL_SECTION, SEC_GLOBAL_AUDIT_KEY,
++	if (!sec_resolve_int(SEC_GLOBAL_SECTION, SEC_GLOBAL_AUDIT_KEY,
+ 			      SEC_MASTER_SECTION, SEC_MASTER_ENABLE_KEY,
+ 			      AUDIT_ENABLE_ENV, 0)) {
+ 		pthread_mutex_unlock(&g_audit_mutex);
+diff --git a/libs/rdb-config.c b/libs/rdb-config.c
+index fdb0c3ed..4d7e9edf 100644
+--- a/libs/rdb-config.c
++++ b/libs/rdb-config.c
+@@ -192,9 +192,9 @@ int init_config(const char *config_file, char *err_msg, int len)
+ 	return 0;
+ }
+ 
+-int sec_tool_enabled(const char *tool_section, const char *tool_key,
+-		     const char *global_section, const char *global_key,
+-		     const char *env_name, int default_val)
++int sec_resolve_int(const char *tool_section, const char *tool_key,
++		    const char *global_section, const char *global_key,
++		    const char *env_name, int default_val)
+ {
+ 	/* 第1层：env */
+ 	if (env_name != NULL) {
+@@ -203,7 +203,7 @@ int sec_tool_enabled(const char *tool_section, const char *tool_key,
+ 			return atoi(env_val);
+ 	}
+ 
+-	/* 第2层：工具 section 的独立开关 */
++	/* 第2层：工具 section 的独立配置 */
+ 	if (tool_section != NULL && tool_key != NULL) {
+ 		int val = config_get_int(get_config_store(), tool_section,
+ 					 tool_key, -1);
+@@ -211,7 +211,7 @@ int sec_tool_enabled(const char *tool_section, const char *tool_key,
+ 			return val;
+ 	}
+ 
+-	/* 第3层：全局 section 的总开关 */
++	/* 第3层：全局 section 的配置 */
+ 	if (global_section != NULL && global_key != NULL) {
+ 		int val = config_get_int(get_config_store(), global_section,
+ 					 global_key, -1);
+@@ -223,6 +223,38 @@ int sec_tool_enabled(const char *tool_section, const char *tool_key,
+ 	return default_val;
+ }
+ 
++const char *sec_resolve_str(const char *tool_section, const char *tool_key,
++			    const char *global_section, const char *global_key,
++			    const char *env_name, const char *default_val)
++{
++	/* 第1层：env */
++	if (env_name != NULL) {
++		const char *env_val = getenv(env_name);
++		if (env_val != NULL && env_val[0] != '\0')
++			return env_val;
++	}
++
++	/* 第2层：工具 section 的独立配置 */
++	if (tool_section != NULL && tool_key != NULL) {
++		const char *val = config_get_string(get_config_store(),
++						    tool_section, tool_key);
++		if (val != NULL && val[0] != '\0')
++			return val;
++	}
++
++	/* 第3层：全局 section 的配置 */
++	if (global_section != NULL && global_key != NULL) {
++		const char *val = config_get_string(get_config_store(),
++						    global_section,
++						    global_key);
++		if (val != NULL && val[0] != '\0')
++			return val;
++	}
++
++	/* 第4层：默认值 */
++	return default_val;
++}
++
+ static const char *ciphersuites_cache = NULL;
+ 
+ const char *sec_tls_ciphersuites(void)
+diff --git a/libs/rdb-config.h b/libs/rdb-config.h
+index c07928d4..8043631c 100644
+--- a/libs/rdb-config.h
++++ b/libs/rdb-config.h
+@@ -91,18 +91,29 @@ int config_get_int_env(config_kv_store *store, const char *section,
+ 		       const char *key, const char *env_name, int default_val);
+ 
+ /**
+- * sec_tool_enabled - 通用开关解析（不硬编码任何 section/key/env 字符串，
+- *                    全部由调用方传入）
+- * @tool_section / @tool_key:  工具级开关的 ini section 与 key（可为 NULL 跳过该层）
+- * @global_section / @global_key: 全局总开关的 ini section 与 key（可为 NULL 跳过该层）
++ * sec_resolve_int - 通用整数配置解析（不硬编码任何 section/key/env 字符串，
++ *                   全部由调用方传入）
++ * @tool_section / @tool_key:  工具级配置的 ini section 与 key（可为 NULL 跳过该层）
++ * @global_section / @global_key: 全局配置的 ini section 与 key（可为 NULL 跳过该层）
+  * @env_name:                  环境变量名（NULL 表示不检查环境变量）
+  * @default_val:               全部未命中时的默认值
+  *
+  * 优先级：env > 工具 section 的 key > 全局 section 的 key > 默认值
+  */
+-int sec_tool_enabled(const char *tool_section, const char *tool_key,
+-		     const char *global_section, const char *global_key,
+-		     const char *env_name, int default_val);
++int sec_resolve_int(const char *tool_section, const char *tool_key,
++		    const char *global_section, const char *global_key,
++		    const char *env_name, int default_val);
++
++/**
++ * sec_resolve_str - 通用字符串配置解析（参数规则同 sec_resolve_int）
++ * @default_val: 全部未命中时的默认字符串（可为 NULL）
++ *
++ * 优先级：env > 工具 section 的 key > 全局 section 的 key > 默认值
++ * 返回的字符串指针由 env/store 持有，调用方不得 free 或修改。
++ */
++const char *sec_resolve_str(const char *tool_section, const char *tool_key,
++			    const char *global_section, const char *global_key,
++			    const char *env_name, const char *default_val);
+ 
+ /**
+  * sec_tls_ciphersuites - 获取 TLS1.3 ciphersuites 算法参数列表
+diff --git a/libs/tests/rdb_config_test.c b/libs/tests/rdb_config_test.c
+index 80bfe782..f1ea5bec 100644
+--- a/libs/tests/rdb_config_test.c
++++ b/libs/tests/rdb_config_test.c
+@@ -297,12 +297,12 @@ TEST(tool_tls_config_isolated_and_prioritized)
+ 	assert(parse_config(path, err, sizeof(err)) == 0);
+ 	sec_cache_reset();
+ 
+-	assert(sec_tool_enabled(RDBCOMM_TOOL_SECTION, SEC_TOOL_MTLS_KEY, SEC_GLOBAL_SECTION,
++	assert(sec_resolve_int(RDBCOMM_TOOL_SECTION, SEC_TOOL_MTLS_KEY, SEC_GLOBAL_SECTION,
+ 			 SEC_GLOBAL_TLS_KEY, RDBCOMM_MTLS_ENABLE_ENV, 0) == 1);
+ 	assert(strcmp(sec_tool_tls_algorithm(RDBCOMM_TOOL_SECTION,
+ 						 RDBCOMM_TLS_ALGORITHM_ENV),
+ 		       RPC_TLS_ALGORITHM_AES_256_GCM_SHA384) == 0);
+-	assert(sec_tool_enabled(AIO_SPEED_TOOL_SECTION, SEC_TOOL_MTLS_KEY, SEC_GLOBAL_SECTION,
++	assert(sec_resolve_int(AIO_SPEED_TOOL_SECTION, SEC_TOOL_MTLS_KEY, SEC_GLOBAL_SECTION,
+ 			 SEC_GLOBAL_TLS_KEY, AIO_SPEED_MTLS_ENABLE_ENV, 0) == 0);
+ 	assert(strcmp(sec_tool_tls_algorithm(AIO_SPEED_TOOL_SECTION,
+ 						 AIO_SPEED_TLS_ALGORITHM_ENV),
+@@ -311,7 +311,7 @@ TEST(tool_tls_config_isolated_and_prioritized)
+ 	setenv(RDBCOMM_MTLS_ENABLE_ENV, "0", 1);
+ 	setenv(RDBCOMM_TLS_ALGORITHM_ENV, RPC_TLS_ALGORITHM_SM4_GCM_SM3, 1);
+ 	sec_cache_reset();
+-	assert(sec_tool_enabled(RDBCOMM_TOOL_SECTION, SEC_TOOL_MTLS_KEY, SEC_GLOBAL_SECTION,
++	assert(sec_resolve_int(RDBCOMM_TOOL_SECTION, SEC_TOOL_MTLS_KEY, SEC_GLOBAL_SECTION,
+ 			 SEC_GLOBAL_TLS_KEY, RDBCOMM_MTLS_ENABLE_ENV, 0) == 0);
+ 	assert(strcmp(sec_tool_tls_algorithm(RDBCOMM_TOOL_SECTION,
+ 						 RDBCOMM_TLS_ALGORITHM_ENV),
+@@ -321,7 +321,7 @@ TEST(tool_tls_config_isolated_and_prioritized)
+ 	setenv(RDBCOMM_MTLS_ENABLE_ENV, "1", 1);
+ 	setenv(RDBCOMM_TLS_ALGORITHM_ENV, RPC_TLS_ALGORITHM_AES_256_GCM_SHA384, 1);
+ 	sec_cache_reset();
+-	assert(sec_tool_enabled(RDBCOMM_TOOL_SECTION, SEC_TOOL_MTLS_KEY, SEC_GLOBAL_SECTION,
++	assert(sec_resolve_int(RDBCOMM_TOOL_SECTION, SEC_TOOL_MTLS_KEY, SEC_GLOBAL_SECTION,
+ 			 SEC_GLOBAL_TLS_KEY, RDBCOMM_MTLS_ENABLE_ENV, 0) == 1);
+ 	assert(strcmp(sec_tool_tls_algorithm(RDBCOMM_TOOL_SECTION,
+ 						 RDBCOMM_TLS_ALGORITHM_ENV),
+@@ -330,6 +330,38 @@ TEST(tool_tls_config_isolated_and_prioritized)
+ 	unsetenv(RDBCOMM_MTLS_ENABLE_ENV);
+ 	unsetenv(RDBCOMM_TLS_ALGORITHM_ENV);
+ 	sec_cache_reset();
++
++	/* sec_resolve_str: env > tool section > global > 默认值 */
++	assert(strcmp(sec_resolve_str(RDBCOMM_TOOL_SECTION,
++				     SEC_TOOL_ALGORITHM_KEY, SEC_GLOBAL_SECTION,
++				     SEC_GLOBAL_CIPHERSUITES_KEY,
++				     RDBCOMM_TLS_ALGORITHM_ENV, "default-alg"),
++		     RPC_TLS_ALGORITHM_AES_256_GCM_SHA384) == 0);
++	assert(strcmp(sec_resolve_str(AIO_SPEED_TOOL_SECTION,
++				     SEC_TOOL_ALGORITHM_KEY, SEC_GLOBAL_SECTION,
++				     SEC_GLOBAL_CIPHERSUITES_KEY,
++				     AIO_SPEED_TLS_ALGORITHM_ENV, "default-alg"),
++		     RPC_TLS_ALGORITHM_SM4_GCM_SM3) == 0);
++	/* env 优先于 tool section */
++	setenv(RDBCOMM_TLS_ALGORITHM_ENV, RPC_TLS_ALGORITHM_SM4_GCM_SM3, 1);
++	sec_cache_reset();
++	assert(strcmp(sec_resolve_str(RDBCOMM_TOOL_SECTION,
++				     SEC_TOOL_ALGORITHM_KEY, SEC_GLOBAL_SECTION,
++				     SEC_GLOBAL_CIPHERSUITES_KEY,
++				     RDBCOMM_TLS_ALGORITHM_ENV, "default-alg"),
++		     RPC_TLS_ALGORITHM_SM4_GCM_SM3) == 0);
++	unsetenv(RDBCOMM_TLS_ALGORITHM_ENV);
++	/* 全局 fallback: 工具 section/key 未命中时回退全局 ciphersuites */
++	assert(strcmp(sec_resolve_str(NULL, NULL, SEC_GLOBAL_SECTION,
++				     SEC_GLOBAL_CIPHERSUITES_KEY, NULL,
++				     "default-alg"),
++		     RPC_TLS_ALGORITHM_SM4_GCM_SM3) == 0);
++	/* 默认值: 全部未命中返回 default */
++	assert(strcmp(sec_resolve_str("nonexistent-section", "no-such-key",
++				     "nonexistent-global", "no-such-key", NULL,
++				     "default-alg"),
++		     "default-alg") == 0);
++
+ 	cleanup_temp(path);
+ }
+ 
+diff --git a/libs/timed_key.c b/libs/timed_key.c
+index 8f2a8914..962e7b68 100644
+--- a/libs/timed_key.c
++++ b/libs/timed_key.c
+@@ -224,7 +224,7 @@ uint32_t timed_key_get_timestamp(const char *key)
+ 
+ bool key_is_enabled(void)
+ {
+-	return sec_tool_enabled(SEC_GLOBAL_SECTION, SEC_GLOBAL_AUTH_KEY,
++	return sec_resolve_int(SEC_GLOBAL_SECTION, SEC_GLOBAL_AUTH_KEY,
+ 				SEC_MASTER_SECTION, SEC_MASTER_ENABLE_KEY, AUTH_ENABLE_ENV,
+ 				0) != 0;
+ }

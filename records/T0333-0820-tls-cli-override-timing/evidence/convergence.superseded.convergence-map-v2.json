@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "task identity is unique and immutable",
+      "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5"],
+      "evidence_ids": [
+        "ac1-rdb-config-diff-v3",
+        "ac1-rdb-config-test",
+        "ac2-tool-help",
+        "ac2-invalid-alg",
+        "ac3-rdbcomm-diff-v2",
+        "ac3-rpc-diff-v2",
+        "ac3-integration",
+        "ac4-sbt-diff-v2",
+        "ac4-session-test",
+        "ac5-build-v2",
+        "ac5-full-test-v2"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+diff --git a/libs/rdb-config.c b/libs/rdb-config.c
+index 6c0037e0..91c7221b 100644
+--- a/libs/rdb-config.c
++++ b/libs/rdb-config.c
+@@ -213,9 +213,6 @@ static int tls_enabled_cache = -1;
+ static int auth_enabled_cache = -1;
+ static int audit_enabled_cache = -1;
+ static const char *ciphersuites_cache = NULL;
+-static int cli_mtls_set = 0;
+-static int cli_mtls_enabled = 0;
+-static const char *cli_algorithm = NULL;
+ 
+ void sec_cache_reset(void)
+ {
+@@ -223,8 +220,6 @@ void sec_cache_reset(void)
+ 	auth_enabled_cache = -1;
+ 	audit_enabled_cache = -1;
+ 	ciphersuites_cache = NULL;
+-	cli_mtls_set = 0;
+-	cli_algorithm = NULL;
+ }
+ 
+ int sec_tls_enabled(void)
+@@ -285,8 +280,6 @@ int sec_tool_tls_enabled(const char *section, const char *env_name)
+ 	const char *env_value;
+ 	int value;
+ 
+-	if (cli_mtls_set)
+-		return cli_mtls_enabled;
+ 	if (env_name != NULL) {
+ 		env_value = getenv(env_name);
+ 		if (env_value != NULL)
+@@ -305,8 +298,6 @@ const char *sec_tool_tls_algorithm(const char *section, const char *env_name)
+ {
+ 	const char *value;
+ 
+-	if (cli_algorithm != NULL)
+-		return cli_algorithm;
+ 	if (env_name != NULL) {
+ 		value = getenv(env_name);
+ 		if (value != NULL && value[0] != '\0')
+@@ -322,21 +313,6 @@ const char *sec_tool_tls_algorithm(const char *section, const char *env_name)
+ 	return value != NULL && value[0] != '\0' ? value : RPC_TLS_ALGORITHM_DEFAULT;
+ }
+ 
+-int sec_tool_tls_set_cli_overrides(int mtls_set, int mtls_enabled,
+-					const char *algorithm)
+-{
+-	if (mtls_set && mtls_enabled != 0 && mtls_enabled != 1)
+-		return -1;
+-	if (algorithm != NULL && strcmp(algorithm, RPC_TLS_ALGORITHM_SM4_GCM_SM3) != 0 &&
+-	    strcmp(algorithm, RPC_TLS_ALGORITHM_AES_256_GCM_SHA384) != 0)
+-		return -1;
+-	sec_cache_reset();
+-	cli_mtls_set = mtls_set;
+-	cli_mtls_enabled = mtls_enabled;
+-	cli_algorithm = algorithm;
+-	return 0;
+-}
+-
+ const char *sec_tls_cert_path(const char *env_var, const char *default_path)
+ {
+ 	const char *env = env_var ? getenv(env_var) : NULL;
+diff --git a/libs/rdb-config.h b/libs/rdb-config.h
+index 73ca5d79..78ed4f40 100644
+--- a/libs/rdb-config.h
++++ b/libs/rdb-config.h
+@@ -103,8 +103,6 @@ const char *sec_tls_ciphersuites(void);
+ const char *sec_tls_ca_cn(void);
+ int sec_tool_tls_enabled(const char *section, const char *env_name);
+ const char *sec_tool_tls_algorithm(const char *section, const char *env_name);
+-int sec_tool_tls_set_cli_overrides(int mtls_set, int mtls_enabled,
+-					const char *algorithm);
+ 
+ /**
+  * sec_tls_cert_path - 解析证书文件路径
+diff --git a/libs/tests/rdb_config_test.c b/libs/tests/rdb_config_test.c
+index ccbc8ce9..b2a72f0e 100644
+--- a/libs/tests/rdb_config_test.c
++++ b/libs/tests/rdb_config_test.c
+@@ -316,15 +316,16 @@ TEST(tool_tls_config_isolated_and_prioritized)
+ 	assert(strcmp(sec_tool_tls_algorithm(RDBCOMM_TOOL_SECTION,
+ 						 RDBCOMM_TLS_ALGORITHM_ENV),
+ 		       RPC_TLS_ALGORITHM_SM4_GCM_SM3) == 0);
+-	assert(sec_tool_tls_set_cli_overrides(1, 1,
+-						 RPC_TLS_ALGORITHM_AES_256_GCM_SHA384) == 0);
++
++	/* env 优先于 config section（无 CLI 覆盖状态） */
++	setenv(RDBCOMM_MTLS_ENABLE_ENV, "1", 1);
++	setenv(RDBCOMM_TLS_ALGORITHM_ENV, RPC_TLS_ALGORITHM_AES_256_GCM_SHA384, 1);
++	sec_cache_reset();
+ 	assert(sec_tool_tls_enabled(RDBCOMM_TOOL_SECTION,
+ 						 RDBCOMM_MTLS_ENABLE_ENV) == 1);
+ 	assert(strcmp(sec_tool_tls_algorithm(RDBCOMM_TOOL_SECTION,
+ 						 RDBCOMM_TLS_ALGORITHM_ENV),
+ 		       RPC_TLS_ALGORITHM_AES_256_GCM_SHA384) == 0);
+-	assert(sec_tool_tls_set_cli_overrides(1, 2, NULL) != 0);
+-	assert(sec_tool_tls_set_cli_overrides(0, 0, "TLS_UNKNOWN") != 0);
+ 
+ 	unsetenv(RDBCOMM_MTLS_ENABLE_ENV);
+ 	unsetenv(RDBCOMM_TLS_ALGORITHM_ENV);

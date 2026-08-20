@@ -1,0 +1,5 @@
+removing build/bdist.linux-x86_64/wheel
+[0m[38;2;0;255;0;1m[100%]:[0m [38;2;0;255;0;1mbuild ok, spent 1.792s[0m
+[build] 2026-08-20T15:25:20+08:00
+[0m
+[38;2;0;255;0;1m100%[0m tests passed, [38;2;255;0;0;1m0[0m test(s) failed out of [1m38[0m, spent [1m2.536s[0m

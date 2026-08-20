@@ -1,0 +1,836 @@
+diff --git a/dmsbtex/main.c b/dmsbtex/main.c
+index a892b077..89c6dad6 100644
+--- a/dmsbtex/main.c
++++ b/dmsbtex/main.c
+@@ -41,6 +41,7 @@ typedef struct worker_info_ {
+ 	int blockSize;
+ 	int fd;
+ 	char blockSlice[512];
++	const dmsbtex_tls_config_t *tls_cfg;
+ } worker_info_t;
+ 
+ static void SignalShield()
+@@ -55,7 +56,7 @@ static void SignalShield()
+ 	}
+ }
+ 
+-int startWorker(int conn, int eFd);
++int startWorker(int conn, int eFd, const dmsbtex_tls_config_t *tls_cfg);
+ int OnBackupOpen(worker_info_t *winfo, const network_header_t *packet,
+ 		 network_header_t *net, char *hostresp, char *netresp,
+ 		 const int buflen);
+@@ -116,11 +117,16 @@ int main(int argc, char *argv[])
+ 	int eFd = eventfd(0, EFD_NONBLOCK);
+ 	int threads = 0;
+ 	bool sbtBegin = false;
++	dmsbtex_tls_config_t tls_cfg;
+ 
+ 	args_process(argc, argv, long_options__);
+ 
+ 	SignalShield();
+-	if (sbt_session_server_prepare() != 0) {
++	if (sbt_tls_config_init(&tls_cfg) != 0) {
++		ErrorLog("SBT TLS config initialization failed");
++		return 1;
++	}
++	if (sbt_session_server_prepare(&tls_cfg) != 0) {
+ 		ErrorLog("SBT mTLS server initialization failed");
+ 		return 1;
+ 	}
+@@ -182,7 +188,7 @@ int main(int argc, char *argv[])
+ 
+ 			threads++;
+ 			sbtBegin = true;
+-			startWorker(connfd, eFd);
++			startWorker(connfd, eFd, &tls_cfg);
+ 			try_times = 3;
+ 		} else {
+ 			out = 0;
+@@ -205,7 +211,7 @@ void *_worker(void *arg)
+ 	int ret = 0;
+ 	worker_info_t *winfo = (worker_info_t *)arg;
+ 	int connfd = winfo->connfd;
+-	if (sbt_session_server_accept(&winfo->io, connfd) != 0) {
++	if (sbt_session_server_accept(&winfo->io, connfd, winfo->tls_cfg) != 0) {
+ 		ErrorLog("SBT session handshake failed");
+ 		eventfd_write(winfo->eFd, 1);
+ 		close(connfd);
+@@ -293,7 +299,7 @@ return__:
+ 	free(netresp);
+ 	return NULL;
+ }
+-int startWorker(int conn, int eFd)
++int startWorker(int conn, int eFd, const dmsbtex_tls_config_t *tls_cfg)
+ {
+ 	int ret = 0;
+ 	pthread_t tid;
+@@ -303,6 +309,7 @@ int startWorker(int conn, int eFd)
+ 	}
+ 	winfo->eFd = eFd;
+ 	winfo->connfd = conn;
++	winfo->tls_cfg = tls_cfg;
+ 	rpc_hs_session_init_plain(&winfo->io, conn);
+ 	winfo->fd = -1;
+ 	winfo->blockSize = 0;
+diff --git a/dmsbtex/network.c b/dmsbtex/network.c
+index 9f9e6f45..fb0c9c44 100644
+--- a/dmsbtex/network.c
++++ b/dmsbtex/network.c
+@@ -39,44 +39,74 @@
+ /* 服务端 ctx：由 sbt_session_server_prepare 创建，accept 使用 */
+ static tls_cert_ctx_t *sbt_server_ctx = NULL;
+ 
+-static int sbt_mtls_enabled(void)
++int sbt_tls_config_init(dmsbtex_tls_config_t *cfg)
+ {
+-	const char *value = getenv(SBT_MTLS_ENABLE_ENV);
+-	return value && atoi(value) != 0;
+-}
+-
+-static uint16_t sbt_algorithm(void)
+-{
+-	return rpc_hs_algorithm_from_name(sec_tool_tls_algorithm(
+-		NULL, SBT_TLS_ALGORITHM_ENV));
++	const char *alg_name = sec_tool_tls_algorithm(NULL,
++						       SBT_TLS_ALGORITHM_ENV);
++	const char *v = getenv(SBT_MTLS_ENABLE_ENV);
++	memset(cfg, 0, sizeof(*cfg));
++	cfg->mtls_enabled = v && atoi(v) != 0;
++	snprintf(cfg->algorithm_name, sizeof(cfg->algorithm_name), "%s",
++		 alg_name);
++	cfg->algorithm = rpc_hs_algorithm_from_name(cfg->algorithm_name);
++	snprintf(cfg->ca_cn, sizeof(cfg->ca_cn), "%s", sec_tls_ca_cn());
++	snprintf(cfg->ca_cert, sizeof(cfg->ca_cert), "%s",
++		 sec_tls_cert_path("RPC_TLS_CA_CERT", CA_CERT_PATH));
++	snprintf(cfg->client_cert, sizeof(cfg->client_cert), "%s",
++		 sec_tls_cert_path("RPC_TLS_CLIENT_CERT", ""));
++	snprintf(cfg->client_key, sizeof(cfg->client_key), "%s",
++		 sec_tls_cert_path("RPC_TLS_CLIENT_KEY", ""));
++	snprintf(cfg->cert_dir, sizeof(cfg->cert_dir), "%s",
++		 sec_tls_cert_path("RPC_TLS_CERT_DIR", DEFAULT_CERT_DIR));
++	snprintf(cfg->server_cert, sizeof(cfg->server_cert), "%s",
++		 sec_tls_cert_path("RPC_TLS_SERVER_CERT", HOST_CERT_PATH));
++	snprintf(cfg->server_key, sizeof(cfg->server_key), "%s",
++		 sec_tls_cert_path("RPC_TLS_SERVER_KEY", HOST_KEY_PATH));
++	return 0;
+ }
+ 
+-static const char *sbt_algorithm_name(void)
++/* 客户端证书来源：显式路径优先，否则按 cert_dir/<ca_cn>/ 推导 */
++static int sbt_client_cert_paths(const dmsbtex_tls_config_t *cfg,
++				 char *cert_buf, size_t cert_sz,
++				 char *key_buf, size_t key_sz,
++				 const char *ca_cn)
+ {
+-	return sec_tool_tls_algorithm(NULL, SBT_TLS_ALGORITHM_ENV);
++	if (cfg->client_cert[0] && cfg->client_key[0]) {
++		snprintf(cert_buf, cert_sz, "%s", cfg->client_cert);
++		snprintf(key_buf, key_sz, "%s", cfg->client_key);
++		return 0;
++	}
++	if (!cfg->cert_dir[0] || !ca_cn || !ca_cn[0])
++		return -1;
++	snprintf(cert_buf, cert_sz, "%s%s%s/%s", cfg->cert_dir,
++		 cfg->cert_dir[strlen(cfg->cert_dir) - 1] == '/' ? "" : "/",
++		 ca_cn, CERT_FILE_HOST);
++	snprintf(key_buf, key_sz, "%s%s%s/%s", cfg->cert_dir,
++		 cfg->cert_dir[strlen(cfg->cert_dir) - 1] == '/' ? "" : "/",
++		 ca_cn, CERT_FILE_HOST_KEY);
++	return 0;
+ }
+ 
+-int sbt_session_client_init(rpc_hs_session_t *io, int fd)
++int sbt_session_client_init(rpc_hs_session_t *io, int fd,
++			    const dmsbtex_tls_config_t *cfg)
+ {
+ 	rpc_hs_result_t result = { 0 };
+ 	tls_cert_ctx_t *ctx = NULL;
+ 	tls_cert_client_options_t opts = { 0 };
+ 	char client_cert[512], client_key[512];
+-	const char *alg_name = sbt_algorithm_name();
+ 	rpc_hs_client_config_t config = {
+-		.mtls_enabled = sbt_mtls_enabled(),
+-		.algorithm = sbt_algorithm(),
++		.mtls_enabled = cfg->mtls_enabled,
++		.algorithm = cfg->algorithm,
+ 	};
+ 	rpc_hs_session_init_plain(io, fd);
+ 	opts.mtls_enabled = config.mtls_enabled;
+ 	if (config.mtls_enabled) {
+-		opts.profiles[0].algorithm = alg_name;
++		opts.profiles[0].algorithm = cfg->algorithm_name;
+ 		opts.profiles[0].ca_cn = result.ca_cn;
+-		opts.profiles[0].ca_cert = sec_tls_cert_path("RPC_TLS_CA_CERT",
+-							    CA_CERT_PATH);
+-		if (sec_tls_client_cert_paths(client_cert, sizeof(client_cert),
+-					      client_key, sizeof(client_key),
+-					      result.ca_cn) != 0)
++		opts.profiles[0].ca_cert = cfg->ca_cert;
++		if (sbt_client_cert_paths(cfg, client_cert, sizeof(client_cert),
++					  client_key, sizeof(client_key),
++					  result.ca_cn) != 0)
+ 			goto error;
+ 		opts.profiles[0].cert = client_cert;
+ 		opts.profiles[0].key = client_key;
+@@ -104,13 +134,14 @@ error:
+ 	return -1;
+ }
+ 
+-int sbt_session_server_accept(rpc_hs_session_t *io, int fd)
++int sbt_session_server_accept(rpc_hs_session_t *io, int fd,
++			      const dmsbtex_tls_config_t *cfg)
+ {
+ 	rpc_hs_result_t result = { 0 };
+ 	rpc_hs_server_config_t config = {
+-		.mtls_required = sbt_mtls_enabled(),
+-		.algorithm = sbt_algorithm(),
+-		.ca_cn = sec_tls_ca_cn(),
++		.mtls_required = cfg->mtls_enabled,
++		.algorithm = cfg->algorithm,
++		.ca_cn = cfg->ca_cn,
+ 	};
+ 	if (rpc_hs_server_accept(io, fd, &config, sbt_server_ctx, &result) != 0)
+ 		return -1;
+@@ -118,20 +149,17 @@ int sbt_session_server_accept(rpc_hs_session_t *io, int fd)
+ 		       ? 0 : -1;
+ }
+ 
+-int sbt_session_server_prepare(void)
++int sbt_session_server_prepare(const dmsbtex_tls_config_t *cfg)
+ {
+ 	tls_cert_server_options_t opts = { 0 };
+-	if (!sbt_mtls_enabled())
++	if (!cfg->mtls_enabled)
+ 		return 0;
+ 	opts.mtls_enabled = 1;
+-	opts.profiles[0].algorithm = sbt_algorithm_name();
+-	opts.profiles[0].ca_cn = sec_tls_ca_cn();
+-	opts.profiles[0].ca_cert = sec_tls_cert_path("RPC_TLS_CA_CERT",
+-						    CA_CERT_PATH);
+-	opts.profiles[0].cert = sec_tls_cert_path("RPC_TLS_SERVER_CERT",
+-						  HOST_CERT_PATH);
+-	opts.profiles[0].key = sec_tls_cert_path("RPC_TLS_SERVER_KEY",
+-						 HOST_KEY_PATH);
++	opts.profiles[0].algorithm = cfg->algorithm_name;
++	opts.profiles[0].ca_cn = cfg->ca_cn;
++	opts.profiles[0].ca_cert = cfg->ca_cert;
++	opts.profiles[0].cert = cfg->server_cert;
++	opts.profiles[0].key = cfg->server_key;
+ 	opts.profile_count = 1;
+ 	return tls_cert_init_server(&opts, &sbt_server_ctx);
+ }
+diff --git a/dmsbtex/network.h b/dmsbtex/network.h
+index 8ab86e3a..e4ab6c15 100644
+--- a/dmsbtex/network.h
++++ b/dmsbtex/network.h
+@@ -19,18 +19,38 @@ extern "C" {
+ #include "logger.h"
+ #include "rpc-handshake.h"
+ 
++/* dmsbtex TLS 配置：由 sbt_tls_config_init() 填充，由调用方（main/server、
++ * sbt/client）持有，消费函数从字段读取。 */
++typedef struct {
++	int mtls_enabled;
++	uint16_t algorithm;
++	char algorithm_name[128];
++	char ca_cn[256];
++	char ca_cert[512];
++	char client_cert[512];
++	char client_key[512];
++	char cert_dir[512];
++	char server_cert[512];
++	char server_key[512];
++} dmsbtex_tls_config_t;
++
+ int start_server(const char *ip, const unsigned short port);
+ int connect_server(const char *ip, const unsigned short port);
+ int send_packet(rpc_hs_session_t *io, const char *head_hostbuf, char *head_netbuf, char *buf,
+ 		const int buflen);
+ int recv_packet(rpc_hs_session_t *io, char *head_hostbuf, char *head_netbuf, char *buf,
+ 		const int buflen);
+-int sbt_session_client_init(rpc_hs_session_t *io, int fd);
+-int sbt_session_server_prepare(void);
+-int sbt_session_server_accept(rpc_hs_session_t *io, int fd);
++int sbt_session_client_init(rpc_hs_session_t *io, int fd,
++			    const dmsbtex_tls_config_t *cfg);
++int sbt_session_server_prepare(const dmsbtex_tls_config_t *cfg);
++int sbt_session_server_accept(rpc_hs_session_t *io, int fd,
++			      const dmsbtex_tls_config_t *cfg);
+ void sbt_session_cleanup(rpc_hs_session_t *io);
+ int close_socket(int fd);
+ 
++/* 解析 env/config 默认值，填充调用方持有的 cfg 结构体。 */
++int sbt_tls_config_init(dmsbtex_tls_config_t *cfg);
++
+ #endif /**__NETWORK_H__**/
+ #ifdef __cplusplus
+ }
+diff --git a/dmsbtex/sbt.c b/dmsbtex/sbt.c
+index 349b66fa..c04dc9bd 100644
+--- a/dmsbtex/sbt.c
++++ b/dmsbtex/sbt.c
+@@ -90,6 +90,8 @@ typedef struct dmsbtex_ {
+ 	int buflen;
+ 	char *host;
+ 	char *net;
++
++	dmsbtex_tls_config_t tls_cfg;
+ } dmsbtex_t;
+ 
+ int init_sbt_config(const char *cfg, dmsbtex_t *sbt);
+@@ -253,7 +255,8 @@ sbtcode_t sbtinit2(void *gvar_in, sbtinit2_input_t *in, sbtinit2_output_t **out)
+ 			sbt->srv_ip, sbt->srv_port, strerror(errno), errno);
+ 		close_logger();
+ 	} else {
+-		if (sbt_session_client_init(&sbt->io, sbt->agent) != 0) {
++		if (sbt_session_client_init(&sbt->io, sbt->agent,
++					    &sbt->tls_cfg) != 0) {
+ 			close(sbt->agent);
+ 			sbt->agent = -1;
+ 			close_logger();
+@@ -796,6 +799,7 @@ int init_sbt_config(const char *cfg, dmsbtex_t *sbt)
+ 		}
+ 	}
+ next__:
++	sbt_tls_config_init(&sbt->tls_cfg);
+ 	err = 0;
+ return__:
+ 	free(buff);
+diff --git a/libobk/include/libobk.h b/libobk/include/libobk.h
+index ff33e6f1..118436d6 100644
+--- a/libobk/include/libobk.h
++++ b/libobk/include/libobk.h
+@@ -4,6 +4,14 @@
+ #include <stdio.h>
+ #include "rpc-handshake.h"
+ 
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++#ifdef __cplusplus
++}
++#endif
++
+ struct sbtinfo {
+ 	int type;
+ 	void *value;
+@@ -59,5 +67,18 @@ struct sbtctx {
+ 	struct sbtinfo *pairs;
+ 	int localpath_fd;
+ 	int restore_modle; //backup or restore
++	// TLS 配置：由 sbt_client_tls_config_init() 填充，连接时从字段读取
++	int tls_mtls_enabled;
++	uint16_t tls_algorithm;
++	char tls_algorithm_name[128];
++	char tls_ca_cn[256];
++	char tls_ca_cert[512];
++	char tls_client_cert[512];
++	char tls_client_key[512];
++	char tls_cert_dir[512];
+ };
++
++/* 解析 env/config 默认值，填充 sbt 会话的 TLS 字段。
++ * 由 sbtinit2 在建立连接前调用。 */
++int sbt_client_tls_config_init(struct sbtctx *ctx);
+ #endif
+diff --git a/libobk/include/oracleCmdTbl.h b/libobk/include/oracleCmdTbl.h
+index f2d66a22..51c79371 100644
+--- a/libobk/include/oracleCmdTbl.h
++++ b/libobk/include/oracleCmdTbl.h
+@@ -6,6 +6,21 @@
+ #include <stdio.h>
+ #include <sys/stat.h>
+ 
++/* libobk 服务端 TLS 配置：由 sbt_server_tls_config_init() 填充，由调用方
++ * （main）持有，sbt_session_server_prepare/accept 从字段读取。 */
++typedef struct {
++	int mtls_enabled;
++	uint16_t algorithm;
++	char algorithm_name[128];
++	char ca_cn[256];
++	char ca_cert[512];
++	char client_cert[512];
++	char client_key[512];
++	char cert_dir[512];
++	char server_cert[512];
++	char server_key[512];
++} libobk_tls_config_t;
++
+ typedef struct oHdrHeader {
+ 	int eFd;
+ 	int conn;
+@@ -13,11 +28,15 @@ typedef struct oHdrHeader {
+ 	int blockSize;
+ 	FILE *fp;
+ 	char blockSlice[PATH_MAX];
++	const libobk_tls_config_t *tls_cfg;
+ } oHdrHeader;
+ 
+ // start a thread for oracle logic
+-extern int startWorker(int conn, int fd);
+-extern int sbt_session_server_prepare(void);
++extern int startWorker(int conn, int eFd, const libobk_tls_config_t *tls_cfg);
++extern int sbt_session_server_prepare(const libobk_tls_config_t *cfg);
++/* 解析 env/config 默认值，填充调用方持有的 cfg 结构体。
++ * 须在 sbt_session_server_prepare 之前调用。 */
++extern int sbt_server_tls_config_init(libobk_tls_config_t *cfg);
+ 
+ // oracle backup protocol recv
+ extern int recvOpenBackupSliceResponse(rpc_hs_session_t *io, FILE *fp);
+diff --git a/libobk/lib/logic/oracleCmdTbl.c b/libobk/lib/logic/oracleCmdTbl.c
+index 2e66e157..ef050ce4 100644
+--- a/libobk/lib/logic/oracleCmdTbl.c
++++ b/libobk/lib/logic/oracleCmdTbl.c
+@@ -25,24 +25,40 @@
+ /* 服务端 ctx：由 sbt_session_server_prepare 创建，accept 使用 */
+ static tls_cert_ctx_t *sbt_server_ctx = NULL;
+ 
+-static int sbt_mtls_enabled(void)
+-{
+-	const char *value = getenv(SBT_MTLS_ENABLE_ENV);
+-	return value && atoi(value) != 0;
+-}
+-
+-static const char *sbt_algorithm_name(void)
+-{
+-	return sec_tool_tls_algorithm(NULL, SBT_TLS_ALGORITHM_ENV);
+-}
+-
+-static int sbt_session_server_accept(rpc_hs_session_t *io, int fd)
++int sbt_server_tls_config_init(libobk_tls_config_t *cfg)
++{
++	const char *alg_name = sec_tool_tls_algorithm(NULL,
++						       SBT_TLS_ALGORITHM_ENV);
++	const char *v = getenv(SBT_MTLS_ENABLE_ENV);
++	memset(cfg, 0, sizeof(*cfg));
++	cfg->mtls_enabled = v && atoi(v) != 0;
++	snprintf(cfg->algorithm_name, sizeof(cfg->algorithm_name), "%s",
++		 alg_name);
++	cfg->algorithm = rpc_hs_algorithm_from_name(cfg->algorithm_name);
++	snprintf(cfg->ca_cn, sizeof(cfg->ca_cn), "%s", sec_tls_ca_cn());
++	snprintf(cfg->ca_cert, sizeof(cfg->ca_cert), "%s",
++		 sec_tls_cert_path("RPC_TLS_CA_CERT", CA_CERT_PATH));
++	snprintf(cfg->client_cert, sizeof(cfg->client_cert), "%s",
++		 sec_tls_cert_path("RPC_TLS_CLIENT_CERT", ""));
++	snprintf(cfg->client_key, sizeof(cfg->client_key), "%s",
++		 sec_tls_cert_path("RPC_TLS_CLIENT_KEY", ""));
++	snprintf(cfg->cert_dir, sizeof(cfg->cert_dir), "%s",
++		 sec_tls_cert_path("RPC_TLS_CERT_DIR", DEFAULT_CERT_DIR));
++	snprintf(cfg->server_cert, sizeof(cfg->server_cert), "%s",
++		 sec_tls_cert_path("RPC_TLS_SERVER_CERT", HOST_CERT_PATH));
++	snprintf(cfg->server_key, sizeof(cfg->server_key), "%s",
++		 sec_tls_cert_path("RPC_TLS_SERVER_KEY", HOST_KEY_PATH));
++	return 0;
++}
++
++static int sbt_session_server_accept(rpc_hs_session_t *io, int fd,
++				     const libobk_tls_config_t *cfg)
+ {
+ 	rpc_hs_result_t result = { 0 };
+ 	rpc_hs_server_config_t config = {
+-		.mtls_required = sbt_mtls_enabled(),
+-		.algorithm = rpc_hs_algorithm_from_name(sbt_algorithm_name()),
+-		.ca_cn = sec_tls_ca_cn(),
++		.mtls_required = cfg->mtls_enabled,
++		.algorithm = rpc_hs_algorithm_from_name(cfg->algorithm_name),
++		.ca_cn = cfg->ca_cn,
+ 	};
+ 	if (rpc_hs_server_accept(io, fd, &config, sbt_server_ctx, &result) != 0)
+ 		return -1;
+@@ -50,20 +66,17 @@ static int sbt_session_server_accept(rpc_hs_session_t *io, int fd)
+ 		       ? 0 : -1;
+ }
+ 
+-int sbt_session_server_prepare(void)
++int sbt_session_server_prepare(const libobk_tls_config_t *cfg)
+ {
+ 	tls_cert_server_options_t opts = { 0 };
+-	if (!sbt_mtls_enabled())
++	if (!cfg->mtls_enabled)
+ 		return 0;
+ 	opts.mtls_enabled = 1;
+-	opts.profiles[0].algorithm = sbt_algorithm_name();
+-	opts.profiles[0].ca_cn = sec_tls_ca_cn();
+-	opts.profiles[0].ca_cert = sec_tls_cert_path("RPC_TLS_CA_CERT",
+-						    CA_CERT_PATH);
+-	opts.profiles[0].cert = sec_tls_cert_path("RPC_TLS_SERVER_CERT",
+-						  HOST_CERT_PATH);
+-	opts.profiles[0].key = sec_tls_cert_path("RPC_TLS_SERVER_KEY",
+-						 HOST_KEY_PATH);
++	opts.profiles[0].algorithm = cfg->algorithm_name;
++	opts.profiles[0].ca_cn = cfg->ca_cn;
++	opts.profiles[0].ca_cert = cfg->ca_cert;
++	opts.profiles[0].cert = cfg->server_cert;
++	opts.profiles[0].key = cfg->server_key;
+ 	opts.profile_count = 1;
+ 	return tls_cert_init_server(&opts, &sbt_server_ctx);
+ }
+@@ -767,7 +780,7 @@ void *_network(void *argv)
+ 	}
+ 	oHdrHeader *odr = (oHdrHeader *)argv;
+ 	InfoLog("thread begin to run [%d]", odr->conn);
+-	if (sbt_session_server_accept(&odr->io, odr->conn) != 0) {
++	if (sbt_session_server_accept(&odr->io, odr->conn, odr->tls_cfg) != 0) {
+ 		InfoLog("SBT session handshake failed");
+ 		close(odr->conn);
+ 		odr->conn = -1;
+@@ -814,7 +827,7 @@ void *_network(void *argv)
+ 	return NULL;
+ }
+ 
+-int startWorker(int conn, int eFd)
++int startWorker(int conn, int eFd, const libobk_tls_config_t *tls_cfg)
+ {
+ 	pthread_t tid;
+ 	oHdrHeader *odr = (oHdrHeader *)malloc(sizeof(oHdrHeader));
+@@ -825,6 +838,7 @@ int startWorker(int conn, int eFd)
+ 	odr->conn = conn;
+ 	odr->fp = NULL;
+ 	odr->blockSize = 0;
++	odr->tls_cfg = tls_cfg;
+ 	memset(odr->blockSlice, 0, PATH_MAX);
+ 	int ret = pthread_create(&tid, NULL, _network, odr);
+ 	if (ret == 0) {
+diff --git a/libobk/lib/sbt/libobk.c b/libobk/lib/sbt/libobk.c
+index 08f72443..503fd02e 100644
+--- a/libobk/lib/sbt/libobk.c
++++ b/libobk/lib/sbt/libobk.c
+@@ -48,62 +48,111 @@
+ #define SBT_MTLS_ENABLE_ENV "SBT_MTLS_ENABLE"
+ #define SBT_TLS_ALGORITHM_ENV "SBT_TLS_ALGORITHM"
+ 
+-static int sbt_mtls_enabled(void)
++struct global_data_area {
++	struct sbtopt options[10];
++	struct sbtapi api;
++	int api_version;
++	int mm_version;
++	int context_size;
++	int proxy_limit;
++	int proxy_copy_support;
++	int maxsize;
++};
++
++struct global_data_area global = {};
++
++/* TLS 配置：由 sbt_client_tls_config_init() 填充至 sbt 会话结构体（struct sbtctx），
++ * sbtinit2 在建立连接前调用，sbt_session_client_init 从 ctx 字段读取，
++ * 不再于每次调用时隐式查询 env/rdb-config。 */
++int sbt_client_tls_config_init(struct sbtctx *ctx)
+ {
+-	const char *value = getenv(SBT_MTLS_ENABLE_ENV);
+-	return value && atoi(value) != 0;
++	const char *alg_name = sec_tool_tls_algorithm(NULL,
++						       SBT_TLS_ALGORITHM_ENV);
++	const char *v = getenv(SBT_MTLS_ENABLE_ENV);
++	ctx->tls_mtls_enabled = v && atoi(v) != 0;
++	snprintf(ctx->tls_algorithm_name, sizeof(ctx->tls_algorithm_name), "%s",
++		 alg_name);
++	ctx->tls_algorithm = rpc_hs_algorithm_from_name(ctx->tls_algorithm_name);
++	snprintf(ctx->tls_ca_cn, sizeof(ctx->tls_ca_cn), "%s", sec_tls_ca_cn());
++	snprintf(ctx->tls_ca_cert, sizeof(ctx->tls_ca_cert), "%s",
++		 sec_tls_cert_path("RPC_TLS_CA_CERT", CA_CERT_PATH));
++	snprintf(ctx->tls_client_cert, sizeof(ctx->tls_client_cert), "%s",
++		 sec_tls_cert_path("RPC_TLS_CLIENT_CERT", ""));
++	snprintf(ctx->tls_client_key, sizeof(ctx->tls_client_key), "%s",
++		 sec_tls_cert_path("RPC_TLS_CLIENT_KEY", ""));
++	snprintf(ctx->tls_cert_dir, sizeof(ctx->tls_cert_dir), "%s",
++		 sec_tls_cert_path("RPC_TLS_CERT_DIR", DEFAULT_CERT_DIR));
++	return 0;
+ }
+ 
+-static const char *sbt_algorithm_name(void)
++/* 客户端证书来源：显式路径优先，否则按 cert_dir/<ca_cn>/ 推导 */
++static int sbt_client_cert_paths(const struct sbtctx *ctx,
++				 char *cert_buf, size_t cert_sz,
++				 char *key_buf, size_t key_sz,
++				 const char *ca_cn)
+ {
+-	return sec_tool_tls_algorithm(NULL, SBT_TLS_ALGORITHM_ENV);
++	if (ctx->tls_client_cert[0] && ctx->tls_client_key[0]) {
++		snprintf(cert_buf, cert_sz, "%s", ctx->tls_client_cert);
++		snprintf(key_buf, key_sz, "%s", ctx->tls_client_key);
++		return 0;
++	}
++	if (!ctx->tls_cert_dir[0] || !ca_cn || !ca_cn[0])
++		return -1;
++	snprintf(cert_buf, cert_sz, "%s%s%s/%s", ctx->tls_cert_dir,
++		 ctx->tls_cert_dir[strlen(ctx->tls_cert_dir) - 1] == '/'
++			 ? "" : "/",
++		 ca_cn, CERT_FILE_HOST);
++	snprintf(key_buf, key_sz, "%s%s%s/%s", ctx->tls_cert_dir,
++		 ctx->tls_cert_dir[strlen(ctx->tls_cert_dir) - 1] == '/'
++			 ? "" : "/",
++		 ca_cn, CERT_FILE_HOST_KEY);
++	return 0;
+ }
+ 
+-static int sbt_session_client_init(rpc_hs_session_t *io, int fd)
++static int sbt_session_client_init(rpc_hs_session_t *io, int fd,
++				   const struct sbtctx *ctx)
+ {
+ 	rpc_hs_result_t result = { 0 };
+-	tls_cert_ctx_t *ctx = NULL;
++	tls_cert_ctx_t *tls_ctx = NULL;
+ 	tls_cert_client_options_t opts = { 0 };
+ 	char client_cert[512], client_key[512];
+-	const char *alg_name = sbt_algorithm_name();
+ 	rpc_hs_client_config_t config = {
+-		.mtls_enabled = sbt_mtls_enabled(),
+-		.algorithm = rpc_hs_algorithm_from_name(alg_name),
++		.mtls_enabled = ctx->tls_mtls_enabled,
++		.algorithm = ctx->tls_algorithm,
+ 	};
+ 	rpc_hs_session_init_plain(io, fd);
+ 	opts.mtls_enabled = config.mtls_enabled;
+ 	if (config.mtls_enabled) {
+-		opts.profiles[0].algorithm = alg_name;
++		opts.profiles[0].algorithm = ctx->tls_algorithm_name;
+ 		opts.profiles[0].ca_cn = result.ca_cn;
+-		opts.profiles[0].ca_cert = sec_tls_cert_path("RPC_TLS_CA_CERT",
+-							    CA_CERT_PATH);
+-		if (sec_tls_client_cert_paths(client_cert, sizeof(client_cert),
+-					      client_key, sizeof(client_key),
+-					      result.ca_cn) != 0)
++		opts.profiles[0].ca_cert = ctx->tls_ca_cert;
++		if (sbt_client_cert_paths(ctx, client_cert, sizeof(client_cert),
++					  client_key, sizeof(client_key),
++					  result.ca_cn) != 0)
+ 			goto error;
+ 		opts.profiles[0].cert = client_cert;
+ 		opts.profiles[0].key = client_key;
+ 		opts.profile_count = 1;
+-		if (tls_cert_init_client(&opts, &ctx) != 0)
++		if (tls_cert_init_client(&opts, &tls_ctx) != 0)
+ 			goto error;
+ 	}
+ 	if (rpc_hs_client_negotiate_config(io, &config, &result) != 0)
+ 		goto error;
+ 	if (result.result == RPC_HS_OK_MTLS) {
+-		SSL *ssl = tls_cert_client_handshake(ctx, fd,
++		SSL *ssl = tls_cert_client_handshake(tls_ctx, fd,
+ 			result.algorithm ? rpc_hs_algorithm_name(result.algorithm) : NULL,
+ 			NULL);
+ 		if (!ssl)
+ 			goto error;
+ 		rpc_hs_session_init_tls(io, fd, ssl);
+ 	}
+-	if (ctx)
+-		tls_cert_cleanup(ctx);
++	if (tls_ctx)
++		tls_cert_cleanup(tls_ctx);
+ 	return 0;
+ error:
+ 	rpc_hs_session_cleanup(io);
+-	if (ctx)
+-		tls_cert_cleanup(ctx);
++	if (tls_ctx)
++		tls_cert_cleanup(tls_ctx);
+ 	return -1;
+ }
+ 
+@@ -117,19 +166,6 @@ error:
+ #define SBTERROR_NOTOPEN 7020 // no file is open
+ #define SBTERROR_CLOSE 7023 // error closing backup file
+ 
+-struct global_data_area {
+-	struct sbtopt options[10];
+-	struct sbtapi api;
+-	int api_version;
+-	int mm_version;
+-	int context_size;
+-	int proxy_limit;
+-	int proxy_copy_support;
+-	int maxsize;
+-};
+-
+-struct global_data_area global = {};
+-
+ int catenate(char *buf, size_t n, const char *dir, const char *file)
+ {
+ 	const char *p = file;
+@@ -309,7 +345,12 @@ int sbtinit2(struct sbtctx *ctx, int flags, const struct sbtinfo *args)
+ 		return -1;
+ 	}
+ 	ctx->fd = fd;
+-	if (sbt_session_client_init(&ctx->io, fd) != 0) {
++	if (sbt_client_tls_config_init(ctx) != 0) {
++		close(fd);
++		ctx->fd = -1;
++		return -1;
++	}
++	if (sbt_session_client_init(&ctx->io, fd, ctx) != 0) {
+ 		close(fd);
+ 		ctx->fd = -1;
+ 		return -1;
+diff --git a/libobk/main.c b/libobk/main.c
+index d9713c6b..8d6e8f92 100644
+--- a/libobk/main.c
++++ b/libobk/main.c
+@@ -49,9 +49,14 @@ extern char *g_version;
+ int main(int argc, char *argv[])
+ {
+ 	int ret = 0;
++	libobk_tls_config_t tls_cfg;
+ 	g_compress_enabled = 1;
+ 	args_process(argc, argv, long_options__);
+-	if (sbt_session_server_prepare() != 0) {
++	if (sbt_server_tls_config_init(&tls_cfg) != 0) {
++		InfoLog("SBT TLS config initialization failed");
++		return -1;
++	}
++	if (sbt_session_server_prepare(&tls_cfg) != 0) {
+ 		InfoLog("SBT mTLS server initialization failed");
+ 		return -1;
+ 	}
+@@ -157,7 +162,7 @@ int main(int argc, char *argv[])
+ 			InfoLog("FileTransferAgent accept new socket [%d]",
+ 				conn);
+ 			threads++;
+-			startWorker(conn, eFd);
++			startWorker(conn, eFd, &tls_cfg);
+ 			tryTimes = 3;
+ 		} else {
+ 			eventfd_t out = 0;
+diff --git a/libs/sbt-session.c b/libs/sbt-session.c
+deleted file mode 100644
+index 878a8267..00000000
+--- a/libs/sbt-session.c
++++ /dev/null
+@@ -1,107 +0,0 @@
+-#include "sbt-session.h"
+-
+-#include <stdlib.h>
+-
+-#include "rdb-config.h"
+-#include "tls_cert.h"
+-#include "common.h"
+-
+-static int env_enabled(const char *name)
+-{
+-	const char *value = name ? getenv(name) : NULL;
+-	return value && atoi(value) != 0;
+-}
+-
+-static const char *algorithm(const char *name)
+-{
+-	return sec_tool_tls_algorithm(NULL, name);
+-}
+-
+-/* 服务端 ctx 由 prepare 创建、accept 使用；调用方负责在退出时释放 */
+-static tls_cert_ctx_t *server_ctx = NULL;
+-
+-static void fill_profile(tls_cert_profile_t *profile, const char *algo)
+-{
+-	memset(profile, 0, sizeof(*profile));
+-	profile->algorithm = algo;
+-	profile->ca_cn = sec_tls_ca_cn();
+-	profile->ca_cert = sec_tls_cert_path("RPC_TLS_CA_CERT", CA_CERT_PATH);
+-	profile->cert = sec_tls_cert_path("RPC_TLS_SERVER_CERT", HOST_CERT_PATH);
+-	profile->key = sec_tls_cert_path("RPC_TLS_SERVER_KEY", HOST_KEY_PATH);
+-}
+-
+-int sbt_session_client_init(rpc_hs_session_t *io, int fd,
+-			    const char *enabled_env, const char *algorithm_env)
+-{
+-	rpc_hs_result_t result = { 0 };
+-	tls_cert_ctx_t *ctx = NULL;
+-	tls_cert_client_options_t opts = { 0 };
+-	char client_cert[512], client_key[512];
+-	const char *alg_name = algorithm(algorithm_env);
+-	rpc_hs_client_config_t config = {
+-		.mtls_enabled = env_enabled(enabled_env),
+-		.algorithm = rpc_hs_algorithm_from_name(alg_name),
+-	};
+-	rpc_hs_session_init_plain(io, fd);
+-	opts.mtls_enabled = config.mtls_enabled;
+-	if (config.mtls_enabled) {
+-		opts.profiles[0].algorithm = alg_name;
+-		opts.profiles[0].ca_cn = result.ca_cn;
+-		opts.profiles[0].ca_cert = sec_tls_cert_path("RPC_TLS_CA_CERT",
+-							    CA_CERT_PATH);
+-		if (sec_tls_client_cert_paths(client_cert, sizeof(client_cert),
+-					      client_key, sizeof(client_key),
+-					      result.ca_cn) != 0)
+-			goto error;
+-		opts.profiles[0].cert = client_cert;
+-		opts.profiles[0].key = client_key;
+-		opts.profile_count = 1;
+-		if (tls_cert_init_client(&opts, &ctx) != 0)
+-			goto error;
+-	}
+-	if (rpc_hs_client_negotiate_config(io, &config, &result) != 0)
+-		goto error;
+-	if (result.result == RPC_HS_OK_MTLS) {
+-		SSL *ssl = tls_cert_client_handshake(ctx, fd,
+-			result.algorithm ? rpc_hs_algorithm_name(result.algorithm) : NULL,
+-			NULL);
+-		if (!ssl)
+-			goto error;
+-		rpc_hs_session_init_tls(io, fd, ssl);
+-	}
+-	if (ctx)
+-		tls_cert_cleanup(ctx);
+-	return 0;
+-error:
+-	rpc_hs_session_cleanup(io);
+-	if (ctx)
+-		tls_cert_cleanup(ctx);
+-	return -1;
+-}
+-
+-int sbt_session_server_prepare(const char *enabled_env,
+-			       const char *algorithm_env)
+-{
+-	tls_cert_server_options_t opts = { 0 };
+-	if (!env_enabled(enabled_env))
+-		return 0;
+-	opts.mtls_enabled = 1;
+-	fill_profile(&opts.profiles[0], algorithm(algorithm_env));
+-	opts.profile_count = 1;
+-	return tls_cert_init_server(&opts, &server_ctx);
+-}
+-
+-int sbt_session_server_accept(rpc_hs_session_t *io, int fd,
+-			      const char *enabled_env, const char *algorithm_env)
+-{
+-	rpc_hs_result_t result = { 0 };
+-	rpc_hs_server_config_t config = {
+-		.mtls_required = env_enabled(enabled_env),
+-		.algorithm = rpc_hs_algorithm_from_name(algorithm(algorithm_env)),
+-		.ca_cn = sec_tls_ca_cn(),
+-	};
+-	if (rpc_hs_server_accept(io, fd, &config, server_ctx, &result) != 0)
+-		return -1;
+-	return result.result == RPC_HS_OK_MTLS || result.result == RPC_HS_OK_PLAIN
+-		       ? 0 : -1;
+-}
+\ No newline at end of file
+diff --git a/libs/sbt-session.h b/libs/sbt-session.h
+deleted file mode 100644
+index e32775f5..00000000
+--- a/libs/sbt-session.h
++++ /dev/null
+@@ -1,21 +0,0 @@
+-#ifndef SBT_SESSION_H
+-#define SBT_SESSION_H
+-
+-#include "rpc-handshake.h"
+-
+-#ifdef __cplusplus
+-extern "C" {
+-#endif
+-
+-int sbt_session_client_init(rpc_hs_session_t *io, int fd,
+-			    const char *enabled_env, const char *algorithm_env);
+-int sbt_session_server_prepare(const char *enabled_env,
+-			       const char *algorithm_env);
+-int sbt_session_server_accept(rpc_hs_session_t *io, int fd,
+-			      const char *enabled_env, const char *algorithm_env);
+-
+-#ifdef __cplusplus
+-}
+-#endif
+-
+-#endif
