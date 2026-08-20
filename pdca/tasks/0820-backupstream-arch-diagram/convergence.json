@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "task identity is unique and immutable",
+      "criteria": ["AC-1", "AC-13", "AC-14"],
+      "evidence_ids": ["arch-diagrams-full", "research-report-v1"]
+    }
+  ]
+}

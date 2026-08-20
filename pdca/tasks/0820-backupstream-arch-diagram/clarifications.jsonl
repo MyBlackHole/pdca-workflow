@@ -1,0 +1,12 @@
+{"at":"2026-08-20T19:08:25+08:00","source":"task_identity","summary":"created with record identity T0300-0820-backupstream-arch-diagram"}
+{"source":"direction_confirm","summary":"产出物放项目 docs/ 新文档；范围覆盖全项目四二进制+协议+运行时；详细程度极致逐函数级（80+ 图）；图表纯 Mermaid；语言全中文+术语对照","response":"confirmed","at":"2026-08-20T19:10:00+08:00"}
+{"source":"final_confirmation","summary":"用户批准 T0300 最终方案：docs/ARCH_DIAGRAMS.md 十大章、纯 Mermaid、全中文、极致逐函数级、含 5 类对象生命周期图","response":"confirmed","at":"2026-08-20T19:34:50+08:00"}
+{"source":"grilling","question":"调研方法是否充分？（五个子代理函数级分析 + mmdc 全图渲染校验 + 47 个源码引用存在性核验）","answer":"充分：覆盖全部 176 源文件的函数级结构，60 图 0 渲染失败，引用文件全部核实","at":"2026-08-20T19:54:00+08:00"}
+{"source":"grilling","question":"是否有遗漏的关键信息来源？（gitnexus 未索引 backupstream，依赖直接源码分析）","answer":"已补足：直接读取源码 + 既有知识库两篇 backupstream 演进文档对照，版本事实以 171.0.0 源码为准","at":"2026-08-20T19:54:00+08:00"}
+{"source":"grilling","question":"结论是否有替代解释？（Agent 零状态不变量、双事实 BackupResult）","answer":"已核对 README/docs/ARCHITECTURE.md 原始表述，文档 1.3/1.4 节以源码+文档双重证据呈现，无冲突解释","at":"2026-08-20T19:54:00+08:00"}
+{"source":"grilling","question":"产出物是否完整无遗漏？（十大章 + 60 图 + 5 类生命周期 + 附录索引）","answer":"按 PRD AC-1~AC-14 逐条核验全部满足，章节标题/图计数/图例行均 grep 可复核","at":"2026-08-20T19:54:00+08:00"}
+{"source":"check_confirmation","response":"confirmed","summary":"用户审查产出物后确认结论成立，verdict outcome=confirmed","at":"2026-08-20T19:57:00+08:00"}
+{"source":"grilling","question":"这个结论的适用范围和限制是什么？","answer":"适用于 backupstream 171.0.0 源码快照；Mermaid 图规范经验与命名易混模块提示可跨任务复用；不覆盖未来版本演进与性能断言","at":"2026-08-20T19:58:00+08:00"}
+{"source":"grilling","question":"哪些部分可以提炼为可复用的知识？","answer":"1) 基于源码绘图的验证流程（mmdc 全图渲染 + 引用存在性核验 + 保留字符规避）；2) backupstream 171.0.0 模块命名映射（agent_restore_reactor 等易混）；3) 图解文档组织规范（十大章递进 + 生命周期图）","at":"2026-08-20T19:58:00+08:00"}
+{"source":"grilling","question":"下次遇到类似问题，流程上有什么改进？","answer":"在 Plan 阶段即核验源码引用文件名真实性（先 find 确认再写入文档）；Mermaid 写入前即规避保留字符（,()/等）；建议将 60 图渲染纳入 CI 校验","at":"2026-08-20T19:58:00+08:00"}
+{"source":"knowledge_decision","at":"2026-08-20T19:57:57+0800","action":"wrote","reason":"提炼源码图解文档验证流程（mmdc 渲染/引用核验/保留字符规避）到 knowledge/pdca-workflow/source-diagram-doc-verification.md"}
