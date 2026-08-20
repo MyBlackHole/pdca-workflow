@@ -2,7 +2,7 @@
 schema: pdca.asset/v1
 id: T0300-0820-backupstream-arch-diagram
 phase: check
-source_ids: [arch-diagrams-v6, research-report-v2, convergence-map-v7]
+source_ids: [arch-diagrams-v7, research-report-v2, convergence-map-v8]
 ---
 
 ## 上下文
