@@ -83,6 +83,9 @@ research 场景无测试产物，跳过。
 - [ ] AC-12: 生命周期图覆盖：BackupResult、manifest、会话、Data Lane、EXEC 子进程 5 类对象各至少一张（stateDiagram-v2，含状态转移与触发条件）
 - [ ] AC-13: 文档副本登记到 PDCA record `records/T0300-0820-backupstream-arch-diagram/evidence/`
 - [ ] AC-14: 文档正文为中文，术语首次出现含英文原名；不修改任何 `src/` 源码与既有 `docs/` 文档
+- [ ] AC-15: 资源元抽象关系图：含 lane↔socket 独立连接映射（N+1 条 TCP/TLS）、会话→通道→lane→socket 资源层级链、lane 三层并发分用模型（各至少一张图）
+- [ ] AC-16: 海量小文件并发处理章节：含客户端单线程生产者+流水线帧、小文件三级聚合（512KB 判定/1024 文件包/8 文件 task）、TREE_BARRIER 累积栅栏、inflight 128/64 水位、SmallLocalWriterPool 接收并发
+- [ ] AC-17: 渲染兼容性：所有 subgraph ID 使用 ASCII（不含中文），全部图在 mmdc 下渲染成功且 SVG 产物生成
 
 ## 范围外
 
