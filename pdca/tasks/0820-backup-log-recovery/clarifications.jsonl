@@ -1,0 +1,21 @@
+{"at":"2026-08-20T11:30:10+08:00","source":"task_identity","summary":"created with record identity T0333-0820-backup-log-recovery"}
+{"round":1,"question":"Q1 备份出的数据具体形态? (1备份工具产物/2在线备份运行中复制/3备份系统备份流/4恢复后数据文件)","answer":"备份场景存在数据不一致问题，需要通过日志先恢复到一致性","recommended":"2(在线备份运行中复制,触及T0325范围外边界)","source":"grilling","at":"2026-08-20T11:30:24+08:00"}
+{"round":1,"question":"Q2 分析产出形态? (research报告 vs development含POC)","answer":"先调研可行性,产出路径选型报告,推荐后再定实现","recommended":"research","source":"grilling","at":"2026-08-20T11:30:24+08:00"}
+{"round":1,"question":"Q3 数据来源: 无真实备份样本,容器构造 vs 纯文档分析","answer":"(待Do阶段容器构造验证)","recommended":"容器构造(在线备份制造样本)","source":"grilling","at":"2026-08-20T11:30:24+08:00"}
+{"round":1,"question":"Q4 任务归属: T0325延续 vs 独立","answer":"独立任务,引用T0325知识","recommended":"独立任务","source":"grilling","at":"2026-08-20T11:30:24+08:00"}
+{"round":2,"question":"Q5 恢复实现路径: 1借力现有工具(xtrabackup --prepare / pg_ctl recovery) 2自研离线重放 3先调研+选型报告","answer":"3(先调研+选型)","recommended":"3","source":"grilling","at":"2026-08-20T11:30:24+08:00"}
+{"round":2,"question":"Q6 平台范围: 双平台都覆盖 or 先一个","answer":"ok(双平台覆盖)","recommended":"双平台覆盖","source":"grilling","at":"2026-08-20T11:30:24+08:00"}
+{"round":2,"question":"Q7 恢复一致性目标态: 1等价正常关闭快照 2仅文件级一致","answer":"1(等价正常关闭快照)","recommended":"1","source":"grilling","at":"2026-08-20T11:30:24+08:00"}
+{"round":2,"question":"Q8 产出形态: research vs development","answer":"ok(research)","recommended":"research","source":"grilling","at":"2026-08-20T11:30:24+08:00"}
+{"source":"direction_confirm","summary":"目标=备份(非正常关闭)产物经日志(redo/WAL)恢复成等价正常关闭快照后物理直读转Parquet;范围=PG+MySQL双平台调研,PG优先;方案方向=先做路径选型(research),产出含借力工具vs自研离线重放对比与适用边界;验收=等价正常关闭快照可见性","response":"confirmed","at":"2026-08-20T11:30:31+08:00"}
+{"round":3,"question":"Q9 路径选型修正: A(借力工具)显然可行,核心价值在 B(自研离线重放)","answer":"A肯定没有问题,所以B才有价值","recommended":"B为核心,A作为对照基线/验证手段","source":"grilling","at":"2026-08-20T11:33:08+08:00"}
+{"round":4,"question":"Q10 B实现深度: 1 research技术方案(方法论+设计,不写代码) 2 development直接实现POC","answer":"1(research技术方案)","recommended":"1","source":"grilling","at":"2026-08-20T11:34:04+08:00"}
+{"round":4,"question":"Q11 AC-2调整为B技术方案设计而非A/B选型对比","answer":"ok","recommended":"ok","source":"grilling","at":"2026-08-20T11:34:04+08:00"}
+{"source":"final_confirmation","summary":"PG/MySQL 备份产物日志恢复一致性调研: 核心=路径B自研离线重放技术方案设计(research), A借力工具作对照基线; 双平台PG优先; 目标态=等价正常关闭快照","response":"confirmed","at":"2026-08-20T11:35:29+08:00"}
+{"round":5,"question":"Ch2-Grill1 调研方法充分性: 恢复机制结论是否基于第一手源码(log0recv/xlogrecovery)而非二手文档?","answer":"基于第一手源码: percona-xtrabackup log0recv.cc/trx0roll.cc/srv0start.cc + PG18.4 xlogrecovery.c/heapam_xlog.c/nbtxlog.c, 并容器实证验证关键假设","source":"grilling","at":"2026-08-20T12:28:00+08:00"}
+{"round":5,"question":"Ch2-Grill2 结论是否有替代解释? 未恢复PG heap崩溃是否可能源于工具自身bug而非备份不一致?","answer":"UBSAN 实证 signed integer overflow 发生于 numeric 解码(pg_heap_reader.c:151), 对象为备份 heap 中的异常数据; 同工具在正常关闭快照上 55000 行转换正常无崩溃, 排除工具固有bug, 替代解释已排除","source":"grilling","at":"2026-08-20T12:28:00+08:00"}
+{"round":5,"question":"Ch2-Grill3 是否有遗漏关键信息? MySQL purge 边界(30行残留)与 pg_basebackup 在线备份语义(恢复点=备份开始已提交快照)是否已充分覆盖?","answer":"已覆盖: 30行残留实证记录于mysql-recovery.md(redo/undo/trx_sys/purge四要素); pg_basebackup恢复点语义在pg-basebackup-recovery.md明确(活跃事务提交与否决定行数); 报告AC-4边界与AC-1方法论均含","source":"grilling","at":"2026-08-20T12:28:00+08:00"}
+{"round":5,"question":"Ch2-Grill4 工程量评估(S-M/L)是否有依据而非拍脑袋?","answer":"依据参考实现复杂度: PG仅需XLogRecord读取器+heap/btree rm_redo(源码~2文件,格式稳定)≈S-M; MySQL需log0recv全MLOG覆盖+trx0roll回滚+trx0sys解析(≈3文件,含两阶段前滚-回滚次序)≈L; 与既有T0300/T0301实现经验对照","source":"grilling","at":"2026-08-20T12:28:00+08:00"}
+{"source":"check_confirmation","response":"partial","summary":"用户明确: mysql/pg 恢复均定位为自研(修正AC-6立项建议, 原'MySQL借力xtrabackup过渡'不采纳); 调研事实6AC全PASS确认成立","at":"2026-08-20T12:30:00+08:00"}
+{"source":"knowledge_decision","action":"wrote","reason":"PG WAL 重放机制(无undo/clog天然aborted/恢复点语义) 与 MySQL 恢复四要素(purge缺口实证) 为双平台自研恢复引擎的立项基础, 跨任务复用","at":"2026-08-20T12:32:00+08:00"}
+{"source":"followup_created","action":"created","followup_id":"T0334-0820-backup-recovery-engine","summary":"用户决策: mysql/pg 恢复均自研; 跟进任务=双平台自研恢复引擎(PG优先, development, parent=T0333)","at":"2026-08-20T13:34:12+08:00"}

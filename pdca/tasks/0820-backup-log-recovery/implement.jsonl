@@ -1,0 +1,8 @@
+{"file":"knowledge/mysql/normal-shutdown-visibility-scope.md","reason":"定义正常关闭边界与为何现有工具不需 undo/trx_sys；本任务恢复目标态=等价正常关闭快照，直接复用其可见性结论","action":"复用可见性结论，作为恢复目标态判据","at":"2026-08-20T11:31:25+08:00"}
+{"file":"knowledge/pg/visibility-clog-infomask.md","reason":"PG 可见性判定路径（clog/infomask）；恢复后 PG 未提交行标记 aborted 的判定依据","action":"复用为 PG 恢复一致性校验判据","at":"2026-08-20T11:31:25+08:00"}
+{"file":"knowledge/mysql/schema-nullable-contract.md","reason":"mysqlbin --schema 契约，恢复后衔接转换的列定义要求","action":"衔接工具链时引用契约","at":"2026-08-20T11:31:25+08:00"}
+{"file":"knowledge/backup/xtrabackup-incremental-schemes.md","reason":"XtraBackup 备份机制（含 prepare/redo 应用），路径 A 的核心工具机制","action":"调研路径 A 时引用","at":"2026-08-20T11:31:25+08:00"}
+{"file":"knowledge/data-formats/pg-to-parquet-path-benchmark.md","reason":"PG 物理直读路径性能基准，恢复后转换链路依据","action":"衔接转换链路时引用","at":"2026-08-20T11:31:25+08:00"}
+{"file":"knowledge/data-formats/mysql-innodb-physical-read-notes.md","reason":"MySQL InnoDB 物理直读要点，恢复后转换依据","action":"衔接转换链路时引用","at":"2026-08-20T11:31:25+08:00"}
+{"file":"knowledge/data-formats/t0301-pg-version-convert-test.md","reason":"PG 三版本转换验证方法与工具，恢复后验证复用","action":"复用验证方法","at":"2026-08-20T11:31:25+08:00"}
+{"file":"knowledge/data-formats/t0300-mysql-version-convert-test.md","reason":"MySQL 四版本转换验证方法与工具，恢复后验证复用","action":"复用验证方法","at":"2026-08-20T11:31:25+08:00"}
