@@ -8,7 +8,7 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-20T13:34:12+08:00",
-    "phase": "act",
+    "phase": "check",
     "record": "T0334-0820-backup-recovery-engine",
     "scenario_type": "development",
     "verdict": {
@@ -17,17 +17,12 @@
       "verdict_id": "T0334-check-confirmed-20260820",
       "at": "2026-08-20T16:35:00+08:00"
     },
-    "completed_at": "2026-08-20T16:31:45+08:00",
-    "disposition": {
-      "outcome": "projected",
-      "reason": "pgwrecover 实现完成并端到端验证 PASS，知识已沉淀；MULTI_INSERT/UPDATE prefix-suffix/btree增量 3 缺口转下一轮待办",
-      "at": "2026-08-20T16:41:00+08:00"
-    }
+    "completed_at": "2026-08-20T16:31:45+08:00"
   },
   "parent": "T0333",
   "slug": "0820-backup-recovery-engine",
   "states": {
-    "act": "2026-08-20T16:39:53+08:00",
+    "act": null,
     "archive": null,
     "check": "2026-08-20T16:31:45+08:00",
     "created": "2026-08-20T13:34:12+08:00",
