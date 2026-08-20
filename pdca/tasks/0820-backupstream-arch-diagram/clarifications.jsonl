@@ -9,4 +9,4 @@
 {"source":"grilling","question":"这个结论的适用范围和限制是什么？","answer":"适用于 backupstream 171.0.0 源码快照；Mermaid 图规范经验与命名易混模块提示可跨任务复用；不覆盖未来版本演进与性能断言","at":"2026-08-20T19:58:00+08:00"}
 {"source":"grilling","question":"哪些部分可以提炼为可复用的知识？","answer":"1) 基于源码绘图的验证流程（mmdc 全图渲染 + 引用存在性核验 + 保留字符规避）；2) backupstream 171.0.0 模块命名映射（agent_restore_reactor 等易混）；3) 图解文档组织规范（十大章递进 + 生命周期图）","at":"2026-08-20T19:58:00+08:00"}
 {"source":"grilling","question":"下次遇到类似问题，流程上有什么改进？","answer":"在 Plan 阶段即核验源码引用文件名真实性（先 find 确认再写入文档）；Mermaid 写入前即规避保留字符（,()/等）；建议将 60 图渲染纳入 CI 校验","at":"2026-08-20T19:58:00+08:00"}
-{"source":"knowledge_decision","at":"2026-08-20T19:57:57+0800","action":"wrote","reason":"提炼源码图解文档验证流程（mmdc 渲染/引用核验/保留字符规避）到 knowledge/pdca-workflow/source-diagram-doc-verification.md"}
+{"source":"knowledge_decision","at":"2026-08-20T19:57:57+08:00","action":"wrote","reason":"提炼源码图解文档验证流程（mmdc 渲染/引用核验/保留字符规避）到 knowledge/pdca-workflow/source-diagram-doc-verification.md"}

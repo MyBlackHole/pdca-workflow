@@ -3,12 +3,12 @@
   "dependencies": [],
   "id": "T0300",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-20T19:08:25+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T0300-0820-backupstream-arch-diagram",
     "scenario_type": "research",
     "completed_at": "2026-08-20T19:53:08+08:00",
@@ -28,7 +28,7 @@
   "slug": "0820-backupstream-arch-diagram",
   "states": {
     "act": "2026-08-20T19:57:13+08:00",
-    "archive": null,
+    "archive": "2026-08-20T19:59:46+08:00",
     "check": "2026-08-20T19:53:08+08:00",
     "created": "2026-08-20T19:08:25+08:00",
     "do": "2026-08-20T19:35:16+08:00",
