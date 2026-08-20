@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0334",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "clarifications.jsonl[14]/",
+      "message": "'summary' is a required property"
+    }
+  ],
+  "at": "2026-08-20T16:31:39.366881+08:00"
+}
