@@ -1,0 +1,27 @@
+{
+  "id": "T0336",
+  "title": "tls_cert_ssl_free：封装 SSL 释放 API",
+  "slug": "0821-tls-cert-ssl-free",
+  "parent": "T0333",
+  "children": [],
+  "dependencies": [],
+  "status": "InProgress",
+  "meta": {
+    "active": true,
+    "scenario_type": "development",
+    "phase": "plan",
+    "record": "T0336-0821-tls-cert-ssl-free",
+    "created_at": "2026-08-21T09:59:57.100708+08:00",
+    "convergence": [
+      "task identity is unique and immutable"
+    ]
+  },
+  "states": {
+    "created": "2026-08-21T09:59:57.100708+08:00",
+    "plan": "2026-08-21T09:59:57.100708+08:00",
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

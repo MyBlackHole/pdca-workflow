@@ -1,0 +1,2 @@
+{"at":"2026-08-21T09:40:31+08:00","source":"task_identity","summary":"created with record identity T0337-0821-pgwrecover-btree-varlena-wal16"}
+{"source":"check_confirmation","summary":"T0337 varlena 修复完成, WAL跨段/PG16确认无需实现, btree移至T0338","response":"confirmed","at":"2026-08-21T10:02:02+08:00"}
