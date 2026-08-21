@@ -1,0 +1,1 @@
+{"round":6,"question":"文件元数据采集与断点续传是否必须可独立开关","answer":"是。文件元数据和断点续传都可配置开启或关闭，互不隐式联动。","recommended":"默认 metadata/resume 均开启；metadata off 保留必需结构 manifest，resume off 中断后新建 transfer；四种组合独立验收。","source":"grilling","at":"2026-08-14T08:37:46+08:00"}

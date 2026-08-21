@@ -1,0 +1,4 @@
+{"source":"triage","summary":"T0251 已验证当前 TREE checkpoint 在 100k 恢复上可用，但 confirmed 路径表仍全量驻留内存；T0250 的 MDB_VL32 no-mmap 依赖不可替代本任务。","at":"2026-08-14T07:30:00+08:00"}
+{"source":"design_note","summary":"推荐使用 SQLite disk B-tree sidecar + append journal + bounded pending；保留 ACK、journal fsync、replay offset、generation/options 和坏尾截断语义。","at":"2026-08-14T07:30:00+08:00"}
+{"source":"implementation_audit","summary":"Do 前审计锁定：SQLite mmap_size=0、固定负 cache、单进程 flock、sidecar 原子迁移、8-byte fingerprint blob、lookup 三态错误传播，以及 metadata/pack flush 后才能发送 checkpoint barrier。","at":"2026-08-14T07:31:00+08:00"}
+{"source":"final_confirmation","summary":"批准 T0252 完整方案：SQLite 无 mmap 磁盘 B-tree sidecar、append journal、原子迁移/重放、有界 pending、ACK 与源变更安全语义，以及 100k/1M RSS/吞吐验收。","response":"confirmed","at":"2026-08-14T07:33:30+08:00"}

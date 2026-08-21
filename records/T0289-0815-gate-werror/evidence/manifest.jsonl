@@ -1,0 +1,6 @@
+{"id":"gate-pass","file":"t0289_gate_result.txt","kind":"test-result","size":91,"digest":"sha256:c79f86a0a922ca6c972dc953a66c13b153977abfde394e66dfb4b791c8f8dbdd","at":"2026-08-15T16:43:33+08:00","criteria":["AC-1"]}
+{"id":"gate-script","file":"gate_warnings.sh","kind":"test-script","size":2596,"digest":"sha256:5374064a71cc74f841874f9d154423bef0992f5473c79ea6cb7e351b3920d8e1","at":"2026-08-15T16:43:33+08:00","criteria":["AC-2"]}
+{"id":"ac3-tls0-zero-warnings","file":"t0289_ac3.txt","kind":"build-result","size":48,"digest":"sha256:2eba93c5ce00312ee85de4d5a85f209b02969d23fa5acba6149b3203ce68038a","at":"2026-08-15T16:43:40+08:00","criteria":["AC-3"]}
+{"id":"ac4-probe-logic","file":"t0289_ac4.txt","kind":"verification-note","size":104,"digest":"sha256:9549ceb6d002e56641626d28c82b5575a5bc2855d6f504eb4eb4e1898c7b49b9","at":"2026-08-15T16:43:40+08:00","criteria":["AC-4"]}
+{"id":"ac5-source-fix","file":"t0289_ac5.txt","kind":"source-fix","size":94,"digest":"sha256:aa7415ebffc53f281462982f062ca1235a5be970948705d7a1fefcf915f22d6c","at":"2026-08-15T16:43:41+08:00","criteria":["AC-5"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":410,"digest":"sha256:be1dbe7c80c35c2703c00e29069163a694b8c36d35f8d69c44285a5c48323b3f","at":"2026-08-15T16:44:09+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}

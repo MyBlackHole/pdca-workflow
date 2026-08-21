@@ -1,0 +1,2 @@
+{"file":"knowledge/debugging/c-buffer-api-size_t-frame-validation.md","reason":"检索到C API输出参数类型陷阱知识;本任务不改函数签名不涉及size_t参数转换,不适用","action":"skip","at":"2026-08-22T07:10:00+08:00"}
+{"file":"knowledge/build-config/hide-static-lib-symbols.md","reason":"检索到符号可见性知识;本项目为可执行文件交付且已决策保现名全局化,不适用","action":"skip","at":"2026-08-22T07:10:00+08:00"}

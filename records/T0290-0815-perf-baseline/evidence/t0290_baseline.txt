@@ -1,0 +1,7 @@
+# backupstream 80.0.0 v80 performance baseline
+# environment: linux loopback, g++ -O3, TLS=1, host-local measurement
+control-plane: concurrency=32 runs=3 median_ms=48.973 p99_upper_ms=4.560
+control-plane: agent_threads=4 agent_rss_kib=6860
+data-path: size_mib=128 runs=3 put_median_mibps=619.04 get_median_mibps=514.62
+data-path: agent_threads=2 agent_rss_kib=7976
+# repeatability: data-path second run put=624.02 get=554.48 (same order of magnitude)

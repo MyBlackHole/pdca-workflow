@@ -1,0 +1,2 @@
+{"source":"direction_confirm","summary":"T0229 第二批核心原语 POC：18 去重块存储/19 流式分块AEAD加密/20 压缩选型/21 引用计数GC/22 完整性校验/23 WAL崩溃恢复，6 场景独立 main.c+断言+README，顶层 make test 全量 PASS","response":"confirmed","at":"2026-08-08T20:02:00+08:00"}
+{"source":"final_confirmation","summary":"T0229 第二批核心原语 POC（18 去重块存储/19 流式分块AEAD/20 压缩选型/21 引用计数GC/22 完整性校验/23 WAL崩溃恢复）方案终审批准，验收 AC-1~AC-7","response":"confirmed","at":"2026-08-08T20:24:00+08:00"}

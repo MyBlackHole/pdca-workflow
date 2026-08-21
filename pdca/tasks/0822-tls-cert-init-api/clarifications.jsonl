@@ -1,0 +1,3 @@
+{"at": "2026-08-22T07:00:00+08:00", "source": "task_identity", "summary": "created with record identity T0342-0822-tls-cert-init-api"}
+{"source":"direction_confirm","summary":"方向确认：服务端 cert_dir 双算法自动构建 + 客户端 cert_dir+algorithm+ca_cn 驱动，兼容显式 profiles 单 profile","response":"confirmed","at":"2026-08-22T07:14:41+08:00"}
+{"source":"final_confirmation","summary":"终审批准：tls_cert 初始化 API 契约固化—服务端双算法 cert_dir 构建与客户端 algorithm/ca_cn 驱动，6 项 AC 与 2 条 seam 契约，调用点收敛与证书路径确定性构建","response":"confirmed","at":"2026-08-22T07:14:46+08:00"}

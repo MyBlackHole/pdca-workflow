@@ -1,0 +1,28 @@
+{
+  "id": "T0252",
+  "slug": "0814-tree-checkpoint-paged-round66",
+  "title": "Round 66 跟进：磁盘分页 TREE checkpoint 与海量断点续传",
+  "parent": "T0251",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "record": "T0252-0814-tree-checkpoint-paged-round66",
+    "convergence": [
+      "TREE checkpoint confirmed 状态使用磁盘有序索引/分页查询，不再按路径数量建立全量内存 map",
+      "分页恢复保留 ACK、generation、fingerprint、尾部截断和源文件变更安全语义",
+      "100k/1M 规模 RSS、恢复吞吐和重复发送避免率有可复核实测证据"
+    ],
+    "created_at": "2026-08-14T07:26:02+08:00"
+  },
+  "states": {
+    "created": "2026-08-14T07:26:02+08:00",
+    "plan": "2026-08-14T07:26:02+08:00",
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

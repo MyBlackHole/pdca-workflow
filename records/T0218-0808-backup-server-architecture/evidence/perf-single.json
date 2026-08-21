@@ -1,0 +1,260 @@
+[
+  {
+    "tool": "rsync",
+    "file": "rand_1mb.bin",
+    "size_mb": 1,
+    "wall": 0.0628,
+    "rss_mb": 5,
+    "throughput_mbps": 15.9
+  },
+  {
+    "tool": "rclone",
+    "file": "rand_1mb.bin",
+    "size_mb": 1,
+    "wall": 0.0937,
+    "rss_mb": 64,
+    "throughput_mbps": 10.7
+  },
+  {
+    "tool": "borg",
+    "file": "rand_1mb.bin",
+    "size_mb": 1,
+    "compressed": 1,
+    "wall": 1.1174,
+    "rss_mb": 2,
+    "throughput_mbps": 0.9
+  },
+  {
+    "tool": "restic",
+    "file": "rand_1mb.bin",
+    "size_mb": 1,
+    "compressed": 1,
+    "wall": 0.7156,
+    "rss_mb": 65,
+    "throughput_mbps": 1.4
+  },
+  {
+    "tool": "duplicity",
+    "file": "rand_1mb.bin",
+    "size_mb": 1,
+    "compressed": 1,
+    "wall": 0.4449,
+    "rss_mb": 46,
+    "throughput_mbps": 2.2
+  },
+  {
+    "tool": "rsync",
+    "file": "zero_1mb.bin",
+    "size_mb": 1,
+    "wall": 0.063,
+    "rss_mb": 5,
+    "throughput_mbps": 15.9
+  },
+  {
+    "tool": "rclone",
+    "file": "zero_1mb.bin",
+    "size_mb": 1,
+    "wall": 0.0939,
+    "rss_mb": 65,
+    "throughput_mbps": 10.7
+  },
+  {
+    "tool": "borg",
+    "file": "zero_1mb.bin",
+    "size_mb": 1,
+    "compressed": 1,
+    "wall": 0.8479,
+    "rss_mb": 2,
+    "throughput_mbps": 1.2
+  },
+  {
+    "tool": "restic",
+    "file": "zero_1mb.bin",
+    "size_mb": 1,
+    "compressed": 1,
+    "wall": 0.5384,
+    "rss_mb": 68,
+    "throughput_mbps": 1.9
+  },
+  {
+    "tool": "duplicity",
+    "file": "zero_1mb.bin",
+    "size_mb": 1,
+    "compressed": 0,
+    "wall": 0.2893,
+    "rss_mb": 46,
+    "throughput_mbps": 3.5
+  },
+  {
+    "tool": "rsync",
+    "file": "rand_10mb.bin",
+    "size_mb": 10,
+    "wall": 0.073,
+    "rss_mb": 5,
+    "throughput_mbps": 136.9
+  },
+  {
+    "tool": "rclone",
+    "file": "rand_10mb.bin",
+    "size_mb": 10,
+    "wall": 0.1147,
+    "rss_mb": 67,
+    "throughput_mbps": 87.2
+  },
+  {
+    "tool": "borg",
+    "file": "rand_10mb.bin",
+    "size_mb": 10,
+    "compressed": 1,
+    "wall": 0.6827,
+    "rss_mb": 2,
+    "throughput_mbps": 14.6
+  },
+  {
+    "tool": "restic",
+    "file": "rand_10mb.bin",
+    "size_mb": 10,
+    "compressed": 11,
+    "wall": 0.6329,
+    "rss_mb": 119,
+    "throughput_mbps": 15.8
+  },
+  {
+    "tool": "duplicity",
+    "file": "rand_10mb.bin",
+    "size_mb": 10,
+    "compressed": 10,
+    "wall": 0.5681,
+    "rss_mb": 47,
+    "throughput_mbps": 17.6
+  },
+  {
+    "tool": "rsync",
+    "file": "zero_10mb.bin",
+    "size_mb": 10,
+    "wall": 0.0731,
+    "rss_mb": 5,
+    "throughput_mbps": 136.8
+  },
+  {
+    "tool": "rclone",
+    "file": "zero_10mb.bin",
+    "size_mb": 10,
+    "wall": 0.1247,
+    "rss_mb": 68,
+    "throughput_mbps": 80.2
+  },
+  {
+    "tool": "borg",
+    "file": "zero_10mb.bin",
+    "size_mb": 10,
+    "compressed": 1,
+    "wall": 0.7015,
+    "rss_mb": 2,
+    "throughput_mbps": 14.3
+  },
+  {
+    "tool": "restic",
+    "file": "zero_10mb.bin",
+    "size_mb": 10,
+    "compressed": 11,
+    "wall": 0.5168,
+    "rss_mb": 64,
+    "throughput_mbps": 19.3
+  },
+  {
+    "tool": "duplicity",
+    "file": "zero_10mb.bin",
+    "size_mb": 10,
+    "compressed": 0,
+    "wall": 0.3723,
+    "rss_mb": 46,
+    "throughput_mbps": 26.9
+  },
+  {
+    "tool": "rsync",
+    "file": "rand_100mb.bin",
+    "size_mb": 100,
+    "wall": 0.2277,
+    "rss_mb": 5,
+    "throughput_mbps": 439.2
+  },
+  {
+    "tool": "rclone",
+    "file": "rand_100mb.bin",
+    "size_mb": 100,
+    "wall": 0.2899,
+    "rss_mb": 73,
+    "throughput_mbps": 344.9
+  },
+  {
+    "tool": "borg",
+    "file": "rand_100mb.bin",
+    "size_mb": 100,
+    "compressed": 1,
+    "wall": 0.7024,
+    "rss_mb": 2,
+    "throughput_mbps": 142.4
+  },
+  {
+    "tool": "restic",
+    "file": "rand_100mb.bin",
+    "size_mb": 100,
+    "compressed": 111,
+    "wall": 1.0487,
+    "rss_mb": 244,
+    "throughput_mbps": 95.4
+  },
+  {
+    "tool": "duplicity",
+    "file": "rand_100mb.bin",
+    "size_mb": 100,
+    "compressed": 100,
+    "wall": 2.9314,
+    "rss_mb": 47,
+    "throughput_mbps": 34.1
+  },
+  {
+    "tool": "rsync",
+    "file": "zero_100mb.bin",
+    "size_mb": 100,
+    "wall": 0.2189,
+    "rss_mb": 5,
+    "throughput_mbps": 456.8
+  },
+  {
+    "tool": "rclone",
+    "file": "zero_100mb.bin",
+    "size_mb": 100,
+    "wall": 0.2796,
+    "rss_mb": 76,
+    "throughput_mbps": 357.6
+  },
+  {
+    "tool": "borg",
+    "file": "zero_100mb.bin",
+    "size_mb": 100,
+    "compressed": 1,
+    "wall": 0.6819,
+    "rss_mb": 2,
+    "throughput_mbps": 146.6
+  },
+  {
+    "tool": "restic",
+    "file": "zero_100mb.bin",
+    "size_mb": 100,
+    "compressed": 111,
+    "wall": 0.529,
+    "rss_mb": 61,
+    "throughput_mbps": 189.0
+  },
+  {
+    "tool": "duplicity",
+    "file": "zero_100mb.bin",
+    "size_mb": 100,
+    "compressed": 0,
+    "wall": 0.83,
+    "rss_mb": 46,
+    "throughput_mbps": 120.5
+  }
+]

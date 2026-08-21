@@ -1,0 +1,1 @@
+{"round":3,"question":"无 snapshot/change journal 时是否接受停机期间变化不可观测","answer":"接受。文件系统大部分场景没有快照；恢复时不要求发现停机期间对 durable-completed 文件和目录的新增、修改、rename 或删除。","recommended":"采用显式 fuzzy generation：信任 durable receipt，不做全量 reconciliation；manifest/result 永久标记一致性限制，下一次独立备份重新枚举收敛。","source":"grilling","at":"2026-08-14T08:29:14+08:00"}

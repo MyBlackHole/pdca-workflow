@@ -1,0 +1,4 @@
+{"file":"knowledge/core-tech-poc/bloom-filter-dedup.md","reason":"场景18 去重块存储复用布隆前置过滤结论（m/n=8 假阳率~2.16%，命中后二次确认）","action":"apply","at":"2026-08-08T20:03:00+08:00"}
+{"file":"knowledge/core-tech-poc/hash-selection.md","reason":"场景18/22 指纹与校验统一用 BLAKE3（~3.3GB/s，密码学安全）","action":"apply","at":"2026-08-08T20:03:00+08:00"}
+{"file":"knowledge/core-tech-poc/aead-auth-encryption.md","reason":"场景19 流式分块加密沿用 AEAD 结论（AES-GCM 快、ChaCha 适合无 AES-NI），分块需每块独立标签支持随机访问","action":"apply","at":"2026-08-08T20:03:00+08:00"}
+{"file":"knowledge/core-tech-poc/frame-multiplexing.md","reason":"场景19/23 记录格式与校验参考帧协议（16B 头 + CRC 防位翻转）","action":"reference","at":"2026-08-08T20:03:00+08:00"}

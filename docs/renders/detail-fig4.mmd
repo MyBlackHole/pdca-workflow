@@ -1,0 +1,41 @@
+flowchart TD
+    IN["从 Check 进入<br/>meta.phase=act"] --> A0
+
+    subgraph AC2["Act 阶段：逐步骤操作 + 门禁"]
+        A0["Ac0 读 Verdict<br/>读 task.json meta.verdict.outcome<br/>confirmed / rejected / partial 三分支"]
+        A0 -->|"confirmed"| A1
+        A0 -->|"rejected"| A2A
+        A0 -->|"partial"| A2B
+
+        A1["Ac1 Grill 知识(仅 confirmed)<br/>grilling 追问: 适用范围/限制?<br/>哪些可提炼复用? 流程有何改进?<br/>Q&A 追加 clarifications.jsonl(source:grilling)<br/>→ 产出知识沉淀决策"]
+        A1 -->|"产出"| A2
+        A1 -->|"不产出"| A3
+
+        A2["Ac2 知识沉淀(仅 confirmed)<br/>写入 knowledge/<topic>/<slug>.md<br/>① clarifications.jsonl 追加 knowledge_decision<br/>  action: wrote|skipped + reason<br/>② knowledge/manifest.jsonl 追加<br/>  version/revision/at/knowledge/knowledge_digest<br/>  source_record/source_digest/reason"]
+        A2 --> A3
+
+        A2A["Ac2a 失败处置(仅 rejected)<br/>结论不成立, 不做知识沉淀<br/>从 conclusion.md 失败原因提取教训<br/>写入日志即可<br/>⛔ 跳过 Ac3-Ac5<br/>直接跳到 Ac6 日志"]
+        A2A -.-> A6
+
+        A2B["Ac2b 部分沉淀+跟进(仅 partial)<br/>⛔ 跳过 Ac1<br/>① 仅沉淀确凿可复用部分<br/>② 创建跟进任务(统一 identity 入口)<br/>task_identity.py create<br/>  --slug MMDD-followup-slug<br/>  --title '跟进:<未完成部分>' --parent <id><br/>  --scenario-type <继承> --meta.phase plan<br/>③ clarifications.jsonl 记录跟进 ID"]
+        A2B --> A3
+
+        A3["Ac3 记录处置<br/>task.json meta.disposition:<br/>outcome: projected|not_reusable|task_only<br/>reason + at<br/>⛔ 后续 Ac6 journal 前置依赖此项"]
+        A3 --> A4
+
+        A4["Ac4 架构改进<br/>结论涉及需改进的架构?<br/>→ 提取改进项<br/>→ 创建新任务或更新 backlog"]
+        A4 --> A5
+
+        A5["Ac5 跨会话桥接<br/>handoff-work<br/>manual 'handoff' 仅保留为用户入口"]
+        A5 --> A6
+
+        A6["Ac6 追加日志<br/>write-journal Mode A(Task Close)<br/>⛔ 前置: meta.disposition 必须存在<br/>journal/YYYY-MM-DD.md<br/>三段格式: 任务进度/关键决策/阻塞项<br/>追加到末尾不覆盖历史(T0264)"]
+        A6 --> A7
+
+        A7["Ac7 提交(含 disposition)<br/>⛔ 先检查 evidence/manifest.jsonl<br/>不存在→提示先 register-evidence<br/>存在→ git add -A && git commit<br/>-m 'task <id>: 完成并归档'"]
+        A7 --> A8
+
+        A8["Ac8 归档<br/>① advance-phase 目标 archive<br/>  校验 disposition → phase=archive + active=false<br/>② git commit -m 'task <id>: 归档 metadata'<br/>③ mv pdca/tasks/<MMDD-slug><br/>   pdca/tasks/archive/YYYY-MM/"]
+    end
+
+    A8 --> END((归档完成))

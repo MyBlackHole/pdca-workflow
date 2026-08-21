@@ -1,0 +1,1 @@
+{"round":5,"question":"是否需要恢复场景和备份元数据目录查询","answer":"需要。输入备份 generation 与目录路径，获取目录下文件和目录；支持分页和字节序排序，并提供生产恢复能力。","recommended":"目录查询默认直属 children，使用原始名字节 unsigned lexicographic order 和绑定 immutable generation 的 authenticated cursor；恢复支持整代、目录、单路径和断点重试。","source":"grilling","at":"2026-08-14T08:35:18+08:00"}

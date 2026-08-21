@@ -1,0 +1,5 @@
+{"id":"v80-baseline","file":"t0290_baseline.txt","kind":"benchmark-result","size":451,"digest":"sha256:817463bf5e9e8e0f866b34affa320f331611ee0b50f640fd448ab21dd79a0f45","at":"2026-08-15T16:46:07+08:00","criteria":["AC-3"]}
+{"id":"bench-control-script","file":"benchmark_control_plane.sh","kind":"benchmark-script","size":2741,"digest":"sha256:4c492253432cf367066aae4f494274866403800422577a893ac121fb84e6db1a","at":"2026-08-15T16:46:08+08:00","criteria":["AC-1"]}
+{"id":"bench-data-script","file":"benchmark_data_path.sh","kind":"benchmark-script","size":2958,"digest":"sha256:b73d7c35f0e60204feceb37587d8749338a33bc6cb5aa6bf3dc868ac5727f1ff","at":"2026-08-15T16:46:08+08:00","criteria":["AC-2"]}
+{"id":"ac4-repeatability","file":"t0290_ac4.txt","kind":"verification-note","size":162,"digest":"sha256:7000bb67e81a27406a4b57d922a32810b0aafafa309642cdb297f14edb40ba66","at":"2026-08-15T16:46:14+08:00","criteria":["AC-4"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":377,"digest":"sha256:14e8d27aad5c0bd7a29b153a33cd609ba97c5779e6a157be946b1093e235cd38","at":"2026-08-15T16:46:20+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}

@@ -1,0 +1,34 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0341",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-22T06:49:13+08:00",
+    "phase": "check",
+    "record": "T0341-0822-remove-exceptions-c-style-api",
+    "scenario_type": "development",
+    "completed_at": "2026-08-22T07:41:10+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "9条AC中7条PASS;AC-7/AC-9字面受4类HEAD存量失败影响(git stash对照甄别非本任务引入);用户verdict=confirmed",
+      "verdict_id": "T0341-check-v1",
+      "at": "2026-08-22T07:48:35+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0822-remove-exceptions-c-style-api",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-22T07:41:10+08:00",
+    "created": "2026-08-22T06:49:13+08:00",
+    "do": "2026-08-22T07:10:40+08:00",
+    "plan": "2026-08-22T06:49:13+08:00"
+  },
+  "status": "Completed",
+  "title": "移除C++异常处理并统一C风格API调用"
+}

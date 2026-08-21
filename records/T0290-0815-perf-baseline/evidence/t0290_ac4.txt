@@ -1,0 +1,2 @@
+Repeatability: data-path run1 put=615.96/get=524.66 run2 put=624.02/get=554.48 - same order of magnitude
+control-plane stable agent_threads=1-4, RSS ~6.8-8.0 MiB

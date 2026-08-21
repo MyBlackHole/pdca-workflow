@@ -1,0 +1,3 @@
+{"round":1,"question":"文件数量容量契约","answer":"支持 uint64_t 可表示的最大文件数量；总计数、已扫描/已跳过/已发送/重做统计、segment 和 checkpoint 序号不得被 uint32_t 截断，单批和单帧仍可有界。该要求是逻辑容量契约，不声称物理介质能实际存储 UINT64_MAX 个目录项。","recommended":"将 uint64_t 作为全局计数域，uint32_t 仅用于有界 batch/frame，并在溢出时 fail-closed。","source":"grilling","at":"2026-08-14T08:00:00+08:00"}
+{"source":"direction_confirm","summary":"用户要求修复已审查出的海量文件断点恢复问题；方向采用无源快照 live-tree segmented resume，保留单文件 partial，目录使用持久化 work queue、sealed segment、durable receipt 和有界局部重扫。","response":"confirmed","at":"2026-08-14T08:21:16+08:00"}
+{"source":"direction_confirm","summary":"用户接受无 source snapshot/change journal 时停机期间变化不可观测；采用显式 fuzzy generation，恢复信任 durable receipt，不做全量 reconciliation，下一次独立备份重新枚举收敛。","response":"confirmed","at":"2026-08-14T08:30:30+08:00"}

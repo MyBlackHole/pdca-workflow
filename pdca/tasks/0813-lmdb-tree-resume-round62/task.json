@@ -1,0 +1,30 @@
+{
+ "id": "T0248",
+ "slug": "0813-lmdb-tree-resume-round62",
+ "title": "Round 62：LMDB 增量索引生产化与海量 TREE 检查点续传",
+ "parent": null,
+ "children": [],
+ "status": "Completed",
+ "meta": {
+  "phase": "check",
+  "active": true,
+  "scenario_type": "development",
+  "record": "T0248-0813-lmdb-tree-resume-round62",
+  "convergence": [
+   "LMDB 与 SQLite 在相同海量目录增量扫描上的功能、故障和性能差异有可复核证据",
+   "TREE 传输中断后可基于已确认的批次安全恢复，避免海量文件从零重传或重复落盘",
+   "旧 peer、旧缓存、源文件变化和 checkpoint 损坏均有明确的安全回退边界"
+  ],
+  "created_at": "2026-08-13T22:40:03+08:00",
+  "completed_at": "2026-08-13T23:38:34+08:00"
+ },
+ "states": {
+  "created": "2026-08-13T22:40:03+08:00",
+  "plan": "2026-08-13T22:44:19+08:00",
+  "do": "2026-08-13T22:46:27+08:00",
+  "check": "2026-08-13T23:38:34+08:00",
+  "act": null,
+  "archive": null
+ },
+ "dependencies": []
+}

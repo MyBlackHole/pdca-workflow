@@ -1,0 +1,3 @@
+{"knowledge":"knowledge/observability/structured-logging-jsonl-rotation.md","reason":"复用稳定 checkpoint 事件、敏感字段约束和独立 RSS/吞吐验收轴。","action":"将 checkpoint replay、migration、flush、failure 事件接入新模块并保留文本兼容。","at":"2026-08-14T07:26:02+08:00"}
+{"knowledge":"knowledge/benchmark/small-writer-pool-parallelism.md","reason":"复用有界 pending、首错和中位数基准的验证方式。","action":"将 pending entry/bytes 上限和失败语义纳入设计与 benchmark。","at":"2026-08-14T07:26:02+08:00"}
+{"knowledge":"knowledge/lmdb/vl32-no-mmap-build-gate.md","reason":"明确 MDB_VL32 no-mmap 是独立供应链约束，避免用不可用 LMDB 依赖替代本轮可落地索引。","action":"保留 SQLite disk B-tree 作为本轮方案，记录替代方案边界。","at":"2026-08-14T07:26:02+08:00"}

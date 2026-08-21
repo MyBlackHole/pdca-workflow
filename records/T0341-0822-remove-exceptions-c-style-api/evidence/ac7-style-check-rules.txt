@@ -1,0 +1,10 @@
+# AC-7 style_check 新规则验证 2026-08-22T07:38:25+08:00
+== 新增规则生效证明: 红阶段输出(改动前) ==
+C-style API rule violated: global scope qualified call found / named namespace found 均曾触发
+== 当前状态 ==
+除4处HEAD存量行数规则违规外无其他违规;新增两条规则+no-exception收紧规则全部通过
+13:  echo 'No-exception rule violated: try/catch/throw found' >&2
+16:# C-style API rule: libc/POSIX calls are written as plain C-style calls without
+20:  echo 'C-style API rule violated: global scope qualified call found' >&2
+23:# C-style API rule: project symbols live at global scope. Named namespaces are
+26:  echo 'C-style API rule violated: named namespace found' >&2

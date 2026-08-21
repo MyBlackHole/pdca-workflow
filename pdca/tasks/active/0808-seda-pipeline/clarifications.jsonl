@@ -1,0 +1,10 @@
+{"source": "brainstorm", "question": "下一 POC 场景聚焦哪个方向？", "response": "备份流、SEDA 等这类型的技术", "at": "2026-08-08T18:10:00+08:00"}
+{"source": "brainstorm", "question": "确认场景11的核心内容？", "response": "备份流管道 + SEDA（推荐）", "at": "2026-08-08T18:12:00+08:00"}
+{"source": "brainstorm", "question": "SEDA 实证用什么形式？", "response": "真实 C 实现 + 对照实验（推荐）", "at": "2026-08-08T18:13:00+08:00"}
+{"source": "brainstorm", "question": "对照实验怎么设计？", "response": "全都要（同步基线 + SEDA 参数扫描）", "at": "2026-08-08T18:13:00+08:00"}
+{"source": "brainstorm", "question": "备份流管道包含哪些 stage？（多选）", "response": "reader 读源, chunker 分块, compressor 压缩, writer 写出", "at": "2026-08-08T18:14:00+08:00"}
+{"source": "brainstorm", "question": "重点测量哪些指标？（多选）", "response": "吞吐量, 背压分析, 参数扫描, 多核利用", "at": "2026-08-08T18:14:00+08:00"}
+{"source": "brainstorm", "question": "stage 间队列用什么语义？", "response": "有界队列+阻塞背压（推荐）", "at": "2026-08-08T18:15:00+08:00"}
+{"source": "brainstorm", "question": "是否需要对照产品数据流？", "response": "不映射产品", "at": "2026-08-08T18:15:00+08:00"}
+{"source": "direction_confirm", "summary": "场景11：备份流管道 + SEDA（reader→chunker→compressor→writer，有界队列阻塞背压，E1-E5 实验矩阵），设计文档已提交", "response": "confirmed", "at": "2026-08-08T18:18:00+08:00"}
+{"source":"final_confirmation","summary":"场景11 SEDA备份流管道方案获批：4级stage有界队列阻塞背压，E1-E5实验矩阵，AC-1~AC-7","response":"confirmed","at":"2026-08-08T18:22:16+08:00"}

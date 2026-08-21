@@ -1,0 +1,1 @@
+{"round":4,"question":"目标端采用 versioned immutable backup 还是 in-place mirror","answer":"接受推荐方案：versioned immutable backup。","recommended":"使用 content-addressed objects/packs、segmented manifest 和 atomic current-ref；legacy in-place mirror 仅作独立 capability 回退。","source":"grilling","at":"2026-08-14T08:32:32+08:00"}

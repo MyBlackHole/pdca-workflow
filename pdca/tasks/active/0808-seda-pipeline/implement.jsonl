@@ -1,0 +1,3 @@
+{"file": "knowledge/core/discard-worker-fifo-fairness.md", "reason": "队列公平语义参考：多 worker 消费共享队列时的顺序与公平处理，与 SEDA stage worker 池设计相关", "action": "参考 worker 池消费有界队列的公平性处理；但本场景有界队列阻塞背压优先，不引入额外公平调度", "at": "2026-08-08T18:25:00+08:00"}
+{"file": "knowledge/core/persistent-concurrency-crash-recovery.md", "reason": "并发交错与确定性验证模式，参考用于 SEDA 管道数据完整性断言设计", "action": "参考多线程并发下确定性断言的写法，用于 AC-1 数据完整性验证", "at": "2026-08-08T18:25:00+08:00"}
+{"file": "knowledge/data-formats/backup-tools-serialization-practice.md", "reason": "备份类工具工业实践（PBS/restic），含并行/管道相关实现参考", "action": "参考备份工具对数据流处理的工程化做法，辅助压缩/分块 stage 边界设计", "at": "2026-08-08T18:25:00+08:00"}

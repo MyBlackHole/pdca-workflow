@@ -1,0 +1,3 @@
+{"file": "knowledge/tls/structured-mtls-failure-diagnostics.md", "reason": "初始化与握手失败需含 role/stage/algorithm/证书路径的诊断信息；本任务固化 cert_dir 双算法构建的错误码与日志语义", "action": "应用于构建与初始化的错误码与日志校验", "at": "2026-08-22T07:13:42.277007+08:00"}
+{"file": "knowledge/tooling/cli-tls-mtls-configuration.md", "reason": "工具参数 algorithm 的优先级与环境变量/配置段来源由调用方解析后填入 tls_cert，不由 tls_cert 内做 env/config 读取", "action": "应用于 client algorithm 来源与调用点收敛", "at": "2026-08-22T07:13:42.277007+08:00"}
+{"file": "knowledge/rpc-rdbcomm/unified-first-stage-mtls-time.md", "reason": "客户端 ca_cn 来自首阶段 NEGOTIATE 响应，需按 ca_cn 从 cert_dir 选择证书；服务端启用 mTLS 时协商失败不降级明文", "action": "应用于 client ca_cn 来源与 cert_dir/ca_cn 路径约定", "at": "2026-08-22T07:13:42.277007+08:00"}
