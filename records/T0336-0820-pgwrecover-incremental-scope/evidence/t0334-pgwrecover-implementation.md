@@ -64,48 +64,51 @@ pgwrecover <backup_dir> <out_heap> <out_clog> [--rel-oid=N]
 - `third_party/pg184/include/`：WAL/clog/heap 头文件
 - `knowledge/pg/backup-recovery-wal-replay.md`：T0333 恢复机制调研
 
+## T0336 扩展（MULTI_INSERT / UPDATE prefix-suffix / btree 决策）
+
+> 来源：T0336-0820-pgwrecover-incremental-scope。证据：`t0336-btree-skip-justification.md`、
+> 样本 `/tmp/opencode/t0336-*`、单测 `tests/pgwrecover/test_redo_scope.py`（9 项全 PASS）。
+
+### 1. XLOG_HEAP2_MULTI_INSERT 重放（S1）
+
+- **分发掩码**：`info & XLOG_HEAP_OPMASK`（0x70）。T0334 用 `&~0x70` 使 UPDATE(0x20)
+  误路由进 redo_heap_insert（报 `INSERT blk 2 off`），已修。
+- **不可复用 build_tuple**：`xl_multi_insert_tuple` 头 7 字节（ntuples 后追加 offnum），
+  而 `xl_heap_header` 为 5 字节。复用 build_tuple 会让 tuple 数据错位 2 字节。
+  按官方布局直接构造 HeapTupleHeader（含 bitmap 对齐）。
+
+### 2. XLOG_HEAP_UPDATE prefix/suffix 重组（S2）
+
+对齐官方 `heapam_xlog.c`（PG18 843-904 行）：
+- flags 含 `XLH_UPDATE_PREFIX_FROM_OLD`(0x20) → 先读 uint16 prefixlen；
+  含 `XLH_UPDATE_SUFFIX_FROM_OLD`(0x40) → 读 uint16 suffixlen（WAL 内先后缀后前缀）；
+  再读 `xl_heap_header`，tuplen = 剩余字节。
+- 重组 = WAL 内 bitmap/padding(xlh.t_hoff-23) + 旧 tuple 前缀(t_hoff 起 prefixlen 字节)
+  + WAL 中间数据 + 旧 tuple 末尾后缀(oldtlen-suffixlen 起)；newlen=23+tuplen+prefixlen+suffixlen；
+  设置 xmin/cmin/xmax/ctid/infomask2/infomask/t_hoff，含边界检查。
+- **TOAST 影响**：文本超阈值被 TOAST（外联指针不参与前后缀比较），PG 只压定长列
+  （prefixlen=4）；内联文本才触发 0x60（PREFIX|SUFFIX）。
+
+### 3. 同页 UPDATE 分支 bug（踩坑）
+
+同一页内 UPDATE（oldblk==newblk，如 HOT 更新）原实现修改 opage 却写回 npage，
+导致**旧版本元数据修改丢失**（重放 item0 保持备份原样：xmax=22、ctid=(0,1)，
+而运行库为 xmax=0、ctid=(0,2)）。修复：同页分支直接操作 npage；跨页分支分别写回。
+
+### 4. 页对比测试的 hint bit 语义
+
+运行库读取 tuple 时按 clog 动态标记 `HEAP_XMIN_COMMITTED`(0x100)/
+`HEAP_XMAX_COMMITTED`(0x400) 并写回，备份/重放不设置（可见性靠 clog 判断）。
+页对比测试需屏蔽这两个位 + `HEAP_XMAX_INVALID`(0x800) 时的 xmax 残留值。
+此外运行库后续 VACUUM prune 会标记 DEAD item，不在增量 WAL 内，
+场景对比只验证增量新页（blk2）。
+
+### 5. btree 决策（S3b，见独立文档）
+
+btree 无 FPI 的增量块跳过；FPI 仍落页。因 pgbin 不读索引 fork，
+跳过不影响 heap→parquet 正确性，btree 一致性列为后续独立任务。
+
 ## 待推进
 
 - MySQL 恢复引擎（T0333 决策：自研，undo 回滚 + trx_sys + purge 四要素）
 - 更多 rmgr（gin/gist/spgist）重放、PITR、wal_level=minimal 场景
-
-## T0336 增量扩展要点（2026-08-20）
-
-### 分发掩码陷阱
-
-`pg_redo.c` 中 `info & XLOG_HEAP_OPMASK`（0x70）提取记录类型。
-**不要用** `&~0X70`：UPDATE 的 info=0x20，`&~0x70` 得 0x00 会误路由
-进 INSERT 分支，症状为"INSERT blk 2 off 29335"（实际应走 UPDATE）。
-
-### MULTI_INSERT：xl_multi_insert_tuple ≠ xl_heap_header
-
-`xl_multi_insert_tuple`（7 字节：ntuples 后追加每个 tuple 的 offnum）与
-`xl_heap_header`（5 字节：t_hoff）布局不同。**不能复用 build_tuple**——会
-让 tuple 数据区整体错位 2 字节。应按官方布局直接构造 HeapTupleHeader：
-先读 ntuples，遍历 offnum 数组计算 tuplen，按 t_hoff 定位数据区起点，
-设置 infomask2（列数+标志）、infomask、t_hoff=23，再从 WAL 拷贝数据区。
-
-### UPDATE prefix/suffix：WAL 内字节流格式
-
-`xl_heap_update` 带 `XLH_UPDATE_PREFIX_FROM_OLD`(0x20)/
-`XLH_UPDATE_SUFFIX_FROM_OLD`(0x40) 时，WAL 数据区布局为：
-1. suffixlen (uint16) — 仅含 0x40
-2. prefixlen (uint16) — 仅含 0x20
-3. xl_heap_header (5 字节：t_hoff + padding/bitmap)
-4. 中间数据 (tuplen 字节)
-重组公式：`new = padding/bitmap(WAL) + prefix(旧tuple[t_hoff..t_hoff+prefixlen]) + middle(WAL) + suffix(旧tuple[t_hoff+prefixlen..])`。
-newlen = 23 + tuplen + prefixlen + suffixlen。
-
-### 同页 UPDATE 陷阱
-
-oldblk==newblk（HOT/同页更新）时，如果代码修改 opage 却写回 npage
-（两者都是指针指向同一块内存，写回操作只会落一份），旧版本元数据修改丢失。
-修复：同页分支直接操作 npage（写回目标），跨页分支分别操作 opage/npage。
-症状：重放后 item0 保持备份原样（xmax/ctid 未更新），其他 item 正常。
-
-### hint bit 语义（测试比对关键）
-
-运行库读取 tuple 时按 clog 动态标记 `HEAP_XMIN_COMMITTED`(0x100)/
-`HEAP_XMAX_COMMITTED`(0x400) 并写回。备份/重放不设置这些位。
-`HEAP_XMAX_INVALID`(0x800) 时运行库的 xmax 字段可能残留任意值（如 1）。
-测试比对时需屏蔽这些位（infomask 0x100|0x400 + xmax 字段）。

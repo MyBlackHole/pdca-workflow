@@ -1,0 +1,33 @@
+# T0332 tls_cert 重构 — 静态检查证据
+
+## AC-3: 删除接口引用计数（业务代码，排除 tls_cert_test）
+
+说明：`detach_ssl` 4 处匹配均为 OpenSSL 内部符号
+`ossl_lib_ctx_detach_ssl_conf_imodule`（third_party/openssl4/ 下），
+非本模块 `tls_cert_detach_ssl`，业务代码无残留引用。
+
+| 接口 | grep 计数 |
+|------|-----------|
+| tls_cert_detach_ssl | 0 |
+| tls_cert_set_checkname | 0 |
+| tls_cert_verify_is_local | 0 |
+| tls_cert_verify_is_local_x509 | 0 |
+| tls_cert_init_from_env | 0 |
+| tls_cert_get_global_ctx | 0 |
+| tls_cert_server_available | 0 |
+| tls_cert_init_client_with_options | 0 |
+| tls_cert_init_server_with_options | 0 |
+| tls_cert_init_client_from_env | 0 |
+| tls_cert_init_server_from_env | 0 |
+
+## AC-5: tls_cert.c 静态指标
+
+| 指标 | 计数 |
+|------|------|
+| getenv 直接调用 | 0 |
+| pthread_rwlock | 0 |
+| 全局单例 g_ctx | 0 |
+
+## git diff --check
+
+clean（无空白错误）

@@ -1,0 +1,5 @@
+2026-08-19 revision static verification
+git diff --check: PASS
+The public libobk struct sbtctx matches the 2bbbc73b baseline; the rpc_hs_session_t member is private storage with a flexible-array container behind the existing pairs pointer.
+Network business paths use rpc_hs_session_t read/write callbacks; direct read/write calls remain only for local-path/file/eventfd I/O.
+No new transport g_lock, g_slots, fd-to-session map, pthread_mutex, or pthread_rwlock was added.

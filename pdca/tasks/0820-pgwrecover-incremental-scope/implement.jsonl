@@ -1,0 +1,2 @@
+{"file": "knowledge/pg/pgwrecover-implementation.md", "reason": "T0334 引擎实现要点含 build_tuple/SizeofHeapTupleHeader 约定与 redo 分发结构，是 MULTI_INSERT/prefix-suffix 扩展的直接基线", "action": "读取作为实现基线", "at": "2026-08-20T16:55:00+08:00"}
+{"file": "knowledge/pg/backup-recovery-wal-replay.md", "reason": "备份产物 WAL 重放研究含 rmgr 覆盖与 FPI/增量机制，供 btree 决策 S3 参考", "action": "读取参考 btree 覆盖边界", "at": "2026-08-20T16:55:00+08:00"}

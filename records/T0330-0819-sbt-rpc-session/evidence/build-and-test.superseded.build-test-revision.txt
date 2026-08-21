@@ -1,0 +1,14 @@
+Command:
+xmake build dmsbtex sbt FileTransferAgent dm-ftp dmsbtex_session_test libobk_session_test
+
+Result:
+build ok
+
+Command:
+xmake test rpc_handshake_test/default dmsbtex_session_test/default libobk_session_test/default
+
+Result:
+3 tests passed, 0 failed:
+- dmsbtex_session_test/default
+- libobk_session_test/default
+- rpc_handshake_test/default

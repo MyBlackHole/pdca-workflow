@@ -1,0 +1,4 @@
+2026-08-19 revision verification
+xmake build sbt FileTransferAgent dmsbtex dm-ftp dmsbtex_session_test libobk_session_test libobk_protocol_test: PASS
+xmake test dmsbtex_session_test/default libobk_session_test/default libobk_protocol_test/default rpc_handshake_test/default: 4/4 PASS
+The dmsbtex test exercises packet send/receive through rpc_hs_session_t; the libobk protocol test exercises _baseSend/_baseRecv through the session.

@@ -1,0 +1,7 @@
+{"at":"2026-08-20T16:48:37+08:00","source":"task_identity","summary":"created with record identity T0336-0820-pgwrecover-incremental-scope"}
+{"round": 1, "question": "btree 增量缺口如何处置？(S3a 实现最小重放 vs S3b 论证跳过安全)", "answer": "S3b: 论证 btree 增量跳过不影响 pgbin heap→parquet 转换正确性(pgbin 不读 btree), 成本收益比最优; btree 一致性列为后续独立任务", "recommended": "S3b（推荐）", "source": "grilling", "at": "2026-08-20"}
+{"source":"direction_confirm","summary":"btree 增量取 S3b(论证跳过安全, pgbin 不读 btree), 一致性列后续任务; MULTI_INSERT+prefix/suffix 本轮必做","response":"confirmed","at":"2026-08-20T16:53:53+08:00"}
+{"round": 1, "question": "PRD 测试接缝清单确认?", "answer": "确认 4 个 seam: test_redo_scope.py(新增)->pg_redo.c, test_replay->pg_replay.c, test_pg_control->pg_control_reader.c, test_wal_reader->wal_reader.c", "recommended": "确认", "source": "grilling", "at": "2026-08-20"}
+{"source":"final_confirmation","summary":"方案终审通过: MULTI_INSERT+UPDATE prefix/suffix 必做, btree 取 S3b 论证跳过安全; AC-1~AC-6; 测试接缝 4 个","response":"confirmed","at":"2026-08-20T16:56:54+08:00"}
+{"source":"check_confirmation","summary":"T0336 6/6 AC 全 PASS: MULTI_INSERT/UPDATE prefix-suffix 重放字节级一致, btree S3b 论证, 9单测全绿","response":"confirmed","at":"2026-08-21T09:31:29+08:00"}
+{"source":"knowledge_decision","at":"2026-08-21T09:34:30+08:00","action":"wrote","reason":"T0336 增量扩展多条 WAL redo 构造模式与测试陷阱追加到 knowledge/pg/pgwrecover-implementation.md"}

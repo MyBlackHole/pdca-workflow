@@ -1,0 +1,30 @@
+[0m[38;2;0;255;0;1m[ 28%]:[0m fchownats/default ................. [38;2;0;255;0;1mpassed[0m [1m0.023s[0m
+[0m[38;2;0;255;0;1m[ 31%]:[0m download_file/default ............. [38;2;0;255;0;1mpassed[0m [1m0.031s[0m
+[0m[38;2;0;255;0;1m[ 34%]:[0m dir_utils_dir_copy_test/default ... [38;2;0;255;0;1mpassed[0m [1m0.039s[0m
+[0m[38;2;0;255;0;1m[ 36%]:[0m libobk_session_test/default ....... [38;2;0;255;0;1mpassed[0m [1m0.025s[0m
+[0m[38;2;0;255;0;1m[ 39%]:[0m execute_command/default ........... [38;2;0;255;0;1mpassed[0m [1m0.034s[0m
+[0m[38;2;0;255;0;1m[ 42%]:[0m LRUCache_test/default ............. [38;2;0;255;0;1mpassed[0m [1m0.023s[0m
+[0m[38;2;0;255;0;1m[ 44%]:[0m logger_test/default ............... [38;2;0;255;0;1mpassed[0m [1m0.026s[0m
+[0m[38;2;0;255;0;1m[ 47%]:[0m lstat/default ..................... [38;2;0;255;0;1mpassed[0m [1m0.025s[0m
+[0m[38;2;0;255;0;1m[ 50%]:[0m metadata/default .................. [38;2;0;255;0;1mpassed[0m [1m0.025s[0m
+[0m[38;2;0;255;0;1m[ 52%]:[0m mkdirall/default .................. [38;2;0;255;0;1mpassed[0m [1m0.024s[0m
+[0m[38;2;0;255;0;1m[ 55%]:[0m lmdb_dict_test/default ............ [38;2;0;255;0;1mpassed[0m [1m0.035s[0m
+[0m[38;2;0;255;0;1m[ 57%]:[0m mkdir/default ..................... [38;2;0;255;0;1mpassed[0m [1m0.025s[0m
+[0m[38;2;0;255;0;1m[ 60%]:[0m pread/default ..................... [38;2;0;255;0;1mpassed[0m [1m0.022s[0m
+[0m[38;2;0;255;0;1m[ 63%]:[0m pwrite/default .................... [38;2;0;255;0;1mpassed[0m [1m0.021s[0m
+[0m[38;2;0;255;0;1m[ 65%]:[0m rdb_config_test/default ........... [38;2;0;255;0;1mpassed[0m [1m0.017s[0m
+[0m[38;2;0;255;0;1m[ 68%]:[0m mkdir_path_test/default ........... [38;2;0;255;0;1mpassed[0m [1m0.024s[0m
+[0m[38;2;0;255;0;1m[ 71%]:[0m readdir/default ................... [38;2;0;255;0;1mpassed[0m [1m0.017s[0m
+[0m[38;2;0;255;0;1m[ 73%]:[0m lmdb_sort_test/default ............ [38;2;0;255;0;1mpassed[0m [1m0.034s[0m
+[0m[38;2;0;255;0;1m[ 76%]:[0m readlink/default .................. [38;2;0;255;0;1mpassed[0m [1m0.012s[0m
+[0m[38;2;0;255;0;1m[ 78%]:[0m symlink/default ................... [38;2;0;255;0;1mpassed[0m [1m0.006s[0m
+[0m[38;2;0;255;0;1m[ 81%]:[0m readdir_tree/default .............. [38;2;0;255;0;1mpassed[0m [1m0.014s[0m
+[0m[38;2;0;255;0;1m[ 84%]:[0m upload_fileats/default ............ [38;2;0;255;0;1mpassed[0m [1m0.007s[0m
+[0m[38;2;0;255;0;1m[ 86%]:[0m rpc_handshake_test/default ........ [38;2;0;255;0;1mpassed[0m [1m0.053s[0m
+[0m[38;2;0;255;0;1m[ 89%]:[0m rpc_tool_integration/default ...... [38;2;0;255;0;1mpassed[0m [1m0.082s[0m
+[0m[38;2;0;255;0;1m[ 92%]:[0m fs_meta_comprehensive_test/default  [38;2;0;255;0;1mpassed[0m [1m0.152s[0m
+[0m[38;2;0;255;0;1m[ 94%]:[0m tls_cert_test/default ............. [38;2;0;255;0;1mpassed[0m [1m0.736s[0m
+[0m[38;2;0;255;0;1m[ 97%]:[0m rpc_time_integration/default ...... [38;2;0;255;0;1mpassed[0m [1m1.107s[0m
+[0m[38;2;0;255;0;1m[100%]:[0m rdbcomm_tool_integration/default .. [38;2;0;255;0;1mpassed[0m [1m2.522s[0m
+[0m
+[38;2;0;255;0;1m100%[0m tests passed, [38;2;255;0;0;1m0[0m test(s) failed out of [1m38[0m, spent [1m2.561s[0m

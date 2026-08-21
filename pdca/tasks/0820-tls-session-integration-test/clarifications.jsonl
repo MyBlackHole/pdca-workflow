@@ -1,0 +1,6 @@
+{"at":"2026-08-20T16:24:54+08:00","source":"task_identity","summary":"created with record identity T0335-0820-tls-session-integration-test"}
+{"source":"direction_confirm","summary":"方向确认：仅扩展 dmsbtex/libobk 两库 session_test.c（mTLS 成功/明文/证书缺失失败三路径），不改生产代码，测试集成到 xmake test；libobk 测试聚焦会话 API 层（server_prepare/accept + client_init + sbt_client_tls_config_init），证书复用既有测试材料","response":"confirmed","at":"2026-08-20T16:27:12+08:00"}
+{"round":1,"question":"libobk 会话测试驱动深度? (完整 sbtinit2 vs 会话 API 层)","answer":"确认聚焦会话 API 层","recommended":"聚焦会话 API 层, sbtinit2 不触碰","source":"grilling","at":"2026-08-20T16:28:00+08:00"}
+{"round":1,"question":"测试证书来源? (既有测试证书 vs tls_keygen 动态生成)","answer":"确认复用既有测试材料","recommended":"复用既有测试证书材料","source":"grilling","at":"2026-08-20T16:28:00+08:00"}
+{"round":1,"question":"方向确认: 仅扩展两库 session_test.c, 不改生产代码, 集成到 xmake test?","answer":"可以, 测试用例需要集成到 xmake test","recommended":"确认","source":"grilling","at":"2026-08-20T16:28:00+08:00"}
+{"source":"final_confirmation","summary":"P6 终审通过：仅扩展 dmsbtex/libobk 两库 session_test.c 覆盖 TLS 配置经 cfg 显式入参生效（mTLS 成功/明文/证书缺失失败三路径），seam 已声明，测试集成到 xmake test，不改生产代码，验收 AC-1~AC-5","response":"confirmed","at":"2026-08-20T16:27:44+08:00"}
