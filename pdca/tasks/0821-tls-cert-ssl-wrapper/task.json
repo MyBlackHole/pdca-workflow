@@ -1,0 +1,49 @@
+{
+  "id": "T0337",
+  "title": "TLS_SSL 封装：handshake 返回自定义结构体",
+  "slug": "0821-tls-cert-ssl-wrapper",
+  "parent": "T0333",
+  "children": [],
+  "dependencies": [],
+  "status": "Done",
+  "meta": {
+    "active": true,
+    "scenario_type": "development",
+    "phase": "archive",
+    "record": "T0337-0821-tls-cert-ssl-wrapper",
+    "created_at": "2026-08-21T10:25:27.368292+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "at": "2026-08-21T10:25:27.368292+08:00"
+    },
+    "disposition": {
+      "outcome": "confirmed",
+      "action": "archived",
+      "reason": "AC 全通过，38/38",
+      "at": "2026-08-21T10:25:27.368292+08:00"
+    },
+    "convergence": [
+      "task identity is unique and immutable",
+      "TLS_SSL 封装 SSL + client_ip + client_port + slot",
+      "handshake_common 从 CA store 获取 slot（零文件 IO）",
+      "rpc_hs_session 持有 TLS_SSL*（含 ssl 指针供 I/O）",
+      "所有调用方已迁移（rpc/dmsbtex/libobk/rdbcomm/测试）"
+    ]
+  },
+  "states": {
+    "created": "2026-08-21T10:25:27.368292+08:00",
+    "plan": "2026-08-21T10:25:27.368292+08:00",
+    "do": "2026-08-21T10:25:27.368292+08:00",
+    "check": "2026-08-21T10:25:27.368292+08:00",
+    "act": "2026-08-21T10:25:27.368292+08:00",
+    "archive": "2026-08-21T10:25:27.368292+08:00"
+  },
+  "evidence": [
+    {
+      "id": "E1",
+      "type": "test_pass",
+      "description": "xmake build + test 38/38",
+      "timestamp": "2026-08-21T10:25:27.368292+08:00"
+    }
+  ]
+}
