@@ -1,0 +1,4 @@
+{"source":"final_confirmation","summary":"tls-keygen 清理：算法前缀文件名、删除 purpose/EKU、-n 区分客户端/服务端","response":"confirmed","at":"2026-08-21T14:56:44+08:00"}
+{"source": "grilling", "at": "2026-08-21T15:40:00+08:00", "q": "知识复用性评估", "a": "一次性 CLI 清理任务，无跨项目复用价值"}
+{"source": "knowledge_decision", "at": "2026-08-21T15:40:00+08:00", "action": "skipped", "reason": "tls-keygen 特定清理，不满足复用标准"}
+{"source": "check_confirmation", "at": "2026-08-21T15:40:00+08:00", "verdict": "confirmed", "summary": "T0339 完成：文件名算法前缀、删除 purpose/EKU、-n 区分目录，38/38 tests pass"}

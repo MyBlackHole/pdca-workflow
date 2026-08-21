@@ -1,0 +1,93 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "0821-tls-keygen-cleanup",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/",
+      "message": "'slug' is a required property",
+      "guidance": "fix the field at / in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/",
+      "message": "'parent' is a required property",
+      "guidance": "fix the field at / in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/",
+      "message": "'children' is a required property",
+      "guidance": "fix the field at / in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/",
+      "message": "'status' is a required property",
+      "guidance": "fix the field at / in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/id",
+      "message": "'0821-tls-keygen-cleanup' does not match '^T[0-9]{4,}$'",
+      "guidance": "fix the field at /id in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta",
+      "message": "Additional properties are not allowed ('children', 'parent' were unexpected)",
+      "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta",
+      "message": "'active' is a required property",
+      "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta",
+      "message": "'convergence' is a required property",
+      "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta/scenario_type",
+      "message": "'enhancement' is not one of ['development', 'bugfix', 'research', 'documentation', 'design', 'review']",
+      "guidance": "fix the field at /meta/scenario_type in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/states",
+      "message": "'created' is a required property",
+      "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/states",
+      "message": "'do' is a required property",
+      "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/states",
+      "message": "'check' is a required property",
+      "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/states",
+      "message": "'act' is a required property",
+      "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/states",
+      "message": "'archive' is a required property",
+      "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-08-21T14:56:54.701714+08:00"
+}

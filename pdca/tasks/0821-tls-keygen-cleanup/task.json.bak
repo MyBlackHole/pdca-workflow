@@ -1,0 +1,28 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0339",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "文件名包含算法前缀（{algo}_host.key/crt）",
+      "删除 purpose/EKU 逻辑",
+      "-n 参数区分客户端/服务端目录"
+    ],
+    "created_at": "2026-08-21T14:00:00+08:00",
+    "phase": "plan",
+    "scenario_type": "development"
+  },
+  "parent": null,
+  "slug": "0821-tls-keygen-cleanup",
+  "states": {
+    "created": "2026-08-21T14:00:00+08:00",
+    "plan": "2026-08-21T14:00:00+08:00",
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  },
+  "status": "Pending",
+  "title": "tls-keygen 清理：算法前缀文件名、删除 purpose/EKU、-n 区分客户端/服务端"
+}
