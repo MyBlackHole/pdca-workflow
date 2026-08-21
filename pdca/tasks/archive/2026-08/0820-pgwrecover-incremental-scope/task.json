@@ -3,12 +3,12 @@
   "dependencies": [],
   "id": "T0336",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-20T16:48:37+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T0336-0820-pgwrecover-incremental-scope",
     "scenario_type": "development",
     "completed_at": "2026-08-20T18:43:42+08:00",
@@ -22,7 +22,8 @@
       "outcome": "projected",
       "reason": "pgwrecover 增量重放扩展完成(MULTI_INSERT/UPDATE prefix-suffix), btree S3b 论证, 知识沉淀已写入",
       "at": "2026-08-21T09:34:05.957654+08:00"
-    }
+    },
+    "archived_at": "2026-08-21T09:35:26.673133+08:00"
   },
   "parent": "T0334",
   "slug": "0820-pgwrecover-incremental-scope",
