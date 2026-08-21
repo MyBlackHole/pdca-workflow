@@ -18,25 +18,31 @@
       "AC-2 gap 已接受（字段级验证 + rpc_time_integration 集成覆盖）"
     ],
     "created_at": "2026-08-20T16:24:54+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T0335-0820-tls-session-integration-test",
     "scenario_type": "development",
     "verdict": {
       "outcome": "confirmed",
       "at": "2026-08-20T18:50:00+08:00"
+    },
+    "disposition": {
+      "outcome": "confirmed",
+      "action": "archived",
+      "reason": "AC-1~5 全部通过（AC-2 gap accepted），38/38 全绿，双轴审查 PASS",
+      "at": "2026-08-21T09:52:57.299534+08:00"
     }
   },
   "parent": "T0333",
   "slug": "0820-tls-session-integration-test",
   "states": {
     "act": "2026-08-20T18:50:00+08:00",
-    "archive": null,
+    "archive": "2026-08-21T09:52:57.299534+08:00",
     "check": "2026-08-20T18:50:00+08:00",
     "created": "2026-08-20T16:24:54+08:00",
     "do": "2026-08-20T16:27:45+08:00",
     "plan": "2026-08-20T16:24:54+08:00"
   },
-  "status": "InProgress",
+  "status": "Done",
   "title": "补充 dmsbtex/libobk 会话路径独立集成测试：TLS 配置经 cfg 显式入参生效",
   "evidence": [
     {
