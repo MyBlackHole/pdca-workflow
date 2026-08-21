@@ -1,0 +1,3 @@
+{"at":"2026-08-21T10:02:40+08:00","source":"task_identity","summary":"created with record identity T0338-0821-pgwrecover-btree-replay"}
+{"source":"final_confirmation","summary":"多 fork 架构支持","response":"confirmed","at":"2026-08-21T10:10:34+08:00"}
+{"source":"check_confirmation","summary":"T0338 btree多fork架构+4种核心WAL类型已实现, 编译通过","response":"confirmed","at":"2026-08-21T10:31:45+08:00"}
