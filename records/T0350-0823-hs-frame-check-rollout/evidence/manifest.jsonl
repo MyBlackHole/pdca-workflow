@@ -1,0 +1,3 @@
+{"id":"regression","file":"integration.log","kind":"test","size":5108,"digest":"sha256:d32a7130206d7f41bc027681b7d2eafbf0c8f6ece60fcf84b51b85087ad07207","at":"2026-08-22T12:10:29+08:00","criteria":["AC-2"]}
+{"id":"frame-check","file":"frame_check.txt","kind":"scan","size":65,"digest":"sha256:ec0dff745e8337a4b4f3025c5724ee0f88dc63f4c35e30bc91ca8834a5e88561","at":"2026-08-22T12:10:47+08:00","criteria":["AC-1"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":229,"digest":"sha256:73592d97622fd070f698af11416fb5898d166fcce011938601ba83e3c23475f1","at":"2026-08-22T12:11:06+08:00","criteria":["AC-1","AC-2"]}
