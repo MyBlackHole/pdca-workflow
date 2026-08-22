@@ -1,0 +1,38 @@
+diff --git a/libobk/lib/logic/oracleCmdTbl.c b/libobk/lib/logic/oracleCmdTbl.c
+index f897ec7..1cb4cf8 100644
+--- a/libobk/lib/logic/oracleCmdTbl.c
++++ b/libobk/lib/logic/oracleCmdTbl.c
+@@ -101,8 +101,21 @@ int sbt_session_server_handshake(obk_hs_session_t *io,
+ 		return -1;
+ 	}
+ 	{
+-		const char *cn = tls_cert_get_ca_cn(
+-			sbt_server_ctx, obk_hs_algorithm_name(algorithm));
++		const char *algo_name = obk_hs_algorithm_name(algorithm);
++		if (!algo_name) {
++			/* 畸形/未知算法值：白名单语义，禁止回落，
++			 * 显式拒绝（fail-closed），不再经 find_slot(NULL)
++			 * 静默回落 slots[0] 被当作合法值接纳 */
++			InfoLog("handshake: unknown algorithm value 0x%04x",
++				algorithm);
++			result = OBK_HS_ERR_ALGORITHM;
++			halg = algorithm;
++			memcpy(resp, &result, 2);
++			memcpy(resp + 2, &halg, 2);
++			hs_send_frame(io, 0x01, active_handshake, resp, 4);
++			return -1;
++		}
++		const char *cn = tls_cert_get_ca_cn(sbt_server_ctx, algo_name);
+ 		TLS_SSL *tssl;
+ 		if (!cn || !cn[0]) {
+ 			InfoLog("handshake: ca_cn unavailable");
+@@ -116,8 +129,7 @@ int sbt_session_server_handshake(obk_hs_session_t *io,
+ 		hs_send_frame(io, 0x01, active_handshake, resp,
+ 			      OBK_HS_RESP_BODY_SIZE);
+ 		tssl = tls_cert_server_handshake(
+-			sbt_server_ctx, io->fd,
+-			obk_hs_algorithm_name(algorithm), NULL);
++			sbt_server_ctx, io->fd, algo_name, NULL);
+ 		if (!tssl)
+ 			return -1;
+ 		obk_hs_session_init_tls(io, io->fd, tssl);

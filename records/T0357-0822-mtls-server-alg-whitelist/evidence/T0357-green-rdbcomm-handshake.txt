@@ -1,0 +1,23 @@
+[PASS] rdb algorithm exact mapping
+[PASS] plain zero-handshake passthrough
+[2026-08-22 23:43:20]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|139891823231872| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 23:43:20]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|139891823231872| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[PASS] rdb algorithm exact mapping
+[PASS] plain zero-handshake passthrough
+[PASS] bad halg 0x0000 rejected
+[2026-08-22 23:43:20]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|139891823231872| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 23:43:20]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|139891823231872| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[PASS] rdb algorithm exact mapping
+[PASS] plain zero-handshake passthrough
+[PASS] bad halg 0x0000 rejected
+[PASS] bad halg 0xffff rejected
+[2026-08-22 23:43:20]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|139891823231872| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 23:43:20]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|139891823231872| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[PASS] rdb algorithm exact mapping
+[PASS] plain zero-handshake passthrough
+[PASS] bad halg 0x0000 rejected
+[PASS] bad halg 0xffff rejected
+[2026-08-22 23:43:20]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|139891823231872| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[PASS] on-demand mTLS upgrade
+[PASS] reject without downgrade
+rdbcomm_handshake_session_test: ALL PASS
