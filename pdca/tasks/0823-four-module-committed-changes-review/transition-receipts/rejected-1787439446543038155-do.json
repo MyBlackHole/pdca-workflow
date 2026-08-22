@@ -1,0 +1,45 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0364",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta",
+      "message": "'convergence' is a required property",
+      "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/states",
+      "message": "'do' is a required property",
+      "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/states",
+      "message": "'check' is a required property",
+      "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/states",
+      "message": "'act' is a required property",
+      "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/states",
+      "message": "'archive' is a required property",
+      "guidance": "fix the field at /states in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/status",
+      "message": "'In Progress' is not one of ['Pending', 'InProgress', 'Completed']",
+      "guidance": "fix the field at /status in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-08-23T06:57:26.543013+08:00"
+}

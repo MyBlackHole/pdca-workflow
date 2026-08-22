@@ -1,0 +1,33 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0364",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/states/act",
+      "message": "'' is not a 'date-time'",
+      "guidance": "fix the field at /states/act in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/states/archive",
+      "message": "'' is not a 'date-time'",
+      "guidance": "fix the field at /states/archive in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/states/check",
+      "message": "'' is not a 'date-time'",
+      "guidance": "fix the field at /states/check in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/states/do",
+      "message": "'' is not a 'date-time'",
+      "guidance": "fix the field at /states/do in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-08-23T06:57:48.044020+08:00"
+}
