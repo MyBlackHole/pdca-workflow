@@ -1,0 +1,39 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0344",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-22T08:15:00+08:00",
+    "phase": "archive",
+    "record": "T0344-0822-rpc-mixed-mtls",
+    "scenario_type": "development",
+    "completed_at": "2026-08-22T09:04:13+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5 AC plain/mixed/forced via want_mtls, rpc only, no libs",
+      "verdict_id": "T0344-check-verdict-001",
+      "at": "2026-08-22T09:07:18.425567+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "混合/强制按 want_mtls 分流可复用",
+      "at": "2026-08-22T09:07:32.236703+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0822-rpc-mixed-mtls",
+  "states": {
+    "act": "2026-08-22T09:07:25+08:00",
+    "archive": "2026-08-22T09:07:48+08:00",
+    "check": "2026-08-22T09:04:13+08:00",
+    "created": "2026-08-22T08:15:00+08:00",
+    "do": "2026-08-22T08:18:37+08:00",
+    "plan": "2026-08-22T08:15:00+08:00"
+  },
+  "status": "Completed",
+  "title": "rpc 混合模式：服务端未配置时客户端兼容明文与密文，配置后强制密文"
+}
