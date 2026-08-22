@@ -8,26 +8,21 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-22T08:15:00+08:00",
-    "phase": "act",
+    "phase": "check",
     "record": "T0344-0822-rpc-mixed-mtls",
     "scenario_type": "development",
     "completed_at": "2026-08-22T09:04:13+08:00",
     "verdict": {
       "outcome": "confirmed",
-      "reason": "5 AC plain/mixed/forced via want_mtls, rpc only, no libs",
-      "verdict_id": "T0344-check-verdict-001",
-      "at": "2026-08-22T09:07:18.425567+08:00"
-    },
-    "disposition": {
-      "outcome": "projected",
-      "reason": "混合/强制按 want_mtls 分流可复用",
-      "at": "2026-08-22T09:07:32.236703+08:00"
+      "reason": "5 AC 双层证据全 PASS",
+      "verdict_id": "T0344-check-verdict-002",
+      "at": "2026-08-22T10:15:36.355194+08:00"
     }
   },
   "parent": null,
   "slug": "0822-rpc-mixed-mtls",
   "states": {
-    "act": "2026-08-22T09:07:25+08:00",
+    "act": null,
     "archive": null,
     "check": "2026-08-22T09:04:13+08:00",
     "created": "2026-08-22T08:15:00+08:00",
