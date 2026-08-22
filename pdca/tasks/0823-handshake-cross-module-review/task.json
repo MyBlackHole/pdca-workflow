@@ -1,0 +1,41 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0363",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "AC-1: 四模块握手字节序一致性 — evidence: EVID-CODE-REVIEW",
+      "AC-2: dmsbtex 补发 DM_HS_ERR_CA_CN 拒绝帧 — evidence: EVID-CODE-DIFF",
+      "AC-3: dmsbtex ca_cn 用例通过 + 全量 xmake test 无回归 — evidence: EVID-TEST-RESULT"
+    ],
+    "created_at": "2026-08-23T01:40:00+08:00",
+    "phase": "archive",
+    "record": "T0363-0823-handshake-cross-module-review",
+    "scenario_type": "review",
+    "completed_at": "2026-08-23T06:42:45+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "四模块握手字节序一致无跨模块回归；dmsbtex ca_cn 缺帧已补 DM_HS_ERR_CA_CN 并与其余三模块对齐；AC-1/2/3 收敛闭环（全量 xmake test 40/40 PASS）",
+      "verdict_id": "T0363-0823-verdict-1",
+      "at": "2026-08-23T06:43:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "四模块握手字节序统一范式与错误帧一致性审查方法可复用；dmsbtex 缺帧修复已落地；错误码命名归一、ca_cn 集成测试、libobk 外部对端升级留作 follow-up（T0362）",
+      "at": "2026-08-23T06:44:00+08:00"
+    }
+  },
+  "parent": "T0348",
+  "slug": "0823-handshake-cross-module-review",
+  "states": {
+    "created": "2026-08-23T01:40:00+08:00",
+    "plan": "2026-08-23T01:40:00+08:00",
+    "do": "2026-08-23T06:39:34+08:00",
+    "check": "2026-08-23T06:42:45+08:00",
+    "act": "2026-08-23T06:43:47+08:00",
+    "archive": "2026-08-23T06:44:17+08:00"
+  },
+  "status": "Completed",
+  "title": "四模块握手跨模块一致性审查（含 dmsbtex 缺帧修复）"
+}

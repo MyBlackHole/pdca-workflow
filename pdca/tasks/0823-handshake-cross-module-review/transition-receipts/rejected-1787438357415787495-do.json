@@ -1,0 +1,29 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0363",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "FUTURE_STATE_SET",
+      "path": "/states/do",
+      "message": "must be null in plan"
+    },
+    {
+      "code": "FUTURE_STATE_SET",
+      "path": "/states/check",
+      "message": "must be null in plan"
+    },
+    {
+      "code": "FUTURE_STATE_SET",
+      "path": "/states/act",
+      "message": "must be null in plan"
+    },
+    {
+      "code": "FUTURE_STATE_SET",
+      "path": "/states/archive",
+      "message": "must be null in plan"
+    }
+  ],
+  "at": "2026-08-23T06:39:17.415763+08:00"
+}

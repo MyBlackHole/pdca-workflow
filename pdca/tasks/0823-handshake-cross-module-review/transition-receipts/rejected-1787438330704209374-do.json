@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0363",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta",
+      "message": "Additional properties are not allowed ('title' was unexpected)",
+      "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-08-23T06:38:50.704193+08:00"
+}

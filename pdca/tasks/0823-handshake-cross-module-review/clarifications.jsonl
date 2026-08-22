@@ -1,0 +1,2 @@
+{"source":"final_confirmation","summary":"审查范围：四模块握手（rdbcomm/libobk/sbt/dmsbtex/rpc）跨模块一致性；发现 dmsbtex 服务端 ca_cn unavailable 分支未发 DM_HS_ERR_CA_CN 拒绝帧；处置=hotfix 补帧+补测试；用户确认两者都做","response":"confirmed","at":"2026-08-23T06:38:28+08:00"}
+{"source":"check_confirmation","summary":"审查结论确认：四模块字节序一致无回归；dmsbtex ca_cn 缺帧已补 DM_HS_ERR_CA_CN 并与其余三模块对齐；AC-1/2/3 收敛闭环，全量 xmake test 40/40 PASS","response":"confirmed","at":"2026-08-23T06:43:47+08:00"}

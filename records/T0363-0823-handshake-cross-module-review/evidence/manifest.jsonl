@@ -1,0 +1,4 @@
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":651,"digest":"sha256:903dfa2a890e95ba4f1eb0c69e2d1dce1da58a84eaec5d45510d442237160885","at":"2026-08-23T06:41:52+08:00","criteria":["AC-1","AC-2","AC-3"]}
+{"id":"EVID-CODE-REVIEW","file":"code-review.md","kind":"code-review","size":1460,"digest":"sha256:dbbf54dd6b8f85dc0bd1f0071495010e11b5d126499ef570697a8c71870b6ca5","at":"2026-08-23T06:42:26+08:00","criteria":["AC-1"]}
+{"id":"EVID-CODE-DIFF","file":"code-diff.md","kind":"code-diff","size":1100,"digest":"sha256:93d4e2f8df081524e11362edd1b33d66cf1057a2bb472e670510e79d34dc4ab5","at":"2026-08-23T06:42:26+08:00","criteria":["AC-2"]}
+{"id":"EVID-TEST-RESULT","file":"test-result.md","kind":"test-result","size":1091,"digest":"sha256:9465d76205a3429ffced3b3828b40a1ba0d51d949155806a22e3cd89666b2b88","at":"2026-08-23T06:42:26+08:00","criteria":["AC-3"]}
