@@ -1,0 +1,244 @@
+commit 582c3800dfe65062d578fa4c08e9963bc259be50
+Author: black <1358244533@qq.com>
+Date:   Sat Aug 22 18:32:41 2026 +0800
+
+    【B-T0356】libobk: 修复 mTLS 握手栈溢出与帧长度必败, 1.0.0.0 -> 1.0.0.1
+    
+    问题描述: 开启 SBT_MTLS_ENABLE=1 时 libobk 客户端与 FileTransferAgent 的 mTLS 握手永远失败，且存在内存安全隐患。复现步骤: 1) 服务端配置证书目录并启动 FileTransferAgent 2) 客户端设置 SBT_MTLS_ENABLE=1 发起备份 3) 握手必败断连。
+    原因分析: 双端握手响应体长度契约漂移——客户端 sbt_session_client_init 校验 body 长度 sizeof(resp)-sizeof(activeioHeader)=175 字节，服务端 sbt_session_server_handshake 发送 h.bytes=4+201=205 字节，175!=205 导致校验必败；同时服务端从 resp[204] 缓冲区发送 205 字节越界读 1 字节；客户端以 body 大小(205)缓冲区承接 header+body 总长(235)读取造成栈溢出 30 字节。长度字面量双端各写一份、无真实往返测试覆盖所致。
+    解决方案: protocol.h 新增 OBK_HS_RESP_BODY_SIZE 单点宏(4+OBK_HS_MAX_NAME)，双端校验/发送共用；客户端接收缓冲区扩为 sizeof(activeioHeader)+OBK_HS_RESP_BODY_SIZE 并以 _recv(expect=sizeof(resp)) 读满；body 前移改用 memmove 消除重叠拷贝 UB；ca_cn 提取改用 OBK_HS_MAX_NAME；两握手函数去 static 并在头文件声明供测试链接；删除 result 死分支三元表达式；客户端握手 6 个失败分支补分类 ErrorLog(role/stage/cert_dir/ca_cn/algorithm)；libobk_session_test 新增 socketpair 级真实 TLS 升级往返用例(fork 服务端隔离全局态，升级后互发帧验证链路)。
+    影响范围: 仅 libobk 的 SBT mTLS 握手路径(libobk.c 客户端/oracleCmdTbl.c 服务端)；明文模式零握手直通不受影响；dmsbtex/rdbcomm/rpc 不涉及。风险等级低——旧代码 mTLS 本就不可用，无兼容性损失。
+    性能影响: 无。仅常量替换与一次 memmove(234 字节)，握手一次性开销可忽略。
+    复现步骤: 见问题描述；自动化复现: xmake build libobk_session_test && xmake run libobk_session_test。
+    测试验证: 新增往返用例覆盖 mTLS 升级成功路径(tssl 断言+echo 链路)，变异测试(回退发送长度至 205)确认用例判别力；xmake run libobk_session_test/libobk_protocol_test/rdbcomm_handshake_session_test/rpc_own_handshake_test/dmsbtex_session_test 全绿；ASan 构建运行无内存错误报告。
+    相关 Issue: PDCA T0355(C1/C2 发现)、T0356(修复任务)；知识库 knowledge/tls/handshake-dup-impl-length-contract.md。
+    风险评估: 低。新增宏与去 static 导出不改变既有调用方 ABI 行为；往返测试防止未来契约再漂移。缓解: ASan+变异测试双重验证。
+    回滚方案: revert 本次 commit 即恢复原状(恢复后 mTLS 握手回到不可用状态，明文模式不受任何影响)。
+    版本变更: xmake.lua: libobk_version 1.0.0.0 -> 1.0.0.1
+
+diff --git a/libobk/lib/sbt/libobk.c b/libobk/lib/sbt/libobk.c
+index cbddd85..bb0b946 100644
+--- a/libobk/lib/sbt/libobk.c
++++ b/libobk/lib/sbt/libobk.c
+@@ -138,13 +138,15 @@ static int hs_send_frame(obk_hs_session_t *io, char d_type, int cmd_id,
+ 	return 0;
+ }
+ 
+-static int sbt_session_client_init(obk_hs_session_t *io, int fd,
+-				   const struct sbtctx *ctx)
++int sbt_session_client_init(obk_hs_session_t *io, int fd,
++			    const struct sbtctx *ctx)
+ {
+ 	tls_cert_ctx_t *tls_ctx = NULL;
+-	char req[2], resp[4 + 201];
++	char req[2];
++	/* header+body 合读：缓冲区必须按总长分配（T0355 C1 教训） */
++	char resp[sizeof(activeioHeader) + OBK_HS_RESP_BODY_SIZE];
+ 	uint16_t result = 0, halg = 0;
+-	char ca_cn[201] = { 0 };
++	char ca_cn[OBK_HS_MAX_NAME + 1] = { 0 };
+ 	activeioHeader *ph;
+ 
+ 	obk_hs_session_init_plain(io, fd);
+@@ -155,41 +157,69 @@ static int sbt_session_client_init(obk_hs_session_t *io, int fd,
+ 	/* 发送协商请求帧：cmdId=active_handshake，body={algorithm u16 主机序} */
+ 	memcpy(req, &ctx->tls_algorithm, sizeof(ctx->tls_algorithm));
+ 	if (hs_send_frame(io, 0x00, active_handshake, req,
+-			  sizeof(ctx->tls_algorithm)) != 0)
++			  sizeof(ctx->tls_algorithm)) != 0) {
++		ErrorLog("handshake: send negotiate frame failed: fd=%d",
++			 fd);
+ 		goto error;
++	}
+ 
+-	/* 接收响应帧：body={result u16, algorithm u16, ca_cn[201]} */
+-	if (_recv(io, resp, sizeof(activeioHeader) + sizeof(resp), NULL) <
+-	    (long)(sizeof(activeioHeader) + sizeof(resp)))
++	/* 接收响应帧：header + body={result u16, algorithm u16, ca_cn[200]} */
++	if (_recv(io, resp, sizeof(resp), NULL) < (long)sizeof(resp)) {
++		ErrorLog("handshake: short read on negotiate response: "
++			 "fd=%d expect=%zu",
++			 fd, sizeof(resp));
+ 		goto error;
++	}
+ 	ph = (activeioHeader *)resp;
+ 	if (ph->cmdId != active_handshake || ph->dType != 1 ||
+-	    ph->bytes != sizeof(resp) - sizeof(activeioHeader))
++	    ph->bytes != OBK_HS_RESP_BODY_SIZE) {
++		ErrorLog("handshake: bad negotiate response frame: "
++			 "fd=%d cmdId=%d dType=%d bytes=%d expect=%d",
++			 fd, ph->cmdId, ph->dType, ph->bytes,
++			 OBK_HS_RESP_BODY_SIZE);
+ 		goto error;
+-	memcpy(resp, resp + sizeof(activeioHeader), sizeof(resp) -
+-	       sizeof(activeioHeader));
++	}
++	memmove(resp, resp + sizeof(activeioHeader), OBK_HS_RESP_BODY_SIZE);
+ 	memcpy(&result, resp, 2);
+ 	memcpy(&halg, resp + 2, 2);
+-	memcpy(ca_cn, resp + 4, 200);
++	memcpy(ca_cn, resp + 4, OBK_HS_MAX_NAME);
+ 
+-	if (result != OBK_HS_OK_MTLS)
++	if (result != OBK_HS_OK_MTLS) {
++		/* 无降级：非 OK_MTLS 一律失败 */
++		ErrorLog("handshake: server refused mTLS upgrade: "
++			 "fd=%d result=0x%x",
++			 fd, result);
+ 		goto error;
++	}
+ 	{
+-		const char *alg_name =
+-			result ? obk_hs_algorithm_name(halg) : ctx->tls_algorithm_name;
++		const char *alg_name = obk_hs_algorithm_name(halg);
+ 		tls_cert_client_options_t opts = { 0 };
+ 		TLS_SSL *tssl;
+ 		if (!ctx->tls_cert_dir[0] || !ca_cn[0] || !alg_name ||
+-		    !alg_name[0])
++		    !alg_name[0]) {
++			ErrorLog("handshake: no client cert available: "
++				 "cert_dir=%s ca_cn=%s algorithm=%s",
++				 ctx->tls_cert_dir[0] ? ctx->tls_cert_dir :
++						       "<empty>",
++				 ca_cn[0] ? ca_cn : "<empty>",
++				 alg_name ? alg_name : "<empty>");
+ 			goto error;
++		}
+ 		opts.mtls_enabled = 1;
+ 		opts.cert_dir = ctx->tls_cert_dir;
+ 		opts.algorithm = alg_name;
+ 		opts.ca_cn = ca_cn;
+-		if (tls_cert_init_client(&opts, &tls_ctx) != 0)
++		if (tls_cert_init_client(&opts, &tls_ctx) != 0) {
++			ErrorLog("handshake: tls_cert_init_client failed: "
++				 "cert_dir=%s algorithm=%s ca_cn=%s",
++				 opts.cert_dir, opts.algorithm, opts.ca_cn);
+ 			goto error;
++		}
+ 		tssl = tls_cert_client_handshake(tls_ctx, fd, alg_name, NULL);
+ 		if (!tssl) {
++			ErrorLog("handshake: TLS handshake failed: "
++				 "fd=%d algorithm=%s ca_cn=%s",
++				 fd, alg_name, ca_cn);
+ 			tls_cert_cleanup(tls_ctx);
+ 			goto error;
+ 		}
+diff --git a/libobk/test/session_test.c b/libobk/test/session_test.c
+index 37f5733..c83aacc 100644
+--- a/libobk/test/session_test.c
++++ b/libobk/test/session_test.c
+@@ -1,9 +1,12 @@
+ #define _GNU_SOURCE
+ #include <assert.h>
++#include <signal.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <sys/socket.h>
++#include <sys/wait.h>
++#include <unistd.h>
+ 
+ #include "libobk.h"
+ #include "oracleCmdTbl.h"
+@@ -12,6 +15,9 @@
+ #define TEST_CERT_DIR "libs/tests/certs"
+ #endif
+ 
++/* oracleCmdTbl.c 内部接收原语（非 public ABI，测试复用产品读路径） */
++int _recv(obk_hs_session_t *io, char *buffer, long expect, FILE *fp____);
++
+ int main(void)
+ {
+ 	/* 基础明文 echo（原有行为保持） */
+@@ -65,5 +71,90 @@ int main(void)
+ 		assert(ctx.tls_mtls_enabled == 0);
+ 	}
+ 
++	/* AC-2c: mTLS 握手真实往返 —— 客户端协商 ↔ 服务端握手应答。
++	 * fork 隔离服务端 static 全局（sbt_server_ctx），socketpair 直连，
++	 * 升级成功后双方互发一帧验证链路走 TLS。 */
++	{
++		int fds[2];
++		signal(SIGPIPE, SIG_IGN);
++		assert(socketpair(AF_UNIX, SOCK_STREAM, 0, fds) == 0);
++
++		pid_t pid = fork();
++		assert(pid >= 0);
++		if (pid == 0) {
++			libobk_tls_config_t cfg;
++			obk_hs_session_t io;
++			char req[sizeof(activeioHeader) + sizeof(uint16_t)];
++			activeioHeader *h;
++			uint16_t halg = 0;
++			char echo_buf[32] = { 0 };
++
++			close(fds[0]);
++			memset(&cfg, 0, sizeof(cfg));
++			assert(sbt_server_tls_config_init(&cfg) == 0);
++			cfg.mtls_enabled = 1;
++			assert(sbt_session_server_prepare(&cfg) == 0);
++			obk_hs_session_init_plain(&io, fds[1]);
++
++			memset(req, 0, sizeof(req));
++			assert(_recv(&io, req, (long)sizeof(req), NULL) ==
++			       (long)sizeof(req));
++			h = (activeioHeader *)req;
++			if (h->cmdId != active_handshake || h->dType != 0)
++				_exit(1);
++			memcpy(&halg, req + sizeof(activeioHeader),
++			       sizeof(halg));
++			if (sbt_session_server_handshake(&io, &cfg, halg) != 0)
++				_exit(2);
++			if (!io.tssl)
++				_exit(3);
++			ssize_t n = io.read(&io, echo_buf,
++					    sizeof(echo_buf), 0);
++			if (n <= 0)
++				_exit(4);
++			if (io.write(&io, echo_buf, (size_t)n, 0) != n)
++				_exit(5);
++			obk_hs_session_cleanup(&io);
++			close(fds[1]);
++			_exit(0);
++		}
++		close(fds[1]);
++
++		{
++			struct sbtctx ctx;
++			obk_hs_session_t cio;
++			const char *msg = "client-over-tls";
++			char rbuf[32] = { 0 };
++			size_t msg_len = strlen(msg) + 1;
++
++			setenv("SBT_MTLS_ENABLE", "1", 1);
++			setenv("SBT_TLS_ALGORITHM", "TLS_AES_256_GCM_SHA384",
++			       1);
++			setenv("RPC_TLS_CERT_DIR", TEST_CERT_DIR "/", 1);
++			memset(&ctx, 0, sizeof(ctx));
++			assert(sbt_client_tls_config_init(&ctx) == 0);
++			assert(ctx.tls_mtls_enabled == 1);
++
++			assert(sbt_session_client_init(&cio, fds[0], &ctx) ==
++			       0);
++			assert(cio.tssl != NULL);
++
++			assert(cio.write(&cio, msg, msg_len, 0) ==
++			       (ssize_t)msg_len);
++			assert(cio.read(&cio, rbuf, sizeof(rbuf), 0) > 0);
++			assert(strcmp(rbuf, "client-over-tls") == 0);
++
++			obk_hs_session_cleanup(&cio);
++			close(fds[0]);
++		}
++
++		{
++			int status = -1;
++			assert(waitpid(pid, &status, 0) == pid);
++			assert(WIFEXITED(status));
++			assert(WEXITSTATUS(status) == 0);
++		}
++	}
++
+ 	return 0;
+ }
+\ No newline at end of file

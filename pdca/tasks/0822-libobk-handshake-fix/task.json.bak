@@ -8,7 +8,7 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-22T17:47:28+08:00",
-    "phase": "act",
+    "phase": "check",
     "record": "T0356-0822-libobk-handshake-fix",
     "scenario_type": "bugfix",
     "completed_at": "2026-08-22T18:37:08+08:00",
@@ -17,17 +17,12 @@
       "reason": "四条 AC 全部实证；变异测试证明往返测试判别力；五套件回归全绿且 ASan 干净；提交 582c380 含十要素分析与版本升级",
       "verdict_id": "V-T0356-check-01",
       "at": "2026-08-22T18:40:00+08:00"
-    },
-    "disposition": {
-      "outcome": "not_reusable",
-      "reason": "修复模式已由父任务 T0355 沉淀（handshake-dup-impl-length-contract.md），本次为其首次成功应用；record 归档即为沉淀",
-      "at": "2026-08-22T18:42:28+08:00"
     }
   },
   "parent": "T0355",
   "slug": "0822-libobk-handshake-fix",
   "states": {
-    "act": "2026-08-22T18:41:21+08:00",
+    "act": null,
     "archive": null,
     "check": "2026-08-22T18:37:08+08:00",
     "created": "2026-08-22T17:47:28+08:00",

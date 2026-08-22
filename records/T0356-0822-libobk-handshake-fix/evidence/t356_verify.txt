@@ -1,0 +1,13 @@
+# T0356 验证日志 2026-08-22T18:33:36+08:00
+## libobk_session_test（含新增 mTLS 往返用例）
+[0m[1;38;2;255;255;0;1mwarning: [38;2;255;255;0;1munknown policy(native), please run `xmake l core.project.policy.policies` if you want to all policies[0m
+exit=0
+session_exit=0
+libobk_protocol_test exit=0
+rdbcomm_handshake_session_test exit=0
+rpc_own_handshake_test exit=0
+dmsbtex_session_test exit=0
+AC3 宏单点化检查:
+libobk/lib/sbt/libobk.c:0
+libobk/lib/logic/oracleCmdTbl.c:0
+0 处字面量残留
