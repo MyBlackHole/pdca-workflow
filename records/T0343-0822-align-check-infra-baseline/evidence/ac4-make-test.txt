@@ -1,0 +1,4 @@
+# AC-4 make test 全量
+./tests/tls_adaptive_storage_integration.sh ./build-make
+tls adaptive storage integration: PASS lanes=16 workers=1 storage_decreases=3 worker_busy=75
+make-test-exit=0

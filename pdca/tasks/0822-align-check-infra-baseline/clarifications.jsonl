@@ -3,3 +3,5 @@
 {"round":1,"question":"其余三项机械修复","answer":"p1_closure断言改写匹配当前语义形态;tree测试cleanup先chmod -R u+w再rm;删除Makefile两行幽灵引用","recommended":"按根因修","source":"grilling","at":"2026-08-22T08:03:43+08:00"}
 {"source":"direction_confirm","summary":"bugfix四项:行数limit校正+5%/p1_closure断言语义改写/tree测试cleanup权限修复/幽灵脚本删除","response":"confirmed","at":"2026-08-22T08:03:43+08:00"}
 {"source":"final_confirmation","summary":"P6终审:四项修复(limit校正+5%/断言语义化/cleanup权限/幽灵引用删除)零src变更;AC=style_check+p1_closure+tree_metadata+make test全过","response":"confirmed","at":"2026-08-22T08:04:29+08:00"}
+{"source":"check_confirmation","summary":"5条AC全PASS;范围演化(系统性对齐+克隆提取)经用户决策确认;make test/ctest/style_check/duplicate gate全绿","response":"confirmed","at":"2026-08-22T09:28:38+08:00"}
+{"source":"knowledge_decision","at":"2026-08-22T09:29:18+08:00","action":"wrote","reason":"顺序短路检查器的洋葱式失配探测法+锚点严格重锚双校验+VERSION依赖图缺口,对所有维护检查基建的任务可复用"}

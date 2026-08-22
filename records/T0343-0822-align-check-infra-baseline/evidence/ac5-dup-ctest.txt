@@ -1,0 +1,6 @@
+# AC-5 duplicate gate + ctest
+duplicate_check: cross-file exact clones: 8-line=7, 12-line=0
+gate-exit=0
+100% tests passed out of 120
+Total Test time (real) = 182.31 sec
+ctest-exit=0 (120/120)

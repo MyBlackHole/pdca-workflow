@@ -45,9 +45,14 @@
 - 不补写缺失的两个测试脚本
 - 不新增覆盖
 
+## 执行中范围演化（Do 阶段如实记录）
+
+原估 4 类失配经逐层暴露实为系统性脱节：22 处文件级 limit 失配、25 处 grep 锚点因 format 失配、3 处 ns 结束标记失效、1 处前向声明错锚、4 处紧凑格式断言漂移、8 组跨文件克隆（duplicate gate 自 init 未曾执行到）。用户决策：克隆提取纳入本期（A 方案）。另修复 T0341 连带问题：VERSION 增量依赖缺失（Makefile 82+4 条规则补前置、CMake 注册 configure 依赖）、backup-observe 版本断言硬编码。最终策略不变：校正对齐而非放松治理。
+
 ## 验收标准
 
 - [ ] AC-1: 运行 `bash tests/style_check.sh .` exit 0
 - [ ] AC-2: 运行 `bash tests/p1_closure_source_regression.sh .` 输出 PASS 且 exit 0
 - [ ] AC-3: 运行 `bash tests/tree_small_metadata_order_integration.sh ./build-make` 输出 PASS 且无 rm 权限报错
 - [ ] AC-4: 运行 `make test` 完整执行至末尾 exit 0(不再被幽灵引用中断)
+- [ ] AC-5: 运行 duplicate_check: cross-file exact clones: 8-line=7, 12-line=0 exit 0（12 行级克隆清零）

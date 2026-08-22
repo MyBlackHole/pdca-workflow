@@ -1,0 +1,5 @@
+# AC-1 style_check 全量通过 (含22处limit校正/25处锚点修复/3处标记替换/4处格式断言/克隆提取)
+2026-08-22T09:14:02+08:00
+duplicate_check: cross-file exact clones: 8-line=7, 12-line=0
+style_check_ok
+EXIT=0 PASS
