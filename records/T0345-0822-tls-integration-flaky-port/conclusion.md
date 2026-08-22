@@ -46,7 +46,7 @@ T0345 源自 T0343 遗留观察：tls_integration 在 ctest 中偶发失败一�
 
 ```json
 {
-  "outcome": "pending-user-verdict",
+  "outcome": "partial",
   "reason": "复现固化+排除清单+发送侧定位三项达成(AC全PASS);根因修复分拆至T0347;结论性质为partial",
   "verdict_id": "T0345-check-v1",
   "at": "2026-08-22T11:00:00+08:00"

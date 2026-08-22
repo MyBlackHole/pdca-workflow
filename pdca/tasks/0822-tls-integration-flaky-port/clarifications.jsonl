@@ -1,1 +1,4 @@
 {"at":"2026-08-22T09:49:47+08:00","source":"task_identity","summary":"created with record identity T0345-0822-tls-integration-flaky-port"}
+{"source":"check_confirmation","summary":"partial确认:复现脚本+排除清单+发送侧定位交付,根因修复由T0347承接","response":"confirmed","at":"2026-08-22T15:48:04+08:00"}
+{"source":"final_confirmation","summary":"事后归档补录(流程偏差如实披露):本任务在调查中执行,Plan门禁未先行。实际决策链均有用户确认:1)分拆立项选择(问题工具)2)partial定性确认。PRD验收标准AC-1~6已补全并与evidence/convergence对齐。终审要点:复现脚本资产化+排除清单+发送侧定位交付,根因修复由T0347(parent)承接","response":"confirmed","at":"2026-08-22T15:48:56+08:00"}
+{"source":"knowledge_decision","at":"2026-08-22T15:49:56+08:00","action":"wrote","reason":"partial沉淀:调查状态文档为T0347直接输入"}

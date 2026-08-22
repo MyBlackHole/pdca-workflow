@@ -1,0 +1,3 @@
+{"at":"2026-08-22T15:48:08+08:00","source":"task_identity","summary":"created with record identity T0354-0823-optional-handshake-align"}
+{"source":"triage","summary":"三项目无条件握手 vs rpc 按需握手差异实锤：rdbcomm client.c:166/dmsbtex sbt.c:258+main.c:214/libobk libobk.c:352+oracleCmdTbl.c:797 均无条件进入协商或首阶段等待","at":"2026-08-22T15:55:00+08:00"}
+{"source":"triage","q":"方案选择：Y 条件跳过 vs Z 握手内嵌消息循环？","a":"Y：明文零握手+mTLS 路径字节不变；Z 需重定义握手承载格式（改线上协议字节）违背既有约束","at":"2026-08-22T15:56:00+08:00"}
