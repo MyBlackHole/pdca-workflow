@@ -3,12 +3,12 @@
   "dependencies": [],
   "id": "T0361",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-22T21:06:42+08:00",
-    "phase": "check",
+    "phase": "archive",
     "record": "T0361-0822-mtls-param-unify",
     "scenario_type": "development",
     "completed_at": "2026-08-22T21:59:29+08:00",
@@ -17,13 +17,18 @@
       "reason": "AC-1..4 全部通过；xmake test 40/40；两次补充提交 2456402/4bb3c8a 均经用户报告驱动闭环",
       "verdict_id": "V-T0361-20260822-01",
       "at": "2026-08-22T22:50:28+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "统一解析与参数精简落地（4f0e880/2456402/4bb3c8a）；知识 v3 入 manifest；增量构建教训写入知识文件供后续任务遵循",
+      "at": "2026-08-22T22:51:01+08:00"
     }
   },
   "parent": "T0360",
   "slug": "0822-mtls-param-unify",
   "states": {
-    "act": null,
-    "archive": null,
+    "act": "2026-08-22T22:50:29+08:00",
+    "archive": "2026-08-22T22:51:02+08:00",
     "check": "2026-08-22T21:59:29+08:00",
     "created": "2026-08-22T21:06:42+08:00",
     "do": "2026-08-22T21:08:06+08:00",
