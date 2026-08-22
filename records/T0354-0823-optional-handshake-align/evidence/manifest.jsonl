@@ -1,0 +1,6 @@
+{"id":"ac1-rdbcomm-matrix","file":"ac1.log","kind":"test-log","size":606,"digest":"sha256:5d3d30fdd8f31036345de817665363c4b9e80481acda32e178bba98e11348ed4","at":"2026-08-22T16:46:49+08:00","criteria":["AC-1"]}
+{"id":"ac2-dmsbtex-matrix","file":"ac2.log","kind":"test-log","size":1108,"digest":"sha256:10a94f6a7a2b2c1ca05144e8befe7889d62d3028e8f8bdbd46df27f01f38c01b","at":"2026-08-22T16:46:49+08:00","criteria":["AC-2"]}
+{"id":"ac3-libobk-tests","file":"ac3.log","kind":"test-log","size":8,"digest":"sha256:79d8cb21b49b4a2b363d831955d17fe063a1ceda70b28c3c51e9c4e810582c14","at":"2026-08-22T16:46:49+08:00","criteria":["AC-3"]}
+{"id":"ac4-full-build-test","file":"ac4.log","kind":"build-log","size":125,"digest":"sha256:7d7b1ec65fe53af0f0caaf609b4c5a4bcaa43847f879d7107890a51aebe33213","at":"2026-08-22T16:46:50+08:00","criteria":["AC-4"]}
+{"id":"ac5-branch-scan","file":"ac5.log","kind":"static-scan","size":56,"digest":"sha256:fb5ce0cc4ca287edd1c4cbafb3ce94c9385c78cb9152aed09e9c8d6c80842d80","at":"2026-08-22T16:46:50+08:00","criteria":["AC-5"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":330,"digest":"sha256:6441af203e3c4f5dec7ebc9fe4ae351d4088694ab91c2b766df28a4821c3e640","at":"2026-08-22T16:47:18+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}

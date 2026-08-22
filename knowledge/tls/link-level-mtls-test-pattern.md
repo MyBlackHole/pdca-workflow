@@ -39,3 +39,18 @@ fork+execl 工具二进制 E2E（端口/环境脆弱、无法覆盖内部接缝�
   msg_base_resp + uint64(be64) 共 20 字节，uiResult 服务端未赋值不可强校验。
 - 协议枚举弃位保值：移除某个 op/result 时保留原枚举数值空洞，
   避免重排改变线上字节。
+
+## 按需握手决策树（T0354 补充，rpc 对齐版）
+服务端在业务循环内处理 HANDSHAKE 帧，行为矩阵：
+| server\\client | 明文直连 | 协商(want) |
+|---|---|---|
+| mtls=0+证书可用 | 明文业务 | OK_MTLS 按需升级 |
+| mtls=0+证书不可用 | 明文业务 | ERR_MTLS_UNAVAILABLE 拒绝（不允许降级） |
+| mtls=1 | 拒绝明文业务帧 | 强制 OK_MTLS 升级 |
+要点：
+- 证书 ctx 由 cert_dir 可用性驱动构建（mtls_enabled 仅控制强制语义）；
+  非强制下构建失败降级明文服务并告警（F3）。
+- 客户端收到任何非 OK_MTLS 一律失败断开（客户端侧同样无降级容忍）。
+- 协商载荷用项目自身帧头封装（type/cmd/cmdId 新增 HANDSHAKE 常量），
+  不再使用独立裸帧格式；AIOH 裸帧已废弃。
+- 线程栈缓冲警惕大常量：TCP_PACKAGE_SIZE(64M) 类尺寸必须堆分配。

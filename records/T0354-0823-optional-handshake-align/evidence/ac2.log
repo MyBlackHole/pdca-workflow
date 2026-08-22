@@ -1,0 +1,12 @@
+[PASS] plain zero-handshake passthrough
+[2026-08-22 16:46:44]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140236588929920| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 16:46:44]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140236588929920| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 16:46:44]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140236588929920| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[PASS] forced mTLS upgrade
+[2026-08-22 16:46:44]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140236588929920| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 16:46:44]|Error|libs/tls_cert.c:75 tls_cert_log_setup_error|140236588929920| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_SM4_GCM_SM3 ca=/nonexistent/certs/sm2_ca.crt cert=/nonexistent/certs/sm2_host.crt key=/nonexistent/certs/sm2_host.key
+[PASS] bad cert_dir prepare fail
+[2026-08-22 16:46:44]|Error|dmsbtex/network.c:237 dm_server_handshake|140236581500608| handshake: no TLS context, reject
+[PASS] no-downgrade reject
+dmsbtex_session_test: ALL PASS
+EXIT=0

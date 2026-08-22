@@ -10,16 +10,28 @@
 
 ## 解决方案
 
-**条件跳过方案**（保持现有 AIOH 帧格式与 mTLS 路径字节不变）：
+**方案 Z'：握手内嵌消息循环 + 无降级**（完全对齐 rpc 决策树并收紧）：
 
-| 组件 | mtls_enabled=0 | mtls_enabled=1 |
-|------|----------------|----------------|
-| 客户端一体协商 | `init_plain` 后直接返回成功，**不发任何帧** | 现行协商+证书升级路径不变 |
-| 服务端首阶段 | `init_plain` 后直接返回成功，**不等握手帧**，业务循环照常 | 现行协商分流+TLS 升级路径不变 |
+利用三项目已有帧类型字段承载协商（新增 HANDSHAKE 类型常量）：
+- rdbcomm：消息首字节 type 表追加 HANDSHAKE 类型；
+- dmsbtex：`network_header_t.cmd` 追加 `CMD_HANDSHAKE`；
+- libobk：`activeioHeader.cmdId` 枚举追加 HANDSHAKE 值。
 
-- rdbcomm：`rdb_hs_client_session_init` 入口条件化；`on_connect` 在服务端未启用 mTLS 时跳过 `rdb_hs_server_first_stage` 调用。
-- dmsbtex：`sbt_session_client_init`/`sbt_session_server_accept` 同型条件化（network.c 单文件内聚）。
-- libobk：`libobk.c` client 侧与 `oracleCmdTbl.c` server 侧同型条件化。
+### 行为矩阵（终版）
+
+| server \\ client | 明文直连（不协商） | 协商（want_mtls=1） |
+|---|---|---|
+| server mtls=0 + 证书可用 | 明文业务 | **OK_MTLS 升级（按需）** |
+| server mtls=0 + 证书不可用 | 明文业务 | **拒绝（ERR_MTLS_UNAVAILABLE），不允许降级** |
+| server mtls=1 | 拒绝明文业务帧 | OK_MTLS 升级 |
+
+### 各端改造
+- 客户端：`mtls_enabled=0` 零握手直连；`=1` 时发送项目帧封装的协商载荷，
+  收到非 OK_MTLS 一律失败断开（无降级容忍）。
+- 服务端：握手处理内嵌消息循环——HANDSHAKE 类型帧走决策树
+  （强制/按需升级/无证书拒绝），其余帧按原业务分发；
+  强制模式下未握手的明文业务帧拒绝。
+- rdbcomm：type 分发表扩展；dmsbtex：cmd 分支扩展；libobk：cmdId 枚举扩展。
 
 ## Seam 分析
 
@@ -46,9 +58,10 @@
 - **切片 B**：dmsbtex network.c 两函数入口条件化。
 - **切片 C**：libobk 两处入口条件化（client 侧读 ctx->tls_mtls_enabled；server 侧读 cfg->mtls_enabled）。
 - **技术澄清**:
-  - 仅增加前置短路，不改动任何帧格式、枚举值与 mTLS 路径字节。
-  - 行为变化声明（破坏性）：旧版客户端（无条件协商）对新版明文服务端将因帧错位断连——部署需三端同步升级；新版客户端对旧版明文服务端同理。
-  - 混合场景（client 要求 mTLS 而 server 未启用）在新语义下表现为帧错位断连而非 ERR_MTLS_UNAVAILABLE 错误码，属可接受退化（PRD 声明）。
+  - 协商帧 wire 格式变更：由裸 AIOH 帧改为项目帧头封装（mTLS 场景字节变化，PRD 声明的破坏性变更）。
+  - **无降级约束**（用户明确）：服务端对协商请求只回 OK_MTLS 或错误码，永不回 OK_PLAIN；客户端收到任何非 OK_MTLS 即失败断开。
+  - 明文部署（双方都不启用）零握手零开销；混布新旧版本在 mTLS 场景不兼容，需三端同步升级。
+  - AIOH 裸帧格式随本任务废弃，rdb_hs/dm_hs/obk_hs 的 encode/decode 与帧常量随之清理。
 
 ## 测试决策
 

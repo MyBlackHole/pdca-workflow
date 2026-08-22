@@ -1,0 +1,9 @@
+[PASS] plain zero-handshake passthrough
+[2026-08-22 16:46:44]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140695617635200| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 16:46:44]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140695617635200| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[PASS] plain zero-handshake passthrough
+[2026-08-22 16:46:44]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140695617635200| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[PASS] on-demand mTLS upgrade
+[PASS] reject without downgrade
+rdbcomm_handshake_session_test: ALL PASS
+EXIT=0
