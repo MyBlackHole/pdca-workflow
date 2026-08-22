@@ -7,8 +7,8 @@
   "children": [],
   "dependencies": [],
   "meta": {
-    "phase": "check",
-    "active": true,
+    "phase": "archive",
+    "active": false,
     "scenario_type": "review",
     "created_at": "2026-08-22T19:07:32+08:00",
     "record": "T0348-0822-mtls-state-alg-review",
@@ -21,6 +21,11 @@
       "reason": "AC-1/2/3 全部通过：12 条发现分级成立（HIGH×4/MEDIUM×5/LOW×3），10 条 triage 线索全部裁决，证据 review-report sha256:e05737f9",
       "verdict_id": "V-T0348-20260822-01",
       "at": "2026-08-22T19:37:03+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "审查发现沉淀为 knowledge/tls/mtls-param-review-findings.md；HIGH 修复项（服务端算法白名单、atoi/strstr 解析修正）建议后续立项，跨模块协商语义重构需独立任务评审",
+      "at": "2026-08-22T19:38:19+08:00"
     }
   },
   "states": {
@@ -28,7 +33,7 @@
     "plan": "2026-08-22T19:07:32+08:00",
     "do": "2026-08-22T19:10:55+08:00",
     "check": "2026-08-22T19:34:13+08:00",
-    "act": null,
-    "archive": null
+    "act": "2026-08-22T19:38:19+08:00",
+    "archive": "2026-08-22T19:42:12+08:00"
   }
 }
