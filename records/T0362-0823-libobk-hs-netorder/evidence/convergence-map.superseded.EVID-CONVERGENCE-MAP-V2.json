@@ -1,0 +1,38 @@
+{
+  "prd": "0823-libobk-hs-netorder/prd.md",
+  "mappings": [
+    {
+      "ac": "AC-1",
+      "requirement": "libobk 握手 algorithm/result 字段收发统一网络序，无裸 memcpy 主机序 uint16_t 字段",
+      "code": [
+        "libobk/lib/sbt/libobk.c:138",
+        "libobk/lib/sbt/libobk.c:165",
+        "libobk/lib/sbt/libobk.c:167",
+        "libobk/lib/logic/oracleCmdTbl.c:99-102",
+        "libobk/lib/logic/oracleCmdTbl.c:116-119",
+        "libobk/lib/logic/oracleCmdTbl.c:129-132",
+        "libobk/lib/logic/oracleCmdTbl.c:880"
+      ],
+      "test": [
+        "libobk/test/session_test.c:137",
+        "libobk/test/session_test.c:230",
+        "libobk/test/session_test.c:277-283"
+      ],
+      "verdict": "passed"
+    },
+    {
+      "ac": "AC-2",
+      "requirement": "libobk_session_test 全用例 PASS",
+      "code": ["libobk/test/session_test.c"],
+      "test": ["libobk_session_test (PASS)", "xmake test 40/40 (PASS)"],
+      "verdict": "passed"
+    },
+    {
+      "ac": "AC-3",
+      "requirement": "跨模块握手字节序约定一致（libobk 与 rdbcomm/dmsbtex/rpc 均网络序）",
+      "code": ["libobk 握手 htons/ntohs 与 rdbcomm/dmsbtex/rpc 网络序范式对齐"],
+      "test": ["xmake test 40/40 (PASS)"],
+      "verdict": "passed"
+    }
+  ]
+}

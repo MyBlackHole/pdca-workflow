@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "握手 algorithm/result 收发统一网络序：客户端 htons 发送(L138)、ntohs 接收(L165/L167)；服务端 ntohs 接收(L880)、htons 发送(L99-102 不可用 / L116-119 未知算法拒绝 / L129-132 OK)；无裸 memcpy 主机序 uint16_t 字段",
+      "criteria": ["AC-1", "AC-3"],
+      "evidence_ids": ["EVID-CODE-DIFF"]
+    },
+    {
+      "index": 2,
+      "text": "libobk_session_test 全用例 PASS（同架构 htons/ntohs 对称自洽），覆盖 mTLS 真实往返与畸形 fail-closed 拒绝",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["EVID-TEST-RESULT"]
+    },
+    {
+      "index": 3,
+      "text": "跨模块字节序一致（libobk 与 rdbcomm/dmsbtex/rpc 均网络序）；全部 AC 收敛闭环",
+      "criteria": ["AC-1", "AC-2", "AC-3"],
+      "evidence_ids": ["EVID-CODE-DIFF", "EVID-TEST-RESULT"]
+    }
+  ]
+}

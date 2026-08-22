@@ -1,0 +1,24 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0362",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow/records/T0362-0823-libobk-hs-netorder/evidence/convergence-map.json[/]",
+      "message": "Additional properties are not allowed ('mappings', 'prd' were unexpected)"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow/records/T0362-0823-libobk-hs-netorder/evidence/convergence-map.json[/]",
+      "message": "'schema' is a required property"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow/records/T0362-0823-libobk-hs-netorder/evidence/convergence-map.json[/]",
+      "message": "'items' is a required property"
+    }
+  ],
+  "at": "2026-08-23T01:12:50.628967+08:00"
+}
