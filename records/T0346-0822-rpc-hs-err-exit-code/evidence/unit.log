@@ -1,0 +1,9 @@
+AC-1 server0/want0 -> PLAIN PASS
+AC-4 server1/no-cert -> REQUIRED PASS
+[2026-08-22 11:04:58]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140230778393472| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 11:04:58]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140230778393472| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+AC-2 server0/want1 -> MTLS(ca_cn=ED25519 Test CA) PASS
+AC-3 server1/want1 -> MTLS PASS
+AC-5 server1/want0 -> REQUIRED PASS
+mixed_mtls: PASS
+exit:0

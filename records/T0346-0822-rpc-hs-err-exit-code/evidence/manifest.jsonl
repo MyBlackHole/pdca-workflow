@@ -1,0 +1,4 @@
+{"id":"unit-quad","file":"unit.log","kind":"test","size":493,"digest":"sha256:a23ff714f806d1d1c311b72b831db896405227b27be4bf688c499798df6c675a","at":"2026-08-22T11:06:14+08:00","criteria":["AC-1","AC-2","AC-3"]}
+{"id":"tool-integration","file":"integration.log","kind":"test","size":3651,"digest":"sha256:5df0ab3ca4b7672a09e51cf3e64b9cc04dc7c6cd3dccea38cf8de3eb3a5515cb","at":"2026-08-22T11:06:14+08:00","criteria":["AC-1","AC-3","AC-4","AC-5"]}
+{"id":"static-scan","file":"static.log","kind":"scan","size":96,"digest":"sha256:c596660aeaa9aaaa373aaaf146fb0b5a152adddae4215d7337ec4f809ce35097","at":"2026-08-22T11:06:14+08:00","criteria":["AC-4","AC-5"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":264,"digest":"sha256:3f9b78ba7e4867ab76da922d234649f1174dccb9c18aeac5dbd6d66d08b23992","at":"2026-08-22T11:06:33+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}

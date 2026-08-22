@@ -1,0 +1,45 @@
+[2026-08-22 11:04:58]|Info|rpc/main.cpp:394 main|140235439432576| change to working directory:[/tmp/t0344-rpc-logs/log-17701] success.
+[2026-08-22 11:04:58]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140235439432576| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 11:04:58]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140235439432576| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 11:04:58]|Info|rpc/main.cpp:417 main|140235439432576| TLS cert loaded, mtls_enforced=0
+1787367898
+beforeSleep 0
+signal 15 received, exit...
+[2026-08-22 11:04:58]|Info|rpc/main.cpp:394 main|140207910118272| change to working directory:[/tmp/t0344-rpc-logs/log-17702] success.
+[2026-08-22 11:04:58]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140207910118272| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 11:04:58]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140207910118272| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 11:04:58]|Info|rpc/main.cpp:417 main|140207910118272| TLS cert loaded, mtls_enforced=0
+1787367898
+beforeSleep 0
+signal 15 received, exit...
+[2026-08-22 11:04:58]|Info|rpc/main.cpp:394 main|140366565974912| change to working directory:[/tmp/t0344-rpc-logs/log-17703] success.
+[2026-08-22 11:04:58]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140366565974912| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 11:04:58]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140366565974912| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 11:04:58]|Info|rpc/main.cpp:417 main|140366565974912| TLS cert loaded, mtls_enforced=1
+1787367898
+beforeSleep 0
+signal 15 received, exit...
+[2026-08-22 11:04:58]|Info|rpc/main.cpp:394 main|140591183885184| change to working directory:[/tmp/t0344-rpc-logs/log-17704] success.
+[2026-08-22 11:04:58]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140591183885184| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 11:04:58]|Error|libs/tls_cert.c:75 tls_cert_log_setup_error|140591183885184| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_SM4_GCM_SM3 ca=/tmp/t0344-missing-certs/sm2_ca.crt cert=/tmp/t0344-missing-certs/sm2_host.crt key=/tmp/t0344-missing-certs/sm2_host.key
+[2026-08-22 11:04:58]|Error|rpc/main.cpp:414 main|140591183885184| cert init failed
+[2026-08-22 11:05:09]|Info|rpc/main.cpp:394 main|140382231925632| change to working directory:[/tmp/t0344-rpc-logs/log-17705] success.
+[2026-08-22 11:05:09]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140382231925632| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 11:05:09]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140382231925632| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 11:05:09]|Info|rpc/main.cpp:417 main|140382231925632| TLS cert loaded, mtls_enforced=1
+[2026-08-22 11:05:09]|Error|rpc/rpc-client.cpp:972 execute_shell_script|140153759675264| server rejected: handshake error result=0x8004
+beforeSleep 0
+signal 15 received, exit...
+case port=17701 server_mtls=0 client_mtls=0 -> client_exit=0 (expect success)
+AC-1 server0/client0 plain PASS
+case port=17702 server_mtls=0 client_mtls=1 -> client_exit=0 (expect success)
+AC-2 server0/client1 mixed MTLS PASS
+case port=17703 server_mtls=1 client_mtls=1 -> client_exit=0 (expect success)
+AC-3 server1/client1 forced MTLS PASS
+case port=17704 server_mtls=1 client_mtls=1 -> client_exit=255 (expect fail)
+AC-4 missing cert_dir fail PASS
+case port=17705 server_mtls=1 client_mtls=0 -> client_exit=252 (expect fail)
+AC-5 server reject log found: 1
+AC-5 server1/client0 rejected PASS
+mixed_mtls_tool_integration: PASS
+exit:0

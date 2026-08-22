@@ -1,0 +1,2 @@
+# AC-6 复现脚本资产化: tests/tls_exec_stress.sh 5轮内复现 exit=1
+stress-exit=1 (1=复现成功符合预期)
