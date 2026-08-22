@@ -1,0 +1,7 @@
+=== AC-4: libs/rpc-handshake deleted ===
+=== rpc_hs_ refs only in project-local copies ===
+./rdbcomm/server.h
+./rdbcomm/handshake.h
+./rdbcomm/client.h
+./rdbcomm/msg.h
+./dmsbtex/network.h

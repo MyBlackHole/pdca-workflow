@@ -1,0 +1,60 @@
+[2026-08-22 12:43:20]|Info|rpc/main.cpp:394 main|139641759208320| change to working directory:[/tmp/t0344-rpc-logs/log-17701] success.
+[2026-08-22 12:43:20]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|139641759208320| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 12:43:20]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|139641759208320| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 12:43:20]|Info|rpc/main.cpp:420 main|139641759208320| TLS cert loaded, mtls_enforced=0
+1787373801
+beforeSleep 0
+signal 15 received, exit...
+[2026-08-22 12:43:21]|Info|rpc/main.cpp:394 main|140604601197440| change to working directory:[/tmp/t0344-rpc-logs/log-17702] success.
+[2026-08-22 12:43:21]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140604601197440| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 12:43:21]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140604601197440| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 12:43:21]|Info|rpc/main.cpp:420 main|140604601197440| TLS cert loaded, mtls_enforced=0
+1787373801
+beforeSleep 0
+signal 15 received, exit...
+[2026-08-22 12:43:21]|Info|rpc/main.cpp:394 main|140349057004416| change to working directory:[/tmp/t0344-rpc-logs/log-17703] success.
+[2026-08-22 12:43:21]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140349057004416| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 12:43:21]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140349057004416| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 12:43:21]|Info|rpc/main.cpp:420 main|140349057004416| TLS cert loaded, mtls_enforced=1
+1787373801
+beforeSleep 0
+signal 15 received, exit...
+[2026-08-22 12:43:21]|Info|rpc/main.cpp:394 main|140421456888704| change to working directory:[/tmp/t0344-rpc-logs/log-17704] success.
+[2026-08-22 12:43:21]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140421456888704| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 12:43:21]|Error|libs/tls_cert.c:75 tls_cert_log_setup_error|140421456888704| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_SM4_GCM_SM3 ca=/tmp/t0344-missing-certs/sm2_ca.crt cert=/tmp/t0344-missing-certs/sm2_host.crt key=/tmp/t0344-missing-certs/sm2_host.key
+[2026-08-22 12:43:21]|Warning|rpc/main.cpp:416 main|140421456888704| cert load failed (ret=-2), serving plain only
+[2026-08-22 12:43:21]|Error|rpc/rpc-io.cpp:127 rpc_handshake_client_negotiate|139920128578432| handshake: server requires mTLS but not satisfied
+[2026-08-22 12:43:21]|Error|rpc/rpc-client.cpp:763 client_main|139920128578432| connect to server failed
+beforeSleep 0
+signal 15 received, exit...
+[2026-08-22 12:43:21]|Info|rpc/main.cpp:394 main|140346108294016| change to working directory:[/tmp/t0344-rpc-logs/log-17705] success.
+[2026-08-22 12:43:21]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140346108294016| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 12:43:21]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140346108294016| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 12:43:21]|Info|rpc/main.cpp:420 main|140346108294016| TLS cert loaded, mtls_enforced=1
+[2026-08-22 12:43:21]|Error|rpc/rpc-client.cpp:972 execute_shell_script|140484704760704| server rejected: handshake error result=0x8004
+beforeSleep 0
+signal 15 received, exit...
+[2026-08-22 12:43:21]|Info|rpc/main.cpp:394 main|139707178095488| change to working directory:[/tmp/t0344-rpc-logs/log-17706] success.
+[2026-08-22 12:43:22]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|139707178095488| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 12:43:22]|Error|libs/tls_cert.c:75 tls_cert_log_setup_error|139707178095488| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_SM4_GCM_SM3 ca=/tmp/t0349-broken-certs/sm2_ca.crt cert=/tmp/t0349-broken-certs/sm2_host.crt key=/tmp/t0349-broken-certs/sm2_host.key
+[2026-08-22 12:43:22]|Warning|rpc/main.cpp:416 main|139707178095488| cert load failed (ret=-2), serving plain only
+[2026-08-22 12:43:22]|Error|rpc/rpc-io.cpp:133 rpc_handshake_client_negotiate|139988600501120| handshake: server downgraded to plain but mTLS requested, abort
+[2026-08-22 12:43:22]|Error|rpc/rpc-client.cpp:763 client_main|139988600501120| connect to server failed
+beforeSleep 0
+signal 15 received, exit...
+case port=17701 server_mtls=0 client_mtls=0 -> client_exit=0 (expect success)
+AC-1 server0/client0 plain PASS
+case port=17702 server_mtls=0 client_mtls=1 -> client_exit=0 (expect success)
+AC-2 server0/client1 mixed MTLS PASS
+case port=17703 server_mtls=1 client_mtls=1 -> client_exit=0 (expect success)
+AC-3 server1/client1 forced MTLS PASS
+case port=17704 server_mtls=1 client_mtls=1 -> client_exit=255 (expect fail)
+AC-4 missing cert_dir fail PASS
+case port=17705 server_mtls=1 client_mtls=0 -> client_exit=252 (expect fail)
+AC-5 server reject log found: 1
+AC-5 server1/client0 rejected PASS
+case port=17706 server_mtls=0 client_mtls=1 -> client_exit=255 (expect fail)
+AC-6 no-downgrade PASS
+AC-7 plain-only startup PASS (implied by AC-6 server up)
+mixed_mtls_tool_integration: PASS
+exit:0
