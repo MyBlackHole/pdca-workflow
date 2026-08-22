@@ -1,0 +1,6 @@
+[2026-08-22 14:39:12]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140014939624320| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 14:39:12]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140014939624320| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 14:39:12]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140014931408576| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 14:39:12]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140014939624320| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 14:39:12]|Error|libs/tls_cert.c:75 tls_cert_log_setup_error|140014939624320| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_SM4_GCM_SM3 ca=/nonexistent/certs/sm2_ca.crt cert=/nonexistent/certs/sm2_host.crt key=/nonexistent/certs/sm2_host.key
+AC2=0

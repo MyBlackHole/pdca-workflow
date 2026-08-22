@@ -1,0 +1,4 @@
+=== xmake test 全量（39/39）===
+[0m[38;2;0;255;0;1m[100%]:[0m tls_cert_test/default ................. [38;2;0;255;0;1mpassed[0m [1m0.236s[0m
+[0m
+[38;2;0;255;0;1m100%[0m tests passed, [38;2;255;0;0;1m0[0m test(s) failed out of [1m39[0m, spent [1m0.276s[0m

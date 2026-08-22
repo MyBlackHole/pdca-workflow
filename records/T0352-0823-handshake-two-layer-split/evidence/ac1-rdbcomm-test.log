@@ -1,0 +1,7 @@
+[2026-08-22 14:39:12]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|139701055845248| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 14:39:12]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|139701055845248| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 14:39:12]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|139701055845248| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 14:39:12]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|139701055845248| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 14:39:12]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|139701055845248| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+rdbcomm_handshake_session_test: PASS
+AC1=0

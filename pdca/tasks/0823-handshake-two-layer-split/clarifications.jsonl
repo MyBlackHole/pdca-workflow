@@ -4,3 +4,10 @@
 {"source":"grilling","q":"timed_net_key→rpc_get_time 断链？","a":"不需要处理，time 对接 rpc 项目；libs/rpc-net.c 定位为 rpc time 协议客户端（TIME 帧已内联），保留","at":"2026-08-22T12:35:00+08:00"}
 {"source":"grilling","q":"实现形态？","a":"学习 rpc 实现：两层结构拆分融入 msg/protocol/network 模块（用户明确指令），非独立 handshake 文件","at":"2026-08-22T12:55:00+08:00"}
 {"source":"direction_confirm","summary":"两层拆分落点映射+项目前缀命名+导出面收敛+libs/rpc-net.c 保留","response":"confirmed","at":"2026-08-22T12:55:00+08:00"}
+{"source":"grilling","q":"mTLS 证书组合逻辑是否纳入拆分范围？","a":"需要：rpc 的 mTLS 客户端/服务端组合逻辑（证书逻辑）都要——客户端一体协商含证书初始化与 TLS 升级（rdbcomm client.c 散装升级代码上移融入 io 层），服务端分流含 tls_ctx 校验/ca_cn 下发/server_handshake；迁移按完整性核对清单逐项对照","at":"2026-08-22T13:00:00+08:00"}
+{"source":"final_confirmation","summary":"T0352 v3 终审批准：握手两层拆分融入 msg/protocol/network、项目前缀命名彻底改、mTLS 组合逻辑完整迁移、移除 fork+execl 测试改为链接级 handshake_session_test、AC-1~5 与切片 A→D 确认","response":"confirmed","at":"2026-08-22T13:15:43+08:00"}
+{"source":"check_confirmation","summary":"Check verdict confirmed: 5/5 AC PASS + xmake test 39/39 全绿；附带修复 3 存量缺陷与 2 rpc 测试脱节；遗留 TIME 帧头长疑点建议专项","response":"confirmed","at":"2026-08-22T15:15:53+08:00"}
+{"source":"grilling","q":"结论适用范围？","a":"C 项目去共享库的两层拆分融入模式；协议字节零变化的移动式重构","at":"2026-08-22T15:18:00+08:00"}
+{"source":"grilling","q":"可复用知识？","a":"1) 测试证书 CN 必须匹配 tls_cert_ca_cn_valid 白名单(禁空格)；2) 握手/会话测试的链接级模式(socketpair+fork 隔离+SIGPIPE 忽略+TEST_CERT_DIR 宏注入)替代 fork+execl；3) xmake test 应为 Check 标准验证步骤","at":"2026-08-22T15:18:30+08:00"}
+{"source":"grilling","q":"流程改进？","a":"Do 收尾即跑 xmake test 全量，避免 Check 末期暴露跨项目回归","at":"2026-08-22T15:19:00+08:00"}
+{"source":"knowledge_decision","at":"2026-08-22T15:20:30+08:00","action":"wrote","reason":"证书CN白名单约束+链接级测试模式为可复用流程知识"}
