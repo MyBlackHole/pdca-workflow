@@ -8,7 +8,7 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-22T12:47:43+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T0352-0823-handshake-two-layer-split",
     "scenario_type": "development",
     "completed_at": "2026-08-22T14:41:35+08:00",
@@ -17,12 +17,17 @@
       "reason": "5/5 AC PASS + xmake test 39/39 全绿；附带修复 3 存量缺陷与 2 rpc 测试脱节；遗留 TIME 帧头长疑点建议专项",
       "verdict_id": "T0352-check-verdict-1",
       "at": "2026-08-22T15:16:15+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "沉淀 tls/link-level-mtls-test-pattern.md：证书CN约束与链接级握手测试模式",
+      "at": "2026-08-22T15:17:44+08:00"
     }
   },
   "parent": null,
   "slug": "0823-handshake-two-layer-split",
   "states": {
-    "act": null,
+    "act": "2026-08-22T15:16:15+08:00",
     "archive": null,
     "check": "2026-08-22T14:41:35+08:00",
     "created": "2026-08-22T12:47:43+08:00",
