@@ -1,0 +1,4 @@
+{"at":"2026-08-22T11:35:00+08:00","source":"task_identity","summary":"created with record identity T0349-0822-rpc-mtls-degrade-fix"}
+{"source":"direction_confirm","summary":"F3 语义澄清：cert init 失败不阻止启动，仅使 mTLS 不可用（sctx=NULL 自然拒绝）","response":"confirmed","at":"2026-08-22T11:48:15+08:00"}
+{"source":"final_confirmation","summary":"终审批准：F1 降级失败/F2 空ca_cn留server侧/F3 init失败不exit仅拒mTLS，5 AC","response":"confirmed","at":"2026-08-22T11:48:36+08:00"}
+{"source":"check_confirmation","summary":"Check confirmed: F1/F2/F3 fixed, 7 case integration all PASS, no regression","response":"confirmed","at":"2026-08-22T12:02:19+08:00"}
