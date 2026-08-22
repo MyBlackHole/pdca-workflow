@@ -1,0 +1,5 @@
+{"at":"2026-08-22T08:01:04+08:00","source":"task_identity","summary":"created with record identity T0343-0822-align-check-infra-baseline"}
+{"round":1,"question":"四处行数规则失配处置","answer":"校正limit至现实值+5%上取整,拆分留给后续B任务","recommended":"校正limit+5%","source":"grilling","at":"2026-08-22T08:03:43+08:00"}
+{"round":1,"question":"其余三项机械修复","answer":"p1_closure断言改写匹配当前语义形态;tree测试cleanup先chmod -R u+w再rm;删除Makefile两行幽灵引用","recommended":"按根因修","source":"grilling","at":"2026-08-22T08:03:43+08:00"}
+{"source":"direction_confirm","summary":"bugfix四项:行数limit校正+5%/p1_closure断言语义改写/tree测试cleanup权限修复/幽灵脚本删除","response":"confirmed","at":"2026-08-22T08:03:43+08:00"}
+{"source":"final_confirmation","summary":"P6终审:四项修复(limit校正+5%/断言语义化/cleanup权限/幽灵引用删除)零src变更;AC=style_check+p1_closure+tree_metadata+make test全过","response":"confirmed","at":"2026-08-22T08:04:29+08:00"}

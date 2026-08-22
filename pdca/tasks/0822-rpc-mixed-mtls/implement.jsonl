@@ -1,2 +1,0 @@
-{"file": "knowledge/rpc-rdbcomm/unified-first-stage-mtls-time.md", "reason": "首阶段 PLAIN/MTLS 分流与 ca_cn 空值语义", "action": "应用于 server mtls 开关与 HS_OK_* 映射", "at": "2026-08-22T08:18:07.348516+08:00"}
-{"file": "knowledge/tls/cert-dual-format-and-path-unify.md", "reason": "cert_dir 三元组完备性校验与 ca_cn 白名单", "action": "应用于 client HS_OK_MTLS 时的 cert_dir 校验", "at": "2026-08-22T08:18:07.348516+08:00"}
