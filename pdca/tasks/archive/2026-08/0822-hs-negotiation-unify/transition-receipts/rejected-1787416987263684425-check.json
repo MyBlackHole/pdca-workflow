@@ -1,0 +1,34 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0359",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-1",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-2",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-3",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-4",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow/records/T0359-0822-hs-negotiation-unify/evidence/t0359-convergence.md",
+      "message": "Expecting value: line 1 column 1 (char 0)"
+    }
+  ],
+  "at": "2026-08-23T00:43:07.263603+08:00"
+}

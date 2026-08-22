@@ -1,0 +1,2 @@
+{"file":"knowledge/tls/mtls-param-review-findings.md","reason":"陷阱1/2/3 定义枚举与映射一致性、安全开关、strstr 匹配陷阱，约束 T0359 枚举收敛方案","action":"reference","at":"2026-08-23T00:15:00+08:00"}
+{"file":"knowledge/tls/mtls-server-alg-whitelist.md","reason":"四模块白名单落地范式与测试接缝，T0359 复用其畸形拒绝测试与互通测试策略","action":"reference","at":"2026-08-23T00:15:00+08:00"}

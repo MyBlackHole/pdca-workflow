@@ -1,0 +1,541 @@
+diff --git a/dmsbtex/common.h b/dmsbtex/common.h
+index 6cd1601..c4844c8 100644
+--- a/dmsbtex/common.h
++++ b/dmsbtex/common.h
+@@ -8,8 +8,10 @@
+  * @copyright Copyright (c) 2023
+  * 
+  */
+-#ifndef __COMMON_H__
+-#define __COMMON_H__
++#ifndef __DMSBTEX_COMMON_H__
++#define __DMSBTEX_COMMON_H__
++
++#include "../libs/common.h"
+ 
+ #ifdef __cplusplus
+ extern "C" {
+diff --git a/dmsbtex/protocol.c b/dmsbtex/protocol.c
+index acfd9b6..c15b957 100644
+--- a/dmsbtex/protocol.c
++++ b/dmsbtex/protocol.c
+@@ -66,149 +66,3 @@ void sbt_restore_read_ntoh(sbt_restore_read_t *host, sbt_restore_read_t *net)
+ #include <limits.h>
+ #include "rdb-config.h"
+ 
+-uint16_t dm_hs_algorithm_from_name(const char *name)
+-{
+-	/* T0358 H3：仅规范名全串精确匹配 */
+-	if (name && strcmp(name, RPC_TLS_ALGORITHM_SM4_GCM_SM3) == 0)
+-		return DM_HS_ALG_TLS_SM4_GCM_SM3;
+-	if (name && strcmp(name, RPC_TLS_ALGORITHM_AES_256_GCM_SHA384) == 0)
+-		return DM_HS_ALG_TLS_AES_256_GCM_SHA384;
+-	return DM_HS_ALG_DEFAULT;
+-}
+-
+-const char *dm_hs_algorithm_name(uint16_t algorithm)
+-{
+-	switch (algorithm) {
+-	case DM_HS_ALG_TLS_SM4_GCM_SM3:
+-		return RPC_TLS_ALGORITHM_SM4_GCM_SM3;
+-	case DM_HS_ALG_TLS_AES_256_GCM_SHA384:
+-		return RPC_TLS_ALGORITHM_AES_256_GCM_SHA384;
+-	default:
+-		return NULL;
+-	}
+-}
+-
+-static void hs_put16(uint8_t *p, uint16_t v)
+-{
+-	uint16_t n = htons(v);
+-	memcpy(p, &n, sizeof(n));
+-}
+-
+-static uint16_t hs_get16(const uint8_t *p)
+-{
+-	uint16_t n;
+-	memcpy(&n, p, sizeof(n));
+-	return ntohs(n);
+-}
+-
+-static void hs_put32(uint8_t *p, uint32_t v)
+-{
+-	uint32_t n = htonl(v);
+-	memcpy(p, &n, sizeof(n));
+-}
+-
+-static uint32_t hs_get32(const uint8_t *p)
+-{
+-	uint32_t n;
+-	memcpy(&n, p, sizeof(n));
+-	return ntohl(n);
+-}
+-
+-int dm_hs_encode(const dm_hs_message_t *message, const void *payload,
+-		 uint8_t *wire, uint32_t wire_size, uint32_t *wire_length)
+-{
+-	uint32_t name_len;
+-	uint32_t total;
+-
+-	if (!message || !wire || !wire_length || message->version == 0 ||
+-	    message->operation == 0 ||
+-	    message->payload_length > DM_HS_MAX_PAYLOAD)
+-		return -EINVAL;
+-	{
+-		const char *end = memchr(message->ca_cn, '\0',
+-					 DM_HS_MAX_NAME + 1);
+-		name_len = end ? (uint32_t)(end - message->ca_cn)
+-			       : DM_HS_MAX_NAME + 1;
+-	}
+-	if (name_len > DM_HS_MAX_NAME ||
+-	    message->payload_length > UINT32_MAX - DM_HS_FIXED_SIZE - name_len)
+-		return -EINVAL;
+-	total = DM_HS_FIXED_SIZE + name_len + message->payload_length;
+-	if (wire_size < total || (message->payload_length && !payload))
+-		return -EMSGSIZE;
+-
+-	memcpy(wire, DM_HS_MAGIC, 4);
+-	wire[4] = message->version;
+-	wire[5] = message->operation;
+-	hs_put16(wire + 6, message->flags);
+-	hs_put16(wire + 8, message->algorithm);
+-	hs_put16(wire + 10, message->result);
+-	hs_put16(wire + 12, (uint16_t)name_len);
+-	hs_put32(wire + 14, message->payload_length);
+-	if (name_len)
+-		memcpy(wire + DM_HS_FIXED_SIZE, message->ca_cn, name_len);
+-	if (message->payload_length)
+-		memcpy(wire + DM_HS_FIXED_SIZE + name_len, payload,
+-		       message->payload_length);
+-	*wire_length = total;
+-	return 0;
+-}
+-
+-int dm_hs_decode(dm_hs_message_t *message, const uint8_t *wire,
+-		 uint32_t wire_length, const uint8_t **payload)
+-{
+-	uint16_t name_len;
+-	uint32_t payload_len;
+-	uint32_t total;
+-
+-	if (!message || !wire || wire_length < DM_HS_FIXED_SIZE)
+-		return -EINVAL;
+-	if (memcmp(wire, DM_HS_MAGIC, 4) != 0)
+-		return DM_HS_ERR_BAD_MAGIC;
+-	if (wire[4] != DM_HS_VERSION)
+-		return DM_HS_ERR_BAD_VERSION;
+-	name_len = hs_get16(wire + 12);
+-	payload_len = hs_get32(wire + 14);
+-	if (name_len > DM_HS_MAX_NAME || payload_len > DM_HS_MAX_PAYLOAD)
+-		return DM_HS_ERR_FRAME;
+-	total = DM_HS_FIXED_SIZE + name_len + payload_len;
+-	if (total != wire_length)
+-		return DM_HS_ERR_FRAME;
+-
+-	memset(message, 0, sizeof(*message));
+-	message->version = wire[4];
+-	message->operation = wire[5];
+-	message->flags = hs_get16(wire + 6);
+-	message->algorithm = hs_get16(wire + 8);
+-	message->result = hs_get16(wire + 10);
+-	message->payload_length = payload_len;
+-	if (name_len)
+-		memcpy(message->ca_cn, wire + DM_HS_FIXED_SIZE, name_len);
+-	message->ca_cn[name_len] = '\0';
+-	if (payload)
+-		*payload = wire + DM_HS_FIXED_SIZE + name_len;
+-	return 0;
+-}
+-
+-uint16_t dm_hs_decide(uint16_t client_flags, uint16_t server_flags,
+-		      uint16_t client_algorithm, uint16_t server_algorithm,
+-		      uint16_t *result)
+-{
+-	int client_mtls = (client_flags & DM_HS_F_MTLS_REQUEST) != 0;
+-	int server_mtls = (server_flags & DM_HS_F_MTLS_REQUIRED) != 0;
+-
+-	if (server_mtls && (!client_mtls || client_algorithm != server_algorithm)) {
+-		if (result)
+-			*result = DM_HS_ERR_MTLS_REQUIRED;
+-		return 0;
+-	}
+-	if (client_mtls && client_algorithm != server_algorithm) {
+-		if (result)
+-			*result = DM_HS_ERR_ALGORITHM;
+-		return 0;
+-	}
+-	if (result)
+-		*result = (client_mtls || server_mtls) ? DM_HS_OK_MTLS
+-						       : DM_HS_OK_PLAIN;
+-	return 1;
+-}
+diff --git a/dmsbtex/protocol.h b/dmsbtex/protocol.h
+index e1f4b8e..0c552c5 100644
+--- a/dmsbtex/protocol.h
++++ b/dmsbtex/protocol.h
+@@ -13,6 +13,8 @@
+ extern "C" {
+ #endif
+ 
++#include "common.h"
++
+ #ifndef __PROTOCOL_H__
+ #define __PROTOCOL_H__
+ 
+@@ -90,12 +92,6 @@ enum dm_hs_flags {
+ 	DM_HS_F_RESPONSE = 1u << 15,
+ };
+ 
+-enum dm_hs_algorithm {
+-	DM_HS_ALG_DEFAULT = 0,
+-	DM_HS_ALG_TLS_SM4_GCM_SM3 = 1,
+-	DM_HS_ALG_TLS_AES_256_GCM_SHA384 = 2,
+-};
+-
+ enum dm_hs_result {
+ 	DM_HS_OK_TIME = 1,
+ 	DM_HS_OK_PLAIN = 2,
+@@ -126,20 +122,6 @@ typedef struct {
+ 	char ca_cn[DM_HS_MAX_NAME + 1];
+ } dm_hs_result_t;
+ 
+-uint16_t dm_hs_algorithm_from_name(const char *name);
+-const char *dm_hs_algorithm_name(uint16_t algorithm);
+-
+-/* 编码为线上格式；wire_size 不足返回 -EMSGSIZE，*wire_length 为总长 */
+-int dm_hs_encode(const dm_hs_message_t *message, const void *payload,
+-		 uint8_t *wire, uint32_t wire_size, uint32_t *wire_length);
+-/* 解析线上格式；payload 非空时指向帧内载荷区（不拷贝） */
+-int dm_hs_decode(dm_hs_message_t *message, const uint8_t *wire,
+-		 uint32_t wire_length, const uint8_t **payload);
+-
+-/* 纯决策逻辑：返回 1=达成一致（*result=OK_PLAIN/OK_MTLS），0=拒绝 */
+-uint16_t dm_hs_decide(uint16_t client_flags, uint16_t server_flags,
+-		      uint16_t client_algorithm, uint16_t server_algorithm,
+-		      uint16_t *result);
+ 
+ #endif /**__PROTOCOL_H__**/
+ #ifdef __cplusplus
+diff --git a/dmsbtex/xmake.lua b/dmsbtex/xmake.lua
+index f94a133..77c4ec6 100644
+--- a/dmsbtex/xmake.lua
++++ b/dmsbtex/xmake.lua
+@@ -9,6 +9,7 @@ target("dmsbtex")
+     add_links("pthread")
+     add_deps("logger")
+     add_deps("rpc-net")
++    add_deps("tls_cert")
+     add_includedirs("../libs", {public = true})
+     version_name = "libdmsbtex.version"
+     add_configfiles("version.in", {filename = version_name})
+@@ -23,6 +24,7 @@ target("dm-ftp")
+     add_links("pthread")
+     add_deps("logger")
+     add_deps("rpc-net")
++    add_deps("tls_cert")
+     add_includedirs("../libs", {public = true})
+     version_name = "dm-ftp.version"
+     add_configfiles("version.in", {filename = version_name})
+@@ -38,6 +40,7 @@ target("dmsbtex_session_test")
+     add_links("pthread")
+     add_deps("logger")
+     add_deps("rpc-net")
++    add_deps("tls_cert")
+     add_includedirs(".", "../libs", {public = true})
+     add_defines("TEST_CERT_DIR=\"" .. path.join(os.projectdir(), "libs", "tests", "certs") .. "\"")
+     add_tests("default", {realtime_output = true})
+diff --git a/libobk/include/protocol.h b/libobk/include/protocol.h
+index 48b5800..a465c4e 100644
+--- a/libobk/include/protocol.h
++++ b/libobk/include/protocol.h
+@@ -3,6 +3,7 @@
+ 
+ #include <stdbool.h>
+ #include <stdint.h>
++#include "common.h"
+ 
+ #pragma pack(1)
+ 
+@@ -70,12 +71,6 @@ enum obk_hs_flags {
+ 	OBK_HS_F_RESPONSE = 1u << 15,
+ };
+ 
+-enum obk_hs_algorithm {
+-	OBK_HS_ALG_DEFAULT = 0,
+-	OBK_HS_ALG_TLS_SM4_GCM_SM3 = 1,
+-	OBK_HS_ALG_TLS_AES_256_GCM_SHA384 = 2,
+-};
+-
+ enum obk_hs_result {
+ 	OBK_HS_OK_TIME = 1,
+ 	OBK_HS_OK_PLAIN = 2,
+@@ -111,7 +106,4 @@ void obk_hs_session_init_plain(obk_hs_session_t *session, int fd);
+ void obk_hs_session_init_tls(obk_hs_session_t *session, int fd, TLS_SSL *tssl);
+ void obk_hs_session_cleanup(obk_hs_session_t *session);
+ 
+-uint16_t obk_hs_algorithm_from_name(const char *name);
+-const char *obk_hs_algorithm_name(uint16_t algorithm);
+-
+ #endif
+diff --git a/libobk/lib/protocol.c b/libobk/lib/protocol.c
+index 8ddb9ad..b1852ed 100644
+--- a/libobk/lib/protocol.c
++++ b/libobk/lib/protocol.c
+@@ -14,28 +14,6 @@
+ #include <sys/socket.h>
+ #include "rdb-config.h"
+ 
+-uint16_t obk_hs_algorithm_from_name(const char *name)
+-{
+-	/* T0358 H3：仅规范名全串精确匹配 */
+-	if (name && strcmp(name, RPC_TLS_ALGORITHM_SM4_GCM_SM3) == 0)
+-		return OBK_HS_ALG_TLS_SM4_GCM_SM3;
+-	if (name && strcmp(name, RPC_TLS_ALGORITHM_AES_256_GCM_SHA384) == 0)
+-		return OBK_HS_ALG_TLS_AES_256_GCM_SHA384;
+-	return OBK_HS_ALG_DEFAULT;
+-}
+-
+-const char *obk_hs_algorithm_name(uint16_t algorithm)
+-{
+-	switch (algorithm) {
+-	case OBK_HS_ALG_TLS_SM4_GCM_SM3:
+-		return RPC_TLS_ALGORITHM_SM4_GCM_SM3;
+-	case OBK_HS_ALG_TLS_AES_256_GCM_SHA384:
+-		return RPC_TLS_ALGORITHM_AES_256_GCM_SHA384;
+-	default:
+-		return NULL;
+-	}
+-}
+-
+ /* ---- 会话原语 ---- */
+ 
+ static ssize_t obk_plain_read(obk_hs_session_t *session, void *buf, size_t len,
+diff --git a/libobk/xmake.lua b/libobk/xmake.lua
+index 0d753dd..c48f187 100644
+--- a/libobk/xmake.lua
++++ b/libobk/xmake.lua
+@@ -8,6 +8,7 @@ target("sbt")
+     add_includedirs("include", {public = true})
+     add_deps("logger")
+     add_deps("rpc-net")
++    add_deps("tls_cert")
+     add_includedirs("../libs", {public = true})
+     version_name = "libsbt.version"
+     add_configfiles("version.in", {filename = version_name})
+@@ -23,6 +24,7 @@ target("FileTransferAgent")
+     add_links("pthread")
+     add_deps("logger")
+     add_deps("rpc-net")
++    add_deps("tls_cert")
+     add_includedirs("../libs", {public = true})
+     version_name = "FileTransferAgent.version"
+     add_configfiles("version.in", {filename = version_name})
+@@ -40,6 +42,7 @@ target("libobk_protocol_test")
+     add_deps("logger")
+     add_deps("rpc-net")
+     add_deps("tls_cert")
++    add_deps("tls_cert")
+ 
+ target("libobk_session_test")
+     set_default(false)
+@@ -52,6 +55,7 @@ target("libobk_session_test")
+     add_links("pthread")
+     add_deps("logger")
+     add_deps("rpc-net")
++    add_deps("tls_cert")
+     add_includedirs("include", "../libs", {public = true})
+     add_defines("TEST_CERT_DIR=\"" .. path.join(os.projectdir(), "libs", "tests", "certs") .. "\"")
+     add_tests("default", {realtime_output = true})
+diff --git a/libs/common.h b/libs/common.h
+index 17c0d96..b41165a 100644
+--- a/libs/common.h
++++ b/libs/common.h
+@@ -75,6 +75,40 @@ static inline void *m_reallocarray(void *ptr, size_t nmemb, size_t size)
+ 
+ void close_from(int lowfd);
+ 
++/* === 握手算法枚举与名称映射单一来源（T0359）===
++ * 四模块（rdbcomm/libobk/dmsbtex/rpc）统一引用此处，禁止各自头重复定义。
++ * 运行时值严格保持不变：DEFAULT=0, SM4=1, AES=2。 */
++#define HS_ALG_DEFAULT 0
++#define HS_ALG_TLS_SM4_GCM_SM3 1
++#define HS_ALG_TLS_AES_256_GCM_SHA384 2
++
++/* 各模块兼容性别名（仅别名，真实定义唯一如上） */
++#define RDB_HS_ALG_DEFAULT HS_ALG_DEFAULT
++#define RDB_HS_ALG_TLS_SM4_GCM_SM3 HS_ALG_TLS_SM4_GCM_SM3
++#define RDB_HS_ALG_TLS_AES_256_GCM_SHA384 HS_ALG_TLS_AES_256_GCM_SHA384
++#define OBK_HS_ALG_DEFAULT HS_ALG_DEFAULT
++#define OBK_HS_ALG_TLS_SM4_GCM_SM3 HS_ALG_TLS_SM4_GCM_SM3
++#define OBK_HS_ALG_TLS_AES_256_GCM_SHA384 HS_ALG_TLS_AES_256_GCM_SHA384
++#define DM_HS_ALG_DEFAULT HS_ALG_DEFAULT
++#define DM_HS_ALG_TLS_SM4_GCM_SM3 HS_ALG_TLS_SM4_GCM_SM3
++#define DM_HS_ALG_TLS_AES_256_GCM_SHA384 HS_ALG_TLS_AES_256_GCM_SHA384
++
++/* rpc 历史无前缀别名，保持兼容（真实定义唯一为 HS_ALG_TLS_*） */
++#define HS_ALG_SM4_GCM_SM3 HS_ALG_TLS_SM4_GCM_SM3
++#define HS_ALG_AES_256_GCM_SHA384 HS_ALG_TLS_AES_256_GCM_SHA384
++
++/* 统一名称映射（单一实现见 libs/hs_algorithm.c） */
++const char *hs_algorithm_name(uint16_t algorithm);
++uint16_t hs_algorithm_from_name(const char *name);
++
++/* 各模块函数名别名（真实实现唯一） */
++#define rdb_hs_algorithm_name hs_algorithm_name
++#define rdb_hs_algorithm_from_name hs_algorithm_from_name
++#define obk_hs_algorithm_name hs_algorithm_name
++#define obk_hs_algorithm_from_name hs_algorithm_from_name
++#define dm_hs_algorithm_name hs_algorithm_name
++#define dm_hs_algorithm_from_name hs_algorithm_from_name
++
+ #ifdef __cplusplus
+ }
+ #endif
+diff --git a/libs/xmake.lua b/libs/xmake.lua
+index d33163c..d08d4a9 100644
+--- a/libs/xmake.lua
++++ b/libs/xmake.lua
+@@ -21,7 +21,8 @@ target("tls_cert")
+     set_default(false)
+     set_kind("static")
+     add_files(
+-        "tls_cert.c"
++        "tls_cert.c",
++        "hs_algorithm.c"
+     )
+     add_defines("_GNU_SOURCE")
+     add_includedirs(".", {public = true})
+diff --git a/rdbcomm/io.h b/rdbcomm/io.h
+index 5fab12d..a45ad8b 100644
+--- a/rdbcomm/io.h
++++ b/rdbcomm/io.h
+@@ -10,15 +10,11 @@
+ #include <sys/types.h>
+ #include <openssl/ssl.h>
+ #include "tls_cert.h"
++#include "common.h"
+ 
+ #define RDB_HS_MAX_NAME 200
+ 
+-/* 协商算法 ID（协议值，配置解析与协商载荷共用） */
+-enum rdb_hs_algorithm {
+-	RDB_HS_ALG_DEFAULT = 0,
+-	RDB_HS_ALG_TLS_SM4_GCM_SM3 = 1,
+-	RDB_HS_ALG_TLS_AES_256_GCM_SHA384 = 2,
+-};
++/* 协商算法 ID：单一来源见 libs/common.h（RDB_HS_ALG_* 为兼容别名） */
+ 
+ /* 协商结果码（项目消息帧载荷字段，非线上独立枚举） */
+ enum rdb_hs_result {
+diff --git a/rdbcomm/msg.c b/rdbcomm/msg.c
+index 4c06049..bd52dc4 100644
+--- a/rdbcomm/msg.c
++++ b/rdbcomm/msg.c
+@@ -112,24 +112,4 @@ int get_msg(rdb_hs_session_t *io, struct buf *msg, int flags)
+ 	return msg_len + 4;
+ }
+ 
+-uint16_t rdb_hs_algorithm_from_name(const char *name)
+-{
+-	/* T0358 H3：仅规范名全串精确匹配 */
+-	if (name && strcmp(name, RPC_TLS_ALGORITHM_SM4_GCM_SM3) == 0)
+-		return RDB_HS_ALG_TLS_SM4_GCM_SM3;
+-	if (name && strcmp(name, RPC_TLS_ALGORITHM_AES_256_GCM_SHA384) == 0)
+-		return RDB_HS_ALG_TLS_AES_256_GCM_SHA384;
+-	return RDB_HS_ALG_DEFAULT;
+-}
+ 
+-const char *rdb_hs_algorithm_name(uint16_t algorithm)
+-{
+-	switch (algorithm) {
+-	case 1:
+-		return RPC_TLS_ALGORITHM_SM4_GCM_SM3;
+-	case 2:
+-		return RPC_TLS_ALGORITHM_AES_256_GCM_SHA384;
+-	default:
+-		return NULL;
+-	}
+-}
+diff --git a/rdbcomm/msg.h b/rdbcomm/msg.h
+index 270fd0f..34a2cbc 100644
+--- a/rdbcomm/msg.h
++++ b/rdbcomm/msg.h
+@@ -7,9 +7,4 @@
+ int send_msg(rdb_hs_session_t *io, struct buf *msg, int flags);
+ int get_msg(rdb_hs_session_t *io, struct buf *msg, int flags);
+ 
+-/* 配置解析辅助：算法名 <-> 协议算法 ID */
+-uint16_t rdb_hs_algorithm_from_name(const char *name);
+-const char *rdb_hs_algorithm_name(uint16_t algorithm);
+-
+-
+ #endif /* __MSG_H__ */
+diff --git a/rpc/rpc-protocol.cpp b/rpc/rpc-protocol.cpp
+index da9010f..9182641 100644
+--- a/rpc/rpc-protocol.cpp
++++ b/rpc/rpc-protocol.cpp
+@@ -205,30 +205,6 @@ void msg_handshake_resp_ntoh(msg_handshake_resp_t *host,
+ 	memcpy(host->ca_cn, net->ca_cn, sizeof(host->ca_cn));
+ }
+ 
+-uint16_t hs_algorithm_from_name(const char *name)
+-{
+-	/* T0358 H3：仅接受规范算法名全串匹配，别名/未知名称一律 DEFAULT */
+-	if (!name)
+-		return HS_ALG_DEFAULT;
+-	if (strcmp(name, "TLS_SM4_GCM_SM3") == 0)
+-		return HS_ALG_SM4_GCM_SM3;
+-	if (strcmp(name, "TLS_AES_256_GCM_SHA384") == 0)
+-		return HS_ALG_AES_256_GCM_SHA384;
+-	return HS_ALG_DEFAULT;
+-}
+-
+-const char *hs_algorithm_name(uint16_t algorithm)
+-{
+-	switch (algorithm) {
+-	case HS_ALG_SM4_GCM_SM3:
+-		return "TLS_SM4_GCM_SM3";
+-	case HS_ALG_AES_256_GCM_SHA384:
+-		return "TLS_AES_256_GCM_SHA384";
+-	default:
+-		return "";
+-	}
+-}
+-
+ uint16_t hs_negotiate_algorithm(uint16_t client_alg, uint16_t *negotiated)
+ {
+ 	if (client_alg != HS_ALG_SM4_GCM_SM3 &&
+diff --git a/rpc/rpc-protocol.h b/rpc/rpc-protocol.h
+index 5eefdd6..2ce3b43 100644
+--- a/rpc/rpc-protocol.h
++++ b/rpc/rpc-protocol.h
+@@ -7,6 +7,7 @@ extern "C" {
+ 
+ #include <arpa/inet.h>
+ #include <sys/stat.h>
++#include "common.h"
+ 
+ #define NORMAL_RESP 0x80000000
+ #define MT_EXECUTE_SHELL_SCRIPT 0x00001000
+@@ -84,10 +85,7 @@ void msg_base_resp_ntoh(msg_base_resp_t *host, msg_base_resp_t *net);
+ #define HS_ERR_ALGORITHM 0x8005
+ #define HS_ERR_CA_CN 0x8006
+ 
+-// Handshake algorithm IDs
+-#define HS_ALG_DEFAULT 0
+-#define HS_ALG_SM4_GCM_SM3 1
+-#define HS_ALG_AES_256_GCM_SHA384 2
++// Handshake algorithm IDs：单一来源见 libs/common.h
+ 
+ #define HS_MAX_NAME 200
+ 
+@@ -110,9 +108,6 @@ void msg_handshake_resp_hton(msg_handshake_resp_t *host,
+ void msg_handshake_resp_ntoh(msg_handshake_resp_t *host,
+ 			     msg_handshake_resp_t *net);
+ 
+-uint16_t hs_algorithm_from_name(const char *name);
+-const char *hs_algorithm_name(uint16_t algorithm);
+-
+ /* 协商算法：fail-closed。客户端算法必须为已知合法值（SM4/AES），
+  * 合法时返回 0 并写入 *negotiated；未知/非法时返回 HS_ERR_ALGORITHM，
+  * 不再回落服务端配置 */
