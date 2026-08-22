@@ -1,1 +1,4 @@
 {"at":"2026-08-22T20:43:37+08:00","source":"task_identity","summary":"created with record identity T0360-0822-tls-config-dead-fields"}
+{"source":"final_confirmation","summary":"终审批准：五结构体死字段删除清单（含 M4 tls_algorithm 与两处 unused cert_paths 函数），保留 cert_dir/mtls/algorithm 活跃字段；AC-1..3 确认","response":"confirmed","at":"2026-08-22T20:49:59+08:00"}
+{"source":"check_confirmation","summary":"Verdict=confirmed：AC-1/2/3 全过，净删除 168 行零行为变更，提交 0ef0f8d","response":"confirmed","at":"2026-08-22T21:00:48+08:00"}
+{"source":"knowledge_decision","at":"2026-08-22T21:01:04+08:00","action":"skipped","reason":"死字段清理为一次性删除动作，无跨任务复用规则；审计方法已由 T0348 知识文件覆盖"}

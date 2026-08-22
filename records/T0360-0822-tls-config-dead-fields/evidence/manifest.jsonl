@@ -1,0 +1,2 @@
+{"id":"evidence-cleanup","file":"evidence-cleanup.md","kind":"audit-report","size":2058,"digest":"sha256:f5f8404e0e4957d4a327eb74bb875d4879290ffcb7b4d446c93fbc49ed6609f1","at":"2026-08-22T20:58:01+08:00","criteria":["AC-1","AC-2","AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":228,"digest":"sha256:544a12bf861a2649fd8ba53ecf5041ffb5c07c9bda6572322c2d8bdffc1773ca","at":"2026-08-22T20:58:31+08:00","criteria":["AC-1","AC-2","AC-3"]}

@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "task identity is unique and immutable",
+      "criteria": ["AC-1", "AC-2", "AC-3"],
+      "evidence_ids": ["evidence-cleanup"]
+    }
+  ]
+}

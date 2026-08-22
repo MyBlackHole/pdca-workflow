@@ -8,7 +8,7 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-22T20:43:37+08:00",
-    "phase": "act",
+    "phase": "check",
     "record": "T0360-0822-tls-config-dead-fields",
     "scenario_type": "development",
     "completed_at": "2026-08-22T20:58:45+08:00",
@@ -17,17 +17,12 @@
       "reason": "AC-1/2/3 全部通过（evidence-cleanup）；六套测试回归 PASS；提交 0ef0f8d",
       "verdict_id": "V-T0360-20260822-01",
       "at": "2026-08-22T21:00:48+08:00"
-    },
-    "disposition": {
-      "outcome": "not_reusable",
-      "reason": "一次性清理完成（0ef0f8d），无新增可复用知识；保留字段审计清单存 evidence-cleanup.md 供 T0357/T0359 参考",
-      "at": "2026-08-22T21:01:04+08:00"
     }
   },
   "parent": "T0358",
   "slug": "0822-tls-config-dead-fields",
   "states": {
-    "act": "2026-08-22T21:00:48+08:00",
+    "act": null,
     "archive": null,
     "check": "2026-08-22T20:58:45+08:00",
     "created": "2026-08-22T20:43:37+08:00",
