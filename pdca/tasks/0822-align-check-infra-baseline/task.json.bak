@@ -8,7 +8,7 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-22T08:01:04+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T0343-0822-align-check-infra-baseline",
     "scenario_type": "bugfix",
     "completed_at": "2026-08-22T09:16:25+08:00",
@@ -17,12 +17,17 @@
       "reason": "5条AC全PASS且证据链完整;基线全绿达成",
       "verdict_id": "T0343-check-v1",
       "at": "2026-08-22T09:28:38+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "沉淀tooling/layered-checker-shortcircuit-alignment.md;B任务(大文件分解)建议已记录",
+      "at": "2026-08-22T09:29:18+08:00"
     }
   },
   "parent": null,
   "slug": "0822-align-check-infra-baseline",
   "states": {
-    "act": null,
+    "act": "2026-08-22T09:28:38+08:00",
     "archive": null,
     "check": "2026-08-22T09:16:25+08:00",
     "created": "2026-08-22T08:01:04+08:00",
