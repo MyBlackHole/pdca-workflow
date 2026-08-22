@@ -1,0 +1,6 @@
+{"at":"2026-08-22T12:47:43+08:00","source":"task_identity","summary":"created with record identity T0352-0823-handshake-two-layer-split"}
+{"source":"triage","summary":"T0351 后续形态重构：三项目 handshake 全量副本按 rpc 两层结构融入 msg/protocol/network 并项目化命名；claim 已验证：全仓 28 文件含 rpc_hs_ 残留","at":"2026-08-22T12:50:00+08:00"}
+{"source":"grilling","q":"符号命名策略？","a":"项目前缀 rdb_hs_*/dm_hs_*/obk_hs_*，宏 RPC_HS_* 同步 RDB_HS_*/DM_HS_*/OBK_HS_*（彻底改）","at":"2026-08-22T12:35:00+08:00"}
+{"source":"grilling","q":"timed_net_key→rpc_get_time 断链？","a":"不需要处理，time 对接 rpc 项目；libs/rpc-net.c 定位为 rpc time 协议客户端（TIME 帧已内联），保留","at":"2026-08-22T12:35:00+08:00"}
+{"source":"grilling","q":"实现形态？","a":"学习 rpc 实现：两层结构拆分融入 msg/protocol/network 模块（用户明确指令），非独立 handshake 文件","at":"2026-08-22T12:55:00+08:00"}
+{"source":"direction_confirm","summary":"两层拆分落点映射+项目前缀命名+导出面收敛+libs/rpc-net.c 保留","response":"confirmed","at":"2026-08-22T12:55:00+08:00"}
