@@ -1,0 +1,6 @@
+{"at":"2026-08-22T15:24:31+08:00","source":"task_identity","summary":"created with record identity T0353-0823-rpc-net-time-align"}
+{"source":"triage","summary":"T0352 遗留疑点转正式任务：rpc-net TIME 帧改用 MT_GET_TIME 对接 aio-speedd，rdbcomm 移除 time 全链路；claim 已验证：HS_NET_FIXED_SIZE=16 越界实锤、rdbcomm 六处 time 引用、aio-speedd MT_GET_TIME=0x111A 豁免握手","at":"2026-08-22T15:30:00+08:00"}
+{"source":"final_confirmation","summary":"T0353 终审批准：rpc_get_time 改 MT_GET_TIME 协议只对接 rpc 服务端并消除 16 字节越界缺陷；rdbcomm 移除 time 全链路六处；timed_net_key API 不变；AC-1~3 确认","response":"confirmed","at":"2026-08-22T15:28:51+08:00"}
+{"source":"check_confirmation","summary":"Check verdict confirmed: 3/3 AC PASS + xmake test 40/40；rpc_get_time 对齐 MT_GET_TIME、rdbcomm time 链路归零","response":"confirmed","at":"2026-08-22T15:42:36+08:00"}
+{"source":"grilling","q":"可复用知识？","a":"跨语言帧对接的链接级验证模式(伪服务端回帧+网络序双向校验)；time 豁免语义(GET_TIME 不受强制 mTLS 约束)","at":"2026-08-22T15:44:00+08:00"}
+{"source":"knowledge_decision","at":"2026-08-22T15:44:30+08:00","action":"wrote","reason":"帧字节序往返与豁免语义为可复用知识，并入 tls/link-level-mtls-test-pattern.md"}

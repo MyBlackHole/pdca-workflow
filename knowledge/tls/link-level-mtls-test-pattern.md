@@ -30,3 +30,12 @@ os.projectdir(), "libs", "tests", "certs") .. "\"")。
 ## 已否决形式
 fork+execl 工具二进制 E2E（端口/环境脆弱、无法覆盖内部接缝、存量假失败）
 不再新增；既有此类测试按机会成本逐步迁移为链接级。
+
+## 跨项目帧对接的链接级验证要点（T0353 补充）
+- 伪服务端回帧必须显式 htonl 转网络序后 memcpy（主机序直拷会导致
+  对端 ntohl 校验必败）；>4 字节字段用 htonl 组合实现 htonll。
+- rpc 项目 time 豁免语义：MT_GET_TIME(0x111A) 帧不受强制 mTLS 约束，
+  验证"拒绝明文业务"须用其他 MT_ 类型帧；GET_TIME_RESP 为
+  msg_base_resp + uint64(be64) 共 20 字节，uiResult 服务端未赋值不可强校验。
+- 协议枚举弃位保值：移除某个 op/result 时保留原枚举数值空洞，
+  避免重排改变线上字节。
