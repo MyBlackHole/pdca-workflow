@@ -8,15 +8,26 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-22T07:00:00+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T0342-0822-tls-cert-init-api",
     "scenario_type": "development",
-    "completed_at": "2026-08-22T07:48:05+08:00"
+    "completed_at": "2026-08-22T07:48:05+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "8 AC 均 PASS，双格式与路径统一验证，无 server/client 前缀",
+      "verdict_id": "T0342-check-verdict-001",
+      "at": "2026-08-22T08:03:42+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ED25519 双格式回退与路径统一已沉淀为 tls/cert-dual-format-and-path-unify.md",
+      "at": "2026-08-22T08:04:56.742611+08:00"
+    }
   },
   "parent": null,
   "slug": "0822-tls-cert-init-api",
   "states": {
-    "act": null,
+    "act": "2026-08-22T08:03:58+08:00",
     "archive": null,
     "check": "2026-08-22T07:48:05+08:00",
     "created": "2026-08-22T07:00:00+08:00",

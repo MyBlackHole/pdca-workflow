@@ -1,0 +1,34 @@
+=== TLS Cert Unit Tests ===
+
+Using CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+Running tls_cert_build_server_profiles... PASSED
+Running tls_cert_build_client_profile... PASSED
+Running tls_cert_init_server_from_cert_dir... [2026-08-22 07:52:32]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140197125006208| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 07:52:32]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140197125006208| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 07:52:32]|Error|libs/tls_cert.c:75 tls_cert_log_setup_error|140197125006208| TLS setup failed: role=server stage=certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/ca.crt cert=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/ed25519_host.crt key=/home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs/ed25519_host.key
+PASSED
+Running tls_cert_init_client_from_cert_dir... [2026-08-22 07:52:32]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140197125006208| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 07:52:32]|Error|libs/tls_cert.c:75 tls_cert_log_setup_error|140197125006208| TLS setup failed: role=client stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/nonexistent/ed25519_ca.crt cert=/nonexistent/my-ca/host.crt key=/nonexistent/my-ca/host.key
+PASSED
+Running tls_cert_init_disabled... PASSED
+Running tls_ed25519_dual_format... [2026-08-22 07:52:32]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140197125006208| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 07:52:32]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140197125006208| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 07:52:32]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140197125006208| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 07:52:32]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140197125006208| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+PASSED
+Running tls_server_init... [2026-08-22 07:52:32]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140197125006208| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 07:52:32]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140197125006208| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+PASSED
+Running tls_mtls_handshake... [2026-08-22 07:52:32]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140197125006208| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 07:52:32]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140197125006208| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 07:52:32]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140197125006208| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+[2026-08-22 07:52:32]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140197117294272| Applied ciphersuites config: TLS_SM4_GCM_SM3
+[2026-08-22 07:52:32]|Info|libs/tls_cert.c:90 tls_cert_set_ciphersuites|140197117294272| Applied ciphersuites config: TLS_AES_256_GCM_SHA384
+PASSED
+
+=== Results ===
+Passed: 8
+Failed: 0
+
+All tests PASSED!
+exit:0
