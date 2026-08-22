@@ -1,0 +1,2 @@
+{"id":"evidence-test","file":"evidence-test.md","kind":"test-result","size":1364,"digest":"sha256:361cbec92fa5b40a7d104a5e3912504321cc0f0c72db0feddd69bdf8524250f7","at":"2026-08-22T20:35:39+08:00","criteria":["AC-1","AC-2","AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":225,"digest":"sha256:3cc10ecd3d9cc5db181e74f1827f016fb48b68622097487709a35f0b894fc0c2","at":"2026-08-22T20:36:11+08:00","criteria":["AC-1","AC-2","AC-3"]}

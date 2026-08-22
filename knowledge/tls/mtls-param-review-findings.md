@@ -40,3 +40,9 @@
 | MED | libobk 握手 body 主机序 | libobk.c:158,183 |
 
 错误码 `*_HS_ERR_ALGORITHM(0x8005)` 各处已定义但从未使用——修复 H1 时直接可用。
+
+## 补充（T0358 修复后遗留）
+
+- **`sec_resolve_int` env 层仍是 atoi**（libs/rdb-config.c:203）：`RDBCOMM_MTLS_ENABLE=abc` 等经该底座解析的安全开关依旧 fail-open。该函数为通用 int 解析器无错误通道，修复需 API 变更——已决定并入 T0357。
+- **TLS 配置结构体死字段模式**：tls-cert 重构收敛 cert_dir 唯一路径后，`ca_cn/ca_cert/server_cert/server_key` 在 rpc/dmsbtex/rdbcomm 三处结构体填充后零消费。清理任务 T0360。
+- **修复范式（T0358 已落地）**：布尔安全开关 = strtol 全串校验仅收 "0"/"1"，非法返回 -1 拒绝初始化；算法名 = strcmp 规范名全串匹配 + 配置加载时白名单校验，未知名启动即失败。

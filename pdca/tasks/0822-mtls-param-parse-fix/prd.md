@@ -10,9 +10,15 @@
 
 | 项 | 位置 | 动作 |
 |----|------|------|
-| H2 | dmsbtex/network.c:104、libobk/lib/sbt/libobk.c:74 | 改 sec_resolve_int 或严格 strtol；非法值拒绝启动/显式告警 |
-| H3 | 四份 `*_algorithm_from_name` | strstr → strcmp 精确匹配 |
-| H3 测试 | rpc/tests/rpc_own_handshake_test.cpp:56 | 删除 "sm2"→SM4 断言，改为未知名返回 DEFAULT/报错断言 |
+| H2 | dmsbtex/network.c:104、libobk/lib/sbt/libobk.c:74 | 改严格解析（strtol 全串校验）；非法值**拒绝初始化/启动**并报错 |
+| H3 | 四份 `*_algorithm_from_name` | strstr → strcmp 精确匹配；未知名返回 DEFAULT(0) 保持纯函数语义 |
+| H3 配置侧 | sbt_tls_config_init / sbt_client_tls_config_init 等 | 加载时校验算法名合法性，未知名**拒绝初始化/启动**（与 CLI 行为一致） |
+| H3 测试 | rpc/tests/rpc_own_handshake_test.cpp:56 | 删除 "sm2"→SM4 断言，改为精确匹配断言 |
+
+## 用户决策（2026-08-22 对齐）
+
+- mtls_enable 非法字符串 → **拒绝启动**（fail-closed）
+- tls_algorithm 未知名 → **配置加载时拒绝**（fail-closed，早于协商）
 
 ### 声明的测试接缝
 - seam: rpc/tests/rpc_own_handshake_test.cpp -> rpc/rpc-protocol.cpp
