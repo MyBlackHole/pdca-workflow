@@ -1,0 +1,11 @@
+{"at":"2026-08-22T16:58:34+08:00","source":"task_identity","summary":"created with record identity T0355-0822-mtls-consistency-review"}
+{"source":"triage","question":"rp 具体指哪个模块","answer":"rpc 模块（aio-speed 工具链实现）为基准","recommended":"rpc 模块","round":1,"at":"2026-08-22T17:05:00+08:00"}
+{"source":"grilling","round":1,"question":"一致性审查覆盖哪些维度","answer":"全维度+错误码细节：协议常量、协商状态机、无降级策略、配置优先级链、TLS 构建时机、失败路径、会话清理，另加错误码语义与日志行为逐条比对","recommended":"全维度+错误码细节","at":"2026-08-22T17:05:00+08:00"}
+{"source":"grilling","round":1,"question":"发现不一致时的产出形态","answer":"报告+修复建议：conclusion.md 含比对矩阵、证据引用、风险评级、修复建议；不改代码","recommended":"报告+修复建议","at":"2026-08-22T17:05:00+08:00"}
+{"source":"final_confirmation","summary":"批准：以 rpc 为基准全维度+错误码细节审查 rdbcomm/sbt/dmsbtex mTLS 一致性，产出报告+修复建议，不改代码","response":"confirmed","at":"2026-08-22T17:05:08+08:00"}
+{"source":"check_confirmation","summary":"确认审查结论：C1/C2 两项 CRITICAL（libobk 栈溢出+握手必败）、4 HIGH、4 MEDIUM；AC1-4 全部 pass；被审代码判定 fail 需修复","response":"confirmed","at":"2026-08-22T17:37:27+08:00"}
+{"source":"grilling","round":2,"question":"哪些审查发现值得沉淀为可复用知识","answer":"沉淀一条综合规则：握手帧长度常量单点化+双端共用宏+复制式协议实现强制配真实往返测试，兼收错误码语义/启动策略分歧教训","recommended":"沉淀一条综合规则","at":"2026-08-22T17:40:00+08:00"}
+{"source":"grilling","round":2,"question":"知识文件放在哪个主题目录","answer":"knowledge/tls/","recommended":"tls/","at":"2026-08-22T17:40:00+08:00"}
+{"source":"grilling","round":2,"question":"是否立即创建跟进任务修复 libobk C1/C2 缺陷","answer":"是，development 场景跟进任务","recommended":"立即创建","at":"2026-08-22T17:40:00+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-22T17:47:17+08:00", "action": "wrote", "reason": "握手双端长度契约+往返测试强制为可复用规则，适用于所有自研二进制协议多模块实现场景"}
+{"source": "followup_task", "at": "2026-08-22T17:47:38+08:00", "task_id": "T0356", "reason": "Ac4 架构改进：C1/C2 CRITICAL 缺陷修复跟进任务已创建（T0356-0822-libobk-handshake-fix，bugfix 场景，parent=T0355）"}
