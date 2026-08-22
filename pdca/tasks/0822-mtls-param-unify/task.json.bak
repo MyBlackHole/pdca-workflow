@@ -8,20 +8,27 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-22T21:06:42+08:00",
-    "phase": "do",
+    "phase": "check",
     "record": "T0361-0822-mtls-param-unify",
-    "scenario_type": "development"
+    "scenario_type": "development",
+    "completed_at": "2026-08-22T21:59:29+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "AC-1..4 全部通过；xmake test 40/40；两次补充提交 2456402/4bb3c8a 均经用户报告驱动闭环",
+      "verdict_id": "V-T0361-20260822-01",
+      "at": "2026-08-22T22:50:28+08:00"
+    }
   },
   "parent": "T0360",
   "slug": "0822-mtls-param-unify",
   "states": {
     "act": null,
     "archive": null,
-    "check": null,
+    "check": "2026-08-22T21:59:29+08:00",
     "created": "2026-08-22T21:06:42+08:00",
     "do": "2026-08-22T21:08:06+08:00",
     "plan": "2026-08-22T21:06:42+08:00"
   },
-  "status": "InProgress",
+  "status": "Completed",
   "title": "跟进：mtls 参数三态精简与 sec_resolve_bool 统一配置解析（用户意见，T0360 后）"
 }

@@ -46,3 +46,9 @@
 - **`sec_resolve_int` env 层仍是 atoi**（libs/rdb-config.c:203）：`RDBCOMM_MTLS_ENABLE=abc` 等经该底座解析的安全开关依旧 fail-open。该函数为通用 int 解析器无错误通道，修复需 API 变更——已决定并入 T0357。
 - **TLS 配置结构体死字段模式**：tls-cert 重构收敛 cert_dir 唯一路径后，`ca_cn/ca_cert/server_cert/server_key` 在 rpc/dmsbtex/rdbcomm 三处结构体填充后零消费。清理任务 T0360。
 - **修复范式（T0358 已落地）**：布尔安全开关 = strtol 全串校验仅收 "0"/"1"，非法返回 -1 拒绝初始化；算法名 = strcmp 规范名全串匹配 + 配置加载时白名单校验，未知名启动即失败。
+
+## 补充 2（T0361 后定稿）
+
+- **mtls 布尔开关统一 API**：`sec_resolve_bool(tool,tool_key,global,global_key,env,default)`——env/[tool]/[security] 三层严格 "0"/"1"，非法返回 **-1 错误哨兵**，调用方必须拒绝启动。六入口（rdbcomm/rdbcommd/aio-speed/aio-speedd/dmsbtex/libobk 客户端+服务端）已全部接入；通用 `sec_resolve_int` 保持 atoi 语义勿混用。
+- **CLI 意图字段模式**：删除 set/enabled 双布尔；载体直接用消费字段（配置打底 → getopt 覆盖 → `<0` 校验）。
+- **构建验证铁律**：删结构体成员/改头文件后，回归必须跑 `xmake test` 全量重建——增量构建对"测试文件未同步修改"静默放过旧二进制（T0360/T0361 连续两次中招）；审计 getenv 类解析点须按函数入口全量扫 `getenv`+`atoi` 组合，不能只 grep 结构体前缀。

@@ -1144,4 +1144,4 @@ report of tests:
 - verdict_id: V-T0361-20260822-01
 - outcome: confirmed
 - reason: 四条 AC 全过（evidence-test/evidence-test-v2）；两次提交 4f0e880+2456402 含完整版本递增与披露；用户发现的遗漏已在 Check 内闭环
-- at: 2026-08-22T22:00:00+08:00
+- at: 2026-08-22T22:50:28+08:00

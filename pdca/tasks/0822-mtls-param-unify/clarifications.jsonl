@@ -1,2 +1,4 @@
 {"at":"2026-08-22T21:06:42+08:00","source":"task_identity","summary":"created with record identity T0361-0822-mtls-param-unify"}
 {"source":"final_confirmation","summary":"终审批准：三态字段合并 + 新增 sec_resolve_bool（严格0/1，-1哨兵）+ dmsbtex/libobk 接入 ini 配置；AC-1..4 确认","response":"confirmed","at":"2026-08-22T21:07:38+08:00"}
+{"source":"check_confirmation","summary":"Verdict=confirmed：AC-1..4 全过（xmake test 40/40）；含 oracleCmdTbl 补漏 2456402 与测试修复 4bb3c8a；增量构建教训入册","response":"confirmed","at":"2026-08-22T22:50:28+08:00"}
+{"source":"knowledge_decision","at":"2026-08-22T22:51:01+08:00","action":"wrote","reason":"增量构建掩盖删字段遗漏的教训具有跨任务复用价值，追加至 tls 知识文件"}
