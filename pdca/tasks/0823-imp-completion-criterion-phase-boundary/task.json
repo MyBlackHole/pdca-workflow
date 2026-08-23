@@ -3,7 +3,7 @@
   "dependencies": [],
   "id": "T0373",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "writing-great-skills 新增 completion criterion 杠杆节（clarity+demand 双性质）",
       "handoff-work 新增 phase-boundary 五选项决策树节",
@@ -11,7 +11,7 @@
       "用新杠杆回审3个高流量技能产出before/after对照"
     ],
     "created_at": "2026-08-23T17:11:13+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T0373-0823-imp-completion-criterion-phase-boundary",
     "scenario_type": "documentation",
     "completed_at": "2026-08-23T17:25:58+08:00",
@@ -31,7 +31,7 @@
   "slug": "0823-imp-completion-criterion-phase-boundary",
   "states": {
     "act": "2026-08-23T17:26:46+08:00",
-    "archive": null,
+    "archive": "2026-08-23T17:26:47+08:00",
     "check": "2026-08-23T17:25:58+08:00",
     "created": "2026-08-23T17:11:13+08:00",
     "do": "2026-08-23T17:21:43+08:00",
