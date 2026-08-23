@@ -1,0 +1,8 @@
+{"at":"2026-08-23T19:20:46+08:00","source":"task_identity","summary":"created with record identity T0380-0823-dialogue-log-lightweight"}
+{"at": "2026-08-23T19:23:33.911462+08:00", "source": "task_identity", "summary": "created with record identity T0380-0823-dialogue-log-lightweight"}
+{"at": "2026-08-23T19:23:33.911462+08:00", "source": "user_meta_feedback", "captured": true, "feedback": "是否建议 → （裁决）做轻量版阶段边界对话摘要，反对全量录制", "context": "对话过程记录机制咨询后", "disposition": "立项 T0380", "summary": "用户裁决：轻量版过程存档"}
+{"source":"direction_confirm","summary":"方向：轻量版对话摘要——handoff-work单点定义+flows指针+自反首份产出","response":"confirmed","at":"2026-08-23T19:23:34+08:00"}
+{"source":"final_confirmation","summary":"用户终审批准：轻量对话摘要机制+自反首份，进入Do","response":"confirmed","at":"2026-08-23T19:25:46+08:00"}
+{"source": "grilling", "round": 2, "captured": false, "question": "Q3 - 机制是否最小且首份摘要合规？", "answer": "是：handoff-work单点定义+四flows指针；首份744B含四要素（讨论要点3/被否备选2/用户原话2条/疑点1）", "recommended": "确认", "at": "2026-08-23T19:30:32.510664+08:00"}
+{"source":"check_confirmation","summary":"用户确认 verdict=confirmed：轻量对话摘要机制落地，归档","response":"confirmed","at":"2026-08-23T19:34:48+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-23T19:34:48.801866+08:00", "action": "skipped", "reason": "机制已入handoff-work本体（SSOT）"}

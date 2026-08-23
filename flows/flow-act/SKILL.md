@@ -109,7 +109,7 @@ git add -A && git commit -m "task <id>: 完成并归档"
 ```
 
 ### Ac8. 归档
-1. 加载 `$PDCA_HOME/skills/advance-phase/SKILL.md`，目标 phase: `archive`（校验 disposition → 设置 phase=archive + active=false）
+1. 加载 `$PDCA_HOME/skills/advance-phase/SKILL.md`，目标 phase: `archive`（校验 disposition → 设置 phase=archive + active=false）；归档前确认 `dialogue-log.md` 已含各阶段摘要
 2. 再次提交 metadata 变更：
 ```bash
 git add -A && git commit -m "task <id>: 归档 metadata"

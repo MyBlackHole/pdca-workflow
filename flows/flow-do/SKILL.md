@@ -177,7 +177,7 @@ E 路径（design）若已有代码基线也执行提交。
 C/D/F 路径无代码变更则跳过。
 
 ### Z4. 进入 Check 阶段
-加载 `$PDCA_HOME/skills/advance-phase/SKILL.md`，目标 phase: `check`。
+加载 `$PDCA_HOME/skills/advance-phase/SKILL.md`，目标 phase: `check`。转换前向 `dialogue-log.md` 追加对话摘要（格式见 handoff-work）。
 
 ---
 

@@ -78,6 +78,7 @@ description: |
 结论不成立（rejected/partial）也必须进入 Act，不从 Check 退回 Plan——Act 阶段会根据 verdict 分支处理。
 
 ### Ch6. 进入 Act 阶段
+转换前向任务目录 `dialogue-log.md` 追加 Check 阶段对话摘要（格式见 handoff-work）。
 加载 `$PDCA_HOME/skills/advance-phase/SKILL.md`，目标 phase: `act`。
 写入 `meta.record` 引用当前结论。
 
