@@ -28,6 +28,9 @@
 | **convergence map** | Do 收尾时生成并登记的结构化证据映射；逐条把 Plan 中的 `meta.convergence` 回链到 PRD 验收条件和已登记 evidence ID，本身不作为验收通过证据 |
 | **Flow Issue Occurrence** | 一次具体发生、可追溯且写入后不可修改的 PDCA 机制问题事实；不等同于聚合问题或改进授权 |
 | **Flow Issue** | 由一个或多个 occurrence 按版本化 fingerprint 确定性聚合出的 PDCA 机制问题视图；可重建，不是事实源 |
+| **异步对象** | 存续期跨越 Reactor 回调派发窗口的对象：事件源（reactor_source_t）、逻辑定时器（reactor_timer_t）、post 回调携带的用户数据、业务子 Reactor 及其运行时状态 |
+| **守卫原语** | C 风格生命周期契约的显式机制集合（统一 owned-post 协议、销毁栅栏、句柄校验守卫），替代散落的 generation/discard/布尔所有权标志约定（ADR-0029） |
+| **强销毁保证** | 异步对象进入销毁流程后其在途回调要么被安全丢弃要么排空后才完成销毁、销毁后回调绝不派发的语义承诺（ADR-0029） |
 | **Flow Issue Decision** | 对 Flow Issue 作出的带确认者、理由和时间的不可变治理回执，如 impact、false-positive、accepted-risk、关闭或候选晋级 |
 | **Improvement Candidate** | 基于 Flow Issue 生成、尚未获得修改权威流程授权的改进提案；包含依据、预期指标、风险和验证计划 |
 | **Improvement Task** | Improvement Candidate 经用户确认后创建的正式 PDCA 任务；只有该任务能在既有门禁下实施流程改动 |

@@ -1,0 +1,5 @@
+{"file":"knowledge/linux-epoll-eventloop/transport-ownership-model.md","reason":"既有传输所有权组织方法论（两容器+一抽象+一契约、三类所有权维度判定），统一生命周期契约须与之兼容而非另起炉灶","action":"read","at":"2026-08-23T20:10:00+08:00"}
+{"file":"knowledge/control-plane-nonblocking-ingress/v81-control-frame-nonblocking.md","reason":"v81 控制帧非阻塞化的 post/work-ready 分派机制是现有 post 变体的主要消费场景，收敛 API 时必须保持该分派语义","action":"read","at":"2026-08-23T20:10:00+08:00"}
+{"file":"knowledge/benchmark/paired-comparison-noise.md","reason":"AC 基线不回退的对照测量需遵循配对比较噪声控制方法","action":"read","at":"2026-08-23T20:10:00+08:00"}
+{"file":"docs/adr/ADR-0026-v81-plain-control-async.md","reason":"plain 控制面异步分派决策背景，迁移 plain 域调用点时的行为等价基准","action":"read","at":"2026-08-23T20:10:00+08:00"}
+{"file":"docs/adr/ADR-0029-async-object-lifecycle-contract.md","reason":"本任务核心架构决策：强销毁保证/统一契约/一次性替换/近零开销","action":"read","at":"2026-08-23T20:10:00+08:00"}
