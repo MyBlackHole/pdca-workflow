@@ -13,7 +13,7 @@
       "研究报告写入 records/T0370-0823-skills-ai-enhancement/report.md 并通过evidence登记"
     ],
     "created_at": "2026-08-23T15:52:00+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T0370-0823-skills-ai-enhancement",
     "scenario_type": "research",
     "completed_at": "2026-08-23T16:28:18+08:00",
@@ -22,12 +22,17 @@
       "reason": "6项AC全部由已登记证据支撑，convergence验证valid:true；报告覆盖全量清单/失效模式映射/14技能拆解/流程推演/7条可迁移原则",
       "verdict_id": "V-T0370-001",
       "at": "2026-08-23T16:32:13.537360+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "研究结论已沉淀为 knowledge/ai-efficiency/mattpocock-skills-enhancement-mechanisms.md；报告附A的P7/P8/P9落地建议供后续Improvement Task采用",
+      "at": "2026-08-23T16:54:41.553938+08:00"
     }
   },
   "parent": null,
   "slug": "0823-skills-ai-enhancement",
   "states": {
-    "act": null,
+    "act": "2026-08-23T16:52:16+08:00",
     "archive": null,
     "check": "2026-08-23T16:28:18+08:00",
     "created": "2026-08-23T15:52:00+08:00",

@@ -3,7 +3,7 @@
   "dependencies": [],
   "id": "T0370",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "完成 skills 项目全量结构扫描：统计skill数量、分类、调用关系，输出清单",
       "完成4大失效模式与对应skill的映射分析，有原理引用与出处",
@@ -13,7 +13,7 @@
       "研究报告写入 records/T0370-0823-skills-ai-enhancement/report.md 并通过evidence登记"
     ],
     "created_at": "2026-08-23T15:52:00+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T0370-0823-skills-ai-enhancement",
     "scenario_type": "research",
     "completed_at": "2026-08-23T16:28:18+08:00",
@@ -33,7 +33,7 @@
   "slug": "0823-skills-ai-enhancement",
   "states": {
     "act": "2026-08-23T16:52:16+08:00",
-    "archive": null,
+    "archive": "2026-08-23T16:55:00+08:00",
     "check": "2026-08-23T16:28:18+08:00",
     "created": "2026-08-23T15:52:00+08:00",
     "do": "2026-08-23T15:54:42+08:00",
