@@ -12,7 +12,7 @@
       "报告登记evidence且convergence map valid"
     ],
     "created_at": "2026-08-23T17:41:21+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T0374-0823-history-review-self-improve",
     "scenario_type": "review",
     "completed_at": "2026-08-23T17:48:25+08:00",
@@ -21,12 +21,17 @@
       "reason": "5项AC证据齐备convergence valid;审查含自反性(过程中新失误已纳入清单);三层处置去向明确",
       "verdict_id": "V-T0374-001",
       "at": "2026-08-23T17:50:21.241704+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "防再发知识双层沉淀完成（技能已知坑+knowledge资产）；3项改进候选与触发条件移交journal跟踪",
+      "at": "2026-08-23T17:52:44.692878+08:00"
     }
   },
   "parent": null,
   "slug": "0823-history-review-self-improve",
   "states": {
-    "act": null,
+    "act": "2026-08-23T17:51:29+08:00",
     "archive": null,
     "check": "2026-08-23T17:48:25+08:00",
     "created": "2026-08-23T17:41:21+08:00",
