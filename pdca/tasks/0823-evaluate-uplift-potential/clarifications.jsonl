@@ -1,0 +1,12 @@
+{"at":"2026-08-23T16:59:22+08:00","source":"task_identity","summary":"created with record identity T0371-0823-evaluate-uplift-potential"}
+{"source": "triage", "round": 1, "question": "确认任务性质：评估而非实施？", "answer": "是，产出评估报告+路线图，实施留给后续Improvement Task", "recommended": "纯评估", "at": "2026-08-23T17:00:58.130974+08:00"}
+{"source": "grilling", "round": 1, "question": "Q1 - 评估基准：以T0370报告的P1-P9为候选集还是重新扫描？", "answer": "以P1-P9为基础候选集，允许评估中发现新候选或合并冗余", "recommended": "基础+开放", "at": "2026-08-23T17:00:58.130974+08:00"}
+{"source": "grilling", "round": 1, "question": "Q2 - 判定标准：怎样算'能提升'？", "answer": "至少2个gap项通过五维评估进入'立即'层且各有可执行的验证方式", "recommended": "gap项可立项即算能", "at": "2026-08-23T17:00:58.130974+08:00"}
+{"source":"direction_confirm","summary":"方向：以P1-P9为基础候选集逐项核实现状→五维评估→四层路线图→总体判定，纯评估不实施","response":"confirmed","at":"2026-08-23T17:01:21+08:00"}
+{"source":"final_confirmation","summary":"终审：AC-1~AC-5明确，静态核实+五维评估，范围外不含实施，确认进入Do","response":"confirmed","at":"2026-08-23T17:01:21+08:00"}
+{"source": "grilling", "round": 2, "question": "Q3 - 评估方法是否充分？", "answer": "充分：11项候选逐项核实到file:line，预算约束实测量化；未运行配对实验但已为每项设计验证方式并声明属实施任务范围", "recommended": "静态评估足够", "at": "2026-08-23T17:08:35.348548+08:00"}
+{"source": "grilling", "round": 2, "question": "Q4 - 判定'部分能提升'是否稳健？", "answer": "稳健：3个立项项均有五维支撑与触发条件；判定标准(Q1轮预定义)满足——2个以上gap项进入立即/短期层", "recommended": "维持confirmed", "at": "2026-08-23T17:08:35.348548+08:00"}
+{"source":"check_confirmation","summary":"用户确认 verdict=confirmed：评估判定部分能提升，路线图1+2立项组合获批，进入Act","response":"confirmed","at":"2026-08-23T17:10:37+08:00"}
+{"source": "grilling", "round": 3, "question": "Q5 - 哪些可沉淀为可复用知识？", "answer": "增量方法：外部实践引进前的'核实-五维评估-触发条件观察层'立项前评估法；与既有ai-friendliness-review-methodology(评测已实施改动)互补不重复", "recommended": "写一条", "at": "2026-08-23T17:11:13+08:00"}
+{"source": "grilling", "round": 3, "question": "Q6 - 改进项如何处置？", "answer": "check_confirmation已获用户批准1+2组合，创建2个Improvement Task(P3; P8c+P7合并)", "recommended": "立即创建", "at": "2026-08-23T17:11:13+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-23T17:12:08.891430+08:00", "action": "wrote", "reason": "沉淀'外部实践引进前评估法'增量方法论；改进项已立 T0372/T0373"}

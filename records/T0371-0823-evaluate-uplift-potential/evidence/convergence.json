@@ -1,0 +1,55 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "完成候选改进项现状核实表：覆盖>=9项，标注already-done/partial/gap并附file:line证据",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "eval-report"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "完成partial/gap项的五维评估：收益/成本/风险/依赖/验证方式",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "eval-report"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "产出四层优先级路线图（立即/短期/观察/不做），每项附理由",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "eval-report"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "给出明确总体判定（能/部分能/不能）及依据链",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "eval-report"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "评估报告登记evidence且convergence map验证valid",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "evidence-manifest"
+      ]
+    }
+  ]
+}

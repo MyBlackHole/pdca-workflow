@@ -1,0 +1,38 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0371",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "完成候选改进项现状核实表：覆盖>=9项，标注already-done/partial/gap并附file:line证据",
+      "完成partial/gap项的五维评估：收益/成本/风险/依赖/验证方式",
+      "产出四层优先级路线图（立即/短期/观察/不做），每项附理由",
+      "给出明确总体判定（能/部分能/不能）及依据链",
+      "评估报告登记evidence且convergence map验证valid"
+    ],
+    "created_at": "2026-08-23T16:59:22+08:00",
+    "phase": "check",
+    "record": "T0371-0823-evaluate-uplift-potential",
+    "scenario_type": "research",
+    "completed_at": "2026-08-23T17:08:35+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5项AC全部有证据支撑且convergence验证valid;总体判定'部分能提升'依据链完整,3个立项项经五维评估",
+      "verdict_id": "V-T0371-001",
+      "at": "2026-08-23T17:09:19.550756+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0823-evaluate-uplift-potential",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-23T17:08:35+08:00",
+    "created": "2026-08-23T16:59:22+08:00",
+    "do": "2026-08-23T17:01:22+08:00",
+    "plan": "2026-08-23T16:59:22+08:00"
+  },
+  "status": "Completed",
+  "title": "评估 mattpocock/skills 机制对本项目的提升潜力"
+}

@@ -1,0 +1,29 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0372",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "skills/research/SKILL.md 含'结论须附可复核验证途径'规则且 flow-do C2 同步",
+      "回溯抽查最近5个research任务conclusion，>=4个可按新规则补出验证途径"
+    ],
+    "created_at": "2026-08-23T17:11:13+08:00",
+    "phase": "plan",
+    "record": "T0372-0823-imp-research-verify-signal",
+    "scenario_type": "development",
+    "improvement_source": "T0371"
+  },
+  "parent": "T0371",
+  "slug": "0823-imp-research-verify-signal",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-08-23T17:11:13+08:00",
+    "do": null,
+    "plan": "2026-08-23T17:11:13+08:00"
+  },
+  "status": "Pending",
+  "title": "改进：research 场景结论补可验证信号要求（T0371-P3）"
+}
