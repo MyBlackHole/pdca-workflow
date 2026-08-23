@@ -1,0 +1,45 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "writing-great-skills 新增 completion criterion 杠杆节（clarity+demand 双性质）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "wgs-after"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "handoff-work 新增 phase-boundary 五选项决策树节",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "hw-after"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "skill-content-baseline.json 两文件条目更新且 audit 零 budget issue",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "baseline-after"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "用新杠杆回审3个高流量技能产出before/after对照",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "review-notes"
+      ]
+    }
+  ]
+}
