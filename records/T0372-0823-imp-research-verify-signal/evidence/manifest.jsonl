@@ -1,0 +1,5 @@
+{"id":"research-after","file":"research-skill-after.md","kind":"doc-snapshot","size":1010,"digest":"sha256:84280c4e0ff2dea2547b1683d1dc449154b4fa744402f7107154bf1084491c1e","at":"2026-08-23T17:32:28+08:00","criteria":["AC-1"]}
+{"id":"flowdo-after","file":"flow-do-after.md","kind":"doc-snapshot","size":6862,"digest":"sha256:9b72826937c1a52a1176ee16203576ac8bb2fac68805f8bd7e7df99135ef8c95","at":"2026-08-23T17:32:28+08:00","criteria":["AC-2"]}
+{"id":"baseline-after","file":"baseline-after.json","kind":"config-snapshot","size":6762,"digest":"sha256:23ccc0ded8e754086f1dd51226150f5d788f9d601970319ecce90b94e7a52fda","at":"2026-08-23T17:32:28+08:00","criteria":["AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":862,"digest":"sha256:f9cf8c910fc8d33f30e203aa9b8ea55c286dde47d6628194732e12fd19bb061d","at":"2026-08-23T17:32:29+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"survey","file":"survey-reg.md","kind":"review-record","size":686,"digest":"sha256:e7bec672d5cc108fe8ad1a3f3cd7e358b980939a323d4919464c147de258c4c8","at":"2026-08-23T17:32:47+08:00","criteria":["AC-4"]}

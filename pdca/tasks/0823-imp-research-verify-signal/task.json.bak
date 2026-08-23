@@ -11,7 +11,7 @@
       "回溯抽查5/5样本可补出验证途径并登记evidence"
     ],
     "created_at": "2026-08-23T17:11:13+08:00",
-    "phase": "act",
+    "phase": "check",
     "record": "T0372-0823-imp-research-verify-signal",
     "scenario_type": "documentation",
     "completed_at": "2026-08-23T17:33:19+08:00",
@@ -20,17 +20,12 @@
       "reason": "4项AC证据齐备convergence valid;抽查5/5超线;规则自反适用于本任务结论",
       "verdict_id": "V-T0372-001",
       "at": "2026-08-23T17:33:19.710971+08:00"
-    },
-    "disposition": {
-      "outcome": "projected",
-      "reason": "规则已合入两个文件并更新baseline；途径模板与conclusion端衔接线索记录在conclusion下一轮建议",
-      "at": "2026-08-23T17:37:06.737429+08:00"
     }
   },
   "parent": "T0371",
   "slug": "0823-imp-research-verify-signal",
   "states": {
-    "act": "2026-08-23T17:37:06+08:00",
+    "act": null,
     "archive": null,
     "check": "2026-08-23T17:33:19+08:00",
     "created": "2026-08-23T17:11:13+08:00",

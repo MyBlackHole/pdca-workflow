@@ -1,1 +1,9 @@
 {"at":"2026-08-23T17:11:13+08:00","source":"task_identity","summary":"created with record identity T0372-0823-imp-research-verify-signal"}
+{"source": "grilling", "round": 1, "question": "Q1 - 场景判定？", "answer": "development改判documentation（T0273边界规则：无脚本测试产物，回溯抽查为人工验证；避免无意义seam声明）", "recommended": "documentation", "at": "2026-08-23T17:28:50.058914+08:00"}
+{"source": "grilling", "round": 1, "question": "Q2 - 抽查样本量与达标线？", "answer": "5个归档research任务，>=4可补出即证明规则可行（T0371 E-1预设计）；实测5/5", "recommended": "维持原设计", "at": "2026-08-23T17:28:50.058914+08:00"}
+{"source":"direction_confirm","summary":"方向：documentation场景两处一行级增补+baseline豁免；回溯抽查5/5达标作为可行性证据","response":"confirmed","at":"2026-08-23T17:29:12+08:00"}
+{"source":"final_confirmation","summary":"用户终审批准：两处增补+baseline豁免+抽查证据，进入Do","response":"confirmed","at":"2026-08-23T17:30:22+08:00"}
+{"source": "grilling", "round": 2, "question": "Q3 - 实施是否最小且完整？", "answer": "是：两处增补合计+129B，C2 半句含退回动作形成闭环；抽查5/5超承诺线4/5", "recommended": "确认", "at": "2026-08-23T17:33:19.710971+08:00"}
+{"source": "grilling", "round": 2, "question": "Q4 - 新规则对当前任务是否自反适用？", "answer": "是：T0372自身conclusion的关键结论（缺口存在）即由survey.md的5样本表作为可复核途径支撑", "recommended": "自反成立", "at": "2026-08-23T17:33:19.710971+08:00"}
+{"source":"check_confirmation","summary":"用户确认 verdict=confirmed：规则合入完成，归档","response":"confirmed","at":"2026-08-23T17:37:06+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-23T17:37:06.737429+08:00", "action": "skipped", "reason": "规则已写入research技能本体即知识载体；抽查方法已在uplift-assessment-before-adoption.md覆盖（回溯抽查法）"}

@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0372",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta/improvement_source",
+      "message": "'T0371' is not of type 'object'",
+      "guidance": "fix the field at /meta/improvement_source in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-08-23T17:30:22.910395+08:00"
+}
