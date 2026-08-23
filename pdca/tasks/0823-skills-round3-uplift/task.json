@@ -3,7 +3,7 @@
   "dependencies": [],
   "id": "T0379",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "grilling规则4含非阻塞并行细节",
       "AGENTS.md含git危险命令防护纪律",
@@ -11,7 +11,7 @@
       "3文件抽样清理示范且audit零issue、convergence valid"
     ],
     "created_at": "2026-08-23T18:53:59+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T0379-0823-skills-round3-uplift",
     "scenario_type": "documentation",
     "completed_at": "2026-08-23T19:06:27+08:00",
@@ -31,7 +31,7 @@
   "slug": "0823-skills-round3-uplift",
   "states": {
     "act": "2026-08-23T19:09:18+08:00",
-    "archive": null,
+    "archive": "2026-08-23T19:09:18+08:00",
     "check": "2026-08-23T19:06:27+08:00",
     "created": "2026-08-23T18:53:59+08:00",
     "do": "2026-08-23T18:57:11+08:00",
