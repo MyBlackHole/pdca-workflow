@@ -1,0 +1,45 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "20个卡点任务全部有缺口画像",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "diag-report"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "每任务最小推进动作序列且三分类标注",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "diag-report"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "汇总三类占比与批量推进策略建议",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "diag-report"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "报告登记evidence且convergence valid",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "diag-report"
+      ]
+    }
+  ]
+}

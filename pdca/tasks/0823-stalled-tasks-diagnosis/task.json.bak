@@ -1,0 +1,30 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0377",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "20个卡点任务全部有缺口画像",
+      "每任务最小推进动作序列且三分类标注",
+      "汇总三类占比与批量推进策略建议",
+      "报告登记evidence且convergence valid"
+    ],
+    "created_at": "2026-08-23T18:20:35+08:00",
+    "phase": "plan",
+    "record": "T0377-0823-stalled-tasks-diagnosis",
+    "scenario_type": "research"
+  },
+  "parent": null,
+  "slug": "0823-stalled-tasks-diagnosis",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-08-23T18:20:35+08:00",
+    "do": null,
+    "plan": "2026-08-23T18:20:35+08:00"
+  },
+  "status": "Pending",
+  "title": "卡点诊断：check/act 停滞任务缺口分析与最小推进清单"
+}

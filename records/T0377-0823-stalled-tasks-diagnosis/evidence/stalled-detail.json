@@ -1,0 +1,232 @@
+{
+ "count": 16,
+ "tasks": [
+  {
+   "id": "T0330",
+   "slug": "0819-sbt-rpc-session",
+   "phase": "check",
+   "scenario": "development",
+   "title": "dmsbtex/libobk复用rpc会话传输",
+   "gaps": [
+    "conclusion",
+    "verdict",
+    "disposition",
+    "check_confirmation"
+   ],
+   "last_state": "2026-08-19T17:09:16+08:00",
+   "has_final_conf": true
+  },
+  {
+   "id": "T0289",
+   "slug": "0815-gate-werror",
+   "phase": "check",
+   "scenario": "development",
+   "title": "门禁修复与警告清零：-Werror 构建门禁",
+   "gaps": [
+    "conclusion",
+    "verdict",
+    "disposition",
+    "check_confirmation"
+   ],
+   "last_state": "2026-08-15T16:44:20+08:00",
+   "has_final_conf": true
+  },
+  {
+   "id": "T0323",
+   "slug": "0819-fsdeamon-snapshot-socket-leak",
+   "phase": "act",
+   "scenario": "bugfix",
+   "title": "修复 fsdeamon snapshot 引发的 socket 泄漏",
+   "gaps": [
+    "disposition"
+   ],
+   "last_state": "2026-08-19T16:26:14+08:00",
+   "has_final_conf": true
+  },
+  {
+   "id": "T0290",
+   "slug": "0815-perf-baseline",
+   "phase": "check",
+   "scenario": "development",
+   "title": "性能量化：新增专用基准并建立 v80 基线",
+   "gaps": [
+    "conclusion",
+    "verdict",
+    "disposition",
+    "check_confirmation"
+   ],
+   "last_state": "2026-08-15T16:46:26+08:00",
+   "has_final_conf": true
+  },
+  {
+   "id": "T0326",
+   "slug": "0819-centralize-all-ini-parameters",
+   "phase": "check",
+   "scenario": "development",
+   "title": "rdb-config 统一管理全部 INI 参数",
+   "gaps": [
+    "conclusion",
+    "verdict",
+    "disposition",
+    "check_confirmation"
+   ],
+   "last_state": "2026-08-19T12:04:38+08:00",
+   "has_final_conf": true
+  },
+  {
+   "id": "T0324",
+   "slug": "0819-unified-ini-config-module",
+   "phase": "check",
+   "scenario": "development",
+   "title": "统一 INI 配置管理模块",
+   "gaps": [
+    "conclusion",
+    "verdict",
+    "disposition",
+    "check_confirmation"
+   ],
+   "last_state": "2026-08-19T10:45:07+08:00",
+   "has_final_conf": true
+  },
+  {
+   "id": "T0260",
+   "slug": "0817-rpc-handshake-negotiation",
+   "phase": "check",
+   "scenario": "development",
+   "title": "RPC 层自定义握手包协商：单端口加密/明文并存（aio-speed↔aio",
+   "gaps": [
+    "conclusion",
+    "check_confirmation"
+   ],
+   "last_state": "2026-08-17T13:05:58+08:00",
+   "has_final_conf": true
+  },
+  {
+   "id": "T0293",
+   "slug": "0815-v81-cp-perf",
+   "phase": "act",
+   "scenario": "development",
+   "title": "v81 控制面性能提升：对称吞吐/延迟 + 资源节省双 AC（承接 T029",
+   "gaps": [],
+   "last_state": "2026-08-15T18:33:55+08:00",
+   "has_final_conf": true
+  },
+  {
+   "id": "T0313",
+   "slug": "0818-rpc-rdbcomm-sm2-app-frame-followup",
+   "phase": "check",
+   "scenario": "development",
+   "title": "跟进：修复 rdbcomm SM2 真实应用帧握手失败",
+   "gaps": [
+    "verdict",
+    "disposition",
+    "check_confirmation"
+   ],
+   "last_state": "2026-08-18T15:30:17+08:00",
+   "has_final_conf": true
+  },
+  {
+   "id": "T0320",
+   "slug": "0818-help-algorithm-constants",
+   "phase": "check",
+   "scenario": "development",
+   "title": "补齐工具 mTLS help 并集中算法常量",
+   "gaps": [
+    "conclusion",
+    "verdict",
+    "disposition",
+    "check_confirmation"
+   ],
+   "last_state": "2026-08-18T18:29:35+08:00",
+   "has_final_conf": true
+  },
+  {
+   "id": "T0339",
+   "slug": "0821-tls-keygen-cleanup",
+   "phase": "act",
+   "scenario": "development",
+   "title": "tls-keygen 清理：算法前缀文件名、删除 purpose/EKU、-",
+   "gaps": [
+    "evidence_manifest",
+    "conclusion",
+    "check_confirmation"
+   ],
+   "last_state": "2026-08-21T15:40:00+08:00",
+   "has_final_conf": true
+  },
+  {
+   "id": "T0328",
+   "slug": "0819-dmsbtex-libobk-mtls",
+   "phase": "check",
+   "scenario": "development",
+   "title": "dmsbtex、libobk 接入 mTLS 握手",
+   "gaps": [
+    "conclusion",
+    "verdict",
+    "disposition",
+    "check_confirmation"
+   ],
+   "last_state": "2026-08-19T15:10:17+08:00",
+   "has_final_conf": true
+  },
+  {
+   "id": "T0248",
+   "slug": "0813-lmdb-tree-resume-round62",
+   "phase": "check",
+   "scenario": "development",
+   "title": "Round 62：LMDB 增量索引生产化与海量 TREE 检查点续传",
+   "gaps": [
+    "conclusion",
+    "verdict",
+    "disposition",
+    "check_confirmation"
+   ],
+   "last_state": "2026-08-13T23:38:34+08:00",
+   "has_final_conf": true
+  },
+  {
+   "id": "T0332",
+   "slug": "0820-tls-cert-refactor",
+   "phase": "check",
+   "scenario": "development",
+   "title": "重构 tls_cert 模块",
+   "gaps": [
+    "conclusion",
+    "verdict",
+    "disposition",
+    "check_confirmation"
+   ],
+   "last_state": "2026-08-20T12:24:56+08:00",
+   "has_final_conf": true
+  },
+  {
+   "id": "T0319",
+   "slug": "0818-tool-mtls-config",
+   "phase": "check",
+   "scenario": "development",
+   "title": "为 rdbcomm 与 aio-speed 增加独立 mTLS 算法配置",
+   "gaps": [
+    "conclusion",
+    "verdict",
+    "disposition",
+    "check_confirmation"
+   ],
+   "last_state": "2026-08-18T18:11:25+08:00",
+   "has_final_conf": true
+  },
+  {
+   "id": "T0315",
+   "slug": "0818-rpc-net-protocol-cleanup",
+   "phase": "check",
+   "scenario": "development",
+   "title": "清理 rpc-net-protocol 遗留代码",
+   "gaps": [
+    "verdict",
+    "disposition",
+    "check_confirmation"
+   ],
+   "last_state": "2026-08-18T15:47:21+08:00",
+   "has_final_conf": true
+  }
+ ]
+}
