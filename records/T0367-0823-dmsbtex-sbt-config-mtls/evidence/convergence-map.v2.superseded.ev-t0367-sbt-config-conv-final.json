@@ -1,0 +1,29 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1 启用+AES：配置文件 --mtls-enabled=1 与 --tls-algorithm=TLS_AES_256_GCM_SHA384，init_sbt_config 返回 0 且 tls_cfg 字段正确",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["ev-t0367-sbt-config-tests"]
+    },
+    {
+      "index": 2,
+      "text": "AC-2 禁用+SM4 与键缺失回退：--mtls-enabled=0/SM4 生效；两键缺失回退 env/ini 基线（测试 env 未设则为未启用+SM4）",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["ev-t0367-sbt-config-tests"]
+    },
+    {
+      "index": 3,
+      "text": "AC-3 fail-closed：非法 --mtls-enabled（非0/1）或未知 --tls-algorithm，init_sbt_config 返回 -1",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["ev-t0367-sbt-config-tests"]
+    },
+    {
+      "index": 4,
+      "text": "AC-4 无回归：dmsbtex_session_test 全量用例通过（含既有 sbt_tls_config_init/握手回归），dmsbtex/dm-ftp 目标构建成功",
+      "criteria": ["AC-4"],
+      "evidence_ids": ["ev-t0367-sbt-config-tests", "ev-t0367-sbt-config-code"]
+    }
+  ]
+}

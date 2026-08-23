@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0367",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "CONCLUSION_MISSING",
+      "path": "records/T0367-0823-dmsbtex-sbt-config-mtls/conclusion.md",
+      "message": "conclusion is required"
+    }
+  ],
+  "at": "2026-08-23T09:16:48.026826+08:00"
+}
