@@ -12,7 +12,7 @@
       "评估报告登记evidence且convergence map验证valid"
     ],
     "created_at": "2026-08-23T16:59:22+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T0371-0823-evaluate-uplift-potential",
     "scenario_type": "research",
     "completed_at": "2026-08-23T17:08:35+08:00",
@@ -21,12 +21,17 @@
       "reason": "5项AC全部有证据支撑且convergence验证valid;总体判定'部分能提升'依据链完整,3个立项项经五维评估",
       "verdict_id": "V-T0371-001",
       "at": "2026-08-23T17:09:19.550756+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "路线图已转化为 Improvement Task T0372(P3)/T0373(P8c+P7)；评估方法论沉淀 knowledge/ai-efficiency/uplift-assessment-before-adoption.md",
+      "at": "2026-08-23T17:12:08.891430+08:00"
     }
   },
   "parent": null,
   "slug": "0823-evaluate-uplift-potential",
   "states": {
-    "act": null,
+    "act": "2026-08-23T17:10:37+08:00",
     "archive": null,
     "check": "2026-08-23T17:08:35+08:00",
     "created": "2026-08-23T16:59:22+08:00",
