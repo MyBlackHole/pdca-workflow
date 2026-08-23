@@ -1,0 +1,31 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0375",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "grilling SKILL含captured双态规则/HITL红线/防重问三条",
+      "flow-plan P6/flow-check Ch5含元反馈落盘要求",
+      "冒烟测试证明带captured字段的条目通过现有门禁",
+      "三次元反馈已补录可检索",
+      "audit零issue且evidence齐备convergence valid"
+    ],
+    "created_at": "2026-08-23T17:58:13+08:00",
+    "phase": "do",
+    "record": "T0375-0823-interaction-capture",
+    "scenario_type": "development"
+  },
+  "parent": null,
+  "slug": "0823-interaction-capture",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-08-23T17:58:13+08:00",
+    "do": "2026-08-23T18:04:12+08:00",
+    "plan": "2026-08-23T17:58:13+08:00"
+  },
+  "status": "InProgress",
+  "title": "改进：真实用户交互捕获机制（provenance 标记+元反馈类型）"
+}

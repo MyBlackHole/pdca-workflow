@@ -9,8 +9,8 @@
     },
     {
       "file": "flows/flow-check/SKILL.md",
-      "bytes": 2700,
-      "reason": "Initial ADR-0007 baseline"
+      "bytes": 2912,
+      "reason": "T0375 adds user free-text feedback capture requirement at Ch5 verdict confirmation"
     },
     {
       "file": "flows/flow-do/SKILL.md",
@@ -19,8 +19,8 @@
     },
     {
       "file": "flows/flow-plan/SKILL.md",
-      "bytes": 3545,
-      "reason": "T0161 replaces direct manual triage and domain-modeling references with workers"
+      "bytes": 4751,
+      "reason": "T0375 adds user free-text feedback capture requirement at P6 final review"
     },
     {
       "file": "skills/advance-phase/SKILL.md",
@@ -114,8 +114,8 @@
     },
     {
       "file": "skills/grilling/SKILL.md",
-      "bytes": 2419,
-      "reason": "Initial ADR-0007 baseline"
+      "bytes": 4620,
+      "reason": "T0375 adds provenance dual-state rule (captured true/false), HITL redline, anti-re-ask rule and meta-feedback pitfall per approved interaction-capture design"
     },
     {
       "file": "skills/handoff-work/SKILL.md",
