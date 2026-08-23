@@ -11,7 +11,7 @@
       "baseline豁免audit零issue、evidence齐备convergence valid"
     ],
     "created_at": "2026-08-23T19:20:46+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T0380-0823-dialogue-log-lightweight",
     "scenario_type": "documentation",
     "completed_at": "2026-08-23T19:28:49+08:00",
@@ -20,12 +20,17 @@
       "reason": "4项AC证据齐备convergence valid;首份摘要744B合规;与T0375形成决策点+过程轨迹互补双轨",
       "verdict_id": "V-T0380-001",
       "at": "2026-08-23T19:30:32.510664+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "机制三件套（定义/指针/自反首份）落地；撰写成本待下个任务样本评估",
+      "at": "2026-08-23T19:34:48.801866+08:00"
     }
   },
   "parent": null,
   "slug": "0823-dialogue-log-lightweight",
   "states": {
-    "act": null,
+    "act": "2026-08-23T19:34:48+08:00",
     "archive": null,
     "check": "2026-08-23T19:28:49+08:00",
     "created": "2026-08-23T19:20:46+08:00",

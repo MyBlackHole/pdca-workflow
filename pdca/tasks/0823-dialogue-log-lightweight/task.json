@@ -3,7 +3,7 @@
   "dependencies": [],
   "id": "T0380",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "handoff-work含对话摘要存档节（时机/落点/四要素/上限/不做清单）",
       "flows四处转换步骤各含指针句",
@@ -11,7 +11,7 @@
       "baseline豁免audit零issue、evidence齐备convergence valid"
     ],
     "created_at": "2026-08-23T19:20:46+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T0380-0823-dialogue-log-lightweight",
     "scenario_type": "documentation",
     "completed_at": "2026-08-23T19:28:49+08:00",
@@ -31,7 +31,7 @@
   "slug": "0823-dialogue-log-lightweight",
   "states": {
     "act": "2026-08-23T19:34:48+08:00",
-    "archive": null,
+    "archive": "2026-08-23T19:34:49+08:00",
     "check": "2026-08-23T19:28:49+08:00",
     "created": "2026-08-23T19:20:46+08:00",
     "do": "2026-08-23T19:25:46+08:00",
