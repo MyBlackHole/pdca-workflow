@@ -1,0 +1,37 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0379",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "grilling规则4含非阻塞并行细节",
+      "AGENTS.md含git危险命令防护纪律",
+      "体检清单覆盖45资产每条含文件:行/类型/建议并登记evidence",
+      "3文件抽样清理示范且audit零issue、convergence valid"
+    ],
+    "created_at": "2026-08-23T18:53:59+08:00",
+    "phase": "check",
+    "record": "T0379-0823-skills-round3-uplift",
+    "scenario_type": "documentation",
+    "completed_at": "2026-08-23T19:06:27+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "4项AC证据齐备convergence valid;5误报如实记录且人工深挖获2条真实清理;三处差距全部补齐",
+      "verdict_id": "V-T0379-001",
+      "at": "2026-08-23T19:07:26.436461+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0823-skills-round3-uplift",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-23T19:06:27+08:00",
+    "created": "2026-08-23T18:53:59+08:00",
+    "do": "2026-08-23T18:57:11+08:00",
+    "plan": "2026-08-23T18:53:59+08:00"
+  },
+  "status": "Completed",
+  "title": "skills 三轮借鉴：grilling 非阻塞细化/git 防护/存量资产体检"
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "grilling规则4含非阻塞并行细节",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "grilling-after"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "AGENTS.md含git危险命令防护纪律",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "agents-after"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "体检清单覆盖45资产每条含文件:行/类型/建议并登记evidence",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "audit-findings"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "3文件抽样清理示范且audit零issue、convergence valid",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "baseline-after"
+      ]
+    }
+  ]
+}
