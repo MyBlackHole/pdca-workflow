@@ -107,9 +107,11 @@ python3 "$PDCA_HOME/scripts/resolve-ai-friendliness-route.py" --scenario "<meta.
 
 ### C1. 调研执行 + 撰写报告
 加载 `$PDCA_HOME/skills/research/SKILL.md`。
+Done when：报告落盘且每条关键结论附可复核验证途径（无途径的结论已降级标注）。
 
 ### C2. 调研报告审查
 对照 `prd.md` 验收标准逐条检查报告完整性、引用格式，且每条关键结论含可复核验证途径（缺失即退回 C1 补齐）。
+Done when：全部 AC 可映射到报告章节且引用格式零缺失。
 
 ---
 
@@ -117,10 +119,12 @@ python3 "$PDCA_HOME/scripts/resolve-ai-friendliness-route.py" --scenario "<meta.
 
 ### D1. 文档编写
 按 `prd.md` 结构和 `$PDCA_HOME/templates/to-spec/SPEC.md` 模板编写 design.md、spec.md、ADR 等。
+Done when：文档章节完整覆盖 PRD 全部验收标准，无待补占位符。
 
 ### D2. 文档审查（双轴）
 - **内容轴**：对照原始需求确认覆盖完整、术语一致
 - **格式轴**：结构清晰、Mermaid 图可读、无遗漏章节
+Done when：双轴各自零 Blocking 发现，术语与 `pdca/CONTEXT.md` 一致。
 
 ---
 
@@ -180,3 +184,8 @@ C/D/F 路径无代码变更则跳过。
 ## 退出
 - 完成: `meta.phase` = `"check"`
 - 假设不成立 / 发现新信息: 回到 Plan 重新设计（`meta.phase` = `"plan"`）
+
+## 生效自检
+
+- 每条关键结论/切片都有 evidence 登记且 digest 可复核
+- C/D 路径产出满足各步 Done when；子代理失败按容错规则留痕于 failed-tasks.jsonl

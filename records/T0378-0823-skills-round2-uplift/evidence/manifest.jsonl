@@ -1,0 +1,6 @@
+{"id":"agents-after","file":"agents-after-reg.md","kind":"doc-snapshot","size":2952,"digest":"sha256:39ce6a20ff8a47e872c5ebf1c4c81db3a1227600826fc3c98a4bd2d5f7d096e4","at":"2026-08-23T18:46:40+08:00","criteria":["AC-1"]}
+{"id":"verify","file":"verify-reg.txt","kind":"test-output","size":575,"digest":"sha256:f9d3057824109a194bed18760052a43c2ee9f35cddb911d7f2c75a0be1ffb621","at":"2026-08-23T18:46:40+08:00","criteria":["AC-2","AC-3"]}
+{"id":"baseline-after","file":"baseline-after.json","kind":"config-snapshot","size":7058,"digest":"sha256:d63aa2b42f9422e81297e8f3fdc80998deca468d5bd244af63e2c714c02d4f53","at":"2026-08-23T18:46:41+08:00","criteria":["AC-4"]}
+{"id":"flows-selfcheck","file":"flows-selfcheck-reg.md","kind":"doc-snapshot","size":3099,"digest":"sha256:4b6456fe72da6eeffbe58f92659e0068d339eefc69d4e657e8164998f4834e8e","at":"2026-08-23T18:46:41+08:00","criteria":["AC-2"]}
+{"id":"grilling-after","file":"grilling-after-reg.md","kind":"doc-snapshot","size":4907,"digest":"sha256:92d3eca85729cb22ae553da4ca748a398b70a95bf39370e20493030af50d1e60","at":"2026-08-23T18:46:41+08:00","criteria":["AC-5"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":1057,"digest":"sha256:5b1bf207a3dea690c628af40d892434d7a0e00a50ec86697016079e8a31a268f","at":"2026-08-23T18:46:41+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}

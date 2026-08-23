@@ -122,3 +122,8 @@ mv pdca/tasks/<MMDD-slug> pdca/tasks/archive/$(date +%Y-%m)/
 ## 退出
 - 完成: 任务已归档
 - 下一周期: 创建新任务，进入 Plan
+
+## 生效自检
+
+- 归档任务 disposition 齐备且 knowledge_decision 有 wrote/skipped 明示理由
+- journal 当日含任务摘要；改进候选有去向（立项或观察触发条件）

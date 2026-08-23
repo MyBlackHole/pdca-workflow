@@ -1,0 +1,10 @@
+{"at":"2026-08-23T18:36:10+08:00","source":"task_identity","summary":"created with record identity T0378-0823-skills-round2-uplift"}
+{"at": "2026-08-23T18:36:57.745019+08:00", "source": "task_identity", "summary": "created with record identity T0378-0823-skills-round2-uplift"}
+{"source": "triage", "round": 1, "captured": false, "question": "二轮候选如何取舍？", "answer": "四项全做但严控体量；wizard/to-questionnaire/teach 仍不做（场景稀少）", "recommended": "同左", "at": "2026-08-23T18:36:57.745019+08:00"}
+{"source":"direction_confirm","summary":"方向：二轮四子项（纠偏词/生效信号/防谎/C-D试点）严控体量一次落地","response":"confirmed","at":"2026-08-23T18:36:57+08:00"}
+{"at": "2026-08-23T18:40:24.314517+08:00", "source": "user_meta_feedback", "captured": true, "feedback": "继续（对'是否推荐记录沟通过程'咨询的回应，按推荐并入第五子项）", "context": "T0378 Plan 审阅中", "disposition": "W5 必录清单并入方案"}
+{"source":"final_confirmation","summary":"用户终审批准五子项：W1纠偏词/W2生效信号/W3防谎/W4 Done-when试点/W5必录清单，进入Do","response":"confirmed","at":"2026-08-23T18:41:32+08:00"}
+{"source": "grilling", "round": 2, "captured": false, "question": "Q3 - 五子项是否全部落地且试点边界保持？", "answer": "是：verify.txt 验证 AGENTS.md 两处、四文件自检节各2条信号、C/D 各2处Done when；澄清A/B/E/F零判据", "recommended": "确认", "at": "2026-08-23T18:47:18.801434+08:00"}
+{"source": "grilling", "round": 2, "captured": false, "question": "Q4 - W3 是否产生实际收益？", "answer": "是：索引生成即抓到T0373遗留的description漂移并修复——规则上线首日即兑现价值", "recommended": "确认", "at": "2026-08-23T18:47:18.801434+08:00"}
+{"source":"check_confirmation","summary":"用户确认 verdict=confirmed：五子项落地，归档","response":"confirmed","at":"2026-08-23T18:49:20+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-23T18:49:21.281567+08:00", "action": "skipped", "reason": "五子项内容已写入AGENTS.md与flows技能本体（SSOT）；skills关联模式已在T0375记录"}

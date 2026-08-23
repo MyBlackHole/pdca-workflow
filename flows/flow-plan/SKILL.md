@@ -101,3 +101,8 @@ development/bugfix 场景额外校验：PRD 含 `### 声明的测试接缝` 子�
 ## 执行器边界
 
 P6 后才可使用抽象能力 `agent.spawn` 调度已确认子任务。用户决策留在主 session，子输出仍需回归 Check。能力不可用时由主 session 顺序执行，不得猜测平台工具。
+
+## 生效自检
+
+- 每个 plan→do 转换的 receipt 存在且 final_confirmation 为 confirmed（可 grep transition-receipts）
+- PRD 验收标准全部为 checkbox 格式且每条可在后续产物中判定 ✅/❌

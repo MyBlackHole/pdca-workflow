@@ -1,0 +1,43 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0378",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AGENTS.md含纠偏引导词与路由防谎规则",
+      "flows四文件各含生效自检节>=2条信号",
+      "flow-do C/D路径Done when化且其他路径未动",
+      "baseline豁免更新audit零issue、evidence齐备convergence valid",
+      "grilling SKILL含必录三层清单与Redact提示"
+    ],
+    "created_at": "2026-08-23T18:36:10+08:00",
+    "phase": "act",
+    "record": "T0378-0823-skills-round2-uplift",
+    "scenario_type": "documentation",
+    "completed_at": "2026-08-23T18:47:18+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5项AC证据齐备convergence valid;W3上线即抓到真实索引漂移;试点边界经澄清保持",
+      "verdict_id": "V-T0378-001",
+      "at": "2026-08-23T18:47:18.801434+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "五子项合入入口与flows；C/D试点运行证据将决定P9是否扩散；卡点批次仍为最大待办",
+      "at": "2026-08-23T18:49:21.281567+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0823-skills-round2-uplift",
+  "states": {
+    "act": "2026-08-23T18:49:21+08:00",
+    "archive": null,
+    "check": "2026-08-23T18:47:18+08:00",
+    "created": "2026-08-23T18:36:10+08:00",
+    "do": "2026-08-23T18:41:32+08:00",
+    "plan": "2026-08-23T18:36:10+08:00"
+  },
+  "status": "Completed",
+  "title": "skills 二轮深挖：纠偏引导词/生效信号/路由防谎/Done-when 试点"
+}

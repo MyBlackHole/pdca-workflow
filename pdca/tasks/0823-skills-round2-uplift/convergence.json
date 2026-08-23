@@ -1,0 +1,55 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AGENTS.md含纠偏引导词与路由防谎规则",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "agents-after"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "flows四文件各含生效自检节>=2条信号",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "flows-selfcheck"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "flow-do C/D路径Done when化且其他路径未动",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "verify"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "baseline豁免更新audit零issue、evidence齐备convergence valid",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "baseline-after"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "grilling SKILL含必录三层清单与Redact提示",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "grilling-after"
+      ]
+    }
+  ]
+}
