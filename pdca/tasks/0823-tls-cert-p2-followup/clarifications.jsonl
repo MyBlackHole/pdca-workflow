@@ -1,0 +1,4 @@
+{"at": "2026-08-23T08:25:00+08:00", "source": "task_identity", "summary": "created with record identity T0366-0823-tls-cert-p2-followup"}
+{"source": "final_confirmation", "summary": "P2 4 项 AC 范围确认（证书热加载/轮换、CRL-OCSP 吊销检查、错误码前缀归一、审计对端 CN），进入 Do 实现", "response": "confirmed", "at": "2026-08-23T08:17:05+08:00"}
+{"schema": "pdca.clarification/v1", "source": "check_confirmation", "task_id": "T0366", "verdict_id": "V-T0366-0823-01", "outcome": "confirmed", "at": "2026-08-23T08:44:30+08:00", "note": "四项 AC 单测全绿，AC-2 真实拒绝 verify_result=23，收敛 valid", "response": "confirmed", "summary": "Check 结论判定：confirmed，四项 AC 单测全绿，收敛 valid"}
+{"source":"knowledge_decision","at":"2026-08-23T08:46:09+08:00","action":"wrote","reason":"reload app_data 悬空指针、SIGPIPE 测试陷阱、CWD 相对路径依赖均为可复用经验"}
