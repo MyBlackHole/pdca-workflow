@@ -1,0 +1,5 @@
+T0372-0823-imp-research-verify-signal: AC判定行=4 source_ids=True -> 满足
+T0373-0823-imp-completion-criterion-phase-boundary: AC判定行=4 source_ids=True -> 满足
+T0375-0823-interaction-capture: AC判定行=5 source_ids=True -> 满足
+
+达标 3/3 (PRD 要求全部满足)

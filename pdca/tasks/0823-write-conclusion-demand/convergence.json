@@ -1,0 +1,45 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "write-conclusion判据含四字段+逐条AC判定+证据指向三要素",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "wc-after"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "模板含固定AC判定行格式示例",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "wc-after"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "回查T0372/T0373/T0375结论全部满足新格式",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "self-check"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "baseline豁免且audit零issue、evidence齐备convergence valid",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "baseline-after"
+      ]
+    }
+  ]
+}
