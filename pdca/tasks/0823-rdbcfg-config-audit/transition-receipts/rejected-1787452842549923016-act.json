@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0369",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta/verdict",
+      "message": "'confirmed' is not of type 'object'",
+      "guidance": "fix the field at /meta/verdict in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-08-23T10:40:42.549900+08:00"
+}

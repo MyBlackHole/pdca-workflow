@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "task_id": "T0369",
+  "summary": "task identity is unique and immutable; review findings converge to fixes/decisions",
+  "acceptance": {
+    "AC-1": ["E0"],
+    "AC-2": ["E0"],
+    "AC-3": ["E0"],
+    "AC-4": ["E0"],
+    "AC-5": ["E1", "E2", "E3"]
+  },
+  "findings_to_fix": {
+    "F1": "oss/cmd/tls.go: chooseStr env 优先（E2 覆盖）",
+    "F2": "libs/rdb-config.c: CONFIG_KV_MAX=1024 + 溢出告警/继续解析（E1/E3 覆盖）",
+    "F3": "libs/cfg_path.h 单一来源 + 6 config.h 去重（E3 预处理覆盖）",
+    "F4": "libs/rdb-config.c: 默认关闭全局回退（E1 覆盖）",
+    "F5": "libs/rdb-config.c: parse_strict_int 校验（E1 覆盖）",
+    "F6": "libs/rdb-config.c: g_cfg_lock 保护切换/读取",
+    "F7": "Go 解析器已对齐 inih；配置源合并留作后续优化",
+    "F8": "cfg_path.h 注释统一 rdb.conf/rdb.cfg 别名",
+    "F9": "仅建议（env 可信，留安全专项）"
+  }
+}

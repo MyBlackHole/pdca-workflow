@@ -1,0 +1,39 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0368",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-23T09:20:00+08:00",
+    "phase": "act",
+    "record": "T0368-0823-oss-https-cert",
+    "scenario_type": "development",
+    "completed_at": "2026-08-23T09:58:57+08:00",
+    "verdict": {
+      "verdict_id": "T0368-0823-oss-https-cert-check",
+      "outcome": "confirmed",
+      "at": "2026-08-23T10:03:22+08:00",
+      "reason": "单元/构建/运行时验证全部通过，收敛校验 valid=True，满足 PRD 全部验收标准"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "知识沉淀 knowledge/oss/oss_https_tls.md（单端口 HTTPS、算法前缀证书、rdb.conf 4 层配置模型、Go h2 套件坑位）；T0368 闭环归档",
+      "at": "2026-08-23T10:06:00+08:00"
+    }
+  },
+  "parent": "T0367",
+  "slug": "0823-oss-https-cert",
+  "states": {
+    "act": "2026-08-23T10:05:10+08:00",
+    "archive": null,
+    "check": "2026-08-23T09:58:57+08:00",
+    "created": "2026-08-23T09:20:00+08:00",
+    "do": "2026-08-23T09:42:46+08:00",
+    "plan": "2026-08-23T09:20:00+08:00"
+  },
+  "status": "Completed",
+  "title": "oss：支持 HTTPS 使用证书"
+}

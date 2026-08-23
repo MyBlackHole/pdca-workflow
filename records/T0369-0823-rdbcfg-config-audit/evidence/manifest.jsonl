@@ -1,0 +1,5 @@
+{"id": "E0", "file": "review.md", "kind": "report", "size": 9802, "digest": "sha256:03179863003c33cc6e35a69c7605af47bc7440e125b92a57624c9ff364229bfb", "at": "2026-08-23T10:29:17+08:00", "criteria": ["AC-1", "AC-2", "AC-3", "AC-4"]}
+{"id": "E1", "file": "rdb_config_test.c", "kind": "test", "size": 15018, "digest": "sha256:66d2a19f516b944481626a4d6f06b59ff655feda51a322e6325352fbf35fb7e9", "at": "2026-08-23T10:29:17+08:00", "criteria": ["AC-5"]}
+{"id": "E2", "file": "oss_https_test.go", "kind": "test", "size": 7968, "digest": "sha256:071ee029e18761143ca2b60bff1bcdabaee2a1af13cec46226ed234b2390e241", "at": "2026-08-23T10:29:17+08:00", "criteria": ["AC-5"]}
+{"id": "E3", "file": "rdb-config.c", "kind": "verification", "size": 11614, "digest": "sha256:9bcdd9d50eabf0311801b803d885825086fdb032cc4007c31335b4511c916974", "at": "2026-08-23T10:29:18+08:00", "criteria": ["AC-5"]}
+{"id": "CMAP", "file": "convergence-map.final.json", "kind": "convergence-map", "size": 248, "digest": "sha256:92e735a1b536ad2b7ba8e26404118db65d1ea632829892abf157b4fe80725f0b", "at": "2026-08-23T10:30:11+08:00", "criteria": ["任务身份唯一不可变；findings→fixes 收敛映射（AC-1~AC-5）"]}
