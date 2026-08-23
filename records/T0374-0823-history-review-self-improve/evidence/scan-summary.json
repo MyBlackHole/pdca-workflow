@@ -1,0 +1,35 @@
+{
+ "total": 257,
+ "unparsable": 0,
+ "phase_dist": {
+  "plan": 36,
+  "do": 12,
+  "check": 14,
+  "act": 7,
+  "archive": 188
+ },
+ "gen_split": {
+  "legacy": {
+   "count": 1,
+   "schema_ok": 0
+  },
+  "strict": {
+   "count": 256,
+   "schema_ok": 223
+  }
+ },
+ "archive_coverage": {
+  "total": 188,
+  "evidence": "180/188 (95%)",
+  "conclusion": "181/188 (96%)",
+  "verdict": "188/188 (100%)",
+  "disposition": "185/188 (98%)",
+  "ac_judged": "77/188 (40%)"
+ },
+ "non_archive_phase": {
+  "plan": 36,
+  "do": 12,
+  "check": 14,
+  "act": 7
+ }
+}

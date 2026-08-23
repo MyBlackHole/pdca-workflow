@@ -1,0 +1,55 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "全量扫描量化完成：phase分布/schema合规分代/四类产物覆盖率",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "review-report"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "抽样审读>=6个归档任务conclusion质量逐个结论",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "review-report"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "AI操作失误清单>=5条含根因与防再发措施",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "review-report"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "发现三级处置（立即修复/改进立项/记录观察）有去向",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "review-report"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "报告登记evidence且convergence map valid",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "review-report"
+      ]
+    }
+  ]
+}

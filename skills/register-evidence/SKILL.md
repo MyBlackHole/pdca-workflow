@@ -39,3 +39,6 @@ excluded from acceptance coverage and cannot count as evidence for itself.
 - `--file` 必须唯一文件名：同源多证据用 id 前缀（如 ac2-triage-work-SKILL.md），重复文件名会被拒绝（T0266）。
 - convergence-map 文本必须与 task.json `meta.convergence` **逐字一致**，否则报 CONVERGENCE_TEXT_MISMATCH；用 `--replace` + 新 id 修正（T0266）。
 - `--source` 必须实际存在的文件路径，不存在即失败。
+- 同一源文件只能登记**一条**证据：一条证据覆盖多个 AC 用多个 `--criterion` 重复传参，而非拆多条（T0374）。
+- **`--source` 是 evidence 目录的唯一写入通道**：勿手动 mkdir/cp 预置同名文件再登记——会撞 duplicate filename；也勿先写空文件占位（空文件会被如实登记 size=0）（T0374）。
+- `--replace` supersede 时新条目必须换一个新 `--file` 名，沿用旧名被拒（T0374）。
