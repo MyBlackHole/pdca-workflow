@@ -3,7 +3,7 @@
   "dependencies": [],
   "id": "T0372",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "skills/research/SKILL.md 含可验证信号规则（附途径+降级标注）",
       "flow-do C2 审查项含该要求",
@@ -11,7 +11,7 @@
       "回溯抽查5/5样本可补出验证途径并登记evidence"
     ],
     "created_at": "2026-08-23T17:11:13+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T0372-0823-imp-research-verify-signal",
     "scenario_type": "documentation",
     "completed_at": "2026-08-23T17:33:19+08:00",
@@ -31,7 +31,7 @@
   "slug": "0823-imp-research-verify-signal",
   "states": {
     "act": "2026-08-23T17:37:06+08:00",
-    "archive": null,
+    "archive": "2026-08-23T17:37:06+08:00",
     "check": "2026-08-23T17:33:19+08:00",
     "created": "2026-08-23T17:11:13+08:00",
     "do": "2026-08-23T17:30:58+08:00",
