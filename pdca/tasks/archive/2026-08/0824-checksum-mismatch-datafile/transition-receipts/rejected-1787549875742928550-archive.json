@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0389",
+  "from": "act",
+  "to": "archive",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta",
+      "message": "Additional properties are not allowed ('handoff' was unexpected)",
+      "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-08-24T13:37:55.742913+08:00"
+}

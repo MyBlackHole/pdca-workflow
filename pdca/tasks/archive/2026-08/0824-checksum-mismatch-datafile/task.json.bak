@@ -22,8 +22,7 @@
       "outcome": "projected",
       "reason": "知识已沉淀(knowledge/debugging/xtrabackup-checksum-mismatch-datafile.md)；改进候选'备份后元数据vs实际文件一致性检查'挂观察触发条件：现场再次出现缺文件或用户提出加固需求时另立 bugfix 任务(报告结论3d含需求雏形)；R8 定制 diff 待获得上游 git 后回补",
       "at": "2026-08-24T13:35:00+08:00"
-    },
-    "handoff": "skipped: research 任务已闭环，无跨会话待办；manual handoff 保留为用户入口"
+    }
   },
   "parent": null,
   "slug": "0824-checksum-mismatch-datafile",

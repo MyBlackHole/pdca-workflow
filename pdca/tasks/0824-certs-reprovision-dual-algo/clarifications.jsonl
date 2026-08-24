@@ -1,1 +1,2 @@
 {"at":"2026-08-24T13:35:18+08:00","source":"task_identity","summary":"created with record identity T0391-0824-certs-reprovision-dual-algo"}
+{"source":"final_confirmation","summary":"SM2 根沿用+ED25519 新根签发；旧文件移备份不删；AC-1~5 进入 Do","response":"confirmed","at":"2026-08-24T13:37:55+08:00"}
