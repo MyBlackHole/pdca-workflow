@@ -1,0 +1,4 @@
+{"id":"fix-patch","file":"fix.patch","kind":"patch","size":4427,"digest":"sha256:1e000d7ec5b00fa2b3bc06da7c722dfb959958f7c5b8ae55eace0c6cd068bea9","at":"2026-08-24T11:07:31+08:00","criteria":["AC-1","AC-2"]}
+{"id":"verify-log","file":"verify.log","kind":"test-log","size":1468,"digest":"sha256:02ac4e17e0a66d4a4bae49b35fa533405d1d15328c8bfbcc210c44a3496c413f","at":"2026-08-24T11:07:31+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"keygen-test-src","file":"tls_keygen_test.c","kind":"test-source","size":1561,"digest":"sha256:298ba0fc0140c690648c916699954c4c24511cb8a1d6779f399a7715b9293acb","at":"2026-08-24T11:07:44+08:00","criteria":["AC-1"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":230,"digest":"sha256:bc96fad947f07f1592ef6491f96dbee492aa14e67bbfb70ad1bacbb92ae42dfe","at":"2026-08-24T11:07:45+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}

@@ -1,0 +1,39 @@
+=== T0387 验证记录 (2026-08-24) ===
+
+--- AC-1 单元测试 tls_keygen_test ---
+Running reject_space_cn... PASSED
+Running accept_legal_cn... PASSED
+Running reject_empty_and_null... PASSED
+Running reject_dotdot_traversal... PASSED
+Running reject_other_metachars... PASSED
+
+5 passed, 0 failed
+
+--- AC-2 CLI 黑盒: 含空格 CN ---
+Error: invalid CN 'My SM2 Root CA' (allowed: [A-Za-z0-9._-], no spaces, no ".."); example: -n My_SM2_Root_CA
+Error: failed to create CA (code: -1)
+exit=1
+
+--- AC-2 CLI 黑盒: 合法 CN ---
+Creating CA (sm2)... done
+CA private key: /tmp/opencode/t0387/good2/sm2_ca.key
+CA certificate: /tmp/opencode/t0387/good2/sm2_ca.crt
+exit=0
+
+--- AC-3 实机 mTLS 握手 (aio-speed -> aio-speedd:6611, TLS_SM4_GCM_SM3) ---
+[2026-08-24 11:07:19]|Info|libs/tls_cert.c:98 tls_cert_set_ciphersuites|140095104639872| Applied ciphersuites config: TLS_SM4_GCM_SM3
+总计 104K
+drwxr-xr-x 2 black black   41  8月24日 11:04 .
+drwxr-xr-x 4 black black   40  4月21日 18:23 ..
+-rw-r--r-- 1 black black 101K  5月12日 16:53 1.log
+srwsrwsrwt 1 black black    0  8月24日 11:04 aio-speed.sock
+exit=0
+
+--- AC-4 回归 ---
+[tls_cert_test]
+All tests PASSED!
+[rdb_config_test]
+=== 16 passed, 0 failed ===
+[rdbcomm_handshake_session_test]
+rdbcomm_handshake_session_test: ALL PASS
+[基线对照] rpc_handshake_test/rpc_own_handshake_test/rdbcomm_tool_integration 改动前后均 exit=255（git stash 基线复核），为既有环境性失败，非本修复引入

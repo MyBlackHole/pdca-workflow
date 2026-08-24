@@ -1,0 +1,129 @@
+diff --git a/libs/common.c b/libs/common.c
+index 7480488e..6e76392e 100644
+--- a/libs/common.c
++++ b/libs/common.c
+@@ -317,3 +317,20 @@ void close_from(int lowfd)
+ 		close(fd);
+ 	}
+ }
++
++int cn_name_valid(const char *cn)
++{
++	size_t i;
++	if (!cn || !cn[0])
++		return 0;
++	for (i = 0; cn[i]; i++) {
++		char c = cn[i];
++		if (!((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') ||
++		      (c >= '0' && c <= '9') || c == '.' || c == '_' ||
++		      c == '-'))
++			return 0;
++	}
++	if (strstr(cn, "..") != NULL)
++		return 0;
++	return 1;
++}
+diff --git a/libs/common.h b/libs/common.h
+index b41165a0..0539373a 100644
+--- a/libs/common.h
++++ b/libs/common.h
+@@ -101,6 +101,12 @@ void close_from(int lowfd);
+ const char *hs_algorithm_name(uint16_t algorithm);
+ uint16_t hs_algorithm_from_name(const char *name);
+ 
++/* 证书 CN 合法性校验（单一实现见 libs/common.c）。
++ * 规则与客户端 tls_cert_ca_cn_valid 一致：非空、仅 [A-Za-z0-9._-]、
++ * 禁止 ".." 子串。tls-keygen 生成 ca/host 前必须用它拒绝非法 CN，
++ * 避免部署后握手期才暴露。 */
++int cn_name_valid(const char *cn);
++
+ /* 各模块函数名别名（真实实现唯一） */
+ #define rdb_hs_algorithm_name hs_algorithm_name
+ #define rdb_hs_algorithm_from_name hs_algorithm_from_name
+diff --git a/libs/tests/xmake.lua b/libs/tests/xmake.lua
+index e495a27b..c15fa414 100644
+--- a/libs/tests/xmake.lua
++++ b/libs/tests/xmake.lua
+@@ -63,6 +63,16 @@ target("tls_cert_test")
+     set_runenv("CERT_DIR", os.scriptdir().."/certs")
+     add_tests("default", {realtime_output = true})
+ 
++target("tls_keygen_test")
++    set_default(false)
++    set_kind("binary")
++    add_defines("_GNU_SOURCE")
++    add_files(
++        "tls_keygen_test.c"
++    )
++    add_deps("tools")
++    add_tests("default", {realtime_output = true})
++
+ target("rdb_config_test")
+     set_default(false)
+     set_kind("binary")
+diff --git a/libs/tls_keygen.c b/libs/tls_keygen.c
+index cbdb745d..0981d4b8 100644
+--- a/libs/tls_keygen.c
++++ b/libs/tls_keygen.c
+@@ -291,6 +291,14 @@ int tls_keygen_create_ca_with_algo(const char *cn, const char *key_path,
+ 	if (!cn || !key_path || !cert_path) {
+ 		return TLS_KEYGEN_ERR_PARAM;
+ 	}
++	/* T0387：CN 必须满足客户端 tls_cert_ca_cn_valid 同款规则，
++	 * 否则部署后 mTLS 握手期才暴露失败 */
++	if (!cn_name_valid(cn)) {
++		fprintf(stderr,
++			"Error: invalid CN '%s' (allowed: [A-Za-z0-9._-], no spaces, no \"..\"); example: -n My_SM2_Root_CA\n",
++			cn);
++		return TLS_KEYGEN_ERR_PARAM;
++	}
+ 
+ 	if (!force) {
+ 		struct stat st;
+@@ -635,16 +643,16 @@ static void print_ca_usage(const char *prog)
+ 	printf("\nOutput files use algorithm prefix: {algo}_ca.key, {algo}_ca.crt\n");
+ 	printf("\nExamples:\n");
+ 	printf("  # Create a self-signed CA certificate\n");
+-	printf("  %s ca -n \"My Root CA\"\n", prog);
++	printf("  %s ca -n \"My_Root_CA\"\n", prog);
+ 	printf("\n");
+ 	printf("  # Create an SM2 self-signed CA certificate\n");
+-	printf("  %s ca -n \"My SM2 Root CA\" -a sm2\n", prog);
++	printf("  %s ca -n \"My_SM2_Root_CA\" -a sm2\n", prog);
+ 	printf("\n");
+ 	printf("  # Create CA to custom directory\n");
+-	printf("  %s ca -n \"My Root CA\" -o /tmp/ca\n", prog);
++	printf("  %s ca -n \"My_Root_CA\" -o /tmp/ca\n", prog);
+ 	printf("\n");
+ 	printf("  # Create CA with custom validity (10 years)\n");
+-	printf("  %s ca -n \"My Root CA\" --days 3650\n", prog);
++	printf("  %s ca -n \"My_Root_CA\" --days 3650\n", prog);
+ }
+ 
+ static void print_sign_usage(const char *prog)
+@@ -807,6 +815,12 @@ static int handle_create(int argc, char *argv[])
+ 		final_key_path = key_buf;
+ 		final_csr_path = csr_buf;
+ 	} else if (cn) {
++		if (!cn_name_valid(cn)) {
++			fprintf(stderr,
++				"Error: invalid CN '%s' (allowed: [A-Za-z0-9._-], no spaces, no \"..\"); example: -n My_SM2_Root_CA\n",
++				cn);
++			return 1;
++		}
+ 		char cn_dir[512];
+ 		snprintf(cn_dir, sizeof(cn_dir), "%s%s", DEFAULT_CERT_DIR, cn);
+ 		if (mkdir_path(cn_dir) != 0) {
+@@ -1094,6 +1108,12 @@ static int handle_sign(int argc, char *argv[])
+ 		final_csr_path = sign_csr_buf;
+ 		final_out_path = sign_out_buf;
+ 	} else if (cn) {
++		if (!cn_name_valid(cn)) {
++			fprintf(stderr,
++				"Error: invalid CN '%s' (allowed: [A-Za-z0-9._-], no spaces, no \"..\"); example: -n My_SM2_Root_CA\n",
++				cn);
++			return 1;
++		}
+ 		char cn_dir[512];
+ 		snprintf(cn_dir, sizeof(cn_dir), "%s%s", DEFAULT_CERT_DIR, cn);
+ 		if (mkdir_path(cn_dir) != 0) {
