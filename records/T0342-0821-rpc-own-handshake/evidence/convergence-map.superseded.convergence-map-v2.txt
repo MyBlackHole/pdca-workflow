@@ -1,0 +1,4 @@
+移除 rpc-handshake 依赖，RPC 层内联实现握手逻辑
+默认明文通信，服务端 mTLS 配置后按需 TLS 握手
+服务端 mTLS 开启时拒绝明文连接
+TIME 操作保留，明文/TLS 均可

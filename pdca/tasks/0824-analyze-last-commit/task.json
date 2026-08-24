@@ -1,0 +1,39 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0386",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-24T10:18:46+08:00",
+    "phase": "act",
+    "record": "T0386-0824-analyze-last-commit",
+    "scenario_type": "research",
+    "completed_at": "2026-08-24T10:28:10+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "四条 AC 全部有证据支撑且数字经 --no-renames 独立复核一致；amend 漂移已捕获并修订",
+      "verdict_id": "T0386-verdict-001",
+      "at": "2026-08-24T10:39:55+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "沉淀 workflow/git-analysis-fingerprint-lock.md 可复用知识；报告归档于 records",
+      "at": "2026-08-24T10:41:27+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0824-analyze-last-commit",
+  "states": {
+    "act": "2026-08-24T10:40:10+08:00",
+    "archive": null,
+    "check": "2026-08-24T10:28:10+08:00",
+    "created": "2026-08-24T10:18:46+08:00",
+    "do": "2026-08-24T10:23:41+08:00",
+    "plan": "2026-08-24T10:18:46+08:00"
+  },
+  "status": "Completed",
+  "title": "分析最后提交【F-139】TLS/mTLS 全栈实现的修改内容"
+}

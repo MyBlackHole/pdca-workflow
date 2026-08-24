@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0342",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "EVIDENCE_MANIFEST_MISSING",
+      "path": "records/T0342-0821-rpc-own-handshake/evidence/manifest.jsonl",
+      "message": "manifest is required"
+    },
+    {
+      "code": "CONVERGENCE_MAP_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0342-0821-rpc-own-handshake/evidence/manifest.jsonl",
+      "message": "registered convergence map is required"
+    }
+  ],
+  "at": "2026-08-21T18:18:18.079125+08:00"
+}

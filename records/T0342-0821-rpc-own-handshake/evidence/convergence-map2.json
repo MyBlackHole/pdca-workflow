@@ -1,0 +1,29 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "移除 rpc-handshake 依赖，RPC 层内联实现握手逻辑",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["rpc-io", "rpc-server"]
+    },
+    {
+      "index": 2,
+      "text": "默认明文通信，服务端 mTLS 配置后按需 TLS 握手",
+      "criteria": ["AC-2", "AC-3", "AC-4"],
+      "evidence_ids": ["test-AC-2", "test-AC-3", "test-AC-4"]
+    },
+    {
+      "index": 3,
+      "text": "服务端 mTLS 开启时拒绝明文连接",
+      "criteria": ["AC-5"],
+      "evidence_ids": ["test-AC-5"]
+    },
+    {
+      "index": 4,
+      "text": "TIME 操作保留，明文/TLS 均可",
+      "criteria": ["AC-6", "AC-7", "AC-8", "AC-9"],
+      "evidence_ids": ["test-AC-6", "test-AC-7", "test-AC-8", "test-AC-9"]
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "schema": "pdca.flow-audit/v1",
+  "task_id": "T0339",
+  "record_id": null,
+  "transitions": {
+    "plan-to-do": {
+      "latest": {
+        "at": "2026-08-21T14:58:33+08:00",
+        "from": "plan",
+        "to": "do",
+        "passed": false,
+        "checks": [
+          {
+            "id": "children-created",
+            "description": "all declared child tasks exist and reference the parent",
+            "passed": true,
+            "issues": []
+          },
+          {
+            "id": "children-active",
+            "description": "declared child tasks are active",
+            "passed": true,
+            "issues": []
+          },
+          {
+            "id": "final-confirmation",
+            "description": "Plan direction has final user confirmation",
+            "passed": true,
+            "issues": []
+          },
+          {
+            "id": "audit-record-path",
+            "description": "audit output stays inside records",
+            "passed": false,
+            "issues": [
+              {
+                "code": "RECORD_MISSING",
+                "path": "/meta/record",
+                "message": "record identity is missing; no task.id fallback is allowed"
+              }
+            ]
+          }
+        ],
+        "issues": [
+          {
+            "code": "RECORD_MISSING",
+            "path": "/meta/record",
+            "message": "record identity is missing; no task.id fallback is allowed"
+          }
+        ]
+      },
+      "attempts": [
+        {
+          "at": "2026-08-21T14:58:33+08:00",
+          "from": "plan",
+          "to": "do",
+          "passed": false,
+          "checks": [
+            {
+              "id": "children-created",
+              "description": "all declared child tasks exist and reference the parent",
+              "passed": true,
+              "issues": []
+            },
+            {
+              "id": "children-active",
+              "description": "declared child tasks are active",
+              "passed": true,
+              "issues": []
+            },
+            {
+              "id": "final-confirmation",
+              "description": "Plan direction has final user confirmation",
+              "passed": true,
+              "issues": []
+            },
+            {
+              "id": "audit-record-path",
+              "description": "audit output stays inside records",
+              "passed": false,
+              "issues": [
+                {
+                  "code": "RECORD_MISSING",
+                  "path": "/meta/record",
+                  "message": "record identity is missing; no task.id fallback is allowed"
+                }
+              ]
+            }
+          ],
+          "issues": [
+            {
+              "code": "RECORD_MISSING",
+              "path": "/meta/record",
+              "message": "record identity is missing; no task.id fallback is allowed"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
