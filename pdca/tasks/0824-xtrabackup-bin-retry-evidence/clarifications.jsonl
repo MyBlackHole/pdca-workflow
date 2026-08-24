@@ -1,2 +1,6 @@
 {"at":"2026-08-24T15:37:33+08:00","source":"task_identity","summary":"created with record identity T0393-0824-xtrabackup-bin-retry-evidence"}
 {"source":"direction_confirm","summary":"方向确认：纯取证 research，对象=部署二进制，方法=nm+定向反汇编，对照基线=T0389 源码结论","response":"confirmed","at":"2026-08-24T15:50:40+08:00"}
+{"source": "user_meta_feedback", "question": "(P6 终审)", "answer": "需修改", "recommended": "批准", "at": "2026-08-24T15:53:24+08:00", "captured": true}
+{"source": "grilling", "round": 2, "question": "修改方向", "answer": "加深取证深度——对关键函数输出更完整的反汇编/控制流细节", "recommended": "", "at": "2026-08-24T15:54:06+08:00", "captured": true}
+{"source": "grilling", "round": 3, "question": "(加深取证完成，重新终审)", "answer": "四函数控制流全还原：validate_first_page 线性无重试(read×1/check×1/dblwr×0)；扫描链零重试不变；read_lsn_and_check_flags retry×2+dblwr 恢复被编入且可达(仅 ibdata)；拷贝 10 次重试保留；新发现 OSDecodeAES 定制", "recommended": "", "at": "2026-08-24T15:56:20+08:00", "captured": false}
+{"source":"final_confirmation","summary":"加深取证后二次终审：结论不变且更坚实——用户.ibd 扫描路径仍零重试，定制仅惠及 ibdata 路径；批准产出正式报告","response":"confirmed","at":"2026-08-24T15:56:21+08:00"}
