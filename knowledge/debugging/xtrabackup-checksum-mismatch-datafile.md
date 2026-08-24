@@ -123,3 +123,13 @@ xtrabackup --backup
   一票裁决 R9 窗口是否全开。
 
 图例：无（文字节）
+
+## 10. 深度问答附录索引
+
+五轮追问（影响本次/后续备份、首页限定性、流程图与4个问题位置、R9机理、
+原子DDL边界、零重试 vs mysqld三层容错）的完整代码证据已汇总至：
+records/T0389-0824-checksum-mismatch-datafile/appendix-followup-analysis.md
+核心速记：扫描零重试(fil0fil.cc:2344,11733) vs 拷贝10次重试(fil_cur.cc:313)；
+mysqld 三层兜底——ibdata retry×2+dblwr恢复(fsp0sysspace.cc:552)、
+页级dblwr修复(buf0dblwr.cc:2193)、新页豁免(buf0buf.cc:5620)，
+三者均 #ifndef UNIV_HOTBACKUP，xtrabackup 进程内不可用。
