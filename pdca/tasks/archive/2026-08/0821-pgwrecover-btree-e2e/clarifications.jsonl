@@ -6,3 +6,5 @@
 {"at":"2026-08-24T14:10:00+08:00","source":"check_confirmation","outcome":"confirmed","user_meta_feedback":"confirmed","captured":true}
 {"at":"2026-08-24T14:15:00+08:00","source":"grilling","q":"可复用的知识是什么?","a":"PG WAL重放器前端化方法论: 官方源码逐行拷贝+buffer manager文件化替换+语义级校验口径(hint位豁免); 以及8类自造实现偏差模式(IndexTuple来源/页初始化/EndRecPtr/ENOENT/%m死循环等)"}
 {"at":"2026-08-24T14:15:30+08:00","source":"grilling","q":"适用范围与限制?","a":"适用于PG18布局兼容的离线WAL重放器开发/审查; 不覆盖逻辑解码与VM/FSM重建; freeze plan路径待回归"}
+{"at":"2026-08-24T14:40:00+08:00","source":"knowledge_decision","action":"wrote","reason":"官方源码前端化方法论+7语义锚点+验证口径具备跨任务复用性(同类离线恢复工具/standby语义审查), 沉淀至 knowledge/pg/pgwrecover-official-rewrite.md"}
+{"at":"2026-08-24T14:40:30+08:00","source":"evidence_confirmation","note":"Ac7 手动确认: 验证产物已以 pytest fixture 形式入库主仓库 tests/fixtures/(WAL样本+期望产物), PDCA 侧不重复登记; 审查修复见主仓库 6345e3e"}
