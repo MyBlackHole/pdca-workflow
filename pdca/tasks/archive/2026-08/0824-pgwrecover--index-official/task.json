@@ -1,0 +1,38 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0395",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-24T15:50:50+08:00",
+    "phase": "archive",
+    "record": "T0395-0824-pgwrecover--index-official",
+    "scenario_type": "development",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "HASH 全操作码端到端语义级一致, 回归 4 passed",
+      "verdict_id": "T0395-verdict-check",
+      "at": "2026-08-24T16:45:33+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "hash 前端化模式可复制到 GIN/GIST/SPGIST/BRIN",
+      "at": "2026-08-24T16:45:33+08:00"
+    }
+  },
+  "parent": "T0341",
+  "slug": "0824-pgwrecover--index-official",
+  "states": {
+    "act": "2026-08-24T16:45:33+08:00",
+    "archive": "2026-08-24T16:45:33+08:00",
+    "check": "2026-08-24T16:45:33+08:00",
+    "created": "2026-08-24T15:50:50+08:00",
+    "do": null,
+    "plan": "2026-08-24T15:50:50+08:00"
+  },
+  "status": "Done",
+  "title": "pgwrecover HASH 索引重放官方化(跟进)"
+}
