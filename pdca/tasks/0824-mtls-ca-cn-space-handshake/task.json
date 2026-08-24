@@ -3,12 +3,12 @@
   "dependencies": [],
   "id": "T0387",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-24T10:52:48+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T0387-0824-mtls-ca-cn-space-handshake",
     "scenario_type": "bugfix",
     "completed_at": "2026-08-24T11:08:02+08:00",
@@ -28,7 +28,7 @@
   "slug": "0824-mtls-ca-cn-space-handshake",
   "states": {
     "act": "2026-08-24T11:09:42+08:00",
-    "archive": null,
+    "archive": "2026-08-24T11:10:36+08:00",
     "check": "2026-08-24T11:08:02+08:00",
     "created": "2026-08-24T10:52:48+08:00",
     "do": "2026-08-24T10:56:53+08:00",

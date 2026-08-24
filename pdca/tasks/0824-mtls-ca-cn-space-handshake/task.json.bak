@@ -8,7 +8,7 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-24T10:52:48+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T0387-0824-mtls-ca-cn-space-handshake",
     "scenario_type": "bugfix",
     "completed_at": "2026-08-24T11:08:02+08:00",
@@ -17,12 +17,17 @@
       "reason": "AC-1~4 证据齐备：TDD 绿、CLI 黑盒符合预期、实机握手成功、无新回归",
       "verdict_id": "T0387-verdict-001",
       "at": "2026-08-24T11:10:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "沉淀 tls/cn-charset-single-source.md；SM2 布局缺口与 rpc_handshake_test 环境性失败记为后续候选",
+      "at": "2026-08-24T11:10:23+08:00"
     }
   },
   "parent": null,
   "slug": "0824-mtls-ca-cn-space-handshake",
   "states": {
-    "act": null,
+    "act": "2026-08-24T11:09:42+08:00",
     "archive": null,
     "check": "2026-08-24T11:08:02+08:00",
     "created": "2026-08-24T10:52:48+08:00",
