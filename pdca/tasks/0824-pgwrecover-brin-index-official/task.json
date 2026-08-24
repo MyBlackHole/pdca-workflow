@@ -1,0 +1,28 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T03951",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-24T15:50:50+08:00",
+    "phase": "plan",
+    "record": "T0395-0824-pgwrecover--index-official",
+    "scenario_type": "development"
+  },
+  "parent": "T0341",
+  "slug": "0824-pgwrecover--index-official",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-08-24T15:50:50+08:00",
+    "do": null,
+    "plan": "2026-08-24T15:50:50+08:00"
+  },
+  "status": "Pending",
+  "title": "pgwrecover BRIN 索引重放官方化(跟进)",
+  "record": "T03951-0824-pgwrecover-brin-index-official"
+}
