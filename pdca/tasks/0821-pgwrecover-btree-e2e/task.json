@@ -3,12 +3,12 @@
   "dependencies": [],
   "id": "T0341",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-21T10:47:52+08:00",
-    "phase": "check",
+    "phase": "archive",
     "record": "T0341-0821-pgwrecover-btree-e2e",
     "scenario_type": "development",
     "verdict": {
@@ -27,12 +27,12 @@
   "slug": "0821-pgwrecover-btree-e2e",
   "states": {
     "act": "2026-08-24T15:06:43+08:00",
-    "archive": null,
+    "archive": "2026-08-24T15:07:25+08:00",
     "check": "2026-08-24T15:05:01+08:00",
     "created": "2026-08-21T10:47:52+08:00",
     "do": null,
     "plan": "2026-08-21T10:47:52+08:00"
   },
-  "status": "InProgress",
+  "status": "Done",
   "title": "pgwrecover btree 端到端验证(真实PG18.4全操作码样本)"
 }
