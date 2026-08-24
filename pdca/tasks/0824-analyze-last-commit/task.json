@@ -3,12 +3,12 @@
   "dependencies": [],
   "id": "T0386",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-24T10:18:46+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T0386-0824-analyze-last-commit",
     "scenario_type": "research",
     "completed_at": "2026-08-24T10:28:10+08:00",
@@ -28,7 +28,7 @@
   "slug": "0824-analyze-last-commit",
   "states": {
     "act": "2026-08-24T10:40:10+08:00",
-    "archive": null,
+    "archive": "2026-08-24T10:42:12+08:00",
     "check": "2026-08-24T10:28:10+08:00",
     "created": "2026-08-24T10:18:46+08:00",
     "do": "2026-08-24T10:23:41+08:00",
