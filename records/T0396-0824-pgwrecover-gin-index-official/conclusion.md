@@ -31,3 +31,13 @@ GIN 数据页恢复; COMBOCID/hint 位豁免口径与 standby 一致。
 
 ## 下一轮建议
 GIST/SPGIST/BRIN 同模式推进; GIN SPLIT/CREATE_PTREE 独立增量样本。
+
+## 附: SP-GiST 依赖分析（下会话直接可用）
+- spgxlog.c redo 自包含度高: fillFakeState 构造 fake SpGistState
+  (仅 isBuild/redirectXid/deadTupleStorage 三字段被访问)
+- 需本地化: spgxlog.h 全部 xl_spg* 结构、SpGistDeadTuple/State 裁剪版、
+  SPGIST_* 常量、SGDTSIZE、cmpOffsetNumbers、spgPageIndexMultiDelete
+  (spgdoinsert.c)、SpGistInitBuffer(spgutils.c)、spgUpdateNodeLink
+  (spgist.h inline)、SpGistInitPage
+- WIP 半成品: /tmp/spgist-wip/fe_spgist_aux.c|h (未完成勿用)
+- 工作量预估: 与 GIN 相当(1 会话)

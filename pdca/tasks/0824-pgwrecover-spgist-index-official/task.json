@@ -3,26 +3,37 @@
   "dependencies": [],
   "id": "T03953",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-24T15:50:50+08:00",
-    "phase": "plan",
+    "phase": "archive",
     "record": "T0395-0824-pgwrecover--index-official",
-    "scenario_type": "development"
+    "scenario_type": "development",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "SP-GiST 双文件语义级一致",
+      "verdict_id": "T0397-verdict",
+      "at": "2026-08-24T18:53:53+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "同模式可复制",
+      "at": "2026-08-24T18:53:53+08:00"
+    }
   },
   "parent": "T0341",
   "slug": "0824-pgwrecover--index-official",
   "states": {
-    "act": null,
-    "archive": null,
-    "check": null,
+    "act": "2026-08-24T18:53:53+08:00",
+    "archive": "2026-08-24T18:53:53+08:00",
+    "check": "2026-08-24T18:53:53+08:00",
     "created": "2026-08-24T15:50:50+08:00",
     "do": null,
     "plan": "2026-08-24T15:50:50+08:00"
   },
-  "status": "Pending",
+  "status": "Done",
   "title": "pgwrecover SPGIST 索引重放官方化(跟进)",
   "record": "T03953-0824-pgwrecover-spgist-index-official"
 }

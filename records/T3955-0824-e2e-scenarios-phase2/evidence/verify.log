@@ -1,0 +1,5 @@
+=== T3955 e2e 二期验证记录 ===
+[AC-1 幂等] 两轮执行 exit=0，PASS=16 FAIL=0
+[AC-2 一期回归] S1-S10 全 PASS（零劣化）
+[AC-3 新增场景]
+[AC-4 报告] 本文件 + test/e2e_tool_scenarios.sh

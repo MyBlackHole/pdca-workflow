@@ -1,0 +1,2 @@
+{"id":"verify-log","file":"verify.log","kind":"test-log","size":212,"digest":"sha256:5da375b33995587ca1cf8ad62ca82535c87c9357fa6efa68e3c13ae9666fb25e","at":"2026-08-24T18:34:14+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":230,"digest":"sha256:bc96fad947f07f1592ef6491f96dbee492aa14e67bbfb70ad1bacbb92ae42dfe","at":"2026-08-24T18:34:14+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
