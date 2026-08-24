@@ -1,1 +1,8 @@
 {"at":"2026-08-21T10:47:52+08:00","source":"task_identity","summary":"created with record identity T0341-0821-pgwrecover-btree-e2e"}
+{"at":"2026-08-24T14:05:00+08:00","source":"grilling","q":"结论是否有充分证据支持?","a":"三次独立端到端验证(基础样本/压力样本/fixture回归), 产物与PG真实最终态经verify_consistency.py结构级比对, btree额外字节级比对"}
+{"at":"2026-08-24T14:05:30+08:00","source":"grilling","q":"测试覆盖了关键路径吗?","a":"覆盖全部数据页操作码(HEAP 8种/HEAP2 7种/Btree 13种/SMGR TRUNCATE/XLOG FPI); 未覆盖: freeze plan(nplans>0)与TRUNCATE语句场景, 已列入下一轮建议"}
+{"at":"2026-08-24T14:06:00+08:00","source":"grilling","q":"hint位豁免是否掩盖真实缺陷?","a":"否——XMIN_COMMITTED等hint位在PG官方设计中不写WAL, standby重放产物同样缺省, PG首次访问自动重建; 校验器严格保留infomask非hint位/xmin/xmax/ctid的比对"}
+{"at":"2026-08-24T14:06:30+08:00","source":"grilling","q":"性能是否回退?","a":"无——9857条记录全量重放0.20s; 且修复了%m格式串异常导致的卡死(此前超时>30s)"}
+{"at":"2026-08-24T14:10:00+08:00","source":"check_confirmation","outcome":"confirmed","user_meta_feedback":"confirmed","captured":true}
+{"at":"2026-08-24T14:15:00+08:00","source":"grilling","q":"可复用的知识是什么?","a":"PG WAL重放器前端化方法论: 官方源码逐行拷贝+buffer manager文件化替换+语义级校验口径(hint位豁免); 以及8类自造实现偏差模式(IndexTuple来源/页初始化/EndRecPtr/ENOENT/%m死循环等)"}
+{"at":"2026-08-24T14:15:30+08:00","source":"grilling","q":"适用范围与限制?","a":"适用于PG18布局兼容的离线WAL重放器开发/审查; 不覆盖逻辑解码与VM/FSM重建; freeze plan路径待回归"}

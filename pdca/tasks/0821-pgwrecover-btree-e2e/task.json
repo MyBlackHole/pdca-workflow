@@ -1,1 +1,38 @@
-{"children":[],"dependencies":[],"id":"T0341","meta":{"active":true,"convergence":["task identity is unique and immutable"],"created_at":"2026-08-21T10:47:52+08:00","phase":"plan","record":"T0341-0821-pgwrecover-btree-e2e","scenario_type":"development"},"parent":"T0400","slug":"0821-pgwrecover-btree-e2e","states":{"act":null,"archive":null,"check":null,"created":"2026-08-21T10:47:52+08:00","do":null,"plan":"2026-08-21T10:47:52+08:00"},"status":"Pending","title":"pgwrecover btree 端到端验证(合成WAL样本)"}
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0341",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-21T10:47:52+08:00",
+    "phase": "check",
+    "record": "T0341-0821-pgwrecover-btree-e2e",
+    "scenario_type": "development",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "三次端到端验证全PASS: btree字节级一致(含SPLIT/DEDUP/VACUUM), heap语义级一致(MVCC链/数据), SMGR_TRUNCATE生效; 剩余差异均为PG设计不写WAL的运行时状态",
+      "verdict_id": "T0341-verdict-check",
+      "at": "2026-08-24T15:05:01+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "官方源码前端化方法论与语义锚点已沉淀至 knowledge/pg/pgwrecover-official-rewrite.md, 可复用于后续离线恢复工具(如 VM/FSM 输出、freeze plan 回归)开发",
+      "at": "2026-08-24T15:06:43+08:00"
+    }
+  },
+  "parent": "T0400",
+  "slug": "0821-pgwrecover-btree-e2e",
+  "states": {
+    "act": "2026-08-24T15:06:43+08:00",
+    "archive": null,
+    "check": "2026-08-24T15:05:01+08:00",
+    "created": "2026-08-21T10:47:52+08:00",
+    "do": null,
+    "plan": "2026-08-21T10:47:52+08:00"
+  },
+  "status": "InProgress",
+  "title": "pgwrecover btree 端到端验证(真实PG18.4全操作码样本)"
+}
