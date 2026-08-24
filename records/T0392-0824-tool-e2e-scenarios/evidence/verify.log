@@ -1,0 +1,17 @@
+=== T0392 e2e 验证记录 ===
+[AC-1 幂等] 第一次 exit=0 PASS=10 FAIL=0；第二次 exit=0 PASS=10(11 含汇总行) FAIL=0
+
+[AC-2 场景矩阵]
+=== T0392 e2e 场景矩阵 2026-08-24 15:48:44 ===
+[PASS] S1 aio-speed mTLS SM4(默认) 执行命令
+[PASS] S2 aio-speed mTLS AES 显式算法
+[PASS] S3 aio-speed 明文客户端↔明文服务端
+[PASS] S4 明文客户端连 mTLS 服务端被拒(fail-closed)
+[PASS] S5 无效算法名被拒
+[PASS] S6 错误端口连接快速失败(<12s)
+[PASS] S7 rdbcomm mTLS SM4 升级并执行(T0394 回归)
+[PASS] S8 rdbcomm 明文模式执行
+[PASS] S9 keygen 拒绝含空格 CN 并提示(T0387)
+[PASS] S10 keygen sign -n 自包含目录(含 CA 拷贝,T0388)
+=== 汇总: PASS=10 FAIL=0 ===
+[AC-4 附注] rdbcomm mTLS 场景(S7)即 T0394 修复回归锚，先于本任务由实机验证转绿

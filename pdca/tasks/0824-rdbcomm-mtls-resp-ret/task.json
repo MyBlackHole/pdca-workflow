@@ -1,0 +1,27 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0394",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-24T15:41:15+08:00",
+    "phase": "do",
+    "record": "T0394-0824-rdbcomm-mtls-resp-ret",
+    "scenario_type": "bugfix"
+  },
+  "parent": null,
+  "slug": "0824-rdbcomm-mtls-resp-ret",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-08-24T15:41:15+08:00",
+    "do": "2026-08-24T15:42:24+08:00",
+    "plan": "2026-08-24T15:41:15+08:00"
+  },
+  "status": "InProgress",
+  "title": "【B】rdbcomm mTLS 升级永远失败：send_handshake_resp 成功返回字节数被误判为错误"
+}

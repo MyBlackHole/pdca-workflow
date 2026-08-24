@@ -1,0 +1,1 @@
+{"file": "knowledge/debugging/xtrabackup-checksum-mismatch-datafile.md", "reason": "T0389 沉淀的源码级根因知识是本次二进制取证的对照基线（上游行为参照）", "action": "wrote-reference", "at": "$(date -Iseconds)"}

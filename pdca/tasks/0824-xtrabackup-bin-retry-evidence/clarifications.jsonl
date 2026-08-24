@@ -1,0 +1,2 @@
+{"at":"2026-08-24T15:37:33+08:00","source":"task_identity","summary":"created with record identity T0393-0824-xtrabackup-bin-retry-evidence"}
+{"source":"direction_confirm","summary":"方向确认：纯取证 research，对象=部署二进制，方法=nm+定向反汇编，对照基线=T0389 源码结论","response":"confirmed","at":"2026-08-24T15:50:40+08:00"}

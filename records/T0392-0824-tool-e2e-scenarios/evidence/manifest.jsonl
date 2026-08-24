@@ -1,0 +1,3 @@
+{"id":"e2e-script","file":"e2e_tool_scenarios.sh","kind":"test-source","size":5195,"digest":"sha256:dbf05cbb536be954ba5753e10f46ef6aec52fbae9b42524f0fca659e3121563b","at":"2026-08-24T15:49:03+08:00","criteria":["AC-1","AC-2"]}
+{"id":"verify-log","file":"verify.log","kind":"test-log","size":831,"digest":"sha256:4c1b7290ffc0e39ddb57ab1a9d7f003537bb3b815c91d57fcb546c81666181ce","at":"2026-08-24T15:49:03+08:00","criteria":["AC-1","AC-2","AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":222,"digest":"sha256:2d9dc734a468d45cd483c4fcd3e0ba47e596efc84e56e72ed0a2e00946709563","at":"2026-08-24T15:49:03+08:00","criteria":["AC-1","AC-2","AC-3"]}
