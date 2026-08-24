@@ -68,3 +68,41 @@ innochecksum <f>.ibd
   全量缺文件 + 后续增量校验通过产生 .delta → --prepare --incremental-dir
   时 base 无对应 .ibd → 整条增量链不可恢复。周期全量+增量策略下必须先修 base。
 - 假自愈：DROP PARTITION 后报错消失 ≠ 修复，历史受损备份仍不可恢复该分区。
+
+## 8. backup 主流程图与问题位置（2026-08-24 补充）
+
+### 8.1 主流程（★=问题位置）
+
+```
+xtrabackup --backup
+  ▼
+① 初始化+打开 ibdata (xb_load_tablespaces; HOTBACKUP 下 ibdata 首页校验不编译)
+  ▼
+② 扫描全部 .ibd 逐个打开注册 (open_ibds→fil_open_for_xtrabackup)
+     ★1 首页校验失败→打印报错(fsp0file.cc:638)
+     ★2 提前return未注册(fil0fil.cc:11733)
+     ★4 返回值被忽略→备份继续(fil0fil.cc:2344)
+  ▼
+③ 元数据收集(I_S.FILES 独立来源, xtrabackup.cc:3995)
+  ▼
+④ redo 拷贝线程("log scanned up to")
+  ▼
+⑤ 并行逐页拷贝(datafiles_iter_new:496)
+     ★3 只遍历已注册清单→缺席文件被跳过
+     页级失败走另一文案"corruption detected at page N"+重试10次
+  ▼
+⑥ 写元数据→completed OK!(无error→看似成功)
+```
+
+### 8.2 首页判定决策流
+
+```
+读 page0 ─┬─ IO失败→"Cannot read first page"
+          ├─ 全零→豁免放行(redo后补)
+          ├─ flags/page_no/space_id异常→各自文案
+          └─ is_corrupted(): 加密未解密/torn/checksum不匹配
+                 任一命中→★"Checksum mismatch in datafile"
+              全过→注册→进入拷贝
+```
+
+图例：▼ 流程方向；★ 报错相关位置；├└ 决策分支
