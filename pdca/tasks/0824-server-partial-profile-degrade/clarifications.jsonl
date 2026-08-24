@@ -1,0 +1,3 @@
+{"at":"2026-08-24T12:22:09+08:00","source":"task_identity","summary":"created with record identity T0390-0824-server-partial-profile-degrade"}
+{"source":"final_confirmation","summary":"确认降级方案：单算法失败保留国密，全失败才 plain only；AC-1~4 进入 Do","response":"confirmed","at":"2026-08-24T12:23:36+08:00"}
+{"source":"check_confirmation","summary":"用户确认：降级语义生效，国密实机恢复","response":"confirmed","at":"2026-08-24T13:29:29+08:00"}

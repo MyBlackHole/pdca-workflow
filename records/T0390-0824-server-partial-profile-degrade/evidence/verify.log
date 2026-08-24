@@ -1,0 +1,15 @@
+=== T0390 验证记录 (2026-08-24) ===
+
+[AC-1/AC-2 单测]
+Running tls_cert_init_server_partial_degrade... [2026-08-24 12:36:17]|Info|libs/tls_cert.c:98 tls_cert_set_ciphersuites|140203304895360| Applied ciphersuites config: TLS_SM4_GCM_SM3
+
+All tests PASSED!
+[AC-4 回归]
+=== 16 passed, 0 failed ===
+rdbcomm_handshake_session_test: ALL PASS
+[0m[38;2;0;255;0;1m[100%]:[0m [38;2;0;255;0;1mbuild ok, spent 1.012s[0m
+[AC-3 实机] 服务端重启后日志: serving plain only 出现次数 =0
+国密握手:
+drwxr-xr-x 4 black black   40  4月21日 18:23 ..
+-rw-r--r-- 1 black black 101K  5月12日 16:53 1.log
+srwsrwsrwt 1 black black    0  8月24日 12:35 aio-speed.sock

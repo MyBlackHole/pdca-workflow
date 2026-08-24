@@ -1,0 +1,3 @@
+# 用户提供的生产报错日志（原文，captured from user message @ Plan P2）
+[2026-08-14 19:00:42,209] {rpc.py:40} INFO - 260814 19:00:42 >>log scanned up to (12888113898220)
+[2026-08-14 19:00:42,941] {rpc.py:40} INFO - Checksum mismatch in datafile: ./usercdb/ur_usergoods_info_his_06#p#p2026.ibd, Space ID:520513, Flags:16417. Please refer to http://dev.mysql.com/doc/refman/8.0/en/innodb-troubleshooting-datadict.html for how to resolve the issue

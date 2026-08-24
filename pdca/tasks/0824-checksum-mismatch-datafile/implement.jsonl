@@ -1,0 +1,2 @@
+{"file": "knowledge/data-formats/backup-tools-serialization-practice.md", "reason": "P5 检索命中关键词 checksum，经评估为主题（备份工具序列化协议设计）非 InnoDB 页校验根因，判定低相关", "action": "searched-not-injected", "at": "2026-08-24T12:03:42+08:00"}
+{"file": "(source-tree) storage/innobase/fsp/fsp0file.cc + buf/checksum.cc + fil/fil0fil.cc + xtrabackup/src/fil_cur.cc + include/fsp0types.h", "reason": "本任务核心事实来源：报错拼接点、is_corrupted 判定内核、backup 打开链、flags 位布局，已在 Plan 阶段验证并写入 PRD", "action": "inline-referenced", "at": "2026-08-24T12:03:42+08:00"}

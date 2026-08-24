@@ -1,0 +1,39 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0390",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-24T12:22:09+08:00",
+    "phase": "check",
+    "record": "T0390-0824-server-partial-profile-degrade",
+    "scenario_type": "bugfix",
+    "completed_at": "2026-08-24T12:36:26+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "AC-1~4 证据齐备，实机国密恢复",
+      "verdict_id": "T0390-verdict-001",
+      "at": "2026-08-24T12:38:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "多 profile 尽力收集模式可复用；现网证书数据治理与协商解耦问题留待后续任务",
+      "at": "2026-08-24T12:38:00+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0824-server-partial-profile-degrade",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-24T12:36:26+08:00",
+    "created": "2026-08-24T12:22:09+08:00",
+    "do": "2026-08-24T12:23:36+08:00",
+    "plan": "2026-08-24T12:22:09+08:00"
+  },
+  "status": "Completed",
+  "title": "【B】服务端单算法证书加载失败不应禁用国密：init_server 支持部分成功降级"
+}

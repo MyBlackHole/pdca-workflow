@@ -1,0 +1,102 @@
+diff --git a/libs/tests/tls_cert_test.c b/libs/tests/tls_cert_test.c
+index 82ab775f..045a36f3 100644
+--- a/libs/tests/tls_cert_test.c
++++ b/libs/tests/tls_cert_test.c
+@@ -221,6 +221,40 @@ TEST(tls_cert_init_client_from_cert_dir)
+ static int copy_file(const char *src, const char *dst);
+ 
+ /* T0388 AC-2: SM2 客户端子目录前缀布局（cert_dir/<ca_cn>/sm2_*） */
++/* T0390: 服务端单算法 profile 失败降级为仅可用算法 */
++TEST(tls_cert_init_server_partial_degrade)
++{
++	char tmp[] = "/tmp/tls_test_partial_XXXXXX";
++	assert(mkdtemp(tmp) != NULL);
++	const char *src_dir = get_cert_dir();
++	char sc[512], dc[512];
++	static const char *pairs[][2] = {
++		{ "sm2_ca.crt", "sm2_ca.crt" },
++		{ "sm2_host.crt", "sm2_host.crt" },
++		{ "sm2_host.key", "sm2_host.key" },
++	};
++	for (size_t i = 0; i < sizeof(pairs) / sizeof(pairs[0]); i++) {
++		path_join(sc, sizeof(sc), src_dir, pairs[i][0]);
++		path_join(dc, sizeof(dc), tmp, pairs[i][1]);
++		assert(copy_file(sc, dc) == 0);
++	}
++	tls_cert_server_options_t sopts = { 0 };
++	sopts.mtls_enabled = 1;
++	sopts.cert_dir = tmp;
++	tls_cert_ctx_t *ctx = NULL;
++	assert(tls_cert_init_server(&sopts, &ctx) == TLS_CERT_OK);
++	assert(ctx != NULL);
++	assert(tls_cert_get_ssl_ctx(ctx, RPC_TLS_ALGORITHM_SM4_GCM_SM3) != NULL);
++	assert(tls_cert_get_ssl_ctx(ctx, RPC_TLS_ALGORITHM_AES_256_GCM_SHA384) ==
++	       NULL);
++	tls_cert_cleanup(ctx);
++
++	char empty[] = "/tmp/tls_test_empty_XXXXXX";
++	assert(mkdtemp(empty) != NULL);
++	tls_cert_ctx_t *ctx2 = NULL;
++	assert(tls_cert_init_server_from_cert_dir(empty, &ctx2) != TLS_CERT_OK);
++	assert(ctx2 == NULL);
++}
+ TEST(tls_cert_init_client_sm2_prefixed_layout)
+ {
+ 	char tmp[] = "/tmp/tls_test_sm2_XXXXXX";
+@@ -1183,6 +1217,7 @@ int main()
+ 	RUN_TEST(tls_cert_init_server_from_cert_dir);
+ 	RUN_TEST(tls_cert_init_client_from_cert_dir);
+ 	RUN_TEST(tls_cert_init_client_sm2_prefixed_layout);
++	RUN_TEST(tls_cert_init_server_partial_degrade);
+ 	RUN_TEST(tls_cert_init_disabled);
+ 	RUN_TEST(tls_ed25519_dual_format);
+ 	RUN_TEST(tls_server_init);
+diff --git a/libs/tls_cert.c b/libs/tls_cert.c
+index 76592e70..96968895 100644
+--- a/libs/tls_cert.c
++++ b/libs/tls_cert.c
+@@ -651,16 +651,23 @@ int tls_cert_init_server(const tls_cert_server_options_t *opts,
+ 		return TLS_CERT_ERR_INVALID_PARAM;
+ 	}
+ 
++	/* T0390: 尽力收集——单算法 profile 失败降级跳过（不连坐其他算法），
++	 * 全部失败才整体失败（plain only 兜底语义保留） */
+ 	for (i = 0; i < auto_count; i++) {
+ 		const tls_cert_profile_t *profile = &auto_profiles[i];
+ 		if (!tls_cert_profile_valid(profile)) {
++			ErrorLog("server profile invalid, skipped: algorithm=%s",
++				 profile->algorithm ? profile->algorithm :
++						    "(null)");
+ 			ret = TLS_CERT_ERR_INVALID_PARAM;
+-			goto error;
++			continue;
+ 		}
+ 		ret = tls_cert_slot_create(profile, 1,
+ 					   &ctx->slots[ctx->slot_count]);
+ 		if (ret != TLS_CERT_OK) {
+-			goto error;
++			memset(&ctx->slots[ctx->slot_count], 0,
++			       sizeof(ctx->slots[ctx->slot_count]));
++			continue; /* slot_create 内部已输出 setup 错误日志 */
+ 		}
+ 		strncpy(ctx->slots[ctx->slot_count].algorithm,
+ 			profile->algorithm,
+@@ -668,12 +675,14 @@ int tls_cert_init_server(const tls_cert_server_options_t *opts,
+ 		ctx->slot_count++;
+ 	}
+ 
++	if (ctx->slot_count == 0) {
++		int last_err = ret != TLS_CERT_OK ? ret :
++						    TLS_CERT_ERR_LOAD_CA;
++		tls_cert_cleanup(ctx);
++		return last_err;
++	}
+ 	*ctx_out = ctx;
+ 	return TLS_CERT_OK;
+-
+-error:
+-	tls_cert_cleanup(ctx);
+-	return ret;
+ }
+ 
+ /* 便捷：服务端 cert_dir 双算法 */

@@ -1,0 +1,27 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0389",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-24T11:54:12+08:00",
+    "phase": "do",
+    "record": "T0389-0824-checksum-mismatch-datafile",
+    "scenario_type": "research"
+  },
+  "parent": null,
+  "slug": "0824-checksum-mismatch-datafile",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-08-24T11:54:12+08:00",
+    "do": "2026-08-24T12:10:05+08:00",
+    "plan": "2026-08-24T11:54:12+08:00"
+  },
+  "status": "InProgress",
+  "title": "分析 XtraBackup Checksum mismatch in datafile 原因"
+}

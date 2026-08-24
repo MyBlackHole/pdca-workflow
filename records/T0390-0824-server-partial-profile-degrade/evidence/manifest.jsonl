@@ -1,0 +1,3 @@
+{"id":"fix-patch","file":"fix.patch","kind":"patch","size":3578,"digest":"sha256:4bb6315b3a1f03a88262c211842c213bba14165ddf412efb93de2756315c35d9","at":"2026-08-24T12:36:25+08:00","criteria":["AC-1","AC-2","AC-4"]}
+{"id":"verify-log","file":"verify.log","kind":"test-log","size":675,"digest":"sha256:063ac89986be5fe5f3cafc8e89f752081945e61fc57fde05be3817f4cd6c4b7b","at":"2026-08-24T12:36:25+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":230,"digest":"sha256:bc96fad947f07f1592ef6491f96dbee492aa14e67bbfb70ad1bacbb92ae42dfe","at":"2026-08-24T12:36:25+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}

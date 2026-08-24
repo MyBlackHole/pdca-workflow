@@ -1,0 +1,3 @@
+{"id":"research-report","file":"research-report.md","kind":"report","size":14519,"digest":"sha256:c6f375f3ea0b4c5d8ce30cc3493adcff9bd85c5b928fa6fd8207b6afa7688b77","at":"2026-08-24T12:14:41+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6","AC-7","AC-8"]}
+{"id":"prod-error-log","file":"prod-error-log.txt","kind":"log","size":460,"digest":"sha256:bd726d3d5cb25423496ada9ba8b3af7a88f3dc98663907646aa4a54e611766f7","at":"2026-08-24T12:14:41+08:00","criteria":["AC-7"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":285,"digest":"sha256:060c0462a02fdbc929524a8cb3f7f9e29cdb68920eae5540fffcd1bd92012684","at":"2026-08-24T12:14:54+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6","AC-7","AC-8"]}
