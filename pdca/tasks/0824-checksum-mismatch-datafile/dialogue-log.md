@@ -12,3 +12,11 @@
 - 产出 research-report.md：F1 报错拼接点 / F2 判定内核 B1-B6 / F3 backup 触发链 / F4 静默缺文件因果链(回答用户"是否影响备份") / F5 Flags=16417 解码+根因排序(R9≈R2>R1, 排除 R3/R5) / F6 根因 R1-R9 / F7 决策树 D0-D6 / F8 文案辨析。
 - C2 自查：AC-1~AC-8 全部映射报告章节；R8/存储故障降级标注置信度。
 - Z1 登记 evidence：research-report(覆盖 AC-1~8)、prod-error-log(AC-7)；Z2 convergence-map 登记并验证 valid:true。
+## Check 阶段摘要 (2026-08-24)
+
+- Ch1: research 场景对照 PRD 核查，AC-1~AC-8 与报告章节 F1-F8/D0-D6 全映射，manifest 3 条证据（research-report/prod-error-log/convergence-map）。
+- Ch2 Grill 自查：方法充分性（一手源码+可重跑命令）与替代解释排查（旁路注册路径不存在，静默缺文件无替代解释）落盘 clarifications。
+- Ch3: validate-convergence valid:true（Do 阶段已过，Check 复用同一 map）。
+- Ch4: conclusion.md 写入 records/T0389-0824-checksum-mismatch-datafile/，逐 AC 判定行 ✅×8。
+- Ch5: 用户 verdict=confirmed（check_confirmation 落盘，append-confirmation.py）；task.json meta.verdict 已写。
+- Ch6: 进入 Act。

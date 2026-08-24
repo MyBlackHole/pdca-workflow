@@ -8,20 +8,27 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-24T11:54:12+08:00",
-    "phase": "do",
+    "phase": "check",
     "record": "T0389-0824-checksum-mismatch-datafile",
-    "scenario_type": "research"
+    "scenario_type": "research",
+    "completed_at": "2026-08-24T12:15:09+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "全部关键结论锚定一手源码 file:line 且附可重跑验证命令；AC-1~AC-8 全部有证据支撑",
+      "verdict_id": "T0389-verdict-check-001",
+      "at": "2026-08-24T13:30:56+08:00"
+    }
   },
   "parent": null,
   "slug": "0824-checksum-mismatch-datafile",
   "states": {
     "act": null,
     "archive": null,
-    "check": null,
+    "check": "2026-08-24T12:15:09+08:00",
     "created": "2026-08-24T11:54:12+08:00",
     "do": "2026-08-24T12:10:05+08:00",
     "plan": "2026-08-24T11:54:12+08:00"
   },
-  "status": "InProgress",
+  "status": "Completed",
   "title": "分析 XtraBackup Checksum mismatch in datafile 原因"
 }

@@ -58,9 +58,9 @@ GoldenDB 定制版 Percona XtraBackup 8.0.25-17 在 `--backup` 阶段对分区�
 
 ```json
 {
-  "outcome": "<待 Ch5 用户判定>",
-  "reason": "",
-  "verdict_id": "",
-  "at": ""
+  "outcome": "confirmed",
+  "reason": "全部关键结论锚定一手源码 file:line 且附可重跑验证命令；AC-1~AC-8 全部 ✅ 有证据支撑",
+  "verdict_id": "T0389-verdict-check-001",
+  "at": "2026-08-24T12:18:00+08:00"
 }
 ```
