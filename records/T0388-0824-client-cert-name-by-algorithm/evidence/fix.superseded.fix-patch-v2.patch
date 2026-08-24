@@ -1,0 +1,159 @@
+diff --git a/libs/rdb-config.h b/libs/rdb-config.h
+index 995becdc..0f62890d 100644
+--- a/libs/rdb-config.h
++++ b/libs/rdb-config.h
+@@ -146,6 +146,11 @@ const char *sec_resolve_str(const char *tool_section, const char *tool_key,
+  * 优先级：RPC_TLS_CLIENT_CERT/RPC_TLS_CLIENT_KEY > RPC_TLS_CERT_DIR/<ca_cn>/
+  * 主机证书（普通与 SM2 算法共用同一主机证书文件 host.crt / host.key）。
+  * 成功返回 0。
++ *
++ * T0388 布局边界：本接口固定无算法前缀（host.*），仅适用 ED25519/旧布局；
++ * SM2 客户端请使用 tls_cert 接口族（build_client_profile 返回
++ * cert_dir/<ca_cn>/sm2_* 前缀子目录布局）。Go 侧 oss 工具为独立消费场景
++ * （cert_dir/<前缀>_host.*，无 ca_cn 子目录层），三者差异为有意设计。
+  */
+ int sec_tls_client_cert_paths(char *cert_buf, size_t cert_sz, char *key_buf,
+ 			      size_t key_sz, const char *ca_cn);
+diff --git a/libs/tests/tls_cert_test.c b/libs/tests/tls_cert_test.c
+index c176ad5f..1feab1d6 100644
+--- a/libs/tests/tls_cert_test.c
++++ b/libs/tests/tls_cert_test.c
+@@ -155,9 +155,10 @@ TEST(tls_cert_build_client_profile)
+ 	int ret = tls_cert_build_client_profile(dir, RPC_TLS_ALGORITHM_SM4_GCM_SM3, "my-ca",
+ 						ca, sizeof(ca), cert, sizeof(cert), key, sizeof(key));
+ 	assert(ret == TLS_CERT_OK);
+-	assert(strstr(ca, "sm2_ca.crt") != NULL);
+-	assert(strstr(cert, "my-ca/host.crt") != NULL);
+-	assert(strstr(key, "my-ca/host.key") != NULL);
++	/* T0388: SM2 链整体采用 cert_dir/<ca_cn>/ 前缀布局 */
++	assert(strstr(ca, "my-ca/sm2_ca.crt") != NULL);
++	assert(strstr(cert, "my-ca/sm2_host.crt") != NULL);
++	assert(strstr(key, "my-ca/sm2_host.key") != NULL);
+ 
+ 	ret = tls_cert_build_client_profile(dir, RPC_TLS_ALGORITHM_AES_256_GCM_SHA384, "my-ca",
+ 					    ca, sizeof(ca), cert, sizeof(cert), key, sizeof(key));
+@@ -215,6 +216,36 @@ TEST(tls_cert_init_client_from_cert_dir)
+ 	assert(tls_cert_init_client(&opts, &ctx) != TLS_CERT_OK);
+ }
+ 
++static int copy_file(const char *src, const char *dst);
++
++/* T0388 AC-2: SM2 客户端子目录前缀布局（cert_dir/<ca_cn>/sm2_*） */
++TEST(tls_cert_init_client_sm2_prefixed_layout)
++{
++	char tmp[] = "/tmp/tls_test_sm2_XXXXXX";
++	assert(mkdtemp(tmp) != NULL);
++	char sub[512];
++	snprintf(sub, sizeof(sub), "%s/My_CA", tmp);
++	assert(mkdir(sub, 0755) == 0);
++	const char *src_dir = get_cert_dir();
++	char src[512], dst[512];
++	static const char *pairs[][2] = {
++		{ "SM2_Test_CA/ca.crt", "sm2_ca.crt" },
++		{ "SM2_Test_CA/host.crt", "sm2_host.crt" },
++		{ "SM2_Test_CA/host.key", "sm2_host.key" },
++	};
++	for (size_t i = 0; i < sizeof(pairs) / sizeof(pairs[0]); i++) {
++		path_join(src, sizeof(src), src_dir, pairs[i][0]);
++		path_join(dst, sizeof(dst), sub, pairs[i][1]);
++		assert(copy_file(src, dst) == 0);
++	}
++
++	tls_cert_ctx_t *ctx = NULL;
++	int ret = tls_cert_init_client_from_cert_dir(tmp, RPC_TLS_ALGORITHM_SM4_GCM_SM3,
++						     "My_CA", &ctx);
++	assert(ret == TLS_CERT_OK && ctx != NULL);
++	tls_cert_cleanup(ctx);
++}
++
+ TEST(tls_cert_init_disabled)
+ {
+ 	tls_cert_ctx_t *ctx = NULL;
+@@ -1125,6 +1156,7 @@ int main()
+ 	RUN_TEST(tls_cert_build_client_profile);
+ 	RUN_TEST(tls_cert_init_server_from_cert_dir);
+ 	RUN_TEST(tls_cert_init_client_from_cert_dir);
++	RUN_TEST(tls_cert_init_client_sm2_prefixed_layout);
+ 	RUN_TEST(tls_cert_init_disabled);
+ 	RUN_TEST(tls_ed25519_dual_format);
+ 	RUN_TEST(tls_server_init);
+diff --git a/libs/tls_cert.c b/libs/tls_cert.c
+index 43ff4760..6b27b5e6 100644
+--- a/libs/tls_cert.c
++++ b/libs/tls_cert.c
+@@ -428,7 +428,6 @@ int tls_cert_build_client_profile(const char *cert_dir, const char *algorithm,
+ 				  char *cert_out, size_t cert_sz, char *key_out,
+ 				  size_t key_sz)
+ {
+-	const char *ca_file;
+ 	char dir_cn[1024];
+ 	if (!cert_dir || !cert_dir[0] || !ca_out || !cert_out || !key_out)
+ 		return TLS_CERT_ERR_INVALID_PARAM;
+@@ -439,13 +438,19 @@ int tls_cert_build_client_profile(const char *cert_dir, const char *algorithm,
+ 	if (strcmp(algorithm, RPC_TLS_ALGORITHM_SM4_GCM_SM3) != 0 &&
+ 	    strcmp(algorithm, RPC_TLS_ALGORITHM_AES_256_GCM_SHA384) != 0)
+ 		return TLS_CERT_ERR_INVALID_PARAM;
+-	/* ca 按算法区分：AES 用 ed25519 前缀新格式（回退在 slot_create） */
+-	if (strcmp(algorithm, RPC_TLS_ALGORITHM_SM4_GCM_SM3) == 0)
+-		ca_file = CERT_FILE_SM2_CA;
+-	else
+-		ca_file = CERT_FILE_ED25519_CA;
+-	tls_cert_join_path(ca_out, ca_sz, cert_dir, ca_file);
+-	/* cert/key 固定为 cert_dir/ca_cn/host.*（与 sec_tls_client_cert_paths 一致） */
++	/* T0388: SM2 链整体采用 cert_dir/<ca_cn>/ 前缀子目录布局，
++	 * 与 keygen sign -n 的自包含目录输出对齐（ca+cert+key 三件套同目录，
++	 * 部署要求：目录内需含 sm2_ca.crt/sm2_host.crt/sm2_host.key）；仅认前缀名，不下沉 */
++	if (strcmp(algorithm, RPC_TLS_ALGORITHM_SM4_GCM_SM3) == 0) {
++		tls_cert_join_path(dir_cn, sizeof(dir_cn), cert_dir, ca_cn);
++		tls_cert_join_path(ca_out, ca_sz, dir_cn, CERT_FILE_SM2_CA);
++		tls_cert_join_path(cert_out, cert_sz, dir_cn, CERT_FILE_SM2_HOST);
++		tls_cert_join_path(key_out, key_sz, dir_cn, CERT_FILE_SM2_HOST_KEY);
++		return TLS_CERT_OK;
++	}
++	/* AES/ED25519：CA 取自 cert_dir 根（ed25519 双格式回退在 slot_create），
++	 * cert/key 为 cert_dir/ca_cn/host.*（与 sec_tls_client_cert_paths 一致） */
++	tls_cert_join_path(ca_out, ca_sz, cert_dir, CERT_FILE_ED25519_CA);
+ 	tls_cert_join_path(dir_cn, sizeof(dir_cn), cert_dir, ca_cn);
+ 	tls_cert_join_path(cert_out, cert_sz, dir_cn, CERT_FILE_HOST);
+ 	tls_cert_join_path(key_out, key_sz, dir_cn, CERT_FILE_HOST_KEY);
+diff --git a/libs/tls_keygen.c b/libs/tls_keygen.c
+index 0981d4b8..e4ae7dcf 100644
+--- a/libs/tls_keygen.c
++++ b/libs/tls_keygen.c
+@@ -1162,6 +1162,36 @@ static int handle_sign(int argc, char *argv[])
+ 		return 1;
+ 	}
+ 
++	/* T0388: -n 自包含目录场景把 CA 证书一并拷入 <cn>/ 目录，
++	 * 使客户端可按 cert_dir/<ca_cn>/ 布局直接取用三件套 */
++	if (cn) {
++		char ca_dst[512];
++		snprintf(ca_dst, sizeof(ca_dst), "%s%s/%s", DEFAULT_CERT_DIR,
++			 cn, keygen_ca_cert_file(algo));
++		FILE *src = fopen(final_ca_cert, "r");
++		if (!src) {
++			fprintf(stderr,
++				"Warning: failed to read CA cert for copy: %s\n",
++				final_ca_cert);
++			return 0;
++		}
++		FILE *dst = fopen(ca_dst, "w");
++		if (!dst) {
++			fclose(src);
++			fprintf(stderr,
++				"Warning: failed to write CA cert copy: %s\n",
++				ca_dst);
++			return 0;
++		}
++		char buf[4096];
++		size_t n;
++		while ((n = fread(buf, 1, sizeof(buf), src)) > 0)
++			fwrite(buf, 1, n, dst);
++		fclose(src);
++		fclose(dst);
++		printf("CA certificate copied: %s\n", ca_dst);
++	}
++
+ 	return 0;
+ }
+ 

@@ -1,0 +1,31 @@
+=== T0388 验证记录 (2026-08-24) ===
+
+--- AC-1/AC-3 路径断言与 ED25519 回归 (tls_cert_test) ---
+Running tls_cert_build_server_profiles... PASSED
+Running tls_cert_build_client_profile... PASSED
+PASSED
+PASSED
+Running tls_cert_init_client_sm2_prefixed_layout... [2026-08-24 11:27:53]|Info|libs/tls_cert.c:98 tls_cert_set_ciphersuites|139678931710848| Applied ciphersuites config: TLS_SM4_GCM_SM3
+PASSED
+
+All tests PASSED!
+
+--- AC-2 keygen sign -n 自包含目录端到端 ---
+create ok
+sign ok
+sm2_ca.crt
+sm2_host.crt
+sm2_host.csr
+sm2_host.key
+
+--- 实机 mTLS 新布局握手 ---
+[2026-08-24 11:27:57]|Info|libs/tls_cert.c:98 tls_cert_set_ciphersuites|139746212565888| Applied ciphersuites config: TLS_SM4_GCM_SM3
+mtls-ok
+exit=0
+
+--- AC-4 回归 ---
+[rdb_config_test]
+=== 16 passed, 0 failed ===
+[rdbcomm_handshake_session_test]
+rdbcomm_handshake_session_test: ALL PASS
+[全量构建] exit=0 无错误

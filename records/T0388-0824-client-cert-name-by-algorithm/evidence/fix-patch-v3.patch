@@ -1,0 +1,448 @@
+diff --git a/libs/rdb-config.h b/libs/rdb-config.h
+index 995becdc..0f62890d 100644
+--- a/libs/rdb-config.h
++++ b/libs/rdb-config.h
+@@ -146,6 +146,11 @@ const char *sec_resolve_str(const char *tool_section, const char *tool_key,
+  * 优先级：RPC_TLS_CLIENT_CERT/RPC_TLS_CLIENT_KEY > RPC_TLS_CERT_DIR/<ca_cn>/
+  * 主机证书（普通与 SM2 算法共用同一主机证书文件 host.crt / host.key）。
+  * 成功返回 0。
++ *
++ * T0388 布局边界：本接口固定无算法前缀（host.*），仅适用 ED25519/旧布局；
++ * SM2 客户端请使用 tls_cert 接口族（build_client_profile 返回
++ * cert_dir/<ca_cn>/sm2_* 前缀子目录布局）。Go 侧 oss 工具为独立消费场景
++ * （cert_dir/<前缀>_host.*，无 ca_cn 子目录层），三者差异为有意设计。
+  */
+ int sec_tls_client_cert_paths(char *cert_buf, size_t cert_sz, char *key_buf,
+ 			      size_t key_sz, const char *ca_cn);
+diff --git a/libs/tests/tls_cert_test.c b/libs/tests/tls_cert_test.c
+index c176ad5f..82ab775f 100644
+--- a/libs/tests/tls_cert_test.c
++++ b/libs/tests/tls_cert_test.c
+@@ -155,15 +155,18 @@ TEST(tls_cert_build_client_profile)
+ 	int ret = tls_cert_build_client_profile(dir, RPC_TLS_ALGORITHM_SM4_GCM_SM3, "my-ca",
+ 						ca, sizeof(ca), cert, sizeof(cert), key, sizeof(key));
+ 	assert(ret == TLS_CERT_OK);
+-	assert(strstr(ca, "sm2_ca.crt") != NULL);
+-	assert(strstr(cert, "my-ca/host.crt") != NULL);
+-	assert(strstr(key, "my-ca/host.key") != NULL);
++	/* T0388: SM2 链整体采用 cert_dir/<ca_cn>/ 前缀布局 */
++	assert(strstr(ca, "my-ca/sm2_ca.crt") != NULL);
++	assert(strstr(cert, "my-ca/sm2_host.crt") != NULL);
++	assert(strstr(key, "my-ca/sm2_host.key") != NULL);
+ 
+ 	ret = tls_cert_build_client_profile(dir, RPC_TLS_ALGORITHM_AES_256_GCM_SHA384, "my-ca",
+ 					    ca, sizeof(ca), cert, sizeof(cert), key, sizeof(key));
+ 	assert(ret == TLS_CERT_OK);
+-	assert(strstr(ca, "ed25519_ca.crt") != NULL || strstr(ca, "ca.crt") != NULL);
+-	assert(strstr(cert, "my-ca/host.crt") != NULL);
++	/* T0388: ED25519 与 SM2 对称采用子目录前缀名（缺失时 slot_create 下沉无前缀） */
++	assert(strstr(ca, "my-ca/ed25519_ca.crt") != NULL);
++	assert(strstr(cert, "my-ca/ed25519_host.crt") != NULL);
++	assert(strstr(key, "my-ca/ed25519_host.key") != NULL);
+ 
+ 	/* ca_cn 必填 */
+ 	assert(tls_cert_build_client_profile(dir, RPC_TLS_ALGORITHM_SM4_GCM_SM3, "", ca, sizeof(ca), cert, sizeof(cert), key, sizeof(key)) == TLS_CERT_ERR_INVALID_PARAM);
+@@ -215,6 +218,36 @@ TEST(tls_cert_init_client_from_cert_dir)
+ 	assert(tls_cert_init_client(&opts, &ctx) != TLS_CERT_OK);
+ }
+ 
++static int copy_file(const char *src, const char *dst);
++
++/* T0388 AC-2: SM2 客户端子目录前缀布局（cert_dir/<ca_cn>/sm2_*） */
++TEST(tls_cert_init_client_sm2_prefixed_layout)
++{
++	char tmp[] = "/tmp/tls_test_sm2_XXXXXX";
++	assert(mkdtemp(tmp) != NULL);
++	char sub[512];
++	snprintf(sub, sizeof(sub), "%s/My_CA", tmp);
++	assert(mkdir(sub, 0755) == 0);
++	const char *src_dir = get_cert_dir();
++	char src[512], dst[512];
++	static const char *pairs[][2] = {
++		{ "SM2_Test_CA/ca.crt", "sm2_ca.crt" },
++		{ "SM2_Test_CA/host.crt", "sm2_host.crt" },
++		{ "SM2_Test_CA/host.key", "sm2_host.key" },
++	};
++	for (size_t i = 0; i < sizeof(pairs) / sizeof(pairs[0]); i++) {
++		path_join(src, sizeof(src), src_dir, pairs[i][0]);
++		path_join(dst, sizeof(dst), sub, pairs[i][1]);
++		assert(copy_file(src, dst) == 0);
++	}
++
++	tls_cert_ctx_t *ctx = NULL;
++	int ret = tls_cert_init_client_from_cert_dir(tmp, RPC_TLS_ALGORITHM_SM4_GCM_SM3,
++						     "My_CA", &ctx);
++	assert(ret == TLS_CERT_OK && ctx != NULL);
++	tls_cert_cleanup(ctx);
++}
++
+ TEST(tls_cert_init_disabled)
+ {
+ 	tls_cert_ctx_t *ctx = NULL;
+@@ -246,10 +279,32 @@ static int copy_file(const char *src, const char *dst)
+ 	char buf[4096];
+ 	size_t n;
+ 	while ((n = fread(buf, 1, sizeof(buf), f1)) > 0) fwrite(buf, 1, n, f2);
+-	fclose(f1); fclose(f2);
++	fclose(f1);
++	fclose(f2);
+ 	return 0;
+ }
+ 
++/* T0388: 按新客户端布局把 CA 证书放入 <ca_cn>/ 子目录
++ * （对齐 keygen sign -n 的自包含输出；源优先 ed25519_ca.crt，缺失用 ca.crt） */
++static int test_copy_ca_into_cn_dir(const char *src_dir, const char *ca_cn_dir)
++{
++	char src[512], dst[512];
++	path_join(src, sizeof(src), src_dir, "ed25519_ca.crt");
++	if (access(src, R_OK) != 0)
++		path_join(src, sizeof(src), src_dir, "ca.crt");
++	path_join(dst, sizeof(dst), ca_cn_dir, "ed25519_ca.crt");
++	if (copy_file(src, dst) != 0)
++		return -1;
++	/* 整套语义：host 证书/私钥同样以 ed25519_ 前缀摆放 */
++	path_join(src, sizeof(src), src_dir, "host.crt");
++	path_join(dst, sizeof(dst), ca_cn_dir, "ed25519_host.crt");
++	if (copy_file(src, dst) != 0)
++		return -1;
++	path_join(src, sizeof(src), src_dir, "host.key");
++	path_join(dst, sizeof(dst), ca_cn_dir, "ed25519_host.key");
++	return copy_file(src, dst);
++}
++
+ TEST(tls_ed25519_dual_format)
+ {
+ 	/* 分别在仅无前缀与仅有前缀的临时目录下验证回退 */
+@@ -456,6 +511,7 @@ TEST(tls_mtls_handshake)
+ 	char ca_cn_dir[1024];
+ 	snprintf(ca_cn_dir, sizeof(ca_cn_dir), "%s/ED25519_Test_CA", tmp);
+ 	mkdir(ca_cn_dir, 0755);
++	assert(test_copy_ca_into_cn_dir(get_cert_dir(), ca_cn_dir) == 0);
+ 	const char *src_dir = get_cert_dir();
+ 	char src_ca[512], src_cert[512], src_key[512];
+ 	path_join(src_ca, sizeof(src_ca), src_dir, "ca.crt");
+@@ -567,29 +623,25 @@ TEST(tls_cert_peer_identity_binding_reject)
+ 	path_join(dc, sizeof(dc), srv_tmp, "sm2_host.crt"); copy_file(sc, dc);
+ 	path_join(sc, sizeof(sc), src_dir, "sm2_host.key");
+ 	path_join(dc, sizeof(dc), srv_tmp, "sm2_host.key"); copy_file(sc, dc);
+-	/* 客户端根 ca：拼接 SM2 在前 + ED25519 在后。
++	/* 客户端 <ca_cn>/ed25519_ca.crt：拼接 SM2 在前 + ED25519 在后。
+ 	 * 首证书 CN=SM2_Test_CA → 协商 ca_cn=SM2_Test_CA；
+ 	 * store 同时信任 ED25519_CA，故服务端 ed25519 证书链验证可通过，
+ 	 * 但 issuer CN(ED25519_Test_CA) != 协商 ca_cn(SM2_Test_CA) → AC-1 拒绝 */
+ 	char cmd[4096];
+-	path_join(sc, sizeof(sc), src_dir, "sm2_ca.crt");
+-	path_join(dc, sizeof(dc), src_dir, "ed25519_ca.crt");
+-	snprintf(cmd, sizeof(cmd), "cat '%s' '%s' > '%s/cli_ed25519_ca.crt'", sc, dc, cli_tmp);
+-	assert(system(cmd) == 0);
+-	/* build_client_profile 固定 AES 用 ed25519_ca.crt 文件名，覆盖该路径 */
+-	path_join(dc, sizeof(dc), cli_tmp, "ed25519_ca.crt");
+-	path_join(sc, sizeof(sc), cli_tmp, "cli_ed25519_ca.crt");
+-	copy_file(sc, dc);
+-	path_join(sc, sizeof(sc), src_dir, "ca.crt");
+-	path_join(dc, sizeof(dc), cli_tmp, "ca.crt"); copy_file(sc, dc);
+-	/* 客户端 ca_cn 目录放正常的 ED25519 签发 host（issuer=ED25519_Test_CA） */
+ 	char ca_cn_dir[1024];
+ 	snprintf(ca_cn_dir, sizeof(ca_cn_dir), "%s/ED25519_Test_CA", cli_tmp);
+ 	mkdir(ca_cn_dir, 0755);
++	path_join(sc, sizeof(sc), src_dir, "sm2_ca.crt");
++	path_join(dc, sizeof(dc), src_dir, "ed25519_ca.crt");
++	snprintf(cmd, sizeof(cmd), "cat '%s' '%s' > '%s/ed25519_ca.crt'", sc, dc,
++		 ca_cn_dir);
++	assert(system(cmd) == 0);
++	/* 客户端 ca_cn 目录放正常的 ED25519 签发 host（issuer=ED25519_Test_CA），
++	 * 整套前缀命名 */
+ 	path_join(sc, sizeof(sc), src_dir, "ed25519_host.crt");
+-	path_join(dc, sizeof(dc), ca_cn_dir, "host.crt"); copy_file(sc, dc);
++	path_join(dc, sizeof(dc), ca_cn_dir, "ed25519_host.crt"); copy_file(sc, dc);
+ 	path_join(sc, sizeof(sc), src_dir, "ed25519_host.key");
+-	path_join(dc, sizeof(dc), ca_cn_dir, "host.key"); copy_file(sc, dc);
++	path_join(dc, sizeof(dc), ca_cn_dir, "ed25519_host.key"); copy_file(sc, dc);
+ 
+ 	tls_cert_server_options_t sopts = {0};
+ 	sopts.mtls_enabled = 1; sopts.cert_dir = srv_tmp;
+@@ -633,6 +685,7 @@ TEST(tls_cert_client_ctx_cache_reuse)
+ 	char ca_cn_dir[1024];
+ 	snprintf(ca_cn_dir, sizeof(ca_cn_dir), "%s/ED25519_Test_CA", cli_tmp);
+ 	mkdir(ca_cn_dir, 0755);
++	assert(test_copy_ca_into_cn_dir(get_cert_dir(), ca_cn_dir) == 0);
+ 	path_join(sc, sizeof(sc), src_dir, "host.crt");
+ 	path_join(dc, sizeof(dc), ca_cn_dir, "host.crt"); copy_file(sc, dc);
+ 	path_join(sc, sizeof(sc), src_dir, "host.key");
+@@ -695,6 +748,7 @@ TEST(tls_cert_client_ctx_cache_concurrent)
+ 	char ca_cn_dir[1024];
+ 	snprintf(ca_cn_dir, sizeof(ca_cn_dir), "%s/ED25519_Test_CA", cli_tmp);
+ 	mkdir(ca_cn_dir, 0755);
++	assert(test_copy_ca_into_cn_dir(get_cert_dir(), ca_cn_dir) == 0);
+ 	path_join(sc, sizeof(sc), src_dir, "host.crt");
+ 	path_join(dc, sizeof(dc), ca_cn_dir, "host.crt"); copy_file(sc, dc);
+ 	path_join(sc, sizeof(sc), src_dir, "host.key");
+@@ -808,6 +862,7 @@ TEST(tls_cert_audit_peer_cn)
+ 	char ca_cn_dir[1024];
+ 	snprintf(ca_cn_dir, sizeof(ca_cn_dir), "%s/ED25519_Test_CA", cli_tmp);
+ 	mkdir(ca_cn_dir, 0755);
++	assert(test_copy_ca_into_cn_dir(get_cert_dir(), ca_cn_dir) == 0);
+ 	path_join(sc, sizeof(sc), src_dir, "host.crt");
+ 	path_join(dc, sizeof(dc), ca_cn_dir, "host.crt");
+ 	copy_file(sc, dc);
+@@ -868,6 +923,7 @@ TEST(tls_cert_ctx_reload)
+ 	char ca_cn_dir[1024];
+ 	snprintf(ca_cn_dir, sizeof(ca_cn_dir), "%s/ED25519_Test_CA", cli_tmp);
+ 	mkdir(ca_cn_dir, 0755);
++	assert(test_copy_ca_into_cn_dir(get_cert_dir(), ca_cn_dir) == 0);
+ 	path_join(sc, sizeof(sc), src_dir, "host.crt");
+ 	path_join(dc, sizeof(dc), ca_cn_dir, "host.crt");
+ 	copy_file(sc, dc);
+@@ -911,7 +967,7 @@ TEST(tls_cert_ctx_reload)
+ 
+ 	/* fail-closed：破坏客户端证书文件后 reload 失败，但旧 ctx 仍可握手 */
+ 	char bad[1024];
+-	path_join(bad, sizeof(bad), ca_cn_dir, "host.crt");
++	path_join(bad, sizeof(bad), ca_cn_dir, "ed25519_host.crt");
+ 	FILE *f = fopen(bad, "w");
+ 	assert(f != NULL);
+ 	fputc('\n', f);
+@@ -1042,14 +1098,15 @@ TEST(tls_cert_crl_revocation_reject)
+ 	snprintf(ca_cn_dir, sizeof(ca_cn_dir), "%s/RevCA", tmp);
+ 	mkdir(ca_cn_dir, 0755);
+ 	char sc[1024], dc[1024];
++	/* T0388 新布局：RevCA CA 放入 <ca_cn>/ 子目录作为 trust anchor */
+ 	path_join(sc, sizeof(sc), tmp, "ca.crt");
+-	path_join(dc, sizeof(dc), tmp, "ed25519_ca.crt");
++	path_join(dc, sizeof(dc), ca_cn_dir, "ed25519_ca.crt");
+ 	copy_file(sc, dc);
+ 	path_join(sc, sizeof(sc), tmp, "cli.crt");
+-	path_join(dc, sizeof(dc), ca_cn_dir, "host.crt");
++	path_join(dc, sizeof(dc), ca_cn_dir, "ed25519_host.crt");
+ 	copy_file(sc, dc);
+ 	path_join(sc, sizeof(sc), tmp, "cli.key");
+-	path_join(dc, sizeof(dc), ca_cn_dir, "host.key");
++	path_join(dc, sizeof(dc), ca_cn_dir, "ed25519_host.key");
+ 	copy_file(sc, dc);
+ 
+ 	/* 原始服务端呈现已被吊销的 RevServer 证书 */
+@@ -1125,6 +1182,7 @@ int main()
+ 	RUN_TEST(tls_cert_build_client_profile);
+ 	RUN_TEST(tls_cert_init_server_from_cert_dir);
+ 	RUN_TEST(tls_cert_init_client_from_cert_dir);
++	RUN_TEST(tls_cert_init_client_sm2_prefixed_layout);
+ 	RUN_TEST(tls_cert_init_disabled);
+ 	RUN_TEST(tls_ed25519_dual_format);
+ 	RUN_TEST(tls_server_init);
+diff --git a/libs/tls_cert.c b/libs/tls_cert.c
+index 43ff4760..76592e70 100644
+--- a/libs/tls_cert.c
++++ b/libs/tls_cert.c
+@@ -125,70 +125,51 @@ static int x509_get_common_name(X509 *x, char *buf, size_t size)
+ 	return 0;
+ }
+ 
+-/* 选择 ED25519 双格式回退：优先有前缀，缺失回退无前缀 */
+-static const char *tls_cert_pick_ed25519_ca(const char *primary)
+-{
+-	if (primary &&
+-	    strcmp(primary + strlen(primary) - strlen(CERT_FILE_ED25519_CA),
+-		   CERT_FILE_ED25519_CA) == 0) {
+-		if (tls_cert_file_exists(primary))
+-			return primary;
+-		/* 构造回退路径：同目录下 ca.crt */
+-		static __thread char fallback[1024];
+-		const char *slash = strrchr(primary, '/');
+-		if (slash) {
+-			size_t dir_len = slash - primary + 1;
+-			if (dir_len + strlen(CERT_FILE_CA) < sizeof(fallback)) {
+-				memcpy(fallback, primary, dir_len);
+-				strcpy(fallback + dir_len, CERT_FILE_CA);
+-				if (tls_cert_file_exists(fallback))
+-					return fallback;
+-			}
+-		}
+-	}
+-	return primary;
+-}
+-
+-static const char *tls_cert_pick_ed25519_cert(const char *primary)
+-{
+-	static __thread char fallback[1024];
+-	if (primary && strstr(primary, CERT_FILE_ED25519_HOST) != NULL) {
+-		if (tls_cert_file_exists(primary))
+-			return primary;
+-		const char *slash = strrchr(primary, '/');
+-		if (slash) {
+-			size_t dir_len = slash - primary + 1;
+-			if (dir_len + strlen(CERT_FILE_HOST) <
+-			    sizeof(fallback)) {
+-				memcpy(fallback, primary, dir_len);
+-				strcpy(fallback + dir_len, CERT_FILE_HOST);
+-				if (tls_cert_file_exists(fallback))
+-					return fallback;
+-			}
+-		}
++/* T0388: ED25519 整套格式选择——默认整套使用 ed25519_ 前缀名；
++ * 当前缀 CA 文件缺失时，整套下沉到同目录无前缀名（ca/host 三件），
++ * 不允许 CA 与主机证书混用两种命名。
++ * 判定锚：ca 路径以 ed25519_ca.crt 结尾且存在 → 保持前缀整套；
++ *         以其结尾但不存在 → 整套下沉；其余（非前缀输入）原样返回。 */
++static void tls_cert_pick_ed25519_set(const char *ca_in, const char *cert_in,
++				      const char *key_in,
++				      const char **ca_out, const char **cert_out,
++				      const char **key_out)
++{
++	static __thread char fb_ca[1024], fb_cert[1024], fb_key[1024];
++	if (!ca_in || strcmp(ca_in + strlen(ca_in) - strlen(CERT_FILE_ED25519_CA),
++			     CERT_FILE_ED25519_CA) != 0 ||
++	    tls_cert_file_exists(ca_in)) {
++		*ca_out = ca_in;
++		*cert_out = cert_in;
++		*key_out = key_in;
++		return;
+ 	}
+-	return primary;
+-}
+-
+-static const char *tls_cert_pick_ed25519_key(const char *primary)
+-{
+-	static __thread char fallback[1024];
+-	if (primary && strstr(primary, CERT_FILE_ED25519_HOST_KEY) != NULL) {
+-		if (tls_cert_file_exists(primary))
+-			return primary;
+-		const char *slash = strrchr(primary, '/');
+-		if (slash) {
+-			size_t dir_len = slash - primary + 1;
+-			if (dir_len + strlen(CERT_FILE_HOST_KEY) <
+-			    sizeof(fallback)) {
+-				memcpy(fallback, primary, dir_len);
+-				strcpy(fallback + dir_len, CERT_FILE_HOST_KEY);
+-				if (tls_cert_file_exists(fallback))
+-					return fallback;
+-			}
+-		}
++	const char *slash = strrchr(ca_in, '/');
++	if (!slash)
++		goto keep_prefixed;
++	{
++		size_t dir_len = (size_t)(slash - ca_in) + 1;
++		if (dir_len + strlen(CERT_FILE_CA) >= sizeof(fb_ca))
++			goto keep_prefixed;
++		memcpy(fb_ca, ca_in, dir_len);
++		strcpy(fb_ca + dir_len, CERT_FILE_CA);
++		if (!tls_cert_file_exists(fb_ca))
++			goto keep_prefixed; /* 无前缀套也不完整：保持原路径 fail-closed */
++		strcpy(fb_cert, fb_ca);
++		strcpy(fb_key, fb_ca);
++		if (dir_len + strlen(CERT_FILE_HOST) < sizeof(fb_cert))
++			strcpy(fb_cert + dir_len, CERT_FILE_HOST);
++		if (dir_len + strlen(CERT_FILE_HOST_KEY) < sizeof(fb_key))
++			strcpy(fb_key + dir_len, CERT_FILE_HOST_KEY);
++		*ca_out = fb_ca;
++		*cert_out = fb_cert;
++		*key_out = fb_key;
++		return;
+ 	}
+-	return primary;
++keep_prefixed:
++	*ca_out = ca_in;
++	*cert_out = cert_in;
++	*key_out = key_in;
+ }
+ 
+ /* 创建并加载单个 profile 的 SSL_CTX；失败返回错误码 */
+@@ -274,13 +255,12 @@ static int tls_cert_slot_create(const tls_cert_profile_t *profile,
+ 		return TLS_CERT_ERR_SSL_CREATE;
+ 	}
+ 
+-	/* ED25519 双格式回退：有前缀优先，无则回退无前缀 */
++	/* T0388: ED25519 整套格式选择（前缀套 ↔ 无前缀套，不混用） */
+ 	if (profile->algorithm &&
+ 	    strcmp(profile->algorithm, RPC_TLS_ALGORITHM_AES_256_GCM_SHA384) ==
+ 		    0) {
+-		ca_cert = tls_cert_pick_ed25519_ca(ca_cert);
+-		cert = tls_cert_pick_ed25519_cert(cert);
+-		key = tls_cert_pick_ed25519_key(key);
++		tls_cert_pick_ed25519_set(ca_cert, cert, key, &ca_cert, &cert,
++					  &key);
+ 	}
+ 
+ 	if (SSL_CTX_load_verify_locations(ctx, ca_cert, NULL) != 1) {
+@@ -428,7 +408,6 @@ int tls_cert_build_client_profile(const char *cert_dir, const char *algorithm,
+ 				  char *cert_out, size_t cert_sz, char *key_out,
+ 				  size_t key_sz)
+ {
+-	const char *ca_file;
+ 	char dir_cn[1024];
+ 	if (!cert_dir || !cert_dir[0] || !ca_out || !cert_out || !key_out)
+ 		return TLS_CERT_ERR_INVALID_PARAM;
+@@ -439,16 +418,23 @@ int tls_cert_build_client_profile(const char *cert_dir, const char *algorithm,
+ 	if (strcmp(algorithm, RPC_TLS_ALGORITHM_SM4_GCM_SM3) != 0 &&
+ 	    strcmp(algorithm, RPC_TLS_ALGORITHM_AES_256_GCM_SHA384) != 0)
+ 		return TLS_CERT_ERR_INVALID_PARAM;
+-	/* ca 按算法区分：AES 用 ed25519 前缀新格式（回退在 slot_create） */
+-	if (strcmp(algorithm, RPC_TLS_ALGORITHM_SM4_GCM_SM3) == 0)
+-		ca_file = CERT_FILE_SM2_CA;
+-	else
+-		ca_file = CERT_FILE_ED25519_CA;
+-	tls_cert_join_path(ca_out, ca_sz, cert_dir, ca_file);
+-	/* cert/key 固定为 cert_dir/ca_cn/host.*（与 sec_tls_client_cert_paths 一致） */
++	/* T0388: SM2 链整体采用 cert_dir/<ca_cn>/ 前缀子目录布局，
++	 * 与 keygen sign -n 的自包含目录输出对齐（ca+cert+key 三件套同目录，
++	 * 部署要求：目录内需含 sm2_ca.crt/sm2_host.crt/sm2_host.key）；仅认前缀名，不下沉 */
++	if (strcmp(algorithm, RPC_TLS_ALGORITHM_SM4_GCM_SM3) == 0) {
++		tls_cert_join_path(dir_cn, sizeof(dir_cn), cert_dir, ca_cn);
++		tls_cert_join_path(ca_out, ca_sz, dir_cn, CERT_FILE_SM2_CA);
++		tls_cert_join_path(cert_out, cert_sz, dir_cn, CERT_FILE_SM2_HOST);
++		tls_cert_join_path(key_out, key_sz, dir_cn, CERT_FILE_SM2_HOST_KEY);
++		return TLS_CERT_OK;
++	}
++	/* AES/ED25519：与 SM2 对称采用 cert_dir/<ca_cn>/ 子目录布局；
++	 * 先默认 ed25519 前缀名（ed25519_ca.crt 等），文件缺失时由
++	 * slot_create 的 pick_ed25519_* 下沉到同目录无前缀名（既有语义） */
+ 	tls_cert_join_path(dir_cn, sizeof(dir_cn), cert_dir, ca_cn);
+-	tls_cert_join_path(cert_out, cert_sz, dir_cn, CERT_FILE_HOST);
+-	tls_cert_join_path(key_out, key_sz, dir_cn, CERT_FILE_HOST_KEY);
++	tls_cert_join_path(ca_out, ca_sz, dir_cn, CERT_FILE_ED25519_CA);
++	tls_cert_join_path(cert_out, cert_sz, dir_cn, CERT_FILE_ED25519_HOST);
++	tls_cert_join_path(key_out, key_sz, dir_cn, CERT_FILE_ED25519_HOST_KEY);
+ 	return TLS_CERT_OK;
+ }
+ 
+diff --git a/libs/tls_keygen.c b/libs/tls_keygen.c
+index 0981d4b8..e4ae7dcf 100644
+--- a/libs/tls_keygen.c
++++ b/libs/tls_keygen.c
+@@ -1162,6 +1162,36 @@ static int handle_sign(int argc, char *argv[])
+ 		return 1;
+ 	}
+ 
++	/* T0388: -n 自包含目录场景把 CA 证书一并拷入 <cn>/ 目录，
++	 * 使客户端可按 cert_dir/<ca_cn>/ 布局直接取用三件套 */
++	if (cn) {
++		char ca_dst[512];
++		snprintf(ca_dst, sizeof(ca_dst), "%s%s/%s", DEFAULT_CERT_DIR,
++			 cn, keygen_ca_cert_file(algo));
++		FILE *src = fopen(final_ca_cert, "r");
++		if (!src) {
++			fprintf(stderr,
++				"Warning: failed to read CA cert for copy: %s\n",
++				final_ca_cert);
++			return 0;
++		}
++		FILE *dst = fopen(ca_dst, "w");
++		if (!dst) {
++			fclose(src);
++			fprintf(stderr,
++				"Warning: failed to write CA cert copy: %s\n",
++				ca_dst);
++			return 0;
++		}
++		char buf[4096];
++		size_t n;
++		while ((n = fread(buf, 1, sizeof(buf), src)) > 0)
++			fwrite(buf, 1, n, dst);
++		fclose(src);
++		fclose(dst);
++		printf("CA certificate copied: %s\n", ca_dst);
++	}
++
+ 	return 0;
+ }
+ 

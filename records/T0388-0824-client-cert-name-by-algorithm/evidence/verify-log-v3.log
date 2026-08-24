@@ -1,0 +1,15 @@
+=== T0388 验证记录 v3 (2026-08-24) ===
+
+[AC-1 路径断言] SM4→<ca_cn>/sm2_*；AES→<ca_cn>/ed25519_ca+ed25519_host.*
+[AC-2 sign -n 自包含] /opt/aio/cfg/certs/t0388tmp/: sm2_ca.crt sm2_host.crt sm2_host.key ✓
+[AC-3 整套语义] ED25519 默认整套 ed25519_ 前缀；前缀 CA 缺失时整套下沉无前缀（不混套）
+[回归]
+
+All tests PASSED!
+=== 16 passed, 0 failed ===
+rdbcomm_handshake_session_test: ALL PASS
+[实机 SM2]
+sm2-ok
+[实机 ED25519]
+1
+↑ 客户端整套前缀 init 成功后握手被服务端 alert；协商下发 ca_cn=MySM2RootCA 与 AES 组合不匹配属服务端行为（范围外），改动前该场景缺文件更早失败，非回归

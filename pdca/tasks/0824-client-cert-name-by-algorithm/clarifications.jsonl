@@ -1,0 +1,7 @@
+{"at":"2026-08-24T11:16:43+08:00","source":"task_identity","summary":"created with record identity T0388-0824-client-cert-name-by-algorithm"}
+{"source":"direction_confirm","summary":"SM2 仅前缀子目录布局（ca/cert/key 全 sm2_*）；ED25519 现状不动；CA 从 cert_dir/<ca_cn>/ 获取","response":"confirmed","at":"2026-08-24T11:20:14+08:00"}
+{"source":"final_confirmation","summary":"终审通过：按修订 PRD AC-1~5 进入 Do（TDD）","response":"confirmed","at":"2026-08-24T11:20:14+08:00"}
+{"source":"user_meta_feedback","captured":true,"at":"2026-08-24T11:31:00+08:00","text":"ED25519 是先默认检查 ed25519_ca.*，没有则使用 ca.*","response":"核实一致：pick_ed25519_ca/cert/key 首选前缀名，缺失下沉同目录无前缀名，本次零改动保留该顺序"}
+{"source":"check_confirmation","summary":"用户确认整套语义修正：五条 AC 成立，ED25519 服务端协商边界留痕","response":"confirmed","at":"2026-08-24T11:50:13+08:00"}
+{"source": "grilling", "q": "可复用知识？", "a": "整套布局切换原则 → knowledge/tls/cert-layout-set-semantics.md", "at": "2026-08-24T11:50:52+08:00"}
+{"source": "knowledge_decision", "action": "wrote", "reason": "混搭布局隐患与整套判定锚点选择为可复用设计规则", "at": "2026-08-24T11:50:52+08:00"}

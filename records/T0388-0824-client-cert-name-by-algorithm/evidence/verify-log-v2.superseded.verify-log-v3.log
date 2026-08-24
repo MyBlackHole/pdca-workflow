@@ -1,0 +1,25 @@
+=== T0388 验证记录 v2 (2026-08-24) ===
+
+--- AC-1/AC-3 tls_cert_test（路径断言+集成+回归）---
+
+All tests PASSED!
+
+--- AC-2 keygen sign -n 自包含目录 ---
+sm2_ca.crt
+sm2_host.crt
+sm2_host.csr
+sm2_host.key
+
+--- AC-3 ED25519 对称语义 ---
+ED25519 先查 <ca_cn>/ed25519_ca.*, 缺失下沉同目录 ca.*/host.* (pick_ed25519_* 既有语义保留)
+
+--- AC-4 回归 ---
+=== 16 passed, 0 failed ===
+rdbcomm_handshake_session_test: ALL PASS
+[全量构建] 无错误
+
+--- 实机 ---
+[SM2 默认]
+zsh:3: 不是目录: /tmp/opencode/t0388/speedd.log/aio-speed
+[ED25519]
+ED25519: 客户端新布局 init 成功(文件齐全)，握手被服务端 alert(协商 ca_cn=MySM2RootCA 与 AES 不匹配)；改动前该场景因缺 host.* 更早失败——非本次回归，服务端协商行为记为已知边界
