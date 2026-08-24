@@ -1,0 +1,44 @@
+=== T0391 验证记录 (2026-08-24) ===
+[AC-1 根四件套链校验]
+subject=CN=bf8d9e1f-c563-48ad-8f46-f9dda9dcb6e5
+issuer=CN=My_SM2_Root_CA
+subject=CN=bf8d9e1f-c563-48ad-8f46-f9dda9dcb6e5
+issuer=CN=My_ED25519_Root_CA
+/opt/aio/cfg/certs/ed25519_host.crt: OK
+(sm2 CLI verify 需 SM2 provider 参数，以实机握手为准)
+
+[AC-2 子目录自包含]
+/opt/aio/cfg/certs/My_ED25519_Root_CA/:
+ed25519_ca.crt
+ed25519_host.crt
+ed25519_host.csr
+ed25519_host.key
+
+/opt/aio/cfg/certs/My_SM2_Root_CA/:
+sm2_ca.crt
+sm2_host.crt
+sm2_host.csr
+sm2_host.key
+
+[AC-3 服务端日志]
+0
+(0 = 无降级/跳过)
+
+[AC-4 双算法实机]
+sm2-final-ok
+ed-final-ok
+
+[AC-5 目录规范]
+.aio_speed_token
+ed25519_ca.crt
+ed25519_ca.key
+ed25519_host.crt
+ed25519_host.key
+My_ED25519_Root_CA
+My_SM2_Root_CA
+sm2_ca.crt
+sm2_ca.key
+sm2_host.crt
+sm2_host.key
+.xmake
+(残留与旧文件已移入 certs.migrated_20260824 与 certs_bak_20260824_pre_t0391)

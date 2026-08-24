@@ -1,1 +1,39 @@
-{"children":[],"dependencies":[],"id":"T0391","meta":{"active":true,"convergence":["task identity is unique and immutable"],"created_at":"2026-08-24T13:35:18+08:00","phase":"plan","record":"T0391-0824-certs-reprovision-dual-algo","scenario_type":"development"},"parent":null,"slug":"0824-certs-reprovision-dual-algo","states":{"act":null,"archive":null,"check":null,"created":"2026-08-24T13:35:18+08:00","do":null,"plan":"2026-08-24T13:35:18+08:00"},"status":"Pending","title":"【F】现网证书体系统一重签与目录规范化：双算法 mTLS 全链路恢复"}
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0391",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-24T13:35:18+08:00",
+    "phase": "check",
+    "record": "T0391-0824-certs-reprovision-dual-algo",
+    "scenario_type": "development",
+    "completed_at": "2026-08-24T13:40:34+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "五条 AC 达成，双算法实机握手成功",
+      "verdict_id": "T0391-verdict-001",
+      "at": "2026-08-24T13:42:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "部署布局规范已在实践中验证；keygen create CN 来源语义留作后续观察",
+      "at": "2026-08-24T13:42:00+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0824-certs-reprovision-dual-algo",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-24T13:40:34+08:00",
+    "created": "2026-08-24T13:35:18+08:00",
+    "do": "2026-08-24T13:37:55+08:00",
+    "plan": "2026-08-24T13:35:18+08:00"
+  },
+  "status": "Completed",
+  "title": "【F】现网证书体系统一重签与目录规范化：双算法 mTLS 全链路恢复"
+}

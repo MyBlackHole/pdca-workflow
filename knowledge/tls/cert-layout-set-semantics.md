@@ -20,3 +20,7 @@ T0388 中 ED25519 证书名回退最初沿用历史实现的**逐文件独立判
 ## 追加（T0390）：多 profile 加载的降级粒度
 
 服务端多算法 profile（SM4+AES）初始化必须"尽力收集"：单算法失败跳过并记日志，仅当全部失败才整体降级（plain only）。全有或全无会让一个次要算法的数据问题连坐主用算法——T0390 中无效的 ED25519 链曾禁用国密。实现注意：失败槽位需 memset 回滚（保持直接写目标槽的调用形态，勿引入中转缓冲改变行为）。
+
+## 追加（T0391）：现网部署规范基线
+
+服务端 cert_dir 根：`sm2_ca.{crt,key} + sm2_host.{crt,key} + ed25519_ca.{crt,key} + ed25519_host.{crt,key}`；客户端信任子目录 `<ca_cn>/` 三件套由 `tls-keygen sign -n <ca_cn>` 自动生成（含 CA 拷贝）。CA 命名建议 My_SM2_Root_CA / My_ED25519_Root_CA（无空格，符合 cn_name_valid）。混合算法 CA 内容互拷会导致协商下发错误 ca_cn（T0388 遗留②根因）。
