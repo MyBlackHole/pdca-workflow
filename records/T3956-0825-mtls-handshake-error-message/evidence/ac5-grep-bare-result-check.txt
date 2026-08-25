@@ -1,0 +1,4 @@
+# AC-5: 四模块客户端源码无绕过 hs_err_str 的裸 %x 握手码打印
+# 命令: grep -rn "result=0x" {rpc,rdbcomm,dmsbtex,libobk/lib,libs} --include=*.c --include=*.cpp | grep -v tests
+# 结果: 仅 libs/hs_algorithm.c:65 unknown 分支（设计内：未知码需携带原始码诊断）
+/home/black/Public/aio/aio-tools/6200/F/139/libs/hs_algorithm.c:65:			 "unknown handshake error (result=0x%04x)", result);

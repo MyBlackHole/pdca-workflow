@@ -1,0 +1,5 @@
+# AC-1: 用户原始场景复现（server --mtls-enable=1 + client 明文 -c "ls -alh"）
+# 修复前: server rejected: handshake error result=0x8004 / exit=252(无意义)
+# 修复后:
+[2026-08-25 10:51:29]|Error|rpc/rpc-client.cpp:974 execute_shell_script|139626813223872| server rejected by peer: server requires mTLS but client TLS is disabled; enable tls and cert_dir in client config (mTLS required)
+exit=254

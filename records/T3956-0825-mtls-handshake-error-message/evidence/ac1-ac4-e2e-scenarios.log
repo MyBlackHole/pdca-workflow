@@ -1,0 +1,104 @@
+=== T0392 e2e 场景矩阵 2026-08-25 10:52:56 ===
+[PASS] S1 aio-speed mTLS SM4(默认) 执行命令
+[PASS] S2 aio-speed mTLS AES 显式算法
+[PASS] S3 aio-speed 明文客户端↔明文服务端
+[PASS] S4 明文客户端连 mTLS 服务端被拒(fail-closed,文案可读+rc254)
+usage: command args ...
+	 --host:         -h      host ip must be like: (--host=127.0.0.1 or --host 127.0.0.1 or -h 127.0.0.1).
+	 --port:         -p      host port must be like: (--port=6611 or --port 6611 or -p 6611).
+	 --key:                  authentication key must be like: (--key=xxx or --key xxx), required.
+	 --cmd:          -c      request type must be like: (--cmd=list or --cmd list or -c list).
+	 --download:             scp file from remote to local must be like: (--download=1 or --download 1 defalut: 2).
+	                             1 full copy dir's file
+	                             2 breakpoint continuation copy dir's file(Node: must match with --bcm options).
+
+	 --remote:               remote path or path must be like: (--remote=list or --remote list or -c list).
+	 --local:                local path or file must be like: (--local=list or --local list or -c list).
+	 --compress:             compress enabled must be like: (--compress=1 or --compress 1 default: 1).
+	 --encrypt:              encrypt enabled must be like: (--encrypt=1 or --encrypt 1 default: 0).
+	 --parallel:             parallel number must be like: (--parallel=4 or --parallel 4 default: 4).
+	 --bcm:                  file for save breakpoint continuation meta info. must be like: (--bcm=file or --bcm file default: .).
+	                         resumable files continue to download or upload the last failed files on a file-by-file basis.
+
+	 --upload:               scp file from local to remote must be like: (--upload=1 or --upload 1 defalut: 2).
+	                             1 full copy dir's file
+	                             2 breakpoint continuation copy dir's file(Node: must match with --bcm options).
+
+	 --checksum:             checksum enabled must be like: (--checksum=1 or --checksum 1 default: 0).
+	 --nc:                   command run on dst server must be like: (--nc=command or --nc command).
+	                             eg.
+	                             --nc "lz4 -d -B4 | sudo xbstream  -x -C /backup/mysql"
+	                             --nc 'lz4 -d -B4 | sudo xbstream  -x -C /backup/mysql'
+	                             --nc "lz4 -d -B4 > /dev/null"
+	                             --nc 'lz4 -d -B4 > /dev/null'
+	 --bind-ip:              bind the IP address of the local NIC must be like: (--bind-ip=127.0.0.1 or --bind-ip 127.0.0.1)
+	 --fb-item:              file backup input dir or file: (--fb-item=dir1;dir2;... or --fb-item dir1;dir2;...)
+	 --fb-meta:              file backup data's meta: (--fb-meta=file.meta or --fb-meta file.meta)
+	 --fb-exclude:           file backup exclude file: (--fb-exclude=file1;file2... or --fb-exclude file1;file2...)
+	 --fb-progress:          file backup real time progress: (--fb-progress=file1 or --fb-progress file1)
+	 --fb-list-item:         list item of file backup: (--fb-list-item=dir1 or --fb-list-item dir1)
+	 --fb-list-output:       list item of file backup output file: (--fb-list-output=file1 or --fb-list-output file1)
+	 --fb-list-position:     list item of file backup start position: (--fb-list-position=file1 or --fb-list-position file1)
+	 --fb-item-size:         list total of needed transfer files size: (--fb-item-size=dir1;dir2;... or --fb-item-size dir1;dir2;...)
+	 --fb-size-output:       file for total of needed transfer files size in byte info output: (--fb-size-output=file1 or --fb-size-output file1)
+	 --backup-full:          full backup must be like: (--backup-full).
+	 --backup-inc:           incremental backup must be like: (--backup-inc).
+	 --backup-merge:         merge backup must be like: (--backup-merge).
+	 --restore-file:         restore file type must be like: (--restore-file).
+	 --proc-progress:        backup restore proc progress must be like: (--proc-progress).
+	 --restore-meta:         restore meta type must be like: (--restore-meta).
+	 --meta-find:            find backup meta must be like: (--meta-find).
+	 --meta-find-range:      find backup meta limits must be like: (--meta-find-range).
+	 --find-dir:             find directory must be like: (--find-dir=dir1 or --find-dir dir1).
+	 --find-name:            find file name must be like: (--find-name=name1 or --find-name name1).
+	 --find-count:           find count must be like: (--find-count=1 or --find-count 1).
+	 --find-reverse:         find reverse must be like: (--find-reverse).
+	 --find-type:            find type must be like: (--find-type=1 or --find-type 1, default: 0).
+	                             1 dir
+	                             0 file
+	 exclude                 exclude path must be like: (--exclude=/xxx or --exclude /xxx)
+	 exclude-from            file format: file1;file2
+	 include                 include path must be like: (--include=/xxx or --include /xxx)
+	 include-from            file format: file1;file2
+	 chmod                   format: --chmod=0777
+	 chown                   format: --chown=uid:gid
+	 preserve                preserve old file
+	 output                  save merge delete file info
+	 progress                save proc progress meta data info, default tools cwd directory ./progress
+	 --show-config            show config information
+	 --reload-config          reload config information
+	 --traversal-mode=<mode>  Traversal mode: bfs (default) or dfs
+	 --debug                  debug mode
+	 --help:                 usage help
+	 --version:      -v      version information
+
+TLS/mTLS configuration:
+	 --mtls-enable=0|1       Override mTLS for this invocation
+	 --tls-algorithm=NAME    Override TLS algorithm for this invocation
+	 section [aio-speed]: mtls_enable=0|1, tls_algorithm=TLS_SM4_GCM_SM3 (default) or TLS_AES_256_GCM_SHA384
+	 environment: AIO_SPEED_MTLS_ENABLE / AIO_SPEED_TLS_ALGORITHM
+	 priority: CLI > environment > section > [security] > default; certificates shared, ca_cn derived from CA certificate
+	 CLI example: aio-speed --mtls-enable=1 --tls-algorithm=TLS_SM4_GCM_SM3 -h 127.0.0.1 -p 6611 -c true
+	 example: AIO_SPEED_MTLS_ENABLE=1 AIO_SPEED_TLS_ALGORITHM=TLS_AES_256_GCM_SHA384 aio-speed -h 127.0.0.1 -p 6611 -c true
+[PASS] S5 无效算法名被拒
+[PASS] S6 错误端口连接快速失败(<15s)
+[PASS] S7 rdbcomm mTLS SM4 升级并执行(T0394 回归)
+[PASS] S8 rdbcomm 明文模式执行
+[PASS] S9 keygen 拒绝含空格 CN 并提示(T0387)
+[PASS] S10 keygen sign -n 自包含目录(含 CA 拷贝,T0388)
+cp: 对 '/tmp/e2e_t0392.366316/crl/srv/sm2_host.crt' 调用 stat 失败: 没有那个文件或目录
+cp: 对 '/tmp/e2e_t0392.366316/crl/crl.pem' 调用 stat 失败: 没有那个文件或目录
+cp: 对 '/tmp/e2e_t0392.366316/crl/cli/sm2_host.crt' 调用 stat 失败: 没有那个文件或目录
+test/e2e_tool_scenarios.sh: 行 170: /tmp/e2e_t0392.366316/srv_RPC_TLS_CERT_DIR=/tmp/e2e_t0392.366316/crl/certdir.pid: 没有那个文件或目录
+test/e2e_tool_scenarios.sh: 行 170: /tmp/e2e_t0392.366316/srv_RPC_TLS_CERT_DIR=/tmp/e2e_t0392.366316/crl/certdir.log: 没有那个文件或目录
+[PASS] S11 CRL 吊销客户端证书被服务端拒(fail-closed)
+test/e2e_tool_scenarios.sh: 行 170: /tmp/e2e_t0392.366316/srv_RPC_TLS_CERT_DIR=/nonexistent.pid: 没有那个文件或目录
+test/e2e_tool_scenarios.sh: 行 170: /tmp/e2e_t0392.366316/srv_RPC_TLS_CERT_DIR=/nonexistent.log: 没有那个文件或目录
+[PASS] S12 全无效证书目录时 mTLS 客户端被拒(T0390 兜底)
+[PASS] S13 并发 6 客户端全部成功(ctx 缓存并发安全)
+[PASS] S14 5000 行大输出经 mTLS 通道完整
+[PASS] S15 双算法交替 6 轮协商稳定(缓存键控不串)
+[PASS] S16 rdbcomm mTLS AES 显式算法
+connect server failed
+[PASS] S17 rdbcomm 明文客户端连 mTLS 服务端被拒(日志可读,T3956)
+=== 汇总: PASS=17 FAIL=0 ===

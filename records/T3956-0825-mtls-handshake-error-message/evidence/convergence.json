@@ -1,0 +1,35 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1: aio-speed 拒绝场景 stderr 可读文案 + 退出码 254 — evidence: ac1-user-repro, e2e-matrix",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["ac1-user-repro", "e2e-matrix"]
+    },
+    {
+      "index": 2,
+      "text": "AC-2: hs_err_str 全码表+未知码单测通过 — evidence: hs-err-test",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["hs-err-test"]
+    },
+    {
+      "index": 3,
+      "text": "AC-3: rdbcomm/dmsbtex/libobk 客户端拒绝日志可读不静默 — evidence: rdbcomm-session-test, dmsbtex-session-test, libobk-session-test, e2e-matrix",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["rdbcomm-session-test", "dmsbtex-session-test", "libobk-session-test", "e2e-matrix"]
+    },
+    {
+      "index": 4,
+      "text": "AC-4: 四模块正常象限回归全通过 — evidence: mixed-mtls-integration, rpc-own-handshake-test, e2e-matrix",
+      "criteria": ["AC-4"],
+      "evidence_ids": ["mixed-mtls-integration", "rpc-own-handshake-test", "e2e-matrix"]
+    },
+    {
+      "index": 5,
+      "text": "AC-5: 无绕过 hs_err_str 的裸 %x 握手码打印残留 — evidence: grep-bare-result",
+      "criteria": ["AC-5"],
+      "evidence_ids": ["grep-bare-result"]
+    }
+  ]
+}
