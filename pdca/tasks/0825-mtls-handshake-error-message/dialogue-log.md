@@ -21,3 +21,9 @@
 - Ch1-Ch3：AC 逐条对照证据复核、Grill 三问（间接验证/死分支等价/退出码兼容）、convergence 校验 valid=true。
 - Ch4：conclusion.md 落盘（5 条 AC 全 ✅，含 AC-3 间接性如实标注）。
 - Ch5：用户 verdict=confirmed（check_confirmation 留痕）。
+
+## 2026-08-25 Act -> Archive
+
+- Ac1/Ac2：知识沉淀 knowledge/rpc/handshake-error-message-normalization.md（manifest 已登记）。
+- Ac3 disposition=projected；Ac4 无架构立项需求（可选跟进记录于 conclusion）；Ac5 单会话完成无 handoff。
+- Ac6 journal 已追加；Ac7 提交 1043acd。
