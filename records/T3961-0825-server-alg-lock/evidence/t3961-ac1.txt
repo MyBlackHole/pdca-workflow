@@ -1,0 +1,4 @@
+# AC-1: mixed_mtls_integration 锁定用例
+AC-8 algorithm-lock reject mismatched PASS (锁SM4+client AES -> 拒)
+AC-9 algorithm-lock allow matched PASS (锁AES+client AES -> 通, 升级TLS+业务往返)
+mixed_mtls_link_integration: PASS

@@ -1,0 +1,10 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "AC-1: mixed_mtls_integration 锁定用例错配拒/匹配通 — evidence: ac1-mixed-lock, ac1-summary", "criteria": ["AC-1"], "evidence_ids": ["ac1-mixed-lock", "ac1-summary"]},
+    {"index": 2, "text": "AC-2: libobk/dmsbtex session_test 锁定用例通过 — evidence: ac2-libobk-lock, ac2-dmsbtex-lock", "criteria": ["AC-2"], "evidence_ids": ["ac2-libobk-lock", "ac2-dmsbtex-lock"]},
+    {"index": 3, "text": "AC-3: e2e S18/S19 锁定服务端拒 AES 放行 SM4 — evidence: ac3-e2e-lock", "criteria": ["AC-3"], "evidence_ids": ["ac3-e2e-lock"]},
+    {"index": 4, "text": "AC-4: 现有场景全过+未配置不锁兼容 — evidence: ac3-e2e-lock, ac4-compat", "criteria": ["AC-4"], "evidence_ids": ["ac3-e2e-lock", "ac4-compat"]},
+    {"index": 5, "text": "AC-5: 无 cli_algorithm 残留/四模块过滤分支/default=NULL — evidence: ac5-grep", "criteria": ["AC-5"], "evidence_ids": ["ac5-grep"]}
+  ]
+}

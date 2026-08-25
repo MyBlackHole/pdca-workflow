@@ -1,0 +1,43 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3961",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1: mixed_mtls_integration 锁定用例错配拒/匹配通 — evidence: ac1-mixed-lock, ac1-summary",
+      "AC-2: libobk/dmsbtex session_test 锁定用例通过 — evidence: ac2-libobk-lock, ac2-dmsbtex-lock",
+      "AC-3: e2e S18/S19 锁定服务端拒 AES 放行 SM4 — evidence: ac3-e2e-lock",
+      "AC-4: 现有场景全过+未配置不锁兼容 — evidence: ac3-e2e-lock, ac4-compat",
+      "AC-5: 无 cli_algorithm 残留/四模块过滤分支/default=NULL — evidence: ac5-grep"
+    ],
+    "created_at": "2026-08-25T15:33:22+08:00",
+    "phase": "check",
+    "record": "T3961-0825-server-alg-lock",
+    "scenario_type": "development",
+    "completed_at": "2026-08-25T16:36:58+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "五条 AC 全过：四模块锁定过滤+cli_algorithm 去重+无默认值兼容性均有自动化证据；用户确认",
+      "verdict_id": "T3961-check-v1",
+      "at": "2026-08-25T16:45:00+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "锁定语义即时生效于代码与测试；工作区用户未完成改动(sbt.c/rdb-config等)留待其自行提交",
+      "at": "2026-08-25T16:45:30+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0825-server-alg-lock",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-25T16:36:58+08:00",
+    "created": "2026-08-25T15:33:22+08:00",
+    "do": "2026-08-25T15:40:28+08:00",
+    "plan": "2026-08-25T15:33:22+08:00"
+  },
+  "status": "Completed",
+  "title": "服务端 tls-algorithm 锁定语义+cli_algorithm 字段去重"
+}

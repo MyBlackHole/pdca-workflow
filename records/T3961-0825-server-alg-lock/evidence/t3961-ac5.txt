@@ -1,0 +1,4 @@
+# AC-5: grep 验证
+- rpc_config cli_algorithm 代码残留=0（仅 main.cpp 两处说明性注释）
+- 四模块协商层过滤分支: rpc-server.cpp:261(tls_algorithm[0]) / rdbcomm/server.c(algorithm_name非空) / dmsbtex network.c+libobk oracleCmdTbl.c(cfg->algorithm!=0)
+- 服务端算法 sec_resolve_str 调用 default=NULL: rpc-config.cpp/dmsbtex network.c/libobk oracleCmdTbl.c 均确认

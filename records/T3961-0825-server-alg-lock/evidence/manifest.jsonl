@@ -1,0 +1,8 @@
+{"id":"ac2-libobk-lock","file":"t3961-obk6.log","kind":"test","size":0,"digest":"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","at":"2026-08-25T16:35:57+08:00","criteria":["AC-2"]}
+{"id":"ac2-dmsbtex-lock","file":"t3961-dm2.log","kind":"test","size":3870,"digest":"sha256:72c86e195f5a93ee22d9785c7e532fcf4a997661d44c7e91c14b512e970f5c84","at":"2026-08-25T16:35:58+08:00","criteria":["AC-2"]}
+{"id":"ac3-e2e-lock","file":"t3961-e2e.log","kind":"log","size":8067,"digest":"sha256:eea34aaa85cf9e3bca431142102ec8d6db11c4d05e27f4d2cb52bea4c75db290","at":"2026-08-25T16:35:58+08:00","criteria":["AC-3","AC-4"]}
+{"id":"ac1-summary","file":"t3961-ac1.txt","kind":"report","size":238,"digest":"sha256:4e95a2c6bda530ab87c020ddf3dab03834c78872cbf00d7557795a86dacd0408","at":"2026-08-25T16:35:58+08:00","criteria":["AC-1"]}
+{"id":"ac4-compat","file":"t3961-ac4.txt","kind":"report","size":255,"digest":"sha256:d71b27d2985b15fdd3e43ca4da9c0bede8043c6ee501fdf90ec46945b6cacb1e","at":"2026-08-25T16:35:58+08:00","criteria":["AC-4"]}
+{"id":"ac5-grep","file":"t3961-ac5.txt","kind":"report","size":395,"digest":"sha256:c5aa0c5e99bdcda5336f1fa4b906e80814b988c2e85d11dc532f5945a71ee80a","at":"2026-08-25T16:35:58+08:00","criteria":["AC-5"]}
+{"id":"ac1-mixed-lock","file":"t3961-mixed3.log","kind":"test","size":2872,"digest":"sha256:1b96662de027c3bb8bb8e62f597fdbba4df925cd711de4b7c5ab3964e9277603","at":"2026-08-25T16:36:12+08:00","criteria":["AC-1"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":988,"digest":"sha256:e77a206a8560afb0ee3ecc8a0ad11bd5a0016d40a1eca5c4e73a709ebcaaed2d","at":"2026-08-25T16:36:41+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}

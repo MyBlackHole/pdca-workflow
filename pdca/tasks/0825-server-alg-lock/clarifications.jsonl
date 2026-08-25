@@ -1,0 +1,3 @@
+{"at":"2026-08-25T15:33:22+08:00","source":"task_identity","summary":"created with record identity T3961-0825-server-alg-lock"}
+{"source":"final_confirmation","summary":"tls_algorithm无默认值+显式配置即锁定(HS_ERR_ALGORITHM)+cli_algorithm去重，5条AC批准","response":"confirmed","at":"2026-08-25T15:40:28+08:00"}
+{"source":"check_confirmation","summary":"Check confirmed：四模块锁定+去重五 AC 全过，兼容性由 e2e 19/19 证明","response":"confirmed","at":"2026-08-25T16:51:38+08:00"}
