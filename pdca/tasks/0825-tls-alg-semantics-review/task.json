@@ -3,13 +3,13 @@
   "dependencies": [],
   "id": "T3960",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "AC-1: 审查报告覆盖四模块协商层代码位置引用 — evidence: review-report",
       "AC-2: 结论含证书层双 profile 事实依据与风险提示及改进建议 — evidence: review-report"
     ],
     "created_at": "2026-08-25T15:00:14+08:00",
-    "phase": "check",
+    "phase": "archive",
     "record": "T3960-0825-tls-alg-semantics-review",
     "scenario_type": "review",
     "completed_at": "2026-08-25T15:07:20+08:00",
@@ -28,8 +28,8 @@
   "parent": null,
   "slug": "0825-tls-alg-semantics-review",
   "states": {
-    "act": null,
-    "archive": null,
+    "act": "2026-08-25T15:08:47+08:00",
+    "archive": "2026-08-25T15:08:48+08:00",
     "check": "2026-08-25T15:07:20+08:00",
     "created": "2026-08-25T15:00:14+08:00",
     "do": "2026-08-25T15:06:35+08:00",

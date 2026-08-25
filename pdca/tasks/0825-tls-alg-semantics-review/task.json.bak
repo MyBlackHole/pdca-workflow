@@ -9,20 +9,32 @@
       "AC-2: 结论含证书层双 profile 事实依据与风险提示及改进建议 — evidence: review-report"
     ],
     "created_at": "2026-08-25T15:00:14+08:00",
-    "phase": "do",
+    "phase": "act",
     "record": "T3960-0825-tls-alg-semantics-review",
-    "scenario_type": "review"
+    "scenario_type": "review",
+    "completed_at": "2026-08-25T15:07:20+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "审查结论经用户确认认可，报告证据齐备",
+      "verdict_id": "T3960-check-v1",
+      "at": "2026-08-25T15:07:40+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "审查结论即时回答用户疑问；单算法锁定改进建议留作后续按需立项",
+      "at": "2026-08-25T15:07:50+08:00"
+    }
   },
   "parent": null,
   "slug": "0825-tls-alg-semantics-review",
   "states": {
-    "act": null,
+    "act": "2026-08-25T15:08:47+08:00",
     "archive": null,
-    "check": null,
+    "check": "2026-08-25T15:07:20+08:00",
     "created": "2026-08-25T15:00:14+08:00",
     "do": "2026-08-25T15:06:35+08:00",
     "plan": "2026-08-25T15:00:14+08:00"
   },
-  "status": "InProgress",
+  "status": "Completed",
   "title": "审查服务端 tls-algorithm 是否代表只支持此算法"
 }
