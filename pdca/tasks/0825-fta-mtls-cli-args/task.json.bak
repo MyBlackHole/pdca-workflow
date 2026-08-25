@@ -12,20 +12,32 @@
       "AC-5: CLI 校验严格白名单 — evidence: ac2-invalid-exit"
     ],
     "created_at": "2026-08-25T14:37:00+08:00",
-    "phase": "do",
+    "phase": "act",
     "record": "T3959-0825-fta-mtls-cli-args",
-    "scenario_type": "development"
+    "scenario_type": "development",
+    "completed_at": "2026-08-25T14:53:07+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "五条 AC 全过，CLI 覆盖优先级行为级证据成立；用户确认",
+      "verdict_id": "T3959-check-v1",
+      "at": "2026-08-25T14:56:00+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "CLI覆盖模式已在 rdbcommd/aio-speedd 有先例非新知识；可选跟进(default exit(0)/FTA入e2e)记录于 conclusion",
+      "at": "2026-08-25T14:56:30+08:00"
+    }
   },
   "parent": null,
   "slug": "0825-fta-mtls-cli-args",
   "states": {
-    "act": null,
+    "act": "2026-08-25T14:55:50+08:00",
     "archive": null,
-    "check": null,
+    "check": "2026-08-25T14:53:07+08:00",
     "created": "2026-08-25T14:37:00+08:00",
     "do": "2026-08-25T14:38:42+08:00",
     "plan": "2026-08-25T14:37:00+08:00"
   },
-  "status": "InProgress",
+  "status": "Completed",
   "title": "FileTransferAgent 支持 mtls/算法 CLI 参数"
 }
