@@ -10,20 +10,32 @@
       "AC-3: 处置建议可执行（含已推送约束） — evidence: review-report"
     ],
     "created_at": "2026-08-25T17:02:01+08:00",
-    "phase": "do",
+    "phase": "act",
     "record": "T3963-0826-review-head-commit",
-    "scenario_type": "review"
+    "scenario_type": "review",
+    "completed_at": "2026-08-25T17:08:13+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "三 AC 达成；HIGH-2 补充发现经用户反馈提出并已由 T3964 闭环",
+      "verdict_id": "T3963-check-v1",
+      "at": "2026-08-26T09:12:00+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "审查报告即时回答用户疑问；流程改进项(覆盖面维度/rebase前清区)记录于 conclusion",
+      "at": "2026-08-26T09:12:30+08:00"
+    }
   },
   "parent": null,
   "slug": "0826-review-head-commit",
   "states": {
-    "act": null,
+    "act": "2026-08-25T17:49:28+08:00",
     "archive": null,
-    "check": null,
+    "check": "2026-08-25T17:08:13+08:00",
     "created": "2026-08-25T17:02:01+08:00",
     "do": "2026-08-25T17:06:51+08:00",
     "plan": "2026-08-25T17:02:01+08:00"
   },
-  "status": "InProgress",
+  "status": "Completed",
   "title": "审查 HEAD 提交 004ebafe（T3959+T3961 混合）"
 }
