@@ -1,0 +1,4 @@
+{"at":"2026-08-25T13:41:46+08:00","source":"task_identity","summary":"created with record identity T3957-0825-dead-hs-protocol-defs-cleanup"}
+{"source":"final_confirmation","summary":"清理 dmsbtex/libobk 握手协议层16项死定义，纯删除零行为变更，3条AC批准","response":"confirmed","at":"2026-08-25T13:49:33+08:00"}
+{"source":"check_confirmation","summary":"Check confirmed：构建/回归/零残留三 AC 全过，纯删除无行为变更","response":"confirmed","at":"2026-08-25T14:10:40+08:00"}
+{"source":"knowledge_decision","at":"2026-08-25T14:12:00+08:00","action":"skipped","reason":"死码清理方法论(enum值偏移边界/零引用grep验证)为通用工程常识且已部分覆盖于T3956知识文档，record本身即为归档"}

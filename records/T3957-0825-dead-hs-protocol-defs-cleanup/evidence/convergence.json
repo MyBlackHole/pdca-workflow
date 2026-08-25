@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1: 全量 xmake 构建通过无新增警告 — evidence: ac1-build",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["ac1-build"]
+    },
+    {
+      "index": 2,
+      "text": "AC-2: 四模块回归测试全部通过 — evidence: dmsbtex-session-test, libobk-session-test, rdbcomm-session-test, mixed-mtls-integration",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["dmsbtex-session-test", "libobk-session-test", "rdbcomm-session-test", "mixed-mtls-integration"]
+    },
+    {
+      "index": 3,
+      "text": "AC-3: 被删 16 项符号全仓库零残留引用 — evidence: ac3-grep-residual",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["ac3-grep-residual"]
+    }
+  ]
+}

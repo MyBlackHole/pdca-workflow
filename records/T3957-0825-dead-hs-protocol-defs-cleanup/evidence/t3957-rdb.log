@@ -1,0 +1,27 @@
+  > replace S3TOOLS_VERSION_OLD -> 1.5.0.8
+[0mgenerating huanweicloun-sdk-s3-data-backup/my-fuse/version.in ... [38;2;0;255;0;1mok[0m
+  > replace S3TOOLS_VERSION -> 1.0.1.4
+[0mgenerating s3tools/s3file/version.in ... [38;2;0;255;0;1mok[0m
+  > replace BWLIMIT_VERSION -> 1.0.0.1
+[0mgenerating bwlimit/version.in ... [38;2;0;255;0;1mok[0m
+  > replace FSBACKUP_KERNEL_VERSION -> 3.3.1.6
+[0mgenerating version.in ... [38;2;0;255;0;1mok[0m
+  > replace XBSA_VERSION -> 1.1.1.7
+[0mgenerating xbsa/src/version.in ... [38;2;0;255;0;1mok[0m
+  > replace XBSA_VERSION -> 1.1.1.7
+[0mgenerating xbsa/src/version.in ... [38;2;0;255;0;1mok[0m
+  > replace S3TOOLS_VERSION -> 1.0.1.4
+[0mgenerating s3tools/s3mount/version.in ... [38;2;0;255;0;1mok[0m
+  > replace OSS_VERSION -> 1.0.0.0
+[0mgenerating oss/version.in ... [38;2;0;255;0;1mok[0m
+  > replace S3TOOL_VERSION_OLD -> 1.5.0.8
+[0mgenerating s3-tool/version.in ... [38;2;0;255;0;1mok[0m
+  > replace S3TOOLS_VERSION_OLD -> 1.5.0.8
+[0mgenerating huanweicloun-sdk-s3-data-backup/my-fuse/version.in ... [38;2;0;255;0;1mok[0m
+[PASS] rdb algorithm exact mapping
+[PASS] plain zero-handshake passthrough
+[PASS] bad halg 0x0000 rejected
+[PASS] bad halg 0xffff rejected
+[PASS] on-demand mTLS upgrade
+[PASS] reject without downgrade
+rdbcomm_handshake_session_test: ALL PASS

@@ -1,0 +1,3 @@
+# AC-1: 全量 xmake 构建
+命令: xmake
+结果: build ok, spent 1.883s，无新增编译警告（set_warnings(all,error) 下零 warning 输出）

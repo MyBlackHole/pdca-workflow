@@ -1,0 +1,7 @@
+{"id":"ac1-build","file":"t3957-ac1-build.txt","kind":"log","size":148,"digest":"sha256:1700bcda575cf36ad0eaf87e56893d70d05059636e26409547c9348793b305f6","at":"2026-08-25T14:05:07+08:00","criteria":["AC-1"]}
+{"id":"dmsbtex-session-test","file":"t3957-dm.log","kind":"test","size":3877,"digest":"sha256:df9df9705d981afa57f5c78302ecaabcdd87c627c13d40561cb831e686f1ca8a","at":"2026-08-25T14:05:07+08:00","criteria":["AC-2"]}
+{"id":"libobk-session-test","file":"t3957-obk.log","kind":"test","size":0,"digest":"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","at":"2026-08-25T14:05:07+08:00","criteria":["AC-2"]}
+{"id":"rdbcomm-session-test","file":"t3957-rdb.log","kind":"test","size":1330,"digest":"sha256:2867fd419cf71ca8bd330746d17bdf1eb0c1632f51382ba80aa684a1d8c6b491","at":"2026-08-25T14:05:07+08:00","criteria":["AC-2"]}
+{"id":"mixed-mtls-integration","file":"t3957-mixed.log","kind":"test","size":2446,"digest":"sha256:bf740cbae7e6fa3ad9ce193927f94bf5ec3926c0b03cbec88a7b47137301fc16","at":"2026-08-25T14:05:07+08:00","criteria":["AC-2"]}
+{"id":"ac3-grep-residual","file":"t3957-ac3-grep.txt","kind":"report","size":225,"digest":"sha256:ba97cbeb30b73d7a55144997c26ffcae9de9b944f51f11a6f9b504d46e7676d6","at":"2026-08-25T14:05:08+08:00","criteria":["AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":778,"digest":"sha256:ab33456dc35986b561303109645fc71298f215d5ac7506f93dff74d10abe728f","at":"2026-08-25T14:05:57+08:00","criteria":["AC-1","AC-2","AC-3"]}

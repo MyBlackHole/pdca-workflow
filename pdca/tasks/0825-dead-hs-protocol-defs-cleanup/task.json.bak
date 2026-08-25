@@ -1,0 +1,36 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3957",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1: 全量 xmake 构建通过无新增警告 — evidence: ac1-build",
+      "AC-2: 四模块回归测试全部通过 — evidence: dmsbtex-session-test, libobk-session-test, rdbcomm-session-test, mixed-mtls-integration",
+      "AC-3: 被删 16 项符号全仓库零残留引用 — evidence: ac3-grep-residual"
+    ],
+    "created_at": "2026-08-25T13:41:46+08:00",
+    "phase": "check",
+    "record": "T3957-0825-dead-hs-protocol-defs-cleanup",
+    "scenario_type": "development",
+    "completed_at": "2026-08-25T14:07:03+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "三项 AC 证据齐备：构建/回归/零残留全部通过，纯删除无行为变更；用户确认",
+      "verdict_id": "T3957-check-v1",
+      "at": "2026-08-25T14:10:40+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0825-dead-hs-protocol-defs-cleanup",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-25T14:07:03+08:00",
+    "created": "2026-08-25T13:41:46+08:00",
+    "do": "2026-08-25T13:51:13+08:00",
+    "plan": "2026-08-25T13:41:46+08:00"
+  },
+  "status": "Completed",
+  "title": "清理 dmsbtex/libobk 握手协议层死定义残留"
+}

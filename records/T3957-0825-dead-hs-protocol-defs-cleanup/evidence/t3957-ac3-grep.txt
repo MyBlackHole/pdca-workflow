@@ -1,0 +1,3 @@
+# AC-3: 被删 16 项符号全仓库零残留
+命令: for sym in <16项>; do grep -rn "\b$sym\b" --include=*.c --include=*.cpp --include=*.h . | grep -v build; done
+结果: 全部 refs=0（grep-clean），无 RESIDUAL 输出
