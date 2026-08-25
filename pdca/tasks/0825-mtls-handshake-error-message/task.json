@@ -1,0 +1,27 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3956",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-25T10:02:56+08:00",
+    "phase": "do",
+    "record": "T3956-0825-mtls-handshake-error-message",
+    "scenario_type": "bugfix"
+  },
+  "parent": null,
+  "slug": "0825-mtls-handshake-error-message",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-08-25T10:02:56+08:00",
+    "do": "2026-08-25T10:14:47+08:00",
+    "plan": "2026-08-25T10:02:56+08:00"
+  },
+  "status": "InProgress",
+  "title": "握手错误码报错信息可读化（rpc/libobk/rdbcomm/dmsbtex 全模块）"
+}

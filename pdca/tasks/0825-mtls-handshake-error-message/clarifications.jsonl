@@ -1,0 +1,5 @@
+{"at":"2026-08-25T10:02:56+08:00","source":"task_identity","summary":"created with record identity T3956-0825-mtls-handshake-error-message"}
+{"source":"grilling","q":"握手错误码→文案转换函数落点？","a":"归一到 libs 统一实现","at":"$(date -Iseconds)"}
+{"source":"grilling","q":"退出码截断问题是否纳入本任务？","a":"纳入，rpc 退出码语义化为 -2 (shell 254)","at":"$(date -Iseconds)"}
+{"source":"grilling","q":"文案语言？","a":"英文，与现有日志风格一致","at":"$(date -Iseconds)"}
+{"source":"final_confirmation","summary":"四模块握手错误码文案可读化+libs归一hs_err_str+rpc退出码-2，5条AC全部批准","response":"confirmed","at":"2026-08-25T10:14:36+08:00"}
