@@ -10,20 +10,32 @@
       "AC-3: e2e 场景矩阵通过证明恢复实现与真实服务端兼容 — evidence: ac3-e2e-matrix"
     ],
     "created_at": "2026-08-25T14:20:03+08:00",
-    "phase": "do",
+    "phase": "check",
     "record": "T3958-0825-rpc-net-time-test-fix",
-    "scenario_type": "bugfix"
+    "scenario_type": "bugfix",
+    "completed_at": "2026-08-25T14:27:39+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "三项 AC 全过：测试 PASS、协议收发合规、e2e 兼容性证明成立；用户确认",
+      "verdict_id": "T3958-check-v1",
+      "at": "2026-08-25T14:31:00+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "分帧协议+结构体对齐陷阱已具普适性但属一次性适配；可选强化(uiMT校验)记录于 conclusion",
+      "at": "2026-08-25T14:31:30+08:00"
+    }
   },
   "parent": null,
   "slug": "0825-rpc-net-time-test-fix",
   "states": {
     "act": null,
     "archive": null,
-    "check": null,
+    "check": "2026-08-25T14:27:39+08:00",
     "created": "2026-08-25T14:20:03+08:00",
     "do": "2026-08-25T14:22:12+08:00",
     "plan": "2026-08-25T14:20:03+08:00"
   },
-  "status": "InProgress",
+  "status": "Completed",
   "title": "rpc_net_time_test 适配恢复后的长度前缀协议"
 }

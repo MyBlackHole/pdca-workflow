@@ -10,7 +10,7 @@
       "AC-3: e2e 场景矩阵通过证明恢复实现与真实服务端兼容 — evidence: ac3-e2e-matrix"
     ],
     "created_at": "2026-08-25T14:20:03+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T3958-0825-rpc-net-time-test-fix",
     "scenario_type": "bugfix",
     "completed_at": "2026-08-25T14:27:39+08:00",
@@ -29,7 +29,7 @@
   "parent": null,
   "slug": "0825-rpc-net-time-test-fix",
   "states": {
-    "act": null,
+    "act": "2026-08-25T14:30:30+08:00",
     "archive": null,
     "check": "2026-08-25T14:27:39+08:00",
     "created": "2026-08-25T14:20:03+08:00",
