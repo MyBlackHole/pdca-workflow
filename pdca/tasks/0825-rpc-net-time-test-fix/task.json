@@ -3,14 +3,14 @@
   "dependencies": [],
   "id": "T3958",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "AC-1: rpc_net_time_test PASS 且退出码 0 — evidence: ac1-test-pass, ac1-test-log",
       "AC-2: 测试按 4B 前缀协议收发无直读直写残留 — evidence: ac2-frame-protocol",
       "AC-3: e2e 场景矩阵通过证明恢复实现与真实服务端兼容 — evidence: ac3-e2e-matrix"
     ],
     "created_at": "2026-08-25T14:20:03+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T3958-0825-rpc-net-time-test-fix",
     "scenario_type": "bugfix",
     "completed_at": "2026-08-25T14:27:39+08:00",
@@ -30,7 +30,7 @@
   "slug": "0825-rpc-net-time-test-fix",
   "states": {
     "act": "2026-08-25T14:30:30+08:00",
-    "archive": null,
+    "archive": "2026-08-25T14:30:30+08:00",
     "check": "2026-08-25T14:27:39+08:00",
     "created": "2026-08-25T14:20:03+08:00",
     "do": "2026-08-25T14:22:12+08:00",
