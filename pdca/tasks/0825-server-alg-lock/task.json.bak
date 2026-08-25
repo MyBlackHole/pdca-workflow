@@ -12,20 +12,32 @@
       "AC-5: 无 cli_algorithm 残留/四模块过滤分支/default=NULL — evidence: ac5-grep"
     ],
     "created_at": "2026-08-25T15:33:22+08:00",
-    "phase": "do",
+    "phase": "act",
     "record": "T3961-0825-server-alg-lock",
-    "scenario_type": "development"
+    "scenario_type": "development",
+    "completed_at": "2026-08-25T16:36:58+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "五条 AC 全过：四模块锁定过滤+cli_algorithm 去重+无默认值兼容性均有自动化证据；用户确认",
+      "verdict_id": "T3961-check-v1",
+      "at": "2026-08-25T16:45:00+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "锁定语义即时生效于代码与测试；工作区用户未完成改动(sbt.c/rdb-config等)留待其自行提交",
+      "at": "2026-08-25T16:45:30+08:00"
+    }
   },
   "parent": null,
   "slug": "0825-server-alg-lock",
   "states": {
-    "act": null,
+    "act": "2026-08-25T16:52:01+08:00",
     "archive": null,
-    "check": null,
+    "check": "2026-08-25T16:36:58+08:00",
     "created": "2026-08-25T15:33:22+08:00",
     "do": "2026-08-25T15:40:28+08:00",
     "plan": "2026-08-25T15:33:22+08:00"
   },
-  "status": "InProgress",
+  "status": "Completed",
   "title": "服务端 tls-algorithm 锁定语义+cli_algorithm 字段去重"
 }
