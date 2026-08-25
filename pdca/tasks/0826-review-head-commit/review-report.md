@@ -52,3 +52,5 @@ git reflog 显示该分支经历了一次 rebase（T3959 被 amend 两次），*
 
 **HIGH-2**: 混合提交覆盖面遗漏——dm-ftp（dmsbtex 部署名）未获得 --mtls-enable/--tls-algorithm CLI 参数。FileTransferAgent（T3959）与 aio-speedd/rdbcommd 均已支持，dm-ftp 仅剩 env/ini 入口；T3961 锁定语义虽已在 dmsbtex 协商层实现，但无 CLI 配置入口则运维无法在 dm-ftp 上使用锁定能力。另：本次审查初版亦未检出该覆盖面缺口。
 处置：立任务 T3964 实施（对齐 T3959 模式）。
+
+**补充发现处置**：HIGH-2 已由任务 T3964 实施（commit d73f26a5），dm-ftp 现支持 --mtls-enable/--tls-algorithm CLI 参数并同步修正 usage 锁定语义文案。

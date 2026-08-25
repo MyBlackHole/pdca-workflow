@@ -13,7 +13,18 @@
     "phase": "check",
     "record": "T3963-0826-review-head-commit",
     "scenario_type": "review",
-    "completed_at": "2026-08-25T17:08:13+08:00"
+    "completed_at": "2026-08-25T17:08:13+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "三 AC 达成；HIGH-2 补充发现经用户反馈提出并已由 T3964 闭环",
+      "verdict_id": "T3963-check-v1",
+      "at": "2026-08-26T09:12:00+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "审查报告即时回答用户疑问；流程改进项(覆盖面维度/rebase前清区)记录于 conclusion",
+      "at": "2026-08-26T09:12:30+08:00"
+    }
   },
   "parent": null,
   "slug": "0826-review-head-commit",
