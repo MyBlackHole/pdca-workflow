@@ -1,0 +1,7 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "AC-1: 审查报告覆盖四模块协商层代码位置引用 — evidence: review-report", "criteria": ["AC-1"], "evidence_ids": ["review-report"]},
+    {"index": 2, "text": "AC-2: 结论含证书层双 profile 事实依据与风险提示及改进建议 — evidence: review-report", "criteria": ["AC-2"], "evidence_ids": ["review-report"]}
+  ]
+}

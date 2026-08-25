@@ -1,0 +1,3 @@
+{"at":"2026-08-25T15:00:14+08:00","source":"task_identity","summary":"created with record identity T3960-0825-tls-alg-semantics-review"}
+{"source":"final_confirmation","summary":"审查结论认可：tls-algorithm 为协商偏好非白名单，单算法锁定留待后续按需立项","response":"confirmed","at":"2026-08-25T15:06:34+08:00"}
+{"source":"check_confirmation","summary":"用户确认审查结论：tls-algorithm 为协商偏好非白名单，归档；单算法锁定留待按需立项","response":"confirmed","at":"2026-08-25T15:08:25+08:00"}

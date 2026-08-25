@@ -1,0 +1,2 @@
+{"id":"review-report","file":"review-report.md","kind":"report","size":2552,"digest":"sha256:8734cdb436bb402b967255d4e386b2b67249ffbc903cacbeabf35775d9881b36","at":"2026-08-25T15:07:19+08:00","criteria":["AC-1","AC-2"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":423,"digest":"sha256:156f8fee6b6be3a6dc5e8a3437e2eddf5f7ad7f41532ccbca8a9f6cb03c1019f","at":"2026-08-25T15:07:19+08:00","criteria":["AC-1","AC-2"]}
