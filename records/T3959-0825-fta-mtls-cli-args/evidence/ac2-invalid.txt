@@ -1,0 +1,4 @@
+# AC-2/AC-5: 非法值 fail-closed（严格白名单校验）
+FileTransferAgent --mtls-enable=2        -> "invalid --mtls-enable: 2" exit=255
+FileTransferAgent --mtls-enable=abc      -> "invalid --mtls-enable: abc" exit=255
+FileTransferAgent --tls-algorithm=TLS_BOGUS -> "invalid --tls-algorithm" exit=255

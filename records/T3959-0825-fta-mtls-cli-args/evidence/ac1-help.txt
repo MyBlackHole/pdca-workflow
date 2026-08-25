@@ -1,0 +1,4 @@
+# AC-1: FileTransferAgent --help 含 TLS/mTLS 配置说明
+--mtls-enable=0|1       Override mTLS for this invocation
+--tls-algorithm=NAME    Override TLS algorithm for this invocation (TLS_SM4_GCM_SM3 default or TLS_AES_256_GCM_SHA384)
+priority: CLI > environment(SBT_MTLS_ENABLE / SBT_TLS_ALGORITHM) > [security] ini > default

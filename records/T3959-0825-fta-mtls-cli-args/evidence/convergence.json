@@ -1,0 +1,10 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "AC-1: --help 含 --mtls-enable/--tls-algorithm 说明 — evidence: ac1-help", "criteria": ["AC-1"], "evidence_ids": ["ac1-help"]},
+    {"index": 2, "text": "AC-2: 非法值非零退出并输出明确错误 — evidence: ac2-invalid-exit", "criteria": ["AC-2"], "evidence_ids": ["ac2-invalid-exit"]},
+    {"index": 3, "text": "AC-3: 合法 mTLS 启动 CLI 生效（prepare 行为验证） — evidence: ac3-cli-override", "criteria": ["AC-3"], "evidence_ids": ["ac3-cli-override"]},
+    {"index": 4, "text": "AC-4: 不传参数行为不变 + 回归通过 — evidence: libobk-session-test, ac4-e2e-matrix, ac3-cli-override", "criteria": ["AC-4"], "evidence_ids": ["libobk-session-test", "ac4-e2e-matrix", "ac3-cli-override"]},
+    {"index": 5, "text": "AC-5: CLI 校验严格白名单 — evidence: ac2-invalid-exit", "criteria": ["AC-5"], "evidence_ids": ["ac2-invalid-exit"]}
+  ]
+}

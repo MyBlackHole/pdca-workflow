@@ -1,0 +1,6 @@
+{"id":"ac1-help","file":"ac1-help.txt","kind":"log","size":328,"digest":"sha256:e3bf97599713f4b9a135d72cb8b28796e5386e205ae623ab656d0ad54131a9a4","at":"2026-08-25T14:51:57+08:00","criteria":["AC-1"]}
+{"id":"ac2-invalid-exit","file":"ac2-invalid.txt","kind":"log","size":306,"digest":"sha256:8c1fa0265d4bde8a195449aedfc15c15c9fdbaddfd106820ad8472cac0bd1786","at":"2026-08-25T14:51:57+08:00","criteria":["AC-2","AC-5"]}
+{"id":"ac3-cli-override","file":"ac3-ac4-behavior.txt","kind":"log","size":528,"digest":"sha256:1ae43ab116583f2c11a0f6dd6cbbaec9ee82876badd20dcc4e8b0be70b6cb021","at":"2026-08-25T14:51:57+08:00","criteria":["AC-3","AC-4"]}
+{"id":"libobk-session-test","file":"t3959-obk.log","kind":"test","size":0,"digest":"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","at":"2026-08-25T14:52:29+08:00","criteria":["AC-4"]}
+{"id":"ac4-e2e-matrix","file":"t3959-e2e.log","kind":"log","size":7936,"digest":"sha256:4cfa66a3afa20c3624224a0af5e827806f29e8fbd68be7742ae80783fdd34109","at":"2026-08-25T14:52:29+08:00","criteria":["AC-4"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":960,"digest":"sha256:f3e28e187c979693b1b073c0e760461b277c82780aa6fea5fcbeaf4c706cdc75","at":"2026-08-25T14:52:45+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}

@@ -1,0 +1,3 @@
+{"at":"2026-08-25T14:37:00+08:00","source":"task_identity","summary":"created with record identity T3959-0825-fta-mtls-cli-args"}
+{"source":"final_confirmation","summary":"FTA 增加 --mtls-enable/--tls-algorithm CLI 对齐既有模式，5条AC批准","response":"confirmed","at":"2026-08-25T14:38:42+08:00"}
+{"source":"check_confirmation","summary":"Check confirmed：五 AC 全过，CLI 参数/白名单/覆盖优先级行为级证据成立","response":"confirmed","at":"2026-08-25T14:55:50+08:00"}

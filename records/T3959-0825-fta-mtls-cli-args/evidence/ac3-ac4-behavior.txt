@@ -1,0 +1,7 @@
+# AC-3/AC-4: CLI 生效与覆盖优先级行为验证
+A: CLI mtls=1 + 坏cert_dir            -> exit=255 (prepare失败, CLI开启生效)
+B(对照): 无CLI无env + 坏cert_dir      -> exit=124 (正常监听, 行为不变)
+C: env SBT_MTLS_ENABLE=0 + CLI mtls=1 -> exit=255 (CLI覆盖env)
+D: env 算法非法 无CLI                 -> exit=255 (init白名单校验)
+E: env 算法非法 + CLI 合法算法        -> exit=124 (CLI覆盖env, 正常监听)
+回归: libobk_session_test exit=0; dmsbtex_session_test ALL PASS; e2e 17/17
