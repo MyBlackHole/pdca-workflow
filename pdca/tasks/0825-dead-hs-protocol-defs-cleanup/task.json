@@ -3,14 +3,14 @@
   "dependencies": [],
   "id": "T3957",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "AC-1: 全量 xmake 构建通过无新增警告 — evidence: ac1-build",
       "AC-2: 四模块回归测试全部通过 — evidence: dmsbtex-session-test, libobk-session-test, rdbcomm-session-test, mixed-mtls-integration",
       "AC-3: 被删 16 项符号全仓库零残留引用 — evidence: ac3-grep-residual"
     ],
     "created_at": "2026-08-25T13:41:46+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T3957-0825-dead-hs-protocol-defs-cleanup",
     "scenario_type": "development",
     "completed_at": "2026-08-25T14:07:03+08:00",
@@ -30,7 +30,7 @@
   "slug": "0825-dead-hs-protocol-defs-cleanup",
   "states": {
     "act": "2026-08-25T14:11:32+08:00",
-    "archive": null,
+    "archive": "2026-08-25T14:14:43+08:00",
     "check": "2026-08-25T14:07:03+08:00",
     "created": "2026-08-25T13:41:46+08:00",
     "do": "2026-08-25T13:51:13+08:00",

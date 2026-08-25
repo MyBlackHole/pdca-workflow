@@ -10,7 +10,7 @@
       "AC-3: 被删 16 项符号全仓库零残留引用 — evidence: ac3-grep-residual"
     ],
     "created_at": "2026-08-25T13:41:46+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T3957-0825-dead-hs-protocol-defs-cleanup",
     "scenario_type": "development",
     "completed_at": "2026-08-25T14:07:03+08:00",
@@ -19,12 +19,17 @@
       "reason": "三项 AC 证据齐备：构建/回归/零残留全部通过，纯删除无行为变更；用户确认",
       "verdict_id": "T3957-check-v1",
       "at": "2026-08-25T14:10:40+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "一次性清理无跨任务复用知识；后续系统性死码扫描建议已记录于 conclusion 下一轮",
+      "at": "2026-08-25T14:12:30+08:00"
     }
   },
   "parent": null,
   "slug": "0825-dead-hs-protocol-defs-cleanup",
   "states": {
-    "act": null,
+    "act": "2026-08-25T14:11:32+08:00",
     "archive": null,
     "check": "2026-08-25T14:07:03+08:00",
     "created": "2026-08-25T13:41:46+08:00",
