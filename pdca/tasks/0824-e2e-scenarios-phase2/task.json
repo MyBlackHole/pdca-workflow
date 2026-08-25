@@ -10,7 +10,18 @@
     "created_at": "2026-08-24T18:16:35+08:00",
     "phase": "do",
     "record": "T3955-0824-e2e-scenarios-phase2",
-    "scenario_type": "development"
+    "scenario_type": "development",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "四条 AC 达成：十六场景全绿且幂等",
+      "verdict_id": "T3955-verdict-001",
+      "at": "2026-08-24T16:31:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "e2e 矩阵为长期回归资产；证书过期边界待 keygen 能力扩展后覆盖",
+      "at": "2026-08-24T16:31:00+08:00"
+    }
   },
   "parent": null,
   "slug": "0824-e2e-scenarios-phase2",
