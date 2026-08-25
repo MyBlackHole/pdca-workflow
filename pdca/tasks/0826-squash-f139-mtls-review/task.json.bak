@@ -1,0 +1,28 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3965",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1: squash 完成且 tree 一致性验证无损 — evidence: ac1-squash",
+      "AC-2: mTLS 分析报告三节齐备(问题/简化/优化) — evidence: mtls-analysis"
+    ],
+    "created_at": "2026-08-25T17:54:08+08:00",
+    "phase": "do",
+    "record": "T3965-0826-squash-f139-mtls-review",
+    "scenario_type": "review"
+  },
+  "parent": null,
+  "slug": "0826-squash-f139-mtls-review",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-08-25T17:54:08+08:00",
+    "do": "2026-08-25T17:55:46+08:00",
+    "plan": "2026-08-25T17:54:08+08:00"
+  },
+  "status": "InProgress",
+  "title": "Squash F-139 提交链并整体审查 mTLS 实现"
+}

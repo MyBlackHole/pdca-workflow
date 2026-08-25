@@ -1,0 +1,2 @@
+{"file": "knowledge/pg/pgwrecover-official-rewrite.md", "reason": "提供 WAL 重放器官方源码前端化方法论与语义锚点/验证口径，Do 阶段生成样本与比对期望态时复用其 fixture 与 verify 范式", "action": "复用验证口径与 fixture 压缩范式", "at": "2026-08-25T18:15:54+08:00"}
+{"file": "knowledge/pg/pgwrecover-implementation.md", "reason": "含多条 WAL redo 构造模式与测试陷阱(T0336)，指导多索引样本构造避免已知坑", "action": "参考 redo 构造模式，规避测试陷阱", "at": "2026-08-25T18:15:54+08:00"}

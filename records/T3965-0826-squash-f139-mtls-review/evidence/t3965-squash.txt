@@ -1,0 +1,6 @@
+# AC-1: squash 无损验证
+命令: git reset --soft 00f12df7~1 && git commit；git diff d73f26a5 HEAD
+结果: TREE-IDENTICAL ✓（diff 为空，内容无损）
+新提交: 4ef9c5c1 【F-139】TLS/mTLS 全栈实现与演进整合...
+原链 11 提交保留于 reflog（d73f26a5 可达）
+注意: origin 停在 004ebafe，同步远端需 force push（用户决定，未执行）

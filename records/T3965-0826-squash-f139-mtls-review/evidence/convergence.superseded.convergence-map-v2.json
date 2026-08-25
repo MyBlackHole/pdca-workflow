@@ -1,0 +1,7 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "AC-1: squash 完成且 tree 一致性验证无损 — evidence: ac1-squash", "criteria": ["AC-1"], "evidence_ids": ["ac1-squash"]},
+    {"index": 2, "text": "AC-2: mTLS 分析报告三节齐备(问题/简化/优化) — evidence: mtls-analysis", "criteria": ["AC-2"], "evidence_ids": ["mtls-analysis"]}
+  ]
+}
