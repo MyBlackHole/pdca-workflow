@@ -1,0 +1,8 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "AC-1: 审查报告含三来源拆解与分级发现 — evidence: review-report", "criteria": ["AC-1"], "evidence_ids": ["review-report"]},
+    {"index": 2, "text": "AC-2: 残留检查+构建回归健康度记录 — evidence: health-check", "criteria": ["AC-2"], "evidence_ids": ["health-check"]},
+    {"index": 3, "text": "AC-3: 处置建议可执行（含已推送约束） — evidence: review-report", "criteria": ["AC-3"], "evidence_ids": ["review-report"]}
+  ]
+}

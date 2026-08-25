@@ -1,0 +1,4 @@
+{"id":"ac-summary","file":"t3964-ac.txt","kind":"report","size":694,"digest":"sha256:fcad9a5b259ad7fe1e772996ef20cf3917aa2fdd88d47aaeab0aafe3da5c8571","at":"2026-08-25T17:43:23+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"dmsbtex-session-test","file":"t3964-dm.log","kind":"test","size":5316,"digest":"sha256:b61c63ffaaf99817abec07387de15bdf231c824aa69150eb9fe60fd5912c8845","at":"2026-08-25T17:43:24+08:00","criteria":["AC-4"]}
+{"id":"ac5-grep","file":"t3964-ac5.txt","kind":"report","size":182,"digest":"sha256:b134538dec897bc3148989af175aa4bf60c9753d19fd07e5c02fb383561e37f8","at":"2026-08-25T17:43:24+08:00","criteria":["AC-5"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":860,"digest":"sha256:ab1296c100914e9c714e94280c3df4dfe8378af8498f27e0211239b3b53457d4","at":"2026-08-25T17:43:50+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}

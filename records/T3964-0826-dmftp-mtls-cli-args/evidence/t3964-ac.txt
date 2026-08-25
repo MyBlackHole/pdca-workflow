@@ -1,0 +1,10 @@
+# AC 验证汇总（dm-ftp CLI 参数）
+AC-1: --help 含 --mtls-enable/--tls-algorithm + "unset = no lock" 说明 ✓
+AC-2: --mtls-enable=2/abc、--tls-algorithm=TLS_BOGUS 均 exit=1 输出 "dm-ftp: invalid ..." ✓
+AC-3: 行为级验证
+  A  CLI mtls=1+坏cert_dir        -> exit=1 (prepare失败, CLI生效)
+  B  无CLI无env+坏cert_dir(对照)   -> exit=124 (正常监听, 行为不变)
+  C  env SBT_MTLS_ENABLE=0+CLI=1  -> exit=1 (CLI覆盖env)
+  D  env算法非法无CLI             -> exit=1 (init白名单校验)
+  E  env算法非法+CLI合法+mtls=1   -> exit=1 (算法覆盖env生效)
+AC-4: 不传参数行为不变(B)；dmsbtex_session_test ALL PASS；libobk_session_test 回归过

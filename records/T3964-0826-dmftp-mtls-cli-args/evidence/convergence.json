@@ -1,0 +1,10 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "AC-1: dm-ftp --help 含新参数说明 — evidence: ac-summary", "criteria": ["AC-1"], "evidence_ids": ["ac-summary"]},
+    {"index": 2, "text": "AC-2: 非法值非零退出并输出明确错误 — evidence: ac-summary", "criteria": ["AC-2"], "evidence_ids": ["ac-summary"]},
+    {"index": 3, "text": "AC-3: CLI 覆盖优先级行为级证明(A~E 场景) — evidence: ac-summary", "criteria": ["AC-3"], "evidence_ids": ["ac-summary"]},
+    {"index": 4, "text": "AC-4: 不传参数行为不变+session_test 回归 — evidence: dmsbtex-session-test, ac-summary", "criteria": ["AC-4"], "evidence_ids": ["dmsbtex-session-test", "ac-summary"]},
+    {"index": 5, "text": "AC-5: 无旧签名调用残留 — evidence: ac5-grep", "criteria": ["AC-5"], "evidence_ids": ["ac5-grep"]}
+  ]
+}

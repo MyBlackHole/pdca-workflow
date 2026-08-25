@@ -1,0 +1,3 @@
+# AC-5: grep 确认 dmsbtex 无旧签名调用残留
+grep -rn "sbt_tls_config_init(&cfg)" dmsbtex/ --include=*.c -> 0 处
+全部调用点已带 (cfg, cli_mtls, cli_algorithm) 三参

@@ -1,0 +1,8 @@
+# AC-2: 被删符号残留检查 + 构建/回归健康度
+日期: 2026-08-26
+被删符号 grep（全仓库含 .go）: sec_tls_client_cert_paths / SEC_GLOBAL_CA_CERT_KEY /
+SEC_GLOBAL_CLIENT_CERT_KEY / RPC_TLS_CLIENT_CERT_ENV / RPC_TLS_SERVER_KEY_ENV /
+RPC_TLS_ENABLE_ENV -> 全部 0 残留
+全量 xmake 构建: ok
+mixed_mtls_integration: AC-1~9 全 PASS（含 T3961 锁定用例，证明功能完整混入）
+libobk_session_test: exit=0; dmsbtex_session_test: ALL PASS

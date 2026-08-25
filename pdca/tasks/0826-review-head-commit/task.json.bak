@@ -1,0 +1,29 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3963",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1: 审查报告含三来源拆解与分级发现 — evidence: review-report",
+      "AC-2: 残留检查+构建回归健康度记录 — evidence: health-check",
+      "AC-3: 处置建议可执行（含已推送约束） — evidence: review-report"
+    ],
+    "created_at": "2026-08-25T17:02:01+08:00",
+    "phase": "do",
+    "record": "T3963-0826-review-head-commit",
+    "scenario_type": "review"
+  },
+  "parent": null,
+  "slug": "0826-review-head-commit",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-08-25T17:02:01+08:00",
+    "do": "2026-08-25T17:06:51+08:00",
+    "plan": "2026-08-25T17:02:01+08:00"
+  },
+  "status": "InProgress",
+  "title": "审查 HEAD 提交 004ebafe（T3959+T3961 混合）"
+}
