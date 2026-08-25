@@ -1,0 +1,2 @@
+# AC-1: xmake run -D rpc_net_time_test
+结果: rpc_net_time_test: PASS, exit=0（修复前 FAIL status=512）

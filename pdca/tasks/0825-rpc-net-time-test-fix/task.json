@@ -1,0 +1,41 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3958",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1: rpc_net_time_test PASS 且退出码 0 — evidence: ac1-test-pass, ac1-test-log",
+      "AC-2: 测试按 4B 前缀协议收发无直读直写残留 — evidence: ac2-frame-protocol",
+      "AC-3: e2e 场景矩阵通过证明恢复实现与真实服务端兼容 — evidence: ac3-e2e-matrix"
+    ],
+    "created_at": "2026-08-25T14:20:03+08:00",
+    "phase": "check",
+    "record": "T3958-0825-rpc-net-time-test-fix",
+    "scenario_type": "bugfix",
+    "completed_at": "2026-08-25T14:27:39+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "三项 AC 全过：测试 PASS、协议收发合规、e2e 兼容性证明成立；用户确认",
+      "verdict_id": "T3958-check-v1",
+      "at": "2026-08-25T14:31:00+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "分帧协议+结构体对齐陷阱已具普适性但属一次性适配；可选强化(uiMT校验)记录于 conclusion",
+      "at": "2026-08-25T14:31:30+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0825-rpc-net-time-test-fix",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-25T14:27:39+08:00",
+    "created": "2026-08-25T14:20:03+08:00",
+    "do": "2026-08-25T14:22:12+08:00",
+    "plan": "2026-08-25T14:20:03+08:00"
+  },
+  "status": "Completed",
+  "title": "rpc_net_time_test 适配恢复后的长度前缀协议"
+}

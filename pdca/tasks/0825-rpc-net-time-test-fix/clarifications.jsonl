@@ -1,0 +1,4 @@
+{"at":"2026-08-25T14:20:03+08:00","source":"task_identity","summary":"created with record identity T3958-0825-rpc-net-time-test-fix"}
+{"source":"final_confirmation","summary":"测试适配4B前缀协议+负路径改uiResult语义，不动rpc-net实现，3条AC批准","response":"confirmed","at":"2026-08-25T14:22:12+08:00"}
+{"source":"check_confirmation","summary":"Check confirmed：测试 PASS、前缀协议合规、e2e 兼容性三 AC 全过","response":"confirmed","at":"2026-08-25T14:29:14+08:00"}
+{"source":"knowledge_decision","at":"2026-08-25T14:32:00+08:00","action":"skipped","reason":"结构体对齐/分帧协议适配为通用工程常识，一次性任务；可选强化项已记录 conclusion"}

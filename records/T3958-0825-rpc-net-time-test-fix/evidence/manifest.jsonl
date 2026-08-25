@@ -1,0 +1,5 @@
+{"id":"ac1-test-pass","file":"t3958-ac1.txt","kind":"log","size":110,"digest":"sha256:d7864ea61ec0b01d1bf5c01d621de37412010dbd5673f3fcbfc73a3efcccbcf2","at":"2026-08-25T14:27:04+08:00","criteria":["AC-1"]}
+{"id":"ac1-test-log","file":"t3958-fix2.log","kind":"test","size":1112,"digest":"sha256:9093a088b9ef3e1d61b9cf98d2f562de0991f168f5d06e5b1765e6fa03c0c072","at":"2026-08-25T14:27:04+08:00","criteria":["AC-1"]}
+{"id":"ac2-frame-protocol","file":"t3958-ac2.txt","kind":"report","size":326,"digest":"sha256:8a75c7ca09b763b87debf86c171a072746dfac991c06946c2139a8d3e0d2641e","at":"2026-08-25T14:27:04+08:00","criteria":["AC-2"]}
+{"id":"ac3-e2e-matrix","file":"t3958-e2e.log","kind":"log","size":7936,"digest":"sha256:3d59fd243f0746e099522077328c53b618bb8c5495051c3e3b235d4bbb7dec25","at":"2026-08-25T14:27:05+08:00","criteria":["AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":703,"digest":"sha256:4ded6988a36ac52a58f5884a25c518c231b619ec3d03c78b9632d362ada35de8","at":"2026-08-25T14:27:25+08:00","criteria":["AC-1","AC-2","AC-3"]}

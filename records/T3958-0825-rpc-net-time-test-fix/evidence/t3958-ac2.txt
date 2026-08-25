@@ -1,0 +1,6 @@
+# AC-2: 测试按前缀协议收发
+证据: libs/tests/rpc_net_time_test.c
+- L35 MSG_WAITALL 全量收；L85 prefix=htonl(sizeof(resp)) 响应前缀
+- 请求校验 ntohl(prefix)==sizeof(req)==8 且 uiMT/uiLEN 合法
+- 响应体按 sizeof(msg_get_time_resp_t) 真实布局(含对齐 padding)
+- 无裸 8B/20B 直读直写残留

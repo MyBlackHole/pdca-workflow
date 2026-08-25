@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1: rpc_net_time_test PASS 且退出码 0 — evidence: ac1-test-pass, ac1-test-log",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["ac1-test-pass", "ac1-test-log"]
+    },
+    {
+      "index": 2,
+      "text": "AC-2: 测试按 4B 前缀协议收发无直读直写残留 — evidence: ac2-frame-protocol",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["ac2-frame-protocol"]
+    },
+    {
+      "index": 3,
+      "text": "AC-3: e2e 场景矩阵通过证明恢复实现与真实服务端兼容 — evidence: ac3-e2e-matrix",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["ac3-e2e-matrix"]
+    }
+  ]
+}
