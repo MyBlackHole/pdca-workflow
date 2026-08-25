@@ -42,4 +42,4 @@ Grill 追问结论可靠性：
 - 可选跟进：libs/tests/rpc_handshake_test.c 为引用已删除头文件的死代码，可在清理类任务中移除。
 - 0823 评审遗留的"四套错误码定义归一"已由本任务实质落地（common.h 单一定义+别名），后续新增模块直接引用 common.h 即可。
 
-verdict: {"outcome": "pending", "reason": "awaiting user confirmation", "verdict_id": "T3956-check-v1", "at": "2026-08-25T11:00:00+08:00"}
+verdict: {"outcome": "confirmed", "reason": "用户确认五条 AC 判定与证据强度如实（含 AC-3 dmsbtex/libobk 间接验证标注），修复效果与回归结论成立", "verdict_id": "T3956-check-v1", "at": "2026-08-25T11:03:00+08:00"}

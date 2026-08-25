@@ -12,20 +12,27 @@
       "AC-5: 无绕过 hs_err_str 的裸 %x 握手码打印残留 — evidence: grep-bare-result"
     ],
     "created_at": "2026-08-25T10:02:56+08:00",
-    "phase": "do",
+    "phase": "check",
     "record": "T3956-0825-mtls-handshake-error-message",
-    "scenario_type": "bugfix"
+    "scenario_type": "bugfix",
+    "completed_at": "2026-08-25T10:59:27+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "五条 AC 全部有证据支撑，AC-3 dmsbtex/libobk 间接验证已如实标注；用户确认",
+      "verdict_id": "T3956-check-v1",
+      "at": "2026-08-25T11:03:00+08:00"
+    }
   },
   "parent": null,
   "slug": "0825-mtls-handshake-error-message",
   "states": {
     "act": null,
     "archive": null,
-    "check": null,
+    "check": "2026-08-25T10:59:27+08:00",
     "created": "2026-08-25T10:02:56+08:00",
     "do": "2026-08-25T10:14:47+08:00",
     "plan": "2026-08-25T10:02:56+08:00"
   },
-  "status": "InProgress",
+  "status": "Completed",
   "title": "握手错误码报错信息可读化（rpc/libobk/rdbcomm/dmsbtex 全模块）"
 }

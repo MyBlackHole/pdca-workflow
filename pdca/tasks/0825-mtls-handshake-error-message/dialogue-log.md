@@ -15,3 +15,9 @@
 - 全量回归：e2e 17/17、mixed_mtls_integration AC1-7、rpc_own_handshake_test、rdbcomm/dmsbtex/libobk session tests 全过。
 - 双轴审查 Blocking=0（libs/tls_cert.c 为遗留无关变更未纳入提交）。
 - 证据 9 条登记 + convergence-map 校验 valid=true；commit b531ec02。
+
+## 2026-08-25 Check -> Act
+
+- Ch1-Ch3：AC 逐条对照证据复核、Grill 三问（间接验证/死分支等价/退出码兼容）、convergence 校验 valid=true。
+- Ch4：conclusion.md 落盘（5 条 AC 全 ✅，含 AC-3 间接性如实标注）。
+- Ch5：用户 verdict=confirmed（check_confirmation 留痕）。

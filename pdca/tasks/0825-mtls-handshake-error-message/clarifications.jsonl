@@ -3,3 +3,8 @@
 {"source":"grilling","q":"退出码截断问题是否纳入本任务？","a":"纳入，rpc 退出码语义化为 -2 (shell 254)","at":"$(date -Iseconds)"}
 {"source":"grilling","q":"文案语言？","a":"英文，与现有日志风格一致","at":"$(date -Iseconds)"}
 {"source":"final_confirmation","summary":"四模块握手错误码文案可读化+libs归一hs_err_str+rpc退出码-2，5条AC全部批准","response":"confirmed","at":"2026-08-25T10:14:36+08:00"}
+{"source":"check_confirmation","summary":"Check 结论 confirmed：5 条 AC 全过，AC-3 dmsbtex/libobk 间接验证标注获认可","response":"confirmed","at":"2026-08-25T11:47:07+08:00"}
+{"source":"grilling","q":"知识沉淀质量：结论适用范围？","a":"四模块当前码集；新增码须同步 common.h+hs_err_str 否则 unknown 兜底","at":"2026-08-25T11:50:00+08:00"}
+{"source":"grilling","q":"可复用知识？","a":"错误码→文案归一模式(T0359模式复用)+shell退出码低8位陷阱+静默失败扫描法","at":"2026-08-25T11:50:00+08:00"}
+{"source":"grilling","q":"流程改进？","a":"报错类bug排查清单增加静默失败路径扫描(grep fail=1/goto error 无日志分支)","at":"2026-08-25T11:50:00+08:00"}
+{"source":"knowledge_decision","at":"2026-08-25T11:50:30+08:00","action":"wrote","reason":"归一模式与退出码陷阱跨任务可复用，沉淀至 knowledge/rpc/handshake-error-message-normalization.md"}
