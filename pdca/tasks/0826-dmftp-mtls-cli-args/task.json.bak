@@ -12,20 +12,32 @@
       "AC-5: 无旧签名调用残留 — evidence: ac5-grep"
     ],
     "created_at": "2026-08-25T17:21:27+08:00",
-    "phase": "do",
+    "phase": "act",
     "record": "T3964-0826-dmftp-mtls-cli-args",
-    "scenario_type": "development"
+    "scenario_type": "development",
+    "completed_at": "2026-08-25T17:43:50+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "五条 AC 全过：dm-ftp CLI 参数+锁定语义+兼容性均有行为级证据；用户确认",
+      "verdict_id": "T3964-check-v1",
+      "at": "2026-08-26T09:05:00+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "CLI 覆盖模式为 T3959 同构复用非新知识；四工具参数对照表建议记录于 conclusion",
+      "at": "2026-08-26T09:05:30+08:00"
+    }
   },
   "parent": null,
   "slug": "0826-dmftp-mtls-cli-args",
   "states": {
-    "act": null,
+    "act": "2026-08-25T17:47:15+08:00",
     "archive": null,
-    "check": null,
+    "check": "2026-08-25T17:43:50+08:00",
     "created": "2026-08-25T17:21:27+08:00",
     "do": "2026-08-25T17:22:53+08:00",
     "plan": "2026-08-25T17:21:27+08:00"
   },
-  "status": "InProgress",
+  "status": "Completed",
   "title": "dm-ftp(dmsbtex) 支持 mtls/算法 CLI 参数"
 }
