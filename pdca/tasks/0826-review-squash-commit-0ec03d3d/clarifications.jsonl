@@ -1,0 +1,10 @@
+{"at":"2026-08-26T12:19:22+08:00","source":"task_identity","summary":"created with record identity T3975-0826-review-squash-commit-0ec03d3d"}
+{"source":"direction_confirm","summary":"审查对象为 0ec03d3d 第一方变更，排除 third_party 与 oss/vendor；五维+安全/错误处理双轴报告","response":"confirmed","at":"2026-08-26T12:20:52+08:00"}
+{"source":"final_confirmation","summary":"P6 终审批准：全模块并行审查 + xmake test 实证；报告落盘 review-report.md","response":"confirmed","at":"2026-08-26T12:21:26+08:00"}
+{"source":"grilling","q":"报告结论是否有充分证据支持？","a":"每条发现经 diff 与当前文件全文交叉验证并附行号；CRITICAL 均为确定性逻辑缺陷（恒真条件/双赋值/缺依赖/UAF），不依赖运行时复现即可判定","at":"2026-08-26T13:18+08:00"}
+{"source":"grilling","q":"测试全绿与审查发现矛盾吗？","a":"不矛盾：44 条用例未覆盖 Copy 场景、分片上传、短包注入、Range 开放区间、ARM 链接——恰为发现集中区，属覆盖盲区而非误报","at":"2026-08-26T13:18+08:00"}
+{"source":"check_confirmation","summary":"verdict=confirmed；用户追问发现归属，已澄清：Blocking 主体 3C+19H 为本次引入，UAF/serial 等 4 条既有债务被放大","response":"confirmed","at":"2026-08-26T13:34:25+08:00"}
+{"source":"user_meta_feedback","captured":true,"summary":"与本次提交修改有关的是哪些——要求区分本次引入 vs 既有债务，已用 git log -L 验证后澄清","at":"2026-08-26T13:34+08:00"}
+{"source":"grilling","q":"结论的适用范围与限制？","a":"适用于大提交合入前的清单式审查；静态审查不能替代运行时验证，并发时序类发现需修复后回归确认","at":"2026-08-26T13:36+08:00"}
+{"source":"grilling","q":"哪些可提炼为可复用知识？","a":"「测试全绿≠无 Blocking：负路径/新建文件场景盲区」规律与「git log -L 归属验证法」对后续审查任务直接可复用","at":"2026-08-26T13:36+08:00"}
+{"source":"knowledge_decision","at":"2026-08-26T13:35:26+08:00","action":"wrote","reason":"git log -L 归属验证与测试盲区模式经本次实证有效"}

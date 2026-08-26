@@ -1,0 +1,3 @@
+{"id":"review-report","file":"review-report.md","kind":"review-report","size":11221,"digest":"sha256:a7a49f67504503f7fefe0fdaee55983a18a11ff5ccd228a1c8b8c5e52948acd1","at":"2026-08-26T13:15:25+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":289,"digest":"sha256:e40c8801aca7a7c56db4a746cb8b787e1b97214e7e52a0ada6bf9c3cfb03d528","at":"2026-08-26T13:15:42+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"review-appendix","file":"review-appendix.md","kind":"review-appendix","size":14618,"digest":"sha256:18d548966070c335ef20af51a3ebd28ebe9be099b9c899dc8b9020e76871724a","at":"2026-08-26T13:18:11+08:00","criteria":["AC-2"]}
