@@ -1,0 +1,27 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3978",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "注册表落地：单一参数表驱动 ini 解析分发与 show 全量输出，配置键盘点表归零散定义"
+    ],
+    "created_at": "2026-08-26T14:29:21+08:00",
+    "phase": "plan",
+    "record": "T3978-0827-rdb-config-param-registry",
+    "scenario_type": "development"
+  },
+  "parent": "T3977",
+  "slug": "0827-rdb-config-param-registry",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-08-26T14:29:21+08:00",
+    "do": null,
+    "plan": "2026-08-26T14:29:21+08:00"
+  },
+  "status": "Pending",
+  "title": "跟进：rdb-config 集中式参数注册表改造（键/层级/类型/默认值/说明五元组驱动解析与 show 全量输出）"
+}
