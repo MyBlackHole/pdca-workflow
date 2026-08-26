@@ -3,12 +3,12 @@
   "dependencies": [],
   "id": "T3972",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-26T11:01:58+08:00",
-    "phase": "check",
+    "phase": "archive",
     "record": "T3972-0826-oss-go-test-xmake",
     "scenario_type": "development",
     "completed_at": "2026-08-26T11:27:31+08:00",
@@ -17,13 +17,18 @@
       "reason": "五条 AC 证据齐备，收敛 valid=True，双轴审查 Blocking=0",
       "verdict_id": "T3972-0826-oss-go-test-xmake-check",
       "at": "2026-08-26T11:31:30+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "知识沉淀更新 knowledge/build-config/go-module-in-xmake.md（go test -c 接入模式、xmake test 子命令语法坑位）；CI 语法错误经用户裁决仅留痕不立项；T3972 闭环归档",
+      "at": "2026-08-26T11:35:30+08:00"
     }
   },
   "parent": null,
   "slug": "0826-oss-go-test-xmake",
   "states": {
-    "act": null,
-    "archive": null,
+    "act": "2026-08-26T11:29:13+08:00",
+    "archive": "2026-08-26T11:30:12+08:00",
     "check": "2026-08-26T11:27:31+08:00",
     "created": "2026-08-26T11:01:58+08:00",
     "do": "2026-08-26T11:24:42+08:00",
