@@ -1,1 +1,39 @@
-{"children":[],"dependencies":[],"id":"T3980","meta":{"active":true,"convergence":["task identity is unique and immutable"],"created_at":"2026-08-26T16:40:00+08:00","phase":"act","record":"T3980-0826-rdb-config-production-review","scenario_type":"review","completed_at":"2026-08-26T16:52:21+08:00","verdict":{"outcome":"confirmed","reason":"审查结论成立：rdb-config 存在 1 个 HIGH 级确定性缺陷（INT 安全开关 env 层 atoi 导致审计/鉴权 fail-open），不满足 CRITICAL/HIGH=0 硬门槛，判定不满足生产使用级别（HIGH 评级依赖 env 受信假设，若组织接受 env 受信可降级为 MEDIUM）","verdict_id":"T3980-VERDICT-001","at":"2026-08-26T16:54:19+08:00"},"disposition":{"outcome":"projected","reason":"审查结论已沉淀为可复用知识（knowledge/rdb-config/int-security-switch-failopen.md：INT 型安全开关须 fail-closed），并创建跟进任务整改 HIGH-1；清理类项 MEDIUM-2/3、LOW-1/2/3 归并 0826-cleanup-rdb-config-deadcode。","at":"2026-08-26T17:00:07+08:00"}},"parent":null,"slug":"0826-rdb-config-production-review","states":{"act":"2026-08-26T16:58:24+08:00","archive":null,"check":"2026-08-26T16:52:21+08:00","created":"2026-08-26T16:40:00+08:00","do":"2026-08-26T16:44:02+08:00","plan":"2026-08-26T16:40:00+08:00"},"status":"Completed","title":"审查 rdb-config 是否满足生产使用级别"}
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3980",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-26T16:40:00+08:00",
+    "phase": "archive",
+    "record": "T3980-0826-rdb-config-production-review",
+    "scenario_type": "review",
+    "completed_at": "2026-08-26T16:52:21+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "审查结论成立：rdb-config 存在 1 个 HIGH 级确定性缺陷（INT 安全开关 env 层 atoi 导致审计/鉴权 fail-open），不满足 CRITICAL/HIGH=0 硬门槛，判定不满足生产使用级别（HIGH 评级依赖 env 受信假设，若组织接受 env 受信可降级为 MEDIUM）",
+      "verdict_id": "T3980-VERDICT-001",
+      "at": "2026-08-26T16:54:19+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "审查结论已沉淀为可复用知识（knowledge/rdb-config/int-security-switch-failopen.md：INT 型安全开关须 fail-closed），并创建跟进任务整改 HIGH-1；清理类项 MEDIUM-2/3、LOW-1/2/3 归并 0826-cleanup-rdb-config-deadcode。",
+      "at": "2026-08-26T17:00:07+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0826-rdb-config-production-review",
+  "states": {
+    "act": "2026-08-26T16:58:24+08:00",
+    "archive": "2026-08-26T17:02:12+08:00",
+    "check": "2026-08-26T16:52:21+08:00",
+    "created": "2026-08-26T16:40:00+08:00",
+    "do": "2026-08-26T16:44:02+08:00",
+    "plan": "2026-08-26T16:40:00+08:00"
+  },
+  "status": "Completed",
+  "title": "审查 rdb-config 是否满足生产使用级别"
+}
