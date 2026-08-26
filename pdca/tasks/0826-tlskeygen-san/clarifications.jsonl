@@ -1,0 +1,9 @@
+{"at":"2026-08-26T11:38:29+08:00","source":"task_identity","summary":"created with record identity T3973-0826-tlskeygen-san"}
+{"source":"direction_confirm","summary":"方向修订后确认：默认 SAN 回环集(DNS:localhost,IP:127.0.0.1,IP:::1)+--san 完全覆盖+非法 fail-fast；CA 不受信不处理(SSL_CERT_FILE 验证)；seam: libs/tests/tls_keygen_test.c -> libs/tls_keygen.c 确认","response":"confirmed","at":"2026-08-26T11:46:48+08:00"}
+{"source":"final_confirmation","summary":"终审批准：默认回环 SAN 集 + --san 覆盖 + fail-fast；AC-1~AC-4 checkbox 入 PRD；bugfix 单任务","response":"confirmed","at":"2026-08-26T11:47:34+08:00"}
+{"source":"grilling","q":"结论是否有充分证据支持","a":"六条登记证据：证书内容断言(AC-1/2)、端到端 ossutil(AC-3，修复前后报错对比)、inspect 三态、全量回归两份(AC-4)","at":"2026-08-26T12:02:30+08:00"}
+{"source":"grilling","q":"测试是否覆盖关键路径","a":"SAN 写入/覆盖/非法拒绝/inspect 可见性/端到端校验链全通；sm2 链 SAN 能力随 algo 无关参数天然获得但未专项验证（留痕）","at":"2026-08-26T12:02:30+08:00"}
+{"source":"grilling","q":"是否有未暴露 trade-off","a":"默认回环集对生产域名场景需显式 --san（usage 已注明）；旧证书需重签；CA 信任分发未处理（用户裁决）","at":"2026-08-26T12:02:30+08:00"}
+{"source":"check_confirmation","summary":"用户确认 T3973 验收结论 confirmed","response":"confirmed","at":"2026-08-26T12:05:00+08:00"}
+{"source":"grilling","q":"可提炼的复用知识","a":"1) 证书工具签发 host/server 证书必须写 SAN(RFC 6125 客户端唯一匹配依据)，CN fallback 已废弃 2) 默认回环集+显式覆盖是证书工具的安全默认模式 3) inspect 类自检命令须与新扩展同步演进——写入 knowledge/tls/host-cert-san-mandatory.md","at":"2026-08-26T12:06:30+08:00"}
+{"source":"knowledge_decision","at":"2026-08-26T12:07:00+08:00","action":"wrote","reason":"SAN 缺失导致客户端校验失败是证书工具共性缺陷，rpc-keygen 等同类工具与后续证书功能可直接复用该结论"}

@@ -1,0 +1,4 @@
+# AC-1/AC-2 证书内容与 fail-fast 验证
+[默认 sign] Subject Alternative Name: DNS:localhost, IP Address:127.0.0.1, IP Address:::1
+[--san 覆盖 "DNS:host.example.com,IP:10.0.0.5,DNS:localhost"] 条目与传入顺序一致
+[--san "bad-entry"] exit=1, Error: invalid SAN 'bad-entry' (expected comma-separated DNS:<name>/IP:<addr> entries)；证书文件未产出

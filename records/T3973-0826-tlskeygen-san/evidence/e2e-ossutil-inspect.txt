@@ -1,0 +1,13 @@
+# AC-3 端到端验证 2026-08-26（tls-keygen 默认 SAN 重签 host 证书）
+openssl x509 -in ed25519_host.crt -noout -text | grep -A1 Alternative:
+    X509v3 Subject Alternative Name:
+        DNS:localhost, IP Address:127.0.0.1, IP Address:0:0:0:0:0:0:0:1
+aio-oss server --tls --cert-path <新host.crt> --key-path <新host.key> --port 8080
+curl --cacert /opt/aio/cfg/certs/ed25519_ca.crt → HTTP=200
+SSL_CERT_FILE=/opt/aio/cfg/certs/ed25519_ca.crt ossutil -e https://127.0.0.1:8080 ... ls oss://test1
+→ Object Number is: 0 / 0.042535(s) elapsed（修复前报 x509 IP SANs 错误）
+
+# inspect 展示验证（用户反馈补齐）
+含默认集证书: SAN (3): DNS:localhost, IP:127.0.0.1, IP:::1
+自定义 --san "DNS:host.example.com,IP:10.0.0.5": SAN (2) 与传入一致
+旧无 SAN 证书: SAN: (none) + Warning 提示客户端校验将失败
