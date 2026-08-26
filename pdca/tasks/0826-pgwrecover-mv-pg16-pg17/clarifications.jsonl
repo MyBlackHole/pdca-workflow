@@ -3,3 +3,4 @@
 {"round": 1, "question": "本次任务范围?", "answer": "先 PG16, 再开 PG17 任务", "recommended": "同时 PG16+PG17", "source": "grilling", "at": "2026-08-26T11:11:01.658568+08:00", "captured": false}
 {"round": 1, "question": "PG16 源码获取方式?", "answer": "官方 tarball 提取", "recommended": "官方 tarball 提取", "source": "grilling", "at": "2026-08-26T11:11:01.658574+08:00", "captured": false}
 {"round": 1, "question": "每版本端到端验收深度?", "answer": "btree+GIN 端到端一致", "recommended": "btree+GIN 端到端一致", "source": "grilling", "at": "2026-08-26T11:11:01.658579+08:00", "captured": false}
+{"source":"final_confirmation","summary":"pgwrecover 支持 PG16 多版本重放: 抽取 pg_common/ 共享内核(ADR-0011), PG16 tarball vendored 到 src/pg/pg16/, 构建按目标版本选择, 分发缝注册 PG16; 验收 btree+GIN 端到端一致, PG18 9 passed 不变, 0 警告; PG17 另开任务。AC-1..AC-6 checkbox。","response":"confirmed","at":"2026-08-26T11:14:46+08:00"}

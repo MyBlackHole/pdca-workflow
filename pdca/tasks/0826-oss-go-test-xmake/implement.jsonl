@@ -1,0 +1,4 @@
+{"file": "knowledge/build-config/go-module-in-xmake.md", "reason": "多包 Go module 接入 xmake 的 on_build 模式与 targetfile 相对路径陷阱；本任务测试 target 复用同一模式（POC 已验证）", "action": "read", "at": "2026-08-26T11:24:09+08:00"}
+{"file": "oss/xmake.lua", "reason": "追加 aio-oss-go-test target：go test -c 编译 + add_tests(default) 接入 xmake test", "action": "extend", "at": "2026-08-26T11:24:09+08:00"}
+{"file": "oss/test/xmake_go_test.sh", "reason": "新建验收脚本：过滤运行 aio-oss-go-test/default 并校验通过", "action": "create", "at": "2026-08-26T11:24:09+08:00"}
+{"file": ".gitlab-ci.yml", "reason": "只读参照：test_job 命令语法错误已登记不在本任务修复", "action": "read", "at": "2026-08-26T11:24:09+08:00"}

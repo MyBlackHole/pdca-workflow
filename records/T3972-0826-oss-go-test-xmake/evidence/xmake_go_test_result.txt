@@ -1,0 +1,6 @@
+[0;32m[PASS][0m xmake test aio-oss-go-test/default 通过
+[0;32m[PASS][0m 失败注入可见：exit=255 且条目报 failed
+[0;32m[PASS][0m 移除注入后恢复 passed
+----------------------------------------
+RESULT: ALL PASS
+SCRIPT_EXIT=0

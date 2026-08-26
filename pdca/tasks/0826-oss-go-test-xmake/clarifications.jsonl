@@ -1,1 +1,10 @@
 {"at":"2026-08-26T11:01:58+08:00","source":"task_identity","summary":"created with record identity T3972-0826-oss-go-test-xmake"}
+{"source":"direction_confirm","summary":"方向确认：go test -c 编译 runner + add_tests 接入 xmake test；set_default(false)；范围仅 ./cmd；CI 不动（语法问题另行登记）；seam: xmake_go_test.sh/build_oss.sh -> oss/xmake.lua","response":"confirmed","at":"2026-08-26T11:23:05+08:00"}
+{"source":"final_confirmation","summary":"终审批准：go test -c + add_tests 接入；AC-1~AC-5 checkbox 入 PRD；CI 语法问题另行登记不修","response":"confirmed","at":"2026-08-26T11:24:41+08:00"}
+{"source":"grilling","q":"结论是否有充分证据支持","a":"五条登记证据覆盖 AC-1~AC-5：全量运行(xmake-test-full)、失败可见性三步验证(xmake-go-script)、默认构建隔离(build-default/build-regression-t3972)、直跑一致性(go-test-direct)","at":"2026-08-26T11:29:00+08:00"}
+{"source":"grilling","q":"测试是否覆盖关键路径","a":"接入正确性(passed条目+44汇总计数)、失败传播(注入→failed→exit非零)、默认构建隔离三条关键路径均有断言；xmake 输出格式契约脆弱性以 ANSI 剥离缓解并留痕","at":"2026-08-26T11:29:00+08:00"}
+{"source":"grilling","q":"是否有未暴露 trade-off","a":"CI test_job 命令语法错误未修(用户裁决)，本任务接入的 CI 生效依赖后续单独修正；已在 PRD 备注/conclusion 留痕","at":"2026-08-26T11:29:00+08:00"}
+{"source":"user_meta_feedback","captured":true,"q":"CI test_job 语法错误处置","a":"仅留痕不立项：用户明确选择保留在 conclusion 留痕，不创建跟进任务","at":"2026-08-26T11:32:00+08:00"}
+{"source":"check_confirmation","summary":"用户确认 T3972 验收结论 confirmed；CI 语法错误仅留痕不立项","response":"confirmed","at":"2026-08-26T11:32:10+08:00"}
+{"source":"grilling","q":"可提炼的复用知识","a":"1) go test -c 编译 runner + add_tests 是 Go 项目接入 xmake test 的通用模式 2) xmake test 子命令必须前置(--root/-y 后置)，否则 test 被当作 target 名报错 3) 过滤语法为 target/testname——追加至 knowledge/build-config/go-module-in-xmake.md","at":"2026-08-26T11:34:00+08:00"}
+{"source":"knowledge_decision","at":"2026-08-26T11:34:30+08:00","action":"wrote","reason":"Go 测试接入 xmake test 模式与子命令语法坑位对仓库其他 Go 工具(s3tools/bwlimit)有直接复用价值"}

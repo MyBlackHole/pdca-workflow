@@ -63,6 +63,32 @@ end)
 projectdir 本身，`os.rm` 将递归删除整个工作区目录。已验证可导致 git worktree 整个丢失。
 如需清理，交给 xmake 默认行为或使用绝对路径 + 判空守卫。
 
+## Go 单测接入 xmake test（T3972）
+
+`go test` 无法直接作为 xmake target 运行，但 `go test -c` 可将测试编译为独立可执行文件，
+退出码天然匹配 `add_tests` 的判定语义——与 C 项目测试模型完全一致：
+
+```lua
+target("aio-oss-go-test")
+    set_default(false)          -- 不参与默认构建，测试产物不进发布链路
+    set_kind("binary")
+    on_build(function (target)
+        local oss_dir = path.join(os.projectdir(), "oss")
+        local out = path.join(os.projectdir(), target:targetfile())
+        os.mkdir(path.directory(out))
+        os.vrunv("go", {"test", "-c", "-mod=vendor", "-o", out, "./cmd"}, {curdir = oss_dir})
+    end)
+    add_tests("default", {realtime_output = true})
+```
+
+**xmake test 子命令语法坑位（v3.1.0 实测）**：
+- 子命令必须前置：`xmake test --root -y`；写成 `xmake --root -y test` 时
+  `test` 会被当作 build 的 target 名报错 `'test' is not a valid target name`（exit=255）。
+  注意 .gitlab-ci.yml 历史写法即为此错误形式。
+- 过滤语法为 `"target/testname"`（如 `"aio-oss-go-test/default"`）；
+  仅传 target 名不匹配任何测试会输出 `nothing to test` 且 exit=0。
+- 汇总输出形如 `N% tests passed, M test(s) failed out of K`，验收脚本可 grep 该行与条目行。
+
 ## 适用范围
 
 - 验证环境：linux x86_64，Go 1.26.5，xmake 3.1.0。
