@@ -1,0 +1,2 @@
+{"source":"final_confirmation","summary":"从 pg16/pg18 提取 7 个公共 .c 到 src/pg/common/，版本目录仅保留差异文件，分离而非 #ifdef；验证 pg16 replay + pg18 regression + 0 warnings","response":"confirmed","at":"2026-08-26T17:20:00+08:00"}
+{"source":"check_confirmation","summary":"6/6 AC 通过，消除 ~3500 行重复代码，10 passed + 0 warnings","response":"confirmed","at":"2026-08-26T17:30:00+08:00"}

@@ -1,0 +1,3 @@
+{"file":"knowledge/rdb-config/int-security-switch-failopen.md","reason":"本次整改直接依据的设计原则：INT 型安全开关须 fail-closed，审计/鉴权应改 CFG_TYPE_BOOL","action":"read","at":"2026-08-26T17:05:00+08:00"}
+{"file":"knowledge/config/compile-time-param-id-binding.md","reason":"param 注册表（g_param_table）结构与 sec_get_* / config_dump_params 调用约定参考","action":"read","at":"2026-08-26T17:05:00+08:00"}
+{"file":"knowledge/rdb-config/audit-findings.md","reason":"T0369 F1-F8 回归基线，确认 F5 严格整数解析契约与 F9 范围（本任务不修 F9）","action":"read","at":"2026-08-26T17:05:00+08:00"}
