@@ -3,12 +3,12 @@
   "dependencies": [],
   "id": "T3978",
   "meta": {
-    "active": false,
+    "active": true,
     "convergence": [
       "注册表落地：17 键五元组单一来源 + dump 接口 + 宏防漂移测试，xmake test 45/45 零回归"
     ],
     "created_at": "2026-08-26T14:29:21+08:00",
-    "phase": "archive",
+    "phase": "act",
     "record": "T3978-0827-rdb-config-param-registry",
     "scenario_type": "development",
     "completed_at": "2026-08-26T15:16:27+08:00",
@@ -28,7 +28,7 @@
   "slug": "0827-rdb-config-param-registry",
   "states": {
     "act": "2026-08-26T15:21:10+08:00",
-    "archive": "2026-08-26T15:21:11+08:00",
+    "archive": null,
     "check": "2026-08-26T15:16:27+08:00",
     "created": "2026-08-26T14:29:21+08:00",
     "do": "2026-08-26T15:07:04+08:00",

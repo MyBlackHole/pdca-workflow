@@ -1,0 +1,2 @@
+{"id":"impl-evidence","file":"t3978-impl-evidence.md","kind":"implementation-log","size":1057,"digest":"sha256:653306c1db6bd293ceeb64f68c823a738311c3dac5feb87b6f2d35831652f7fd","at":"2026-08-26T15:16:09+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":305,"digest":"sha256:cd37ec0404df75584555c35d88c3cfb1f4ef6eee261b17deae2773dcd7494234","at":"2026-08-26T15:16:10+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}

@@ -1,1 +1,4 @@
 {"at":"2026-08-26T14:29:21+08:00","source":"task_identity","summary":"created with record identity T3978-0827-rdb-config-param-registry"}
+{"source":"direction_confirm","summary":"承 T3977 §5：注册表最小闭环（8 安全键+dump 接口+防漂移测试），不改 30+ 调用点，不含 reload 修复","response":"confirmed","at":"2026-08-26T14:34:32+08:00"}
+{"source":"final_confirmation","summary":"经方案讨论(6决策点)+设计评审+自我审查(6处修正)+代码级评审后批准：四文件修改、17键注册表、9用例TDD","response":"confirmed","at":"2026-08-26T15:07:04+08:00"}
+{"source":"check_confirmation","summary":"verdict=confirmed：AC×4 独立复核过、dump 输出实证 2790/3044、45/45 零回归","response":"confirmed","at":"2026-08-26T15:20:36+08:00"}
