@@ -8,7 +8,7 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-26T17:00:07+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T3981-0826-fix-int-sec-switch-failopen",
     "scenario_type": "development",
     "verdict": {
@@ -16,12 +16,17 @@
       "reason": "T3981 落实 T3980 HIGH-1：两参数升 CFG_TYPE_BOOL，sec_walk_int env/def 层改 parse_strict_int 返回 -1（sec_walk_bool def 层一并硬化）；6 处消费者改 sec_get_bool 并 fail-closed（解析路径响亮 return -1/EXIT_FAILURE，谓词路径 -1!=0 天然 fail-closed 不掩盖错误）；Do 阶段补抓漏列消费者与第四个测试文件；param_registry_test 9/9、rdb_config_test 17/17、logger_test 11/11、rpc_config_test 4/4 全绿。AC-1~AC-7 全部满足。",
       "verdict_id": "T3981-VERDICT-1",
       "at": "2026-08-26T17:34:00+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "T3981 即为 T3980 HIGH-1 的整改落地：代码修复已完成并经 4 套测试（param_registry_test 9/9、rdb_config_test 17/17、logger_test 11/11、rpc_config_test 4/4）验证；可复用范式已沉淀至 knowledge/rdb-config/security-bool-failclosed.md。HIGH-1 已闭环，无后续跟随任务。",
+      "at": "2026-08-26T17:36:30+08:00"
     }
   },
   "parent": "T3980",
   "slug": "0826-fix-int-sec-switch-failopen",
   "states": {
-    "act": null,
+    "act": "2026-08-26T17:34:52+08:00",
     "archive": null,
     "check": "2026-08-26T17:32:21+08:00",
     "created": "2026-08-26T17:00:07+08:00",
