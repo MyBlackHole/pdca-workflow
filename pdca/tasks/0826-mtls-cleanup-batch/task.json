@@ -3,7 +3,7 @@
   "dependencies": [],
   "id": "T3967",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "AC-1: ccache LRU 淘汰与 CCACHE_FULL 行为 — evidence: tls-cert-test, ac-summary",
       "AC-2: 四模块解析归一 hs_algorithm_config_resolve 且锁定回归过 — evidence: hs-err-test, mixed-mtls-integration, ac-summary",
@@ -13,7 +13,7 @@
       "AC-6: e2e 场景矩阵 19/19 — evidence: e2e-matrix"
     ],
     "created_at": "2026-08-25T18:23:51+08:00",
-    "phase": "check",
+    "phase": "archive",
     "record": "T3967-0826-mtls-cleanup-batch",
     "scenario_type": "development",
     "completed_at": "2026-08-25T18:54:21+08:00",
@@ -32,8 +32,8 @@
   "parent": null,
   "slug": "0826-mtls-cleanup-batch",
   "states": {
-    "act": null,
-    "archive": null,
+    "act": "2026-08-26T09:36:35+08:00",
+    "archive": "2026-08-26T09:36:35+08:00",
     "check": "2026-08-25T18:54:21+08:00",
     "created": "2026-08-25T18:23:51+08:00",
     "do": "2026-08-25T18:54:21+08:00",
