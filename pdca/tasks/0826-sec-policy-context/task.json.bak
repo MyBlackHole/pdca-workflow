@@ -8,7 +8,7 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-26T09:40:24+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T3968-0826-sec-policy-context",
     "scenario_type": "development",
     "completed_at": "2026-08-26T10:29:27+08:00",
@@ -17,12 +17,17 @@
       "reason": "六条 AC 均有登记证据支撑；Grill 两项否决（reload 刷新语义、补单测）已修复闭环并先红后绿锁定",
       "verdict_id": "T3968-check-verdict-001",
       "at": "2026-08-26T10:31:03+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "进程上下文持有模式已沉淀 knowledge/rdb-config/process-context-held-switches.md，供后续配置收敛任务复用",
+      "at": "2026-08-26T10:33:31+08:00"
     }
   },
   "parent": null,
   "slug": "0826-sec-policy-context",
   "states": {
-    "act": null,
+    "act": "2026-08-26T10:31:03+08:00",
     "archive": null,
     "check": "2026-08-26T10:29:27+08:00",
     "created": "2026-08-26T09:40:24+08:00",
