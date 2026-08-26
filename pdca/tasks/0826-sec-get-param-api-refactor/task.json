@@ -3,12 +3,12 @@
   "dependencies": [],
   "id": "T3979",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "sec_resolve_* 零残留，sec_get_*(id) 全面接管解析，14 条目注册表编译期绑定，45/45 零回归"
     ],
     "created_at": "2026-08-26T15:33:30+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T3979-0826-sec-get-param-api-refactor",
     "scenario_type": "development",
     "verdict": {
@@ -28,7 +28,7 @@
   "slug": "0826-sec-get-param-api-refactor",
   "states": {
     "act": "2026-08-26T16:33:09+08:00",
-    "archive": null,
+    "archive": "2026-08-26T16:35:59+08:00",
     "check": "2026-08-26T16:14:00+08:00",
     "created": "2026-08-26T15:33:30+08:00",
     "do": "2026-08-26T15:37:07+08:00",

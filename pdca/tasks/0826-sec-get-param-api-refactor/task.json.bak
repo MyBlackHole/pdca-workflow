@@ -8,7 +8,7 @@
       "sec_resolve_* 零残留，sec_get_*(id) 全面接管解析，14 条目注册表编译期绑定，45/45 零回归"
     ],
     "created_at": "2026-08-26T15:33:30+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T3979-0826-sec-get-param-api-refactor",
     "scenario_type": "development",
     "verdict": {
@@ -17,12 +17,17 @@
       "verdict_id": "T3979-verdict-confirmed-20260826",
       "at": "2026-08-26T16:35:00+08:00"
     },
-    "completed_at": "2026-08-26T16:14:00+08:00"
+    "completed_at": "2026-08-26T16:14:00+08:00",
+    "disposition": {
+      "outcome": "projected",
+      "reason": "枚举 ID 编译期绑定范式与四层解析链静态描述模式已沉淀为可复用知识（knowledge/config/compile-time-param-id-binding.md）；代码侧注释字面残留已清理并提交 cac58af5；无新增架构改进项需立项（reload/rpc show 等按 PRD 范围外）",
+      "at": "2026-08-26T16:40:00+08:00"
+    }
   },
   "parent": null,
   "slug": "0826-sec-get-param-api-refactor",
   "states": {
-    "act": null,
+    "act": "2026-08-26T16:33:09+08:00",
     "archive": null,
     "check": "2026-08-26T16:14:00+08:00",
     "created": "2026-08-26T15:33:30+08:00",
