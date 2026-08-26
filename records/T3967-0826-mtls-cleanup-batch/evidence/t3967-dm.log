@@ -1,0 +1,50 @@
+  > replace XBSA_VERSION -> 1.1.1.7
+[0mgenerating xbsa/src/version.in ... [38;2;0;255;0;1mok[0m
+  > replace OSS_VERSION -> 1.0.0.0
+[0mgenerating oss/version.in ... [38;2;0;255;0;1mok[0m
+  > replace XBSA_VERSION -> 1.1.1.7
+[0mgenerating xbsa/src/version.in ... [38;2;0;255;0;1mok[0m
+  > replace S3TOOLS_VERSION_OLD -> 1.5.0.8
+[0mgenerating huanweicloun-sdk-s3-data-backup/my-fuse/version.in ... [38;2;0;255;0;1mok[0m
+  > replace S3TOOL_VERSION_OLD -> 1.5.0.8
+[0mgenerating s3-tool/version.in ... [38;2;0;255;0;1mok[0m
+  > replace S3TOOLS_VERSION_OLD -> 1.5.0.8
+[0mgenerating huanweicloun-sdk-s3-data-backup/my-fuse/version.in ... [38;2;0;255;0;1mok[0m
+  > replace FSBACKUP_KERNEL_VERSION -> 3.3.1.6
+[0mgenerating version.in ... [38;2;0;255;0;1mok[0m
+  > replace S3TOOLS_VERSION -> 1.0.1.4
+[0mgenerating s3tools/s3file/version.in ... [38;2;0;255;0;1mok[0m
+  > replace BWLIMIT_VERSION -> 1.0.0.1
+[0mgenerating bwlimit/version.in ... [38;2;0;255;0;1mok[0m
+  > replace S3TOOLS_VERSION -> 1.0.1.4
+[0mgenerating s3tools/s3mount/version.in ... [38;2;0;255;0;1mok[0m
+[0m[2mchecking for flags (-Wl,-rpath=@loader_path) ... [38;2;0;255;0;1mok[0m
+[0m[2m> g++ "-Wl,-rpath=@loader_path" "-m64" "-m64"[0m
+[PASS] dm algorithm exact mapping
+[2026-08-25 18:53:31]|Error|dmsbtex/network.c:112 sbt_tls_config_init|139735103013824| tls config: invalid SBT_MTLS_ENABLE value (expect "0"/"1")
+[2026-08-25 18:53:31]|Error|dmsbtex/network.c:112 sbt_tls_config_init|139735103013824| tls config: invalid SBT_MTLS_ENABLE value (expect "0"/"1")
+[2026-08-25 18:53:31]|Error|dmsbtex/network.c:112 sbt_tls_config_init|139735103013824| tls config: invalid SBT_MTLS_ENABLE value (expect "0"/"1")
+[2026-08-25 18:53:31]|Error|dmsbtex/network.c:121 sbt_tls_config_init|139735103013824| tls config: unknown tls_algorithm
+[2026-08-25 18:53:31]|Error|dmsbtex/network.c:121 sbt_tls_config_init|139735103013824| tls config: unknown tls_algorithm
+[2026-08-25 18:53:31]|Error|dmsbtex/network.c:121 sbt_tls_config_init|139735103013824| tls config: unknown tls_algorithm
+[PASS] sbt_tls_config_init fail-closed
+[PASS] plain zero-handshake passthrough
+[PASS] forced mTLS upgrade
+[2026-08-25 18:53:31]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|139735103013824| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_SM4_GCM_SM3 ca=/nonexistent/certs/sm2_ca.crt cert=/nonexistent/certs/sm2_host.crt key=/nonexistent/certs/sm2_host.key
+[2026-08-25 18:53:31]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|139735103013824| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/nonexistent/certs/ed25519_ca.crt cert=/nonexistent/certs/ed25519_host.crt key=/nonexistent/certs/ed25519_host.key
+[PASS] bad cert_dir prepare fail
+[2026-08-25 18:53:31]|Error|dmsbtex/network.c:214 dm_server_handshake|139735068571328| handshake: no TLS context, reject
+[2026-08-25 18:53:31]|Error|dmsbtex/network.c:173 sbt_session_client_init|139735103013824| handshake rejected by server: server has no mTLS capability but client requested TLS (fd=7)
+[PASS] no-downgrade reject
+[2026-08-25 18:53:31]|Error|dmsbtex/network.c:228 dm_server_handshake|139735068571328| handshake: algorithm 0x0000 rejected by server lock (locked=0x0002)
+[2026-08-25 18:53:31]|Error|dmsbtex/network.c:228 dm_server_handshake|139735068571328| handshake: algorithm 0xffff rejected by server lock (locked=0x0002)
+[PASS] malformed algorithm fail-closed
+[PASS] DM_HS_ERR_CA_CN reject code present
+[2026-08-25 18:53:31]|Error|dmsbtex/network.c:228 dm_server_handshake|139735068571328| handshake: algorithm 0x0001 rejected by server lock (locked=0x0002)
+[PASS] T3961 algorithm-lock reject mismatched
+[PASS] AC-1 init_sbt_config mtls enabled+AES
+[PASS] AC-2a init_sbt_config mtls disabled+SM4
+[PASS] AC-2b init_sbt_config keys-absent unset
+[PASS] AC-3a init_sbt_config invalid mtls fail-closed
+[PASS] AC-3b init_sbt_config invalid algorithm fail-closed
+dmsbtex_session_test: ALL PASS

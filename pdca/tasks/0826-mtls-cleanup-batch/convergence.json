@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "AC-1: ccache LRU 淘汰与 CCACHE_FULL 行为 — evidence: tls-cert-test, ac-summary", "criteria": ["AC-1"], "evidence_ids": ["tls-cert-test", "ac-summary"]},
+    {"index": 2, "text": "AC-2: 四模块解析归一 hs_algorithm_config_resolve 且锁定回归过 — evidence: hs-err-test, mixed-mtls-integration, ac-summary", "criteria": ["AC-2"], "evidence_ids": ["hs-err-test", "mixed-mtls-integration", "ac-summary"]},
+    {"index": 3, "text": "AC-3: ini key 别名双向兼容 — evidence: rdb-config-test", "criteria": ["AC-3"], "evidence_ids": ["rdb-config-test"]},
+    {"index": 4, "text": "AC-4: SBT_* 宏单源+全量构建通过 — evidence: dmsbtex-session-test, libobk-session-test, ac-summary", "criteria": ["AC-4"], "evidence_ids": ["dmsbtex-session-test", "libobk-session-test", "ac-summary"]},
+    {"index": 5, "text": "AC-5: 重复解析治理=调用方持有结果模式（无通用缓存，按用户裁定） — evidence: ac-summary", "criteria": ["AC-5"], "evidence_ids": ["ac-summary"]},
+    {"index": 6, "text": "AC-6: e2e 场景矩阵 19/19 — evidence: e2e-matrix", "criteria": ["AC-6"], "evidence_ids": ["e2e-matrix"]}
+  ]
+}

@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.7, pytest-9.0.3, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /home/black/Documents/database_转换_parquet
+plugins: examples-0.0.18, inline-snapshot-0.32.6, cov-7.1.0, xdist-3.8.0, asyncio-1.4.0, anyio-4.14.2, trio-0.8.0, typeguard-4.6.0, hypothesis-6.165.5
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 1 item
+
+tests/pgwrecover/test_btree_e2e.py::test_multi_index_mixed PASSED        [100%]
+
+============================== 1 passed in 8.98s ===============================

@@ -5,23 +5,40 @@
   "meta": {
     "active": true,
     "convergence": [
-      "task identity is unique and immutable"
+      "无 PGW_MULTI_DIR 环境下测试 PASS(非 skipped)",
+      "测试默认从 fixtures 解压, 不读取外部路径",
+      "6 产物非空且 verify_consistency PASS",
+      "incremental_applied > 9000",
+      "PGW_MULTI_DIR 覆盖路径仍 PASS",
+      "fixture 增量受控(原规模已裁定接受)"
     ],
     "created_at": "2026-08-25T18:11:51+08:00",
-    "phase": "do",
+    "phase": "act",
     "record": "T3966-0825-pgwrecover-multi-index-e2e",
-    "scenario_type": "development"
+    "scenario_type": "development",
+    "completed_at": "2026-08-25T18:35:06+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "6项AC全部PASS, 多索引集成测试CI默认运行且六产物语义级一致",
+      "verdict_id": "T3966-verdict",
+      "at": "2026-08-26T09:34:42+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "多索引样本生成范式与relfilenode一致性教训已沉淀为可复用知识",
+      "at": "2026-08-26T09:36:12+08:00"
+    }
   },
   "parent": null,
   "slug": "0825-pgwrecover-multi-index-e2e",
   "states": {
-    "act": null,
+    "act": "2026-08-26T09:34:42+08:00",
     "archive": null,
-    "check": null,
+    "check": "2026-08-25T18:35:06+08:00",
     "created": "2026-08-25T18:11:51+08:00",
     "do": "2026-08-25T18:17:13+08:00",
     "plan": "2026-08-25T18:11:51+08:00"
   },
-  "status": "InProgress",
+  "status": "Completed",
   "title": "pgwrecover 多索引集成测试从跳过改为可运行"
 }

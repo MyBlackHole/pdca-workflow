@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3966",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "CONCLUSION_MISSING",
+      "path": "records/T3966-0825-pgwrecover-multi-index-e2e/conclusion.md",
+      "message": "conclusion is required"
+    },
+    {
+      "code": "VERDICT_MISSING",
+      "path": "/meta/verdict",
+      "message": "verdict is required"
+    }
+  ],
+  "at": "2026-08-26T09:34:14.721010+08:00"
+}

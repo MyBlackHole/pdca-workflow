@@ -1,0 +1,44 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3967",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1: ccache LRU 淘汰与 CCACHE_FULL 行为 — evidence: tls-cert-test, ac-summary",
+      "AC-2: 四模块解析归一 hs_algorithm_config_resolve 且锁定回归过 — evidence: hs-err-test, mixed-mtls-integration, ac-summary",
+      "AC-3: ini key 别名双向兼容 — evidence: rdb-config-test",
+      "AC-4: SBT_* 宏单源+全量构建通过 — evidence: dmsbtex-session-test, libobk-session-test, ac-summary",
+      "AC-5: 重复解析治理=调用方持有结果模式（无通用缓存，按用户裁定） — evidence: ac-summary",
+      "AC-6: e2e 场景矩阵 19/19 — evidence: e2e-matrix"
+    ],
+    "created_at": "2026-08-25T18:23:51+08:00",
+    "phase": "check",
+    "record": "T3967-0826-mtls-cleanup-batch",
+    "scenario_type": "development",
+    "completed_at": "2026-08-25T18:54:21+08:00",
+    "verdict": {
+      "outcome": "rejected",
+      "reason": "用户指示撤销最后提交(2883d49a)全部修改，实现未保留；分析设计留档",
+      "verdict_id": "T3967-check-v2",
+      "at": "2026-08-26T09:40:00+08:00"
+    },
+    "disposition": {
+      "outcome": "not_reusable",
+      "reason": "实现已整体撤销；设计与验证结论留档于本 record，如需重启按 PRD 重新实施",
+      "at": "2026-08-26T09:40:30+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0826-mtls-cleanup-batch",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-25T18:54:21+08:00",
+    "created": "2026-08-25T18:23:51+08:00",
+    "do": "2026-08-25T18:54:21+08:00",
+    "plan": "2026-08-25T18:23:51+08:00"
+  },
+  "status": "Completed",
+  "title": "mTLS 改进批量实施: ccache LRU+算法解析归一+ini key 统一+SBT宏归一+spec签名"
+}

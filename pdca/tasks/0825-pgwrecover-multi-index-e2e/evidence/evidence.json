@@ -1,0 +1,212 @@
+[
+  {
+    "file": "tests/pgwrecover/test_btree_e2e.py",
+    "size": 23709,
+    "digest": "sha256:341774175801454e340bdf6a69ee768a69dde948c3328e01e3f431e828cbf97f",
+    "role": "test-entry"
+  },
+  {
+    "file": "tests/fixtures/pg_control_multi.bin.bz2",
+    "size": 219,
+    "digest": "sha256:d165efdced87f31c8c486e03896b8cd78997e0427eebb1deda8c44a8d4be24e5",
+    "role": "fixture-pg_control"
+  },
+  {
+    "file": "tests/fixtures/baseline_multi_heap_1946880.bin.bz2",
+    "size": 14,
+    "digest": "sha256:d3dda84eb03b9738d118eb2be78e246106900493c0ae07819ad60815134a8058",
+    "role": "fixture-baseline-heap"
+  },
+  {
+    "file": "tests/fixtures/expected_multi_1946880.bin.bz2",
+    "size": 39265,
+    "digest": "sha256:40f528b5e6609007807d17a1df8c17ff7b048294cb8939272b38764a073f5ea2",
+    "role": "fixture-expected"
+  },
+  {
+    "file": "tests/fixtures/expected_multi_1946886.bin.bz2",
+    "size": 4421,
+    "digest": "sha256:43a1ba55aa219d2b28b5b80c553115fd415b072564066f6be0b637ab598d4cea",
+    "role": "fixture-expected"
+  },
+  {
+    "file": "tests/fixtures/expected_multi_1946888.bin.bz2",
+    "size": 8324,
+    "digest": "sha256:401c3d913354834ff81649f018438a5de2a5ab7c05f58f9abdb9a7123407a523",
+    "role": "fixture-expected"
+  },
+  {
+    "file": "tests/fixtures/expected_multi_1946889.bin.bz2",
+    "size": 14133,
+    "digest": "sha256:e05be4ecf096480edeb3639dd09bd93d42078c30ddfd87882b6ccfad436f420c",
+    "role": "fixture-expected"
+  },
+  {
+    "file": "tests/fixtures/expected_multi_1946890.bin.bz2",
+    "size": 153,
+    "digest": "sha256:b39182dad0cea4bcf32a33471857a0420c042079570a96a261e844f29eee0aca",
+    "role": "fixture-expected"
+  },
+  {
+    "file": "tests/fixtures/expected_multi_1946891.bin.bz2",
+    "size": 23097,
+    "digest": "sha256:8a9c821ee3894ca88470b3fc2d04f2fc8a241a07c42d18b35e75cd0325bb9c9e",
+    "role": "fixture-expected"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C0000008F.bin.bz2",
+    "size": 2826501,
+    "digest": "sha256:c1c26db27d8299136dc564bdd99da7aea8ee7802bc787317fe26e255ca44f25b",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C00000090.bin.bz2",
+    "size": 2070674,
+    "digest": "sha256:ba79c89b01bdbae587b7709583cdf651f2f8a1084ce40c24adb01ebe5176d6f9",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C00000091.bin.bz2",
+    "size": 2075036,
+    "digest": "sha256:f8d832c92776f50fd738bbcfbb21ca1ce95538c56122f5ae926eeb645cd23929",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C00000092.bin.bz2",
+    "size": 2077508,
+    "digest": "sha256:dbb02c68a21c0780f8c90a9c0abbfa32b148a3db284d17bd61781580230f8990",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C00000093.bin.bz2",
+    "size": 2057911,
+    "digest": "sha256:676c9109e5979c00707447ba306f50bc1a71d1bc334fc9995acd580016b6367c",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C00000094.bin.bz2",
+    "size": 2069708,
+    "digest": "sha256:3e513f48b9e8410491b5543485a593c57afceaf6982f060ae229c836238bf522",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C00000095.bin.bz2",
+    "size": 2059374,
+    "digest": "sha256:890e902cf5b8fd4fd432dcb87525899e3c63a62f62ebd8393ad1ea0a68325779",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C00000096.bin.bz2",
+    "size": 2060373,
+    "digest": "sha256:d2c3d5d30260de6c34180d40d520034a31638c49258f89a5f5526c0d0f740bce",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C00000097.bin.bz2",
+    "size": 2057534,
+    "digest": "sha256:bf06e365c11a0d3e44df428f172a63c3e6645d22b8b59a3cb5f6ebe27378e9fe",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C00000098.bin.bz2",
+    "size": 2053910,
+    "digest": "sha256:73f648c8d39bd8bf7921f1f4e6a83ca5bdc5ed1eb4769ef1b75515766888d4c1",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C00000099.bin.bz2",
+    "size": 2072053,
+    "digest": "sha256:7fa468e7a2c64ab9cec3f1204ecda1f8716cd6db784b0e1f9597acf39218bbc1",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C0000009A.bin.bz2",
+    "size": 2057046,
+    "digest": "sha256:12ba03694288d6330d3014473a8def1adae9adb8d2ea36980c9e2c51042d0e91",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C0000009B.bin.bz2",
+    "size": 2057305,
+    "digest": "sha256:717bbce0fa29f4c94c7a27dfeb7b309a1913b4c58d96fab985d3f882a7a0c3d9",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C0000009C.bin.bz2",
+    "size": 2041043,
+    "digest": "sha256:7f1704e639c5f0065ea132812d8dd7ce7892648e038bbee1097ff0b12cdf62c4",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C0000009D.bin.bz2",
+    "size": 2056736,
+    "digest": "sha256:188cb8d505857fbe43a3a533202d3ce66955887a855ec57afb4c456e1939b22c",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C0000009E.bin.bz2",
+    "size": 2061443,
+    "digest": "sha256:bbf60ac2689fb3eaba9ed23991221f89849c995e65d4f56725487da1fa15945f",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C0000009F.bin.bz2",
+    "size": 2056952,
+    "digest": "sha256:0225a96ddd389c5b26c06d3b5c60ad0b07554bbbf57e0149e30e426c48deb4d9",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C000000A0.bin.bz2",
+    "size": 2060156,
+    "digest": "sha256:c9a07dcf682f7570aacc6d729f78d36114c367993bf82301cf36090486bf6202",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C000000A1.bin.bz2",
+    "size": 2055060,
+    "digest": "sha256:51c3a6be95c6f296a914ec92e131f711174f509af5402b7cfadb51cdc81ad8bf",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C000000A2.bin.bz2",
+    "size": 2060318,
+    "digest": "sha256:aaf8300370c55b934beba8dc8e8dd10185d2658eb962e2fed44d86444d56b98a",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C000000A3.bin.bz2",
+    "size": 2055501,
+    "digest": "sha256:be1bc010f567ceb32b0a0636f1fc65eba4b5fc66cd2883ee4f6bf8c9efc52183",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C000000A4.bin.bz2",
+    "size": 2070230,
+    "digest": "sha256:a65772d0bebee786d39d6fef764ad3f2b627fe83c3a324285d0657a5b8957961",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C000000A5.bin.bz2",
+    "size": 2063403,
+    "digest": "sha256:fa3e8facf59ae94a694180ab68ca2b0141531398bff5c89f69a6480d2499df32",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C000000A6.bin.bz2",
+    "size": 2077487,
+    "digest": "sha256:5e5e1016b9d61d0a48d4a47ab4c32b6a1b5519ea71f49a4c91dd9d66a54481da",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C000000A7.bin.bz2",
+    "size": 2063641,
+    "digest": "sha256:7eba582456fbb8e5c8f243c796f9b8e29ede6a2c6739c0596a7966171fef0dab",
+    "role": "fixture-wal"
+  },
+  {
+    "file": "tests/fixtures/multi_wal_000000010000000C000000A8.bin.bz2",
+    "size": 2062918,
+    "digest": "sha256:79a9d85202d6b857462de2fff18e8ed69e695c685889b41662673f4c66fcc18a",
+    "role": "fixture-wal"
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3966",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-6",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3966-0825-pgwrecover-multi-index-e2e/evidence/convergence.json[2]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3966-0825-pgwrecover-multi-index-e2e/evidence/convergence.json[3]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3966-0825-pgwrecover-multi-index-e2e/evidence/convergence.json[4]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3966-0825-pgwrecover-multi-index-e2e/evidence/convergence.json[5]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3966-0825-pgwrecover-multi-index-e2e/evidence/convergence.json[6]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow/records/T3966-0825-pgwrecover-multi-index-e2e/evidence/convergence.json[1]/text",
+      "message": "text must equal the Plan convergence value"
+    }
+  ],
+  "at": "2026-08-25T18:33:48.170191+08:00"
+}

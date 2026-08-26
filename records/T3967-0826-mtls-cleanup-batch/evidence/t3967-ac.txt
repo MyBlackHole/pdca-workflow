@@ -1,0 +1,7 @@
+# AC 验证汇总（T3967 批量改进）
+AC-1: tls_cert_test 新增 cache_lru_eviction PASSED——70 组合填满触发 LRU 淘汰零引用条目、全引用中 CCACHE_FULL
+AC-2: 四模块 config init 同构块已删除，均调用 hs_algorithm_config_resolve；mixed AC1-9/三 session_test 锁定用例回归过
+AC-3: rdb_config_test sec_resolve_global_key_aliases PASSED（新旧 key 双向等效，17/17）
+AC-4: SBT_* 宏仅 libs/common.h 定义；dmsbtex/libobk 头改引用；全量构建通过
+AC-5: 按用户裁定不引入通用缓存——策略开关由调用方初始化时解析一次保存（既有模式）；spec 接口落地
+AC-6: e2e 场景矩阵 19/19 全过

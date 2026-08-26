@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "无 PGW_MULTI_DIR 环境下测试 PASS(非 skipped)", "criteria": ["AC-1"], "evidence_ids": ["evt-multi-default"]},
+    {"index": 2, "text": "测试默认从 fixtures 解压, 不读取外部路径", "criteria": ["AC-2"], "evidence_ids": ["evt-test-entry", "evt-fix-pgcontrol", "evt-fix-baseline"]},
+    {"index": 3, "text": "6 产物非空且 verify_consistency PASS", "criteria": ["AC-3"], "evidence_ids": ["evt-multi-default", "evt-fix-baseline", "evt-fix-expected-gist"]},
+    {"index": 4, "text": "incremental_applied > 9000", "criteria": ["AC-4"], "evidence_ids": ["evt-multi-default"]},
+    {"index": 5, "text": "PGW_MULTI_DIR 覆盖路径仍 PASS", "criteria": ["AC-5"], "evidence_ids": ["evt-multi-override"]},
+    {"index": 6, "text": "fixture 增量受控(原规模已裁定接受)", "criteria": ["AC-6"], "evidence_ids": ["evt-fix-ac6"]}
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3967",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1: ccache LRU 淘汰与 CCACHE_FULL 行为 — evidence: tls-cert-test, ac-summary",
+      "AC-2: 四模块解析归一 hs_algorithm_config_resolve 且锁定回归过 — evidence: hs-err-test, mixed-mtls-integration, ac-summary",
+      "AC-3: ini key 别名双向兼容 — evidence: rdb-config-test",
+      "AC-4: SBT_* 宏单源+全量构建通过 — evidence: dmsbtex-session-test, libobk-session-test, ac-summary",
+      "AC-5: 重复解析治理=调用方持有结果模式（无通用缓存，按用户裁定） — evidence: ac-summary",
+      "AC-6: e2e 场景矩阵 19/19 — evidence: e2e-matrix"
+    ],
+    "created_at": "2026-08-25T18:23:51+08:00",
+    "phase": "do",
+    "record": "T3967-0826-mtls-cleanup-batch",
+    "scenario_type": "development"
+  },
+  "parent": null,
+  "slug": "0826-mtls-cleanup-batch",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-08-25T18:23:51+08:00",
+    "do": "2026-08-25T18:54:21+08:00",
+    "plan": "2026-08-25T18:23:51+08:00"
+  },
+  "status": "InProgress",
+  "title": "mTLS 改进批量实施: ccache LRU+算法解析归一+ini key 统一+SBT宏归一+spec签名"
+}

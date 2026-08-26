@@ -1,0 +1,2 @@
+AC-6 验证: 多索引 fixtures 入库后 tests/fixtures/ 总体积 168MB (较改动前 117MB 增加 51MB)。
+用户于 Plan 阶段裁定接受原规模样本入库, fixture 增量受控且可复现。
