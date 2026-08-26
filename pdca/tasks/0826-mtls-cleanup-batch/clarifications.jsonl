@@ -1,2 +1,3 @@
 {"at":"2026-08-25T18:23:51+08:00","source":"task_identity","summary":"created with record identity T3967-0826-mtls-cleanup-batch"}
 {"source":"final_confirmation","summary":"六项改进实施完成（PRD 终审延续），证据与收敛映射齐备","response":"confirmed","at":"2026-08-25T18:54:21+08:00"}
+{"source":"check_confirmation","summary":"用户指示撤销最后提交全部修改，实现回退至 F-139 squash 基线","response":"rejected","at":"2026-08-26T09:36:35+08:00"}

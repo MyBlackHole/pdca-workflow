@@ -13,7 +13,7 @@
       "fixture 增量受控(原规模已裁定接受)"
     ],
     "created_at": "2026-08-25T18:11:51+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T3966-0825-pgwrecover-multi-index-e2e",
     "scenario_type": "development",
     "completed_at": "2026-08-25T18:35:06+08:00",
@@ -22,12 +22,17 @@
       "reason": "6项AC全部PASS, 多索引集成测试CI默认运行且六产物语义级一致",
       "verdict_id": "T3966-verdict",
       "at": "2026-08-26T09:34:42+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "多索引样本生成范式与relfilenode一致性教训已沉淀为可复用知识",
+      "at": "2026-08-26T09:36:12+08:00"
     }
   },
   "parent": null,
   "slug": "0825-pgwrecover-multi-index-e2e",
   "states": {
-    "act": null,
+    "act": "2026-08-26T09:34:42+08:00",
     "archive": null,
     "check": "2026-08-25T18:35:06+08:00",
     "created": "2026-08-25T18:11:51+08:00",
