@@ -3,12 +3,12 @@
   "dependencies": [],
   "id": "T3975",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "五维审查报告落盘且每条发现含严重度、定位与建议，Blocking 汇总明确"
     ],
     "created_at": "2026-08-26T12:19:22+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T3975-0826-review-squash-commit-0ec03d3d",
     "scenario_type": "review",
     "completed_at": "2026-08-26T13:15:51+08:00",
@@ -28,7 +28,7 @@
   "slug": "0826-review-squash-commit-0ec03d3d",
   "states": {
     "act": "2026-08-26T13:34:47+08:00",
-    "archive": null,
+    "archive": "2026-08-26T13:35:38+08:00",
     "check": "2026-08-26T13:15:51+08:00",
     "created": "2026-08-26T12:19:22+08:00",
     "do": "2026-08-26T12:21:26+08:00",
