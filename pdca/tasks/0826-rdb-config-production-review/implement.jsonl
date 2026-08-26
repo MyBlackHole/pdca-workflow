@@ -1,0 +1,4 @@
+{"file":"knowledge/rdb-config/audit-findings.md","reason":"T0369 F1-F9 4层解析契约与遗留风险基线，AC-5 回归与 AC-6 env 注入专项必须对照","action":"use_as_regression_baseline","at":"2026-08-26T16:55:00+08:00"}
+{"file":"knowledge/config/compile-time-param-id-binding.md","reason":"T3979 新架构范式（枚举ID+单参API+四层链静态表），审查须基于而非旧 sec_resolve 假设","action":"use_as_architecture_reference","at":"2026-08-26T16:55:00+08:00"}
+{"file":"knowledge/oss/oss_https_tls.md","reason":"Go oss 侧 4 层优先级契约（原对齐 sec_resolve，重构后须确认对齐 sec_get_*），AC-4 回归依据","action":"use_as_go_side_reference","at":"2026-08-26T16:55:00+08:00"}
+{"file":"knowledge/rdb-config/process-context-held-switches.md","reason":"进程上下文持有开关模式，评估 fail-closed 与运行期只读语义的参照","action":"use_as_design_reference","at":"2026-08-26T16:55:00+08:00"}

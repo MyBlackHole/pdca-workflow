@@ -1,0 +1,11 @@
+{"at":"2026-08-26T16:45:00+08:00","source":"task_identity","summary":"created with record identity T3980-0826-rdb-config-production-review"}
+{"at":"2026-08-26T16:50:00+08:00","source":"grilling","round":1,"question":"本次生产审查应覆盖哪些维度？","answer":"全维度（正确性/健壮性/安全/性能/可观测/并发/测试），以 code-review-checklist + secure-coding 为框架","recommended":"全维度","captured":true}
+{"at":"2026-08-26T16:50:00+08:00","source":"grilling","round":1,"question":"审查对象边界如何划定？","answer":"核心库+关键消费者(rpc/dmsbtex/libobk/rdbcomm)+Go oss 侧+回归确认 T0369 F1-F8 修复仍有效","recommended":"核心库+消费者+Go侧+回归","captured":true}
+{"at":"2026-08-26T16:50:00+08:00","source":"grilling","round":1,"question":"满足生产使用级别的判定门槛？","answer":"CRITICAL/HIGH 严重度发现=0 为硬门槛；MEDIUM/LOW 记跟进不阻断","recommended":"CRITICAL/HIGH=0 为硬门槛","captured":true}
+{"at":"2026-08-26T16:50:00+08:00","source":"grilling","round":1,"question":"清理类发现如何处置？","answer":"归并到活跃任务 0826-cleanup-rdb-config-deadcode，本审查聚焦生产就绪功能/安全/健壮性缺口","recommended":"归并 0826-cleanup","captured":true}
+{"at":"2026-08-26T16:50:00+08:00","source":"grilling","round":1,"question":"发现的问题在 Do 阶段如何处理？","answer":"纯评估（Do 不改代码），发现记审查报告，Act 阶段对 blocking 项创建跟进任务","recommended":"纯评估，Act 跟进","captured":true}
+{"source":"final_confirmation","summary":"T3980 终审批准：全维度审查 rdb-config 生产就绪度；对象=核心库+消费者(rpc/dmsbtex/libobk/rdbcomm)+Go oss 侧+T0369 F1-F8 回归；CRITICAL/HIGH=0 为硬门槛；纯评估，清理类归并 0826-cleanup；AC-1~AC-8 可判定。进入 do。","response":"confirmed","at":"2026-08-26T16:43:01+08:00"}
+{"source":"check_confirmation","summary":"用户确认维持 HIGH：审查结论成立，rdb-config 不满足生产使用级别；Act 沉淀失败教训（安全开关须 fail-closed）并创建整改跟进任务修复 HIGH-1。","response":"confirmed","at":"2026-08-26T16:58:24+08:00"}
+{"source":"knowledge_decision","at":"2026-08-26T16:59:46+08:00","action":"wrote","reason":"INT 型安全开关 fail-closed 为可复用安全审查原则，且 T3980 HIGH-1 案例具具体可追索性"}
+{"source":"grilling","at":"2026-08-26T16:59:46+08:00","q":"知识沉淀质量：该结论适用范围与限制？哪些可提炼为复用知识？","a":"适用范围=所有安全关键配置解析（C/Go 侧）；限制=依赖 env 受信假设，容器/CI 下更需 fail-closed。可复用部分=安全开关（含 INT 型承载布尔语义者）须统一 fail-closed 的审查范式；另含跨语言非法值处理一致性。下次同类审查应直接核对全部安全开关 fail-closed，而非仅 BOOL 参数。"}
+{"source":"followup_task","at":"2026-08-26T17:00:50+08:00","task_id":"T3981","record":"T3981-0826-fix-int-sec-switch-failopen","reason":"HIGH-1 整改跟进任务（development）"}
