@@ -1,0 +1,2 @@
+{"id":"squash-verify","file":"t3974-squash-verification.md","kind":"verification-log","size":1993,"digest":"sha256:2ca2c260205b11fdf0520c4a519a9a68fca7b79b3dd51fb92ae20160643a9e86","at":"2026-08-26T12:11:28+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":275,"digest":"sha256:589896775c1eedebdbd1f785e4d3ef72223fd440046a9b63f8506ec6bf44ee83","at":"2026-08-26T12:11:47+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
