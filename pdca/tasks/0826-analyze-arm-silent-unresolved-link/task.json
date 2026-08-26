@@ -3,12 +3,12 @@
   "dependencies": [],
   "id": "T3976",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "分析报告落盘且含历史时间线、T3975 更正声明、同类风险面盘点与处置建议"
     ],
     "created_at": "2026-08-26T13:38:00+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T3976-0826-analyze-arm-silent-unresolved-link",
     "scenario_type": "research",
     "completed_at": "2026-08-26T13:53:34+08:00",
@@ -28,7 +28,7 @@
   "slug": "0826-analyze-arm-silent-unresolved-link",
   "states": {
     "act": "2026-08-26T13:56:58+08:00",
-    "archive": null,
+    "archive": "2026-08-26T13:59:18+08:00",
     "check": "2026-08-26T13:53:34+08:00",
     "created": "2026-08-26T13:38:00+08:00",
     "do": "2026-08-26T13:46:25+08:00",

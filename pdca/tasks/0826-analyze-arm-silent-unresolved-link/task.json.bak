@@ -8,7 +8,7 @@
       "分析报告落盘且含历史时间线、T3975 更正声明、同类风险面盘点与处置建议"
     ],
     "created_at": "2026-08-26T13:38:00+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T3976-0826-analyze-arm-silent-unresolved-link",
     "scenario_type": "research",
     "completed_at": "2026-08-26T13:53:34+08:00",
@@ -17,12 +17,17 @@
       "reason": "三重验证成立，T3975 误报更正获确认；批准顺带删除",
       "verdict_id": "T3976-verdict-1",
       "at": "2026-08-26T13:56:57+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "死配置卫生模式已沉淀 knowledge/workflow/dead-build-config-hygiene.md；删除已执行(906ddc45)并回归验证",
+      "at": "2026-08-26T13:58:57+08:00"
     }
   },
   "parent": null,
   "slug": "0826-analyze-arm-silent-unresolved-link",
   "states": {
-    "act": null,
+    "act": "2026-08-26T13:56:58+08:00",
     "archive": null,
     "check": "2026-08-26T13:53:34+08:00",
     "created": "2026-08-26T13:38:00+08:00",
