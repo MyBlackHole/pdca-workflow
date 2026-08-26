@@ -1,0 +1,11 @@
+# AC-6 rpc_config_test 单测 target 三场景全绿
+新增文件: rpc/tests/rpc_config_test.cpp + rpc/tests/xmake.lua target 注册
+
+[0mgenerating xbsa/src/version.in ... [38;2;0;255;0;1mok[0m
+=== rpc-config sec switches test ===
+
+Running init_fills_sec_switches_from_store... PASSED
+Running init_env_overrides_store... PASSED
+Running reload_reresolves_sec_switches... PASSED
+
+=== 3 passed, 0 failed ===

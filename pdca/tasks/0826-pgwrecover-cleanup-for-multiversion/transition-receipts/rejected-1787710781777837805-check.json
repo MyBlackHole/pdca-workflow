@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3969",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "EVIDENCE_MANIFEST_MISSING",
+      "path": "records/T3969-0826-pgwrecover-cleanup-for-multiversion/evidence/manifest.jsonl",
+      "message": "manifest is required"
+    },
+    {
+      "code": "CONVERGENCE_MAP_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T3969-0826-pgwrecover-cleanup-for-multiversion/evidence/manifest.jsonl",
+      "message": "registered convergence map is required"
+    }
+  ],
+  "at": "2026-08-26T10:19:41.777821+08:00"
+}

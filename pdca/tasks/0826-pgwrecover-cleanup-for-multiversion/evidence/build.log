@@ -1,0 +1,5 @@
+== 编译 PG 前端化依赖对象 ==
+== 编译官方 WAL/压缩/CRC 源 ==
+== 编译本项目恢复模块 ==
+== 链接 pgwrecover ==
+== 完成: /home/black/Documents/database_转换_parquet/build/pgwrecover ==

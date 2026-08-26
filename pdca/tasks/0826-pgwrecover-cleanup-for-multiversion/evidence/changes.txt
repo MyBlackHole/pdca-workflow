@@ -1,0 +1,16 @@
+D  scripts/build_pgbin.sh
+ M scripts/build_pgwrecover.sh
+ M src/pg/fe_heap_aux.c
+D  src/pg/pg_clog_legacy_pg9.c
+D  src/pg/pg_clog_legacy_pg9.h
+D  src/pg/pg_clog_reader_pg10.c
+D  src/pg/pg_clog_reader_pg10.h
+D  src/pg/pg_heap_reader.c
+ M src/pg/pg_replay.c
+ M src/pg/pg_versions.h
+ M src/pg/pg_wal_stub.c
+D  src/pg/pgbin.cpp
+ M src/pg/pgwrecover.cpp
+D  src/pg/stub_pg.c
+?? src/pg/pg_redo_dispatch.c
+?? src/pg/pg_redo_dispatch.h

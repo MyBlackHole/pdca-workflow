@@ -1,0 +1,4 @@
+# AC-2 rdb_config_test（含 T3968 sec_switch_audit_auth_layers 回归锚）
+[0m[38;2;0;255;0;1m[100%]:[0m [38;2;0;255;0;1mbuild ok, spent 0.06s[0m
+Running sec_switch_audit_auth_layers... PASSED
+=== 17 passed, 0 failed ===

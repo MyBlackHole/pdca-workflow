@@ -1,0 +1,5 @@
+{"at":"2026-08-26T09:43:33+08:00","source":"task_identity","summary":"created with record identity T3969-0826-pgwrecover-cleanup-for-multiversion"}
+{"round": 1, "question": "清理与版本边界的激进度？", "answer": "删死代码+轻量版本边界", "recommended": "删死代码+轻量版本边界", "source": "grilling", "at": "2026-08-26T09:45:10+08:00", "captured": false}
+{"round": 1, "question": "模块内未使用函数是否纳入本任务扫描移除？", "answer": "纳入扫描移除", "recommended": "纳入扫描移除", "source": "grilling", "at": "2026-08-26T09:45:10+08:00", "captured": false}
+{"round": 1, "question": "stub_pg.c / pg_wal_stub.c 若重叠是否合并？", "answer": "确认后合并", "recommended": "确认后合并", "source": "grilling", "at": "2026-08-26T09:45:10+08:00", "captured": false}
+{"source":"final_confirmation","summary":"清理多余PG代码+轻量版本边界: 删.bak与legacy pg9 clog, pg_versions.h集中PG18事实+分发注册点, 扫描移除未用函数0警告, 合并stub; 保留PG18 xlog拷贝不动, 不实现PG16/17; AC-1..AC-6 checkbox","response":"confirmed","at":"2026-08-26T09:48:25+08:00"}

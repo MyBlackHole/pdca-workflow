@@ -1,0 +1,7 @@
+# AC-4 session_test 回归（dmsbtex / libobk）
+dmsbtex_session_test: ALL PASS
+[PASS] T3961 algorithm-lock reject mismatched / allow matched
+libobk_session_test 退出码 rc=0（通过）
+dmsbtex_session_test 退出码 rc=0（通过）
+# key_is_enabled 客户端消费方未改动确认:
+(无输出 = 零改动)

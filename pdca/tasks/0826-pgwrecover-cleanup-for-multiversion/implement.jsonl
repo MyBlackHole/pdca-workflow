@@ -1,0 +1,2 @@
+{"file": "knowledge/pg/pgwrecover-official-rewrite.md", "reason": "官方源码前端化方法论与版本边界概念, 本任务集中版本事实到 pg_versions.h 沿用其口径", "action": "复用版本事实集中口径与官方拷贝边界", "at": "2026-08-26T09:46:24+08:00"}
+{"file": "knowledge/pg/pgwrecover-multi-index-fixture.md", "reason": "多索引样本生成范式提及版本事实集中, 与本任务版本边界目标一致", "action": "参考版本事实处理约定", "at": "2026-08-26T09:46:24+08:00"}

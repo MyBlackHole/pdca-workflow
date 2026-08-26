@@ -1,0 +1,19 @@
+# AC-1 运行期路径 sec_resolve_int/key_is_enabled 残留检查
+$ rg -n 'sec_resolve_int|key_is_enabled' rdbcomm/server.c rpc/rpc-server.cpp
+(无输出 = 零残留, rg 退出码 1)
+
+# 迁移后读取点确认:
+rdbcomm/server.h:19:	int audit_enabled;
+rdbcomm/server.h:20:	int auth_enabled;
+rdbcomm/rdbcommd-main.c:272:	server_opts.audit_enabled =
+rdbcomm/rdbcommd-main.c:276:	server_opts.auth_enabled =
+rpc/rpc-config.cpp:184:	g_rpc_config->audit_enabled =
+rpc/rpc-config.cpp:188:	g_rpc_config->auth_enabled =
+rpc/rpc-config.h:25:	int audit_enabled;
+rpc/rpc-config.h:26:	int auth_enabled;
+rpc/rpc-server.cpp:522:			if (g_rpc_config->audit_enabled) {
+rpc/rpc-server.cpp:995:	if (g_rpc_config->audit_enabled) {
+rdbcomm/server.c:695:	if (conn->options.auth_enabled) {
+rdbcomm/server.c:700:			if (conn->options.audit_enabled) {
+rdbcomm/server.c:717:	if (conn->options.audit_enabled) {
+rdbcomm/server.c:1320:	if (conn->options.audit_enabled) {

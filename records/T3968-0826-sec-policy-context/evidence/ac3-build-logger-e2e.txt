@@ -1,0 +1,7 @@
+# AC-3 受影响目标构建 + logger_test + e2e 场景矩阵
+== 构建 ==
+[0m[38;2;0;255;0;1m[100%]:[0m [38;2;0;255;0;1mbuild ok, spent 0.113s[0m
+== logger_test ==
+Tests passed: 11, failed: 0
+== e2e ==
+=== 汇总: PASS=19 FAIL=0 ===

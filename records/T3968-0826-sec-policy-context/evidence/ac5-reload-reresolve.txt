@@ -1,0 +1,13 @@
+# AC-5 配置重载后安全开关重新解析（Grill Q1 裁定修复）
+提交: 69da290b 【F-139】rpc: 安全开关随配置重载重新解析并补充进程上下文字段单测
+
+$ xmake run rpc_config_test（reload_reresolves_sec_switches 场景）
+Running init_fills_sec_switches_from_store... PASSED
+Running init_env_overrides_store... PASSED
+Running reload_reresolves_sec_switches... PASSED
+=== 3 passed, 0 failed ===
+
+# reload 刷新实现位置:
+104:	/* T3968 Grill 裁定：配置重载时安全开关重新解析刷新（不沿用旧快照）。
+106:	g_rpc_config->audit_enabled =
+194:	g_rpc_config->audit_enabled =

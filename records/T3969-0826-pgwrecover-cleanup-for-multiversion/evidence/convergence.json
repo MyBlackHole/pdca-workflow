@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "删除 .bak 后构建成功且全量 pytest PASS", "criteria": ["AC-1"], "evidence_ids": ["evt-build", "evt-test", "evt-changes"]},
+    {"index": 2, "text": "删除 legacy pg9 clog 读取器后构建成功且全量 pytest PASS", "criteria": ["AC-2"], "evidence_ids": ["evt-build", "evt-test", "evt-changes"]},
+    {"index": 3, "text": "pg_versions.h 集中 PG18 事实并定义分发注册点；pg_replay.c 经版本边界分派", "criteria": ["AC-3"], "evidence_ids": ["evt-build", "evt-test"]},
+    {"index": 4, "text": "移除死函数后构建 -Wall -Wextra 0 警告", "criteria": ["AC-4"], "evidence_ids": ["evt-build"]},
+    {"index": 5, "text": "删除未编译死桩 stub_pg.c 并移除 pgbin 全套, 构建与测试仍绿", "criteria": ["AC-5"], "evidence_ids": ["evt-build", "evt-test", "evt-changes"]},
+    {"index": 6, "text": "单索引与多索引端到端测试全量 PASS(9 passed)", "criteria": ["AC-6"], "evidence_ids": ["evt-test"]}
+  ]
+}
