@@ -1,0 +1,11 @@
+[
+  {"file": "src/pg/pg_redo_dispatch.c", "size": 1588, "digest": "sha256:7592b7a1ee50cc456f9ce29800e590a9dd7e74d3577eeb4d3859d0addc4dc278", "role": "version-boundary-impl"},
+  {"file": "src/pg/pg_redo_dispatch.h", "size": 1552, "digest": "sha256:3f1c9d3613df199dd4c6ffa4b3fda120ebb5a887dc38286c01d5f796a9e7d22c", "role": "version-boundary-header"},
+  {"file": "src/pg/pg_replay.c", "size": 11423, "digest": "sha256:a48116149d339e29f5bf1443ddf4c9f91e78bcfca943c689ecd5baf2f45e69be", "role": "dispatch-rewrite"},
+  {"file": "src/pg/pg_versions.h", "size": 2461, "digest": "sha256:871a51e6325b1da93fbe0c9859051166960e466e2272d74f6936098f84527d63", "role": "version-facts"},
+  {"file": "scripts/build_pgwrecover.sh", "size": 2547, "digest": "sha256:0c404e2feaca30aabe12107d58b4fe03cf1294e0094ee59d711d4f1aa93e7495", "role": "build-script"},
+  {"file": "src/pg/fe_heap_aux.c", "size": 20437, "digest": "sha256:5765d77512994853f8af0474dedd3995e7e6f3cd15c6dc3ec72bdd6035e5ba14", "role": "dead-fn-removed"},
+  {"file": "src/pg/pg_wal_stub.c", "size": 8447, "digest": "sha256:58a3dff33ed42aa936ee6c7df9f036196587b6d94d5d95ba3ab5150742a75954", "role": "stub-fix"},
+  {"file": "src/pg/pgwrecover.cpp", "size": 15743, "digest": "sha256:804f7ce4eea4a39208e722c527500a3d6efbdabbd32cd670414b6ab400925946", "role": "comment-pragma"},
+  {"file": "knowledge/pg/pgwrecover-multiversion-strategy.md", "size": 0, "digest": "sha256:0", "role": "knowledge-deposition"}
+]

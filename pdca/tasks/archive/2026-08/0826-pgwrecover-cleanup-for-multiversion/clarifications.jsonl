@@ -3,3 +3,4 @@
 {"round": 1, "question": "模块内未使用函数是否纳入本任务扫描移除？", "answer": "纳入扫描移除", "recommended": "纳入扫描移除", "source": "grilling", "at": "2026-08-26T09:45:10+08:00", "captured": false}
 {"round": 1, "question": "stub_pg.c / pg_wal_stub.c 若重叠是否合并？", "answer": "确认后合并", "recommended": "确认后合并", "source": "grilling", "at": "2026-08-26T09:45:10+08:00", "captured": false}
 {"source":"final_confirmation","summary":"清理多余PG代码+轻量版本边界: 删.bak与legacy pg9 clog, pg_versions.h集中PG18事实+分发注册点, 扫描移除未用函数0警告, 合并stub; 保留PG18 xlog拷贝不动, 不实现PG16/17; AC-1..AC-6 checkbox","response":"confirmed","at":"2026-08-26T09:48:25+08:00"}
+{"source":"check_confirmation","summary":"清理多余PG代码+轻量版本边界: AC-1删.bbak/AC-2删legacy pg9 clog/AC-3 pg_redo_dispatch版本边界/AC-4删死函数+0警告/AC-5删死桩stub_pg+移除pgbin全套/AC-6 9 passed全绿; 用户追问pg18非冗余(vendored参考实现应保留完整), 多版本源码抽取(策略B)作为下一任务架构决策","response":"confirmed","at":"2026-08-26T10:39:51+08:00"}

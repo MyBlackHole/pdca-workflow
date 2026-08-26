@@ -1,0 +1,24 @@
+# 运行时验证 2026-08-26T11:07:56+08:00（最终态二进制）
+== AC-1 默认 HTTP ==
+明文GET=200
+2026/08/26 11:07:56 oss.go:174: listening HTTP on ":18101"
+== AC-2 --tls 证书齐备 ==
+TLS GET=200
+明文GET=400
+2026/08/26 11:07:57 oss.go:167: listening HTTPS on ":18102"
+== AC-3 --tls 缺证书 fail-closed ==
+exit=1 (期望非0)
+2026/08/26 11:07:57 oss.go:162: TLS 配置失败（fail-closed），服务不起: 加载证书/私钥失败(/no/such.crt,/no/such.key): open /no/such.crt: no such file or directory
+== AC-4a env 开启 ==
+HTTPS GET=200
+== AC-4b --no-tls 压过 env ==
+明文GET=200
+2026/08/26 11:07:58 oss.go:174: listening HTTP on ":18105"
+== AC-4c 全局段 tls_enable=true ==
+HTTPS GET=200
+== AC-4d 工具段false压全局true ==
+明文GET=200
+== AC-4e 工具段yes压全局false ==
+HTTPS GET=200
+== W1 可疑假值告警(ture) ==
+2026/08/26 11:08:01 tls.go:190: 警告: rdb.conf [security] tls_enable="ture" 非真值(期望 1/true/yes/on)，按关闭处理，服务将以明文 HTTP 启动

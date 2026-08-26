@@ -58,4 +58,10 @@
 - 历史任务：严格 schema 冻结后以 dry-run 清单清理不合规任务，不增加旧格式兼容逻辑
 
 ---
+## pgwrecover 多版本术语
+
+- **pg_common/**：pgwrecover 中跨 PG 大版本稳定的共享源码目录（WAL 读取框架、基础类型与页面布局头、压缩/内存/格式化工具），由 ADR-0011 定义；各版本只保留差异 redo 与头。
+- **control_version**：PG 控制文件中的大版本号（如 PG18=1800），运行时分发缝 `pg_redo_set_for_version()` 据此返回对应 `PgRedoSet`。
+- **PgRedoSet**：每 PG 版本的重放函数集合（按 rmgr 索引的 redo 指针表），注册到分发缝即可接入新版本。
+
 *由 domain-modeling 技能自动维护。更新请直接编辑此文件。*

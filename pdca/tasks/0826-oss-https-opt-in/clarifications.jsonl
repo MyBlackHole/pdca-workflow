@@ -1,0 +1,17 @@
+{"at": "2026-08-26T10:38:21+08:00", "source": "task_identity", "summary": "created with record identity T3970-0826-oss-https-opt-in"}
+{"source": "grilling", "q": "HTTPS 开关载体", "a": "4 层全链路：CLI flag > OSS_TLS_ENABLE_ENV > rdb.conf [oss] mtls_enable/[security] tls_enable > 默认关闭", "at": "2026-08-26T10:41:24+08:00"}
+{"source": "grilling", "q": "CLI flag 命名", "a": "--tls（bool，名词型 kebab-case 对齐现有 --cert-dir/--cert-path 风格）", "at": "2026-08-26T10:41:24+08:00"}
+{"source": "grilling", "q": "默认 HTTP 模式下 TLS 逻辑处理", "a": "完全跳过：不解析证书路径、不加载证书、不做 fail-closed 检查，零 TLS 依赖启动", "at": "2026-08-26T10:41:24+08:00"}
+{"source": "grilling", "q": "显式开 HTTPS 但证书缺失/非法", "a": "保持 fail-closed：启动失败退出，不静默降级明文", "at": "2026-08-26T10:41:24+08:00"}
+{"source": "grilling", "q": "默认行为从强制 HTTPS 变为 HTTP 的破坏性变更", "a": "接受：内部 emulator 工具部署方可控，需要 https 显式开启", "at": "2026-08-26T10:41:24+08:00"}
+{"source": "grilling", "q": "rdb.conf 开关键归属", "a": "[oss] 工具段优先，未设置回退 [security] 全局段，与证书解析次序一致", "at": "2026-08-26T10:41:24+08:00"}
+{"source":"direction_confirm","summary":"方向确认：默认 HTTP + CLI/env/rdb.conf 4 层开关链 + 显式开 HTTPS 保持 fail-closed；测试接缝 oss_https_test.go->tls.go/oss.go 同步确认","response":"confirmed","at":"2026-08-26T10:45:15+08:00"}
+{"source":"final_confirmation","summary":"终审批准：默认 HTTP + 4 层开关链 + fail-closed 保持；AC-1~AC-5 checkbox 入 PRD；单任务不拆解","response":"confirmed","at":"2026-08-26T10:46:00+08:00"}
+{"source":"grilling","q":"结论是否有充分证据支持","a":"是：runtime-ac1-ac4(AC-1~AC-4 运行时逐条)+unit-test-result/build-regression(AC-5) 三条登记证据，digest 可复核","at":"2026-08-26T11:12:00+08:00"}
+{"source":"grilling","q":"测试是否覆盖关键路径","a":"开关四层解析全分支、默认关闭、fail-closed 保持、明文/加密监听均已覆盖；CLI 同时传 --tls/--no-tls 冲突由 urfave/cli v3 RunAction 保证报错，非本任务核心路径，接受","at":"2026-08-26T11:12:00+08:00"}
+{"source":"grilling","q":"性能/安全是否有未暴露 trade-off","a":"默认明文为终审批准的显式取舍；可疑假值静默降级已加告警(tls.go:190)；T0368 h2 必需套件约束未回退(buildTLSConfig 未动)","at":"2026-08-26T11:12:00+08:00"}
+{"source":"check_confirmation","summary":"用户确认 T3970 验收结论：AC-1~AC-5 全部通过，进入 Act","response":"confirmed","at":"2026-08-26T11:11:16+08:00"}
+{"source":"grilling","q":"结论适用范围与限制","a":"适用于 Go 服务端'强制安全特性→可选开关'改造；依赖 urfave/cli v3 inverse-bool 与 rdbcomm 4 层配置模型两个前提","at":"2026-08-26T11:16:00+08:00"}
+{"source":"grilling","q":"可提炼的复用知识","a":"1) v3 BoolWithInverseFlag 三态 CLI 开关用法 2) 四层开关联动 fail-closed 的分发模式(关闭=零 TLS 依赖) 3) 可疑假值告警防静默降级明文——追加至 knowledge/oss/oss_https_tls.md","at":"2026-08-26T11:16:00+08:00"}
+{"source":"grilling","q":"流程改进点","a":"PRD 中构建验证命令须引用真实构建目标名(aio-oss 非 oss)，避免 AC 文本与实际漂移","at":"2026-08-26T11:16:00+08:00"}
+{"source":"knowledge_decision","at":"2026-08-26T11:16:30+08:00","action":"wrote","reason":"三态开关+四层解析+告警降级模式对后续工具 TLS 化有直接复用价值，更新既有 oss HTTPS/TLS 配置模型文档"}

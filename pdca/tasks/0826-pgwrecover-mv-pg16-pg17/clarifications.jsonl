@@ -1,0 +1,5 @@
+{"at":"2026-08-26T10:59:52+08:00","source":"task_identity","summary":"created with record identity T3971-0826-pgwrecover-mv-pg16-pg17"}
+{"round": 1, "question": "PG16/PG17 源码布局策略?", "answer": "抽取 pg_common/ 共享内核(strategy B)", "recommended": "每版本整树 vendored", "source": "grilling", "at": "2026-08-26T11:11:01.658530+08:00", "captured": false}
+{"round": 1, "question": "本次任务范围?", "answer": "先 PG16, 再开 PG17 任务", "recommended": "同时 PG16+PG17", "source": "grilling", "at": "2026-08-26T11:11:01.658568+08:00", "captured": false}
+{"round": 1, "question": "PG16 源码获取方式?", "answer": "官方 tarball 提取", "recommended": "官方 tarball 提取", "source": "grilling", "at": "2026-08-26T11:11:01.658574+08:00", "captured": false}
+{"round": 1, "question": "每版本端到端验收深度?", "answer": "btree+GIN 端到端一致", "recommended": "btree+GIN 端到端一致", "source": "grilling", "at": "2026-08-26T11:11:01.658579+08:00", "captured": false}

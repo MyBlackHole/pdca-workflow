@@ -1,0 +1,13 @@
+[0mgenerating oss/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating huanweicloun-sdk-s3-data-backup/my-fuse/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating xbsa/src/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating huanweicloun-sdk-s3-data-backup/my-fuse/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating s3tools/s3mount/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating s3-tool/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating s3tools/s3file/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating xbsa/src/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating bwlimit/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating version.in ... [38;2;0;255;0;1mok[0m
+[0m[38;2;0;255;0;1m[100%]:[0m [38;2;0;255;0;1mbuild ok, spent 0.678s[0m
+[0m[1;38;2;255;255;0;1mwarning: [38;2;255;255;0;1mYou are working in the project directory(/home/black/Public/aio/aio-tools/6200/F/139) and you can also
+force to build in current directory via run `xmake -P .`[0m

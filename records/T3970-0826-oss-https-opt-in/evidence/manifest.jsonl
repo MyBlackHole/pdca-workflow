@@ -1,0 +1,4 @@
+{"id":"runtime-ac1-ac4","file":"runtime-ac1-ac4.txt","kind":"runtime-verification","size":1016,"digest":"sha256:18250445c7bc1f6c0d98d790408aa40e08bfa6ed42d908e38b84f68adcf10547","at":"2026-08-26T11:08:24+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"unit-test-result","file":"unit-test.txt","kind":"unit-test","size":1087,"digest":"sha256:3349abb6b6338450e314587cdfe5606168eb273e348b91119734101ecb6cef10","at":"2026-08-26T11:08:24+08:00","criteria":["AC-5"]}
+{"id":"build-regression","file":"build-regression.txt","kind":"build-verification","size":421,"digest":"sha256:265ba1799b457e862688b61159d014b4b25c426f5f6fbd1d9b8cc1ee3859ef1a","at":"2026-08-26T11:08:24+08:00","criteria":["AC-5"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":283,"digest":"sha256:69f65933f342bca9a1cae4a7137f32417910f38815c183487227096c36152ed7","at":"2026-08-26T11:08:38+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}

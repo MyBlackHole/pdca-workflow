@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3969",
+  "from": "act",
+  "to": "archive",
+  "issues": [
+    {
+      "code": "DISPOSITION_MISSING",
+      "path": "/meta/disposition",
+      "message": "disposition is required"
+    }
+  ],
+  "at": "2026-08-26T10:44:28.980785+08:00"
+}

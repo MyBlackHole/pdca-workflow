@@ -13,15 +13,26 @@
       "单索引与多索引端到端测试全量 PASS(9 passed)"
     ],
     "created_at": "2026-08-26T09:43:33+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T3969-0826-pgwrecover-cleanup-for-multiversion",
     "scenario_type": "development",
-    "completed_at": "2026-08-26T10:22:36+08:00"
+    "completed_at": "2026-08-26T10:22:36+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "6项AC全部PASS: 构建0警告, 9 passed(含GIN/多索引), 版本分发边界已建立; pg18保持vendored完整, 多版本源码抽取策略B留待下一任务",
+      "verdict_id": "T3969-verdict",
+      "at": "2026-08-26T10:39:51.245631+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "清理达成(删死代码+版本分发边界, 9 passed/0警告); 多版本源码抽取策略B沉淀为可复用知识(pgwrecover-multiversion-strategy.md), 供下一任务加PG16/PG17",
+      "at": "2026-08-26T10:45:04.834501+08:00"
+    }
   },
   "parent": null,
   "slug": "0826-pgwrecover-cleanup-for-multiversion",
   "states": {
-    "act": null,
+    "act": "2026-08-26T10:41:41+08:00",
     "archive": null,
     "check": "2026-08-26T10:22:36+08:00",
     "created": "2026-08-26T09:43:33+08:00",

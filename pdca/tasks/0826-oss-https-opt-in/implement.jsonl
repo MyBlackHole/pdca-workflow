@@ -1,0 +1,4 @@
+{"file": "knowledge/oss/oss_https_tls.md", "reason": "T0368 强制 HTTPS 设计全记录：4 层模型、fail-closed、h2 套件坑位；本任务在其上做开关化改造，默认值与模式分发需对齐该模型", "action": "read", "at": "2026-08-26T10:42:45+08:00"}
+{"file": "oss/cmd/tls.go", "reason": "既有 chooseStr 4 层解析与 parseRDBConfig INI 解析可直接复用于开关读取；实际生效顺序 CLI > env > 文件段 > 默认", "action": "extend", "at": "2026-08-26T10:42:45+08:00"}
+{"file": "oss/cmd/oss_https_test.go", "reason": "现有 TLS 单测（证书生成 helper、握手/fail-closed 用例）为新增开关用例提供测试基建", "action": "extend", "at": "2026-08-26T10:42:45+08:00"}
+{"file": "vendor/github.com/urfave/cli/v3/flag_bool_with_inverse.go", "reason": "v3 inverse bool 支持 --tls/--no-tls 三态表达，解决 bool flag 无法区分未设置与显式关闭的问题", "action": "use", "at": "2026-08-26T10:42:45+08:00"}
