@@ -1,0 +1,4 @@
+{"file": "knowledge/pg/pgwrecover-multiversion-strategy.md", "reason": "策略 B 依据: 共享内核+每版本增量的源码布局", "action": "read", "at": "2026-08-26T11:13:48.973113+08:00"}
+{"file": "knowledge/pg/pgwrecover-official-rewrite.md", "reason": "官方 PG 源码前端化方法论, 指导 vendored PG16 与 pg_common 抽取", "action": "read", "at": "2026-08-26T11:13:48.973142+08:00"}
+{"file": "docs/adr/ADR-0011-pgwrecover-multiversion-pg-common.md", "reason": "布局决策(跨任务架构), 本任务落地依据", "action": "read", "at": "2026-08-26T11:13:48.973148+08:00"}
+{"file": "pdca/tasks/archive/2026-08/0826-pgwrecover-cleanup-for-multiversion/conclusion.md", "reason": "T3969 分发缝已实现, 本任务在其上扩展", "action": "read", "at": "2026-08-26T11:13:48.973153+08:00"}
