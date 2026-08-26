@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "分析报告落盘且含历史时间线、T3975 更正声明、同类风险面盘点与处置建议",
+      "criteria": ["AC-1", "AC-2", "AC-3", "AC-4"],
+      "evidence_ids": ["analysis-report"]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3976",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "分析报告落盘且含历史时间线、T3975 更正声明、同类风险面盘点与处置建议"
+    ],
+    "created_at": "2026-08-26T13:38:00+08:00",
+    "phase": "check",
+    "record": "T3976-0826-analyze-arm-silent-unresolved-link",
+    "scenario_type": "research",
+    "completed_at": "2026-08-26T13:53:34+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "三重验证成立，T3975 误报更正获确认；批准顺带删除",
+      "verdict_id": "T3976-verdict-1",
+      "at": "2026-08-26T13:56:57+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0826-analyze-arm-silent-unresolved-link",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-26T13:53:34+08:00",
+    "created": "2026-08-26T13:38:00+08:00",
+    "do": "2026-08-26T13:46:25+08:00",
+    "plan": "2026-08-26T13:38:00+08:00"
+  },
+  "status": "Completed",
+  "title": "分析 dmsbtex/xmake-arm.lua 遗留死文件问题并更正 T3975 审查结论"
+}

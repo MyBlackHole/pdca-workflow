@@ -1,0 +1,5 @@
+{"at":"2026-08-26T13:38:00+08:00","source":"task_identity","summary":"created with record identity T3976-0826-analyze-arm-silent-unresolved-link"}
+{"source":"direction_confirm","summary":"用户指认 xmake-arm.lua 遗留多余；任务转向死文件分析 + T3975 误报更正（零引用已 grep 验证）","response":"confirmed","at":"2026-08-26T13:45:02+08:00"}
+{"source":"final_confirmation","summary":"P6 终审批准：死文件考古+误导机制分析+同类扫描+T3975 更正","response":"confirmed","at":"2026-08-26T13:46:25+08:00"}
+{"source":"check_confirmation","summary":"verdict=confirmed；用户批准顺带执行删除+回归验证","response":"confirmed","at":"2026-08-26T13:56:57+08:00"}
+{"source":"knowledge_decision","at":"2026-08-26T13:58:57+08:00","action":"wrote","reason":"可达性独立维度与检查脚本对构建卫生有直接复用价值"}
