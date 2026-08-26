@@ -1,0 +1,34 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3979",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "sec_resolve_* 零残留，sec_get_*(id) 全面接管解析，14 条目注册表编译期绑定，45/45 零回归"
+    ],
+    "created_at": "2026-08-26T15:33:30+08:00",
+    "phase": "check",
+    "record": "T3979-0826-sec-get-param-api-refactor",
+    "scenario_type": "development",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "AC-1~AC-4 全部成立：源码 sec_resolve_(int|bool|str) 符号声明/实现/调用点零残留；枚举 14 条 + PARAM_COUNT + sec_get_* 三 API 落地且 g_param_table[PARAM_COUNT] 指定初始化；config_dump_params 行式含 desc/current 经测试实证；param_registry_test 独立实跑 8/8 且全量 xmake test 45/45 零回归；用户确认 verdict=confirmed",
+      "verdict_id": "T3979-verdict-confirmed-20260826",
+      "at": "2026-08-26T16:35:00+08:00"
+    },
+    "completed_at": "2026-08-26T16:14:00+08:00"
+  },
+  "parent": null,
+  "slug": "0826-sec-get-param-api-refactor",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-26T16:14:00+08:00",
+    "created": "2026-08-26T15:33:30+08:00",
+    "do": "2026-08-26T15:37:07+08:00",
+    "plan": "2026-08-26T15:33:30+08:00"
+  },
+  "status": "Completed",
+  "title": "rdb-config 解析链路重构：枚举参数 ID + sec_get_* 单参 API 全面替代 sec_resolve_*"
+}

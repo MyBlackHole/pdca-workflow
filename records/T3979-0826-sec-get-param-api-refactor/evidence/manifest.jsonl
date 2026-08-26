@@ -1,0 +1,3 @@
+{"id":"refactor-evidence","file":"t3979-refactor-evidence.md","kind":"implementation-log","size":1136,"digest":"sha256:0ff4a91106de68f29ae8cf0cd9def466fc43c9761db1baab07241fb491ead3ac","at":"2026-08-26T16:13:44+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":312,"digest":"sha256:1a8e8a54591d388cd4ec499fee07a2d33b2fa7673ba061d40cdaa9a0a4225cf7","at":"2026-08-26T16:13:44+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"check-verify-evidence","file":"t3979-check-verify-evidence.md","kind":"check-verification","size":2377,"digest":"sha256:477e067acec1db2bb2edf9e08b0b31076df88699dfdc1193dec4c0f80a9befc7","at":"2026-08-26T16:28:07+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
