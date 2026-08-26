@@ -4,3 +4,5 @@
 {"round": 1, "question": "PG16 源码获取方式?", "answer": "官方 tarball 提取", "recommended": "官方 tarball 提取", "source": "grilling", "at": "2026-08-26T11:11:01.658574+08:00", "captured": false}
 {"round": 1, "question": "每版本端到端验收深度?", "answer": "btree+GIN 端到端一致", "recommended": "btree+GIN 端到端一致", "source": "grilling", "at": "2026-08-26T11:11:01.658579+08:00", "captured": false}
 {"source":"final_confirmation","summary":"pgwrecover 支持 PG16 多版本重放: 抽取 pg_common/ 共享内核(ADR-0011), PG16 tarball vendored 到 src/pg/pg16/, 构建按目标版本选择, 分发缝注册 PG16; 验收 btree+GIN 端到端一致, PG18 9 passed 不变, 0 警告; PG17 另开任务。AC-1..AC-6 checkbox。","response":"confirmed","at":"2026-08-26T11:14:46+08:00"}
+{"source":"check_confirmation","summary":"AC-1..AC-6 全部通过，策略 A 交付确认","response":"confirmed","at":"2026-08-26T17:00:00+08:00"}
+{"source":"grilling","round":1,"question":"知识可复用性？","answer":"策略 A（每版本独立 .so）适用于 WAL redo 版本隔离；最小 L2 方法论可推广到其他 PG 子系统","recommended":"沉淀到 knowledge/pg/","at":"2026-08-26T17:02:00+08:00"}
