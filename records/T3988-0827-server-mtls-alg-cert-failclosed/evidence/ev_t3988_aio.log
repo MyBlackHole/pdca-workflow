@@ -1,0 +1,8 @@
+[2026-08-27 18:57:00]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|139695993693056| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_SM4_GCM_SM3 ca=/nonexistent-T3987-certdir/sm2_ca.crt cert=/nonexistent-T3987-certdir/sm2_host.crt key=/nonexistent-T3987-certdir/sm2_host.key
+[2026-08-27 18:57:00]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|139695993693056| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/nonexistent-T3987-certdir/ed25519_ca.crt cert=/nonexistent-T3987-certdir/ed25519_host.crt key=/nonexistent-T3987-certdir/ed25519_host.key
+[2026-08-27 18:57:00]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|139695993693056| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_SM4_GCM_SM3 ca=/nonexistent-T3987-certdir/sm2_ca.crt cert=/nonexistent-T3987-certdir/sm2_host.crt key=/nonexistent-T3987-certdir/sm2_host.key
+[2026-08-27 18:57:00]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|139695993693056| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/nonexistent-T3987-certdir/ed25519_ca.crt cert=/nonexistent-T3987-certdir/ed25519_host.crt key=/nonexistent-T3987-certdir/ed25519_host.key
+[2026-08-27 18:57:00]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|139695993693056| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_SM4_GCM_SM3 ca=/tmp/aio_speedd_aesonly_auwoRt/sm2_ca.crt cert=/tmp/aio_speedd_aesonly_auwoRt/sm2_host.crt key=/tmp/aio_speedd_aesonly_auwoRt/sm2_host.key
+[2026-08-27 18:57:00]|Error|libs/tls_cert.c:674 tls_cert_init_server|139695993693056| server tls: invalid algorithm "TLS_BOGUS"
+aio-speedd server_boot tls test PASS
+aio_exit=0

@@ -1,0 +1,3 @@
+{"file":"knowledge/tls/server-boot-tls-failclosed.md","reason":"T3987 沉淀的启动期 boot prepare 收敛模式，本任务四服务端 wiring 直接复用","action":"use","at":"2026-08-27T18:40:00+08:00"}
+{"file":"knowledge/tls/structured-mtls-failure-diagnostics.md","reason":"启动期证书加载失败日志须表达 role/server、stage、algorithm、ca-cert/cert/key 路径，fail-closed 报错日志遵循","action":"use","at":"2026-08-27T18:40:00+08:00"}
+{"file":"knowledge/rdb-config/security-bool-failclosed.md","reason":"安全开关/算法解析须 fail-closed；本任务非法算法名与指定算法证书异常均须启动失败，不复活 fail-open","action":"use","at":"2026-08-27T18:40:00+08:00"}

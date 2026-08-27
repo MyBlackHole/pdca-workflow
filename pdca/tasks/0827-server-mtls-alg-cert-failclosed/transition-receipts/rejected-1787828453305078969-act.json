@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3988",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "CONCLUSION_MISSING",
+      "path": "records/T3988-0827-server-mtls-alg-cert-failclosed/conclusion.md",
+      "message": "conclusion is required"
+    },
+    {
+      "code": "VERDICT_MISSING",
+      "path": "/meta/verdict",
+      "message": "verdict is required"
+    }
+  ],
+  "at": "2026-08-27T19:00:53.305054+08:00"
+}

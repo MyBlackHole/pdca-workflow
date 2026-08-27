@@ -1,0 +1,17 @@
+[2026-08-27 18:57:01]|Error|libobk/lib/sbt/libobk.c:75 sbt_client_tls_config_init|140183729980352| tls config: invalid LIBOBK_CLIENT_MTLS_ENABLE value: env LIBOBK_CLIENT_MTLS_ENABLE='abc' is not 0/1
+[2026-08-27 18:57:01]|Error|libobk/lib/sbt/libobk.c:75 sbt_client_tls_config_init|140183729980352| tls config: invalid LIBOBK_CLIENT_MTLS_ENABLE value: env LIBOBK_CLIENT_MTLS_ENABLE='1x' is not 0/1
+[2026-08-27 18:57:01]|Error|libobk/lib/sbt/libobk.c:75 sbt_client_tls_config_init|140183729980352| tls config: invalid LIBOBK_CLIENT_MTLS_ENABLE value: env LIBOBK_CLIENT_MTLS_ENABLE='yes' is not 0/1
+[2026-08-27 18:57:01]|Error|libobk/lib/sbt/libobk.c:75 sbt_client_tls_config_init|140183729980352| tls config: invalid LIBOBK_CLIENT_MTLS_ENABLE value: env LIBOBK_CLIENT_MTLS_ENABLE=' ' is not 0/1
+[2026-08-27 18:57:01]|Error|libobk/lib/sbt/libobk.c:75 sbt_client_tls_config_init|140183729980352| tls config: invalid LIBOBK_CLIENT_MTLS_ENABLE value: env LIBOBK_CLIENT_MTLS_ENABLE='1 abc' is not 0/1
+[2026-08-27 18:57:01]|Error|libobk/lib/sbt/libobk.c:84 sbt_client_tls_config_init|140183729980352| tls config: unknown tls_algorithm "sm2"
+[2026-08-27 18:57:01]|Error|libobk/lib/sbt/libobk.c:84 sbt_client_tls_config_init|140183729980352| tls config: unknown tls_algorithm "SM2"
+[2026-08-27 18:57:01]|Error|libobk/lib/sbt/libobk.c:84 sbt_client_tls_config_init|140183729980352| tls config: unknown tls_algorithm "ed25519"
+[2026-08-27 18:57:01]|Error|libobk/lib/sbt/libobk.c:84 sbt_client_tls_config_init|140183729980352| tls config: unknown tls_algorithm "x"
+[2026-08-27 18:57:01]|Error|libobk/lib/sbt/libobk.c:84 sbt_client_tls_config_init|140183729980352| tls config: unknown tls_algorithm "TLS_SM4_GCM_SM3X"
+[2026-08-27 18:57:01]|Info|libobk/lib/logic/oracleCmdTbl.c:159 sbt_session_server_handshake|140183729980352| handshake: unknown algorithm value 0x0000
+[2026-08-27 18:57:01]|Info|libobk/lib/logic/oracleCmdTbl.c:159 sbt_session_server_handshake|140183729980352| handshake: unknown algorithm value 0xffff
+[2026-08-27 18:57:01]|Info|libobk/lib/logic/oracleCmdTbl.c:141 sbt_session_server_handshake|140183729980352| handshake: algorithm 0x0001 rejected by server lock (locked=0x0002)
+[PASS] T3961 algorithm-lock reject mismatched / allow matched
+[2026-08-27 18:57:01]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140183729980352| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_SM4_GCM_SM3 ca=/tmp/libobk_sm4fail_BjVHXU/sm2_ca.crt cert=/tmp/libobk_sm4fail_BjVHXU/sm2_host.crt key=/tmp/libobk_sm4fail_BjVHXU/sm2_host.key
+[PASS] alg-locked cert fail (no downgrade)
+libobk_exit=0

@@ -1,0 +1,4 @@
+{"at":"2026-08-27T18:42:38+08:00","source":"task_identity","summary":"created with record identity T3988-0827-server-mtls-alg-cert-failclosed"}
+{"source":"final_confirmation","summary":"PRD 确认：四服务端 mTLS 启用且指定算法时该算法证书异常须启动失败（不 fallback 另一算法）；libs/tls_cert_init_server 增加指定算法分支，四服务端传入 algorithm 配置；AC-1..AC-7 覆盖","response":"confirmed","at":"2026-08-27T18:47:02+08:00"}
+{"source":"check_confirmation","summary":"T3988 Check 结论确认：算法锁 fail-closed 全量构建通过、AC-1..AC-7 全 PASS、双轴审查零阻塞、convergence 校验 valid=true；用户确认进入 Act 并一并提交归档。","response":"confirmed","at":"2026-08-27T19:00:53+08:00"}
+{"source":"knowledge_decision","at":"2026-08-27T19:02:27+08:00","action":"wrote","reason":"算法锁 fail-closed 穿透范式可复用，写入 tls/server-algorithm-lock-failclosed.md"}
