@@ -1,0 +1,59 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3982",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[0]/",
+      "message": "Additional properties are not allowed ('evidence', 'version' were unexpected)"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[0]/",
+      "message": "'id' is a required property"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[0]/",
+      "message": "'file' is a required property"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[0]/",
+      "message": "'kind' is a required property"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[0]/",
+      "message": "'size' is a required property"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[0]/",
+      "message": "'digest' is a required property"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[0]/",
+      "message": "'at' is a required property"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[0]/",
+      "message": "'criteria' is a required property"
+    },
+    {
+      "code": "EVIDENCE_FILE_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence",
+      "message": "artifact is missing"
+    },
+    {
+      "code": "CONVERGENCE_MAP_MISSING",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl",
+      "message": "exactly one entry with id and kind convergence-map is required"
+    }
+  ],
+  "at": "2026-08-26T17:38:06.481468+08:00"
+}

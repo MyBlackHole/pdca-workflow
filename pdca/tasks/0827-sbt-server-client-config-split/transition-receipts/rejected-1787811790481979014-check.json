@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3986",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow/records/T3986-0827-sbt-server-client-config-split/evidence/convergence-map.json[/]",
+      "message": "Additional properties are not allowed ('task_id' was unexpected)"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow/records/T3986-0827-sbt-server-client-config-split/evidence/convergence-map.json[/schema]",
+      "message": "'pdca.convergence/v1' was expected"
+    }
+  ],
+  "at": "2026-08-27T14:23:10.481953+08:00"
+}

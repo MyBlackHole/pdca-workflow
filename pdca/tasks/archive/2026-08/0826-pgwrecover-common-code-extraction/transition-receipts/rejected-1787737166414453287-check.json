@@ -1,0 +1,84 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3982",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[0]/criteria",
+      "message": "'AC-1,AC-6: common/ 编译通过 + 构建脚本支持' is not of type 'array'"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[0]/digest",
+      "message": "'sha256:todo' does not match '^sha256:[0-9a-f]{64}$'"
+    },
+    {
+      "code": "EVIDENCE_FILE_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/build_pgwrecover.sh",
+      "message": "artifact is missing"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[1]/criteria",
+      "message": "'AC-4: pg16 heap/gin 逐字节一致' is not of type 'array'"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[1]/digest",
+      "message": "'sha256:todo' does not match '^sha256:[0-9a-f]{64}$'"
+    },
+    {
+      "code": "EVIDENCE_FILE_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/pg16_replay_test",
+      "message": "artifact is missing"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[2]/criteria",
+      "message": "'AC-5: pg18 regression 10 passed + 0 warnings' is not of type 'array'"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[2]/digest",
+      "message": "'sha256:todo' does not match '^sha256:[0-9a-f]{64}$'"
+    },
+    {
+      "code": "EVIDENCE_FILE_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/pytest_output",
+      "message": "artifact is missing"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[3]/criteria",
+      "message": "'6/6 AC 通过' is not of type 'array'"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[3]/digest",
+      "message": "'sha256:todo' does not match '^sha256:[0-9a-f]{64}$'"
+    },
+    {
+      "code": "EVIDENCE_FILE_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/conclusion.md",
+      "message": "artifact is missing"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-2",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-3",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/conclusion.md",
+      "message": "[Errno 2] No such file or directory: '/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/conclusion.md'"
+    }
+  ],
+  "at": "2026-08-26T17:39:26.414407+08:00"
+}

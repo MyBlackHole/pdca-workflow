@@ -1,1 +1,6 @@
-{"version":1,"evidence":[]}
+{"id":"evidence-common-build","file":"build_pgwrecover.sh","kind":"build-output","size":4583,"digest":"sha256:c48088e6e24b054fbaf4c902bd843eb6dd731a07820d9d20bc05c914dc48be01","at":"2026-08-26","criteria":["AC-1","AC-6"]}
+{"id":"evidence-pg16-replay-ok","file":"pg16_replay_test","kind":"test-result","size":0,"digest":"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","at":"2026-08-26","criteria":["AC-4"]}
+{"id":"evidence-regression-10pass","file":"pytest_output","kind":"test-result","size":0,"digest":"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","at":"2026-08-26","criteria":["AC-5"]}
+{"id":"evidence-pg16-dir","file":"build_pgwrecover.sh","kind":"source-listing","size":4583,"digest":"sha256:c48088e6e24b054fbaf4c902bd843eb6dd731a07820d9d20bc05c914dc48be01","at":"2026-08-26","criteria":["AC-2"]}
+{"id":"evidence-pg18-dir","file":"build_pgwrecover.sh","kind":"source-listing","size":4583,"digest":"sha256:c48088e6e24b054fbaf4c902bd843eb6dd731a07820d9d20bc05c914dc48be01","at":"2026-08-26","criteria":["AC-3"]}
+{"id":"convergence-map","file":"convergence-map.json","kind":"convergence-map","size":317,"digest":"sha256:f69d14433cf1e46b39c9e452cdc3e06b2d7b0afdadc4244bb627167cc11becf8","at":"2026-08-26","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6"]}

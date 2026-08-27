@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3982",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/conclusion.md",
+      "message": "Expecting value: line 1 column 1 (char 0)"
+    }
+  ],
+  "at": "2026-08-26T17:39:55.671767+08:00"
+}

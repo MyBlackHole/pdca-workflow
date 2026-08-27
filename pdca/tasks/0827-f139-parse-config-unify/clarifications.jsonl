@@ -1,0 +1,7 @@
+{"at":"2026-08-27T10:07:29+08:00","source":"task_identity","summary":"created with record identity T3985-0827-f139-parse-config-unify"}
+{"at": "2026-08-27T10:16:55.699095+08:00", "source": "grilling", "summary": "重构范围: parse_config 不再对外部提供访问；set_rpc_init_config/fsdeamon|fsclient_init_config 内部不调用 parse_config，重载时调用 init_config", "response": "confirmed"}
+{"at": "2026-08-27T10:16:55.699095+08:00", "source": "grilling", "summary": "并发安全: 范围外(保留独立问题)", "response": "confirmed"}
+{"at": "2026-08-27T10:16:55.699095+08:00", "source": "grilling", "summary": "验收手段: 仅行为测试(验证多次 init 不重复解析、reload 走 init_config)", "response": "confirmed"}
+{"at": "2026-08-27T10:16:55.699095+08:00", "source": "direction_confirm", "summary": "方向: 收敛 parse_config 为 init_config 独占，各模块 init 从全局 store 读取，reload 走 init_config", "response": "confirmed"}
+{"at": "2026-08-27T10:17:21.578330+08:00", "source": "grilling", "summary": "各模块 init 不要 config_file 参数：set_rpc_init_config/fsdeamon|fsclient_init_config 去掉 config_file，统一由 init_config 加载 store，调用方先 init_config 再无参调各模块 init", "response": "confirmed"}
+{"source":"final_confirmation","summary":"统一parse_config入口：init_config独占parse，各模块init去config_file参数从store读取，reload走init_config；验收AC-1~5；范围外并发安全；仅行为测试","response":"confirmed","at":"2026-08-27T10:32:54+08:00"}

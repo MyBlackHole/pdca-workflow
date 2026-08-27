@@ -1,0 +1,21 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3982",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/convergence-map.json[1]",
+      "message": "listed evidence does not support AC-2",
+      "guidance": "re-register the supporting evidence with --criterion AC-2, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/convergence-map.json[1]",
+      "message": "listed evidence does not support AC-3",
+      "guidance": "re-register the supporting evidence with --criterion AC-3, or fix the map to cite evidence that actually covers it"
+    }
+  ],
+  "at": "2026-08-26T17:41:41.864835+08:00"
+}

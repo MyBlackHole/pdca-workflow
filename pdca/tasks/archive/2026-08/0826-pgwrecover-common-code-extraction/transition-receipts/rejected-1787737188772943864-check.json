@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3982",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "EVIDENCE_FILE_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/conclusion.md",
+      "message": "artifact is missing"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/conclusion.md",
+      "message": "[Errno 2] No such file or directory: '/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/conclusion.md'"
+    }
+  ],
+  "at": "2026-08-26T17:39:48.772910+08:00"
+}

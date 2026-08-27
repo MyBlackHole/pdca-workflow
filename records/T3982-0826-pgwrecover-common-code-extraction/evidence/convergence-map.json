@@ -1,0 +1,6 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "task identity is unique and immutable", "criteria": ["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6"], "evidence_ids": ["evidence-common-build","evidence-pg16-replay-ok","evidence-regression-10pass","evidence-pg16-dir","evidence-pg18-dir"]}
+  ]
+}

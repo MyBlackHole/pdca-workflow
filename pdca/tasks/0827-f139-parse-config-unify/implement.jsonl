@@ -1,0 +1,4 @@
+{"file": "knowledge/rdb-config/security-bool-failclosed.md", "reason": "安全布尔开关须 fail-closed；本重构改变配置加载入口，必须确保从 store 读取的安全开关(mtls_enabled/audit/auth)解析语义不变，ENOENT 保留默认时默认安全。", "action": "遵循范式；Do 阶段回归验证安全语义不被去重破坏。", "at": "2026-08-27T10:19:04.391001+08:00"}
+{"file": "knowledge/rdb-config/int-security-switch-failopen.md", "reason": "INT 型安全开关也须 fail-closed，避免脏值静默关闭审计/鉴权；重构不得影响 sec_get_* 的失败处理链路。", "action": "遵循；Do 阶段不改动 sec_get_* 解析链，仅收敛 parse 调用面。", "at": "2026-08-27T10:19:04.391001+08:00"}
+{"file": "knowledge/rdb-config/process-context-held-switches.md", "reason": "确立模块自持上下文+运行初期初始化填充+reload 经入口重新解析刷新范式，直接印证本方案：各模块 init 从已加载 store 读并填充自身上下文结构，reload 走 init_config。", "action": "依此范式实现；reload 必须重新解析并刷新模块结构体。", "at": "2026-08-27T10:19:04.391001+08:00"}
+{"file": "knowledge/rdb-config/audit-findings.md", "reason": "背景：配置解析既有审计发现(大小写敏感/重复key覆盖/CONFIG_KV_MAX/常量单一来源)，0826 已将双缓冲简化为单例 store。", "action": "背景参考，不重做。", "at": "2026-08-27T10:19:04.391001+08:00"}

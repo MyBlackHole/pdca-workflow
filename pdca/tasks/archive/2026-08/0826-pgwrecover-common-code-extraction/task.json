@@ -1,0 +1,39 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3982",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-26T17:18:57+08:00",
+    "phase": "archive",
+    "record": "T3982-0826-pgwrecover-common-code-extraction",
+    "scenario_type": "development",
+    "completed_at": "2026-08-26T17:42:05+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "6/6 AC 通过，消除 ~3500 行重复代码",
+      "verdict_id": "V-T3982-check-001",
+      "at": "2026-08-26T17:42:30+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "公共模块抽取模式可复用于其他多版本 PostgreSQL 扩展",
+      "at": "2026-08-26T17:45:00+08:00"
+    }
+  },
+  "parent": "T3971",
+  "slug": "0826-pgwrecover-common-code-extraction",
+  "states": {
+    "act": "2026-08-26T17:44:34+08:00",
+    "archive": "2026-08-26T17:45:18+08:00",
+    "check": "2026-08-26T17:42:05+08:00",
+    "created": "2026-08-26T17:18:57+08:00",
+    "do": "2026-08-26T17:20:30+08:00",
+    "plan": "2026-08-26T17:18:57+08:00"
+  },
+  "status": "Completed",
+  "title": "pgwrecover 公共代码抽取：从 pg16/pg18 提取共享模块到 src/pg/common/"
+}

@@ -1,0 +1,49 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3986",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3986-0827-sbt-server-client-config-split/evidence/convergence-map.json[2]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3986-0827-sbt-server-client-config-split/evidence/convergence-map.json[3]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3986-0827-sbt-server-client-config-split/evidence/convergence-map.json[4]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3986-0827-sbt-server-client-config-split/evidence/convergence-map.json[5]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3986-0827-sbt-server-client-config-split/evidence/convergence-map.json[6]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3986-0827-sbt-server-client-config-split/evidence/convergence-map.json[7]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3986-0827-sbt-server-client-config-split/evidence/convergence-map.json[8]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow/records/T3986-0827-sbt-server-client-config-split/evidence/convergence-map.json[1]/text",
+      "message": "text must equal the Plan convergence value"
+    }
+  ],
+  "at": "2026-08-27T14:25:06.224219+08:00"
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3982",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[0]/digest",
+      "message": "'sha256:todo' does not match '^sha256:[0-9a-f]{64}$'"
+    },
+    {
+      "code": "EVIDENCE_SIZE_MISMATCH",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/build_pgwrecover.sh",
+      "message": "size does not match manifest"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[1]/digest",
+      "message": "'sha256:todo' does not match '^sha256:[0-9a-f]{64}$'"
+    },
+    {
+      "code": "EVIDENCE_SIZE_MISMATCH",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/pg16_replay_test",
+      "message": "size does not match manifest"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[2]/digest",
+      "message": "'sha256:todo' does not match '^sha256:[0-9a-f]{64}$'"
+    },
+    {
+      "code": "EVIDENCE_SIZE_MISMATCH",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/pytest_output",
+      "message": "size does not match manifest"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[3]/digest",
+      "message": "'sha256:todo' does not match '^sha256:[0-9a-f]{64}$'"
+    },
+    {
+      "code": "EVIDENCE_SIZE_MISMATCH",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/build_pgwrecover.sh",
+      "message": "size does not match manifest"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[4]/digest",
+      "message": "'sha256:todo' does not match '^sha256:[0-9a-f]{64}$'"
+    },
+    {
+      "code": "EVIDENCE_SIZE_MISMATCH",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/build_pgwrecover.sh",
+      "message": "size does not match manifest"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/manifest.jsonl[5]/digest",
+      "message": "'sha256:todo' does not match '^sha256:[0-9a-f]{64}$'"
+    },
+    {
+      "code": "EVIDENCE_SIZE_MISMATCH",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/convergence-map.json",
+      "message": "size does not match manifest"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/convergence-map.json[/]",
+      "message": "[{'ac': 'AC-1', 'status': 'pass', 'evidence': 'evidence-common-build', 'detail': 'common/ 7 .c 文件编译通过'}, {'ac': 'AC-2', 'status': 'pass', 'evidence': 'evidence-pg16-dir', 'detail': 'pg16 版本目录仅 4 .c 文件'}, {'ac': 'AC-3', 'status': 'pass', 'evidence': 'evidence-pg18-dir', 'detail': 'pg18 版本目录 9 .c 文件'}, {'ac': 'AC-4', 'status': 'pass', 'evidence': 'evidence-pg16-replay-ok', 'detail': 'heap/gin 逐字节一致'}, {'ac': 'AC-5', 'status': 'pass', 'evidence': 'evidence-regression-10pass', 'detail': '10 passed + 0 warnings'}, {'ac': 'AC-6', 'status': 'pass', 'evidence': 'evidence-common-build', 'detail': '构建脚本支持 common/ 编译 + 版本 .so 链接'}] is not of type 'object'"
+    }
+  ],
+  "at": "2026-08-26T17:40:22.824678+08:00"
+}

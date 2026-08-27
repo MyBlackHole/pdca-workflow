@@ -1,0 +1,29 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3986",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3986-0827-sbt-server-client-config-split/evidence/manifest.jsonl[0]/",
+      "message": "'criteria' is a required property"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3986-0827-sbt-server-client-config-split/evidence/manifest.jsonl[1]/",
+      "message": "'criteria' is a required property"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "records/T3986-0827-sbt-server-client-config-split/evidence/manifest.jsonl[2]/",
+      "message": "'criteria' is a required property"
+    },
+    {
+      "code": "CONVERGENCE_MAP_MISSING",
+      "path": "records/T3986-0827-sbt-server-client-config-split/evidence/manifest.jsonl",
+      "message": "exactly one entry with id and kind convergence-map is required"
+    }
+  ],
+  "at": "2026-08-27T14:22:47.018936+08:00"
+}

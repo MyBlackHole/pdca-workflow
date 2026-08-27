@@ -1,0 +1,844 @@
+diff --git a/fs-backup/fsclient/config.cpp b/fs-backup/fsclient/config.cpp
+index e4db0aa0..c3dde52c 100644
+--- a/fs-backup/fsclient/config.cpp
++++ b/fs-backup/fsclient/config.cpp
+@@ -11,24 +11,10 @@ CliConfig *g_pConfig = &_config[0];
+ 
+ #define SECTION_NAME "fsclient"
+ 
+-static int fsclient_parse_config(const char *config_file, char *err_msg, int len)
++static int fsclient_parse_config(char *err_msg, int len)
+ {
+-	const char *config_path = config_file != NULL ? config_file :
+-							DEFAULT_RDB_CONFIG_PATH;
+-
+-	/* 接入集中式 rdb config 参数注册表：reload 时重新解析中央 rdb.conf 刷新
+-	 * store；参数经 sec_get_* 走 env>工具段>默认 的解析链，与全仓统一参数
+-	 * 管理一致。解析失败且文件缺失（ENOENT）则保留默认值，与历史行为一致。 */
+-	rdb_cfg_parse_result pr;
+-	parse_config(config_path, &pr);
+-	if (!pr.ok) {
+-		/* 历史语义：配置文件缺失（ENOENT）→ 保留默认，不视为致命 */
+-		if (pr.code == RDB_CFG_ERR_FILE_OPEN && errno == ENOENT)
+-			return 0;
+-		snprintf(err_msg, len, "parse config failed: %s", pr.detail);
+-		return -1;
+-	}
+-
++	/* T3985：store 由 init_config 统一加载；此处仅经 sec_get_* 读取并填充。
++	 * 参数缺失/非法按注册表 fail-closed 语义拦截。 */
+ 	/* sec_get_bool 经 result 暴露 ok/value：非法（fail-closed）即拒绝启动，
+ 	 * CliConfig.check_data 为 bool，需据 ok 拦截而非截断。 */
+ 	CliConfig tmp = *g_pConfig;
+@@ -85,10 +71,8 @@ static int fsclient_parse_config(const char *config_file, char *err_msg, int len
+ 	return 0;
+ }
+ 
+-int fsclient_init_config(const char *config_file, char *err_msg, int len)
++int fsclient_init_config(char *err_msg, int len)
+ {
+-	const char *config_path = config_file != NULL ? config_file :
+-							DEFAULT_RDB_CONFIG_PATH;
+ 	g_pConfig->debug_status = 0;
+ 	g_pConfig->check_data = 0;
+ 	g_pConfig->keepalive = DEFAULT_KEEPALIVE_INTERVAL;
+@@ -99,10 +83,7 @@ int fsclient_init_config(const char *config_file, char *err_msg, int len)
+ 	g_pConfig->rpc_port = 6611;
+ 	g_pConfig->source_port = 6611;
+ 
+-	if (fsclient_parse_config(config_path, err_msg, len) < 0) {
+-		if (errno == ENOENT) {
+-			return 0;
+-		}
++	if (fsclient_parse_config(err_msg, len) < 0) {
+ 		return -1;
+ 	}
+ 
+diff --git a/fs-backup/fsclient/config.h b/fs-backup/fsclient/config.h
+index 431920cf..c2f1e75b 100644
+--- a/fs-backup/fsclient/config.h
++++ b/fs-backup/fsclient/config.h
+@@ -59,6 +59,6 @@ extern CliConfig *g_pConfig;
+ #include "cfg_path.h"
+ 
+ // int parse_config(const char *config_file, rdb_cfg_parse_result *out);
+-int fsclient_init_config(const char *config_file, char *err_msg, int len);
++int fsclient_init_config(char *err_msg, int len);
+ 
+ #endif
+diff --git a/fs-backup/fsclient/main.cpp b/fs-backup/fsclient/main.cpp
+index d0f3d611..0e9a7090 100644
+--- a/fs-backup/fsclient/main.cpp
++++ b/fs-backup/fsclient/main.cpp
+@@ -540,13 +540,13 @@ int main(int argc, char *argv[])
+ 
+ 	{
+ 		rdb_cfg_parse_result pr;
+-		if (init_config(NULL, &pr) != 1) {
++		if (init_config(config_file, &pr) != 1) {
+ 			ErrorLog("rdb-config load failed: %s", pr.detail);
+ 			exit(EXIT_FAILURE);
+ 		}
+ 	}
+-	if (set_rpc_init_config(config_file, err_msg, 1024) != 0 ||
+-	    fsclient_init_config(config_file, err_msg, 1024) != 0) {
++	if (set_rpc_init_config(err_msg, 1024) != 0 ||
++	    fsclient_init_config(err_msg, 1024) != 0) {
+ 		ErrorLog("init config failure, %s", err_msg);
+ 		exit(EXIT_FAILURE);
+ 	}
+diff --git a/fs-backup/fsdeamon/backup_helper.cpp b/fs-backup/fsdeamon/backup_helper.cpp
+index 3ec6053f..65295c31 100644
+--- a/fs-backup/fsdeamon/backup_helper.cpp
++++ b/fs-backup/fsdeamon/backup_helper.cpp
+@@ -1,6 +1,7 @@
+ #include "backup_helper.h"
+ #include "common.h"
+ #include "config.h"
++#include "rdb-config.h"
+ #include "thread.h"
+ #include "thread.h"
+ #include "fs_source.h"
+@@ -198,7 +199,9 @@ void BackupHelper::SetDebug(bool debug)
+ void BackupHelper::ReloadConfig(const char *config_path)
+ {
+ 	char err_msg[1024];
+-	fsdeamon_parse_config(config_path, err_msg, 1024);
++	rdb_cfg_parse_result pr;
++	init_config(config_path, &pr);
++	fsdeamon_init_config(err_msg, 1024);
+ }
+ 
+ int BackupHelper::Start()
+diff --git a/fs-backup/fsdeamon/config.cpp b/fs-backup/fsdeamon/config.cpp
+index b5d2183e..b3c964d6 100644
+--- a/fs-backup/fsdeamon/config.cpp
++++ b/fs-backup/fsdeamon/config.cpp
+@@ -12,27 +12,11 @@ Config *g_pConfig = &_config[0];
+ 
+ #define SECTION_NAME "fsdaemon"
+ 
+-int fsdeamon_parse_config(const char *config_file, char *err_msg, int len)
++int fsdeamon_parse_config(char *err_msg, int len)
+ {
+-	const char *config_path = config_file != NULL ? config_file :
+-							DEFAULT_RDB_CONFIG_PATH;
+-
+-	/* 接入集中式 rdb config 参数注册表：reload 时重新解析中央 rdb.conf 刷新
+-	 * store；参数经 sec_get_* 走 env>工具段>默认 的解析链，与全仓统一参数
+-	 * 管理一致。解析失败且文件缺失（ENOENT）则保留默认值，与历史行为一致。 */
+-	/* 接入集中式 rdb config 参数注册表：reload 时重新解析中央 rdb.conf 刷新
+-	 * store；参数经 sec_get_* 走 env>工具段>默认 的解析链，与全仓统一参数
+-	 * 管理一致。解析失败且文件缺失（ENOENT）则保留默认值，与历史行为一致。 */
+-	rdb_cfg_parse_result pr;
+-	parse_config(config_path, &pr);
+-	if (!pr.ok) {
+-		/* 历史语义：配置文件缺失（ENOENT）→ 保留默认，不视为致命 */
+-		if (pr.code == RDB_CFG_ERR_FILE_OPEN && errno == ENOENT)
+-			return 0;
+-		snprintf(err_msg, len, "parse config failed: %s", pr.detail);
+-		return -1;
+-	}
+-
++	/* T3985：不再解析文件，store 由 init_config 统一加载；此处仅经 sec_get_*
++	 * 从全局 store 读取并填充进程上下文（reload 时调用方先 init_config 重载）。
++	 * 参数缺失/非法按注册表 fail-closed 语义拦截。 */
+ 	/* sec_get_bool 经 result 暴露 ok/value：非法（fail-closed）即拒绝启动，
+ 	 * Config.check_data/debug 为 bool，需据 ok 拦截而非截断。 */
+ 	Config tmp = *g_pConfig;
+@@ -105,10 +89,8 @@ int fsdeamon_show_config(Config *p_config, char *buf, int len)
+ 	return offset;
+ }
+ 
+-int fsdeamon_init_config(const char *config_file, char *err_msg, int len)
++int fsdeamon_init_config(char *err_msg, int len)
+ {
+-	const char *config_path = config_file != NULL ? config_file :
+-							DEFAULT_RDB_CONFIG_PATH;
+ 	char app_name[128] = { 0 };
+ 	char cwd_dir[512] = { 0 };
+ 	g_pConfig->debug = 0;
+@@ -136,10 +118,7 @@ int fsdeamon_init_config(const char *config_file, char *err_msg, int len)
+ 	}
+ 	g_pConfig->data_path = cwd_dir;
+ 
+-	if (fsdeamon_parse_config(config_path, err_msg, len) < 0) {
+-		if (errno == ENOENT) {
+-			return 0;
+-		}
++	if (fsdeamon_parse_config(err_msg, len) < 0) {
+ 		return -1;
+ 	}
+ 
+diff --git a/fs-backup/fsdeamon/config.h b/fs-backup/fsdeamon/config.h
+index f5f4c2ef..e1bc0083 100644
+--- a/fs-backup/fsdeamon/config.h
++++ b/fs-backup/fsdeamon/config.h
+@@ -32,8 +32,8 @@ typedef struct _Config {
+ 	std::string remote_dir;
+ } Config;
+ 
+-int fsdeamon_init_config(const char *config_file, char *err_msg, int len);
+-int fsdeamon_parse_config(const char *config_file, char *err_msg, int len);
++int fsdeamon_init_config(char *err_msg, int len);
++int fsdeamon_parse_config(char *err_msg, int len);
+ int fsdeamon_show_config(Config *p_config, char *buf, int len);
+ 
+ /* DEFAULT_RDB_CONFIG_PATH 见 cfg_path.h */
+diff --git a/fs-backup/fsdeamon/fs_source.cpp b/fs-backup/fsdeamon/fs_source.cpp
+index 12a56637..4f0ac9d5 100644
+--- a/fs-backup/fsdeamon/fs_source.cpp
++++ b/fs-backup/fsdeamon/fs_source.cpp
+@@ -5,6 +5,7 @@
+ #include "logger.h"
+ #include "backup_helper.h"
+ #include "config.h"
++#include "rdb-config.h"
+ #include "fs_service_proto.h"
+ #include "fs_kernel_sync.h"
+ #include "fs_service.h"
+@@ -1070,7 +1071,11 @@ void FsSource::ReloadConfig(void *buff, json &json_response)
+ 	json_response["source_port"] = source_port;
+ 	json_response["source_host"] = source_host;
+ 
+-	if (fsdeamon_parse_config(config_path.c_str(), err_msg, 1024) != 0) {
++	{
++		rdb_cfg_parse_result pr;
++		init_config(config_path.c_str(), &pr);
++	}
++	if (fsdeamon_init_config(err_msg, 1024) != 0) {
+ 		ErrorLog("ReloadConfig: parse config failed: %s", err_msg);
+ 		json_response["msg"] = err_msg;
+ 		json_response["result"] = "false";
+diff --git a/fs-backup/fsdeamon/main.cpp b/fs-backup/fsdeamon/main.cpp
+index 6f01e413..41e97296 100644
+--- a/fs-backup/fsdeamon/main.cpp
++++ b/fs-backup/fsdeamon/main.cpp
+@@ -305,13 +305,13 @@ int main(int argc, char *argv[])
+ 
+ 	{
+ 		rdb_cfg_parse_result pr;
+-		if (init_config(NULL, &pr) != 1) {
++		if (init_config(config_file, &pr) != 1) {
+ 			ErrorLog("rdb-config load failed: %s", pr.detail);
+ 			exit(EXIT_FAILURE);
+ 		}
+ 	}
+-	if (set_rpc_init_config(config_file, err_msg, 1024) != 0 ||
+-	    fsdeamon_init_config(config_file, err_msg, sizeof(err_msg)) != 0) {
++	if (set_rpc_init_config(err_msg, 1024) != 0 ||
++	    fsdeamon_init_config(err_msg, sizeof(err_msg)) != 0) {
+ 		ErrorLog("init config failed: %s", err_msg);
+ 		exit(EXIT_FAILURE);
+ 	}
+diff --git a/fs-backup/fsdeamon/tests/config_test.cpp b/fs-backup/fsdeamon/tests/config_test.cpp
+index 399a2195..0db6d079 100644
+--- a/fs-backup/fsdeamon/tests/config_test.cpp
++++ b/fs-backup/fsdeamon/tests/config_test.cpp
+@@ -40,9 +40,11 @@ int main(void)
+ 		   "debug=0\n"
+ 		   "keepalive=45\n"
+ 		   "retry=5\n");
++	rdb_cfg_parse_result pr;
++	init_config(tf, &pr);
+ 	reset_rpc_stub();
+ 	memset(err, 0, sizeof(err));
+-	int rc = fsdeamon_init_config(tf, err, sizeof(err));
++	int rc = fsdeamon_init_config(err, sizeof(err));
+ 	CHECK(rc == 0, "init ok with valid config");
+ 	CHECK(g_pConfig->check_data == true, "check_data read=1");
+ 	CHECK(g_pConfig->debug == false, "debug read=0");
+@@ -56,22 +58,70 @@ int main(void)
+ 	write_conf(tf,
+ 		   "[fsdaemon]\n"
+ 		   "check_data=2\n");
++	init_config(tf, &pr);
+ 	reset_rpc_stub();
+ 	memset(err, 0, sizeof(err));
+-	rc = fsdeamon_init_config(tf, err, sizeof(err));
++	rc = fsdeamon_init_config(err, sizeof(err));
+ 	CHECK(rc < 0, "invalid check_data rejects init (fail-closed)");
+ 
+ 	/* Case 3: 缺省回退 —— 省略键时取注册表默认 */
+ 	write_conf(tf, "[fsdaemon]\n");
++	init_config(tf, &pr);
+ 	reset_rpc_stub();
+ 	memset(err, 0, sizeof(err));
+-	rc = fsdeamon_init_config(tf, err, sizeof(err));
++	rc = fsdeamon_init_config(err, sizeof(err));
+ 	CHECK(rc == 0, "init ok with empty fsdaemon section");
+ 	CHECK(g_pConfig->check_data == false, "check_data default=0");
+ 	CHECK(g_pConfig->keepalive == 30, "keepalive default=30");
+ 	CHECK(g_pConfig->retry == 3, "retry default=3");
+ 	CHECK(g_stub_keepalive == 30, "set_rpc_keepalive default propagated=30");
+ 
++	/* Case 4: reload 刷新（AC-3）—— 不同文件重载 store 后参数刷新 */
++	write_conf(tf,
++		   "[fsdaemon]\n"
++		   "check_data=1\n"
++		   "keepalive=45\n");
++	{
++		rdb_cfg_parse_result pr;
++		init_config(tf, &pr);
++	}
++	reset_rpc_stub();
++	memset(err, 0, sizeof(err));
++	rc = fsdeamon_init_config(err, sizeof(err));
++	CHECK(rc == 0, "reload init ok");
++	write_conf(tf,
++		   "[fsdaemon]\n"
++		   "check_data=0\n"
++		   "keepalive=77\n");
++	{
++		rdb_cfg_parse_result pr;
++		init_config(tf, &pr);
++	}
++	reset_rpc_stub();
++	memset(err, 0, sizeof(err));
++	rc = fsdeamon_init_config(err, sizeof(err));
++	CHECK(rc == 0, "reload init ok (2nd)");
++	CHECK(g_pConfig->check_data == false, "reload check_data refreshed=0");
++	CHECK(g_pConfig->keepalive == 77, "reload keepalive refreshed=77");
++
++	/* Case 5: ENOENT 保留默认（AC-4）+ 多次 init 去重无副作用（AC-1） */
++	{
++		rdb_cfg_parse_result pr;
++		init_config("/tmp/fsdeamon_cfg_test_nonexist.conf", &pr);
++	}
++	reset_rpc_stub();
++	memset(err, 0, sizeof(err));
++	rc = fsdeamon_init_config(err, sizeof(err));
++	CHECK(rc == 0, "init ok with missing config (ENOENT) -> defaults");
++	CHECK(g_pConfig->check_data == false, "check_data default=0 on ENOENT");
++	CHECK(g_pConfig->keepalive == 30, "keepalive default=30 on ENOENT");
++	{
++		int before = g_pConfig->keepalive;
++		rc = fsdeamon_init_config(err, sizeof(err));
++		CHECK(rc == 0, "repeated init ok");
++		CHECK(g_pConfig->keepalive == before, "repeated init no side-effect");
++	}
++
+ 	if (failures == 0) {
+ 		printf("\nALL FSDEAMON CONFIG TESTS PASSED\n");
+ 		return 0;
+diff --git a/fs-backup/fsdeamon/unix_server.cpp b/fs-backup/fsdeamon/unix_server.cpp
+index b14ac38b..fa8b397c 100644
+--- a/fs-backup/fsdeamon/unix_server.cpp
++++ b/fs-backup/fsdeamon/unix_server.cpp
+@@ -1,4 +1,5 @@
+ #include "config.h"
++#include "rdb-config.h"
+ #include "thread.h"
+ #include "unix_ipc.h"
+ #include "logger.h"
+@@ -19,7 +20,11 @@ static int process_reload_cmd(void *private_data, struct buf *req,
+ 		return -1;
+ 	}
+ 
+-	if (fsdeamon_parse_config(path, msg, 1024) != 0) {
++	{
++		rdb_cfg_parse_result pr;
++		init_config(path, &pr);
++	}
++	if (fsdeamon_init_config(msg, 1024) != 0) {
+ 		status = 1;
+ 	} else {
+ 		status = 0;
+diff --git a/libs/rdb-config.h b/libs/rdb-config.h
+index bf12d0cd..fbcf93d0 100644
+--- a/libs/rdb-config.h
++++ b/libs/rdb-config.h
+@@ -162,6 +162,7 @@ int config_section_count(config_kv_store *store, const char *section);
+ config_kv_entry *config_section_entry(config_kv_store *store,
+ 				      const char *section, int index);
+ int init_config(const char *config_file, rdb_cfg_parse_result *out);
++/* 内部解析：仅由 init_config 与测试调用；生产模块请改用 init_config + sec_get_* */
+ int parse_config(const char *config_file, rdb_cfg_parse_result *out);
+ int show_config(config_kv_store *store, const char *section, char *buf,
+ 		int len);
+diff --git a/rpc/main.cpp b/rpc/main.cpp
+index 2e3b90df..54f76da1 100644
+--- a/rpc/main.cpp
++++ b/rpc/main.cpp
+@@ -355,7 +355,6 @@ int main(int argc, char *argv[])
+ {
+ 	char err[MAX_LOGMSG_LEN] = {};
+ 	char unix_socket_path[] = UNIX_SOCKET_NAME;
+-	const char *config_file = getenv(RDB_CONFIG);
+ 	int ret = 0;
+ 	char err_msg[1024];
+ 	tls_cert_ctx_t *server_tls_ctx = NULL;
+@@ -370,7 +369,7 @@ int main(int argc, char *argv[])
+ 			exit(EXIT_FAILURE);
+ 		}
+ 	}
+-	if (rpc_init_config(config_file, err_msg, 1024) != 0) {
++	if (rpc_init_config(err_msg, 1024) != 0) {
+ 		ErrorLog("init config failure, %s", err_msg);
+ 		exit(EXIT_FAILURE);
+ 	}
+diff --git a/rpc/rpc-client.cpp b/rpc/rpc-client.cpp
+index 98d165bf..c3f03463 100644
+--- a/rpc/rpc-client.cpp
++++ b/rpc/rpc-client.cpp
+@@ -631,7 +631,6 @@ int client_main(int argc, char *argv[])
+ 	int ret = 0;
+ 	const bool time_subcommand = argc > 1 && strcmp(argv[1], "time") == 0;
+ 	char err_msg[MAX_LOGMSG_LEN];
+-	const char *config_file = getenv(RDB_CONFIG);
+ 
+ 	std::set<std::string> dir_tree_files;
+ 	std::set<link_item_t> dir_link_files;
+@@ -644,7 +643,7 @@ int client_main(int argc, char *argv[])
+ 			exit(EXIT_FAILURE);
+ 		}
+ 	}
+-	if (rpc_init_config(config_file, err_msg, 1024) != 0) {
++	if (rpc_init_config(err_msg, 1024) != 0) {
+ 		ErrorLog("init config failure, %s", err_msg);
+ 		exit(EXIT_FAILURE);
+ 	}
+diff --git a/rpc/rpc-config.cpp b/rpc/rpc-config.cpp
+index ffd4f823..5aaf767d 100644
+--- a/rpc/rpc-config.cpp
++++ b/rpc/rpc-config.cpp
+@@ -40,7 +40,7 @@ int rpc_parse_config(const char *config_file, char *err_msg, int len)
+ 	 * ini_parse 直接解析文件，现统一走注册表 sec_get_* 读取全局 store。 */
+ 	if (config_file != NULL) {
+ 		rdb_cfg_parse_result pr;
+-		parse_config(config_file, &pr);
++		init_config(config_file, &pr);
+ 		if (!pr.ok) {
+ 			snprintf(err_msg, len, "config load failed: %s",
+ 				 pr.detail);
+@@ -159,7 +159,7 @@ int rpc_show_config(rpc_config *p_config, char *buf, int len)
+ 	return offset;
+ }
+ 
+-int rpc_init_config(const char *config_file, char *err_msg, int len)
++int rpc_init_config(char *err_msg, int len)
+ {
+ 	g_rpc_config->debug = 0;
+ 	g_rpc_config->daemon = 0;
+@@ -188,10 +188,10 @@ int rpc_init_config(const char *config_file, char *err_msg, int len)
+ 	snprintf(g_rpc_config->config_path, sizeof(g_rpc_config->config_path),
+ 		 "%s", DEFAULT_RDB_CONFIG_PATH);
+ 
+-	/* T0395：透传原始 config_file。为 NULL 时 rpc_parse_config 不重载 store，
+-	 * 直接读取已由 init_config/parse_config 加载的全局 store（测试与默认路径语义）；
+-	 * 为显式路径时则重载对应文件（生产 process_reload_cmd / 显式配置路径）。 */
+-	if (rpc_parse_config(config_file, err_msg, len) < 0) {
++	/* T3985：rpc_init_config 不再持有 config_file，store 统一由 init_config 加载。
++	 * 此处传 NULL 给 rpc_parse_config，复用已由 init_config 加载的全局 store，
++	 * 不重复解析文件。 */
++	if (rpc_parse_config(NULL, err_msg, len) < 0) {
+ 		if (errno != ENOENT) {
+ 			return -1;
+ 		}
+diff --git a/rpc/rpc-config.h b/rpc/rpc-config.h
+index 676fed28..65fb261c 100644
+--- a/rpc/rpc-config.h
++++ b/rpc/rpc-config.h
+@@ -54,7 +54,7 @@ extern pthread_key_t g_key;
+ /* RDB_CONFIG / DEFAULT_RDB_CONFIG_PATH 由 libs/cfg_path.h 经 rdb-config.h 提供，
+  * 此处不再重复定义（T0369 F3 去重）。 */
+ 
+-int rpc_init_config(const char *config_file, char *err_msg, int len);
++int rpc_init_config(char *err_msg, int len);
+ int rpc_show_config(rpc_config *p_config, char *buf, int len);
+ int rpc_parse_config(const char *config_file, char *err_msg, int len);
+ void rpc_set_section_name(const char *section_name);
+diff --git a/rpc/rpc.cpp b/rpc/rpc.cpp
+index ebf75c57..c17228dc 100644
+--- a/rpc/rpc.cpp
++++ b/rpc/rpc.cpp
+@@ -1640,9 +1640,9 @@ void set_rpc_parallel(int parallel)
+ 	g_rpc_config->parallel = parallel;
+ }
+ 
+-int set_rpc_init_config(const char *config_file, char *err_msg, int len)
++int set_rpc_init_config(char *err_msg, int len)
+ {
+-	return rpc_init_config(config_file, err_msg, len);
++	return rpc_init_config(err_msg, len);
+ }
+ 
+ int do_remote_mkdir(rpc_io_t *io, const char *remote_file)
+diff --git a/rpc/rpc.h b/rpc/rpc.h
+index 00c1e570..9bda05a6 100644
+--- a/rpc/rpc.h
++++ b/rpc/rpc.h
+@@ -24,7 +24,7 @@ extern "C" {
+ #define META_MAX_SIZE UINT64_MAX
+ // #define META_MAX_SIZE 0x174876e800
+ 
+-int set_rpc_init_config(const char *config_file, char *err_msg, int len);
++int set_rpc_init_config(char *err_msg, int len);
+ void set_rpc_keepalive_interval(int interval);
+ void set_rpc_check_data(bool enable);
+ void set_rpc_read_timeout(int read_timeout);
+diff --git a/rpc/tests/access.cpp b/rpc/tests/access.cpp
+index b2faaac5..e32ab481 100644
+--- a/rpc/tests/access.cpp
++++ b/rpc/tests/access.cpp
+@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
+ 		exit(1);
+ 	}
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	ret = socketpair(AF_UNIX, SOCK_STREAM, 0, sockfds);
+diff --git a/rpc/tests/chmod.cpp b/rpc/tests/chmod.cpp
+index 51a2b4a3..68cdaf88 100644
+--- a/rpc/tests/chmod.cpp
++++ b/rpc/tests/chmod.cpp
+@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
+ 		exit(1);
+ 	}
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	ret = socketpair(AF_UNIX, SOCK_STREAM, 0, sockfds);
+diff --git a/rpc/tests/chown.cpp b/rpc/tests/chown.cpp
+index 1f6c6fe6..d18c42d2 100644
+--- a/rpc/tests/chown.cpp
++++ b/rpc/tests/chown.cpp
+@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
+ 		exit(1);
+ 	}
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	ret = socketpair(AF_UNIX, SOCK_STREAM, 0, sockfds);
+diff --git a/rpc/tests/download_file.cpp b/rpc/tests/download_file.cpp
+index 4b756045..cce07eae 100644
+--- a/rpc/tests/download_file.cpp
++++ b/rpc/tests/download_file.cpp
+@@ -231,7 +231,7 @@ int main(void)
+ 	write(fd, SRC_CONTENT, SRC_CONTENT_LEN);
+ 	close(fd);
+ 
+-	set_rpc_init_config(NULL, err_msg, sizeof(err_msg));
++	set_rpc_init_config(err_msg, sizeof(err_msg));
+ 	alarm(5);
+ 
+ 	failed += run_test("download_file_exists",
+diff --git a/rpc/tests/download_file_dir.cpp b/rpc/tests/download_file_dir.cpp
+index 05c2578d..8bfcebae 100644
+--- a/rpc/tests/download_file_dir.cpp
++++ b/rpc/tests/download_file_dir.cpp
+@@ -229,7 +229,7 @@ int main(int argc, char *argv[])
+ 	write(fd, "hello3", 6);
+ 	close(fd);
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 
+ 	if (socketpair(AF_UNIX, SOCK_STREAM, 0, sockfds) < 0) {
+ 		perror("socketpair");
+diff --git a/rpc/tests/download_fileat.cpp b/rpc/tests/download_fileat.cpp
+index 4282efc5..befe9f98 100644
+--- a/rpc/tests/download_fileat.cpp
++++ b/rpc/tests/download_fileat.cpp
+@@ -122,7 +122,7 @@ int main(int argc, char *argv[])
+ 	struct rpc_conn *server_conn;
+ 	int server_ret;
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	/* create source file for download */
+diff --git a/rpc/tests/download_fileats.cpp b/rpc/tests/download_fileats.cpp
+index f5b5d30a..f4584375 100644
+--- a/rpc/tests/download_fileats.cpp
++++ b/rpc/tests/download_fileats.cpp
+@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
+ 	snprintf(path, sizeof(path), "%stest2.txt", g_src_dir);
+ 	create_test_file(path, "test data 2");
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	ret = socketpair(AF_UNIX, SOCK_STREAM, 0, sockfds);
+diff --git a/rpc/tests/download_link.cpp b/rpc/tests/download_link.cpp
+index e2537c9b..91612efe 100644
+--- a/rpc/tests/download_link.cpp
++++ b/rpc/tests/download_link.cpp
+@@ -132,7 +132,7 @@ int main(void)
+ 		return 1;
+ 	}
+ 
+-	set_rpc_init_config(NULL, err_msg, sizeof(err_msg));
++	set_rpc_init_config(err_msg, sizeof(err_msg));
+ 	alarm(3);
+ 
+ 	ret = socketpair(AF_UNIX, SOCK_STREAM, 0, sockfds);
+diff --git a/rpc/tests/execute_command.cpp b/rpc/tests/execute_command.cpp
+index 0f3f3c6a..f17eb49d 100644
+--- a/rpc/tests/execute_command.cpp
++++ b/rpc/tests/execute_command.cpp
+@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
+ 	struct client_arg ca;
+ 	struct server_arg sa;
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(10);
+ 
+ 	if (socketpair(AF_UNIX, SOCK_STREAM, 0, sockfds) < 0) {
+diff --git a/rpc/tests/fchmodats.cpp b/rpc/tests/fchmodats.cpp
+index d73a7294..baada1f6 100644
+--- a/rpc/tests/fchmodats.cpp
++++ b/rpc/tests/fchmodats.cpp
+@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
+ 	if (fd < 0) { perror("open"); exit(1); }
+ 	close(fd);
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	ret = socketpair(AF_UNIX, SOCK_STREAM, 0, sockfds);
+diff --git a/rpc/tests/fchownats.cpp b/rpc/tests/fchownats.cpp
+index f3342263..b8b149dc 100644
+--- a/rpc/tests/fchownats.cpp
++++ b/rpc/tests/fchownats.cpp
+@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
+ 	if (fd < 0) { perror("open"); exit(1); }
+ 	close(fd);
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	ret = socketpair(AF_UNIX, SOCK_STREAM, 0, sockfds);
+diff --git a/rpc/tests/lstat.cpp b/rpc/tests/lstat.cpp
+index ac9725d1..f41ff375 100644
+--- a/rpc/tests/lstat.cpp
++++ b/rpc/tests/lstat.cpp
+@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
+ 	struct rpc_conn *server_conn;
+ 	int server_ret;
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	ret = socketpair(AF_UNIX, SOCK_STREAM, 0, sockfds);
+diff --git a/rpc/tests/mkdir.cpp b/rpc/tests/mkdir.cpp
+index 430db9f5..3a679b36 100644
+--- a/rpc/tests/mkdir.cpp
++++ b/rpc/tests/mkdir.cpp
+@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
+ 	struct rpc_conn *server_conn;
+ 	int server_ret;
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	rmdir("/tmp/tmp1/cv_debug");
+diff --git a/rpc/tests/mkdirall.cpp b/rpc/tests/mkdirall.cpp
+index eaaa3e07..20b9ade7 100644
+--- a/rpc/tests/mkdirall.cpp
++++ b/rpc/tests/mkdirall.cpp
+@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
+ 	struct rpc_conn *server_conn;
+ 	int server_ret;
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	ret = socketpair(AF_UNIX, SOCK_STREAM, 0, sockfds);
+diff --git a/rpc/tests/pread.cpp b/rpc/tests/pread.cpp
+index 56b0b8e9..2cc3f731 100644
+--- a/rpc/tests/pread.cpp
++++ b/rpc/tests/pread.cpp
+@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
+ 	struct rpc_conn *server_conn;
+ 	int server_ret;
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	unlink("/tmp/pread_test_dst.bin");
+diff --git a/rpc/tests/pwrite.cpp b/rpc/tests/pwrite.cpp
+index 25776afc..bd50435e 100644
+--- a/rpc/tests/pwrite.cpp
++++ b/rpc/tests/pwrite.cpp
+@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
+ 	struct rpc_conn *server_conn;
+ 	int server_ret;
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	{
+diff --git a/rpc/tests/readdir.cpp b/rpc/tests/readdir.cpp
+index 5cdf4ad4..812e006f 100644
+--- a/rpc/tests/readdir.cpp
++++ b/rpc/tests/readdir.cpp
+@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
+ 	struct rpc_conn *server_conn;
+ 	int server_ret;
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	ret = socketpair(AF_UNIX, SOCK_STREAM, 0, sockfds);
+diff --git a/rpc/tests/readdir_tree.cpp b/rpc/tests/readdir_tree.cpp
+index 6345d8ba..ea2eef44 100644
+--- a/rpc/tests/readdir_tree.cpp
++++ b/rpc/tests/readdir_tree.cpp
+@@ -312,7 +312,7 @@ int main(int argc, char *argv[])
+ 	char empty_dir[PATH_MAX * 2];
+ 	char tmp_template[] = "/tmp/readdir_tree_test_XXXXXX";
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	printf("========================================\n");
+diff --git a/rpc/tests/readlink.cpp b/rpc/tests/readlink.cpp
+index 49b5cbad..85b3e632 100644
+--- a/rpc/tests/readlink.cpp
++++ b/rpc/tests/readlink.cpp
+@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
+ 	struct rpc_conn *server_conn;
+ 	int server_ret;
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	mkdir("/tmp/tmp1", 0755);
+diff --git a/rpc/tests/rpc_config_test.cpp b/rpc/tests/rpc_config_test.cpp
+index 9a902664..0cd63dd0 100644
+--- a/rpc/tests/rpc_config_test.cpp
++++ b/rpc/tests/rpc_config_test.cpp
+@@ -55,7 +55,7 @@ TEST(init_fills_sec_switches_from_store)
+ 	unsetenv(AUDIT_ENABLE_ENV);
+ 	unsetenv(AUTH_ENABLE_ENV);
+ 	{ rdb_cfg_parse_result pr; parse_config(path, &pr); assert(pr.ok); }
+-	assert(rpc_init_config(NULL, err, sizeof(err)) == 0);
++	assert(rpc_init_config(err, sizeof(err)) == 0);
+ 
+ 	assert(g_rpc_config->audit_enabled == 1);
+ 	assert(g_rpc_config->auth_enabled == 0);
+@@ -70,7 +70,7 @@ TEST(init_env_overrides_store)
+ 
+ 	setenv(AUDIT_ENABLE_ENV, "1", 1);
+ 	setenv(AUTH_ENABLE_ENV, "", 1); // 空串视为未命中，回落默认 0
+-	assert(rpc_init_config(NULL, err, sizeof(err)) == 0);
++	assert(rpc_init_config(err, sizeof(err)) == 0);
+ 
+ 	assert(g_rpc_config->audit_enabled == 1);
+ 	assert(g_rpc_config->auth_enabled == 0);
+@@ -86,7 +86,7 @@ TEST(init_invalid_audit_env_fails)
+ 	char err[1024];
+ 
+ 	setenv(AUDIT_ENABLE_ENV, "2", 1);
+-	assert(rpc_init_config(NULL, err, sizeof(err)) == -1);
++	assert(rpc_init_config(err, sizeof(err)) == -1);
+ 
+ 	unsetenv(AUDIT_ENABLE_ENV);
+ }
+@@ -103,7 +103,7 @@ TEST(reload_reresolves_sec_switches)
+ 	{ rdb_cfg_parse_result pr; parse_config("/dev/null", &pr); assert(pr.ok); }
+ 	unsetenv(AUDIT_ENABLE_ENV);
+ 	unsetenv(AUTH_ENABLE_ENV);
+-	assert(rpc_init_config(NULL, err, sizeof(err)) == 0);
++	assert(rpc_init_config(err, sizeof(err)) == 0);
+ 	assert(g_rpc_config->audit_enabled == 0);
+ 
+ 	// 管理员运行期变更 env 后触发 reload：开关应随重载重新解析
+@@ -144,7 +144,7 @@ TEST(tunables_read_from_aio_speedd)
+ 	unsetenv("RPC_TOOL_DEV_PATH");
+ 
+ 	{ rdb_cfg_parse_result pr; parse_config(path, &pr); assert(pr.ok); }
+-	assert(rpc_init_config(NULL, err, sizeof(err)) == 0);
++	assert(rpc_init_config(err, sizeof(err)) == 0);
+ 
+ 	assert(g_rpc_config->check_data == 1);
+ 	assert(g_rpc_config->debug == 1);
+@@ -166,7 +166,7 @@ TEST(invalid_bool_fail_closed)
+ 	unsetenv("RPC_TOOL_CHECK_DATA");
+ 	{ rdb_cfg_parse_result pr; parse_config(path, &pr); assert(pr.ok); }
+ 	/* 非法布尔触发 fail-closed：rpc_init_config 响亮返回 -1 */
+-	assert(rpc_init_config(NULL, err, sizeof(err)) == -1);
++	assert(rpc_init_config(err, sizeof(err)) == -1);
+ 
+ 	cleanup_temp(path);
+ }
+@@ -181,13 +181,13 @@ TEST(out_of_range_tunable_fail_closed)
+ 
+ 	unsetenv(RPC_TOOL_RETRY_ENV);
+ 	{ rdb_cfg_parse_result pr; parse_config(path, &pr); assert(pr.ok); }
+-	assert(rpc_init_config(NULL, err, sizeof(err)) == -1);
++	assert(rpc_init_config(err, sizeof(err)) == -1);
+ 
+ 	/* 合法值（5）仍正常解析 */
+ 	const char *ini2 = "[aio-speedd]\nretry = 5\n";
+ 	char *path2 = write_temp_ini(ini2);
+ 	{ rdb_cfg_parse_result pr2; parse_config(path2, &pr2); assert(pr2.ok); }
+-	assert(rpc_init_config(NULL, err, sizeof(err)) == 0);
++	assert(rpc_init_config(err, sizeof(err)) == 0);
+ 	assert(g_rpc_config->retry == 5);
+ 
+ 	cleanup_temp(path);
+@@ -204,7 +204,7 @@ TEST(layer3_aio_speed_fallback)
+ 
+ 	unsetenv("RPC_TOOL_KEEPALIVE");
+ 	{ rdb_cfg_parse_result pr; parse_config(path, &pr); assert(pr.ok); }
+-	assert(rpc_init_config(NULL, err, sizeof(err)) == 0);
++	assert(rpc_init_config(err, sizeof(err)) == 0);
+ 	assert(g_rpc_config->keepalive == 77);
+ 
+ 	cleanup_temp(path);
+@@ -218,7 +218,7 @@ TEST(env_overrides_section)
+ 
+ 	setenv(RPC_TOOL_KEEPALIVE_ENV, "99", 1);
+ 	{ rdb_cfg_parse_result pr; parse_config(path, &pr); assert(pr.ok); }
+-	assert(rpc_init_config(NULL, err, sizeof(err)) == 0);
++	assert(rpc_init_config(err, sizeof(err)) == 0);
+ 	assert(g_rpc_config->keepalive == 99);
+ 
+ 	unsetenv(RPC_TOOL_KEEPALIVE_ENV);
+diff --git a/rpc/tests/symlink.cpp b/rpc/tests/symlink.cpp
+index 206b4acc..0eb49653 100644
+--- a/rpc/tests/symlink.cpp
++++ b/rpc/tests/symlink.cpp
+@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
+ 	struct rpc_conn *server_conn;
+ 	int server_ret;
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	mkdir("/tmp/tmp1", 0755);
+diff --git a/rpc/tests/upload_fileats.cpp b/rpc/tests/upload_fileats.cpp
+index 52e21e03..194fd665 100644
+--- a/rpc/tests/upload_fileats.cpp
++++ b/rpc/tests/upload_fileats.cpp
+@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
+ 	snprintf(path, sizeof(path), "%stest2.txt", g_src_dir);
+ 	create_test_file(path, "test data 2");
+ 
+-	set_rpc_init_config(NULL, err_msg, 4096);
++	set_rpc_init_config(err_msg, 4096);
+ 	alarm(3);
+ 
+ 	ret = socketpair(AF_UNIX, SOCK_STREAM, 0, sockfds);

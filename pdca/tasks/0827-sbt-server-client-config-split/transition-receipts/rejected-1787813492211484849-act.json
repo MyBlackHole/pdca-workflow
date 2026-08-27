@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3986",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "clarifications.jsonl[12]/",
+      "message": "'summary' is a required property"
+    },
+    {
+      "code": "CONCLUSION_MISSING",
+      "path": "records/T3986-0827-sbt-server-client-config-split/conclusion.md",
+      "message": "conclusion is required"
+    }
+  ],
+  "at": "2026-08-27T14:51:32.211463+08:00"
+}

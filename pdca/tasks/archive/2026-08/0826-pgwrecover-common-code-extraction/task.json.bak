@@ -1,0 +1,39 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3982",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-26T17:18:57+08:00",
+    "phase": "act",
+    "record": "T3982-0826-pgwrecover-common-code-extraction",
+    "scenario_type": "development",
+    "completed_at": "2026-08-26T17:42:05+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "6/6 AC \u901a\u8fc7\uff0c\u6d88\u9664 ~3500 \u884c\u91cd\u590d\u4ee3\u7801",
+      "verdict_id": "V-T3982-check-001",
+      "at": "2026-08-26T17:42:30+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "\u516c\u5171\u6a21\u5757\u62bd\u53d6\u6a21\u5f0f\u53ef\u590d\u7528\u4e8e\u5176\u4ed6\u591a\u7248\u672c PostgreSQL \u6269\u5c55",
+      "at": "2026-08-26T17:45:00+08:00"
+    }
+  },
+  "parent": "T3971",
+  "slug": "0826-pgwrecover-common-code-extraction",
+  "states": {
+    "act": "2026-08-26T17:44:34+08:00",
+    "archive": null,
+    "check": "2026-08-26T17:42:05+08:00",
+    "created": "2026-08-26T17:18:57+08:00",
+    "do": "2026-08-26T17:20:30+08:00",
+    "plan": "2026-08-26T17:18:57+08:00"
+  },
+  "status": "Completed",
+  "title": "pgwrecover \u516c\u5171\u4ee3\u7801\u62bd\u53d6\uff1a\u4ece pg16/pg18 \u63d0\u53d6\u5171\u4eab\u6a21\u5757\u5230 src/pg/common/"
+}

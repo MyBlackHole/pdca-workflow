@@ -1,0 +1,89 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "参数注册表新增 libobk_server/libobk_client/dmsbtex_server/dmsbtex_client 四个角色的 mtls_enable 与 tls_algorithm 参数 ID，各自解析链独立，单测通过。",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "param_registry_test"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "删除 PARAM_SBT_MTLS_ENABLED、PARAM_SBT_TLS_ALGORITHM、PARAM_LIBOBK_CLI_TLS_ALGORITHM 及其 SBT 专属 env 名（SBT_MTLS_ENABLE、SBT_TLS_ALGORITHM、LIBOBK_CLI_TLS_ALGORITHM）；全局 `[security]tls_enable`、`[security]tls_algorithm` ini key 保留且仍被 RPC 系参数引用。",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "param_registry_test",
+        "rdb_config_test"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "libobk 服务端 TLS 配置初始化仅读取 libobk_server 角色参数，libobk 客户端 TLS 配置初始化仅读取 libobk_client 角色参数，同一进程内分别配置得到不同结果、互不覆盖。",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "module_build"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "dmsbtex 服务端 TLS 配置初始化读取 dmsbtex_server 角色参数，dmsbtex 客户端 TLS 配置初始化（sbt_session_client_init 路径）读取 dmsbtex_client 角色参数。",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "module_build"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "全局 cert_dir 配置（`[security]cert_dir` / `RPC_TLS_CERT_DIR`）保持不变，SBT 系与 fs-backup 读取行为不变（回归通过）。",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "param_registry_test",
+        "rdb_config_test"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "既有 mTLS 集成测试（dmsbtex/test/session_test.c、libobk/test/session_test.c）在迁移后仍能分别按角色构建并通过握手/明文回归。",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "module_build"
+      ]
+    },
+    {
+      "index": 7,
+      "text": "运行 dmsbtex、libobk、libs 的 xmake build 与 xmake test 全部通过。",
+      "criteria": [
+        "AC-7"
+      ],
+      "evidence_ids": [
+        "module_build",
+        "param_registry_test"
+      ]
+    },
+    {
+      "index": 8,
+      "text": "CLI 覆盖（--mtls-enable/--tls-algorithm）仅映射到 server 角色（libobk main、dmsbtex main）；设置旧 SBT 专属 env 名不再影响 SBT 系解析。",
+      "criteria": [
+        "AC-8"
+      ],
+      "evidence_ids": [
+        "param_registry_test",
+        "rdb_config_test"
+      ]
+    }
+  ]
+}

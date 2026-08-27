@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3982",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta",
+      "message": "Additional properties are not allowed ('verdict_at' was unexpected)",
+      "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-08-26T17:44:27.141063+08:00"
+}

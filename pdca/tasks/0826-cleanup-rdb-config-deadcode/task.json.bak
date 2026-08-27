@@ -1,0 +1,25 @@
+{
+  "id": "T3984",
+  "slug": "0826-cleanup-rdb-config-deadcode",
+  "title": "清理 rdb-config.c 多余代码（死字段/死函数/过时注释/双缓冲过度设计）",
+  "parent": "T3979",
+  "children": [],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-26T16:30:00+08:00",
+    "convergence": [
+      "0826-cleanup-rdb-config-deadcode"
+    ]
+  },
+  "states": {
+    "created": "2026-08-26T16:30:00+08:00",
+    "plan": "2026-08-26T16:45:00+08:00",
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

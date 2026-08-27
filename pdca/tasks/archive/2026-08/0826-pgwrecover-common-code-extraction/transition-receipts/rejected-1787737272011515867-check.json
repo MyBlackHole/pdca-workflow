@@ -1,0 +1,49 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3982",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "EVIDENCE_SIZE_MISMATCH",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/convergence-map.json",
+      "message": "size does not match manifest"
+    },
+    {
+      "code": "EVIDENCE_DIGEST_MISMATCH",
+      "path": "records/T3982-0826-pgwrecover-common-code-extraction/evidence/convergence-map.json",
+      "message": "digest does not match"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/convergence-map.json[2]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/convergence-map.json[3]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/convergence-map.json[4]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/convergence-map.json[5]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/convergence-map.json[6]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow/records/T3982-0826-pgwrecover-common-code-extraction/evidence/convergence-map.json[1]/text",
+      "message": "text must equal the Plan convergence value"
+    }
+  ],
+  "at": "2026-08-26T17:41:12.011464+08:00"
+}
