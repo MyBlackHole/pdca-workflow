@@ -8,7 +8,7 @@
       "task identity is unique and immutable"
     ],
     "created_at": "2026-08-27T18:42:38+08:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T3988-0827-server-mtls-alg-cert-failclosed",
     "scenario_type": "bugfix",
     "completed_at": "2026-08-27T18:57:38+08:00",
@@ -17,12 +17,17 @@
       "reason": "算法锁 fail-closed 全量构建通过，AC-1..AC-7 全部 PASS，双轴审查零阻塞，convergence 校验 valid=true",
       "verdict_id": "T3988-verdict-0827",
       "at": "2026-08-27T19:00:53+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "算法锁 fail-closed 穿透范式已沉淀为可复用知识 tls/server-algorithm-lock-failclosed.md",
+      "at": "2026-08-27T19:02:27+08:00"
     }
   },
   "parent": null,
   "slug": "0827-server-mtls-alg-cert-failclosed",
   "states": {
-    "act": null,
+    "act": "2026-08-27T19:01:54+08:00",
     "archive": null,
     "check": "2026-08-27T18:57:38+08:00",
     "created": "2026-08-27T18:42:38+08:00",
