@@ -1,0 +1,28 @@
+{
+  "id": "T0267",
+  "slug": "0827-logger-migrate-sdk",
+  "title": "第三方 sdk(huanweicloun) 日志调用迁移或范围外决策",
+  "parent": "T0261",
+  "children": [],
+  "dependencies": ["T0262"],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-27T16:46:50+08:00",
+    "convergence": null,
+    "improvement_source": null,
+    "record": null,
+    "verdict": null,
+    "disposition": null
+  },
+  "states": {
+    "created": "2026-08-27T16:46:50+08:00",
+    "plan": null,
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

@@ -1,0 +1,29 @@
+[PASS] dm algorithm exact mapping
+[2026-08-27 18:28:51]|Error|dmsbtex/network.c:138 sbt_tls_config_init|139653862007808| tls config: invalid DMSBTEX_SERVER_MTLS_ENABLE value: env DMSBTEX_SERVER_MTLS_ENABLE='abc' is not 0/1
+[2026-08-27 18:28:51]|Error|dmsbtex/network.c:138 sbt_tls_config_init|139653862007808| tls config: invalid DMSBTEX_SERVER_MTLS_ENABLE value: env DMSBTEX_SERVER_MTLS_ENABLE='1x' is not 0/1
+[2026-08-27 18:28:51]|Error|dmsbtex/network.c:138 sbt_tls_config_init|139653862007808| tls config: invalid DMSBTEX_SERVER_MTLS_ENABLE value: env DMSBTEX_SERVER_MTLS_ENABLE='yes' is not 0/1
+[2026-08-27 18:28:51]|Error|dmsbtex/network.c:152 sbt_tls_config_init|139653862007808| tls config: unknown tls_algorithm "sm2"
+[2026-08-27 18:28:51]|Error|dmsbtex/network.c:152 sbt_tls_config_init|139653862007808| tls config: unknown tls_algorithm "SM2"
+[2026-08-27 18:28:51]|Error|dmsbtex/network.c:152 sbt_tls_config_init|139653862007808| tls config: unknown tls_algorithm "TLS_AES_256_GCM_SHA384Y"
+[PASS] sbt_tls_config_init fail-closed
+[PASS] plain zero-handshake passthrough
+[PASS] forced mTLS upgrade
+[2026-08-27 18:28:51]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|139653862007808| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_SM4_GCM_SM3 ca=/nonexistent/certs/sm2_ca.crt cert=/nonexistent/certs/sm2_host.crt key=/nonexistent/certs/sm2_host.key
+[2026-08-27 18:28:51]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|139653862007808| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/nonexistent/certs/ed25519_ca.crt cert=/nonexistent/certs/ed25519_host.crt key=/nonexistent/certs/ed25519_host.key
+[PASS] bad cert_dir prepare fail
+[2026-08-27 18:28:51]|Error|dmsbtex/network.c:294 dm_server_handshake|139653827000000| handshake: no TLS context, reject
+[2026-08-27 18:28:51]|Error|dmsbtex/network.c:252 sbt_session_client_init|139653862007808| handshake rejected by server: server has no mTLS capability but client requested TLS (fd=3)
+[PASS] no-downgrade reject
+[2026-08-27 18:28:51]|Error|dmsbtex/network.c:308 dm_server_handshake|139653827000000| handshake: algorithm 0x0000 rejected by server lock (locked=0x0002)
+[2026-08-27 18:28:51]|Error|dmsbtex/network.c:308 dm_server_handshake|139653827000000| handshake: algorithm 0xffff rejected by server lock (locked=0x0002)
+[PASS] malformed algorithm fail-closed
+[PASS] DM_HS_ERR_CA_CN reject code present
+[2026-08-27 18:28:51]|Error|dmsbtex/network.c:308 dm_server_handshake|139653827000000| handshake: algorithm 0x0001 rejected by server lock (locked=0x0002)
+[PASS] T3961 algorithm-lock reject mismatched
+[PASS] AC-1 init_sbt_config mtls enabled+AES
+[PASS] AC-2a init_sbt_config mtls disabled+SM4
+[PASS] AC-2b init_sbt_config keys-absent default-SM4
+[PASS] AC-3a init_sbt_config invalid mtls fail-closed
+[PASS] AC-3b init_sbt_config invalid algorithm fail-closed
+dmsbtex_session_test: ALL PASS
+dmsbtex_exit=0

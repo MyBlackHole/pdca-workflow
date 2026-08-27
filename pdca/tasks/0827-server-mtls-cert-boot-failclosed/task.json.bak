@@ -1,0 +1,34 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3987",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-27T18:01:18+08:00",
+    "phase": "check",
+    "record": "T3987-0827-server-mtls-cert-boot-failclosed",
+    "scenario_type": "bugfix",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "四服务端启动期 fail-closed 已实现并经单测与集成测试验证，AC-1..AC-7 全部满足，双轴审查 Blocking=0。",
+      "verdict_id": "T3987-verdict-20260827",
+      "at": "2026-08-27T18:32:00+08:00"
+    },
+    "completed_at": "2026-08-27T18:30:18+08:00"
+  },
+  "parent": null,
+  "slug": "0827-server-mtls-cert-boot-failclosed",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-27T18:30:18+08:00",
+    "created": "2026-08-27T18:01:18+08:00",
+    "do": "2026-08-27T18:14:41+08:00",
+    "plan": "2026-08-27T18:01:18+08:00"
+  },
+  "status": "Completed",
+  "title": "服务端 mTLS 启用且证书缺失时启动报错(fail-closed)"
+}

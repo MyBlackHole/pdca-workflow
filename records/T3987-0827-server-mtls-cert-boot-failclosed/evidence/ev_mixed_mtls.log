@@ -1,0 +1,20 @@
+AC-1 plain plain PASS
+AC-2 mixed on-demand mTLS PASS
+AC-3 forced mTLS PASS
+[2026-08-27 18:29:12]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140536383849408| TLS setup failed: role=client stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/tmp/t0352-missing-certs/ED25519_Test_CA/ed25519_ca.crt cert=/tmp/t0352-missing-certs/ED25519_Test_CA/ed25519_host.crt key=/tmp/t0352-missing-certs/ED25519_Test_CA/ed25519_host.key
+[2026-08-27 18:29:12]|Error|rpc/rpc-io.cpp:128 rpc_handshake_client|140536383849408| handshake: tls_cert_init_client failed: cert_dir=/tmp/t0352-missing-certs algorithm=TLS_AES_256_GCM_SHA384 ca_cn=ED25519_Test_CA
+AC-1 plain plain PASS
+AC-2 mixed on-demand mTLS PASS
+AC-3 forced mTLS PASS
+[2026-08-27 18:29:12]|Error|libs/tls_cert.c:67 tls_cert_log_ssl_errors|140536383849408| TLS handshake failed: role=server stage=handshake ssl_error=1
+[2026-08-27 18:29:12]|Error|libs/tls_cert.c:71 tls_cert_log_ssl_errors|140536383849408| TLS OpenSSL error: error:0A000126:SSL routines::unexpected eof while reading
+AC-4 missing client cert_dir fail PASS
+AC-5 server forced reject plain business PASS
+[2026-08-27 18:29:12]|Error|rpc/rpc-io.cpp:112 rpc_handshake_client|140536383849408| handshake rejected by server: server downgraded to plain (no TLS)
+AC-6 no-downgrade PASS
+AC-7 plain-only startup PASS
+[2026-08-27 18:29:12]|Error|rpc/rpc-io.cpp:112 rpc_handshake_client|140536383849408| handshake rejected by server: handshake failed: unsupported or unknown TLS algorithm (algorithm negotiation rejected)
+AC-8 algorithm-lock reject mismatched PASS
+AC-9 algorithm-lock allow matched PASS
+mixed_mtls_link_integration: PASS
+mixed_exit=0

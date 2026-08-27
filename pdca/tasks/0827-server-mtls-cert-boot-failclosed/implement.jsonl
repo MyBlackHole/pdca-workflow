@@ -1,0 +1,3 @@
+{"file":"knowledge/tls/structured-mtls-failure-diagnostics.md","reason":"mTLS 启动失败日志须表达角色/阶段/算法/凭据路径，指导 rdbcommd/aio-speedd 失败日志措辞","action":"参考其失败日志字段规范，在 fail-closed 退出路径输出 cert_dir 与算法信息","at":"2026-08-27T18:10:00+08:00"}
+{"file":"knowledge/security-bool-failclosed.md","reason":"mtls_enabled 属安全开关，本任务仅在证书缺失时启动报错，不得改变开关解析的 fail-closed 语义","action":"Do 阶段改造保持 sec_get_bool 解析不变，仅在启动期证书不可用时退出","at":"2026-08-27T18:10:00+08:00"}
+{"file":"knowledge/tls/mtls-server-alg-whitelist.md","reason":"服务端算法白名单与 cert_dir 前缀约定（ed25519_*/sm2_*）影响证书可用判定","action":"确认证书缺失判定沿用既有 tls_cert_init_server，不新建判定逻辑","at":"2026-08-27T18:10:00+08:00"}

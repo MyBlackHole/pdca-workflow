@@ -1,0 +1,5 @@
+{"at":"2026-08-27T18:01:18+08:00","source":"task_identity","summary":"created with record identity T3987-0827-server-mtls-cert-boot-failclosed"}
+{"source":"final_confirmation","summary":"批准 T3987：四服务端 mTLS 启用且证书缺失时启动 fail-closed（aio-speedd/rdbcommd 修复 fail-open，dm-ftp/sbt 补测试）","response":"confirmed","at":"2026-08-27T18:14:07+08:00"}
+{"source":"check_confirmation","summary":"AC-1..AC-7 全部满足，双轴审查 Blocking=0，四服务端启动期 fail-closed 经单测与集成测试验证通过","response":"confirmed","at":"2026-08-27T18:33:50+08:00"}
+{"source":"grilling","at":"2026-08-27T18:35:33+08:00","q":"服务端启动期 fail-closed 的适用范围与限制？","a":"仅 mtls_enabled=1 时强制；mtls=0 明文模式证书缺失仍允许明文，不回归。libs 层 tls_cert_init_server 语义不变，由 boot prepare 转发返回码。下次同类安全开关任务应先核对是否缺启动期 fail-closed 判据。"}
+{"source":"knowledge_decision","at":"2026-08-27T18:35:33+08:00","action":"wrote","reason":"服务端启动期 boot prepare 收敛模式可跨 rdbcommd/aio-speedd/dm-ftp/sbt 复用，且补充了 fail-open 反模式，复用价值高"}

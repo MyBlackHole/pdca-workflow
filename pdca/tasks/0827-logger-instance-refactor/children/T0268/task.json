@@ -1,0 +1,28 @@
+{
+  "id": "T0268",
+  "slug": "0827-logger-finalize-registry",
+  "title": "去全局收尾：移除旧全局、实例注册表(atfork/atexit)、全量测试",
+  "parent": "T0261",
+  "children": [],
+  "dependencies": ["T0263", "T0264", "T0265", "T0266", "T0267"],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-27T16:47:00+08:00",
+    "convergence": null,
+    "improvement_source": null,
+    "record": null,
+    "verdict": null,
+    "disposition": null
+  },
+  "states": {
+    "created": "2026-08-27T16:47:00+08:00",
+    "plan": null,
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}

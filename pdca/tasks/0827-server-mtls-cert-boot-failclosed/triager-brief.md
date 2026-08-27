@@ -1,0 +1,27 @@
+# Triage Brief — server-mtls-cert-boot-failclosed
+
+- **category**: bug
+- **scenario_type**: bugfix
+- **summary**: 多个服务端在 mTLS 开关启用、但证书/CA 不可用时应启动失败（fail-closed），当前部分服务端降级为明文监听。
+- **current behavior**:
+  - rdbcommd：mTLS 启用且证书目录为空时，跳过证书加载仅打印告警并以明文启动。
+  - aio-speedd：证书加载失败时把 TLS 上下文置空并继续以明文监听（注释明确"不阻止启动"）。
+  - dm-ftp 与 sbt：启动期 prepare 在 mTLS 启用且证书缺失时返回错误，主流程检查后退出，行为正确。
+- **desired behavior**: 任一服务端在 mTLS 开关启用、但缺少可用证书（证书目录缺失，或服务端证书/客户端 CA 加载失败）时，启动期以非 0 退出（fail-closed），不得降级为明文监听。
+- **key interfaces**:
+  - 服务端启动期 TLS 准备入口（rdbcommd、aio-speedd 主流程；dm-ftp、sbt 的 server prepare 函数）。
+  - 共享证书加载能力 `tls_cert_init_server`（按 cert_dir 构建 mTLS 上下文，mTLS 启用且缺证书时返回非 0）。
+  - 各服务端配置开关 `mtls_enabled` 与 `cert_dir`（经 env/rdb.conf 解析）。
+- **acceptance criteria**:
+  - 运行"mTLS 启用 + 证书目录不存在"的 rdbcommd，得到进程非 0 退出且日志含证书不可用错误。
+  - 运行"mTLS 启用 + 证书目录不存在"的 aio-speedd，得到进程非 0 退出且日志含证书不可用错误。
+  - 运行"mTLS 启用 + 证书缺失"的 dm-ftp，得到进程非 0 退出（既有 prepare 语义保持）。
+  - 运行"mTLS 启用 + 证书缺失"的 sbt，得到进程非 0 退出（既有 prepare 语义保持）。
+  - 运行"mTLS 未启用"的服务端，证书缺失仍允许明文启动（不回归既有明文行为）。
+- **out of scope**:
+  - 客户端证书校验算法细节、国密 SM2 加载后端实现（沿用既有）。
+  - 证书签发/轮换、运行时重载证书校验（本任务仅启动期）。
+  - oss Go 工具的 mTLS（属 0823 范围外 follow-up，不在本次四个 C 服务端内）。
+- **information gaps**: 无（四服务端启动期 TLS 准备路径已逐一核对）。
+- **dedup results**: 关联 0823-oss-https-cert（mTLS 为其范围外）、0818-tool-mtls-config、0827-f139-parse-config-unify（配置解析重构，安全开关 fail-closed 语义不得改变）；本任务为其启动期 fail-closed 收口，未与既有任务冲突。
+- **recommended next steps**: 统一四服务端启动期"mTLS 启用 + 缺证书即退出"语义，抽取可测 boot prepare 函数并补单测。

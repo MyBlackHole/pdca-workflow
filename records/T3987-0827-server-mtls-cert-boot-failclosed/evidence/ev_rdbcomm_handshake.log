@@ -1,0 +1,8 @@
+[PASS] rdb algorithm exact mapping
+[PASS] plain zero-handshake passthrough
+[PASS] bad halg 0x0000 rejected
+[PASS] bad halg 0xffff rejected
+[PASS] on-demand mTLS upgrade
+[PASS] reject without downgrade
+rdbcomm_handshake_session_test: ALL PASS
+handshake_exit=0

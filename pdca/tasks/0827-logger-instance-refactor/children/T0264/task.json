@@ -1,0 +1,28 @@
+{
+  "id": "T0264",
+  "slug": "0827-logger-migrate-dmsbtex",
+  "title": "dmsbtex 日志调用迁移（挂 logger_t* 到 sbt 上下文）",
+  "parent": "T0261",
+  "children": [],
+  "dependencies": ["T0262"],
+  "status": "Pending",
+  "meta": {
+    "phase": "plan",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-27T16:46:20+08:00",
+    "convergence": null,
+    "improvement_source": null,
+    "record": null,
+    "verdict": null,
+    "disposition": null
+  },
+  "states": {
+    "created": "2026-08-27T16:46:20+08:00",
+    "plan": null,
+    "do": null,
+    "check": null,
+    "act": null,
+    "archive": null
+  }
+}
