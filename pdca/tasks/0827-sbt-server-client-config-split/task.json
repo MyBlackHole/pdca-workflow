@@ -3,7 +3,7 @@
   "dependencies": [],
   "id": "T3986",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "参数注册表新增 libobk_server/libobk_client/dmsbtex_server/dmsbtex_client 四个角色的 mtls_enable 与 tls_algorithm 参数 ID，各自解析链独立，单测通过。",
       "删除 PARAM_SBT_MTLS_ENABLED、PARAM_SBT_TLS_ALGORITHM、PARAM_LIBOBK_CLI_TLS_ALGORITHM 及其 SBT 专属 env 名（SBT_MTLS_ENABLE、SBT_TLS_ALGORITHM、LIBOBK_CLI_TLS_ALGORITHM）；全局 `[security]tls_enable`、`[security]tls_algorithm` ini key 保留且仍被 RPC 系参数引用。",
@@ -15,7 +15,7 @@
       "CLI 覆盖（--mtls-enable/--tls-algorithm）仅映射到 server 角色（libobk main、dmsbtex main）；设置旧 SBT 专属 env 名不再影响 SBT 系解析。"
     ],
     "created_at": "2026-08-27T13:46:55+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T3986-0827-sbt-server-client-config-split",
     "scenario_type": "development",
     "completed_at": "2026-08-27T14:27:56+08:00",
@@ -35,7 +35,7 @@
   "slug": "0827-sbt-server-client-config-split",
   "states": {
     "act": "2026-08-27T14:52:10+08:00",
-    "archive": null,
+    "archive": "2026-08-27T14:54:44+08:00",
     "check": "2026-08-27T14:27:56+08:00",
     "created": "2026-08-27T13:46:55+08:00",
     "do": "2026-08-27T14:01:07+08:00",
