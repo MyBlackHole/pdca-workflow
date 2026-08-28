@@ -1,0 +1,11 @@
+{"at":"2026-08-28T12:04:58+08:00","source":"task_identity","summary":"created with record identity T3991-0828-libobk-so-mtls-test"}
+{"round": 1, "question": "libobk 现有 session_test 已覆盖 mTLS 握手。你想要的'测试程序'应以哪种形态存在？", "answer": "目标是模仿 rman", "recommended": "独立程序链接.so", "source": "grilling", "at": "2026-08-28T12:08:58+08:00", "captured": true}
+{"round": 1, "question": "程序应覆盖哪些 mTLS 场景？", "answer": "模仿 rman", "recommended": "最小 smoke", "source": "grilling", "at": "2026-08-28T12:08:58+08:00", "captured": true}
+{"round": 1, "question": "测试证书如何准备？", "answer": "复用 libs/tests/certs", "recommended": "复用 libs/tests/certs", "source": "grilling", "at": "2026-08-28T12:08:58+08:00", "captured": true}
+{"round": 1, "question": "这个程序主要服务于哪种使用场景？", "answer": "纳入 CI 回归", "recommended": "随手可跑工具", "source": "grilling", "at": "2026-08-28T12:08:58+08:00", "captured": true}
+{"round": 2, "question": "模仿 rman 的客户端需要一个 mTLS 服务端来握手。测试里服务端用哪种？", "answer": "复用 libobk 内置服务端能力", "recommended": "复用 libobk 内置服务端能力", "source": "grilling", "at": "2026-08-28T12:11:04+08:00", "captured": true}
+{"round": 2, "question": "测试程序以哪种形态落地？", "answer": "新增独立集成测试程序", "recommended": "新增独立集成测试程序", "source": "grilling", "at": "2026-08-28T12:11:04+08:00", "captured": true}
+{"round": 2, "question": "验证 mTLS 正常需要覆盖哪些 SBT 操作？", "answer": "备份闭环", "recommended": "备份闭环", "source": "grilling", "at": "2026-08-28T12:11:04+08:00", "captured": true}
+{"round": 2, "question": "是否包含 fail-closed 用例？", "answer": "含 fail-closed", "recommended": "含 fail-closed", "source": "grilling", "at": "2026-08-28T12:11:04+08:00", "captured": true}
+{"round": 3, "question": "测试接缝 libobk/test/rman_mtls_test.c -> libobk/lib/sbt/libobk.c 与 libobk/lib/logic/oracleCmdTbl.c 是否确认？", "answer": "确认 seam", "recommended": "确认 seam", "source": "grilling", "at": "2026-08-28T12:15:00+08:00", "captured": true}
+{"source":"final_confirmation","summary":"新增 libobk/test/rman_mtls_test.c（xmake 目标 libobk_rman_mtls_test）：fork mTLS 服务端(sbt_server_tls_config_init+sbt_session_server_prepare+handshake) + 模仿 RMAN 客户端(sbtinit2->sbtbackup->sbtclose2->sbtend)走 SBT API 路径验证 mTLS 备份闭环；含 fail-closed(服务端 mTLS 关/证书错配时 sbtinit2 非0)；复用 libs/tests/certs；纳入 xmake test CI。AC-1 备份闭环、AC-2 mTLS 关 fail-closed、AC-3 证书错配 fail-closed、AC-4 xmake test 全过。","response":"confirmed","at":"2026-08-28T12:14:15+08:00"}

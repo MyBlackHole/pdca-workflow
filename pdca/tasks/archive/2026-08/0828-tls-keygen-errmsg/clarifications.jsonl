@@ -1,0 +1,8 @@
+{"at":"2026-08-28T10:27:51+08:00","source":"task_identity","summary":"created with record identity T3989-0828-tls-keygen-errmsg"}
+{"source":"grilling","summary":"报错语言: 用户选择英文(与现有 Error: 风格一致)","at":"2026-08-28T10:40:00+08:00"}
+{"source":"grilling","summary":"覆盖点: 用户选择仅写失败点(ca/create/sign fopen 写失败 + handler 错误码可读映射)","at":"2026-08-28T10:40:00+08:00"}
+{"source":"direction_confirm","summary":"方向: 英文可读化报错,仅改三个子命令写失败点的 fopen 上下文与 handler 错误码->短语映射,不改算法/成功路径","response":"confirmed","at":"2026-08-28T10:40:30+08:00"}
+{"source":"user_meta_feedback","captured":true,"summary":"错误码的含义必须明确: 可读短语需解释该错误码代表什么(如 write error 解释 -3),不能只是换个词","at":"2026-08-28T10:42:00+08:00"}
+{"source":"final_confirmation","summary":"T3989 tls-keygen 错误码可读化: 写失败点补路径+strerror, handler 把枚举码(-3等)映射为含义短语(如 failed to write output file),英文,仅 ca/create/sign 写失败点,不改算法/成功路径,1.0.0.5->1.0.0.6","response":"confirmed","at":"2026-08-28T10:53:13+08:00"}
+{"source":"check_confirmation","summary":"T3989 Check PASS: 4/4 AC 通过, 黑盒测试验证写失败 stderr 含路径+Permission denied+-3 含义短语, 成功路径无回归","response":"confirmed","at":"2026-08-28T11:22:52+08:00"}
+{"source":"knowledge_decision","at":"2026-08-28T11:28:30+08:00","action":"wrote","reason":"提炼 tls-keygen 错误码可读化原则为可复用知识"}

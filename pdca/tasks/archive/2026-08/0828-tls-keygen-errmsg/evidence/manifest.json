@@ -1,0 +1,33 @@
+{
+  "task": "T3989-0828-tls-keygen-errmsg",
+  "phase": "do",
+  "entries": [
+    {
+      "id": "src-tls_keygen-c",
+      "file": "libs/tls_keygen.c",
+      "kind": "source",
+      "size": 53120,
+      "digest": "sha256:a35012ec5a61671607d5c28399c567240c70bdc69586c2607a6c59c65a71830d",
+      "at": "2026-08-28T11:10:00+08:00",
+      "criteria": ["AC-1", "AC-4"]
+    },
+    {
+      "id": "xmake-version",
+      "file": "xmake.lua",
+      "kind": "build-config",
+      "size": 2828,
+      "digest": "sha256:3ca2df29d4ef38cf3122f7e651445f72fc21241e3df5beffa927f2d293d0af7a",
+      "at": "2026-08-28T11:10:00+08:00",
+      "criteria": ["AC-3"]
+    },
+    {
+      "id": "blackbox-test",
+      "file": "test/tls_test.sh",
+      "kind": "test",
+      "size": 1560,
+      "digest": "sha256:6d4ed834268524ac8ec9d2bb521229a8882dac93504e7f6627b4c34e1504d34b",
+      "at": "2026-08-28T11:10:00+08:00",
+      "criteria": ["AC-1", "AC-2", "AC-3"]
+    }
+  ]
+}

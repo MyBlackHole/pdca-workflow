@@ -1,0 +1,34 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3993",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-28T15:01:35+08:00",
+    "phase": "check",
+    "record": "T3993-0828-fix-squash-commit-msg-version",
+    "scenario_type": "bugfix",
+    "completed_at": "2026-08-28T15:09:44+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "v4 结论成立：重新 squash 为 F-139 单需求提交，版本归一+1，全部 AC 通过",
+      "verdict_id": "check_confirmation-2026-08-28T15:30:40+08:00",
+      "at": "2026-08-28T15:30:40+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0828-fix-squash-commit-msg-version",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-28T15:09:44+08:00",
+    "created": "2026-08-28T15:01:35+08:00",
+    "do": "2026-08-28T15:05:36+08:00",
+    "plan": "2026-08-28T15:01:35+08:00"
+  },
+  "status": "Completed",
+  "title": "修正合并提交信息并修正 libobk 版本号降版"
+}

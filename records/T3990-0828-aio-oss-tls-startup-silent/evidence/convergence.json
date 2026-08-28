@@ -1,0 +1,22 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "aio-oss 启动致命错误显式化: 英文控制台文案, fatalToStderr 双写日志+stderr, TLS 失败含证书路径+tls-keygen 生成提示, 监听失败非零退出; 不改 fail-closed/算法",
+      "criteria": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "evt-oss-go",
+        "evt-tls-go",
+        "evt-test-go",
+        "evt-blackbox",
+        "evt-xmake"
+      ]
+    }
+  ]
+}

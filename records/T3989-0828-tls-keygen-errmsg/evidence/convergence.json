@@ -1,0 +1,20 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "tls-keygen 错误码可读化: 写失败点打印路径+strerror(errno), handler 将枚举错误码映射为含义短语(如 failed to write output file), 黑盒测试验证 stderr 可读且非裸数字",
+      "criteria": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "evt-src",
+        "evt-xmake",
+        "evt-test"
+      ]
+    }
+  ]
+}

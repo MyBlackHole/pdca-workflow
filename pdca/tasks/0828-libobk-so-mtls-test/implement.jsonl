@@ -1,0 +1,3 @@
+{"file": "knowledge/tls/link-level-mtls-test-pattern.md", "reason": "本测试采用链接级 fork 子进程服务端范式，须遵循其约束（CN 白名单、TEST_CERT_DIR 编译期注入、已否决 fork+execl 工具二进制 E2E）", "action": "遵循链接级测试模式与证书 CN 约束，复用 TEST_CERT_DIR", "at": "2026-08-28T12:11:04+08:00"}
+{"file": "knowledge/tls/structured-mtls-failure-diagnostics.md", "reason": "fail-closed 用例需明确 mTLS 失败的诊断信号，避免静默降级", "action": "fail-closed 断言以 sbtinit2 返回值非 0 为信号，不读内部状态", "at": "2026-08-28T12:11:04+08:00"}
+{"file": "knowledge/tls/handshake-reject-frame-consistency.md", "reason": "fail-closed/错配算法用例需与既有握手拒绝帧一致性保持一致", "action": "错配算法走 OBK_HS_ERR_ALGORITHM 拒绝，与 session_test 既有断言一致", "at": "2026-08-28T12:11:04+08:00"}

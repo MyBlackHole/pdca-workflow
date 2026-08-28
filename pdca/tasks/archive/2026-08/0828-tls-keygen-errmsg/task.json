@@ -1,0 +1,39 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3989",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "tls-keygen 错误码可读化: 写失败点打印路径+strerror(errno), handler 将枚举错误码映射为含义短语(如 failed to write output file), 黑盒测试验证 stderr 可读且非裸数字"
+    ],
+    "created_at": "2026-08-28T10:27:51+08:00",
+    "phase": "archive",
+    "record": "T3989-0828-tls-keygen-errmsg",
+    "scenario_type": "bugfix",
+    "completed_at": "2026-08-28T11:19:18+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "4/4 AC 通过, 黑盒测试验证写失败 stderr 含路径+Permission denied+-3 含义短语, 成功路径无回归",
+      "verdict_id": "T3989-verdict-1",
+      "at": "2026-08-28T11:24:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "提炼 tls-keygen 错误码可读化原则到 knowledge/tls/, 供同类 CLI 工具复用",
+      "at": "2026-08-28T11:29:00+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0828-tls-keygen-errmsg",
+  "states": {
+    "act": "2026-08-28T11:25:53+08:00",
+    "archive": "2026-08-28T11:29:25+08:00",
+    "check": "2026-08-28T11:19:18+08:00",
+    "created": "2026-08-28T10:27:51+08:00",
+    "do": "2026-08-28T10:55:19+08:00",
+    "plan": "2026-08-28T10:27:51+08:00"
+  },
+  "status": "Completed",
+  "title": "tls-keygen: 创建 CA 失败错误码信息不明确，需补充可读原因"
+}

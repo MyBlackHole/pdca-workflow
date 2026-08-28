@@ -1,0 +1,18 @@
+9d1fcc69faa2301ead5376ae22ad3d6470efdae4
+【F-139】TLS 安全链路整合：TLS/mTLS 全栈实现、配置收口、mTLS fail-closed 与版本号归一
+
+合并 0bf741f8..fef11220 的全部改动，作为 F-139 单次需求的实现：
+- TLS/mTLS 全栈实现、rpc 安全开关进程上下文化、oss HTTPS 开关化、xmake 单测接入、tls-keygen SAN 修复
+- 配置加载统一收口至 init_config 并修复 reload 边界，rdb-config store 加载补齐（dmsbtex/libobk .so），全局算法兜底 key 由 ciphersuites 统一为 tls_algorithm
+- 修复 logger 重复注册 fork 回调问题
+- mTLS 启用且证书缺失 / 指定算法异常时启动失败(fail-closed)
+- tls-keygen 默认目录不存在创建 CA 失败(code:-3) 修复、创建失败错误码改为可读含义短语
+- aio-oss server 启动致命错误显式化到控制台
+
+版本变化（仓库根 xmake.lua，相对上一个提交 fe9d4364 均仅 +1）：
+- libobk 1.0.0.0 -> 1.0.0.1（+1，修正原始误跳版 1.0.1.7）
+- rpc 3.6.4.19 -> 3.6.4.20（+1）
+- dmsbtex 1.1.0.1 -> 1.1.0.2（+1）
+- rdbcomm 1.0.1.8 -> 1.0.1.9（+1）
+- tls_keygen 1.0.0.0 -> 1.0.0.1（+1）
+- oss 新增 1.0.0.1（首版集成）

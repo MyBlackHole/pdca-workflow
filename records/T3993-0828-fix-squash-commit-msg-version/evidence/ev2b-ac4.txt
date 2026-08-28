@@ -1,0 +1,25 @@
+## 当前版本表 (HEAD=7443f74f)
+bwlimit_version = "1.0.0.1"
+dmsbtex_version = "1.1.0.7"
+libobk_version = "1.0.1.9"
+oss_version = "1.0.0.1"
+rdbcomm_version = "1.0.2.5"
+rpc_keygen_version = "1.0.0.0"
+rpc_version = "3.6.4.27"
+s3tools_version = "1.0.1.4"
+tls_keygen_version = "1.0.0.6"
+## 修正前版本表 (ORIG_HEAD=fef11220)
+bwlimit_version = "1.0.0.1"
+dmsbtex_version = "1.1.0.7"
+libobk_version = "1.0.1.7"
+oss_version = "1.0.0.1"
+rdbcomm_version = "1.0.2.5"
+rpc_keygen_version = "1.0.0.0"
+rpc_version = "3.6.4.27"
+s3tools_version = "1.0.1.4"
+tls_keygen_version = "1.0.0.6"
+## 差异（期望：仅 libobk_version 1.0.1.8 -> 1.0.1.9 递升一个版本）
+3c3
+< libobk_version = "1.0.1.7"
+---
+> libobk_version = "1.0.1.9"

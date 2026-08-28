@@ -1,0 +1,4 @@
+{"id": "evt-src", "file": "tls_keygen.c", "kind": "source", "size": 53120, "digest": "sha256:a35012ec5a61671607d5c28399c567240c70bdc69586c2607a6c59c65a71830d", "at": "2026-08-28T11:17:00+08:00", "criteria": ["AC-1", "AC-4"]}
+{"id": "evt-xmake", "file": "xmake.lua", "kind": "build-config", "size": 2828, "digest": "sha256:3ca2df29d4ef38cf3122f7e651445f72fc21241e3df5beffa927f2d293d0af7a", "at": "2026-08-28T11:17:00+08:00", "criteria": ["AC-3"]}
+{"id": "evt-test", "file": "tls_test.sh", "kind": "test", "size": 1560, "digest": "sha256:6d4ed834268524ac8ec9d2bb521229a8882dac93504e7f6627b4c34e1504d34b", "at": "2026-08-28T11:17:00+08:00", "criteria": ["AC-1", "AC-2", "AC-3"]}
+{"id": "convergence-map", "file": "convergence.json", "kind": "convergence-map", "size": 488, "digest": "sha256:6b2f92401a31eb5f17d7bdc81040f8aa234eda7f03a684781c5267f224b74e28", "at": "2026-08-28T11:17:00+08:00", "criteria": ["AC-1", "AC-2", "AC-3", "AC-4"]}

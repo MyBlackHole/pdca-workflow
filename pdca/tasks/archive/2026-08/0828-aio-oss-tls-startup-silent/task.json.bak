@@ -1,0 +1,39 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3990",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "aio-oss 启动致命错误显式化: 英文控制台文案, fatalToStderr 双写日志+stderr, TLS 失败含证书路径+tls-keygen 生成提示, 监听失败非零退出; 不改 fail-closed/算法"
+    ],
+    "created_at": "2026-08-28T11:42:51+08:00",
+    "phase": "act",
+    "record": "T3990-0828-aio-oss-tls-startup-silent",
+    "scenario_type": "bugfix",
+    "completed_at": "2026-08-28T11:52:22+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "4/4 AC 通过, 启动失败显式化到 stderr 且非零退出不挂起",
+      "verdict_id": "T3990-verdict-1",
+      "at": "2026-08-28T12:05:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "提炼 启动致命错误控制台可见性 原则到 knowledge/tls/",
+      "at": "2026-08-28T12:09:00+08:00"
+    }
+  },
+  "parent": "T0259",
+  "slug": "0828-aio-oss-tls-startup-silent",
+  "states": {
+    "act": "2026-08-28T11:54:52+08:00",
+    "archive": null,
+    "check": "2026-08-28T11:52:22+08:00",
+    "created": "2026-08-28T11:42:51+08:00",
+    "do": "2026-08-28T11:46:11+08:00",
+    "plan": "2026-08-28T11:42:51+08:00"
+  },
+  "status": "Completed",
+  "title": "aio-oss server --tls 启动致命错误静默吞掉，控制台无诊断信息"
+}

@@ -1,0 +1,39 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3993",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "clarifications.jsonl[4]/",
+      "message": "'summary' is a required property"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "clarifications.jsonl[4]/",
+      "message": "'response' is a required property"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "clarifications.jsonl[6]/",
+      "message": "'summary' is a required property"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "clarifications.jsonl[6]/",
+      "message": "'response' is a required property"
+    },
+    {
+      "code": "CONCLUSION_MISSING",
+      "path": "records/T3993-0828-fix-squash-commit-msg-version/conclusion.md",
+      "message": "conclusion is required"
+    },
+    {
+      "code": "VERDICT_MISSING",
+      "path": "/meta/verdict",
+      "message": "verdict is required"
+    }
+  ],
+  "at": "2026-08-28T15:30:40.433334+08:00"
+}

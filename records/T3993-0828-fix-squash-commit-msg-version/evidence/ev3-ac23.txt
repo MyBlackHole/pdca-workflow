@@ -1,0 +1,24 @@
+21d4cc032bd8689eee2c26e178b7f068bbe4c951
+【F-139】TLS 安全链路整合：配置收口、mTLS fail-closed 与版本号修正汇总
+
+合并 0bf741f8..fef11220 共 11 个提交，覆盖 F-139 TLS 安全链路整合、T3985 配置加载统一收口、B-3988 tls/tls-keygen/oss 多项修复，并将各组件版本号归一为相对上一个提交仅递升一个版本。
+
+功能要点：
+- 【F-139】TLS/mTLS 全栈实现、rpc 安全开关进程上下文化、oss HTTPS 开关化、xmake 单测接入、tls-keygen SAN 修复
+- 【T3985】配置加载统一收口至 init_config 并修复 reload 边界
+- 【T3985】dmsbtex/libobk .so 入口补齐 rdb-config store 加载（pthread_once 幂等）
+- 【T3985】rdb-config/oss 全局算法兜底 key 由 ciphersuites 统一为 tls_algorithm
+- 处理 logger 重复注册 fork 回调问题
+- fix(server): mTLS 启用且证书缺失时启动报错(fail-closed)
+- 【B-3988】tls: mTLS 指定算法时该算法证书异常启动失败(fail-closed)
+- 【B-3988】tls-keygen: 修复默认目录不存在导致创建 CA 失败(code:-3)
+- 【B-3988】tls-keygen: 创建失败错误码改为可读含义短语
+- 【B-3988】aio-oss: server 启动致命错误显式化到控制台
+
+版本变化（仓库根 xmake.lua，均相对上一个提交 fe9d4364 仅 +1）：
+- libobk 1.0.0.0 -> 1.0.0.1（+1，修正合并中误跳版 1.0.1.7）
+- rpc 3.6.4.19 -> 3.6.4.20（+1）
+- dmsbtex 1.1.0.1 -> 1.1.0.2（+1）
+- rdbcomm 1.0.1.8 -> 1.0.1.9（+1）
+- tls_keygen 1.0.0.0 -> 1.0.0.1（+1）
+- oss 新增 1.0.0.1（首版集成）

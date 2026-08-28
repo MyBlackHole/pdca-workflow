@@ -1,0 +1,26 @@
+## 当前版本表 (amend 后 HEAD= rev-parse HEAD 2>/dev/null)
+b8a14737
+bwlimit_version = "1.0.0.1"
+dmsbtex_version = "1.1.0.7"
+libobk_version = "1.0.1.8"
+oss_version = "1.0.0.1"
+rdbcomm_version = "1.0.2.5"
+rpc_keygen_version = "1.0.0.0"
+rpc_version = "3.6.4.27"
+s3tools_version = "1.0.1.4"
+tls_keygen_version = "1.0.0.6"
+## amend 前版本表 (ORIG_HEAD=fef11220)
+bwlimit_version = "1.0.0.1"
+dmsbtex_version = "1.1.0.7"
+libobk_version = "1.0.1.7"
+oss_version = "1.0.0.1"
+rdbcomm_version = "1.0.2.5"
+rpc_keygen_version = "1.0.0.0"
+rpc_version = "3.6.4.27"
+s3tools_version = "1.0.1.4"
+tls_keygen_version = "1.0.0.6"
+## 差异（期望：仅 libobk_version 1.0.1.7 -> 1.0.1.8）
+3c3
+< libobk_version = "1.0.1.7"
+---
+> libobk_version = "1.0.1.8"

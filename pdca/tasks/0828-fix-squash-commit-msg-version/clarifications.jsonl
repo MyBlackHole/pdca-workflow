@@ -1,0 +1,9 @@
+{"at": "2026-08-28T15:01:35+08:00", "source": "task_identity", "summary": "created with record identity T3993-0828-fix-squash-commit-msg-version"}
+{"at": "2026-08-28T15:05:00+08:00", "source": "grilling", "summary": "版本修正范围裁决：选 A——同时修改代码 libobk_version(1.0.1.7->1.0.1.8)与提交信息，使版本单调递增；其他组件版本变化如实保留"}
+{"source": "final_confirmation", "summary": "批准 T3993：amend 合并提交 24879258，libobk_version 1.0.1.7->1.0.1.8，重写信息", "response": "confirmed", "at": "2026-08-28T15:05:22+08:00"}
+{"source": "check_confirmation", "summary": "结论部分成立：amend 动作与信息重写方向正确，但 libobk 版本应递升一个版本(1.0.1.8->1.0.1.9)而非恢复 1.0.1.8，且提交信息需按需求单号格式", "response": "partial", "at": "2026-08-28T15:12:58+08:00"}
+{"at": "2026-08-28T15:12:59+08:00", "source": "check_confirmation", "user_meta_feedback": "应该要只递升一个版本，同时按需求提交格式提交", "captured": true, "response": "partial", "summary": "应该要只递升一个版本，同时按需求提交格式提交"}
+{"source": "check_confirmation", "summary": "提交内容不对：将 F-139/T3985/B-3988 等多个不同需求提交 squash 成一个，应为单次需求的实现内容", "response": "partial", "at": "2026-08-28T15:25:38+08:00"}
+{"at": "2026-08-28T15:25:38+08:00", "source": "check_confirmation", "user_meta_feedback": "提交内容不对，这是单次需求的实现内容", "captured": true, "response": "partial", "summary": "提交内容不对，这是单次需求的实现内容"}
+{"source": "check_confirmation", "summary": "v4 结论成立：重新 squash 为 F-139 单需求提交，版本归一 +1，全部 AC 通过", "response": "confirmed", "at": "2026-08-28T15:30:40+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-28T15:36:56+08:00", "action": "wrote", "reason": "合并提交版本号+1 与单需求提交信息规范可跨会话复用"}

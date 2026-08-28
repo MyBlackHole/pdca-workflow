@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T3990",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "CONCLUSION_MISSING",
+      "path": "records/T3990-0828-aio-oss-tls-startup-silent/conclusion.md",
+      "message": "conclusion is required"
+    }
+  ],
+  "at": "2026-08-28T11:54:43.632122+08:00"
+}

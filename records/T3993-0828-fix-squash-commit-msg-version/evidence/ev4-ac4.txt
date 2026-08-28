@@ -1,0 +1,37 @@
+## 当前版本表 (HEAD=9d1fcc69)
+bwlimit_version = "1.0.0.1"
+dmsbtex_version = "1.1.0.2"
+libobk_version = "1.0.0.1"
+oss_version = "1.0.0.1"
+rdbcomm_version = "1.0.1.9"
+rpc_keygen_version = "1.0.0.0"
+rpc_version = "3.6.4.20"
+s3tools_version = "1.0.1.4"
+tls_keygen_version = "1.0.0.1"
+## 父版本表 (fe9d4364)
+bwlimit_version = "1.0.0.1"
+dmsbtex_version = "1.1.0.1"
+libobk_version = "1.0.0.0"
+rdbcomm_version = "1.0.1.8"
+rpc_keygen_version = "1.0.0.0"
+rpc_version = "3.6.4.19"
+s3tools_version = "1.0.1.4"
+tls_keygen_version = "1.0.0.0"
+## 差异（期望：每个组件均仅 +1）
+2,4c2,5
+< dmsbtex_version = "1.1.0.1"
+< libobk_version = "1.0.0.0"
+< rdbcomm_version = "1.0.1.8"
+---
+> dmsbtex_version = "1.1.0.2"
+> libobk_version = "1.0.0.1"
+> oss_version = "1.0.0.1"
+> rdbcomm_version = "1.0.1.9"
+6c7
+< rpc_version = "3.6.4.19"
+---
+> rpc_version = "3.6.4.20"
+8c9
+< tls_keygen_version = "1.0.0.0"
+---
+> tls_keygen_version = "1.0.0.1"

@@ -1,0 +1,20 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "task identity is unique and immutable",
+      "criteria": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev4-ac1-version-check",
+        "ev4-ac23-commit-msg",
+        "ev4-ac4-version-table"
+      ]
+    }
+  ]
+}

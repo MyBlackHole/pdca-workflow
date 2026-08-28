@@ -1,0 +1,7 @@
+{"at":"2026-08-28T11:42:51+08:00","source":"task_identity","summary":"created with record identity T3990-0828-aio-oss-tls-startup-silent"}
+{"source":"grilling","summary":"控制台文案语言: 用户选择英文(与 tls-keygen 工具风格一致)","at":"2026-08-28T11:50:00+08:00"}
+{"source":"grilling","summary":"监听失败处理: 用户选择非零退出(不再静默挂起)","at":"2026-08-28T11:50:00+08:00"}
+{"source":"direction_confirm","summary":"方向: 英文控制台文案, 致命错误双写日志+stderr, TLS 错误含证书路径+tls-keygen 提示, 监听失败非零退出; 不改 fail-closed/算法","response":"confirmed","at":"2026-08-28T11:50:30+08:00"}
+{"source":"final_confirmation","summary":"T3990 aio-oss 启动致命错误显式化: 英文控制台文案, fatalToStderr 双写日志+stderr, TLS 失败含证书路径+tls-keygen 生成提示, 监听失败非零退出; 不改 fail-closed/算法; oss 1.0.0.0->1.0.0.1","response":"confirmed","at":"2026-08-28T11:46:11+08:00"}
+{"source":"check_confirmation","summary":"T3990 Check PASS: 4/4 AC 通过, 黑盒 T3/T4 + Go 单测验证启动失败显式化到 stderr 且非零退出不挂起, --help 无中文","response":"confirmed","at":"2026-08-28T11:54:43+08:00"}
+{"source":"knowledge_decision","at":"2026-08-28T12:08:30+08:00","action":"wrote","reason":"提炼 启动致命错误控制台可见性 为可复用知识"}

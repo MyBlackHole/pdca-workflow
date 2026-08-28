@@ -1,0 +1,27 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T3991",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-28T12:04:58+08:00",
+    "phase": "check",
+    "record": "T3991-0828-libobk-so-mtls-test",
+    "scenario_type": "development"
+  },
+  "parent": null,
+  "slug": "0828-libobk-so-mtls-test",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-08-28T12:04:58+08:00",
+    "do": "2026-08-28T12:14:22+08:00",
+    "plan": "2026-08-28T12:04:58+08:00"
+  },
+  "status": "InProgress",
+  "title": "libobk 共享库(.so) mTLS 功能验证程序"
+}
