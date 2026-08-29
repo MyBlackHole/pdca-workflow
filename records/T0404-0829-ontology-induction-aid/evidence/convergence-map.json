@@ -1,0 +1,17 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "归纳辅助仅产出候选 frontmatter，须经人工确认且本体校验通过后才落盘",
+      "criteria": [
+        "AC-2",
+        "AC-3",
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "t0404-tests"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+{"file": "pdca/tasks/0829-knowledge-ontology-restructure/design.md", "reason": "T0402 §8 归纳工作流（AI）描述手动归纳，本任务将其工具化", "action": "注入为归纳规则设计参考", "at": "2026-08-29T19:58:07+08:00"}
+{"file": "pdca/tasks/0829-knowledge-ontology-restructure/ssot-ontology-v3-final.md", "reason": "SSOT v3 类型/关系/属性契约定义", "action": "约束 induce 输出的 type/relations 合法", "at": "2026-08-29T19:58:07+08:00"}
+{"file": "ontology/README.md", "reason": "实体类型层次与关系范围（composed_of/configured_by range）", "action": "induce guides/specializes 候选须符合", "at": "2026-08-29T19:58:07+08:00"}
+{"file": "scripts/ontology-validate.py", "reason": "候选落盘前闸门（CYCLE/DANGLING/GUIDES_RANGE/COMPOSED_OF_RANGE 等）", "action": "AC-2/AC-6 以该脚本为 oracle", "at": "2026-08-29T19:58:07+08:00"}
