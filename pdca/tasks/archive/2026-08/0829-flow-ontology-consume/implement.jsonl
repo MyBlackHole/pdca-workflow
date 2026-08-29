@@ -1,0 +1,5 @@
+{"seq":1,"title":"在 flow-do 注入本体消费小节","addresses":["AC-1"],"detail":"于 flow-do/SKILL.md 路径索引与通用容错之间插入\"## 通用：本体消费（Do 阶段）\"，写明对照 ontology_fragment、复用/落盘/孤岛自检与跳过条件"}
+{"seq":2,"title":"在 flow-check 注入本体对照","addresses":["AC-2"],"detail":"Ch1 增加 development/bugfix 的本体校验要点；Ch2 Grill 增加\"结论是否被 ontology 节点/relations 支撑\"追问"}
+{"seq":3,"title":"在 flow-act 注入本体对齐","addresses":["AC-3"],"detail":"Ac2 知识沉淀优先关联既有 ontology 节点；Ac4 架构改进发现本体缺口时创建补强任务"}
+{"seq":4,"title":"文档一致性自检","addresses":["AC-4"],"detail":"运行 resolve-ai-friendliness-route.py --verify-document 并保留输出"}
+{"seq":5,"title":"同步 ONTOLOGY_GUIDE","addresses":["AC-5"],"detail":"在 docs/ONTOLOGY_GUIDE.md 增\"流程如何消费本体\"章节，覆盖 plan/do/check/act"}

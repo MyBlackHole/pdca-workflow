@@ -1,0 +1,6 @@
+{"id":"t0408-do","file":"SKILL.md","kind":"flow-edit","size":8546,"digest":"sha256:70fa3e2d6e964564ebd95d84d51b8e74f2f2693219e3c57e7e018cf6a7d74d10","at":"2026-08-29T21:28:33+08:00","criteria":["AC-1"]}
+{"id":"t0408-verify","file":"verify-document.json","kind":"validation-report","size":107,"digest":"sha256:f866f2b16659b671a549cb4dbc9b3b6104756a55a53bcee7d1c4ae738948e7c9","at":"2026-08-29T21:28:34+08:00","criteria":["AC-4"]}
+{"id":"t0408-guide","file":"ONTOLOGY_GUIDE.md","kind":"guide","size":6600,"digest":"sha256:cc73e42d418023a66472e99ee9aec469f19d5198028b5cc776eccda99a193bd9","at":"2026-08-29T21:28:34+08:00","criteria":["AC-5"]}
+{"id":"t0408-check","file":"flow-check-SKILL.md","kind":"flow-edit","size":3482,"digest":"sha256:71153f1bfd6f2b5b9409ad1188f894320e050e484849a84e37d9d3ef583b973a","at":"2026-08-29T21:28:44+08:00","criteria":["AC-2"]}
+{"id":"t0408-act","file":"flow-act-SKILL.md","kind":"flow-edit","size":5199,"digest":"sha256:7b4b026ba8d8f7ee124b878d81891793209c4e2fc5fbd38210ddb20ff2b03f78","at":"2026-08-29T21:28:44+08:00","criteria":["AC-3"]}
+{"id":"convergence-map","file":"convergence-map.json","kind":"convergence-map","size":453,"digest":"sha256:a46599a857a4f4090bcb94bbb6ff6a091e651756b08b22ef1ba8dc8f03350d37","at":"2026-08-29T21:28:45+08:00","criteria":["AC-5"]}
