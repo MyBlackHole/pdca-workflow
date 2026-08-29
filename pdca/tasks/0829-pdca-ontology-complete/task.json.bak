@@ -1,0 +1,30 @@
+{
+  "children": [],
+  "dependencies": [
+    "T0410"
+  ],
+  "id": "T0411",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "补全 PDCA 元本体尚不完善的节点：充实根概念 pdca.md 与转换元概念 pdca-transition.md 的正文定义，并在 phase-do/phase-check 注入经典 PDCA 的科学方法内核（预测-试验-比对-采纳/放弃），使元本体达到'完善'"
+    ],
+    "created_at": "2026-08-29T22:35:00+08:00",
+    "phase": "do",
+    "record": "T0411-0829-pdca-ontology-complete",
+    "scenario_type": "documentation",
+    "ontology_exempt": true
+  },
+  "parent": null,
+  "slug": "0829-pdca-ontology-complete",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-08-29T22:35:00+08:00",
+    "do": "2026-08-29T22:36:59+08:00",
+    "plan": "2026-08-29T22:35:00+08:00"
+  },
+  "status": "InProgress",
+  "title": "补全 PDCA 元本体不完善节点使其完善"
+}

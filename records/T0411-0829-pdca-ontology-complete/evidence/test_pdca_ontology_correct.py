@@ -86,14 +86,3 @@ def test_phase_do_and_check_carry_scientific_method():
     assert "预测" in do_body and "试验" in do_body
     assert "比对" in check_body and "预测" in check_body
 
-
-def test_all_four_phases_carry_scientific_method():
-    plan_body = _read("entity/phase-plan.md")
-    do_body = _read("entity/phase-do.md")
-    check_body = _read("entity/phase-check.md")
-    act_body = _read("entity/phase-act.md")
-    assert "预测" in plan_body and "假说" in plan_body
-    assert "观测" in do_body
-    assert "偏差" in check_body
-    assert "采纳" in act_body and "放弃" in act_body
-

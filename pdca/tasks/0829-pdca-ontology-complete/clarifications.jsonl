@@ -1,0 +1,3 @@
+{"at":"2026-08-29T22:35:30+08:00","author":"ai","q":"T0410 后 PDCA 元本体是否完善？","source":"triage","a":"主体正确但仍有缺口：根概念 pdca.md 与 pdca-transition.md 正文为空（G1/G2）；act→plan 循环仅概念节点（G3，设计取舍）；阶段定义缺科学方法内核（G4）。用户令开 T0411 补全"}
+{"at":"2026-08-29T22:36:00+08:00","author":"ai","q":"G3（act→plan 是否改造成可执行 transition 边）本次是否处理？","source":"triage","a":"本次不处理：保持 act→plan 为概念节点（pdca-continuous-improvement），不改造成 transition 边，以避免破坏 ontology-validate 无环不变量；如未来需要另行立任务并改 validator 白名单"}
+{"source":"final_confirmation","summary":"方向确认（T0411）：补全 pdca.md 与 pdca-transition.md 正文（G1/G2），并给 phase-do/check 注入科学方法内核（G4）；G3（act→plan 改造成可执行转换边）本次不处理，保持概念节点设计。仅补内容与文档，不改 reasoner/校验器/CI。","response":"confirmed","at":"2026-08-29T22:36:58+08:00"}

@@ -128,6 +128,6 @@ T0411 在 T0410 校正基础上，补齐了元本体"主体正确但尚不完善
 
 - **根概念 `pdca.md` 补正文**：定义 PDCA（Plan-Do-Check-Act / Deming Cycle / Shewhart Cycle）、起源（Shewhart→Deming，战后日本推广）、经典四阶段指针、持续改进循环指针，并枚举全部子概念（phase / transition / gate / evidence / verdict / acceptance-criterion / task / ontology-ready / continuous-improvement）。
 - **转换元概念 `pdca-transition.md` 补正文**：说明合法边由 `transition-*.md` 实体节点（`composed_of:[phase-X,phase-Y]`）编码、列出当前合法边（plan→do / do→check / check→act / act→archive）、并解释为何 act→plan 循环只以 `pdca-continuous-improvement` 概念表达而非 transition 边（保持无环不变量）。
-- **阶段定义注入科学方法内核**：四阶段贯通——`phase-plan` 提出可证伪的预测/假说与试验设计；`phase-do` 按预测做小范围可观测试验并忠实记录原始观测；`phase-check` 比对观测结果与 Plan 的预测（偏差即改进信号）；`phase-act` 依据结论采纳/放弃并固化学习。保留既有任务执行语义，不删改既有字段。
+- **阶段定义注入科学方法内核**：`phase-do` 明确"按 Plan 的预测/假说做小范围可观测试验"；`phase-check` 明确"比对观测结果与 Plan 的预测/假说"。保留既有任务执行语义，不删改既有字段。
 - **范围**：仅补内容与文档，不改 `ontology_reason.py`、schema、`ontology-validate.py` 与关卡判定；不新增 `transition-act-plan.md`（act→plan 仍维持概念节点设计，见第 11 节）。
 
