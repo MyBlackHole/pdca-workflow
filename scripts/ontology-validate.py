@@ -12,6 +12,7 @@ Checks (mapped to SSOT v3 acceptance criteria):
   COMPOSED_OF_RANGE: composed_of 目标须为实体/概念实体类（README §5）
   CONFIGURED_BY_RANGE: configured_by 目标须为 TLSConfiguration 节点（README §5）
   REDIRECT_DANGLING: knowledge/ redirect stubs (frontmatter redirect_to) point to existing ontology/ nodes (ADR-0030)
+  KNOWLEDGE_FM_INVALID: knowledge/ 声明 frontmatter 的 md 必须 YAML 合法（防止坏 frontmatter 被静默跳过）
   schema: pdca.asset/v1 required fields / enum values
 
 Exit code is 1 when any issue is found, 0 otherwise.
@@ -208,6 +209,38 @@ def check_redirects(root: Path) -> list:
     return issues
 
 
+def check_knowledge_frontmatter(root: Path) -> list:
+    """Scan knowledge/ for files that declare frontmatter (start with ---) but fail YAML parse.
+
+    ADR-0030 leaves redirect stubs and other assets under knowledge/; a malformed
+    frontmatter there used to be silently skipped by check_redirects' try/except.
+    This makes YAML-legality an explicit, non-skippable check.
+    """
+    issues = []
+    knowledge = root / "knowledge"
+    if not knowledge.is_dir():
+        return issues
+    for md in sorted(knowledge.rglob("*.md")):
+        text = md.read_text(encoding="utf-8")
+        if not text.startswith("---"):
+            continue
+        parts = text.split("---", 2)
+        if len(parts) < 3:
+            issues.append({"path": str(md), "code": "KNOWLEDGE_FM_INVALID",
+                           "message": "frontmatter 以 '---' 开头但缺少闭合 '---'"})
+            continue
+        try:
+            data = yaml.safe_load(parts[1])
+        except Exception as e:
+            issues.append({"path": str(md), "code": "KNOWLEDGE_FM_INVALID",
+                           "message": f"frontmatter YAML 解析失败: {type(e).__name__}: {e}"})
+            continue
+        if not isinstance(data, dict):
+            issues.append({"path": str(md), "code": "KNOWLEDGE_FM_INVALID",
+                           "message": "frontmatter 解析结果非 dict"})
+    return issues
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="Validate ontology/ assets against SSOT contract")
     ap.add_argument("--root", type=Path, default=ROOT)
@@ -217,6 +250,7 @@ def main() -> int:
     ont_dir = args.ontology_dir or (args.root / "ontology")
     issues = validate(ont_dir)
     issues += check_redirects(args.root)
+    issues += check_knowledge_frontmatter(args.root)
     if args.format == "json":
         print(json.dumps({"assets_dir": str(ont_dir), "issues": issues,
                           "ok": not issues}, ensure_ascii=False, indent=2))

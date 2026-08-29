@@ -2,7 +2,7 @@
 schema: pdca.asset/v1
 id: knowledge:workflow.skill-invocation-convention
 layer: knowledge
-summary: invocation: manual 标记区分用户调用和模型自动调用两类技能
+summary: "invocation: manual 标记区分用户调用和模型自动调用两类技能"
 tags: [skill, invocation, convention]
 scenarios: [default]
 phases: [plan, do, check, act]
