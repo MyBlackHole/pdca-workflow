@@ -1,0 +1,42 @@
+{
+  "children": [],
+  "dependencies": [
+    "T0409"
+  ],
+  "id": "T0410",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "校正 PDCA 元本体与经典方法论的 2 处偏差：将 archive 明确标注为运维扩展移出 PDCA 阶段集、新增 pdca-continuous-improvement 概念表达 act→plan 循环（保持任务转换图无环以守住生命周期终止不变量）、补 PDSA 注记，并同步 ONTOLOGY_GUIDE 与测试"
+    ],
+    "created_at": "2026-08-29T22:15:00+08:00",
+    "phase": "archive",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "PDCA 元本体已与经典方法论对齐：archive 标为运维扩展移出四阶段；新增 pdca-continuous-improvement 概念表达 act→plan 循环（任务转换图保持无环）；补 PDSA 注记。ontology-validate 无环、validate-convergence valid:true。",
+      "verdict_id": "T0410-verdict-1",
+      "at": "2026-08-29T22:27:00+08:00"
+    },
+    "record": "T0410-0829-pdca-ontology-correct",
+    "scenario_type": "documentation",
+    "ontology_exempt": true,
+    "completed_at": "2026-08-29T22:26:37+08:00",
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "交付为元本体内容校正、新增概念节点、测试与指南增量，均不改动 reasoner/校验器/CI；按结论不沉淀独立知识条目",
+      "at": "2026-08-29T22:29:00+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0829-pdca-ontology-correct",
+  "states": {
+    "act": "2026-08-29T22:28:00+08:00",
+    "archive": "2026-08-29T22:29:07+08:00",
+    "check": "2026-08-29T22:26:37+08:00",
+    "created": "2026-08-29T22:15:00+08:00",
+    "do": "2026-08-29T22:21:29+08:00",
+    "plan": "2026-08-29T22:15:00+08:00"
+  },
+  "status": "Completed",
+  "title": "校正 PDCA 元本体与经典方法论的偏差"
+}

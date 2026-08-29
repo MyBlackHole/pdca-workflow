@@ -1,0 +1,27 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0410",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta/verdict",
+      "message": "Additional properties are not allowed ('summary' was unexpected)",
+      "guidance": "fix the field at /meta/verdict in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta/verdict",
+      "message": "'reason' is a required property",
+      "guidance": "fix the field at /meta/verdict in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta/verdict",
+      "message": "'verdict_id' is a required property",
+      "guidance": "fix the field at /meta/verdict in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-08-29T22:27:11.550595+08:00"
+}
