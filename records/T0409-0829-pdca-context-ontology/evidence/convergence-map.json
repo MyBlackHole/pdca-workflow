@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "先充实 PDCA 元本体 pdca-* 节点正文知识（阶段定义/门禁理由/verdict 含义/与 flow 对应），再新增 scripts/pdca-context.py 实时读取并按 phase 输出该知识，并将指引注入 transition-phase 与 flow-* 入口，使 PDCA 执行指引层直接消费 PDCA 元本体知识",
+      "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5", "AC-6"],
+      "evidence_ids": ["t0409-enrich", "t0409-context", "t0409-transition", "t0409-flow-plan", "t0409-flow-do", "t0409-flow-check", "t0409-flow-act", "t0409-test", "t0409-verify", "t0409-guide"]
+    }
+  ]
+}

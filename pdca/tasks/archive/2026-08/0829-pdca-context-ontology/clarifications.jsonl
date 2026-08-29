@@ -1,0 +1,3 @@
+{"source":"triage","task_id":"T0409","at":"2026-08-29T21:35:00+08:00","classification":"framework-meta","scenario_type":"development","summary":"深化缺口2（执行指引层）：新增 scripts/pdca-context.py 实时读取 PDCA 元本体并按 phase 输出阶段定义/准入/合法后继，并将该指引注入 transition-phase 与 flow-plan/do/check/act 入口，使 agent 执行时直接消费 pdca-* 元本体知识，而非仅靠静态 flow 文本"}
+{"source":"final_confirmation","summary":"确认 T0409 PRD：先补 PDCA 元本体 pdca-* 节点正文知识，再新增 pdca-context.py 实时消费并注入 transition/flow；不改动 reasoner 与校验器","response":"confirmed","at":"2026-08-29T21:38:46+08:00"}
+{"source":"check_confirmation","summary":"Check 确认：T0409 先补 PDCA 元本体内容再接 pdca_context 实时消费，verify-document ok、测试通过、证据收敛 valid:true；用户另指认元本体有 2 处与经典 PDCA 不符，将新开 T0410 校正","response":"confirmed","at":"2026-08-29T22:12:32+08:00"}

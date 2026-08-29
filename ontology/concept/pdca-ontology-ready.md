@@ -13,3 +13,8 @@ relations:
 ---
 # pdca-ontology-ready
 
+do 阶段准入条件元概念（由 `pdca-gate-do.relates_to` 引用）。
+
+- **含义**：进入 do 前，`meta.ontology_fragment` 指向的本体片段须存在且为合法 `pdca.asset/v1`（frontmatter + relations 通过 `ontology-validate`）；或 `meta.ontology_exempt=true` 豁免。
+- **理由**：保证执行产物能挂接到本体图谱，避免产生无法被机器消费的"孤儿"资产。
+
