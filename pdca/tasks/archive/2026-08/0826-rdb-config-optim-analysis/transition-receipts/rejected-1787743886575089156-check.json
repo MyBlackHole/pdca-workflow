@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0386",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "CONVERGENCE_MAP_MISSING",
+      "path": "records/T0386-0826-rdb-config-optim-analysis/evidence/manifest.jsonl",
+      "message": "exactly one entry with id and kind convergence-map is required"
+    }
+  ],
+  "at": "2026-08-26T19:31:26.575070+08:00"
+}

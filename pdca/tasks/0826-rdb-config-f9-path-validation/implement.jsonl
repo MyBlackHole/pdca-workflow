@@ -1,0 +1,3 @@
+{"file": "knowledge/rdb-config/optim-roadmap.md", "reason": "D1 方案来源：F9 证书路径校验的改动点/兼容性/回归策略", "action": "复用方案并落地为代码实现", "at": "2026-08-26T19:43:25+08:00"}
+{"file": "knowledge/rdb-config/audit-findings.md", "reason": "F9 背景：sec_walk_str 直接返回 getenv 指针、CERT_DIR 未校验的审计结论", "action": "作为修复依据，修复后更新该知识为已修复", "at": "2026-08-26T19:43:25+08:00"}
+{"file": "skills/secure-coding (C 安全/路径遍历/外部输入不可信)", "reason": "证书路径校验属 CWE-22 路径遍历，需白名单+默认拒绝", "action": "实现校验函数时遵循绝对路径+无..+前缀白名单", "at": "2026-08-26T19:43:25+08:00"}

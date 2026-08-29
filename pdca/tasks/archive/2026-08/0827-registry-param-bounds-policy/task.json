@@ -1,0 +1,39 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0396",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "rdb config 注册表 ParamDesc 支持声明式 min/max(INT)/maxlen(STR)/invalid_policy，sec_get_int/sec_get_str 按 policy 统一执行边界（FAIL_CLOSED 默认）；现有 rpc/fs-backup 的 INT 范围检查与 STR 截断兜底下沉进注册表，工具侧冗余 *check_config 范围/BOOL 检查移除，行为保持 fail-closed 不变，与 T0394/T0395 统一参数管理一致。"
+    ],
+    "created_at": "2026-08-27T05:34:40+08:00",
+    "phase": "archive",
+    "record": "T0396-0827-registry-param-bounds-policy",
+    "scenario_type": "development",
+    "completed_at": "2026-08-27T05:52:45+08:00",
+    "verdict": {
+      "verdict_id": "V-T0396-20260827-001",
+      "outcome": "confirmed",
+      "reason": "全测试通过（rdb_config_test 19/19、rpc_config_test 9/9、fsdeamon_config_test 全绿，无回归）、validate-convergence 有效、conclusion.md AC 全 PASS。",
+      "at": "2026-08-27T05:53:53.975065+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "结论成立（confirmed）。声明式边界下沉至 rdb config 注册表（ParamDesc min/max/maxlen/invalid_policy，sec_get_* 统一 fail-closed），工具侧冗余 *check_config 范围/长度检查移除，行为保持 fail-closed 不变且全测试通过；可复用知识追加至 wire-tool-config-to-registry.md（revision 3）。AC-7 为发布前部署侧延迟确认（已登记 ev-ac7-deploy）。代码改动未提交（遵循仓库 no-commit 规则，待用户显式要求）。",
+      "at": "2026-08-27T05:56:34.157657+08:00"
+    }
+  },
+  "parent": "T0395",
+  "slug": "0827-registry-param-bounds-policy",
+  "states": {
+    "act": "2026-08-27T05:55:33+08:00",
+    "archive": "2026-08-27T05:57:04+08:00",
+    "check": "2026-08-27T05:52:45+08:00",
+    "created": "2026-08-27T05:34:40+08:00",
+    "do": "2026-08-27T05:40:51+08:00",
+    "plan": "2026-08-27T05:34:40+08:00"
+  },
+  "status": "Completed",
+  "title": "跟进：rdb config 注册表支持 min/max/maxlen 与 invalid_policy 并下沉工具范围校验"
+}

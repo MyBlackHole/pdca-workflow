@@ -1,0 +1,24 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0395",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "clarifications.jsonl[8]/",
+      "message": "'summary' is a required property"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "clarifications.jsonl[8]/",
+      "message": "'response' is a required property"
+    },
+    {
+      "code": "CHECK_CONFIRMATION_MISSING",
+      "path": "clarifications.jsonl",
+      "message": "check confirmation is required"
+    }
+  ],
+  "at": "2026-08-27T05:24:50.970996+08:00"
+}

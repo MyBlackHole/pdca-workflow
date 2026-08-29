@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0398",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "STATUS_PHASE_MISMATCH",
+      "path": "/status",
+      "message": "plan requires Pending"
+    }
+  ],
+  "at": "2026-08-27T07:04:56.852175+08:00"
+}

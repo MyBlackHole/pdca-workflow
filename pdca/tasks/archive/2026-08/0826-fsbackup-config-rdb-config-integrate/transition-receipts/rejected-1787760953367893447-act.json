@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0394",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "CONCLUSION_MISSING",
+      "path": "records/T0394-0826-fsbackup-config-rdb-config-integrate/conclusion.md",
+      "message": "conclusion is required"
+    }
+  ],
+  "at": "2026-08-27T00:15:53.367868+08:00"
+}

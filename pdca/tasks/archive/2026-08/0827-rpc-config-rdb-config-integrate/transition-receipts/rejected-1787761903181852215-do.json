@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0395",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "PRD_ACCEPTANCE_FORMAT_INVALID",
+      "path": "prd.md",
+      "message": "## 验收标准 must contain Markdown checkboxes",
+      "guidance": "rewrite the acceptance list under '## 验收标准' as '- [ ] AC-1: ...' checkbox lines (not '### AC-x' headings)"
+    }
+  ],
+  "at": "2026-08-27T00:31:43.181827+08:00"
+}

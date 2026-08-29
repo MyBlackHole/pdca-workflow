@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "libs/tls_cert.c 中所有生产 TLS 上下文（服务端/客户端）显式设置最低协议版本为 TLS1.3，且 libs 构建通过、mTLS 握手回归用例不受影响",
+      "criteria": ["AC-1", "AC-2", "AC-3"],
+      "evidence_ids": ["build-log", "test-log", "diff-log"]
+    }
+  ]
+}

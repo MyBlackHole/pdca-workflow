@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0388",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "clarifications.jsonl[2]/",
+      "message": "'summary' is a required property"
+    },
+    {
+      "code": "CONCLUSION_MISSING",
+      "path": "records/T0388-0826-rdb-config-failclosed-unify/conclusion.md",
+      "message": "conclusion is required"
+    }
+  ],
+  "at": "2026-08-26T20:37:12.220357+08:00"
+}

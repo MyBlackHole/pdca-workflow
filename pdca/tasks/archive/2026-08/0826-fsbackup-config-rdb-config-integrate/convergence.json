@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "fs-backup(fsdeamon/fsclient) 移除独立 do_parse_config+atoi 解析器，配置项注册进 rdb config 参数注册表（PARAM_*），改经 sec_get_*（env>工具段>默认, fail-closed）读取 [fsdaemon]/[fsclient] 段；保留 set_rpc_* 传播，与 rdbcomm/libobk 统一参数管理一致，无重复 atoi 解析器。",
+      "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5", "AC-6", "AC-7"],
+      "evidence_ids": ["ev-diff", "ev-build", "ev-test-fsdaemon", "ev-test-param", "ev-test-regress"]
+    }
+  ]
+}

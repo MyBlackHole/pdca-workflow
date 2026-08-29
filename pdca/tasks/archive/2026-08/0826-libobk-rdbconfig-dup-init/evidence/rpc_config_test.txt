@@ -1,0 +1,3 @@
+Running reload_reresolves_sec_switches... PASSED
+
+=== 4 passed, 0 failed ===

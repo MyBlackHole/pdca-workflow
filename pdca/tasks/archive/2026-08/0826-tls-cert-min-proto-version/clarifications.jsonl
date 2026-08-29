@@ -1,0 +1,4 @@
+{"source":"final_confirmation","summary":"T0391 终审确认：tls_cert.c 生产上下文显式设最低 TLS 版本 TLS1.3（一行 SSL_CTX_set_min_proto_version），新增 tls_cert_test.c 回归用例拒绝 TLS1.2 降级；仅加一行下限设置，不动套件/算法/验证回调。","response":"confirmed","at":"2026-08-26T22:15:26+08:00"}
+{"source": "check_confirmation", "summary": "Check 结论确认：tls_cert.c 生产上下文显式锁定最低 TLS 版本为 TLS1.3（F1 已修复）；三 AC 全过（构建通过 / 回归测试 20/20 含 tls_cert_min_proto_version_enforced / diff 仅 13 行新增且 fail-closed 分支正确）；覆盖性审计确认全仓仅 tls_cert.c 一处生产 SSL_CTX_new，修复无绕过路径。", "response": "confirmed", "at": "2026-08-26T23:07:44+08:00"}
+{"source": "grill", "at": "2026-08-26T23:08:05+08:00", "response": "scope", "summary": "Grill: 结论适用边界=仅 tls_cert.c 生产上下文最低版本锁定，不影响握手/验证/套件逻辑；可复用洞察=全仓 SSL_CTX_new 覆盖性扫描是验证 OpenSSL 上下文修复完整性的有效手段；流程改进=凡涉及 SSL_CTX 创建的修复，应同步补充最低版本/套件/验证三要素的回归断言"}
+{"source": "knowledge_decision", "at": "2026-08-26T23:08:05+08:00", "action": "wrote", "reason": "F1 修复纳入 mTLS 配置契约（audit-findings.md）：覆盖性审计确认无绕过路径，可复用"}

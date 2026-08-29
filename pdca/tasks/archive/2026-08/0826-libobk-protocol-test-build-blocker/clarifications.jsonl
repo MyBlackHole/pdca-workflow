@@ -1,0 +1,2 @@
+{"source":"final_confirmation","summary":"用户确认开新任务修复 libobk 测试构建阻断。re-review 发现原 #1(tls_cert.c 截断)已过时(已改 safe_strcpy/57fca54 修复)，转向真实现存阻断 #3：libobk_protocol_test 在 release(NDEBUG)下因 assert 被优化导致 -Werror=unused-variable/uninitialized。","response":"confirmed","at":"2026-08-26T21:36:46+08:00"}
+{"source":"check_confirmation","summary":"Check 结论确认：libobk_protocol_test release(NDEBUG) 构建阻断已修复（assert 改为真实错误检查），三 AC 全过；并确认 #1 tls_cert.c 截断阻断实为过时记录已修复。","response":"confirmed","at":"2026-08-26T21:54:37+08:00"}

@@ -1,0 +1,29 @@
+{
+  "children": [],
+  "dependencies": [
+    "T0397"
+  ],
+  "id": "T0398",
+  "meta": {
+    "active": true,
+    "created_at": "2026-08-27T06:59:07.443636+08:00",
+    "phase": "act",
+    "record": "T0398-0827-s3tools-rdb-config-integrate",
+    "scenario_type": "development",
+    "convergence": [
+      "s3tools（s3file + s3mount）配置接入 rdb-config 注册表：在 libs/rdb-config.c 的 g_param_table 登记 [s3file](cache_path/gmssl/parallel) 与 [s3mount](verify_ssl/cache_path/cache_capacity/log_path/fuse_mount_point)，删除 s3tools 自带 ini_parse+atoi 直接解析；改经 sec_get_int/bool/str 取注册表值，配置错误以 rdb_cfg_errcode_t 异常号 + detail 上抛，调用方直印 r.detail（移除 atoi+err_msg 模糊归因）；fail-closed 与历史对齐（缺必填字段/非整数/越界/非0-1布尔均拒绝），缺 rdb.conf(ENOENT) 容忍回落默认（与 fs-backup 一致）；verify_ssl 默认保持不启用(0)。单测全绿、xmake test 全绿。"
+    ]
+  },
+  "parent": "T0397",
+  "slug": "0827-s3tools-rdb-config-integrate",
+  "states": {
+    "created": "2026-08-27T06:59:07.443636+08:00",
+    "plan": "2026-08-27T06:59:07.443636+08:00",
+    "archive": "2026-08-27T08:40:00+08:00",
+    "do": "2026-08-27T07:05:12+08:00",
+    "check": "2026-08-27T08:30:00+08:00",
+    "act": "2026-08-27T08:35:00+08:00"
+  },
+  "status": "Completed",
+  "title": "s3tools 接入 rdb-config 注册表并统一错误上抛"
+}

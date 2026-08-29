@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0395",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-8",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow/records/T0395-0827-rpc-config-rdb-config-integrate/evidence/convergence.json[1]/text",
+      "message": "text must equal the Plan convergence value"
+    }
+  ],
+  "at": "2026-08-27T00:44:30.334805+08:00"
+}

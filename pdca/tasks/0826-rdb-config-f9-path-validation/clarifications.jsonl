@@ -1,0 +1,2 @@
+{"at":"2026-08-26T19:38:20+08:00","source":"task_identity","summary":"created with record identity T0387-0826-rdb-config-f9-path-validation"}
+{"at": "2026-08-26T19:44:30+08:00", "source": "decision_cancel", "summary": "信任外部输入（env 可信），F9 证书路径校验无需修改代码；D1=T0387 取消，不进入 Do", "response": "confirmed"}

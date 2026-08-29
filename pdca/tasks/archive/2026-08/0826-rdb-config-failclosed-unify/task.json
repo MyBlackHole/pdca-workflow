@@ -1,0 +1,39 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0388",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-26T19:46:33+08:00",
+    "phase": "archive",
+    "record": "T0388-0826-rdb-config-failclosed-unify",
+    "scenario_type": "development",
+    "completed_at": "2026-08-26T20:31:07+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "全部 AC 满足，证据链与收敛校验 valid:true；入口策略经测试验证可行",
+      "verdict_id": "T0388-verdict-001",
+      "at": "2026-08-26T20:35:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "可复用知识已沉淀至 knowledge/rdb-config/audit-findings.md 与 optim-roadmap.md（D2 已修复：移除 constructor、入口显式 init_config、mtls 硬失败）",
+      "at": "2026-08-26T20:36:00+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0826-rdb-config-failclosed-unify",
+  "states": {
+    "act": "2026-08-26T20:38:32+08:00",
+    "archive": "2026-08-26T20:38:48+08:00",
+    "check": "2026-08-26T20:31:07+08:00",
+    "created": "2026-08-26T19:46:33+08:00",
+    "do": "2026-08-26T20:08:13+08:00",
+    "plan": "2026-08-26T19:46:33+08:00"
+  },
+  "status": "Completed",
+  "title": "跟进 T0386：rdb config fail-closed 一致性"
+}

@@ -1,0 +1,39 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0395",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "rpc 移除独立 do_parse_config+ini_parse+atoi 解析器，tunable 注册进 rdb config 参数注册表（单条 PARAM_RPC_*，layer2=[aio-speedd] 优先、回落 layer3=[aio-speed]），改经 sec_get_*（env>段>默认, fail-closed）读取；BOOL 截断规避、STR 回落默认；rpc_set_section_name 废弃为 no-op，与 T0394（fs-backup）及其它工具统一参数管理一致，无重复 atoi 解析器，嵌入方行为零回归。"
+    ],
+    "created_at": "2026-08-27T00:21:50+08:00",
+    "phase": "archive",
+    "record": "T0395-0827-rpc-config-rdb-config-integrate",
+    "scenario_type": "development",
+    "completed_at": "2026-08-27T00:45:45+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "AC-1~AC-7 证据充分（ev-diff/ev-build/ev-test-rpc-config/ev-test-rpc-param/ev-test-regress + convergence-map，validate-convergence 通过）；Check 阶段审查发现（ini key 字面量未用宏）已修复并复验（RPC_TOOL_*_KEY 宏统一替换，构建+4 测试套件全绿）；AC-8 为发布前部署侧确认项，已登记延迟证据 ev-ac8-deploy，不阻塞 confirmed。",
+      "verdict_id": "V-T0395-20260827-001",
+      "at": "2026-08-27T05:24:44.796963+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "结论成立（confirmed）。可复用知识已沉淀至 rdb-config/wire-tool-config-to-registry.md（revision 2：多段 layer2/layer3 回落、动态段名废弃、ini key 宏化），可跨 fs-backup/rdbcomm/libobk 等多段工具配置接入复用；AC-8 为发布前部署侧延迟确认，已登记 ev-ac8-deploy。代码改动未提交（遵循仓库 no-commit 规则，待用户显式要求）。",
+      "at": "2026-08-27T05:28:30.650745+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0827-rpc-config-rdb-config-integrate",
+  "states": {
+    "act": "2026-08-27T05:27:07+08:00",
+    "archive": "2026-08-27T05:29:18+08:00",
+    "check": "2026-08-27T00:45:45+08:00",
+    "created": "2026-08-27T00:21:50+08:00",
+    "do": "2026-08-27T00:32:42+08:00",
+    "plan": "2026-08-27T00:21:50+08:00"
+  },
+  "status": "Completed",
+  "title": "rpc: 接入 rdb config，移除独立的 do_parse_config+atoi 配置解析器"
+}

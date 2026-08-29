@@ -1,0 +1,38 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0400",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "ontology SSOT vocabulary and pdca.asset/v1 frontmatter schema are defined and mapped to evidence"
+    ],
+    "created_at": "2026-08-29T09:59:55+00:00",
+    "phase": "archive",
+    "record": "T0400-0829-onto-ssot-schema",
+    "scenario_type": "design",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "AC-1/AC-2/AC-3 全部满足；自我审查发现的 type 矛盾已修正，证据 ssot-readme-v3/asset-schema/convergence-v4 齐全无空悬",
+      "verdict_id": "V-T0400-0001",
+      "at": "2026-08-29T18:17:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "本体 SSOT 与 frontmatter schema 作为后续 T0401/T0402/T0403 的统一规范基础，已被复用规划",
+      "at": "2026-08-29T18:18:00+08:00"
+    }
+  },
+  "parent": "T0399",
+  "slug": "0829-onto-ssot-schema",
+  "states": {
+    "act": "2026-08-29T18:17:39+08:00",
+    "archive": "2026-08-29T18:18:58+08:00",
+    "check": "2026-08-29T18:12:47+08:00",
+    "created": "2026-08-29T09:59:55+00:00",
+    "do": "2026-08-29T18:07:19+08:00",
+    "plan": "2026-08-29T09:59:55+00:00"
+  },
+  "status": "Completed",
+  "title": "定义本体 SSOT 词汇表与 frontmatter schema"
+}

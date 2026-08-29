@@ -1,0 +1,39 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0394",
+  "meta": {
+    "active": true,
+    "created_at": "2026-08-26T23:50:15+08:00",
+    "phase": "act",
+    "record": "T0394-0826-fsbackup-config-rdb-config-integrate",
+    "scenario_type": "development",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "AC-1~AC-7 证据充分（ev-diff/ev-build/ev-test-fsdaemon/ev-test-param/ev-test-regress + convergence-map，validate-convergence 通过）；AC-8 为发布前部署侧确认项，已登记延迟证据 ev-ac8-deploy，不阻塞 confirmed。",
+      "verdict_id": "V-T0394-20260827-001",
+      "at": "2026-08-27T00:15:36+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "confirmed 结论的可复用洞察（bool 截断绕过 fail-closed 陷阱 + 配置接入 rdb config 注册表通用模式）已沉淀至 knowledge/rdb-config/wire-tool-config-to-registry.md 并经 manifest 登记。",
+      "at": "2026-08-27T00:17:30+08:00"
+    },
+    "convergence": [
+      "fs-backup(fsdeamon/fsclient) 移除独立 do_parse_config+atoi 解析器，配置项注册进 rdb config 参数注册表（PARAM_*），改经 sec_get_*（env>工具段>默认, fail-closed）读取 [fsdaemon]/[fsclient] 段；保留 set_rpc_* 传播，与 rdbcomm/libobk 统一参数管理一致，无重复 atoi 解析器。"
+    ],
+    "completed_at": "2026-08-27T00:14:01+08:00"
+  },
+  "parent": null,
+  "slug": "0826-fsbackup-config-rdb-config-integrate",
+  "states": {
+    "created": "2026-08-26T23:50:15+08:00",
+    "plan": "2026-08-26T23:50:15+08:00",
+    "do": "2026-08-26T23:55:20+08:00",
+    "check": "2026-08-27T00:14:01+08:00",
+    "act": "2026-08-27T00:16:11+08:00",
+    "archive": null
+  },
+  "status": "Completed",
+  "title": "fs-backup: 接入 rdb config，移除独立的 do_parse_config+atoi 配置解析器"
+}

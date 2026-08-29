@@ -1,0 +1,4 @@
+{"at":"2026-08-26T19:46:33+08:00","source":"task_identity","summary":"created with record identity T0388-0826-rdb-config-failclosed-unify"}
+{"source":"final_confirmation","summary":"P6 终审批准 B 重构聚合点策略：移除 rdb_auto_init constructor，在 rpc_init_config 及 3 个 TLS config init 聚合函数内调用 init_config（覆盖 fs-backup/rpc/dmsbtex/libobk），rdbcomm/rdbcommd main 与 param_registry_test 补 init，rdbcommd mtls 补硬失败。共 8 处改动。","response":"confirmed","at":"2026-08-26T20:08:05+08:00"}
+{"source":"check_confirmation","summary":"用户确认 Check 结论成立（confirmed），进入 Act 归档","response":"confirmed","at":"2026-08-26T20:35:00+08:00","user_meta_feedback":{"captured":true,"text":"确认 (confirmed)"}}
+{"source":"knowledge_decision","summary":"复用知识沉淀至 knowledge/rdb-config/audit-findings.md 与 optim-roadmap.md（D2 已修复）","at":"2026-08-26T20:36:00+08:00","action":"wrote","reason":"复用知识沉淀至 knowledge/rdb-config/audit-findings.md 与 optim-roadmap.md（D2 已修复：移除 constructor、入口显式 init_config、mtls 硬失败）"}

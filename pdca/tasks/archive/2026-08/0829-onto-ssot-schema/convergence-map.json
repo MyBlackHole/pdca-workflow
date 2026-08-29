@@ -1,0 +1,8 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index":1,"text":"ontology/README.md 定义类型受控词汇、关系词汇表、attributes 字段结构、组合规则、目录即真理约定（AC-1）","criteria":["AC-1"],"evidence_ids":["ssot-readme-v2"]},
+    {"index":2,"text":"schemas/ontology-asset.schema.json 定义 pdca.asset/v1 扩展 frontmatter 结构，字段与 README 一致（AC-2）","criteria":["AC-2"],"evidence_ids":["asset-schema"]},
+    {"index":3,"text":"ontology/README.md §1 明确三合一用途、§7 引用 ADR-0030 的“全部物理归并”边界（AC-3）","criteria":["AC-3"],"evidence_ids":["ssot-readme-v2"]}
+  ]
+}

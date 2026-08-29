@@ -1,0 +1,52 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0395",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-4",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-5",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-6",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-8",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow/records/T0395-0827-rpc-config-rdb-config-integrate/evidence/convergence.json[1]/text",
+      "message": "text must equal the Plan convergence value"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0395-0827-rpc-config-rdb-config-integrate/evidence/convergence.json[1]",
+      "message": "listed evidence does not support AC-4",
+      "guidance": "re-register the supporting evidence with --criterion AC-4, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0395-0827-rpc-config-rdb-config-integrate/evidence/convergence.json[1]",
+      "message": "listed evidence does not support AC-5",
+      "guidance": "re-register the supporting evidence with --criterion AC-5, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0395-0827-rpc-config-rdb-config-integrate/evidence/convergence.json[1]",
+      "message": "listed evidence does not support AC-6",
+      "guidance": "re-register the supporting evidence with --criterion AC-6, or fix the map to cite evidence that actually covers it"
+    }
+  ],
+  "at": "2026-08-27T00:43:52.549863+08:00"
+}

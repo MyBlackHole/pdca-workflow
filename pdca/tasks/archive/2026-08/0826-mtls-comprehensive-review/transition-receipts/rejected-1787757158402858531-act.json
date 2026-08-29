@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0392",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "CONCLUSION_MISSING",
+      "path": "records/T0392-0826-mtls-comprehensive-review/conclusion.md",
+      "message": "conclusion is required"
+    },
+    {
+      "code": "VERDICT_MISSING",
+      "path": "/meta/verdict",
+      "message": "verdict is required"
+    }
+  ],
+  "at": "2026-08-26T23:12:38.402831+08:00"
+}

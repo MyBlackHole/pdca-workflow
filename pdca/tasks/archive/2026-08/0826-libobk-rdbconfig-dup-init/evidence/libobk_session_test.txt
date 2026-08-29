@@ -1,0 +1,6 @@
+[0mgenerating xbsa/src/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating s3tools/s3mount/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating s3tools/s3file/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating huanweicloun-sdk-s3-data-backup/my-fuse/version.in ... [38;2;0;255;0;1mok[0m
+[PASS] T3961 algorithm-lock reject mismatched / allow matched

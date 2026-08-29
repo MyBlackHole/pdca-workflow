@@ -1,0 +1,4 @@
+build FileTransferAgent libobk_session_test rdbcommd rdbcomm dmsbtex rpc rpc_config_test fsbackup_tools
+[0mgenerating oss/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating bwlimit/version.in ... [38;2;0;255;0;1mok[0m
+[0m[38;2;0;255;0;1m[100%]:[0m [38;2;0;255;0;1mbuild ok, spent 0.106s[0m
