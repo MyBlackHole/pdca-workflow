@@ -1,0 +1,5 @@
+{"at":"2026-08-29T23:25:55+08:00","source":"task_identity","summary":"created with record identity T0413-0829-ontology-validator-from-nodes"}
+{"at": "2026-08-29T23:35:00+08:00", "author": "ai", "q": "B 方案（让 ontology-validate.py 运行时读取 ontology-rule-* 节点）要做到哪种深度？", "source": "triage", "a": "用户明确：本体才是门禁的权威来源（即 B3 参数化驱动）。把规则的具体清单写入节点 frontmatter，脚本运行时读取并据此真正执行检查；以后改规则只改节点。"}
+{"source":"final_confirmation","summary":"方向确认（T0413，B3 参数化驱动）：让 ontology-validate.py 运行时读取 ontology-rule-* 节点的 rule_spec 作为门禁参数唯一来源，把受控类型词汇/关系键/知识资产类型/必需关系/属性测试字段/范围约束从硬编码常量改为由节点驱动；含权威证明测试。","response":"confirmed","at":"2026-08-29T23:34:21+08:00"}
+{"source":"check_confirmation","summary":"用户确认 T0413 Check 结论，认可 validator 运行时读取 ontology-rule-* 节点 rule_spec 作为门禁参数唯一事实源，36 测试通过、无环、convergence valid，推进 Act。","response":"confirmed","at":"2026-08-29T23:44:05+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-29T23:46:00+08:00", "action": "skipped", "reason": "可复用成果已是 ontology 节点（ontology-rule-* 的 rule_spec）+ 脚本（ontology-validate.py）+ ADR-0035，按 flow-act 优先沉淀于本体/代码，不产孤立 knowledge/ 文件"}

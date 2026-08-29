@@ -1,0 +1,31 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "让 ontology-validate.py 运行时读取 ontology-rule-* 节点的 rule_spec 作为门禁参数唯一来源：把受控类型词汇、关系键、知识资产类型、必需关系、属性测试字段、范围约束等从硬编码常量改为由节点驱动，消除文档/脚本漂移；并含权威证明测试（节点变更→校验行为变更）",
+      "criteria": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4",
+        "AC-5",
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "t0413-rule-type-controlled",
+        "t0413-rule-non-dangling",
+        "t0413-rule-acyclic",
+        "t0413-rule-attr-testable",
+        "t0413-rule-richness",
+        "t0413-rule-guides-range",
+        "t0413-validator",
+        "t0413-readme",
+        "t0413-skill",
+        "t0413-adr",
+        "t0413-test",
+        "t0413-validate"
+      ]
+    }
+  ]
+}
