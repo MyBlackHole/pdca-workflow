@@ -1,0 +1,7 @@
+{"at":"2026-08-29T10:00:06+00:00","source":"task_identity","summary":"created with record identity T0402-0829-onto-tls-pilot"}
+{"source":"final_confirmation","summary":"继承父 T0399 终审：子任务分解随父完整方案（含任务树）批准，开始 Do 阶段执行","response":"confirmed","at":"2026-08-29T18:07:09+08:00"}
+{"source":"check_confirmation","summary":"确认 T0402 Check 结论：7 条 PRD AC 全部满足，ontology-validate 全 PASS，record identity 经 source_task+redirect 桩保持，verdict=confirmed","response":"confirmed","at":"2026-08-29T19:24:20+08:00"}
+{"round":1,"question":"Q1 本次迁移的可复用经验是什么","answer":"用 frontmatter 关系图 + 受控词汇 + 校验脚本把「知识分类」升级为「实体本体」；迁移脚本与模板可复用于全量迁移","source":"grilling","captured":true,"at":"2026-08-29T19:25:00+08:00"}
+{"round":1,"question":"Q2 哪些部分可提炼为可复用知识","answer":"迁移模板（id/type/source_task/attributes/relations 字段）与 ontology-validate 校验器；已沉淀为 ADR-0030/0031 与脚本，无需另写 knowledge 资产","source":"grilling","captured":true,"at":"2026-08-29T19:25:00+08:00"}
+{"round":1,"question":"Q3 下次类似问题的流程改进","answer":"全量迁移（T0403）直接复用本脚本；attributes.testable_signal 需细化以便从知识派生回归测试","source":"grilling","captured":true,"at":"2026-08-29T19:25:00+08:00"}
+{"source":"knowledge_decision","at":"2026-08-29T19:25:00+08:00","action":"skipped","reason":"本次交付物为 ontology/ 节点、ADR-0030/0031 与迁移脚本，已入仓库；无额外独立知识资产需写入 knowledge/，避免重复"}

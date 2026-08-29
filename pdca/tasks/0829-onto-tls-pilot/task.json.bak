@@ -1,0 +1,41 @@
+{
+  "children": [],
+  "dependencies": [
+    "T0400"
+  ],
+  "id": "T0402",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-08-29T10:00:06+00:00",
+    "phase": "act",
+    "record": "T0402-0829-onto-tls-pilot",
+    "scenario_type": "development",
+    "completed_at": "2026-08-29T19:22:52+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "7 条 PRD 验收标准全部满足，ontology-validate.py 形式化校验全 PASS，record identity 经 source_task + redirect 桩保持，convergence-map 与证据齐备。",
+      "verdict_id": "T0402-verdict-1",
+      "at": "2026-08-29T19:23:30+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "交付物（ontology/ 迁移结果、ADR-0030/0031、迁移脚本、校验器更新）已落入仓库相应位置；未另写独立 knowledge 资产。后续全量迁移见跟进任务 T0403。",
+      "at": "2026-08-29T19:25:30+08:00"
+    }
+  },
+  "parent": "T0399",
+  "slug": "0829-onto-tls-pilot",
+  "states": {
+    "act": "2026-08-29T19:24:20+08:00",
+    "archive": null,
+    "check": "2026-08-29T19:22:52+08:00",
+    "created": "2026-08-29T10:00:06+00:00",
+    "do": "2026-08-29T19:11:04+08:00",
+    "plan": "2026-08-29T10:00:06+00:00"
+  },
+  "status": "Completed",
+  "title": "试点 tls 域本体迁移与 record identity 保持"
+}

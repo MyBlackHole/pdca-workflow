@@ -1,0 +1,29 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0402",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-3",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-4",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-7",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow/records/T0402-0829-onto-tls-pilot/evidence/ev_convergence_map.md",
+      "message": "Expecting value: line 1 column 1 (char 0)"
+    }
+  ],
+  "at": "2026-08-29T19:21:13.780497+08:00"
+}

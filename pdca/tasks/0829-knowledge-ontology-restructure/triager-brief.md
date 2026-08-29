@@ -1,0 +1,36 @@
+# Triage Brief — knowledge-ontology-restructure
+
+- **category**: enhancement
+- **scenario_type**: design
+- **summary**: 将知识库从“按主题（topic）组织”重构为“按本体（ontology）拆分”，统一所有保存知识的表达。
+- **current behavior**:
+  - 知识按领域主题目录存放（如 tls、core、pg、data-formats…），共 33 个主题前缀、161 个 markdown 文件。
+  - 表达不统一：仅 31/161 文件含 `schema: pdca.asset/v1` 标准 frontmatter，130 个为纯散文；且 knowledge/ 中混入了本应属于 Experience 层的“一次任务经验”内容（标题带任务号、含背景/改动落点/关键教训）。
+  - manifest.jsonl 以 topic 为分类维度登记 192 条，无本体类型字段。
+  - 四层模型（Evidence/Experience/Knowledge/Skill）仅在 README 描述，未落实到资产 frontmatter。
+- **desired behavior**:
+  - 知识按“本体类型”重新归类（如 概念/原则/模式/反模式/决策/事实/流程 等），文件名与目录均服从本体维度。
+  - 所有知识文件统一表达（标准 frontmatter + 明确的 ontology_type）。
+  - 保存的知识均可按本体检索、复用于后续任务。
+- **key interfaces**（概念级）:
+  - 知识资产 frontmatter schema（pdca.asset/v1 扩展）
+  - manifest.jsonl 登记结构
+  - 知识检索/注入逻辑（按本体维度筛选）
+- **acceptance criteria**（初步，待 Grill 后定稿）:
+  - [ ] 知识库定义明确的本体类型集合（SSOT 文档），且所有知识文件归属于唯一本体类型
+  - [ ] 运行本体一致性校验，所有 .md 的 frontmatter 含 ontology_type 且取值合法
+  - [ ] manifest.jsonl 每条登记含 ontology_type 字段并可反向索引
+  - [ ] 新写入知识强制按本体拆分（写入门禁校验）
+  - [ ] 现有存量知识完成迁移且检索/复用不受影响
+- **out of scope**:
+  - 不改动四层模型（Evidence/Experience/Knowledge/Skill）的顶层边界定义
+  - 不引入重型本体推理引擎（除非 Grill 确认）
+  - 不迁移 records/ 下的 Experience/Evidence（仅重新归类 knowledge/）
+- **information gaps**:
+  - “本体”具体指哪种分类体系（知识类型本体 vs 领域实体本体 vs 混合）待用户澄清
+  - 知识表达是否需结构化为三元组/JSON-LD 待澄清
+  - 迁移是全量还是试点先行待澄清
+- **dedup results**:
+  - 检索 archive 与 knowledge，含“本体”字样者均为“技能本体”“协议本体”等比喻用法，无直接重复的知识架构重构任务。
+- **recommended next steps**:
+  - 进入 Grill 澄清本体定义与迁移策略；方向确认后写 PRD 与 ontology SSOT 文档；试点一个 domain 后再全量迁移。

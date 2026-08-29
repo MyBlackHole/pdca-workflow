@@ -1,0 +1,4 @@
+{"asset":"knowledge/README.md","reason":"定义 Evidence→Experience→Knowledge→Skill 四层模型与知识登记规则，本体重构须在该分层边界内组织（跨四层物理归并但保留 layer 语义）","action":"复用四层分层作为本体 layer 字段的来源，迁移时保留 layer 语义不破坏分层","at":"2026-08-29T11:10:00+00:00"}
+{"asset":"knowledge/pdca-flow/record-knowledge-provenance.md","reason":"规定知识来源边与自动流转门禁，物理归并后来源边改为 source_task 回链，须对齐此门禁","action":"迁移后的 evidence/experience 在新位置保留 source_task 回链，ontology-validate 强制该校验（见 ADR-0030）","at":"2026-08-29T11:10:00+00:00"}
+{"asset":"knowledge/pdca-flow/architecture.md","reason":"定义 flow skill 与 agent skill 分工及资产操作约束（分层索引、manifest 同步），本体目录与索引改造须兼容","action":"ontology/ 作为新的可检索资产根，manifest 派生索引需与现有资产操作约束一致","at":"2026-08-29T11:10:00+00:00"}
+{"asset":"knowledge/information-architecture/four-layer-context-model.md","reason":"细化四层职责、来源门禁与渐进式上下文展开，是本体类型划分与检索注入的参照基线","action":"本体类型受控词汇起点（concept/principle/pattern/pitfall/decision/fact/process）参考此四层职责划分","at":"2026-08-29T11:10:00+00:00"}
