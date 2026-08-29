@@ -5,7 +5,7 @@ type: pattern
 layer: Knowledge
 status: active
 summary: GMSSL 3.1.2 TLCP mTLS 支持速查与集成策略
-source_task: records/0727
+source_task: F139
 relations:
   specializes: [ontology:pattern]
   guides: [ontology:entity/mtls-handshake]

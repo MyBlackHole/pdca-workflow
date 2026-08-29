@@ -9,6 +9,7 @@ Checks (mapped to SSOT v3 acceptance criteria):
   AC-4  attribute->test coverage: each attributes[].testable_signal non-empty
   AC-5  relation richness: each KnowledgeArtifact has guides/relates_to
   AC-6  guides domain/range: source is knowledge, target is domain/process
+  REDIRECT_DANGLING: knowledge/ redirect stubs (frontmatter redirect_to) point to existing ontology/ nodes (ADR-0030)
   schema: pdca.asset/v1 required fields / enum values
 
 Exit code is 1 when any issue is found, 0 otherwise.
@@ -161,6 +162,35 @@ def validate(ont_dir: Path):
     return issues
 
 
+def check_redirects(root: Path) -> list:
+    """Scan knowledge/ for redirect stubs (frontmatter redirect_to) and verify targets exist.
+
+    Physical-merge (ADR-0030) leaves redirect stubs in knowledge/; their `redirect_to`
+    must point to a real ontology/ node, otherwise record identity is broken.
+    """
+    issues = []
+    knowledge = root / "knowledge"
+    if not knowledge.is_dir():
+        return issues
+    for md in sorted(knowledge.rglob("*.md")):
+        text = md.read_text(encoding="utf-8")
+        if not text.startswith("---"):
+            continue
+        try:
+            fm = extract_frontmatter(text)
+        except Exception:
+            # 非 redirect 桩或既有损坏 frontmatter：本检查仅关心 redirect_to，跳过以免阻断整体校验
+            continue
+        target = fm.get("redirect_to")
+        if not target:
+            continue
+        dest = root / target
+        if not dest.is_file():
+            issues.append({"path": str(md), "code": "REDIRECT_DANGLING",
+                           "message": f"redirect_to '{target}' 在仓库中无对应文件"})
+    return issues
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="Validate ontology/ assets against SSOT contract")
     ap.add_argument("--root", type=Path, default=ROOT)
@@ -169,6 +199,7 @@ def main() -> int:
     args = ap.parse_args()
     ont_dir = args.ontology_dir or (args.root / "ontology")
     issues = validate(ont_dir)
+    issues += check_redirects(args.root)
     if args.format == "json":
         print(json.dumps({"assets_dir": str(ont_dir), "issues": issues,
                           "ok": not issues}, ensure_ascii=False, indent=2))

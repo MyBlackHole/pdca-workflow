@@ -1,3 +1,9 @@
+---
+redirect_to: ontology/principle/cli-tls-mtls-configuration.md
+source_task: T0323
+status: migrated
+---
+
 # 工具 CLI TLS/mTLS 配置约定（已迁移）
 
 > 本文件已按 ADR-0030 物理归并至本体库：principle/cli-tls-mtls-configuration.md

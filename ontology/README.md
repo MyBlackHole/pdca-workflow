@@ -52,6 +52,7 @@ Entity (root)
 ```
 
 - **md 文件 = KnowledgeArtifact / DomainEntity / Process 的实例**，通过 `specializes` 指向上述类（实例 → 类）。绝不可把单篇实例当作类（Ontology 101 警告：single X 不是 all X 的子类）。
+  - **类节点类型约定**：知识**类**节点（`Pattern`/`Principle`/`Pitfall`/`Fact`/`Decision`）存放于 `concept/` 目录、使用 `type: concept`，其 `id` 为 `ontology:pattern` 等；知识**实例**则按形态存放于 `pattern/`、`principle/` 等目录、使用对应 `type`，并 `specializes` 指向类节点。类节点刻意用 `concept` 类型，以豁免 AC-5（知识实例须有 `guides`/`relates_to`）对"类"本身的约束——类是概念而非知识实例。
 - 新增领域实体：加 `DomainEntity` / `Process` 子类（在 README §3 登记）；新增知识形态：加 `KnowledgeArtifact` 子类（开放但不失控）。
 - `specializes` 必须形成以 `Entity` 为根的有向无环树。
 

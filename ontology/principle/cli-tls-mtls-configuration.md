@@ -5,7 +5,7 @@ type: principle
 layer: Knowledge
 status: active
 summary: 工具 CLI TLS/mTLS 配置约定
-source_task: tooling-cli
+source_task: T0323
 relations:
   specializes: [ontology:principle]
   guides: [ontology:entity/tls-configuration]

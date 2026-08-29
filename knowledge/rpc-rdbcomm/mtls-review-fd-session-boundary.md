@@ -1,3 +1,9 @@
+---
+redirect_to: ontology/principle/mtls-review-fd-session-boundary.md
+source_task: T0309
+status: migrated
+---
+
 # RPC/rdbcomm mTLS 审查：连接对象必须携带传输状态（已迁移）
 
 > 本文件已按 ADR-0030 物理归并至本体库：principle/mtls-review-fd-session-boundary.md
