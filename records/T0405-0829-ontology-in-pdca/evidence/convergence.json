@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "本体成为 PDCA 流程一等公民，开发任务 Do 前须有已校验本体支撑",
+      "criteria": ["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6"],
+      "evidence_ids": ["t0405-do-tests"]
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+diff --git a/dmsbtex/main.c b/dmsbtex/main.c
+index 38407c3..c56c989 100644
+--- a/dmsbtex/main.c
++++ b/dmsbtex/main.c
+@@ -28,6 +28,7 @@
+ #include <sched.h>
+ 
+ #include "common.h"
++#include "rdb-config.h"
+ #include "version.h"
+ #include "network.h"
+ #include "logger.h"
+@@ -109,6 +110,13 @@ unsigned int g_compress_enabled = 1;
+ int main(int argc, char *argv[])
+ {
+ 	int ret = 0;
++	{
++		char err[256];
++		if (init_config(NULL, err, sizeof err) != 0) {
++			fprintf(stderr, "dmsbtex: rdb-config load failed: %s\n", err);
++			return 1;
++		}
++	}
+ 	fd_set rset;
+ 	int serverfd = -1;
+ 	int connfd = -1;
+diff --git a/fs-backup/fsclient/main.cpp b/fs-backup/fsclient/main.cpp
+index 03a02b3..b8a14fc 100644
+--- a/fs-backup/fsclient/main.cpp
++++ b/fs-backup/fsclient/main.cpp
+@@ -21,6 +21,7 @@
+ #include "fsbackup-common.h"
+ #include "fs_service_proto.h"
+ #include "rpc.h"
++#include "rdb-config.h"
+ #include "version.h"
+ 
+ //---------------------------------------------------------DEBUG-------------------------------------------------
+@@ -537,6 +538,13 @@ int main(int argc, char *argv[])
+ 	char err_msg[1024];
+ 	const char *config_file = getenv(RDB_CONFIG);
+ 
++	{
++		char err[256];
++		if (init_config(NULL, err, sizeof err) != 0) {
++			ErrorLog("rdb-config load failed: %s", err);
++			exit(EXIT_FAILURE);
++		}
++	}
+ 	if (set_rpc_init_config(config_file, err_msg, 1024) != 0 ||
+ 	    fsclient_init_config(config_file, err_msg, 1024) != 0) {
+ 		ErrorLog("init config failure, %s", err_msg);
+diff --git a/fs-backup/fsdeamon/main.cpp b/fs-backup/fsdeamon/main.cpp
+index 2370e73..a37950f 100644
+--- a/fs-backup/fsdeamon/main.cpp
++++ b/fs-backup/fsdeamon/main.cpp
+@@ -1,4 +1,5 @@
+ #include "common.h"
++#include "rdb-config.h"
+ #include "unix_server.h"
+ #include "fs_service.h"
+ #include "logger.h"
+@@ -302,6 +303,13 @@ int main(int argc, char *argv[])
+ 		exit(EXIT_FAILURE);
+ 	}
+ 
++	{
++		char err[256];
++		if (init_config(NULL, err, sizeof err) != 0) {
++			ErrorLog("rdb-config load failed: %s", err);
++			exit(EXIT_FAILURE);
++		}
++	}
+ 	if (set_rpc_init_config(config_file, err_msg, 1024) != 0 ||
+ 	    fsdeamon_init_config(config_file, err_msg, sizeof(err_msg)) != 0) {
+ 		ErrorLog("init config failed: %s", err_msg);
+diff --git a/libobk/lib/sbt/libobk.c b/libobk/lib/sbt/libobk.c
+index c83962f..1377ee4 100644
+--- a/libobk/lib/sbt/libobk.c
++++ b/libobk/lib/sbt/libobk.c
+@@ -375,6 +375,11 @@ static void SignalShield()
+ 
+ int sbtinit2(struct sbtctx *ctx, int flags, const struct sbtinfo *args)
+ {
++	char err[256];
++	if (init_config(NULL, err, sizeof err) != 0) {
++		ErrorLog("rdb-config load failed: %s", err);
++		return -1;
++	}
+ 	char host[64] = { 0 };
+ 	char buf[512] = { 0 };
+ 	unsigned int port = 12000;
+@@ -793,6 +798,11 @@ int sbtrestore(struct sbtctx *ctx, int flags, char *filename, int block_size)
+ int sbtinit(struct sbtdata *data, const struct sbtinfo *input,
+ 	    struct sbtopt **output)
+ {
++	char err[256];
++	if (init_config(NULL, err, sizeof err) != 0) {
++		ErrorLog("rdb-config load failed: %s", err);
++		return -1;
++	}
+ 	int i = 0;
+ 	int ret = 0;
+ 	char host[64] = { 0 };
+diff --git a/libobk/main.c b/libobk/main.c
+index fb31b50..12a2d84 100644
+--- a/libobk/main.c
++++ b/libobk/main.c
+@@ -62,6 +62,13 @@ int main(int argc, char *argv[])
+ 	if (args_process(argc, argv, long_options__) != 0) {
+ 		return -1;
+ 	}
++	{
++		char err[256];
++		if (init_config(NULL, err, sizeof err) != 0) {
++			fprintf(stderr, "libobk: rdb-config load failed: %s\n", err);
++			return -1;
++		}
++	}
+ 	if (sbt_server_tls_config_init(&tls_cfg, g_cli_mtls,
+ 				       g_cli_algorithm) != 0) {
+ 		InfoLog("SBT TLS config initialization failed");
+diff --git a/libs/rdb-config.c b/libs/rdb-config.c
+index 710f2c2..ca78a6d 100644
+--- a/libs/rdb-config.c
++++ b/libs/rdb-config.c
+@@ -496,9 +496,3 @@ int config_dump_params(char *buf, int len, int with_values)
+ 	buf[len - 1] = '\0';
+ 	return off;
+ }
+-
+-__attribute__((constructor)) static void rdb_auto_init(void)
+-{
+-	char err[256];
+-	init_config(NULL, err, sizeof(err));
+-}
+diff --git a/libs/tests/param_registry_test.c b/libs/tests/param_registry_test.c
+index b9fe19d..e0ba2c6 100644
+--- a/libs/tests/param_registry_test.c
++++ b/libs/tests/param_registry_test.c
+@@ -190,6 +190,8 @@ TEST(small_buffer_safe)
+ 
+ int main(void)
+ {
++	char err[256];
++	init_config(NULL, err, sizeof err); /* D2/T0388：移除 constructor 后显式加载；测试环境 ENOENT 合法 */
+ 	RUN_TEST(table_matches_enum);
+ 	RUN_TEST(sec_get_layer_order);
+ 	RUN_TEST(sec_get_bool_fail_closed);
+diff --git a/rdbcomm/rdbcomm-main.c b/rdbcomm/rdbcomm-main.c
+index 781fc12..093b292 100644
+--- a/rdbcomm/rdbcomm-main.c
++++ b/rdbcomm/rdbcomm-main.c
+@@ -553,6 +553,13 @@ static int args_process(const int argc, char **argv,
+ 
+ int main(int argc, char *argv[])
+ {
++	{
++		char err[256];
++		if (init_config(NULL, err, sizeof err) != 0) {
++			fprintf(stderr, "rdbcomm: rdb-config load failed: %s\n", err);
++			return EXIT_FAILURE;
++		}
++	}
+ 	options_t opts = {
+ 		.port = 6610,
+ 		.ip = "127.0.0.1",
+diff --git a/rdbcomm/rdbcommd-main.c b/rdbcomm/rdbcommd-main.c
+index 5760c81..4ad892f 100644
+--- a/rdbcomm/rdbcommd-main.c
++++ b/rdbcomm/rdbcommd-main.c
+@@ -252,6 +252,13 @@ void supervise()
+ int main(int argc, char *argv[])
+ {
+ 	int ret = 0;
++	{
++		char err[256];
++		if (init_config(NULL, err, sizeof err) != 0) {
++			fprintf(stderr, "rdbcommd: rdb-config load failed: %s\n", err);
++			return EXIT_FAILURE;
++		}
++	}
+ 	options opts = {
+ 		.ip = "0.0.0.0",
+ 		.port = 6610,
+@@ -260,7 +267,7 @@ int main(int argc, char *argv[])
+ 		.audit_dir = AUDIT_LOG_BASE_PATH,
+ 		.work_dir = DEFAULT_WORK_DIR,
+ 		.keepalive = 30,
+-		.mtls_enabled = sec_get_bool(PARAM_RDBCOMMD_MTLS_ENABLED),
++		.mtls_enabled = 0,  /* D2/T0388：下方按 sec_get_bool 填充并校验 */
+ 	};
+ 	server_options server_opts = {};
+ 	server *svr = NULL;
+@@ -280,9 +287,21 @@ int main(int argc, char *argv[])
+ 		if (server_opts.auth_enabled < 0) {
+ 			fprintf(stderr,
+ 				"rdbcommd: invalid %s value (expect \"0\"/\"1\")\n",
+-				AUTH_ENABLE_ENV);
++			AUTH_ENABLE_ENV);
++		return EXIT_FAILURE;
++	}
++
++	/* D2/T0388：mtls 开关与 audit/auth 一致，非法值启动期硬失败 */
++	{
++		int mtls_en = sec_get_bool(PARAM_RDBCOMMD_MTLS_ENABLED);
++		if (mtls_en < 0) {
++			fprintf(stderr,
++				"rdbcommd: invalid %s value (expect \"0\"/\"1\")\n",
++				RDBCOMMD_MTLS_ENABLE_ENV);
+ 			return EXIT_FAILURE;
+ 		}
++		opts.mtls_enabled = mtls_en;
++	}
+ 
+ 	if (args_process(argc, argv, long_options, &opts) != 0) {
+ 		ErrorLog("args process failed");
+diff --git a/rpc/main.cpp b/rpc/main.cpp
+index dd17d87..aa304d7 100644
+--- a/rpc/main.cpp
++++ b/rpc/main.cpp
+@@ -362,6 +362,10 @@ int main(int argc, char *argv[])
+ 
+ 	rpc_set_section_name(AIO_SPEEDD_TOOL_SECTION);
+ 
++	if (init_config(NULL, err_msg, 1024) != 0) {
++		ErrorLog("rdb-config load failed: %s", err_msg);
++		exit(EXIT_FAILURE);
++	}
+ 	if (rpc_init_config(config_file, err_msg, 1024) != 0) {
+ 		ErrorLog("init config failure, %s", err_msg);
+ 		exit(EXIT_FAILURE);
+diff --git a/rpc/rpc-client.cpp b/rpc/rpc-client.cpp
+index 9f889ae..df4442f 100644
+--- a/rpc/rpc-client.cpp
++++ b/rpc/rpc-client.cpp
+@@ -636,6 +636,10 @@ int client_main(int argc, char *argv[])
+ 	std::set<std::string> dir_tree_files;
+ 	std::set<link_item_t> dir_link_files;
+ 
++	if (init_config(NULL, err_msg, 1024) != 0) {
++		ErrorLog("rdb-config load failed: %s", err_msg);
++		exit(EXIT_FAILURE);
++	}
+ 	if (rpc_init_config(config_file, err_msg, 1024) != 0) {
+ 		ErrorLog("init config failure, %s", err_msg);
+ 		exit(EXIT_FAILURE);

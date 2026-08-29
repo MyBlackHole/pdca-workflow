@@ -1,0 +1,4 @@
+[debug build]
+[0m[38;2;0;255;0;1m[100%]:[0m [38;2;0;255;0;1mbuild ok, spent 1.262s[0m
+[debug run]
+exit=0

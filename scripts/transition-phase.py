@@ -16,6 +16,8 @@ from pathlib import Path
 
 from pdca_core import PHASES, Issue, acceptance_criteria, gate_issues, load_json, load_jsonl, repo_root, schema_issues
 from flow_audit import audit_transition
+import ontology_reason
+import ontology_gate
 
 
 def backfill_plan_timestamp(task_dir: Path, task: dict, task_path: Path) -> str | None:
@@ -92,11 +94,16 @@ def main() -> int:
     if current == args.to:
         print(json.dumps({"status": "unchanged", "phase": current}))
         return 0
-    current_index = PHASES.index(current)
-    if current_index + 1 >= len(PHASES) or PHASES[current_index + 1] != args.to:
+    if not ontology_reason.legal_transition(current, args.to, ont_dir=root / "ontology"):
         write_rejected_receipt(task_dir, task["id"], current, args.to,
-                               {"error": "NON_ADJACENT_TRANSITION", "from": current, "to": args.to})
-        print(json.dumps({"status": "rejected", "error": "NON_ADJACENT_TRANSITION", "from": current, "to": args.to}))
+                               {"error": "ILLEGAL_TRANSITION", "from": current, "to": args.to})
+        print(json.dumps({"status": "rejected", "error": "ILLEGAL_TRANSITION", "from": current, "to": args.to}))
+        return 1
+    ready_issues = ontology_gate.ontology_ready_issues(task, root)
+    if ready_issues:
+        write_rejected_receipt(task_dir, task["id"], current, args.to,
+                               {"issues": [i.as_dict() for i in ready_issues]})
+        print(json.dumps({"status": "rejected", "issues": [i.as_dict() for i in ready_issues]}, ensure_ascii=False, indent=2))
         return 1
     if args.to == "do":
         backfill_plan_timestamp(task_dir, task, task_path)

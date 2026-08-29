@@ -1,0 +1,18 @@
+===== fsdeamon_config_test =====
+ok:   init ok with valid config
+ok:   check_data read=1
+ok:   debug read=0
+ok:   keepalive read=45
+ok:   retry read=5
+ok:   set_rpc_check_data propagated=1
+ok:   set_rpc_keepalive propagated=45
+ok:   set_rpc_retry propagated=5
+ok:   invalid check_data rejects init (fail-closed)
+ok:   init ok with empty fsdaemon section
+ok:   check_data default=0
+ok:   keepalive default=30
+ok:   retry default=3
+ok:   set_rpc_keepalive default propagated=30
+
+ALL FSDEAMON CONFIG TESTS PASSED
+exit=0

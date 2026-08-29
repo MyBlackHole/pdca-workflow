@@ -1,0 +1,6 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index":1,"text":"ontology SSOT vocabulary and pdca.asset/v1 frontmatter schema are defined and mapped to evidence","criteria":["AC-1","AC-2","AC-3"],"evidence_ids":["ssot-readme-v3","asset-schema"]}
+  ]
+}

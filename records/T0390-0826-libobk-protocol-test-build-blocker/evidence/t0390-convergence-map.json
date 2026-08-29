@@ -1,0 +1,6 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index":1, "text":"libobk_protocol_test 在 release/debug 构建下均编译链接通过且运行 exit 0；仅测试错误检查方式改动，被测逻辑(_baseSend/_baseRecv/protocol.c)不变", "criteria":["AC-1","AC-2","AC-3"], "evidence_ids":["impl-diff","protocol_test_release","protocol_test_debug"]}
+  ]
+}

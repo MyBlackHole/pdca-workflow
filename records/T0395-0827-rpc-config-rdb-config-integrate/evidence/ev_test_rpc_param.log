@@ -1,0 +1,8 @@
+Running defaults_when_unset... PASSED
+Running layer2_aio_speedd_priority... PASSED
+Running layer3_aio_speed_fallback... PASSED
+Running bool_fail_closed... PASSED
+Running int_invalid_falls_back_to_default... PASSED
+Running env_overrides_section... PASSED
+
+6 passed, 0 failed

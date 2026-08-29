@@ -1,0 +1,21 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "rdb config 配置错误以 rdb_cfg_errcode_t 异常号 + detail 明确上抛：sec_get_int/sec_get_bool/sec_get_str 改为出参指针 result 且返回 int(ok)，parse_config/init_config 同步出参返回 rdb_cfg_parse_result；移除 config_get_int 的 fprintf 与 CONFIG_KV_MAX 内部打印（截断改经 parse_config 返回 code=RDB_CFG_ERR_TRUNCATED、detail 描述），rdb-config 内部不再有 stderr 打印；调用方（rpc/rpc-config.cpp、rpc/rpc-client.cpp、fs-backup fsdeamon+fsclient config.cpp、rdbcomm-main.c、rdbcommd-main.c、libs/logger.c、libs/timed_key.c、dmsbtex/network.c、libobk/lib/logic/oracleCmdTbl.c、libobk/lib/sbt/libobk.c）全部改用 result 的 ok/code/detail 判断并直印 r.detail，fail-closed 语义不变；全参数化、无线程局部、无全局诊断回调。各单测改用 result 并全绿（rdb_config_test 20、param_registry_test 9、rpc_param_test 6、logger_test 11、rpc_config_test 9、fsdeamon_config_test、rdb_param_test 均通过）。",
+      "criteria": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4",
+        "AC-5",
+        "AC-6",
+        "AC-7"
+      ],
+      "evidence_ids": [
+        "E-T0397-DO-001"
+      ]
+    }
+  ]
+}

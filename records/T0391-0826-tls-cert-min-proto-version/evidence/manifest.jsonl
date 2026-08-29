@@ -1,0 +1,4 @@
+{"id":"build-log","file":"t0391-build.log","kind":"build","size":766,"digest":"sha256:be1b3bae88bd202d36dd63d80b71082976829bdc6d4e77f63748ff13da100d5d","at":"2026-08-26T22:19:44+08:00","criteria":["AC-1","AC-3"]}
+{"id":"test-log","file":"t0391-test.log","kind":"test","size":5335,"digest":"sha256:53942481d6892ae242e9632a0adc314d8b5012a03ca3044b5e5d5e7ab4e3ce7a","at":"2026-08-26T22:19:44+08:00","criteria":["AC-2","AC-3"]}
+{"id":"diff-log","file":"t0391-diff.log","kind":"diff","size":2582,"digest":"sha256:42402ff3894d4114a709f3b7ccd6bd1fc579d61448ce83ebe6db634feaa450fe","at":"2026-08-26T22:19:44+08:00","criteria":["AC-1","AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":380,"digest":"sha256:8d2992bc62c11c2779a4d21e9b5994b7808efe4b743cb117441a56bd324a7c5b","at":"2026-08-26T22:20:08+08:00","criteria":["AC-1","AC-2","AC-3"]}

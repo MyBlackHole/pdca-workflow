@@ -1,0 +1,18 @@
+[0mgenerating oss/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating huanweicloun-sdk-s3-data-backup/my-fuse/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating bwlimit/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating s3-tool/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating s3tools/s3mount/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating xbsa/src/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating huanweicloun-sdk-s3-data-backup/my-fuse/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating s3tools/s3file/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating xbsa/src/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating version.in ... [38;2;0;255;0;1mok[0m
+=== rpc-config sec switches test ===
+
+Running init_fills_sec_switches_from_store... PASSED
+Running init_env_overrides_store... PASSED
+Running init_invalid_audit_env_fails... PASSED
+Running reload_reresolves_sec_switches... PASSED
+
+=== 4 passed, 0 failed ===

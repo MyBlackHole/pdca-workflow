@@ -1,0 +1,35 @@
+===== rdb_config_test (regression) =====
+rdb-config: invalid integer for [s]val=not_a_number, fallback to 7
+rdb-config: CONFIG_KV_MAX(1024) reached, config may be truncated; consider trimming rdb.conf
+=== rdb-config test ===
+
+Running parse_and_get_int... PASSED
+Running config_get_int_default... PASSED
+Running config_get_string... PASSED
+Running config_get_string_null_for_missing... PASSED
+Running config_section_count_and_entry... PASSED
+Running parse_nonexistent_file... PASSED
+Running init_config_from_env... PASSED
+Running parse_config_twice... PASSED
+Running config_get_int_trailing_spaces... PASSED
+Running tool_tls_config_isolated_and_prioritized... PASSED
+Running bool_layer_semantics... PASSED
+Running sec_switch_audit_auth_layers... PASSED
+Running config_get_string_no_global_fallback_by_default... PASSED
+Running config_get_int_invalid_falls_back... PASSED
+Running parse_config_over_max_not_truncated_silently... PASSED
+
+=== 15 passed, 0 failed ===
+exit=0
+Running table_matches_enum... PASSED
+Running sec_get_layer_order... PASSED
+Running sec_get_bool_fail_closed... PASSED
+Running audit_auth_fail_closed_env... PASSED
+Running sec_get_str_defaults... PASSED
+Running shared_chain_consistency... PASSED
+Running dump_format... PASSED
+Running dump_current_defaults_clean... PASSED
+Running small_buffer_safe... PASSED
+
+9 passed, 0 failed
+param_registry_exit=0

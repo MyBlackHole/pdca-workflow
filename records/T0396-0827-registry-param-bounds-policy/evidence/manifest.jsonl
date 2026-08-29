@@ -1,0 +1,5 @@
+{"id":"ev-build","file":"ev396_build.log","kind":"build-log","size":488,"digest":"sha256:2fe17e48343e7112d835b59795bedcaee96891f5431a75e3d9681dd6781223f7","at":"2026-08-27T05:51:23+08:00","criteria":["AC-6"]}
+{"id":"ev-diff","file":"ev396_diff.log","kind":"source-diff","size":42226,"digest":"sha256:13c7a2802f8dbcf64b7e4935a90d31fa5f5832522fc0cd92bb8631fc9bdf0300","at":"2026-08-27T05:51:23+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"ev-test-all","file":"ev396_test.log","kind":"test-output","size":191,"digest":"sha256:dd03355c02f7867f7830dd082bb308f7fbf93394bfc89adfbf8ed4e1f9f6472e","at":"2026-08-27T05:51:23+08:00","criteria":["AC-3","AC-4","AC-5","AC-6"]}
+{"id":"ev-ac7-deploy","file":"ev396_ac7.log","kind":"deployment-note","size":890,"digest":"sha256:486df63760d1e6ef36975cff928af25f28eab653f2457629d88d20d8340fc1d6","at":"2026-08-27T05:51:23+08:00","criteria":["AC-7"]}
+{"id":"convergence-map","file":"ev396_convergence.json","kind":"convergence-map","size":705,"digest":"sha256:35dbad442180b8d071d5561b43b6d5e6e1f688c63aef51f1330fe3e1e2a6fabd","at":"2026-08-27T05:51:23+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6"]}

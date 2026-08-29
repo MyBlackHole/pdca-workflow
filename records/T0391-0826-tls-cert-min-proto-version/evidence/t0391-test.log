@@ -1,0 +1,49 @@
+=== TLS Cert Unit Tests ===
+
+Using CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+Running tls_cert_build_server_profiles... PASSED
+Running tls_cert_build_client_profile... PASSED
+Running tls_cert_init_server_from_cert_dir... PASSED
+Running tls_cert_init_client_from_cert_dir... [2026-08-26 22:19:29]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140329553355648| TLS setup failed: role=client stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/nonexistent/my-ca/ed25519_ca.crt cert=/nonexistent/my-ca/ed25519_host.crt key=/nonexistent/my-ca/ed25519_host.key
+PASSED
+Running tls_cert_init_client_sm2_prefixed_layout... PASSED
+Running tls_cert_init_server_partial_degrade... [2026-08-26 22:19:29]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140329553355648| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/tmp/tls_test_partial_cZLH8K/ed25519_ca.crt cert=/tmp/tls_test_partial_cZLH8K/ed25519_host.crt key=/tmp/tls_test_partial_cZLH8K/ed25519_host.key
+[2026-08-26 22:19:29]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140329553355648| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_SM4_GCM_SM3 ca=/tmp/tls_test_empty_bdFW6p/sm2_ca.crt cert=/tmp/tls_test_empty_bdFW6p/sm2_host.crt key=/tmp/tls_test_empty_bdFW6p/sm2_host.key
+[2026-08-26 22:19:29]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140329553355648| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/tmp/tls_test_empty_bdFW6p/ed25519_ca.crt cert=/tmp/tls_test_empty_bdFW6p/ed25519_host.crt key=/tmp/tls_test_empty_bdFW6p/ed25519_host.key
+PASSED
+Running tls_cert_init_disabled... PASSED
+Running tls_ed25519_dual_format... PASSED
+Running tls_server_init... PASSED
+Running tls_mtls_handshake... PASSED
+Running tls_cert_ca_cn_from_file_deterministic... PASSED
+Running tls_cert_set_ciphersuites_fail_closed... [2026-08-26 22:19:30]|Error|libs/tls_cert.c:94 tls_cert_set_ciphersuites|140329553355648| Failed to apply ciphersuites config: NON_EXISTENT_SUITE_XYZ
+PASSED
+Running tls_cert_peer_identity_binding_reject... [2026-08-26 22:19:30]|Error|libs/tls_cert.c:67 tls_cert_log_ssl_errors|140329553355648| TLS handshake failed: role=client stage=handshake ssl_error=1
+[2026-08-26 22:19:30]|Error|libs/tls_cert.c:71 tls_cert_log_ssl_errors|140329553355648| TLS OpenSSL error: error:0A000086:SSL routines::certificate verify failed
+[2026-08-26 22:19:30]|Error|libs/tls_cert.c:67 tls_cert_log_ssl_errors|140329546151616| TLS handshake failed: role=server stage=handshake ssl_error=1
+[2026-08-26 22:19:30]|Error|libs/tls_cert.c:71 tls_cert_log_ssl_errors|140329546151616| TLS OpenSSL error: error:0A000438:SSL routines::tlsv1 alert internal error
+[2026-08-26 22:19:30]|Error|libs/tls_cert.c:850 tls_cert_handshake_common|140329553355648| TLS client verify failed: verify_result=1 (unspecified certificate verification error)
+[2026-08-26 22:19:30]|Error|libs/tls_cert.c:866 tls_cert_handshake_common|140329553355648| TLS peer certificate: none received
+PASSED
+Running tls_cert_client_ctx_cache_reuse... PASSED
+Running tls_cert_client_ctx_cache_concurrent... PASSED
+Running tls_cert_audit_peer_cn... PASSED
+Running tls_cert_ctx_reload... [2026-08-26 22:19:30]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140329553355648| TLS setup failed: role=client stage=certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/tmp/tls_ac1rl_WUWDpv/ED25519_Test_CA/ed25519_ca.crt cert=/tmp/tls_ac1rl_WUWDpv/ED25519_Test_CA/ed25519_host.crt key=/tmp/tls_ac1rl_WUWDpv/ED25519_Test_CA/ed25519_host.key
+PASSED
+Running tls_cert_error_code_normalized... [2026-08-26 22:19:31]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140329553355648| TLS setup failed: role=client stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/no/such/dir/x/ed25519_ca.crt cert=/no/such/dir/x/ed25519_host.crt key=/no/such/dir/x/ed25519_host.key
+[2026-08-26 22:19:31]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140329553355648| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_SM4_GCM_SM3 ca=/no/such/dir/sm2_ca.crt cert=/no/such/dir/sm2_host.crt key=/no/such/dir/sm2_host.key
+[2026-08-26 22:19:31]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140329553355648| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/no/such/dir/ed25519_ca.crt cert=/no/such/dir/ed25519_host.crt key=/no/such/dir/ed25519_host.key
+PASSED
+Running tls_cert_crl_revocation_reject... [2026-08-26 22:19:31]|Info|libs/tls_cert.c:300 tls_cert_slot_create|140329553355648| TLS CRL revocation check enabled: /tmp/tls_ac2_Z8HBq5/crl.pem
+[2026-08-26 22:19:31]|Error|libs/tls_cert.c:67 tls_cert_log_ssl_errors|140329553355648| TLS handshake failed: role=client stage=handshake ssl_error=1
+[2026-08-26 22:19:31]|Error|libs/tls_cert.c:71 tls_cert_log_ssl_errors|140329553355648| TLS OpenSSL error: error:0A000086:SSL routines::certificate verify failed
+[2026-08-26 22:19:31]|Error|libs/tls_cert.c:850 tls_cert_handshake_common|140329553355648| TLS client verify failed: verify_result=23 (certificate revoked)
+[2026-08-26 22:19:31]|Error|libs/tls_cert.c:866 tls_cert_handshake_common|140329553355648| TLS peer certificate: none received
+PASSED
+Running tls_cert_min_proto_version_enforced... PASSED
+
+=== Results ===
+Passed: 20
+Failed: 0
+
+All tests PASSED!

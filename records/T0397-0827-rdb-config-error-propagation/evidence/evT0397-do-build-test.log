@@ -1,0 +1,25 @@
+=== build libs (tools) ===
+[0mgenerating bwlimit/version.in ... [38;2;0;255;0;1mok[0m
+[0m[38;2;0;255;0;1m[100%]:[0m [38;2;0;255;0;1mbuild ok, spent 0.107s[0m
+=== build test targets ===
+[0mgenerating s3tools/s3mount/version.in ... [38;2;0;255;0;1mok[0m
+[0m[38;2;0;255;0;1m[100%]:[0m [38;2;0;255;0;1mbuild ok, spent 0.163s[0m
+=== run libs tests ===
+--- rdb_config_test ---
+=== 20 passed, 0 failed ===
+--- param_registry_test ---
+9 passed, 0 failed
+--- rpc_param_test ---
+6 passed, 0 failed
+--- logger_test ---
+Tests passed: 11, failed: 0
+=== run rpc/fs-backup tests ===
+--- rpc_config_test ---
+=== 9 passed, 0 failed ===
+--- fsdeamon_config_test ---
+ALL FSDEAMON CONFIG TESTS PASSED
+--- rdb_param_test ---
+ALL RDB PARAM REGISTRY TESTS PASSED
+=== cross-build module binaries ===
+[0m[38;2;0;255;0;1m[ 89%]:[0m [38;2;255;0;255;1m<fs-cli>[0m [38;2;255;0;255;1mlinking.release fs-cli[0m
+[0m[38;2;0;255;0;1m[100%]:[0m [38;2;0;255;0;1mbuild ok, spent 0.613s[0m

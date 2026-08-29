@@ -1,0 +1,6 @@
+{"id":"T0406-1","title":"梳理两套写法规范：提取 SSOT v3 现有契约（pdca.asset/v1+relations+ontology-validate）与用户提案（Class/Individual+superClass+wikilink+_meta.yaml）的字段、关系、校验规则","depends_on":[],"status":"pending","accepts":["AC-1"]}
+{"id":"T0406-2","title":"选取并标注真实样本节点（pdca-* 元本体、x509-certificate、tls-configuration、≥1 pattern、≥1 principle），分别给出两套写法下的等价表达","depends_on":["T0406-1"],"status":"pending","accepts":["AC-1"]}
+{"id":"T0406-3","title":"编写原型转换脚本，对两套样本各转一次 OWL/TTL，输出映射完整度与脆弱度对比（无损/丢失项清单）","depends_on":["T0406-1","T0406-2"],"status":"pending","accepts":["AC-2"]}
+{"id":"T0406-4","title":"撰写比较分析报告：≥5 维度对比 + 原型结果 + 明确推荐方案（兼容吸收/直接替换/维持）及理由与风险，声明不动 SSOT","depends_on":["T0406-3"],"status":"pending","accepts":["AC-1","AC-3","AC-5"]}
+{"id":"T0406-5","title":"若推荐兼容吸收，起草 ONTOLOGY_GUIDE.md 草案（基于 pdca.asset/v1+relations，可选增强字段+正文 wikilink+_meta.yaml），存任务目录标 DRAFT","depends_on":["T0406-4"],"status":"pending","accepts":["AC-4"]}
+{"id":"T0406-6","title":"在 records/T0406-0829-ontology-store-compare/ 登记证据（报告、原型输出、指南草案）并写 convergence map","depends_on":["T0406-4","T0406-5"],"status":"pending","accepts":["AC-6"]}

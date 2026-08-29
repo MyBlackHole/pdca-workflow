@@ -1,0 +1,2 @@
+{"source": "check_review", "kind": "code_review_finding", "text": "存在 ini key 参数未使用宏：rdb-config.c 的 ParamDesc 表项 .key 字段（check_data/debug/keepalive/parallel/read_timeout/retry/fsbackup_dev_path）以字面量硬编码，应改用 RPC_TOOL_*_KEY 宏。", "resolution": "已在 rdb-config.h 新增 RPC_TOOL_CHECK_DATA_KEY 等 7 个 key 宏，rdb-config.c 中 fs-backup 与 rpc 两段 key 全部改用宏；重新构建+4 测试套件全绿，无行为变更。", "captured": true, "at": "2026-08-27T05:24:00+08:00"}
+{"source":"check_confirmation","response":"confirmed","verdict_id":"V-T0395-20260827-001","captured":true,"at":"2026-08-27T05:25:00+08:00"}

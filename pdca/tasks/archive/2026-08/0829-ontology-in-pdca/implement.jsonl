@@ -1,0 +1,44 @@
+[
+  {
+    "id": "T0405-1",
+    "title": "自举 PDCA 元本体（Phase 0）",
+    "detail": "在 ontology/ 下创建 pdca-task/pdca-phase/pdca-evidence/pdca-verdict/pdca-transition/pdca-gate 等概念节点与关系（specializes/composed_of/configured_by/guides/relates_to），通过 ontology-validate。引导步骤豁免自身前置。",
+    "accepts": "AC-1",
+    "depends_on": []
+  },
+  {
+    "id": "T0405-2",
+    "title": "实现本体推理层",
+    "detail": "scripts/ontology_reason.py（或并入 ontology-validate）：读取 pdca-* 节点，回答（a）phase->phase 转换合法性（pdca-transition）；（b）阶段准入（pdca-gate）；（c）evidence 类型满足某 AC（evidence-AC 关系）。元本体缺失时返回硬编码最小核心。",
+    "accepts": "AC-2, AC-3",
+    "depends_on": ["T0405-1"]
+  },
+  {
+    "id": "T0405-3",
+    "title": "transition-phase.py 改为调用推理层",
+    "detail": "把硬编码 phase 枚举/门禁逻辑替换为调用本体推理层；保留元本体缺失时的硬编码回退，确保引导期不死锁。",
+    "accepts": "AC-3",
+    "depends_on": ["T0405-2"]
+  },
+  {
+    "id": "T0405-4",
+    "title": "plan 本体构建步骤 + do 前置 ontology-ready 关卡",
+    "detail": "plan triage 增加“本体构建”步骤（对齐元本体 + 抽取/声明领域片段，写入 meta.ontology_fragment）；do 前置 ontology-ready 关卡由 pdca-gate 本体驱动，校验领域片段存在且 ontology-validate 通过。",
+    "accepts": "AC-4, AC-5",
+    "depends_on": ["T0405-2"]
+  },
+  {
+    "id": "T0405-5",
+    "title": "schema 变更 + ADR-0032",
+    "detail": "task.schema.json 增加 meta.ontology_fragment（严格 schema 冻结变更，需评审）；撰写 ADR-0032（ontology-driven-pdca）：两层本体、自举豁免、门禁全本体化、分阶段。",
+    "accepts": "AC-5",
+    "depends_on": ["T0405-1"]
+  },
+  {
+    "id": "T0405-6",
+    "title": "回归测试",
+    "detail": "tests/test_ontology_reason.py（或并入）：推理层判定、ontology-ready 拦截/放行 fixture、transition-phase 在元本体缺失/就位两态正常。CI 可跑。",
+    "accepts": "AC-6",
+    "depends_on": ["T0405-3", "T0405-4"]
+  }
+]

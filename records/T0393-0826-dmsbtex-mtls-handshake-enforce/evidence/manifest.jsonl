@@ -1,0 +1,4 @@
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":418,"digest":"sha256:07f9a9d52d194ee1deef99395d24229f7742eeb7e816307630312e5cd83c7569","at":"2026-08-26T23:24:58+08:00","criteria":["AC-1","AC-2","AC-3"]}
+{"id":"build-log","file":"t0393-build.log","kind":"build","size":766,"digest":"sha256:b5755c477549e5ee49f83b16ea4e09d11db079dd8dc6597cc8aacfbd8f40f2f2","at":"2026-08-26T23:25:31+08:00","criteria":["AC-1","AC-2","AC-3"]}
+{"id":"test-log","file":"t0393-test.log","kind":"test","size":3875,"digest":"sha256:890e8679b4ea26284f753b33fe74f06a9540cfd1ddd8db507fe192e17ff4d510","at":"2026-08-26T23:25:31+08:00","criteria":["AC-1","AC-2","AC-3"]}
+{"id":"diff-log","file":"t0393-diff.log","kind":"diff","size":182,"digest":"sha256:fe0338b411acd869e154678fcd21546b9a0801a9f5ed3fc9dbac529c2130f50b","at":"2026-08-26T23:25:31+08:00","criteria":["AC-1","AC-2","AC-3"]}

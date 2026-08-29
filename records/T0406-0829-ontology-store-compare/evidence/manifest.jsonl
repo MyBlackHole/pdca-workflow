@@ -1,0 +1,4 @@
+{"id":"t0406-report","file":"compare-report.md","kind":"analysis-report","size":6173,"digest":"sha256:1cab9bbafe5ae8f4962834a0278c5233515a1989582d8c0171f1ff28646bd220","at":"2026-08-29T20:54:01+08:00","criteria":["AC-1","AC-3","AC-5","AC-6"]}
+{"id":"t0406-prototype","file":"prototype-output.md","kind":"prototype-output","size":4868,"digest":"sha256:7ceba6fc64c54ff52929acb7a28e584b71a2c05113bc3c4de91454b3128bc9d5","at":"2026-08-29T20:54:02+08:00","criteria":["AC-2"]}
+{"id":"t0406-guide","file":"ONTOLOGY_GUIDE.draft.md","kind":"guide-draft","size":5367,"digest":"sha256:13cd1af2cc8f3d1f533a4976b52e6bc164ab96334303b3176af6c8e6eaf645c9","at":"2026-08-29T20:54:02+08:00","criteria":["AC-4"]}
+{"id":"convergence-map","file":"convergence-map.json","kind":"convergence-map","size":350,"digest":"sha256:6e9a016ae9f3204254969a24b2f36227c2c20911e046c3d37f8b1b511c6e580a","at":"2026-08-29T20:54:02+08:00","criteria":["AC-6"]}

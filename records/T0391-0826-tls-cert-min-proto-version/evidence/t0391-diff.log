@@ -1,0 +1,67 @@
+diff --git a/libs/tests/tls_cert_test.c b/libs/tests/tls_cert_test.c
+index 045a36f..b574e40 100644
+--- a/libs/tests/tls_cert_test.c
++++ b/libs/tests/tls_cert_test.c
+@@ -1205,6 +1205,30 @@ TEST(tls_cert_crl_revocation_reject)
+ 	system(cmd);
+ }
+ 
++/* ---- F1/T0391：生产 TLS 上下文显式锁定最低协议版本为 TLS1.3 ---- */
++TEST(tls_cert_min_proto_version_enforced)
++{
++	const char *cert_dir = get_cert_dir();
++	tls_cert_server_options_t opts = { 0 };
++	opts.mtls_enabled = 1;
++	opts.cert_dir = cert_dir;
++	tls_cert_ctx_t *ctx = NULL;
++	assert(tls_cert_init_server(&opts, &ctx) == TLS_CERT_OK && ctx != NULL);
++
++	/* 两个算法 slot 的 SSL_CTX 均须显式锁定最低版本 TLS1.3（不依赖 OpenSSL 默认值） */
++	SSL_CTX *sctx_aes =
++		tls_cert_get_ssl_ctx(ctx, RPC_TLS_ALGORITHM_AES_256_GCM_SHA384);
++	assert(sctx_aes != NULL);
++	assert(SSL_CTX_get_min_proto_version(sctx_aes) == TLS1_3_VERSION);
++
++	SSL_CTX *sctx_sm4 =
++		tls_cert_get_ssl_ctx(ctx, RPC_TLS_ALGORITHM_SM4_GCM_SM3);
++	assert(sctx_sm4 != NULL);
++	assert(SSL_CTX_get_min_proto_version(sctx_sm4) == TLS1_3_VERSION);
++
++	tls_cert_cleanup(ctx);
++}
++
+ int main()
+ {
+ 	/* 忽略 SIGPIPE：负向握手用例中一端关闭连接后，对端 SSL_write 会收到
+@@ -1232,6 +1256,7 @@ int main()
+ 	RUN_TEST(tls_cert_ctx_reload);
+ 	RUN_TEST(tls_cert_error_code_normalized);
+ 	RUN_TEST(tls_cert_crl_revocation_reject);
++	RUN_TEST(tls_cert_min_proto_version_enforced);
+ 	printf("\n=== Results ===\n");
+ 	printf("Passed: %d\n", tests_passed);
+ 	printf("Failed: %d\n", tests_failed);
+diff --git a/libs/tls_cert.c b/libs/tls_cert.c
+index 089ef02..aae1631 100644
+--- a/libs/tls_cert.c
++++ b/libs/tls_cert.c
+@@ -245,6 +245,19 @@ static int tls_cert_slot_create(const tls_cert_profile_t *profile,
+ 		return TLS_CERT_ERR_SSL_CREATE;
+ 	}
+ 
++	/* F1/T0391：显式锁定最低协议版本为 TLS1.3（纵深防御，不依赖 OpenSSL 默认值）。
++	 * 与已配置的 TLS1.3 套件（SM4_GCM_SM3 / AES_256_GCM_SHA384）一致；失败即
++	 * fail-closed，避免未来套件/配置放宽后协商到弱版本。 */
++	if (SSL_CTX_set_min_proto_version(ctx, TLS1_3_VERSION) != 1) {
++		tls_cert_log_setup_error(is_server ? "server" : "client",
++					"min-proto-version", profile->algorithm,
++					profile->ca_cert, profile->cert,
++					profile->key);
++		SSL_CTX_free(ctx);
++		ERR_clear_error();
++		return TLS_CERT_ERR_SSL_CREATE;
++	}
++
+ 	if (tls_cert_set_ciphersuites(ctx, profile->algorithm) != TLS_CERT_OK) {
+ 		tls_cert_log_setup_error(is_server ? "server" : "client",
+ 					 "ciphersuites", profile->algorithm,

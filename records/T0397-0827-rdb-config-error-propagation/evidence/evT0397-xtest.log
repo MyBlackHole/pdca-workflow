@@ -1,0 +1,822 @@
+[0mgenerating xbsa/src/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating s3tools/s3file/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating huanweicloun-sdk-s3-data-backup/my-fuse/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating huanweicloun-sdk-s3-data-backup/my-fuse/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating bwlimit/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating s3-tool/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating xbsa/src/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating s3tools/s3mount/version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating version.in ... [38;2;0;255;0;1mok[0m
+[0mgenerating oss/version.in ... [38;2;0;255;0;1mok[0m
+running tests ...
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test access/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test aio-oss-go-test/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test chmod/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test chown/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test dir_tree/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test dir_utils_dir_copy_test/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test dmsbtex_session_test/default[0m
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:4360 rpc_conn_srv_chmod|140349873841856| chmod /tmp/tmp1/cv_debug:511 success.
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test download_fileat/default[0m
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:4408 rpc_conn_srv_chown|139699276474048| chmod /tmp/tmp1/cv_debug:1000 success.
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test download_fileats/default[0m
+[PASS] dm algorithm exact mapping
+[2026-08-27 06:51:21]|Error|dmsbtex/network.c:113 sbt_tls_config_init|140399214507008| tls config: invalid SBT_MTLS_ENABLE value: env SBT_MTLS_ENABLE='abc' is not 0/1
+[2026-08-27 06:51:21]|Error|dmsbtex/network.c:113 sbt_tls_config_init|140399214507008| tls config: invalid SBT_MTLS_ENABLE value: env SBT_MTLS_ENABLE='1x' is not 0/1
+[2026-08-27 06:51:21]|Error|dmsbtex/network.c:113 sbt_tls_config_init|140399214507008| tls config: invalid SBT_MTLS_ENABLE value: env SBT_MTLS_ENABLE='yes' is not 0/1
+[2026-08-27 06:51:21]|Error|dmsbtex/network.c:127 sbt_tls_config_init|140399214507008| tls config: unknown tls_algorithm "sm2"
+[2026-08-27 06:51:21]|Error|dmsbtex/network.c:127 sbt_tls_config_init|140399214507008| tls config: unknown tls_algorithm "SM2"
+[2026-08-27 06:51:21]|Error|dmsbtex/network.c:127 sbt_tls_config_init|140399214507008| tls config: unknown tls_algorithm "TLS_AES_256_GCM_SHA384Y"
+/tmp/rpc_dir_tree_test/file1.txt
+/tmp/rpc_dir_tree_test/sub1/file2.txt
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test download_file/default[0m
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test download_file_dir/default[0m
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:3880 rpc_conn_srv_download_fileats|140194701371072| openat test1.txt success.
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:3909 rpc_conn_srv_download_fileats|140194701371072| read test1.txt success.
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:3880 rpc_conn_srv_download_fileats|140194701371072| openat test2.txt success.
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:3909 rpc_conn_srv_download_fileats|140194701371072| read test2.txt success.
+[2026-08-27 06:51:21]|Info|rpc/rpc.cpp:2815 rpc_conn_cli_download_fileats|140194709763776| download_fileat /tmp/download_fileats_rp8e5k/src/:test1.txt success.
+[2026-08-27 06:51:21]|Info|rpc/rpc.cpp:2815 rpc_conn_cli_download_fileats|140194709763776| download_fileat /tmp/download_fileats_rp8e5k/src/:test2.txt success.
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:1169 rpc_scp_download|140468610397888| begin download file [/tmp/test_scp_download_file_src]
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:1353 rpc_scp_download|140468610397888| download file [/tmp/test_scp_download_file_src] complete success, send_bytes: 30, f_size: 30
+[2026-08-27 06:51:21]|Info|rpc/rpc-command.cpp:236 do_scp_download|140468602005184| scp download [/tmp/test_scp_download_file_dst from /tmp/test_scp_download_file_src], status completed success, elapse 1 s, f_size 30 bytes, recv 30 bytes, 0.00 M/s
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test download_link/default[0m
+2026/08/27 06:51:21 http: TLS handshake error from 127.0.0.1:54358: client sent an HTTP request to an HTTPS server
+2026/08/27 06:51:21 http: TLS handshake error from 127.0.0.1:54370: tls: no cipher suite supported by both client and server; client offered: [2f]
+test [download_file_exists] PASSED
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:1169 rpc_scp_download|140468602005184| begin download file [/nonexistent/remote]
+[2026-08-27 06:51:21]|Warning|rpc/rpc-server.cpp:1188 rpc_scp_download|140468602005184| local_file: [/nonexistent/remote] not existed, errno:2)
+[2026-08-27 06:51:21]|Warning|rpc/rpc-server.cpp:1204 rpc_scp_download|140468602005184| local_file: [/nonexistent/remote] not existed.
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:1353 rpc_scp_download|140468602005184| download file [/nonexistent/remote] complete success, send_bytes: 0, f_size: 0
+[2026-08-27 06:51:21]|Info|rpc/rpc-command.cpp:236 do_scp_download|140468610397888| scp download [/tmp/test_scp_download_file_dst2 from /nonexistent/remote], status completed success, elapse 1 s, f_size 0 bytes, recv 0 bytes, 0.00 M/s
+2026/08/27 06:51:21 警告: rdb.conf [security] tls_enable="abc" 非真值(期望 1/true/yes/on)，按关闭处理，服务将以明文 HTTP 启动
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test execute_command/default[0m
+test [download_not_exist_api_stat_0] PASSED
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:1169 rpc_scp_download|140468610397888| begin download file [/nonexistent/remote]
+[2026-08-27 06:51:21]|Warning|rpc/rpc-server.cpp:1188 rpc_scp_download|140468610397888| local_file: [/nonexistent/remote] not existed, errno:2)
+[2026-08-27 06:51:21]|Error|rpc/rpc-command.cpp:139 do_scp_download|140468602005184| download /nonexistent/remote failure
+[2026-08-27 06:51:21]|Error|rpc/rpc-server.cpp:1209 rpc_scp_download|140468610397888| local_file: [/nonexistent/remote] not existed.
+test [download_not_exist_api_stat_1] PASSED
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test fchmodats/default[0m
+[2026-08-27 06:51:21]|Info|rpc/rpc-command.cpp:461 do_scp_download_link|140452447643328| scp download link [/tmp/test_scp_download_link_src -> /tmp/test_scp_download_link_out] success
+开始测试目录复制功能...
+测试目录: /tmp/aio/rpc/rpc_test
+目标目录: /tmp/aio/rpc/copy_test
+返回值: 0
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:883 execute_cmd|139781142996672| execute:[cmd_len:35, command:echo 'execute_shell_script_test_ok']
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:1042 my_popen|139781142996672| cmd echo 'execute_shell_script_test_ok' pipe[0]:9, pipe[1]:10
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test fchownats/default[0m
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:897 execute_cmd|139781142996672| generate subprocess: 170054
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test fs_meta_comprehensive_test/default[0m
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:3789 rpc_conn_srv_fchmodats|139739954931392| fchownat test_chmod.txt:508 success.
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:3789 rpc_conn_srv_fchmodats|139739954931392| fchownat test_chmod2.txt:493 success.
+[PASS] sbt_tls_config_init fail-closed
+[PASS] plain zero-handshake passthrough
+[PASS] forced mTLS upgrade
+[2026-08-27 06:51:21]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140399214507008| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_SM4_GCM_SM3 ca=/nonexistent/certs/sm2_ca.crt cert=/nonexistent/certs/sm2_host.crt key=/nonexistent/certs/sm2_host.key
+[2026-08-27 06:51:21]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140399214507008| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/nonexistent/certs/ed25519_ca.crt cert=/nonexistent/certs/ed25519_host.crt key=/nonexistent/certs/ed25519_host.key
+[PASS] bad cert_dir prepare fail
+[2026-08-27 06:51:21]|Error|dmsbtex/network.c:219 dm_server_handshake|140399179986624| handshake: no TLS context, reject
+[2026-08-27 06:51:21]|Error|dmsbtex/network.c:178 sbt_session_client_init|140399214507008| handshake rejected by server: server has no mTLS capability but client requested TLS (fd=7)
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:3701 rpc_conn_srv_fchownats|140587311294144| fchownat test_chown.txt:1000:1000 success.
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:3701 rpc_conn_srv_fchownats|140587311294144| fchownat test_chown2.txt:1000:1000 success.
+[2026-08-27 06:51:21]|Warning|rpc/rpc-server.cpp:958 execute_cmd|139781142996672| execute_shell_script_test_ok
+
+execute_shell_script_test_ok
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:979 execute_cmd|139781142996672| [echo 'execute_shell_script_test_ok'] completed, return value:0
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test hs_err_test/default[0m
+execute_shell_script test PASSED
+[PASS] no-downgrade reject
+[2026-08-27 06:51:21]|Error|dmsbtex/network.c:233 dm_server_handshake|140399179986624| handshake: algorithm 0x0000 rejected by server lock (locked=0x0002)
+[2026-08-27 06:51:21]|Error|dmsbtex/network.c:233 dm_server_handshake|140399179986624| handshake: algorithm 0xffff rejected by server lock (locked=0x0002)
+[PASS] malformed algorithm fail-closed
+[PASS] DM_HS_ERR_CA_CN reject code present
+[2026-08-27 06:51:21]|Error|dmsbtex/network.c:233 dm_server_handshake|140399179986624| handshake: algorithm 0x0001 rejected by server lock (locked=0x0002)
+[PASS] T3961 algorithm-lock reject mismatched
+[PASS] AC-1 init_sbt_config mtls enabled+AES
+[PASS] AC-2a init_sbt_config mtls disabled+SM4
+[PASS] AC-2b init_sbt_config keys-absent unset
+[PASS] AC-3a init_sbt_config invalid mtls fail-closed
+[PASS] AC-3b init_sbt_config invalid algorithm fail-closed
+dmsbtex_session_test: ALL PASS
+[0m[38;2;0;255;0;1m[  0%]:[0m running.test libobk_session_test/default[0m
+========================================
+       FsMeta Test Suite
+========================================
+
+=== TEST: TYPE_UPDATE - Fragmented ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_06
+hs_err_test: all checks passed
+[0m[38;2;0;255;0;1m[  2%]:[0m running.test lmdb_dict_test/default[0m
+[0m[38;2;0;255;0;1m[  4%]:[0m running.test lmdb_sort_test/default[0m
+[0m[38;2;0;255;0;1m[  6%]:[0m running.test logger_test/default[0m
+PASS
+
+=== TEST: TYPE_UPDATE - 1M File Overwrite at 500K ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_27
+[0m[38;2;0;255;0;1m[  8%]:[0m running.test LRUCache_test/default[0m
+PASS
+[0m[38;2;0;255;0;1m[ 10%]:[0m running.test lstat/default[0m
+Running logger tests...
+Tests passed: 11, failed: 0
+[0m[38;2;0;255;0;1m[ 13%]:[0m running.test metadata/default[0m
+PASS
+
+=== TEST: TYPE_NEW - Small File (Full Download) ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_01
+/proc/self/exe: size=0, mode=120777, atime=1787784681, mtime=1787784681, ctime=140337122251841
+[0m[38;2;0;255;0;1m[ 15%]:[0m running.test mixed_mtls_integration/default[0m
+PASS
+
+=== TEST: TYPE_NEW - Write Zero ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_02
+=== 手动事务示例 ===
+批量写入完成，共100条记录
+批量读取完成，找到 100/100 条记录
+
+=== 游标遍历示例 ===
+正向遍历:
+  Key: cursor_key_0, Value: cursor_value_0
+  Key: cursor_key_1, Value: cursor_value_1
+  Key: cursor_key_2, Value: cursor_value_2
+  Key: cursor_key_3, Value: cursor_value_3
+  Key: cursor_key_4, Value: cursor_value_4
+[0m[38;2;0;255;0;1m[ 17%]:[0m running.test mixed_mtls_test/default[0m
+PASS
+
+=== TEST: TYPE_UPDATE - Basic ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_03
+[0m[38;2;0;255;0;1m[ 19%]:[0m running.test mkdirall/default[0m
+====================================
+  LMDB 默认排序 (memcmp) 验证测试
+====================================
+
+=== 测试 1: LMDB 默认字典序 (路径 key) ===
+  遍历结果:
+    [0] key='/a'
+    [1] key='/a/b'
+    [2] key='/a/bb'
+    [3] key='/a/bb/c'
+    [4] key='/a/bc'
+    [5] key='/a/c'
+    [6] key='/aa'
+  ✓ 字典序验证通过: 7 个 key 按正确顺序排列
+
+=== 测试 2: 子路径连续性 (目录分组) ===
+  遍历结果:
+    [0] key='/'
+    [1] key='/a'
+    [2] key='/a/b'
+    [3] key='/a/b/c'
+    [4] key='/a/b/d'
+    [5] key='/a/c'
+    [6] key='/b'
+    [7] key='/b/a'
+    [8] key='/ba'
+  /a 的子路径范围: [2..5]
+    '/a/b' — starts with '/a/'
+    '/a/b/c' — starts with '/a/'
+    '/a/b/d' — starts with '/a/'
+    '/a/c' — starts with '/a/'
+  /b 的子路径范围: [7..7]
+    '/b/a' — starts with '/b/'
+  ✓ 子路径连续性验证通过
+
+=== 测试 3: null 终止符对排序的影响 ===
+  遍历结果:
+    [0] key='/a'
+    [1] key='/a/b'
+    [2] key='/aa'
+
+  关键验证:
+    '/a' < '/a/b' : \0(0x00) < '/'(0x2f)
+                  → 目录自身先于其子路径
+    '/a/b' < '/aa' : '/'(0x2f) < 'a'(0x61)
+                  → 子路径先于同名前缀兄弟
+
+  ✓ null 终止符排序影响验证通过
+
+====================================
+  全部测试通过!
+====================================
+AC-1 server0/want0 -> PLAIN PASS
+AC-4 server1/no-cert -> REQUIRED PASS
+skip AC-2/3/5: no certs in libs/tests/certs
+mixed_mtls: PASS (partial)
+PASS
+
+=== TEST: TYPE_UPDATE - Within Size ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_04
+[0m[38;2;0;255;0;1m[ 21%]:[0m running.test mkdir/default[0m
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:4314 rpc_conn_srv_mkdirall|140314429875904| mkdirall /tmp/tmp1/cv_debug:0 success.
+PASS
+
+=== TEST: TYPE_UPDATE - Extend (size_ext - size) ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_05
+PASS
+
+=== TEST: TYPE_UPDATE - Large Data Write ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_10
+[0m[38;2;0;255;0;1m[ 23%]:[0m running.test mkdir_path_test/default[0m
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:3626 rpc_conn_srv_mkdir|139975364437696| mkdir /tmp/tmp1/cv_debug:511 success.
+PASS
+
+=== TEST: TYPE_UPDATE - Large Data Write Overwrite Partial ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_25
+[0m[38;2;0;255;0;1m[ 26%]:[0m running.test param_registry_test/default[0m
+PASS
+
+=== TEST: TYPE_UPDATE - 1M File Overwrite Single Write ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_26
+[0m[38;2;0;255;0;1m[ 28%]:[0m running.test pread/default[0m
+Running table_matches_enum... PASSED
+Running sec_get_layer_order... PASSED
+Running sec_get_bool_fail_closed... PASSED
+Running audit_auth_fail_closed_env... PASSED
+Running sec_get_str_defaults... PASSED
+Running shared_chain_consistency... PASSED
+Running dump_format... PASSED
+Running dump_current_defaults_clean... PASSED
+Running small_buffer_safe... PASSED
+
+9 passed, 0 failed
+PASS
+
+=== TEST: BOUNDARY - Max Block Size 16K ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_09
+[0m[38;2;0;255;0;1m[ 30%]:[0m running.test pwrite/default[0m
+PASS
+
+=== TEST: BOUNDARY - Max Block Size 64K ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_10
+do_remote_pread success
+[0m[38;2;0;255;0;1m[ 32%]:[0m running.test rdbcomm_handshake_session_test/default[0m
+[PASS] T3961 algorithm-lock reject mismatched / allow matched
+PASS
+
+=== TEST: TRUNCATE ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_11
+do_remote_pwrite success
+[0m[38;2;0;255;0;1m[ 34%]:[0m running.test rdb_config_test/default[0m
+[0m[38;2;0;255;0;1m[ 36%]:[0m running.test readdir/default[0m
+PASS
+
+=== TEST: CURSOR REUSE ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_12
+[0m[38;2;0;255;0;1m[ 39%]:[0m running.test readdir_tree/default[0m
+[0m[38;2;0;255;0;1m[ 41%]:[0m running.test readlink/default[0m
+=== rdb-config test ===
+
+Running parse_and_get_int... PASSED
+Running config_get_int_default... PASSED
+Running config_get_string... PASSED
+Running config_get_string_null_for_missing... PASSED
+Running config_section_count_and_entry... PASSED
+Running parse_nonexistent_file... PASSED
+Running init_config_from_env... PASSED
+Running parse_config_twice... PASSED
+Running config_get_int_trailing_spaces... PASSED
+Running tool_tls_config_isolated_and_prioritized... PASSED
+Running bool_layer_semantics... PASSED
+Running sec_switch_audit_auth_layers... PASSED
+Running config_get_string_no_global_fallback_by_default... PASSED
+Running config_get_int_invalid_falls_back... PASSED
+Running parse_config_over_max_not_truncated_silently... PASSED
+Running sec_test_int_bounds_both_policies... PASSED
+Running sec_test_str_bounds_both_policies... PASSED
+Running sec_get_int_range_fail_closed_real... PASSED
+Running sec_get_str_overlength_fail_closed_real... PASSED
+Running error_propagation_result_struct... PASSED
+
+=== 20 passed, 0 failed ===
+rdb_config_test_ArGfHD: size=14922, mode=100600, atime=1787784681, mtime=1787784681, ctime=140730069769463
+pread_test_dst.bin: size=29, mode=100644, atime=1787784681, mtime=1787784681, ctime=140730069769463
+rpc_metadata_test_eciYQL: size=80, mode=40700, atime=1787784681, mtime=1787784681, ctime=140730069769463
+fchownats_test_WcyB97: size=80, mode=40700, atime=1787784681, mtime=1787784681, ctime=140730069769463
+fchmodats_test_48OZWS: size=80, mode=40700, atime=1787784681, mtime=1787784681, ctime=140730069769463
+download_fileats_rp8e5k: size=80, mode=40700, atime=1787784681, mtime=1787784681, ctime=140730069769463
+tls_test_empty_gCSFZG: size=40, mode=40700, atime=1787784661, mtime=1787784661, ctime=140730069769463
+tls_test_partial_ofTFPu: size=100, mode=40700, atime=1787784661, mtime=1787784661, ctime=140730069769463
+tls_test_sm2_O3nXTO: size=60, mode=40700, atime=1787784661, mtime=1787784661, ctime=140730069769463
+upload_fileats_z99utC: size=80, mode=40700, atime=1787784661, mtime=1787784661, ctime=140730069769463
+cv_debug.log.tmp: size=9, mode=100644, atime=1787784661, mtime=1787784681, ctime=140730069769463
+preamble-6376a5.pch: size=9, mode=100644, atime=1787784681, mtime=1787784681, ctime=140730069769463
+pread_test_src.bin: size=29, mode=100644, atime=1787784681, mtime=1787784681, ctime=140730069769463
+obt: size=60, mode=40755, atime=1787784661, mtime=1787784661, ctime=140730069769463
+rpc_metadata_test_W1NrIC: size=80, mode=40700, atime=1787784661, mtime=1787784661, ctime=140730069769463
+fchownats_test_tePh20: size=80, mode=40700, atime=1787784661, mtime=1787784661, ctime=140730069769463
+fchmodats_test_tvAlmS: size=80, mode=40700, atime=1787784661, mtime=1787784661, ctime=140730069769463
+test_file_3.bin: size=6, mode=100644, atime=1787784661, mtime=1787784681, ctime=140730069769463
+aio: size=60, mode=40755, atime=1787784661, mtime=1787784661, ctime=140730069769463
+download_fileats_VKb270: size=80, mode=40700, atime=1787784661, mtime=1787784661, ctime=140730069769463
+tmp2: size=60, mode=40755, atime=1787784661, mtime=1787784661, ctime=140730069769463
+cc4phy5E.s: size=29, mode=100644, atime=1787784681, mtime=1787784681, ctime=140730069769463
+rpc_dir_tree_test: size=100, mode=40755, atime=1787784681, mtime=1787784661, ctime=140730069769463
+tmp1: size=140, mode=40755, atime=1787784661, mtime=1787784681, ctime=140730069769463
+logger_test.audit.log: size=1330, mode=100644, atime=1787784681, mtime=1787784681, ctime=140730069769463
+test_logger.log: size=0, mode=100644, atime=1787784015, mtime=1787784015, ctime=140730069769463
+cca8MNsi.res: size=0, mode=100600, atime=1787783986, mtime=1787783986, ctime=140730069769463
+cclzCYcK.res: size=0, mode=100600, atime=1787783986, mtime=1787783986, ctime=140730069769463
+ccTxWdtk.s: size=78628, mode=100600, atime=1787783986, mtime=1787783987, ctime=140730069769463
+ccb1s6m4.s: size=23654, mode=100600, atime=1787783960, mtime=1787783960, ctime=140730069769463
+ccw8pwIf.res: size=0, mode=100600, atime=1787783960, mtime=1787783960, ctime=140730069769463
+ccWLdkmq.s: size=78628, mode=100600, atime=1787783960, mtime=1787783960, ctime=140730069769463
+rpc_config_test_mj2pkU: size=44, mode=100600, atime=1787762345, mtime=1787762345, ctime=140730069769463
+rpc_param_fixture.conf: size=28, mode=100644, atime=1787784661, mtime=1787784661, ctime=140730069769463
+ccJC0TbE.s: size=13734, mode=100600, atime=1787762290, mtime=1787762290, ctime=140730069769463
+cclESmZs.s: size=12996, mode=100600, atime=1787762290, mtime=1787762290, ctime=140730069769463
+cczN2moQ.s: size=21366, mode=100600, atime=1787762290, mtime=1787762290, ctime=140730069769463
+ccTEBmGl.s: size=24708, mode=100600, atime=1787762290, mtime=1787762290, ctime=140730069769463
+ev_ac8.log: size=615, mode=100644, atime=1787760833, mtime=1787760833, ctime=140730069769463
+ev_diff.log: size=11113, mode=100644, atime=1787760768, mtime=1787760768, ctime=140730069769463
+ev_test_regress.log: size=1368, mode=100644, atime=1787760760, mtime=1787760747, ctime=140730069769463
+ev_test_param.log: size=543, mode=100644, atime=1787760759, mtime=1787760747, ctime=140730069769463
+ev_test_fsdaemon.log: size=517, mode=100644, atime=1787760759, mtime=1787760747, ctime=140730069769463
+ev_build.log: size=1063, mode=100644, atime=1787760759, mtime=1787760747, ctime=140730069769463
+rdb_param_test.conf: size=24, mode=100644, atime=1787784608, mtime=1787784608, ctime=140730069769463
+fsdeamon_cfg_test.conf: size=11, mode=100644, atime=1787784608, mtime=1787784608, ctime=140730069769463
+t0393_commit.msg: size=2317, mode=100644, atime=1787758192, mtime=1787758183, ctime=140730069769463
+t0393-convergence.json: size=418, mode=100644, atime=1787757898, mtime=1787757881, ctime=140730069769463
+t0393-diff.log: size=182, mode=100644, atime=1787757931, mtime=1787757852, ctime=140730069769463
+t0393-test.log: size=3875, mode=100644, atime=1787757931, mtime=1787757852, ctime=140730069769463
+t0393-build.log: size=766, mode=100644, atime=1787757931, mtime=1787757851, ctime=140730069769463
+t0391_commit.msg: size=1956, mode=100644, atime=1787757356, mtime=1787757348, ctime=140730069769463
+t0392-convergence.json: size=526, mode=100644, atime=1787757067, mtime=1787757059, ctime=140730069769463
+t0391-diff.log: size=2582, mode=100644, atime=1787754677, mtime=1787753971, ctime=140730069769463
+tls_test_empty_bdFW6p: size=40, mode=40700, atime=1787753969, mtime=1787753969, ctime=140730069769463
+tls_test_partial_cZLH8K: size=100, mode=40700, atime=1787753969, mtime=1787753969, ctime=140730069769463
+tls_test_sm2_iM56YU: size=60, mode=40700, atime=1787753969, mtime=1787753969, ctime=140730069769463
+t0391-test.log: size=5335, mode=100644, atime=1787753984, mtime=1787753971, ctime=140730069769463
+t0391-build.log: size=766, mode=100644, atime=1787753984, mtime=1787753969, ctime=140730069769463
+tls_test_empty_iMs7Sc: size=40, mode=40700, atime=1787753926, mtime=1787753926, ctime=140730069769463
+tls_test_partial_wqSzXF: size=100, mode=40700, atime=1787753926, mtime=1787753926, ctime=140730069769463
+tls_test_sm2_5T9no6: size=60, mode=40700, atime=1787753926, mtime=1787753926, ctime=140730069769463
+cc68TCSj.res: size=0, mode=100600, atime=1787751246, mtime=1787751246, ctime=140730069769463
+ccIQpsrT.res: size=0, mode=100600, atime=1787748651, mtime=1787748651, ctime=140730069769463
+ev: size=160, mode=40755, atime=1787747221, mtime=1787747225, ctime=140730069769463
+obk_sess.log: size=751, mode=100644, atime=1787746952, mtime=1787746952, ctime=140730069769463
+rpc_config_test_BYP6Yq: size=44, mode=100600, atime=1787746496, mtime=1787746496, ctime=140730069769463
+param_registry_fixture.conf: size=0, mode=100644, atime=1787784681, mtime=1787784681, ctime=140730069769463
+.xmake1000: size=60, mode=40755, atime=1787746229, mtime=1787760317, ctime=140730069769463
+pdca-task-identity-0e73a54cf0ba2a78f24936698bf7dd779208d391ff9365e8cd89af4a61658101.lock: size=0, mode=100600, atime=1787743081, mtime=1787743081, ctime=140730069769463
+.bun-1000-71b650bef1b3e52c.node: size=514960, mode=100600, atime=1787742870, mtime=1787742756, ctime=140730069769463
+.bun-1000-ce78de25a2553a8.so: size=5576816, mode=100600, atime=1787742870, mtime=1787742756, ctime=140730069769463
+node-compile-cache: size=60, mode=40755, atime=1787742754, mtime=1787742754, ctime=140730069769463
+.bun-1000-73b412e2ff3bc470.so: size=13745312, mode=100600, atime=1787742867, mtime=1787742752, ctime=140730069769463
+opencode: size=240, mode=40755, atime=1787742752, mtime=1787784679, ctime=140730069769463
+tmux-1000: size=60, mode=40700, atime=1787742574, mtime=1787742574, ctime=140730069769463
+systemd-private-ea593f82cadb4d0a949ed6a398a699c2-upower.service-OzTRso: size=60, mode=40700, atime=1787742455, mtime=1787742455, ctime=140730069769463
+FlClashSocket_1169.sock: size=0, mode=140755, atime=1787742450, mtime=1787742450, ctime=140730069769463
+systemd-private-ea593f82cadb4d0a949ed6a398a699c2-power-profiles-daemon.service-SGRh1K: size=60, mode=40700, atime=1787742450, mtime=1787742450, ctime=140730069769463
+systemd-private-ea593f82cadb4d0a949ed6a398a699c2-polkit.service-Bh80UQ: size=60, mode=40700, atime=1787742448, mtime=1787742448, ctime=140730069769463
+.X1-lock: size=11, mode=100444, atime=1787742448, mtime=1787742448, ctime=140730069769463
+sddm-:0-xsSYwQ: size=0, mode=140700, atime=1787742429, mtime=1787742429, ctime=140730069769463
+sddm-auth-c066256e-5893-41b7-b828-c105a21de7b2: size=0, mode=140755, atime=1787742446, mtime=1787742428, ctime=140730069769463
+systemd-private-ea593f82cadb4d0a949ed6a398a699c2-systemd-logind.service-0sY5L3: size=60, mode=40700, atime=1787742427, mtime=1787742427, ctime=140730069769463
+systemd-private-ea593f82cadb4d0a949ed6a398a699c2-iwd.service-YkNsM5: size=60, mode=40700, atime=1787742427, mtime=1787742427, ctime=140730069769463
+systemd-private-ea593f82cadb4d0a949ed6a398a699c2-bluetooth.service-w4YXbG: size=60, mode=40700, atime=1787742427, mtime=1787742427, ctime=140730069769463
+.font-unix: size=40, mode=41777, atime=1787742426, mtime=1787742426, ctime=140730069769463
+.XIM-unix: size=40, mode=41777, atime=1787742426, mtime=1787742426, ctime=140730069769463
+.ICE-unix: size=40, mode=41777, atime=1787742426, mtime=1787742426, ctime=140730069769463
+.X11-unix: size=80, mode=41777, atime=1787742426, mtime=1787742448, ctime=140730069769463
+PASS
+
+=== TEST: TYPE_DEL ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_14
+[0m[38;2;0;255;0;1m[ 43%]:[0m running.test rpc_config_test/default[0m
+[0m[38;2;0;255;0;1m[ 45%]:[0m running.test rpc_net_time_test/default[0m
+[0m[38;2;0;255;0;1m[ 47%]:[0m running.test rpc_own_handshake_test/default[0m
+PASS
+
+=== TEST: VARIOUS OFFSETS - 偏移组合 ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_15
+=== rpc-config sec switches + tunables test ===
+
+Running init_fills_sec_switches_from_store... PASSED
+Running init_env_overrides_store... PASSED
+Running init_invalid_audit_env_fails... PASSED
+Running reload_reresolves_sec_switches... PASSED
+Running tunables_read_from_aio_speedd... PASSED
+Running invalid_bool_fail_closed... PASSED
+Running out_of_range_tunable_fail_closed... PASSED
+Running layer3_aio_speed_fallback... PASSED
+Running env_overrides_section... PASSED
+
+=== 9 passed, 0 failed ===
+[0m[38;2;0;255;0;1m[ 50%]:[0m running.test rpc_param_test/default[0m
+[0m[38;2;0;255;0;1m[ 52%]:[0m running.test rpc_tool_integration/default[0m
+rpc_net_time_test: PASS
+AC-1 plain plain PASS
+AC-2 mixed on-demand mTLS PASS
+AC-3 forced mTLS PASS
+[2026-08-27 06:51:21]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|139911943369664| TLS setup failed: role=client stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/tmp/t0352-missing-certs/ED25519_Test_CA/ed25519_ca.crt cert=/tmp/t0352-missing-certs/ED25519_Test_CA/ed25519_host.crt key=/tmp/t0352-missing-certs/ED25519_Test_CA/ed25519_host.key
+[2026-08-27 06:51:21]|Error|rpc/rpc-io.cpp:128 rpc_handshake_client|139911943369664| handshake: tls_cert_init_client failed: cert_dir=/tmp/t0352-missing-certs algorithm=TLS_AES_256_GCM_SHA384 ca_cn=ED25519_Test_CA
+AC-1 plain plain PASS
+AC-2 mixed on-demand mTLS PASS
+AC-3 forced mTLS PASS
+[2026-08-27 06:51:21]|Error|libs/tls_cert.c:67 tls_cert_log_ssl_errors|139911943369664| TLS handshake failed: role=server stage=handshake ssl_error=1
+[2026-08-27 06:51:21]|Error|libs/tls_cert.c:71 tls_cert_log_ssl_errors|139911943369664| TLS OpenSSL error: error:0A000126:SSL routines::unexpected eof while reading
+PASS
+
+=== TEST: VARIOUS SIZES - 不同文件大小 ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_16
+[0m[38;2;0;255;0;1m[ 54%]:[0m running.test symlink/default[0m
+[PASS] handshake codec
+[PASS] handshake_resp codec
+[PASS] algorithm mapping
+[PASS] negotiate algorithm fail-closed
+[PASS] plain both disabled
+[PASS] server mTLS reject plain
+[2026-08-27 06:51:21]|Error|rpc/rpc-io.cpp:112 rpc_handshake_client|140719663526848| handshake rejected by server: server downgraded to plain (no TLS)
+[PASS] client mtls rejected downgrade to plain
+rpc_own_handshake_test: ALL PASS
+Running defaults_when_unset... PASSED
+Running layer2_aio_speedd_priority... PASSED
+Running layer3_aio_speed_fallback... PASSED
+Running bool_fail_closed... PASSED
+Running int_invalid_is_fail_closed... PASSED
+Running env_overrides_section... PASSED
+
+6 passed, 0 failed
+[0m[38;2;0;255;0;1m[ 56%]:[0m running.test tls_cert_test/default[0m
+========================================
+  rpc_conn_cli_readdir_tree 集成测试
+========================================
+
+=== Test 1: basic tree traversal ===
+  OK: 6 entries returned
+
+=== Test 2: stat metadata ===
+  OK: file types and sizes
+
+=== Test 3: empty directory ===
+  OK: empty dir returns 0 entries
+
+========================================
+  ALL TESTS PASSED
+[0m[38;2;0;255;0;1m[ 58%]:[0m running.test tls_keygen_test/default[0m
+PASS
+
+=== TEST: OVERWRITE - 同一偏移重复写入 ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_17
+[0m[38;2;0;255;0;1m[ 60%]:[0m running.test upload_fileats/default[0m
+AC-4 missing client cert_dir fail PASS
+AC-5 server forced reject plain business PASS
+[2026-08-27 06:51:21]|Error|rpc/rpc-io.cpp:112 rpc_handshake_client|139911943369664| handshake rejected by server: server downgraded to plain (no TLS)
+Running reject_space_cn... PASSED
+Running accept_legal_cn... PASSED
+Running reject_empty_and_null... PASSED
+Running reject_dotdot_traversal... PASSED
+Running reject_other_metachars... PASSED
+Running san_accept_default_loopback_set... PASSED
+Running san_accept_single_and_prefix_case... PASSED
+Running san_reject_missing_prefix... PASSED
+Running san_reject_empty_and_null... PASSED
+Running san_reject_bad_structure... PASSED
+
+10 passed, 0 failed
+PASS
+
+=== TEST: MIXED OPERATIONS - 混合操作序列 ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_18
+[2026-08-27 06:51:21]|Info|rpc/rpc.cpp:2959 rpc_conn_cli_upload_fileats|139823696312000| upload_fileat /tmp/upload_fileats_wsma3b/dst/:test1.txt success.
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:4041 rpc_conn_srv_upload_fileats|139823687919296| openat test1.txt success.
+[2026-08-27 06:51:21]|Info|rpc/rpc.cpp:2959 rpc_conn_cli_upload_fileats|139823696312000| upload_fileat /tmp/upload_fileats_wsma3b/dst/:test2.txt success.
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:4064 rpc_conn_srv_upload_fileats|139823687919296| upload_fileat /tmp/upload_fileats_wsma3b/dst/:test1.txt success.
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:4041 rpc_conn_srv_upload_fileats|139823687919296| openat test2.txt success.
+[2026-08-27 06:51:21]|Info|rpc/rpc-server.cpp:4064 rpc_conn_srv_upload_fileats|139823687919296| upload_fileat /tmp/upload_fileats_wsma3b/dst/:test2.txt success.
+AC-6 no-downgrade PASS
+AC-7 plain-only startup PASS
+[2026-08-27 06:51:21]|Error|rpc/rpc-io.cpp:112 rpc_handshake_client|139911943369664| handshake rejected by server: handshake failed: unsupported or unknown TLS algorithm (algorithm negotiation rejected)
+PASS
+
+=== TEST: SPARSE FILE - 稀疏文件 ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_19
+=== TLS Cert Unit Tests ===
+
+Using CERT_DIR: /home/black/Public/aio/aio-tools/6200/F/139/libs/tests/certs
+Running tls_cert_build_server_profiles... PASSED
+Running tls_cert_build_client_profile... PASSED
+Running tls_cert_init_server_from_cert_dir... PASSED
+Running tls_cert_init_client_from_cert_dir... [2026-08-27 06:51:21]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140694215037824| TLS setup failed: role=client stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/nonexistent/my-ca/ed25519_ca.crt cert=/nonexistent/my-ca/ed25519_host.crt key=/nonexistent/my-ca/ed25519_host.key
+PASS
+
+=== TEST: OUT_OF_ORDER WRITE - 乱序写入 ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_20
+PASSED
+Running tls_cert_init_client_sm2_prefixed_layout... PASSED
+Running tls_cert_init_server_partial_degrade... [2026-08-27 06:51:21]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140694215037824| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/tmp/tls_test_partial_3IE91V/ed25519_ca.crt cert=/tmp/tls_test_partial_3IE91V/ed25519_host.crt key=/tmp/tls_test_partial_3IE91V/ed25519_host.key
+[2026-08-27 06:51:21]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140694215037824| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_SM4_GCM_SM3 ca=/tmp/tls_test_empty_oJ3DKp/sm2_ca.crt cert=/tmp/tls_test_empty_oJ3DKp/sm2_host.crt key=/tmp/tls_test_empty_oJ3DKp/sm2_host.key
+[2026-08-27 06:51:21]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140694215037824| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/tmp/tls_test_empty_oJ3DKp/ed25519_ca.crt cert=/tmp/tls_test_empty_oJ3DKp/ed25519_host.crt key=/tmp/tls_test_empty_oJ3DKp/ed25519_host.key
+PASS
+
+=== TEST: ZERO OFFSET + VARIOUS COUNT - 零偏移+不同大小 ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_21
+PASS
+
+=== TEST: LARGE GAP - 大间隔写入 ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_22
+AC-8 algorithm-lock reject mismatched PASS
+AC-9 algorithm-lock allow matched PASS
+mixed_mtls_link_integration: PASS
+PASS
+
+=== TEST: TYPE_NEW - Multi Write ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_23
+PASS
+
+=== TEST: TYPE_NEW - Reopen ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_24
+PASS
+
+=== TEST: TYPE_NEW - Delete ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_25
+PASS
+
+=== TEST: TYPE_UPDATE - Delete ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_26
+PASS
+
+=== TEST: DELETE then CREATE ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_27
+/home/black/Public/aio/aio-tools/6200/F/139/build/linux/x86_64/debug/rdbcomm: invalid --mtls-enable: 2
+PASS
+
+=== TEST: DELETE then MODIFY ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_28
+PASS
+
+=== TEST: OPEN EXIST ===
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_30
+/home/black/Public/aio/aio-tools/6200/F/139/build/linux/x86_64/debug/rdbcomm: invalid --tls-algorithm: TLS_UNKNOWN
+PASS
+
+=== TEST: RANDOM WRITE ===
+  After OnOpen: type=1 size=5000 size_ext=5000 byte_id=0
+  GetVal returns 0, type=1
+  OnWriteFile ret=0
+  After OnWriteFile: type=1 size=5000 size_ext=5000 byte_id=0
+[2026-08-27 06:51:21]|Info|fs-backup/public/fs_meta.cpp:118 DeleteFsMeta|798319616| delete /tmp/fs_meta_test_31
+PASS
+
+========================================
+       Results: 0 failures
+========================================
+/home/black/Public/aio/aio-tools/6200/F/139/build/linux/x86_64/debug/rdbcommd: invalid --mtls-enable: 2
+[2026-08-27 06:51:21]|Error|rdbcomm/rdbcommd-main.c:271 main|139648889848704| args process failed
+/home/black/Public/aio/aio-tools/6200/F/139/build/linux/x86_64/debug/rdbcommd: invalid --tls-algorithm: TLS_UNKNOWN
+[2026-08-27 06:51:21]|Error|rdbcomm/rdbcommd-main.c:271 main|140384195634048| args process failed
+[2026-08-27 06:51:21]|Error|rpc/rpc-client.cpp:1219 args_process|140276777407360| aio-speed: invalid --mtls-enable: 2
+usage: command args ...
+	 --host:         -h      host ip must be like: (--host=127.0.0.1 or --host 127.0.0.1 or -h 127.0.0.1).
+	 --port:         -p      host port must be like: (--port=6611 or --port 6611 or -p 6611).
+	 --key:                  authentication key must be like: (--key=xxx or --key xxx), required.
+	 --cmd:          -c      request type must be like: (--cmd=list or --cmd list or -c list).
+	 --download:             scp file from remote to local must be like: (--download=1 or --download 1 defalut: 2).
+	                             1 full copy dir's file
+	                             2 breakpoint continuation copy dir's file(Node: must match with --bcm options).
+
+	 --remote:               remote path or path must be like: (--remote=list or --remote list or -c list).
+	 --local:                local path or file must be like: (--local=list or --local list or -c list).
+	 --compress:             compress enabled must be like: (--compress=1 or --compress 1 default: 1).
+	 --encrypt:              encrypt enabled must be like: (--encrypt=1 or --encrypt 1 default: 0).
+	 --parallel:             parallel number must be like: (--parallel=4 or --parallel 4 default: 4).
+	 --bcm:                  file for save breakpoint continuation meta info. must be like: (--bcm=file or --bcm file default: .).
+	                         resumable files continue to download or upload the last failed files on a file-by-file basis.
+
+	 --upload:               scp file from local to remote must be like: (--upload=1 or --upload 1 defalut: 2).
+	                             1 full copy dir's file
+	                             2 breakpoint continuation copy dir's file(Node: must match with --bcm options).
+
+	 --checksum:             checksum enabled must be like: (--checksum=1 or --checksum 1 default: 0).
+	 --nc:                   command run on dst server must be like: (--nc=command or --nc command).
+	                             eg.
+	                             --nc "lz4 -d -B4 | sudo xbstream  -x -C /backup/mysql"
+	                             --nc 'lz4 -d -B4 | sudo xbstream  -x -C /backup/mysql'
+	                             --nc "lz4 -d -B4 > /dev/null"
+	                             --nc 'lz4 -d -B4 > /dev/null'
+	 --bind-ip:              bind the IP address of the local NIC must be like: (--bind-ip=127.0.0.1 or --bind-ip 127.0.0.1)
+	 --fb-item:              file backup input dir or file: (--fb-item=dir1;dir2;... or --fb-item dir1;dir2;...)
+	 --fb-meta:              file backup data's meta: (--fb-meta=file.meta or --fb-meta file.meta)
+	 --fb-exclude:           file backup exclude file: (--fb-exclude=file1;file2... or --fb-exclude file1;file2...)
+	 --fb-progress:          file backup real time progress: (--fb-progress=file1 or --fb-progress file1)
+	 --fb-list-item:         list item of file backup: (--fb-list-item=dir1 or --fb-list-item dir1)
+	 --fb-list-output:       list item of file backup output file: (--fb-list-output=file1 or --fb-list-output file1)
+	 --fb-list-position:     list item of file backup start position: (--fb-list-position=file1 or --fb-list-position file1)
+	 --fb-item-size:         list total of needed transfer files size: (--fb-item-size=dir1;dir2;... or --fb-item-size dir1;dir2;...)
+	 --fb-size-output:       file for total of needed transfer files size in byte info output: (--fb-size-output=file1 or --fb-size-output file1)
+	 --backup-full:          full backup must be like: (--backup-full).
+	 --backup-inc:           incremental backup must be like: (--backup-inc).
+	 --backup-merge:         merge backup must be like: (--backup-merge).
+	 --restore-file:         restore file type must be like: (--restore-file).
+	 --proc-progress:        backup restore proc progress must be like: (--proc-progress).
+	 --restore-meta:         restore meta type must be like: (--restore-meta).
+	 --meta-find:            find backup meta must be like: (--meta-find).
+	 --meta-find-range:      find backup meta limits must be like: (--meta-find-range).
+	 --find-dir:             find directory must be like: (--find-dir=dir1 or --find-dir dir1).
+	 --find-name:            find file name must be like: (--find-name=name1 or --find-name name1).
+	 --find-count:           find count must be like: (--find-count=1 or --find-count 1).
+	 --find-reverse:         find reverse must be like: (--find-reverse).
+	 --find-type:            find type must be like: (--find-type=1 or --find-type 1, default: 0).
+	                             1 dir
+	                             0 file
+	 exclude                 exclude path must be like: (--exclude=/xxx or --exclude /xxx)
+	 exclude-from            file format: file1;file2
+	 include                 include path must be like: (--include=/xxx or --include /xxx)
+	 include-from            file format: file1;file2
+	 chmod                   format: --chmod=0777
+	 chown                   format: --chown=uid:gid
+	 preserve                preserve old file
+	 output                  save merge delete file info
+	 progress                save proc progress meta data info, default tools cwd directory ./progress
+	 --show-config            show config information
+	 --reload-config          reload config information
+	 --traversal-mode=<mode>  Traversal mode: bfs (default) or dfs
+	 --debug                  debug mode
+	 --help:                 usage help
+	 --version:      -v      version information
+
+TLS/mTLS configuration:
+	 --mtls-enable=0|1       Override mTLS for this invocation
+	 --tls-algorithm=NAME    Override TLS algorithm for this invocation
+	 section [aio-speed]: mtls_enable=0|1, tls_algorithm=TLS_SM4_GCM_SM3 (default) or TLS_AES_256_GCM_SHA384
+	 environment: AIO_SPEED_MTLS_ENABLE / AIO_SPEED_TLS_ALGORITHM
+	 priority: CLI > environment > section > [security] > default; certificates shared, ca_cn derived from CA certificate
+	 CLI example: aio-speed --mtls-enable=1 --tls-algorithm=TLS_SM4_GCM_SM3 -h 127.0.0.1 -p 6611 -c true
+	 example: AIO_SPEED_MTLS_ENABLE=1 AIO_SPEED_TLS_ALGORITHM=TLS_AES_256_GCM_SHA384 aio-speed -h 127.0.0.1 -p 6611 -c true
+[2026-08-27 06:51:21]|Error|rpc/rpc-client.cpp:672 client_main|140276777407360| Error: init aio-speed arguments failed
+[2026-08-27 06:51:21]|Error|rpc/rpc-client.cpp:1228 args_process|140719112115072| aio-speed: invalid --tls-algorithm: TLS_UNKNOWN
+usage: command args ...
+	 --host:         -h      host ip must be like: (--host=127.0.0.1 or --host 127.0.0.1 or -h 127.0.0.1).
+	 --port:         -p      host port must be like: (--port=6611 or --port 6611 or -p 6611).
+	 --key:                  authentication key must be like: (--key=xxx or --key xxx), required.
+	 --cmd:          -c      request type must be like: (--cmd=list or --cmd list or -c list).
+	 --download:             scp file from remote to local must be like: (--download=1 or --download 1 defalut: 2).
+	                             1 full copy dir's file
+	                             2 breakpoint continuation copy dir's file(Node: must match with --bcm options).
+
+	 --remote:               remote path or path must be like: (--remote=list or --remote list or -c list).
+	 --local:                local path or file must be like: (--local=list or --local list or -c list).
+	 --compress:             compress enabled must be like: (--compress=1 or --compress 1 default: 1).
+	 --encrypt:              encrypt enabled must be like: (--encrypt=1 or --encrypt 1 default: 0).
+	 --parallel:             parallel number must be like: (--parallel=4 or --parallel 4 default: 4).
+	 --bcm:                  file for save breakpoint continuation meta info. must be like: (--bcm=file or --bcm file default: .).
+	                         resumable files continue to download or upload the last failed files on a file-by-file basis.
+
+	 --upload:               scp file from local to remote must be like: (--upload=1 or --upload 1 defalut: 2).
+	                             1 full copy dir's file
+	                             2 breakpoint continuation copy dir's file(Node: must match with --bcm options).
+
+	 --checksum:             checksum enabled must be like: (--checksum=1 or --checksum 1 default: 0).
+	 --nc:                   command run on dst server must be like: (--nc=command or --nc command).
+	                             eg.
+	                             --nc "lz4 -d -B4 | sudo xbstream  -x -C /backup/mysql"
+	                             --nc 'lz4 -d -B4 | sudo xbstream  -x -C /backup/mysql'
+	                             --nc "lz4 -d -B4 > /dev/null"
+	                             --nc 'lz4 -d -B4 > /dev/null'
+	 --bind-ip:              bind the IP address of the local NIC must be like: (--bind-ip=127.0.0.1 or --bind-ip 127.0.0.1)
+	 --fb-item:              file backup input dir or file: (--fb-item=dir1;dir2;... or --fb-item dir1;dir2;...)
+	 --fb-meta:              file backup data's meta: (--fb-meta=file.meta or --fb-meta file.meta)
+	 --fb-exclude:           file backup exclude file: (--fb-exclude=file1;file2... or --fb-exclude file1;file2...)
+	 --fb-progress:          file backup real time progress: (--fb-progress=file1 or --fb-progress file1)
+	 --fb-list-item:         list item of file backup: (--fb-list-item=dir1 or --fb-list-item dir1)
+	 --fb-list-output:       list item of file backup output file: (--fb-list-output=file1 or --fb-list-output file1)
+	 --fb-list-position:     list item of file backup start position: (--fb-list-position=file1 or --fb-list-position file1)
+	 --fb-item-size:         list total of needed transfer files size: (--fb-item-size=dir1;dir2;... or --fb-item-size dir1;dir2;...)
+	 --fb-size-output:       file for total of needed transfer files size in byte info output: (--fb-size-output=file1 or --fb-size-output file1)
+	 --backup-full:          full backup must be like: (--backup-full).
+	 --backup-inc:           incremental backup must be like: (--backup-inc).
+	 --backup-merge:         merge backup must be like: (--backup-merge).
+	 --restore-file:         restore file type must be like: (--restore-file).
+	 --proc-progress:        backup restore proc progress must be like: (--proc-progress).
+	 --restore-meta:         restore meta type must be like: (--restore-meta).
+	 --meta-find:            find backup meta must be like: (--meta-find).
+	 --meta-find-range:      find backup meta limits must be like: (--meta-find-range).
+	 --find-dir:             find directory must be like: (--find-dir=dir1 or --find-dir dir1).
+	 --find-name:            find file name must be like: (--find-name=name1 or --find-name name1).
+	 --find-count:           find count must be like: (--find-count=1 or --find-count 1).
+	 --find-reverse:         find reverse must be like: (--find-reverse).
+	 --find-type:            find type must be like: (--find-type=1 or --find-type 1, default: 0).
+	                             1 dir
+	                             0 file
+	 exclude                 exclude path must be like: (--exclude=/xxx or --exclude /xxx)
+	 exclude-from            file format: file1;file2
+	 include                 include path must be like: (--include=/xxx or --include /xxx)
+	 include-from            file format: file1;file2
+	 chmod                   format: --chmod=0777
+	 chown                   format: --chown=uid:gid
+	 preserve                preserve old file
+	 output                  save merge delete file info
+	 progress                save proc progress meta data info, default tools cwd directory ./progress
+	 --show-config            show config information
+	 --reload-config          reload config information
+	 --traversal-mode=<mode>  Traversal mode: bfs (default) or dfs
+	 --debug                  debug mode
+	 --help:                 usage help
+	 --version:      -v      version information
+
+TLS/mTLS configuration:
+	 --mtls-enable=0|1       Override mTLS for this invocation
+	 --tls-algorithm=NAME    Override TLS algorithm for this invocation
+	 section [aio-speed]: mtls_enable=0|1, tls_algorithm=TLS_SM4_GCM_SM3 (default) or TLS_AES_256_GCM_SHA384
+	 environment: AIO_SPEED_MTLS_ENABLE / AIO_SPEED_TLS_ALGORITHM
+	 priority: CLI > environment > section > [security] > default; certificates shared, ca_cn derived from CA certificate
+	 CLI example: aio-speed --mtls-enable=1 --tls-algorithm=TLS_SM4_GCM_SM3 -h 127.0.0.1 -p 6611 -c true
+	 example: AIO_SPEED_MTLS_ENABLE=1 AIO_SPEED_TLS_ALGORITHM=TLS_AES_256_GCM_SHA384 aio-speed -h 127.0.0.1 -p 6611 -c true
+[2026-08-27 06:51:21]|Error|rpc/rpc-client.cpp:672 client_main|140719112115072| Error: init aio-speed arguments failed
+aio-speedd: invalid --mtls-enable: 2
+aio-speedd: invalid --tls-algorithm: TLS_UNKNOWN
+[PASS] rdb algorithm exact mapping
+[PASS] plain zero-handshake passthrough
+[PASS] bad halg 0x0000 rejected
+[PASS] bad halg 0xffff rejected
+[PASS] on-demand mTLS upgrade
+[PASS] reject without downgrade
+rdbcomm_handshake_session_test: ALL PASS
+PASSED
+Running tls_cert_init_disabled... PASSED
+Running tls_ed25519_dual_format... PASSED
+Running tls_server_init... PASSED
+Running tls_mtls_handshake... PASSED
+Running tls_cert_ca_cn_from_file_deterministic... PASSED
+Running tls_cert_set_ciphersuites_fail_closed... [2026-08-27 06:51:21]|Error|libs/tls_cert.c:94 tls_cert_set_ciphersuites|140694215037824| Failed to apply ciphersuites config: NON_EXISTENT_SUITE_XYZ
+PASSED
+Running tls_cert_peer_identity_binding_reject... [2026-08-27 06:51:21]|Error|libs/tls_cert.c:67 tls_cert_log_ssl_errors|140694215037824| TLS handshake failed: role=client stage=handshake ssl_error=1
+[2026-08-27 06:51:21]|Error|libs/tls_cert.c:71 tls_cert_log_ssl_errors|140694215037824| TLS OpenSSL error: error:0A000086:SSL routines::certificate verify failed
+[2026-08-27 06:51:21]|Error|libs/tls_cert.c:850 tls_cert_handshake_common|140694215037824| TLS client verify failed: verify_result=1 (unspecified certificate verification error)
+[2026-08-27 06:51:21]|Error|libs/tls_cert.c:866 tls_cert_handshake_common|140694215037824| TLS peer certificate: none received
+[2026-08-27 06:51:21]|Error|libs/tls_cert.c:67 tls_cert_log_ssl_errors|140694207329984| TLS handshake failed: role=server stage=handshake ssl_error=1
+[2026-08-27 06:51:21]|Error|libs/tls_cert.c:71 tls_cert_log_ssl_errors|140694207329984| TLS OpenSSL error: error:0A000438:SSL routines::tlsv1 alert internal error
+PASSED
+Running tls_cert_client_ctx_cache_reuse... PASSED
+Running tls_cert_client_ctx_cache_concurrent... PASSED
+Running tls_cert_audit_peer_cn... PASSED
+Running tls_cert_ctx_reload... [2026-08-27 06:51:22]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140694215037824| TLS setup failed: role=client stage=certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/tmp/tls_ac1rl_CyKefG/ED25519_Test_CA/ed25519_ca.crt cert=/tmp/tls_ac1rl_CyKefG/ED25519_Test_CA/ed25519_host.crt key=/tmp/tls_ac1rl_CyKefG/ED25519_Test_CA/ed25519_host.key
+PASSED
+Running tls_cert_error_code_normalized... [2026-08-27 06:51:22]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140694215037824| TLS setup failed: role=client stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/no/such/dir/x/ed25519_ca.crt cert=/no/such/dir/x/ed25519_host.crt key=/no/such/dir/x/ed25519_host.key
+[2026-08-27 06:51:22]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140694215037824| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_SM4_GCM_SM3 ca=/no/such/dir/sm2_ca.crt cert=/no/such/dir/sm2_host.crt key=/no/such/dir/sm2_host.key
+[2026-08-27 06:51:22]|Error|libs/tls_cert.c:79 tls_cert_log_setup_error|140694215037824| TLS setup failed: role=server stage=ca-certificate algorithm=TLS_AES_256_GCM_SHA384 ca=/no/such/dir/ed25519_ca.crt cert=/no/such/dir/ed25519_host.crt key=/no/such/dir/ed25519_host.key
+PASSED
+Running tls_cert_crl_revocation_reject... [2026-08-27 06:51:23]|Info|libs/tls_cert.c:300 tls_cert_slot_create|140694215037824| TLS CRL revocation check enabled: /tmp/tls_ac2_DgLKWB/crl.pem
+[2026-08-27 06:51:23]|Error|libs/tls_cert.c:67 tls_cert_log_ssl_errors|140694215037824| TLS handshake failed: role=client stage=handshake ssl_error=1
+[2026-08-27 06:51:23]|Error|libs/tls_cert.c:71 tls_cert_log_ssl_errors|140694215037824| TLS OpenSSL error: error:0A000086:SSL routines::certificate verify failed
+[2026-08-27 06:51:23]|Error|libs/tls_cert.c:850 tls_cert_handshake_common|140694215037824| TLS client verify failed: verify_result=23 (certificate revoked)
+[2026-08-27 06:51:23]|Error|libs/tls_cert.c:866 tls_cert_handshake_common|140694215037824| TLS peer certificate: none received
+PASSED
+Running tls_cert_min_proto_version_enforced... PASSED
+
+=== Results ===
+Passed: 20
+Failed: 0
+
+All tests PASSED!
+
+report of tests:
+[0m[38;2;0;255;0;1m[  2%]:[0m access/default ........................ [38;2;0;255;0;1mpassed[0m [1m0.038s[0m
+[0m[38;2;0;255;0;1m[  4%]:[0m chmod/default ......................... [38;2;0;255;0;1mpassed[0m [1m0.037s[0m
+[0m[38;2;0;255;0;1m[  6%]:[0m chown/default ......................... [38;2;0;255;0;1mpassed[0m [1m0.037s[0m
+[0m[38;2;0;255;0;1m[  8%]:[0m dir_tree/default ...................... [38;2;0;255;0;1mpassed[0m [1m0.038s[0m
+[0m[38;2;0;255;0;1m[ 10%]:[0m download_fileat/default ............... [38;2;0;255;0;1mpassed[0m [1m0.036s[0m
+[0m[38;2;0;255;0;1m[ 13%]:[0m download_fileats/default .............. [38;2;0;255;0;1mpassed[0m [1m0.037s[0m
+[0m[38;2;0;255;0;1m[ 15%]:[0m download_file_dir/default ............. [38;2;0;255;0;1mpassed[0m [1m0.036s[0m
+[0m[38;2;0;255;0;1m[ 17%]:[0m download_file/default ................. [38;2;0;255;0;1mpassed[0m [1m0.042s[0m
+[0m[38;2;0;255;0;1m[ 19%]:[0m dir_utils_dir_copy_test/default ....... [38;2;0;255;0;1mpassed[0m [1m0.053s[0m
+[0m[38;2;0;255;0;1m[ 21%]:[0m download_link/default ................. [38;2;0;255;0;1mpassed[0m [1m0.044s[0m
+[0m[38;2;0;255;0;1m[ 23%]:[0m fchmodats/default ..................... [38;2;0;255;0;1mpassed[0m [1m0.043s[0m
+[0m[38;2;0;255;0;1m[ 26%]:[0m fchownats/default ..................... [38;2;0;255;0;1mpassed[0m [1m0.045s[0m
+[0m[38;2;0;255;0;1m[ 28%]:[0m execute_command/default ............... [38;2;0;255;0;1mpassed[0m [1m0.055s[0m
+[0m[38;2;0;255;0;1m[ 30%]:[0m dmsbtex_session_test/default .......... [38;2;0;255;0;1mpassed[0m [1m0.077s[0m
+[0m[38;2;0;255;0;1m[ 32%]:[0m hs_err_test/default ................... [38;2;0;255;0;1mpassed[0m [1m0.053s[0m
+[0m[38;2;0;255;0;1m[ 34%]:[0m LRUCache_test/default ................. [38;2;0;255;0;1mpassed[0m [1m0.047s[0m
+[0m[38;2;0;255;0;1m[ 36%]:[0m aio-oss-go-test/default ............... [38;2;0;255;0;1mpassed[0m [1m0.089s[0m
+[0m[38;2;0;255;0;1m[ 39%]:[0m logger_test/default ................... [38;2;0;255;0;1mpassed[0m [1m0.050s[0m
+[0m[38;2;0;255;0;1m[ 41%]:[0m lstat/default ......................... [38;2;0;255;0;1mpassed[0m [1m0.049s[0m
+[0m[38;2;0;255;0;1m[ 43%]:[0m metadata/default ...................... [38;2;0;255;0;1mpassed[0m [1m0.048s[0m
+[0m[38;2;0;255;0;1m[ 45%]:[0m lmdb_dict_test/default ................ [38;2;0;255;0;1mpassed[0m [1m0.059s[0m
+[0m[38;2;0;255;0;1m[ 47%]:[0m lmdb_sort_test/default ................ [38;2;0;255;0;1mpassed[0m [1m0.058s[0m
+[0m[38;2;0;255;0;1m[ 50%]:[0m mixed_mtls_test/default ............... [38;2;0;255;0;1mpassed[0m [1m0.044s[0m
+[0m[38;2;0;255;0;1m[ 52%]:[0m mkdirall/default ...................... [38;2;0;255;0;1mpassed[0m [1m0.041s[0m
+[0m[38;2;0;255;0;1m[ 54%]:[0m mkdir/default ......................... [38;2;0;255;0;1mpassed[0m [1m0.038s[0m
+[0m[38;2;0;255;0;1m[ 56%]:[0m mkdir_path_test/default ............... [38;2;0;255;0;1mpassed[0m [1m0.033s[0m
+[0m[38;2;0;255;0;1m[ 58%]:[0m param_registry_test/default ........... [38;2;0;255;0;1mpassed[0m [1m0.029s[0m
+[0m[38;2;0;255;0;1m[ 60%]:[0m pread/default ......................... [38;2;0;255;0;1mpassed[0m [1m0.027s[0m
+[0m[38;2;0;255;0;1m[ 63%]:[0m libobk_session_test/default ........... [38;2;0;255;0;1mpassed[0m [1m0.071s[0m
+[0m[38;2;0;255;0;1m[ 65%]:[0m pwrite/default ........................ [38;2;0;255;0;1mpassed[0m [1m0.024s[0m
+[0m[38;2;0;255;0;1m[ 67%]:[0m rdb_config_test/default ............... [38;2;0;255;0;1mpassed[0m [1m0.018s[0m
+[0m[38;2;0;255;0;1m[ 69%]:[0m readdir/default ....................... [38;2;0;255;0;1mpassed[0m [1m0.017s[0m
+[0m[38;2;0;255;0;1m[ 71%]:[0m readlink/default ...................... [38;2;0;255;0;1mpassed[0m [1m0.014s[0m
+[0m[38;2;0;255;0;1m[ 73%]:[0m rpc_config_test/default ............... [38;2;0;255;0;1mpassed[0m [1m0.012s[0m
+[0m[38;2;0;255;0;1m[ 76%]:[0m rpc_net_time_test/default ............. [38;2;0;255;0;1mpassed[0m [1m0.011s[0m
+[0m[38;2;0;255;0;1m[ 78%]:[0m rpc_own_handshake_test/default ........ [38;2;0;255;0;1mpassed[0m [1m0.010s[0m
+[0m[38;2;0;255;0;1m[ 80%]:[0m rpc_param_test/default ................ [38;2;0;255;0;1mpassed[0m [1m0.009s[0m
+[0m[38;2;0;255;0;1m[ 82%]:[0m readdir_tree/default .................. [38;2;0;255;0;1mpassed[0m [1m0.017s[0m
+[0m[38;2;0;255;0;1m[ 84%]:[0m symlink/default ....................... [38;2;0;255;0;1mpassed[0m [1m0.006s[0m
+[0m[38;2;0;255;0;1m[ 86%]:[0m tls_keygen_test/default ............... [38;2;0;255;0;1mpassed[0m [1m0.004s[0m
+[0m[38;2;0;255;0;1m[ 89%]:[0m upload_fileats/default ................ [38;2;0;255;0;1mpassed[0m [1m0.004s[0m
+[0m[38;2;0;255;0;1m[ 91%]:[0m mixed_mtls_integration/default ........ [38;2;0;255;0;1mpassed[0m [1m0.074s[0m
+[0m[38;2;0;255;0;1m[ 93%]:[0m fs_meta_comprehensive_test/default .... [38;2;0;255;0;1mpassed[0m [1m0.117s[0m
+[0m[38;2;0;255;0;1m[ 95%]:[0m rpc_tool_integration/default .......... [38;2;0;255;0;1mpassed[0m [1m0.065s[0m
+[0m[38;2;0;255;0;1m[ 97%]:[0m rdbcomm_handshake_session_test/default  [38;2;0;255;0;1mpassed[0m [1m0.263s[0m
+[0m[38;2;0;255;0;1m[100%]:[0m tls_cert_test/default ................. [38;2;0;255;0;1mpassed[0m [1m1.979s[0m
+[0m
+[38;2;0;255;0;1m100%[0m tests passed, [38;2;255;0;0;1m0[0m test(s) failed out of [1m46[0m, spent [1m2.083s[0m

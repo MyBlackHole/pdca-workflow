@@ -1,0 +1,5 @@
+AC-8 部署侧确认项（延迟，非代码缺陷）：
+- 现状：生产 rdb.conf 的 [fsdaemon]/[fsclient] 数值是否均为严格整数（无单位后缀如 3600s）无法从仓库验证。
+- 已做的 fail-closed 处理：BOOL 字段（check_data/debug）非法值经 sec_get_bool 返回 -1，init 直接拒绝启动；
+  INT 字段（keepalive/retry/read_timeout/parallel）非法值经 sec_get_int 回退默认并 stderr 告警。
+- 结论：AC-8 为发布前部署侧确认事项，不阻塞 Do→Check；若生产存在非严格值，将按 PRD RISK A 评估（告警+回退默认是否符合预期）。

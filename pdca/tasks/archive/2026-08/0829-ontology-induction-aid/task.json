@@ -5,12 +5,12 @@
   ],
   "id": "T0404",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "归纳辅助仅产出候选 frontmatter，须经人工确认且本体校验通过后才落盘"
     ],
     "created_at": "2026-08-29T19:52:39+08:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T0404-0829-ontology-induction-aid",
     "scenario_type": "development",
     "completed_at": "2026-08-29T20:02:49+08:00",
@@ -30,7 +30,7 @@
   "slug": "0829-ontology-induction-aid",
   "states": {
     "act": "2026-08-29T20:06:04+08:00",
-    "archive": null,
+    "archive": "2026-08-29T20:06:45+08:00",
     "check": "2026-08-29T20:02:49+08:00",
     "created": "2026-08-29T19:52:39+08:00",
     "do": "2026-08-29T19:59:37+08:00",

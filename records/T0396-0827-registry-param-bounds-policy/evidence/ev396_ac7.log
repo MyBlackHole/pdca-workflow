@@ -1,0 +1,11 @@
+AC-7 部署侧确认项（延迟证据，不阻塞 confirmed）：
+- 生产 rdb.conf 的 INT 参数须在注册表 [min,max] 内：keepalive/fsdeamon.retry>=0；
+  retry(>=1)/parallel(>=1)/read_timeout(>=1) 须为正；越界将 fail-closed 拒绝启动
+  （与既有工具 *check_config 语义一致）。
+- dev_path/cert_dir 超长（>4095）将 FAIL_CLOSED 拒绝启动；缺失仍回落默认（/dev/fsbackup
+  或 DEFAULT_CERT_DIR），不再依赖调用方 snprintf 截断。
+- 回归核对：rpc_config_test(out_of_range_tunable_fail_closed)、rdb_config_test
+  (sec_get_int_range_fail_closed_real/sec_get_str_overlength_fail_closed_real) 及
+  fsdeamon_config_test 已确认 fail-closed 行为与缺失回落，无回归。
+发布前据此复核生产 rdb.conf，发现旧写法（如 keepalive=0 对 rpc 实际允许、retry=0 对
+fsdeamon 允许）先确认是否符合预期。

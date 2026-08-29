@@ -1,0 +1,19 @@
+===== rdb_param_test =====
+ok:   fsdaemon.check_data=1
+ok:   fsdaemon.debug=1
+ok:   fsdaemon.keepalive=45
+ok:   fsdaemon.retry=5
+ok:   fsclient.check_data=0
+ok:   fsclient.retry=7
+ok:   fsclient.keepalive=60
+ok:   fsclient.read_timeout=90000
+ok:   fsclient.parallel=4
+ok:   fsdaemon.check_data=2 -> fail-closed -1
+ok:   fsdaemon.keepalive default=30
+ok:   fsdaemon.retry default=3
+ok:   fsclient.parallel default=1
+ok:   fsclient.read_timeout default=120000
+ok:   FSDEAMON_KEEPALIVE env override=99
+
+ALL RDB PARAM REGISTRY TESTS PASSED
+exit=0

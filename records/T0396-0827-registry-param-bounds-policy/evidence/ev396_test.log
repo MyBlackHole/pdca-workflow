@@ -1,0 +1,9 @@
+
+=== 19 passed, 0 failed ===
+
+=== 9 passed, 0 failed ===
+Running bool_fail_closed... PASSED
+Running int_invalid_falls_back_to_default... 
+9 passed, 0 failed
+
+ALL FSDEAMON CONFIG TESTS PASSED

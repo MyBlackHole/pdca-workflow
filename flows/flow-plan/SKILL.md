@@ -35,6 +35,8 @@ description: 计划阶段执行流：triage、逐轮对齐、PRD、任务拆解�
 
 读取已有 `prd.md`、`design.md`、`implement.md`，补齐问题陈述、目标和可测验收标准。
 
+development/bugfix 任务须在此声明其领域本体片段：将构建/复用的本体目录或文件写入 `meta.ontology_fragment`；Do 前置 `ontology-ready` 关卡（`pdca-ontology-ready` 由 PDCA 元本体驱动）会校验其存在且 `pdca.asset/v1` 结构合法。构建 PDCA 元本体自身的自举任务设 `meta.ontology_exempt=true` 以豁免该关卡。
+
 ## P2. Grill、建模与方向确认
 
 加载 `$PDCA_HOME/skills/grilling/SKILL.md`，按 round 批量询问当前可答的所有用户决策问题，每问附推荐答案。同步执行 `$PDCA_HOME/skills/domain-modeling-work/SKILL.md`：

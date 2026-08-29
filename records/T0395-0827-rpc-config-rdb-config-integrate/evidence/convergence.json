@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "rpc 移除独立 do_parse_config+ini_parse+atoi 解析器，tunable 注册进 rdb config 参数注册表（单条 PARAM_RPC_*，layer2=[aio-speedd] 优先、回落 layer3=[aio-speed]），改经 sec_get_*（env>段>默认, fail-closed）读取；BOOL 截断规避、STR 回落默认；rpc_set_section_name 废弃为 no-op，与 T0394（fs-backup）及其它工具统一参数管理一致，无重复 atoi 解析器，嵌入方行为零回归。",
+      "criteria": ["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6","AC-7"],
+      "evidence_ids": ["ev-diff","ev-build","ev-test-rpc-config","ev-test-rpc-param","ev-test-regress"]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{"at":"2026-08-29T20:45:00+08:00","source":"task_identity","summary":"created with record identity T0406-0829-ontology-store-compare"}
+{"source":"grilling","summary":"交付物范围：报告 + 原型验证脚本（实际转 OWL/TTL 验证两套写法映射完整度与脆弱度）+ 选定方案下的 ONTOLOGY_GUIDE.md 草案","at":"2026-08-29T20:50:00+08:00"}
+{"source":"grilling","summary":"样本来源：用现有真实节点（pdca-* 元本体、x509-certificate、tls-configuration、若干 pattern/principle）做对照样本","at":"2026-08-29T20:50:00+08:00"}
+{"source":"grilling","summary":"结论处置：仅产出推荐结论，不修订 SSOT v3、不改现有代码/节点、不起草强制改动的 ADR","at":"2026-08-29T20:50:00+08:00"}
+{"source":"direction_confirm","summary":"用户 Continue 推进；方向据 grill 收敛：交付物=比较报告+原型转 OWL 脚本+ONTOLOGY_GUIDE 草案；样本=现有真实节点(pdca-*, x509-certificate, tls-configuration, pattern/principle)；结论=仅推荐、不动 SSOT v3、不改现有代码/节点","response":"Continue","at":"2026-08-29T20:52:00+08:00"}
+{"source":"final_confirmation","summary":"确认 PRD+拆解：规范梳理→样本标注→原型转 OWL 脚本→比较报告(≥5维度)+ONTOLOGY_GUIDE 草案(兼容吸收)→证据登记；不动 SSOT v3/现有代码节点","response":"confirmed","at":"2026-08-29T20:50:09+08:00"}
+{"source":"check_confirmation","summary":"Check 确认：T0406 调研比较完成，推荐兼容吸收方案，不动 SSOT v3/现有节点；证据收敛验证通过(valid:true)，verdict=confirmed","response":"confirmed","at":"2026-08-29T20:56:51+08:00"}

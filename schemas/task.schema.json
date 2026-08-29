@@ -120,6 +120,17 @@
         },
         "disposition": {
           "$ref": "#/$defs/disposition"
+        },
+        "ontology_fragment": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "本任务构建/引用的领域本体片段路径（相对仓库根），do 前置 ontology-ready 关卡校验其存在且结构合法"
+        },
+        "ontology_exempt": {
+          "type": "boolean",
+          "description": "本体自举任务豁免 ontology-ready（如创建 PDCA 元本体本身）"
         }
       }
     },
