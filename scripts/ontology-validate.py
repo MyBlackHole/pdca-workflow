@@ -9,6 +9,8 @@ Checks (mapped to SSOT v3 acceptance criteria):
   AC-4  attribute->test coverage: each attributes[].testable_signal non-empty
   AC-5  relation richness: each KnowledgeArtifact has guides/relates_to
   AC-6  guides domain/range: source is knowledge, target is domain/process
+  COMPOSED_OF_RANGE: composed_of 目标须为实体/概念实体类（README §5）
+  CONFIGURED_BY_RANGE: configured_by 目标须为 TLSConfiguration 节点（README §5）
   REDIRECT_DANGLING: knowledge/ redirect stubs (frontmatter redirect_to) point to existing ontology/ nodes (ADR-0030)
   schema: pdca.asset/v1 required fields / enum values
 
@@ -37,6 +39,8 @@ TYPE_VOCAB = {"domain", "entity", "concept", "process", "role",
               "pattern", "principle", "pitfall", "fact", "decision"}
 KNOWLEDGE_VOCAB = {"pattern", "principle", "pitfall", "fact", "decision"}
 DOMAIN_VOCAB = {"domain", "entity", "concept", "process", "role"}
+# README §5 声明 configured_by 的 range 唯一为 TLSConfiguration 节点
+TLS_CONFIG_ID = "ontology:entity/tls-configuration"
 LAYER_ENUM = ("Evidence", "Experience", "Knowledge", "Skill")
 STATUS_ENUM = ("active", "deprecated", "superseded")
 
@@ -133,6 +137,19 @@ def validate(ont_dir: Path):
             if ttype is not None and ttype not in DOMAIN_VOCAB:
                 issues.append({"path": str(path), "code": "GUIDES_RANGE",
                                "message": f"guides 目标 '{ref}' type='{ttype}' 非法（须为领域/过程类）"})
+
+    # 关系 range 形式化（README §5 声明，此前仅文档约束）
+    for path, _type_dir, fm in assets:
+        rels = fm.get("relations") or {}
+        for ref in (rels.get("composed_of") or []):
+            ttype = nodes_type.get(ref)
+            if ttype is not None and ttype not in ("entity", "concept"):
+                issues.append({"path": str(path), "code": "COMPOSED_OF_RANGE",
+                               "message": f"composed_of 目标 '{ref}' type='{ttype}' 非法（须为实体/概念实体类）"})
+        for ref in (rels.get("configured_by") or []):
+            if ref != TLS_CONFIG_ID:
+                issues.append({"path": str(path), "code": "CONFIGURED_BY_RANGE",
+                               "message": f"configured_by 目标 '{ref}' 非法（须为 TLSConfiguration 节点 {TLS_CONFIG_ID}）"})
 
     # AC-3 acyclic over relation graph
     graph = {}
