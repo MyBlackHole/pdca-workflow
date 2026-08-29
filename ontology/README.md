@@ -53,6 +53,7 @@ Entity (root)
 
 - **md 文件 = KnowledgeArtifact / DomainEntity / Process 的实例**，通过 `specializes` 指向上述类（实例 → 类）。绝不可把单篇实例当作类（Ontology 101 警告：single X 不是 all X 的子类）。
   - **类节点类型约定**：知识**类**节点（`Pattern`/`Principle`/`Pitfall`/`Fact`/`Decision`）存放于 `concept/` 目录、使用 `type: concept`，其 `id` 为 `ontology:pattern` 等；知识**实例**则按形态存放于 `pattern/`、`principle/` 等目录、使用对应 `type`，并 `specializes` 指向类节点。类节点刻意用 `concept` 类型，以豁免 AC-5（知识实例须有 `guides`/`relates_to`）对"类"本身的约束——类是概念而非知识实例。
+  - 知识形态（`knowledge_form`：pattern/principle/pitfall/fact/decision）不另设为独立属性，而由实例的 `type` 字段及其所在目录直接承载——`type` 即形态的一手事实来源，避免冗余字段与校验漂移（README §3 类型树中标注的 `knowledge_form=*` 仅为语义提示，非存储字段）。
 - 新增领域实体：加 `DomainEntity` / `Process` 子类（在 README §3 登记）；新增知识形态：加 `KnowledgeArtifact` 子类（开放但不失控）。
 - `specializes` 必须形成以 `Entity` 为根的有向无环树。
 
@@ -69,7 +70,7 @@ Entity (root)
 |------|------|---------------|---------------|
 | `specializes` | A specializes B ⇒ A 是 B 的特化（is-a） | 任意实体/实例 | 父类（Entity 谱系） |
 | `composed_of` | 整体由部分实体组合（真实部分-整体） | 整体实体 | 部分实体 |
-| `configured_by` | 实体由某配置参数化 | 实体 | TLSConfiguration 类 |
+| `configured_by` | 实体由某配置参数化 | 实体 | TLSConfiguration 节点（`ontology:entity/tls-configuration`） |
 | `guides` | 知识指导某类实体/过程 | KnowledgeArtifact 实例 | DomainEntity / Process 类 |
 | `relates_to` | 弱相关（跨文档关联，非 is-a 非组合） | 任意 | 任意 |
 | `instance_of` / `part_of` | 可选/派生 | — | 分别由 `specializes` / `composed_of` 反向派生，不强制存储 |
