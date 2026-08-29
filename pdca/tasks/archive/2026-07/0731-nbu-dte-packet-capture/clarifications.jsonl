@@ -1,3 +1,0 @@
-{"source":"direction_confirm","summary":"AC-4 不修改生产配置，用现有流量（控制面明文 vnet + 数据面 TLS）对比验证","response":"confirmed","at":"2026-07-31T10:06:00+08:00"}
-{"source":"final_confirmation","summary":"T0162 方案终审确认：抓包验证 NBU DTE 单端口协商机制，不改生产配置","response":"confirmed","at":"2026-07-31T10:07:00+08:00"}
-{"source":"knowledge_decision","at":"2026-07-31T11:10:00+08:00","action":"wrote","reason":"NBU 单端口协商机制（明文头+TLS升级+dte_mode字段+端口修正）为可复用知识，已写入 knowledge/nbu/nbu-dte-architecture.md"}

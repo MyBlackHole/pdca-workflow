@@ -1,4 +1,0 @@
-# 本仓库顶级文件夹（concept/ entity/ pattern/ principle/ pitfall/ process/ role/ domain/ fact/ decision/）仅作人类阅读索引。
-# 语义权威 = 各 .md 文件的 pdca.asset/v1 frontmatter + YAML relations 块（SSOT v3）。
-# 正文 [[wikilink]] 为派生视图，非关系来源；任何关系变更须先改 relations，再（可选）补正文链接。
-# 类型词汇、关系 range、校验规则以 ontology/README.md 为准。

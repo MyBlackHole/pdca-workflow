@@ -1,5 +1,0 @@
-{"source":"final_confirmation","summary":"父任务 T0135 终审覆盖本子任务：严格任务 schema、语义门禁、dry-run 清单和受保护历史清理","response":"confirmed","parent":"T0135","at":"2026-07-28T19:52:50+08:00"}
-{"source":"grill","summary":"自审确认关键路径包含伪确认、时间倒置、证据越界、待写入对象校验和不可恢复删除披露；限制是未来 schema 仍需新增反例","at":"2026-07-28T20:22:00+08:00"}
-{"source":"check_confirmation","summary":"父任务 T0135 的用户确认覆盖本子任务结论","response":"confirmed","parent":"T0135","at":"2026-07-28T20:25:05+08:00"}
-{"source":"grill","summary":"Act 自审确认 schema 与脚本是最直接的复用载体，重复知识会增加漂移","at":"2026-07-28T20:26:42+08:00"}
-{"source":"knowledge_decision","action":"skipped","reason":"可复用内容已进入实现与父任务方法论","at":"2026-07-28T20:26:42+08:00"}

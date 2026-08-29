@@ -1,6 +1,0 @@
-{"seq":1,"title":"充实 PDCA 元本体正文知识","addresses":["AC-1"],"detail":"为 phase-{plan,do,check,act,archive} 补定义/目的/进出条件/关键活动/对应 flow 文件；为 pdca-gate/pdca-gate-do/pdca-ontology-ready/pdca-verdict/pdca-evidence/pdca-acceptance-criterion/pdca-task 补理由/含义；不动 frontmatter 的 id/type/relations"}
-{"seq":2,"title":"新增 scripts/pdca-context.py","addresses":["AC-2"],"detail":"按 --phase 读取元本体，输出阶段定义+准入+合法后继+关联概念正文；复用 ontology_reason；元本体缺失回退"}
-{"seq":3,"title":"transition-phase 注入 pdca-context 打印","addresses":["AC-3"],"detail":"转换成功后打印 pdca-context --phase <to> 指引，不改门禁逻辑"}
-{"seq":4,"title":"flow SKILL 入口注入指令","addresses":["AC-4"],"detail":"flow-plan/do/check/act 入口增加运行 pdca-context --phase <x> 的指令"}
-{"seq":5,"title":"新增 tests/test_pdca_context.py","addresses":["AC-5"],"detail":"断言五 phase 输出非空且含阶段标识与关键正文片段、与 ontology_reason 一致；pytest 全绿"}
-{"seq":6,"title":"自检+指南同步","addresses":["AC-6"],"detail":"verify-document 通过；ONTOLOGY_GUIDE 增实时消费元本体章节（含补内容说明）"}

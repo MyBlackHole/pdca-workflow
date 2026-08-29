@@ -1,3 +1,0 @@
-Running small_buffer_safe... PASSED
-
-9 passed, 0 failed

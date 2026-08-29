@@ -1,4 +1,0 @@
-{"id":"source-anchors","file":"ac1-source-anchors.md","kind":"source-anchors","size":11594,"digest":"sha256:52c8e9bfba37738762bc61dd3c64d89d4532a3b2962d5382f6689db42a7da07c","at":"2026-08-03T19:12:54+08:00","criteria":["AC-1"]}
-{"id":"check-evidence","file":"t0206-check-evidence.md","kind":"check-evidence","size":4073,"digest":"sha256:b0631162e3153560a528cb7382ea33fb0d428f41fec7dd8ed47c579c38f04746","at":"2026-08-03T19:12:55+08:00","criteria":["AC-2","AC-3","AC-4","AC-5"]}
-{"id":"convergence-map","file":"t0206-convergence.json","kind":"convergence-map","size":244,"digest":"sha256:c7dcf96ab5caf0e7ede0fbd9b571fa1a9090f6d1ed0228bb960ffdf8cef8cd69","at":"2026-08-03T19:13:13+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
-{"id":"ac6-status","file":"t0206-ac6-status.md","kind":"check-evidence","size":826,"digest":"sha256:5a5f65379189d888f45470363d66d2b31bd7835db05e40762d8cdbf8709d7be6","at":"2026-08-03T19:13:50+08:00","criteria":["AC-6"]}

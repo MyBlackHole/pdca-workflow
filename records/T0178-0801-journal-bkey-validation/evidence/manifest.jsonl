@@ -1,4 +1,0 @@
-{"id":"source-alignment","file":"source-alignment.md","kind":"source-analysis","size":1200,"digest":"sha256:7758462dccba9b1817c8a1c9f1ac27fd2b09f8b80a30bdaab9ec8b32cc8a7633","at":"2026-08-01T23:56:41+08:00","criteria":["AC-1"]}
-{"id":"test-results","file":"test-results.md","kind":"test-report","size":858,"digest":"sha256:d943e2b7ddfe4ce4ad6be42c40c4eb8ca8d9e0442d13e6974919d611eeb01b96","at":"2026-08-01T23:56:41+08:00","criteria":["AC-2","AC-3","AC-4","AC-5"]}
-{"id":"review-report","file":"review-report.md","kind":"code-review","size":1189,"digest":"sha256:806f73ba315f3d87991fd4a47b1500327e428fa9d20f1b14cccb36854c8ebbf2","at":"2026-08-01T23:56:41+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":269,"digest":"sha256:4229d08c0bc2b06f4518ead56c68e909d45e1ea4ea3830b853a8d595a96ef8df","at":"2026-08-01T23:56:55+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}

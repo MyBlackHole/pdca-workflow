@@ -1,2 +1,0 @@
-control-plane: concurrency=32 runs=5 median_ms=52.301 p99_upper_ms=8.150
-control-plane: agent_threads=7 agent_rss_kib=6960

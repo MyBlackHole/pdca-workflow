@@ -1,8 +1,0 @@
-{"id": "evt-register-evidence", "file": "register-evidence.md", "kind": "skill-definition", "size": 450, "digest": "sha256:todo", "at": "2026-07-27"}
-{"id": "evt-advance-phase", "file": "advance-phase.md", "kind": "skill-definition", "size": 380, "digest": "sha256:todo", "at": "2026-07-27"}
-{"id": "evt-verify-convergence", "file": "verify-convergence.md", "kind": "skill-definition", "size": 400, "digest": "sha256:todo", "at": "2026-07-27"}
-{"id": "evt-write-conclusion", "file": "write-conclusion.md", "kind": "skill-definition", "size": 550, "digest": "sha256:todo", "at": "2026-07-27"}
-{"id": "evt-ask-matt", "file": "ask-matt.md", "kind": "skill-definition", "size": 650, "digest": "sha256:todo", "at": "2026-07-27"}
-{"id": "evt-flow-do", "file": "flow-do.md", "kind": "flow-definition", "size": 4100, "digest": "sha256:todo", "at": "2026-07-27"}
-{"id": "evt-flow-check", "file": "flow-check.md", "kind": "flow-definition", "size": 1700, "digest": "sha256:todo", "at": "2026-07-27"}
-{"id": "evt-flow-plan", "file": "flow-plan.md", "kind": "flow-definition", "size": 3100, "digest": "sha256:todo", "at": "2026-07-27"}

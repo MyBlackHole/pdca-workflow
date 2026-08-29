@@ -1,5 +1,0 @@
-{"id":"sc10-main","file":"main.c","kind":"code","size":7050,"digest":"sha256:aadb1b5cf3fe5e45d8f82e8a74456c6fe3c8fd37dc4437d79dd790ca5a9372f3","at":"2026-08-08T18:02:33+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
-{"id":"sc10-lib","file":"bwlimiter.c","kind":"code","size":3931,"digest":"sha256:8293c8441ec00d5db264d63c9eafd5547e5842e52c180c337ed9479da361fea9","at":"2026-08-08T18:02:33+08:00","criteria":["AC-1"]}
-{"id":"sc10-readme","file":"README.md","kind":"docs","size":3242,"digest":"sha256:3d88e1c27e61acc489ac7920ad19e8fc144cff915023675ab08d8b20088919cc","at":"2026-08-08T18:02:34+08:00","criteria":["AC-6"]}
-{"id":"sc10-maketest","file":"maketest.log","kind":"test","size":4760,"digest":"sha256:8bee8aa70c75efe9e5240368f1eb66dfcc76301ad7a8380c63cb07bdf341be4f","at":"2026-08-08T18:04:01+08:00","criteria":["AC-5"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":274,"digest":"sha256:fcbfa3804ff6a282dfe1ecb0eeaa0a0893d5c7b89e80067bc474a52a6b67cfec","at":"2026-08-08T18:05:01+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6"]}

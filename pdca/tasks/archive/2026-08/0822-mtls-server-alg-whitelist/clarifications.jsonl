@@ -1,5 +1,0 @@
-{"at":"2026-08-22T19:47:23+08:00","source":"task_identity","summary":"created with record identity T0357-0822-mtls-server-alg-whitelist"}
-{"source":"final_confirmation","summary":"终审批准：四模块服务端白名单 fail-closed（rpc 删回落补 0x8005 宏），libs 不动，sec_resolve_int 裁决无需修改；AC-1..4 确认，验证以 xmake test 全量为准","response":"confirmed","at":"2026-08-22T22:54:55+08:00"}
-{"source":"check_confirmation","summary":"四模块(rdbcomm/libobk/dmsbtex/rpc)服务端握手算法白名单校验全部完成，红→绿闭环，全量40用例PASS，B4双轴审查无blocking","response":"confirmed","at":"2026-08-23T00:02:01+08:00"}
-{"source":"knowledge_decision","at":"2026-08-22T16:04:02+00:00","action":"wrote","reason":"四模块落地范式可跨模块复用，补充 mtls-param-review-findings 陷阱1 的规则层"}
-{"source":"grilling","at":"2026-08-22T16:04:02+00:00","question":"全量回归测试 PASS 能否证明 AC-1 白名单生效？","answer":"不能；既有测试未构造畸形算法值帧，find_slot(NULL) 回落 bug 静默残留。必须显式构造畸形协商帧覆盖拒绝分支","decision":"回归测试模板固化畸形 halg(0/0xFFFF) 帧构造"}

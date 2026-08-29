@@ -1,3 +1,0 @@
-{"id": "E-0001", "file": "ac1-source-anchors.md", "kind": "anchor", "size": 5998, "digest": "sha256:fac85bba82b0395abadd099f163d0f3a82a67528143a7379e48db177c6bf04ce", "at": "2026-08-02T17:43:20+08:00", "criteria": ["AC-1"]}
-{"id": "E-0002", "file": "check-evidence.md", "kind": "verification", "size": 2721, "digest": "sha256:ec05d8ac640106eff65a3533cdeff50384a40a8a45d30e784c12042a3b660791", "at": "2026-08-02T17:43:20+08:00", "criteria": ["AC-2", "AC-3", "AC-4", "AC-5"]}
-{"id": "convergence-map", "kind": "convergence-map", "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5"], "at": "2026-08-02T17:44:00+08:00", "file": "convergence.json", "size": 323, "digest": "sha256:8b6e6937f1d399b09f9023131f049798bb89c8696f8e3b904fe1d69ec2a3a4d2"}

@@ -1,8 +1,0 @@
-== SM4-GCM 吞吐 (512 MB) ==
-  openssl  median 112.0 MB/s
-  gmssl    median 32.1 MB/s
-== SM2 操作耗时 (us) ==
-  openssl  sign+verify 1048 us
-  gmssl    sign+verify 2952 us
-  openssl  encrypt+decrypt 1229 us
-  gmssl    encrypt+decrypt 2824 us

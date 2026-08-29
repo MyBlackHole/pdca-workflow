@@ -1,4 +1,0 @@
-AC-1 rc=-11
-dmsbtex_session_test: dmsbtex/test/session_test.c:144: main: Assertion `rc == 0' failed.
-timeout: 被监视的命令已核心转储
-exit:134 (存量 AC-1 rc=-11 已知)

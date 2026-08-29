@@ -1,4 +1,0 @@
-{"id":"enhanced-skill","file":"SKILL.md","kind":"implementation","size":4890,"digest":"sha256:f221ba120ac1ed7c705631d0f17a62239a588ee257ddcdd134fddaeb3b12e57d","at":"2026-08-09T19:36:16+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
-{"id":"contract-tests","file":"test_writing_for_agents_levers.py","kind":"test","size":3217,"digest":"sha256:880cb45fe425e45f518038d853ee8b7ed785279fd41281b4d098009fbec69bfc","at":"2026-08-09T19:36:16+08:00","criteria":["AC-5","AC-6"]}
-{"id":"baseline-exemption","file":"skill-content-baseline.json","kind":"implementation","size":5520,"digest":"sha256:9051d2abfc67f2f8e6bb5b631787b36eb7a753fbffc70d03c48504e8b6e3b69c","at":"2026-08-09T19:36:16+08:00","criteria":["AC-6"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":377,"digest":"sha256:1dfd4b932e061eb96deddd1cf754ffddb5817300163aeccd732ba88f9ba7165f","at":"2026-08-09T19:36:40+08:00","criteria":["CC-1"]}

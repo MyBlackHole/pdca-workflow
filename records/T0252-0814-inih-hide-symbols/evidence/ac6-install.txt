@@ -1,4 +1,0 @@
---- install -D -o install 产物 ---
-/home/black/Public/aio/aio-tools/6200/F/139/install/xbsa/x86_64/libxbsa64.so.1.1.1.7
-/home/black/Public/aio/aio-tools/6200/F/139/install/xbsa/x86_64/libxbsa64.so.1
-PASS: 安装产物无 inih 符号

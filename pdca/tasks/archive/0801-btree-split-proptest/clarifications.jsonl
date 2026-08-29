@@ -1,7 +1,0 @@
-{"source":"triage","summary":"候选：T0174 分裂压力测试（首选，分裂路径零触发已验证）/interior 对齐/seq 环回/CI","response":"chose_T0174","at":"2026-08-01T18:07:14+08:00"}
-{"source":"direction_confirm","summary":"方案：键空间 24576、ops 1500..=3000、crash_every 500..=1500，复用 assert_model 断言","response":"confirmed","at":"2026-08-01T18:07:14+08:00"}
-{"source":"final_confirmation","summary":"PRD 终审通过：split_stress_preserves_model，AC-1 深度≥2，AC-2/3 恢复模型一致，AC-4 全量回归，AC-5 8 轮≤60s；纯测试不改引擎","response":"confirmed","at":"2026-08-01T18:07:14+08:00"}
-{"source":"check_confirmation","summary":"check 阶段确认：convergence valid=true，AC 全达标，evidence 已登记","response":"confirmed","at":"2026-08-01T20:08:19+08:00"}
-{"source":"grilling","summary":"分裂触发是否仅靠容量算术（无概率断言）是否足够？","answer":"足够：4KB 节点上限 ~118 键由 max_u64s≈470/最小键 4 u64s 算术保证，2000 键超上界 10 倍，必然 17+ leaf split + root 分裂；AC-1 由容量必然性满足，无统计风险","recommended":"容量算术保证，不引入概率断言","at":"2026-08-01T20:10:00+08:00"}
-{"source":"grilling","summary":"split_stress 单 case 60-100s 逼近约束 9 一分钟上限，如何处置？","answer":"上限为防死锁哨兵，实测通过时长证明无死锁；AC-5 以多轮 10/10 全绿达成，超大 ops（1000..=2000 组）+ crash_every 300..=800 恢复 ≤7 次是主要耗时源","recommended":"接受当前规模，AC-5 以多轮稳定口径记录","at":"2026-08-01T20:10:00+08:00"}
-{"source":"knowledge_decision","summary":"T0174/T0175 知识沉淀","answer":"wrote","recommended":"knowledge/core/btree-split-proptest-enomem-restart-pattern.md","at":"2026-08-01T20:10:00+08:00"}

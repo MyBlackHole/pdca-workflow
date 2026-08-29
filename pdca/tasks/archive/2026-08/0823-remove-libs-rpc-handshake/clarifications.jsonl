@@ -1,8 +1,0 @@
-{"at": "2026-08-22T12:16:00+08:00", "source": "task_identity", "summary": "created with record identity T0351-0823-remove-libs-rpc-handshake"}
-{"source":"direction_confirm","summary":"方向确认：移动而非重写，三项目各自内部实现，行为零变化，rpc 不动","response":"confirmed","at":"2026-08-22T12:18:29+08:00"}
-{"source":"final_confirmation","summary":"终审批准：A/B/C/D 四切片迁移 + 删除，5 AC 以现有测试套件为回归基线","response":"confirmed","at":"2026-08-22T12:18:29+08:00"}
-{"source":"grilling","round":2,"q":"三项目内部握手实现的符号命名策略？","a":"项目前缀：rpc_hs_*→rdb_hs_*/dm_hs_*/obk_hs_*，宏同步","at":"2026-08-22T12:35:00+08:00"}
-{"source":"grilling","round":2,"q":"RPC_HS_* 大写宏与 include guard 是否同步改名？","a":"彻底改：宏、枚举值、guard 全部项目化","at":"2026-08-22T12:35:00+08:00"}
-{"source":"grilling","round":2,"q":"libs/timed_net_key→rpc_get_time→握手库断链处置？","a":"不需要处理，time 是对接 rpc 项目的；libs/rpc-net.c 开发 rpc time 协议客户端供其使用（TIME 帧已内联）","at":"2026-08-22T12:35:00+08:00"}
-{"source":"grilling","round":3,"q":"实现形态如何对标 rpc 项目？","a":"学习 rpc 实现方式：项目自有会话类型+握手函数集中于项目内部模块+按需最小实现（rpc 仅实现自身所需的客户端协商/服务端分流，无全量库搬运）；libs/rpc-net.c 定位为 rpc time 协议客户端","at":"2026-08-22T12:40:00+08:00"}
-{"source":"check_confirmation","summary":"Check confirmed: 三项目迁移等价（存量失败 stash 对照甄别），libs 握手归零","response":"confirmed","at":"2026-08-22T12:45:23+08:00"}

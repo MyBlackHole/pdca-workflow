@@ -1,3 +1,0 @@
-{"file":"knowledge/rpc-rdbcomm/mtls-review-fd-session-boundary.md","reason":"历史 mTLS 审查的检查框架：首阶段三场景、transport I/O 绑定、SSL cleanup 覆盖面，直接构成本次审查维度","action":"read","at":"2026-08-22T17:06:00+08:00"}
-{"file":"knowledge/rpc-rdbcomm/unified-first-stage-mtls-time.md","reason":"统一第一阶段协议契约（TIME/NEGOTIATE/ca_cn 证书选择/不降级），是判定各模块协商逻辑一致性的基准语义","action":"read","at":"2026-08-22T17:06:00+08:00"}
-{"file":"knowledge/tls/structured-mtls-failure-diagnostics.md","reason":"mTLS 失败日志应含 role/stage/算法/凭据路径——审查错误码与日志维度时的评判标准","action":"read","at":"2026-08-22T17:06:00+08:00"}

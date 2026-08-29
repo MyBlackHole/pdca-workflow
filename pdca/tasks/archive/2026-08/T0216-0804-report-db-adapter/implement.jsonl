@@ -1,9 +1,0 @@
-{"file":"/home/black/Downloads/aio-cdm/cdm-report-center-final-technical-solution.md","reason":"主方案契约源（§3.4/§3.5/§7）：协议接口、分区主键、快照对账、任务幂等","action":"read","at":"2026-08-05T11:30:00+08:00"}
-{"file":"/home/black/Downloads/report-center/migrations/postgresql/V001__init.up.sql","reason":"创建一期 Schema：补 dwd_task_run 分区父表主键 (task_time,backup_domain_id,task_run_key)，rpt_schema_migration IF NOT EXISTS + 索引","action":"write","at":"2026-08-05T11:30:00+08:00"}
-{"file":"/home/black/Downloads/report-center/migrations/postgresql/V001__init.down.sql","reason":"回滚保留 rpt_schema_migration（rollback 后仍写 DOWN 审计）","action":"write","at":"2026-08-05T11:30:00+08:00"}
-{"file":"/home/black/Downloads/report-center/report_center_db/postgres/migrations.py","reason":"applied_versions 容忍审计表缺失（空库首次迁移）；rollback 成功作废对应 UP/SUCCESS 记录","action":"write","at":"2026-08-05T11:30:00+08:00"}
-{"file":"/home/black/Downloads/report-center/report_center_db/postgres/write.py","reason":"_seal_batch 统一批次号填充 last_seen_batch_id；_dim_rows 从 attribute 提取非公共列（dim_host.data_source_key）","action":"write","at":"2026-08-05T11:30:00+08:00"}
-{"file":"/home/black/Downloads/report-center/report_center_db/postgres/read.py","reason":"QuerySpec 逻辑字段映射到物理列；_row_to_dimension 按表取物理主键映射 entity_key","action":"write","at":"2026-08-05T11:30:00+08:00"}
-{"file":"/home/black/Downloads/report-center/report_center_db/postgres/jobstore.py","reason":"DSN 前缀转 postgresql+psycopg 驱动（避免 psycopg2 依赖）","action":"write","at":"2026-08-05T11:30:00+08:00"}
-{"file":"/home/black/Downloads/report-center/tests/conftest.py","reason":"session 级自动迁移 + 清理测试分区（保留基线）+ rpt_backup_domain TRUNCATE","action":"write","at":"2026-08-05T11:30:00+08:00"}
-{"file":"/home/black/Downloads/report-center/tests/","reason":"62 契约测试全绿（PG18.4 实测），black/isort 格式化 + compileall 通过","action":"verify","at":"2026-08-05T11:30:00+08:00"}

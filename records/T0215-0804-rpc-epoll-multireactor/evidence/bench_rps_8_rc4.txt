@@ -1,1 +1,0 @@
-[bench] rps clients=8 rounds=3000 reactor_count=4: 94044 req/s aggregate (client-agg=109097 req/s, failed=0)

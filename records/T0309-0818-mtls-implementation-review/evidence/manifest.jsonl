@@ -1,3 +1,0 @@
-{"id":"review-report","file":"review-report.md","kind":"review-report","size":8419,"digest":"sha256:b2ea3fbaad8efd52395137463ad3aa4a251d23dfc49aaeaabf9d716efb245bfa","at":"2026-08-18T14:10:55+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6","AC-7"]}
-{"id":"verification-snapshot","file":"verification.txt","kind":"test-result","size":1156,"digest":"sha256:5ed5d823005d9d15e6a140aa559778b73e96a5b31518a0686bd0bf83a971d0e8","at":"2026-08-18T14:10:55+08:00","criteria":["AC-8","AC-1","AC-3"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":209,"digest":"sha256:43f4bff1074c3f3a1bd71e691e1ca221ee0b10f2833d3754edc0d58c7c4ef0cd","at":"2026-08-18T14:11:08+08:00","criteria":["AC-1"]}

@@ -1,6 +1,0 @@
-# AC-1/AC-10: rpc-server 启动改道 rpc-epoll，旧 thread-per-conn 0 残留
-60:	ret = create_thread(RpcEpollThread, this);
-70:void *RpcService::RpcEpollThread(void *arg)
-98:	rpc_epoll_start(ep, g_rpc_config->rpc_port, rpc_epoll_conn_handler,
---- residue check ---
-0

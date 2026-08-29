@@ -1,4 +1,0 @@
-{"at":"2026-08-18T14:50:30+08:00","source":"task_identity","summary":"created with record identity T0312-0818-rpc-rdbcomm-real-mtls-matrix-followup"}
-{"source":"final_confirmation","summary":"确认执行真实 RPC/rdbcomm mTLS、CA-CN 证书选择、算法失败、TIME-only 和 xmake test 矩阵，沿用现有客户端参数，不兼容旧协议。","response":"confirmed","at":"2026-08-18T14:53:15+08:00"}
-{"source":"check_confirmation","summary":"AC-1、AC-3、AC-4、AC-5 已完成；AC-2 的 SM2 真实 rdbcomm 应用帧仍未闭环。","response":"partial","at":"2026-08-18T15:12:17+08:00"}
-{"source":"direction_confirm","summary":"创建跟进任务 T0313，处理 SM2 rdbcomm 真实应用帧失败；当前成果按 task_only 处置。","response":"partial","at":"2026-08-18T15:13:25+08:00"}

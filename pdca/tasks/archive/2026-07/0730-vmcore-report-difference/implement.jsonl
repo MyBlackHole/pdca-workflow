@@ -1,2 +1,0 @@
-{"file":"knowledge/kernel-debugging/device-mapper-blk-mq-uaf-vmcore-method.md","reason":"本任务需要用统一的反汇编、DWARF、对象身份、table 生命周期和外部触发门槛裁定两份 device-mapper UAF 报告。","action":"Do 阶段按该方法构造主张—证据矩阵，严格区分已证实事实、高置信推断和开放分支。","at":"2026-07-30T10:10:11+08:00"}
-{"file":"knowledge/pdca-flow/external-evidence-collection.md","reason":"两份报告和报告 A 原始 JSON 会话位于 PDCA_HOME 外，且会话包含不应复制到分析正文的认证信息。","action":"Do 阶段保留原件，仅将去敏摘要或必要证据副本放入中央任务/record 安全路径后登记；产物不得复制认证内容。","at":"2026-07-30T10:10:11+08:00"}

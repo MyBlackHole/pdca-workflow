@@ -1,6 +1,0 @@
-{"at":"2026-08-26T23:19:49+08:00","source":"task_identity","summary":"created with record identity T0393-0826-dmsbtex-mtls-handshake-enforce"}
-{"source":"final_confirmation","summary":"用户确认单开 F4 为 T0393 bugfix：dm_server_handshake 显式按 mtls_enabled 强制 mTLS，PRD 三 AC 与区分性回归用例获准执行","response":"confirmed","at":"2026-08-26T23:22:27+08:00"}
-{"source": "check_confirmation", "summary": "Check 结论确认：F4 修复（dm_server_handshake 显式按 mtls_enabled 强制）实现并验证；3 条 AC 全过（xmake 构建通过、dmsbtex_session_test ALL PASS 含区分性用例、既有用例无回归）；覆盖性确认 dmsbtex 与 rpc/rdbcomm/libobk 握手层强制一致。", "response": "confirmed", "at": "2026-08-26T23:27:34+08:00"}
-{"source": "grill", "at": "2026-08-26T23:28:40+08:00", "response": "scope", "summary": "Grill: F4 适用边界=dmsbtex 服务端握手入口强制判定；可复用洞察=修复须保留 main.c:271 纵深防御而非删改；区分性回归用例（mtls=0+ctx 已构建→必拒）是验证‘显式 mtls_enabled 检查’的有效手段"}
-{"source": "knowledge_decision", "at": "2026-08-26T23:28:40+08:00", "action": "wrote", "reason": "F4 修复纳入 audit-findings.md，补强 mTLS 一致性契约"}
-{"source": "correction", "at": "2026-08-26T23:36:54+08:00", "task": "T0393", "summary": "verdict overturn: F4 误报；mtls_enabled=0=不强制(可选)，原握手按能力判定正确，T0393 修复撤销，代码 revert b79b3b0→204f048"}

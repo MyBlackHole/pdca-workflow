@@ -1,3 +1,0 @@
-{"id":"report-full","file":"report.md","kind":"research-report","size":28810,"digest":"sha256:c01a68373d4db853d1d6f42c246c14333bbaaaa844e935ab35872da3e7fe3916","at":"2026-08-23T16:11:10+08:00","criteria":["AC-1"],"superseded_by":"report-all"}
-{"id":"report-all","file":"report-all.md","kind":"research-report","size":28810,"digest":"sha256:c01a68373d4db853d1d6f42c246c14333bbaaaa844e935ab35872da3e7fe3916","at":"2026-08-23T16:17:34+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":1608,"digest":"sha256:7ddf83112d5e2566eca36158c9c993c31a3f4d3a2329053834ad71dcd58e91dd","at":"2026-08-23T16:22:43+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}

@@ -1,2 +1,0 @@
-{"file": "knowledge/pdca-flow/external-evidence-collection.md", "reason": "bcachefs 外部研究产物归档路径与证据收集方法，指导本任务如何引用 bcachefs-tools 作为外部对照基准", "action": "阅读，确认外部证据收集与登记方式", "at": "2026-08-01T08:34:00+08:00"}
-{"file": "knowledge/pdca-flow/runtime-transition-coordinator.md", "reason": "运行时任务编排，本任务无跨进程依赖，仅作流程参考", "action": "略读", "at": "2026-08-01T08:34:00+08:00"}

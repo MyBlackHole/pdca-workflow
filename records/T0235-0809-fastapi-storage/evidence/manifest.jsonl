@@ -1,2 +1,0 @@
-{"id":"storage-impl/AC-1","file":"storage.py","kind":"implementation","size":2291,"digest":"sha256:55a471f47c664b9834a7ab4e3162ea8f30844a07f5f3a0b988073d30b497f3de","at":"2026-08-09T13:08:15+08:00","criteria":["storage.py 定义 Todo ORM 模型"]}
-{"id":"storage-tests/AC-2","file":"test_storage.py","kind":"test","size":2044,"digest":"sha256:a536b283a505caa9186ea8e69e452895cf28328584954e917021c632d0f636d1","at":"2026-08-09T13:08:15+08:00","criteria":["tests/test_storage.py 6 测试通过"]}

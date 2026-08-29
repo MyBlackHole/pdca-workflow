@@ -1,4 +1,0 @@
-{"id":"review-report","file":"review-report.md","kind":"review-report","size":6989,"digest":"sha256:7f739070abde774af695e11da544869742ac2597860ee8944a6262e2c95329e2","at":"2026-08-23T17:48:24+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":1104,"digest":"sha256:0bd49919fd87a6577d8424b4ddcc1be4ba614a87bc9b796efd738c8e94fec8fa","at":"2026-08-23T17:48:25+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}
-{"id":"scan-data","file":"scan-summary-reg.json","kind":"scan-output","size":0,"digest":"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","at":"2026-08-23T17:48:42+08:00","criteria":["AC-1"],"superseded_by":"scan-data-v2"}
-{"id":"scan-data-v2","file":"scan-summary-reg2.json","kind":"scan-output","size":536,"digest":"sha256:067873830b181ba0a52617d69d13b7b5b239bf589d852b55cb95c85a9e499eb8","at":"2026-08-23T17:49:38+08:00","criteria":["AC-1"]}

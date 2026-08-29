@@ -1,8 +1,0 @@
-{
-  "schema": "pdca.gate-rejection/v1",
-  "task_id": "T0346",
-  "from": "do",
-  "to": "act",
-  "error": "NON_ADJACENT_TRANSITION",
-  "at": "2026-08-22T11:09:19.943577+08:00"
-}

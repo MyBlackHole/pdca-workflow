@@ -1,4 +1,0 @@
-{"at":"2026-08-22T10:20:00+08:00","source":"task_identity","summary":"created with record identity T0346-0822-rpc-hs-err-exit-code"}
-{"source":"direction_confirm","summary":"方向确认：client recv 后校验 uiMT==MT_HANDSHAKE_RESP 即失败，防御性帧校验","response":"confirmed","at":"2026-08-22T10:21:33+08:00"}
-{"source":"final_confirmation","summary":"终审批准：3 AC，client 帧类型校验 + AC-5 语义化退出码","response":"confirmed","at":"2026-08-22T10:21:33+08:00"}
-{"source":"check_confirmation","summary":"Check confirmed: 4 AC PASS, exit 252 + server rejected log, certs cleaned","response":"confirmed","at":"2026-08-22T11:08:57+08:00"}

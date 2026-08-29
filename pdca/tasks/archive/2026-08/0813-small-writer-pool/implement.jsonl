@@ -1,2 +1,0 @@
-{"file":"knowledge/benchmark/paired-comparison-noise.md","reason":"小文件落盘基准运行在共享主机，单次耗时方差可能掩盖 worker 数差异；直接约束交替配对、至少四对、均值与 min/max 报告方式。","action":"注入 PRD benchmark 验收与 Do 阶段测量脚本设计","at":"2026-08-13T21:08:00+08:00"}
-{"file":"knowledge/pdca-flow/real-project-mechanism-validation.md","reason":"真实工程验证表明 seam 契约能守护测试文件与被测模块一致性；本任务 development 场景需要在 P3.5 固化 seam 并在 P6 复核。","action":"注入 PRD seam 分析和 Plan 门禁检查","at":"2026-08-13T21:08:00+08:00"}

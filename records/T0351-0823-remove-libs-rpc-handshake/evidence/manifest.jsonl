@@ -1,7 +1,0 @@
-{"id":"libobk-test","file":"libobk.log","kind":"test","size":7,"digest":"sha256:4bef30cdfc89fa687fcb49b5e4c26c6c375903005d1ff63fe05b9d4b7265b8b4","at":"2026-08-22T12:43:22+08:00","criteria":["AC-3"]}
-{"id":"static-scan","file":"static.log","kind":"scan","size":187,"digest":"sha256:eb7752ebf6b2c3342fc8a2528a5747b088fc25263673e1f84f231f5c6dde1a25","at":"2026-08-22T12:43:22+08:00","criteria":["AC-4"]}
-{"id":"mixed-regression","file":"mixed.log","kind":"test","size":5108,"digest":"sha256:a7dc5d07fe1d66578b24f5ca360847ecbdc7fb5cc379dc59d9263c10682934b9","at":"2026-08-22T12:43:22+08:00","criteria":["AC-5"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":274,"digest":"sha256:907d6b21dc7176a40980d3f5fcfe600d9912f0af2d00875ab96c296b955692b3","at":"2026-08-22T12:43:42+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"],"superseded_by":"convergence-map-v2"}
-{"id":"rdbcomm-test","file":"rdbcomm_test.log","kind":"test","size":3225,"digest":"sha256:002aaf62ca5a75bd2b8b222ae6f2e527d71628deff3e6204f6af1c1b1101a58f","at":"2026-08-22T12:44:24+08:00","criteria":["AC-1"]}
-{"id":"dmsbtex-test","file":"dmsbtex_test.log","kind":"test","size":181,"digest":"sha256:377a9f0235cfc1e6959e4c98ad96b31e7361e7061c485b5f6f442a38b19de5c6","at":"2026-08-22T12:44:24+08:00","criteria":["AC-2"]}
-{"id":"convergence-map-v2","file":"convergence_v2.json","kind":"convergence-map","size":402,"digest":"sha256:745bd70a9717cb7318b7b5977a2ad27ef65e2c7aa6ff455e7cdfbf4486c5927f","at":"2026-08-22T12:44:53+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}

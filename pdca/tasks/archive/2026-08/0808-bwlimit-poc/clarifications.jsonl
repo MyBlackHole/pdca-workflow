@@ -1,3 +1,0 @@
-{"source":"final_confirmation","summary":"批准场景10限流/带宽控制规划：动态窗口限流+令牌桶，验收 AC-1~AC-6","response":"confirmed","at":"2026-08-08T17:44:12+08:00"}
-{"source":"check_confirmation","summary":"场景10限流/带宽控制结论确认：令牌桶精度<0.1%优于动态窗口~3%，并发不超上限，公平性~0.8，make test PASS 10/10","response":"confirmed","at":"2026-08-08T18:06:00+08:00"}
-{"source": "knowledge_decision", "at": "2026-08-08T18:07:00+08:00", "action": "wrote", "reason": "备份限流算法选型结论可复用：令牌桶精度<0.1% vs 动态窗口~3%，并发公平性~0.8 的量化依据，供产品 bwlimit 评估与后续网络节流实现"}

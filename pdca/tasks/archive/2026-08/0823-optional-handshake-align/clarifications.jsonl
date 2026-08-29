@@ -1,7 +1,0 @@
-{"at":"2026-08-22T15:48:08+08:00","source":"task_identity","summary":"created with record identity T0354-0823-optional-handshake-align"}
-{"source":"triage","summary":"三项目无条件握手 vs rpc 按需握手差异实锤：rdbcomm client.c:166/dmsbtex sbt.c:258+main.c:214/libobk libobk.c:352+oracleCmdTbl.c:797 均无条件进入协商或首阶段等待","at":"2026-08-22T15:55:00+08:00"}
-{"source":"triage","q":"方案选择：Y 条件跳过 vs Z 握手内嵌消息循环？","a":"Y：明文零握手+mTLS 路径字节不变；Z 需重定义握手承载格式（改线上协议字节）违背既有约束","at":"2026-08-22T15:56:00+08:00"}
-{"source":"final_confirmation","summary":"T0354 v2 终审批准：方案 Z' 握手内嵌消息循环+无降级；协商帧改项目帧头封装；行为矩阵六象限对齐 rpc；明文零握手；AIOH 裸帧废弃","response":"confirmed","at":"2026-08-22T15:59:34+08:00"}
-{"source":"check_confirmation","summary":"Check verdict confirmed: 5/5 AC PASS + xmake test 40/40；六象限行为矩阵落地，AIOH 裸帧废弃","response":"confirmed","at":"2026-08-22T16:53:40+08:00"}
-{"source":"grilling","q":"可复用知识？","a":"按需握手语义矩阵(强制/按需/无降级)与项目帧封装模式；跨项目行为对齐时的决策树复刻法","at":"2026-08-22T16:55:00+08:00"}
-{"source":"knowledge_decision","at":"2026-08-22T16:55:30+08:00","action":"wrote","reason":"按需握手六象限决策树为可复用协议设计知识，并入 tls/link-level-mtls-test-pattern.md"}

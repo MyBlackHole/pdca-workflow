@@ -1,2 +1,0 @@
-{"file": "knowledge/data-formats/backup-tools-serialization-practice.md", "reason": "备份程序序列化/字节序工业实践（PBS/restic 均小端+重校验），决定本次不引入框架、切小端", "action": "apply"}
-{"file": "knowledge/debugging/c-buffer-api-size_t-frame-validation.md", "reason": "字段级再校验原则 + 先校验后分配，指导 ntoh 校验实现", "action": "apply"}

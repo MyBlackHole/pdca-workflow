@@ -1,4 +1,0 @@
-{"id":"wc-after","file":"wc-after-reg.md","kind":"doc-snapshot","size":1478,"digest":"sha256:3a4ec8e261d20ba72893a5ad855cda458949c069604aba6879156e485721f092","at":"2026-08-23T18:16:42+08:00","criteria":["AC-1","AC-2"]}
-{"id":"self-check","file":"self-check-reg.txt","kind":"test-output","size":280,"digest":"sha256:f9c5a57fe6ae87262a68c67b3c1a16ce630dd11e337acc561f719c6119d50fe1","at":"2026-08-23T18:16:42+08:00","criteria":["AC-3"]}
-{"id":"baseline-after","file":"baseline-after.json","kind":"config-snapshot","size":7099,"digest":"sha256:fb4ef5794485e8955bf0a1515f13115bbb40af39e100b65c14f42495f19844fb","at":"2026-08-23T18:16:42+08:00","criteria":["AC-4"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":861,"digest":"sha256:4a743af1d1c40c826d1bcacd9071b0ff637e30ffa65dd6799c0711689f64f08e","at":"2026-08-23T18:16:42+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}

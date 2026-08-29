@@ -1,8 +1,0 @@
-{"at":"2026-08-15T02:30:09+00:00","source":"task_identity","summary":"created with record identity T0273-0815-scenario-boundary-rule"}
-{"source": "grilling", "question": "场景归属边界判定的落地载体选哪种？", "answer": "独立检查脚本 + 校验器接入", "at": "2026-08-15T02:35:00+00:00"}
-{"source": "grilling", "question": "边界判定规则采用哪种判定标准？", "answer": "可测试代码产出→development；纯结论性调研→research", "at": "2026-08-15T02:35:00+00:00"}
-{"source": "grilling", "question": "历史错配任务（T0268-T0272）如何处理？", "answer": "不改历史，仅作为回归夹具验证判定脚本输出", "at": "2026-08-15T02:35:00+00:00"}
-{"source":"direction_confirm","summary":"边界判定规则：新增独立检查脚本+校验器接入；标准=可测试代码产出→development/纯结论→research；历史错配仅作回归夹具不改","response":"confirmed","at":"2026-08-15T10:32:03+08:00"}
-{"source":"final_confirmation","summary":"用户批准 T0273 完整方案：新增 scenario-boundary-check.py 机械判定场景归属（可测试代码产出→development，纯结论→research），接入测试套件校验器，历史错配 T0268-T0272 仅作回归夹具不改，AC-1~6","response":"confirmed","at":"2026-08-15T10:33:33+08:00"}
-{"source":"check_confirmation","summary":"用户确认 T0273 检查结论：6/6 AC Passed，新增判定脚本+7测试，全量 272/4 无新增回归，额外发现 T0163 同边界问题","response":"confirmed","at":"2026-08-15T10:51:42+08:00"}
-{"source": "knowledge_decision", "at": "2026-08-15T02:55:05Z", "action": "wrote", "reason": "判定规则沉淀可复用"}

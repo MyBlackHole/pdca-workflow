@@ -1,3 +1,0 @@
-{"file":"knowledge/core/discard-boundary-guards.md","reason":"open/rw_devs 内存态建模、守卫错误码分层（-16/-11/-1）与检查顺序直接复用：AC-4 拒绝-16 沿用同码；AC-3 rw_devs 建模模式为本任务初始化推导的起点","action":"沿用","at":"2026-08-02T10:11:00+08:00"}
-{"file":"knowledge/core/discard-worker-fifo-fairness.md","reason":"影子状态机属性测试模式复用：AC-5 需在模型中加入 open 未配对随 drop 丢失的检查","action":"沿用","at":"2026-08-02T10:11:00+08:00"}
-{"file":"knowledge/core/physical-pointer-derived-state-recovery-boundary.md","reason":"T0189 属性测试 restart 重建模式的延续，AC-5 重启路径沿用","action":"参考","at":"2026-08-02T10:11:00+08:00"}

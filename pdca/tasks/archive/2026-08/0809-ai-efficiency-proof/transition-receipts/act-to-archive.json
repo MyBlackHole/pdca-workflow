@@ -1,9 +1,0 @@
-{
-  "schema": "pdca.transition/v1",
-  "task_id": "T0230",
-  "from": "act",
-  "to": "archive",
-  "before_digest": "sha256:064e7a98da7ff8b16ca3cdde87f129eb55b5380f2054c6d2d4e7c3becd4b4328",
-  "after_digest": "sha256:cbc93e4110e85ab8d0f055d60b83104712452ed32fb37238fa3166337e0c25b0",
-  "at": "2026-08-09T10:11:09+08:00"
-}

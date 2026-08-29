@@ -1,9 +1,0 @@
-{"source":"triage","summary":"分类为 research；与 T0135 不重复；建议以五个代表性项目做官方证据矩阵，不做无统一条件的模型性能排行榜","at":"2026-07-28T20:32:59+08:00"}
-{"round":1,"question":"是否固定 LangGraph、AutoGen、CrewAI、OpenAI Agents SDK、GitHub Agentic Workflows 五项目，并限制为架构/流程证据比较而不做无统一条件的模型跑分？","answer":"可以","recommended":"固定五个具有不同编排范式的项目，以官方资料和本地实测分层比较，避免虚假性能排名","source":"grilling","at":"2026-07-28T20:35:13+08:00"}
-{"source":"direction_confirm","summary":"确认五项目固定样本、官方一手证据矩阵、本地可执行审计及不做无统一条件模型跑分的调研方向","response":"confirmed","at":"2026-07-28T20:35:13+08:00"}
-{"source":"final_confirmation","summary":"批准 T0140 完整方案：五项目官方证据矩阵、七维比较、本地实测、证据分级和建议价值淘汰；不做付费模型跑分或实现改动","response":"confirmed","at":"2026-07-28T20:37:00+08:00"}
-{"source":"grill","summary":"Check 自审确认官方资料只证明机制存在、五项目样本不完整、矩阵状态含架构判断且无真实模型性能数据；所有限制已写入报告和结论","at":"2026-07-28T20:44:00+08:00"}
-{"source":"check_revision","summary":"用户质疑是否没有提升空间；修正过度保守结论，补充无需 runner 即可验证的 convergence 自动门禁与 research 来源链门禁","at":"2026-07-28T20:46:00+08:00"}
-{"source":"check_confirmation","summary":"用户确认修订结论：PDCA 有提升空间，优先三个确定性改进，运行时机制条件采用","response":"confirmed","at":"2026-07-28T20:52:31+08:00"}
-{"round":2,"question":"是否只沉淀“PDCA 治理层与 Agent 运行时分层，并以 GQM、正反例和淘汰条件决定采用”的可复用原则，不沉淀易过时的项目功能表？","answer":"可以","recommended":"合并到现有 AI 友好度方法论，避免重复知识和版本性事实污染长期上下文","source":"grilling","at":"2026-07-28T20:54:05+08:00"}
-{"source":"knowledge_decision","action":"wrote","reason":"治理层与运行时分层及按可证伪收益决定采用可跨研究、开发和审查任务复用；合并现有方法论避免重复资产","at":"2026-07-28T20:54:05+08:00"}

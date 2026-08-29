@@ -1,3 +1,0 @@
-{"id":"EVID-CODE-REVIEW","file":"code-review.md","kind":"code-review","size":3308,"digest":"sha256:ee35448de564dda56675f7f50a7301add83cc8e987cdef6f57afed5f9866a79c","at":"2026-08-23T06:59:42+08:00","criteria":["AC-1","AC-2"]}
-{"id":"EVID-REVIEW-REPORT","file":"review-report.md","kind":"review-report","size":1313,"digest":"sha256:17b46807d9e281378d95b23194e7a3d5220394231e723c29ebca41d4c87057c4","at":"2026-08-23T06:59:42+08:00","criteria":["AC-3"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":671,"digest":"sha256:9c7152003a8ec299fa0f60ec99756777c7ba26f3ec551ab9e993d38d905d0ed1","at":"2026-08-23T06:59:43+08:00","criteria":["AC-1","AC-2","AC-3"]}

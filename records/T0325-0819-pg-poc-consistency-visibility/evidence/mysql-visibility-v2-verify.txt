@@ -1,2 +1,0 @@
-rows: parquet=6 sql=6 逐字段差异=0
-RESULT: PASS

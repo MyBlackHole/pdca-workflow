@@ -1,1 +1,0 @@
-# AC-4 定位证据: DIAGRX client eof sent=61440(应32MiB)时 agent received 同步短少;writev_all 全写语义排除 socket 层;锁定 client_exec_reactor credit 流控状态机

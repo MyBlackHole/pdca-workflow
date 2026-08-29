@@ -1,2 +1,0 @@
-{"id":"E001-crash-report","file":"crash-analysis-report.md","kind":"analysis-report","size":6875,"digest":"sha256:2aecc4bae14a0f659bc98787af627e774b0ade49a8fcf68f6a496c9873cc423a","at":"2026-07-29T10:45:25+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":749,"digest":"sha256:95ebb170d21b199d871e3d13700bad4dde7cb89f75dc1005135f36a9660b4247","at":"2026-07-29T10:45:47+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}

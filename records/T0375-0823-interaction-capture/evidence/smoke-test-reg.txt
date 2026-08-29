@@ -1,2 +1,0 @@
-captured字段校验: 通过
-user_meta_feedback类型: 通过

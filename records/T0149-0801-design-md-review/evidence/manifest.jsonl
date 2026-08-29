@@ -1,3 +1,0 @@
-{"id":"design-md","file":"design.md","kind":"document","size":9657,"digest":"sha256:5c002f8ca0875b197d798301e2b7cbe9b8a7f9229d45bbcb4dd7a781dd5cb9cc","at":"2026-07-30T18:01:09+08:00","criteria":["AC1,AC2,AC3,AC4,AC5"]}
-{"id":"poc-result","file":"POC_RESULT.md","kind":"document","size":2536,"digest":"sha256:0a32d992d94b039521334a188000580881ef4ea40cf6128efd516a04ee216177","at":"2026-07-30T18:01:09+08:00","criteria":["AC1,AC2"]}
-{"id":"test-gmssl","file":"test_gmssl.c","kind":"test","size":10464,"digest":"sha256:f83d112d530141f7a9fc88ebd10fa9ef1c39f1c478be62d23cd98a4bce349470","at":"2026-07-30T18:01:09+08:00","criteria":["AC2"]}

@@ -1,6 +1,0 @@
-{"file":"knowledge/pdca-flow/self-optimization-loop.md","reason":"定义记录、分析、受控实施和跨周期验证的反馈链及禁止循环自证边界。","action":"apply","at":"2026-07-30T18:11:25+08:00"}
-{"file":"knowledge/ai-efficiency/ai-friendliness-review-methodology.md","reason":"定义 GQM、配对夹具、稳定错误码、上下文 bytes 和证据外推边界。","action":"apply","at":"2026-07-30T18:11:25+08:00"}
-{"file":"knowledge/pdca-flow/record-knowledge-provenance.md","reason":"约束原始事实、情境记录与可演进知识分层，避免 projection 冒充 evidence。","action":"apply","at":"2026-07-30T18:11:25+08:00"}
-{"file":"knowledge/pdca-flow/runtime-transition-coordinator.md","reason":"约束 transition 集成的锁、幂等、receipt 和 stale-read 风险。","action":"apply","at":"2026-07-30T18:11:25+08:00"}
-{"file":"docs/adr/ADR-0004-immutable-flow-issue-events.md","reason":"采用独立不可变 occurrence 文件并冻结 flow-audit/v1。","action":"apply","at":"2026-07-30T18:11:25+08:00"}
-{"file":"docs/adr/ADR-0005-human-governed-flow-improvement.md","reason":"采用 AI 提案、用户授权、外部 evidence 验证的治理闭环。","action":"apply","at":"2026-07-30T18:11:25+08:00"}

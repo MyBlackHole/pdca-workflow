@@ -1,1 +1,0 @@
-{"file": "本仓库 commit 25d5742d【B-1985】xbsa 融入 xmake 构建体系与版本处理体系", "reason": "同仓库先例：根 xmake.lua 加版本变量+set_configvar+includes；version.h.in/log.in 加版本条目；target 生成 .version 文件并设 prefixdir", "action": "对齐其模式实现 oss 接入", "at": "2026-08-14T10:05:00+08:00"}

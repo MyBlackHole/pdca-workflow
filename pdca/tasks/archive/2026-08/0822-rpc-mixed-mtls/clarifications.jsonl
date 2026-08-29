@@ -1,5 +1,0 @@
-{"at": "2026-08-22T08:15:00+08:00", "source": "task_identity", "summary": "created with record identity T0344-0822-rpc-mixed-mtls"}
-{"source":"direction_confirm","summary":"方向确认：server mtls 开关固定 HS_OK 映射，client 按 HS 结果分流，4 象限矩阵","response":"confirmed","at":"2026-08-22T08:18:28+08:00"}
-{"source":"final_confirmation","summary":"终审批准：rpc 混合/强制 5 AC 与 2 seam，首阶段分支语义固化","response":"confirmed","at":"2026-08-22T08:18:28+08:00"}
-{"source":"check_confirmation","summary":"Check confirmed: 5 AC plain/mixed/forced via want_mtls, no libs change","response":"confirmed","at":"2026-08-22T09:07:12+08:00"}
-{"source":"check_confirmation","summary":"Check confirmed: 5 AC 双层证据（unit-quad + tool-integration）全 PASS，握手协商缺陷已修","response":"confirmed","at":"2026-08-22T10:15:36+08:00"}

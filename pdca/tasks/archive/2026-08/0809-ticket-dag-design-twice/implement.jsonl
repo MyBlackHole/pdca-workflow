@@ -1,3 +1,0 @@
-{"file": "knowledge/ai-efficiency/frontier-batch-grilling.md", "reason": "ready-set 术语需与 grilling frontier 消歧；T0231 source 契约测试模式可复用于词汇契约", "action": "参考术语消歧与契约测试模式", "at": "2026-08-09T11:25:50.382115+08:00"}
-{"file": "knowledge/ai-efficiency/ai-friendliness-review-methodology.md", "reason": "可证明标准（门禁正确率/导航/上下文成本/故障恢复）定义 AC 依据", "action": "参考可证明标准", "at": "2026-08-09T11:25:50.382115+08:00"}
-{"file": "knowledge/ai-efficiency/ai-execution-and-invocation-contracts.md", "reason": "design-it-twice 并行执行须遵守能力协议（agent.spawn 可用性降级）", "action": "参考能力协议", "at": "2026-08-09T11:25:50.382115+08:00"}

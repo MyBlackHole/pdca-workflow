@@ -1,2 +1,0 @@
-{"file":"knowledge/report-center/auth-rpc-compensation-patterns.md","reason":"RPC 通道异常/超时分类先例；但技术栈为 Python rpyc，与本任务 C/C++ rpc_conn 不同，不直接搬用。","action":"reference-only","at":"2026-08-07T10:40:00+08:00"}
-{"file":"docs/adr/ADR-0016-rpc-conn-idle-reclaim.md","reason":"本次研究产出的决策固化点","action":"produced","at":"2026-08-07T10:40:00+08:00"}

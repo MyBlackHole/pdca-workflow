@@ -1,9 +1,0 @@
-{"schema":"pdca.convergence/v1","task_id":"T0325","items":[
- {"criterion":"AC-1","evidence_ids":["pg-consistency-18","pg-consistency-11","pg-consistency-96"]},
- {"criterion":"AC-2","evidence_ids":["pg-vis-pageinspect","pg-vis-expected"]},
- {"criterion":"AC-3","evidence_ids":["pg-vis-pgbin"]},
- {"criterion":"AC-4","evidence_ids":["pg-vis-verify"]},
- {"criterion":"AC-5","evidence_ids":["mysql-consistency-56","mysql-consistency-57","mysql-consistency-80","mysql-consistency-84"]},
- {"criterion":"AC-6","evidence_ids":["verify-mysql-scen","mysql-vis-v2-verify","mysql-vis-v3-verify","mysql-vis-v4-verify","mysql-vis-v5-verify"]},
- {"criterion":"AC-7","evidence_ids":["research-report"]}
-]}

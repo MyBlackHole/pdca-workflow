@@ -1,4 +1,0 @@
-{"id":"sm-support-list","file":"SM-清单.md","kind":"documentation","size":2567,"digest":"sha256:3ebb1a673b2556c14b99b1a393fbffaa855ce85dd799f274d914fd1969529bae","at":"2026-08-12T14:45:50+08:00","criteria":["AC-5"]}
-{"id":"rpm-manifest","file":"rpm-manifest-count.txt","kind":"evidence","size":8,"digest":"sha256:fce463065d6eb2d1c258b04bef471737a09e08aa7b454a62dd089bc7b5811a0d","at":"2026-08-12T14:45:50+08:00","criteria":["AC-1"]}
-{"id":"do-notes","file":"do-notes.md","kind":"report","size":1252,"digest":"sha256:1c4633f86b35548836b66bf3ce9cdc4ecdc0f0b447a0d0cb8bcab63074207ccc","at":"2026-08-12T14:45:50+08:00","criteria":["AC-2","AC-3","AC-4"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":316,"digest":"sha256:4624068914ed371f890c79b28061b9c169fb44774f48aa1b416323f4324e406f","at":"2026-08-12T14:46:18+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}

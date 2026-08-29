@@ -1,1 +1,0 @@
-{"at":"2026-08-01T23:26:34+08:00","source":"knowledge_injection","action":"skipped","reason":"已搜索 knowledge/；没有直接影响 journal btree key 逐键语义校验决策的现有知识资产。实施时唯一语义依据为本地 bcachefs-tools 源码。"}

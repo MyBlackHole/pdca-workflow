@@ -1,8 +1,0 @@
-{"at":"2026-08-22T19:48:11+08:00","source":"task_identity","summary":"created with record identity T0358-0822-mtls-param-parse-fix"}
-{"source":"grilling","at":"2026-08-22T20:01:26+08:00","q":"mtls_enable 非法值处置","a":"拒绝启动（fail-closed）"}
-{"source":"grilling","at":"2026-08-22T20:01:26+08:00","q":"未知算法名失败时机","a":"配置加载时拒绝（fail-closed）"}
-{"source":"direction_confirm","summary":"双 fail-closed 策略确认：mtls_enable 非法值拒绝启动；算法名未知名加载时拒绝。执行顺序 T0358→T0357→T0359","response":"confirmed","at":"2026-08-22T20:01:26+08:00"}
-{"source":"final_confirmation","summary":"终审批准：双 fail-closed 方案，AC-1..4 与 seam 清单确认，进入 Do 执行 TDD 修复","response":"confirmed","at":"2026-08-22T20:02:03+08:00"}
-{"source":"grilling","at":"2026-08-22T20:03:46+08:00","q":"P6 预写记录追认","a":"批准，final_confirmation 有效"}
-{"source":"check_confirmation","summary":"Verdict=confirmed：AC-1/2/3 全过；范围外新发现 TLS 配置结构体死字段(ca_cn/ca_cert/server_cert/server_key)另立 cleanup 任务；sec_resolve_int env 层 atoi 并入 T0357","response":"confirmed","at":"2026-08-22T20:43:13+08:00"}
-{"source":"followup_tasks_created","at":"2026-08-22T20:43:37+08:00","action":"created","reason":"TLS 配置结构体死字段清理任务（用户 verdict 时提出并确认新建）"}

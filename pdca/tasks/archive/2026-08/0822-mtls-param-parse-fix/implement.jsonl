@@ -1,2 +1,0 @@
-{"file":"knowledge/tls/mtls-param-review-findings.md","reason":"陷阱2 atoi fail-open 与陷阱3 strstr 匹配的规则约束，直接决定修复方案","action":"read","at":"2026-08-22T20:01:40+08:00"}
-{"file":"pdca/tasks/archive/2026-08/T0348-0822-mtls-state-alg-review/review-report.md","reason":"H2/H3 发现的 file:line 证据与影响分析","action":"read","at":"2026-08-22T20:01:40+08:00"}

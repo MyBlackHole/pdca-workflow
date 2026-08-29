@@ -1,1 +1,0 @@
-{"source":"final_confirmation","summary":"T0207 终审批准：修复 root 重写 extent 保留（对照 interior.c set_root 语义）+ 完成 AC-5（重开读盘/verify_all/崩溃注入）+ AC-6（全量门禁）；parent=T0206（partial）","response":"confirmed","at":"2026-08-03T19:23:10+08:00"}

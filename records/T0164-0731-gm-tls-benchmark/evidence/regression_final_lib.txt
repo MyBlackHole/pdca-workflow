@@ -1,8 +1,0 @@
-=== 回归 1: 2000×8 小记录（最终库 libgmssl-fixed）===
-[client] ALL 2000 SMALL RECORDS SENT
-[server] ALL 2000 SMALL RECORDS OK
-=== 回归 2: 128MB 大记录（最终库）===
-[server] handshake r=1
-[client] handshake r=1
-[client] ALL SENT sent=134217728
-[server] ALL DATA OK got=134217728

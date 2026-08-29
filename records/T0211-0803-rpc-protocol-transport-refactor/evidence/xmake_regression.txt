@@ -1,8 +1,0 @@
-[0m[38;2;0;255;0;1m[100%]:[0m conn_limit/default ................ [38;2;0;255;0;1mpassed[0m [1m3.655s[0m
-[0m
-Detailed summary:[0m
-[0m[38;2;255;0;0;1mFailed tests:[0m[0m
- - dir_utils_dir_copy_test/default
-[0m
-[38;2;0;255;0;1m93%[0m tests passed, [38;2;255;0;0;1m1[0m test(s) failed out of [1m16[0m, spent [1m3.660s[0m
-[0m[1;38;2;255;0;0;1merror: [0m<no error object>[0m

@@ -1,5 +1,0 @@
-{"id":"wgs-after","file":"writing-great-skills-after.md","kind":"doc-snapshot","size":6072,"digest":"sha256:aeebc2ac01a78fcc1d1699d28fb56ccd1d6ae2c4a7013fae3694e4137589f394","at":"2026-08-23T17:24:49+08:00","criteria":["AC-1"]}
-{"id":"hw-after","file":"handoff-work-after.md","kind":"doc-snapshot","size":2179,"digest":"sha256:19707cc7f106bf0ec92f2b702223cdac56c562eab58f3a04d07b67ac176d4962","at":"2026-08-23T17:24:49+08:00","criteria":["AC-2"]}
-{"id":"baseline-after","file":"baseline-after.json","kind":"config-snapshot","size":6622,"digest":"sha256:3333b444f7a013b0f85810acdc0e9d45da14e2b738bf8d66f9145ebc8c017c2d","at":"2026-08-23T17:24:49+08:00","criteria":["AC-3"]}
-{"id":"review-notes","file":"review-notes-reg.md","kind":"review-record","size":2359,"digest":"sha256:bfa1ebe11f099b77ae0d1416c315622fb91dd6945c3915254449cde87fb03d53","at":"2026-08-23T17:25:22+08:00","criteria":["AC-4"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":921,"digest":"sha256:cbd00d730974654c859743c0b506a301472ce85440e687e9859d85c361b652d9","at":"2026-08-23T17:25:22+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}

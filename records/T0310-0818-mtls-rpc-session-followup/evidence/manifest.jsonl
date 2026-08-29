@@ -1,3 +1,0 @@
-{"id":"validation-summary","file":"validation-summary.md","kind":"test-result","size":947,"digest":"sha256:a70b7dd90718102b4253740fe7235ae3dadf89977cbc2cbce03608187ee28cd6","at":"2026-08-18T14:43:40+08:00","criteria":["AC-1","AC-2","AC-3","AC-5"]}
-{"id":"implementation-review","file":"review-notes.md","kind":"review","size":732,"digest":"sha256:a21618f5c6681c2b00ac59abf3bdf7cecdca0907b065b1617500daa1adf4bad0","at":"2026-08-18T14:43:40+08:00","criteria":["AC-4","AC-5"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":271,"digest":"sha256:ef17369ef1994d600a476b4590aaa9d68f0558e771649329d3c0a9fb17f4d7f6","at":"2026-08-18T14:43:56+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}

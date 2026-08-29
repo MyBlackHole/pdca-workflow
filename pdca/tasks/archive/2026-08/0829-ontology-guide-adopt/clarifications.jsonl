@@ -1,6 +1,0 @@
-{"at":"2026-08-29T21:02:00+08:00","source":"task_identity","summary":"created with record identity T0407-0829-ontology-guide-adopt"}
-{"source":"grilling","summary":"落地范围：最小落地（ONTOLOGY_GUIDE.md + _meta.yaml + 图谱脚本）+ 给若干现有样本节点补 domain/docType/tags 可选人读字段","at":"2026-08-29T21:05:00+08:00"}
-{"source":"grilling","summary":"图谱/孤岛检测：新增 scripts/ontology_graph.py，读 frontmatter+relations 导出 Obsidian 兼容图谱并检测孤岛节点","at":"2026-08-29T21:05:00+08:00"}
-{"source":"grilling","summary":"ADR：起草 ADR-0033 记录采纳兼容吸收方案、_meta.yaml 语义权威声明与不变更 SSOT v3 的决策","at":"2026-08-29T21:05:00+08:00"}
-{"source":"final_confirmation","summary":"确认 PRD+拆解：写 ontology/ONTOLOGY_GUIDE.md + _meta.yaml + scripts/ontology_graph.py（图谱/孤岛检测）+ 样本节点补 domain/docType/tags + ADR-0033 + 验证无回归；不动 SSOT v3","response":"confirmed","at":"2026-08-29T21:02:39+08:00"}
-{"source":"check_confirmation","summary":"Check 确认：T0407 采纳落地完成（docs/ONTOLOGY_GUIDE.md + ontology/_meta.yaml + scripts/ontology_graph.py + 样本补字段 + ADR-0033），ontology-validate OK，15 测试通过，证据收敛 valid:true，verdict=confirmed","response":"confirmed","at":"2026-08-29T21:18:22+08:00"}

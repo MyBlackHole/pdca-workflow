@@ -1,8 +1,0 @@
-{"source": "grilling", "at": "2026-08-26T23:50:15+08:00", "summary": "范围收敛：sbt.conf 不属本期（dmsbtex 旁路除外），只做 rdb config 接入；优先改 fs-backup"}
-{"source": "direction_confirm", "response": "confirmed", "at": "2026-08-26T23:50:15+08:00", "summary": "fs-backup 接入 rdb config：移除自有 do_parse_config+atoi，改读 _kv_store(config_get_*)"}
-{"source":"final_confirmation","summary":"fs-backup 接入 rdb config：移除自有 do_parse_config+atoi，改读 _kv_store(config_get_*)；保留 set_rpc_* 传播与 *_check_config 校验；AC-1~AC-8 验收","response":"confirmed","at":"2026-08-26T23:54:14+08:00"}
-{"round": 1, "question": "Q1", "answer": "", "recommended": "是——fsclient/config.cpp 与 fsdeamon 完全同构（同 sec_get_* 读取、同 set_rpc_* 传播、同 BOOL 预校验）；fs-cli 已构建通过，rdb_param_test 已覆盖 9 个新 PARAM 中的 fsclient 5 项解析链，风险可接受。", "source": "grilling", "at": "2026-08-27T00:14:33+08:00", "captured": false}
-{"round": 1, "question": "Q2", "answer": "", "recommended": "不影响——AC-8 为部署侧确认项，已登记显式延迟证据 ev-ac8-deploy，且 fail-closed 已在代码层落实；结论可为 confirmed，AC-8 列为发布前待办。", "source": "grilling", "at": "2026-08-27T00:14:33+08:00", "captured": false}
-{"round": 1, "question": "Q3", "answer": "", "recommended": "是，属有意的严格强化；已在 PRD RISK A 标注，需部署侧确认生产无此类值，否则按告警+回退默认评估。", "source": "grilling", "at": "2026-08-27T00:14:33+08:00", "captured": false}
-{"source":"check_confirmation","summary":"AC-1~AC-7 证据充分（ev-diff/ev-build/ev-test-fsdaemon/ev-test-param/ev-test-regress + convergence-map，validate-convergence 通过）；AC-8 为发布前部署侧确认项，已登记延迟证据 ev-ac8-deploy，不阻塞 confirmed。","response":"confirmed","at":"2026-08-27T00:15:36+08:00"}
-{"source": "knowledge_decision", "at": "2026-08-27T00:17:12+08:00", "action": "wrote", "reason": "confirmed 结论含可复用编码陷阱（bool 截断绕过 fail-closed）与统一接入模式，写入 knowledge/rdb-config/"}

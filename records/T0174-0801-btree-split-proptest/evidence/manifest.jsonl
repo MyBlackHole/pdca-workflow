@@ -1,3 +1,0 @@
-{"id":"e1-t0174-diff","file":"t0174-diff.patch","kind":"test-diff","size":63131,"digest":"sha256:d9df2a2c0a1d7e8bcdbc86769eb4e5a48334f5b0cc683515ca55607f3c908304","at":"2026-08-01T20:02:35+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
-{"id":"e2-t0174-verification","file":"t0174-verification.md","kind":"test-run-log","size":2317,"digest":"sha256:ae5a6d9a5a34f757a27ad88b29b3f50cec4de6bb7fdec3e2102638bf2c766cd2","at":"2026-08-01T20:02:36+08:00","criteria":["AC-4","AC-5"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":260,"digest":"sha256:2c477df3b3973f45a1155186bf8fbc12950cd7275db42d7fe071be015dbe18cf","at":"2026-08-01T20:02:54+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}

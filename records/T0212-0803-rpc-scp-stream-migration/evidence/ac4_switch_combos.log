@@ -1,9 +1,0 @@
-[PASS] upload[compress] ret
-[PASS] download[compress] ret
-[PASS] roundtrip content match
-[PASS] upload[encrypt] ret
-[PASS] download[encrypt] ret
-[PASS] roundtrip content match
-[PASS] upload[checksum] ret
-[PASS] download[checksum] ret
-[PASS] roundtrip content match

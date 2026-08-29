@@ -1,6 +1,0 @@
-{"source":"final_confirmation","summary":"P6 终审通过：rdb-config 剥离 CLI 覆盖（只留基础查询）；四个工具 main 自持覆盖状态并解析 TLS env 填入各自结构体；全部调用方（client_options/server_options/rpc_config/sbt-session/timed_net_key/dmsbtex/libobk）结构体显式持有 TLS 参数，消费点从字段读取不再隐式 getenv","response":"confirmed","at":"2026-08-20T14:21:57+08:00"}
-{"round":1,"question":"AC-4 会话测试证据是否需要重新生成专项日志？(sbt-session 库已删除并入 dmsbtex/network, 现有 ac4-session-test.log 为旧全量日志)","answer":"sbt-session 不需要的","recommended":"运行 dmsbtex_session_test 生成专项证据替换","source":"grilling","at":"2026-08-20T16:08:00+08:00"}
-{"round":1,"question":"删除 sbt-session 库是否确认无其他消费者遗漏？","answer":"是的","recommended":"确认无需额外处理, build+38/38 test 已覆盖链接级验证","source":"grilling","at":"2026-08-20T16:08:00+08:00"}
-{"source":"check_confirmation","summary":"Check 阶段结论确认：5 项 AC 全部通过, TLS 配置归属迁移至工具/库结构体, rdb-config 仅保留 sec_resolve_int/str 通用解析, CLI 覆盖语义不变, xmake test 38/38 通过","response":"confirmed","at":"2026-08-20T16:12:00+08:00"}
-{"round":1,"question":"TLS 配置归属模式是否沉淀到 knowledge/ 供后续新工具复用？","answer":"不需要沉淀","recommended":"写入 knowledge/config-resolution/tls-config-hosting.md (层级规则+结构体模式+避坑清单)","source":"grilling","at":"2026-08-20T16:18:00+08:00"}
-{"source":"knowledge_decision","at":"2026-08-20T16:18:00+08:00","action":"skipped","reason":"用户决定不沉淀知识, record 本身即为归档"}

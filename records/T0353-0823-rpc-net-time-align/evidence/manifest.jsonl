@@ -1,4 +1,0 @@
-{"id":"ac1-time-parse-test","file":"t0353-ac1.log","kind":"test-log","size":31,"digest":"sha256:0253b21684709a074dd421ff06cf1474edf9b9f32aca63893ba28a7025d2d3b2","at":"2026-08-22T15:36:08+08:00","criteria":["AC-1"]}
-{"id":"ac2-rdbcomm-grep-clean","file":"t0353-ac2.log","kind":"static-scan","size":13,"digest":"sha256:197723f2f9f52aa30d0ead9dab8851e7e0fce457e9643dc5d8f9cb23d891a3e1","at":"2026-08-22T15:36:08+08:00","criteria":["AC-2"]}
-{"id":"ac3-full-build-test","file":"t0353-ac3.log","kind":"build-log","size":138,"digest":"sha256:45fe04940b45bfcd0e6b5e1cd093493e6f3a8a3fe9652a074968354d2330fa6f","at":"2026-08-22T15:36:08+08:00","criteria":["AC-3"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":280,"digest":"sha256:25a9e5dd3b696ec62dac25c56ea6690d0915e73a6e0ece45df49b727f8f35657","at":"2026-08-22T15:36:50+08:00","criteria":["AC-1","AC-2","AC-3"]}

@@ -1,2 +1,0 @@
-{"id": "review-report", "file": "research-report.md", "kind": "research", "size": 4606, "digest": "sha256:0f6abb71f79f9ee0bd972cba9f7ebc2d174a84bece0f0c21bfb5c04da5cc8abf", "at": "2026-08-09T17:01:54+08:00", "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5"]}
-{"id": "convergence-map", "file": "convergence.json", "kind": "convergence-map", "size": 303, "digest": "sha256:495badeb7a3a7182f6f3b2e6377a857dbd6c8548f69090f6e7800bc16528e40f", "at": "2026-08-09T17:02:13+08:00", "criteria": ["CC-1"]}

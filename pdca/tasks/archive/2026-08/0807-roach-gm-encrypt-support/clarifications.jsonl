@@ -1,8 +1,0 @@
-{"source":"grilling","summary":"调研范围：静态+运行时分析基础上补充官方文档佐证","response":"静态+运行时+官方文档","at":"2026-08-07T14:52:00+08:00"}
-{"source":"grilling","summary":"结论产出形式：结论文档+知识库条目","response":"结论文档+知识库条目","at":"2026-08-07T14:52:00+08:00"}
-{"source":"grilling","summary":"澄清：gs_roach 支持存储数据加密(透明加密 roach_ak_sk.key AK/SK)，但算法为 AES-128-CBC 非国密 SM4","response":"确认存储加密是 AES 非国密，方向确认可继续","at":"2026-08-07T15:05:00+08:00"}
-{"source":"grilling","summary":"确认不支持 SM4 的依据：nm 无 EVP_sm/无 EVP_get_cipherbyname/无 EVP_CIPHER_fetch，仅 EVP_aes_128_cbc；解密函数全为 AES-128-CBC；TLS cipher 硬编码 AES+宏 cipher list；官方国密仅限 gsql/JDBC","response":"确认","at":"2026-08-07T15:08:00+08:00"}
-{"source":"final_confirmation","summary":"终审批准：gs_roach 支持 AES 加密(存储透明加密+SSL)但不支持国密 SM2/SM4，按结论文档+knowledge 条目交付","response":"confirmed","at":"2026-08-07T15:08:23+08:00"}
-{"source":"grill","summary":"追问源数据加密：发现 gaussdb 引擎(数据本体)支持 TDE 透明加密存储，含国密 SM4_CTR/SM4_CTR_SM3_HMAC(enable_tde+tde_key_info+encrypt_algo)；gs_roach 自身仅 AES 但备份的是引擎侧已加密数据","response":"确认源数据(表存储)支持国密，gs_roach 备份工具自身不支持国密","at":"2026-08-07T15:20:00+08:00"}
-{"source":"check_confirmation","summary":"结论确认：gs_roach 备份工具自身不支持国密(备份传输+备份集 AES)，数据源 gaussdb 引擎 TDE 支持国密 SM4；更新版本国密增强在数据源侧，gs_roach 自身仍无国密参数","response":"confirmed","at":"2026-08-07T15:43:11+08:00"}
-{"source":"grilling","summary":"知识沉淀决策","action":"wrote","reason":"gs_roach 国密能力边界(工具vs引擎分层)+SM4 能力判定法可复用于同类环境审计","knowledge":"backup/gs-roach-gm-encrypt-support.md","at":"2026-08-07T15:50:00+08:00"}

@@ -1,5 +1,0 @@
-{"id":"hw-after","file":"hw-after-reg.md","kind":"doc-snapshot","size":2657,"digest":"sha256:5fdd35f41561472a90ccace441c749a54b2ed2c17ca707aafe7e59a1839efeef","at":"2026-08-23T19:28:47+08:00","criteria":["AC-1"]}
-{"id":"flows-wired","file":"flows-wired-reg.md","kind":"doc-snapshot","size":5060,"digest":"sha256:ed38d8780b8b1153ad00a1b5b0af579a8861d4a2db1ae3a96a606628c4f2750c","at":"2026-08-23T19:28:47+08:00","criteria":["AC-2"]}
-{"id":"dialogue-first","file":"dialogue-log-reg.md","kind":"data-snapshot","size":744,"digest":"sha256:1a1251b09acd203c7b661fbb170c334f049859cbe9d1685455739c4c6f1cee6f","at":"2026-08-23T19:28:48+08:00","criteria":["AC-3"]}
-{"id":"baseline-after","file":"baseline-after.json","kind":"config-snapshot","size":6959,"digest":"sha256:b3886c0b81cb277530dcee8368954d55592348f193eb06680b106cce6f63ad3a","at":"2026-08-23T19:28:48+08:00","criteria":["AC-4"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":886,"digest":"sha256:57b62767a569366f858d4e80dbc42584ca41473309d48701a7ac69472b7a0d1c","at":"2026-08-23T19:28:48+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}

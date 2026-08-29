@@ -1,4 +1,0 @@
-{"id":"impl-diff","file":"t0390-impl-diff.txt","kind":"implementation","size":1571,"digest":"sha256:4a3bda3c29d6c86e397e0c7874508c2c5502540e8d7e8077e7f3f0f4199ea01b","at":"2026-08-26T21:38:54+08:00","criteria":["AC-3"]}
-{"id":"protocol_test_release","file":"t0390-release.txt","kind":"test-log","size":113,"digest":"sha256:cd9eddfa2a6fa78dd1a7bdb13f3ad0b377d141bfd03d50428297093ef983a35f","at":"2026-08-26T21:38:54+08:00","criteria":["AC-1","AC-2"]}
-{"id":"protocol_test_debug","file":"t0390-debug.txt","kind":"test-log","size":110,"digest":"sha256:411b2569f5e24f5aa4f55fd9d2fac420a2f2ab7f50adc392d33e029f79889b6c","at":"2026-08-26T21:38:54+08:00","criteria":["AC-2"]}
-{"id":"convergence-map","file":"t0390-convergence-map.json","kind":"convergence-map","size":368,"digest":"sha256:cb9014b24a1dd18f03b7e98f5029af344852232385f9c59cc7e9c69fc6b7f323","at":"2026-08-26T21:39:13+08:00","criteria":["AC-1","AC-2","AC-3"]}

@@ -1,8 +1,0 @@
-{"at":"2026-08-22T17:47:28+08:00","source":"task_identity","summary":"created with record identity T0356-0822-libobk-handshake-fix"}
-{"source":"grilling","round":1,"question":"M2 客户端握手失败最小诊断日志是否纳入本任务","answer":"待用户确认","recommended":"纳入，往返测试排障必需","at":"2026-08-22T17:55:00+08:00"}
-{"source":"grilling","round":1,"question":"M2 客户端握手失败最小诊断日志是否纳入本任务","answer":"纳入最小日志","recommended":"纳入","at":"2026-08-22T17:58:31+08:00"}
-{"source":"grilling","round":1,"question":"Seam 确认：去 static 导出两握手函数 + socketpair 级往返用例","answer":"确认","recommended":"确认 seam","at":"2026-08-22T17:58:31+08:00"}
-{"source":"direction_confirm","summary":"修复方案：宏单点化+缓冲区扩容+去static导出+socketpair真实TLS往返测试+M4死分支+M2最小日志；seam=session_test.c→libobk.c/oracleCmdTbl.c","response":"confirmed","at":"2026-08-22T17:58:31+08:00"}
-{"source":"final_confirmation","summary":"批准：宏单点化+缓冲区扩容+去static+socketpair真实TLS往返测试+M4死分支+M2最小日志；AC1-4","response":"confirmed","at":"2026-08-22T18:00:49+08:00"}
-{"source":"check_confirmation","summary":"确认修复验证：AC1-4 全 pass，变异测试实证判别力，五套件全绿+ASan 干净，提交 582c380 含版本升级 1.0.0.1","response":"confirmed","at":"2026-08-22T18:41:21+08:00"}
-{"source": "knowledge_decision", "at": "2026-08-22T18:42:28+08:00", "action": "skipped", "reason": "核心教训已由 T0355 沉淀 handshake-dup-impl-length-contract.md，本任务为规则首次成功应用；变异测试判别力验证为通用工程实践，journal 记录即可"}

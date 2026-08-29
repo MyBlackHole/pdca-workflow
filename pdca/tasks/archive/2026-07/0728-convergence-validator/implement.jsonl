@@ -1,2 +1,0 @@
-{"file":"knowledge/ai-efficiency/ai-friendliness-review-methodology.md","reason":"约束改动必须用 GQM、稳定错误码和相同输入配对证明提升","action":"以旧 gate 接受、新 gate 拒绝作为最低保留条件","at":"2026-07-28T21:07:20+08:00"}
-{"file":"knowledge/pdca-flow/generic-ai-workflow-kernel.md","reason":"复用 PDCA 外循环、阶段 Decision 引用 evidence 的既有架构边界","action":"将 validator 接入现有 Do→Check gate，不建立平行状态机","at":"2026-07-28T21:07:20+08:00"}

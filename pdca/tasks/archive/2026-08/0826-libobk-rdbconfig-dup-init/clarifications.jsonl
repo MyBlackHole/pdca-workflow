@@ -1,3 +1,0 @@
-{"at":"2026-08-26T20:40:00+08:00","source":"task_identity","summary":"created with record identity T0389-0826-libobk-rdbconfig-dup-init"}
-{"source":"final_confirmation","summary":"用户确认进入 Do：以 pthread_once 线程安全方式修复 libobk rdb config 重复初始化（sbtinit/sbtinit2/main 三入口收敛为一次性守卫），并要求考虑多线程安全。","response":"confirmed","at":"2026-08-26T21:03:07+08:00"}
-{"source":"check_confirmation","summary":"Check 结论确认：libobk rdb config 重复初始化已通过 pthread_once 一次性守卫修复，五条 AC 全部通过，fail-closed 与 init_config 语义保留。","response":"confirmed","at":"2026-08-26T21:05:32+08:00"}

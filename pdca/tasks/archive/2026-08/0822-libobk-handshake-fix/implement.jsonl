@@ -1,2 +1,0 @@
-{"file":"knowledge/tls/handshake-dup-impl-length-contract.md","reason":"本任务的规则来源：长度常量单点化、缓冲区按总长分配、复制式实现强制配真实往返测试","action":"read","at":"2026-08-22T17:58:31+08:00"}
-{"file":"knowledge/tls/link-level-mtls-test-pattern.md","reason":"链路级 mTLS 测试模式，指导 socketpair 往返用例设计","action":"read","at":"2026-08-22T17:58:31+08:00"}

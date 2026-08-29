@@ -1,9 +1,0 @@
-{"source":"triage","summary":"分类为 enhancement/development；现有 evidence gate 只验证登记项本身，不验证 PRD AC 全覆盖或 convergence→AC→evidence 支撑链；与 T0135/T0140 不重复","at":"2026-07-28T20:59:55+08:00"}
-{"round":1,"question":"是否保留 task.meta.convergence 作为 Plan 原始目标，并在 record 中新增 Check 阶段结构化 convergence.json 映射每条 convergence 到 AC 和 evidence ID？","answer":"可以","recommended":"使用独立结构化记录，避免执行后反向修改计划目标，同时保持零依赖确定性校验","source":"grilling","at":"2026-07-28T21:04:36+08:00"}
-{"round":2,"question":"是否将 convergence validator 设为 Do→Check 硬门禁，而不是可忽略的提示性检查？","answer":"可以","recommended":"证据登记后必须通过结构化支撑链验证才允许进入 Check；语义充分性仍由 Check 判断","source":"grilling","at":"2026-07-28T21:07:20+08:00"}
-{"source":"direction_confirm","summary":"确认独立 convergence map、Do→Check 硬门禁、PRD AC 全覆盖、稳定错误码、零新增依赖和不追溯历史阶段的方案方向","response":"confirmed","at":"2026-07-28T21:17:16+08:00"}
-{"source":"final_confirmation","summary":"批准 T0141 完整方案：convergence schema、核心验证、JSON CLI、Do→Check 硬门禁、13 项正反例验收；不含历史清理和 research validator","response":"confirmed","at":"2026-07-28T21:18:14+08:00"}
-{"source":"grill","summary":"Check 自审确认新门禁只证明结构支撑链、不判断证据语义；要求规范 PRD checkbox、不追溯历史阶段，并以配对实验改变旧 gate 判断作为保留依据","at":"2026-07-28T21:25:59+08:00"}
-{"source":"check_confirmation","summary":"用户确认 T0141 结论成立，保留 convergence validator 并进入 Act","response":"confirmed","at":"2026-07-28T21:27:29+08:00"}
-{"round":3,"question":"是否只向现有 AI 友好度方法论补充“控制产物不得自证，新增门禁须以配对实验改变旧错误判断”的原则，不重复沉淀 schema、错误码和 CLI 用法？","answer":"可以","recommended":"稳定方法论进入知识，版本性实现细节保留在 skill、ADR 和代码中","source":"grilling","at":"2026-07-28T21:28:14+08:00"}
-{"source":"knowledge_decision","action":"wrote","reason":"控制产物防循环自证与门禁增量价值配对验证可跨所有场景复用；合并既有方法论避免重复知识","at":"2026-07-28T21:28:14+08:00"}

@@ -1,8 +1,0 @@
-RED 阶段观测（修复前 server.c 旧逻辑 + 旧 fake_server）：
-- rdbcomm_handshake_session_test 在畸形 halg 用例挂起/失败：
-  - 旧逻辑 tls_cert_get_ca_cn(sctx, rdb_hs_algorithm_name(halg)) 对 halg=0/0xFFFF
-    返回 NULL 名 -> find_slot(NULL) 静默回落 slot[0] -> 取到合法 ca_cn ->
-    服务端回 RDB_HS_OK_MTLS 并进入 SSL_accept，客户端 waitpid 永久阻塞（exit=124）。
-  - 加 SO_RCVTIMEO + 有界 waitpid 后确定性失败：
-    exit=134, Assertion `got_resp && result == RDB_HS_ERR_ALGORITHM' failed.
-- 结论：畸形算法值未被拒绝（违反 AC-1/AC-3），缺陷确证。

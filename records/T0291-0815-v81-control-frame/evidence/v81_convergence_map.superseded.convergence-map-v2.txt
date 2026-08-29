@@ -1,8 +1,0 @@
-convergence: task identity is unique and immutable
-map:
-  AC-1 -> v81-integration-result
-  AC-2 -> v81-integration-result
-  AC-3 -> v81-data-path-128
-  AC-4 -> v81-protocol-interop
-  AC-5 -> v81-control-plane-metric
-  AC-6 -> v81-core-regression

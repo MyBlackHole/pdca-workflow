@@ -1,5 +1,0 @@
-{"id":"xmake-full","file":"xmake-test.log","kind":"test-log","size":111123,"digest":"sha256:8ba55037367452c10c21994bf7c034b37902087064be451078bed078bc8f445e","at":"2026-08-18T15:09:48+08:00","criteria":["AC-1","AC-3","AC-4","AC-5"]}
-{"id":"implementation-diff","file":"code.diff","kind":"patch","size":17412,"digest":"sha256:32e7a40586e37d863461acb7478793b15fff1e7619c14c325ebac626e9019725","at":"2026-08-18T15:09:48+08:00","criteria":["AC-2","AC-4"]}
-{"id":"rpc-time-test","file":"time_integration.cpp","kind":"test-source","size":1501,"digest":"sha256:19ea6585a01a1e269e85a77d288a5d52e17a9e8c2433bda03209a6fcbf8dfef1","at":"2026-08-18T15:09:49+08:00","criteria":["AC-4","AC-5"]}
-{"id":"rdbcomm-mtls-test","file":"tool_integration.c","kind":"test-source","size":9894,"digest":"sha256:74cd94f887915aa4c0105f7844788243fa039c1d0c59c126b71af05d61f9aa7b","at":"2026-08-18T15:09:49+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":206,"digest":"sha256:4809f7fc7a98df5205a790075c2ec5b1c59b73ad5379eb79aa64609dddde8656","at":"2026-08-18T15:10:00+08:00","criteria":["AC-1"]}

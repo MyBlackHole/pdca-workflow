@@ -1,3 +1,0 @@
-{"source":"final_confirmation","summary":"P6 终审批准：方案B仅主动释放，FilesMeta新增CloseSession，SnapshotSync/SnapshotEnd/SnapshotFailed三处释放ver/bak session；DEFAULT常驻。AC-1~AC-6验收。","response":"confirmed","at":"2026-08-19T13:57:10+08:00"}
-{"source": "grilling", "round": 1, "question": "SnapshotFailed 失败路径未被实际触发测试（仅代码审查覆盖），是否接受？", "answer": "接受代码审查覆盖", "recommended": "接受代码审查覆盖：逻辑简单、统一 error__ 出口、幂等 CloseSession，且触发失败路径需人为制造快照失败", "at": "2026-08-19T16:24:08.245598+08:00"}
-{"source":"check_confirmation","summary":"Check 阶段 verdict=confirmed：6 条验收标准全部通过，泄漏消除，收敛验证 valid。用户确认进入 Act。","response":"confirmed","at":"2026-08-19T16:25:59+08:00"}

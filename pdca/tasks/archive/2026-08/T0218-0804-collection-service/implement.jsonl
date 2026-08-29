@@ -1,7 +1,0 @@
-{"file":"/home/black/Downloads/aio-cdm/cdm_report_center_collection_service_subscheme.md","reason":"T0218 唯一契约源：进程/Job 契约/Worker 流程/JSONL/11 类失败/重启恢复","action":"read","at":"2026-08-05T11:50:00+08:00"}
-{"file":"/home/black/Downloads/aio-cdm/cdm-report-center-final-technical-solution.md","reason":"主方案契约锚点（§2.1/§3.2/§4/§6/§7）","action":"read","at":"2026-08-05T11:50:00+08:00"}
-{"file":"/home/black/Documents/pdca-workflow/knowledge/report-center/db-adapter-pg-practices.md","reason":"T0216 沉淀：JobStore 驱动前缀/批次号填充/字段映射，T0218 直接复用","action":"read","at":"2026-08-05T11:50:00+08:00"}
-{"file":"/home/black/Documents/pdca-workflow/knowledge/report-center/cli-from-scratch-lazy-import.md","reason":"T0217 沉淀：CLI 惰性导入/DI 测试隔离，通道 Client 接线参考","action":"read","at":"2026-08-05T11:50:00+08:00"}
-{"at":"2026-08-05T12:40:00+08:00","action":"evidence","ids":["e1-pytest-full","e2-code-scale","convergence-map"],"result":"114 passed","note":"PG18.4 回归 62 + collection_service 新测试 52；convergence valid"}
-{"at":"2026-08-05T12:52:00+08:00","action":"evidence-revised","ids":["e1-pytest-full-revised","convergence-map-revised"],"result":"121 passed","note":"AC-3 通用 Job 契约补齐：job_id 改 {topic}:{domain_id}，10 方法全实现，+7 测试"}
-{"at":"2026-08-05T12:57:30+08:00","action":"evidence-rev2","ids":["e1-pytest-full-rev2","convergence-map-rev2"],"result":"123 passed","note":"AC-6 入库失败重试 1 次补齐（_ingest_with_retry + increment_retry），+2 测试；evidence 修订 123 passed"}

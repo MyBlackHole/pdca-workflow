@@ -1,1 +1,0 @@
-tests/ 全量: 252 passed / 4 failed（2 harness + 2 doctor，与基线一致非回归）/ 13 subtests；新增 test_gate_compliance.py 6 测试全绿（transition 拒绝留痕 + 门禁合规扫描）

@@ -1,9 +1,0 @@
-{"id":"ac1-shared-entry-tests","file":"tests.txt","kind":"test-log","size":100,"digest":"sha256:0d7df7178bf7e1329f91cc00d5dee0c364f18d08026d79e8fd9f96a094410e4b","at":"2026-08-14T23:41:59+08:00","criteria":["AC-1"]}
-{"id":"ac2-concurrent-unique","file":"ac2.txt","kind":"test-log","size":98,"digest":"sha256:0cddb2f9522c5fc98e9503738cea759bed811b3ad3b391083a46a5d5f403e174","at":"2026-08-14T23:44:08+08:00","criteria":["AC-2"]}
-{"id":"ac3-immutable-record","file":"ac3.txt","kind":"test-log","size":98,"digest":"sha256:e310cdd63a8c70c913b47759eb9ee7c1db83be874db234095ac21000c3912e0d","at":"2026-08-14T23:44:08+08:00","criteria":["AC-3"]}
-{"id":"ac4-no-fallback-quarantine","file":"ac4.txt","kind":"test-log","size":98,"digest":"sha256:0a2462d3788133819578481a3ef5d726927fb88c78869bf6315159de41a34a9d","at":"2026-08-14T23:44:08+08:00","criteria":["AC-4"]}
-{"id":"ac5-identity-diagnostics","file":"ac5.txt","kind":"test-log","size":98,"digest":"sha256:f99ebebc084c88b058ca5992a95d3d5379e1d1bc59bd065abbb435915b564266","at":"2026-08-14T23:44:09+08:00","criteria":["AC-5"]}
-{"id":"ac6-history-failclosed","file":"ac6.txt","kind":"test-log","size":224,"digest":"sha256:6b2f60c4a2c08744f854fd6920f4bcdb9d3014bf3c76b562e21af14fa6960833","at":"2026-08-14T23:44:22+08:00","criteria":["AC-6"]}
-{"id":"ac7-full-test-suite","file":"ac7.txt","kind":"test-log","size":100,"digest":"sha256:05f13fd94f3518c077869db7d8ad4ab1c8fadab9a70915e235b31aec57fa1b7c","at":"2026-08-14T23:44:22+08:00","criteria":["AC-7"]}
-{"id":"ac8-frozen-baseline","file":"identity-baseline.json","kind":"machine-report","size":56382,"digest":"sha256:27104fbdd7b14a9243dcccb19e18b318a6134bd9af83ccbc9ce60b231f21bbf4","at":"2026-08-14T23:44:22+08:00","criteria":["AC-8"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":998,"digest":"sha256:f8b36f2cef07abed0e02c7912ed28f85f703da57bed92721395d203175984aef","at":"2026-08-14T23:45:42+08:00","criteria":["AC-1"]}

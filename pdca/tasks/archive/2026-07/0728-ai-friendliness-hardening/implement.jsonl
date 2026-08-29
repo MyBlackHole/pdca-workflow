@@ -1,6 +1,0 @@
-{"file":"knowledge/ai-efficiency/ai-friendliness-review-methodology.md","reason":"复用现有七维度、引用链和边界测试框架，但以可复现指标替代主观总分","action":"read","at":"2026-07-28T19:51:38+08:00"}
-{"file":"knowledge/pdca-flow/runtime-transition-coordinator.md","reason":"复用阶段 CAS、transition receipt、跨文件恢复和 verdict/disposition 门禁原则","action":"read","at":"2026-07-28T19:51:38+08:00"}
-{"file":"knowledge/pdca-flow/executor-adapter-boundary.md","reason":"复用核心与平台 Adapter 解耦、preflight 和能力验证边界","action":"read","at":"2026-07-28T19:51:38+08:00"}
-{"file":"knowledge/pdca-flow/global-repo-config.md","reason":"复用 PDCA_HOME 优先级和仓库发现规则实现 doctor","action":"read","at":"2026-07-28T19:51:38+08:00"}
-{"file":"knowledge/pdca-flow/architecture.md","reason":"保持 flow/skill 分工和阶段验证链与现有架构一致","action":"read","at":"2026-07-28T19:51:38+08:00"}
-{"file":"knowledge/workflow/skill-invocation-convention.md","reason":"索引和能力协议需保留 invocation: manual 的触发语义","action":"read","at":"2026-07-28T19:51:38+08:00"}

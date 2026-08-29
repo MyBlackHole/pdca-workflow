@@ -1,3 +1,0 @@
-command: rg -n "mmap|madvise|MDB_NORDAHEAD|mdb_env_set_mapsize|MDB_envinfo|sys/mman" src CMakeLists.txt Makefile
-result: no LMDB mmap-only reference in src/metadata_store.cpp, CMakeLists.txt, or Makefile
-result: remaining mmap references are SQLite PRAGMA mmap_size=0 and documentation/configuration text

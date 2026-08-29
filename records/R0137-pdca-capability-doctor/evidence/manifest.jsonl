@@ -1,2 +1,0 @@
-{"id":"doctor-result","file":"doctor-result.json","kind":"diagnostic","size":1079,"digest":"sha256:f31abcd4942c4217874736effae53c0ad8d455b05669502631fbbd27d9e4c937","at":"2026-07-28T20:20:04+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
-{"id":"skills-index","file":"SKILLS-INDEX.md","kind":"generated-index","size":11205,"digest":"sha256:1b0dbb9630169d802c810b964229b52fbfeb43abfbbfd385b7e5fc60d6d044a9","at":"2026-07-28T20:20:04+08:00","criteria":["AC-5"]}

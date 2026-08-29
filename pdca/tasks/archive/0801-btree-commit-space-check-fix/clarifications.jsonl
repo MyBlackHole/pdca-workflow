@@ -1,2 +1,0 @@
-{"source":"final_confirmation","summary":"T0169 PRD 终审确认：修复 commit 空间检查未累加同 leaf 多 update 导致堆越界写，范围限定 update.rs+bset_update.rs+回归测试，对齐 bcachefs commit.c 语义","response":"confirmed","at":"2026-08-01T09:09:36+08:00"}
-{"source":"check_confirmation","summary":"T0169 check 结论确认：D1 三项修复（累加/split-restart/EBUG_ON 断言）与回归测试全部落地，173 passed + ASAN 无报告，AC-1..AC-5 5/5 通过","response":"confirmed","at":"2026-08-01T11:12:01+08:00"}

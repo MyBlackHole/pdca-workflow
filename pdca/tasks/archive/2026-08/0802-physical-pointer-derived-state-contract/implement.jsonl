@@ -1,2 +1,0 @@
-{"file":"knowledge/core/physical-pointer-derived-state-recovery-boundary.md","reason":"定义 T0181 的主/派生边界、norun recovery 约束和任务顺序。","action":"read","at":"2026-08-02T03:02:20+08:00"}
-{"file":"knowledge/core/trigger-audit-derived-state-boundary.md","reason":"确认内部 btree pointer 与 backpointer 的 trigger 审计边界，避免只按公开 API 设计。","action":"read","at":"2026-08-02T03:02:20+08:00"}

@@ -1,5 +1,0 @@
-{"source":"grilling","question":"IPv6 支持采用哪种双栈策略？","answer":"AF_INET6 双栈（推荐）：服务端用 AF_INET6 + IPV6_V6ONLY=0，客户端用 getaddrinfo() 自动选择协议","at":"2026-07-30T10:05:00+08:00"}
-{"source":"final_confirmation","summary":"RPC IPv6 双栈方案 AF_INET6 + IPV6_V6ONLY=0，客户端 getaddrinfo，日志 sockaddr_storage + inet_ntop","response":"confirmed","at":"2026-07-30T10:15:00+08:00"}
-{"source":"grilling","question":"结论的适用范围和限制？","answer":"仅适用于 RPC 项目 4 个核心文件；限制：不接受 DNS 主机名，仅支持 IP 字面量；IPv6 ACL/防火墙管理不在范围内","at":"2026-07-30T10:35:00+08:00"}
-{"source":"grilling","question":"哪些部分可提炼为可复用知识？","answer":"AF_INET6 + IPV6_V6ONLY=0 双栈模式是通用 C/C++ 网络编程实践，但实现与项目内部 API 强耦合，不满足复用标准","at":"2026-07-30T10:35:00+08:00"}
-{"source":"knowledge_decision","action":"skipped","reason":"实现与 RPC 项目内部 API（ErrorLog、WarningLog、sock_keepalive、g_rpc_config 等）强耦合，不满足通用复用标准","at":"2026-07-30T10:35:00+08:00"}

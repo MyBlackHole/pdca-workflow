@@ -1,3 +1,0 @@
-{"id":"integration-7case","file":"integration.log","kind":"test","size":5108,"digest":"sha256:e789db517031200a6cb58bdb9e3c2b94ffbdaf5bc8da14186eab35627c55a5cc","at":"2026-08-22T12:00:00+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}
-{"id":"regression","file":"regression.log","kind":"test","size":2727,"digest":"sha256:240d3aeee6bd38fa69235156e692c94ab3b55d4f4721f53ab242d35e669a3f35","at":"2026-08-22T12:00:00+08:00","criteria":["AC-3"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":259,"digest":"sha256:fa88608a386d58e0a643a31a67c077e72702e153169bc5b4a7e7049f66aafd4c","at":"2026-08-22T12:01:49+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}

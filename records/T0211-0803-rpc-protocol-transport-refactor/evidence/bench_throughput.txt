@@ -1,4 +1,0 @@
-[bench] receiver: 1073746218 bytes via 0 frames
-[bench] 1GB stream: 2.14 s, send throughput 501.9 MB/s (frame overhead 4394 bytes)
-[PASS] stream throughput above 100 MB/s floor
-bench_throughput: all tests passed

@@ -1,1 +1,0 @@
-协议层大端残留扫描：rpc/rpc-protocol.cpp rpc/rpc-msg.c libs/rpc-net-protocol.c 中 htonl/ntohl/htonll/ntohll/put_u32/get_u32/put_u16/get_u16 调用 0 处（排除 *_le 与 memcmp/memcpy）。buf 层(rpc_conn_* 高层)保持大端自洽，按 AC-6 设计不改动。

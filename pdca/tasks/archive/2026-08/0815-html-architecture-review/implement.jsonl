@@ -1,2 +1,0 @@
-{"file": "docs/adr/ADR-0025-html-architecture-review.md", "reason": "本任务全部实现决策（热点优先、HTML 写任务目录、指标登记、设计闭环）由 ADR-0025 固定。", "action": "按 ADR-0025 决策实现 arch_review.py 与 skill 重写。", "at": "2026-08-15T06:32:19.951656+08:00"}
-{"file": "skills/improve-codebase-architecture/SKILL.md", "reason": "skill 是审查流程的事实源，五步流程（热点→HTML→指标→设计闭环）据此重写。", "action": "重写 skill 并在真实仓库跑通完整审查。", "at": "2026-08-15T06:32:19.951696+08:00"}

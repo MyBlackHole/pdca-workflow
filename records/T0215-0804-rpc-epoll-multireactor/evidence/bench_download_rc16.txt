@@ -1,7 +1,0 @@
-[bench] generating 256 MB source...
-[bench] round 0: 0.30 s, 887.0 MB/s
-[bench] round 1: 0.29 s, 940.4 MB/s
-[bench] round 2: 0.29 s, 917.5 MB/s
-[bench] round 3: 0.29 s, 919.3 MB/s
-[bench] round 4: 0.32 s, 842.7 MB/s
-[bench] 256 MB download: avg 901.4 MB/s (min 842.7 / max 940.4)

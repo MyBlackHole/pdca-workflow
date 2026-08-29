@@ -1,6 +1,0 @@
-{"at":"2026-08-18T15:50:00+08:00","source":"task_identity","summary":"created with record identity T0316-0818-rpc-legacy-helper-cleanup"}
-{"source":"final_confirmation","summary":"确认删除 libs/rpc-net.c 未使用收发函数，清理 tls-keygen 实际调用函数的 unused 属性，保留公共 TLS API 和仍在使用的 rpc_send/rpc_recv。","response":"confirmed","at":"2026-08-18T15:50:50+08:00"}
-{"source":"check_confirmation","summary":"确认 T0316 四项验收标准成立：删除未使用 RPC 辅助函数、清理无效 unused 属性、保留公共 TLS API，构建和 36 项测试通过。","response":"confirmed","at":"2026-08-18T15:53:10+08:00"}
-{"round":1,"question":"是否应把无内部调用的公共 tls_cert_verify_is_local 直接删除？","answer":"否，保留并单独评估外部 ABI。","recommended":"静态内部死代码可删除，公共 API 需先完成 ABI 评估。","source":"grilling","at":"2026-08-18T15:54:00+08:00"}
-{"round":1,"question":"实际被调用的 tls-keygen 函数上的 unused 属性是否应移除？","answer":"是，只移除属性，不改变函数逻辑。","recommended":"清理误导性属性并用完整构建测试验证。","source":"grilling","at":"2026-08-18T15:54:00+08:00"}
-{"source":"knowledge_decision","at":"2026-08-18T15:54:00+08:00","action":"wrote","reason":"内部死代码与公共 ABI 的分类规则可复用于后续网络代码清理。"}

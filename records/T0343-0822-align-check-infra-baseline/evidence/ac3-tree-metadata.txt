@@ -1,2 +1,0 @@
-# AC-3 tree_small_metadata_order
-tree small/metadata ordering integration: PASS groups=96 small_files=1536 hardlinks=96 tree_workers=4 small_workers=4 modes=0550

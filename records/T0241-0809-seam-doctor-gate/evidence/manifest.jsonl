@@ -1,3 +1,0 @@
-{"id": "doctor-seam", "file": "pdca-doctor.py", "kind": "implementation", "size": 5386, "digest": "sha256:4edc3e86ae3c54300fe8968771714b45150afade32db45dd599ee4fbcae04d5f", "at": "2026-08-09T16:44:55+08:00", "criteria": ["AC-1", "AC-2", "AC-3", "AC-4"]}
-{"id": "doctor-tests", "file": "test_operations.py", "kind": "test", "size": 29067, "digest": "sha256:43ec338d3cf16094608322b4a52c3c118012218b9515809ad2a96cadbbdc7de1", "at": "2026-08-09T16:44:56+08:00", "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5"]}
-{"id": "convergence-map", "file": "convergence.json", "kind": "convergence-map", "size": 317, "digest": "sha256:062c52aec0084ceccd085ff8ec36518314b7c4fa91d8fed38f18d2085cbf49aa", "at": "2026-08-09T16:45:15+08:00", "criteria": ["CC-1"]}

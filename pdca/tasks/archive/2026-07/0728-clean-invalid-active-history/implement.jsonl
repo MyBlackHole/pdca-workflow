@@ -1,2 +1,0 @@
-{"file":"knowledge/core/project-goal.md","reason":"清理必须恢复 AI 可用的准确信号，而非只减少文件数量","action":"以全库 invalid_count 从 16 降到 0 作为价值信号","at":"2026-07-28T21:33:02+08:00"}
-{"file":"knowledge/ai-efficiency/ai-friendliness-review-methodology.md","reason":"复用门禁正确率、故障注入和可证伪保留门槛","action":"用越界、数量、digest 与不可恢复夹具验证清理安全性","at":"2026-07-28T21:33:02+08:00"}

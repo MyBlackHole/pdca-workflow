@@ -1,3 +1,0 @@
-{"file":"knowledge/benchmark/small-writer-pool-parallelism.md","reason":"上一轮已确认 writer pool 调参必须基于配对样本，且默认值不应由单机结果自动改变。","action":"作为本轮 workers=0/4 配对和适用边界的基准。","at":"2026-08-13T22:02:34+08:00"}
-{"file":"knowledge/benchmark/paired-comparison-noise.md","reason":"本轮需要比较多个 queue factor 与 worker 组合，必须使用交替配对并报告均值和 min/max。","action":"作为 benchmark 脚本设计约束。","at":"2026-08-13T22:02:34+08:00"}
-{"file":"knowledge/pdca-flow/real-project-mechanism-validation.md","reason":"本轮 development 任务需要以真实 TLS TREE GET seam 验证热路径，而不是只测单元函数。","action":"作为 seam 和 Do 阶段证据设计约束。","at":"2026-08-13T22:02:34+08:00"}

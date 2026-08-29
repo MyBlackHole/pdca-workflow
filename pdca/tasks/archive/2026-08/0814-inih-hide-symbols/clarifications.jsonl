@@ -1,3 +1,0 @@
-{"source":"final_confirmation","summary":"批准 inih 符号隐藏方案：7 处 add_requires 统一为 inih + cxflags=fvisibility=hidden（含 -DINI_API= 覆盖宏）+ add_packages(\"inih\")，移除 inih_static 别名；验收 4 项","response":"confirmed","at":"2026-08-14T11:07:55+08:00"}
-{"source":"check_confirmation","summary":"4 项验收全部 PASS 且有独立 evidence 支撑；根因（INI_API 宏覆盖 visibility）经 A/B 对照实验确认；修复方案 cxflags+=-DINI_API= 覆盖宏。结论可靠，无未覆盖关键路径与性能/安全担忧；验证环境 linux x86_64","response":"confirmed","at":"2026-08-14T11:13:06+08:00"}
-{"source": "knowledge_decision", "at": "2026-08-14T11:13:53+08:00", "action": "wrote", "reason": "第三方 C 库头文件含显式 visibility(default) 宏时仅 fvisibility=hidden 无效，需 -D<MACRO>= 覆盖宏；含 A/B 对照 readelf 验证方法与实验陷阱，跨项目复用价值高"}

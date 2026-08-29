@@ -1,2 +1,0 @@
-{"file": "reproduce-malloc-consolidate.c", "role": "reproduction-code", "description": "复现 malloc_consolidate(): invalid chunk size / corrupted size vs. prev_size 的 C 程序"}
-{"file": "conclusion.md", "role": "conclusion", "description": "复现结论与根因分析"}

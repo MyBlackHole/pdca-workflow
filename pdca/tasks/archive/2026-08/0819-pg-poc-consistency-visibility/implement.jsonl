@@ -1,2 +1,0 @@
-{"knowledge": "pg/toast-compressed-varlena-layout.md", "reason": "CLOG 单独 CHECKPOINT 陷阱与物理直读布局, 决定导出流程与可见性判定依据", "action": "reference", "at": "2026-08-19T10:29:57.367084+08:00"}
-{"knowledge": "core/concurrent-combined-commit-log.md", "reason": "commit log 语义知识背景(可选, 关联可见性中 clog 判定)", "action": "reference", "at": "2026-08-19T10:29:57.367084+08:00"}

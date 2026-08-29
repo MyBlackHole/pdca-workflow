@@ -1,1 +1,0 @@
-{"file":"/home/black/Documents/pdca-workflow/knowledge/core/journal-key-layout-validation.md","reason":"T0178 已确认独立 btree-id/key 合约不能直接承接 bcachefs fs 层验证；本审计需延续同一适用性边界。","action":"read","at":"2026-08-02T00:02:13+08:00"}

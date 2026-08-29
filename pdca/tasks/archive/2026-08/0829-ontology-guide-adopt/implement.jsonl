@@ -1,6 +1,0 @@
-{"id":"T0407-1","title":"写 ontology/ONTOLOGY_GUIDE.md（正式版，基于 T0406 草案去 DRAFT）：先人后机理念、frontmatter 身份规范、relations 关系规范、attributes 属性规范、concept/ 类型字典、_meta.yaml 说明、升华脚本路径、与原提案差异表，明确语义权威=frontmatter+relations","depends_on":[],"status":"pending","accepts":["AC-1"]}
-{"id":"T0407-2","title":"写 ontology/_meta.yaml：声明顶级文件夹为人类阅读索引；语义权威=pdca.asset/v1 frontmatter+YAML relations；正文 wikilink 为派生视图非关系来源","depends_on":[],"status":"pending","accepts":["AC-2"]}
-{"id":"T0407-3","title":"新增 scripts/ontology_graph.py：读 ontology/**.md 的 frontmatter+relations，导出 Obsidian 兼容图谱并输出孤岛节点清单；可独立运行","depends_on":[],"status":"pending","accepts":["AC-3"]}
-{"id":"T0407-4","title":"给 ≥3 个现有样本节点（含 x509-certificate 与≥1 个 pdca-* 元本体节点）补 domain/docType/tags 可选人读字段，且 ontology-validate 仍通过","depends_on":["T0407-1"],"status":"pending","accepts":["AC-4"]}
-{"id":"T0407-5","title":"起草 docs/adr/ADR-0033-ontology-guide-adoption.md：采纳兼容吸收方案、_meta.yaml 语义权威声明、不变更 SSOT v3","depends_on":["T0407-1","T0407-2"],"status":"pending","accepts":["AC-5"]}
-{"id":"T0407-6","title":"验证 ontology-validate 与既有测试无回归，在 records/T0407-0829-ontology-guide-adopt/ 登记证据并写 convergence map","depends_on":["T0407-3","T0407-4","T0407-5"],"status":"pending","accepts":["AC-6"]}

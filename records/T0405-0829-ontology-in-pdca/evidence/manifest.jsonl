@@ -1,2 +1,0 @@
-{"id":"t0405-do-tests","file":"t0405-do-tests.md","kind":"test-result","size":130,"digest":"sha256:a05f97bdcfce4477ed98b297b494a9f13ee6db59ada75a72dc7e96d4426bb502","at":"2026-08-29T20:38:31+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":293,"digest":"sha256:bb74f899122a6d1174e5a15f3829f5eb3067029ea506584ca2dbb63fe702785d","at":"2026-08-29T20:38:32+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6"]}

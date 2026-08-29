@@ -1,4 +1,0 @@
-{"id":"ev-validate","file":"ontology-validate.py","kind":"script","size":5972,"digest":"sha256:4687f94c84d4eb50c50d925abcf2361869aaee2f805c9a16b36130bd419cdefc","at":"2026-08-29T18:24:12+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
-{"id":"ev-check-skill","file":"SKILL.md","kind":"doc","size":1757,"digest":"sha256:54e071c262f334835bdf51475a987f8737cd320ca8787c15c668927dda56b662","at":"2026-08-29T18:24:12+08:00","criteria":["AC-5"]}
-{"id":"ev-test","file":"test_ontology_validate.py","kind":"test","size":2449,"digest":"sha256:e6bbea5d2c5c623f7af27c292990de71b128d618a59921b5fbac8a00b662ff6e","at":"2026-08-29T18:24:12+08:00","criteria":["AC-6"]}
-{"id":"convergence","file":"convergence-map.json","kind":"convergence-map","size":317,"digest":"sha256:bda97d5c57aff8cf66c902165bcb0b51a6bb36d2c22a37a74cdcae4f79f2fe11","at":"2026-08-29T18:24:12+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6"]}

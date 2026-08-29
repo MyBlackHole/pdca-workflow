@@ -1,8 +1,0 @@
-{"at": "2026-08-15T09:16:28.956+08:00", "source": "task_identity", "summary": "created with record identity T0271-0815-gate-compliance-remediation"}
-{"at": "2026-08-15T09:17:07.275054+08:00", "source": "triage", "summary": "查重通过：T0270 结论明确修复交后续；无既有修复机制。修复范围：gate_incomplete 6（3 补 verdict 有 conclusion 依据 + 2 豁免 + 1 audit 误报修正）、archive_dup 2、active_stale 2；id 撞车 25 组排除（独立任务）", "response": "new_task"}
-{"at": "2026-08-15T09:17:07.275196+08:00", "source": "grill", "summary": "G1 补 verdict 依据：仅 T0207/T0208/T0209（conclusion 有 Verdict complete/V-T0xxx-001）；无依据历史项走豁免标记不伪造", "response": "confirmed"}
-{"at": "2026-08-15T09:17:07.275259+08:00", "source": "grill", "summary": "G2 修复安全边界：dry-run 默认预览，apply 才改动；删除均保留主目录/archive 完整副本；git 可回滚", "response": "confirmed"}
-{"at": "2026-08-15T09:17:07.275317+08:00", "source": "grill", "summary": "G3 audit 修正：check 阶段无 verdict 不判违规（进行中正常），豁免单列报告", "response": "confirmed"}
-{"at": "2026-08-15T09:17:07.275340+08:00", "source": "direction_confirmation", "summary": "方向确认：audit 脚本修正 + 修复脚本（dry-run/apply）+ 修复前后对比；无依据项豁免如实标记；id 撞车留独立任务；research 场景跳过 seam", "response": "confirmed"}
-{"at": "2026-08-15T09:17:07.275366+08:00", "source": "final_confirmation", "summary": "PRD 确认：AC-1..AC-7，补 verdict×3 + 豁免×2 + audit 修正 + 副本清理×2 + active 残留×2，dry-run 安全边界", "response": "confirmed"}
-{"source":"check_confirmation","summary":"用户确认 T0271 结论（7/7 AC Passed，gate_incomplete 6→0/archive_dup 2→0/active_stale 2→0，豁免 5 项如实标记）","response":"confirmed","at":"2026-08-15T09:41:31+08:00"}

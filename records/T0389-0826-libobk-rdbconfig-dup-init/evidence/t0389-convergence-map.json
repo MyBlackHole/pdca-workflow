@@ -1,7 +1,0 @@
-{
-  "schema": "pdca.convergence/v1",
-  "items": [
-    {"index":1, "text":"libobk 入口层以 pthread_once 实现一次性 rdb config 守卫，sbtinit/sbtinit2/main.c 三处改调，进程内 init_config 仅执行一次", "criteria":["AC-1","AC-4","AC-5"], "evidence_ids":["impl-diff","build-all"]},
-    {"index":2, "text":"init_config 强制重加载语义不变；param_registry_test/rdb_config_test/rpc_config_test/libobk_session_test 全部通过，构建不受影响", "criteria":["AC-2","AC-3"], "evidence_ids":["param_registry_test","rdb_config_test","rpc_config_test","libobk_session_test"]}
-  ]
-}

@@ -1,4 +1,0 @@
-{"id":"E-0001","file":"check-evidence.md","kind":"traceability","size":2953,"digest":"sha256:81099f29290f43f6aaf142717c60f070e23909a4ee12df6f9a04362f3490566f","at":"2026-08-02T11:16:55+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6"]}
-{"id":"E-0002","file":"review-report.md","kind":"code-review","size":2291,"digest":"sha256:a4a3b217f4d6599f585430c68177ba9320c8f11d7d160252be00ae2120f215fb","at":"2026-08-02T11:17:02+08:00","criteria":["双轴审查"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":256,"digest":"sha256:36774de43cfdfb68f14eb3d2a98f085c116b84195dca4d569d282f681a05e984","at":"2026-08-02T11:18:00+08:00","criteria":["AC-1"]}
-{"id":"ac1-source-anchors","file":"ac1-source-anchors.md","kind":"audit","size":2469,"digest":"sha256:4fe847b144c83d6770d00b5f20b7c540013a7f3df93f11e64250f23ac73edbf9","at":"2026-08-02T11:19:13+08:00","criteria":["AC-1"]}

@@ -1,7 +1,0 @@
-{"source":"triage","summary":"T0180 的 confirmed 审计已确定本任务只定义单一格式 physical pointer、派生状态与 norun recovery 合约；无需额外取舍后即可进入 Plan 签审。","response":"not_needed","at":"2026-08-02T02:59:40+08:00"}
-{"source":"final_confirmation","summary":"用户批准 T0181：定义以 physical pointer 为主数据、alloc/backpointer/accounting 为派生状态的单一格式恢复合约；先重放主键再显式扫描重建；不实现 runner、派生写入、GC 或 stripe。","response":"confirmed","at":"2026-08-02T06:20:51+08:00"}
-{"source":"check_confirmation","summary":"用户确认 T0181：physical pointer 为权威主数据，alloc/backpointer/accounting 为可重建派生状态；norun replay 后先重建再发布；进入 Act 归档并推进 T0182 Plan。","response":"confirmed","at":"2026-08-02T06:23:54+08:00"}
-{"round":1,"question":"可复用知识是否应把 recovery 的发布门槛固定为主 pointer 重放后、派生扫描和集合校验完成前不可用，而不把该契约扩展为完整 GC/stripe？","answer":"确认；用户确认的 T0181 结论仅覆盖主/派生恢复边界，并明确 GC/stripe 范围外。","recommended":"是；这既覆盖 norun 的一致性风险，又不会以不完整状态模型扩大实现范围。","source":"grill","at":"2026-08-02T06:23:54+08:00"}
-{"source":"knowledge_decision","at":"2026-08-02T06:24:15+08:00","action":"wrote","reason":"主 pointer 权威、派生状态重建和发布门槛可直接约束后续 runner/recovery 任务。"}
-{"source":"final_confirmation","summary":"用户批准 T0181：定义以 physical pointer 为主数据、alloc/backpointer/accounting 为派生状态的单一格式恢复合约；先重放主键再显式扫描重建；不实现 runner、派生写入、GC 或 stripe。","response":"confirmed","at":"2026-08-02T06:20:51+08:00"}
-{"source":"check_confirmation","summary":"用户确认 T0181：physical pointer 为权威主数据，alloc/backpointer/accounting 为可重建派生状态；norun replay 后先重建再发布；进入 Act 归档并推进 T0182 Plan。","response":"confirmed","at":"2026-08-02T06:23:54+08:00"}

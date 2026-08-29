@@ -1,3 +1,0 @@
-{"id": "evt-001", "file": "research-report.md", "kind": "report", "size": 8900, "digest": "sha256:afd0070e4806076fed90f9504826f169f1496155d620ae8443d30506d8ffc46a", "at": "2026-07-31T11:15:22+08:00", "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5"]}
-{"id": "convergence-map", "file": "convergence.json", "kind": "convergence-map", "size": 870, "digest": "sha256:74f780ec3c7ba9fe400c1fa4292159675b5ba9c018c5ca8c98753dea3b4b7467", "at": "2026-07-31T11:16:10+08:00", "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5"]}
-{"id": "evt-002", "file": "nbu-dte-architecture.md", "kind": "knowledge-update", "size": 11364, "digest": "sha256:54724205d412a37453a9d95207fd50d85a4157e65af5d3431e4fdfcc6ce68c43", "at": "2026-07-31T12:05:15+08:00", "criteria": ["AC-6"]}

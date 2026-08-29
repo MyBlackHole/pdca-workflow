@@ -1,3 +1,0 @@
-{"file": "knowledge/pdca-flow/self-optimization-loop.md", "reason": "定义自我优化效果验证边界：改进效果必须由后续周期新证据支持，不能循环自证。轮数对比测试证明的是机制能力，真实效率仍需后续周期观察。", "action": "参考", "at": "2026-08-09T10:04:00+08:00"}
-{"file": "knowledge/workflow/skill-invocation-convention.md", "reason": "grilling 为 automatic 技能，无 invocation: manual。本次仅改节奏不改调用方式，需确认不破坏该约定。", "action": "确认不冲突", "at": "2026-08-09T10:04:00+08:00"}
-{"file": "records/R0086-0727-compare-skills/conclusion.md", "reason": "此前对 mattpocock 的对比结论，确认本任务为增量（R0086 未做批量问法落地）。", "action": "查重确认", "at": "2026-08-09T10:04:00+08:00"}

@@ -1,3 +1,0 @@
-{"id": "ac1-source-anchors", "file": "ac1-source-anchors.md", "kind": "audit", "size": 4614, "digest": "sha256:5e1aed3f089e8d36932abfae95cce1a411d0934c0d9c11e8dac8ed2d1b1608ad", "at": "2026-08-02T10:40:30+08:00", "criteria": ["AC-1"]}
-{"id": "E-T0193-CHECK-001", "file": "check-evidence.md", "kind": "test", "size": 1216, "digest": "sha256:b0387406805f6ff37e2daaca35a52da32253fdb9e7000c50e545a72b27e2de6e", "at": "2026-08-02T10:40:30+08:00", "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5", "AC-6"]}
-{"id": "convergence-map", "file": "convergence.json", "kind": "convergence-map", "size": 272, "digest": "sha256:2f118bbb50d504c98fe5eb3b4926a4f3691f7698c0377bdf3eeca276aa9a633c", "at": "2026-08-02T10:42:00+08:00", "criteria": ["AC-1"]}

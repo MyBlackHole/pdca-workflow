@@ -1,4 +1,0 @@
-{"id":"full-build","file":"t0323-build-final.log","kind":"build-result","size":4583,"digest":"sha256:bf446cbdf4e340f11c8d4cc0df4fa5059426f53d6aa8873249e152e103037380","at":"2026-08-19T09:42:08+08:00","criteria":["AC-5"]}
-{"id":"full-test","file":"t0323-test-final.log","kind":"test-result","size":143021,"digest":"sha256:4bea84c674483477d48838a796c1c7539be6f35928e757430e2c6f113eeded23","at":"2026-08-19T09:42:08+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}
-{"id":"implementation-review","file":"review-report.md","kind":"review","size":1212,"digest":"sha256:fbfac0e24710dd4e0c05681379ee434bee30ce74f43d29db8c84a57422260c11","at":"2026-08-19T09:42:08+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":276,"digest":"sha256:802115e58868690ee6cf5641a68cf376225ee8c70711cd62c1a70ee206dcd2bd","at":"2026-08-19T09:42:28+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}

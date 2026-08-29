@@ -1,5 +1,0 @@
-{"id":"source-audit","file":"source-audit.md","kind":"source-audit","size":1208,"digest":"sha256:b200bd560dbbca9f15db008e7164e799505e56ec70518cd15168ae9ea7c1f196","at":"2026-08-02T07:45:17+08:00","criteria":["AC-1"]}
-{"id":"verification","file":"verification.md","kind":"test-report","size":952,"digest":"sha256:bc020b387889ecf13864b4b0b283b8df520e3fbdccccd2f1e917d28bc76dbd6b","at":"2026-08-02T07:45:17+08:00","criteria":["AC-2","AC-4","AC-5"]}
-{"id":"ac3-gap","file":"gap.md","kind":"gap","size":365,"digest":"sha256:ff2809b4a836c62833ff8ce1300896dedb935574fb4e389d69b5e529b0ff574a","at":"2026-08-02T07:46:20+08:00","criteria":["AC-3"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":278,"digest":"sha256:1f36602afe1f2b8e74ef4a6ad05eb6adb5beb2709404ad3989ee642d712697b4","at":"2026-08-02T07:46:40+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}
-{"id":"verification-ac3","file":"verification-ac3.md","kind":"test-report","size":1139,"digest":"sha256:0985e45aec7761f0f3fb18c50b2f0a2120f5da2021cd071cb24819199199cbe1","at":"2026-08-02T07:49:36+08:00","criteria":["AC-3","AC-5"]}

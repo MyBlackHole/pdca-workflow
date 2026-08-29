@@ -1,3 +1,0 @@
-{"source":"triage","task_id":"T0408","at":"2026-08-29T21:25:00+08:00","classification":"framework-meta","scenario_type":"documentation","summary":"缺口1整改：在 flow-do/check/act 三个 SKILL 注入本体消费步骤，使执行层真正对照 meta.ontology_fragment 与 ontology 图谱；不新增 CI 硬门禁（属已排除的另一选项）"}
-{"source":"final_confirmation","summary":"确认 T0408 PRD：在 flow-do/check/act 注入本体消费步骤（AC-1..AC-5），仅改 flow SKILL 文本与 ONTOLOGY_GUIDE 同步，不新增 CI 硬门禁","response":"confirmed","at":"2026-08-29T21:26:50+08:00"}
-{"source":"check_confirmation","summary":"Check 确认：T0408 在 flow-do/check/act 注入本体消费步骤，verify-document ok，证据收敛 valid:true，verdict=confirmed","response":"confirmed","at":"2026-08-29T21:29:48+08:00"}

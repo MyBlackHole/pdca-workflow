@@ -1,4 +1,0 @@
-{"at":"2026-08-29T09:59:55+00:00","source":"task_identity","summary":"created with record identity T0400-0829-onto-ssot-schema"}
-{"source":"final_confirmation","summary":"继承父 T0399 终审：子任务分解随父完整方案（含任务树）批准，开始 Do 阶段执行","response":"confirmed","at":"2026-08-29T18:07:08+08:00"}
-{"source":"check_confirmation","summary":"用户以'继续'确认 T0400 Check 结论 verdict=converged；自我审查发现的 type 矛盾已修正、证据已重登记","response":"confirmed","at":"2026-08-29T18:16:55+08:00"}
-{"source": "knowledge_decision", "at": "2026-08-29T18:18:47.951709+08:00", "action": "skipped", "reason": "SSOT 已落于 ontology/README.md 与 schemas/ontology-asset.schema.json，作为后续任务统一规范，不重复写入 knowledge/"}

@@ -1,4 +1,0 @@
-{"source":"knowledge","file":"knowledge/ai-efficiency/ai-friendliness-review-methodology.md","reason":"复用“严格 contract + 公共 resolver + 真实文档/故障夹具”方法，并保留不外推真实 LLM 成功率的证据边界。","action":"loaded","at":"2026-07-31T06:40:49+08:00"}
-{"source":"knowledge","file":"knowledge/workflow/skill-invocation-convention.md","reason":"复用 manual/automatic 调用分类，并将现有仅文档约定的边界升级为可验证 contract。","action":"loaded","at":"2026-07-31T06:40:49+08:00"}
-{"source":"knowledge","file":"docs/adr/ADR-0006-executable-ai-friendliness-route-contract.md","reason":"复用职责分离的 JSON contract、public resolver 与文档一致性检查；避免修改既有 route contract 的语义。","action":"loaded","at":"2026-07-31T06:40:49+08:00"}
-{"source":"knowledge","file":"docs/adr/ADR-0007-versioned-content-budget.md","reason":"新增 worker 和 flow 文本变更必须以逐资产 baseline、必要性说明和相关 fixture 共同治理。","action":"loaded","at":"2026-07-31T06:40:49+08:00"}

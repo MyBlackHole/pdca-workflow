@@ -1,4 +1,0 @@
-{"source":"direction_confirm","summary":"确认使用显式 LMDB no-mmap 分支；普通 mmap LMDB 不得在 LMDB_NO_MMAP=1 下通过，重新验证事务、回归和 RSS","response":"confirmed","at":"2026-08-14T06:35:55+08:00"}
-{"source":"final_confirmation","summary":"批准 T0249 完整方案：显式 no-mmap 依赖注入、mmap API 清除、SQLite/LMDB 故障与 100k benchmark、TREE checkpoint 和全量回归","response":"confirmed","at":"2026-08-14T06:35:55+08:00"}
-{"source":"check_confirmation","summary":"确认本轮部分成立：MDB_VL32 no-mmap 分支缺失，保留 fail-fast 基线并延期真实运行与性能验证","response":"partial","at":"2026-08-14T06:50:18+08:00"}
-{"source":"follow_up","task_id":"T0250","summary":"创建跟进任务：接入 MDB_VL32 no-mmap 分支后完成运行矩阵、checkpoint、旧缓存和 100k benchmark/RSS","at":"2026-08-14T06:51:00+08:00"}

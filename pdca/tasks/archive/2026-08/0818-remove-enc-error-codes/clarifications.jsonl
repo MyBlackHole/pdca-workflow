@@ -1,7 +1,0 @@
-{"at":"2026-08-18T15:33:00+08:00","source":"task_identity","summary":"created with record identity T0314-0818-remove-enc-error-codes"}
-{"source":"final_confirmation","summary":"确认移除项目自定义 ENC 错误编码，并补充包含角色、阶段、算法、证书路径和 OpenSSL 原因的明确 TLS 日志。","response":"confirmed","at":"2026-08-18T15:34:29+08:00"}
-{"source":"check_confirmation","summary":"确认 T0314 三项验收标准均成立：移除项目 ENC-*、补充明确 TLS 日志，xmake test 36/36 通过。","response":"confirmed","at":"2026-08-18T15:38:47+08:00"}
-{"round":1,"question":"结论的适用边界是否明确：只记录凭据路径、不记录私钥内容，并且第三方 OpenSSL 的 ENC-then-MAC 不在移除范围内？","answer":"是，边界明确。","recommended":"保留该边界，避免日志泄密和误改第三方代码。","source":"grilling","at":"2026-08-18T15:40:00+08:00"}
-{"round":1,"question":"结构化 TLS 失败日志是否值得沉淀为可复用知识？","answer":"是，适用于后续 RPC/rdbcomm 安全链路。","recommended":"沉淀日志字段和测试覆盖规则。","source":"grilling","at":"2026-08-18T15:40:00+08:00"}
-{"round":1,"question":"后续是否需要立即扩大到 rdbcomm/server.c 的通用错误日志？","answer":"否，另建任务评估。","recommended":"保持本任务范围稳定，后续单独评估。","source":"grilling","at":"2026-08-18T15:40:00+08:00"}
-{"source":"knowledge_decision","at":"2026-08-18T15:40:00+08:00","action":"wrote","reason":"结构化 mTLS 失败日志字段和真实工具测试模式可复用于后续安全链路。"}
