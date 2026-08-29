@@ -5,28 +5,33 @@
   ],
   "id": "T0411",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "补全 PDCA 元本体尚不完善的节点：充实根概念 pdca.md 与转换元概念 pdca-transition.md 的正文定义，并在 phase-do/phase-check 注入经典 PDCA 的科学方法内核（预测-试验-比对-采纳/放弃），使元本体达到'完善'"
     ],
     "created_at": "2026-08-29T22:35:00+08:00",
-    "phase": "check",
+    "phase": "archive",
     "verdict": {
       "outcome": "confirmed",
-      "reason": "PDCA 元本体补全：根 pdca.md 与转换元概念 pdca-transition.md 正文补齐，phase-do/check 注入科学方法内核（预测-试验-比对）；ontology-validate 无环、validate-convergence valid:true、10 测试通过。G3（act→plan 改造成转换边）维持概念节点设计。",
+      "reason": "PDCA 元本体补全：根 pdca.md 与转换元概念 pdca-transition.md 正文补齐；phase-plan/do/check/act 四阶段贯通科学方法内核（Plan 预测/假说→Do 小试验验+原始观测→Check 比对观测与预测(偏差即信号)→Act 采纳/放弃并固化学习）；ontology-validate 无环、validate-convergence valid:true、11 测试通过。G3（act→plan 改造成转换边）维持概念节点设计。",
       "verdict_id": "T0411-verdict-1",
-      "at": "2026-08-29T22:37:30+08:00"
+      "at": "2026-08-29T23:12:00+08:00"
     },
     "record": "T0411-0829-pdca-ontology-complete",
     "scenario_type": "documentation",
     "ontology_exempt": true,
-    "completed_at": "2026-08-29T22:37:00+08:00"
+    "completed_at": "2026-08-29T22:37:00+08:00",
+    "disposition": {
+      "outcome": "projected",
+      "reason": "PDCA 元本体完善（根/转换正文补齐 + 四阶段科学方法内核）为可复用资产，可指导后续任何方法论本体的完善。",
+      "at": "2026-08-29T23:25:10+08:00"
+    }
   },
   "parent": null,
   "slug": "0829-pdca-ontology-complete",
   "states": {
-    "act": null,
-    "archive": null,
+    "act": "2026-08-29T23:24:05+08:00",
+    "archive": "2026-08-29T23:24:24+08:00",
     "check": "2026-08-29T22:37:00+08:00",
     "created": "2026-08-29T22:35:00+08:00",
     "do": "2026-08-29T22:36:59+08:00",
