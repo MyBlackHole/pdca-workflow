@@ -1,0 +1,38 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "补全本体全流程闭环：register-evidence 将 --kind 锚定到 pdca-evidence 子类型、verdict 映射到 pdca-verdict 子类型（新增 rejected/partial）；archive 阶段运行 ontology-validate+孤岛自检；新增 ci-ontology-gate（git hook + workflow）把门禁变硬，使本体成为提交级全阶段闭环权威",
+      "criteria": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4",
+        "AC-5",
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ev-test-1",
+        "ev-test-2",
+        "ev-test-3",
+        "ev-test-4",
+        "ev-test-5",
+        "ev-review-1",
+        "ev-adr-1",
+        "ev-reg-1",
+        "ev-gate-1",
+        "ev-gate-2",
+        "ev-trans-1",
+        "ev-ci-1",
+        "ev-hook-1",
+        "ev-verdict-rej-1",
+        "ev-verdict-par-1",
+        "ev-act-skill-1",
+        "ev-ont-readme-1",
+        "ev-guide-1",
+        "ev-act-skill-2"
+      ]
+    }
+  ]
+}

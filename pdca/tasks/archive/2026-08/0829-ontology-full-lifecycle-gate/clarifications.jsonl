@@ -1,0 +1,4 @@
+{"at":"2026-08-29T23:50:32+08:00","source":"task_identity","summary":"created with record identity T0414-0829-ontology-full-lifecycle-gate"}
+{"source":"final_confirmation","summary":"方向确认（T0414）：补全本体全流程闭环——证据锚定 pdca-evidence 子类型、结论映射 pdca-verdict 子类型（新增 rejected/partial）、archive 本体自检、ci-ontology-gate 硬门禁（git hook + workflow）。","response":"confirmed","at":"2026-08-29T23:51:38+08:00"}
+{"source":"check_confirmation","summary":"六项 AC 全部达成，证据/结论锚定本体、archive 自检、CI/hook 硬门禁落地，既有本体测试与 ontology-validate/ci-gate 通过；结论确认进入 Act。","response":"confirmed","at":"2026-08-30T00:25:36+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-30T00:26:30+08:00", "action": "skipped", "reason": "交付物（ci-ontology-gate 硬门禁、register-evidence 锚定、verdict 节点、ADR-0036、指南更新）已是可复用资产并落盘于 docs/ontology/；无需再复制为孤立 knowledge 条目。"}

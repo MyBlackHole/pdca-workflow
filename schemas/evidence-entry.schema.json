@@ -16,6 +16,7 @@
     "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
     "at": {"type": "string", "format": "date-time"},
     "superseded_by": {"type": "string", "minLength": 1},
+    "evidence_type_ref": {"type": "string", "pattern": "^ontology:.+/.+$"},
     "criteria": {
       "type": "array",
       "items": {"type": "string", "minLength": 1},
