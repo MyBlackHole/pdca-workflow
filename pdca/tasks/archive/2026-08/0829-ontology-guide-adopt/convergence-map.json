@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "将 T0406 推荐的兼容吸收版 ONTOLOGY_GUIDE 落地为 docs/ONTOLOGY_GUIDE.md + ontology/_meta.yaml，并新增图谱/孤岛检测脚本，且通过 ontology-validate 与既有测试无回归",
+      "criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5", "AC-6"],
+      "evidence_ids": ["t0407-guide", "t0407-meta", "t0407-graph", "t0407-fields", "t0407-adr", "t0407-validation"]
+    }
+  ]
+}

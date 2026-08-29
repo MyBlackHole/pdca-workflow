@@ -4,6 +4,8 @@ id: ontology:principle/structured-mtls-failure-diagnostics
 type: principle
 layer: Knowledge
 status: active
+docType: Principle
+tags: [mtls, diagnostics]
 summary: mTLS 失败日志应同时表达角色、阶段、算法与凭据路径
 source_task: T0314
 relations:

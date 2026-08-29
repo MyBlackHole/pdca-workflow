@@ -4,6 +4,8 @@ id: ontology:pattern/mtls-handshake-enum-unify
 type: pattern
 layer: Knowledge
 status: active
+docType: Pattern
+tags: [mtls, enum]
 summary: 四模块握手算法枚举与名称映射收敛重构
 source_task: T0359
 relations:

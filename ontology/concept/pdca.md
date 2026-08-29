@@ -5,6 +5,8 @@ type: concept
 layer: Knowledge
 summary: PDCA 管理模型元本体根概念
 status: active
+docType: Concept
+tags: [pdca, meta-ontology]
 ---
 # pdca
 
