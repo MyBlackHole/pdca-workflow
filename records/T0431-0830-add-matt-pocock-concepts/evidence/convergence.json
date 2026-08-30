@@ -1,0 +1,75 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1：添加 Writing-for-agents 原则概念节点（信息层级、渐进披露、上下文指针、步骤+完成标准、共置、两种负载）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-concepts"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "AC-2：添加 Skill Mechanics 原则概念节点（模型调用 vs 用户调用、路由技能、共享引用）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-concepts"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "AC-3：添加 Grilling 方法论概念节点（设计树、前沿、轮次、事实而非观点、完成标准）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-concepts"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "AC-4：添加 Domain Modeling 原则概念节点（活跃纪律、挑战术语表、模糊语言精确化、AGENT-BRIEF、CONTEXT.md 等价物）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-concepts"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "AC-5：添加 Triage 原则概念节点（状态机、Agent 就绪简要、AI 免责声明）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-concepts"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "AC-6：添加 To Tickets 原则概念节点（垂直切片、追踪弹、阻塞边、展开-收缩）",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ev-concepts"
+      ]
+    },
+    {
+      "index": 7,
+      "text": "AC-7：所有新节点通过 ontology-validate 校验，收敛映射 valid:true",
+      "criteria": [
+        "AC-7"
+      ],
+      "evidence_ids": [
+        "ev-validation"
+      ]
+    }
+  ]
+}
