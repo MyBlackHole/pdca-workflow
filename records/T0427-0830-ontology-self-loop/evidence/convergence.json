@@ -1,0 +1,75 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1：PDCA 四流程建模为 ontology/process/ 实体，specializes pdca-process",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-process-flows"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "AC-2：任务拆分可由本体关系树（composed_of/specializes）自底向上生成 WBS",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-research"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "AC-3：本体节点 attributes 的 testable_signal 可派生测试用例",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-research"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "AC-4：PDCA 流程由本体支撑，ontology-validate 校验通过",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-research"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "AC-5：本体创建门禁基于本体自身定义，self-booting",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-rules"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "AC-6：闭环验证——每条本体知识可追溯来源，每项产出回链本体节点",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ev-research"
+      ]
+    },
+    {
+      "index": 7,
+      "text": "AC-7：登记证据 + 收敛映射 valid:true",
+      "criteria": [
+        "AC-7"
+      ],
+      "evidence_ids": [
+        "ev-research"
+      ]
+    }
+  ]
+}
