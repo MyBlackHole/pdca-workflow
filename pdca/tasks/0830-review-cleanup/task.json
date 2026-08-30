@@ -1,0 +1,30 @@
+{
+  "id": "T0428",
+  "slug": "0830-review-cleanup",
+  "title": "审查项目去除多余代码或者文件",
+  "children": [],
+  "dependencies": [],
+  "parent": null,
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1：识别并删除多余文件（日志、.bak、__pycache__）",
+      "AC-2：修复不完整任务（0822-rpc-hs-err-exit-code 无 task.json）",
+      "AC-3：self-audit.py 测试通过",
+      "AC-4：证据已登记，收敛映射 valid:true"
+    ],
+    "created_at": "2026-08-30T15:34:38+08:00",
+    "phase": "do",
+    "record": "T0428-0830-review-cleanup",
+    "scenario_type": "development"
+  },
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-08-30T15:34:38+08:00",
+    "do": "2026-08-30T15:36:35+08:00",
+    "plan": "2026-08-30T15:34:38+08:00"
+  },
+  "status": "InProgress"
+}

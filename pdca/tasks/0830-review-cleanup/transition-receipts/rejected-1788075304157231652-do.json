@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0428",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/",
+      "message": "Additional properties are not allowed ('ontology_fragment', 'task_id' were unexpected)",
+      "guidance": "fix the field at / in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-08-30T15:35:04.157208+08:00"
+}
