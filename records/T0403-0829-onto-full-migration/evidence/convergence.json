@@ -1,0 +1,55 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1：所有剩余域已迁移到 ontology/，无遗漏域",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-manifest"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "AC-2：manifest.jsonl 重写完成，条目数与 ontology/ 文件数一致",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-manifest"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "AC-3：检索适配完成，ontology-validate 通过全部规则校验",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-validation"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "AC-4：知识来源可追溯，source_task 回链完整",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-manifest"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "AC-5：证据已登记，收敛映射 valid:true",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-evidence-registration"
+      ]
+    }
+  ]
+}
