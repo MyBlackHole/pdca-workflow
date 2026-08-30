@@ -1,6 +1,6 @@
 ---
 name: improve-codebase-architecture
-description: 架构审查——先按近 30 天 git 变更热点聚焦扫描范围，检测 flows/skills/pdca 结构的深化机会，生成含 Mermaid before/after 图与 Metrics 指标区的 HTML 报告到任务目录，选定候选后接 grilling + design-it-twice 走完设计树。使用场景：审查时或开发末尾捕捉结构漂移。
+description: 架构审查——先按近 30 天 git 变更热点聚焦扫描范围，检测 ontology/process/skills/pdca 结构的深化机会，生成含 Mermaid before/after 图与 Metrics 指标区的 HTML 报告到任务目录，选定候选后接 grilling + design-it-twice 走完设计树。使用场景：审查时或开发末尾捕捉结构漂移。
 invocation: manual
 ---
 
@@ -27,9 +27,9 @@ python3 "$PDCA_HOME/scripts/arch_review.py" --root "$PDCA_HOME" --out "$PDCA_HOM
 
 在原四维分析基础上，用热点路径优先：
 
-1. **Flow coverage** — `scenario_type` 值是否缺对应 flow 路径？对照 `flows/flow-do/SKILL.md`。
-2. **Skill consistency** — `flows/flow-*/SKILL.md` 引用的 `skills/<name>/SKILL.md` 是否存在？报告孤儿与未引用。
-3. **Knowledge–process mapping** — `ontology/domain/` 的原则在 `flows/`/`skills/` 有无对应实现？
+1. **Flow coverage** — `scenario_type` 值是否缺对应 flow 路径？对照 `ontology/process/flow-do.md`。
+2. **Skill consistency** — `ontology/process/flow-*/flow-*.md` 引用的 `skills/<name>/SKILL.md` 是否存在？报告孤儿与未引用。
+3. **Knowledge–process mapping** — `ontology/domain/` 的原则在 `ontology/process/`/`skills/` 有无对应实现？
 4. **File smells** — 超过 200 行的文件、重复步骤模式、混合职责。
 
 对每个怀疑模块用 **deletion test**："删掉它会让复杂度集中还是只是搬家？"集中 → 深化候选。

@@ -17,8 +17,8 @@ from pdca_core import acceptance_criteria, confirmation_time_issues  # noqa: E40
 
 def make_root(temporary: str) -> Path:
     root = Path(temporary)
-    (root / "flows/flow-plan").mkdir(parents=True)
-    (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+    (root / "ontology/process/flow-plan").mkdir(parents=True)
+    (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
     shutil.copytree(ROOT / "schemas", root / "schemas")
     (root / "records").mkdir()
     return root

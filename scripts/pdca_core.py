@@ -48,7 +48,7 @@ def repo_root(explicit: str | Path | None = None) -> Path:
         candidate = Path(os.environ["PDCA_HOME"]).expanduser().resolve()
     else:
         candidate = Path(__file__).resolve().parents[1]
-    if not (candidate / "flows/flow-plan/SKILL.md").is_file():
+    if not (candidate / "ontology/process/flow-plan.md").is_file():
         raise ValueError(f"not a PDCA workflow root: {candidate}")
     return candidate
 

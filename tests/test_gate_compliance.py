@@ -82,8 +82,8 @@ class GateRejectionLeakTest(unittest.TestCase):
         self.root = Path(self.temporary.name)
         shutil.copytree(ROOT / "schemas", self.root / "schemas")
         (self.root / "records").mkdir()
-        (self.root / "flows/flow-plan").mkdir(parents=True)
-        (self.root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+        (self.root / "ontology/process/flow-plan").mkdir(parents=True)
+        (self.root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
 
     def tearDown(self) -> None:
         self.temporary.cleanup()

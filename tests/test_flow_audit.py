@@ -19,8 +19,8 @@ class FlowAuditTest(unittest.TestCase):
     def test_audit_confines_malicious_record_id_to_records(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            (root / "flows/flow-plan").mkdir(parents=True)
-            (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+            (root / "ontology/process").mkdir(parents=True)
+            (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
             shutil.copytree(ROOT / "schemas", root / "schemas")
             task_dir = root / "pdca/tasks/active/0730-path-audit"
             task_dir.mkdir(parents=True)
@@ -82,8 +82,8 @@ class FlowAuditTest(unittest.TestCase):
     def test_audit_fails_closed_when_record_is_missing(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            (root / "flows/flow-plan").mkdir(parents=True)
-            (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+            (root / "ontology/process").mkdir(parents=True)
+            (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
             shutil.copytree(ROOT / "schemas", root / "schemas")
             task_dir = root / "pdca/tasks/active/0730-missing-record"
             task_dir.mkdir(parents=True)
@@ -152,8 +152,8 @@ class FlowAuditTest(unittest.TestCase):
     def test_cli_audits_all_transitions_and_preserves_failed_attempts(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            (root / "flows/flow-plan").mkdir(parents=True)
-            (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+            (root / "ontology/process").mkdir(parents=True)
+            (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
             shutil.copytree(ROOT / "schemas", root / "schemas")
 
             task_dir = root / "pdca/tasks/active/0730-flow-audit"

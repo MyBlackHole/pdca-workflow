@@ -32,8 +32,8 @@ def _scaffold(root: Path) -> tuple[Path, Path]:
     """构造最小仓库：一个含 seam 的活跃 spec + 对应测试文件。"""
     task_dir = root / "pdca/tasks/0809-fixture"
     task_dir.mkdir(parents=True)
-    (root / "flows/flow-plan").mkdir(parents=True)
-    (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+    (root / "ontology/process/flow-plan").mkdir(parents=True)
+    (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
     tests_dir = root / "tests"
     tests_dir.mkdir()
     (task_dir / "prd.md").write_text(

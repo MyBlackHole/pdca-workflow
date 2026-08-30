@@ -17,9 +17,9 @@ SOURCE_ROOT = Path(__file__).resolve().parents[1]
 
 def fixture_root(temporary: str) -> Path:
     root = Path(temporary)
-    (root / "flows/flow-plan").mkdir(parents=True)
-    (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
     shutil.copytree(SOURCE_ROOT / "schemas", root / "schemas")
+    (root / "ontology/process").mkdir(parents=True)
+    (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
     (root / "records").mkdir()
     return root
 

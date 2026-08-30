@@ -19,8 +19,8 @@ class ConvergenceContractTest(unittest.TestCase):
     def setUp(self) -> None:
         self.temporary = tempfile.TemporaryDirectory()
         self.root = Path(self.temporary.name)
-        (self.root / "flows/flow-plan").mkdir(parents=True)
-        (self.root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+        (self.root / "ontology/process/flow-plan").mkdir(parents=True)
+        (self.root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
         shutil.copytree(ROOT / "schemas", self.root / "schemas")
         self.task_dir = self.root / "pdca/tasks/0728-convergence-fixture"
         self.task_dir.mkdir(parents=True)

@@ -104,12 +104,12 @@ class GrillingDocumentContractTest(unittest.TestCase):
         self.assertNotIn("Never batch", text)
 
     def test_flow_plan_reference_synced(self) -> None:
-        text = (ROOT / "flows/flow-plan/SKILL.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/process/flow-plan.md").read_text(encoding="utf-8")
         self.assertIn("grilling", text)
         self.assertNotIn("一次只问一个", text)
 
     def test_flow_check_reference_synced(self) -> None:
-        text = (ROOT / "flows/flow-check/SKILL.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/process/flow-check/SKILL.md").read_text(encoding="utf-8")
         self.assertIn("grilling", text)
 
     def test_round_shared_within_batch_semantics_documented(self) -> None:
@@ -127,22 +127,22 @@ class SourceConsistencyContractTest(unittest.TestCase):
         self.assertIn('source: "grilling"', text)
 
     def test_flow_act_uses_grilling_source(self) -> None:
-        text = (ROOT / "flows/flow-act/SKILL.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/process/flow-act/SKILL.md").read_text(encoding="utf-8")
         self.assertIn('source: "grilling"', text)
         self.assertNotIn('source: "grill"', text)
 
     def test_flow_check_uses_grilling_source(self) -> None:
-        text = (ROOT / "flows/flow-check/SKILL.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/process/flow-check/SKILL.md").read_text(encoding="utf-8")
         self.assertIn('source: "grilling"', text)
         self.assertNotIn('source: "grill"', text)
 
     def test_flow_plan_uses_grilling_source(self) -> None:
-        text = (ROOT / "flows/flow-plan/SKILL.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/process/flow-plan.md").read_text(encoding="utf-8")
         self.assertIn('source: "grilling"', text)
         self.assertNotIn('source: "grill"', text)
 
     def test_no_old_grill_source_anywhere(self) -> None:
-        for rel in ("flows/flow-act/SKILL.md", "flows/flow-check/SKILL.md", "flows/flow-plan/SKILL.md"):
+        for rel in ("ontology/process/flow-act/SKILL.md", "ontology/process/flow-check/SKILL.md", "ontology/process/flow-plan.md"):
             text = (ROOT / rel).read_text(encoding="utf-8")
             self.assertNotIn('"grill"', text, f"{rel} 残留旧的 source: grill")
 
@@ -178,7 +178,7 @@ class Ac1BatchVerificationTest(unittest.TestCase):
         self.assertGreater(sequential_bytes / batch_bytes, 1.0)
 
     def test_ac1_flow_act_cites_three_questions(self) -> None:
-        text = (ROOT / "flows/flow-act/SKILL.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/process/flow-act/SKILL.md").read_text(encoding="utf-8")
         for q in self.AC1_QUESTIONS:
             self.assertIn(q, text)
 

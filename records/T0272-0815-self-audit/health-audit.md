@@ -26,7 +26,7 @@
 
 ## 门禁覆盖率
 
-- receipts 53.3% (48/90)，verdict 31.1%，rejected receipts 80 条
+- receipts 53.8% (49/91)，verdict 30.8%，rejected receipts 82 条
 
 ## 问题明细（按严重度）
 

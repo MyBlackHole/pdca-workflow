@@ -51,9 +51,9 @@ def fixture_root(source_root: Path, temporary: str) -> tuple[Path, Path]:
     """Build the smallest strict repository needed by the public transition CLI."""
 
     root = Path(temporary)
-    plan = root / "flows/flow-plan/SKILL.md"
+    plan = root / "ontology/process/flow-plan.md"
     plan.parent.mkdir(parents=True)
-    shutil.copy2(source_root / "flows/flow-plan/SKILL.md", plan)
+    shutil.copy2(source_root / "ontology/process/flow-plan.md", plan)
     shutil.copytree(source_root / "schemas", root / "schemas")
     (root / "records").mkdir()
     task_dir = root / "pdca/tasks/active/0730-ai-fixture"
@@ -513,7 +513,7 @@ CONTRACT_FIXTURES: tuple[tuple[str, str, Callable[[Path], str]], ...] = (
 
 
 def context_bytes(root: Path) -> int:
-    path = root / "flows/flow-do/SKILL.md"
+    path = root / "ontology/process/flow-do.md"
     return len(path.read_bytes()) if path.is_file() else 0
 
 

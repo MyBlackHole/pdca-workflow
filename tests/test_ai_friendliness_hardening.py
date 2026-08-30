@@ -27,7 +27,7 @@ ROUTES = [
 def route_contract(routes: list[tuple[str, str, str, list[str]]] = ROUTES) -> dict:
     return {
         "schema": "pdca.ai-route-contract/v1",
-        "flow_document": "flows/flow-do/SKILL.md",
+        "flow_document": "ontology/process/flow-do.md",
         "routes": [
             {
                 "scenario": scenario,
@@ -46,10 +46,10 @@ def write_json(path: Path, value: dict) -> None:
 
 
 def make_route_root(root: Path) -> None:
-    (root / "flows/flow-plan").mkdir(parents=True)
-    (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
-    (root / "flows/flow-do").mkdir(parents=True)
-    (root / "flows/flow-do/SKILL.md").write_text(
+    (root / "ontology/process").mkdir(parents=True)
+    (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
+    (root / "ontology/process/flow-do").mkdir(parents=True)
+    (root / "ontology/process/flow-do.md").write_text(
         "# do\n\n" + "\n\n".join(f"## {anchor}" for _, _, anchor, _ in ROUTES) + "\n",
         encoding="utf-8",
     )
@@ -99,7 +99,7 @@ class AiFriendlinessHardeningTest(unittest.TestCase):
             self.assertEqual("ROUTE_CONTRACT_INVALID", json.loads(duplicate.stdout)["code"])
 
             write_json(root / "pdca/ai-friendliness-route-contract.json", route_contract())
-            (root / "flows/flow-do/SKILL.md").write_text("# do\n", encoding="utf-8")
+            (root / "ontology/process/flow-do.md").write_text("# do\n", encoding="utf-8")
             missing_anchor = run_json([str(ROUTE_SCRIPT), "--verify-document"], root=root)
             self.assertNotEqual(0, missing_anchor.returncode)
             self.assertEqual("ROUTE_ANCHOR_MISSING", json.loads(missing_anchor.stdout)["code"])
@@ -108,13 +108,13 @@ class AiFriendlinessHardeningTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             make_route_root(root)
-            (root / "flows/flow-do/SKILL.md").unlink()
+            (root / "ontology/process/flow-do.md").unlink()
 
             result = run_json([str(ROUTE_SCRIPT), "--verify-document"], root=root)
             self.assertNotEqual(0, result.returncode)
             payload = json.loads(result.stdout)
             self.assertEqual("ROUTE_REFERENCE_MISSING", payload["code"])
-            self.assertEqual("flows/flow-do/SKILL.md", payload["path"])
+            self.assertEqual("ontology/process/flow-do.md", payload["path"])
 
     def test_public_harness_detects_contract_mutation_with_all_document_anchors_intact(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -193,7 +193,7 @@ class AiFriendlinessHardeningTest(unittest.TestCase):
                         "bytes": len((root / path).read_bytes()),
                         "reason": "initial baseline",
                     }
-                    for path in ("flows/flow-plan/SKILL.md", "flows/flow-do/SKILL.md")
+                    for path in ("ontology/process/flow-plan.md", "ontology/process/flow-do.md")
                 ],
             }
             write_json(root / "pdca/skill-content-baseline.json", baseline)
@@ -211,19 +211,19 @@ class AiFriendlinessHardeningTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             make_route_root(root)
-            flow_plan = root / "flows/flow-plan/SKILL.md"
-            flow_do = root / "flows/flow-do/SKILL.md"
+            flow_plan = root / "ontology/process/flow-plan.md"
+            flow_do = root / "ontology/process/flow-do.md"
             baseline = {
                 "schema": "pdca.skill-content-baseline/v1",
                 "metric": "utf8_bytes",
                 "assets": [
                     {
-                        "file": "flows/flow-plan/SKILL.md",
+                        "file": "ontology/process/flow-plan.md",
                         "bytes": len(flow_plan.read_bytes()),
                         "reason": "initial baseline",
                     },
                     {
-                        "file": "flows/flow-do/SKILL.md",
+                        "file": "ontology/process/flow-do.md",
                         "bytes": len(flow_do.read_bytes()),
                         "reason": "initial baseline",
                     },
@@ -259,8 +259,8 @@ class AiFriendlinessHardeningTest(unittest.TestCase):
                     "metric": "utf8_bytes",
                     "assets": [
                         {
-                            "file": "flows/flow-plan/SKILL.md",
-                            "bytes": len((root / "flows/flow-plan/SKILL.md").read_bytes()),
+                            "file": "ontology/process/flow-plan.md",
+                            "bytes": len((root / "ontology/process/flow-plan.md").read_bytes()),
                             "reason": "initial baseline",
                         }
                     ],

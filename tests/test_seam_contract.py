@@ -112,12 +112,12 @@ class SeamFileExistenceTest(unittest.TestCase):
 
 class FlowPlanSeamGateTest(unittest.TestCase):
     def test_flow_plan_has_p3_5(self) -> None:
-        text = (ROOT / "flows/flow-plan/SKILL.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/process/flow-plan.md").read_text(encoding="utf-8")
         self.assertIn("P3.5", text)
         self.assertIn("声明的测试接缝", text)
 
     def test_flow_plan_p6_gate_checks_seams(self) -> None:
-        text = (ROOT / "flows/flow-plan/SKILL.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/process/flow-plan.md").read_text(encoding="utf-8")
         self.assertIn("声明的测试接缝", text)
 
 

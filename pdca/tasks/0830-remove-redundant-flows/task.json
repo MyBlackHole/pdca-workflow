@@ -1,0 +1,31 @@
+{
+  "id": "T0429",
+  "slug": "0830-remove-redundant-flows",
+  "title": "移除冗余 flows/ 目录，接入本体",
+  "children": [],
+  "dependencies": [],
+  "parent": null,
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1：移除 flows/ 目录，其功能由 ontology/process/ 实体和 skills/ 承接",
+      "AC-2：pdca_core.py 验证逻辑改为检查 ontology/process/ 实体",
+      "AC-3：improve-codebase-architecture skill 改为引用 ontology",
+      "AC-4：测试用例更新，不再创建 flows/ 目录",
+      "AC-5：证据已登记，收敛映射 valid:true"
+    ],
+    "created_at": "2026-08-30T15:53:37+08:00",
+    "phase": "do",
+    "record": "T0429-0830-remove-redundant-flows",
+    "scenario_type": "development"
+  },
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-08-30T15:53:37+08:00",
+    "do": "2026-08-30T15:55:38+08:00",
+    "plan": "2026-08-30T15:53:37+08:00"
+  },
+  "status": "InProgress"
+}

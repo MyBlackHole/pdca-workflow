@@ -27,8 +27,8 @@ class OperationsTest(unittest.TestCase):
     def test_register_evidence_computes_metadata_and_rejects_duplicates(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            (root / "flows/flow-plan").mkdir(parents=True)
-            (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+            (root / "ontology/process/flow-plan").mkdir(parents=True)
+            (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
             shutil.copytree(ROOT / "schemas", root / "schemas")
             source = root / "artifact.txt"
             source.write_text("verified\n", encoding="utf-8")
@@ -103,8 +103,8 @@ class OperationsTest(unittest.TestCase):
     def test_doctor_invalid_when_seam_broken(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            (root / "flows/flow-plan").mkdir(parents=True)
-            (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+            (root / "ontology/process/flow-plan").mkdir(parents=True)
+            (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
             (root / "AGENTS.md").write_text(
                 "# AGENTS\n\nminimal fixture, no references.\n",
                 encoding="utf-8",
@@ -150,8 +150,8 @@ class OperationsTest(unittest.TestCase):
     def test_unrecoverable_history_requires_explicit_override(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            (root / "flows/flow-plan").mkdir(parents=True)
-            (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+            (root / "ontology/process/flow-plan").mkdir(parents=True)
+            (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
             target = root / "pdca/tasks/archive/fixture"
             target.mkdir(parents=True)
             (target / "task.json").write_text("{}\n", encoding="utf-8")
@@ -197,8 +197,8 @@ class OperationsTest(unittest.TestCase):
     def test_active_history_dry_run_excludes_archive(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            (root / "flows/flow-plan").mkdir(parents=True)
-            (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+            (root / "ontology/process/flow-plan").mkdir(parents=True)
+            (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
             shutil.copytree(ROOT / "schemas", root / "schemas")
             active = root / "pdca/tasks/0728-invalid-active"
             archived = root / "pdca/tasks/archive/2026-07/0728-invalid-archive"
@@ -234,8 +234,8 @@ class OperationsTest(unittest.TestCase):
     def test_active_history_rejects_unsafe_paths(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            (root / "flows/flow-plan").mkdir(parents=True)
-            (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+            (root / "ontology/process/flow-plan").mkdir(parents=True)
+            (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
             for unsafe in [
                 "pdca/tasks",
                 "pdca/tasks/archive/fixture",
@@ -283,8 +283,8 @@ class OperationsTest(unittest.TestCase):
     def test_active_history_count_or_digest_mismatch_deletes_nothing(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            (root / "flows/flow-plan").mkdir(parents=True)
-            (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+            (root / "ontology/process/flow-plan").mkdir(parents=True)
+            (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
             target = root / "pdca/tasks/0728-invalid-active"
             target.mkdir(parents=True)
             (target / "task.json").write_text("{}\n", encoding="utf-8")
@@ -340,8 +340,8 @@ class OperationsTest(unittest.TestCase):
     def test_active_history_apply_deletes_only_manifest_target(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            (root / "flows/flow-plan").mkdir(parents=True)
-            (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+            (root / "ontology/process/flow-plan").mkdir(parents=True)
+            (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
             shutil.copytree(ROOT / "schemas", root / "schemas")
             target = root / "pdca/tasks/0728-invalid-active"
             survivor = root / "pdca/tasks/0728-survivor"
@@ -389,8 +389,8 @@ class OperationsTest(unittest.TestCase):
     def test_active_history_apply_rejects_valid_task(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            (root / "flows/flow-plan").mkdir(parents=True)
-            (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+            (root / "ontology/process/flow-plan").mkdir(parents=True)
+            (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
             shutil.copytree(ROOT / "schemas", root / "schemas")
             target = root / "pdca/tasks/0728-valid-active"
             target.mkdir(parents=True)
@@ -462,8 +462,8 @@ class OperationsTest(unittest.TestCase):
     def test_transition_is_adjacent_and_idempotent(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            (root / "flows/flow-plan").mkdir(parents=True)
-            (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+            (root / "ontology/process/flow-plan").mkdir(parents=True)
+            (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
             shutil.copytree(ROOT / "schemas", root / "schemas")
             (root / "records").mkdir()
             task_dir = root / "pdca/tasks/0728-transition-test"
@@ -535,8 +535,8 @@ class PlanTimestampBackfillTest(unittest.TestCase):
     ROOT = Path(__file__).resolve().parents[1]
 
     def _scaffold(self, root: Path, task_dir: Path, states: dict) -> None:
-        (root / "flows/flow-plan").mkdir(parents=True)
-        (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
+        (root / "ontology/process/flow-plan").mkdir(parents=True)
+        (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
         shutil.copytree(ROOT / "schemas", root / "schemas")
         (root / "records").mkdir()
         task_dir.mkdir(parents=True)

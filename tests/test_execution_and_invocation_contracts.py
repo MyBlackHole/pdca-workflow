@@ -38,7 +38,7 @@ def write_asset(root: Path, relative: str, name: str, invocation: str, body: str
 def execution_contract() -> dict:
     return {
         "schema": "pdca.ai-execution-contract/v1",
-        "flow_document": "flows/flow-do/SKILL.md",
+        "flow_document": "ontology/process/flow-do.md",
         "routes": [
             {
                 "scenario": "development",
@@ -105,9 +105,9 @@ description: execution fixture flow
 
 
 def make_execution_root(root: Path) -> None:
-    (root / "flows/flow-plan").mkdir(parents=True)
-    (root / "flows/flow-plan/SKILL.md").write_text("# plan\n", encoding="utf-8")
-    flow = root / "flows/flow-do/SKILL.md"
+    (root / "ontology/process/flow-plan").mkdir(parents=True)
+    (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
+    flow = root / "ontology/process/flow-do.md"
     flow.parent.mkdir(parents=True)
     flow.write_text(execution_document(), encoding="utf-8")
     shutil.copytree(ROOT / "schemas", root / "schemas", dirs_exist_ok=True)
@@ -131,7 +131,7 @@ def invocation_contract() -> dict:
             {
                 "from": "flow-plan",
                 "to": "triage-work",
-                "document": "flows/flow-plan/SKILL.md",
+                "document": "ontology/process/flow-plan.md",
             },
             {
                 "from": "grill",
@@ -150,7 +150,7 @@ def invocation_contract() -> dict:
 def make_invocation_root(root: Path) -> None:
     write_asset(
         root,
-        "flows/flow-plan/SKILL.md",
+        "ontology/process/flow-plan.md",
         "flow-plan",
         "automatic",
         "加载 `$PDCA_HOME/skills/triage-work/SKILL.md`。",
@@ -235,7 +235,7 @@ class ExecutionContractTest(unittest.TestCase):
                 [phase["id"] for phase in payload["route"]["phases"]],
             )
 
-            flow = root / "flows/flow-do/SKILL.md"
+            flow = root / "ontology/process/flow-do.md"
             flow.write_text(execution_document().replace("确认 Seam\n先写失败测试", "先写失败测试\n确认 Seam"), encoding="utf-8")
             drift = run_json(EXECUTION_SCRIPT, ["--verify-document"], root)
             self.assertNotEqual(0, drift.returncode)
@@ -259,7 +259,7 @@ class ExecutionContractTest(unittest.TestCase):
             self.assertEqual("EXECUTION_ROUTE_ALIGNMENT_FAILED", json.loads(misaligned.stdout)["code"])
 
             shutil.copy2(ROOT / "pdca/ai-friendliness-route-contract.json", route_contract_path)
-            (root / "flows/flow-do/SKILL.md").unlink()
+            (root / "ontology/process/flow-do.md").unlink()
             missing = run_json(EXECUTION_SCRIPT, ["--verify-document"], root)
             self.assertNotEqual(0, missing.returncode)
             self.assertEqual("EXECUTION_REFERENCE_MISSING", json.loads(missing.stdout)["code"])
@@ -287,7 +287,7 @@ class ExecutionContractTest(unittest.TestCase):
             self.assertEqual("EXECUTION_CONTRACT_INVALID", json.loads(invalid_phases.stdout)["code"])
 
             write_json(root / "pdca/ai-execution-contract.json", execution_contract())
-            flow = root / "flows/flow-do/SKILL.md"
+            flow = root / "ontology/process/flow-do.md"
             flow.write_text(
                 execution_document().replace("确认 Seam\n先写失败测试", "确认 Seam\n确认 Seam\n先写失败测试"),
                 encoding="utf-8",
@@ -333,7 +333,7 @@ class InvocationContractTest(unittest.TestCase):
             self.assertEqual("INVOCATION_ALIAS_UNDECLARED", json.loads(stale_alias.stdout)["code"])
 
             make_invocation_root(root)
-            flow = root / "flows/flow-plan/SKILL.md"
+            flow = root / "ontology/process/flow-plan.md"
             flow.write_text(
                 flow.read_text(encoding="utf-8") + "加载 `$PDCA_HOME/skills/grilling/SKILL.md`。\n",
                 encoding="utf-8",
@@ -349,7 +349,7 @@ class ContentAuditContractTest(unittest.TestCase):
             root = Path(temporary)
             make_execution_root(root)
             write_content_baseline(root)
-            flow = root / "flows/flow-do/SKILL.md"
+            flow = root / "ontology/process/flow-do.md"
             flow.write_text(flow.read_text(encoding="utf-8").replace("确认 Seam", "丢失 Seam"), encoding="utf-8")
 
             execution = run_json(CONTENT_AUDIT_SCRIPT, ["--check-budget"], root)
