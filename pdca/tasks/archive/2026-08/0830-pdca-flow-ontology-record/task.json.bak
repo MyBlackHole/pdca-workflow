@@ -18,7 +18,7 @@
     "created_at": "2026-08-30T09:11:09+08:00",
     "ontology_anchor": "ontology:concept/pdca-task",
     "ontology_fragment": "ontology",
-    "phase": "check",
+    "phase": "act",
     "record": "T0418-0830-pdca-flow-ontology-record",
     "scenario_type": "documentation",
     "completed_at": "2026-08-30T09:30:55+08:00",
@@ -27,12 +27,17 @@
       "reason": "6 项 AC 全部满足；AC-4 按用户意见改为 ADR-0032~0036 决策迁移进本体节点（含「决策背景」段）并删除原 ADR 文件；ontology-validate 与 validate-convergence 均通过；外部冗余知识已迁移删除，机制零新建。",
       "verdict_id": "verdict-t0418-confirmed",
       "at": "2026-08-30T09:41:36+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "PDCA 流程与外部 PDCA 知识/ADR 决策已投影进 ontology（4 流程实体 + 16 支撑概念节点 + 5 ADR 背景并入对应节点），成为可复用本体资产；record 本身亦为归档。",
+      "at": "2026-08-30T09:43:00+08:00"
     }
   },
   "parent": "T0829",
   "slug": "0830-pdca-flow-ontology-record",
   "states": {
-    "act": null,
+    "act": "2026-08-30T09:41:36+08:00",
     "archive": null,
     "check": "2026-08-30T09:30:55+08:00",
     "created": "2026-08-30T09:11:09+08:00",
