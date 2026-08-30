@@ -240,7 +240,7 @@ class OperationsTest(unittest.TestCase):
                 "pdca/tasks",
                 "pdca/tasks/archive/fixture",
                 "records/fixture",
-                "knowledge/fixture",
+                "ontology/domain/fixture",
                 "pdca/journal/fixture",
                 "pdca/tasks/*",
             ]:

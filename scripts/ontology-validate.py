@@ -223,8 +223,10 @@ def validate(ont_dir: Path):
 def check_redirects(root: Path) -> list:
     """Scan knowledge/ for redirect stubs (frontmatter redirect_to) and verify targets exist.
 
-    Physical-merge (see ontology:concept/ontology-creation-gate decision-background; formerly ADR-0030) leaves redirect stubs in knowledge/; their `redirect_to`
-    must point to a real ontology/ node, otherwise record identity is broken.
+    Deprecated: knowledge/ was merged into ontology/ (T0418~T0423) and removed.
+    This check is retained for backward-compat; it skips silently when knowledge/ is absent.
+    (Historically, physical-merge per ontology:concept/ontology-creation-gate, formerly ADR-0030,
+    left redirect stubs in knowledge/ whose `redirect_to` must point to a real ontology/ node.)
     """
     issues = []
     knowledge = root / "knowledge"
@@ -252,9 +254,11 @@ def check_redirects(root: Path) -> list:
 def check_knowledge_frontmatter(root: Path) -> list:
     """Scan knowledge/ for files that declare frontmatter (start with ---) but fail YAML parse.
 
-    The physical merge (ontology:concept/ontology-creation-gate, formerly ADR-0030) leaves redirect stubs and other assets under knowledge/; a malformed
-    frontmatter there used to be silently skipped by check_redirects' try/except.
-    This makes YAML-legality an explicit, non-skippable check.
+    Deprecated: knowledge/ was merged into ontology/ (T0418~T0423) and removed.
+    This check is retained for backward-compat; it skips silently when knowledge/ is absent.
+    (Historically, the physical merge per ontology:concept/ontology-creation-gate, formerly ADR-0030,
+    left assets under knowledge/ whose malformed frontmatter used to be silently skipped by
+    check_redirects' try/except; this made YAML-legality an explicit, non-skippable check.)
     """
     issues = []
     knowledge = root / "knowledge"

@@ -157,7 +157,6 @@ flows/ 和 skills/ 更新后立即可用，无需重新初始化。
 │   ├── journal/     # 每日工作日志
 │   └── CONTEXT.md   # 共享术语表
 ├── records/         # 不可变实验记录
-├── knowledge/       # 可复用知识
 ├── templates/       # 文档模板
-└── ontology/           # 架构决策记录（本体节点）
+└── ontology/           # 本体（知识 + 流程唯一权威：concept/ process/ entity/ domain/）
 ```
