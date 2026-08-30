@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0399",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "EVIDENCE_MANIFEST_MISSING",
+      "path": "records/T0399-0829-knowledge-ontology-restructure/evidence/manifest.jsonl",
+      "message": "manifest is required"
+    },
+    {
+      "code": "CONVERGENCE_MAP_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0399-0829-knowledge-ontology-restructure/evidence/manifest.jsonl",
+      "message": "registered convergence map is required"
+    }
+  ],
+  "at": "2026-08-30T14:44:55.897305+08:00"
+}

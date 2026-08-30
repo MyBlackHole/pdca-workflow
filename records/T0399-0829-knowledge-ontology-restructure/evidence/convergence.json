@@ -1,0 +1,105 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1: 运行 ontology-validate.py 退出码为 0；所有 ontology 节点 frontmatter 含合法 id、type==目录名、attributes 结构化合法、关系引用存在且无环",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-validate"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "AC-2: 存在 ontology/README.md（SSOT）定义类型受控词汇起点、关系词汇表、attributes 字段结构、组合规则",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-ssot"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "AC-3: 试点 tls 域至少 1 个抽象节点 A 由 >=2 个实例 A1/A2 经 specializes 引用构成",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-ssot"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "AC-4: 至少 1 个本体节点的 attributes 作为验证契约，存在回链该 id 的测试",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-validate"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "AC-5: 至少 1 个复杂实体 composed_of >=2 个子实体，子实体属性可聚合展示",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-ssot"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "AC-6: manifest.jsonl 每条迁移资产含派生 ontology_type、specializes、domain、entity_refs、attributes 索引",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ev-manifest"
+      ]
+    },
+    {
+      "index": 7,
+      "text": "AC-7: 新写入资产经 ontology-check 门禁",
+      "criteria": [
+        "AC-7"
+      ],
+      "evidence_ids": [
+        "ev-check-skill"
+      ]
+    },
+    {
+      "index": 8,
+      "text": "AC-8: 试点 tls 的 11 个文件全量归并至 ontology/ 后，检索与 P5 注入逻辑不受影响",
+      "criteria": [
+        "AC-8"
+      ],
+      "evidence_ids": [
+        "ev-migration"
+      ]
+    },
+    {
+      "index": 9,
+      "text": "AC-9: 物理归并后 record identity 保持",
+      "criteria": [
+        "AC-9"
+      ],
+      "evidence_ids": [
+        "ev-migration"
+      ]
+    },
+    {
+      "index": 10,
+      "text": "AC-10: 提供关系树查询能力",
+      "criteria": [
+        "AC-10"
+      ],
+      "evidence_ids": [
+        "ev-ssot"
+      ]
+    }
+  ]
+}

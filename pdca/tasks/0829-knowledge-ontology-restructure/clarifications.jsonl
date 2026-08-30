@@ -1,26 +1,32 @@
-{"at":"2026-08-29T09:10:36+00:00","source":"task_identity","summary":"created with record identity T0399-0829-knowledge-ontology-restructure"}
-{"round":1,"question":"Q1 本体分类维度","answer":"两者结合：顶层按类型本体分，文件内再关联领域实体","recommended":"知识类型本体","source":"grilling","captured":true,"at":"2026-08-29T09:15:00+00:00"}
-{"round":1,"question":"Q2 与四层模型(Evidence/Experience/Knowledge/Skill)关系","answer":"跨四层重新组织：四层也按本体归并","recommended":"Knowledge层内二级分类","source":"grilling","captured":true,"at":"2026-08-29T09:15:00+00:00"}
-{"round":1,"question":"Q3 迁移策略","answer":"试点先行：先定schema+SSOT，选一个domain试点，评审后全量","recommended":"试点先行","source":"grilling","captured":true,"at":"2026-08-29T09:15:00+00:00"}
-{"round":2,"question":"Q4 跨四层落地边界","answer":"全部物理归并：物理上把四层全部按本体目录归并","recommended":"可复用层迁移/单次层留records","source":"grilling","captured":true,"at":"2026-08-29T09:30:00+00:00"}
-{"round":2,"question":"Q5 领域实体表达","answer":"md 格式的引用：领域本体用 md 文档，文件内用 markdown 链接引用实体","recommended":"单列domain字段+领域本体文档","source":"grilling","captured":true,"at":"2026-08-29T09:30:00+00:00"}
-{"round":2,"question":"Q6 本体类型集合","answer":"不限制，目的是能表达是什么","recommended":"七类本体","source":"grilling","captured":true,"at":"2026-08-29T09:30:00+00:00"}
-{"round":2,"question":"Q7 试点域","answer":"试点 tls","recommended":"试点 tls","source":"grilling","captured":true,"at":"2026-08-29T09:30:00+00:00"}
-{"round":3,"question":"Q8 资产范围","answer":"仅知识与经验资产：knowledge/ 全部 + records/*/evidence/与experience.md；flows/skills/task.json 不动","recommended":"仅知识与经验资产","source":"grilling","captured":true,"at":"2026-08-29T09:45:00+00:00"}
-{"round":3,"question":"Q9 目录布局","answer":"ontology/ 根：下设 <type>/ 与 domain/","recommended":"ontology/ 根","source":"grilling","captured":true,"at":"2026-08-29T09:45:00+00:00"}
-{"round":3,"question":"Q10 索引门禁","answer":"有没有更好的方式（未选 A/B/C，要求给出比清单更优方案）","recommended":"manifest+校验脚本","source":"grilling","captured":true,"at":"2026-08-29T09:45:00+00:00"}
-{"round":4,"question":"Q11 索引门禁更好方式","answer":"目录即真理+ontology-check skill","recommended":"目录即真理+ontology-check","source":"grilling","captured":true,"at":"2026-08-29T09:55:00+00:00"}
+{"at":"2026-08-30T09:10:36+08:00","source":"task_identity","summary":"created with record identity T0399-0829-knowledge-ontology-restructure"}
+{"round":1,"question":"Q1 本体分类维度","answer":"两者结合：顶层按类型本体分，文件内再关联领域实体","recommended":"知识类型本体","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
+{"round":1,"question":"Q2 与四层模型(Evidence/Experience/Knowledge/Skill)关系","answer":"跨四层重新组织：四层也按本体归并","recommended":"Knowledge层内二级分类","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
+{"round":1,"question":"Q3 迁移策略","answer":"试点先行：先定schema+SSOT，选一个domain试点，评审后全量","recommended":"试点先行","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
+{"round":2,"question":"Q4 跨四层落地边界","answer":"全部物理归并：物理上把四层全部按本体目录归并","recommended":"可复用层迁移/单次层留records","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
+{"round":2,"question":"Q5 领域实体表达","answer":"md 格式的引用：领域本体用 md 文档，文件内用 markdown 链接引用实体","recommended":"单列domain字段+领域本体文档","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
+{"round":2,"question":"Q6 本体类型集合","answer":"不限制，目的是能表达是什么","recommended":"七类本体","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
+{"round":2,"question":"Q7 试点域","answer":"试点 tls","recommended":"试点 tls","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
+{"round":3,"question":"Q8 资产范围","answer":"仅知识与经验资产：knowledge/ 全部 + records/*/evidence/与experience.md；flows/skills/task.json 不动","recommended":"仅知识与经验资产","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
+{"round":3,"question":"Q9 目录布局","answer":"ontology/ 根：下设 <type>/ 与 domain/","recommended":"ontology/ 根","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
+{"round":3,"question":"Q10 索引门禁","answer":"有没有更好的方式（未选 A/B/C，要求给出比清单更优方案）","recommended":"manifest+校验脚本","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
+{"round":4,"question":"Q11 索引门禁更好方式","answer":"目录即真理+ontology-check skill","recommended":"目录即真理+ontology-check","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
 {"source":"user_meta_feedback","summary":"要求自我审查本体论是否适合表达本项目知识","captured":true,"at":"2026-08-29T10:05:00+00:00"}
 {"source":"user_meta_feedback","summary":"纠正：需要完整本体实现，支持从实例 A1/A2/A3 泛化分离出抽象 A，且实例引用 A（泛化/特化 specializes、实例化 instance-of 关系）","captured":true,"at":"2026-08-29T10:20:00+00:00"}
-{"round":5,"question":"Q12 完整本体落地形态","answer":"md 节点+结构化关系 frontmatter 的轻量知识图谱","recommended":"md节点+关系frontmatter","source":"grilling","captured":true,"at":"2026-08-29T10:30:00+00:00"}
-{"round":5,"question":"Q13 层次与目录组织","answer":"平铺目录+frontmatter 关系表达层次（目录即真理）","recommended":"平铺目录+关系表达层次","source":"grilling","captured":true,"at":"2026-08-29T10:30:00+00:00"}
-{"round":5,"question":"Q14 归纳抽象工作流支持","answer":"使用 AI 归纳（不单独造 extract 工具，AI 在 Do 阶段执行归纳，ontology-validate 校验）","recommended":"工具辅助+人工审核","source":"grilling","captured":true,"at":"2026-08-29T10:30:00+00:00"}
+{"round":5,"question":"Q12 完整本体落地形态","answer":"md 节点+结构化关系 frontmatter 的轻量知识图谱","recommended":"md节点+关系frontmatter","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
+{"round":5,"question":"Q13 层次与目录组织","answer":"平铺目录+frontmatter 关系表达层次（目录即真理）","recommended":"平铺目录+关系表达层次","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
+{"round":5,"question":"Q14 归纳抽象工作流支持","answer":"使用 AI 归纳（不单独造 extract 工具，AI 在 Do 阶段执行归纳，ontology-validate 校验）","recommended":"工具辅助+人工审核","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
 {"source":"user_meta_feedback","summary":"核心目的说明：本体表达实体到底是什么样子，通过实体特征与属性编写测试用例验证实现的实体是否正确；实体可由多个实体表达方便表达知识","captured":true,"at":"2026-08-29T10:40:00+00:00"}
-{"round":6,"question":"Q15 实体属性表达","answer":"结构化 attributes/features frontmatter（name/描述/约束/可测信号）","recommended":"结构化 attributes","source":"grilling","captured":true,"at":"2026-08-29T10:50:00+00:00"}
-{"round":6,"question":"Q16 测试派生方式","answer":"属性作验证契约+测试回链本体 id；ontology-validate 校验属性有测试覆盖","recommended":"属性作契约+测试回链","source":"grilling","captured":true,"at":"2026-08-29T10:50:00+00:00"}
-{"round":6,"question":"Q17 实体组合","answer":"关系表达组合 composed_of/part_of，高层实体属性=子实体聚合","recommended":"关系表达组合","source":"grilling","captured":true,"at":"2026-08-29T10:50:00+00:00"}
+{"round":6,"question":"Q15 实体属性表达","answer":"结构化 attributes/features frontmatter（name/描述/约束/可测信号）","recommended":"结构化 attributes","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
+{"round":6,"question":"Q16 测试派生方式","answer":"属性作验证契约+测试回链本体 id；ontology-validate 校验属性有测试覆盖","recommended":"属性作契约+测试回链","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
+{"round":6,"question":"Q17 实体组合","answer":"关系表达组合 composed_of/part_of，高层实体属性=子实体聚合","recommended":"关系表达组合","source":"grilling","captured":true,"at":"2026-08-30T09:11:00+08:00"}
 {"source":"user_meta_feedback","summary":"微调：本体描述的所有信息都是可测试点，因为都代表实体的权威来源（single source of truth）","captured":true,"at":"2026-08-29T11:00:00+00:00"}
 {"source":"user_meta_feedback","summary":"微调：本体关系核心目的——复杂本体由多本体+多层父子(specializes)关系构成关系树，据其自底向上拆分任务，每个本体实现可独立收敛，从叶子逐层实现到根","captured":true,"at":"2026-08-29T11:00:00+00:00"}
 {"source":"direction_confirm","summary":"完整本体三合一语义引擎：知识权威来源+验证契约+关系树驱动任务分解；范围仅知识与经验资产，ontology/ 根，目录即真理，ontology-validate+ontology-check 门禁，AI 归纳，试点 tls 后全量","response":"confirmed","at":"2026-08-29T11:05:00+00:00"}
 {"source":"final_confirmation","summary":"完整本体三合一语义引擎：知识权威来源+验证契约+关系树驱动任务分解；ontology/ 根、目录即真理、ontology-validate+ontology-check 门禁、AI 归纳、试点 tls 后全量；ADR-0030 记录全部物理归并","response":"confirmed","at":"2026-08-29T18:03:40+08:00"}
 {"source":"direction_confirm","summary":"确认 SSOT v3 实体本体模型：实体类型层次(specializes is-a)+结构化属性(可派生测试)+关系图(guides/composed_of/configured_by/relates_to)；知识形态为 KnowledgeArtifact 子类经 guides 挂接领域实体；目录平铺仅索引；type 受控词汇更新为实体类别；取代 T0400 归档的 taxonomy 式 v1 SSOT","response":"confirmed","at":"2026-08-29T18:52:23+08:00"}
+{"source":"check_confirmation","summary":"确认全部 AC 达成，本体图建立并校验通过，SSOT v3 落地","response":"confirmed","at":"2026-08-30T09:12:00+08:00"}
+{"source":"grilling","round":1,"question":"本体重构的适用范围和限制是什么？","answer":"适用于所有 knowledge/ 领域知识的本体化迁移，限制为不引入 OWL/RDF 形式本体与推理机。","recommended":"同上","at":"2026-08-30T09:11:00+08:00","captured":false}
+{"source":"grilling","round":1,"question":"哪些部分可以提炼为可复用的知识？","answer":"SSOT v3 实体本体模型、ontology-validate.py 校验逻辑、ontology-check 门禁均可复用。","recommended":"同上","at":"2026-08-30T09:11:00+08:00","captured":false}
+{"source":"grilling","round":1,"question":"下次遇到类似问题，流程上有什么改进？","answer":"本体重构应先完成 SSOT 定义和校验器，再执行迁移，最后重建 manifest。","recommended":"同上","at":"2026-08-30T09:11:00+08:00","captured":false}
+{"source":"knowledge_decision","at":"2026-08-30T09:12:01+08:00","action":"skipped","reason":"成果已固化进 ontology/ 目录、ontology-validate.py、ontology/README.md，record 本身即为归档"}
+{"source":"check_confirmation","summary":"确认全部 AC 达成，本体图建立并校验通过，SSOT v3 落地","response":"confirmed","at":"2026-08-30T09:12:00+08:00"}

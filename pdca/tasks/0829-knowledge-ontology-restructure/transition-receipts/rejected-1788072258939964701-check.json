@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0399",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ONTOLOGY_FRAGMENT_MISSING",
+      "path": "task.json",
+      "message": "do 前置 ontology-ready：meta.ontology_fragment 未设置"
+    }
+  ],
+  "at": "2026-08-30T14:44:18.939927+08:00"
+}
