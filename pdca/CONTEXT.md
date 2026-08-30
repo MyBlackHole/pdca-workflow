@@ -12,10 +12,10 @@
 | **PRD** | 产品需求文档，Plan 阶段的输出产物 |
 | **task.json** | 任务元数据文件，跟踪阶段、状态和标记 |
 | **skill** | 可复用的 AI 指令模块，对应 skills/ 下的 SKILL.md |
-| **ADR** | 架构决策记录，存于 docs/adr/ |
+| **ADR** | （已退役）架构决策现记录于 `ontology/` 节点 |
 | **grill** | 追问门禁，用户发起，委托 grilling 执行 |
 | **ready-set** | to-tickets 拆解后的可执行任务集：所有"未完成且所有直接前置已完成"的任务集合；区别于 grilling 的 frontier（当前可答问题集合） |
-| **dependencies** | 子 task.json 的 `dependencies` 数组，声明该任务的**直接前置**任务 ID；仅存直接边，传递依赖由校验器推导（ADR-0017） |
+| **dependencies** | 子 task.json 的 `dependencies` 数组，声明该任务的**直接前置**任务 ID；仅存直接边，传递依赖由校验器推导（见 `ontology:concept/pdca-task` 决策背景：to-tickets 显式依赖边） |
 | **声明的测试接缝** | SPEC.md `## Seam 分析` 下的机器可读 seam 清单，每行 `- seam: <测试文件> -> <被测模块>`；契约测试校验其与实际测试一致（ADR-0018） |
 | **triage** | 任务分诊，将模糊输入转换为结构化任务 |
 | **严格任务 schema** | T0135 起采用的任务数据合约；新数据必须完整满足 schema，不为旧任务格式增加兼容分支 |

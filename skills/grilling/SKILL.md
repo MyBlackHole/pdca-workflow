@@ -66,7 +66,7 @@ Each round, the answers reshape the tree — settled decisions push the frontier
 ## Collaboration with domain-modeling
 
 Fuzzy terms → update `$PDCA_HOME/pdca/CONTEXT.md` immediately.
-Irreversible decisions → create ADR in `$PDCA_HOME/docs/adr/`.
+Irreversible decisions → record in a corresponding `ontology/` node (add a 决策背景 section).
 
 ## 已知坑
 

@@ -8,7 +8,7 @@ description: Maintain the shared project language and ADRs while planning or exe
 ## 核心原则
 - **即时落地**：只要一个术语被澄清，立即编辑 `$PDCA_HOME/pdca/CONTEXT.md`，不批量处理。
 - **不假定已知**：每次遇到模糊术语，先对照现有 CONTEXT.md 检查，再提问确认。
-- **硬决策必有记录**：不可逆、非显然、有权衡的决策必须写 ADR 到 `$PDCA_HOME/docs/adr/`。
+- **硬决策必有记录**：不可逆、非显然、有权衡的决策必须写入对应 `ontology/` 节点（加「决策背景」段）。
 
 ## 术语管理
 
@@ -49,7 +49,7 @@ description: Maintain the shared project language and ADRs while planning or exe
 - 决策涉及架构级别的变化
 - 决策有明确的 constrain（成本、时间、技术栈）
 
-### ADR 文件格式（$PDCA_HOME/docs/adr/ADR-NNNN-标题.md）
+### 决策节点格式（对应 `ontology/concept/<slug>.md`，pdca.asset/v1 frontmatter）
 
 ```
 # ADR-NNNN: 标题
@@ -69,8 +69,8 @@ description: Maintain the shared project language and ADRs while planning or exe
 ### 流程
 1. 确认背景和上下文
 2. 列出至少两个候选方案及其权衡
-3. 扫描 `$PDCA_HOME/docs/adr/` 目录找到最大编号，创建 `ADR-NNNN-标题.md`
-4. 查看已有 ADR：列出 `$PDCA_HOME/docs/adr/` 目录
+3. 在 `ontology/` 中新建/扩展对应概念节点承载该决策（不再使用 ADR 文件）。
+4. 查看已有决策：检索 `ontology/` 节点。
 5. 查看某条 ADR：读取对应文件
 
 ## 与 Grill 的协作关系
@@ -81,4 +81,4 @@ Grill 是提问引擎，domain-modeling-work 是知识沉淀层。
 
 ## 已知坑
 
-- 术语变更须同步 `pdca/CONTEXT.md`；架构级硬决策须同步 `docs/adr/`，只改 skill 不落记录会导致漂移。
+- 术语变更须同步 `pdca/CONTEXT.md`；架构级硬决策须沉淀进 `ontology/` 节点，只改 skill 不落记录会导致漂移。

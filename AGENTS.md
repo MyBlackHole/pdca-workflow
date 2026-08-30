@@ -34,7 +34,7 @@
 - 严格任务合约：`$PDCA_HOME/schemas/task.schema.json`
 - 能力协议：`$PDCA_HOME/docs/capability-protocol.md`
 
-流程正文和技能文件是权威来源；本入口只做路由，不复制其全部内容。术语变更同步 `$PDCA_HOME/pdca/CONTEXT.md`，架构级硬决策同步 `$PDCA_HOME/docs/adr/`。
+流程正文和技能文件是权威来源；本入口只做路由，不复制其全部内容。术语变更同步 `$PDCA_HOME/pdca/CONTEXT.md`，架构级硬决策同步 `$PDCA_HOME/ontology/`（对应本体节点）。
 
 ## 沟通与维护约定
 

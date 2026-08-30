@@ -1,1 +1,8 @@
 {"at":"2026-08-30T09:43:00+08:00","source":"task_identity","summary":"created with record identity T0419-0830-adr-ontology-audit"}
+{"source": "grilling", "at": "2026-08-30T09:47:45+08:00", "question": "T0419 的交付范围？", "answer": "审计+执行迁移：A 组 PDCA 元工作流 ADR 中决策已被本体表示的，迁移进本体并删除原文件（同 0032~0036 做法）。"}
+{"source": "grilling", "at": "2026-08-30T09:47:45+08:00", "question": "B 组子系统 ADR（rpc/lmdb/report 等，无本体归属）如何处置？", "answer": "删除——用户确认 docs/adr/ 整体多余。"}
+{"source": "grilling", "at": "2026-08-30T09:48:25+08:00", "question": "删除 docs/adr/ 后多处引用如何处理？", "answer": "一并改写 README/AGENTS/CONTEXT/flows/skills/templates/任务PRD 对 docs/adr/ 的引用，改指向 ontology 作为决策记录并移除“写 ADR”机制说明。"}
+{"source":"final_confirmation","summary":"T0419 终审确认：A 组迁移+删除、B 组删除、引用改写、6 项 AC","response":"confirmed","at":"2026-08-30T09:51:10+08:00"}
+{"source":"check_confirmation","summary":"T0419 结论确认 verdict=confirmed（6 AC 全 ✅，docs/adr/ 已全删，引用改写零残留）","response":"confirmed","at":"2026-08-30T09:58:27+08:00"}
+{"source": "grilling", "at": "2026-08-30T09:58:50+08:00", "question": "这个任务的哪些部分可以提炼为可复用知识？", "answer": "当某 ADR 的决策已被本体节点表示时，应迁移进本体（加「决策背景」段）并删除原文件；全仓对 docs/adr 的引用须一并改写为本体化，否则留下死链。ADR 机制退役后，不可逆非显然决策改写入对应 ontology 节点。"}
+{"source": "knowledge_decision", "at": "2026-08-30T09:58:50+08:00", "action": "skipped", "reason": "可复用洞察已沉淀进 ontology 节点（ontology-asset/pdca-task/pdca-evidence/pdca-continuous-improvement/task-record-identity/ontology-creation-gate/pdca-ontology-ready 的「决策背景」段），无需再产出孤立 knowledge 条目。"}

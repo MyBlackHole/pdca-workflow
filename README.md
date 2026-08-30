@@ -159,5 +159,5 @@ flows/ 和 skills/ 更新后立即可用，无需重新初始化。
 ├── records/         # 不可变实验记录
 ├── knowledge/       # 可复用知识
 ├── templates/       # 文档模板
-└── docs/adr/        # 架构决策记录
+└── ontology/           # 架构决策记录（本体节点）
 ```

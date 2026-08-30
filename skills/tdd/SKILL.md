@@ -7,7 +7,7 @@ description: Test-driven development. Use when building features or fixing bugs 
 
 TDD 是红→绿循环。本技能确保循环产出值得保留的测试：好测试的标准、测试边界（seam）、抗模式、循环纪律。
 
-进入 TDD 循环前，阅读 `pdca/CONTEXT.md`（如有）以对齐测试命名和领域术语，并查阅 `docs/adr/` 了解该区域的架构决策。
+进入 TDD 循环前，阅读 `pdca/CONTEXT.md`（如有）以对齐测试命名和领域术语，并查阅 `ontology/` 节点了解该区域的架构决策。
 
 ## 好测试的标准
 

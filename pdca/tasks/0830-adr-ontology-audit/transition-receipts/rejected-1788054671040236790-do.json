@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0419",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta",
+      "message": "Additional properties are not allowed ('acceptance_criteria' was unexpected)",
+      "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-08-30T09:51:11.040193+08:00"
+}

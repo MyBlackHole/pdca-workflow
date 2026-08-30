@@ -43,3 +43,7 @@ relations:
 
 - `（原知识层）task-record-identity-invariants.md`
 - `（原知识层）id-collision-remediation.md`
+
+## 决策背景（原 ADR-0024：统一 task/record identity 原子创建事务）
+- 背景：T0260 发现 23 个 task ID 冲突与 5 条 event path mismatch；普通 scan→create 缺仓库级临界区会生成重复 ID，audit 在 meta.record 缺失时回退 task.id 会制造第二 record identity。
+- 决策：组合方案——单一创建入口 `scripts/task_identity.py` 在锁内完成 ID reservation + slug 查重 + record 生成 + create-only 写入；audit 移除 task.id fallback 并 fail-closed；task 出生即生成不可变 meta.record。历史事件不自动改写。

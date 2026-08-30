@@ -3,7 +3,7 @@
 ## 来源
 - 记录：`records/2026-08-07-rpc-idle-reclaim/conclusion.md`（研究/决策）
 - 记录：`records/2026-08-07-rpc-conn-idle-implement/conclusion.md`（EOF 判定实现）
-- ADR：`docs/adr/ADR-0016-rpc-conn-idle-reclaim.md`
+- （原 ADR-0016-rpc-conn-idle-reclaim 已随 docs/adr/ 退役删除；决策见上方 records/ 记录）
 - POC 实证：私有仓库 `POC`（2026-08-07，4 场景全通过）
 - 适用范围：F/131 rpc（及同类"客户端复用长连接 + 服务端 worker 长驻"模型）
 

@@ -1,0 +1,65 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1 A 组迁移：ADR-0001~0004/0017/0024/0030/0031 决策均载入本体节点（ontology-asset/pdca-task/pdca-evidence/pdca-continuous-improvement/task-record-identity/ontology-creation-gate/pdca-ontology-ready），原 ADR 文件已删除。",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "t0419-migration"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "AC-2 B 组删除：23 个子系统 ADR 文件已删除。",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "t0419-migration"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "AC-3 docs/adr/ 目录已删除。",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "t0419-migration"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "AC-4 引用改写：README/AGENTS/CONTEXT/flows/skills/templates/任务PRD 对 docs/adr/ 的引用已改写为决策记录本体化，grep 无 scripts/SKILL/flows/docs/templates 残留（records 例外）。",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "t0419-reference"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "AC-5 本体校验：ontology-validate 通过（退出码0、无悬空、无环、islands=0），新节点合规。",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "t0419-validate"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "AC-6 证据登记：ADR 迁移清单、引用改写审计报告、本体校验输出已登记，收敛映射通过。",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "t0419-migration"
+      ]
+    }
+  ]
+}

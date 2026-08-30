@@ -107,7 +107,7 @@ attributes:
 
 - 新资产写入须经 `ontology-check` skill：合法 `type`、引用非空悬、`attributes` 有测试覆盖、知识实例有 `guides`/`relates_to`。
 - **门禁的权威依据来自本体自身（meta-ontology）**：上述规则由 `ontology:concept/ontology-creation-gate` 承载，其 `relates_to` 指向六条规则节点 `ontology-rule-type-controlled`(AC-1)、`ontology-rule-non-dangling`(AC-2)、`ontology-rule-acyclic`(AC-3)、`ontology-rule-attr-testable`(AC-4)、`ontology-rule-richness`(AC-5)、`ontology-rule-guides-range`(AC-6)，并由 `ontology:concept/ontology-validate`（即 `scripts/ontology-validate.py`）执行。门禁不再是脚本自由定义，而是被 `meta-ontology` 节点显式授权。
-- **节点是门禁参数的唯一事实源（B 方案落地，T0413）**：`scripts/ontology-validate.py` 在运行时读取 6 个 `ontology-rule-*` 节点的结构化 `rule_spec`（受控类型词表、关系键集合、属性测试字段名、知识资产类型、必需关系、范围约束等），据此真正执行 AC-1~AC-6 检查；原脚本硬编码常量被节点参数取代。规则节点缺失或 `rule_spec` 非法时校验器直接报错退出，不允许静默回退。改规则只改节点，校验行为自动跟随——文档/脚本漂移从源头消除。详见 `docs/adr/ADR-0035-meta-ontology-gate-runtime.md`。
+- **节点是门禁参数的唯一事实源（B 方案落地，T0413）**：`scripts/ontology-validate.py` 在运行时读取 6 个 `ontology-rule-*` 节点的结构化 `rule_spec`（受控类型词表、关系键集合、属性测试字段名、知识资产类型、必需关系、范围约束等），据此真正执行 AC-1~AC-6 检查；原脚本硬编码常量被节点参数取代。规则节点缺失或 `rule_spec` 非法时校验器直接报错退出，不允许静默回退。改规则只改节点，校验行为自动跟随——文档/脚本漂移从源头消除。详见 `ontology:concept/ontology-validate` 决策背景（原 ADR-0035）。
 - `ontology-validate.py` 校验（AC）：
   - **AC-1** `type` == 父目录名且 ∈ 受控词汇。
   - **AC-2** 关系/领域引用非空悬。
@@ -125,4 +125,4 @@ attributes:
 - **archive 本体自检（AC-3）**：`transition-phase.py` 目标为 `archive` 时自动调用 `scripts/ontology_gate.archive_ontology_ready_issues`——运行 `ontology-validate.py`（须通过）+ `ontology_graph.py --format summary`（须 `islands: 0`）；本体不合法/有孤岛则转换被拒，不得绕过。
 - **提交级硬门禁（AC-4）**：共享门禁逻辑 `scripts/ci-ontology-gate.py` 跑 `ontology-validate` + 相关任务 `validate-convergence`，非零退出即阻断；`scripts/install-git-hook.sh`（可选安装，不静默改动 `.git/hooks`）装 `pre-commit` 钩子，`.github/workflows/ontology-gate.yml` 在远端 push/PR 时复跑同一检查。门禁从此不可被普通提交绕过。
 
-设计取舍：plan/do/check/act 的本体"消费"保持顾问式（不阻断，避免 YAGNI 与吞吐损失）；仅**创建门禁、证据/结论锚定、archive 自检、CI/hook** 为硬门禁。详见 `docs/adr/ADR-0036-ontology-full-lifecycle-gate.md`。
+设计取舍：plan/do/check/act 的本体"消费"保持顾问式（不阻断，避免 YAGNI 与吞吐损失）；仅**创建门禁、证据/结论锚定、archive 自检、CI/hook** 为硬门禁。详见 `ontology:concept/ontology-creation-gate` 与 `pdca-evidence`/`pdca-verdict` 决策背景（原 ADR-0036）。

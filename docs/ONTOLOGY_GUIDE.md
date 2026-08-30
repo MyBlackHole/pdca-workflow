@@ -140,5 +140,5 @@ T0411 在 T0410 校正基础上，补齐了元本体"主体正确但尚不完善
 - **archive 本体自检（AC-3）**：`transition-phase ... archive` 自动跑 `ontology_gate.archive_ontology_ready_issues`（= `ontology-validate` 通过 + `ontology_graph --format summary` 的 `islands: 0`）；本体不合法/有孤岛则拒绝归档。
 - **提交级硬门禁（AC-4）**：共享逻辑 `scripts/ci-ontology-gate.py` 跑 `ontology-validate` + 相关任务 `validate-convergence`；`scripts/install-git-hook.sh`（可选安装）装 `pre-commit` 钩子，`.github/workflows/ontology-gate.yml` 在远端复跑。门禁不可被普通提交绕过。
 
-设计取舍：plan/do/check/act 的本体消费保持顾问式（不阻断，避免 YAGNI 与吞吐损失）；仅创建门禁、证据/结论锚定、archive 自检、CI/hook 为硬门禁。详见 `docs/adr/ADR-0036-ontology-full-lifecycle-gate.md`。
+设计取舍：plan/do/check/act 的本体消费保持顾问式（不阻断，避免 YAGNI 与吞吐损失）；仅创建门禁、证据/结论锚定、archive 自检、CI/hook 为硬门禁。详见 `ontology:concept/ontology-creation-gate` 与 `ontology:concept/pdca-evidence`/`pdca-verdict` 决策背景（原 ADR-0036）。
 

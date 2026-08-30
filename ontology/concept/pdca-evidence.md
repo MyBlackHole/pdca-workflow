@@ -19,3 +19,7 @@ relations:
 
 ## 决策背景（原 ADR-0036：证据锚定）
 - 决策：register-evidence 启动时枚举 pdca-evidence 子类型构建允许表；--kind 须命中子类型并写 evidence_type_ref，未知 kind 报错，使证据机器锚定到本体。
+
+## 决策背景（原 ADR-0003：Convergence 证据映射与 Do→Check 硬门禁）
+- 背景：旧 evidence gate 能验证证据文件/摘要/单项 criteria，但无法证明全部 PRD 验收条件已覆盖，也无法证明 Plan 每条 `meta.convergence` 有验收条件与证据支持；verify-convergence 依赖 AI 手工比对。
+- 决策：在 record evidence 中登记独立 `convergence.json`，作为 Do→Check 硬门禁；meta.convergence 为 Plan 基线，不被执行结果反向修改；脚本 `validate-convergence.py` 机器校验覆盖与文本一致。

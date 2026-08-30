@@ -21,7 +21,7 @@ python3 "$PDCA_HOME/scripts/arch_review.py" --root "$PDCA_HOME" --out "$PDCA_HOM
 ```
 
 - `arch_review.py` 先输出近 30 天 git log 高变更路径（`hotspots`）；有热点 → 以其为优先扫描起点；无热点（空列表）→ 全量扫描。
-- 结合 `CONTEXT.md` 词汇与 `docs/adr/` 已有决策，不重新挑起已定案的架构决策。
+- 结合 `CONTEXT.md` 词汇与 `ontology/` 已有决策节点，不重新挑起已定案的架构决策。
 
 ### 2. 候选扫描（保留四维静态基线）
 

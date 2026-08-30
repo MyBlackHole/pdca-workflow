@@ -36,3 +36,7 @@ relations:
 - ADR-0033：采纳 ONTOLOGY_GUIDE 为兼容吸收方案，指南置于 docs/（不放入 ontology/，以免破坏 ontology-validate 扫描）；pdca.asset/v1 frontmatter + relations 仍为唯一事实源。
 - ADR-0034：本体创建门禁的权威依据从"文档/脚本"升级为本体节点（meta-ontology / ontology-creation-gate / ontology-rule-*），使门禁可图谱追溯。
 - ADR-0036：补齐全流程闭环——证据锚定 pdca-evidence 子类型、结论锚定 pdca-verdict 三态、archive 前跑 ontology-validate + 孤岛检查、提交级 pre-commit/CI 硬门禁。
+
+## 决策背景（原 ADR-0030：知识资产全部物理归并至 ontology/）
+- 背景：PDCA 知识管理需把"按主题"存放重构为"按完整本体"组织；四层模型（Evidence/Experience/Knowledge/Skill）资产如何归并？
+- 决策：方案 B——四层资产全部物理归并到 ontology/ 统一按本体组织；PDCA 机制层（flows/skills/task.json）不动；被迁资产在新位置 frontmatter 保留 source_task 回链，records/<record>/ 保留空壳+redirect。理由：用户要求"完整本体表达"，避免 ontology+records 双层割裂。

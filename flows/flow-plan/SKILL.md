@@ -48,7 +48,7 @@ development/bugfix 任务须在此声明其领域本体片段：将构建/复用
 
 - Q&A 追加到 `clarifications.jsonl`（`source: "grilling"`）。
 - 模糊术语立即更新 `$PDCA_HOME/pdca/CONTEXT.md`。
-- 不可逆、非显然且有权衡的决策写入 `$PDCA_HOME/docs/adr/`。
+- 不可逆、非显然且有权衡的决策写入对应 `ontology/` 节点（加「决策背景」段）。
 - 复杂任务（3+ 模块、外部系统或数据变更）补充 `design.md` 和 `implement.md`。
 
 决策树闭合后，向用户展示目标、范围、方案方向、验收标准和关键取舍，请求方向确认。修改则继续 Grill；确认则追加：

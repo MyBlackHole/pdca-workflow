@@ -43,7 +43,7 @@ development/bugfix 场景必填（机器可读，供契约测试校验）。每�
 - 新增/修改的模块
 - 模块的接口定义
 - 技术澄清
-- 架构决策（→ 同时记入 `docs/adr/`）
+- 架构决策（→ 记入对应 `ontology/` 节点；不可逆非显然决策写入本体节点并标注「决策背景」）
 - 数据模型变更
 - API 合约
 
@@ -87,4 +87,4 @@ development/bugfix 场景必填（机器可读，供契约测试校验）。每�
 
 ---
 
-*由 to-spec 流程合成。术语表见 `pdca/CONTEXT.md`，架构决策见 `docs/adr/`。*
+*由 to-spec 流程合成。术语表见 `pdca/CONTEXT.md`，架构决策见 `ontology/` 节点。*
