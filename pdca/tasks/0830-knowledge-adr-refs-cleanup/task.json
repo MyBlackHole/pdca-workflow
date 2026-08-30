@@ -1,0 +1,46 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0420",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1：16 个重定向桩改写指向 ontology-creation-gate 决策背景，无 ADR-0030 引用",
+      "AC-2：rpc-conn-idle-reclaim.md 移除 ADR-0016 引用（保留 records/ 溯源）",
+      "AC-3：vl32-no-mmap-build-gate.md 移除 ADR-0022（保留 T0249 溯源）",
+      "AC-4：skills-candidate-review.md 移除 ADR-0007 引用",
+      "AC-5：grep knowledge/ 无 ADR-[0-9] 残留，ontology-validate 通过、islands=0",
+      "AC-6：登记 reference 证据 + 收敛映射，validate-convergence valid:true"
+    ],
+    "created_at": "2026-08-30T10:05:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "act",
+    "record": "T0420-0830-knowledge-adr-refs-cleanup",
+    "scenario_type": "documentation",
+    "completed_at": "2026-08-30T10:10:34+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "6 项 AC 全部满足；knowledge/ 下 19 个已删 ADR 引用已全部改写/移除、grep 归零、本体校验通过、证据与收敛映射齐备。",
+      "verdict_id": "verdict-t0420-confirmed",
+      "at": "2026-08-30T10:11:11+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "knowledge/ 下对已删 ADR 的引用已全部改写/移除并归零，记录本身亦为归档。",
+      "at": "2026-08-30T10:11:12+08:00"
+    }
+  },
+  "parent": "T0419",
+  "slug": "0830-knowledge-adr-refs-cleanup",
+  "states": {
+    "act": "2026-08-30T10:11:11+08:00",
+    "archive": null,
+    "check": "2026-08-30T10:10:34+08:00",
+    "created": "2026-08-30T10:05:00+08:00",
+    "do": "2026-08-30T10:08:03+08:00",
+    "plan": "2026-08-30T10:05:00+08:00"
+  },
+  "status": "Completed",
+  "title": "清理 knowledge/ 下对已删 ADR 的引用"
+}

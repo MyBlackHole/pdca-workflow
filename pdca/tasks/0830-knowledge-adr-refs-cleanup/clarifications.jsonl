@@ -1,0 +1,6 @@
+{"at":"2026-08-30T10:05:00+08:00","source":"task_identity","summary":"created with record identity T0420-0830-knowledge-adr-refs-cleanup"}
+{"source":"final_confirmation","summary":"T0420 立项确认：清理 knowledge/ 下 19 个文件对已删 ADR 的引用","response":"confirmed","at":"2026-08-30T10:08:02+08:00"}
+{"source":"check_confirmation","summary":"T0420 结论确认 verdict=confirmed（knowledge/ 19 个已删 ADR 引用清理，grep 归零）","response":"confirmed","at":"2026-08-30T10:11:11+08:00"}
+
+{"source": "grilling", "at": "2026-08-30T10:11:12+08:00", "question": "这个清理任务的哪些部分可提炼为可复用知识？", "answer": "删除 docs/adr/ 后，凡引用已删 ADR 的 knowledge/ 桩文件应改写为指向对应 ontology 节点决策背景；真实知识文件的 ADR 来源注记改为任务号/records，避免悬空引用。"}
+{"source": "knowledge_decision", "at": "2026-08-30T10:11:12+08:00", "action": "skipped", "reason": "本任务为纯引用清理，无新增可复用洞察，相关约定已在 T0419 沉淀进 ontology 节点。"}

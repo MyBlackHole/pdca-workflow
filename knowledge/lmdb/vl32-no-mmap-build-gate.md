@@ -12,4 +12,4 @@ Keep the MetadataStore adapter on the compatible transaction/key/value API. Do n
 
 Build gates and SQLite/TLS/checkpoint fallback tests can prove the safety baseline. They cannot prove no-mmap runtime correctness or performance without the actual matching `MDB_VL32` header/library. Standard mmap benchmark data must remain historical context, not no-mmap evidence.
 
-Source: T0249 conclusion and ADR-0022.
+Source: T0249 conclusion.

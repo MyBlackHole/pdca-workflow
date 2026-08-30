@@ -1,0 +1,46 @@
+[
+  {
+    "text": "AC-1：16 个重定向桩改写指向 ontology-creation-gate 决策背景，无 ADR-0030 引用",
+    "supports": "AC-1",
+    "evidence_ids": [
+      "t0420-reference"
+    ]
+  },
+  {
+    "text": "AC-2：rpc-conn-idle-reclaim.md 移除 ADR-0016 引用（保留 records/ 溯源）",
+    "supports": "AC-2",
+    "evidence_ids": [
+      "t0420-reference"
+    ]
+  },
+  {
+    "text": "AC-3：vl32-no-mmap-build-gate.md 移除 ADR-0022（保留 T0249 溯源）",
+    "supports": "AC-3",
+    "evidence_ids": [
+      "t0420-reference"
+    ]
+  },
+  {
+    "text": "AC-4：skills-candidate-review.md 移除 ADR-0007 引用",
+    "supports": "AC-4",
+    "evidence_ids": [
+      "t0420-reference"
+    ]
+  },
+  {
+    "text": "AC-5：grep knowledge/ 无 ADR-[0-9] 残留，ontology-validate 通过、islands=0",
+    "supports": "AC-5",
+    "evidence_ids": [
+      "t0420-reference",
+      "t0420-validate"
+    ]
+  },
+  {
+    "text": "AC-6：登记 reference 证据 + 收敛映射，validate-convergence valid:true",
+    "supports": "AC-6",
+    "evidence_ids": [
+      "t0420-reference",
+      "t0420-convergence"
+    ]
+  }
+]
