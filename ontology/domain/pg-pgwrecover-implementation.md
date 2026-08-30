@@ -83,7 +83,7 @@ pgwrecover <backup_dir> <out_heap> <out_clog> [--rel-oid=N]
 
 - `third_party/pg184/src/xlogreader.c`：官方 WAL 读取器（前端可链接）
 - `third_party/pg184/include/`：WAL/clog/heap 头文件
-- `knowledge/pg/backup-recovery-wal-replay.md`：T0333 恢复机制调研
+- `ontology/domain/pg/backup-recovery-wal-replay.md`：T0333 恢复机制调研
 
 ## 待推进
 

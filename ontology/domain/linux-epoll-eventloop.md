@@ -4,7 +4,7 @@ id: ontology:domain/linux-epoll-eventloop
 type: domain
 layer: Knowledge
 status: active
-summary: linux-epoll-eventloop 领域知识根节点（由 knowledge/linux-epoll-eventloop/ 迁移）
+summary: linux-epoll-eventloop 领域知识根节点（由 ontology/domain/linux-epoll-eventloop/ 迁移）
 relations:
   specializes:
   - ontology:concept/pdca
@@ -14,7 +14,7 @@ relations:
 
 # linux-epoll-eventloop（领域知识根节点）
 
-由 `knowledge/linux-epoll-eventloop/` 逐文件迁移而来，作为该领域在本体中的分组与分类根（可被 `domain` 属性引用）。
+由 ontology/domain/ 迁移而来，作为该领域在本体中的分组与分类根（可被 `domain` 属性引用）。
 
 ## 子主题（已迁移为叶节点）
 - `backupstream-v65-v101-arch-evolution` → `ontology:domain/linux-epoll-eventloop-backupstream-v65-v101-arch-evolution`

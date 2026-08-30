@@ -22,6 +22,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import re
 from pathlib import Path
 
 import yaml
@@ -285,6 +286,25 @@ def check_knowledge_frontmatter(root: Path) -> list:
     return issues
 
 
+
+def check_knowledge_refs(root: Path) -> list:
+    """Scan ontology/ files for knowledge/ path references that should be cleaned up.
+    AC-1: No knowledge/ path references should remain in ontology/ assets.
+    """
+    issues = []
+    ont_dir = root / "ontology"
+    if not ont_dir.is_dir():
+        return issues
+    for md in sorted(ont_dir.rglob("*.md")):
+        text = md.read_text(encoding="utf-8")
+        # Match knowledge/ as a path reference (not the word "knowledge" in general)
+        matches = re.findall(r'(?<![\w-])knowledge/', text)
+        if matches:
+            issues.append({"path": str(md), "code": "KNOWLEDGE_REF_CLEANUP",
+                           "message": f"contains {len(matches)} knowledge/ path reference(s), should be replaced with ontology/domain/ paths"})
+    return issues
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="Validate ontology/ assets against SSOT contract")
     ap.add_argument("--root", type=Path, default=ROOT)
@@ -295,6 +315,7 @@ def main() -> int:
     issues = validate(ont_dir)
     issues += check_redirects(args.root)
     issues += check_knowledge_frontmatter(args.root)
+    issues += check_knowledge_refs(args.root)
     if args.format == "json":
         print(json.dumps({"assets_dir": str(ont_dir), "issues": issues,
                           "ok": not issues}, ensure_ascii=False, indent=2))

@@ -20,7 +20,7 @@ attributes:
 ---
 
 ---
-schema: pdca.knowledge/v1
+schema: pdca.ontology/domain/v1
 topic: control-plane-nonblocking-ingress
 slug: v81-control-frame-nonblocking
 source_record: records/T0291-0815-v81-control-frame/conclusion.md

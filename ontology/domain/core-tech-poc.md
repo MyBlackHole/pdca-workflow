@@ -4,7 +4,7 @@ id: ontology:domain/core-tech-poc
 type: domain
 layer: Knowledge
 status: active
-summary: core-tech-poc 领域知识根节点（由 knowledge/core-tech-poc/ 迁移）
+summary: core-tech-poc 领域知识根节点（由 ontology/domain/core-tech-poc/ 迁移）
 relations:
   specializes:
   - ontology:concept/pdca
@@ -14,7 +14,7 @@ relations:
 
 # core-tech-poc（领域知识根节点）
 
-由 `knowledge/core-tech-poc/` 逐文件迁移而来，作为该领域在本体中的分组与分类根（可被 `domain` 属性引用）。
+由 ontology/domain/ 迁移而来，作为该领域在本体中的分组与分类根（可被 `domain` 属性引用）。
 
 ## 子主题（已迁移为叶节点）
 - `aead-auth-encryption` → `ontology:domain/core-tech-poc-aead-auth-encryption`

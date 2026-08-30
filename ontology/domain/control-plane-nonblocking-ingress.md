@@ -4,7 +4,7 @@ id: ontology:domain/control-plane-nonblocking-ingress
 type: domain
 layer: Knowledge
 status: active
-summary: control-plane-nonblocking-ingress 领域知识根节点（由 knowledge/control-plane-nonblocking-ingress/
+summary: control-plane-nonblocking-ingress 领域知识根节点（由 ontology/domain/control-plane-nonblocking-ingress/
   迁移）
 relations:
   specializes:
@@ -15,7 +15,7 @@ relations:
 
 # control-plane-nonblocking-ingress（领域知识根节点）
 
-由 `knowledge/control-plane-nonblocking-ingress/` 逐文件迁移而来，作为该领域在本体中的分组与分类根（可被 `domain` 属性引用）。
+由 ontology/domain/ 迁移而来，作为该领域在本体中的分组与分类根（可被 `domain` 属性引用）。
 
 ## 子主题（已迁移为叶节点）
 - `v81-control-frame-nonblocking` → `ontology:domain/control-plane-nonblocking-ingress-v81-control-frame-nonblocking`

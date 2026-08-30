@@ -20,7 +20,7 @@ attributes:
 ---
 
 ---
-schema: pdca.knowledge/v1
+schema: pdca.ontology/domain/v1
 title: 清理网络遗留代码时区分内部死代码与公共 ABI
 source: records/T0316-0818-rpc-legacy-helper-cleanup/conclusion.md
 ---

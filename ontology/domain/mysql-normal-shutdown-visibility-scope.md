@@ -43,5 +43,5 @@ V2-V5 场景矩阵（更新/删除/回滚/off-page 更新）与 56/57/80/84 四�
   哪些行属于已中止事务。此类场景需另立项（解析 undo 段 + trx_sys 活跃事务列表）。
 
 ## 关联
-- PG 侧对应结论见 knowledge/pg/visibility-clog-infomask.md（IN_PROGRESS / ItemIdIsDead
+- PG 侧对应结论见 ontology/domain/pg/visibility-clog-infomask.md（IN_PROGRESS / ItemIdIsDead
   在正常关闭下同样不出现）。

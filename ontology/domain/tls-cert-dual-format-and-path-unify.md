@@ -20,7 +20,7 @@ attributes:
 ---
 
 ---
-schema: pdca.knowledge/v1
+schema: pdca.ontology/domain/v1
 title: ED25519 双格式回退与证书路径统一
 source: records/T0342-0822-tls-cert-init-api/conclusion.md
 ---

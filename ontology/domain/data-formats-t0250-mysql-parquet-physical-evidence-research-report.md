@@ -164,4 +164,4 @@ PG CLOG 可见性均通过"直读 vs SQL 差异=0"硬验收；性能物理直读
 - 原型：build/mysqlbin、build/pgbin；源码 src/mysql/、src/pg/、src/common/
 - 证据：evidence/mysql/、evidence/pg/（EVIDENCE.md、ac1_four_versions.md、ac5_benchmark.md、.ibd 快照）
 - 评测：bench/（数据生成 + 场景构造）
-- 知识沉淀：knowledge/data-formats/mysql-innodb-physical-read-notes.md
+- 知识沉淀：ontology/domain/data-formats/mysql-innodb-physical-read-notes.md
