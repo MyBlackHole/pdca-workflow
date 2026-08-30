@@ -1,0 +1,65 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1：识别 PDCA 本体与 Matt Pocock skills 在 AI 使用效率方面的差距",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-review"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "AC-2：分析 writing-for-agents 原则在 PDCA 本体中的应用情况",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-review"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "AC-3：分析 skill mechanics（模型调用 vs 用户调用）在 PDCA 中的实现",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-review"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "AC-4：分析 grilling 方法论在 PDCA 中的完整性",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-concepts"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "AC-5：审查 domain-modeling 和 triage 在 PDCA 本体中的覆盖",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-review"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "AC-6：提出改进建议并登记证据，收敛映射 valid:true",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ev-validation"
+      ]
+    }
+  ]
+}

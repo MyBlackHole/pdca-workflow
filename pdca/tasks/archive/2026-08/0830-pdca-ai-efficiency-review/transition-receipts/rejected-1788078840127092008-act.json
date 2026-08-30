@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0430",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "CONCLUSION_MISSING",
+      "path": "records/T0430-0830-pdca-ai-efficiency-review/conclusion.md",
+      "message": "conclusion is required"
+    }
+  ],
+  "at": "2026-08-30T16:34:00.127072+08:00"
+}
