@@ -29,7 +29,7 @@ python3 "$PDCA_HOME/scripts/arch_review.py" --root "$PDCA_HOME" --out "$PDCA_HOM
 
 1. **Flow coverage** — `scenario_type` 值是否缺对应 flow 路径？对照 `flows/flow-do/SKILL.md`。
 2. **Skill consistency** — `flows/flow-*/SKILL.md` 引用的 `skills/<name>/SKILL.md` 是否存在？报告孤儿与未引用。
-3. **Knowledge–process mapping** — `knowledge/` 的原则在 `flows/`/`skills/` 有无对应实现？
+3. **Knowledge–process mapping** — `ontology/domain/` 的原则在 `flows/`/`skills/` 有无对应实现？
 4. **File smells** — 超过 200 行的文件、重复步骤模式、混合职责。
 
 对每个怀疑模块用 **deletion test**："删掉它会让复杂度集中还是只是搬家？"集中 → 深化候选。

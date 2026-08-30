@@ -23,7 +23,7 @@ status: active
 ## 执行步骤
 
 1. 将问题压缩成少量普通文本关键词，并提取明确的标签和适用/排除信号。
-2. 读取 doctor 的 `context.retrieve` 能力结果。可用时通过当前环境 Adapter 执行推荐；不可用时用 `rg` 在 `knowledge/`、`records/` 和任务元数据中搜索相同关键词，并按 applies/excludes/source_ids 手工筛选最小集合。
+2. 读取 doctor 的 `context.retrieve` 能力结果。可用时通过当前环境 Adapter 执行推荐；不可用时用 `rg` 在 `ontology/domain/`、`records/` 和任务元数据中搜索相同关键词，并按 applies/excludes/source_ids 手工筛选最小集合。
 
 3. 检查 fingerprint、总分、评分组成、排除原因和 source IDs，只加载真正影响当前决策的资产。
 4. 需要解释、反例或冲突消解时，加 `--expand-experience`；默认不展开 Experience，永不推荐 Evidence。

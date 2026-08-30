@@ -1,8 +1,0 @@
-# poc_orders 表 schema（AC-1 四版本，5.6/5.7 无 SDI 时经 --schema 传入）
-id:bigint:pk
-customer_id:int
-amount:decimal(12,2)
-created_at:datetime(6)
-status:varchar(16)
-payload:varchar(96)
-active:bool

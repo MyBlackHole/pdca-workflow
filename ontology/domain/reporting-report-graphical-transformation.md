@@ -1,0 +1,110 @@
+---
+schema: pdca.asset/v1
+id: ontology:domain/reporting-report-graphical-transformation
+type: domain
+layer: Knowledge
+status: active
+summary: 报告图形化改造方法论：从文字报告到图示为主的流程
+domain:
+- ontology:domain/reporting
+relations:
+  specializes:
+  - ontology:domain/reporting
+  relates_to:
+  - ontology:concept/pdca
+attributes:
+- name: applicability
+  desc: 领域知识适用场景
+  constraint: 见正文
+  testable_signal: 由领域实践与测试验证
+---
+
+# 报告图形化改造方法论：从文字报告到图示为主的流程
+
+> 来源任务: T0297（backupstream 相位会计/演进学习报告图形化改造）
+> 场景: 用户反馈「文字内容太多，缺少架构图、原理图与案例说明」时的改造流程。
+
+## 触发信号
+
+- 报告以密集文字为主，可读性差。
+- 用户反馈缺少架构图、原理图与数值案例。
+- 报告结论已确认（表现为层重写，不引入新分析）。
+
+## 改造流程（六个步骤）
+
+### 1. 范围与形式对齐（Plan）
+
+先问四个决策，缺一不可：
+
+| 决策 | 选项 | 建议 |
+|------|------|------|
+| 改造范围 | 单份 / 多份独立 | 按报告主题各自独立，不合并 |
+| 图形式 | Mermaid / ASCII / 混合 | Mermaid 为主 + ASCII 补充 |
+| 案例数据 | 真实测试数据 / 虚构示意 | 真实测试数据（可核验） |
+| 产出位置 | 各自 record 新版本 / 合并 | 各自 record 独立新版本 |
+
+### 2. 图示规范（遵循 code-comments 技能）
+
+- 每张图 **≤20 行**，超长就拆成多张「一张图一个问题」。
+- 中文标签，必须带 **图例**（说明图中符号/箭头/方向含义）。
+- 一个图只回答一个问题；复杂链路拆为「全景图 + 分图」。
+- 适合的 Mermaid 类型：`flowchart`（架构/流程）、`sequenceDiagram`（时序/
+  不相交语义）、`timeline`（版本演进，注意渲染器兼容性）、`stateDiagram`。
+
+### 3. 渲染验证（硬门禁）
+
+对每张 Mermaid 图用渲染器实际验证，不能只靠人眼：
+
+```bash
+# mmdc = mermaid-cli
+mmdc -i diagram.mmd -o /tmp/out.svg   # 返回码 0 = 语法有效
+```
+
+- timeline 语法较新，部分旧渲染器不支持——交付前确认目标渲染环境。
+- 图行数自动检查：`awk` 提取每个 ` ```mermaid ` 块统计行数，超 20 报超标。
+
+### 4. 事实核验（防编造）
+
+图文版的数值、行号、提交信息必须与**原始证据源**逐值核对：
+
+- 数值案例：对照集成测试脚本/源码字面量（如 `100000000` ns），
+  不凭源报告摘要猜测未给出的分解数字。
+- 源码行号：对照源报告引用的 `file:line`，必要时回源码复核。
+- 提交/版本信息：沿用已核验的源报告，不自行重算。
+- 发现源报告未给全的数字（如某 finding 的守恒分解），
+  必须从测试脚本补证或明确标注「源报告未给出」。
+
+### 5. 文字压缩策略
+
+- 文字只做图的**必要补充**：图例、关键结论、边界说明。
+- 图已表达的（如守恒等式、拓扑）不在文字重复。
+- 源报告的关键推导/建议以**附录保真摘录**方式保留，不重写。
+
+### 6. Evidence 登记与收敛
+
+- 每份图文版登记到**对应源 record**（新 id）+ 本任务 record（交叉登记，
+  供收敛链验证器引用）。
+- convergence-map 固定 id=`convergence-map-vN`（每次更新递增，`--replace`
+  前代，`--file` 与 `--id` 都必须不同于被替换项）。
+- 验证器只认**本任务 record 内**已登记的 non-map 证据——跨 record 登记
+  不满足支撑链，需交叉登记。
+- 每张图渲染 OK、行数 ≤20、事实核验一致 → 收敛 `valid: true` 才是完成。
+
+## 关键坑（T0297 实战记录）
+
+1. **register-evidence `--replace`**：`--id` 与 `--file` 都须不同于被替换项
+   （`--file convergence-v2.json` + `--id convergence-map-v2`）。
+2. **验证器证据归属**：`CONVERGENCE_EVIDENCE_UNKNOWN` = 证据登记到了别的
+   record。把图文版交叉登记到本任务 record 即可。
+3. **AC 全覆盖**：每个 AC 必须被非 map 证据覆盖；「登记行为」类 AC 需
+   补一个登记凭证文件作为证据。
+4. **源报告缺数字**：图文版给不出源报告没有的分解值时，从测试脚本补证，
+   绝不编造（如 b-20 的 1100ms post-drain 实测自测试脚本）。
+5. **timeline 图超长**：36 提交单图 38 行 → 按主线拆 3 张 timeline，
+   各自 ≤20 行且信息不丢。
+
+## 适用范围
+
+- 适用于 documentation/design/research 场景的纯表现层报告改造。
+- 不适用于需要新分析/新结论的改造（那是新任务）。
+- 结论限源报告覆盖的版本范围（本案例 v101 / 867da08）。

@@ -35,7 +35,7 @@ python3 "$PDCA_HOME/scripts/scenario-boundary-check.py" --judge --desc "<任务�
 
 ### 2. Deduplicate
 
-Search: `$PDCA_HOME/pdca/tasks/**/task.json` (incl. archive), `$PDCA_HOME/knowledge/out-of-scope/`, `$PDCA_HOME/knowledge/**/*.md`.
+Search: `$PDCA_HOME/pdca/tasks/**/task.json` (incl. archive), `$PDCA_HOME/ontology/domain/out-of-scope/`, `$PDCA_HOME/ontology/domain/**/*.md`.
 
 对 out-of-scope 知识库做**概念级 dedup 前置检查**：
 
@@ -107,7 +107,7 @@ grep -c ':line\|<file path>' triager-brief.md   # 期望输出 0
 grep -c 'acceptance criteria' triager-brief.md   # 期望输出 ≥ 1
 ```
 
-**wontfix**: 按概念聚合写入 `$PDCA_HOME/knowledge/out-of-scope/<concept>.md`：
+**wontfix**: 按概念聚合写入 `$PDCA_HOME/ontology/domain/out-of-scope-<concept>.md`：
 
 1. **仅 enhancement**（非 bug）被拒绝时写入；reason 必须 **durable**（避免"现在太忙"这类临时理由——那是 deferral 非拒绝）。
 2. **反污染**：因**已实现**而拒绝的请求**禁止**写入 out-of-scope（会污染 dedup 造成假拒绝）——关闭评论指向功能已存在位置：
@@ -121,7 +121,7 @@ python3 "$PDCA_HOME/scripts/out-of-scope-manager.py" add \
 ```
 
 3. **概念级聚合**：一个概念一个文件；同一概念的后续请求**追加**到已有文件的 `## Prior requests`（文件数不变），不同概念才新建文件。
-4. 关闭 issue 时在评论中提及 `knowledge/out-of-scope/<concept>.md`。
+4. 关闭 issue 时在评论中提及 `ontology/domain/out-of-scope-<concept>.md`。
 
 ## Exit
 - `ready-to-plan` → Plan phase
@@ -129,5 +129,5 @@ python3 "$PDCA_HOME/scripts/out-of-scope-manager.py" add \
 
 ## 已知坑
 
-- 曾经只写 `<slug>.md` 不做概念级聚合，导致同一概念重复文件、dedup 失效——务必聚合到 `knowledge/out-of-scope/<concept>.md`（T0266）。
+- 曾经只写 `<slug>.md` 不做概念级聚合，导致同一概念重复文件、dedup 失效——务必聚合到 `ontology/domain/out-of-scope-<concept>.md`（T0266）。
 - "已实现"的拒绝禁止写入 out-of-scope：会污染 dedup 造成假拒绝；关闭评论应指向功能已存在位置（T0266）。

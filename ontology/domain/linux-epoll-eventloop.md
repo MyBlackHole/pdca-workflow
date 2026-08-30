@@ -1,0 +1,25 @@
+---
+schema: pdca.asset/v1
+id: ontology:domain/linux-epoll-eventloop
+type: domain
+layer: Knowledge
+status: active
+summary: linux-epoll-eventloop 领域知识根节点（由 knowledge/linux-epoll-eventloop/ 迁移）
+relations:
+  specializes:
+  - ontology:concept/pdca
+  relates_to:
+  - ontology:concept/pdca
+---
+
+# linux-epoll-eventloop（领域知识根节点）
+
+由 `knowledge/linux-epoll-eventloop/` 逐文件迁移而来，作为该领域在本体中的分组与分类根（可被 `domain` 属性引用）。
+
+## 子主题（已迁移为叶节点）
+- `backupstream-v65-v101-arch-evolution` → `ontology:domain/linux-epoll-eventloop-backupstream-v65-v101-arch-evolution`
+- `dynamic-deadline-wakeup` → `ontology:domain/linux-epoll-eventloop-dynamic-deadline-wakeup`
+- `event-loop-time-conservation` → `ontology:domain/linux-epoll-eventloop-event-loop-time-conservation`
+- `multireactor-so-reuseport` → `ontology:domain/linux-epoll-eventloop-multireactor-so-reuseport`
+- `rpc-conn-idle-reclaim` → `ontology:domain/linux-epoll-eventloop-rpc-conn-idle-reclaim`
+- `transport-ownership-model` → `ontology:domain/linux-epoll-eventloop-transport-ownership-model`

@@ -1,0 +1,12 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index":1,"text":"AC-1：建立 ontology/domain/ 接入（28 域根 + 逐文件叶节点，type=domain、specializes pdca、无孤岛）","criteria":["AC-1"],"evidence_ids":["ev-domain-design"]},
+    {"index":2,"text":"AC-2：122 个 knowledge/ 文件逐文件迁移为 ontology/domain/* 节点（frontmatter+正文）","criteria":["AC-2"],"evidence_ids":["ev-migrate"]},
+    {"index":3,"text":"AC-3：knowledge/manifest.jsonl 与 README.md 随 knowledge/ 删除，索引信息由域根节点承载","criteria":["AC-3"],"evidence_ids":["ev-index-deleted"]},
+    {"index":4,"text":"AC-4：ontology-validate 通过、islands=0 后删除 knowledge/","criteria":["AC-4"],"evidence_ids":["ev-delete"]},
+    {"index":5,"text":"AC-5：16 个活动文件 knowledge/ 引用改写为 ontology/domain/*","criteria":["AC-5"],"evidence_ids":["ev-refs"]},
+    {"index":6,"text":"AC-6：登记证据 + 收敛映射，validate-convergence valid:true","criteria":["AC-6"],"evidence_ids":["ev-evidence"]},
+    {"index":7,"text":"AC-7：全仓（排除 records/journal/tasks）无指向 knowledge/ 的实时引用；经 Check 获 verdict","criteria":["AC-7"],"evidence_ids":["ev-noref"]}
+  ]
+}

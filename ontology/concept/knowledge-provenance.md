@@ -17,7 +17,7 @@ relations:
 PDCA 产物应分为两层：
 
 - `records/<record-id>/evidence/` 保存内容寻址的原始事实；`experience.md` 保存单次任务的情境化经验。进入 Act 前同时封存两者摘要。
-- `knowledge/<topic>/<slug>.md` 是跨任务复用、允许演进的知识，不是实验结论的副本。
+- `ontology/domain/<topic>-<slug>.md` 是跨任务复用、允许演进的知识，不是实验结论的副本。
 
 知识只能在 Act 阶段显式投影。每次投影必须记录来源 record、来源摘要、知识摘要、投影理由和连续 revision。相同内容与理由的重试必须幂等；知识内容或理由变化则形成新 revision。
 

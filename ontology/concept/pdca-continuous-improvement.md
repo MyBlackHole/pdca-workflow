@@ -33,7 +33,7 @@ PDCA 的本质是**持续改进循环**，而非单向流水线（ASQ："a circl
 ```
 原始事实 → Evidence（register-evidence 登记，manifest.jsonl）
         → Experience（records/ 中的 conclusion.md）
-        → Knowledge（knowledge/ 下的 .md，由 flow-act 步骤 2 提炼）
+        → Knowledge（ontology/domain/ 下的 .md，由 flow-act 步骤 2 提炼）
         → Skill（skills/ 下的 SKILL.md，由 writing-skills 创建）
 ```
 

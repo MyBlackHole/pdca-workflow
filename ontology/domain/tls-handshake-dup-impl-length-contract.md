@@ -1,0 +1,40 @@
+---
+schema: pdca.asset/v1
+id: ontology:domain/tls-handshake-dup-impl-length-contract
+type: domain
+layer: Knowledge
+status: active
+summary: 握手协议双端实现必须共享帧长度契约并强制往返测试
+domain:
+- ontology:domain/tls
+relations:
+  specializes:
+  - ontology:domain/tls
+  relates_to:
+  - ontology:concept/pdca
+attributes:
+- name: applicability
+  desc: 领域知识适用场景
+  constraint: 见正文
+  testable_signal: 由领域实践与测试验证
+---
+
+# 握手协议双端实现必须共享帧长度契约并强制往返测试
+
+## 可复用规则
+
+自研二进制握手协议（mTLS 协商帧等）在多模块各自实现客户端/服务端时，必须满足：
+
+1. **帧长度常量单点化**：body 布局（如 `{result u16, algorithm u16, ca_cn[N]}`）的长度只能由单一宏定义，客户端校验值与服务端发送值必须引用同一宏。禁止两侧各写字面量——复制粘贴后单侧改动会引发长度漂移，轻则校验必败（功能不可用），重则按对端长度读越界。
+2. **header+body 合读时缓冲区按总长分配**：循环读满式接收接口的 expect 参数是写入字节数上限；将 header 与 body 读入同一缓冲区时，缓冲区必须 ≥ sizeof(header)+sizeof(body)，再前移解析。直接以 body 大小的缓冲区承接总长读取是典型栈溢出模式。
+3. **复制式协议实现强制配真实往返集成测试**：凡从其他模块复制握手/会话代码的新模块，必须补一条真实进程（或 socketpair 级）客户端↔服务端完整 TLS 升级往返测试。仅测配置解析与会话 IO 原语无法发现双端契约漂移。
+4. **语义分歧要在引入时就对齐**：同一错误码族跨模块复用时（如 ERR_MTLS_REQUIRED vs ERR_MTLS_UNAVAILABLE、启动 fail-open vs fail-closed），应在引入新模块时与基准模块逐一对齐或显式记录差异并说明理由，否则排障语义分裂且后续收敛成本随模块数增长。
+
+## 适用边界
+
+适用于自研二进制协议的多模块独立实现场景；不适用于单一共享库内实现（长度天然单点）。
+
+## 来源
+
+- `records/T0355-0822-mtls-consistency-review/conclusion.md`
+- 实例：libobk 握手 body 长度 175 vs 205 校验必败 + resp 缓冲区 205 承接 235 字节读取栈溢出（C1/C2）；四模块错误码与启动策略分歧（H1/H4）

@@ -21,7 +21,7 @@ invocation: manual
 | "有个大工程要做" | `/wayfinder` 先画地图 |
 | "帮我理清思路/对齐目标" | `/grill` 追问门禁 |
 | "上次做了一半的工作" | 查 archives 恢复 |
-| "我想了解这个项目/代码库" | 搜索 `$PDCA_HOME/knowledge/` + `$PDCA_HOME/records/` |
+| "我想了解这个项目/代码库" | 搜索 `$PDCA_HOME/ontology/domain/` + `$PDCA_HOME/records/` |
 
 ## 流程
 

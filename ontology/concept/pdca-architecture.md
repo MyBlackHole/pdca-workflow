@@ -56,7 +56,7 @@ PDCA 是一套统一协议，用同一套机制同时消除 AI 代理执行的�
 - **方向控制失灵**：需求理解偏差/过度承诺/目标丢失/隐含假设 → grill 多轮追问至 final_confirmation、triage 分诊、Check 逐项核验、clarifications.jsonl 留痕。
 - **执行路径混沌**：无标准流程/无顺序/无终止/重复造轮 → flows/ 四阶段固定顺序 + flow-do 按 `meta.scenario_type` 路由 6 条路径（development/bugfix/research/documentation/design/review）+ 收敛检验。
 - **质量不可信**：无产出标准/无检验/无证据链/无质量把关 → prd.md 验收条件 + check 对照 PRD 与证据 + register-evidence 证据链 + code-review 双轴审查。
-- **记忆归零**：跨会话失忆/经验不传承/知识不生长/无从检索 → records/ 不可变记录 + knowledge/ 可复用知识 + flow-act 知识处置（Evidence→Experience→Knowledge→Skill）+ knowledge/manifest.jsonl 索引 + CONTEXT.md 术语统一。
+- **记忆归零**：跨会话失忆/经验不传承/知识不生长/无从检索 → records/ 不可变记录 + ontology/domain/ 可复用知识 + flow-act 知识处置（Evidence→Experience→Knowledge→Skill）+ （来源回链由节点 frontmatter 承载，废弃 manifest.jsonl） 索引 + CONTEXT.md 术语统一。
 - **黑箱执行**：不可审计/不可解释/不可回滚/无进展感知 → task.json 阶段流转 + records/ 追踪 + rollback-phase.sh / advance-phase 快照 + journal 日志。
 - **多项目混乱**：项目混杂/知识隔离/权限混淆/环境依赖 → external_project 字段 + init-external.sh 解耦 + 共享 $PDCA_HOME 知识库 + permission.external_directory 配置。
 

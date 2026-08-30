@@ -43,7 +43,7 @@ status: active
 ## 结果
 
 - README 提供面向使用者的项目使命和能力方向。
-- `knowledge/core/project-goal.md` 提供可被 AI 检索的结构化目标、适用条件和设计原则。
+- `ontology/domain/core-project-goal.md` 提供可被 AI 检索的结构化目标、适用条件和设计原则。
 - 目标统一指向提高 AI 使用效率、事情处理效率、准确性和可复用性。
 
 ## 边界

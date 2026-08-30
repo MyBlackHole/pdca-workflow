@@ -146,7 +146,7 @@ def main() -> int:
         "scope": args.scope,
         "source_commit": source_commit,
         "generated_at": datetime.now().astimezone().isoformat(timespec="seconds"),
-        "protected_prefixes": ["records/", "knowledge/", "pdca/journal/"],
+        "protected_prefixes": ["records/", "ontology/domain/", "pdca/journal/"],
         "target_count": len(targets),
         "targets": targets,
     }

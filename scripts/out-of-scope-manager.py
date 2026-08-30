@@ -2,7 +2,7 @@
 """out-of-scope 知识库管理器（T0266）。
 
 维护被拒绝特性请求的概念级聚合记录，供 triage dedup surfacing。
-一个概念一个文件：knowledge/out-of-scope/<concept>.md。
+一个概念一个文件：ontology/domain/out-of-scope-<concept>.md。
 同一概念的后续拒绝追加到已有文件的 ## Prior requests，不新建文件。
 
 用法：
@@ -114,7 +114,7 @@ def cmd_list(args: argparse.Namespace) -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dir", default="knowledge/out-of-scope", help="out-of-scope 目录")
+    parser.add_argument("--dir", default="ontology/domain/out-of-scope", help="out-of-scope 目录")
     sub = parser.add_subparsers(dest="command", required=True)
 
     add = sub.add_parser("add", help="记录一次 wontfix 拒绝（概念级聚合）")

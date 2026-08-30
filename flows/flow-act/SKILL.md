@@ -48,7 +48,7 @@ description: |
 追加 Q&A 到 `clarifications.jsonl`（`source: "grilling"`）。
 
 ### Ac2. 知识沉淀（仅 confirmed）
-将可复用的洞察写入 `$PDCA_HOME/knowledge/<topic>/<slug>.md`。
+将可复用的洞察写入 `$PDCA_HOME/ontology/domain/<topic>-<slug>.md`。
 不满足复用标准的不写，record 本身即为归档。
 若主题已有对应 ontology 节点（如 `ontology/concept/*`、`ontology/principle/*`），优先在该节点 `relations` 或文档中建立关联，而非产出孤立知识条目。
 
@@ -57,7 +57,7 @@ description: |
 {"source": "knowledge_decision", "at": "<ISO 时间戳>", "action": "wrote|skipped", "reason": "<复用理由或跳过理由>"}
 ```
 
-写入知识后还需在 `$PDCA_HOME/knowledge/manifest.jsonl` 追加一行：
+写入知识后还需在 `$PDCA_HOME/（来源回链由节点 frontmatter 承载，废弃 manifest.jsonl）` 追加一行：
 ```json
 {"version":1,"revision":1,"at":"<ISO 时间戳>","knowledge":"<topic>/<slug>.md","knowledge_digest":"sha256:<文件 sha256>","source_record":"records/<record-id>/conclusion.md","source_digest":"sha256:<source sha256>","reason":"<复用理由>"}
 ```
@@ -69,7 +69,7 @@ description: |
 
 ### Ac2b. 部分沉淀 + 跟进（仅 partial，跳过步骤 Ac1）
 结论部分成立时：
-1. 仅沉淀确凿可复用的部分到 `$PDCA_HOME/knowledge/<topic>/<slug>.md`
+1. 仅沉淀确凿可复用的部分到 `$PDCA_HOME/ontology/domain/<topic>-<slug>.md`
 2. 创建跟进任务处理未完成部分——必须经统一 identity 入口创建（仓库锁 + 全局 ID + 不可变 record），`title` 中包含"跟进"标记，`meta.phase: plan`：
    ```bash
    python3 "$PDCA_HOME/scripts/task_identity.py" create \

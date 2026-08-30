@@ -6,7 +6,7 @@
 - 活跃任务：`$PDCA_HOME/pdca/tasks/`
 - 归档任务：`$PDCA_HOME/pdca/tasks/archive/`
 - 不可变记录：`$PDCA_HOME/records/`
-- 可复用知识：`$PDCA_HOME/knowledge/`
+- 可复用知识：`$PDCA_HOME/ontology/domain/`
 - 工作日志：`$PDCA_HOME/pdca/journal/`
 
 ## 必须遵守的 PDCA 门禁

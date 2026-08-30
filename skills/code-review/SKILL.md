@@ -23,7 +23,7 @@ git log <fixed-point>..HEAD --oneline
 ### 2. 确定规范来源（优先级）
 1. commit message 中的 issue 引用（`#123`, `Closes #45`）
 2. 用户直接传入的路径
-3. `prd.md`、`knowledge/`、`specs/` 下的 spec 文件
+3. `prd.md`、`ontology/domain/`、`specs/` 下的 spec 文件
 4. 以上均无 → 规范轴跳过，报告"无可用 spec"
 
 ### 3. 确定标准来源

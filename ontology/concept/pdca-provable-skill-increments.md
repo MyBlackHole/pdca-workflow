@@ -29,7 +29,7 @@ relations:
 1. **AGENT-BRIEF 结构化模板**（triage-work）：字段含 category/scenario_type/summary/current-desired behavior/key interfaces/AC 等；AC 可测、durability over precision（写概念级接口不写 `:line`/具体路径）；质量约束接入自动门禁。
 2. **Wide-Refactor 保绿序列化**（to-tickets）：expand→分批迁移→contract→(integrate-and-verify)，每批 `blocked by` 上一批，逐批保持 CI 绿。
 3. **Ticket Claim 并发防冲突**（wayfinding-work）：`check-ticket-claims.py` 状态机，仅 `open+unblocked+unclaimed` 票可选，重复 claim→`ALREADY_CLAIMED`、非认领者 resolve→`NOT_CLAIMANT`。
-4. **out-of-scope 概念聚合知识库**：`knowledge/out-of-scope/<concept>.md` 一个概念一个文件，同概念追加 `## Prior requests`，`--implemented` 拒绝污染。
+4. **out-of-scope 概念聚合知识库**：`ontology/domain/out-of-scope-<concept>.md` 一个概念一个文件，同概念追加 `## Prior requests`，`--implemented` 拒绝污染。
 5. **merge-conflicts intent-based 解析**：找 primary source 理解双方意图、保留双方真实意图、绝不 `--abort`、`git diff --check` 无残留。
 6. **DEEPENING 深化测试策略**：依赖分类（in-process/local-substitutable/remote-owned/true-external）→ 测试策略映射；seam 纪律 one adapter=假设接缝、two adapters=真实接缝；deletion test 判定模块是否挣存在。
 7. **skill 结构契约检查器**（`check-skill-structure.py`）+ **Gotchas 段机制**：全量 39 skills 机器可判定契约 + 核心 9 skill gotchas 从历史失败点提取含记录级来源引用。
