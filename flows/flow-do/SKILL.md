@@ -50,7 +50,7 @@ python3 "$PDCA_HOME/scripts/resolve-ai-friendliness-route.py" --scenario "<meta.
 3. **孤岛自检**：完成变更后运行 `python3 scripts/ontology_graph.py --format summary`，确认新增节点未成为孤岛（与既有图谱连通）；产生孤岛时回溯补 `relations` 或 `relates_to`。
 4. **跳过条件**：`meta.ontology_exempt=true` 或 `meta.ontology_fragment` 为空时，本小节整体跳过。
 
-语义权威约定见 `docs/ONTOLOGY_GUIDE.md`：`ontology-validate` 以 frontmatter + `relations` 为准，指南文档本身不承载机器语义。
+语义权威约定见 `ontology/README.md`：`ontology-validate` 以 frontmatter + `relations` 为准，指南文档本身不承载机器语义。
 
 ## 通用：执行器容错
 

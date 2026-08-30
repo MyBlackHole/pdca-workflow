@@ -33,7 +33,7 @@ relations:
 - **受检对象**：`ontology-asset`。
 
 ## 决策背景（原 ADR-0033 / 0034 / 0036）
-- ADR-0033：采纳 ONTOLOGY_GUIDE 为兼容吸收方案，指南置于 docs/（不放入 ontology/，以免破坏 ontology-validate 扫描）；pdca.asset/v1 frontmatter + relations 仍为唯一事实源。
+- ADR-0033：采纳 ONTOLOGY_GUIDE 为兼容吸收方案，指南当时置于 docs/（不放入 ontology/，以免破坏 ontology-validate 扫描）；现该指南已并入 ontology/README.md（元指南与契约权威合一）；pdca.asset/v1 frontmatter + relations 仍为唯一事实源。
 - ADR-0034：本体创建门禁的权威依据从"文档/脚本"升级为本体节点（meta-ontology / ontology-creation-gate / ontology-rule-*），使门禁可图谱追溯。
 - ADR-0036：补齐全流程闭环——证据锚定 pdca-evidence 子类型、结论锚定 pdca-verdict 三态、archive 前跑 ontology-validate + 孤岛检查、提交级 pre-commit/CI 硬门禁。
 

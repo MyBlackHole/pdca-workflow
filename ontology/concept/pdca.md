@@ -23,5 +23,5 @@ PDCA（Plan-Do-Check-Act，又称 **Deming Cycle** / **Shewhart Cycle**）是本
   - 证据与判定：`pdca-evidence`、`pdca-verdict`、`pdca-acceptance-criterion`。
   - 载体：`pdca-task`（一个完整 PDCA 周期的载体，由 `task.json` 跟踪）。
   - 循环：`pdca-continuous-improvement`。
-- **控制与执行消费**：`scripts/ontology_reason.py` 读取上述节点驱动阶段转换/准入/证据识别；`scripts/pdca_context.py` 在各阶段入口实时输出对应元本体知识（见 `docs/ONTOLOGY_GUIDE.md`）。
+- **控制与执行消费**：`scripts/ontology_reason.py` 读取上述节点驱动阶段转换/准入/证据识别；`scripts/pdca_context.py` 在各阶段入口实时输出对应元本体知识（见 `ontology/README.md`）。
 

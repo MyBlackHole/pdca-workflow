@@ -125,4 +125,33 @@ attributes:
 - **archive 本体自检（AC-3）**：`transition-phase.py` 目标为 `archive` 时自动调用 `scripts/ontology_gate.archive_ontology_ready_issues`——运行 `ontology-validate.py`（须通过）+ `ontology_graph.py --format summary`（须 `islands: 0`）；本体不合法/有孤岛则转换被拒，不得绕过。
 - **提交级硬门禁（AC-4）**：共享门禁逻辑 `scripts/ci-ontology-gate.py` 跑 `ontology-validate` + 相关任务 `validate-convergence`，非零退出即阻断；`scripts/install-git-hook.sh`（可选安装，不静默改动 `.git/hooks`）装 `pre-commit` 钩子，`.github/workflows/ontology-gate.yml` 在远端 push/PR 时复跑同一检查。门禁从此不可被普通提交绕过。
 
-设计取舍：plan/do/check/act 的本体"消费"保持顾问式（不阻断，避免 YAGNI 与吞吐损失）；仅**创建门禁、证据/结论锚定、archive 自检、CI/hook** 为硬门禁。详见 `ontology:concept/ontology-creation-gate` 与 `pdca-evidence`/`pdca-verdict` 决策背景（原 ADR-0036）。
+ 设计取舍：plan/do/check/act 的本体"消费"保持顾问式（不阻断，避免 YAGNI 与吞吐损失）；仅**创建门禁、证据/结论锚定、archive 自检、CI/hook** 为硬门禁。详见 `ontology:concept/ontology-creation-gate` 与 `pdca-evidence`/`pdca-verdict` 决策背景（原 ADR-0036）。
+
+## 11. 节点编写约定（原 docs/ONTOLOGY_GUIDE 并入）
+
+- **语义权威**：每个 `.md` 的 `pdca.asset/v1` frontmatter + YAML `relations:` 块是唯一事实源，由 `ontology-validate` 强制校验；目录位置只作人类阅读索引，不决定语义（`type` 必须等于父目录名，属 SSOT v3 强约束）。
+- **强制 frontmatter（身份证）**：`schema` / `id`（全局唯一，无视目录）/ `type`（受控词汇）/ `layer` / `status` / `summary`；可选人读增强 `docType` / `tags`（自由文本，非受控引用）；`domain` 若使用须为指向已存在 `domain/*` 节点的**列表**（受控引用）。
+- **关系表达**：统一用 YAML `relations:` 块；受控谓词 + range 校验（如 `guides` 仅指向 KnowledgeArtifact 类）→ 无损映射 OWL，拼写错误会被 `ontology-validate` 抓住。正文 `[[wikilink]]` 仅为人读镜像，**任何关系变更须先改 `relations`**。
+- **属性表达**：`attributes:` 块保留 `name` / `desc` / `constraint` / `testable_signal`，同时承载语义与可测信号，转 OWL 时不丢语义。
+- **概念字典**：`concept/` 下抽象类节点在正文中注明子类索引；真正的层级由 `relations.specializes` 决定。根 `_meta.yaml` 为 `.yaml` 不被扫描，留于 `ontology/` 根。
+- **升华与可视化**：`scripts/ontology_graph.py` 与调研原型 `scripts/proto_ontology_to_owl.py` 证明 `id/type/relations/attributes` 可无损映射 `owl:Class`/`rdfs:subClassOf`/`owl:ObjectProperty`/`owl:DatatypeProperty`；`ontology_graph.py --format summary` 还能导出观测图谱并检测**孤岛节点**（无 relations 连线的节点）用于自检。用 Obsidian 直接打开 `ontology/` 即得关系图谱视图。
+
+## 12. 流程如何消费本体（PDCA 全周期）
+
+本体不是"plan 阶段声明一次就完事"，它在各阶段被主动消费（详见 `flows/flow-*/SKILL.md`）：
+
+- **Plan（`flow-plan`）**：development/bugfix 任务须声明 `meta.ontology_fragment`（本任务构建/复用的本体目录或文件）；Do 前置 `ontology-ready` 关卡校验其存在且 `pdca.asset/v1` 结构合法；本体自举任务设 `meta.ontology_exempt=true` 豁免。
+- **Do（`flow-do`）**：实现前/中对照 `meta.ontology_fragment`——复用既有 `id`/`type`/`relations`；新概念以 `pdca.asset/v1` frontmatter + `relations` 落盘到 `ontology/` 对应目录；变更后跑 `python3 scripts/ontology_graph.py --format summary` 确认无孤岛。`ontology_exempt` / 空片段则跳过。
+- **Check（`flow-check`）**：development/bugfix 若 `ontology_fragment` 存在，须确认 `python3 scripts/ontology-validate.py` 通过且本体变更已在 `evidence/manifest.jsonl` 登记；Grill 追问"结论是否可被既有 ontology 节点 / `relations` 支撑"。
+- **Act（`flow-act`）**：知识沉淀优先关联既有 ontology 节点而非孤立条目；架构改进若发现本体缺口（缺失节点 / 关系），创建本体补强任务（`meta.ontology_fragment` 指向待补强目录）。
+
+> 本体消费的前提是 `meta.ontology_fragment` 存在；普通任务（片段为空或 `ontology_exempt`）不增加额外负担。
+
+`scripts/pdca_context.py --phase <plan|do|check|act|archive>` 实时读取元本体，输出该阶段定义 / 准入条件 / 合法后继 / 关联概念知识作为执行指引；`transition-phase.py` 转换成功后把目标 phase 的 pdca_context 指引打印到 **stderr**（stdout 保持纯 JSON，不污染机器消费）。
+
+## 13. 元本体演进历史（要点）
+
+- **T0409**：流程直接消费 PDCA 元本体知识内容作为执行指引（引入 `scripts/pdca_context.py`）。
+- **T0410**：对照经典 PDCA（ASQ/Deming Institute）校正——`archive` 不计入方法论阶段（四阶段为方法论本体，`phase-archive` 仅作单任务生命周期运维扩展终态）；补回"PDCA 是环"语义（`pdca-continuous-improvement` 以概念关系表达 `act ↔ plan` 循环，不新增 `transition-act-plan` 边以保持转换图无环、任务可终止）。
+- **T0411**：补全 `pdca.md` / `pdca-transition.md` / `phase-*` 科学方法内核正文（可证伪预测、小范围试验、观测比对、采纳固化）。
+- **T0414**：本体升级为提交级硬权威——证据锚定（`register-evidence` 枚举 `pdca-evidence` 子类型建允许表）、结论锚定（`meta.verdict.outcome` 必须映射到 `verdict-<outcome>` 节点）、archive 本体自检（跑 `ontology-validate` + `islands:0`）、CI/hook 门禁（`ci-ontology-gate.py` / `install-git-hook.sh` / `.github/workflows/ontology-gate.yml`）。

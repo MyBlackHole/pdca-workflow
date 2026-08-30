@@ -16,7 +16,7 @@
 | **grill** | 追问门禁，用户发起，委托 grilling 执行 |
 | **ready-set** | to-tickets 拆解后的可执行任务集：所有"未完成且所有直接前置已完成"的任务集合；区别于 grilling 的 frontier（当前可答问题集合） |
 | **dependencies** | 子 task.json 的 `dependencies` 数组，声明该任务的**直接前置**任务 ID；仅存直接边，传递依赖由校验器推导（见 `ontology:concept/pdca-task` 决策背景：to-tickets 显式依赖边） |
-| **声明的测试接缝** | SPEC.md `## Seam 分析` 下的机器可读 seam 清单，每行 `- seam: <测试文件> -> <被测模块>`；契约测试校验其与实际测试一致（历史决策，已随 docs/adr/ 退役删除） |
+| **声明的测试接缝** | SPEC.md `## Seam 分析` 下的机器可读 seam 清单，每行 `- seam: <测试文件> -> <被测模块>`；契约测试校验其与实际测试一致（历史决策，已退役删除） |
 | **triage** | 任务分诊，将模糊输入转换为结构化任务 |
 | **严格任务 schema** | T0135 起采用的任务数据合约；新数据必须完整满足 schema，不为旧任务格式增加兼容分支 |
 | **能力协议** | flow/skill 只声明所需抽象能力、是否必需及降级策略；具体 Agent 平台工具名由适配层解析 |
@@ -29,8 +29,8 @@
 | **Flow Issue Occurrence** | 一次具体发生、可追溯且写入后不可修改的 PDCA 机制问题事实；不等同于聚合问题或改进授权 |
 | **Flow Issue** | 由一个或多个 occurrence 按版本化 fingerprint 确定性聚合出的 PDCA 机制问题视图；可重建，不是事实源 |
 | **异步对象** | 存续期跨越 Reactor 回调派发窗口的对象：事件源（reactor_source_t）、逻辑定时器（reactor_timer_t）、post 回调携带的用户数据、业务子 Reactor 及其运行时状态 |
-| **守卫原语** | C 风格生命周期契约的显式机制集合（统一 owned-post 协议、销毁栅栏、句柄校验守卫），替代散落的 generation/discard/布尔所有权标志约定（历史决策，已随 docs/adr/ 退役删除） |
-| **强销毁保证** | 异步对象进入销毁流程后其在途回调要么被安全丢弃要么排空后才完成销毁、销毁后回调绝不派发的语义承诺（历史决策，已随 docs/adr/ 退役删除） |
+| **守卫原语** | C 风格生命周期契约的显式机制集合（统一 owned-post 协议、销毁栅栏、句柄校验守卫），替代散落的 generation/discard/布尔所有权标志约定（历史决策，已退役删除） |
+| **强销毁保证** | 异步对象进入销毁流程后其在途回调要么被安全丢弃要么排空后才完成销毁、销毁后回调绝不派发的语义承诺（历史决策，已退役删除） |
 | **Flow Issue Decision** | 对 Flow Issue 作出的带确认者、理由和时间的不可变治理回执，如 impact、false-positive、accepted-risk、关闭或候选晋级 |
 | **Improvement Candidate** | 基于 Flow Issue 生成、尚未获得修改权威流程授权的改进提案；包含依据、预期指标、风险和验证计划 |
 | **Improvement Task** | Improvement Candidate 经用户确认后创建的正式 PDCA 任务；只有该任务能在既有门禁下实施流程改动 |

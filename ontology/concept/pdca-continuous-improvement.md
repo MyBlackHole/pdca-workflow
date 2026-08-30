@@ -25,3 +25,17 @@ PDCA 的本质是**持续改进循环**，而非单向流水线（ASQ："a circl
 ## 决策背景（原 ADR-0004：Flow Issue 使用独立不可变事件文件）
 - 背景：T0159 需把 PDCA 机制问题作为聚合/诊断/改进的事实输入；旧 flow-audit.json 整体更新 latest/attempts，不满足单事件不可变，整文件摘要每次变化。
 - 决策：每个 occurrence 使用独立 JSON 文件（独占创建保证幂等/不可覆盖、并发互不修改、稳定路径与摘要、损坏隔离）；聚合视图随算法升级重建；符合 records/ 不可变约束。
+
+## 知识沉淀管线（原 docs/project-architecture-design.md §3.2）
+
+改进闭环的载体是知识资产的逐级提炼，每级同步更新 `manifest.jsonl`：
+
+```
+原始事实 → Evidence（register-evidence 登记，manifest.jsonl）
+        → Experience（records/ 中的 conclusion.md）
+        → Knowledge（knowledge/ 下的 .md，由 flow-act 步骤 2 提炼）
+        → Skill（skills/ 下的 SKILL.md，由 writing-skills 创建）
+```
+
+- `records/` 下的文件创建后不可修改（不可变记录约束），保证事实源稳定可追溯。
+- flow-act 步骤 2 负责从经验提炼 Knowledge；稳定知识可进一步沉淀为 Skill，形成可跨会话/跨任务复用的资产。

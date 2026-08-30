@@ -32,7 +32,7 @@ relations:
 
 ## 关联
 
-- （原 ADR-0025-html-architecture-review 已随 docs/adr/ 退役删除；相关决策未纳入本体）
+- （原 ADR-0025-html-architecture-review 已退役删除；相关决策未纳入本体）
 - `skills/improve-codebase-architecture/SKILL.md`
 - `scripts/arch_review.py`
 

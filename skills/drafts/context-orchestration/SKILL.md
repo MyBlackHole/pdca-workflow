@@ -46,7 +46,7 @@ status: active
 - 明确 Evidence、Experience、Knowledge、Skill 四层边界和单向来源链。
 - 形成任务指纹 → 候选资产 → 证据核验 → 最小上下文 → 执行 → 经验/知识/技能投影闭环。
 - 给出软件开发、资料调研、代码/文档审查和日常工作的应用方式。
-- 输出 `docs/research/knowledge-assets-ai-efficiency.md`，满足 PRD 的来源、范围和落地建议验收标准。
+- 输出 `knowledge/research/knowledge-assets-ai-efficiency.md`，满足 PRD 的来源、范围和落地建议验收标准。
 
 ## 边界与下一轮
 

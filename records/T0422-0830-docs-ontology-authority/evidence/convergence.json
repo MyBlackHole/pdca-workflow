@@ -1,0 +1,53 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1：capability-protocol 关键事实析出进新建 ontology/concept/capability-protocol.md 后删除 docs 原文",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["ev-cap-protocol"]
+    },
+    {
+      "index": 2,
+      "text": "AC-2：project-architecture-design 关键事实析出进对应本体节点后删除原文",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["ev-architecture"]
+    },
+    {
+      "index": 3,
+      "text": "AC-3：pdca-workflow-full/detail 关键事实析出进 ontology/process/flow-* 与 pdca-phase/transition 后删除",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["ev-workflow"]
+    },
+    {
+      "index": 4,
+      "text": "AC-4：删除生成渲染产物 docs/renders/*、docs/pdca-workflow-full.svg/.mmd",
+      "criteria": ["AC-4"],
+      "evidence_ids": ["ev-renders"]
+    },
+    {
+      "index": 5,
+      "text": "AC-5：ONTOLOGY_GUIDE 内容并入 ontology/README.md 后删除 docs 原文",
+      "criteria": ["AC-5"],
+      "evidence_ids": ["ev-readme"]
+    },
+    {
+      "index": 6,
+      "text": "AC-6：删除 knowledge/ 下含'物理归并至本体库'标记的 redirect 桩，保留真实知识文件",
+      "criteria": ["AC-6"],
+      "evidence_ids": ["ev-knowledge-stubs"]
+    },
+    {
+      "index": 7,
+      "text": "AC-7：活动文件对 docs/ 的引用全量改写为本体节点",
+      "criteria": ["AC-7"],
+      "evidence_ids": ["ev-refs-rewritten"]
+    },
+    {
+      "index": 8,
+      "text": "AC-8：ontology-validate 通过、islands=0；登记 evidence + 收敛映射，validate-convergence valid:true；全仓无指向已删 docs/ 的引用",
+      "criteria": ["AC-8"],
+      "evidence_ids": ["ev-ontology-validate"]
+    }
+  ]
+}
