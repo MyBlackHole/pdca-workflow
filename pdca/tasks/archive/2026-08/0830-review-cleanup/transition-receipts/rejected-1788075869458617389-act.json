@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0428",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "STATUS_PHASE_MISMATCH",
+      "path": "/status",
+      "message": "check requires Completed"
+    }
+  ],
+  "at": "2026-08-30T15:44:29.458595+08:00"
+}

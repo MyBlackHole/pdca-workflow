@@ -6,7 +6,7 @@
   "dependencies": [],
   "parent": null,
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "AC-1：识别并删除多余文件（日志、.bak、__pycache__）",
       "AC-2：修复不完整任务（0822-rpc-hs-err-exit-code 无 task.json）",
@@ -14,7 +14,7 @@
       "AC-4：证据已登记，收敛映射 valid:true"
     ],
     "created_at": "2026-08-30T15:34:38+08:00",
-    "phase": "do",
+    "phase": "archive",
     "record": "T0428-0830-review-cleanup",
     "scenario_type": "development",
     "verdict": {
@@ -30,12 +30,12 @@
     }
   },
   "states": {
-    "act": null,
-    "archive": null,
-    "check": null,
+    "act": "2026-08-30T15:48:00+08:00",
+    "archive": "2026-08-30T15:49:00+08:00",
+    "check": "2026-08-30T15:47:00+08:00",
     "created": "2026-08-30T15:34:38+08:00",
     "do": "2026-08-30T15:36:35+08:00",
     "plan": "2026-08-30T15:34:38+08:00"
   },
-  "status": "InProgress"
+  "status": "Completed"
 }
