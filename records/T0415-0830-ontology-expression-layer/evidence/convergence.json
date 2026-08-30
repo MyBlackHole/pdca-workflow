@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "本体从流程引擎与证据闭环进一步下沉到任务表达层：任务创建(identity)本体感知、任务拆分(to-tickets)本体感知、计划(PRD)关联本体节点、register-evidence 技能文档同步锚定逻辑，使本体成为任务全生命周期的表达事实源。",
+      "criteria": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "pytest-t0415",
+        "clash-demo-t0415"
+      ]
+    }
+  ]
+}

@@ -155,6 +155,77 @@ class TaskIdentityCliTest(unittest.TestCase):
         )
         self.assertEqual(["task identity is unique and immutable"], task["meta"]["convergence"])
 
+    def _make_ontology_fragment(self) -> str:
+        fragment = self.root / "ontology" / "concept"
+        fragment.mkdir(parents=True)
+        return "ontology/concept"
+
+    def test_create_with_ontology_node_type_writes_meta(self) -> None:
+        completed = self.run_create(
+            "0814-ont-node",
+            "--ontology-node-type",
+            "concept",
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        task = json.loads((self.root / "pdca/tasks" / "0814-ont-node" / "task.json").read_text(encoding="utf-8"))
+        self.assertEqual("concept", task["meta"]["ontology_node_type"])
+
+    def test_create_invalid_ontology_node_type_rejected(self) -> None:
+        completed = self.run_create(
+            "0814-ont-bad",
+            "--ontology-node-type",
+            "not-a-type",
+        )
+        self.assertEqual(1, completed.returncode)
+        self.assertIn("ONTOLOGY_NODE_TYPE_INVALID", completed.stderr)
+
+    def test_create_ontology_fragment_missing_dir_rejected(self) -> None:
+        completed = self.run_create(
+            "0814-ont-frag",
+            "--ontology-fragment",
+            "ontology/missing",
+        )
+        self.assertEqual(1, completed.returncode)
+        self.assertIn("ONTOLOGY_FRAGMENT_MISSING", completed.stderr)
+
+    def test_create_ontology_fragment_valid_dir_accepted(self) -> None:
+        self._make_ontology_fragment()
+        completed = self.run_create(
+            "0814-ont-frag-ok",
+            "--ontology-fragment",
+            "ontology/concept",
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        task = json.loads((self.root / "pdca/tasks" / "0814-ont-frag-ok" / "task.json").read_text(encoding="utf-8"))
+        self.assertEqual("ontology/concept", task["meta"]["ontology_fragment"])
+
+    def test_create_inherits_parent_ontology_meta(self) -> None:
+        self._make_ontology_fragment()
+        parent = self.run_create(
+            "0814-ont-parent",
+            "--ontology-fragment",
+            "ontology/concept",
+            "--ontology-node-type",
+            "concept",
+        )
+        self.assertEqual(0, parent.returncode, parent.stderr)
+        parent_id = json.loads(parent.stdout)["task_id"]
+        child = self.run_create(
+            "0814-ont-child",
+            "--parent",
+            parent_id,
+        )
+        self.assertEqual(0, child.returncode, child.stderr)
+        child_task = json.loads((self.root / "pdca/tasks" / "0814-ont-child" / "task.json").read_text(encoding="utf-8"))
+        self.assertEqual("ontology/concept", child_task["meta"]["ontology_fragment"])
+        self.assertEqual("concept", child_task["meta"]["ontology_node_type"])
+
+    def test_default_prd_has_ontology_section(self) -> None:
+        completed = self.run_create("0814-prd-ont")
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        prd = (self.root / "pdca/tasks" / "0814-prd-ont" / "prd.md").read_text(encoding="utf-8")
+        self.assertIn("## 关联本体节点", prd)
+
 
 if __name__ == "__main__":
     unittest.main()

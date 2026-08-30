@@ -31,6 +31,14 @@ TASK_ID_RE = re.compile(r"^T[0-9]{4,}$")
 SAFE_NAME = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 TRANSITIONS = {"created", "plan", "do", "check", "act", "archive"}
 
+# 本体节点类型词表（与 scripts/ontology-validate.py:TYPE_VOCAB 对齐）。
+# 任务创建时可用 --ontology-node-type 显式声明本任务主体产出的节点类型，
+# 使「任务类型 ↔ 本体节点类型」成为结构化关系，供拆分/计划/检索引用。
+ONTOLOGY_NODE_TYPES = {
+    "domain", "entity", "concept", "process", "role",
+    "pattern", "principle", "pitfall", "fact", "decision",
+}
+
 
 class TaskIdentityError(Exception):
     """A stable rejection carrying a machine-readable code."""
@@ -106,6 +114,48 @@ def _record_from_id_and_slug(task_id: str, slug: str) -> str:
     return f"{task_id}-{slug}"
 
 
+def _find_task_by_id(root: Path, task_id: str) -> dict[str, Any] | None:
+    for task_path in (root / "pdca" / "tasks").glob("**/task.json"):
+        try:
+            task = load_json(task_path)
+        except (OSError, json.JSONDecodeError):
+            continue
+        if task.get("id") == task_id:
+            return task
+    return None
+
+
+def _inherit_ontology_meta(root: Path, parent: str | None) -> tuple[str | None, str | None]:
+    """子任务默认继承父任务的本体片段与节点类型，使拆分沿本体边界对齐。"""
+    if not parent:
+        return None, None
+    parent_task = _find_task_by_id(root, parent)
+    if not parent_task:
+        return None, None
+    parent_meta = parent_task.get("meta", {}) or {}
+    fragment = parent_meta.get("ontology_fragment")
+    node_type = parent_meta.get("ontology_node_type")
+    return (fragment if isinstance(fragment, str) else None,
+            node_type if isinstance(node_type, str) else None)
+
+
+def _validate_ontology_fragment(root: Path, fragment: str) -> None:
+    """轻量校验：fragment 须指向仓库内存在的本体目录（非空、含本体资产）。"""
+    target = (root / fragment).resolve()
+    if not target.exists():
+        raise TaskIdentityError(
+            "ONTOLOGY_FRAGMENT_MISSING",
+            "--ontology-fragment",
+            f"ontology fragment path does not exist: {fragment}",
+        )
+    if not target.is_dir():
+        raise TaskIdentityError(
+            "ONTOLOGY_FRAGMENT_NOT_DIR",
+            "--ontology-fragment",
+            f"ontology fragment must be a directory: {fragment}",
+        )
+
+
 def create_task(
     root: Path,
     *,
@@ -121,6 +171,8 @@ def create_task(
     initial_prd: str | None = None,
     task_root: Path | None = None,
     convergence: tuple[str, ...] | None = None,
+    ontology_fragment: str | None = None,
+    ontology_node_type: str | None = None,
 ) -> dict[str, Any]:
     if not re.fullmatch(r"^[0-9]{4}-[a-z0-9][a-z0-9-]*$", slug):
         raise TaskIdentityError("TASK_SLUG_INVALID", "--slug", "must be a strict PDCA task slug (MMDD-name)")
@@ -147,6 +199,8 @@ def create_task(
             initial_prd=initial_prd,
             task_root=task_root,
             convergence=convergence,
+            ontology_fragment=ontology_fragment,
+            ontology_node_type=ontology_node_type,
         )
 
 
@@ -165,6 +219,8 @@ def _create_task_unlocked(
     initial_prd: str | None = None,
     task_root: Path | None = None,
     convergence: tuple[str, ...] | None = None,
+    ontology_fragment: str | None = None,
+    ontology_node_type: str | None = None,
 ) -> dict[str, Any]:
     tasks_root = root / "pdca" / "tasks"
     tasks_root.mkdir(parents=True, exist_ok=True)
@@ -194,6 +250,24 @@ def _create_task_unlocked(
         raise TaskIdentityError("RECORD_OCCUPIED", "--record", "record directory already owns a task")
 
     extra = dict(extra_meta or {})
+
+    # 本体感知：若调用方未显式给出 ontology_fragment / ontology_node_type，
+    # 则继承父任务（若存在且有值）；并做轻量校验，不破坏既有默认行为。
+    inherited_fragment, inherited_node_type = _inherit_ontology_meta(root, parent)
+    effective_fragment = ontology_fragment if ontology_fragment is not None else inherited_fragment
+    effective_node_type = ontology_node_type if ontology_node_type is not None else inherited_node_type
+    if effective_fragment is not None:
+        _validate_ontology_fragment(root, effective_fragment)
+        extra["ontology_fragment"] = effective_fragment
+    if effective_node_type is not None:
+        if effective_node_type not in ONTOLOGY_NODE_TYPES:
+            raise TaskIdentityError(
+                "ONTOLOGY_NODE_TYPE_INVALID",
+                "--ontology-node-type",
+                f"must be one of {sorted(ONTOLOGY_NODE_TYPES)}",
+            )
+        extra["ontology_node_type"] = effective_node_type
+
     convergence_items = list(convergence) if convergence else ["task identity is unique and immutable"]
     meta: dict[str, Any] = {
         "phase": "plan",
@@ -242,7 +316,16 @@ def _create_task_unlocked(
             "at": created_at,
         }
         _write_new_file(destination / "clarifications.jsonl", canonical_bytes(clarification))
-        prd = initial_prd or f"# {title.strip()}\n\n## 验收标准\n"
+        prd = initial_prd or (
+            f"# {title.strip()}\n\n"
+            "## 验收标准\n\n"
+            "## 关联本体节点\n\n"
+            "（可选）本任务直接消费/产出/对齐的本体节点 id，一行一个，例如：\n"
+            "```\n"
+            "ontology:concept/xxx\n"
+            "ontology:entity/yyy\n"
+            "```\n"
+        )
         _write_new_file(destination / "prd.md", prd.encode("utf-8"))
         manifest_dir.mkdir(parents=True, exist_ok=True)
         created_manifest = True
@@ -355,6 +438,8 @@ def _build_create(parse: Callable[[], dict[str, str | None]]) -> dict[str, Any]:
         extra_meta=_parse_extra_meta(options.get("extra-meta")),
         forced_record=forced_record,
         convergence=tuple(item.strip() for item in convergence.split("|")) if convergence else None,
+        ontology_fragment=options.get("ontology-fragment"),
+        ontology_node_type=options.get("ontology-node-type"),
     )
 
 

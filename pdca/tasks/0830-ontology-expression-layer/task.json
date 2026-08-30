@@ -1,0 +1,42 @@
+{
+  "children": [],
+  "dependencies": [
+    "T0414"
+  ],
+  "id": "T0415",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "本体从流程引擎与证据闭环进一步下沉到任务表达层：任务创建(identity)本体感知、任务拆分(to-tickets)本体感知、计划(PRD)关联本体节点、register-evidence 技能文档同步锚定逻辑，使本体成为任务全生命周期的表达事实源。"
+    ],
+    "created_at": "2026-08-30T00:40:00+08:00",
+    "ontology_exempt": true,
+    "phase": "archive",
+    "record": "T0415-0830-ontology-expression-layer",
+    "scenario_type": "development",
+    "completed_at": "2026-08-30T08:24:40+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "T0415 四处本体感知(创建/拆分/计划/文档)均落地且有测试与文档自检支撑，AC-1~AC-4 全 ✅",
+      "verdict_id": "VC-T0415-2026-08-30T08:27:29+08:00",
+      "at": "2026-08-30T08:27:29+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "流程改进已固化进 task_identity.py/to-tickets/SPEC.md/register-evidence 文档，record 本身即为归档；未新增独立知识条目以避免与既有 ontology 重复",
+      "at": "2026-08-30T08:28:42+08:00"
+    }
+  },
+  "parent": "T0414",
+  "slug": "0830-ontology-expression-layer",
+  "states": {
+    "act": "2026-08-30T08:27:40+08:00",
+    "archive": "2026-08-30T08:29:18+08:00",
+    "check": "2026-08-30T08:24:40+08:00",
+    "created": "2026-08-30T00:40:00+08:00",
+    "do": "2026-08-30T00:48:18+08:00",
+    "plan": "2026-08-30T00:40:00+08:00"
+  },
+  "status": "Completed",
+  "title": "本体下沉到任务表达层：任务创建/拆分/计划/文档锚定本体"
+}

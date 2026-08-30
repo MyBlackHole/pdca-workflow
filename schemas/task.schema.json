@@ -131,6 +131,14 @@
         "ontology_exempt": {
           "type": "boolean",
           "description": "本体自举任务豁免 ontology-ready（如创建 PDCA 元本体本身）"
+        },
+        "ontology_node_type": {
+          "type": ["string", "null"],
+          "enum": [
+            "domain", "entity", "concept", "process", "role",
+            "pattern", "principle", "pitfall", "fact", "decision", null
+          ],
+          "description": "本任务主体产出的本体节点类型，使「任务类型 ↔ 本体节点类型」成为结构化关系，供拆分/计划/检索引用"
         }
       }
     },

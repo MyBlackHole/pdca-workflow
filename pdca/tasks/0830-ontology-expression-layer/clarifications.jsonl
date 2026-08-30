@@ -1,0 +1,4 @@
+{"at":"2026-08-30T00:40:00+08:00","source":"task_identity","summary":"created with record identity T0415-0830-ontology-expression-layer"}
+{"source":"final_confirmation","summary":"审查发现的四处本体表达层缺口确认立项：任务创建/拆分本体感知、计划关联本体节点、register-evidence 文档同步，共 4 AC。","response":"confirmed","at":"2026-08-30T00:48:18+08:00"}
+{"source":"check_confirmation","summary":"T0415 结论 confirmed：任务创建/拆分/计划/文档四处本体感知落地，测试与文档自检覆盖，AC-1~AC-4 全 ✅","response":"confirmed","at":"2026-08-30T08:27:29+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-30T08:28:42+08:00", "action": "skipped", "reason": "T0415 成果已是脚本/文档改动，record 即为归档；与既有 ontology 知识重复，不满足新增条目复用标准"}

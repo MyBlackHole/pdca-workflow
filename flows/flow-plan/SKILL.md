@@ -38,6 +38,8 @@ description: 计划阶段执行流：triage、逐轮对齐、PRD、任务拆解�
 
 development/bugfix 任务须在此声明其领域本体片段：将构建/复用的本体目录或文件写入 `meta.ontology_fragment`；Do 前置 `ontology-ready` 关卡（`pdca-ontology-ready` 由 PDCA 元本体驱动）会校验其存在且 `pdca.asset/v1` 结构合法。构建 PDCA 元本体自身的自举任务设 `meta.ontology_exempt=true` 以豁免该关卡。
 
+若 `meta.ontology_fragment` 非空（或拆分自带本体片段的父任务），须在 PRD 的 `## 关联本体节点` 小节登记本任务直接消费/产出/对齐的本体节点 id（一行一个 `ontology:...`），供 Do 阶段本体消费回链与可复用知识检索。该小节为可选登记，不影响门禁。
+
 ## P2. Grill、建模与方向确认
 
 加载 `$PDCA_HOME/skills/grilling/SKILL.md`，按 round 批量询问当前可答的所有用户决策问题，每问附推荐答案。同步执行 `$PDCA_HOME/skills/domain-modeling-work/SKILL.md`：
