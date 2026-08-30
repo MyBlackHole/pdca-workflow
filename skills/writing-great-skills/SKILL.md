@@ -2,6 +2,24 @@
 name: writing-great-skills
 description: 参考指南——如何编写和维护高质量的 PDCA 技能文件。定义了信息层级、极简原则、锚定词、指针措辞、双负载、完成判据杠杆、拆分规则和失败模式。
 invocation: manual
+relations:
+  specializes:
+  - ontology:concept/writing-for-agents
+  - ontology:concept/information-hierarchy
+  - ontology:concept/progressive-disclosure
+  - ontology:concept/context-pointer
+  - ontology:concept/two-loads
+  - ontology:concept/skill-mechanics
+  - ontology:concept/step
+  - ontology:concept/completion-criterion
+  - ontology:concept/co-location
+  relates_to:
+  - ontology:concept/grilling-methodology
+  - ontology:concept/domain-modeling
+---
+name: writing-great-skills
+description: 参考指南——如何编写和维护高质量的 PDCA 技能文件。定义了信息层级、极简原则、锚定词、指针措辞、双负载、完成判据杠杆、拆分规则和失败模式。
+invocation: manual
 ---
 
 # Writing Great Skills — PDCA 版

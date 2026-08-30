@@ -2,6 +2,20 @@
 name: triage-work
 description: Classify a request, deduplicate it, verify its claim, and create a ready-to-plan task or a documented wontfix outcome.
 ---
+relations:
+  specializes:
+  - ontology:concept/triage
+  - ontology:concept/triage-state-machine
+  - ontology:concept/agent-ready-brief
+  - ontology:concept/ai-disclaimer
+  relates_to:
+  - ontology:concept/grilling-methodology
+  - ontology:concept/domain-modeling
+  - ontology:concept/task-decomposition
+---
+name: triage-work
+description: Classify a request, deduplicate it, verify its claim, and create a ready-to-plan task or a documented wontfix outcome.
+---
 
 # Triage Work
 

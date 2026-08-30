@@ -2,6 +2,18 @@
 name: ask-matt
 description: 根据用户描述推荐合适的 PDCA 入口。初次使用或不确定从哪开始时，从这里入手。
 invocation: manual
+relations:
+  specializes:
+  - ontology:concept/triage
+  relates_to:
+  - ontology:concept/grilling-methodology
+  - ontology:concept/domain-modeling
+  - ontology:concept/task-decomposition
+  - ontology:concept/handoff
+---
+name: ask-matt
+description: 根据用户描述推荐合适的 PDCA 入口。初次使用或不确定从哪开始时，从这里入手。
+invocation: manual
 ---
 
 # Ask Matt — PDCA 路由器

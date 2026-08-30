@@ -1,5 +1,16 @@
 ---
 name: improve-codebase-architecture
+description: Scan a codebase for deepening opportunities and present them as a visual HTML report, then grill through whichever one you pick.
+invocation: manual
+relations:
+  specializes:
+  - ontology:concept/domain-modeling
+  - ontology:concept/domain-model
+  relates_to:
+  - ontology:concept/grilling-methodology
+  - ontology:concept/codebase-design
+---
+name: improve-codebase-architecture
 description: 架构审查——先按近 30 天 git 变更热点聚焦扫描范围，检测 ontology/process/skills/pdca 结构的深化机会，生成含 Mermaid before/after 图与 Metrics 指标区的 HTML 报告到任务目录，选定候选后接 grilling + design-it-twice 走完设计树。使用场景：审查时或开发末尾捕捉结构漂移。
 invocation: manual
 ---

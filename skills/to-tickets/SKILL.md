@@ -2,6 +2,20 @@
 name: to-tickets
 description: Break a PRD into executable sub-tasks — generate task.json files for each sub-task, update parent children list. Use after PRD is finalized (flow-plan step 3) and before manual decomposition (step 4).
 ---
+relations:
+  specializes:
+  - ontology:concept/task-decomposition
+  - ontology:concept/vertical-slice
+  - ontology:concept/tracer-bullet
+  - ontology:concept/blocking-edges
+  - ontology:concept/expand-contract
+  relates_to:
+  - ontology:concept/grilling-methodology
+  - ontology:concept/domain-modeling
+---
+name: to-tickets
+description: Break a PRD into executable sub-tasks — generate task.json files for each sub-task, update parent children list. Use after PRD is finalized (flow-plan step 3) and before manual decomposition (step 4).
+---
 
 Parse `prd.md` and produce sub-task skeletons.
 

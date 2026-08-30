@@ -1,6 +1,22 @@
 ---
 name: grilling
 description: Interview the user relentlessly about a plan, design, or conclusion — in rounds, asking the whole frontier of answerable decisions each round, each with a recommended answer. Walks the decision tree until every branch is resolved. Use when the user needs to stress-test their thinking, during Plan→Do alignment, or before writing a conclusion.
+invocation: manual
+relations:
+  specializes:
+  - ontology:concept/grilling-methodology
+  - ontology:concept/design-tree
+  - ontology:concept/frontier
+  - ontology:concept/round
+  - ontology:concept/facts-not-opinions
+  - ontology:concept/grilling-completion
+  relates_to:
+  - ontology:concept/domain-modeling
+  - ontology:concept/domain-model
+  - ontology:concept/triage
+  - ontology:concept/triage-state-machine
+  - ontology:concept/agent-ready-brief
+---
 ---
 
 Interview the user relentlessly until you reach a shared understanding. Map this as a **design tree**: every decision branches into the decisions that hang off it.

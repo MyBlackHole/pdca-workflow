@@ -2,6 +2,19 @@
 name: domain-modeling-work
 description: Maintain the shared project language and ADRs while planning or executing work.
 ---
+relations:
+  specializes:
+  - ontology:concept/domain-modeling
+  - ontology:concept/domain-model
+  relates_to:
+  - ontology:concept/grilling-methodology
+  - ontology:concept/design-tree
+  - ontology:concept/active-discipline
+  - ontology:concept/challenge-glossary
+---
+name: domain-modeling-work
+description: Maintain the shared project language and ADRs while planning or executing work.
+---
 
 # 领域建模工作
 
