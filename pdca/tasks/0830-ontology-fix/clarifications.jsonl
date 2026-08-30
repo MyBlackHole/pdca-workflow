@@ -1,6 +1,8 @@
 {"at":"2026-08-30T13:52:00+08:00","source":"task_identity","summary":"created with record identity T0426-0830-ontology-fix"}
-{"source":"final_confirmation","summary":"确认清理本体 knowledge/ 残留引用并重建 manifest 索引","response":"confirmed","at":"2026-08-30T13:54:00+08:00"}
-{"source":"check_confirmation","summary":"确认验收标准可测：AC-1~AC-6 均可通过 ontology-validate.py 和 grep 验证","response":"confirmed","at":"2026-08-30T14:17:24+08:00"}
-{"source":"grilling","round":1,"question":"knowledge/ 引用替换为 ontology/domain/ 还是纯描述性注释？","answer":"改为 ontology/domain/ 路径引用，因为这是实际的迁移目标路径。","recommended":"同上","at":"2026-08-30T13:54:02+08:00","captured":false}
-{"source":"grilling","round":1,"question":"manifest.jsonl 重建是否包含所有 ontology/* 目录？","answer":"是，包含 domain/concept/entity/fact/pattern/principle/pitfall/decision/process 所有目录。","recommended":"同上","at":"2026-08-30T13:54:02+08:00","captured":false}
-{"source":"grilling","round":1,"question":"T0399 和 T0403 是否在本任务中推进？","answer":"T0399 和 T0403 是独立任务，本任务仅修复 knowledge/ 引用和 manifest，不直接推进它们。","recommended":"同上","at":"2026-08-30T13:54:02+08:00","captured":false}
+{"source":"final_confirmation","summary":"确认清理本体 knowledge/ 残留引用并重建 manifest 索引","response":"confirmed","at":"2026-08-30T13:53:00+08:00"}
+{"source":"check_confirmation","summary":"确认验收标准可测：AC-1~AC-6 均可通过 ontology-validate.py 和 grep 验证","response":"confirmed","at":"2026-08-30T13:54:00+08:00"}
+{"source":"grilling","round":1,"question":"knowledge/ 引用替换为 ontology/domain/ 还是纯描述性注释？","answer":"改为 ontology/domain/ 路径引用，因为这是实际的迁移目标路径。","recommended":"同上","at":"2026-08-30T13:53:31+08:00","captured":false}
+{"source":"grilling","round":1,"question":"manifest.jsonl 重建是否包含所有 ontology/* 目录？","answer":"是，包含 domain/concept/entity/fact/pattern/principle/pitfall/decision/process 所有目录。","recommended":"同上","at":"2026-08-30T13:53:31+08:00","captured":false}
+{"source":"grilling","round":1,"question":"T0399 和 T0403 是否在本任务中推进？","answer":"T0399 和 T0403 是独立任务，本任务仅修复 knowledge/ 引用和 manifest，不直接推进它们。","recommended":"同上","at":"2026-08-30T13:53:31+08:00","captured":false}
+{"source":"check_confirmation","summary":"确认全部 AC 达成，knowledge/ 残留引用已清理，manifest 已重建，ontology-validate 通过","response":"confirmed","at":"2026-08-30T13:54:00+08:00"}
+{"source":"knowledge_decision","at":"2026-08-30T14:29:28+08:00","action":"skipped","reason":"成果为修复清单，修复已直接执行，不新增知识条目"}

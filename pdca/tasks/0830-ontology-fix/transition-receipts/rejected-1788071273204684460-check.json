@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0426",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "FUTURE_STATE_SET",
+      "path": "/states/check",
+      "message": "must be null in do"
+    }
+  ],
+  "at": "2026-08-30T14:27:53.204667+08:00"
+}

@@ -5,25 +5,37 @@
   "meta": {
     "active": true,
     "convergence": [
-      "task identity is unique and immutable"
+      "AC-1：所有本体文件不再含 knowledge/ 路径引用（改为 ontology/domain/ 或描述性注释）",
+      "AC-2：ontology/manifest.jsonl 重建，包含 ontology_type/specializes/domain/entity_refs/attributes 索引字段",
+      "AC-3：ontology-validate.py 通过（含新增 KNOWLEDGE_REF_CLEANUP 规则）",
+      "AC-4：ontology_graph 无新增孤岛",
+      "AC-5：tests/test_ontology_validate.py 通过",
+      "AC-6：登记证据 + 收敛映射 valid:true"
     ],
     "created_at": "2026-08-30T13:52:00+08:00",
     "ontology_anchor": "ontology:concept/pdca-task",
     "ontology_fragment": "ontology",
-    "phase": "plan",
+    "phase": "check",
     "record": "T0426-0830-ontology-fix",
-    "scenario_type": "bugfix"
+    "scenario_type": "bugfix",
+    "completed_at": "2026-08-30T14:28:27+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "6 项 AC 全部达成，knowledge/ 残留引用已清理，manifest 已重建，ontology-validate 通过（含新规则），测试通过",
+      "verdict_id": "T0426-confirmed-2026-08-30",
+      "at": "2026-08-30T14:29:00+08:00"
+    }
   },
   "parent": "T0425",
   "slug": "0830-ontology-fix",
   "states": {
     "act": null,
     "archive": null,
-    "check": null,
+    "check": "2026-08-30T14:28:27+08:00",
     "created": "2026-08-30T13:52:00+08:00",
-    "do": null,
+    "do": "2026-08-30T13:55:00+08:00",
     "plan": "2026-08-30T13:53:00+08:00"
   },
-  "status": "Pending",
+  "status": "Completed",
   "title": "清理本体 knowledge/ 残留引用并重建 manifest 索引"
 }
