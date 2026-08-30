@@ -1,0 +1,2 @@
+{"id":"pytest-t0417","file":"T0417_pytest.log","kind":"validation-report","size":1510,"digest":"sha256:9a0197ca9ba26512c8174b22191b349dfa34908289f2747380cfe090dad905c7","at":"2026-08-30T09:03:30+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"convergence-map-t0417","file":"convergence.json","kind":"convergence-map","size":488,"digest":"sha256:11097e5d2529c550beaef02ffcc1c6847ebaf8cd833f5b32997862b15d34b4cd","at":"2026-08-30T09:05:36+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

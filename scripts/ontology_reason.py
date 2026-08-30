@@ -32,6 +32,28 @@ FALLBACK_LEGAL = {
 FALLBACK_ADMISSION = {"do": ["ontology-ready"]}
 FALLBACK_EVIDENCE = {"test-result", "convergence-map", "review"}
 
+# 本体节点类型受控词表（与 scripts/ontology-validate.py:TYPE_VOCAB 对齐）。
+# task_identity 校验 ontology_node_type 时优先从本体 ontology-asset 节点读取，
+# 缺失时回退此常量，使「类型词表唯一事实源」落到本体（README §9）。
+FALLBACK_NODE_TYPES = {"domain", "entity", "concept", "process", "role",
+                       "pattern", "principle", "pitfall", "fact", "decision"}
+
+
+def controlled_node_types(nodes: dict | None = None, ont_dir: Path | None = None) -> set[str]:
+    """返回受控的本体节点类型词表。
+
+    优先从本体 `ontology:concept/ontology-asset` 的 `node_types` 声明读取；
+    节点缺失或未声明时回退 `FALLBACK_NODE_TYPES`。
+    """
+    if nodes is None:
+        nodes = load_ontology(ont_dir or ROOT / "ontology")
+    asset = nodes.get("ontology:concept/ontology-asset")
+    if isinstance(asset, dict):
+        declared = asset.get("node_types")
+        if isinstance(declared, list) and declared:
+            return {str(t) for t in declared}
+    return set(FALLBACK_NODE_TYPES)
+
 
 def _fm(path: Path) -> dict:
     text = Path(path).read_text(encoding="utf-8")
@@ -40,7 +62,10 @@ def _fm(path: Path) -> dict:
     parts = text.split("---", 2)
     if len(parts) < 3:
         return {}
-    data = yaml.safe_load(parts[1])
+    try:
+        data = yaml.safe_load(parts[1])
+    except yaml.YAMLError:
+        return {}
     return data if isinstance(data, dict) else {}
 
 

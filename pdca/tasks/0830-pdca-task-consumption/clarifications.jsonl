@@ -1,0 +1,4 @@
+{"at":"2026-08-30T08:45:17+08:00","source":"task_identity","summary":"created with record identity T0417-0830-pdca-task-consumption"}
+{"source":"final_confirmation","summary":"T0417 立项确认：消费 pdca-task 元概念驱动任务表达，PRD 设计（锚定+本体词表+Plan 回链）成立","response":"confirmed","at":"2026-08-30T08:47:37+08:00"}
+{"source":"check_confirmation","summary":"T0417 结论 confirmed：task_identity 创建任务默认锚定 pdca-task 元概念、node_type 词表优先本体、Plan 回链不变量，AC-1~AC-4 全 ✅，并修复本体加载崩溃 bug","response":"confirmed","at":"2026-08-30T09:06:30+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-30T09:06:30+08:00", "action": "skipped", "reason": "T0417 成果已是脚本/文档/ schema 改动，record 即为归档；与既有本体知识不重复"}

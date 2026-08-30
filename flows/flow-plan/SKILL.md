@@ -40,6 +40,8 @@ development/bugfix 任务须在此声明其领域本体片段：将构建/复用
 
 若 `meta.ontology_fragment` 非空（或拆分自带本体片段的父任务），须在 PRD 的 `## 关联本体节点` 小节登记本任务直接消费/产出/对齐的本体节点 id（一行一个 `ontology:...`），供 Do 阶段本体消费回链与可复用知识检索。该小节为可选登记，不影响门禁。
 
+任务即 `ontology:concept/pdca-task` 元概念的一个实例；其不变量（final_confirmation / check_confirmation 不可 AI 代签、phase 仅经 transition 合法边推进）由该元概念节点定义，任务表达应回链该节点。`task_identity.py` 创建任务时默认将任务锚定到 `ontology:concept/pdca-task`（写入 `meta.ontology_anchor`），使任务表达挂接本体图谱。
+
 ## P2. Grill、建模与方向确认
 
 加载 `$PDCA_HOME/skills/grilling/SKILL.md`，按 round 批量询问当前可答的所有用户决策问题，每问附推荐答案。同步执行 `$PDCA_HOME/skills/domain-modeling-work/SKILL.md`：

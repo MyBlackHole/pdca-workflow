@@ -139,6 +139,10 @@
             "pattern", "principle", "pitfall", "fact", "decision", null
           ],
           "description": "本任务主体产出的本体节点类型，使「任务类型 ↔ 本体节点类型」成为结构化关系，供拆分/计划/检索引用"
+        },
+        "ontology_anchor": {
+          "type": ["string", "null"],
+          "description": "任务锚定的本体元概念节点 id（默认 ontology:concept/pdca-task），使任务表达挂接本体图谱、消费 pdca-task 元概念的不变量"
         }
       }
     },

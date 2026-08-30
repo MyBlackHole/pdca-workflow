@@ -26,6 +26,7 @@ from typing import Any, Callable
 import fcntl
 
 from pdca_core import load_json, repo_root, schema_issues
+from ontology_reason import controlled_node_types, load_ontology
 
 TASK_ID_RE = re.compile(r"^T[0-9]{4,}$")
 SAFE_NAME = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
@@ -38,6 +39,9 @@ ONTOLOGY_NODE_TYPES = {
     "domain", "entity", "concept", "process", "role",
     "pattern", "principle", "pitfall", "fact", "decision",
 }
+
+# pdca-task 元概念节点 id；任务创建时默认锚定到此节点（消费该元概念）。
+PDCA_TASK_NODE = "ontology:concept/pdca-task"
 
 
 class TaskIdentityError(Exception):
@@ -156,6 +160,41 @@ def _validate_ontology_fragment(root: Path, fragment: str) -> None:
         )
 
 
+def _inherit_ontology_anchor(root: Path, parent: str | None) -> str | None:
+    """子任务默认继承父任务的本体锚点（与 fragment/node_type 继承一致）。"""
+    if not parent:
+        return None
+    parent_task = _find_task_by_id(root, parent)
+    if not parent_task:
+        return None
+    return (parent_task.get("meta") or {}).get("ontology_anchor")
+
+
+def _ontology_anchor_node(root: Path, anchor: str):
+    """返回锚定节点 frontmatter；本体目录缺失或节点不存在则返回 None。"""
+    ont_dir = root / "ontology"
+    if not ont_dir.is_dir():
+        return None
+    return load_ontology(ont_dir).get(anchor)
+
+
+def _validate_ontology_anchor(root: Path, anchor: str) -> None:
+    """校验锚定节点存在且为 concept 类型（用于显式/继承锚点）。"""
+    node = _ontology_anchor_node(root, anchor)
+    if node is None:
+        raise TaskIdentityError(
+            "ONTOLOGY_ANCHOR_MISSING",
+            "--ontology-anchor",
+            f"anchor node not found in ontology: {anchor}",
+        )
+    if node.get("type") != "concept":
+        raise TaskIdentityError(
+            "ONTOLOGY_ANCHOR_TYPE",
+            "--ontology-anchor",
+            f"anchor must be a concept node, got {node.get('type')!r}",
+        )
+
+
 def create_task(
     root: Path,
     *,
@@ -251,20 +290,56 @@ def _create_task_unlocked(
 
     extra = dict(extra_meta or {})
 
-    # 本体感知：若调用方未显式给出 ontology_fragment / ontology_node_type，
+    # 本体感知：若调用方未显式给出 ontology_fragment / ontology_node_type / ontology_anchor，
     # 则继承父任务（若存在且有值）；并做轻量校验，不破坏既有默认行为。
     inherited_fragment, inherited_node_type = _inherit_ontology_meta(root, parent)
     effective_fragment = ontology_fragment if ontology_fragment is not None else inherited_fragment
     effective_node_type = ontology_node_type if ontology_node_type is not None else inherited_node_type
+    # 消费 pdca-task 元概念：默认把任务锚定到 ontology:concept/pdca-task，
+    # 除非显式豁免（meta.ontology_exempt=true）；子任务继承父锚定。
+    explicit_anchor = extra.get("ontology_anchor")
+    exempt = extra.get("ontology_exempt") is True
+    if exempt:
+        effective_anchor = None
+        is_default_anchor = False
+    elif explicit_anchor is not None:
+        effective_anchor = str(explicit_anchor)
+        is_default_anchor = False
+    else:
+        parent_anchor = _inherit_ontology_anchor(root, parent)
+        if parent_anchor is not None:
+            effective_anchor = parent_anchor
+            is_default_anchor = False
+        else:
+            effective_anchor = PDCA_TASK_NODE
+            is_default_anchor = True
+    if effective_anchor is not None:
+        node = _ontology_anchor_node(root, effective_anchor)
+        if node is not None and node.get("type") == "concept":
+            extra["ontology_anchor"] = effective_anchor
+        elif is_default_anchor:
+            # 默认锚点（pdca-task）在本体缺失时（如自举期）跳过，不阻断创建
+            pass
+        else:
+            if node is None:
+                raise TaskIdentityError(
+                    "ONTOLOGY_ANCHOR_MISSING", "--ontology-anchor",
+                    f"anchor node not found in ontology: {effective_anchor}",
+                )
+            raise TaskIdentityError(
+                "ONTOLOGY_ANCHOR_TYPE", "--ontology-anchor",
+                f"anchor must be a concept node, got {node.get('type')!r}",
+            )
     if effective_fragment is not None:
         _validate_ontology_fragment(root, effective_fragment)
         extra["ontology_fragment"] = effective_fragment
     if effective_node_type is not None:
-        if effective_node_type not in ONTOLOGY_NODE_TYPES:
+        allowed = controlled_node_types(ont_dir=root / "ontology")
+        if effective_node_type not in allowed:
             raise TaskIdentityError(
                 "ONTOLOGY_NODE_TYPE_INVALID",
                 "--ontology-node-type",
-                f"must be one of {sorted(ONTOLOGY_NODE_TYPES)}",
+                f"must be one of {sorted(allowed)}",
             )
         extra["ontology_node_type"] = effective_node_type
 
