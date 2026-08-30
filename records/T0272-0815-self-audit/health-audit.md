@@ -1,12 +1,12 @@
 # PDCA 体系健康度自我审查报告
 
-- 异常总数: 55
+- 异常总数: 56
 
 ## 汇总
 
 | 维度 | 计数 |
 |------|------|
-| gate_incomplete | 1 |
+| gate_incomplete | 2 |
 | id_collision | 9 |
 | legacy_no_gate | 2 |
 | schema | 8 |
@@ -14,7 +14,7 @@
 
 | 严重度 | 计数 |
 |--------|------|
-| blocking | 10 |
+| blocking | 11 |
 | integrity | 43 |
 | noise | 2 |
 
@@ -22,15 +22,15 @@
 |------|------|
 | external-project | 9 |
 | legacy | 14 |
-| real-defect | 32 |
+| real-defect | 33 |
 
 ## 门禁覆盖率
 
-- receipts 53.3% (48/90)，verdict 30.0%，rejected receipts 76 条
+- receipts 53.3% (48/90)，verdict 31.1%，rejected receipts 80 条
 
 ## 问题明细（按严重度）
 
-### 阻断门禁 (10)
+### 阻断门禁 (11)
 
 | task_id | slug | 类别 | 根因 | 明细 |
 |---------|------|------|------|------|
@@ -44,6 +44,7 @@
 | T0258 | 0814-generation-publish-gc-restore-round67e / 0814-libobk-sbt-encryption | id_collision | legacy | 同一 task_id 出现在 2 个目录 |
 | T0259 | 0814-backup-catalog-restore-round67f / 0814-oss-https-support | id_collision | legacy | 同一 task_id 出现在 2 个目录 |
 | T0335 | 0820-tls-session-integration-test | gate_incomplete | real-defect | gate_incomplete:no-act-to-archive |
+| T0428 | 0830-review-cleanup | gate_incomplete | real-defect | gate_incomplete:no-act-to-archive |
 
 ### 数据完整性 (43)
 
@@ -103,6 +104,6 @@
 ## 修复候选清单（不执行，另立任务）
 
 - **[high] ID 撞车清理**: 9 组 task_id 重复（跨目录），identity 歧义影响可追溯性 → 建议范围: 为每组冲突决定保留/重命名，更新依赖引用与记录
-- **[high] 真违规门禁修复**: 1 项 gate_incomplete 非豁免（缺失 verdict/final_confirmation 等） → 建议范围: 按 T0271 remediate 模式补全或如实豁免
+- **[high] 真违规门禁修复**: 2 项 gate_incomplete 非豁免（缺失 verdict/final_confirmation 等） → 建议范围: 按 T0271 remediate 模式补全或如实豁免
 - **[medium] schema 一致性修复**: 8 项 schema/时序不一致任务 → 建议范围: 区分机制前遗留与真缺陷，对齐 states/receipts 时间序
 - **[medium] seam 契约补齐**: 35 项声明的测试接缝与实际测试不一致 → 建议范围: 补齐缺失测试文件或修正 seam 声明（外部项目需确认测试位置）
