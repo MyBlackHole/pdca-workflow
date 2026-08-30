@@ -3,7 +3,7 @@
   "items": [
     {
       "index": 1,
-      "text": "AC-1：PDCA 四流程建模为 ontology/process/ 实体，specializes pdca-process",
+      "text": "AC-1：PDCA 四流程（plan/do/check/act）建模为 ontology/process/ 实体，specializes pdca-process",
       "criteria": [
         "AC-1"
       ],
@@ -43,7 +43,7 @@
     },
     {
       "index": 5,
-      "text": "AC-5：本体创建门禁基于本体自身定义，self-booting",
+      "text": "AC-5：本体创建门禁（ontology-check）基于本体自身定义，self-booting",
       "criteria": [
         "AC-5"
       ],

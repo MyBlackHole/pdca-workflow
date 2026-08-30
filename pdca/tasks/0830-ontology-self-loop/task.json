@@ -16,20 +16,32 @@
     "created_at": "2026-08-30T14:55:00+08:00",
     "ontology_anchor": "ontology:concept/pdca-task",
     "ontology_fragment": "ontology",
-    "phase": "do",
+    "phase": "check",
     "record": "T0427-0830-ontology-self-loop",
-    "scenario_type": "research"
+    "scenario_type": "research",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "7 项 AC 全部达成，PDCA 四流程已建模为实体，本体规则支撑自举门禁，knowledge-provenance 支撑来源追溯，self-optimization-loop 支撑 Act→Plan 循环",
+      "verdict_id": "T0427-confirmed-2026-08-30",
+      "at": "2026-08-30T15:15:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "成果为研究结论与改进建议，testable_signal 覆盖度需后续补充",
+      "at": "2026-08-30T15:16:00+08:00"
+    },
+    "completed_at": "2026-08-30T15:14:58+08:00"
   },
   "parent": "T0399",
   "slug": "0830-ontology-self-loop",
   "states": {
     "act": null,
     "archive": null,
-    "check": null,
+    "check": "2026-08-30T15:14:58+08:00",
     "created": "2026-08-30T14:55:00+08:00",
     "do": "2026-08-30T15:09:27+08:00",
     "plan": "2026-08-30T14:56:00+08:00"
   },
-  "status": "InProgress",
+  "status": "Completed",
   "title": "本体论闭环：知识表达·任务拆分·测试依据·AI权威"
 }
