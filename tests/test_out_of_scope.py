@@ -42,9 +42,11 @@ class OutOfScopeManagerTest(unittest.TestCase):
             "--request", "#42 支持暗色模式",
         )
         self.assertEqual(0, result.returncode, result.stderr)
-        target = self.dir / "dark-mode.md"
+        target = self.dir / "out-of-scope-dark-mode.md"
         self.assertTrue(target.is_file(), "new concept must create a new file")
         text = target.read_text(encoding="utf-8")
+        self.assertTrue(text.startswith("---\nschema: pdca.asset/v1\n"), "must emit ontology frontmatter")
+        self.assertIn("type: domain", text)
         self.assertIn("# Dark Mode", text)
         self.assertIn("## Why this is out of scope", text)
         self.assertIn("## Prior requests", text)
@@ -59,15 +61,15 @@ class OutOfScopeManagerTest(unittest.TestCase):
         self.assertEqual(0, result.returncode, result.stderr)
         files_after = sorted(p.name for p in self.dir.glob("*.md"))
         self.assertEqual(files_before, files_after, "same concept must not create a new file")
-        text = (self.dir / "dark-mode.md").read_text(encoding="utf-8")
+        text = (self.dir / "out-of-scope-dark-mode.md").read_text(encoding="utf-8")
         self.assertIn("#42", text)
         self.assertIn("#87", text, "prior request must be appended")
 
     def test_add_different_concept_creates_separate_file(self) -> None:
         self.run_manager("add", "--concept", "dark-mode", "--reason", "r", "--request", "#42")
         self.run_manager("add", "--concept", "plugin-system", "--reason", "r", "--request", "#99")
-        self.assertTrue((self.dir / "dark-mode.md").is_file())
-        self.assertTrue((self.dir / "plugin-system.md").is_file())
+        self.assertTrue((self.dir / "out-of-scope-dark-mode.md").is_file())
+        self.assertTrue((self.dir / "out-of-scope-plugin-system.md").is_file())
 
     def test_implemented_rejection_does_not_write(self) -> None:
         result = self.run_manager(
@@ -89,7 +91,7 @@ class OutOfScopeManagerTest(unittest.TestCase):
         self.assertEqual(0, result.returncode, result.stderr)
         payload = json.loads(result.stdout)
         self.assertTrue(payload["match"], "check must surface matching prior rejection")
-        self.assertEqual("dark-mode.md", payload["file"])
+        self.assertEqual("out-of-scope-dark-mode.md", payload["file"])
         self.assertIn("渲染管线假设单一调色板", payload["reason"])
 
 

@@ -33,7 +33,7 @@ def title_case(slug: str) -> str:
 
 
 def concept_file(out_dir: Path, concept: str) -> Path:
-    return out_dir / f"{slugify(concept)}.md"
+    return out_dir / f"out-of-scope-{slugify(concept)}.md"
 
 
 def existing_prior_requests(out_dir: Path, concept: str) -> list[str]:
@@ -68,13 +68,32 @@ def cmd_add(args: argparse.Namespace) -> int:
             with target.open("a", encoding="utf-8") as f:
                 f.write(f"- {args.request}\n")
         print(json.dumps(
-            {"status": "appended", "file": f"{slug}.md", "concept": args.concept},
+            {"status": "appended", "file": target.name, "concept": args.concept},
             ensure_ascii=False,
         ))
         return 0
 
-    # 新概念：创建概念级文件
+    # 新概念：创建扁平节点（合法 frontmatter，通过 ontology-validate）
+    summary = args.reason.strip().splitlines()[0] if args.reason.strip() else title_case(slug)
+    frontmatter = (
+        "---\n"
+        "schema: pdca.asset/v1\n"
+        f"id: ontology:domain/out-of-scope-{slug}\n"
+        "type: domain\n"
+        "layer: Knowledge\n"
+        "status: active\n"
+        f"summary: {summary}\n"
+        "domain:\n"
+        "- ontology:domain/out-of-scope\n"
+        "relations:\n"
+        "  specializes:\n"
+        "  - ontology:domain/out-of-scope\n"
+        "  relates_to:\n"
+        "  - ontology:concept/pdca\n"
+        "---\n\n"
+    )
     content = (
+        frontmatter +
         f"# {title_case(slug)}\n\n"
         f"## Why this is out of scope\n\n"
         f"{args.reason}\n\n"
@@ -83,7 +102,7 @@ def cmd_add(args: argparse.Namespace) -> int:
     )
     target.write_text(content, encoding="utf-8")
     print(json.dumps(
-        {"status": "created", "file": f"{slug}.md", "concept": args.concept},
+        {"status": "created", "file": target.name, "concept": args.concept},
         ensure_ascii=False,
     ))
     return 0
@@ -107,14 +126,14 @@ def cmd_check(args: argparse.Namespace) -> int:
 
 def cmd_list(args: argparse.Namespace) -> int:
     out_dir = Path(args.dir)
-    files = sorted(p.name for p in out_dir.glob("*.md"))
+    files = sorted(p.name for p in out_dir.glob("out-of-scope-*.md"))
     print(json.dumps({"files": files}, ensure_ascii=False))
     return 0
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dir", default="ontology/domain/out-of-scope", help="out-of-scope 目录")
+    parser.add_argument("--dir", default="ontology/domain", help="out-of-scope 节点所在目录（扁平 out-of-scope-<concept>.md）")
     sub = parser.add_subparsers(dest="command", required=True)
 
     add = sub.add_parser("add", help="记录一次 wontfix 拒绝（概念级聚合）")

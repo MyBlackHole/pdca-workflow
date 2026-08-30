@@ -1,0 +1,21 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0424",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta",
+      "message": "Additional properties are not allowed ('title' was unexpected)",
+      "guidance": "fix the field at /meta in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta/scenario_type",
+      "message": "'refactor' is not one of ['development', 'bugfix', 'research', 'documentation', 'design', 'review']",
+      "guidance": "fix the field at /meta/scenario_type in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-08-30T12:13:08.742997+08:00"
+}

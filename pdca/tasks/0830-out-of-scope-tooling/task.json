@@ -1,0 +1,47 @@
+{
+  "children": [],
+  "dependencies": [
+    "T0423"
+  ],
+  "id": "T0424",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1：out-of-scope-manager.py 改为在 ontology/domain/ 下操作 out-of-scope-<concept>.md（扁平短横命名），不再依赖子目录 out-of-scope/",
+      "AC-2：add 写入的节点带合法 frontmatter（type=domain、parent=domain、specializes pdca 或 out-of-scope 域根、domain 属性），通过 ontology-validate",
+      "AC-3：list/check 能识别已迁移的 ontology/domain/out-of-scope-*.md",
+      "AC-4：triage-work/SKILL.md 的调用示例与说明同步更新",
+      "AC-5：tests/test_out_of_scope.py 通过；ontology-validate 通过；登记证据 + 收敛映射 valid:true"
+    ],
+    "created_at": "2026-08-30T12:05:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "act",
+    "record": "T0424-0830-out-of-scope-tooling",
+    "scenario_type": "bugfix",
+    "completed_at": "2026-08-30T12:20:11+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5 项 AC 全部达成，工具扁平化并产出合法 frontmatter，ontology-validate 通过、单元测试通过、收敛映射 valid:true，triage wontfix 知识写入已闭环到本体",
+      "verdict_id": "T0424-confirmed-2026-08-30",
+      "at": "2026-08-30T12:20:30+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "成果固化进 scripts/out-of-scope-manager.py 与 skills/triage-work/SKILL.md，不新增知识条目",
+      "at": "2026-08-30T13:32:00+08:00"
+    }
+  },
+  "parent": "T0423",
+  "slug": "0830-out-of-scope-tooling",
+  "states": {
+    "created": "2026-08-30T12:05:00+08:00",
+    "plan": "2026-08-30T12:05:00+08:00",
+    "do": "2026-08-30T12:14:41+08:00",
+    "check": "2026-08-30T12:20:11+08:00",
+    "act": "2026-08-30T13:30:24+08:00",
+    "archive": null
+  },
+  "status": "Completed",
+  "title": "改造 out-of-scope-manager.py 以匹配 ontology/domain 扁平命名"
+}

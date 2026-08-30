@@ -1,0 +1,10 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index":1,"text":"AC-1：concept_file() 改为 <out_dir>/out-of-scope-<slug>.md；--dir 默认改为 ontology/domain；不再创建/依赖子目录 out-of-scope/","criteria":["AC-1"],"evidence_ids":["ev-tool"]},
+    {"index":2,"text":"AC-2：add 新概念写入单块合法 frontmatter（type=domain、domain/specializes 指向 ontology:domain/out-of-scope、relates_to pdca），探针验证通过 ontology-validate","criteria":["AC-2"],"evidence_ids":["ev-fm"]},
+    {"index":3,"text":"AC-3：list 用 out-of-scope-*.md 匹配；check 正确读取扁平节点","criteria":["AC-3"],"evidence_ids":["ev-list"]},
+    {"index":4,"text":"AC-4：skills/triage-work/SKILL.md 调用示例与说明同步","criteria":["AC-4"],"evidence_ids":["ev-skill"]},
+    {"index":5,"text":"AC-5：tests/test_out_of_scope.py 同步更新命名并通过；ontology-validate 通过；登记证据 + 收敛映射 valid:true","criteria":["AC-5"],"evidence_ids":["ev-test"]}
+  ]
+}

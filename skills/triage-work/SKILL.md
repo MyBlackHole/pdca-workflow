@@ -35,7 +35,7 @@ python3 "$PDCA_HOME/scripts/scenario-boundary-check.py" --judge --desc "<任务�
 
 ### 2. Deduplicate
 
-Search: `$PDCA_HOME/pdca/tasks/**/task.json` (incl. archive), `$PDCA_HOME/ontology/domain/out-of-scope/`, `$PDCA_HOME/ontology/domain/**/*.md`.
+Search: `$PDCA_HOME/pdca/tasks/**/task.json` (incl. archive), `$PDCA_HOME/ontology/domain/out-of-scope-*.md`, `$PDCA_HOME/ontology/domain/**/*.md`.
 
 对 out-of-scope 知识库做**概念级 dedup 前置检查**：
 
@@ -45,7 +45,7 @@ python3 "$PDCA_HOME/scripts/out-of-scope-manager.py" check --concept <concept>
 python3 "$PDCA_HOME/scripts/out-of-scope-manager.py" list
 ```
 
-按**概念相似度**匹配（非关键词）："night theme" 命中 `dark-mode.md`。
+按**概念相似度**匹配（非关键词）："night theme" 命中 `out-of-scope-dark-mode.md`。
 命中后 surfacing 给用户："类似 `<file>` 之前拒绝过，因为 `<reason>`，仍要推进？"
 
 ### 3. Verify the claim

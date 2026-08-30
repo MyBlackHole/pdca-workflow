@@ -1,0 +1,55 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1：out-of-scope-manager.py 改为在 ontology/domain/ 下操作 out-of-scope-<concept>.md（扁平短横命名），不再依赖子目录 out-of-scope/",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-tool"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "AC-2：add 写入的节点带合法 frontmatter（type=domain、parent=domain、specializes pdca 或 out-of-scope 域根、domain 属性），通过 ontology-validate",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-fm"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "AC-3：list/check 能识别已迁移的 ontology/domain/out-of-scope-*.md",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-list"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "AC-4：triage-work/SKILL.md 的调用示例与说明同步更新",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-skill"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "AC-5：tests/test_out_of_scope.py 通过；ontology-validate 通过；登记证据 + 收敛映射 valid:true",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-test"
+      ]
+    }
+  ]
+}
