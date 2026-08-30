@@ -1,3 +1,4 @@
 {"source":"task_identity","summary":"created with record identity T0429-0830-remove-redundant-flows","at":"2026-08-30T15:53:56+08:00"}
 {"source":"grilling","summary":"确认移除 flows/ 目录，功能由 ontology/process/ 实体承接","response":"confirmed","at":"2026-08-30T15:53:00+08:00"}
 {"source":"final_confirmation","summary":"确认移除 flows/ 目录，开始 Do 阶段执行","response":"confirmed","at":"2026-08-30T15:54:00+08:00"}
+{"source":"check_confirmation","summary":"确认 flows/ 目录已移除，功能由 ontology/process/ 实体承接","response":"confirmed","at":"2026-08-30T16:12:45+08:00"}

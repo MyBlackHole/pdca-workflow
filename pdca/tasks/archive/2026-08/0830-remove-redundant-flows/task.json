@@ -6,7 +6,7 @@
   "dependencies": [],
   "parent": null,
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "AC-1：移除 flows/ 目录，其功能由 ontology/process/ 实体和 skills/ 承接",
       "AC-2：pdca_core.py 验证逻辑改为检查 ontology/process/ 实体",
@@ -15,17 +15,28 @@
       "AC-5：证据已登记，收敛映射 valid:true"
     ],
     "created_at": "2026-08-30T15:53:37+08:00",
-    "phase": "do",
+    "phase": "act",
     "record": "T0429-0830-remove-redundant-flows",
-    "scenario_type": "development"
+    "scenario_type": "development",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5 项 AC 全部达成，flows/ 目录已移除，pdca_core.py 验证逻辑已更新，所有测试文件已更新为引用 ontology/process/",
+      "verdict_id": "T0429-confirmed-2026-08-30",
+      "at": "2026-08-30T16:13:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "flows/ 功能已由 ontology/process/ 实体承接，需持续监控引用完整性",
+      "at": "2026-08-30T16:14:00+08:00"
+    }
   },
   "states": {
-    "act": null,
-    "archive": null,
+    "act": "2026-08-30T16:14:00+08:00",
+    "archive": "2026-08-30T16:15:00+08:00",
     "check": null,
     "created": "2026-08-30T15:53:37+08:00",
     "do": "2026-08-30T15:55:38+08:00",
     "plan": "2026-08-30T15:53:37+08:00"
   },
-  "status": "InProgress"
+  "status": "Completed"
 }

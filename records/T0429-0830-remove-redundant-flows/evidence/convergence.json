@@ -1,0 +1,55 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1：移除 flows/ 目录，其功能由 ontology/process/ 实体和 skills/ 承接",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-cleanup"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "AC-2：pdca_core.py 验证逻辑改为检查 ontology/process/ 实体",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-cleanup"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "AC-3：improve-codebase-architecture skill 改为引用 ontology",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-cleanup"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "AC-4：测试用例更新，不再创建 flows/ 目录",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-cleanup"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "AC-5：证据已登记，收敛映射 valid:true",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-validation"
+      ]
+    }
+  ]
+}
