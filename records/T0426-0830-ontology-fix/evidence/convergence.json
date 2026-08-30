@@ -1,0 +1,65 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1：所有本体文件不再含 knowledge/ 路径引用（改为 ontology/domain/ 或描述性注释）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-review-report"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "AC-2：ontology/manifest.jsonl 重建，包含 ontology_type/specializes/domain/entity_refs/attributes 索引字段",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-review-report"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "AC-3：ontology-validate.py 通过（含新增 KNOWLEDGE_REF_CLEANUP 规则）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-review-report"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "AC-4：ontology_graph 无新增孤岛",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-review-report"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "AC-5：tests/test_ontology_validate.py 通过",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-review-report"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "AC-6：登记证据 + 收敛映射 valid:true",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ev-review-report"
+      ]
+    }
+  ]
+}
