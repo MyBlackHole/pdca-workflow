@@ -1,0 +1,41 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1 流程即本体实体：ontology/process/flow-{plan,do,check,act}.md 四个 type=process 实体创建，specializes=ontology:concept/process，relations 关联对应 phase 实体与 gate，body 含权威描述与关键决策。",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["migration-manifest-t0418"]
+    },
+    {
+      "index": 2,
+      "text": "AC-2 pdca-flow 迁移：knowledge/pdca-flow/ 16 文件描述与决策迁移进本体（流程实体或 supporting 节点），引用审计无误后目录已删除。",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["migration-manifest-t0418", "reference-audit-t0418"]
+    },
+    {
+      "index": 3,
+      "text": "AC-3 pdca-workflow 迁移：knowledge/pdca-workflow/ 6 文件迁移进相关本体节点，引用审计无误后目录已删除。",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["migration-manifest-t0418", "reference-audit-t0418"]
+    },
+    {
+      "index": 4,
+      "text": "AC-4 ADR 迁移：ADR-0032~0036 决策沉淀进相关本体节点，每个 ADR 文件加 superseded-by-ontology 标注。",
+      "criteria": ["AC-4"],
+      "evidence_ids": ["migration-manifest-t0418"]
+    },
+    {
+      "index": 5,
+      "text": "AC-5 机制复用：全部新节点经 ontology-validate.py 校验通过（退出码 0、无悬空引用、无环），未新建校验机制，复用 0829 既有校验器。",
+      "criteria": ["AC-5"],
+      "evidence_ids": ["ontology-validate-t0418"]
+    },
+    {
+      "index": 6,
+      "text": "AC-6 引用清理：grep 确认原 knowledge/pdca-flow/、knowledge/pdca-workflow/ 路径在 scripts/SKILL/flows/docs 中无残留引用；本体节点来源路径已去前缀、0815 PRD 已更新指向本体 id；仅历史 journal 保留溯源引用（不可变记录，按 AC-6 例外保留）。",
+      "criteria": ["AC-6"],
+      "evidence_ids": ["reference-audit-t0418", "migration-manifest-t0418"]
+    }
+  ]
+}

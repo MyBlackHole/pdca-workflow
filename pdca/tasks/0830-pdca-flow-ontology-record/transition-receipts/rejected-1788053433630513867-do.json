@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0418",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "FINAL_CONFIRMATION_MISSING",
+      "path": "clarifications.jsonl",
+      "message": "confirmed response is required"
+    }
+  ],
+  "at": "2026-08-30T09:30:33.630499+08:00"
+}

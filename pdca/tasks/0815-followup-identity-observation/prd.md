@@ -17,7 +17,7 @@
    - 跑 `python3 scripts/validate-workflow.py --all`，提取 identity 四维：duplicate_task_ids / duplicate_slugs / event_path_mismatches / record_derived_mismatches。
    - 与 T0262 baseline 四维（25/4/5/20）对比，统计新增量与新增发生的时间窗口。
    - 统计观察窗内创建的真实新任务：数量、创建失败次数、人工恢复次数、`meta.convergence` 为默认值（未显式填写）的缺失率。
-3. **对照分析**：以 `knowledge/pdca-flow/real-usage-effectiveness-audit.md` 的分层判定（实现正确性 / 运行数据可用性 / 效果闭环）组织结论。
+3. **对照分析**：以 `ontology:concept/self-optimization-loop`（原 `knowledge/pdca-flow/real-usage-effectiveness-audit.md`，已并入本体）的分层判定（实现正确性 / 运行数据可用性 / 效果闭环）组织结论。
 4. **verdict 出具**：观察窗触发后出具 effectiveness verdict（confirmed / partial / rejected）。
 
 ## 用户故事
@@ -52,5 +52,5 @@
 
 - 本任务为 research 场景，无测试接缝，跳过 seam 确认。
 - 观察窗内新任务包括 T0262、T0263、T0264（T0262 用默认 convergence 创建，T0263/T0264 也受默认值影响）；T0264 已修复 `--convergence` 参数，后续任务应显式传收敛值。
-- 术语以 `knowledge/pdca-flow/task-record-identity-invariants.md` 为准；观察方法以 `knowledge/pdca-flow/real-usage-effectiveness-audit.md` 为准。
+- 术语以 `ontology:concept/task-record-identity`（原 `knowledge/pdca-flow/task-record-identity-invariants.md`，已并入本体）为准；观察方法以 `ontology:concept/self-optimization-loop`（原 `knowledge/pdca-flow/real-usage-effectiveness-audit.md`，已并入本体）为准。
 - 触发条件满足前，本任务保持 plan 阶段挂起；满足后进入 do/check。

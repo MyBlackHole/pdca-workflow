@@ -1,0 +1,5 @@
+{"at":"2026-08-30T09:11:09+08:00","source":"task_identity","summary":"created with record identity T0418-0830-pdca-flow-ontology-record"}
+{"source":"final_confirmation","summary":"用户确认 T0418 PRD 立项（PDCA 流程本体化，0829 协调子流）","response":"confirmed","at":"2026-08-30T09:30:55+08:00"}
+{"source":"check_confirmation","summary":"T0418 结论确认 verdict=confirmed（6 AC 全 ✅，AC-4 ADR 迁移后删除）","response":"confirmed","at":"2026-08-30T09:41:36+08:00"}
+{"source": "grilling", "at": "2026-08-30T09:43:00+08:00", "question": "这个任务的哪些部分可以提炼为可复用知识？", "answer": "当某外部描述/ADR 的决策已被本体节点忠实表示时，应迁移进本体并删除原文件，而非保留并加注 superseded；保留冗余外壳会让事实再次分散。本体节点可用「决策背景」段承载 why。"}
+{"source": "knowledge_decision", "at": "2026-08-30T09:43:00+08:00", "action": "skipped", "reason": "可复用洞察已沉淀进 ontology 节点（pdca-architecture / ontology-creation-gate / ontology-validate / pdca-evidence / pdca-verdict 的「决策背景」段），无需再产出孤立 knowledge 条目。"}

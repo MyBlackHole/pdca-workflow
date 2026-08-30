@@ -1,0 +1,44 @@
+{
+  "children": [],
+  "dependencies": [
+    "T0829",
+    "T0417"
+  ],
+  "id": "T0418",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1 流程即本体实体：ontology/process/flow-{plan,do,check,act}.md 四个 type=process 实体创建，specializes=ontology:concept/process，relations 关联对应 phase 实体与 gate，body 含权威描述与关键决策。",
+      "AC-2 pdca-flow 迁移：knowledge/pdca-flow/ 16 文件描述与决策迁移进本体（流程实体或 supporting 节点），引用审计无误后目录已删除。",
+      "AC-3 pdca-workflow 迁移：knowledge/pdca-workflow/ 6 文件迁移进相关本体节点，引用审计无误后目录已删除。",
+      "AC-4 ADR 迁移：ADR-0032~0036 决策沉淀进相关本体节点，原 ADR 文件已删除（背景并入对应节点「决策背景」段）。",
+      "AC-5 机制复用：全部新节点经 ontology-validate.py 校验通过（退出码 0、无悬空引用、无环），未新建校验机制，复用 0829 既有校验器。",
+      "AC-6 引用清理：grep 确认原 knowledge/pdca-flow/、knowledge/pdca-workflow/ 路径在 scripts/SKILL/flows/docs 中无残留引用；本体节点来源路径已去前缀、0815 PRD 已更新指向本体 id；仅历史 journal 保留溯源引用（不可变记录，按 AC-6 例外保留）。"
+    ],
+    "created_at": "2026-08-30T09:11:09+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "check",
+    "record": "T0418-0830-pdca-flow-ontology-record",
+    "scenario_type": "documentation",
+    "completed_at": "2026-08-30T09:30:55+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "6 项 AC 全部满足；AC-4 按用户意见改为 ADR-0032~0036 决策迁移进本体节点（含「决策背景」段）并删除原 ADR 文件；ontology-validate 与 validate-convergence 均通过；外部冗余知识已迁移删除，机制零新建。",
+      "verdict_id": "verdict-t0418-confirmed",
+      "at": "2026-08-30T09:41:36+08:00"
+    }
+  },
+  "parent": "T0829",
+  "slug": "0830-pdca-flow-ontology-record",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-30T09:30:55+08:00",
+    "created": "2026-08-30T09:11:09+08:00",
+    "do": "2026-08-30T09:30:55+08:00",
+    "plan": "2026-08-30T09:11:09+08:00"
+  },
+  "status": "Completed",
+  "title": "PDCA 流程本体化（0829 协调子流）：流程即本体实体 + 外部 PDCA 描述/决策迁移进本体"
+}
