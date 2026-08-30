@@ -1,0 +1,4 @@
+{"at":"2026-08-30T08:33:13+08:00","source":"task_identity","summary":"created with record identity T0416-0830-ontology-tree-driven-split"}
+{"source":"final_confirmation","summary":"T0416 PRD 确认：本体关系树驱动 to-tickets 拆分，新增 ontology-tree-split.py + 集成 + 模板小节 + 测试，顾问式不自动落盘","response":"confirmed","at":"2026-08-30T08:35:38+08:00"}
+{"source":"check_confirmation","summary":"T0416 结论 confirmed：关系树驱动拆分落地，ontology_tree_split 解析 composed_of/specializes 树+PRD 映射生成 WBS 候选，AC-1~AC-4 全 ✅","response":"confirmed","at":"2026-08-30T08:42:41+08:00"}
+{"source": "knowledge_decision", "at": "2026-08-30T08:43:03+08:00", "action": "skipped", "reason": "T0416 成果已是脚本/文档改动，record 即为归档；与既有 ontology 知识重复，不满足新增条目复用标准"}

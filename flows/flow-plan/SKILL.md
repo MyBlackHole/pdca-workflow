@@ -78,6 +78,7 @@ PRD 的 `## Seam 分析` 章节下填写 `### 声明的测试接缝` 子节，�
 
 - 子 task 的 `parent` 指向父任务；父任务 `children` 列出全部子 ID。
 - 子 PRD 包含独立输入、边界和验收标准，粒度不小于一个 PDCA 周期。
+- 若 `meta.ontology_fragment` 非空且 PRD 含 `## 拆分映射`，可在 `to-tickets` 启用**关系树驱动拆分**（见该技能步骤）：本体 `composed_of` 树决定子任务边界，`ontology_node_type` 与依赖边自动推导。
 - P4 只创建任务，不执行；P6 前禁止调度。
 
 ## P5. 知识注入

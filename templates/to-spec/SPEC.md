@@ -71,6 +71,16 @@ development/bugfix 场景必填（机器可读，供契约测试校验）。每�
 
 若 `meta.ontology_fragment` 非空（或拆分自带本体片段的父任务），须在此登记相关节点，供 Do 阶段本体消费回链与可复用知识检索。该小节为可选登记，不影响门禁。
 
+## 拆分映射
+
+（可选，仅当任务 `meta.ontology_fragment` 指向本体且需关系树驱动拆分时使用）将 PRD 章节映射到本体节点，一行一个：
+
+```markdown
+- <PRD 章节标题> -> ontology:<node-id>
+```
+
+`to-tickets` 会据此结合本体 `composed_of` 关系树生成候选子任务（自动推导 `ontology_node_type` 与依赖边），仅输出候选、不自动落盘。
+
 ## 备注
 
 其他需要记录的信息。
