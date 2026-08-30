@@ -6,7 +6,7 @@
   ],
   "id": "T0403",
   "meta": {
-    "active": true,
+    "active": false,
     "convergence": [
       "AC-1：所有剩余域已迁移到 ontology/，无遗漏域",
       "AC-2：manifest.jsonl 重写完成，条目数与 ontology/ 文件数一致",
@@ -15,7 +15,7 @@
       "AC-5：证据已登记，收敛映射 valid:true"
     ],
     "created_at": "2026-08-29T10:00:16+00:00",
-    "phase": "act",
+    "phase": "archive",
     "record": "T0403-0829-onto-full-migration",
     "scenario_type": "development",
     "ontology_fragment": "ontology",
@@ -36,7 +36,7 @@
   "slug": "0829-onto-full-migration",
   "states": {
     "act": "2026-08-30T15:29:37+08:00",
-    "archive": null,
+    "archive": "2026-08-30T15:29:39+08:00",
     "check": "2026-08-30T15:29:26+08:00",
     "created": "2026-08-29T10:00:16+00:00",
     "do": "2026-08-30T15:24:32+08:00",

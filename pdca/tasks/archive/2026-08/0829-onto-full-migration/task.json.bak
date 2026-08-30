@@ -15,7 +15,7 @@
       "AC-5：证据已登记，收敛映射 valid:true"
     ],
     "created_at": "2026-08-29T10:00:16+00:00",
-    "phase": "check",
+    "phase": "act",
     "record": "T0403-0829-onto-full-migration",
     "scenario_type": "development",
     "ontology_fragment": "ontology",
@@ -35,7 +35,7 @@
   "parent": "T0399",
   "slug": "0829-onto-full-migration",
   "states": {
-    "act": null,
+    "act": "2026-08-30T15:29:37+08:00",
     "archive": null,
     "check": "2026-08-30T15:29:26+08:00",
     "created": "2026-08-29T10:00:16+00:00",
