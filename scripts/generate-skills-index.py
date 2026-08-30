@@ -29,7 +29,7 @@ def read_asset(root: Path, path: Path, layer: str) -> dict:
     return {
         "name": data["name"].strip(),
         "description": " ".join(data["description"].split()),
-        "invocation": data.get("invocation", "automatic"),
+        "invocation": data.get("invocation", "manual"),
         "layer": layer,
         "file": path.relative_to(root).as_posix(),
     }
@@ -38,7 +38,7 @@ def read_asset(root: Path, path: Path, layer: str) -> dict:
 def build(root: Path) -> list[dict]:
     assets = [
         *(read_asset(root, path, "flow") for path in sorted((root / "flows").glob("flow-*/SKILL.md"))),
-        *(read_asset(root, path, "skill") for path in sorted((root / "skills").glob("**/SKILL.md"))),
+        *(read_asset(root, path, "skill") for path in sorted((root / "ontology/domain").glob("skill-*.md"))),
     ]
     names = [asset["name"] for asset in assets]
     duplicates = sorted({name for name in names if names.count(name) > 1})

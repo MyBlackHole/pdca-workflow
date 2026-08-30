@@ -1,0 +1,105 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0432",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-1",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-2",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-3",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-4",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-5",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-6",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-7",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-8",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-9",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence.json[2]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence.json[3]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence.json[4]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence.json[5]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence.json[6]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence.json[7]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence.json[8]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence.json[9]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence.json[1]/text",
+      "message": "text must equal the Plan convergence value"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence.json[1]",
+      "message": "listed evidence does not support AC-1",
+      "guidance": "re-register the supporting evidence with --criterion AC-1, or fix the map to cite evidence that actually covers it"
+    }
+  ],
+  "at": "2026-08-30T17:33:39.447778+08:00"
+}

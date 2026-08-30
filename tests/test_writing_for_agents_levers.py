@@ -1,7 +1,7 @@
 """writing-great-skills 增强（T0245）契约测试。
 
 证明目标（AC-1..AC-5）：SKILL.md 的 L1-L4 杠杆以机器可读断言守护，
-与 seam 契约（测试 -> skills/writing-great-skills/SKILL.md）一致。
+与 seam 契约（测试 -> ontology/domain/skill-writing-great-skills.md）一致。
 同构先例：T0231 source 术语契约、T0233 seam 契约、T0243 diagnosing-bugs 契约。
 """
 
@@ -11,7 +11,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SKILL = ROOT / "skills/writing-great-skills/SKILL.md"
+SKILL = ROOT / "ontology/domain/skill-writing-great-skills.md"
 
 
 class LeadingWordsContractTest(unittest.TestCase):

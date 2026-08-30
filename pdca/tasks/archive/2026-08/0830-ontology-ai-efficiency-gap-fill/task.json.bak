@@ -1,0 +1,50 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0432",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1：添加 ontology:concept/leading-words 节点，ontology-validate 通过",
+      "AC-2：添加 ontology:concept/pointer-wording 节点，ontology-validate 通过",
+      "AC-3：添加 ontology:concept/no-op-judgment 节点，ontology-validate 通过",
+      "AC-4：添加 ontology:concept/failure-mode 节点，ontology-validate 通过",
+      "AC-5：添加 ontology:concept/phase-boundary-decision-tree 节点，ontology-validate 通过",
+      "AC-6：添加 ontology:concept/grounding-dependency 节点，ontology-validate 通过",
+      "AC-7：writing-great-skills 引用新节点，ontology-validate 通过",
+      "AC-8：ontology_graph --format summary 无孤岛节点（281 nodes, 532 edges, 0 islands）",
+      "AC-9：所有新节点有 attributes 含 testable_signal"
+    ],
+    "created_at": "2026-08-30T17:10:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology/",
+    "ontology_node_type": "concept",
+    "phase": "act",
+    "record": "T0432-0830-ontology-ai-efficiency-gap-fill",
+    "scenario_type": "documentation",
+    "completed_at": "2026-08-30T17:44:56+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "所有 9 项 AC 均通过，本体验证通过，0 孤岛节点",
+      "verdict_id": "verdict-t0432",
+      "at": "2026-08-30T17:45:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "6个新概念节点已写入ontology，2个技能文件已更新，本体验证通过0孤岛。知识已沉淀为可复用资产。",
+      "at": "2026-08-30T17:46:00+08:00"
+    }
+  },
+  "parent": "T0431",
+  "slug": "0830-ontology-ai-efficiency-gap-fill",
+  "states": {
+    "act": "2026-08-30T17:46:37+08:00",
+    "archive": null,
+    "check": "2026-08-30T17:44:56+08:00",
+    "created": "2026-08-30T17:10:00+08:00",
+    "do": "2026-08-30T17:17:11+08:00",
+    "plan": "2026-08-30T17:10:00+08:00"
+  },
+  "status": "Completed",
+  "title": "补齐 PDCA 本体 AI 提效缺口：文档经济学、失效模式、Phase Boundary、Grounding"
+}

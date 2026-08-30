@@ -17,7 +17,7 @@ from pdca_core import repo_root, schema_issues
 
 CONTRACT_PATH = Path("pdca/skill-invocation-contract.json")
 FRONTMATTER_RE = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.DOTALL)
-SKILL_REFERENCE_RE = re.compile(r"\$PDCA_HOME/skills/([a-z][a-z0-9-]*)/SKILL\.md")
+SKILL_REFERENCE_RE = re.compile(r"\$PDCA_HOME/ontology/domain/skill-([a-z][a-z0-9-]*)/")
 ENTRY_ALIAS_RE = re.compile(r"`/([a-z][a-z0-9-]*)`")
 
 
@@ -80,7 +80,7 @@ def read_asset(root: Path, path: Path, layer: str) -> dict[str, str]:
 def asset_catalog(root: Path) -> dict[str, dict[str, str]]:
     paths = [
         *((path, "flow") for path in sorted((root / "flows").glob("flow-*/SKILL.md"))),
-        *((path, "skill") for path in sorted((root / "skills").glob("**/SKILL.md"))),
+        *((path, "skill") for path in sorted((root / "ontology/domain").glob("skill-*.md"))),
     ]
     catalog: dict[str, dict[str, str]] = {}
     for path, layer in paths:

@@ -1,0 +1,108 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0432",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[1]",
+      "message": "listed evidence does not support AC-1",
+      "guidance": "re-register the supporting evidence with --criterion AC-1, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_EVIDENCE_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[1]/evidence_ids",
+      "message": "ev-gap-fill is not registered support evidence"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[2]",
+      "message": "listed evidence does not support AC-2",
+      "guidance": "re-register the supporting evidence with --criterion AC-2, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_EVIDENCE_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[2]/evidence_ids",
+      "message": "ev-gap-fill is not registered support evidence"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[3]",
+      "message": "listed evidence does not support AC-3",
+      "guidance": "re-register the supporting evidence with --criterion AC-3, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_EVIDENCE_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[3]/evidence_ids",
+      "message": "ev-gap-fill is not registered support evidence"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[4]",
+      "message": "listed evidence does not support AC-4",
+      "guidance": "re-register the supporting evidence with --criterion AC-4, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_EVIDENCE_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[4]/evidence_ids",
+      "message": "ev-gap-fill is not registered support evidence"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[5]",
+      "message": "listed evidence does not support AC-5",
+      "guidance": "re-register the supporting evidence with --criterion AC-5, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_EVIDENCE_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[5]/evidence_ids",
+      "message": "ev-gap-fill is not registered support evidence"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[6]",
+      "message": "listed evidence does not support AC-6",
+      "guidance": "re-register the supporting evidence with --criterion AC-6, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_EVIDENCE_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[6]/evidence_ids",
+      "message": "ev-gap-fill is not registered support evidence"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[7]",
+      "message": "listed evidence does not support AC-7",
+      "guidance": "re-register the supporting evidence with --criterion AC-7, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_EVIDENCE_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[7]/evidence_ids",
+      "message": "ev-gap-fill is not registered support evidence"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[8]",
+      "message": "listed evidence does not support AC-8",
+      "guidance": "re-register the supporting evidence with --criterion AC-8, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_EVIDENCE_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[8]/evidence_ids",
+      "message": "ev-gap-fill is not registered support evidence"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[9]",
+      "message": "listed evidence does not support AC-9",
+      "guidance": "re-register the supporting evidence with --criterion AC-9, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_EVIDENCE_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow/records/T0432-0830-ontology-ai-efficiency-gap-fill/evidence/convergence-t0432.json[9]/evidence_ids",
+      "message": "ev-gap-fill is not registered support evidence"
+    }
+  ],
+  "at": "2026-08-30T17:42:55.901277+08:00"
+}

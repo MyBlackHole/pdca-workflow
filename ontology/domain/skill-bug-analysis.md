@@ -1,0 +1,37 @@
+---
+schema: pdca.asset/v1
+id: ontology:domain/skill-bug-analysis
+name: bug-analysis
+summary: Analyze bug reports and code failures to identify root causes and patterns.
+description: 用于缺陷、异常和回归问题的根因分析；先收集证据，再区分假设、实验和过程原因。
+invocation: manual
+type: domain
+layer: Knowledge
+status: active
+relations:
+  specializes:
+    - ontology:concept/pdca-task
+  relates_to:
+    - ontology:concept/domain-modeling
+    - ontology:concept/failure-mode
+---
+
+---
+name: bug-analysis
+description: 用于缺陷、异常和回归问题的根因分析；先收集证据，再区分假设、实验和过程原因。
+---
+
+# 缺陷根因分析
+
+1. 明确现象、影响范围、首次出现时间和可复现条件。
+2. 建立单一可验证假设，记录预期结果与反证条件。
+3. 收集最小充分证据：日志、输入、版本、调用路径和失败样本。
+4. 用二分、对照实验或最小复现缩小根因范围，禁止直接把猜测当结论。
+5. 区分三类根因：假设/设计错误、实现/环境错误、流程/证据遗漏。
+6. 记录修复建议、回归验证和仍未排除的风险。
+
+输出应包含：现象、复现、证据、假设、实验、根因、修复方向、验证标准。
+
+## 已知坑
+
+- 先收集证据再下结论，勿凭直觉臆测根因；忽略环境差异（版本/平台）常误导定位。

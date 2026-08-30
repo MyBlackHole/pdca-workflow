@@ -11,7 +11,7 @@
 | **YAGNI** | You Ain't Gonna Need It，只构建当前需要的功能 |
 | **PRD** | 产品需求文档，Plan 阶段的输出产物 |
 | **task.json** | 任务元数据文件，跟踪阶段、状态和标记 |
-| **skill** | 可复用的 AI 指令模块，对应 skills/ 下的 SKILL.md |
+| **skill** | 可复用的 AI 指令模块，对应 ontology/domain/skill-*.md |
 | **ADR** | （已退役）架构决策现记录于 `ontology/` 节点 |
 | **grill** | 追问门禁，用户发起，委托 grilling 执行 |
 | **ready-set** | to-tickets 拆解后的可执行任务集：所有"未完成且所有直接前置已完成"的任务集合；区别于 grilling 的 frontier（当前可答问题集合） |

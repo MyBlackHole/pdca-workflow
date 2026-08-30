@@ -1,7 +1,7 @@
 # PDCA 工作流 — 强制执行协议
 
 PDCA_HOME 环境变量指向管理中心（pdca-workflow 仓库）。
-所有 flows/ skills/ 引用以 `$PDCA_HOME` 为前缀。
+所有 flows/ 和 ontology/domain/ 引用以 `$PDCA_HOME` 为前缀。
 
 ## 强制规则
 

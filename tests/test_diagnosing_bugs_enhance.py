@@ -1,7 +1,7 @@
 """diagnosing-bugs 增强（T0243）契约测试。
 
 证明目标（AC-1..AC-7）：SKILL.md 的 D1-D6 落地点以机器可读断言守护，
-与 seam 契约（测试 -> skills/diagnosing-bugs/SKILL.md）一致。
+与 seam 契约（测试 -> ontology/domain/skill-diagnosing-bugs.md）一致。
 同构先例：T0231 source 术语契约、T0232 词汇契约、T0233 seam 契约。
 """
 
@@ -11,8 +11,8 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SKILL = ROOT / "skills/diagnosing-bugs/SKILL.md"
-TEMPLATE = ROOT / "skills/diagnosing-bugs/hitl-loop.template.sh"
+SKILL = ROOT / "ontology/domain/skill-diagnosing-bugs.md"
+TEMPLATE = ROOT / "ontology/domain/diagnosing-bugs/hitl-loop.template.sh"
 
 
 class DiagnosingBugsRedactContractTest(unittest.TestCase):

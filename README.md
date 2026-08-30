@@ -2,7 +2,7 @@
 
 > **人类读者入口**。AI 代理请阅读 [`AGENTS.md`](AGENTS.md) 获取执行路由和门禁规则。
 
-PDCA（Plan-Do-Check-Act）是一个**基于 AI 代理的全流程项目执行协议**。通过 `flows/` 分阶段流程定义 + `skills/` 可复用技能库，让 AI 有序推进任务。
+PDCA（Plan-Do-Check-Act）是一个**基于 AI 代理的全流程项目执行协议**。通过 `flows/` 分阶段流程定义 + `ontology/domain/` 可复用技能库，让 AI 有序推进任务。
 
 ## 快速开始
 
@@ -73,7 +73,7 @@ pdca/tasks/<MMDD-slug>/
 
 ## 技能系统
 
-`skills/` 目录包含 30 个可复用技能，分为两类：
+`ontology/domain/` 目录包含 30 个可复用技能，分为两类：
 
 | 类型 | 加载方式 | 示例 |
 |------|---------|------|
@@ -144,13 +144,13 @@ git commit -m "task <id>: <描述>"
 cd $PDCA_HOME && git pull
 ```
 
-flows/ 和 skills/ 更新后立即可用，无需重新初始化。
+flows/ 和 ontology/domain/ 更新后立即可用，无需重新初始化。
 
 ## 目录结构
 
 ```
 ├── flows/           # 阶段流程（plan → do → check → act）
-├── skills/          # 可复用技能库（30 个）
+├── ontology/domain/          # 可复用技能库（30 个）
 ├── pdca/
 │   ├── tasks/       # 任务跟踪（MMDD-slug/task.json + 产物）
 │   │   └── archive/ # 归档任务

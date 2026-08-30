@@ -23,202 +23,202 @@
       "reason": "T0378 effectiveness self-check + T0380 dialogue-log pointer at P7"
     },
     {
-      "file": "skills/advance-phase/SKILL.md",
+      "file": "ontology/domain/skill-advance-phase.md",
       "bytes": 1430,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/ask-matt/SKILL.md",
+      "file": "ontology/domain/skill-ask-matt.md",
       "bytes": 1175,
       "reason": "T0161 replaces the stale grill-me entry alias with grill"
     },
     {
-      "file": "skills/bug-analysis/SKILL.md",
+      "file": "ontology/domain/skill-bug-analysis.md",
       "bytes": 765,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/bug-commit-format/SKILL.md",
+      "file": "ontology/domain/skill-bug-commit-format.md",
       "bytes": 684,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/build-config/SKILL.md",
+      "file": "ontology/domain/skill-build-config.md",
       "bytes": 1053,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/chinese-environment/SKILL.md",
+      "file": "ontology/domain/skill-chinese-environment.md",
       "bytes": 1283,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/code-comments/SKILL.md",
+      "file": "ontology/domain/skill-code-comments.md",
       "bytes": 2442,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/code-review-checklist/SKILL.md",
+      "file": "ontology/domain/skill-code-review-checklist.md",
       "bytes": 1218,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/code-review/SKILL.md",
+      "file": "ontology/domain/skill-code-review.md",
       "bytes": 2343,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/commit-format/SKILL.md",
+      "file": "ontology/domain/skill-commit-format.md",
       "bytes": 1695,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/context-retrieval/SKILL.md",
+      "file": "ontology/domain/skill-context-retrieval.md",
       "bytes": 2619,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/diagnosing-bugs/SKILL.md",
+      "file": "ontology/domain/skill-diagnosing-bugs.md",
       "bytes": 3908,
       "reason": "T0243 enhancement adds D1-D6 (Redact safety, explicit no-loop stop, non-determinism guidance, HITL template reference, post-mortem architecture handoff, CONTEXT prereq + two-sided hypotheses) with contract tests; necessity documented in PRD CC-2"
     },
     {
-      "file": "skills/domain-modeling-work/SKILL.md",
+      "file": "ontology/domain/skill-domain-modeling-work.md",
       "bytes": 2440,
       "reason": "T0161 extracts automatic shared-language and ADR maintenance work"
     },
     {
-      "file": "skills/domain-modeling/SKILL.md",
+      "file": "ontology/domain/skill-domain-modeling.md",
       "bytes": 283,
       "reason": "T0161 retains a thin manual entry that delegates to domain-modeling-work"
     },
     {
-      "file": "skills/drafts/context-orchestration/SKILL.md",
+      "file": "ontology/domain/skill-context-orchestration.md",
       "bytes": 2363,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/drafts/project-goal/SKILL.md",
+      "file": "ontology/domain/skill-project-goal.md",
       "bytes": 1858,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/feature-commit-format/SKILL.md",
+      "file": "ontology/domain/skill-feature-commit-format.md",
       "bytes": 787,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/grill/SKILL.md",
+      "file": "ontology/domain/skill-grill.md",
       "bytes": 268,
       "reason": "T0161 redirects the manual grill entry to the automatic domain-modeling worker"
     },
     {
-      "file": "skills/grilling/SKILL.md",
+      "file": "ontology/domain/skill-grilling.md",
       "bytes": 4888,
       "reason": "T0379 adds non-blocking parallel detail to rule 4 and merges meta-feedback pitfall into rule 9 (SSOT), per round-3 adoption"
     },
     {
-      "file": "skills/handoff-work/SKILL.md",
+      "file": "ontology/domain/skill-handoff-work.md",
       "bytes": 2657,
       "reason": "T0380 adds the dialogue-log archive section (trigger/location/four elements/size cap/exclusions) per user-approved lightweight process-archive design"
     },
     {
-      "file": "skills/handoff/SKILL.md",
+      "file": "ontology/domain/skill-handoff.md",
       "bytes": 290,
       "reason": "T0161 retains a thin manual entry that delegates to handoff-work"
     },
     {
-      "file": "skills/improve-codebase-architecture/SKILL.md",
+      "file": "ontology/domain/skill-improve-codebase-architecture.md",
       "bytes": 1633,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/prototype/SKILL.md",
+      "file": "ontology/domain/skill-prototype.md",
       "bytes": 1428,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/register-evidence/SKILL.md",
+      "file": "ontology/domain/skill-register-evidence.md",
       "bytes": 1012,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/research/SKILL.md",
+      "file": "ontology/domain/skill-research.md",
       "bytes": 1010,
       "reason": "T0372 adds the verifiable-signal rule (every key conclusion carries a reproducible verification path or is downgraded), per approved T0371 roadmap item P3"
     },
     {
-      "file": "skills/resolving-merge-conflicts/SKILL.md",
+      "file": "ontology/domain/skill-resolving-merge-conflicts.md",
       "bytes": 1876,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/secure-coding/SKILL.md",
+      "file": "ontology/domain/skill-secure-coding.md",
       "bytes": 1893,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/tdd/SKILL.md",
+      "file": "ontology/domain/skill-tdd.md",
       "bytes": 2716,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/testing-strategy/SKILL.md",
+      "file": "ontology/domain/skill-testing-strategy.md",
       "bytes": 1766,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/to-tickets/SKILL.md",
+      "file": "ontology/domain/skill-to-tickets.md",
       "bytes": 2260,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/triage-work/SKILL.md",
+      "file": "ontology/domain/skill-triage-work.md",
       "bytes": 1963,
       "reason": "T0161 extracts automatic classification, verification, and task creation work"
     },
     {
-      "file": "skills/triage/SKILL.md",
+      "file": "ontology/domain/skill-triage.md",
       "bytes": 256,
       "reason": "T0161 retains a thin manual entry that delegates to triage-work"
     },
     {
-      "file": "skills/verify-convergence/SKILL.md",
+      "file": "ontology/domain/skill-verify-convergence.md",
       "bytes": 1605,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/wayfinder/SKILL.md",
+      "file": "ontology/domain/skill-wayfinder.md",
       "bytes": 1296,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/wayfinding-chart/SKILL.md",
+      "file": "ontology/domain/skill-wayfinding-chart.md",
       "bytes": 1220,
       "reason": "T0161 redirects domain-modeling to its automatic worker"
     },
     {
-      "file": "skills/wayfinding-work/SKILL.md",
+      "file": "ontology/domain/skill-wayfinding-work.md",
       "bytes": 957,
       "reason": "T0161 replaces the manual grill edge with automatic grilling and domain-modeling workers"
     },
     {
-      "file": "skills/web-research/SKILL.md",
+      "file": "ontology/domain/skill-web-research.md",
       "bytes": 1138,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/write-conclusion/SKILL.md",
+      "file": "ontology/domain/skill-write-conclusion.md",
       "bytes": 1478,
       "reason": "T0376 upgrades completion criterion to demand-based three-element form and fixes the per-AC verdict line template, merging three sources (T0373 review, T0372 linkage, T0374 scan)"
     },
     {
-      "file": "skills/write-journal/SKILL.md",
+      "file": "ontology/domain/skill-write-journal.md",
       "bytes": 1063,
       "reason": "Initial baseline"
     },
     {
-      "file": "skills/writing-great-skills/SKILL.md",
+      "file": "ontology/domain/skill-writing-great-skills.md",
       "bytes": 6072,
       "reason": "T0373 upgrades the two-line completion-standard section into the full completion-criterion lever (clarity+demand), per approved T0371 roadmap item P8c"
     }

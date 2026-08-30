@@ -107,7 +107,7 @@ def execution_fixture_root(source_root: Path, temporary: str) -> Path:
 def invocation_fixture_root(source_root: Path, temporary: str) -> Path:
     root = Path(temporary)
     shutil.copytree(source_root / "flows", root / "flows")
-    shutil.copytree(source_root / "skills", root / "skills")
+    # skills/ directory removed; skill knowledge now in ontology/domain/
     shutil.copytree(source_root / "schemas", root / "schemas")
     contract_target = root / "pdca/skill-invocation-contract.json"
     contract_target.parent.mkdir(parents=True, exist_ok=True)
@@ -205,7 +205,7 @@ def invocation_stale_alias_observation(source_root: Path) -> str:
     try:
         with tempfile.TemporaryDirectory() as temporary:
             root = invocation_fixture_root(source_root, temporary)
-            entry = root / "skills/ask-matt/SKILL.md"
+            entry = root / "ontology/domain/skill-ask-matt.md"
             text = entry.read_text(encoding="utf-8")
             if "`/grill`" not in text:
                 return "FIXTURE_INVOCATION_ALIAS_NOT_FOUND"

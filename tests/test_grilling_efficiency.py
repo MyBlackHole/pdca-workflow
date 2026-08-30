@@ -95,7 +95,7 @@ class GrillingDocumentContractTest(unittest.TestCase):
     """文档契约：技能与 flow 引用必须与批量问法一致（AC-1、AC-2、AC-6）。"""
 
     def test_grilling_skill_batch_semantics(self) -> None:
-        text = (ROOT / "skills/grilling/SKILL.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/domain/skill-grilling.md").read_text(encoding="utf-8")
         self.assertIn("frontier", text)
         self.assertIn("round", text)
         # 不再要求"一次只问一个 / 从不批量"
@@ -113,7 +113,7 @@ class GrillingDocumentContractTest(unittest.TestCase):
         self.assertIn("grilling", text)
 
     def test_round_shared_within_batch_semantics_documented(self) -> None:
-        text = (ROOT / "skills/grilling/SKILL.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/domain/skill-grilling.md").read_text(encoding="utf-8")
         self.assertIn("round", text)
 
 
@@ -123,7 +123,7 @@ class SourceConsistencyContractTest(unittest.TestCase):
     """
 
     def test_grilling_skill_uses_grilling_source(self) -> None:
-        text = (ROOT / "skills/grilling/SKILL.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/domain/skill-grilling.md").read_text(encoding="utf-8")
         self.assertIn('source: "grilling"', text)
 
     def test_flow_act_uses_grilling_source(self) -> None:

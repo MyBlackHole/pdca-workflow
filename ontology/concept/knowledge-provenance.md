@@ -10,6 +10,7 @@ relations:
   - ontology:concept/knowledge-artifact
   relates_to:
   - ontology:concept/pdca-continuous-improvement
+  - ontology:concept/grounding-dependency
 ---
 
 # 实验记录与知识投影（knowledge-provenance）

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """PDCA skill 结构契约检查器（T0267）。
 
-对 `skills/*/SKILL.md` 全量执行结构契约检查，融合 Anthropic skill authoring
+对 `ontology/domain/skill-*.md` 全量执行结构契约检查，融合 Anthropic skill authoring
 best practices 与 agentskills.io 规范（pedronauck validate-metadata.py 同源）。
 
 硬错误（exit-code 非 0）：
@@ -17,7 +17,7 @@ best practices 与 agentskills.io 规范（pedronauck validate-metadata.py 同�
 
 用法：
   check-skill-structure.py                     # 全量检查，违规时退出码 1
-  check-skill-structure.py --dir skills        # 指定目录
+  check-skill-structure.py --dir ontology/domain        # 指定目录
   check-skill-structure.py --exit-code         # 违规/警告均返回非 0（供 CI 强校验）
   check-skill-structure.py --json              # 输出 JSON 报告
 """
@@ -102,9 +102,10 @@ def extract_frontmatter(text: str) -> dict[str, str]:
 
 
 def check_skill(path: Path) -> SkillReport:
-    report = SkillReport(path=path, name=path.parent.name)
     text = path.read_text(encoding="utf-8")
     fm = extract_frontmatter(text)
+    name = fm.get("name", path.parent.name)
+    report = SkillReport(path=path, name=name)
     name = fm.get("name", "")
     desc = fm.get("description", "")
 
@@ -173,10 +174,8 @@ def check_skill(path: Path) -> SkillReport:
 
 def scan(root: Path) -> list[SkillReport]:
     reports: list[SkillReport] = []
-    for skill_dir in sorted(root.glob("*/")):
-        skill_md = skill_dir / "SKILL.md"
-        if skill_md.exists():
-            reports.append(check_skill(skill_md))
+    for md in sorted(root.glob("skill-*.md")):
+        reports.append(check_skill(md))
     return reports
 
 
@@ -214,7 +213,7 @@ def render_json(reports: list[SkillReport]) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="skill 结构契约检查器")
-    parser.add_argument("--dir", default="skills", help="skills 根目录")
+    parser.add_argument("--dir", default="ontology/domain", help="skill 域节点目录")
     parser.add_argument("--exit-code", action="store_true",
                         help="警告也计入退出码（CI 强校验）")
     parser.add_argument("--json", action="store_true", help="输出 JSON 报告")

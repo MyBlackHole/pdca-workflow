@@ -1,6 +1,6 @@
 {
   "schema": "pdca.skill-invocation-contract/v1",
-  "entry_document": "skills/ask-matt/SKILL.md",
+  "entry_document": "ontology/domain/skill-ask-matt.md",
   "aliases": [
     {"alias": "grill", "target": "grill"},
     {"alias": "triage", "target": "triage"},
@@ -32,19 +32,19 @@
     {"from": "flow-plan", "to": "grilling", "document": "flows/flow-plan/SKILL.md"},
     {"from": "flow-plan", "to": "to-tickets", "document": "flows/flow-plan/SKILL.md"},
     {"from": "flow-plan", "to": "triage-work", "document": "flows/flow-plan/SKILL.md"},
-    {"from": "domain-modeling", "to": "domain-modeling-work", "document": "skills/domain-modeling/SKILL.md"},
-    {"from": "grill", "to": "domain-modeling-work", "document": "skills/grill/SKILL.md"},
-    {"from": "grill", "to": "grilling", "document": "skills/grill/SKILL.md"},
-    {"from": "handoff", "to": "handoff-work", "document": "skills/handoff/SKILL.md"},
-    {"from": "research", "to": "register-evidence", "document": "skills/research/SKILL.md"},
-    {"from": "triage", "to": "triage-work", "document": "skills/triage/SKILL.md"},
-    {"from": "triage-work", "to": "grilling", "document": "skills/triage-work/SKILL.md"},
-    {"from": "wayfinder", "to": "wayfinding-chart", "document": "skills/wayfinder/SKILL.md"},
-    {"from": "wayfinder", "to": "wayfinding-work", "document": "skills/wayfinder/SKILL.md"},
-    {"from": "wayfinding-chart", "to": "domain-modeling-work", "document": "skills/wayfinding-chart/SKILL.md"},
-    {"from": "wayfinding-work", "to": "domain-modeling-work", "document": "skills/wayfinding-work/SKILL.md"},
-    {"from": "wayfinding-work", "to": "grilling", "document": "skills/wayfinding-work/SKILL.md"},
-    {"from": "wayfinding-work", "to": "prototype", "document": "skills/wayfinding-work/SKILL.md"},
-    {"from": "wayfinding-work", "to": "research", "document": "skills/wayfinding-work/SKILL.md"}
+    {"from": "domain-modeling", "to": "domain-modeling-work", "document": "ontology/domain/skill-domain-modeling.md"},
+    {"from": "grill", "to": "domain-modeling-work", "document": "ontology/domain/skill-grill.md"},
+    {"from": "grill", "to": "grilling", "document": "ontology/domain/skill-grill.md"},
+    {"from": "handoff", "to": "handoff-work", "document": "ontology/domain/skill-handoff.md"},
+    {"from": "research", "to": "register-evidence", "document": "ontology/domain/skill-research.md"},
+    {"from": "triage", "to": "triage-work", "document": "ontology/domain/skill-triage.md"},
+    {"from": "triage-work", "to": "grilling", "document": "ontology/domain/skill-triage-work.md"},
+    {"from": "wayfinder", "to": "wayfinding-chart", "document": "ontology/domain/skill-wayfinder.md"},
+    {"from": "wayfinder", "to": "wayfinding-work", "document": "ontology/domain/skill-wayfinder.md"},
+    {"from": "wayfinding-chart", "to": "domain-modeling-work", "document": "ontology/domain/skill-wayfinding-chart.md"},
+    {"from": "wayfinding-work", "to": "domain-modeling-work", "document": "ontology/domain/skill-wayfinding-work.md"},
+    {"from": "wayfinding-work", "to": "grilling", "document": "ontology/domain/skill-wayfinding-work.md"},
+    {"from": "wayfinding-work", "to": "prototype", "document": "ontology/domain/skill-wayfinding-work.md"},
+    {"from": "wayfinding-work", "to": "research", "document": "ontology/domain/skill-wayfinding-work.md"}
   ]
 }

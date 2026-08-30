@@ -1,0 +1,95 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1：添加 ontology:concept/leading-words 节点，ontology-validate 通过",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-t0432-ev"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "AC-2：添加 ontology:concept/pointer-wording 节点，ontology-validate 通过",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-t0432-ev"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "AC-3：添加 ontology:concept/no-op-judgment 节点，ontology-validate 通过",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-t0432-ev"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "AC-4：添加 ontology:concept/failure-mode 节点，ontology-validate 通过",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-t0432-ev"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "AC-5：添加 ontology:concept/phase-boundary-decision-tree 节点，ontology-validate 通过",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-t0432-ev"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "AC-6：添加 ontology:concept/grounding-dependency 节点，ontology-validate 通过",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ev-t0432-ev"
+      ]
+    },
+    {
+      "index": 7,
+      "text": "AC-7：writing-great-skills 引用新节点，ontology-validate 通过",
+      "criteria": [
+        "AC-7"
+      ],
+      "evidence_ids": [
+        "ev-t0432-ev"
+      ]
+    },
+    {
+      "index": 8,
+      "text": "AC-8：ontology_graph --format summary 无孤岛节点（281 nodes, 532 edges, 0 islands）",
+      "criteria": [
+        "AC-8"
+      ],
+      "evidence_ids": [
+        "ev-t0432-ev"
+      ]
+    },
+    {
+      "index": 9,
+      "text": "AC-9：所有新节点有 attributes 含 testable_signal",
+      "criteria": [
+        "AC-9"
+      ],
+      "evidence_ids": [
+        "ev-t0432-ev"
+      ]
+    }
+  ]
+}

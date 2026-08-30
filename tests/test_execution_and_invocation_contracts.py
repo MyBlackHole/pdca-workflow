@@ -122,7 +122,7 @@ def make_execution_root(root: Path) -> None:
 def invocation_contract() -> dict:
     return {
         "schema": "pdca.skill-invocation-contract/v1",
-        "entry_document": "skills/ask-matt/SKILL.md",
+        "entry_document": "ontology/domain/skill-ask-matt.md",
         "aliases": [
             {"alias": "grill", "target": "grill"},
             {"alias": "triage", "target": "triage"},
@@ -136,12 +136,12 @@ def invocation_contract() -> dict:
             {
                 "from": "grill",
                 "to": "grilling",
-                "document": "skills/grill/SKILL.md",
+                "document": "ontology/domain/skill-grill.md",
             },
             {
                 "from": "triage",
                 "to": "triage-work",
-                "document": "skills/triage/SKILL.md",
+                "document": "ontology/domain/skill-triage.md",
             },
         ],
     }
@@ -153,31 +153,31 @@ def make_invocation_root(root: Path) -> None:
         "ontology/process/flow-plan.md",
         "flow-plan",
         "automatic",
-        "加载 `$PDCA_HOME/skills/triage-work/SKILL.md`。",
+        "加载 `$PDCA_HOME/ontology/domain/skill-triage-work.md`。",
     )
     write_asset(
         root,
-        "skills/ask-matt/SKILL.md",
+        "ontology/domain/skill-ask-matt.md",
         "ask-matt",
         "manual",
         "入口：`/triage`、`/grill`。",
     )
     write_asset(
         root,
-        "skills/grill/SKILL.md",
+        "ontology/domain/skill-grill.md",
         "grill",
         "manual",
-        "加载 `$PDCA_HOME/skills/grilling/SKILL.md`。",
+        "加载 `$PDCA_HOME/ontology/domain/skill-grilling.md`。",
     )
-    write_asset(root, "skills/grilling/SKILL.md", "grilling", "automatic", "执行逐轮 Grill。")
+    write_asset(root, "ontology/domain/skill-grilling.md", "grilling", "automatic", "执行逐轮 Grill。")
     write_asset(
         root,
-        "skills/triage/SKILL.md",
+        "ontology/domain/skill-triage.md",
         "triage",
         "manual",
-        "加载 `$PDCA_HOME/skills/triage-work/SKILL.md`。",
+        "加载 `$PDCA_HOME/ontology/domain/skill-triage-work.md`。",
     )
-    write_asset(root, "skills/triage-work/SKILL.md", "triage-work", "automatic", "执行 triage。")
+    write_asset(root, "ontology/domain/skill-triage-work.md", "triage-work", "automatic", "执行 triage。")
     shutil.copytree(ROOT / "schemas", root / "schemas", dirs_exist_ok=True)
     write_json(root / "pdca/skill-invocation-contract.json", invocation_contract())
 
@@ -308,7 +308,7 @@ class InvocationContractTest(unittest.TestCase):
             self.assertEqual("grill", json.loads(alias.stdout)["target"])
 
             entry_contract = invocation_contract()
-            entry_contract["entry_document"] = "skills/grilling/SKILL.md"
+            entry_contract["entry_document"] = "ontology/domain/skill-grilling.md"
             write_json(root / "pdca/skill-invocation-contract.json", entry_contract)
             invalid_entry = run_json(INVOCATION_SCRIPT, ["--alias", "grill"], root)
             self.assertNotEqual(0, invalid_entry.returncode)
@@ -326,7 +326,7 @@ class InvocationContractTest(unittest.TestCase):
             root = Path(temporary)
             make_invocation_root(root)
 
-            ask_matt = root / "skills/ask-matt/SKILL.md"
+            ask_matt = root / "ontology/domain/skill-ask-matt.md"
             ask_matt.write_text(ask_matt.read_text(encoding="utf-8").replace("/grill", "/grill-me"), encoding="utf-8")
             stale_alias = run_json(INVOCATION_SCRIPT, ["--verify-documents"], root)
             self.assertNotEqual(0, stale_alias.returncode)
@@ -335,7 +335,7 @@ class InvocationContractTest(unittest.TestCase):
             make_invocation_root(root)
             flow = root / "ontology/process/flow-plan.md"
             flow.write_text(
-                flow.read_text(encoding="utf-8") + "加载 `$PDCA_HOME/skills/grilling/SKILL.md`。\n",
+                flow.read_text(encoding="utf-8") + "加载 `$PDCA_HOME/ontology/domain/skill-grilling.md`。\n",
                 encoding="utf-8",
             )
             undeclared = run_json(INVOCATION_SCRIPT, ["--verify-documents"], root)

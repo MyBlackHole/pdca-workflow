@@ -12,8 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-# seam 契约锚点：三个 skill 文档均为被测文档（skills/ 目录）
-SEAM_TARGET = "skills/"
+# seam 契约锚点：三个 skill 文档均为被测文档（ontology/domain/ 目录）
+SEAM_TARGET = "ontology/domain/"
 
 
 class SkillsIncrementsTest(unittest.TestCase):

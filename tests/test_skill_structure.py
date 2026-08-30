@@ -142,7 +142,7 @@ def test_warning_blocks_with_exit_code_flag(tmp_path):
 
 
 def test_all_official_skills_pass_structure_contract():
-    """全量正式 skill（skills/*/SKILL.md）无结构契约 error。"""
+    """全量正式 skill（ontology/domain/*/SKILL.md）无结构契约 error。"""
     r = run_checker(SKILLS_DIR)
     payload = json.loads(r.stdout)
     assert len(payload["skills"]) >= 39, f"期望 >=39 个正式 skill，实得 {len(payload['skills'])}"
