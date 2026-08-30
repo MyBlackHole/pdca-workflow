@@ -1,0 +1,8 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0427",
+  "from": "check",
+  "to": "archive",
+  "error": "ILLEGAL_TRANSITION",
+  "at": "2026-08-30T15:15:54.265486+08:00"
+}
