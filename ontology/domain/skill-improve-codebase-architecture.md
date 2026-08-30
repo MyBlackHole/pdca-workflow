@@ -14,6 +14,7 @@ relations:
   relates_to:
     - ontology:concept/domain-modeling
     - ontology:concept/domain-model
+    - ontology:concept/codebase-design
 ---
 
 --
@@ -93,3 +94,8 @@ python3 "$PDCA_HOME/scripts/register-evidence.py" \
 ## 已知坑
 
 - 审查先按近 30 天 git 变更热点聚焦扫描范围，勿全仓摊大饼；范围过大会稀释结论。
+
+
+## 深模块词汇
+
+审查时使用 `codebase-design` 概念的词汇表：**module / interface / seam / adapter / depth / leverage / locality**。禁止 component/service/API/boundary。

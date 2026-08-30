@@ -14,3 +14,9 @@ relations:
 # Challenge Glossary
 
 挑战术语表：当用户使用与现有术语冲突的词时立即指出
+
+## 相关概念
+
+- `wait-what`：上下文缺失时重新 pitch，用共享语言重新表述
+- `sharpen-language`：模糊语言精确化
+- `domain-modeling`：构建共享语言

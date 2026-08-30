@@ -33,6 +33,7 @@ relations:
 | "把需求写成技术文档" | 直接创建 documentation 类型 task |
 | "设计 XXX 的架构" | 直接创建 design 类型 task |
 | "有个大工程要做" | `/wayfinder` 先画地图 |
+| "代码结构需要改进" | `/codebase-design` 深度审查 |
 | "帮我理清思路/对齐目标" | `/grill` 追问门禁 |
 | "上次做了一半的工作" | 查 archives 恢复 |
 | "我想了解这个项目/代码库" | 搜索 `$PDCA_HOME/ontology/domain/` + `$PDCA_HOME/records/` |

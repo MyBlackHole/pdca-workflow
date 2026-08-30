@@ -17,6 +17,7 @@ relations:
   relates_to:
     - ontology:concept/domain-modeling
     - ontology:concept/design-tree
+    - ontology:concept/codebase-design
 ---
 
 -----|------|-------|
@@ -120,3 +121,8 @@ design-it-twice 是设计阶段（Do E 路径前的方案生成），code-review
 
 - 修改/新增 skill 后 `SKILLS-INDEX.md` 会过期，`test_generated_index_is_current` 捕获——用 `generate-skills-index.py` 重新生成（T0266 唯一真实回归）。
 - DEEPENING 深化模块时，深化接口落地后浅模块旧单测变废物，须删除而非保留。
+
+
+## 深模块词汇
+
+设计时只使用 `codebase-design` 概念的词汇表：**module / interface / seam / adapter / depth / leverage / locality**。禁止 component/service/API/boundary。

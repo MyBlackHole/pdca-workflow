@@ -72,7 +72,16 @@ inline 每分支都需的；推 pointer 只有某些分支达的。
 - 太弱的词是 no-op（_be thorough_）→ 换更强词（_relentless_）
 - 失败时删整句，不删词
 
+## L5 深模块词汇（codebase-design）
+
+用精确的架构术语替代模糊的通用词，让 agent 在讨论代码结构时零歧义。
+
+## L6 重新 pitch（wait-what）
+
+当 agent 的输出没有命中预期时，触发重新 pitch 机制——用共享语言重新表述需求，而非猜测。
+
 ## 复用场景
+
 
 - 编写/审查任何 skill、AGENTS.md、知识资产、flow 文档。
 - 结合 audit-skill-content 的内容预算做文档瘦身（去沉积、收锚定词）。
