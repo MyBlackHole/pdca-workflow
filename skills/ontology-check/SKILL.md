@@ -29,7 +29,7 @@ description: 新本体资产写入前的门禁检查。校验 type 合法、引�
 - AC-4 `attributes[].testable_signal` 非空
 - AC-5 每 KnowledgeArtifact 实例至少 1 条 `guides`/`relates_to`（关系丰富度）
 - AC-6 `guides` 的 source 为 KnowledgeArtifact 子类实例、target 为 DomainEntity/Process 类
-- 物理归并（ADR-0030）后 `knowledge/` 旧文件为 redirect 桩（frontmatter 含 `redirect_to` + `source_task`）；`ontology-validate.py` 现校验其目标存在（REDIRECT_DANGLING），桩指向的 `ontology/` 路径须真实存在。
+- 物理归并（见 `ontology:concept/ontology-creation-gate` 决策背景，原 ADR-0030）后 `knowledge/` 旧文件为 redirect 桩（frontmatter 含 `redirect_to` + `source_task`）；`ontology-validate.py` 现校验其目标存在（REDIRECT_DANGLING），桩指向的 `ontology/` 路径须真实存在。
 
 本 skill 是其人工/流程入口；CI 或 `add` 知识流程应调用 `ontology-validate.py` 作为强制门禁（退出码非零即阻断）。
 
