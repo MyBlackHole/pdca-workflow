@@ -16,7 +16,18 @@
     "created_at": "2026-08-30T15:34:38+08:00",
     "phase": "do",
     "record": "T0428-0830-review-cleanup",
-    "scenario_type": "development"
+    "scenario_type": "development",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "4 项 AC 全部达成，清理日志/bak/__pycache__/cpp 文件共 100+ 个，移除不完整任务，self-audit 测试 9/9 通过",
+      "verdict_id": "T0428-confirmed-2026-08-30",
+      "at": "2026-08-30T15:47:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "清理成果已标准化，项目更整洁",
+      "at": "2026-08-30T15:48:00+08:00"
+    }
   },
   "states": {
     "act": null,

@@ -1,6 +1,6 @@
 # PDCA 体系健康度自我审查报告
 
-- 异常总数: 56
+- 异常总数: 55
 
 ## 汇总
 
@@ -10,23 +10,23 @@
 | id_collision | 9 |
 | legacy_no_gate | 2 |
 | schema | 8 |
-| seam | 36 |
+| seam | 35 |
 
 | 严重度 | 计数 |
 |--------|------|
 | blocking | 10 |
-| integrity | 44 |
+| integrity | 43 |
 | noise | 2 |
 
 | 根因 | 计数 |
 |------|------|
 | external-project | 9 |
 | legacy | 14 |
-| real-defect | 33 |
+| real-defect | 32 |
 
 ## 门禁覆盖率
 
-- receipts 45.6% (36/79)，verdict 17.7%，rejected receipts 46 条
+- receipts 53.3% (48/90)，verdict 30.0%，rejected receipts 76 条
 
 ## 问题明细（按严重度）
 
@@ -45,7 +45,7 @@
 | T0259 | 0814-backup-catalog-restore-round67f / 0814-oss-https-support | id_collision | legacy | 同一 task_id 出现在 2 个目录 |
 | T0335 | 0820-tls-session-integration-test | gate_incomplete | real-defect | gate_incomplete:no-act-to-archive |
 
-### 数据完整性 (44)
+### 数据完整性 (43)
 
 | task_id | slug | 类别 | 根因 | 明细 |
 |---------|------|------|------|------|
@@ -54,7 +54,6 @@
 | 0806-buf-layer-endianness | 0806-buf-layer-endianness | schema | real-defect | SCHEMA_INVALID |
 | 0806-rpc-arm-interop-verify | 0806-rpc-arm-interop-verify | schema | real-defect | SCHEMA_INVALID |
 | 0806-rpc-benchmark-review | 0806-rpc-benchmark-review | schema | real-defect | SCHEMA_INVALID |
-| ? | 0822-rpc-hs-err-exit-code | seam | real-defect | 测试文件缺失: rpc/tests/mixed_mtls.cpp |
 | T0164-0731-gm-tls-benchmark | T0164-0731-gm-tls-benchmark | schema | legacy | CONFIRMATION_AFTER_PLAN_TO_DO; STATE_TIME_ORDER |
 | T0210b-0806-btree-root-driven-recovery | T0210b-0806-btree-root-driven-recovery | schema | legacy | SCHEMA_INVALID |
 | T0222-0804-acceptance-perf | T0222-0804-acceptance-perf | schema | legacy | STATE_TIMESTAMP_MISSING |
@@ -106,4 +105,4 @@
 - **[high] ID 撞车清理**: 9 组 task_id 重复（跨目录），identity 歧义影响可追溯性 → 建议范围: 为每组冲突决定保留/重命名，更新依赖引用与记录
 - **[high] 真违规门禁修复**: 1 项 gate_incomplete 非豁免（缺失 verdict/final_confirmation 等） → 建议范围: 按 T0271 remediate 模式补全或如实豁免
 - **[medium] schema 一致性修复**: 8 项 schema/时序不一致任务 → 建议范围: 区分机制前遗留与真缺陷，对齐 states/receipts 时间序
-- **[medium] seam 契约补齐**: 36 项声明的测试接缝与实际测试不一致 → 建议范围: 补齐缺失测试文件或修正 seam 声明（外部项目需确认测试位置）
+- **[medium] seam 契约补齐**: 35 项声明的测试接缝与实际测试不一致 → 建议范围: 补齐缺失测试文件或修正 seam 声明（外部项目需确认测试位置）
