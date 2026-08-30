@@ -25,7 +25,7 @@
     {
       "file": "skills/advance-phase/SKILL.md",
       "bytes": 1430,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/ask-matt/SKILL.md",
@@ -35,47 +35,47 @@
     {
       "file": "skills/bug-analysis/SKILL.md",
       "bytes": 765,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/bug-commit-format/SKILL.md",
       "bytes": 684,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/build-config/SKILL.md",
       "bytes": 1053,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/chinese-environment/SKILL.md",
       "bytes": 1283,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/code-comments/SKILL.md",
       "bytes": 2442,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/code-review-checklist/SKILL.md",
       "bytes": 1218,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/code-review/SKILL.md",
       "bytes": 2343,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/commit-format/SKILL.md",
       "bytes": 1695,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/context-retrieval/SKILL.md",
       "bytes": 2619,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/diagnosing-bugs/SKILL.md",
@@ -95,17 +95,17 @@
     {
       "file": "skills/drafts/context-orchestration/SKILL.md",
       "bytes": 2363,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/drafts/project-goal/SKILL.md",
       "bytes": 1858,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/feature-commit-format/SKILL.md",
       "bytes": 787,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/grill/SKILL.md",
@@ -130,17 +130,17 @@
     {
       "file": "skills/improve-codebase-architecture/SKILL.md",
       "bytes": 1633,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/prototype/SKILL.md",
       "bytes": 1428,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/register-evidence/SKILL.md",
       "bytes": 1012,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/research/SKILL.md",
@@ -150,27 +150,27 @@
     {
       "file": "skills/resolving-merge-conflicts/SKILL.md",
       "bytes": 1876,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/secure-coding/SKILL.md",
       "bytes": 1893,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/tdd/SKILL.md",
       "bytes": 2716,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/testing-strategy/SKILL.md",
       "bytes": 1766,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/to-tickets/SKILL.md",
       "bytes": 2260,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/triage-work/SKILL.md",
@@ -185,12 +185,12 @@
     {
       "file": "skills/verify-convergence/SKILL.md",
       "bytes": 1605,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/wayfinder/SKILL.md",
       "bytes": 1296,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/wayfinding-chart/SKILL.md",
@@ -205,7 +205,7 @@
     {
       "file": "skills/web-research/SKILL.md",
       "bytes": 1138,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/write-conclusion/SKILL.md",
@@ -215,7 +215,7 @@
     {
       "file": "skills/write-journal/SKILL.md",
       "bytes": 1063,
-      "reason": "Initial ADR-0007 baseline"
+      "reason": "Initial baseline"
     },
     {
       "file": "skills/writing-great-skills/SKILL.md",

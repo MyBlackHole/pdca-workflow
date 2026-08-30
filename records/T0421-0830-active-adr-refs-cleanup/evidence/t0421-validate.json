@@ -1,0 +1,7 @@
+{
+  "tool": "ontology-validate.py",
+  "result": "OK",
+  "returncode": 0,
+  "output": "OK: /home/black/Documents/pdca-workflow/ontology 通过本体契约校验",
+  "islands": 0
+}

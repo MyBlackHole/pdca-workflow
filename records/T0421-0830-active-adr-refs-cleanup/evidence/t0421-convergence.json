@@ -1,0 +1,56 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1：CONTEXT.md 的 ADR-0018/0029 引用改写为历史注记，去除文件链接",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "t0421-reference"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "AC-2：ontology-validate.py 的 ADR-0030 注释改为指向 ontology-creation-gate 节点",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "t0421-reference"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "AC-3：skill-content-baseline.json 的 ADR-0007 reason 去引用",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "t0421-reference"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "AC-4：全仓活动文件（排除 records/journal/tasks/health-audit）无 docs/adr 前缀及已删 ADR 悬空引用，仅保留本体节点「原 ADR-XXXX」历史归属注记",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "t0421-reference"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "AC-5：ontology-validate 通过、islands=0；登记 evidence + 收敛映射，validate-convergence valid:true",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "t0421-reference",
+        "t0421-validate"
+      ]
+    }
+  ]
+}

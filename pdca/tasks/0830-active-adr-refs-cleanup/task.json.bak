@@ -1,0 +1,40 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0421",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1：CONTEXT.md 的 ADR-0018/0029 引用改写为历史注记，去除文件链接",
+      "AC-2：ontology-validate.py 的 ADR-0030 注释改为指向 ontology-creation-gate 节点",
+      "AC-3：skill-content-baseline.json 的 ADR-0007 reason 去引用",
+      "AC-4：全仓活动文件（排除 records/journal/tasks/health-audit）无 docs/adr 前缀及已删 ADR 悬空引用，仅保留本体节点「原 ADR-XXXX」历史归属注记",
+      "AC-5：ontology-validate 通过、islands=0；登记 evidence + 收敛映射，validate-convergence valid:true"
+    ],
+    "created_at": "2026-08-30T10:13:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "check",
+    "record": "T0421-0830-active-adr-refs-cleanup",
+    "scenario_type": "documentation",
+    "completed_at": "2026-08-30T10:16:37+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5 项 AC 全部满足；3 个活动文件的已删 ADR 悬空引用已全部改写/移除、全仓活动文件 grep 仅剩有意历史注记、本体校验通过、证据与收敛映射齐备。",
+      "verdict_id": "verdict-t0421-confirmed",
+      "at": "2026-08-30T10:34:35+08:00"
+    }
+  },
+  "parent": "T0420",
+  "slug": "0830-active-adr-refs-cleanup",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-08-30T10:16:37+08:00",
+    "created": "2026-08-30T10:13:00+08:00",
+    "do": "2026-08-30T10:16:36+08:00",
+    "plan": "2026-08-30T10:13:00+08:00"
+  },
+  "status": "Completed",
+  "title": "清理活动机制文件中的已删 ADR 悬空引用"
+}

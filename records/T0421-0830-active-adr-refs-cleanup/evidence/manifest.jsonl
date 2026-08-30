@@ -1,0 +1,3 @@
+{"id":"t0421-reference","file":"t0421-reference.md","kind":"documentation","size":962,"digest":"sha256:1db8244a20e395f0304ae41ff6c08ac378365b0f3d46bace2d3ca0e7ba69c1da","at":"2026-08-30T10:15:34+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"t0421-validate","file":"t0421-validate.json","kind":"validation-report","size":179,"digest":"sha256:b00097c141ed86026c4b88340af8dcda38dacdb63a1a5d9ec70ad47a121c9520","at":"2026-08-30T10:15:34+08:00","criteria":["AC-5"]}
+{"id":"t0421-convergence","file":"t0421-convergence.json","kind":"convergence-map","size":1360,"digest":"sha256:18709b99d4cdf432034cc20ea28ee2eb6741857321d682e18256fe0acaf886fa","at":"2026-08-30T10:15:34+08:00","criteria":["AC-5"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

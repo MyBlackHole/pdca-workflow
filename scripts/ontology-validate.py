@@ -11,7 +11,7 @@ Checks (mapped to SSOT v3 acceptance criteria):
   AC-6  guides domain/range: source is knowledge, target is domain/process
   COMPOSED_OF_RANGE: composed_of 目标须为实体/概念实体类（README §5）
   CONFIGURED_BY_RANGE: configured_by 目标须为 TLSConfiguration 节点（README §5）
-  REDIRECT_DANGLING: knowledge/ redirect stubs (frontmatter redirect_to) point to existing ontology/ nodes (ADR-0030)
+   REDIRECT_DANGLING: knowledge/ redirect stubs (frontmatter redirect_to) point to existing ontology/ nodes (see ontology:concept/ontology-creation-gate decision-background; formerly ADR-0030)
   KNOWLEDGE_FM_INVALID: knowledge/ 声明 frontmatter 的 md 必须 YAML 合法（防止坏 frontmatter 被静默跳过）
   schema: pdca.asset/v1 required fields / enum values
 
@@ -223,7 +223,7 @@ def validate(ont_dir: Path):
 def check_redirects(root: Path) -> list:
     """Scan knowledge/ for redirect stubs (frontmatter redirect_to) and verify targets exist.
 
-    Physical-merge (ADR-0030) leaves redirect stubs in knowledge/; their `redirect_to`
+    Physical-merge (see ontology:concept/ontology-creation-gate decision-background; formerly ADR-0030) leaves redirect stubs in knowledge/; their `redirect_to`
     must point to a real ontology/ node, otherwise record identity is broken.
     """
     issues = []
@@ -252,7 +252,7 @@ def check_redirects(root: Path) -> list:
 def check_knowledge_frontmatter(root: Path) -> list:
     """Scan knowledge/ for files that declare frontmatter (start with ---) but fail YAML parse.
 
-    ADR-0030 leaves redirect stubs and other assets under knowledge/; a malformed
+    The physical merge (ontology:concept/ontology-creation-gate, formerly ADR-0030) leaves redirect stubs and other assets under knowledge/; a malformed
     frontmatter there used to be silently skipped by check_redirects' try/except.
     This makes YAML-legality an explicit, non-skippable check.
     """

@@ -1,0 +1,6 @@
+{"at":"2026-08-30T10:15:00+08:00","source":"task_identity","summary":"created with record identity T0421-0830-active-adr-refs-cleanup"}
+{"source":"final_confirmation","summary":"T0421 立项确认：清理活动机制文件已删 ADR 悬空引用","response":"confirmed","at":"2026-08-30T10:13:46+08:00"}
+{"source":"check_confirmation","summary":"T0421 结论确认 verdict=confirmed（3 活动文件已删 ADR 悬空引用清理）","response":"confirmed","at":"2026-08-30T10:34:35+08:00"}
+
+{"source": "grilling", "at": "2026-08-30T10:34:35+08:00", "question": "这个清理任务的哪些部分可提炼为可复用知识？", "answer": "删除 docs/adr/ 后，活动机制文件（CONTEXT/脚本/基线）中不带路径前缀的 ADR 引用也须改写：CONTEXT 溯源改历史注记、脚本注释改指 ontology 节点、生成式基线 reason 去 ADR；并应在 CI 加静态检查防止回流。"}
+{"source": "knowledge_decision", "at": "2026-08-30T10:34:35+08:00", "action": "skipped", "reason": "纯引用清理，无新增可复用洞察，相关约定已在 T0419/T0421 沉淀。"}
