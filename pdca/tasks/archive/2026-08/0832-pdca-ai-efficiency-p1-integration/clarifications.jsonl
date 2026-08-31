@@ -1,0 +1,2 @@
+{"round": 1, "question": "G4：Phase Boundary 决策树集成到 flow-do 的哪个位置？", "answer": "收尾阶段强制步骤", "recommended": "收尾阶段强制步骤", "source": "final_confirmation", "at": "2026-08-32T09:00:00+08:00", "captured": true}
+{"round": 1, "question": "G6：user-invoked/model-invoked 触发条件的触发条件字段应如何定义？", "answer": "两者都需要：同时声明触发短语和触发条件", "recommended": "两者都需要", "source": "final_confirmation", "at": "2026-08-32T09:00:00+08:00", "captured": true}

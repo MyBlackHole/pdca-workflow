@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "输出P0/P1/P2分级的改进计划",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["ev-improvement-plan-v2"]
+    },
+    {
+      "index": 2,
+      "text": "每个改进项有关联任务或本体节点",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["ev-improvement-plan-v2"]
+    },
+    {
+      "index": 3,
+      "text": "改进计划包含验证方式和收敛条件",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["ev-improvement-plan-v2"]
+    }
+  ]
+}

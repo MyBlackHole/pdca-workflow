@@ -1,0 +1,42 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0444",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "完成本地本体与mattpocock/skills逐项对照表",
+      "标注每个机制覆盖状态",
+      "标注每个差距的影响和价值"
+    ],
+    "created_at": "2026-08-30T18:05:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_node_type": "domain",
+    "phase": "act",
+    "record": "T0444-0830-pdca-ai-eff-review-mapping",
+    "scenario_type": "review",
+    "verdict": {
+      "outcome": "partial",
+      "reason": "覆盖良好但6项差距需落地",
+      "verdict_id": "v0444-partial-0831",
+      "at": "2026-08-31T08:36:38+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "partial",
+      "at": "2026-08-31T08:39:42+08:00"
+    }
+  },
+  "parent": "T0443",
+  "slug": "0830-pdca-ai-eff-review-mapping",
+  "states": {
+    "act": "2026-08-31T08:36:56+08:00",
+    "archive": null,
+    "check": "2026-08-31T08:16:00+08:00",
+    "created": "2026-08-30T18:05:00+08:00",
+    "do": "2026-08-30T18:06:00+08:00",
+    "plan": "2026-08-30T18:05:00+08:00"
+  },
+  "status": "Completed",
+  "title": "逐项对照本地 ai-efficiency 本体与 mattpocock/skills 核心机制"
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0445",
+  "from": "act",
+  "to": "archive",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta/disposition",
+      "message": "'reason' is a required property",
+      "guidance": "fix the field at /meta/disposition in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-08-31T08:39:10.943666+08:00"
+}

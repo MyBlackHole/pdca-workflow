@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "识别至少3个可落地差距点",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["ev-gap-analysis-v1"]
+    },
+    {
+      "index": 2,
+      "text": "每个差距标注影响、成本、风险、验证方式",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["ev-gap-analysis-v1"]
+    },
+    {
+      "index": 3,
+      "text": "按安全/门禁类 > 能力补齐类 > 细节完善类排序",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["ev-gap-analysis-v1"]
+    }
+  ]
+}

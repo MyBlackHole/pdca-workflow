@@ -1,0 +1,21 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0444",
+  "from": "act",
+  "to": "archive",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta/disposition",
+      "message": "Additional properties are not allowed ('knowledge_actions', 'summary', 'type' were unexpected)",
+      "guidance": "fix the field at /meta/disposition in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta/disposition",
+      "message": "'outcome' is a required property",
+      "guidance": "fix the field at /meta/disposition in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-08-31T08:38:00.198566+08:00"
+}

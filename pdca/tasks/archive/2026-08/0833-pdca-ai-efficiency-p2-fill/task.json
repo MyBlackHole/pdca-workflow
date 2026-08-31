@@ -1,0 +1,45 @@
+{
+  "id": "T0437",
+  "slug": "0833-pdca-ai-efficiency-p2-fill",
+  "title": "补齐 PDCA 本体 P2 差距：setup/wizard/teach 模式、Context-pointer branch trigger、SKILL-MECHANICS",
+  "parent": "T0436",
+  "children": [],
+  "dependencies": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "documentation",
+    "created_at": "2026-08-30T20:12:46+08:00",
+    "convergence": [
+      "AC-1：添加 setup-matt-pocock-skills 概念节点",
+      "AC-2：添加 wizard/teach/to-questionnaire 概念节点",
+      "AC-3：Context-pointer 新增 branch trigger attribute",
+      "AC-4：添加 SKILL-MECHANICS 等价概念节点",
+      "AC-5：登记证据，收敛映射 valid:true"
+    ],
+    "record": "T0437-0833-pdca-ai-efficiency-p2-fill",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "concept",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5 项 AC 全部达成，P2 差距全部补齐",
+      "verdict_id": "T0437-confirmed-2026-08-33",
+      "at": "2026-08-30T20:16:43+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "所有已知差距已补齐。后续迭代可关注新的外部技能候选评估或本体自举优化。",
+      "at": "2026-08-30T20:16:43+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-30T20:12:46+08:00",
+    "plan": "2026-08-30T20:13:47+08:00",
+    "do": "2026-08-30T20:13:47+08:00",
+    "check": "2026-08-30T20:16:43+08:00",
+    "act": "2026-08-30T20:16:43+08:00",
+    "archive": "2026-08-33T20:15:00+08:00"
+  }
+}

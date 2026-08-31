@@ -1,0 +1,21 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0443",
+  "from": "act",
+  "to": "archive",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta/disposition",
+      "message": "Additional properties are not allowed ('knowledge_actions', 'summary', 'type' were unexpected)",
+      "guidance": "fix the field at /meta/disposition in task.schema.json to satisfy the schema"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta/disposition/outcome",
+      "message": "'partial' is not one of ['projected', 'not_reusable', 'task_only']",
+      "guidance": "fix the field at /meta/disposition/outcome in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-08-31T08:38:44.762071+08:00"
+}

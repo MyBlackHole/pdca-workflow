@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "完成本地本体与mattpocock/skills逐项对照表",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["t0443-summary"]
+    },
+    {
+      "index": 2,
+      "text": "识别至少3个可落地差距点",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["t0443-summary"]
+    },
+    {
+      "index": 3,
+      "text": "输出带优先级的改进计划",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["t0443-summary"]
+    }
+  ]
+}

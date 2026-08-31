@@ -1,0 +1,6 @@
+{"at":"2026-08-30T18:00:00+08:00","source":"task_identity","summary":"created with record identity T0443-0830-pdca-ai-efficiency-review"}
+{"round":1,"question":"❓ Q1 - 审查范围：是否需要覆盖 mattpocock/skills 的全部 36 个技能，还是只聚焦 AI 效率相关的核心机制？","answer":"聚焦 AI 效率相关核心机制（失效模式驱动设计、双轨触发+薄组合器、Phase Boundary 五选项树、Grounding 依赖图写作法、提示词纪律降级为工具强制）","recommended":"聚焦 AI 效率相关核心机制","source":"grilling","at":"2026-08-30T18:01:00+08:00","captured":false}
+{"round":1,"question":"❓ Q2 - 差距评估维度：是否仅评估机制层面的差距，还是也包括文档经济学与上下文卫生（双负载核算、引导词、phase-boundary 树）？","answer":"两者都需要，但机制层面优先","recommended":"两者都需要，机制优先","source":"grilling","at":"2026-08-30T18:01:00+08:00","captured":false}
+{"round":1,"question":"❓ Q3 - 落地判定：三态（落地/不落地/增强）的优先级排序依据是什么？","answer":"安全/门禁类 > 能力补齐类 > 细节完善类","recommended":"安全/门禁类 > 能力补齐类 > 细节完善类","source":"grilling","at":"2026-08-30T18:01:00+08:00","captured":false}
+{"source":"final_confirmation","response":"confirmed","summary":"用户确认审查方向：聚焦 AI 效率核心机制，逐项对照 mattpocock/skills，识别差距并输出改进计划","at":"2026-08-30T18:02:00+08:00","captured":true}
+{"source":"check_confirmation","summary":"6项差距已识别并分级，改进计划已输出，需按优先级落地","response":"partial","at":"2026-08-31T08:33:59+08:00"}

@@ -1,0 +1,2 @@
+{"id":"t0443-summary","file":"t0443-summary.md","kind":"document","size":396,"digest":"sha256:d94391d114fb0f16b04567f91ae8f9a317c2b3a95e0e1492af0a3e635c8e21db","at":"2026-08-31T08:32:39+08:00","criteria":["AC-1","AC-2","AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":526,"digest":"sha256:9be2389b2f5671e55eb9f5e2aae2fc61f25ed0f8d752a79657088f34a043a6e5","at":"2026-08-31T08:32:45+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

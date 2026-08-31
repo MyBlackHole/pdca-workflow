@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0445",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "CONVERGENCE_MAP_MISSING",
+      "path": "records/T0445-0830-pdca-ai-eff-review-gap/evidence/manifest.jsonl",
+      "message": "exactly one entry with id and kind convergence-map is required"
+    }
+  ],
+  "at": "2026-08-31T08:28:05.654502+08:00"
+}

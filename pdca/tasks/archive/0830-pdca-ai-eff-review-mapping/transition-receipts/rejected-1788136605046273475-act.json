@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0444",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "STATE_TIME_ORDER",
+      "path": "/states",
+      "message": "timestamps must be nondecreasing",
+      "guidance": "state timestamps must be written by scripts/transition-phase.py as a single ordered sequence; never hand-write states timestamps. If a hand-written timestamp (e.g. with microseconds) is newer than the auto-written transition timestamp, align /states to the transition receipt times (see transition-receipts/) and re-run the transition."
+    }
+  ],
+  "at": "2026-08-31T08:36:45.046225+08:00"
+}

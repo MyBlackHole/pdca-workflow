@@ -1,0 +1,44 @@
+{
+  "id": "T0435",
+  "slug": "0831-pdca-ai-efficiency-p0-fix",
+  "title": "补齐 PDCA 本体 P0 差距：ask-matt 节点、writing-great-skills relations、pdca-task 字段",
+  "parent": "T0434",
+  "children": [],
+  "dependencies": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "documentation",
+    "created_at": "2026-08-30T19:41:10+08:00",
+    "convergence": [
+      "AC-1：添加 ontology:concept/ask-matt 概念节点，ontology-validate 通过",
+      "AC-2：更新 skill-writing-great-skills.md 的 relations，新增 leading-words/pointer-wording/no-op-judgment",
+      "AC-3：为 pdca-task 补充 steps 和 completion_criteria 字段，schema 校验通过",
+      "AC-4：登记证据，收敛映射 valid:true"
+    ],
+    "record": "T0435-0831-pdca-ai-efficiency-p0-fix",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "concept",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "4 项 AC 全部达成，P0 差距全部补齐",
+      "verdict_id": "T0435-confirmed-2026-08-31",
+      "at": "2026-08-30T19:51:44+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "P1 差距由 T0436 落地，P2 差距由 T0437 落地",
+      "at": "2026-08-30T19:51:44+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-30T19:41:10+08:00",
+    "plan": "2026-08-30T19:46:45+08:00",
+    "do": "2026-08-30T19:46:45+08:00",
+    "check": "2026-08-30T19:51:44+08:00",
+    "act": "2026-08-30T19:51:44+08:00",
+    "archive": "2026-08-31T19:51:00+08:00"
+  }
+}
