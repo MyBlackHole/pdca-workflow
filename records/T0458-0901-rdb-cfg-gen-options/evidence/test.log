@@ -1,0 +1,5 @@
+[0m[38;2;0;255;0;1m[ 96%]:[0m rdbcomm_handshake_session_test/default . [38;2;0;255;0;1mpassed[0m [1m0.253s[0m
+[0m[38;2;0;255;0;1m[ 98%]:[0m libobk_rman_mtls_test/default .......... [38;2;0;255;0;1mpassed[0m [1m0.691s[0m
+[0m[38;2;0;255;0;1m[100%]:[0m tls_cert_test/default .................. [38;2;0;255;0;1mpassed[0m [1m2.160s[0m
+[0m
+[38;2;0;255;0;1m100%[0m tests passed, [38;2;255;0;0;1m0[0m test(s) failed out of [1m51[0m, spent [1m2.250s[0m

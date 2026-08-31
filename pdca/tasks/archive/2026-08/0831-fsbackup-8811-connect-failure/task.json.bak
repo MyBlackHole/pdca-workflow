@@ -1,0 +1,44 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0463",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "FsKernel_AddTrackup 连接失败时可区分 TCP/握手/端口占用原因",
+      "AddSource 阶段预检 source_host:port 可达性并给出可操作提示",
+      "AddTrackup 错误链路透出 aio-speedd/内核服务状态而非仅 connect failure",
+      "回归验证端口占用与服务未启动两类故障均有明确日志与用户指引"
+    ],
+    "created_at": "2026-08-31T16:40:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "phase": "act",
+    "record": "T0463-0831-fsbackup-8811-connect-failure",
+    "scenario_type": "development",
+    "ontology_exempt": true,
+    "completed_at": "2026-08-31T17:05:55+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "4 AC 均有 test-8811-fix-v2 与真实链路验证支撑，核心 P0 判断错误已修复",
+      "at": "2026-08-31T17:06:15+08:00",
+      "verdict_id": "v0463-confirmed-0831"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "confirmed",
+      "at": "2026-08-31T17:06:35+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0831-fsbackup-8811-connect-failure",
+  "states": {
+    "act": "2026-08-31T17:06:32+08:00",
+    "archive": null,
+    "check": "2026-08-31T17:06:12+08:00",
+    "created": "2026-08-31T16:40:00+08:00",
+    "do": "2026-08-31T16:51:32+08:00",
+    "plan": "2026-08-31T16:40:00+08:00"
+  },
+  "status": "Completed",
+  "title": "修复 fsbackup 添加备份目录时 8811 端口连接失败诊断与端口冲突处理"
+}

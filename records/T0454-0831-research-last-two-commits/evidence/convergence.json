@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "AC-1 6195ba5d 变更/根因/修复/验证还原准确", "criteria": ["AC-1"], "evidence_ids": ["ev-report"]},
+    {"index": 2, "text": "AC-2 740d55f0 变更规模与分类及版本矩阵还原准确", "criteria": ["AC-2"], "evidence_ids": ["ev-report"]},
+    {"index": 3, "text": "AC-3 两次提交关联与重叠分析明确", "criteria": ["AC-3"], "evidence_ids": ["ev-report"]},
+    {"index": 4, "text": "AC-4 PDCA证据链与可复现命令完整", "criteria": ["AC-4"], "evidence_ids": ["ev-report"]},
+    {"index": 5, "text": "AC-5 风险与建议给出", "criteria": ["AC-5"], "evidence_ids": ["ev-report"]},
+    {"index": 6, "text": "AC-6 沉淀 pitfall 本体节点 tls-keygen-sign-uaf-serial 且 ontology-validate 通过", "criteria": ["AC-6"], "evidence_ids": ["ev-pitfall"]}
+  ]
+}

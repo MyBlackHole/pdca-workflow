@@ -1,0 +1,43 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0451",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "UAF 修复后连续双算法签发证书均可通过 openssl verify 与 mtls 自测",
+      "序列号唯一性修复",
+      "回归测试通过"
+    ],
+    "created_at": "2026-08-31T11:30:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "phase": "archive",
+    "record": "T0451-0831-tls-keygen-uaf-fix",
+    "scenario_type": "development",
+    "ontology_exempt": true,
+    "completed_at": "2026-08-31T12:15:59+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "UAF与序列号修复，回归通过",
+      "at": "2026-08-31T12:16:39+08:00",
+      "verdict_id": "v0451-confirmed-0831"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "confirmed",
+      "at": "2026-08-31T12:17:30+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0831-tls-keygen-uaf-fix",
+  "states": {
+    "act": "2026-08-31T12:17:27+08:00",
+    "archive": "2026-08-31T12:17:35+08:00",
+    "check": "2026-08-31T12:15:59+08:00",
+    "created": "2026-08-31T11:30:00+08:00",
+    "do": "2026-08-31T11:38:33+08:00",
+    "plan": "2026-08-31T11:30:00+08:00"
+  },
+  "status": "Completed",
+  "title": "修复 tls-keygen 签发证书 UAF 与多算法并发证书异常"
+}

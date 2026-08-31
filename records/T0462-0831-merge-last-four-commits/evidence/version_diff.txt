@@ -1,0 +1,86 @@
+diff --git a/rdb-cfg/version.in b/rdb-cfg/version.in
+new file mode 100644
+index 00000000..11c4a2c9
+--- /dev/null
++++ b/rdb-cfg/version.in
+@@ -0,0 +1 @@
++${RDB_CFG_VERSION}
+diff --git a/version.h.in b/version.h.in
+index d4f59ee9..9df3f4cb 100644
+--- a/version.h.in
++++ b/version.h.in
+@@ -10,3 +10,5 @@
+ #define TLS_KEYGEN_VERSION "${TLS_KEYGEN_VERSION}"
+ #define RPC_KEYGEN_VERSION "${RPC_KEYGEN_VERSION}"
+ #define XBSA_VERSION "${XBSA_VERSION}"
++#define OSS_VERSION "${OSS_VERSION}"
++#define RDB_CFG_VERSION "${RDB_CFG_VERSION}"
+diff --git a/version.log.in b/version.log.in
+index a1504d62..7417806d 100644
+--- a/version.log.in
++++ b/version.log.in
+@@ -18,3 +18,5 @@ s3-tool "${S3TOOL_VERSION_OLD}"
+ makeFsbackup "${FSBACKUP_KERNEL_VERSION}"
+ xbsa64 "${XBSA_VERSION}"
+ rch-tools "${XBSA_VERSION}"
++aio-oss "${OSS_VERSION}"
++rdb-cfg "${RDB_CFG_VERSION}"
+diff --git a/xmake.lua b/xmake.lua
+index de73b84f..6bd5cda7 100644
+--- a/xmake.lua
++++ b/xmake.lua
+@@ -9,18 +9,20 @@ add_rules("mode.release", "mode.debug")
+ 
+ 
+ -- add_includedirs("fsbackup_kernel_4.x/device")
+-rpc_version = "3.6.4.19"
++rpc_version = "3.6.4.20"
+ fsdaemon_version = rpc_version
+-rdbcomm_version = "1.0.1.8"
++rdbcomm_version = "1.0.1.9"
+ s3tools_version = "1.0.1.4"
+-libobk_version = "1.0.0.0"
+-dmsbtex_version = "1.1.0.1"
++libobk_version = "1.0.0.1"
++dmsbtex_version = "1.1.0.2"
+ bwlimit_version = "1.0.0.1"
+ s3tools_version_old = "1.5.0.8"
+-tls_keygen_version = "1.0.0.0"
++tls_keygen_version = "1.0.0.3"
+ rpc_keygen_version = "1.0.0.0"
+ fsbackup_kernel_version = "3.3.1.6"
+ xbsa_version = "1.1.1.7"
++oss_version = "1.0.0.1"
++rdb_cfg_version = "1.0.0.1"
+ -- s3tool_version_old = "1.0.0.2"
+ 
+ 
+@@ -37,6 +39,8 @@ set_configvar("TLS_KEYGEN_VERSION", tls_keygen_version)
+ set_configvar("RPC_KEYGEN_VERSION", rpc_keygen_version)
+ set_configvar("FSBACKUP_KERNEL_VERSION", fsbackup_kernel_version)
+ set_configvar("XBSA_VERSION", xbsa_version)
++set_configvar("OSS_VERSION", oss_version)
++set_configvar("RDB_CFG_VERSION", rdb_cfg_version)
+ add_configfiles("version.h.in", "version.log.in")
+ add_includedirs("$(builddir)/")
+ 
+@@ -54,6 +58,10 @@ end
+ 
+ lib_dir = "lib_" .. arch
+ 
++-- F-139: 国密 TLS 采用 OpenSSL 4 单库方案（见 docs/adr/ADR-0001）, 本地源码包目录
++-- 注意：URL 指向项目根目录，xmake 会按 packages/<首字母>/<名> 结构搜索本地包
++add_repositories("local-repo " .. os.scriptdir())
++
+ includes("libs")
+ includes("bwlimit")
+ includes("s3-tool")
+@@ -66,6 +74,8 @@ includes("rdbcomm")
+ includes("s3tools")
+ includes("rpc-keygen")
+ includes("xbsa")
++includes("oss")
++includes("rdb-cfg")
+ 
+ target("makeFsbackup")
+     set_prefixdir("bin", {bindir = ""})

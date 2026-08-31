@@ -16,7 +16,7 @@ attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: 由领域实践与测试验证
+  testable_signal: 运行 scripts/seam_contract.py 校验 PRD 声明的 seam 清单与实际测试文件的一致性，且契约测试套件 SourceConsistencyContractTest/DesignVocabContractTest/SeamFileExistenceTest 全部通过，不一致时退出非0并报告缺失项
 ---
 
 ---

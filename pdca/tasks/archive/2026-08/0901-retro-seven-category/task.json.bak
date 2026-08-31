@@ -1,0 +1,45 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0460",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1 新增ontology/concept/retrospective.md 含7分类定义且ontology-validate通过",
+      "AC-2 self-optimization-loop.md引用retrospective 7分类作为Act回顾清单",
+      "AC-3 ontology-validate通过且islands:0",
+      "AC-4 新增ontology/domain/skill-retrospective.md 描述触发与7分类呈现流程"
+    ],
+    "created_at": "2026-08-31T16:02:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "concept",
+    "phase": "act",
+    "record": "T0460-0901-retro-seven-category",
+    "scenario_type": "development",
+    "completed_at": "2026-08-31T16:28:05+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "4AC均通过",
+      "at": "2026-08-31T16:28:30+08:00",
+      "verdict_id": "v-confirmed-0831"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "4AC均通过，已沉淀为本体资产",
+      "at": "2026-08-31T16:29:00+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0901-retro-seven-category",
+  "states": {
+    "act": "2026-08-31T16:28:55+08:00",
+    "archive": null,
+    "check": "2026-08-31T16:28:05+08:00",
+    "created": "2026-08-31T16:02:00+08:00",
+    "do": "2026-08-31T16:02:52+08:00",
+    "plan": "2026-08-31T16:02:00+08:00"
+  },
+  "status": "Completed",
+  "title": "补齐retro 7分类回顾能力"
+}

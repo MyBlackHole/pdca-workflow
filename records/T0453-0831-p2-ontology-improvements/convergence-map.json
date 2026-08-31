@@ -1,0 +1,64 @@
+{
+  "converged": true,
+  "valid": true,
+  "map": [
+    {
+      "ac": "AC-1",
+      "evidence_ids": [
+        "ev-P2-0831-negative-space"
+      ],
+      "ontology_nodes": [
+        "ontology:domain/skill-writing-great-skills.md"
+      ],
+      "status": "converged"
+    },
+    {
+      "ac": "AC-2",
+      "evidence_ids": [
+        "ev-P2-0831-cache"
+      ],
+      "ontology_nodes": [
+        "ontology:domain/skill-writing-great-skills.md"
+      ],
+      "status": "converged"
+    },
+    {
+      "ac": "AC-3",
+      "evidence_ids": [
+        "ev-P2-0831-to-questionnaire"
+      ],
+      "ontology_nodes": [
+        "ontology:domain/skill-to-questionnaire.md"
+      ],
+      "status": "converged"
+    },
+    {
+      "ac": "AC-4",
+      "evidence_ids": [
+        "ev-P2-0831-wait-wait"
+      ],
+      "ontology_nodes": [
+        "ontology:domain/skill-wait-wait.md"
+      ],
+      "status": "converged"
+    },
+    {
+      "ac": "AC-5",
+      "evidence_ids": [
+        "ev-P2-0831-hitl-afk"
+      ],
+      "ontology_nodes": [
+        "ontology:domain/skill-wayfinder.md"
+      ],
+      "status": "converged"
+    },
+    {
+      "ac": "AC-6",
+      "evidence_ids": [
+        "ev-P2-0831-validate"
+      ],
+      "ontology_nodes": [],
+      "status": "converged"
+    }
+  ]
+}

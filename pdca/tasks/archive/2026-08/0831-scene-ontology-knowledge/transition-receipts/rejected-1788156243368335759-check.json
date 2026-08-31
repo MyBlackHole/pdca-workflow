@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0455",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "CLARIFICATIONS_INVALID",
+      "path": "clarifications.jsonl",
+      "message": "/home/black/Documents/pdca-workflow-pro/pdca/tasks/0831-scene-ontology-knowledge/clarifications.jsonl:5: invalid JSON: Extra data"
+    }
+  ],
+  "at": "2026-08-31T14:04:03.368312+08:00"
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1 新增ontology/pattern/testable-signal-to-test-derivation.md 描述3种派生模式且validate通过",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["ac1-pattern"]
+    },
+    {
+      "index": 2,
+      "text": "AC-2 skill-ontology-check.md增加泛化信号校验指引",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["ac2-skill-check"]
+    },
+    {
+      "index": 3,
+      "text": "AC-3 示范精化2个domain节点的testable_signal为具体信号",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["ac3-domain-refinement"]
+    },
+    {
+      "index": 4,
+      "text": "AC-4 ontology-validate通过且islands:0",
+      "criteria": ["AC-4"],
+      "evidence_ids": ["ac4-validate"]
+    }
+  ]
+}

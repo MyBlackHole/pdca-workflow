@@ -1,0 +1,53 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0463",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-1",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-2",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-3",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-4",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0463-0831-fsbackup-8811-connect-failure/evidence/convergence_v3.json[1]",
+      "message": "listed evidence does not support AC-1",
+      "guidance": "re-register the supporting evidence with --criterion AC-1, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0463-0831-fsbackup-8811-connect-failure/evidence/convergence_v3.json[2]",
+      "message": "listed evidence does not support AC-2",
+      "guidance": "re-register the supporting evidence with --criterion AC-2, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0463-0831-fsbackup-8811-connect-failure/evidence/convergence_v3.json[3]",
+      "message": "listed evidence does not support AC-3",
+      "guidance": "re-register the supporting evidence with --criterion AC-3, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0463-0831-fsbackup-8811-connect-failure/evidence/convergence_v3.json[4]",
+      "message": "listed evidence does not support AC-4",
+      "guidance": "re-register the supporting evidence with --criterion AC-4, or fix the map to cite evidence that actually covers it"
+    }
+  ],
+  "at": "2026-08-31T17:05:27.249078+08:00"
+}

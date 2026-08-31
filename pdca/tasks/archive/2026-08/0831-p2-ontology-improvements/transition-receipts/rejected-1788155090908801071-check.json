@@ -1,0 +1,85 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0453",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "EVIDENCE_SIZE_MISMATCH",
+      "path": "records/T0453-0831-p2-ontology-improvements/evidence/convergence-map.json",
+      "message": "size does not match manifest"
+    },
+    {
+      "code": "EVIDENCE_DIGEST_MISMATCH",
+      "path": "records/T0453-0831-p2-ontology-improvements/evidence/convergence-map.json",
+      "message": "digest does not match"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-1",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-2",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-3",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-4",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-5",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-6",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0453-0831-p2-ontology-improvements/evidence/convergence-map.json[1]",
+      "message": "listed evidence does not support AC-1",
+      "guidance": "re-register the supporting evidence with --criterion AC-1, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0453-0831-p2-ontology-improvements/evidence/convergence-map.json[2]",
+      "message": "listed evidence does not support AC-2",
+      "guidance": "re-register the supporting evidence with --criterion AC-2, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0453-0831-p2-ontology-improvements/evidence/convergence-map.json[3]",
+      "message": "listed evidence does not support AC-3",
+      "guidance": "re-register the supporting evidence with --criterion AC-3, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0453-0831-p2-ontology-improvements/evidence/convergence-map.json[4]",
+      "message": "listed evidence does not support AC-4",
+      "guidance": "re-register the supporting evidence with --criterion AC-4, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0453-0831-p2-ontology-improvements/evidence/convergence-map.json[5]",
+      "message": "listed evidence does not support AC-5",
+      "guidance": "re-register the supporting evidence with --criterion AC-5, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0453-0831-p2-ontology-improvements/evidence/convergence-map.json[6]",
+      "message": "listed evidence does not support AC-6",
+      "guidance": "re-register the supporting evidence with --criterion AC-6, or fix the map to cite evidence that actually covers it"
+    }
+  ],
+  "at": "2026-08-31T13:44:50.908774+08:00"
+}

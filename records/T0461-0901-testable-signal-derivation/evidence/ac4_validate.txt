@@ -1,0 +1,6 @@
+OK: ontology 通过本体契约校验
+---
+# Ontology graph summary
+nodes: 349
+edges: 754
+islands: 0

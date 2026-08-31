@@ -1,0 +1,58 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1 四提交合并为单一提交，git log fe9d4364..HEAD 仅1条",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-log",
+        "ev-diff"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "AC-2 提交信息符合需求模板且无B前缀",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-log",
+        "ev-msg"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "AC-3 版本一次性递进正确",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-msg",
+        "ev-version"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "AC-4 分支一致性且可推送",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-diff"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "AC-5 功能不回归",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-log"
+      ]
+    }
+  ]
+}

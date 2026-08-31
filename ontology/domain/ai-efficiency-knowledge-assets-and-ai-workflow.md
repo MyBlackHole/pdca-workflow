@@ -16,7 +16,7 @@ attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: 由领域实践与测试验证
+  testable_signal: 检查资产 source_ids 非空且可追溯至 Evidence/Experience，并对抽样查询执行 retrieval/groundedness/relevance/completeness 四维评估达标，缺失来源链或任一维度未通过时报告具体资产与维度
 ---
 
 ---

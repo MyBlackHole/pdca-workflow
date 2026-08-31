@@ -1,0 +1,29 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1 新增ontology/concept/retrospective.md 含7分类定义且ontology-validate通过",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["ac1-retrospective-concept"]
+    },
+    {
+      "index": 2,
+      "text": "AC-2 self-optimization-loop.md引用retrospective 7分类作为Act回顾清单",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["ac2-self-loop"]
+    },
+    {
+      "index": 3,
+      "text": "AC-3 ontology-validate通过且islands:0",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["ac3-validate-report"]
+    },
+    {
+      "index": 4,
+      "text": "AC-4 新增ontology/domain/skill-retrospective.md 描述触发与7分类呈现流程",
+      "criteria": ["AC-4"],
+      "evidence_ids": ["ac4-skill-retrospective"]
+    }
+  ]
+}

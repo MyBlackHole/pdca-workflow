@@ -1,0 +1,5 @@
+{"at": "2026-08-31T16:02:00+08:00", "source": "task_identity", "summary": "created with record identity T0461-0901-testable-signal-derivation"}
+{"round": 1, "question": "Q1-示范精化选哪2个domain节点？", "recommended": "选 `ai-efficiency-contract-test-pattern` 与 `ai-efficiency-knowledge-assets-and-ai-workflow`（前者贴近测试派生主题，后者贴近知识资产）", "source": "grilling", "at": "2026-08-31T16:02:10+08:00", "captured": false}
+{"round": 1, "question": "Q2-是否硬化 ontology-validate AC-4 为非泛化校验？", "recommended": "否，仅在 skill-ontology-check.md 增加指引，不改脚本逻辑（避免误伤存量 122 个泛化）", "source": "grilling", "at": "2026-08-31T16:02:10+08:00", "captured": false}
+{"source":"final_confirmation","summary":"确认立项，按推荐推进","response":"confirmed","at":"2026-08-31T16:02:38+08:00"}
+{"source":"check_confirmation","summary":"确认结论：4AC均通过","response":"confirmed","at":"2026-08-31T16:28:42+08:00"}

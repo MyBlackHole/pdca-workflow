@@ -1,0 +1,4 @@
+{"at":"2026-08-31T16:40:00+08:00","source":"task_identity","summary":"created with record identity T0463-0831-fsbackup-8811-connect-failure"}
+{"source":"direction_confirm","summary":"方向确认：P0 修复错误归类（connect vs handshake）与透出（ioctl_buff→json msg），P1 补 AddSource 预检；保持 hostfwd 拓扑与手动 insmod 语义，验收以日志细分+客户端 msg 透出+预检提示为准。用户已提供 VM ssh 1358 并确认继续。","response":"confirmed","at":"2026-08-31T16:51:25+08:00"}
+{"source":"final_confirmation","summary":"Plan 完成：triage(development)、Grill(ssh 1358 诊断 qemu 8811 转发与 fsbackup.ko 未加载)、PRD 已含4项可勾选验收（日志细分/透出/预检/回归）、方向已确认，保持拓扑仅增强诊断。申请进入 Do。","response":"confirmed","at":"2026-08-31T16:51:29+08:00"}
+{"source":"check_confirmation","summary":"Check 结论 confirmed：4 AC 均有 test-8811-fix-v2 支撑，核心 P0 fd 误判已修复，aio-speed 17:02:14 通，add-trackup 错误已细化至 File exists，预检 ok。","response":"confirmed","at":"2026-08-31T17:06:12+08:00"}

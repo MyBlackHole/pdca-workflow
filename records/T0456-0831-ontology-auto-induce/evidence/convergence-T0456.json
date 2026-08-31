@@ -1,0 +1,73 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "EvidenceAdapter 在 ontology_induction.py 中实现，可运行 python3 scripts/ontology_induction.py --adapter evidence",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "report",
+        "demo-evidence-adapter",
+        "test-auto-induce"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "auto_induce_flow_issues 函数可配置阈值并自动创建 improvement candidate",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "report",
+        "test-auto-induce"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "ontology_gate.py 新增 auto_induce_evidence 函数，Act 阶段调用",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "report",
+        "test-auto-induce"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "ontology-validate.py 通过（AC-1~AC-6）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "report",
+        "test-auto-induce"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "ontology_graph.py --format summary islands: 0",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "report",
+        "test-auto-induce"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "新增测试断言覆盖 EvidenceAdapter 和 auto_induce_evidence",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "report",
+        "demo-evidence-adapter",
+        "test-auto-induce"
+      ]
+    }
+  ]
+}

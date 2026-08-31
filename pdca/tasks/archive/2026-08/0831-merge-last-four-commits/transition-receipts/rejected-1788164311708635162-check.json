@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0462",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ONTOLOGY_FRAGMENT_MISSING",
+      "path": "task.json",
+      "message": "do 前置 ontology-ready：meta.ontology_fragment 未设置（scenario_type=development）；请声明 ontology_fragment 或设 ontology_exempt=true 并说明豁免原因",
+      "guidance": "设置 meta.ontology_fragment 指向 ontology 片段，或在 task.json 设 ontology_exempt=true"
+    }
+  ],
+  "at": "2026-08-31T16:18:31.708598+08:00"
+}

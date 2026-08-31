@@ -1,0 +1,135 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "补充 skill-writing-great-skills.md 的 Negative Space 完整章节",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-negative-space-full"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "补充 skill-writing-great-skills.md 的 Cache 完整章节",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-cache-full"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "优化 skill-ask-matt.md 的 wayfinder 常见错误章节",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-wayfinder-errors"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "优化 skill-prototype.md 的 model-invoked + throwaway branch 描述",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-prototype-optimized"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "优化 skill-tdd.md 的 model-invoked 描述",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-tdd-optimized"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "优化 skill-research.md 的 subagent 并行 burn-down 描述",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-research-optimized"
+      ]
+    },
+    {
+      "index": 7,
+      "text": "优化 skill-triage.md 的 external PR 处理章节",
+      "criteria": [
+        "AC-7"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-triage-optimized"
+      ]
+    },
+    {
+      "index": 8,
+      "text": "补充 skill-to-questionnaire.md 完整正文",
+      "criteria": [
+        "AC-8"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-to-questionnaire-full"
+      ]
+    },
+    {
+      "index": 9,
+      "text": "补充 skill-wait-wait.md 完整正文",
+      "criteria": [
+        "AC-9"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-wait-wait-full"
+      ]
+    },
+    {
+      "index": 10,
+      "text": "优化 skill-wayfinder.md 的 HITL/AFK 分类描述",
+      "criteria": [
+        "AC-10"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-wayfinder-hitl-afk"
+      ]
+    },
+    {
+      "index": 11,
+      "text": "补充 skill-invocation-contract.md 完整正文",
+      "criteria": [
+        "AC-11"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-invocation-contract-full"
+      ]
+    },
+    {
+      "index": 12,
+      "text": "补充 skill-mechanics.md 完整正文",
+      "criteria": [
+        "AC-12"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-mechanics-full"
+      ]
+    },
+    {
+      "index": 13,
+      "text": "所有改进后 ontology-validate 通过且 islands: 0",
+      "criteria": [
+        "AC-13"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-validate"
+      ]
+    }
+  ]
+}

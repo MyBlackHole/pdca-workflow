@@ -1,0 +1,45 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0462",
+  "meta": {
+    "active": false,
+    "completed_at": "2026-08-31T16:22:20+08:00",
+    "convergence": [
+      "AC-1 四提交合并为单一提交，git log fe9d4364..HEAD 仅1条",
+      "AC-2 提交信息符合需求模板且无B前缀",
+      "AC-3 版本一次性递进正确",
+      "AC-4 分支一致性且可推送",
+      "AC-5 功能不回归"
+    ],
+    "created_at": "2026-08-31T16:00:00+08:00",
+    "disposition": {
+      "at": "2026-08-31T16:23:00+08:00",
+      "outcome": "task_only",
+      "reason": "confirmed，squash 为单次需求已标准化，无需本体沉淀"
+    },
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_exempt": true,
+    "phase": "archive",
+    "record": "T0462-0831-merge-last-four-commits",
+    "scenario_type": "development",
+    "verdict": {
+      "at": "2026-08-31T16:22:20+08:00",
+      "outcome": "confirmed",
+      "reason": "5/5 AC通过，单次F需求提交，版本与内容一致",
+      "verdict_id": "v0462-confirmed-0831"
+    }
+  },
+  "parent": null,
+  "slug": "0831-merge-last-four-commits",
+  "states": {
+    "act": "2026-08-31T16:23:00+08:00",
+    "archive": "2026-08-31T16:23:24+08:00",
+    "check": "2026-08-31T16:20:55+08:00",
+    "created": "2026-08-31T16:00:00+08:00",
+    "do": "2026-08-31T16:15:33+08:00",
+    "plan": "2026-08-31T16:00:00+08:00"
+  },
+  "status": "Completed",
+  "title": "合并最后四个提交统一为需求修改"
+}

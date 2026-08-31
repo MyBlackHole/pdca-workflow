@@ -1,0 +1,3 @@
+{"at":"2026-08-31T12:00:00+08:00","source":"task_identity","summary":"created with record identity T0451-0831-tls-keygen-uaf-fix"}
+{"source":"final_confirmation","summary":"确认立项：修复 UAF 与序列号冲突","response":"confirmed","at":"2026-08-31T11:34:08+08:00"}
+{"source":"check_confirmation","summary":"验证通过：UAF与序列号修复，回归通过","response":"confirmed","at":"2026-08-31T12:16:39+08:00"}

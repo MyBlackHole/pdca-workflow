@@ -1,0 +1,59 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0453",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "CLARIFICATIONS_INVALID",
+      "path": "clarifications.jsonl",
+      "message": "/home/black/Documents/pdca-workflow-pro/pdca/tasks/0831-p2-ontology-improvements/clarifications.jsonl:6: invalid JSON: Extra data"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-1",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-2",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-3",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-4",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-5",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-6",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0453-0831-p2-ontology-improvements/evidence/convergence-map.json[/]",
+      "message": "Additional properties are not allowed ('converged', 'map', 'valid' were unexpected)"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0453-0831-p2-ontology-improvements/evidence/convergence-map.json[/]",
+      "message": "'schema' is a required property"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0453-0831-p2-ontology-improvements/evidence/convergence-map.json[/]",
+      "message": "'items' is a required property"
+    }
+  ],
+  "at": "2026-08-31T13:39:17.670942+08:00"
+}

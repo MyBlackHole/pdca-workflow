@@ -189,6 +189,19 @@ def main() -> int:
         print(pdca_context.render(args.to, root / "ontology"), file=sys.stderr)
     except Exception:
         pass
+    # T0456：Act 阶段 evidence→ontology 自动反哺顾问式提示（不阻断，仅指引）
+    if args.to in ("act", "archive"):
+        try:
+            for iss in ontology_gate.auto_induce_evidence(task, root):
+                print(f"[auto-induce] {iss.code}: {iss.message}", file=sys.stderr)
+                if iss.guidance:
+                    print(f"  guidance: {iss.guidance}", file=sys.stderr)
+            for iss in ontology_gate.auto_induce_flow_issues(root, threshold=3):
+                print(f"[auto-induce] {iss.code}: {iss.message}", file=sys.stderr)
+                if iss.guidance:
+                    print(f"  guidance: {iss.guidance}", file=sys.stderr)
+        except Exception:
+            pass
     return 0
 
 

@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0463",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "CONCLUSION_MISSING",
+      "path": "records/T0463-0831-fsbackup-8811-connect-failure/conclusion.md",
+      "message": "conclusion is required"
+    }
+  ],
+  "at": "2026-08-31T17:06:20.129817+08:00"
+}

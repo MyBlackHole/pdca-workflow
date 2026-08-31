@@ -94,6 +94,82 @@ class KnowledgeDraftAdapter(Adapter):
         return f.stem
 
 
+class EvidenceAdapter(Adapter):
+    """Evidence -> RawDraft adapter：从 records/*/evidence/manifest.jsonl 归纳候选。
+
+    将每条 evidence 按 evidence_type_ref / kind 聚合，生成 RawDraft，
+    其 text 携带 kind 与关联本体引用，供后续 induce 生成候选 guides。
+    若传入 path 为 manifest.jsonl 直链则仅读该文件；若为目录则递归扫描。
+    """
+
+    def parse(self, path: Path) -> list[RawDraft]:
+        import json
+
+        manifests: list[Path] = []
+        if path.is_file() and path.name == "manifest.jsonl":
+            manifests = [path]
+        elif path.is_file():
+            # 单条 evidence 文件，也视为一条 draft
+            text = path.read_text(encoding="utf-8", errors="ignore")[:2000]
+            return [RawDraft(path, path.stem, text)]
+        else:
+            # 目录：递归找所有 manifest.jsonl
+            manifests = sorted(path.rglob("manifest.jsonl"))
+            # 若目录本身不含 manifest，尝试直接找 evidence 文件
+            if not manifests and path.is_dir():
+                files = sorted(path.rglob("*.md")) + sorted(path.rglob("*.json"))
+                drafts = []
+                for f in files[:20]:
+                    try:
+                        txt = f.read_text(encoding="utf-8", errors="ignore")[:2000]
+                    except Exception:
+                        continue
+                    drafts.append(RawDraft(f, f.stem, txt))
+                if drafts:
+                    return drafts
+
+        drafts: list[RawDraft] = []
+        seen: dict[str, list[Path]] = {}
+        for mf in manifests:
+            try:
+                lines = mf.read_text(encoding="utf-8").splitlines()
+            except Exception:
+                continue
+            for line in lines:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    entry = json.loads(line)
+                except Exception:
+                    continue
+                if entry.get("superseded_by"):
+                    continue
+                kind = str(entry.get("kind", "evidence"))
+                ref = str(entry.get("evidence_type_ref") or "")
+                key = ref or f"kind:{kind}"
+                seen.setdefault(key, []).append(mf)
+                # 每条 evidence 生成一个 draft；聚合去重在 induce 阶段完成
+                eid = str(entry.get("id", kind))
+                title = f"evidence-{kind}-{eid}"
+                # 构造携带本体引用的文本，供 propose_guides 命中
+                parts = [f"# {title}", f"kind: {kind}"]
+                if ref:
+                    parts.append(f"evidence_type_ref: {ref} 关联 {ref}")
+                # 关联 pdca-evidence 子类型便于 guides 命中 domain 实体
+                criteria = entry.get("criteria") or []
+                if criteria:
+                    parts.append(f"criteria: {', '.join(str(c) for c in criteria)}")
+                text = "\n".join(parts)
+                drafts.append(RawDraft(mf, title, text))
+
+        # 去重：同一 key 保留一条代表
+        deduped: dict[str, RawDraft] = {}
+        for d in drafts:
+            deduped.setdefault(d.title, d)
+        return list(deduped.values())
+
+
 def infer_type(title: str, text: str) -> str:
     blob = (title + "\n" + text[:800]).lower()
     for kw, t in TYPE_KEYWORDS.items():
@@ -140,12 +216,19 @@ def _slug(title: str, path: Path) -> str:
     return s[:60]
 
 
-def induce(source: Path, ontology_dir: Path) -> list[Candidate]:
-    drafts = KnowledgeDraftAdapter().parse(source)
+def induce(source: Path, ontology_dir: Path, adapter: str = "knowledge") -> list[Candidate]:
+    if adapter == "evidence":
+        drafts = EvidenceAdapter().parse(source)
+    else:
+        drafts = KnowledgeDraftAdapter().parse(source)
     ontology = load_ontology(ontology_dir)
     cands: list[Candidate] = []
     for d in drafts:
         t = infer_type(d.title, d.text)
+        # evidence 场景：优先映射到 concept/domain，且保留 evidence 关联
+        if adapter == "evidence" and t == "concept":
+            # evidence 产生的候选默认挂到 pdca 体系，避免孤岛
+            pass
         spec = propose_specializes(t)
         guides = propose_guides(d.text, ontology)
         cid = "ontology:" + t + "/" + _slug(d.title, d.path)
@@ -163,11 +246,13 @@ def render_candidate_md(c: Candidate) -> str:
 def main() -> int:
     ap = argparse.ArgumentParser(description="Semi-automatic ontology induction aid")
     ap.add_argument("--source", required=True, type=Path,
-                    help="knowledge draft dir/file (adapters may extend to code/web)")
+                    help="knowledge draft dir/file or records dir for evidence adapter")
     ap.add_argument("--ontology-dir", type=Path, default=Path("ontology"))
+    ap.add_argument("--adapter", choices=("knowledge", "evidence"), default="knowledge",
+                    help="选择 adapter：knowledge（默认）或 evidence")
     ap.add_argument("--out", choices=("print", "patch"), default="print")
     args = ap.parse_args()
-    cands = induce(args.source, args.ontology_dir)
+    cands = induce(args.source, args.ontology_dir, adapter=args.adapter)
     for c in cands:
         if args.out == "print":
             print(render_candidate_md(c))

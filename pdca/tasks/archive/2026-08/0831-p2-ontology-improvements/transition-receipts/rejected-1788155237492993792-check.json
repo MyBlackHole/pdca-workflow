@@ -1,0 +1,24 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0453",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "EVIDENCE_SIZE_MISMATCH",
+      "path": "records/T0453-0831-p2-ontology-improvements/evidence/convergence-map.json",
+      "message": "size does not match manifest"
+    },
+    {
+      "code": "EVIDENCE_DIGEST_MISMATCH",
+      "path": "records/T0453-0831-p2-ontology-improvements/evidence/convergence-map.json",
+      "message": "digest does not match"
+    },
+    {
+      "code": "CONVERGENCE_MAP_MISSING",
+      "path": "records/T0453-0831-p2-ontology-improvements/evidence/manifest.jsonl",
+      "message": "exactly one entry with id and kind convergence-map is required"
+    }
+  ],
+  "at": "2026-08-31T13:47:17.492927+08:00"
+}

@@ -1,0 +1,49 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0451",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "EVIDENCE_SIZE_MISMATCH",
+      "path": "records/T0451-0831-tls-keygen-uaf-fix/evidence/convergence.json",
+      "message": "size does not match manifest"
+    },
+    {
+      "code": "EVIDENCE_DIGEST_MISMATCH",
+      "path": "records/T0451-0831-tls-keygen-uaf-fix/evidence/convergence.json",
+      "message": "digest does not match"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-1",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-2",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-3",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0451-0831-tls-keygen-uaf-fix/evidence/convergence.json[/items/0/criteria/0]",
+      "message": "'UAF 修复后连续双算法签发证书均可通过 openssl verify 与 mtls 自测' does not match '^AC-[1-9][0-9]*$'"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0451-0831-tls-keygen-uaf-fix/evidence/convergence.json[/items/1/criteria/0]",
+      "message": "'序列号唯一性修复' does not match '^AC-[1-9][0-9]*$'"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0451-0831-tls-keygen-uaf-fix/evidence/convergence.json[/items/2/criteria/0]",
+      "message": "'回归测试通过' does not match '^AC-[1-9][0-9]*$'"
+    }
+  ],
+  "at": "2026-08-31T12:14:27.510735+08:00"
+}

@@ -1,0 +1,60 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "research/design/review 须声明 ontology_fragment 或 ontology_exempt 原因",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "report",
+        "test-fragment-scope"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "ontology_gate.ontology_ready_issues 覆盖四类 scenario_type",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "report",
+        "test-fragment-scope"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "ontology_reason.FALLBACK_ADMISSION 或 admission_conditions 同步",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "report",
+        "test-fragment-scope"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "ontology-validate 通过且 islands 0",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "report",
+        "test-fragment-scope"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "新增测试覆盖非 development 路径门禁",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "report",
+        "test-fragment-scope"
+      ]
+    }
+  ]
+}

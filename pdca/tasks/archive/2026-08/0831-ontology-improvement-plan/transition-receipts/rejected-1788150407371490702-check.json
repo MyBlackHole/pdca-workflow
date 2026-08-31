@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0452",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ONTOLOGY_FRAGMENT_INVALID",
+      "path": "task.json",
+      "message": "skill-invocation-contract.md: type!=目录名; skill-mechanics.md: type!=目录名"
+    }
+  ],
+  "at": "2026-08-31T12:26:47.371463+08:00"
+}

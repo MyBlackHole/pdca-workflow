@@ -1,0 +1,32 @@
+【F-139】TLS安全链路整合统一为需求：TLS/mTLS全栈、签发加固与配置模板自解释
+
+需求描述: 在 F-139 TLS/mTLS 全栈实现基础上，统合 T0451 签发 UAF 与序列号修复、T0457 回退熵与 UB 遗留收口、T0458 rdb-cfg gen 约束展示增强，合并原分散的 4 次提交（F-139 + B-T0451 + B-T0457 + F-T0458）为单次需求提交。使 TLS 安全链路、证书工具健壮性、配置模板可用性统一以需求形态交付，便于版本归一与发布。
+
+需求背景: 1) F-139 已完成 TLS/mTLS 全栈、rpc 安全开关进程上下文化、oss HTTPS 开关化、配置加载收口、mTLS fail-closed 等，但遗留签发链路 UAF 与固定序列号问题；2) T0451 修复 UAF（EVP_PKEY_free 时序）与序列号硬编码 2 导致同 CA 多证书冲突；3) T0457 收口 T0451 遗留：random() 熵不足与线程不安全、long long 左移 UB、sys/stat.h 重复包含、X509_set_pubkey 失败无诊断；4) T0458 增强 rdb-cfg gen 模板自解释能力（BOOL 可选值、INT 范围、tls_algorithm 枚举含义、STR 最大长度）。四次提交类型分散（F/B 混杂）、版本碎片化，需统一为需求。
+
+实现方案: 1) TLS/mTLS 全栈（F-139 原量）：dmsbtex/libobk/rpc/fs-backup/oss 全链路 TLS 化，安全开关进程上下文化，配置统一收口至 init_config 并修复 reload 边界，rdb-config store 加载补齐（dmsbtex/libobk .so），全局算法 key 由 ciphersuites 统一为 tls_algorithm，logger 重复 fork 回调修复，mTLS 证书缺失/算法异常 fail-closed，tls-keygen 默认目录创建与错误码可读化，aio-oss 致命错误显式化；2) 签发加固（T0451+T0457）：libs/tls_keygen.c 将 EVP_PKEY_free 延后至 X509_set_pubkey 成功后、失败分支补释放，改用 RAND_bytes 生成 63 位随机序列号（失败回退 clock_gettime 纳秒 ^ pid ^ &serial 栈地址，RAND_bytes 失败补 dump），serial 改 int64_t + uint64_t 累积消 UB，去重 sys/stat.h 增 stdint.h/inttypes.h，X509_set_pubkey 失败补 dump_openssl_errors；3) 模板自解释（T0458）：libs/rdb-config.h 新增 config_kv_def_t.allowed_values，g_cfg_keys 8 处 tls_algorithm 填充 allowed_values="TLS_SM4_GCM_SM3=国密SM4-GCM-SM3(TLS1.3), TLS_AES_256_GCM_SHA384=AES256-GCM-SHA384(国际/TLS1.3)"，rdb-cfg/cli.c cmd_gen 改通用展示（allowed_values 优先否则 BOOL 回退 0=关闭/1=开启，INT 显示 [min,max]，STR 显示最大长度），无业务硬编码，新增枚举仅填字段即可。
+
+影响范围: mTLS 全链路（libobk/dmsbtex/fs-backup/rpc/oss）、tls-keygen 签发链路（sm2/ed25519 双算法）、rdb-cfg gen 模板生成（注释新增 3 类约束行，key=value 行与 ini_parse 不变）、版本体系（xmake.lua/version.h.in/version.log.in）。check/dump 校验与回退 fail-closed 保持不变，下游 rdb.conf 模板可读性提升。
+
+测试验证: 1) 按用户原序列连续生成 sm2/ed25519 双算法 CA×2、server host×2、client host×2（10 条命令），bundled openssl verify SM2 OK×2、system verify ed25519 OK×2、pubkey 与 CSR 一致 4/4、serial 唯一；2) xmake build tls-keygen/rdb-cfg ok；3) xmake run rdb-cfg gen 抽样：[security]tls_enable 显示可选值:0=关闭/1=开启、tls_algorithm 显示可选值:TLS_SM4…=国密…、cert_dir 显示最大长度:4095、keepalive 显示值范围:[0, LONG_MAX]，gen -o 后 check/dump 正常；4) xmake test 51/51 passed，ontology-validate OK。
+
+版本变更: 相对基线 fe9d4364（仓库根 xmake.lua）一次性递进：
+- libobk 1.0.0.0 -> 1.0.0.1（+1，修正原始误跳版）
+- rpc 3.6.4.19 -> 3.6.4.20（+1）
+- dmsbtex 1.1.0.1 -> 1.1.0.2（+1）
+- rdbcomm 1.0.1.8 -> 1.0.1.9（+1）
+- tls_keygen 1.0.0.0 -> 1.0.0.3（+3，连含 T0451/T0457）
+- rdb_cfg 新增 1.0.0.1（首版）
+- oss 新增 1.0.0.1（首版集成）
+- xmake.lua 新增 rdb_cfg_version 与 OSS/RDB_CFG set_configvar，version.h.in/version.log.in 新增 RDB_CFG_VERSION/rdb-cfg
+
+性能影响: 无。mTLS 仅握手阶段一次证书校验；签发仅增加一次 RAND_bytes（<1us）与一次 clock_gettime（~30ns，回退分支）；gen 仅多 3 次条件分支与 fprintf，单次 gen <1ms。
+
+风险评估: 低。1) 合并仅 squash 已验证的 4 提交，无新增逻辑；2) 仅注释与诊断增强，不影响解析与回退；3) 证书序列号改随机不影响存量固定断言（已排查无）。需 force-with-lease 覆盖远端 9d1fcc69，已确认远端无他人新提交。
+
+回滚方案: revert 本 commit，恢复至 fe9d4364；或 git reset --hard fe9d4364 && git push --force-with-lease。
+
+验收标准: 1) git log fe9d4364..HEAD 仅 1 条 F 类提交 2) 提交信息含需求描述/背景/方案/影响/测试/版本/性能/风险/回滚/验收完整模板 3) 版本一次性递进正确（见版本变更）4) 文件变更与原四提交并集一致，无遗漏 5) xmake test 回归通过
+
+相关需求: F-139（PDCA）、T0451-0831-tls-keygen-uaf-fix、T0457-0831-tls-keygen-followup-fix、T0458-0901-rdb-cfg-gen-options（PDCA），关联 hs_algorithm.c 精确匹配集、sec_test_* 边界校验，pitfall/tls-keygen-sign-uaf-serial 已同步。
+

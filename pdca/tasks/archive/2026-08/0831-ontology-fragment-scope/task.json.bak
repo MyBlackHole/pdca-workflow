@@ -1,0 +1,47 @@
+{
+  "id": "T0457",
+  "slug": "0831-ontology-fragment-scope",
+  "title": "扩展 ontology_fragment 强制范围至 research/design/review",
+  "parent": null,
+  "children": [],
+  "dependencies": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "act",
+    "active": true,
+    "scenario_type": "development",
+    "created_at": "2026-08-31T15:18:03+08:00",
+    "convergence": [
+      "research/design/review 须声明 ontology_fragment 或 ontology_exempt 原因",
+      "ontology_gate.ontology_ready_issues 覆盖四类 scenario_type",
+      "ontology_reason.FALLBACK_ADMISSION 或 admission_conditions 同步",
+      "ontology-validate 通过且 islands 0",
+      "新增测试覆盖非 development 路径门禁"
+    ],
+    "record": "T0457-0831-ontology-fragment-scope",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "concept",
+    "ontology_exempt": false,
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "completed_at": "2026-08-31T15:22:02+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5 AC 全部达成，门禁对全 scenario 生效",
+      "at": "2026-08-31T15:22:14+08:00",
+      "verdict_id": "v0457-confirmed-0831"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "confirmed，门禁已统一为默认启用",
+      "at": "2026-08-31T15:22:16+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-31T15:18:03+08:00",
+    "plan": "2026-08-31T15:18:03+08:00",
+    "do": "2026-08-31T15:18:19+08:00",
+    "check": "2026-08-31T15:22:02+08:00",
+    "act": "2026-08-31T15:22:15+08:00",
+    "archive": null
+  }
+}

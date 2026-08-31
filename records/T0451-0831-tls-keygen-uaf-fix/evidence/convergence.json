@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "UAF 修复后连续双算法签发证书均可通过 openssl verify 与 mtls 自测",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["AC1"]
+    },
+    {
+      "index": 2,
+      "text": "序列号唯一性修复",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["AC2"]
+    },
+    {
+      "index": 3,
+      "text": "回归测试通过",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["AC3"]
+    }
+  ]
+}

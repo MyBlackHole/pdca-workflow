@@ -1,0 +1,4 @@
+{"id": "AC2", "file": "ac2.log", "kind": "test", "size": 7, "digest": "sha256:1528df5875b0f958cf884a8e86db5b88ff85f0e1e7fa58a2c6ad7028bd9f58e0", "at": "2026-08-31T12:15:00+08:00", "criteria": ["AC-2"]}
+{"id": "AC3", "file": "ac3.log", "kind": "test", "size": 11, "digest": "sha256:af171305fa459f2de1b403c2c498613e10f3ff964f2cb30679f79b1781f02298", "at": "2026-08-31T12:15:00+08:00", "criteria": ["AC-3"]}
+{"id": "AC1", "file": "tls_keygen_ac1.c", "kind": "test", "size": 53939, "digest": "sha256:855d4f75f739cc270ea509ed9087678c3405ac10c8c72dcf4e553b084d60e64b", "at": "2026-08-31T12:15:09+08:00", "criteria": ["AC-1"]}
+{"id": "convergence", "file": "convergence.json", "kind": "convergence-map", "size": 501, "digest": "sha256:f61cb50af9c48ad6d15e3ea68cec8ac6c75a133ca4d6b081b8b60cef10f6213b", "at": "2026-08-31T12:15:09+08:00", "criteria": ["AC-1"], "evidence_type_ref": "ontology:entity/evidence-convergence-map"}

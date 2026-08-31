@@ -31,8 +31,11 @@ def ontology_ready_issues(task: dict, root: Path) -> list:
         return []
     frag = meta.get("ontology_fragment")
     if not frag:
+        scen = meta.get("scenario_type", "unknown")
         return [Issue("ONTOLOGY_FRAGMENT_MISSING", "task.json",
-                      "do 前置 ontology-ready：meta.ontology_fragment 未设置")]
+                      f"do 前置 ontology-ready：meta.ontology_fragment 未设置（scenario_type={scen}）；"
+                      f"请声明 ontology_fragment 或设 ontology_exempt=true 并说明豁免原因",
+                      "设置 meta.ontology_fragment 指向 ontology 片段，或在 task.json 设 ontology_exempt=true")]
     frag_path = Path(frag) if Path(frag).is_absolute() else (root / frag)
     if not frag_path.exists():
         return [Issue("ONTOLOGY_FRAGMENT_DANGLING", "task.json",
@@ -117,3 +120,100 @@ def archive_ontology_ready_issues(root: Path) -> list:
     except Exception:
         pass
     return issues
+
+
+# ---------- 新增：evidence→ontology 自动反哺 ----------
+LEGACY_SUPPORT_KINDS = {
+    "document", "documentation", "concept", "entity", "process", "role",
+    "pattern", "principle", "pitfall", "fact", "decision", "knowledge",
+    "test", "script", "adr", "skill", "validation-report", "redirect",
+}
+
+
+def auto_induce_evidence(task: dict, root: Path) -> list:
+    """Act 阶段 evidence→ontology 自动反哺检查（顾问式，不阻断）。
+
+    扫描 records/<record>/evidence/manifest.jsonl：
+    - 统计 evidence 条目中 kind 属于 LEGACY_SUPPORT_KINDS 但未锚定到
+      pdca-evidence 子类型的条目（说明该领域知识尚未本体化）；
+    - 若存在此类条目，返回一条 AUTO_INDUCE_CANDIDATE 提示，建议运行
+      `python3 scripts/ontology_induction.py --adapter evidence --source records/<record>/evidence/manifest.jsonl`。
+    顾问式：不阻断 Act，仅提供可执行指引；无证据或已全部锚定时返回 []。
+    """
+    phase = (task.get("meta") or {}).get("phase")
+    if phase not in ("act", "archive"):
+        return []
+    record = (task.get("meta") or {}).get("record")
+    if not record:
+        return []
+    manifest = root / "records" / str(record) / "evidence" / "manifest.jsonl"
+    if not manifest.is_file():
+        return []
+    try:
+        import json as _json
+        candidates = []
+        for line in manifest.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                entry = _json.loads(line)
+            except Exception:
+                continue
+            if entry.get("superseded_by"):
+                continue
+            kind = str(entry.get("kind", ""))
+            ref = entry.get("evidence_type_ref")
+            # LEGACY_SUPPORT_KINDS 且未锚定 -> 潜在本体缺口
+            if kind in LEGACY_SUPPORT_KINDS and not ref:
+                # 进一步：仅当 kind 对应知识形态时提示（如 pattern/principle/pitfall/fact/decision）
+                if kind in {"pattern", "principle", "pitfall", "fact", "decision", "concept", "entity", "process"}:
+                    candidates.append(entry.get("id", kind))
+        if candidates:
+            return [Issue(
+                "AUTO_INDUCE_CANDIDATE",
+                str(manifest.relative_to(root)) if manifest.is_relative_to(root) else str(manifest),
+                f"检测到 {len(candidates)} 条未锚定 evidence（{', '.join(candidates[:3])}）可反哺本体；"
+                f"建议运行: python3 scripts/ontology_induction.py --adapter evidence --source {manifest}",
+                f"python3 scripts/ontology_induction.py --adapter evidence --source {manifest} --out print",
+            )]
+    except Exception:
+        pass
+    return []
+
+
+def auto_induce_flow_issues(root: Path, threshold: int = 3) -> list:
+    """FlowIssue → 本体补强自动触发（顾问式）。
+
+    读取聚合后的 flow-issue backlog（pdca/improvements/flow-issue-backlog.json），
+    若某 issue 的 occurrence_count >= threshold 且尚未创建 improvement candidate，
+    则提示可自动创建候选。返回 Issue 列表（不阻断，仅提示）。
+    阈值可配置，默认 3 次 occurrence 触发。
+    """
+    backlog_path = root / "pdca" / "improvements" / "flow-issue-backlog.json"
+    if not backlog_path.is_file():
+        return []
+    try:
+        import json as _json
+        data = _json.loads(backlog_path.read_text(encoding="utf-8"))
+        issues = data.get("issues") or data.get("items") or []
+        if isinstance(data, list):
+            issues = data
+        cands: list[Issue] = []
+        for item in issues:
+            cnt = item.get("occurrence_count") or item.get("count") or len(item.get("occurrences") or [])
+            fid = item.get("id") or item.get("fingerprint") or "unknown"
+            has_candidate = bool(item.get("candidate_id") or item.get("improvement_candidate"))
+            if isinstance(cnt, int) and cnt >= threshold and not has_candidate:
+                cands.append(Issue(
+                    "AUTO_FLOW_INDUCE_CANDIDATE",
+                    str(backlog_path.relative_to(root)) if backlog_path.is_relative_to(root) else str(backlog_path),
+                    f"FlowIssue {fid} occurrence_count={cnt} >= {threshold}，建议自动创建本体补强 candidate",
+                    f"python3 scripts/create-improvement-candidate.py --issue {fid} --threshold {threshold}",
+                ))
+                # 仅提示前 3 条，避免刷屏
+                if len(cands) >= 3:
+                    break
+        return cands
+    except Exception:
+        return []

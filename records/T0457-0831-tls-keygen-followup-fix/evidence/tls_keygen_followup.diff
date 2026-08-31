@@ -1,0 +1,73 @@
+diff --git a/libs/tls_keygen.c b/libs/tls_keygen.c
+index 9c1bf3aa..7d6e4214 100644
+--- a/libs/tls_keygen.c
++++ b/libs/tls_keygen.c
+@@ -18,7 +18,8 @@
+ #include <openssl/bn.h>
+ #include <openssl/rand.h>
+ #include <time.h>
+-#include <sys/stat.h>
++#include <stdint.h>
++#include <inttypes.h>
+ 
+ static int g_verbose = 0;
+ 
+@@ -564,22 +565,27 @@ int tls_keygen_sign_with_algo(const char *ca_cert_path,
+ 	}
+ 
+ 	/* 序列号必须唯一：同 CA 下多张 host 证书硬编码 2 会冲突 CRL/校验。
+-	 * 用 RAND_bytes 生成 63 位正整数，失败回退到 time+pid 混合。 */
++	 * 用 RAND_bytes 生成 63 位正整数，失败回退到 clock_gettime 纳秒熵。 */
+ 	{
+-		long long serial = 0;
++		int64_t serial = 0;
+ 		unsigned char rnd[8];
+ 		if (RAND_bytes(rnd, sizeof(rnd)) == 1) {
++			uint64_t u = 0;
+ 			for (size_t i = 0; i < sizeof(rnd); i++)
+-				serial = (serial << 8) | rnd[i];
+-			serial &= 0x7fffffffffffffffLL;
++				u = (u << 8) | rnd[i];
++			u &= 0x7fffffffffffffffULL;
++			serial = (int64_t)u;
+ 		}
+ 		if (serial == 0) {
+-			serial = (long long)time(NULL) ^ (long long)getpid() ^
+-				 (long long)random();
+-			if (serial < 0)
+-				serial = -serial;
+-			if (serial == 0)
+-				serial = 1;
++			struct timespec ts;
++			clock_gettime(CLOCK_REALTIME, &ts);
++			uint64_t fb = (uint64_t)ts.tv_sec ^ (uint64_t)ts.tv_nsec ^
++				      (uint64_t)getpid() ^ (uint64_t)(uintptr_t)&serial;
++			fb &= 0x7fffffffffffffffULL;
++			if (fb == 0)
++				fb = 1;
++			serial = (int64_t)fb;
++			dump_openssl_errors("RAND_bytes fallback");
+ 		}
+ 		ASN1_INTEGER_set_int64(X509_get_serialNumber(cert), serial);
+ 	}
+@@ -594,6 +600,7 @@ int tls_keygen_sign_with_algo(const char *ca_cert_path,
+ 	X509_set_issuer_name(cert, X509_get_subject_name(ca_cert));
+ 
+ 	if (X509_set_pubkey(cert, req_pkey) != 1) {
++		dump_openssl_errors("X509_set_pubkey");
+ 		EVP_PKEY_free(req_pkey);
+ 		X509_free(cert);
+ 		X509_REQ_free(req);
+diff --git a/xmake.lua b/xmake.lua
+index f5d697ad..ac05b72d 100644
+--- a/xmake.lua
++++ b/xmake.lua
+@@ -17,7 +17,7 @@ libobk_version = "1.0.0.1"
+ dmsbtex_version = "1.1.0.2"
+ bwlimit_version = "1.0.0.1"
+ s3tools_version_old = "1.5.0.8"
+-tls_keygen_version = "1.0.0.2"
++tls_keygen_version = "1.0.0.3"
+ rpc_keygen_version = "1.0.0.0"
+ fsbackup_kernel_version = "3.3.1.6"
+ xbsa_version = "1.1.1.7"

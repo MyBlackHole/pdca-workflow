@@ -1,0 +1,46 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0457",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1 重复include去重",
+      "AC-2 回退熵去random改clock_gettime+uint64",
+      "AC-3 有符号左移UB消除",
+      "AC-4 X509_set_pubkey失败诊断可观测",
+      "AC-5 版本+1且回归通过"
+    ],
+    "created_at": "2026-08-31T14:10:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "phase": "act",
+    "record": "T0457-0831-tls-keygen-followup-fix",
+    "scenario_type": "bugfix",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "pitfall",
+    "completed_at": "2026-08-31T14:48:27+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5AC均通过，51/51回归",
+      "at": "2026-08-31T14:48:40+08:00",
+      "verdict_id": "v0457-confirmed-0831"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "confirmed",
+      "at": "2026-08-31T14:49:30+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0831-tls-keygen-followup-fix",
+  "states": {
+    "act": "2026-08-31T14:49:17+08:00",
+    "archive": null,
+    "check": "2026-08-31T14:48:27+08:00",
+    "created": "2026-08-31T14:10:00+08:00",
+    "do": "2026-08-31T14:43:35+08:00",
+    "plan": "2026-08-31T14:10:00+08:00"
+  },
+  "status": "Completed",
+  "title": "修复 tls-keygen 回退熵、类型UB与诊断缺失等遗留"
+}

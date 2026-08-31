@@ -1,0 +1,133 @@
+diff --git a/libs/rdb-config.c b/libs/rdb-config.c
+index 7b8e3581..4cc09d04 100644
+--- a/libs/rdb-config.c
++++ b/libs/rdb-config.c
+@@ -242,7 +242,8 @@ const config_kv_def_t g_cfg_keys[CFG_KEY_COUNT] = {
+ 	[CFG_KEY_SECURITY_TLS_ALGORITHM] = {
+ 		.section = SEC_GLOBAL_SECTION, .key = SEC_GLOBAL_ALGORITHM_KEY,
+ 		.type = CFG_TYPE_STR, .def = NULL,
+-		.desc = "全局算法锁定；未设置=协商不限"},
++		.desc = "全局算法锁定；未设置=协商不限",
++		.allowed_values = "TLS_SM4_GCM_SM3=国密SM4-GCM-SM3(TLS1.3), TLS_AES_256_GCM_SHA384=AES256-GCM-SHA384(国际/TLS1.3)"},
+ 	[CFG_KEY_AUTH_ENABLE] = {
+ 		.section = SEC_MASTER_SECTION, .key = SEC_MASTER_ENABLE_KEY,
+ 		.type = CFG_TYPE_BOOL, .def = "0",
+@@ -254,7 +255,8 @@ const config_kv_def_t g_cfg_keys[CFG_KEY_COUNT] = {
+ 	[CFG_KEY_LIBOBK_SERVER_TLS_ALGORITHM] = {
+ 		.section = LIBOBK_SERVER_SECTION, .key = SEC_TOOL_ALGORITHM_KEY,
+ 		.type = CFG_TYPE_STR, .def = NULL,
+-		.desc = "libobk 服务端算法锁定；未设置=协商不限"},
++		.desc = "libobk 服务端算法锁定；未设置=协商不限",
++		.allowed_values = "TLS_SM4_GCM_SM3=国密SM4-GCM-SM3(TLS1.3), TLS_AES_256_GCM_SHA384=AES256-GCM-SHA384(国际/TLS1.3)"},
+ 	[CFG_KEY_LIBOBK_CLIENT_TLS_ENABLE] = {
+ 		.section = LIBOBK_CLIENT_SECTION, .key = SEC_TOOL_TLS_KEY,
+ 		.type = CFG_TYPE_BOOL, .def = "0",
+@@ -262,7 +264,8 @@ const config_kv_def_t g_cfg_keys[CFG_KEY_COUNT] = {
+ 	[CFG_KEY_LIBOBK_CLIENT_TLS_ALGORITHM] = {
+ 		.section = LIBOBK_CLIENT_SECTION, .key = SEC_TOOL_ALGORITHM_KEY,
+ 		.type = CFG_TYPE_STR, .def = RPC_TLS_ALGORITHM_DEFAULT,
+-		.desc = "libobk 客户端算法（默认 SM4_GCM_SM3）"},
++		.desc = "libobk 客户端算法（默认 SM4_GCM_SM3）",
++		.allowed_values = "TLS_SM4_GCM_SM3=国密SM4-GCM-SM3(TLS1.3), TLS_AES_256_GCM_SHA384=AES256-GCM-SHA384(国际/TLS1.3)"},
+ 	[CFG_KEY_DMSBTEX_SERVER_TLS_ENABLE] = {
+ 		.section = DMSBTEX_SERVER_SECTION, .key = SEC_TOOL_TLS_KEY,
+ 		.type = CFG_TYPE_BOOL, .def = "0",
+@@ -270,7 +273,8 @@ const config_kv_def_t g_cfg_keys[CFG_KEY_COUNT] = {
+ 	[CFG_KEY_DMSBTEX_SERVER_TLS_ALGORITHM] = {
+ 		.section = DMSBTEX_SERVER_SECTION, .key = SEC_TOOL_ALGORITHM_KEY,
+ 		.type = CFG_TYPE_STR, .def = NULL,
+-		.desc = "dmsbtex 服务端算法锁定；未设置=协商不限"},
++		.desc = "dmsbtex 服务端算法锁定；未设置=协商不限",
++		.allowed_values = "TLS_SM4_GCM_SM3=国密SM4-GCM-SM3(TLS1.3), TLS_AES_256_GCM_SHA384=AES256-GCM-SHA384(国际/TLS1.3)"},
+ 	[CFG_KEY_DMSBTEX_CLIENT_TLS_ENABLE] = {
+ 		.section = DMSBTEX_CLIENT_SECTION, .key = SEC_TOOL_TLS_KEY,
+ 		.type = CFG_TYPE_BOOL, .def = "0",
+@@ -278,7 +282,8 @@ const config_kv_def_t g_cfg_keys[CFG_KEY_COUNT] = {
+ 	[CFG_KEY_DMSBTEX_CLIENT_TLS_ALGORITHM] = {
+ 		.section = DMSBTEX_CLIENT_SECTION, .key = SEC_TOOL_ALGORITHM_KEY,
+ 		.type = CFG_TYPE_STR, .def = RPC_TLS_ALGORITHM_DEFAULT,
+-		.desc = "dmsbtex 客户端算法（默认国密 SM4_GCM_SM3）"},
++		.desc = "dmsbtex 客户端算法（默认国密 SM4_GCM_SM3）",
++		.allowed_values = "TLS_SM4_GCM_SM3=国密SM4-GCM-SM3(TLS1.3), TLS_AES_256_GCM_SHA384=AES256-GCM-SHA384(国际/TLS1.3)"},
+ 	[CFG_KEY_AIO_SPEEDD_TLS_ENABLE] = {
+ 		.section = AIO_SPEEDD_TOOL_SECTION, .key = SEC_TOOL_TLS_KEY,
+ 		.type = CFG_TYPE_BOOL, .def = "0",
+@@ -286,7 +291,8 @@ const config_kv_def_t g_cfg_keys[CFG_KEY_COUNT] = {
+ 	[CFG_KEY_AIO_SPEEDD_TLS_ALGORITHM] = {
+ 		.section = AIO_SPEEDD_TOOL_SECTION, .key = SEC_TOOL_ALGORITHM_KEY,
+ 		.type = CFG_TYPE_STR, .def = NULL,
+-		.desc = "aio-speedd 算法锁定；未设置=协商不限"},
++		.desc = "aio-speedd 算法锁定；未设置=协商不限",
++		.allowed_values = "TLS_SM4_GCM_SM3=国密SM4-GCM-SM3(TLS1.3), TLS_AES_256_GCM_SHA384=AES256-GCM-SHA384(国际/TLS1.3)"},
+ 	[CFG_KEY_AIO_SPEED_TLS_ENABLE] = {
+ 		.section = AIO_SPEED_TOOL_SECTION, .key = SEC_TOOL_TLS_KEY,
+ 		.type = CFG_TYPE_BOOL, .def = "0",
+@@ -294,7 +300,8 @@ const config_kv_def_t g_cfg_keys[CFG_KEY_COUNT] = {
+ 	[CFG_KEY_AIO_SPEED_TLS_ALGORITHM] = {
+ 		.section = AIO_SPEED_TOOL_SECTION, .key = SEC_TOOL_ALGORITHM_KEY,
+ 		.type = CFG_TYPE_STR, .def = RPC_TLS_ALGORITHM_DEFAULT,
+-		.desc = "aio-speed CLI 算法（默认 SM4_GCM_SM3）"},
++		.desc = "aio-speed CLI 算法（默认 SM4_GCM_SM3）",
++		.allowed_values = "TLS_SM4_GCM_SM3=国密SM4-GCM-SM3(TLS1.3), TLS_AES_256_GCM_SHA384=AES256-GCM-SHA384(国际/TLS1.3)"},
+ 	[CFG_KEY_RDBCOMMD_TLS_ENABLE] = {
+ 		.section = RDBCOMMD_TOOL_SECTION, .key = SEC_TOOL_TLS_KEY,
+ 		.type = CFG_TYPE_BOOL, .def = "0",
+@@ -302,7 +309,8 @@ const config_kv_def_t g_cfg_keys[CFG_KEY_COUNT] = {
+ 	[CFG_KEY_RDBCOMMD_TLS_ALGORITHM] = {
+ 		.section = RDBCOMMD_TOOL_SECTION, .key = SEC_TOOL_ALGORITHM_KEY,
+ 		.type = CFG_TYPE_STR, .def = NULL,
+-		.desc = "rdbcommd 算法锁定；未设置=协商不限"},
++		.desc = "rdbcommd 算法锁定；未设置=协商不限",
++		.allowed_values = "TLS_SM4_GCM_SM3=国密SM4-GCM-SM3(TLS1.3), TLS_AES_256_GCM_SHA384=AES256-GCM-SHA384(国际/TLS1.3)"},
+ 	[CFG_KEY_RDBCOMM_TLS_ENABLE] = {
+ 		.section = RDBCOMM_TOOL_SECTION, .key = SEC_TOOL_TLS_KEY,
+ 		.type = CFG_TYPE_BOOL, .def = "0",
+@@ -310,7 +318,8 @@ const config_kv_def_t g_cfg_keys[CFG_KEY_COUNT] = {
+ 	[CFG_KEY_RDBCOMM_TLS_ALGORITHM] = {
+ 		.section = RDBCOMM_TOOL_SECTION, .key = SEC_TOOL_ALGORITHM_KEY,
+ 		.type = CFG_TYPE_STR, .def = RPC_TLS_ALGORITHM_DEFAULT,
+-		.desc = "rdbcomm 客户端算法（默认 SM4_GCM_SM3）"},
++		.desc = "rdbcomm 客户端算法（默认 SM4_GCM_SM3）",
++		.allowed_values = "TLS_SM4_GCM_SM3=国密SM4-GCM-SM3(TLS1.3), TLS_AES_256_GCM_SHA384=AES256-GCM-SHA384(国际/TLS1.3)"},
+ 	[CFG_KEY_FSDAEMON_CHECK_DATA] = {
+ 		.section = FSDEAMON_TOOL_SECTION, .key = RPC_TOOL_CHECK_DATA_KEY,
+ 		.type = CFG_TYPE_BOOL, .def = "0",
+diff --git a/libs/rdb-config.h b/libs/rdb-config.h
+index 54b0b40d..b22cd776 100644
+--- a/libs/rdb-config.h
++++ b/libs/rdb-config.h
+@@ -279,6 +279,7 @@ typedef struct {
+ 	long                 max;
+ 	size_t               maxlen;	/* STR：>0 时启用长度限制 */
+ 	cfg_invalid_policy_t invalid_policy;
++	const char          *allowed_values; /* 通用可选值描述（含值含义），如 "0=关闭, 1=开启" 或 "TLS_SM4_GCM_SM3=国密SM4-GCM-SM3, TLS_AES_256_GCM_SHA384=AES256-GCM-SHA384(国际)"；NULL=无额外枚举，BOOL 未填时回退通用 0=关闭/1=开启 */
+ } config_kv_def_t;
+ 
+ /* 逻辑参数表：仅描述“如何从配置层解析出逻辑值”，通过 cfg_key_id_t 引用配置层
+diff --git a/rdb-cfg/cli.c b/rdb-cfg/cli.c
+index 2e17923b..6f11c979 100644
+--- a/rdb-cfg/cli.c
++++ b/rdb-cfg/cli.c
+@@ -88,6 +88,22 @@ int cmd_gen(const char *out_path)
+ 			if (fb_sec)
+ 				fprintf(fp, "; 未设置则回退 [%s]%s\n",
+ 					fb_sec, fb_key);
++			/* 取值约束通用展示（基于 g_cfg_keys 元数据，无业务硬编码）：可选值含含义、INT 范围、STR 长度 */
++			if (g_cfg_keys[i].allowed_values) {
++				fprintf(fp, "; 可选值: %s\n", g_cfg_keys[i].allowed_values);
++			} else if (g_cfg_keys[i].type == CFG_TYPE_BOOL) {
++				fprintf(fp, "; 可选值: 0=关闭, 1=开启\n");
++			}
++			if (g_cfg_keys[i].type == CFG_TYPE_INT &&
++			    g_cfg_keys[i].restrict_range) {
++				fprintf(fp, "; 值范围: [%ld, %ld]\n",
++					g_cfg_keys[i].min, g_cfg_keys[i].max);
++			}
++			if (g_cfg_keys[i].type == CFG_TYPE_STR &&
++			    g_cfg_keys[i].maxlen > 0) {
++				fprintf(fp, "; 最大长度: %zu\n",
++					g_cfg_keys[i].maxlen);
++			}
+ 			if (g_cfg_keys[i].def) {
+ 				fprintf(fp, "%s=%s\n", g_cfg_keys[i].key,
+ 					g_cfg_keys[i].def);

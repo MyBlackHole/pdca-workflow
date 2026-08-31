@@ -1,0 +1,24 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0450",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "CONCLUSION_MISSING",
+      "path": "records/T0450-0831-ontology-closed-loop-review/conclusion.md",
+      "message": "conclusion is required"
+    },
+    {
+      "code": "VERDICT_MISSING",
+      "path": "/meta/verdict",
+      "message": "verdict is required"
+    },
+    {
+      "code": "CHECK_CONFIRMATION_MISSING",
+      "path": "clarifications.jsonl",
+      "message": "check confirmation is required"
+    }
+  ],
+  "at": "2026-08-31T11:46:06.980721+08:00"
+}

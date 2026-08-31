@@ -1,0 +1,27 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.7, pytest-9.1.0, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /home/black/Documents/pdca-workflow-pro
+plugins: examples-0.0.18, inline-snapshot-0.32.6, cov-7.1.0, xdist-3.8.0, asyncio-1.4.0, anyio-4.14.2, trio-0.8.0, typeguard-4.6.0, hypothesis-6.165.10
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 16 items
+
+tests/test_ontology_auto_induce.py::test_evidence_adapter_exists_and_is_adapter PASSED [  6%]
+tests/test_ontology_auto_induce.py::test_evidence_adapter_parses_manifest PASSED [ 12%]
+tests/test_ontology_auto_induce.py::test_evidence_adapter_dedup PASSED   [ 18%]
+tests/test_ontology_auto_induce.py::test_induce_evidence_adapter_produces_candidates PASSED [ 25%]
+tests/test_ontology_auto_induce.py::test_induce_evidence_guides_hit_domain PASSED [ 31%]
+tests/test_ontology_auto_induce.py::test_induce_evidence_cli PASSED      [ 37%]
+tests/test_ontology_auto_induce.py::test_induce_evidence_deterministic PASSED [ 43%]
+tests/test_ontology_auto_induce.py::test_auto_induce_evidence_act_prompts PASSED [ 50%]
+tests/test_ontology_auto_induce.py::test_auto_induce_evidence_non_act_empty PASSED [ 56%]
+tests/test_ontology_auto_induce.py::test_auto_induce_evidence_no_manifest PASSED [ 62%]
+tests/test_ontology_auto_induce.py::test_auto_induce_flow_no_backlog_empty PASSED [ 68%]
+tests/test_ontology_auto_induce.py::test_auto_induce_flow_threshold PASSED [ 75%]
+tests/test_ontology_auto_induce.py::test_auto_induce_flow_codes PASSED   [ 81%]
+tests/test_ontology_auto_induce.py::test_auto_induce_nodes_exist PASSED  [ 87%]
+tests/test_ontology_auto_induce.py::test_ontology_validate_still_passes PASSED [ 93%]
+tests/test_ontology_auto_induce.py::test_ontology_graph_no_islands PASSED [100%]
+
+============================== 16 passed in 1.00s ==============================

@@ -1,0 +1,10 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "AC-1 重复include去重", "criteria": ["AC-1"], "evidence_ids": ["ev-diff"]},
+    {"index": 2, "text": "AC-2 回退熵去random改clock_gettime+uint64", "criteria": ["AC-2"], "evidence_ids": ["ev-diff"]},
+    {"index": 3, "text": "AC-3 有符号左移UB消除", "criteria": ["AC-3"], "evidence_ids": ["ev-diff"]},
+    {"index": 4, "text": "AC-4 X509_set_pubkey失败诊断可观测", "criteria": ["AC-4"], "evidence_ids": ["ev-diff"]},
+    {"index": 5, "text": "AC-5 版本+1且回归通过", "criteria": ["AC-5"], "evidence_ids": ["ev-test"]}
+  ]
+}

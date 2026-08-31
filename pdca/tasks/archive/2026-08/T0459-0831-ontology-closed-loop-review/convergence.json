@@ -1,0 +1,55 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1 本体论在PDCA全周期各阶段的融入度逐项核验完成，含plan/do/check/act/archive五阶段与硬门禁4项边界判定",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-research-report"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "AC-2 mattpocock/skills自v1.2.3以来增量对照完成，HEAD 6654f6b含retro/implement-spec等新增与优先级判定",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-research-report"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "AC-3 调研->本体->拆分->测试->修复自循环链路审查完成，含产生/优化/修改/使用四环节与测试支撑机制",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-research-report"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "AC-4 各工作模式以本体为核心的程度核验完成，含六模式逐项核验",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-research-report"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "AC-5 审查结论形成research-report并登记，用户确认通过；ontology-validate通过且islands:0",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-research-report"
+      ]
+    }
+  ]
+}

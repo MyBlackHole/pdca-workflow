@@ -1,0 +1,10 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "AC-1 BOOL 可选值 0=关闭,1=开启（含含义）", "criteria": ["AC-1"], "evidence_ids": ["ev-gen","ev-diff"]},
+    {"index": 2, "text": "AC-2 INT 值范围 [min,max]", "criteria": ["AC-2"], "evidence_ids": ["ev-gen","ev-diff"]},
+    {"index": 3, "text": "AC-3 tls_algorithm 枚举含含义（通用 allowed_values）", "criteria": ["AC-3"], "evidence_ids": ["ev-gen","ev-diff"]},
+    {"index": 4, "text": "AC-4 STR maxlen 最大长度", "criteria": ["AC-4"], "evidence_ids": ["ev-gen","ev-diff"]},
+    {"index": 5, "text": "AC-5 gen 兼容且回归通过", "criteria": ["AC-5"], "evidence_ids": ["ev-test"]}
+  ]
+}

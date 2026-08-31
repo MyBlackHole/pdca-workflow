@@ -1,0 +1,39 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0462",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-5",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0462-0831-merge-last-four-commits/evidence/convergence.json[4]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0462-0831-merge-last-four-commits/evidence/convergence.json[5]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0462-0831-merge-last-four-commits/evidence/convergence.json[1]/text",
+      "message": "text must equal the Plan convergence value"
+    },
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0462-0831-merge-last-four-commits/evidence/convergence.json[2]/text",
+      "message": "text must equal the Plan convergence value"
+    },
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0462-0831-merge-last-four-commits/evidence/convergence.json[3]/text",
+      "message": "text must equal the Plan convergence value"
+    }
+  ],
+  "at": "2026-08-31T16:19:18.187925+08:00"
+}

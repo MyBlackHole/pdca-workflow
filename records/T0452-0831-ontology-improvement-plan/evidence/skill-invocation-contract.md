@@ -1,0 +1,79 @@
+---
+schema: pdca.asset/v1
+id: ontology:concept/skill-invocation-contract
+type: concept
+layer: Knowledge
+status: active
+summary: 双 harness 调用约定与 openai.yaml 元数据规范
+description: "定义 Claude Code 和 Codex 双 harness 的调用模型：每个 SKILL.md 旁放 agents/openai.yaml 含 Codex UI 元数据；user-invoked 技能设 disable-model-invocation: true（Claude Code）/ policy.allow_implicit_invocation: false（Codex）；依赖通过 Call the Skill tool with \"name\" 显式调用。来源 mattpocock/skills .agents/invocation.md。"
+domain:
+- ontology:domain/ai-efficiency
+relations:
+  specializes:
+  - ontology:domain/ai-efficiency
+  relates_to:
+  - ontology:concept/skill-mechanics
+  - ontology:concept/pointer-wording
+attributes:
+- name: applicability
+  desc: 双 harness 环境下技能调用约定的适用场景
+  constraint: 见正文
+  testable_signal: 由领域实践与测试验证
+- name: constraints
+  desc: 每个 SKILL.md 必须配 agents/openai.yaml；user-invoked 必须设 disable-model-invocation
+  constraint: 遵循双 harness 调用约定
+  testable_signal: 检查所有 SKILL.md 旁是否有 agents/openai.yaml
+- name: testable_signal
+  desc: 由领域实践与测试验证双 harness 调用约定正确性
+  constraint: 由领域实践与测试验证
+  testable_signal: 由领域实践与测试验证
+---
+
+# 技能调用契约（Skill Invocation Contract）
+
+定义 Claude Code 和 Codex 双 harness 的调用模型，来源 mattpocock/skills `.agents/invocation.md`。
+
+## 1. 双 harness 调用模型
+
+### Claude Code
+
+- `disable-model-invocation: true`：标记 user-invoked 技能
+- `disable-model-invocation` 省略：标记 model-invoked 技能
+
+### Codex
+
+- `policy.allow_implicit_invocation: false`：标记 user-invoked 技能
+- 省略该字段：标记 model-invoked 技能
+
+### agents/openai.yaml
+
+每个 `SKILL.md` 旁放 `agents/openai.yaml`，含 Codex UI 元数据：
+
+- `interface.display_name`：技能显示名称
+- `interface.short_description`：技能简短描述
+
+## 2. 依赖表达
+
+- 显式 `Call the Skill tool with "name"`
+- 不使用 `/name` 风格的 hint
+- user-invoked 技能不能被其他技能通过 Skill tool 调用（包括按名称）
+
+## 3. 调用层级
+
+```
+user-invoked → model-invoked → model-invoked
+     ↓              ↓              ↓
+  grill-me     grilling     tdd
+  ask-matt     researching  code-review
+  wayfinder    prototype    domain-modeling
+```
+
+## 适用边界
+
+- 适用于所有 skill 文件的 frontmatter 和 agents/openai.yaml 设计
+- 对本地 AGENTS.md/CLAUDE.md 体系和未来多 harness 扩展有架构参考价值
+
+## 来源
+
+- `records/T0450-0831-ontology-closed-loop-review/report.md`（来源 ID: T0450-0831-ontology-closed-loop-review）
+- mattpocock/skills `.agents/invocation.md`

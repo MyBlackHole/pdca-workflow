@@ -1,0 +1,65 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "补充 Negative Space 失败模式",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-negative-space"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "补充 cache 概念",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-cache"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "新增 to-questionnaire 技能",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-to-questionnaire"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "新增 wait-wait 技能",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-wait-wait"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "引入 HITL/AFK 分类到 wayfinder",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-hitl-afk"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "所有改进后 ontology-validate 通过且 islands: 0",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ev-P2-0831-validate"
+      ]
+    }
+  ]
+}

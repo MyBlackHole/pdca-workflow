@@ -1,0 +1,47 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0451",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-1",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0451-0831-tls-keygen-uaf-fix/evidence/convergence3.json[1]",
+      "message": "listed evidence does not support AC-1",
+      "guidance": "re-register the supporting evidence with --criterion AC-1, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_EVIDENCE_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0451-0831-tls-keygen-uaf-fix/evidence/convergence3.json[1]/evidence_ids",
+      "message": "E1-UAF-fix is not registered support evidence"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0451-0831-tls-keygen-uaf-fix/evidence/convergence3.json[2]",
+      "message": "listed evidence does not support AC-2",
+      "guidance": "re-register the supporting evidence with --criterion AC-2, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_EVIDENCE_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0451-0831-tls-keygen-uaf-fix/evidence/convergence3.json[2]/evidence_ids",
+      "message": "E2-verify is not registered support evidence"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0451-0831-tls-keygen-uaf-fix/evidence/convergence3.json[3]",
+      "message": "listed evidence does not support AC-3",
+      "guidance": "re-register the supporting evidence with --criterion AC-3, or fix the map to cite evidence that actually covers it"
+    },
+    {
+      "code": "CONVERGENCE_EVIDENCE_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0451-0831-tls-keygen-uaf-fix/evidence/convergence3.json[3]/evidence_ids",
+      "message": "E3-regression is not registered support evidence"
+    }
+  ],
+  "at": "2026-08-31T12:15:01.633645+08:00"
+}

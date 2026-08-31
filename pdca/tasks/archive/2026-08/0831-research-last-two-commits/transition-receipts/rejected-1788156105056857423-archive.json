@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0454",
+  "from": "act",
+  "to": "archive",
+  "issues": [
+    {
+      "code": "ARCHIVE_ONTOLOGY_INVALID",
+      "path": "ontology",
+      "message": "  [CYCLE] /home/black/Documents/pdca-workflow-pro/ontology/concept/skill-invocation-contract.md: 检测到环：ontology:concept/ask-matt -> ontology:concept/router-skill -> ontology:concept/skill-mechanics -> ontology:concept/skill-mechanics"
+    }
+  ],
+  "at": "2026-08-31T14:01:45.056812+08:00"
+}

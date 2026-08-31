@@ -1,0 +1,17 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.7, pytest-9.1.0, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /home/black/Documents/pdca-workflow-pro
+plugins: examples-0.0.18, inline-snapshot-0.32.6, cov-7.1.0, xdist-3.8.0, asyncio-1.4.0, anyio-4.14.2, trio-0.8.0, typeguard-4.6.0, hypothesis-6.165.10
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 6 items
+
+tests/test_ontology_fragment_scope.py::test_research_missing_blocked PASSED [ 16%]
+tests/test_ontology_fragment_scope.py::test_development_missing_blocked PASSED [ 33%]
+tests/test_ontology_fragment_scope.py::test_exempt_not_blocked PASSED    [ 50%]
+tests/test_ontology_fragment_scope.py::test_fragment_ok PASSED           [ 66%]
+tests/test_ontology_fragment_scope.py::test_guidance_contains_scenario_and_hint PASSED [ 83%]
+tests/test_ontology_fragment_scope.py::test_non_do_not_blocked PASSED    [100%]
+
+============================== 6 passed in 5.70s ===============================

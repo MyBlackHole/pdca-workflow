@@ -1,0 +1,9 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "FsKernel_AddTrackup 连接失败时可区分 TCP/握手/端口占用原因", "criteria": ["AC-1"], "evidence_ids": ["test-8811-fix-v2"]},
+    {"index": 2, "text": "AddSource 阶段预检 source_host:port 可达性并给出可操作提示", "criteria": ["AC-2"], "evidence_ids": ["test-8811-fix-v2"]},
+    {"index": 3, "text": "AddTrackup 错误链路透出 aio-speedd/内核服务状态而非仅 connect failure", "criteria": ["AC-3"], "evidence_ids": ["test-8811-fix-v2"]},
+    {"index": 4, "text": "回归验证端口占用与服务未启动两类故障均有明确日志与用户指引", "criteria": ["AC-4"], "evidence_ids": ["test-8811-fix-v2"]}
+  ]
+}

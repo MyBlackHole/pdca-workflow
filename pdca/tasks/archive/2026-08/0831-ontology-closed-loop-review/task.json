@@ -1,0 +1,46 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0450",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "完成本体论在 PDCA 全周期闭环融入度的逐阶段审查",
+      "完成 mattpocock/skills 最新版本与本地本体的差距对照",
+      "完成本体知识产生→任务拆分→单元测试的依赖链调研",
+      "输出带优先级的改进计划",
+      "所有结论经 ontology-validate 通过且 ontology_graph 无新增孤岛"
+    ],
+    "created_at": "2026-08-31T11:30:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "phase": "archive",
+    "record": "T0450-0831-ontology-closed-loop-review",
+    "scenario_type": "review",
+    "completed_at": "2026-08-31T11:45:14+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "三项审查全部完成，改进计划已输出，ontology-validate 通过且无新增孤岛",
+      "verdict_id": "verdict-confirmed",
+      "at": "2026-08-31T11:45:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "改进计划已输出，需按 P0/P1/P2 优先级创建子任务并实施。P0: writing-for-agents 重构 + skill-mechanics + skill-invocation-contract；P1: ask-matt/prototype/tdd/research/triage 更新；P2: Negative Space/cache/to-questionnaire/wait-what/HITL-AFK",
+      "at": "2026-08-31T11:47:00+08:00"
+    }
+  },
+  "parent": "T0443",
+  "slug": "0831-ontology-closed-loop-review",
+  "states": {
+    "act": "2026-08-31T11:46:58+08:00",
+    "archive": "2026-08-31T11:50:00+08:00",
+    "check": "2026-08-31T11:45:14+08:00",
+    "created": "2026-08-31T11:30:00+08:00",
+    "do": "2026-08-31T11:45:07+08:00",
+    "plan": "2026-08-31T11:30:00+08:00"
+  },
+  "status": "Completed",
+  "title": "审查本体论完整闭环融入与mattpocock/skills可借鉴内容"
+}

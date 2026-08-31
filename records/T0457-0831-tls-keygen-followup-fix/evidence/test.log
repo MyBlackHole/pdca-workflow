@@ -1,0 +1,15 @@
+[0m[38;2;0;255;0;1m[ 76%]:[0m rpc_own_handshake_test/default ......... [38;2;0;255;0;1mpassed[0m [1m0.012s[0m
+[0m[38;2;0;255;0;1m[ 78%]:[0m s3file_config_test/default ............. [38;2;0;255;0;1mpassed[0m [1m0.009s[0m
+[0m[38;2;0;255;0;1m[ 80%]:[0m s3mount_config_test/default ............ [38;2;0;255;0;1mpassed[0m [1m0.007s[0m
+[0m[38;2;0;255;0;1m[ 82%]:[0m symlink/default ........................ [38;2;0;255;0;1mpassed[0m [1m0.006s[0m
+[0m[38;2;0;255;0;1m[ 84%]:[0m tls_keygen_test/default ................ [38;2;0;255;0;1mpassed[0m [1m0.004s[0m
+[0m[38;2;0;255;0;1m[ 86%]:[0m upload_fileats/default ................. [38;2;0;255;0;1mpassed[0m [1m0.004s[0m
+[0m[38;2;0;255;0;1m[ 88%]:[0m libobk_session_test/default ............ [38;2;0;255;0;1mpassed[0m [1m0.046s[0m
+[0m[38;2;0;255;0;1m[ 90%]:[0m mixed_mtls_integration/default ......... [38;2;0;255;0;1mpassed[0m [1m0.064s[0m
+[0m[38;2;0;255;0;1m[ 92%]:[0m rpc_tool_integration/default ........... [38;2;0;255;0;1mpassed[0m [1m0.056s[0m
+[0m[38;2;0;255;0;1m[ 94%]:[0m fs_meta_comprehensive_test/default ..... [38;2;0;255;0;1mpassed[0m [1m0.101s[0m
+[0m[38;2;0;255;0;1m[ 96%]:[0m rdbcomm_handshake_session_test/default . [38;2;0;255;0;1mpassed[0m [1m0.245s[0m
+[0m[38;2;0;255;0;1m[ 98%]:[0m libobk_rman_mtls_test/default .......... [38;2;0;255;0;1mpassed[0m [1m0.692s[0m
+[0m[38;2;0;255;0;1m[100%]:[0m tls_cert_test/default .................. [38;2;0;255;0;1mpassed[0m [1m1.927s[0m
+[0m
+[38;2;0;255;0;1m100%[0m tests passed, [38;2;255;0;0;1m0[0m test(s) failed out of [1m51[0m, spent [1m2.021s[0m

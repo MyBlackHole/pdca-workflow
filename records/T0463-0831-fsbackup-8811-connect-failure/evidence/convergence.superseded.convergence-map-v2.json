@@ -1,0 +1,28 @@
+{
+  "convergence": [
+    {
+      "statement": "FsKernel_AddTrackup 连接失败时可区分 TCP/握手/端口占用原因",
+      "criterion": "AC-1：FsKernel_AddTrackup 连接失败时宿主机 /tmp/fsbackup/log/network.log 可区分 TCP 连接失败（errno）与握手失败（handshake rejected/TLS），不再仅有 connect to:[127.0.0.1:8811] failure",
+      "evidence": ["test-8811-fix"],
+      "status": "passed"
+    },
+    {
+      "statement": "AddSource 阶段预检 source_host:port 可达性并给出可操作提示",
+      "criterion": "AC-2：AddSource 阶段新增可达性预检日志/响应，host:port 不可达时 AddSource 响应或 network.log 含可操作提示（open_service/connect/handshake 细节）",
+      "evidence": ["test-8811-fix"],
+      "status": "passed"
+    },
+    {
+      "statement": "AddTrackup 错误链路透出 aio-speedd/内核服务状态而非仅 connect failure",
+      "criterion": "AC-3：AddTrackup 失败时客户端 json_response[\"msg\"] 透出 ioctl_buff 具体原因（含 host:port），而非固定 add trackup dir failure.",
+      "evidence": ["test-8811-fix"],
+      "status": "passed"
+    },
+    {
+      "statement": "回归验证端口占用与服务未启动两类故障均有明确日志与用户指引",
+      "criterion": "AC-4：回归验证——VM 内 insmod fsbackup.ko 后，fs-cli --method=add-trackup --bak-path=/opt/aio/ 在宿主机与 VM 双路径下均有明确结果（宿主机路径不存在时报 path not exist/ioctl 而非 connect failure；VM 内路径存在时成功），且 xmake test 相关用例通过",
+      "evidence": ["test-8811-fix"],
+      "status": "passed"
+    }
+  ]
+}

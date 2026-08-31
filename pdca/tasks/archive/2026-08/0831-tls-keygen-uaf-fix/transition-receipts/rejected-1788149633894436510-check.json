@@ -1,0 +1,49 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0451",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-1",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-2",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-3",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-4",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-5",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0451-0831-tls-keygen-uaf-fix/evidence/convergence.json[/]",
+      "message": "Additional properties are not allowed ('criteria', 'file', 'id', 'kind' were unexpected)"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0451-0831-tls-keygen-uaf-fix/evidence/convergence.json[/]",
+      "message": "'schema' is a required property"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0451-0831-tls-keygen-uaf-fix/evidence/convergence.json[/]",
+      "message": "'items' is a required property"
+    }
+  ],
+  "at": "2026-08-31T12:13:53.894405+08:00"
+}
