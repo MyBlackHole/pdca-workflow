@@ -1,1 +1,0 @@
-{"source":"final_confirmation","summary":"用户确认 T0210 PRD：btree 节点实体落盘（allocator 子集 + 节点写盘 + root 驱动恢复），分配器移植完整 allocator 子集、恢复切换 root 遍历、P3 node_scan 排后续","response":"confirmed","at":"2026-08-03T21:44:05+08:00"}

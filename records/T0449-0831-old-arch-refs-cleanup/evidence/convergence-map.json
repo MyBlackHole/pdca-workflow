@@ -1,0 +1,1 @@
+{"schema": "pdca.convergence/v1", "items": [{"index": 1, "text": "全仓 docs/adr/ 引用在活动文件中计数为 0", "criteria": ["AC-1"], "evidence_ids": ["cleanup-scan"]}, {"index": 2, "text": "ontology/domain 中 docs/adr/ 引用已改写为本体节点引用", "criteria": ["AC-2"], "evidence_ids": ["cleanup-scan"]}, {"index": 3, "text": "旧任务格式遗留已删除", "criteria": ["AC-3"], "evidence_ids": ["cleanup-scan"]}]}

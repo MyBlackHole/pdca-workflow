@@ -1,0 +1,43 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0448",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "旧架构引用扫描覆盖全仓库活动文件",
+      "区分有意保留的历史注记与需清理的残留引用",
+      "所有需清理引用已登记证据"
+    ],
+    "created_at": "2026-08-31T00:00:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "phase": "archive",
+    "record": "T0448-0831-old-arch-refs-recheck",
+    "scenario_type": "research",
+    "ontology_exempt": true,
+    "completed_at": "2026-08-31T10:49:52+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "4 项 AC 全部满足；旧架构引用残留与 T0447 一致，无新增残留，需清理引用清理建议明确，convergence-map 验证通过。",
+      "verdict_id": "verdict-t0448-confirmed",
+      "at": "2026-08-31T10:50:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "旧架构引用残留与 T0447 一致，需清理引用清理建议已明确，记录本身亦为归档。",
+      "at": "2026-08-31T10:50:00+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0831-old-arch-refs-recheck",
+  "states": {
+    "act": "2026-08-31T10:51:38+08:00",
+    "archive": "2026-08-31T10:52:43+08:00",
+    "check": "2026-08-31T10:49:52+08:00",
+    "created": "2026-08-31T00:00:00+08:00",
+    "do": "2026-08-31T10:39:54+08:00",
+    "plan": "2026-08-31T00:00:00+08:00"
+  },
+  "status": "Completed",
+  "title": "再次审查项目是否还有旧架构的引用"
+}

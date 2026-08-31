@@ -1,2 +1,0 @@
-{"source": "direction_confirm", "summary": "难点实证验证；有序写入以 btree 索引叶链有序枚举+回表为核心方案（不做外排）；数据规模仅 1M；排序键四类型全验证（int64/TEXT/NUMERIC/TIMESTAMP）", "response": "confirmed", "at": "2026-07-31T17:04:27+08:00"}
-{"source": "final_confirmation", "summary": "用户批准 PRD 全案：难点实证 5 实验 + btree 有序枚举实现（四键）+ 性能对照 + 改动清单（AC-1~AC-4）", "response": "confirmed", "at": "2026-07-31T17:16:29+08:00"}

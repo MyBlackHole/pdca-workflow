@@ -1,2 +1,0 @@
-{"source": "knowledge/tls/mtls-param-review-findings.md", "reason": "T0348 审查 M5 原始发现：libobk 握手 body 主机序与项目其它模块网络序约定不一致"}
-{"source": "knowledge/tls/mtls-handshake-enum-unify.md", "reason": "T0359 已收敛枚举值（DEFAULT=0/SM4=1/AES=2），M5 仅改字节序，枚举语义与白名单 fail-closed 不受影响"}

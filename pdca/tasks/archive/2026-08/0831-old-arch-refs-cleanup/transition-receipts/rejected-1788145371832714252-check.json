@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0449",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-5",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0449-0831-old-arch-refs-cleanup/evidence/convergence-map.json[4]",
+      "message": "index is outside task convergence"
+    }
+  ],
+  "at": "2026-08-31T11:02:51.832687+08:00"
+}

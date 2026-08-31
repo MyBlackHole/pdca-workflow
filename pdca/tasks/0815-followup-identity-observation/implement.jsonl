@@ -1,3 +1,0 @@
-{"file": "knowledge/pdca-flow/real-usage-effectiveness-audit.md", "reason": "观察结论的分层判定（实现正确性/运行数据可用性/效果闭环）沿用它，避免另立口径。", "action": "按四轴/三层组织 T0263 观察报告与 verdict。", "at": "2026-08-15T06:39:41.956324+08:00"}
-{"file": "knowledge/pdca-flow/task-record-identity-invariants.md", "reason": "identity 四维指标（dup ID/dup slug/event path/record mismatch）的语义以不变量文档为准。", "action": "观察对比时逐维引用不变量定义。", "at": "2026-08-15T06:39:41.956439+08:00"}
-{"file": "records/T0262-0814-followup-atomic-task-record-identity/evidence/identity-baseline.json", "reason": "对照基线：25 dup IDs/4 dup slugs/5 event path mismatch/20 record mismatch。", "action": "观察数据与 baseline 配对报告。", "at": "2026-08-15T06:39:41.956454+08:00"}

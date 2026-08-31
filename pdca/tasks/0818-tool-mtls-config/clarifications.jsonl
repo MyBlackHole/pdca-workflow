@@ -1,3 +1,0 @@
-{"at":"2026-08-18T17:25:00+08:00","source":"task_identity","summary":"created with record identity T0319-0818-tool-mtls-config"}
-{"source":"direction_confirm","summary":"确认四个工具独立 section；工具只配置 mtls_enable 与 tls_algorithm；默认国密 TLS_SM4_GCM_SM3；经典算法使用 TLS_AES_256_GCM_SHA384；服务端 mtls_enable=1 强制 mTLS；证书路径与 ca_cn 继续共享。","response":"confirmed","at":"2026-08-18T17:39:11+08:00"}
-{"source":"final_confirmation","summary":"终审确认 T0319：为 rdbcomm、rdbcommd、aio-speed、aio-speedd 增加独立 mTLS/具体算法配置，保持协议字段与业务帧不变。","response":"confirmed","at":"2026-08-18T17:39:11+08:00"}

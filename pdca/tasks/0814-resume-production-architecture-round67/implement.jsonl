@@ -1,3 +1,0 @@
-{"file":"knowledge/core/persistent-concurrency-crash-recovery.md","reason":"durable receipt 与 cursor 存在多个并发持久化窗口，需要用确定性子进程崩溃点而非时序猜测验证","action":"apply deterministic crash matrix to data-sync/receipt-sync/cursor-sync/final-publication boundaries","at":"2026-08-14T08:19:34+08:00"}
-{"file":"knowledge/core/recovery-derived-state-publication-gate.md","reason":"sealed segment 是权威恢复状态，SQLite/LMDB 索引必须可重建且不能在重建验证前参与 skip 决策","action":"treat indexes as derived state and publish only after rebuild verification","at":"2026-08-14T08:19:34+08:00"}
-{"file":"knowledge/benchmark/paired-comparison-noise.md","reason":"1M 恢复性能是默认路径门禁，单次测量无法抵消共享主机负载漂移","action":"alternate baseline/candidate processes and judge paired ratios with dispersion reported","at":"2026-08-14T08:19:34+08:00"}

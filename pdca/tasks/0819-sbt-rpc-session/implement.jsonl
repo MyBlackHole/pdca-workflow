@@ -1,3 +1,0 @@
-{"file":"knowledge/rpc-rdbcomm/mtls-review-fd-session-boundary.md","reason":"复用 RPC mTLS 会话升级和清理边界，避免握手后业务路径退回裸 fd。","action":"将 session 所有权绑定到 dmsbtex/libobk 连接上下文，并覆盖失败、初始化失败、正常关闭路径。","at":"2026-08-19T16:57:20+08:00"}
-{"file":"knowledge/rpc-rdbcomm/unified-first-stage-mtls-time.md","reason":"复用明文首阶段协商、同 fd TLS 升级和禁止明文降级的协议经验。","action":"保持 SBT 自有业务帧，仅替换底层 transport；服务端启用 mTLS 时协商失败即关闭。","at":"2026-08-19T16:57:20+08:00"}
-{"file":"knowledge/rpc-rdbcomm/internal-dead-code-vs-public-abi.md","reason":"指导在保持 SBT 公共 ABI 的同时清理或迁移内部裸 fd 辅助路径。","action":"只改内部连接和网络实现，保留公开函数签名并通过完整测试确认调用边界。","at":"2026-08-19T16:57:20+08:00"}

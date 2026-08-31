@@ -1,0 +1,1 @@
+{"schema": "pdca.convergence/v1", "items": [{"index": 1, "text": "旧架构引用扫描覆盖全仓库活动文件", "criteria": ["AC-1"], "evidence_ids": ["old-arch-refs-recheck-scan"]}, {"index": 2, "text": "区分有意保留的历史注记与需清理的残留引用", "criteria": ["AC-2"], "evidence_ids": ["old-arch-refs-recheck-scan"]}, {"index": 3, "text": "所有需清理引用已登记证据", "criteria": ["AC-3"], "evidence_ids": ["old-arch-refs-recheck-scan"]}]}

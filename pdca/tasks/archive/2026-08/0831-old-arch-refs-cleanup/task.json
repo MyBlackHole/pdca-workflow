@@ -1,0 +1,44 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0449",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "全仓 docs/adr/ 引用在活动文件中计数为 0",
+      "ontology/domain 中 docs/adr/ 引用已改写为本体节点引用",
+      "旧任务格式遗留已删除"
+    ],
+    "created_at": "2026-08-31T00:00:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology/domain",
+    "ontology_node_type": "domain",
+    "phase": "archive",
+    "record": "T0449-0831-old-arch-refs-cleanup",
+    "scenario_type": "development",
+    "completed_at": "2026-08-31T11:06:38+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "AC-1/AC-2/AC-3 全部满足；docs/adr/ 残留引用已通过删除旧任务目录和改写 ontology 注记清除，旧任务格式遗留已删除，convergence-map 验证通过。",
+      "verdict_id": "verdict-t0449-confirmed",
+      "at": "2026-08-31T11:06:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "旧架构引用清理完成，docs/adr/ 残留引用已清除，旧任务格式遗留已删除，记录本身亦为归档。",
+      "at": "2026-08-31T11:06:00+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0831-old-arch-refs-cleanup",
+  "states": {
+    "act": "2026-08-31T11:06:53+08:00",
+    "archive": "2026-08-31T11:07:00+08:00",
+    "check": "2026-08-31T11:06:38+08:00",
+    "created": "2026-08-31T00:00:00+08:00",
+    "do": "2026-08-31T10:56:54+08:00",
+    "plan": "2026-08-31T00:00:00+08:00"
+  },
+  "status": "Completed",
+  "title": "全面清理旧架构引用"
+}

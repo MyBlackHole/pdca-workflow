@@ -1,2 +1,0 @@
-{"source":"direction_confirm","summary":"Oracle 直读转换 PRD: 11g+21c(代表12c+), 正常关闭场景, 删除/多piece/LOB/Basic压缩; 外部表定位契约(--segment/--schema), TDE范围外","response":"confirmed","at":"2026-08-19T16:08:17+08:00"}
-{"source":"final_confirmation","summary":"Oracle 直读转换 PRD 终审通过: 11g+21c, 正常关闭, 删除/多piece/LOB/Basic压缩, 外部表定位契约, TDE范围外","response":"confirmed","at":"2026-08-19T16:10:32+08:00"}

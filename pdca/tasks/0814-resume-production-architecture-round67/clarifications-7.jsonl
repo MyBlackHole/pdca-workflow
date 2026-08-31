@@ -1,1 +1,0 @@
-{"round":7,"question":"关闭文件元数据的准确含义","answer":"关闭的是文件元数据索引：完全不生成、打开或更新任何文件元数据索引文件，而不是减少备份元数据内容。","recommended":"命名为 metadata_index=on|off；off 绕过 SQLite/LMDB/metadata index 全部路径，repository manifest/catalog/restore 保持相同语义，独立开启的 resume 状态不受影响。","source":"grilling","at":"2026-08-14T08:40:42+08:00"}

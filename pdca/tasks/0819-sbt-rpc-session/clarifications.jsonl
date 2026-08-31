@@ -1,2 +1,0 @@
-{"at":"2026-08-19T00:00:00+08:00","source":"task_identity","summary":"created with record identity T0330-0819-sbt-rpc-session"}
-{"source":"final_confirmation","summary":"确认双模块客户端/服务端复用 rpc_hs_session_t，保持公开 ABI，不新增全局映射和锁，并按声明测试接缝实施。","response":"confirmed","at":"2026-08-19T16:57:07+08:00"}

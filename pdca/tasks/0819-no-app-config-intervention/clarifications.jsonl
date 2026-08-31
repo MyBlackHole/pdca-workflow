@@ -1,2 +1,0 @@
-{"at":"2026-08-19T12:20:00+08:00","source":"task_identity","summary":"created with record identity T0327-0819-no-app-config-intervention"}
-{"source":"final_confirmation","summary":"确认移除 app 配置管理介入，由 libs/rdb-config.c/h 独立管理配置状态和生命周期。","response":"confirmed","at":"2026-08-19T13:40:06+08:00"}

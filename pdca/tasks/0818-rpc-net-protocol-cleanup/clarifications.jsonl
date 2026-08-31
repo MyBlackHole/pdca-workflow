@@ -1,2 +1,0 @@
-{"at":"2026-08-18T15:45:00+08:00","source":"task_identity","summary":"created with record identity T0315-0818-rpc-net-protocol-cleanup"}
-{"source":"final_confirmation","summary":"确认清理 rpc-net-protocol 遗留实现，保留现行 rpc-protocol 与 rpc-handshake 时间功能，并按引用扫描、构建和完整测试验收。","response":"confirmed","at":"2026-08-18T15:45:40+08:00"}

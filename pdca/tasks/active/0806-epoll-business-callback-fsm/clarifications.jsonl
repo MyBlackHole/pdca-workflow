@@ -1,4 +1,0 @@
-{"round": 1, "source": "grilling", "question": "重构范围边界？", "answer": "服务端+客户端都重构（彻底异步化）", "recommended": "纯服务端重构", "at": "2026-08-06T08:08:51.275709+08:00"}
-{"round": 2, "source": "grilling", "question": "客户端异步化 API 形态？", "answer": "全部一次性重写（rpc.cpp/do_scp_*/fs_backup 全改回调式）", "recommended": "新增异步 API 分阶段迁移", "at": "2026-08-06T08:08:51.275709+08:00"}
-{"round": 3, "source": "grilling", "question": "worker 模型最终形态（用户修正：需要 workers 像 nginx）？", "answer": "多 Reactor 事件循环（nginx worker 角色）+ 去掉 Reactor 内 worker 池，业务回调在 reactor_main 事件循环内非阻塞推进", "recommended": "同左（nginx 标准模型：SO_REUSEPORT 分片 + 每 worker 独立事件循环）", "at": "2026-08-06T08:14:22.922382+08:00"}
-{"source":"final_confirmation","summary":"T0222 Plan 终审：多 Reactor nginx worker 模型（SO_REUSEPORT 分片 + 去 worker 池 + 业务回调在事件循环内非阻塞推进），服务端+客户端全部一次性重写，TLS 异步化纳入，AC-1~AC-10 接受","response":"confirmed","at":"2026-08-06T08:15:53+08:00"}

@@ -1,3 +1,0 @@
-{"at":"2026-08-23T00:58:40+08:00","source":"task_identity","summary":"created with record identity T0362-0823-libobk-hs-netorder"}
-{"source":"final_confirmation","summary":"M5 直接网络序改造（破坏性，外部对端同步升级），方案/设计/验收已确认","response":"confirmed","at":"2026-08-23T01:03:19+08:00"}
-{"source":"check_confirmation","summary":"双轴审查 Blocking（拒绝分支漏 htons + 测试两侧漏 ntohs）已修复；全量 xmake test 40/40 PASS；AC-1/2/3 验收 passed","response":"confirmed","at":"2026-08-23T01:12:01+08:00"}

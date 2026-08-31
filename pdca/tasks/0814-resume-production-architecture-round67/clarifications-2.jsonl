@@ -1,1 +1,0 @@
-{"round":2,"question":"源端一致性前提","answer":"忽略 source snapshot / immutable view，源端没有该能力；系统必须按 live-tree 语义设计，不承诺 point-in-time 一致性。","recommended":"采用 tree_run_id + directory_epoch + immutable segment + 局部重扫 + final verification，持续变化条目显式报告，不静默成功。","source":"grilling","at":"2026-08-14T08:10:00+08:00"}

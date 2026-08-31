@@ -1,2 +1,0 @@
-{"at":"2026-08-19T09:31:00+08:00","source":"task_identity","summary":"created with record identity T0322-0819-tool-mtls-cli-args-v2"}
-{"source":"final_confirmation","summary":"确认四个工具增加 --mtls-enable=0|1 与 --tls-algorithm=具体算法命令参数，命令参数优先于环境变量和配置。","response":"confirmed","at":"2026-08-19T09:30:36+08:00"}

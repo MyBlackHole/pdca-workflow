@@ -1,2 +1,0 @@
-{"at":"2026-08-19T11:35:00+08:00","source":"task_identity","summary":"created with record identity T0326-0819-centralize-all-ini-parameters"}
-{"source":"final_confirmation","summary":"确认由 libs/rdb-config.c/h 统一管理范围内全部 INI 参数、默认值、优先级、校验和快照，xbsa 排除在外。","response":"confirmed","at":"2026-08-19T11:51:36+08:00"}

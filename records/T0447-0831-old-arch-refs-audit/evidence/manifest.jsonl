@@ -1,0 +1,2 @@
+{"id":"old-arch-refs-scan","file":"old-arch-refs-scan.md","kind":"document","size":2225,"digest":"sha256:36120f68c216ba833ba30392d829a066f10eefa38669e37087b3c9556b9fa7d0","at":"2026-08-31T10:10:36+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"convergence-map","file":"convergence-map.json","kind":"convergence-map","size":565,"digest":"sha256:8cbf3847f1306f15090c4d2b524637dcf889807ffdafa1c3677cd18ba3cadc79","at":"2026-08-31T10:12:00+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

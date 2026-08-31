@@ -1,4 +1,0 @@
-{"at":"2026-08-23T10:10:00+08:00","source":"task_identity","summary":"created with record identity T0369-0823-rdbcfg-config-audit"}
-{"source":"grilling","summary":"交付范围=报告+修复全部中/高优先级问题；聚焦维度=全维度（一致性/常量重复/解析语义/安全/命名）；模块范围=全仓库所有 sec_resolve 消费者","response":"报告+修复全部 / 全维度 / 全仓库","at":"2026-08-23T10:15:00+08:00"}
-{"source":"final_confirmation","summary":"T0369 批准：全仓库审查 rdb.cfg 使用问题，输出 review.md 并对全部中/高优先级问题（优先级顺序对齐 C、静默截断、常量重复、无 section 回退、atoi/空串、双缓冲无锁、配置源分散、命名混淆）做修复+回归；AC-1~AC-5","response":"confirmed","at":"2026-08-23T10:16:34+08:00"}
-{"source":"check_confirmation","summary":"T0369 Check 批准：review.md + F1~F8 修复 + 回归达标；F9 仅建议；收敛 valid=true","response":"confirmed","at":"2026-08-23T10:39:38+08:00"}

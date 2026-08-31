@@ -23,7 +23,7 @@
 
 ## 权威入口
 
-- 阶段流程：`$PDCA_HOME/flows/flow-plan/SKILL.md`、`flow-do`、`flow-check`、`flow-act`
+- 阶段流程：`$PDCA_HOME/ontology/process/flow-plan.md`、`$PDCA_HOME/ontology/process/flow-do.md`、`$PDCA_HOME/ontology/process/flow-check.md`、`$PDCA_HOME/ontology/process/flow-act.md`
 - 阶段转换：`$PDCA_HOME/ontology/domain/skill-advance-phase.md`
 - 任务拆解：`$PDCA_HOME/ontology/domain/skill-to-tickets.md`
 - 追问与对齐：`$PDCA_HOME/ontology/domain/skill-grilling.md`
@@ -34,7 +34,7 @@
 - 严格任务合约：`$PDCA_HOME/schemas/task.schema.json`
 - 能力协议：`$PDCA_HOME/ontology/concept/capability-protocol.md`
 
-流程正文和技能文件是权威来源；本入口只做路由，不复制其全部内容。术语变更同步 `$PDCA_HOME/pdca/CONTEXT.md`，架构级硬决策同步 `$PDCA_HOME/ontology/`（对应本体节点）。
+阶段流程、本体节点与技能文件是权威来源；本入口只做路由，不复制其全部内容。术语变更同步 `$PDCA_HOME/pdca/CONTEXT.md`，架构级硬决策同步 `$PDCA_HOME/ontology/`（对应本体节点）。
 
 ## 沟通与维护约定
 

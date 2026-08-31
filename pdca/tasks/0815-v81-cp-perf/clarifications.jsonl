@@ -1,5 +1,0 @@
-{"at":"2026-08-15T18:15:57+08:00","source":"task_identity","summary":"created with record identity T0293-0815-v81-cp-perf"}
-{"source":"direction_confirm","summary":"方向确认：双 AC（对称吞吐/延迟median≤v80、p99∈v80~当前v81；不对称资源节省+判据修正）；承接T0292判据修正统一做；development 形态改代码实测提升","response":"confirmed","at":"2026-08-15T18:16:43+08:00"}
-{"source":"final_confirmation","summary":"终审批准：O1-O4 四步优化、双 AC（对称 median≤v80/p99↓/线程↓ + 不对称资源节省+判据修正）、承接 T0292、development 形态进入 Do","response":"confirmed","at":"2026-08-15T18:18:29+08:00"}
-{"source":"check_confirmation","summary":"用户 verdict=confirmed：整体确认，判据按 AC-5 新口径通过，AC-1 差距归因范围外架构","response":"confirmed","at":"2026-08-15T18:33:42+08:00"}
-{"source": "knowledge_decision", "at": "2026-08-15T18:34:31+08:00", "action": "wrote", "reason": "纯计算控制帧 fastpath(in-flight 门控保序)+WRITE 归并+判据双维度，可复用工程折衷"}

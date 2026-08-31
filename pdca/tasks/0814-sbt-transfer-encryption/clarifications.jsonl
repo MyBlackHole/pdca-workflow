@@ -1,5 +1,0 @@
-{"round":1,"question":"国密线路协议选型？ADR-0001（较早）采纳 TLCP（双证书 GB/T 38636），设计文档选单证书国密套件（TLS1.3 RFC 8998）且性能实测基于此","answer":"RFC 8998 单证书（TLS_SM4_GCM_SM3）","recommended":"RFC 8998 单证书","source":"grilling","at":"2026-08-14T11:30:00+08:00"}
-{"round":1,"question":"本仓改造范围？设计文档列 6 个工具改造点，UI/页面开关在别仓；性能实测已有官方数据（73MB/s）","answer":"全部（含 oss https、性能压测）","recommended":"仅底层传输层（tls_cert/tls_keygen/SBT 链路/RPC 协商）","source":"grilling","at":"2026-08-14T11:30:05+08:00"}
-{"round":1,"question":"本任务拆解粒度？设计文档涉及 6 大模块，每个独立可验收","answer":"拆子任务树，各子任务独立 PDCA 周期","recommended":"拆子任务树","source":"grilling","at":"2026-08-14T11:30:10+08:00"}
-{"round":1,"question":"性能验收方式（ENC-T-011）？设计文档已含完整实测，是否重测","answer":"重测性能（在本仓编写基准并产出新报告）","recommended":"引用官方数据","source":"grilling","at":"2026-08-14T11:30:15+08:00"}
-{"round":2,"question":"RPC 层能力协商与 SBT 协商头格式：统一复用现有协议头扩展（network_header_t/activeioHeader）还是独立定义？","answer":"统一复用现有协议头扩展能力宣告字段，服务端默认兼容无协商头存量客户端（对齐设计文档 §5）","recommended":"复用现有协议头扩展","source":"grilling","at":"2026-08-14T11:31:00+08:00"}

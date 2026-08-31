@@ -1,2 +1,0 @@
-{"source":"knowledge/cli-help/cli-help-regression.md","reason":"约束 help 必须说明作用、值类型、默认值/约束，并提供无副作用案例和直接工具回归。","action":"按该规范设计四工具 help 文案与 xmake 回归断言","at":"2026-08-18T18:13:00+08:00"}
-{"source":"pdca/tasks/archive/2026-08/0818-tool-help-coverage/design.md","reason":"复用 T0318 已确认的 help 接缝和范围边界，避免重复引入元数据驱动重构。","action":"在既有 help 集成测试上扩展 mTLS/算法断言","at":"2026-08-18T18:13:00+08:00"}

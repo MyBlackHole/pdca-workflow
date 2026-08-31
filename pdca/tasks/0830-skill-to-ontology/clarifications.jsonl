@@ -1,2 +1,0 @@
-{"at":"2026-08-30T17:50:00+08:00","source":"task_identity","summary":"created with record identity T0433-0830-skill-to-ontology"}
-{"source":"final_confirmation","summary":"用户确认：删除 skills 目录，skill 知识转到本体表达。所有 skill 的 SKILL.md 内容迁移至 ontology/domain/skill-<name>.md 节点，skills/ 目录删除，所有引用更新。","response":"confirmed","at":"2026-08-30T17:53:01+08:00"}

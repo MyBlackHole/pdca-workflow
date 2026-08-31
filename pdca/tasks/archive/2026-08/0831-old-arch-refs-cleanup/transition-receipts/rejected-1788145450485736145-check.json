@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0449",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "EVIDENCE_SIZE_MISMATCH",
+      "path": "records/T0449-0831-old-arch-refs-cleanup/evidence/convergence-map.json",
+      "message": "size does not match manifest"
+    },
+    {
+      "code": "EVIDENCE_DIGEST_MISMATCH",
+      "path": "records/T0449-0831-old-arch-refs-cleanup/evidence/convergence-map.json",
+      "message": "digest does not match"
+    }
+  ],
+  "at": "2026-08-31T11:04:10.485703+08:00"
+}

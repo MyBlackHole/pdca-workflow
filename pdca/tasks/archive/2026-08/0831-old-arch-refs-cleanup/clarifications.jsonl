@@ -1,0 +1,7 @@
+{"at":"2026-08-31T00:00:00+08:00","source":"task_identity","summary":"created with record identity T0449-0831-old-arch-refs-cleanup"}
+{"source":"grilling","at":"2026-08-31T00:01:00+08:00","question":"清理范围是否包括 ontology/domain/linux-epoll-eventloop-rpc-conn-idle-reclaim.md:27 的 docs/adr/ 注记？","answer":"包括。改写为不指向 docs/adr/ 的注记形式。","source_type":"grilling_answer"}
+{"source":"grilling","at":"2026-08-31T00:02:00+08:00","question":"T0385 旧 post API 退役是否在本任务中执行？","answer":"不替代 T0385，仅跟踪其进度。T0385 应进入 do 阶段执行清理。","source_type":"grilling_answer"}
+{"source":"grilling","at":"2026-08-31T00:03:00+08:00","question":"旧任务格式遗留（14 个活跃任务）是否在本任务中清理？","answer":"不清理，需用户授权后单独处理。本任务仅处理 docs/adr/ 残留引用。","source_type":"grilling_answer"}
+{"source":"grilling","at":"2026-08-31T00:04:00+08:00","question":"implement.jsonl 中的 docs/adr/ 引用改写为何种本体节点？","answer":"改写为 ontology/domain/linux-epoll-eventloop-rpc-conn-idle-reclaim 节点。ADR-0001 的决策背景已在该节点中。","source_type":"grilling_answer"}
+{"source":"final_confirmation","summary":"T0449 终审确认：清理范围明确，7 处 docs/adr/ 残留引用需改写，T0385 跟踪推进，旧任务格式待授权","response":"confirmed","at":"2026-08-31T00:06:00+08:00"}
+{"source":"check_confirmation","summary":"T0449 结论确认：AC-1/AC-2/AC-3 全 ✅，docs/adr/ 残留引用已清理，旧任务格式已删除，AC-4 待 ontology-validate 验证","response":"confirmed","at":"2026-08-31T11:06:10+08:00"}

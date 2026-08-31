@@ -1,0 +1,6 @@
+{"at":"2026-08-31T00:00:00+08:00","source":"task_identity","summary":"created with record identity T0447-0831-old-arch-refs-audit"}
+{"source": "grilling", "at": "2026-08-31T00:01:00+08:00", "question": "审查范围是否包括 records/ 和 pdca/journal/ 中的历史引用？", "answer": "records/ 和 journal/ 仅作参考，扫描重点为活动文件（pdca/ontology/scripts/templates/tests/README/AGENTS）。", "source_type": "grilling_answer"}
+{"source": "grilling", "at": "2026-08-31T00:02:00+08:00", "question": "已退役但有意保留的历史注记（如 CONTEXT.md 中的 ADR 已退役）是否算旧架构引用？", "answer": "有意保留的历史注记不算残留引用，但需单独列出以便区分。重点清理指向已删除目录/文件或仍使用旧模式的残留引用。", "source_type": "grilling_answer"}
+{"source": "grilling", "at": "2026-08-31T00:03:00+08:00", "question": "T0385 旧 post API 退役任务正在执行中，是否纳入本次审查？", "answer": "纳入。本次审查确认 T0385 的执行状态和完成标准，不替代 T0385 的执行。", "source_type": "grilling_answer"}
+{"source":"final_confirmation","summary":"T0447 终审确认：扫描覆盖全仓活动文件，区分有意保留与需清理残留，证据已登记","response":"confirmed","at":"2026-08-31T00:05:00+08:00"}
+{"source":"check_confirmation","summary":"T0447 结论确认 verdict=confirmed（4 AC 全 ✅，旧架构引用已分类，残留引用清理建议明确）","response":"confirmed","at":"2026-08-31T10:17:03+08:00"}
