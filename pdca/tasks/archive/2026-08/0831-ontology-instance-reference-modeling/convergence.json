@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "完成独立本体与实例引用两种建模策略的对比评估",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["design"]
+    },
+    {
+      "index": 2,
+      "text": "明确链路深度与表达详细度的权衡阈值与适用场景",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["design"]
+    },
+    {
+      "index": 3,
+      "text": "产出可落地的建模规范与实例化指引",
+      "criteria": ["AC-3", "AC-4"],
+      "evidence_ids": ["design", "modular-pattern"]
+    }
+  ]
+}
