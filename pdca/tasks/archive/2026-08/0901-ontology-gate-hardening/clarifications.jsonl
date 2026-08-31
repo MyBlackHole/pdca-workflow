@@ -1,0 +1,6 @@
+{"at":"2026-08-31T21:45:00+08:00","source":"task_identity","summary":"created with record identity T0470-0901-ontology-gate-hardening"}
+{"at":"2026-08-31T21:45:00+08:00","captured":true,"question":"❓ Q1 - 新任务范围：基于 T0469 遗留的迭代建议，下一轮优先处理哪个？","recommended":"D — 全做（按 A→B→C 顺序）","round":1,"answer":"D","source":"grilling"}
+{"at":"2026-08-31T21:45:00+08:00","captured":true,"question":"❓ Q2 - 任务类型：以什么形态推进？","recommended":"C — 先 research 后 development","round":1,"answer":"C","source":"grilling"}
+{"at":"2026-08-31T21:45:00+08:00","captured":true,"question":"❓ Q3 - 目标范围：优化聚焦在哪个本体层？","recommended":"B — 全层（scripts + ontology/domain + skill-ontology-check）","round":1,"answer":"B","source":"grilling"}
+{"source":"final_confirmation","summary":"用户确认：本体门禁硬化与语义匹配增强，先 research 评估现状再 development 实施，范围：全层（scripts + ontology/domain + skill-ontology-check）","response":"confirmed","at":"2026-08-31T21:47:11+08:00"}
+{"source":"check_confirmation","summary":"验证通过：3项AC满足，ontology-validate与ontology_graph校验通过，convergence验证valid:true","response":"confirmed","at":"2026-08-31T22:05:59+08:00"}

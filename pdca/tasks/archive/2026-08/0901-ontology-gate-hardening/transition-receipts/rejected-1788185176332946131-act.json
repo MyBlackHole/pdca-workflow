@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0470",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta/disposition",
+      "message": "'projected' is not of type 'object'",
+      "guidance": "fix the field at /meta/disposition in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-08-31T22:06:16.332921+08:00"
+}

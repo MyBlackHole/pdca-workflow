@@ -16,8 +16,9 @@ attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: 由领域实践与测试验证
+  testable_signal: "检查本文件 CLI 帮助章节含至少 1 个命令示例，且经 --help 或 --version 验证输出非空"
 ---
+
 
 # 客户端 TLS_CTX 缓存复用与并发安全模式
 

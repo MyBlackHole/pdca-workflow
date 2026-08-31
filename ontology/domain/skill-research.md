@@ -15,7 +15,10 @@ relations:
     - ontology:concept/domain-modeling
     - ontology:concept/domain-model
     - ontology:concept/skill-mechanics
+  testable_signal: "检查本文件内容完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空且不含泛化短语"
+
 ---
+
 
 # Research — 模型驱动的领域调研
 
@@ -66,8 +69,8 @@ research 结论在 Check `confirmed/partial` 后，进入 Act 必须做显式的
    - 结论被 PRD 验收标准或后续任务依赖（跨任务复用）
    - 方法论/规范类研究（非一次性事实收集）
 2. **决策记录**：在 `records/<record-id>/conclusion.md` 增设 `## 本体沉淀` 章节，显式声明 `ontology` 或 `records-only` 及理由；`task.json#meta.disposition` 的 `reason` 须包含该决策关键词（`ontology:` 或 `records-only`）。
-3. **本体化执行**（判定为 `ontology` 时）：新建或更新 `ontology/<type>/<slug>.md`（`pdca.asset/v1`），`relations` 关联 `ontology:concept/pdca-task` 与来源 record，`attributes[].testable_signal` 可回归验证；经 `ontology-validate` 与 `ontology_graph`（0 islands）校验后方可进入 `archive`。
-4. **校验**：运行 `python3 scripts/check-research-ontology-settlement.py --task-dir pdca/tasks/<task>`，漏决策或 `records-only` 无理由即 `RESEARCH_SETTLEMENT_MISSING`。
+3. **本体化执行**（判定为 `ontology` 时）：新建或更新 `ontology/<type>/<slug>.md`（`pdca.asset/v1`），`relations` 关联 `ontology:concept/pdca-task` 与来源 record，`attributes[].testable_signal` 可回归验证；信号须符合 `testable-signal-to-test-derivation` 三模式（属性断言/契约测试/收敛验证）结构，经 `ontology-validate` 与 `ontology_graph`（0 islands）校验后方可进入 `archive`。
+4. **校验**：运行 `python3 scripts/check-research-ontology-settlement.py --task-dir pdca/tasks/<task>`，漏决策或 `records-only` 无理由即 `RESEARCH_SETTLEMENT_MISSING`；校验 `attributes[].testable_signal` 不含泛化短语（符合 `testable-signal-to-test-derivation` 三模式）。
 
 ## Exit
 

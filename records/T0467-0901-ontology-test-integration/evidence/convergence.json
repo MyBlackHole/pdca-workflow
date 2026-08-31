@@ -1,0 +1,35 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AC-1：产出 ontology/domain/ 层泛化信号清单，精化后信号均含动词+对象+判定结构",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "research-report"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "AC-2：testable-signal-to-test-derivation 三模式在至少 1 个 domain 节点上可运行验证",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "research-report"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "AC-3：ontology-validate 通过且 ontology_graph 0 islands",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "research-report"
+      ]
+    }
+  ]
+}

@@ -26,7 +26,7 @@ attributes:
 - name: testable_signal
   desc: 由领域实践与测试验证 invocation 配置正确性
   constraint: 由领域实践与测试验证
-  testable_signal: 由领域实践与测试验证
+  testable_signal: 检查所有 user-invoked 技能的依赖关系无循环，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空
 ---
 
 # 技能机制（Skill Mechanics）

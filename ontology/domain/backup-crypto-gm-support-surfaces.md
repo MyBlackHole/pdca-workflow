@@ -16,8 +16,9 @@ attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: 由领域实践与测试验证
+  testable_signal: "检查本文件加密支持章节含 GM/SM/TAOCP 算法分类，且经 openssl speed 或 tpm2_getcap 验证至少 1 个算法可用"
 ---
+
 
 # 备份国密支撑面：S3 静态加密 / CPU 指令集 / NFS 内核边界
 

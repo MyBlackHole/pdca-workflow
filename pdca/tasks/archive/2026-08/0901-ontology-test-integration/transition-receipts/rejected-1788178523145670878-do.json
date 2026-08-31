@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0467",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "FINAL_CONFIRMATION_TIME_ORDER",
+      "path": "clarifications.jsonl[4]/at",
+      "message": "final confirmation cannot predate task creation"
+    }
+  ],
+  "at": "2026-08-31T20:15:23.145651+08:00"
+}

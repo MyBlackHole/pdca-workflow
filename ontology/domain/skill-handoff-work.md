@@ -14,7 +14,10 @@ relations:
   relates_to:
     - ontology:concept/handoff
     - ontology:concept/domain-modeling
+  testable_signal: "检查本文件内容完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空且不含泛化短语"
+
 ---
+
 
 ---|-----|----------|------|
 | 1 | 下一步需要本块作一手依据，或推理余量充足？ | **继续** | 零成本零损失，最先排除其余选项 |

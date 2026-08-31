@@ -6,7 +6,7 @@ PDCA 工作流的 `to-tickets` 技能在把 PRD 拆为子任务前调用本脚�
 名称冲突，提示「已有本体节点 X，建议复用而非新建任务」，
 避免任务与本体分类法不对齐。
 
-仅作提示，不改变拆解产出；退出码恒为 0（告警式，不阻断 CI）。
+阻断式门禁：发现冲突时退出码为 1，阻断拆解产出；无冲突时退出码为 0。
 """
 
 from __future__ import annotations
@@ -88,6 +88,35 @@ def _match_one(candidate: str, node_ids: list[str]) -> list[str]:
         if cand_tokens and node_tokens and (cand_tokens & node_tokens):
             clashes.append(nid)
             continue
+    # 语义级匹配作为补充
+    semantic = _semantic_match(cand, node_ids)
+    for nid in semantic:
+        if nid not in clashes:
+            clashes.append(nid)
+    return clashes
+
+
+def _semantic_match(candidate: str, node_ids: list[str]) -> list[str]:
+    """语义级匹配：检查候选与节点是否存在前缀/核心词重叠。"""
+    clashes: list[str] = []
+    cand_base = _DATE_PREFIX.sub("", candidate.strip().lower())
+    # 提取核心词（去除数字和日期前缀后的连续字母）
+    cand_words = set(re.findall(r"[a-z]{3,}", cand_base))
+    if not cand_words:
+        return clashes
+    for nid in node_ids:
+        if ":" not in nid:
+            continue
+        slug = nid.split("/", 1)[-1].lower()
+        # 检查候选核心词是否与节点 slug 的核心词有重叠
+        node_words = set(re.findall(r"[a-z]{3,}", slug))
+        if cand_words & node_words:
+            # 额外检查：候选 slug 主体是否在节点 slug 中出现
+            cand_slug = _slug_tokens(candidate)
+            node_slug = _slug_tokens(nid)
+            if cand_slug & node_slug:
+                if nid not in clashes:
+                    clashes.append(nid)
     return clashes
 
 
@@ -112,7 +141,7 @@ def main(argv: list[str]) -> int:
     else:
         print("[ontology-clash] 未发现与既有本体节点重名。")
     print(json.dumps(report, ensure_ascii=False))
-    return 0
+    return 1 if total else 0
 
 
 if __name__ == "__main__":

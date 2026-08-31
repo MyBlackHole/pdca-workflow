@@ -20,7 +20,7 @@ attributes:
   - name: applicability
     desc: 将本体 attributes.testable_signal 转化为可执行测试的适用场景
     constraint: 适用于声明了 attributes 的 KnowledgeArtifact 节点（pattern/principle/pitfall/fact/decision）
-    testable_signal: 运行 python3 scripts/ontology-validate.py --ontology-dir ontology 检查本节点及关联 KnowledgeArtifact 的 attributes.testable_signal 非空且不含泛化短语"由领域实践与测试验证"，且图谱中可经 specializes 追溯至 ontology:pattern
+    testable_signal: 运行 python3 scripts/ontology-validate.py --ontology-dir ontology 检查本节点及关联 KnowledgeArtifact 的 attributes.testable_signal 非空且不含泛化描述，且图谱中可经 specializes 追溯至 ontology:pattern
 ---
 
 # testable_signal 到测试用例派生模式

@@ -9,6 +9,9 @@ For scenario_type == research and phase in (act, archive):
 
 Exit 0 when not applicable (non-research or not in act/archive) or when all checks pass.
 Exit 1 with RESEARCH_SETTLEMENT_* issues otherwise.
+
+Also validates that testable_signal entries in ontology nodes are refined
+(不含泛化短语如"由领域实践与测试验证"), per testable-signal-to-test-derivation pattern.
 """
 from __future__ import annotations
 
@@ -115,12 +118,36 @@ def main() -> int:
         if not found:
             issues.append(f"RESEARCH_SETTLEMENT_MISSING: decision is ontology but no ontology/*.md references record={record} or task={task.get('id')}")
 
+    # Validate testable_signal entries are refined (no generic phrases)
+    GENERIC_PHRASES = ["由领域实践与测试验证", "符合领域最佳实践"]
+    ont_root = args.root / "ontology"
+    if ont_root.is_dir():
+        generic_count = 0
+        total_signals = 0
+        for md in ont_root.rglob("*.md"):
+            try:
+                text = md.read_text(encoding="utf-8")
+            except Exception:
+                continue
+            # Extract testable_signal lines
+            for line in text.split("\n"):
+                stripped = line.strip()
+                if stripped.startswith("testable_signal:"):
+                    total_signals += 1
+                    sig = stripped.split("testable_signal:", 1)[1].strip().strip("\"").strip("'")
+                    if any(p in sig for p in GENERIC_PHRASES):
+                        generic_count += 1
+        if generic_count > 0:
+            issues.append(f"RESEARCH_SETTLEMENT_GENERIC_SIGNAL: {generic_count}/{total_signals} testable_signal entries contain generic phrases")
+
     if issues:
         for iss in issues:
             print(iss, file=sys.stderr)
         return 1
 
     print(f"OK: research settlement decision present for {task.get('id')} (record={record}, phase={phase})")
+    if ont_root.is_dir():
+        print(f"OK: all {total_signals} testable_signal entries are refined")
     return 0
 
 if __name__ == "__main__":

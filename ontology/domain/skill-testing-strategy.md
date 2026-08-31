@@ -14,7 +14,10 @@ relations:
   relates_to:
     - ontology:concept/domain-modeling
     - ontology:concept/triage
+  testable_signal: "检查本文件测试相关章节的完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空且不含泛化短语"
+
 ---
+
 
 -------\
   /integration\  中等 — 模块间交互
@@ -56,6 +59,18 @@ relations:
 - 测试依赖实现细节（过度 Mock）
 - 测试共享可变状态导致顺序依赖
 - 断言模糊（用 `==` 而非 `inDelta`/`contains`）
+
+## 与 testable-signal-to-test-derivation 的衔接
+
+`testable-signal-to-test-derivation` 定义了本体 `attributes.testable_signal` 到可执行测试用例的三种派生模式，测试策略应据此选择验证方式：
+
+| 信号特征 | 派生模式 | 自动化载体 |
+|----------|---------|-----------|
+| 单属性约束可独立判定 | 属性断言 | `ontology-validate.py` + 自定义断言脚本 |
+| 声明与实现需一致 | 契约测试 | `seam_contract.py` / `check-design-vocab.py` |
+| 多产物需闭环回链 | 收敛验证 | `register-evidence.py` + `validate-convergence.py` |
+
+测试计划应优先覆盖契约测试与收敛验证，确保声明与实际一致、收敛链完整。
 
 ## 已知坑
 

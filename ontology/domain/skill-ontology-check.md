@@ -14,7 +14,10 @@ relations:
   relates_to:
     - ontology:concept/domain-modeling
     - ontology:concept/pdca-task
+  testable_signal: "检查本文件内容完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空且不含泛化短语"
+
 ---
+
 
 ---
 name: ontology-check
@@ -37,9 +40,10 @@ description: 新本体资产写入前的门禁检查。校验 type 合法、引�
 4. `relations.*` / `domain` 引用的 ontology id 必须在 `ontology/` 中存在对应节点（引用使用本体 id，如 `ontology:concept/foo`）。
 5. 运行 `python3 scripts/ontology-validate.py --ontology-dir ontology`：必须 0 issues（否则拒绝写入/提交）。
 6. 新增 KnowledgeArtifact 的 `attributes[].testable_signal` 不得为泛化描述（与 `ontology-validate` AC-4 衔接，脚本仅校验非空，人工门禁补位）：
-   - 拒绝泛化：如 `由领域实践与测试验证`、`符合领域最佳实践` 等无法直接派生断言的描述
-   - 合格要求：必须描述具体的验证动作、断言、工具或脚本（例："检查契约测试是否覆盖声明与实际的一致性断言"、"运行 seam_contract.py 对比 PRD 声明的 seam 清单与实际测试文件的一致性"、"执行 validate-convergence.py 检查 meta.convergence 回链完整性"）
-   - 操作：人工复核新增/修改节点的每个 `testable_signal` 是否包含"动词+对象+判定标准"结构；抽样执行对应验证脚本并登记 evidence，拒绝纯泛化信号入库
+    - 拒绝泛化：如 `由领域实践与测试验证`、`符合领域最佳实践` 等无法直接派生断言的描述
+    - 合格要求：必须描述具体的验证动作、断言、工具或脚本（例："检查契约测试是否覆盖声明与实际的一致性断言"、"运行 seam_contract.py 对比 PRD 声明的 seam 清单与实际测试文件的一致性"、"执行 validate-convergence.py 检查 meta.convergence 回链完整性"）
+    - 操作：人工复核新增/修改节点的每个 `testable_signal` 是否包含"动词+对象+判定标准"结构；抽样执行对应验证脚本并登记 evidence，拒绝纯泛化信号入库
+    - 集成结算门禁：运行 `python3 scripts/check-research-ontology-settlement.py --task-dir <task>` 校验 `testable_signal` 精化程度，发现泛化信号即 `RESEARCH_SETTLEMENT_GENERIC_SIGNAL` 阻断写入
 
 ## 与 ontology-validate.py 的衔接
 

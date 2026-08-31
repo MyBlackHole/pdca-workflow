@@ -1,0 +1,3 @@
+{"id": "design", "file": "design.md", "kind": "document", "size": 1189, "digest": "sha256:4e50b9570d8c93c77607a69030d92ecf207195c6ffdc6a28e79584096f7495ad", "at": "2026-08-31T21:40:31+08:00", "criteria": ["AC-1", "AC-2", "AC-3"]}
+{"id": "research-report", "file": "research-report.md", "kind": "document", "size": 2178, "digest": "sha256:000f249c86a639fca979bf523687f98744b1c55b6a18c140160aac33c24c575e", "at": "2026-08-31T21:40:31+08:00", "criteria": ["AC-1", "AC-2", "AC-3"]}
+{"id": "convergence-map", "file": "convergence.json", "kind": "convergence-map", "size": 649, "digest": "sha256:dcca591dd0a313c04393252e8e135e7305e54f2211366e0ee6b182e2d3b37b9c", "at": "2026-08-31T21:40:31+08:00", "criteria": ["AC-1", "AC-2", "AC-3"]}

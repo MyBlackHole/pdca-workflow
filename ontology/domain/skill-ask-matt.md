@@ -17,7 +17,10 @@ relations:
     - ontology:concept/phase-boundary-decision-tree
     - ontology:domain/skill-wayfinder
     - ontology:concept/leading-words
+  testable_signal: "检查本文件内容完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空且不含泛化短语"
+
 ---
+
 
 # Ask Matt — PDCA 路由器
 

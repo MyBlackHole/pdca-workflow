@@ -16,8 +16,9 @@ attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: 由领域实践与测试验证
+  testable_signal: "检查本文件构建配置章节含工具链版本约束，且经 build-config-go-module-in-xmake-build 工具校验配置可解析"
 ---
+
 
 # 多包 Go Module 接入 xmake 构建体系
 

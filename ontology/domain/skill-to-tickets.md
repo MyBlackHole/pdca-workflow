@@ -14,7 +14,10 @@ relations:
   relates_to:
     - ontology:concept/triage
     - ontology:concept/domain-modeling
+  testable_signal: "检查本文件内容完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空且不含泛化短语"
+
 ---
+
 
 --
 name: to-tickets
@@ -32,13 +35,13 @@ Parse `prd.md` and produce sub-task skeletons.
 
 1. Read `prd.md` and identify independent work units (sections, features, or phases).
 2. Scan `pdca/tasks/` and `pdca/tasks/archive/` for all `task.json` files to find duplicates and to pass `check-design-vocab` sanity; the **next task ID must not be computed manually** — use the uniform identity entrypoint.
-3. **本体一致性预检（拆分前）**：把候选子任务的 slug/标题交给本体冲突检查，若与既有 `ontology` 节点重名，提示「已有本体节点 X，建议复用而非新建任务」，或要求 slug 显式区分后再拆。
+3. **本体一致性预检（拆分前，阻断门禁）**：把候选子任务的 slug/标题交给本体冲突检查，若与既有 `ontology` 节点重名，提示「已有本体节点 X，建议复用而非新建任务」，exit code=1 阻断拆解产出；无冲突 exit code=0 通过。
 
 ```bash
 python3 "$PDCA_HOME/scripts/ontology-clash-check.py" "$PDCA_HOME" --candidates "<slug-or-title-1>,<slug-or-title-2>"
 ```
 
-该检查**仅提示、不阻断**拆解产出；可在 PRD 内已声明「关联本体节点」时据此对齐边界。
+该检查为**阻断式门禁**：发现冲突时退出码为 1，阻断拆解产出；可在 PRD 内已声明「关联本体节点」时据此对齐边界。
 3.5. **关系树驱动拆分（可选，顾问式）**：仅当 PRD 含 `## 拆分映射` 且父任务 `meta.ontology_fragment` 非空时启用。运行：
 
    ```bash

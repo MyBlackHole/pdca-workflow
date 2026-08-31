@@ -19,7 +19,7 @@ attributes:
 - name: applicability
   desc: 双 harness 环境下技能调用约定的适用场景
   constraint: 见正文
-  testable_signal: 由领域实践与测试验证
+  testable_signal: 检查所有 SKILL.md 旁是否有 agents/openai.yaml，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空
 - name: constraints
   desc: 每个 SKILL.md 必须配 agents/openai.yaml；user-invoked 必须设 disable-model-invocation
   constraint: 遵循双 harness 调用约定
@@ -27,7 +27,7 @@ attributes:
 - name: testable_signal
   desc: 由领域实践与测试验证双 harness 调用约定正确性
   constraint: 由领域实践与测试验证
-  testable_signal: 由领域实践与测试验证
+  testable_signal: 检查 user-invoked 技能的 invocation 配置是否合法，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空
 ---
 
 # 技能调用契约（Skill Invocation Contract）

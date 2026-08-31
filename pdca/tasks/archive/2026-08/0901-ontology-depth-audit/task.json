@@ -1,0 +1,44 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0469",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "AC-1：check-ontology-reference-depth.py 完成深度审计扩展，ontology-validate.py 通过",
+      "AC-2：精化后的 testable_signal 注册为 check-research-ontology-settlement 门禁校验条件，ontology-validate.py 通过",
+      "AC-3：skill-research.md 的本体沉淀决策强化三模式引用，ontology-validate.py 通过且 ontology_graph 0 islands"
+    ],
+    "created_at": "2026-08-31T20:56:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "phase": "archive",
+    "record": "T0469-0901-ontology-depth-audit",
+    "scenario_type": "research",
+    "completed_at": "2026-08-31T21:41:14+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "3 项 AC 全部满足，ontology-validate 与 ontology_graph 校验通过",
+      "verdict_id": "v0469-confirmed-0831",
+      "at": "2026-08-31T21:42:27+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "3 项 AC 均通过；check-ontology-reference-depth.py 已创建；check-research-ontology-settlement.py 已更新 testable_signal 校验；skill-research.md 已强化三模式引用",
+      "at": "2026-08-31T21:42:27+08:00"
+    }
+  },
+  "parent": "T0468",
+  "slug": "0901-ontology-depth-audit",
+  "states": {
+    "act": "2026-08-31T21:42:29+08:00",
+    "archive": "2026-08-31T21:42:00+08:00",
+    "check": "2026-08-31T21:41:14+08:00",
+    "created": "2026-08-31T20:56:00+08:00",
+    "do": "2026-08-31T21:06:20+08:00",
+    "plan": "2026-08-31T20:56:00+08:00"
+  },
+  "status": "Completed",
+  "title": "扩展本体深度审计与结算门禁及研究技能强化"
+}

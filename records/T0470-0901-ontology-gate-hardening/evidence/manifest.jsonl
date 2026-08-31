@@ -1,0 +1,4 @@
+{"id": "conclusion", "file": "conclusion.md", "kind": "document", "size": 2368, "digest": "sha256:914669e93c241c0a1ee1af1817ffa3831c9f543a541f2fcb9d43078a46ede78a", "at": "2026-08-31T22:05:32+08:00", "criteria": ["AC-1", "AC-2", "AC-3"]}
+{"id": "design", "file": "design.md", "kind": "document", "size": 657, "digest": "sha256:83dc533198ddbcc48da902c7994572dc8d4121e8ce7275c445e750edd37f41c9", "at": "2026-08-31T22:05:32+08:00", "criteria": ["AC-1", "AC-2", "AC-3"]}
+{"id": "research-report", "file": "research-report.md", "kind": "document", "size": 1024, "digest": "sha256:a4ae5fffc0c4f7d211b3484aec3f4e6acee62c728a6b5d062ee2f2bd5971f62d", "at": "2026-08-31T22:05:32+08:00", "criteria": ["AC-1", "AC-2", "AC-3"]}
+{"id": "convergence-map", "file": "convergence.json", "kind": "convergence-map", "size": 691, "digest": "sha256:49316fcc470a9cad5e7fda32b93e4871f20fa0ae06e28c237e7439cf5232ec7d", "at": "2026-08-31T22:05:32+08:00", "criteria": ["AC-1", "AC-2", "AC-3"]}

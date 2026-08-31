@@ -16,8 +16,9 @@ attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: 由领域实践与测试验证
+  testable_signal: "检查本文件构建配置章节含工具链版本约束，且经 build-config-hide-static-lib-symbols-build 工具校验配置可解析"
 ---
+
 
 # 第三方 C 静态库隐藏 API 符号：覆盖 visibility 宏
 

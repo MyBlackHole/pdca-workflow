@@ -1,0 +1,44 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0470",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "AC-1：check-ontology-reference-depth.py 从可选升级为硬门禁，ontology-validate.py 通过",
+      "AC-2：skill-ontology-check 步骤 6 集成 check-research-ontology-settlement.py 的 testable_signal 校验，ontology-validate.py 通过",
+      "AC-3：ontology-clash-check.py 语义匹配算法扩展，ontology-validate.py 通过且 ontology_graph 0 islands"
+    ],
+    "created_at": "2026-08-31T21:45:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "phase": "act",
+    "record": "T0470-0901-ontology-gate-hardening",
+    "scenario_type": "research",
+    "completed_at": "2026-08-31T21:55:20+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "3项AC全部满足，ontology-validate与ontology_graph校验通过，convergence验证valid:true",
+      "verdict_id": "v0470-confirmed-0831",
+      "at": "2026-08-31T22:05:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "3项AC全部满足，ontology-validate与ontology_graph校验通过，convergence验证valid:true",
+      "at": "2026-08-31T22:05:00+08:00"
+    }
+  },
+  "parent": "T0469",
+  "slug": "0901-ontology-gate-hardening",
+  "states": {
+    "act": "2026-08-31T22:11:08+08:00",
+    "archive": null,
+    "check": "2026-08-31T21:55:20+08:00",
+    "created": "2026-08-31T21:45:00+08:00",
+    "do": "2026-08-31T21:55:17+08:00",
+    "plan": "2026-08-31T21:45:00+08:00"
+  },
+  "status": "Completed",
+  "title": "本体门禁硬化与语义匹配增强"
+}
