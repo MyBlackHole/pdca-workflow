@@ -1,0 +1,51 @@
+{
+  "id": "T0464",
+  "slug": "0831-prod-tool-dev-requirements-research",
+  "title": "调研生产级别工具开发应具备的要求与条件",
+  "parent": null,
+  "children": [],
+  "dependencies": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "research",
+    "created_at": "2026-08-31T17:40:00+08:00",
+    "convergence": [
+      "完成生产级工具开发全维度要求与条件的系统性调研",
+      "形成结构化调研报告 research-report.md 覆盖核心维度与分级要求",
+      "每条关键结论附可复核验证途径或权威来源引用",
+      "输出可落地的检查清单 Checklist 与成熟度分级"
+    ],
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_node_type": "domain",
+    "ontology_fragment": "ontology",
+    "record": "T0464-0831-prod-tool-dev-requirements-research",
+    "completion_criteria": [
+      "调研报告覆盖功能性、可靠性、安全性、可维护性、可观测性、性能、兼容性、文档与发布运维等核心维度",
+      "区分基础要求与高阶要求并给出成熟度分级",
+      "每条关键结论有权威来源或可验证途径",
+      "产出 Checklist 可直接用于后续工具类项目的立项与验收"
+    ],
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "6 项 AC 全部满足，4 项 convergence 均有 evidence 支撑且经 validate-convergence 校验通过，报告具备权威性、可验证性与可落地性",
+      "verdict_id": "v0464-confirmed-0831",
+      "at": "2026-08-31T17:50:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology: 已追补 ontology:domain/tool-production-readiness（12维+L1-L4+B1-B4），同时保留 records 证据；可直接用于后续工具类任务的立项评审与发布门禁，建议按 L2 门禁对 report-web/collection-service/pdca-* CLI 做差距自检并派生改进任务",
+      "at": "2026-08-31T17:51:00+08:00"
+    },
+    "completed_at": "2026-08-31T17:49:06+08:00"
+  },
+  "states": {
+    "created": "2026-08-31T17:40:00+08:00",
+    "plan": "2026-08-31T17:40:00+08:00",
+    "do": "2026-08-31T17:44:17+08:00",
+    "check": "2026-08-31T17:49:06+08:00",
+    "act": "2026-08-31T17:50:52+08:00",
+    "archive": "2026-08-31T17:51:24+08:00"
+  }
+}

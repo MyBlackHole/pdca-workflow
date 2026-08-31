@@ -1,0 +1,49 @@
+{
+  "id": "T0465",
+  "slug": "0831-research-ontology-settlement-gate",
+  "title": "建立 research 场景的本体沉淀门禁，避免知识仅留 records",
+  "parent": null,
+  "children": [],
+  "dependencies": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "development",
+    "created_at": "2026-08-31T17:54:00+08:00",
+    "convergence": [
+      "research 场景的本体沉淀决策被流程显式约束，漏本体化可被机器或 checklist 拦截",
+      "skill-research 与 flow-act 的本体沉淀指引已补强且与 ontology-validate/ontology_graph 衔接",
+      "提供可回归的校验方式，T0464 这类高复用研究不再仅以 records 沉淀"
+    ],
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_node_type": "domain",
+    "ontology_fragment": "ontology",
+    "completion_criteria": [
+      "在 skill-research 或 flow-act 中新增 research 场景的本体沉淀决策步骤与判定标准",
+      "提供 checklist 或自动化校验，使得 research 任务在 act 阶段必须做出 ontology vs records-only 的显式决策",
+      "经回归验证：模拟一个 research 任务漏本体化可被新门禁拦截，且 T0464 补建的 ontology:domain/tool-production-readiness 可作为正例"
+    ],
+    "record": "T0465-0831-research-ontology-settlement-gate",
+    "completed_at": "2026-08-31T17:58:13+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "4 项 AC 全部满足，3 项 convergence 均有 evidence 支撑且经 validate-convergence 通过，门禁可拦截漏本体化且 T0464 正例已追补通过",
+      "verdict_id": "v0465-confirmed-0831",
+      "at": "2026-08-31T17:58:30+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology: skill-research 与 flow-act 已补强 ontology 沉淀门禁，校验脚本 check-research-ontology-settlement.py 已落地；后续 research 任务在 act 必须显式决策 ontology vs records-only，漏决策可被拦截",
+      "at": "2026-08-31T17:59:00+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-08-31T17:54:00+08:00",
+    "plan": "2026-08-31T17:54:00+08:00",
+    "do": "2026-08-31T17:55:11+08:00",
+    "check": "2026-08-31T17:58:13+08:00",
+    "act": "2026-08-31T17:58:48+08:00",
+    "archive": "2026-08-31T17:58:59+08:00"
+  }
+}

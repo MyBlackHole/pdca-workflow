@@ -1,0 +1,29 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "完成生产级工具开发全维度要求与条件的系统性调研",
+      "criteria": ["AC-1", "AC-2", "AC-3"],
+      "evidence_ids": ["research-report-v2"]
+    },
+    {
+      "index": 2,
+      "text": "形成结构化调研报告 research-report.md 覆盖核心维度与分级要求",
+      "criteria": ["AC-1", "AC-2", "AC-5"],
+      "evidence_ids": ["research-report-v2"]
+    },
+    {
+      "index": 3,
+      "text": "每条关键结论附可复核验证途径或权威来源引用",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["research-report-v2"]
+    },
+    {
+      "index": 4,
+      "text": "输出可落地的检查清单 Checklist 与成熟度分级",
+      "criteria": ["AC-4", "AC-5"],
+      "evidence_ids": ["checklist", "research-report-v2"]
+    }
+  ]
+}

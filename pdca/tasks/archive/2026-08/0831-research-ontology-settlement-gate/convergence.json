@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "research 场景的本体沉淀决策被流程显式约束，漏本体化可被机器或 checklist 拦截",
+      "criteria": ["AC-2", "AC-3"],
+      "evidence_ids": ["settlement-check", "evidence-summary"]
+    },
+    {
+      "index": 2,
+      "text": "skill-research 与 flow-act 的本体沉淀指引已补强且与 ontology-validate/ontology_graph 衔接",
+      "criteria": ["AC-1", "AC-4"],
+      "evidence_ids": ["skill-research-patch", "flow-act-patch", "validation-report"]
+    },
+    {
+      "index": 3,
+      "text": "提供可回归的校验方式，T0464 这类高复用研究不再仅以 records 沉淀",
+      "criteria": ["AC-3", "AC-4"],
+      "evidence_ids": ["settlement-check", "validation-report", "evidence-summary"]
+    }
+  ]
+}
