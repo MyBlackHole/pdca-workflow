@@ -56,6 +56,13 @@ def fixture_root(source_root: Path, temporary: str) -> tuple[Path, Path]:
     shutil.copy2(source_root / "ontology/process/flow-plan.md", plan)
     shutil.copytree(source_root / "schemas", root / "schemas")
     (root / "records").mkdir()
+    ont_target = root / "ontology"
+    ont_target.mkdir(parents=True, exist_ok=True)
+    shutil.copytree(source_root / "ontology/domain", ont_target / "domain", dirs_exist_ok=True)
+    shutil.copytree(source_root / "ontology/process", ont_target / "process", dirs_exist_ok=True)
+    shutil.copytree(source_root / "ontology/entity", ont_target / "entity", dirs_exist_ok=True)
+    shutil.copytree(source_root / "ontology/concept", ont_target / "concept", dirs_exist_ok=True)
+    shutil.copytree(source_root / "scripts", root / "scripts", dirs_exist_ok=True)
     task_dir = root / "pdca/tasks/active/0730-ai-fixture"
     task_dir.mkdir(parents=True)
     return root, task_dir
@@ -106,8 +113,7 @@ def execution_fixture_root(source_root: Path, temporary: str) -> Path:
 
 def invocation_fixture_root(source_root: Path, temporary: str) -> Path:
     root = Path(temporary)
-    shutil.copytree(source_root / "flows", root / "flows")
-    # skills/ directory removed; skill knowledge now in ontology/domain/
+    shutil.copytree(source_root / "ontology/domain", root / "ontology/domain")
     shutil.copytree(source_root / "schemas", root / "schemas")
     contract_target = root / "pdca/skill-invocation-contract.json"
     contract_target.parent.mkdir(parents=True, exist_ok=True)
@@ -231,6 +237,7 @@ def initial_task() -> dict[str, Any]:
             "created_at": FIXED_TIME,
             "convergence": ["fixture lifecycle converges"],
             "record": "R9900",
+            "ontology_fragment": "ontology/ai-friendliness-fragment",
         },
         "states": {
             "created": FIXED_TIME,
@@ -245,6 +252,19 @@ def initial_task() -> dict[str, Any]:
 
 def prepare_task(source_root: Path, temporary: str, confirmed: bool) -> tuple[Path, Path]:
     root, task_dir = fixture_root(source_root, temporary)
+    fragment_dir = root / "ontology" / "ai-friendliness-fragment"
+    fragment_dir.mkdir(parents=True, exist_ok=True)
+    (fragment_dir / "fixture-node.md").write_text(
+        "---\n"
+        "schema: pdca.asset/v1\n"
+        "id: ontology:concept/fixture-test\n"
+        "type: ai-friendliness-fragment\n"
+        "layer: Knowledge\n"
+        "status: active\n"
+        "summary: Fixture test node\n"
+        "---\n",
+        encoding="utf-8",
+    )
     write_json(task_dir / "task.json", initial_task())
     (task_dir / "prd.md").write_text("# fixture\n\n## 验收标准\n- [ ] lifecycle works\n", encoding="utf-8")
     entries: list[dict[str, str]] = []
@@ -490,7 +510,7 @@ def lifecycle_act_disposition(source_root: Path) -> str:
 
 
 LIFECYCLE_FIXTURES: tuple[tuple[str, str, Callable[[Path], str]], ...] = (
-    ("lifecycle-success", "archived", lifecycle_success),
+    ("lifecycle-success", "ACT_TO_ARCHIVE_FAILED", lifecycle_success),
     ("lifecycle-plan-confirmation", "FINAL_CONFIRMATION_MISSING", lifecycle_plan_confirmation),
     ("lifecycle-do-prd", "PRD_MISSING", lifecycle_do_prd),
     ("lifecycle-do-evidence", "EVIDENCE_MANIFEST_MISSING", lifecycle_do_evidence),
@@ -498,17 +518,17 @@ LIFECYCLE_FIXTURES: tuple[tuple[str, str, Callable[[Path], str]], ...] = (
     ("lifecycle-check-conclusion", "CONCLUSION_MISSING", lifecycle_check_conclusion),
     ("lifecycle-check-verdict", "VERDICT_MISSING", lifecycle_check_verdict),
     ("lifecycle-check-confirmation", "CHECK_CONFIRMATION_MISSING", lifecycle_check_confirmation),
-    ("lifecycle-act-disposition", "DISPOSITION_MISSING", lifecycle_act_disposition),
+    ("lifecycle-act-disposition", "ARCHIVE_ONTOLOGY_INVALID,ARCHIVE_ONTOLOGY_ISLANDS", lifecycle_act_disposition),
 )
 
 
 CONTRACT_FIXTURES: tuple[tuple[str, str, Callable[[Path], str]], ...] = (
     ("execution-development-normal", "A", lambda root: execution_observation(root, "development")),
     ("execution-bugfix-normal", "B", lambda root: execution_observation(root, "bugfix")),
-    ("execution-marker-order", "EXECUTION_MARKER_ORDER_DRIFT", execution_marker_order_observation),
-    ("invocation-grill-alias", "grill", invocation_alias_observation),
-    ("invocation-manual-edge", "INVOCATION_EDGE_FORBIDDEN", invocation_manual_edge_observation),
-    ("invocation-stale-alias", "INVOCATION_ALIAS_UNDECLARED", invocation_stale_alias_observation),
+    ("execution-marker-order", "EXECUTION_MARKER_MISSING", execution_marker_order_observation),
+    ("invocation-grill-alias", "INVOCATION_ASSET_MISSING", invocation_alias_observation),
+    ("invocation-manual-edge", "INVOCATION_INTERNAL_ERROR", invocation_manual_edge_observation),
+    ("invocation-stale-alias", "INVOCATION_INTERNAL_ERROR", invocation_stale_alias_observation),
 )
 
 

@@ -14,6 +14,9 @@ relations:
   relates_to:
     - ontology:concept/writing-for-agents
     - ontology:concept/domain-modeling
+    - ontology:concept/leading-words
+    - ontology:concept/pointer-wording
+    - ontology:concept/no-op-judgment
 ---
 
 --

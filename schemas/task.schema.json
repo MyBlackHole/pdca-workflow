@@ -143,6 +143,30 @@
         "ontology_anchor": {
           "type": ["string", "null"],
           "description": "任务锚定的本体元概念节点 id（默认 ontology:concept/pdca-task），使任务表达挂接本体图谱、消费 pdca-task 元概念的不变量"
+        },
+        "steps": {
+          "type": "array",
+          "description": "技能/流程的可执行步骤序列",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "description", "completion_criterion"],
+            "properties": {
+              "name": {"type": "string", "minLength": 1},
+              "description": {"type": "string", "minLength": 1},
+              "completion_criterion": {"type": "string", "minLength": 1}
+            }
+          },
+          "uniqueItems": true,
+          "default": []
+        },
+        "completion_criteria": {
+          "type": "array",
+          "description": "任务完成的判定条件列表，需清晰且有需求强度",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1,
+          "uniqueItems": true,
+          "default": []
         }
       }
     },

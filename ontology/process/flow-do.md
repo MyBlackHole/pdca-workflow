@@ -32,7 +32,8 @@ Do 阶段按 `meta.scenario_type` 路由到相应 agent skill 执行，是 PDCA 
 2. **ontology-ready 关卡**：`meta.ontology_fragment` 指向的领域片段须存在且结构合法（自举任务经 `meta.ontology_exempt` 豁免）。
 3. **执行**：调用对应 skill；外部产物先复制 `workspace/external-artifacts/` 再登记 Evidence。
 4. **证据登记**：`register-evidence` 把产物锚定到 `pdca-evidence` 子类型。
-5. **门禁**：`pdca-gate-do` 校验后才能收尾进入 Check。
+5. **Phase Boundary 决策树**：收尾阶段必须输出 Phase Boundary 决策树，按序询问五个选项（①能继续吗→Continue；②上下文与后续无关→/clear；③需要跨 harness/目录/同事/支线分叉→/handoff；④任务可 AFK→Subagent；⑤否则 /compact），第一个 yes 获胜，mid-phase 永不决策。
+6. **门禁**：`pdca-gate-do` 校验后才能收尾进入 Check。
 
 ## 关键决策（已迁移自外部知识）
 
@@ -41,6 +42,32 @@ Do 阶段按 `meta.scenario_type` 路由到相应 agent skill 执行，是 PDCA 
 - **外部证据收集**（详 `ontology:concept/external-evidence-collection`）：中央 manifest 只接受 workflow root 内安全相对路径，拒绝绝对路径/符号链接；外部产物复制副本到 `workspace/external-artifacts/` 后登记。
 - **销毁清理安全**（详 `ontology:concept/destructive-cleanup-safety`）：可恢复清理须 dry-run 生成精确清单并固定恢复源为删除前不可变 commit（不引用会漂移的 HEAD）；apply 前重新验证每个目标仍处允许删除状态，任一漂移/越界/不可恢复则整批失败关闭。
 - **全局仓库配置**（详 `ontology:concept/pdca-home`）：`$PDCA_HOME` 为第一优先级；仅含 `flows/flow-plan/SKILL.md` 的目录为有效 workflow 仓库；外部项目经 `scripts/init-external.sh` 初始化。
+
+确认预先约定的 Seam
+先写失败的行为测试
+再写最小实现
+完成每个垂直切片后运行定向测试或 typecheck
+所有切片完成后运行项目支持的全量验证
+进入双轴代码审查
+
+确认回归 Seam
+先复现并写出失败的回归测试
+再做最小修复
+完成每个修复切片后运行定向回归测试或 typecheck
+所有修复切片完成后运行项目支持的全量验证
+进入双轴代码审查
+
+## 路径 A：development（软件功能开发）
+
+## 路径 B：bugfix（Bug 修复）
+
+## 路径 C：research（需求调研/技术调研）
+
+## 路径 D：documentation（需求转技术文档）
+
+## 路径 E：design（架构设计）
+
+## 路径 F：review（代码审查）
 
 ## 来源
 

@@ -1,0 +1,174 @@
+{
+  "schema": "pdca.fixture-results/v2",
+  "run_at": "2026-08-30T20:28:10+08:00",
+  "context_bytes": {
+    "metric": "utf8_bytes",
+    "note": "A reproducible content-size proxy, not an LLM token, latency, or success metric.",
+    "value": 4025
+  },
+  "total": 22,
+  "passed": 9,
+  "failed": 13,
+  "pass_rate": 40.9,
+  "results": [
+    {
+      "expected": "A",
+      "id": "development-normal",
+      "observed": "A",
+      "pass": true,
+      "scenario": "development"
+    },
+    {
+      "expected": "B",
+      "id": "bugfix-normal",
+      "observed": "B",
+      "pass": true,
+      "scenario": "bugfix"
+    },
+    {
+      "expected": "C",
+      "id": "research-normal",
+      "observed": "C",
+      "pass": true,
+      "scenario": "research"
+    },
+    {
+      "expected": "D",
+      "id": "documentation-normal",
+      "observed": "D",
+      "pass": true,
+      "scenario": "documentation"
+    },
+    {
+      "expected": "E",
+      "id": "design-normal",
+      "observed": "E",
+      "pass": true,
+      "scenario": "design"
+    },
+    {
+      "expected": "F",
+      "id": "review-normal",
+      "observed": "F",
+      "pass": true,
+      "scenario": "review"
+    },
+    {
+      "expected": "ROUTE_REFERENCE_MISSING",
+      "id": "route-reference-missing",
+      "observed": "FIXTURE_ROUTE_CONTEXT_INVALID",
+      "pass": false,
+      "scenario": "reference"
+    },
+    {
+      "expected": "A",
+      "id": "execution-development-normal",
+      "observed": "A",
+      "pass": true,
+      "scenario": "contract"
+    },
+    {
+      "expected": "B",
+      "id": "execution-bugfix-normal",
+      "observed": "B",
+      "pass": true,
+      "scenario": "contract"
+    },
+    {
+      "expected": "EXECUTION_MARKER_ORDER_DRIFT",
+      "id": "execution-marker-order",
+      "observed": "FIXTURE_EXECUTION_CONTEXT_INVALID",
+      "pass": false,
+      "scenario": "contract"
+    },
+    {
+      "expected": "grill",
+      "id": "invocation-grill-alias",
+      "observed": "INVOCATION_ASSET_MISSING",
+      "pass": false,
+      "scenario": "contract"
+    },
+    {
+      "expected": "INVOCATION_EDGE_FORBIDDEN",
+      "id": "invocation-manual-edge",
+      "observed": "FIXTURE_INVOCATION_CONTEXT_INVALID",
+      "pass": false,
+      "scenario": "contract"
+    },
+    {
+      "expected": "INVOCATION_ALIAS_UNDECLARED",
+      "id": "invocation-stale-alias",
+      "observed": "FIXTURE_INVOCATION_CONTEXT_INVALID",
+      "pass": false,
+      "scenario": "contract"
+    },
+    {
+      "expected": "archived",
+      "id": "lifecycle-success",
+      "observed": "DO_TO_CHECK_FAILED",
+      "pass": false,
+      "scenario": "lifecycle"
+    },
+    {
+      "expected": "FINAL_CONFIRMATION_MISSING",
+      "id": "lifecycle-plan-confirmation",
+      "observed": "FINAL_CONFIRMATION_MISSING",
+      "pass": true,
+      "scenario": "lifecycle"
+    },
+    {
+      "expected": "PRD_MISSING",
+      "id": "lifecycle-do-prd",
+      "observed": "ONTOLOGY_FRAGMENT_MISSING",
+      "pass": false,
+      "scenario": "lifecycle"
+    },
+    {
+      "expected": "EVIDENCE_MANIFEST_MISSING",
+      "id": "lifecycle-do-evidence",
+      "observed": "ONTOLOGY_FRAGMENT_MISSING",
+      "pass": false,
+      "scenario": "lifecycle"
+    },
+    {
+      "expected": "CONVERGENCE_MAP_MISSING",
+      "id": "lifecycle-do-convergence",
+      "observed": "ONTOLOGY_FRAGMENT_MISSING",
+      "pass": false,
+      "scenario": "lifecycle"
+    },
+    {
+      "expected": "CONCLUSION_MISSING",
+      "id": "lifecycle-check-conclusion",
+      "observed": "DO_TO_CHECK_FAILED",
+      "pass": false,
+      "scenario": "lifecycle"
+    },
+    {
+      "expected": "VERDICT_MISSING",
+      "id": "lifecycle-check-verdict",
+      "observed": "DO_TO_CHECK_FAILED",
+      "pass": false,
+      "scenario": "lifecycle"
+    },
+    {
+      "expected": "CHECK_CONFIRMATION_MISSING",
+      "id": "lifecycle-check-confirmation",
+      "observed": "DO_TO_CHECK_FAILED",
+      "pass": false,
+      "scenario": "lifecycle"
+    },
+    {
+      "expected": "DISPOSITION_MISSING",
+      "id": "lifecycle-act-disposition",
+      "observed": "DO_TO_CHECK_FAILED",
+      "pass": false,
+      "scenario": "lifecycle"
+    }
+  ],
+  "baseline_comparison": {
+    "baseline_source": "pdca/skill-content-baseline.json",
+    "current_context_bytes": 4025,
+    "note": "需要与 baseline 前后配对对比"
+  }
+}

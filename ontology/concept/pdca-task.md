@@ -23,3 +23,8 @@ PDCA 任务元概念：一个完整 PDCA 周期的载体。
 ## 决策背景（原 ADR-0017：to-tickets 显式依赖边与 ready-set）
 - 背景：to-tickets 只顺序拆解，无显式依赖边，无法校验 DAG 无环、无法计算可并行任务集。
 - 决策：子任务显式声明 `dependencies`（直接前置边）；ready-set = 所有 blocker 已完成的可执行集合；`schemas/task.schema.json` 的 `additionalProperties:false` 要求新增字段同步改 schema，否则 doctor 校验失败。
+
+## 步骤与完成标准
+- **steps**：技能/流程的可执行步骤序列，每个步骤含 `name`（名称）、`description`（描述）、`completion_criterion`（完成标准）。步骤是 agent 按序执行的动作，每条有可检查完成标准。
+- **completion_criteria**：任务完成的判定条件列表，需清晰且有需求强度。最强判据同时具备 checkable（可检验）和 exhaustive（穷尽）。
+- 映射 mattpocock/skills writing-for-agents 原则：信息层级中步骤为首要层级，完成标准需 clarity（防过早完成）和 demand（驱动 legwork）两者兼备。

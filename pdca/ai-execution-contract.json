@@ -1,6 +1,6 @@
 {
   "schema": "pdca.ai-execution-contract/v1",
-  "flow_document": "flows/flow-do/SKILL.md",
+  "flow_document": "ontology/process/flow-do.md",
   "routes": [
     {
       "scenario": "development",

@@ -43,6 +43,17 @@ source_ids: [R0135-ai-friendliness-hardening, R0140-agent-workflow-landscape, R0
 
 自动指标与定性 rubric 分开，不合成缺乏依据的总分。效果判断优先使用机器 pass/fail、明确错误码和相同输入的前后配对。
 
+### T0435-T0437 改进效果验证
+
+| Question | Metric | Baseline | 观察窗口 |
+|----------|--------|----------|----------|
+| Q1：新增概念节点是否被流程正确消费？ | ontology_fragment 消费率 | T0435 前 | T0435-T0437 |
+| Q2：导航成功率是否提升？ | 路由成功率 | T0435 前 | T0435-T0437 |
+| Q3：上下文成本是否降低？ | context load (UTF-8 bytes) | T0435 前 | T0435-T0437 |
+| Q4：故障恢复是否改善？ | 门禁失败率 | T0435 前 | T0435-T0437 |
+
+效果判定：improved / neutral / regressed。仅 improved 可形成 verified decision。
+
 ## 四类验证
 
 - 合约：用 schema 和跨文件不变量拒绝伪确认、无效证据、矛盾状态及路径越界。
