@@ -41,7 +41,7 @@ Do 阶段按 `meta.scenario_type` 路由到相应 agent skill 执行，是 PDCA 
 - **外部项目注入**：workflow root 与 agent 工作目录分离时，启动器须为目标项目执行平台 setup 并显式传入 workflow root，仅当目标缺 `AGENTS.md` 才写入（保护用户已有说明），setup 失败则拒绝启动。
 - **外部证据收集**（详 `ontology:concept/external-evidence-collection`）：中央 manifest 只接受 workflow root 内安全相对路径，拒绝绝对路径/符号链接；外部产物复制副本到 `workspace/external-artifacts/` 后登记。
 - **销毁清理安全**（详 `ontology:concept/destructive-cleanup-safety`）：可恢复清理须 dry-run 生成精确清单并固定恢复源为删除前不可变 commit（不引用会漂移的 HEAD）；apply 前重新验证每个目标仍处允许删除状态，任一漂移/越界/不可恢复则整批失败关闭。
-- **全局仓库配置**（详 `ontology:concept/pdca-home`）：`$PDCA_HOME` 为第一优先级；仅含 `flows/flow-plan/SKILL.md` 的目录为有效 workflow 仓库；外部项目经 `scripts/init-external.sh` 初始化。
+- **全局仓库配置**（详 `ontology:concept/pdca-home`）：`$PDCA_HOME` 为第一优先级；仅含 `ontology/process/flow-plan.md` 的目录为有效 workflow 仓库；外部项目经 `scripts/init-external.sh` 初始化。
 
 确认预先约定的 Seam
 先写失败的行为测试

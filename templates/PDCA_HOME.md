@@ -9,10 +9,10 @@ PDCA_HOME 环境变量指向管理中心（pdca-workflow 仓库）。
 
 | 阶段 | 流程文件 | 核心产出 |
 |------|---------|---------|
-| Plan | `$PDCA_HOME/flows/flow-plan/SKILL.md` | task.json + prd.md |
-| Do | `$PDCA_HOME/flows/flow-do/SKILL.md` | 实现产物 + evidence |
-| Check | `$PDCA_HOME/flows/flow-check/SKILL.md` | conclusion.md + verdict |
-| Act | `$PDCA_HOME/flows/flow-act/SKILL.md` | disposition + 归档 |
+| Plan | `$PDCA_HOME/ontology/process/flow-plan.md` | task.json + prd.md |
+| Do | `$PDCA_HOME/ontology/process/flow-do.md` | 实现产物 + evidence |
+| Check | `$PDCA_HOME/ontology/process/flow-check.md` | conclusion.md + verdict |
+| Act | `$PDCA_HOME/ontology/process/flow-act.md` | disposition + 归档 |
 
 1. **必须先读取对应阶段的流程文件**，按步骤执行，不得跳过步骤。
 2. Plan 阶段必须先创建 task.json（写入 `$PDCA_HOME/pdca/tasks/`），写 prd.md，经用户确认后才进入 Do。

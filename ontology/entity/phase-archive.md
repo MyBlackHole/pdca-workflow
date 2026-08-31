@@ -17,5 +17,5 @@ relations:
 - **进入条件**：act 收尾完成，`meta.disposition` 已设。
 - **关键活动**：`advance-phase` 设 `phase=archive` + `active=false` → 二次提交 metadata → `mv` 任务目录到 `pdca/tasks/archive/YYYY-MM/`。
 - **与 PDCA 循环的关系**：方法论上的"下一轮 plan"由 `ontology:concept/pdca-continuous-improvement` 承载，而非由本节点回到 plan；本节点仅终止单任务。
-- **对应约定**：`flows/flow-act/SKILL.md` 的 Ac8。
+- **对应约定**：`ontology/process/flow-{plan,do,check,act}.md` 的 Ac8。
 

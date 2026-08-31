@@ -22,7 +22,7 @@
       "properties": {
         "file": {
           "type": "string",
-          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?:flows/flow-[a-z0-9-]+/SKILL\\.md|skills/(?:[A-Za-z0-9_.-]+/)*SKILL\\.md|ontology/domain/skill-[a-z0-9-]+\\.md)$"
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?:ontology/process/flow-[a-z0-9-]+.md|skills/(?:[A-Za-z0-9_.-]+/)*SKILL\\.md|ontology/domain/skill-[a-z0-9-]+\\.md)$"
         },
         "bytes": {"type": "integer", "minimum": 0},
         "reason": {"type": "string", "minLength": 1, "maxLength": 500}

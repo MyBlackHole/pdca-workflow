@@ -31,7 +31,7 @@ PDCA（Plan-Do-Check-Act，又称 Deming Cycle / Shewhart Cycle）的**阶段**�
 
 ## 决策背景（PDCA 全流程生命周期要点，原 docs/pdca-workflow-full.md / pdca-workflow-detail.md）
 
-操作级子步骤（P0-P7 → Z1-Z4 → Ch1-Ch6 → Ac0-Ac8）与各阶段脚本/产物/门禁以 `ontology/process/flow-*.md` 与 `flows/flow-*.md` 为权威；本节点锚定单任务生命周期的转换约束：
+操作级子步骤（P0-P7 → Z1-Z4 → Ch1-Ch6 → Ac0-Ac8）与各阶段脚本/产物/门禁以 `ontology/process/flow-*.md` 与 `ontology/process/flow-*.md` 为权威；本节点锚定单任务生命周期的转换约束：
 
 - **生命周期（产物/门禁视角）**：`plan(P0 triage → P7 终审)` → `do(6 路由 → Z1 登记证据 → Z2 收敛映射 → Z4 推进)` → `check(Ch1 回顾 → Ch6 推进)` → `act(Ac0 读 verdict → Ac8 归档)` → `archive`（terminal）。
 - **Plan→Do 门禁**：P6 为唯一签审门禁，须 `final_confirmation.response=confirmed`；`transition-phase plan→do` 强制校验。

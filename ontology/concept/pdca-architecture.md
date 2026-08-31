@@ -25,7 +25,7 @@ relations:
 
 | 原则 | 当前体现 |
 |------|---------|
-| PDCA 作为稳定外循环 | `flows/flow-{plan,do,check,act}/SKILL.md` |
+| PDCA 作为稳定外循环 | `ontology/process/flow-{plan,do,check,act}.md` |
 | 领域行为由场景契约提供 | `task.json` → `meta.scenario_type` → 6 条 Do 路径 |
 | Check 产物是 Evidence | `records/<id>/evidence/` + `manifest.jsonl` |
 | 阶段 Decision 必须引用证据 | flow-check 的 verify-convergence 门禁 |

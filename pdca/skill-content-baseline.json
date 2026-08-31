@@ -5,22 +5,22 @@
     {
       "file": "ontology/process/flow-act.md",
       "bytes": 3874,
-      "reason": "T0380 dialogue-log confirmation before archiving; path migrated from flows/flow-act/SKILL.md"
+      "reason": "T0380 dialogue-log confirmation before archiving; path migrated from ontology/process/flow-act.md"
     },
     {
       "file": "ontology/process/flow-check.md",
       "bytes": 2334,
-      "reason": "T0380 dialogue-log pointer at Ch6; path migrated from flows/flow-check/SKILL.md"
+      "reason": "T0380 dialogue-log pointer at Ch6; path migrated from ontology/process/flow-check.md"
     },
     {
       "file": "ontology/process/flow-do.md",
       "bytes": 4747,
-      "reason": "T0379 lever cleanup and T0380 dialogue-log pointer at Z4; path migrated from flows/flow-do/SKILL.md; added route anchors and execution markers"
+      "reason": "T0379 lever cleanup and T0380 dialogue-log pointer at Z4; path migrated from ontology/process/flow-do.md; added route anchors and execution markers"
     },
     {
       "file": "ontology/process/flow-plan.md",
       "bytes": 2804,
-      "reason": "T0378 effectiveness self-check + T0380 dialogue-log pointer at P7; path migrated from flows/flow-plan/SKILL.md"
+      "reason": "T0378 effectiveness self-check + T0380 dialogue-log pointer at P7; path migrated from ontology/process/flow-plan.md"
     },
     {
       "file": "ontology/domain/skill-advance-phase.md",

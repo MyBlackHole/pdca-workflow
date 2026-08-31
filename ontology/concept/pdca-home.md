@@ -25,7 +25,7 @@ export PDCA_HOME=~/pdca-workflow
 ## 仓库发现规则
 
 1. `PDCA_HOME` 环境变量为第一优先级。
-2. 仅包含 `flows/flow-plan/SKILL.md` 的目录视为有效 workflow 仓库。
+2. 仅包含 `ontology/process/flow-plan.md` 的目录视为有效 workflow 仓库。
 3. 外部项目通过 `scripts/init-external.sh` 初始化，在项目根目录生成引用 `$PDCA_HOME` 的 `AGENTS.md`。
 
 ## 两种模式

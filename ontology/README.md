@@ -138,7 +138,7 @@ attributes:
 
 ## 12. 流程如何消费本体（PDCA 全周期）
 
-本体不是"plan 阶段声明一次就完事"，它在各阶段被主动消费（详见 `flows/flow-*/SKILL.md`）：
+本体不是"plan 阶段声明一次就完事"，它在各阶段被主动消费（详见 `ontology/process/flow-*.md`）：
 
 - **Plan（`flow-plan`）**：development/bugfix 任务须声明 `meta.ontology_fragment`（本任务构建/复用的本体目录或文件）；Do 前置 `ontology-ready` 关卡校验其存在且 `pdca.asset/v1` 结构合法；本体自举任务设 `meta.ontology_exempt=true` 豁免。
 - **Do（`flow-do`）**：实现前/中对照 `meta.ontology_fragment`——复用既有 `id`/`type`/`relations`；新概念以 `pdca.asset/v1` frontmatter + `relations` 落盘到 `ontology/` 对应目录；变更后跑 `python3 scripts/ontology_graph.py --format summary` 确认无孤岛。`ontology_exempt` / 空片段则跳过。

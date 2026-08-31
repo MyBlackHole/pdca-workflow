@@ -53,10 +53,10 @@ plan → do → check → act → archive
 
 | 阶段 | 流程定义 | 产出 |
 |------|---------|------|
-| **Plan** | `flows/flow-plan/SKILL.md` | `task.json` + `prd.md`，用户确认后方可进入 Do |
-| **Do** | `flows/flow-do/SKILL.md` | 代码/文档/调研报告，按场景类型选择执行路径 |
-| **Check** | `flows/flow-check/SKILL.md` | `conclusion.md` + 证据清单，判定通过/失败 |
-| **Act** | `flows/flow-act/SKILL.md` | 知识沉淀 + journal 日志 + 归档 |
+| **Plan** | `$PDCA_HOME/ontology/process/flow-plan.md` | `task.json` + `prd.md`，用户确认后方可进入 Do |
+| **Do** | `$PDCA_HOME/ontology/process/flow-do.md` | 代码/文档/调研报告，按场景类型选择执行路径 |
+| **Check** | `$PDCA_HOME/ontology/process/flow-check.md` | `conclusion.md` + 证据清单，判定通过/失败 |
+| **Act** | `$PDCA_HOME/ontology/process/flow-act.md` | 知识沉淀 + journal 日志 + 归档 |
 
 AI 在完成任务阶段后自主更新 `task.json` 中的 `meta.phase`。
 
