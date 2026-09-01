@@ -1,0 +1,6 @@
+{"at":"2026-09-01T09:00:00+08:00","source":"task_identity","summary":"created with record identity T0487-0901-ontology-closure-audit"}
+{"at":"2026-09-01T09:10:00+08:00","source":"grilling","round":1,"q":"本审查是否需覆盖PRD模板硬化的最终形态（有fragment无映射即阻断）？","a":"是，AC-1需验证PRD模板硬化后的门禁表现","decision":"PRD模板硬化纳入AC-1","status":"resolved"}
+{"at":"2026-09-01T09:10:00+08:00","source":"grilling","round":1,"q":"mattpocock差距是否以T0450后新增为准，还是全量重审？","a":"以T0450基线做增量复审，但对已吸收项做二次验证是否真吸收","decision":"增量复审+二次验证","status":"resolved"}
+{"at":"2026-09-01T09:10:00+08:00","source":"grilling","round":1,"q":"6种scenario_type是否皆需本体核化判定？","a":"是，development/bugfix/research/documentation/design/review逐一判定","decision":"6种全覆盖","status":"resolved"}
+{"at":"2026-09-01T09:12:00+08:00","source":"final_confirmation","response":"confirmed","at":"2026-09-01T09:12:00+08:00","summary":"PRD与convergence已确认，进入Do"}
+{"at":"2026-09-01T09:36:00+08:00","source":"check_confirmation","response":"confirmed","at_verdict":"2026-09-01T09:36:00+08:00","summary":"结论已确认"}

@@ -1,0 +1,71 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0491",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "teach节点已创建且validate通过（AC-1）",
+      "内容完整且可grep命中（AC-2）",
+      "索引与图谱一致且islands:0（AC-3）",
+      "收敛可验证且validate通过（AC-4）"
+    ],
+    "created_at": "2026-09-01T09:46:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "phase": "archive",
+    "record": "T0491-0902-p2-teach-skill",
+    "scenario_type": "development",
+    "steps": [
+      {
+        "name": "teach节点",
+        "description": "新建skill-teach",
+        "completion_criterion": "含Teaching Workspace且validate通过"
+      },
+      {
+        "name": "内容完整性",
+        "description": "补全6要素",
+        "completion_criterion": "MISSION等6要素可grep"
+      },
+      {
+        "name": "索引与图谱",
+        "description": "重生成索引",
+        "completion_criterion": "islands:0"
+      },
+      {
+        "name": "收敛",
+        "description": "登记与convergence",
+        "completion_criterion": "valid:true"
+      }
+    ],
+    "completion_criteria": [
+      "teach可检索",
+      "图谱全绿"
+    ],
+    "completed_at": "2026-09-01T09:47:31+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "4AC全满足，门禁全绿",
+      "at": "2026-09-01T09:47:31+08:00",
+      "verdict_id": "v0491-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:domain/skill-teach 已沉淀，来源 T0491-0902-p2-teach-skill",
+      "at": "2026-09-01T09:47:38+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0902-p2-teach-skill",
+  "states": {
+    "act": "2026-09-01T09:47:32+08:00",
+    "archive": "2026-09-01T09:47:40+08:00",
+    "check": "2026-09-01T09:47:31+08:00",
+    "created": "2026-09-01T09:46:00+08:00",
+    "do": "2026-09-01T09:46:58+08:00",
+    "plan": "2026-09-01T09:46:00+08:00"
+  },
+  "status": "Completed",
+  "title": "P2补强：teach连续教学工作空间"
+}

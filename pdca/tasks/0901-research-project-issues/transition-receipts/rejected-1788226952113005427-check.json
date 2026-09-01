@@ -1,0 +1,24 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0488",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0488-0901-research-project-issues/evidence/convergence_research.json[1]/text",
+      "message": "text must equal the Plan convergence value"
+    },
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0488-0901-research-project-issues/evidence/convergence_research.json[2]/text",
+      "message": "text must equal the Plan convergence value"
+    },
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0488-0901-research-project-issues/evidence/convergence_research.json[3]/text",
+      "message": "text must equal the Plan convergence value"
+    }
+  ],
+  "at": "2026-09-01T09:42:32.112984+08:00"
+}

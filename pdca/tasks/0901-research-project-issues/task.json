@@ -1,0 +1,44 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0488",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "系统性识别项目存在的设计/安全/可维护性问题",
+      "每类问题可追溯到文件行号与证据",
+      "输出可行动的改进清单"
+    ],
+    "created_at": "2026-09-01T09:30:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "phase": "archive",
+    "record": "T0488-0901-research-project-issues",
+    "scenario_type": "research",
+    "ontology_exempt": true,
+    "completed_at": "2026-09-01T09:42:56+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "3 AC 均有 research-issues 支撑，17 条问题可追溯",
+      "at": "2026-09-01T09:43:15+08:00",
+      "verdict_id": "v0488-confirmed-0901"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "confirmed",
+      "at": "2026-09-01T09:43:20+08:00"
+    },
+    "ontology_exempt_reason": "ontology豁免历史：项目139问题调研为只读，不新增本体，已冻结"
+  },
+  "parent": null,
+  "slug": "0901-research-project-issues",
+  "states": {
+    "act": "2026-09-01T09:43:16+08:00",
+    "archive": "2026-09-01T09:43:24+08:00",
+    "check": "2026-09-01T09:43:10+08:00",
+    "created": "2026-09-01T09:30:00+08:00",
+    "do": "2026-09-01T09:34:20+08:00",
+    "plan": "2026-09-01T09:30:00+08:00"
+  },
+  "status": "Completed",
+  "title": "调研项目 139 存在的潜在问题"
+}

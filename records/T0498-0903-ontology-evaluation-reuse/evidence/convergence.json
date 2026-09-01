@@ -1,0 +1,57 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "评估OOPS!已沉淀（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-oops"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "复用重构S4已沉淀（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-reuse"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "gate接入（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-index-v2"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "全绿且可scaffold（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-oops",
+        "ev-reuse",
+        "ev-index-v2"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "收敛 valid:true（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-index-v2"
+      ]
+    }
+  ]
+}

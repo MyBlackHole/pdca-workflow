@@ -1,0 +1,7 @@
+T0488 pdca/tasks/0901-research-project-issues/task.json reason=ontology豁免历史：项目139问题调研为只读，不新增本体，已冻结
+T0414 pdca/tasks/archive/2026-08/0829-ontology-full-lifecycle-gate/task.json reason=ontology自举：本体全流程硬门禁自身（关联 ontology:concept/ontology
+T0415 pdca/tasks/archive/2026-08/0830-ontology-expression-layer/task.json reason=ontology自举：任务表达层下沉本体关联本体元本体自身，豁免fragment
+T0463 pdca/tasks/archive/2026-08/0831-fsbackup-8811-connect-failure/task.json reason=ontology豁免历史遗留：热修诊断历史，已冻结，新任务硬指标
+T0462 pdca/tasks/archive/2026-08/0831-merge-last-four-commits/task.json reason=ontology豁免历史遗留：提交合并遗留，已冻结，新任务硬指标
+T0448 pdca/tasks/archive/2026-08/0831-old-arch-refs-recheck/task.json reason=ontology豁免历史：旧架构复查为只读审查，未产新本体，已冻结
+T0451 pdca/tasks/archive/2026-08/0831-tls-keygen-uaf-fix/task.json reason=ontology自举过渡：热修期历史任务，豁免已冻结，现新任务已100%本体化

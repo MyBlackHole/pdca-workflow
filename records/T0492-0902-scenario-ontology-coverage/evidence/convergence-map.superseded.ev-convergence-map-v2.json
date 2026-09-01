@@ -1,0 +1,65 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "6场景基于本体已逐项判定且给证据（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-coverage-report"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "6场景产出本体操作已逐项判定且给证据（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-coverage-report"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "6×2矩阵与覆盖率统计已输出（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-coverage-report"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "豁免行为已审计且硬性指标建议已给出（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-coverage-report"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "缺口与改进建议已给出（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-coverage-report"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "报告已登记且收敛可验证（AC-6）",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ev-coverage-report"
+      ]
+    }
+  ]
+}

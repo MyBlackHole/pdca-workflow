@@ -1,0 +1,8 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "覆盖 6 维度至少 4 维度各有实例", "criteria": ["AC-1"], "evidence_ids": ["research-issues"]},
+    {"index": 2, "text": "每条问题可 grep 到文件行号", "criteria": ["AC-2"], "evidence_ids": ["research-issues"]},
+    {"index": 3, "text": "输出可行动清单按分级", "criteria": ["AC-3"], "evidence_ids": ["research-issues"]}
+  ]
+}

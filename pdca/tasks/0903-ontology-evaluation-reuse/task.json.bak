@@ -1,0 +1,73 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0498",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "评估OOPS!已沉淀（AC-1）",
+      "复用重构S4已沉淀（AC-2）",
+      "gate接入（AC-3）",
+      "全绿且可scaffold（AC-4）",
+      "收敛 valid:true（AC-5）"
+    ],
+    "created_at": "2026-09-01T10:35:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "pattern",
+    "phase": "act",
+    "record": "T0498-0903-ontology-evaluation-reuse",
+    "scenario_type": "development",
+    "steps": [
+      {
+        "name": "评估沉淀",
+        "description": "OOPS! 41 pitfalls",
+        "completion_criterion": "含OOPS!且validate通过"
+      },
+      {
+        "name": "复用沉淀",
+        "description": "NeOn S4",
+        "completion_criterion": "含重用重构路径"
+      },
+      {
+        "name": "gate接入",
+        "description": "ci可调",
+        "completion_criterion": "gate文档或调用"
+      },
+      {
+        "name": "全绿",
+        "description": "islands:0可产",
+        "completion_criterion": "scaffold可产"
+      },
+      {
+        "name": "收敛",
+        "description": "登记与验证",
+        "completion_criterion": "valid:true"
+      }
+    ],
+    "completed_at": "2026-09-01T10:36:33+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5AC全满足，评估与复用已补",
+      "at": "2026-09-01T10:36:33+08:00",
+      "verdict_id": "v0498-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:pattern/ontology-evaluation-oops + ontology-reuse-reengineering 已沉淀，来源 T0498-0903-ontology-evaluation-reuse",
+      "at": "2026-09-01T10:36:50+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0903-ontology-evaluation-reuse",
+  "states": {
+    "act": "2026-09-01T10:36:34+08:00",
+    "archive": null,
+    "check": "2026-09-01T10:36:32+08:00",
+    "created": "2026-09-01T10:35:00+08:00",
+    "do": "2026-09-01T10:35:41+08:00",
+    "plan": "2026-09-01T10:35:00+08:00"
+  },
+  "status": "Completed",
+  "title": "补全本体评估与复用重构方法论：OOPS!与NeOn Scenario4"
+}

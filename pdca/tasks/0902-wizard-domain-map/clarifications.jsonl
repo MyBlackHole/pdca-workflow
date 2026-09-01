@@ -1,0 +1,5 @@
+{"at":"2026-09-02T09:00:00+08:00","source":"task_identity","summary":"created with record identity T0489-0902-wizard-domain-map"}
+{"at":"2026-09-01T09:39:23+08:00","source":"grilling","round":1,"q":"wizard是否需完整复刻template.sh library区 identical？","a":"是，library区identical，只改STAGES区","decision":"library identical","status":"resolved"}
+{"at":"2026-09-01T09:39:23+08:00","source":"grilling","round":1,"q":"CONTEXT-MAP是单文件还是每bounded context一个？","a":"根CONTEXT-MAP.md路由到各context/CONTEXT.md","decision":"MAP路由","status":"resolved"}
+{"at":"2026-09-01T09:39:23+08:00","source":"final_confirmation","response":"confirmed","summary":"PRD与convergence已确认，进入Do"}
+{"source":"check_confirmation","summary":"结论已确认","response":"confirmed","at":"2026-09-01T09:41:54+08:00"}

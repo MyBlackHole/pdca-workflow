@@ -28,7 +28,8 @@
       "outcome": "confirmed",
       "reason": "5/5 AC通过，单次F需求提交，版本与内容一致",
       "verdict_id": "v0462-confirmed-0831"
-    }
+    },
+    "ontology_exempt_reason": "ontology豁免历史遗留：提交合并遗留，已冻结，新任务硬指标"
   },
   "parent": null,
   "slug": "0831-merge-last-four-commits",

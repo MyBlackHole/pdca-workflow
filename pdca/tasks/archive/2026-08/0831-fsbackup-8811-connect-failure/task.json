@@ -27,7 +27,8 @@
       "outcome": "task_only",
       "reason": "confirmed",
       "at": "2026-08-31T17:06:35+08:00"
-    }
+    },
+    "ontology_exempt_reason": "ontology豁免历史遗留：热修诊断历史，已冻结，新任务硬指标"
   },
   "parent": null,
   "slug": "0831-fsbackup-8811-connect-failure",

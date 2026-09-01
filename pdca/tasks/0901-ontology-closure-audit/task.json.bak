@@ -1,0 +1,91 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0487",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "本体使用完成闭环已逐阶段审查且可重跑（AC-1）",
+      "mattpocock差距已增量复审并输出优先级矩阵（AC-2）",
+      "链路与6种工作模式本体核化已判定（AC-3）",
+      "本体自循环四支已建模与断点识别（AC-4）",
+      "testable_signal三模式测试支撑已验证（AC-5）",
+      "持续补充完善修复触发器与门禁已梳理（AC-6）",
+      "报告已登记且收敛可验证（AC-7）"
+    ],
+    "created_at": "2026-09-01T09:00:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "phase": "act",
+    "record": "T0487-0901-ontology-closure-audit",
+    "scenario_type": "research",
+    "steps": [
+      {
+        "name": "闭环逐阶段审查",
+        "description": "逐阶段验证本体硬门禁/顾问式",
+        "completion_criterion": "给出plan/do/check/act/archive五阶段判定与证据索引"
+      },
+      {
+        "name": "mattpocock增量差距",
+        "description": "复审36技能与T0450基线",
+        "completion_criterion": "输出≥5项对比矩阵与本体映射"
+      },
+      {
+        "name": "链路与工作模式判定",
+        "description": "调研→本体→拆分→测试链路",
+        "completion_criterion": "6种scenario_type本体核化判定"
+      },
+      {
+        "name": "自循环建模",
+        "description": "产生→优化→修改→使用",
+        "completion_criterion": "四支闭环图与断点"
+      },
+      {
+        "name": "测试支撑验证",
+        "description": "三模式scaffold",
+        "completion_criterion": "≥2 scaffold可收集"
+      },
+      {
+        "name": "持续演进梳理",
+        "description": "补充/完善/修复触发器",
+        "completion_criterion": "给出触发器与门禁链"
+      },
+      {
+        "name": "报告登记收敛",
+        "description": "登记证据与convergence",
+        "completion_criterion": "validate-convergence valid:true"
+      }
+    ],
+    "completion_criteria": [
+      "5阶段闭环判定可复核",
+      "差距矩阵与优先级明确",
+      "6种模式判定完整",
+      "自循环与测试支撑可验证"
+    ],
+    "completed_at": "2026-09-01T09:35:31+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "7AC全满足，证据链完整，门禁全绿",
+      "at": "2026-09-01T09:35:31+08:00",
+      "verdict_id": "v0487-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:concept/self-optimization-loop 已深化验证；新增 gap 见报告§2.3，拟以 skill-wizard 与 domain-modeling多上下文为下一改进任务，来源 T0487-0901-ontology-closure-audit",
+      "at": "2026-09-01T09:35:41+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0901-ontology-closure-audit",
+  "states": {
+    "act": "2026-09-01T09:35:32+08:00",
+    "archive": null,
+    "check": "2026-09-01T09:35:14+08:00",
+    "created": "2026-09-01T09:00:00+08:00",
+    "do": "2026-09-01T09:32:10+08:00",
+    "plan": "2026-09-01T09:00:00+08:00"
+  },
+  "status": "Completed",
+  "title": "本体闭环完整性审计与mattpocock差距收敛"
+}

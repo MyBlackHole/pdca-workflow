@@ -1,0 +1,74 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0492",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "6场景基于本体已逐项判定且给证据（AC-1）",
+      "6场景产出本体操作已逐项判定且给证据（AC-2）",
+      "6×2矩阵与覆盖率统计已输出（AC-3）",
+      "豁免行为已审计且硬性指标建议已给出（AC-4）",
+      "缺口与改进建议已给出（AC-5）",
+      "报告已登记且收敛可验证（AC-6）"
+    ],
+    "created_at": "2026-09-01T09:50:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "phase": "archive",
+    "record": "T0492-0902-scenario-ontology-coverage",
+    "scenario_type": "review",
+    "steps": [
+      {
+        "name": "基于本体判定",
+        "description": "plan/do输入侧",
+        "completion_criterion": "6场景逐项给证据"
+      },
+      {
+        "name": "产出操作判定",
+        "description": "act输出侧",
+        "completion_criterion": "6场景逐项给证据"
+      },
+      {
+        "name": "矩阵与统计",
+        "description": "6×2矩阵",
+        "completion_criterion": "覆盖率统计"
+      },
+      {
+        "name": "缺口建议",
+        "description": "改进点",
+        "completion_criterion": "给出收紧建议"
+      },
+      {
+        "name": "收敛",
+        "description": "登记与验证",
+        "completion_criterion": "valid:true"
+      }
+    ],
+    "completed_at": "2026-09-01T09:54:14+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "6AC全满足，豁免硬指标已给出",
+      "at": "2026-09-01T09:54:14+08:00",
+      "verdict_id": "v0492-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:concept/pdca-task 全场景核验已沉淀，豁免硬指标建议已给出，来源 T0492-0902-scenario-ontology-coverage",
+      "at": "2026-09-01T09:54:21+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0902-scenario-ontology-coverage",
+  "states": {
+    "act": "2026-09-01T09:54:15+08:00",
+    "archive": "2026-09-01T09:54:23+08:00",
+    "check": "2026-09-01T09:54:13+08:00",
+    "created": "2026-09-01T09:50:00+08:00",
+    "do": "2026-09-01T09:51:32+08:00",
+    "plan": "2026-09-01T09:50:00+08:00"
+  },
+  "status": "Completed",
+  "title": "审查全场景本体化：是否基于本体与产出本体操作"
+}

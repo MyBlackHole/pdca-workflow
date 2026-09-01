@@ -1,0 +1,54 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "convergence": "本体使用完成闭环已逐阶段审查且可重跑（AC-1）",
+      "criterion": "AC-1",
+      "evidence_ids": [
+        "ev-closed-loop-report"
+      ]
+    },
+    {
+      "convergence": "mattpocock差距已增量复审并输出优先级矩阵（AC-2）",
+      "criterion": "AC-2",
+      "evidence_ids": [
+        "ev-closed-loop-report"
+      ]
+    },
+    {
+      "convergence": "链路与6种工作模式本体核化已判定（AC-3）",
+      "criterion": "AC-3",
+      "evidence_ids": [
+        "ev-closed-loop-report"
+      ]
+    },
+    {
+      "convergence": "本体自循环四支已建模与断点识别（AC-4）",
+      "criterion": "AC-4",
+      "evidence_ids": [
+        "ev-closed-loop-report"
+      ]
+    },
+    {
+      "convergence": "testable_signal三模式测试支撑已验证（AC-5）",
+      "criterion": "AC-5",
+      "evidence_ids": [
+        "ev-closed-loop-report"
+      ]
+    },
+    {
+      "convergence": "持续补充完善修复触发器与门禁已梳理（AC-6）",
+      "criterion": "AC-6",
+      "evidence_ids": [
+        "ev-closed-loop-report"
+      ]
+    },
+    {
+      "convergence": "报告已登记且收敛可验证（AC-7）",
+      "criterion": "AC-7",
+      "evidence_ids": [
+        "ev-closed-loop-report"
+      ]
+    }
+  ]
+}

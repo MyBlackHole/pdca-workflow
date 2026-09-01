@@ -25,7 +25,8 @@
     },
     "record": "T0414-0829-ontology-full-lifecycle-gate",
     "scenario_type": "development",
-    "completed_at": "2026-08-30T00:24:21+08:00"
+    "completed_at": "2026-08-30T00:24:21+08:00",
+    "ontology_exempt_reason": "ontology自举：本体全流程硬门禁自身（关联 ontology:concept/ontology-creation-gate），无法前置fragment"
   },
   "parent": "T0413",
   "slug": "0829-ontology-full-lifecycle-gate",

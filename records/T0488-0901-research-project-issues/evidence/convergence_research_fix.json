@@ -1,0 +1,8 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "系统性识别项目存在的设计/安全/可维护性问题", "criteria": ["AC-1"], "evidence_ids": ["research-issues"]},
+    {"index": 2, "text": "每类问题可追溯到文件行号与证据", "criteria": ["AC-2"], "evidence_ids": ["research-issues"]},
+    {"index": 3, "text": "输出可行动的改进清单", "criteria": ["AC-3"], "evidence_ids": ["research-issues"]}
+  ]
+}

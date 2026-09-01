@@ -26,7 +26,8 @@
       "outcome": "task_only",
       "reason": "confirmed",
       "at": "2026-08-31T12:17:30+08:00"
-    }
+    },
+    "ontology_exempt_reason": "ontology自举过渡：热修期历史任务，豁免已冻结，现新任务已100%本体化"
   },
   "parent": null,
   "slug": "0831-tls-keygen-uaf-fix",

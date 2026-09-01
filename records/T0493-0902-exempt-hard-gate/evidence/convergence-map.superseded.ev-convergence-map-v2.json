@@ -1,0 +1,67 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "schema hard exempt需reason≥20（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-schema"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "gate hard 白名单+理由校验（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-gate"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "core hard records-only理由强校验（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-core"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "历史7 exempt补理由后doctor清零（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-history"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "全绿 islands:0 ci GATE OK（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-schema",
+        "ev-gate",
+        "ev-core"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "收敛 valid:true（AC-6）",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ev-schema"
+      ]
+    }
+  ]
+}

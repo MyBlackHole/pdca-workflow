@@ -1,0 +1,45 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "teach节点已创建且validate通过（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-teach"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "内容完整且可grep命中（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-teach"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "索引与图谱一致且islands:0（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-index"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "收敛可验证且validate通过（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-index"
+      ]
+    }
+  ]
+}

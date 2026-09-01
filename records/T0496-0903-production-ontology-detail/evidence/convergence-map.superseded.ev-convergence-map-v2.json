@@ -1,0 +1,69 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "hybrid根深化≥3 attrs且含决策树（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-hybrid-root"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "research顶向下含正反例且可scaffold（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-research"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "develop底向上含Work Package且可scaffold（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-develop"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "leaf粒度含阈值与反模式且可scaffold（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-leaf"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "全量校验4节点可产且islands:0（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-hybrid-root",
+        "ev-research",
+        "ev-develop",
+        "ev-leaf",
+        "ev-index"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "收敛 valid:true（AC-6）",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ev-index"
+      ]
+    }
+  ]
+}

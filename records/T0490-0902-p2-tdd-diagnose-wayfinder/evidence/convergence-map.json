@@ -1,0 +1,55 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "tdd书面确认含Seam分析且可grep命中（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-tdd"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "十回路已完整枚举且tighten三维可命中（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-diagnose"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "wayfinder HITL/AFK 4 label已对齐（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-wayfinder"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "索引与图谱一致且islands:0（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-index"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "收敛可验证且validate通过（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-index"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0499",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "度量本体4度量已沉淀（AC-1）",
+      "health可测且ci可输出（AC-2）",
+      "hard可测且新任务100%（AC-3）",
+      "gate度量valid（AC-4）",
+      "收敛 valid:true（AC-5）"
+    ],
+    "created_at": "2026-09-01T10:38:08+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "pattern",
+    "phase": "archive",
+    "record": "T0499-0903-ontology-metrics",
+    "scenario_type": "development",
+    "steps": [
+      {
+        "name": "度量沉淀",
+        "description": "4度量",
+        "completion_criterion": "4度量且validate通过"
+      },
+      {
+        "name": "health",
+        "description": "健康度",
+        "completion_criterion": "validate0+islands0可产"
+      },
+      {
+        "name": "hard",
+        "description": "硬指标",
+        "completion_criterion": "fragment100% grep命中"
+      },
+      {
+        "name": "gate度量",
+        "description": "ci输出",
+        "completion_criterion": "metrics.json GATE OK"
+      },
+      {
+        "name": "收敛",
+        "description": "登记与验证",
+        "completion_criterion": "valid:true"
+      }
+    ],
+    "completed_at": "2026-09-01T10:39:00+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5AC全满足，度量本体已沉淀",
+      "at": "2026-09-01T10:39:00+08:00",
+      "verdict_id": "v0499-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:pattern/ontology-metrics 已沉淀（health/hard/provenance/effectiveness+gate metrics.json），来源 T0499-0903-ontology-metrics",
+      "at": "2026-09-01T10:39:07+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0903-ontology-metrics",
+  "states": {
+    "act": "2026-09-01T10:39:02+08:00",
+    "archive": "2026-09-01T10:39:09+08:00",
+    "check": "2026-09-01T10:39:00+08:00",
+    "created": "2026-09-01T10:38:08+08:00",
+    "do": "2026-09-01T10:38:09+08:00",
+    "plan": "2026-09-01T10:38:08+08:00"
+  },
+  "status": "Completed",
+  "title": "补全量化度量本体：本体健康×过程硬指标×效果 verdict"
+}

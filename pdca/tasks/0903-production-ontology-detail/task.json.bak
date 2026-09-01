@@ -1,0 +1,79 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0496",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "hybrid根深化≥3 attrs且含决策树（AC-1）",
+      "research顶向下含正反例且可scaffold（AC-2）",
+      "develop底向上含Work Package且可scaffold（AC-3）",
+      "leaf粒度含阈值与反模式且可scaffold（AC-4）",
+      "全量校验4节点可产且islands:0（AC-5）",
+      "收敛 valid:true（AC-6）"
+    ],
+    "created_at": "2026-09-01T10:10:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "phase": "act",
+    "record": "T0496-0903-production-ontology-detail",
+    "scenario_type": "development",
+    "steps": [
+      {
+        "name": "根深化",
+        "description": "hybrid面面俱到",
+        "completion_criterion": "≥3 attrs含决策树"
+      },
+      {
+        "name": "research深化",
+        "description": "顶向下详",
+        "completion_criterion": "含100%正反例"
+      },
+      {
+        "name": "develop深化",
+        "description": "底向上详",
+        "completion_criterion": "含Work Package"
+      },
+      {
+        "name": "leaf深化",
+        "description": "粒度详",
+        "completion_criterion": "含阈值反模式"
+      },
+      {
+        "name": "全量校验",
+        "description": "4节点可产",
+        "completion_criterion": "scaffold 4可产且islands:0"
+      },
+      {
+        "name": "收敛",
+        "description": "登记与验证",
+        "completion_criterion": "valid:true"
+      }
+    ],
+    "completed_at": "2026-09-01T10:28:25+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "6AC全满足，生产本体已面面俱到",
+      "at": "2026-09-01T10:28:25+08:00",
+      "verdict_id": "v0496-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:domain/ontology-hybrid-methodology 已深化为面面俱到（根+3叶各4 attrs+决策树+正反例），来源 T0496-0903-production-ontology-detail",
+      "at": "2026-09-01T10:28:42+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0903-production-ontology-detail",
+  "states": {
+    "act": "2026-09-01T10:28:26+08:00",
+    "archive": null,
+    "check": "2026-09-01T10:28:25+08:00",
+    "created": "2026-09-01T10:10:00+08:00",
+    "do": "2026-09-01T10:26:10+08:00",
+    "plan": "2026-09-01T10:10:00+08:00"
+  },
+  "status": "Completed",
+  "title": "生产本体方法论深化：面面俱到补全至可独立指导"
+}

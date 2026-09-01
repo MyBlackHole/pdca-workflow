@@ -1,0 +1,77 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0490",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "tdd书面确认含Seam分析且可grep命中（AC-1）",
+      "十回路已完整枚举且tighten三维可命中（AC-2）",
+      "wayfinder HITL/AFK 4 label已对齐（AC-3）",
+      "索引与图谱一致且islands:0（AC-4）",
+      "收敛可验证且validate通过（AC-5）"
+    ],
+    "created_at": "2026-09-01T09:43:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "phase": "act",
+    "record": "T0490-0902-p2-tdd-diagnose-wayfinder",
+    "scenario_type": "development",
+    "steps": [
+      {
+        "name": "tdd书面确认",
+        "description": "补Seam分析机器可读",
+        "completion_criterion": "含##Seam分析与-seam可grep"
+      },
+      {
+        "name": "十回路",
+        "description": "枚举10回路",
+        "completion_criterion": "10回路与tighten三维可命中"
+      },
+      {
+        "name": "wayfinder HITL/AFK",
+        "description": "对齐4 label",
+        "completion_criterion": "含wayfinder:research等可grep"
+      },
+      {
+        "name": "索引与图谱",
+        "description": "重生成SKILLS-INDEX",
+        "completion_criterion": "islands:0"
+      },
+      {
+        "name": "收敛验证",
+        "description": "登记证据与convergence",
+        "completion_criterion": "validate-convergence valid:true"
+      }
+    ],
+    "completion_criteria": [
+      "三节点深化可检索",
+      "图谱全绿"
+    ],
+    "completed_at": "2026-09-01T09:45:23+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5AC全满足，门禁全绿",
+      "at": "2026-09-01T09:45:23+08:00",
+      "verdict_id": "v0490-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:domain/skill-tdd + skill-diagnosing-bugs + skill-wayfinder 已深化，来源 T0490-0902-p2-tdd-diagnose-wayfinder",
+      "at": "2026-09-01T09:45:33+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0902-p2-tdd-diagnose-wayfinder",
+  "states": {
+    "act": "2026-09-01T09:45:24+08:00",
+    "archive": null,
+    "check": "2026-09-01T09:45:22+08:00",
+    "created": "2026-09-01T09:43:00+08:00",
+    "do": "2026-09-01T09:43:46+08:00",
+    "plan": "2026-09-01T09:43:00+08:00"
+  },
+  "status": "Completed",
+  "title": "P2补强：tdd seams前置与diagnosing-bugs十回路及wayfinder HITL/AFK"
+}

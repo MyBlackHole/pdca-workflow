@@ -26,7 +26,8 @@
       "outcome": "projected",
       "reason": "旧架构引用残留与 T0447 一致，需清理引用清理建议已明确，记录本身亦为归档。",
       "at": "2026-08-31T10:50:00+08:00"
-    }
+    },
+    "ontology_exempt_reason": "ontology豁免历史：旧架构复查为只读审查，未产新本体，已冻结"
   },
   "parent": null,
   "slug": "0831-old-arch-refs-recheck",

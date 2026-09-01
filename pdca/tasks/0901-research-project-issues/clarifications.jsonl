@@ -1,0 +1,4 @@
+{"at":"2026-09-01T09:35:00+08:00","source":"task_identity","summary":"created with record identity T0488-0901-research-project-issues"}
+{"source":"direction_confirm","summary":"方向确认：research 类型，排除 openssl，对 1677 文件按 6 维度抽样，重点 hotspots","response":"confirmed","at":"2026-09-01T09:34:07+08:00"}
+{"source":"final_confirmation","summary":"Plan 完成：PRD 3 AC 已定，research 类型，申请进入 Do","response":"confirmed","at":"2026-09-01T09:34:08+08:00"}
+{"source":"check_confirmation","summary":"Check confirmed：3 AC 均有 research-issues 支撑，17 条问题清单覆盖 6 维度","response":"confirmed","at":"2026-09-01T09:43:10+08:00"}

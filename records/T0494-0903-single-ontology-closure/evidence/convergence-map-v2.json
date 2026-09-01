@@ -1,0 +1,65 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "抽样5节点attributes已核验（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-closure-report-v2"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "抽样5节点relations已核验（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-closure-report-v2"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "产出链四阶已逐节点判定（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-closure-report-v2"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "闭环率与断链类型已统计（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-closure-report-v2"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "修复清单已给出（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-closure-report-v2"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "报告已登记且收敛可验证（AC-6）",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ev-closure-report-v2"
+      ]
+    }
+  ]
+}

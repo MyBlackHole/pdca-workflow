@@ -1,0 +1,56 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "准则已沉淀且validate通过（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-govern"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "五条治理可测且可scaffold（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-govern"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "可追溯至混合方法论（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-govern",
+        "ev-hybrid"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "全绿且islands:0（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-index"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "收敛 valid:true（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-index-v2"
+      ]
+    }
+  ]
+}

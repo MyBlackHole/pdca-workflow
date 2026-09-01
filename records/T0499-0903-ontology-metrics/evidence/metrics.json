@@ -1,0 +1,24 @@
+{
+  "schema": "pdca.metrics/v1",
+  "health": {
+    "validate": 0,
+    "islands": 0,
+    "scaffold": 4,
+    "scaffold_total": 4
+  },
+  "hard": {
+    "fragment_new": 8,
+    "fragment_new_hit": 8,
+    "disposition_new": 8,
+    "disposition_new_hit": 8
+  },
+  "provenance": {
+    "total_ontology": 375,
+    "with_source_record": 2
+  },
+  "effectiveness": {
+    "baseline": "T0494 0%严格",
+    "current": "0%",
+    "verdict": "neutral"
+  }
+}
