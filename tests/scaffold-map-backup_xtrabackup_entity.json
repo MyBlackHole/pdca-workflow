@@ -1,0 +1,20 @@
+{
+  "schema": "pdca.test-scaffold-map/v1",
+  "node_id": "ontology:entity/backup-xtrabackup-entity",
+  "node_type": "entity",
+  "source": "ontology/entity/backup-xtrabackup-entity.md",
+  "out": "tests/test_backup_xtrabackup_scaffold.py",
+  "attributes": [
+    {
+      "name": "demo_backup",
+      "mode": "assertion",
+      "testable_signal": "运行 python3 -m pytest tests/test_backup_demo.py -v 检查桩返回 {backup:1}，且 scaffold 通过",
+      "constraint": "GET /api/backup/demo 返回 {\"backup\":1}"
+    }
+  ],
+  "modes": {
+    "assertion": "属性断言",
+    "contract": "契约测试",
+    "convergence": "收敛验证"
+  }
+}

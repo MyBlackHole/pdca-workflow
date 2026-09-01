@@ -1,0 +1,32 @@
+{
+  "schema": "pdca.test-scaffold-map/v1",
+  "node_id": "ontology:domain/ontology-deep-integration-overview",
+  "node_type": "domain",
+  "source": "ontology/domain/ontology-deep-integration-overview.md",
+  "out": "tests/test_ontology_deep_integration_overview_scaffold.py",
+  "attributes": [
+    {
+      "name": "applicability",
+      "mode": "assertion",
+      "testable_signal": "检查任务 task.json 的 meta.ontology_fragment 存在且指向合法 pdca.asset/v1 目录，且 meta.disposition 含 ontology: 或 records-only 关键词，否则 archive 门禁拒收",
+      "constraint": "任务须声明 meta.ontology_fragment 与 ontology_anchor，Act 须沉淀本体或显式 records-only"
+    },
+    {
+      "name": "link_depth",
+      "mode": "assertion",
+      "testable_signal": "运行 python3 scripts/ontology_graph.py --format summary 检查实例强引用本体均存在且 0 islands，单任务引用本体数通常≤3",
+      "constraint": "按本体关系自然拆分，单任务仅涉及1-3本体扇出而非串联，不设硬性跳数上限"
+    },
+    {
+      "name": "checklist_propagation",
+      "mode": "contract",
+      "testable_signal": "检查清单类本体不存在独立 pattern 节点，而是在领域节点内可 grep 命中 检查清单",
+      "constraint": "B1-B4 等清单在领域节点 attributes 中承载，实例通过属性继承而非额外跳数"
+    }
+  ],
+  "modes": {
+    "assertion": "属性断言",
+    "contract": "契约测试",
+    "convergence": "收敛验证"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "pdca.test-scaffold-map/v1",
+  "node_id": "ontology:entity/report-center-web-entity",
+  "node_type": "entity",
+  "source": "ontology/entity/report-center-web-entity.md",
+  "out": "tests/test_report_center_web_entity_scaffold.py",
+  "attributes": [
+    {
+      "name": "demo_api",
+      "mode": "assertion",
+      "testable_signal": "运行 python3 -m pytest tests/test_report_demo.py -v 检查桩接口返回 {demo:1}，且经 scaffold 生成的 tests/test_report_center_web_entity_scaffold.py 通过",
+      "constraint": "GET /api/report/demo 返回 {\"demo\":1}"
+    }
+  ],
+  "modes": {
+    "assertion": "属性断言",
+    "contract": "契约测试",
+    "convergence": "收敛验证"
+  }
+}

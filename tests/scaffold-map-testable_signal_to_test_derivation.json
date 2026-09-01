@@ -1,0 +1,20 @@
+{
+  "schema": "pdca.test-scaffold-map/v1",
+  "node_id": "ontology:pattern/testable-signal-to-test-derivation",
+  "node_type": "pattern",
+  "source": "ontology/pattern/testable-signal-to-test-derivation.md",
+  "out": "tests/test_testable_signal_scaffold.py",
+  "attributes": [
+    {
+      "name": "applicability",
+      "mode": "assertion",
+      "testable_signal": "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 检查本节点及关联 KnowledgeArtifact 的 attributes.testable_signal 非空且不含泛化描述，且图谱中可经 specializes 追溯至 ontology:pattern",
+      "constraint": "适用于声明了 attributes 的 KnowledgeArtifact 节点（pattern/principle/pitfall/fact/decision）"
+    }
+  ],
+  "modes": {
+    "assertion": "属性断言",
+    "contract": "契约测试",
+    "convergence": "收敛验证"
+  }
+}

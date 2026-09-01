@@ -1,0 +1,20 @@
+{
+  "schema": "pdca.test-scaffold-map/v1",
+  "node_id": "ontology:entity/backup-crypto-entity",
+  "node_type": "entity",
+  "source": "ontology/entity/backup-crypto-entity.md",
+  "out": "tests/test_backup_crypto_scaffold.py",
+  "attributes": [
+    {
+      "name": "demo_crypto",
+      "mode": "assertion",
+      "testable_signal": "运行 python3 -m pytest tests/test_crypto_demo.py -v 检查桩返回 {crypto:1}，且 scaffold 通过",
+      "constraint": "GET /api/crypto/demo 返回 {\"crypto\":1}"
+    }
+  ],
+  "modes": {
+    "assertion": "属性断言",
+    "contract": "契约测试",
+    "convergence": "收敛验证"
+  }
+}

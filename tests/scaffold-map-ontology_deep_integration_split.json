@@ -1,0 +1,13 @@
+{
+  "schema": "pdca.test-scaffold-map/v1",
+  "node_id": "ontology:entity/ontology-deep-integration-split",
+  "node_type": "entity",
+  "source": "ontology/entity/ontology-deep-integration-split.md",
+  "out": "tests/test_ontology_split_scaffold.py",
+  "attributes": [],
+  "modes": {
+    "assertion": "属性断言",
+    "contract": "契约测试",
+    "convergence": "收敛验证"
+  }
+}

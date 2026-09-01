@@ -1,0 +1,20 @@
+{
+  "schema": "pdca.test-scaffold-map/v1",
+  "node_id": "ontology:entity/report-center-collection-entity",
+  "node_type": "entity",
+  "source": "ontology/entity/report-center-collection-entity.md",
+  "out": "tests/test_collection_entity_scaffold.py",
+  "attributes": [
+    {
+      "name": "demo_collection",
+      "mode": "assertion",
+      "testable_signal": "运行 python3 -m pytest tests/test_collection_demo.py -v 检查桩返回 {collection:1}，且 scaffold 通过",
+      "constraint": "GET /api/collection/demo 返回 {\"collection\":1}"
+    }
+  ],
+  "modes": {
+    "assertion": "属性断言",
+    "contract": "契约测试",
+    "convergence": "收敛验证"
+  }
+}
