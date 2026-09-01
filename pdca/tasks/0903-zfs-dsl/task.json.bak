@@ -1,0 +1,42 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0507",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-09-01T12:09:40+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "entity",
+    "phase": "act",
+    "record": "T0507-0903-zfs-dsl",
+    "scenario_type": "development",
+    "completed_at": "2026-09-01T13:29:59+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "叶桩+scaffold valid:true",
+      "at": "2026-09-01T13:29:59+08:00",
+      "verdict_id": "vT0507-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:entity/zfs-dsl 已实现桩+scaffold，来源 T0507-0903-zfs-dsl",
+      "at": "2026-09-01T13:30:18+08:00"
+    }
+  },
+  "parent": "T0505",
+  "slug": "0903-zfs-dsl",
+  "states": {
+    "act": "2026-09-01T13:30:00+08:00",
+    "archive": null,
+    "check": "2026-09-01T13:29:40+08:00",
+    "created": "2026-09-01T12:09:40+08:00",
+    "do": "2026-09-01T12:11:46+08:00",
+    "plan": "2026-09-01T12:09:40+08:00"
+  },
+  "status": "Completed",
+  "title": "ZFS DSL 实体 — dsl_pool/dsl_dataset/dsl_dir 数据集层与快照克隆语义"
+}

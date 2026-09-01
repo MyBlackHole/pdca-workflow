@@ -1,0 +1,26 @@
+{
+  "schema": "pdca.test-scaffold-map/v1",
+  "node_id": "ontology:entity/zfs-dsl",
+  "node_type": "entity",
+  "source": "ontology/entity/zfs-dsl.md",
+  "out": "tests/test_zfs_dsl_scaffold.py",
+  "attributes": [
+    {
+      "name": "dataset_lifecycle",
+      "mode": "assertion",
+      "testable_signal": "运行 grep -q 'dsl_dataset_block_born' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -q 'dsl_dataset_phys' module/zfs/dsl_dataset.c 命中",
+      "constraint": "覆盖 dsl_dataset_block_born/block_kill 的 referenced/unique 计数与 parent_delta 上卷"
+    },
+    {
+      "name": "pool_sync_coverage",
+      "mode": "assertion",
+      "testable_signal": "运行 grep -q 'dsl_pool_sync' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -q 'dp_dirty_datasets' module/zfs/dsl_pool.c 命中",
+      "constraint": "dsl_pool_sync 首 pass 写用户数据、后续 pass 只写元数据，与 spa_sync 协同"
+    }
+  ],
+  "modes": {
+    "assertion": "属性断言",
+    "contract": "契约测试",
+    "convergence": "收敛验证"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0503",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "报告多图≥3且每图含Source（AC-1）",
+      "本体树6叶composed_of且可scaffold（AC-2）",
+      "C4 L2+L3至ZIO pipeline深度可命中（AC-3）",
+      "6叶+1系统已落盘且回链（AC-4）",
+      "全绿 valid:true（AC-5）"
+    ],
+    "created_at": "2026-09-01T11:56:02+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "phase": "act",
+    "record": "T0503-0903-research-zfs-implementation",
+    "scenario_type": "research",
+    "steps": [
+      {
+        "name": "报告多图",
+        "description": "6图mermaid溯源",
+        "completion_criterion": "mermaid≥3且Source≥3"
+      },
+      {
+        "name": "本体树",
+        "description": "6叶composed_of",
+        "completion_criterion": "6叶可scaffold"
+      },
+      {
+        "name": "深度",
+        "description": "C4 L2+L3至ZIO",
+        "completion_criterion": "ZIO pipeline可命中"
+      },
+      {
+        "name": "沉淀",
+        "description": "7 entity落盘",
+        "completion_criterion": "disposition ontology:"
+      },
+      {
+        "name": "全绿",
+        "description": "islands:0 valid:true",
+        "completion_criterion": "valid:true"
+      }
+    ],
+    "completed_at": "2026-09-01T12:05:44+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5AC全满足，全栈多图可验证",
+      "at": "2026-09-01T12:05:44+08:00",
+      "verdict_id": "v0503-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:entity/zfs-system 已沉淀（composed_of 6叶全栈全图可验证），来源 T0503-0903-research-zfs-implementation",
+      "at": "2026-09-01T12:05:50+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0903-research-zfs-implementation",
+  "states": {
+    "act": "2026-09-01T12:05:45+08:00",
+    "archive": null,
+    "check": "2026-09-01T12:05:39+08:00",
+    "created": "2026-09-01T11:56:02+08:00",
+    "do": "2026-09-01T11:56:21+08:00",
+    "plan": "2026-09-01T11:56:02+08:00"
+  },
+  "status": "Completed",
+  "title": "调研ZFS实现：DMU/DSL/SPA/ZIO/ZPL全栈与OpenZFS"
+}

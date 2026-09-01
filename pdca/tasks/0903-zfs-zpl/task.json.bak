@@ -1,0 +1,42 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0510",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-09-01T12:09:42+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "entity",
+    "phase": "act",
+    "record": "T0510-0903-zfs-zpl",
+    "scenario_type": "development",
+    "completed_at": "2026-09-01T13:30:05+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "叶桩+scaffold valid:true",
+      "at": "2026-09-01T13:30:05+08:00",
+      "verdict_id": "vT0510-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:entity/zfs-zpl 已实现桩+scaffold，来源 T0510-0903-zfs-zpl",
+      "at": "2026-09-01T13:30:27+08:00"
+    }
+  },
+  "parent": "T0505",
+  "slug": "0903-zfs-zpl",
+  "states": {
+    "act": "2026-09-01T13:30:06+08:00",
+    "archive": null,
+    "check": "2026-09-01T13:29:45+08:00",
+    "created": "2026-09-01T12:09:42+08:00",
+    "do": "2026-09-01T12:11:50+08:00",
+    "plan": "2026-09-01T12:09:42+08:00"
+  },
+  "status": "Completed",
+  "title": "ZFS ZPL 实体 — POSIX 层 zfs_znode/zpl_inode 与 DMU 对象映射"
+}

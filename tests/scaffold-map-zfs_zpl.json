@@ -1,0 +1,26 @@
+{
+  "schema": "pdca.test-scaffold-map/v1",
+  "node_id": "ontology:entity/zfs-zpl",
+  "node_type": "entity",
+  "source": "ontology/entity/zfs-zpl.md",
+  "out": "tests/test_zfs_zpl_scaffold.py",
+  "attributes": [
+    {
+      "name": "posix_mapping",
+      "mode": "assertion",
+      "testable_signal": "运行 grep -q 'ZPL' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -q 'zfs_znode' module/zfs/zfs_znode.c 命中",
+      "constraint": "覆盖 zpl_inode ↔ zfs_znode ↔ dnode 的 object 上下映射与 zfs_vnops 分发"
+    },
+    {
+      "name": "sa_bonus_layout",
+      "mode": "assertion",
+      "testable_signal": "运行 grep -q 'dnode.*bonus' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -q 'DN_BONUS' include/sys/dnode.h 命中",
+      "constraint": "覆盖 SA (System Attributes) 与 dnode bonus 对小文件/属性的存储优化"
+    }
+  ],
+  "modes": {
+    "assertion": "属性断言",
+    "contract": "契约测试",
+    "convergence": "收敛验证"
+  }
+}

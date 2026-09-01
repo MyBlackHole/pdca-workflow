@@ -1,0 +1,42 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0511",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-09-01T12:09:43+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "entity",
+    "phase": "archive",
+    "record": "T0511-0903-zfs-arc",
+    "scenario_type": "development",
+    "completed_at": "2026-09-01T13:30:07+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "叶桩+scaffold valid:true",
+      "at": "2026-09-01T13:30:07+08:00",
+      "verdict_id": "vT0511-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:entity/zfs-arc 已实现桩+scaffold，来源 T0511-0903-zfs-arc",
+      "at": "2026-09-01T13:30:29+08:00"
+    }
+  },
+  "parent": "T0505",
+  "slug": "0903-zfs-arc",
+  "states": {
+    "act": "2026-09-01T13:30:08+08:00",
+    "archive": "2026-09-01T13:30:31+08:00",
+    "check": "2026-09-01T13:29:47+08:00",
+    "created": "2026-09-01T12:09:43+08:00",
+    "do": "2026-09-01T12:11:52+08:00",
+    "plan": "2026-09-01T12:09:43+08:00"
+  },
+  "status": "Completed",
+  "title": "ZFS ARC 实体 — Adaptive Replacement Cache 自适应缓存与 L2ARC/dbuf 协作"
+}

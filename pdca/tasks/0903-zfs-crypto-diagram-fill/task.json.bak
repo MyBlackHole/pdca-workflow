@@ -1,0 +1,73 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0504",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "回补件3图mermaid且含Source（AC-1）",
+      "方法论一致可命中（AC-2）",
+      "可合入T0500（AC-3）",
+      "本体沉淀回链（AC-4）",
+      "全绿 valid:true（AC-5）"
+    ],
+    "created_at": "2026-09-01T12:07:55+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "pattern",
+    "phase": "act",
+    "record": "T0504-0903-zfs-crypto-diagram-fill",
+    "scenario_type": "documentation",
+    "steps": [
+      {
+        "name": "回补件",
+        "description": "3图mermaid",
+        "completion_criterion": "mermaid≥3且Source≥3"
+      },
+      {
+        "name": "方法论一致",
+        "description": "关联模板",
+        "completion_criterion": "grep命中"
+      },
+      {
+        "name": "可合入",
+        "description": "可patch",
+        "completion_criterion": "diff可应用"
+      },
+      {
+        "name": "沉淀",
+        "description": "disposition",
+        "completion_criterion": "ontology:"
+      },
+      {
+        "name": "全绿",
+        "description": "islands:0",
+        "completion_criterion": "valid:true"
+      }
+    ],
+    "completed_at": "2026-09-01T12:08:31+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5AC全满足，3图可直接合入T0500",
+      "at": "2026-09-01T12:08:31+08:00",
+      "verdict_id": "v0504-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:pattern/research-diagram-methodology 回补3图可直接合入T0500，来源 T0504-0903-zfs-crypto-diagram-fill",
+      "at": "2026-09-01T12:08:36+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0903-zfs-crypto-diagram-fill",
+  "states": {
+    "act": "2026-09-01T12:08:32+08:00",
+    "archive": null,
+    "check": "2026-09-01T12:08:30+08:00",
+    "created": "2026-09-01T12:07:55+08:00",
+    "do": "2026-09-01T12:07:56+08:00",
+    "plan": "2026-09-01T12:07:55+08:00"
+  },
+  "status": "Completed",
+  "title": "回补T0500 ZFS Crypto多图：C4 L2+ZIO pipeline+TXG状态机"
+}

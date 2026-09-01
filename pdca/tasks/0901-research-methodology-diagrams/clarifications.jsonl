@@ -1,0 +1,8 @@
+{"at":"2026-09-01T10:45:00+08:00","source":"task_identity","summary":"created with record identity T0501-0901-research-methodology-diagrams"}
+{"at":"2026-09-01T10:45:30+08:00","source":"grilling","round":1,"q":"T0500类研究的目标读者是谁？（新同学/架构师/评审）不同读者决定图的抽象层级","options":["新同学（需Lifecycle图+术语表）","架构师（需C4 L2+模块依赖）","评审/审计（需时序图+状态机）"],"status":"resolved","a":"主要是架构师（C4 L2+模块依赖为主，兼顾新同学术语表）","decision":"主要是架构师（C4 L2+模块依赖为主，兼顾新同学术语表）"}
+{"at":"2026-09-01T10:45:30+08:00","source":"grilling","round":1,"q":"必备图的优先级？（架构图/逻辑图/生命周期图/数据流图/部署图）","options":["架构图=C4 L2 + 逻辑图=时序/流程 + 生命周期=状态机 为P0","再加数据流/部署为P1"],"status":"resolved","a":"尽可能多的图示：P0架构+逻辑+生命周期，P1数据流+部署+C4 L1","decision":"尽可能多的图示：P0架构+逻辑+生命周期，P1数据流+部署+C4 L1"}
+{"at":"2026-09-01T10:45:30+08:00","source":"grilling","round":1,"q":"图以何形式落地最易维护？","options":["Mermaid inline于research-report.md（可diff可渲染）","PlantUML外部文件","ASCII于ontology/domain节点"],"status":"resolved","a":"mermaid inline于research-report.md","decision":"mermaid inline于research-report.md"}
+{"at":"2026-09-01T10:45:30+08:00","source":"grilling","round":1,"q":"方法论是通用还是专于ZFS Crypto？","options":["通用：所有research报告必须含3图模板","专用：先为ZFS Crypto补图再提炼"],"status":"resolved","a":"通用：所有research报告必须含多图模板，ZFS Crypto为首个示范","decision":"通用：所有research报告必须含多图模板，ZFS Crypto为首个示范"}
+{"at":"2026-09-01T10:45:30+08:00","source":"grilling","round":1,"q":"图的来源与可验证性？","options":["图必须可追溯至primary source（源码行/官方doc链接），每图附来源引证"],"status":"resolved","a":"是：每图附1条primary source引证（源码行/官方doc）","decision":"是：每图附1条primary source引证（源码行/官方doc）"}
+{"source":"final_confirmation","summary":"5问已确认：架构师为主、多图、mermaid、通用、每图溯源","response":"confirmed","at":"2026-09-01T11:45:29+08:00"}
+{"source":"check_confirmation","summary":"结论已确认","response":"confirmed","at":"2026-09-01T11:48:03+08:00"}

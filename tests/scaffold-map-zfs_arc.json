@@ -1,0 +1,26 @@
+{
+  "schema": "pdca.test-scaffold-map/v1",
+  "node_id": "ontology:entity/zfs-arc",
+  "node_type": "entity",
+  "source": "ontology/entity/zfs-arc.md",
+  "out": "tests/test_zfs_arc_scaffold.py",
+  "attributes": [
+    {
+      "name": "arc_adaptive",
+      "mode": "assertion",
+      "testable_signal": "运行 grep -q 'ARC.*MRU.*MFU' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -q 'buf_hash_find' module/zfs/arc.c 命中",
+      "constraint": "覆盖 ARC_p 自适应、ghost 命中与 hash 锁分层 buf_hash_find"
+    },
+    {
+      "name": "l2arc_persistence",
+      "mode": "assertion",
+      "testable_signal": "运行 grep -q 'L2ARC' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -q 'l2arc_write_max' module/zfs/arc.c 命中",
+      "constraint": "覆盖 zfs_compressed_arc_enabled 对 b_pabd 的影响与 l2arc_write_max 头室"
+    }
+  ],
+  "modes": {
+    "assertion": "属性断言",
+    "contract": "契约测试",
+    "convergence": "收敛验证"
+  }
+}

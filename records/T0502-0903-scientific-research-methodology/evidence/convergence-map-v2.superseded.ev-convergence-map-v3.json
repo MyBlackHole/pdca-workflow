@@ -1,0 +1,63 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "根+4叶已创建且validate通过（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-root"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "4叶各可scaffold且含mermaid/Diátaxis/arc42/I2S2（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-c4",
+        "ev-diataxis",
+        "ev-arc42",
+        "ev-lifecycle"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "skill-research含Diátaxis四象限与arc42可命中（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-skill"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "全绿且5节点可产（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-root",
+        "ev-c4",
+        "ev-diataxis",
+        "ev-arc42",
+        "ev-lifecycle",
+        "ev-skill"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "收敛 valid:true（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-skill-v2"
+      ]
+    }
+  ]
+}

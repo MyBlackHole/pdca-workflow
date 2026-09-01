@@ -1,0 +1,75 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0500",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "加密算法套件与参数已梳理（AC-1）",
+      "密钥管理与生命周期已梳理（AC-2）",
+      "数据加密/解密路径与调用链已梳理（AC-3）",
+      "On-disk格式与属性接口已梳理（AC-4）",
+      "校验与完整性机制已梳理（AC-5）",
+      "SM4-GCM扩展及QAT/FreeBSD适配已梳理（AC-6）",
+      "报告已登记且收敛映射可验证（AC-7）"
+    ],
+    "created_at": "2026-09-01T11:00:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "phase": "act",
+    "record": "T0500-0901-research-zfs-crypto",
+    "scenario_type": "research",
+    "steps": [
+      {
+        "name": "算法套件梳理",
+        "description": "梳理ZIO_CRYPT枚举、zio_crypt_table与ICP/CCM/GCM实现",
+        "completion_criterion": "AC-1 有对应章节与源码定位"
+      },
+      {
+        "name": "密钥管理梳理",
+        "description": "梳理wrapping key/master key、PBKDF2/HKDF、keystore三棵AVL树、load/unload流程",
+        "completion_criterion": "AC-2 有对应章节与流程图"
+      },
+      {
+        "name": "数据路径梳理",
+        "description": "梳理zio层加解密调用链、IV/MAC生成、abd处理、arc/dmu集成",
+        "completion_criterion": "AC-3 有调用链与源码定位"
+      },
+      {
+        "name": "格式与接口梳理",
+        "description": "梳理blkptr/dnode加密位、DSL Crypto Key ZAP、dataset属性",
+        "completion_criterion": "AC-4 有格式说明"
+      },
+      {
+        "name": "完整报告与证据登记",
+        "description": "汇总报告、登记evidence、生成convergence-map",
+        "completion_criterion": "AC-7 manifest与map可验证"
+      }
+    ],
+    "completed_at": "2026-09-01T11:24:05+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "7/7 AC 均有证据支撑，收敛映射可验证，报告覆盖算法/密钥/路径/格式/完整性/SM4适配",
+      "at": "2026-09-01T11:25:00+08:00",
+      "verdict_id": "v0500-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:domain/zfs-crypto 已沉淀：基于 T0500 调研，将算法/密钥/路径/格式/完整性/SM4 适配六层模型固化为领域知识，可复用于 backup-crypto-medium-model 的 ZFS 透明加密介质",
+      "at": "2026-09-01T11:28:00+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0901-research-zfs-crypto",
+  "states": {
+    "act": "2026-09-01T11:27:22+08:00",
+    "archive": null,
+    "check": "2026-09-01T11:24:05+08:00",
+    "created": "2026-09-01T11:00:00+08:00",
+    "do": "2026-09-01T11:03:01+08:00",
+    "plan": "2026-09-01T11:00:00+08:00"
+  },
+  "status": "Completed",
+  "title": "调研 OpenZFS 加解密实现"
+}

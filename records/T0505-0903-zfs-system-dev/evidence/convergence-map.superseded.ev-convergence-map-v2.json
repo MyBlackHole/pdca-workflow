@@ -1,0 +1,55 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "6叶实现可collect（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-parent"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "根聚合6叶可调度（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-parent"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "叶→根ready-set [[6叶],[system]]（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-parent"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "全绿且6叶可产（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-parent"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "收敛 valid:true（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-parent"
+      ]
+    }
+  ]
+}

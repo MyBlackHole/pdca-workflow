@@ -1,0 +1,32 @@
+{
+  "schema": "pdca.test-scaffold-map/v1",
+  "node_id": "ontology:entity/zfs-system",
+  "node_type": "entity",
+  "source": "ontology/entity/zfs-system.md",
+  "out": "tests/test_zfs_system_scaffold.py",
+  "attributes": [
+    {
+      "name": "c4_l2_coverage",
+      "mode": "assertion",
+      "testable_signal": "运行 grep -q 'C4 L2' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -c '```mermaid' records/T0503-0903-research-zfs-implementation/research-report.md | awk '{exit !($1>=6)}'",
+      "constraint": "覆盖 ZPL→DMU→DSL→SPA→ZIO→VDEV 横切 ARC/ZIL 的容器图且 mermaid 可渲染"
+    },
+    {
+      "name": "zio_pipeline_depth",
+      "mode": "assertion",
+      "testable_signal": "运行 grep -q 'ZIO.*PIPELINE' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -q 'ZIO_STAGE_VDEV_IO_START' include/sys/zio_impl.h 命中",
+      "constraint": "下钻至 ZIO stage 位图与 pipeline 宏，含 compress/encrypt/checksum/dedup 分支"
+    },
+    {
+      "name": "six_leaf_completeness",
+      "mode": "assertion",
+      "testable_signal": "运行 python3 scripts/ontology_graph.py --format summary | grep -q 'islands: 0' 且 ls ontology/entity/zfs-*.md | wc -l | grep -q '7'",
+      "constraint": "composed_of 恰为 dmu/dsl/spa/zio/zpl/arc 六叶且可 scaffold"
+    }
+  ],
+  "modes": {
+    "assertion": "属性断言",
+    "contract": "契约测试",
+    "convergence": "收敛验证"
+  }
+}

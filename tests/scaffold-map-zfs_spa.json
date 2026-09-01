@@ -1,0 +1,26 @@
+{
+  "schema": "pdca.test-scaffold-map/v1",
+  "node_id": "ontology:entity/zfs-spa",
+  "node_type": "entity",
+  "source": "ontology/entity/zfs-spa.md",
+  "out": "tests/test_zfs_spa_scaffold.py",
+  "attributes": [
+    {
+      "name": "txg_state_machine",
+      "mode": "assertion",
+      "testable_signal": "运行 grep -q 'txg_quiesce' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -q 'tx_open_txg' module/zfs/txg.c 命中",
+      "constraint": "覆盖 txg_init/txg_hold_open/txg_quiesce/txg_sync_thread/quiesce_thread 与 zfs_txg_timeout"
+    },
+    {
+      "name": "spa_sync_convergence",
+      "mode": "assertion",
+      "testable_signal": "运行 grep -q 'spa_sync' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -q 'zfs_sync_pass_deferred_free' module/zfs/zio.c 命中",
+      "constraint": "覆盖 zfs_sync_pass_deferred_free/dont_compress/rewrite 三收敛开关与 spa_taskq_dispatch"
+    }
+  ],
+  "modes": {
+    "assertion": "属性断言",
+    "contract": "契约测试",
+    "convergence": "收敛验证"
+  }
+}

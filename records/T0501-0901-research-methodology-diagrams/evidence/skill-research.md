@@ -82,11 +82,6 @@ research 结论在 Check `confirmed/partial` 后，进入 Act 必须做显式的
 
 Findings written to research-report.md and registered as evidence. Findings captured on throwaway branch with context pointer. 本体沉淀决策已显式记录且校验通过。
 
-## Diátaxis四象限与arc42质量
-
-- **Diátaxis**：`tutorial/how-to/reference/explanation` 四且仅四，`research-report.md` 多图模板属 `reference` 象限，`grep -q Diátaxis ontology/pattern/scientific-research-diataxis.md` 可检
-- **arc42**：12节（目标/约束/上下文/方案/构件C4/运行时/部署/概念/决策/质量/风险/词汇）作 `research` 质量自检 `grep -q arc42 ontology/pattern/scientific-research-arc42.md`
-
 ## 已知坑
 
 - 只采信高信任 primary source；二手转述/低信源结论须标注置信度，勿当作事实。

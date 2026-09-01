@@ -1,0 +1,55 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "回补件3图mermaid且含Source（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-diagrams-v2"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "方法论一致可命中（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-diagrams-v2"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "可合入T0500（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-diagrams-v2"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "本体沉淀回链（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-diagrams-v2"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "全绿 valid:true（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-diagrams-v2"
+      ]
+    }
+  ]
+}

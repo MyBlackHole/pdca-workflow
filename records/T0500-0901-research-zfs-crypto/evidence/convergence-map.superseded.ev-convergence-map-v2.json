@@ -1,0 +1,47 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "加密算法套件与参数已梳理（AC-1）",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["ev-report"]
+    },
+    {
+      "index": 2,
+      "text": "密钥管理与生命周期已梳理（AC-2）",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["ev-report"]
+    },
+    {
+      "index": 3,
+      "text": "数据加密/解密路径与调用链已梳理（AC-3）",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["ev-report"]
+    },
+    {
+      "index": 4,
+      "text": "On-disk格式与属性接口已梳理（AC-4）",
+      "criteria": ["AC-4"],
+      "evidence_ids": ["ev-report"]
+    },
+    {
+      "index": 5,
+      "text": "校验与完整性机制已梳理（AC-5）",
+      "criteria": ["AC-5"],
+      "evidence_ids": ["ev-report"]
+    },
+    {
+      "index": 6,
+      "text": "SM4-GCM扩展及QAT/FreeBSD适配已梳理（AC-6）",
+      "criteria": ["AC-6"],
+      "evidence_ids": ["ev-report"]
+    },
+    {
+      "index": 7,
+      "text": "报告已登记且收敛映射可验证（AC-7）",
+      "criteria": ["AC-7"],
+      "evidence_ids": ["ev-report", "ev-convergence-map"]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "报告多图≥3且每图含Source（AC-1）",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["rpt2"]
+    },
+    {
+      "index": 2,
+      "text": "本体树6叶composed_of且可scaffold（AC-2）",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["rpt2"]
+    },
+    {
+      "index": 3,
+      "text": "C4 L2+L3至ZIO pipeline深度可命中（AC-3）",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["rpt2"]
+    },
+    {
+      "index": 4,
+      "text": "6叶+1系统已落盘且回链（AC-4）",
+      "criteria": ["AC-4"],
+      "evidence_ids": ["rpt2"]
+    },
+    {
+      "index": 5,
+      "text": "全绿 valid:true（AC-5）",
+      "criteria": ["AC-5"],
+      "evidence_ids": ["rpt2"]
+    }
+  ]
+}

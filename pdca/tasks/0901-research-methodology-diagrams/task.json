@@ -1,0 +1,73 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0501",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "方法论6图已沉淀且validate通过（AC-1）",
+      "模板含6图mermaid占位≥3（AC-2）",
+      "P0三图齐且每图含Source引证（AC-3）",
+      "通用可校验GATE OK（AC-4）",
+      "收敛 valid:true（AC-5）"
+    ],
+    "created_at": "2026-09-01T11:45:29+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "phase": "archive",
+    "record": "T0501-0901-research-methodology-diagrams",
+    "scenario_type": "research",
+    "steps": [
+      {
+        "name": "方法论沉淀",
+        "description": "6图mermaid溯源",
+        "completion_criterion": "含mermaid且validate通过"
+      },
+      {
+        "name": "模板更新",
+        "description": "research-report含占位",
+        "completion_criterion": "grep mermaid≥3"
+      },
+      {
+        "name": "架构师可用",
+        "description": "P0三图+引证",
+        "completion_criterion": "C4 L2+时序+状态机齐"
+      },
+      {
+        "name": "通用校验",
+        "description": "gate可检",
+        "completion_criterion": "GATE OK"
+      },
+      {
+        "name": "收敛",
+        "description": "登记与验证",
+        "completion_criterion": "valid:true"
+      }
+    ],
+    "completed_at": "2026-09-01T11:48:03+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5AC全满足，多图方法论已沉淀",
+      "at": "2026-09-01T11:48:03+08:00",
+      "verdict_id": "v0501-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:pattern/research-diagram-methodology 已沉淀（架构师多图mermaid通用，每图溯源），来源 T0501-0901-research-methodology-diagrams",
+      "at": "2026-09-01T11:48:10+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0901-research-methodology-diagrams",
+  "states": {
+    "act": "2026-09-01T11:48:04+08:00",
+    "archive": "2026-09-01T11:48:12+08:00",
+    "check": "2026-09-01T11:48:02+08:00",
+    "created": "2026-09-01T11:45:29+08:00",
+    "do": "2026-09-01T11:45:43+08:00",
+    "plan": "2026-09-01T11:45:29+08:00"
+  },
+  "status": "Completed",
+  "title": "调研方法论：以ZFS Crypto为例补架构图逻辑图生命周期图使易理解"
+}

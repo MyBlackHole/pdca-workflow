@@ -1,0 +1,8 @@
+{"at":"2026-09-01T11:55:00+08:00","source":"task_identity","summary":"created with record identity T0503-0903-research-zfs-implementation"}
+{"at":"2026-09-01T11:55:30+08:00","source":"grilling","round":1,"q":"ZFS范围：OpenZFS全栈 vs 特定层（DMU/DSL/SPA/ZIO/ZPL/ARC）？","options":["全栈概览（C4 L1/L2）+ DMU/SPA深度","仅DMU/DSL","仅ZIO/ZPL"],"status":"resolved","a":"全栈概览（C4 L1/L2）+ DMU/SPA深度","decision":"全栈概览（C4 L1/L2）+ DMU/SPA深度"}
+{"at":"2026-09-01T11:55:30+08:00","source":"grilling","round":1,"q":"Primary sources：OpenZFS GitHub + 官方doc + 源码行 是否可直接访问？","options":["可（openzfs/zfs）","需内网镜像","仅文档"],"status":"resolved","a":"可（openzfs/zfs）","decision":"可（openzfs/zfs）"}
+{"at":"2026-09-01T11:55:30+08:00","source":"grilling","round":1,"q":"交付深度：需C4几层？","options":["L1 Context+L2 Container足矣","L2+L3 Component至ZIO pipeline","L4 Code至dbuf细节"],"status":"resolved","a":"L2+L3 Component至ZIO pipeline","decision":"L2+L3 Component至ZIO pipeline"}
+{"at":"2026-09-01T11:55:30+08:00","source":"grilling","round":1,"q":"产出本体：是否需将ZFS实体沉淀为 ontology/entity（如zfs-dmu/zfs-spa）？","options":["是：每层1 entity + composed_of","否：仅research-report"],"status":"resolved","a":"是：每层1 entity + composed_of","decision":"是：每层1 entity + composed_of"}
+{"at":"2026-09-01T11:55:30+08:00","source":"grilling","round":1,"q":"图示优先级：ZFS实现中架构图 vs 生命周期（TXG） vs 数据流（ZIO pipeline）何为P0？","options":["P0架构+ZIO pipeline+P1 TXG生命周期","全P0"],"status":"resolved","a":"P0架构+ZIO pipeline+P1 TXG生命周期","decision":"P0架构+ZIO pipeline+P1 TXG生命周期"}
+{"source":"final_confirmation","summary":"5问已确认：全栈+L2+L3本体树，P0架构+ZIO，已写PRD含6图","response":"confirmed","at":"2026-09-01T11:56:20+08:00"}
+{"source":"check_confirmation","summary":"结论已确认","response":"confirmed","at":"2026-09-01T12:05:44+08:00"}

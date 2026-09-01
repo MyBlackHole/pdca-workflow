@@ -1,0 +1,81 @@
+{
+  "children": [
+    "T0506",
+    "T0507",
+    "T0508",
+    "T0509",
+    "T0510",
+    "T0511",
+    "T0512"
+  ],
+  "dependencies": [],
+  "id": "T0505",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "6叶实现可collect（AC-1）",
+      "根聚合6叶可调度（AC-2）",
+      "叶→根ready-set [[6叶],[system]]（AC-3）",
+      "全绿且6叶可产（AC-4）",
+      "收敛 valid:true（AC-5）"
+    ],
+    "created_at": "2026-09-01T12:09:23+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "entity",
+    "phase": "act",
+    "record": "T0505-0903-zfs-system-dev",
+    "scenario_type": "development",
+    "steps": [
+      {
+        "name": "6叶实现",
+        "description": "叶桩+test",
+        "completion_criterion": "pytest collect可命中"
+      },
+      {
+        "name": "根聚合",
+        "description": "system依赖6叶",
+        "completion_criterion": "composed_of 6叶可调度"
+      },
+      {
+        "name": "叶→根",
+        "description": "ready-set",
+        "completion_criterion": "batches [[6叶],[system]]"
+      },
+      {
+        "name": "全绿",
+        "description": "islands:0可产",
+        "completion_criterion": "6叶可产"
+      },
+      {
+        "name": "收敛",
+        "description": "登记与验证",
+        "completion_criterion": "valid:true"
+      }
+    ],
+    "completed_at": "2026-09-01T13:39:06+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5AC全满足，6叶叶→根实现聚合验证",
+      "at": "2026-09-01T13:39:06+08:00",
+      "verdict_id": "v0505-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:entity/zfs-system 叶→根实现聚合已验证，来源 T0505-0903-zfs-system-dev",
+      "at": "2026-09-01T13:39:08+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0903-zfs-system-dev",
+  "states": {
+    "act": "2026-09-01T13:39:07+08:00",
+    "archive": null,
+    "check": "2026-09-01T13:38:49+08:00",
+    "created": "2026-09-01T12:09:23+08:00",
+    "do": "2026-09-01T12:09:24+08:00",
+    "plan": "2026-09-01T12:09:23+08:00"
+  },
+  "status": "Completed",
+  "title": "ZFS全栈实体叶→根实现：zfs-system 6叶开发"
+}

@@ -1,0 +1,57 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "方法论6图已沉淀且validate通过（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-methodology"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "模板含6图mermaid占位≥3（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-template"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "P0三图齐且每图含Source引证（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-methodology"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "通用可校验GATE OK（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-methodology",
+        "ev-template",
+        "ev-skill"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "收敛 valid:true（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-template-v2"
+      ]
+    }
+  ]
+}

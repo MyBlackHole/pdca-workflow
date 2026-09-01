@@ -1,0 +1,26 @@
+{
+  "schema": "pdca.test-scaffold-map/v1",
+  "node_id": "ontology:entity/zfs-zio",
+  "node_type": "entity",
+  "source": "ontology/entity/zfs-zio.md",
+  "out": "tests/test_zfs_zio_scaffold.py",
+  "attributes": [
+    {
+      "name": "pipeline_bitmap",
+      "mode": "assertion",
+      "testable_signal": "运行 grep -q 'ZIO_WRITE_PIPELINE' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -q 'ZIO_STAGE_WRITE_COMPRESS' include/sys/zio_impl.h 命中",
+      "constraint": "覆盖 enum zio_stage 1<<n 与 ZIO_READ/WRITE_PIPELINE 位图宏及 __zio_execute 循环"
+    },
+    {
+      "name": "vdev_dispatch",
+      "mode": "assertion",
+      "testable_signal": "运行 grep -q '__zio_execute' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -q 'zio_execute' module/zfs/zio.c 命中",
+      "constraint": "覆盖 zio_create→zio_execute→__zio_execute→vdev_queue_io→leaf vdev 完整链"
+    }
+  ],
+  "modes": {
+    "assertion": "属性断言",
+    "contract": "契约测试",
+    "convergence": "收敛验证"
+  }
+}

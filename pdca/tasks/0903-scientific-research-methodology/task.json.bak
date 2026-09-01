@@ -1,0 +1,73 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0502",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "根+4叶已创建且validate通过（AC-1）",
+      "4叶各可scaffold且含mermaid/Diátaxis/arc42/I2S2（AC-2）",
+      "skill-research含Diátaxis四象限与arc42可命中（AC-3）",
+      "全绿且5节点可产（AC-4）",
+      "收敛 valid:true（AC-5）"
+    ],
+    "created_at": "2026-09-01T11:51:10+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "pattern",
+    "phase": "act",
+    "record": "T0502-0903-scientific-research-methodology",
+    "scenario_type": "development",
+    "steps": [
+      {
+        "name": "根+4叶创建",
+        "description": "科学范式4支",
+        "completion_criterion": "5节点且composed_of 4边可追"
+      },
+      {
+        "name": "4叶可测",
+        "description": "各1叶scaffold",
+        "completion_criterion": "含mermaid/Diátaxis等且可产"
+      },
+      {
+        "name": "接入",
+        "description": "skill含四象限",
+        "completion_criterion": "grep命中"
+      },
+      {
+        "name": "全绿",
+        "description": "islands:0可产",
+        "completion_criterion": "5节点可产"
+      },
+      {
+        "name": "收敛",
+        "description": "登记与验证",
+        "completion_criterion": "valid:true"
+      }
+    ],
+    "completed_at": "2026-09-01T11:53:10+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5AC全满足，科学方法论已沉淀",
+      "at": "2026-09-01T11:53:10+08:00",
+      "verdict_id": "v0502-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:pattern/scientific-research-methodology 已沉淀（C4+Diátaxis+arc42+I2S2四支），来源 T0502-0903-scientific-research-methodology",
+      "at": "2026-09-01T11:53:19+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0903-scientific-research-methodology",
+  "states": {
+    "act": "2026-09-01T11:53:11+08:00",
+    "archive": null,
+    "check": "2026-09-01T11:53:09+08:00",
+    "created": "2026-09-01T11:51:10+08:00",
+    "do": "2026-09-01T11:51:11+08:00",
+    "plan": "2026-09-01T11:51:10+08:00"
+  },
+  "status": "Completed",
+  "title": "补充科学调研方法论本体：C4+Diátaxis+arc42+I2S2生命周期"
+}

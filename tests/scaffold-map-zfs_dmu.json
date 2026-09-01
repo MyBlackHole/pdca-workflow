@@ -1,0 +1,26 @@
+{
+  "schema": "pdca.test-scaffold-map/v1",
+  "node_id": "ontology:entity/zfs-dmu",
+  "node_type": "entity",
+  "source": "ontology/entity/zfs-dmu.md",
+  "out": "tests/test_zfs_dmu_scaffold.py",
+  "attributes": [
+    {
+      "name": "dnode_dbuf_abstraction",
+      "mode": "assertion",
+      "testable_signal": "运行 grep -q 'dmu_buf_hold_array_by_dnode' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -q 'dnode_hold' module/zfs/dmu.c 命中",
+      "constraint": "覆盖 dnode_hold → dbuf_whichblock → dbuf_hold → dbuf_read 状态机 DB_CACHED/DB_FILL"
+    },
+    {
+      "name": "dirty_throttle_signal",
+      "mode": "assertion",
+      "testable_signal": "运行 grep -q 'dsl_pool_dirty_space' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -q 'zfs_dirty_data_sync_percent' module/zfs/dsl_pool.c 命中",
+      "constraint": "dsl_pool_dirty_space 累加 dp_dirty_pertxg 并在 zfs_dirty_data_sync_percent 触发 txg_kick"
+    }
+  ],
+  "modes": {
+    "assertion": "属性断言",
+    "contract": "契约测试",
+    "convergence": "收敛验证"
+  }
+}
