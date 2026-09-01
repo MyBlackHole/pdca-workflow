@@ -433,6 +433,10 @@ def task_issues(root: Path, task_dir: Path, include_phase_requirements: bool = T
             issues.append(Issue("CHECK_CONFIRMATION_MISSING", "clarifications.jsonl", "check confirmation is required"))
     if phase == "archive" and "disposition" not in task["meta"]:
         issues.append(Issue("DISPOSITION_MISSING", "/meta/disposition", "disposition is required"))
+    if phase == "archive" and "disposition" in task["meta"]:
+        disp = str(task["meta"].get("disposition") or "")
+        if "ontology:" not in disp and "records-only" not in disp:
+            issues.append(Issue("DISPOSITION_ONTOLOGY_MISSING", "/meta/disposition", "disposition must contain 'ontology:' or 'records-only' (全任务知识闭环)", "写入 meta.disposition 如 'ontology:domain/xxx 已沉淀' 或显式 'records-only: 无复用知识已记录理由'"))
     return issues
 
 

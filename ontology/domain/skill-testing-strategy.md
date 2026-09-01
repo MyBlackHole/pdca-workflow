@@ -72,6 +72,18 @@ relations:
 
 测试计划应优先覆盖契约测试与收敛验证，确保声明与实际一致、收敛链完整。
 
+### 自动骨架生成
+
+`scripts/ontology_test_scaffold.py --node <本体id>` 已打通三模式到可执行骨架的自动链路：
+
+```bash
+python3 scripts/ontology_test_scaffold.py --node ontology:domain/ontology-deep-integration-overview --out tests/test_<slug>_scaffold.py
+python3 scripts/ontology_test_scaffold.py --node ontology:pattern/testable-signal-to-test-derivation --out tests/
+pytest tests/test_<slug>_scaffold.py -v
+```
+
+输入本体 `attributes[].testable_signal`，输出 `tests/test_<slug>_scaffold.py`（含 `test_attr_* / test_contract_* / test_convergence_*` 三桩）与 `scaffold-map-<slug>.json`（信号→测试映射，`pdca.test-scaffold-map/v1`），实现“本体即测试源、信号即用例”。
+
 ## 已知坑
 
 - 测试框架/范围选择须看既有先例与仓库约定，勿为凑数写无效或无断言的测试。

@@ -35,20 +35,20 @@ Parse `prd.md` and produce sub-task skeletons.
 
 1. Read `prd.md` and identify independent work units (sections, features, or phases).
 2. Scan `pdca/tasks/` and `pdca/tasks/archive/` for all `task.json` files to find duplicates and to pass `check-design-vocab` sanity; the **next task ID must not be computed manually** — use the uniform identity entrypoint.
-3. **本体一致性预检（拆分前，阻断门禁）**：把候选子任务的 slug/标题交给本体冲突检查，若与既有 `ontology` 节点重名，提示「已有本体节点 X，建议复用而非新建任务」，exit code=1 阻断拆解产出；无冲突 exit code=0 通过。
+3. **本体一致性预检（拆分前，阻断门禁）**：把候选子任务的 slug/标题交给本体冲突检查，若与既有 `ontology` 节点重名，提示「已有本体节点 X，建议复用而非新建任务」，exit code=1 阻断拆解产出；无冲突 exit code=0 通过。已在 PRD `## 关联本体节点` 声明复用时，视为预期复用，提示后可继续（不阻断）。
 
 ```bash
 python3 "$PDCA_HOME/scripts/ontology-clash-check.py" "$PDCA_HOME" --candidates "<slug-or-title-1>,<slug-or-title-2>"
 ```
 
-该检查为**阻断式门禁**：发现冲突时退出码为 1，阻断拆解产出；可在 PRD 内已声明「关联本体节点」时据此对齐边界。
-3.5. **关系树驱动拆分（可选，顾问式）**：仅当 PRD 含 `## 拆分映射` 且父任务 `meta.ontology_fragment` 非空时启用。运行：
+该检查为**阻断式门禁**：未声明复用时冲突即阻断；已声明复用时仅提示对齐边界后放行。
+3.5. **关系树驱动拆分（默认，叶→根）**：当父任务 `meta.ontology_fragment` 非空时**默认启用**。运行：
 
    ```bash
    python3 "$PDCA_HOME/scripts/ontology_tree_split.py" --ontology-dir "<meta.ontology_fragment>" --prd prd.md
    ```
 
-   脚本解析 `## 拆分映射`（章节→节点），结合本体 `composed_of`/`specializes` 关系树输出候选子任务（含 `slug_base`、`ontology_node_type`、依赖边），**仅打印候选、不自动落盘**。确认后由调用方经 `task_identity.py` 逐个创建（node_type/依赖已自动推导，无需人工传参）。映射节点不存在、关系图成环时脚本报错退出，不生成错误骨架。未声明 `## 拆分映射` 时跳过本步，保持原有章节人工划分行为。
+   脚本解析 `## 拆分映射`（章节→节点），结合本体 `composed_of`/`specializes` 关系树输出候选子任务（含 `slug_base`、`ontology_node_type`、依赖边），**仅打印候选、不自动落盘**。确认后由调用方经 `task_identity.py` 逐个创建（node_type/依赖已自动推导，无需人工传参）。映射节点不存在、关系图成环时脚本报错退出，不生成错误骨架。**无 `## 拆分映射` 时告警并回退为章节人工划分**（输出 `[ontology-tree-split] WARN: 未含拆分映射，回退章节拆分`），不再静默跳过。
 
 4. For each sub-task, create the sub-task skeleton through the atomic entrypoint (repository lock + ID reservation + immutable record):
 
