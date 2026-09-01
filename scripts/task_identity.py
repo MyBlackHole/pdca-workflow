@@ -394,12 +394,16 @@ def _create_task_unlocked(
         prd = initial_prd or (
             f"# {title.strip()}\n\n"
             "## 验收标准\n\n"
+            "- [ ] AC-1 示例验收\n\n"
             "## 关联本体节点\n\n"
             "（可选）本任务直接消费/产出/对齐的本体节点 id，一行一个，例如：\n"
             "```\n"
             "ontology:concept/xxx\n"
             "ontology:entity/yyy\n"
-            "```\n"
+            "```\n\n"
+            "## 拆分映射\n\n"
+            "（有 meta.ontology_fragment 时必填，驱动本体关系树 WBS）\n"
+            "- 章节示例 -> ontology:concept/pdca-task\n"
         )
         _write_new_file(destination / "prd.md", prd.encode("utf-8"))
         manifest_dir.mkdir(parents=True, exist_ok=True)

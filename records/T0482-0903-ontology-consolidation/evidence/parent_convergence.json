@@ -1,0 +1,10 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "存量testable_signal去泛化与三模式可生成", "criteria": ["AC-1"], "evidence_ids": ["evidence-parent-signal"]},
+    {"index": 2, "text": "PRD拆分映射模板硬化与fragment默认", "criteria": ["AC-2"], "evidence_ids": ["evidence-parent-template"]},
+    {"index": 3, "text": "本体复用检索与clash阻断联动", "criteria": ["AC-3"], "evidence_ids": ["evidence-parent-reuse"]},
+    {"index": 4, "text": "Act知识闭环从关键词升级为节点校验", "criteria": ["AC-4"], "evidence_ids": ["evidence-parent-act"]},
+    {"index": 5, "text": "全链路校验0孤岛与收敛可验证", "criteria": ["AC-5"], "evidence_ids": ["evidence-parent-chain"]}
+  ]
+}

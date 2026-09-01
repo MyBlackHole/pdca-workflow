@@ -1,0 +1,2 @@
+{"id":"evidence-act-gate","file":"act_gate.log","kind":"test-result","size":241,"digest":"sha256:c171929529479daad00029b5a1de19816eab75931538c2562ea7ab972bfcf175","at":"2026-09-01T08:32:56+08:00","criteria":["AC-1","AC-2"],"evidence_type_ref":"ontology:entity/evidence-test-result"}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":431,"digest":"sha256:1419f9d8089824cb69109428fc71538a118df82e451b72912d8cb692db884133","at":"2026-09-01T08:33:33+08:00","criteria":["AC-1","AC-2"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

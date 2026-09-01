@@ -1,0 +1,4 @@
+Act门禁收紧验证：
+- 伪 ontology:entity/not-exist 拒收 DISPOSITION_ONTOLOGY_NOT_FOUND OK
+- records-only 无 evidence 拒收 DISPOSITION_RECORDS_ONLY_EMPTY OK
+- 真节点 ontology:entity/ontology-deep-integration-knowledge 通过 OK

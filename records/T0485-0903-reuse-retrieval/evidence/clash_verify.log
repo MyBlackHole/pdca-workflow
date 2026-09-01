@@ -1,0 +1,2 @@
+clash-check 验证：候选 testable-signal 命中 ontology:pattern/testable-signal-to-test-derivation 阻断并提示复用
+relations 强引用可被 validate 与 graph 追溯，单任务引用本体数通常≤3

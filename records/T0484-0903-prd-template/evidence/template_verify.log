@@ -1,0 +1,4 @@
+PRD模板验证：task_identity 默认PRD含 ## 拆分映射
+- 验证任务 0903-tmp-verify PRD 含 ## 拆分映射 OK
+- 有fragment无映射时 ontology_tree_split ERROR 退出 OK
+- PRD必含拆分映射小节 OK

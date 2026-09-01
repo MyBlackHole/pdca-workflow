@@ -48,7 +48,7 @@ python3 "$PDCA_HOME/scripts/ontology-clash-check.py" "$PDCA_HOME" --candidates "
    python3 "$PDCA_HOME/scripts/ontology_tree_split.py" --ontology-dir "<meta.ontology_fragment>" --prd prd.md
    ```
 
-   脚本解析 `## 拆分映射`（章节→节点），结合本体 `composed_of`/`specializes` 关系树输出候选子任务（含 `slug_base`、`ontology_node_type`、依赖边），**仅打印候选、不自动落盘**。确认后由调用方经 `task_identity.py` 逐个创建（node_type/依赖已自动推导，无需人工传参）。映射节点不存在、关系图成环时脚本报错退出，不生成错误骨架。**无 `## 拆分映射` 时告警并回退为章节人工划分**（输出 `[ontology-tree-split] WARN: 未含拆分映射，回退章节拆分`），不再静默跳过。
+   脚本解析 `## 拆分映射`（章节→节点），结合本体 `composed_of`/`specializes` 关系树输出候选子任务（含 `slug_base`、`ontology_node_type`、依赖边），**仅打印候选、不自动落盘**。确认后由调用方经 `task_identity.py` 逐个创建（node_type/依赖已自动推导，无需人工传参）。映射节点不存在、关系图成环时脚本报错退出，不生成错误骨架。**有 `meta.ontology_fragment` 且无 `## 拆分映射` 时报错退出**（`[ontology-tree-split] ERROR: PRD 未含 '## 拆分映射' 小节或解析为空`，exit 1），不回退；无 fragment 或 `ontology_exempt=true` 时跳过。
 
 4. For each sub-task, create the sub-task skeleton through the atomic entrypoint (repository lock + ID reservation + immutable record):
 

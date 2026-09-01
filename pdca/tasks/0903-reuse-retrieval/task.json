@@ -1,0 +1,43 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0485",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "clash-check阻断并提示复用本体",
+      "relations强引用可被validate与graph追溯"
+    ],
+    "created_at": "2026-09-01T08:00:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "pattern",
+    "phase": "archive",
+    "record": "T0485-0903-reuse-retrieval",
+    "scenario_type": "development",
+    "completed_at": "2026-09-01T08:36:18+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "2 AC 全绿，证据链完整",
+      "verdict_id": "vt0485-confirmed",
+      "at": "2026-09-01T08:36:37+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:pattern/ontology-modular-reference 复用检索，来源 T0485-0903-reuse-retrieval",
+      "at": "2026-09-01T08:36:47+08:00"
+    }
+  },
+  "parent": "T0482",
+  "slug": "0903-reuse-retrieval",
+  "states": {
+    "act": "2026-09-01T08:36:39+08:00",
+    "archive": "2026-09-01T08:36:56+08:00",
+    "check": "2026-09-01T08:36:18+08:00",
+    "created": "2026-09-01T08:00:00+08:00",
+    "do": "2026-09-01T08:28:48+08:00",
+    "plan": "2026-09-01T08:00:00+08:00"
+  },
+  "status": "Completed",
+  "title": "复用检索与clash联动：相似本体推荐与强引用"
+}

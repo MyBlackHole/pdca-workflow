@@ -1,0 +1,25 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "PRD必含拆分映射与关联本体节点",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "evidence-template"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "fragment缺失即告警有fragment无映射即报错",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "evidence-template"
+      ]
+    }
+  ]
+}

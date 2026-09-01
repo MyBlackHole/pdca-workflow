@@ -1,0 +1,25 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "clash-check阻断并提示复用本体",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "evidence-clash"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "relations强引用可被validate与graph追溯",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "evidence-clash"
+      ]
+    }
+  ]
+}

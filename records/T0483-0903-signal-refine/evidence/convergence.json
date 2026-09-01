@@ -1,0 +1,27 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "全量泛化清零可机检",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "evidence-grep-generic",
+        "evidence-validate"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "三模式scaffold均可生成且pytest可收集",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "evidence-scaffold",
+        "evidence-validate"
+      ]
+    }
+  ]
+}

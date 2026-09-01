@@ -1,0 +1,41 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.7, pytest-9.1.0, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+hypothesis profile 'default'
+Using --randomly-seed=1469748960
+rootdir: /tmp/evid
+plugins: timeout-2.4.0, examples-0.0.18, hypothesis-6.165.10, trio-0.8.0, http-snapshot-0.1.9, inline-snapshot-0.32.6, asyncio-1.4.0, anyio-4.14.2, respx-0.23.1, cov-7.1.0, randomly-4.1.0, xdist-3.8.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 29 items
+
+../../../../tmp/evid/test_ontology_deep_integration_overview_scaffold.py::test_convergence_ontology_deep_integration_overview_map PASSED [  3%]
+../../../../tmp/evid/test_ontology_deep_integration_overview_scaffold.py::test_contract_ontology_deep_integration_overview_checklist_propagation PASSED [  6%]
+../../../../tmp/evid/test_ontology_deep_integration_overview_scaffold.py::test_contract_ontology_deep_integration_overview_exists PASSED [ 10%]
+../../../../tmp/evid/test_ontology_deep_integration_overview_scaffold.py::test_assertion_ontology_deep_integration_overview_link_depth PASSED [ 13%]
+../../../../tmp/evid/test_ontology_deep_integration_overview_scaffold.py::test_attr_ontology_deep_integration_overview_signals_non_generic PASSED [ 17%]
+../../../../tmp/evid/test_ontology_deep_integration_overview_scaffold.py::test_assertion_ontology_deep_integration_overview_applicability PASSED [ 20%]
+../../../../tmp/evid/test_testable_signal_to_test_derivation_scaffold.py::test_attr_testable_signal_to_test_derivation_signals_non_generic PASSED [ 24%]
+../../../../tmp/evid/test_testable_signal_to_test_derivation_scaffold.py::test_convergence_testable_signal_to_test_derivation_map PASSED [ 27%]
+../../../../tmp/evid/test_testable_signal_to_test_derivation_scaffold.py::test_assertion_testable_signal_to_test_derivation_applicability PASSED [ 31%]
+../../../../tmp/evid/test_testable_signal_to_test_derivation_scaffold.py::test_contract_testable_signal_to_test_derivation_exists PASSED [ 34%]
+../../../../tmp/evid/test_skill_mechanics_scaffold.py::test_convergence_skill_mechanics_map PASSED [ 37%]
+../../../../tmp/evid/test_skill_mechanics_scaffold.py::test_assertion_skill_mechanics_constraints PASSED [ 41%]
+../../../../tmp/evid/test_skill_mechanics_scaffold.py::test_assertion_skill_mechanics_testable_signal PASSED [ 44%]
+../../../../tmp/evid/test_skill_mechanics_scaffold.py::test_attr_skill_mechanics_signals_non_generic PASSED [ 48%]
+../../../../tmp/evid/test_skill_mechanics_scaffold.py::test_contract_skill_mechanics_exists PASSED [ 51%]
+../../../../tmp/evid/test_skill_mechanics_scaffold.py::test_assertion_skill_mechanics_applicability PASSED [ 55%]
+../../../../tmp/evid/test_skill_invocation_contract_scaffold.py::test_convergence_skill_invocation_contract_map PASSED [ 58%]
+../../../../tmp/evid/test_skill_invocation_contract_scaffold.py::test_contract_skill_invocation_contract_exists PASSED [ 62%]
+../../../../tmp/evid/test_skill_invocation_contract_scaffold.py::test_assertion_skill_invocation_contract_constraints PASSED [ 65%]
+../../../../tmp/evid/test_skill_invocation_contract_scaffold.py::test_assertion_skill_invocation_contract_testable_signal PASSED [ 68%]
+../../../../tmp/evid/test_skill_invocation_contract_scaffold.py::test_assertion_skill_invocation_contract_applicability PASSED [ 72%]
+../../../../tmp/evid/test_skill_invocation_contract_scaffold.py::test_attr_skill_invocation_contract_signals_non_generic PASSED [ 75%]
+../../../../tmp/evid/test_ontology_modular_reference_scaffold.py::test_assertion_ontology_modular_reference_link_depth PASSED [ 79%]
+../../../../tmp/evid/test_ontology_modular_reference_scaffold.py::test_contract_ontology_modular_reference_exists PASSED [ 82%]
+../../../../tmp/evid/test_ontology_modular_reference_scaffold.py::test_assertion_ontology_modular_reference_when_to_split PASSED [ 86%]
+../../../../tmp/evid/test_ontology_modular_reference_scaffold.py::test_attr_ontology_modular_reference_signals_non_generic PASSED [ 89%]
+../../../../tmp/evid/test_ontology_modular_reference_scaffold.py::test_contract_ontology_modular_reference_checklist_propagation PASSED [ 93%]
+../../../../tmp/evid/test_ontology_modular_reference_scaffold.py::test_assertion_ontology_modular_reference_reference_form PASSED [ 96%]
+../../../../tmp/evid/test_ontology_modular_reference_scaffold.py::test_convergence_ontology_modular_reference_map PASSED [100%]
+
+============================== 29 passed in 3.41s ==============================

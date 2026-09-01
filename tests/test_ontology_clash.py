@@ -54,7 +54,8 @@ class OntologyClashCheckTest(unittest.TestCase):
                 "tls-configuration",
             ]
         )
-        self.assertEqual(0, completed.returncode, completed.stderr)
+        # clash 时为阻断门禁，exit 1
+        self.assertEqual(1, completed.returncode, completed.stderr)
         report = json.loads(completed.stdout.splitlines()[-1])
         self.assertEqual(report["tls-configuration"], ["ontology:concept/tls-configuration"])
 

@@ -1,0 +1,2 @@
+{"id":"evidence-clash","file":"clash_verify.log","kind":"test-result","size":214,"digest":"sha256:f8a6d1df582b36afdfa150a65e186e71a253b48a6657f9b95e3630fcf3f940c8","at":"2026-09-01T08:32:56+08:00","criteria":["AC-1","AC-2"],"evidence_type_ref":"ontology:entity/evidence-test-result"}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":438,"digest":"sha256:79fad74b26e0015e9a49175e2f2266c5f55c57b4d76d76d3b665f58532837015","at":"2026-09-01T08:33:32+08:00","criteria":["AC-1","AC-2"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

@@ -1,0 +1,25 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "伪ontology串archive拒收",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "evidence-act-gate"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "records-only无evidence拒收真节点放行",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "evidence-act-gate"
+      ]
+    }
+  ]
+}

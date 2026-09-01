@@ -61,6 +61,25 @@ body
 """
 
 
+RULE_IDS = [
+    "ontology:concept/ontology-rule-type-controlled",
+    "ontology:concept/ontology-rule-non-dangling",
+    "ontology:concept/ontology-rule-acyclic",
+    "ontology:concept/ontology-rule-attr-testable",
+    "ontology:concept/ontology-rule-richness",
+    "ontology:concept/ontology-rule-guides-range",
+]
+
+def _ensure_rules(tmp: Path) -> None:
+    for rid in RULE_IDS:
+        typ, slug = rid.split(":")[1].split("/", 1)
+        p = tmp / typ / f"{slug}.md"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        # 用无依赖 stub 覆盖，避免真实文件的 specializes 链缺失；键名须与真实 rule_spec 一致
+        stub = f"---\nschema: pdca.asset/v1\nid: {rid}\ntype: concept\nlayer: Knowledge\nstatus: active\nsummary: stub\nrule_spec:\n  allowed_types: [domain, entity, concept, process, role, pattern, principle, pitfall, fact, decision]\n  reference_relation_keys: [specializes, composed_of, configured_by, guides, relates_to]\n  graph_relation_keys: [specializes, composed_of]\n  extra_reference_fields: [domain]\n  attribute_test_field: testable_signal\n  knowledge_types: [pattern, principle, pitfall, fact, decision]\n  required_relations: [guides, relates_to]\n  target_types: [domain, entity]\n  composed_of_range: [entity, concept]\n  configured_by_target: ontology:entity/tls-configuration\n---\nstub\n"
+        p.write_text(stub, encoding="utf-8")
+
+
 def _write(tmp: Path, rel: str, text: str) -> None:
     p = tmp / rel
     p.parent.mkdir(parents=True, exist_ok=True)
@@ -75,6 +94,7 @@ def _run(tmp: Path) -> subprocess.CompletedProcess:
 
 
 def test_clean_passes(tmp_path: Path) -> None:
+    _ensure_rules(tmp_path)
     _write(tmp_path, "concept/foo.md", GOOD)
     r = _run(tmp_path)
     assert r.returncode == 0, r.stdout + r.stderr
@@ -82,6 +102,7 @@ def test_clean_passes(tmp_path: Path) -> None:
 
 
 def test_type_mismatch_detected(tmp_path: Path) -> None:
+    _ensure_rules(tmp_path)
     _write(tmp_path, "concept/bar.md", BAD_TYPE)
     r = _run(tmp_path)
     assert r.returncode == 1
@@ -89,6 +110,7 @@ def test_type_mismatch_detected(tmp_path: Path) -> None:
 
 
 def test_dangling_detected(tmp_path: Path) -> None:
+    _ensure_rules(tmp_path)
     _write(tmp_path, "concept/baz.md", DANGLING)
     r = _run(tmp_path)
     assert r.returncode == 1

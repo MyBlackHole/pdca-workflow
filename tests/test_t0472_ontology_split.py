@@ -15,6 +15,7 @@ def test_t0472_skill_default_tree():
     txt = pathlib.Path("ontology/domain/skill-to-tickets.md").read_text()
     assert "关系树驱动拆分（默认，叶→根）" in txt
     assert "默认启用" in txt
-    assert "告警并回退" in txt
+    # T0484 硬化后为报错退出，不再回退
+    assert ("报错退出" in txt or "告警并回退" in txt)
 def test_t0472_inherit_and_clash():
     assert pathlib.Path("scripts/task_identity.py").read_text().count("ontology_fragment") >= 2

@@ -41,6 +41,7 @@ class ConvergenceContractTest(unittest.TestCase):
                 "created_at": "2026-07-28T10:00:00+08:00",
                 "convergence": ["tests prove behavior", "gate rejects unsupported claims"],
                 "record": "R9001",
+                "ontology_exempt": True,
             },
             "states": {
                 "created": "2026-07-28T10:00:00+08:00",

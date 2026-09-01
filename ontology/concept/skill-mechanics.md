@@ -18,15 +18,15 @@ attributes:
 - name: applicability
   desc: 技能编写时选择 invocation 模式和 router 模式的适用场景
   constraint: 见正文
-  testable_signal: 技能 SKILL.md 的 frontmatter 包含正确的 invocation 配置
+  testable_signal: 运行 python3 scripts/check-skill-structure.py 检查 SKILL.md 的 frontmatter 是否包含合法的 invocation 配置，缺失或非法时退出非0
 - name: constraints
   desc: user-invoked 不可调用其他 user-invoked；model-invoked 可被 user-invoked 调用
   constraint: 遵循 invocation 层级规则
   testable_signal: 检查所有 user-invoked 技能的依赖关系无循环
 - name: testable_signal
-  desc: 由领域实践与测试验证 invocation 配置正确性
-  constraint: 由领域实践与测试验证
-  testable_signal: 检查所有 user-invoked 技能的依赖关系无循环，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空
+  desc: invocation 配置按层级规则可机检判定
+  constraint: user-invoked 技能须显式标记且依赖无环，标记缺失或成环即失败
+  testable_signal: 运行 python3 scripts/check-skill-structure.py 检查 SKILL.md 的 invocation 标记与依赖层级，且 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空，任一检查非0或存在环即失败
 ---
 
 # 技能机制（Skill Mechanics）

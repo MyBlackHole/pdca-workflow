@@ -434,9 +434,43 @@ def task_issues(root: Path, task_dir: Path, include_phase_requirements: bool = T
     if phase == "archive" and "disposition" not in task["meta"]:
         issues.append(Issue("DISPOSITION_MISSING", "/meta/disposition", "disposition is required"))
     if phase == "archive" and "disposition" in task["meta"]:
-        disp = str(task["meta"].get("disposition") or "")
-        if "ontology:" not in disp and "records-only" not in disp:
+        meta_disp = task["meta"].get("disposition")
+        disp_str = str(meta_disp.get("reason") if isinstance(meta_disp, dict) else meta_disp or "")
+        has_onto = "ontology:" in disp_str
+        has_records_only = "records-only" in disp_str
+        if not has_onto and not has_records_only:
             issues.append(Issue("DISPOSITION_ONTOLOGY_MISSING", "/meta/disposition", "disposition must contain 'ontology:' or 'records-only' (全任务知识闭环)", "写入 meta.disposition 如 'ontology:domain/xxx 已沉淀' 或显式 'records-only: 无复用知识已记录理由'"))
+        elif has_onto:
+            # 节点存在性校验：disposition 中每个 ontology:xxx 须在 ontology/ 可解析
+            import re as _re
+            for m in _re.finditer(r"ontology:[A-Za-z0-9._/\-]+", disp_str):
+                nid = m.group(0)
+                # 映射到文件：ontology:domain/foo -> ontology/domain/foo.md
+                try:
+                    typ, slug = nid.split(":", 1)[1].split("/", 1)
+                except ValueError:
+                    issues.append(Issue("DISPOSITION_ONTOLOGY_INVALID", "/meta/disposition", f"ontology id 格式非法: {nid}"))
+                    continue
+                cand = root / "ontology" / typ / f"{slug}.md"
+                if not cand.is_file():
+                    # 也尝试直接按 id 搜索 frontmatter
+                    found = False
+                    for md in (root / "ontology").rglob("*.md"):
+                        try:
+                            txt = md.read_text(encoding="utf-8")
+                        except OSError:
+                            continue
+                        if nid in txt:
+                            found = True
+                            break
+                    if not found:
+                        issues.append(Issue("DISPOSITION_ONTOLOGY_NOT_FOUND", "/meta/disposition", f"disposition 引用的本体节点不存在: {nid}"))
+        if has_records_only:
+            # records-only 时需 evidence 非空
+            record_id = task["meta"].get("record")
+            manifest = root / "records" / str(record_id) / "evidence" / "manifest.jsonl"
+            if not manifest.is_file() or not manifest.read_text(encoding="utf-8").strip():
+                issues.append(Issue("DISPOSITION_RECORDS_ONLY_EMPTY", "/meta/disposition", "records-only 须有 evidence/manifest.jsonl 非空"))
     return issues
 
 
