@@ -1,0 +1,39 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "ReportCenter 树：report-center-system composed_of 2叶",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "evidence-report-tree",
+        "evidence-t0477-test"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "Backup 树：backup-system composed_of 2叶",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "evidence-backup-tree",
+        "evidence-t0477-test"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "森林可调度：tree_split 与 frontier 对新树可调度",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "evidence-validate",
+        "evidence-graph",
+        "evidence-t0477-test"
+      ]
+    }
+  ]
+}

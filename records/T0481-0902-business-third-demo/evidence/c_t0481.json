@@ -1,0 +1,35 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "拆分可调度：Collection 叶",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "evidence-tree"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "本体测试：collection scaffold",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "evidence-scaffold"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "桩可验证：collection demo",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "evidence-demo"
+      ]
+    }
+  ]
+}

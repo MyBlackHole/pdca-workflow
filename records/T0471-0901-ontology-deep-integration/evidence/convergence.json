@@ -1,0 +1,79 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "拆分默认本体对齐：to-tickets 默认跑本体树且继承",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "evidence-split-gate"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "测试三模式自动骨架：testable_signal 派生可执行测试",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "evidence-test-scaffold",
+        "evidence-scaffold-test"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "树形执行与依赖推导：composed_of 叶→根 ready-set",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "evidence-tree-entity"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "全任务知识闭环：任意任务强制本体表达与沉淀",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "evidence-knowledge-closure"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "本体独立与链路可控：扇出非串联单任务≤3本体",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "evidence-modular"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "本体校验全绿：validate与graph与frontier全通过",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "evidence-validate",
+        "evidence-graph",
+        "evidence-frontier"
+      ]
+    },
+    {
+      "index": 7,
+      "text": "收敛闭环可验证：convergence map回链AC与证据",
+      "criteria": [
+        "AC-7"
+      ],
+      "evidence_ids": [
+        "evidence-scaffold-map",
+        "evidence-scaffold-test"
+      ]
+    }
+  ]
+}

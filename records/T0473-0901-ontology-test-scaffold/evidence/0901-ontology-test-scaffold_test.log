@@ -1,0 +1,27 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.7, pytest-9.1.0, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+hypothesis profile 'default'
+Using --randomly-seed=2241370416
+rootdir: /home/black/Documents/pdca-workflow-pro
+plugins: timeout-2.4.0, examples-0.0.18, hypothesis-6.165.10, trio-0.8.0, http-snapshot-0.1.9, inline-snapshot-0.32.6, asyncio-1.4.0, anyio-4.14.2, respx-0.23.1, cov-7.1.0, randomly-4.1.0, xdist-3.8.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 15 items
+
+tests/test_t0472_ontology_split.py::test_t0472_node_exists_and_validate PASSED [  6%]
+tests/test_t0472_ontology_split.py::test_t0472_node_specializes PASSED   [ 13%]
+tests/test_t0472_ontology_split.py::test_t0472_inherit_and_clash PASSED  [ 20%]
+tests/test_t0472_ontology_split.py::test_t0472_skill_default_tree PASSED [ 26%]
+tests/test_t0474_ontology_tree.py::test_t0474_graph_islands_and_dot PASSED [ 33%]
+tests/test_t0474_ontology_tree.py::test_t0474_composed_of PASSED         [ 40%]
+tests/test_t0474_ontology_tree.py::test_t0474_tree_split_candidates PASSED [ 46%]
+tests/test_t0474_ontology_tree.py::test_t0474_frontier_batches PASSED    [ 53%]
+tests/test_t0475_ontology_knowledge.py::test_t0475_ontology_ready_any_scenario PASSED [ 60%]
+tests/test_t0475_ontology_knowledge.py::test_t0475_disposition_gate PASSED [ 66%]
+tests/test_t0475_ontology_knowledge.py::test_t0475_flow_act_hardened PASSED [ 73%]
+tests/test_t0473_ontology_test.py::test_t0473_scaffold_generates PASSED  [ 80%]
+tests/test_t0473_ontology_test.py::test_t0473_strategy_linked PASSED     [ 86%]
+tests/test_t0473_ontology_test.py::test_t0473_three_modes_classify PASSED [ 93%]
+tests/test_t0473_ontology_test.py::test_t0473_scaffold_exists PASSED     [100%]
+
+============================== 15 passed in 2.87s ==============================

@@ -1,0 +1,87 @@
+{
+  "children": [
+    "T0472",
+    "T0473",
+    "T0474",
+    "T0475",
+    "T0476"
+  ],
+  "dependencies": [],
+  "id": "T0471",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "拆分默认本体对齐：to-tickets 默认跑本体树且继承",
+      "测试三模式自动骨架：testable_signal 派生可执行测试",
+      "树形执行与依赖推导：composed_of 叶→根 ready-set",
+      "全任务知识闭环：任意任务强制本体表达与沉淀",
+      "本体独立与链路可控：扇出非串联单任务≤3本体",
+      "本体校验全绿：validate与graph与frontier全通过",
+      "收敛闭环可验证：convergence map回链AC与证据"
+    ],
+    "created_at": "2026-09-01T00:00:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "phase": "archive",
+    "record": "T0471-0901-ontology-deep-integration",
+    "scenario_type": "development",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "entity",
+    "steps": [
+      {
+        "name": "拆分门禁硬化",
+        "description": "to-tickets 默认本体对齐",
+        "completion_criterion": "有 fragment 即跑 tree_split，无映射告警，clash-check 阻断，继承生效"
+      },
+      {
+        "name": "测试派生硬化",
+        "description": "实现 ontology_test_scaffold 三模式",
+        "completion_criterion": "输入本体节点可生成测试骨架与映射表"
+      },
+      {
+        "name": "树形执行",
+        "description": "补齐 composed_of 与可视化",
+        "completion_criterion": "父聚合子，ready-set 叶并行根串行，dot 可导出"
+      },
+      {
+        "name": "知识闭环",
+        "description": "全任务强制本体产出",
+        "completion_criterion": "任意任务可挂本体，Act disposition 含本体关键词"
+      },
+      {
+        "name": "集成验证",
+        "description": "端到端演练门禁全绿",
+        "completion_criterion": "validate/graph/frontier/convergence 全 valid"
+      }
+    ],
+    "completion_criteria": [
+      "拆分门禁默认对齐且可回退章节拆分",
+      "测试骨架三模式各至少一用例可执行",
+      "WBS 树叶→根依赖正确且可视",
+      "全任务知识闭环可归档"
+    ],
+    "completed_at": "2026-09-01T07:54:40+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "7AC全满足，证据链完整，门禁全绿",
+      "at": "2026-09-01T07:54:54+08:00",
+      "verdict_id": "v0471-confirmed-0901"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:domain/ontology-deep-integration-overview 已沉淀：本体深度融合总览与4叶实体树，来源 T0471-0901-ontology-deep-integration；全任务知识闭环已硬化",
+      "at": "2026-09-01T07:55:39+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0901-ontology-deep-integration",
+  "states": {
+    "act": "2026-09-01T07:55:16+08:00",
+    "archive": "2026-09-01T07:55:51+08:00",
+    "check": "2026-09-01T07:54:40+08:00",
+    "created": "2026-09-01T00:00:00+08:00",
+    "do": "2026-09-01T07:50:01+08:00",
+    "plan": "2026-09-01T00:00:00+08:00"
+  },
+  "status": "Completed",
+  "title": "本体深度融合：拆分×测试×树形执行×全任务知识闭环"
+}

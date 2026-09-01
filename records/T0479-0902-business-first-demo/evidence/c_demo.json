@@ -1,0 +1,38 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "拆分可调度：tree_split 与 frontier 对 Demo 可调度",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "evidence-tree-split"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "本体即测试：report-web entity 信号派生骨架通过",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "evidence-scaffold",
+        "evidence-ontology",
+        "evidence-demo"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "业务桩可验证：桩接口与全绿门禁",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "evidence-demo",
+        "evidence-impl"
+      ]
+    }
+  ]
+}

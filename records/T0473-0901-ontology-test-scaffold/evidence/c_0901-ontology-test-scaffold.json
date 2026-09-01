@@ -1,0 +1,27 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "测试骨架三模式：属性断言契约收敛",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "evidence-leaf",
+        "evidence-ontology-test"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "scaffold 生成可执行骨架",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "evidence-leaf",
+        "evidence-ontology-test"
+      ]
+    }
+  ]
+}

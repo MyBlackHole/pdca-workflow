@@ -1,0 +1,13 @@
+{
+  "schema": "pdca.tree-split/v1",
+  "candidates": [
+    {
+      "slug_base": "backup-xtrabackup-entity",
+      "title": "Backup Xtrabackup 实体（BackupSystem 叶）",
+      "ontology_node_type": "entity",
+      "ontology_node_id": "ontology:entity/backup-xtrabackup-entity",
+      "dependencies": [],
+      "source_chapter": "Backup Demo"
+    }
+  ]
+}

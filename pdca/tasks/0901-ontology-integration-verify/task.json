@@ -1,0 +1,49 @@
+{
+  "children": [],
+  "dependencies": [
+    "T0472",
+    "T0473",
+    "T0474",
+    "T0475"
+  ],
+  "id": "T0476",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "本体独立链路可控",
+      "校验全绿",
+      "收敛全链路"
+    ],
+    "created_at": "2026-09-01T07:45:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "entity",
+    "phase": "archive",
+    "record": "T0476-0901-ontology-integration-verify",
+    "scenario_type": "development",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "3AC全满足，本体测试与门禁全绿",
+      "verdict_id": "v0476-confirmed",
+      "at": "2026-09-01T08:03:58+08:00"
+    },
+    "completed_at": "2026-09-01T08:03:59+08:00",
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:entity/ontology-deep-integration 根集成验证，本体独立与全绿已证",
+      "at": "2026-09-01T08:04:02+08:00"
+    }
+  },
+  "parent": "T0471",
+  "slug": "0901-ontology-integration-verify",
+  "states": {
+    "act": "2026-09-01T08:04:01+08:00",
+    "archive": "2026-09-01T08:04:04+08:00",
+    "check": "2026-09-01T08:03:59+08:00",
+    "created": "2026-09-01T07:45:00+08:00",
+    "do": "2026-09-01T08:03:37+08:00",
+    "plan": "2026-09-01T07:45:00+08:00"
+  },
+  "status": "Completed",
+  "title": "集成验证与回归"
+}

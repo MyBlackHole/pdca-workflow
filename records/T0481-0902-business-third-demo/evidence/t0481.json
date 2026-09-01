@@ -1,0 +1,13 @@
+{
+  "schema": "pdca.tree-split/v1",
+  "candidates": [
+    {
+      "slug_base": "report-center-collection-entity",
+      "title": "ReportCenter Collection 子系统实体（ReportCenterSystem 叶）",
+      "ontology_node_type": "entity",
+      "ontology_node_id": "ontology:entity/report-center-collection-entity",
+      "dependencies": [],
+      "source_chapter": "Collection Demo"
+    }
+  ]
+}

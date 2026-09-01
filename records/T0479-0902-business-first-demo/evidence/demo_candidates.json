@@ -1,0 +1,13 @@
+{
+  "schema": "pdca.tree-split/v1",
+  "candidates": [
+    {
+      "slug_base": "report-center-web-entity",
+      "title": "ReportCenter Web 子系统实体（ReportCenterSystem 叶）",
+      "ontology_node_type": "entity",
+      "ontology_node_id": "ontology:entity/report-center-web-entity",
+      "dependencies": [],
+      "source_chapter": "Demo 报表接口"
+    }
+  ]
+}

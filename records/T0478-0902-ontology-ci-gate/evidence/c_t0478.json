@@ -1,0 +1,37 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "本地门禁：pre-commit 校验 fragment 与 disposition",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "evidence-ci",
+        "evidence-ci-script"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "远端门禁：workflow 跑 validate/graph/frontier",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "evidence-ci",
+        "evidence-ci-script"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "无回退：历史任务不受影响",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "evidence-ci"
+      ]
+    }
+  ]
+}

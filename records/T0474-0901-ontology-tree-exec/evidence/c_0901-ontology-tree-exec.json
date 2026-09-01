@@ -1,0 +1,27 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "树形执行：composed_of 叶→根",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "evidence-leaf",
+        "evidence-ontology-test"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "ready-set与dot可视",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "evidence-leaf",
+        "evidence-ontology-test"
+      ]
+    }
+  ]
+}

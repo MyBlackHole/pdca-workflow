@@ -1,0 +1,3 @@
+{"at": "2026-09-01T08:09:00+08:00", "source": "task_identity", "summary": "created with record identity T0479-0902-business-first-demo"}
+{"source": "final_confirmation", "summary": "Plan确认：Demo 报表走新路径首单，进入Do", "response": "confirmed", "at": "2026-09-01T08:10:30+08:00"}
+{"source":"check_confirmation","summary":"Check确认：Demo 3AC全绿","response":"confirmed","at":"2026-09-01T08:11:11+08:00"}

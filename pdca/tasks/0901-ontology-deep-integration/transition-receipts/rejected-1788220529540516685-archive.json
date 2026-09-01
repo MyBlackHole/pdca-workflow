@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0471",
+  "from": "act",
+  "to": "archive",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta/disposition",
+      "message": "'ontology:domain/ontology-deep-integration-overview 已沉淀：本体深度融合总览与4叶实体树，来源 T0471-0901-ontology-deep-integration' is not of type 'object'",
+      "guidance": "fix the field at /meta/disposition in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-09-01T07:55:29.540499+08:00"
+}

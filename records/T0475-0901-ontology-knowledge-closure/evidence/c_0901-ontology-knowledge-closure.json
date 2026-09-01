@@ -1,0 +1,27 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "知识闭环：任意任务挂本体",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "evidence-leaf",
+        "evidence-ontology-test"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "Act disposition 含本体关键词",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "evidence-leaf",
+        "evidence-ontology-test"
+      ]
+    }
+  ]
+}

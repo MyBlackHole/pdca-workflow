@@ -1,0 +1,27 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "拆分门禁硬化：to-tickets 默认本体树",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "skill-to-tickets-default",
+        "evidence-ontology-test"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "继承与告警回退可用",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "skill-to-tickets-default",
+        "evidence-ontology-test"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "本体独立链路可控",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "evidence-t0472",
+        "evidence-t0473",
+        "evidence-t0475"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "校验全绿",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "evidence-validate",
+        "evidence-graph",
+        "evidence-frontier",
+        "evidence-t0474",
+        "evidence-root-tests"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "收敛全链路",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "evidence-t0472",
+        "evidence-t0473",
+        "evidence-t0474",
+        "evidence-t0475",
+        "evidence-root-tests"
+      ]
+    }
+  ]
+}

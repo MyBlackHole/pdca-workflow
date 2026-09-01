@@ -1,0 +1,41 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0481",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-09-01T08:25:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "entity",
+    "phase": "plan",
+    "record": "T0481-0902-business-third-demo",
+    "scenario_type": "development",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "3AC全绿",
+      "verdict_id": "v0481-confirmed",
+      "at": "2026-09-01T08:19:28+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:entity/report-center-collection-entity Collection 已沉淀",
+      "at": "2026-09-01T08:19:30+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0902-business-third-demo",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-09-01T08:25:00+08:00",
+    "do": null,
+    "plan": "2026-09-01T08:25:00+08:00"
+  },
+  "status": "Pending",
+  "title": "业务三演练：Report Collection 域"
+}
