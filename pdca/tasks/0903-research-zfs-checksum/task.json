@@ -1,0 +1,44 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0522",
+  "meta": {
+    "active": false,
+    "completed_at": "2026-09-02T10:02:32+08:00",
+    "convergence": [
+      "research报告含3 mermaid+Source覆盖checksum生成/校验",
+      "ontology:entity/zfs-zio transform_stack校验分支细化",
+      "grep zio_checksum命中"
+    ],
+    "created_at": "2026-09-02T09:34:00+08:00",
+    "disposition": {
+      "at": "2026-09-02T10:12:35+08:00",
+      "outcome": "projected",
+      "reason": "ontology:entity/zfs-zio 研究面面俱到已补，来源 T0522-0903-research-zfs-checksum"
+    },
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "entity",
+    "phase": "archive",
+    "record": "T0522-0903-research-zfs-checksum",
+    "scenario_type": "research",
+    "verdict": {
+      "at": "2026-09-02T10:05:00+08:00",
+      "outcome": "confirmed",
+      "reason": "3 项 AC 全部达成，研究 3 mermaid+16 Source 覆盖 7 算法与 GENERATE/VERIFY，本体 3 attrs+决策树正反例门禁 257 行，证据链 valid:true 且 manifest 3 条对齐",
+      "verdict_id": "T0522-confirmed-20260902"
+    }
+  },
+  "parent": null,
+  "slug": "0903-research-zfs-checksum",
+  "states": {
+    "act": "2026-09-02T10:05:56+08:00",
+    "archive": "2026-09-02T10:12:55+08:00",
+    "check": "2026-09-02T10:02:32+08:00",
+    "created": "2026-09-02T09:34:00+08:00",
+    "do": "2026-09-02T09:37:11+08:00",
+    "plan": "2026-09-02T09:34:00+08:00"
+  },
+  "status": "Completed",
+  "title": "调研ZFS-Checksum：fletcher4/sha256校验与ZIO transform栈checksum分支 ontology:entity/zfs-zio"
+}

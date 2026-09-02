@@ -1,0 +1,25 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0523",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "clarifications.jsonl[5]/",
+      "message": "'response' is a required property"
+    },
+    {
+      "code": "FINAL_CONFIRMATION_AFTER_TRANSITION",
+      "path": "clarifications.jsonl[5]/at",
+      "message": "final confirmation cannot be later than the transition moment",
+      "guidance": "set the confirmation 'at' to the real time the user confirmed (use scripts/append-confirmation.py; never hand-write timestamps)"
+    },
+    {
+      "code": "FINAL_CONFIRMATION_MISSING",
+      "path": "clarifications.jsonl",
+      "message": "confirmed response is required"
+    }
+  ],
+  "at": "2026-09-02T09:36:32.449908+08:00"
+}

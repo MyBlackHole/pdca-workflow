@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "research报告含3 mermaid+Source覆盖压缩/解压",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["research-compress"]
+    },
+    {
+      "index": 2,
+      "text": "ontology:entity/zfs-zio transform_stack压缩分支细化",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["ontology-zio-compress"]
+    },
+    {
+      "index": 3,
+      "text": "grep zio_compress命中",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["research-compress", "ontology-zio-compress"]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "research报告含3 mermaid+Source覆盖加密/解密",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["research-encrypt-transform"]
+    },
+    {
+      "index": 2,
+      "text": "ontology:domain/zfs-crypto transform视角深化",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["ontology-zfs-crypto"]
+    },
+    {
+      "index": 3,
+      "text": "grep zio_crypt命中",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["research-encrypt-transform", "ontology-zfs-crypto"]
+    }
+  ]
+}
