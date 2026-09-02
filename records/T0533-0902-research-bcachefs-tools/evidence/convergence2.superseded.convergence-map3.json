@@ -1,0 +1,41 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "bcachefs-tools全栈架构与核心执行流已以C4+时序+状态机多图呈现且每图含Source（AC-1）",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["research-report2"]
+    },
+    {
+      "index": 2,
+      "text": "独立知识最大化本体化：10+ entity/pattern/pitfall已落且可scaffold（AC-2）",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["bcachefs-system-v2", "bcachefs-format-v2", "bcachefs-journal-v2", "bcachefs-btree-bset-v2", "bcachefs-alloc-v2", "bcachefs-transaction-v2", "bcachefs-btree", "bcachefs-journal-rewind", "bcachefs-cli", "bcachefs-device", "bcachefs-fsck", "bcachefs-mount", "bcachefs-super"]
+    },
+    {
+      "index": 3,
+      "text": "Rust/C双语言边界与工具链（cargo/make/DKMS）已建模且可追溯（AC-3）",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["research-report2"]
+    },
+    {
+      "index": 4,
+      "text": "数据一致性/journal记录类型/btree/bset详细实现已深化且可追溯（AC-4）",
+      "criteria": ["AC-4"],
+      "evidence_ids": ["research-report2"]
+    },
+    {
+      "index": 5,
+      "text": "空间管理生命周期与高并发支持已建模且可追溯（AC-5）",
+      "criteria": ["AC-5"],
+      "evidence_ids": ["research-report2"]
+    },
+    {
+      "index": 6,
+      "text": "调研报告已落records且全绿islands:0 valid:true（AC-6）",
+      "criteria": ["AC-6"],
+      "evidence_ids": ["validation"]
+    }
+  ]
+}

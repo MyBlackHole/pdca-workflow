@@ -1,0 +1,9 @@
+{
+  "schema": "pdca.transition/v1",
+  "task_id": "T0533",
+  "from": "do",
+  "to": "check",
+  "before_digest": "sha256:9bde82cd2a1699b52a6786fa0c0b4743b30b237a3e5de5e9034610573e930b95",
+  "after_digest": "sha256:0dde808d184ba73635d718817edbb98bd6728d776e91a7a1844c2a9a67290e18",
+  "at": "2026-09-02T16:41:14+08:00"
+}

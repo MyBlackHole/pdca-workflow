@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0533",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "VERDICT_MISSING",
+      "path": "/meta/verdict",
+      "message": "verdict is required"
+    }
+  ],
+  "at": "2026-09-02T16:47:25.869818+08:00"
+}
