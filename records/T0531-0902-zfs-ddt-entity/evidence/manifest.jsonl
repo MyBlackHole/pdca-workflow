@@ -1,0 +1,2 @@
+{"id":"E0531-ddt","file":"zfs-ddt.md","kind":"entity","size":6371,"digest":"sha256:fae7a5df5a8b9c62c4de20c200aba5b1b585348fb8e72a9044d513500c3ed70d","at":"2026-09-02T13:35:33+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}
+{"id":"convergence-map","file":"convergence-map.json","kind":"convergence-map","size":1025,"digest":"sha256:9186f391fc09a6dfddb9fe2a0d9de970174e563f23c9c24b0c2b12ea6f661cbf","at":"2026-09-02T13:35:58+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

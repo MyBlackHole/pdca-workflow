@@ -1,0 +1,62 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0529",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "system composed_of已增zfs-zil至8叶且grep可命中（AC-1）",
+      "gate --check hundred --node system PASS coverage≥95%（AC-2）",
+      "validate 0 + islands:0 + scaffold可产（AC-3）",
+      "收敛 valid:true（AC-4）"
+    ],
+    "created_at": "2026-09-02T11:50:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology/entity/zfs-system.md",
+    "ontology_node_type": "entity",
+    "phase": "act",
+    "record": "T0529-0902-zfs-system-8leaf",
+    "scenario_type": "development",
+    "steps": [
+      {
+        "name": "增zil",
+        "description": "composed_of +zfs-zil",
+        "completion_criterion": "grep -q zfs-zil"
+      },
+      {
+        "name": "hundred PASS",
+        "description": "gate --check hundred PASS",
+        "completion_criterion": "coverage≥95%"
+      },
+      {
+        "name": "全绿",
+        "description": "validate+gate",
+        "completion_criterion": "GATE OK"
+      }
+    ],
+    "completed_at": "2026-09-02T12:04:36+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "4AC全满足，8叶全栈完成",
+      "at": "2026-09-02T12:04:27+08:00",
+      "verdict_id": "v0529-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:entity/zfs-system 8叶全栈（+zfs-zil），来源 T0529-0902-zfs-system-8leaf",
+      "at": "2026-09-02T12:04:36+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0902-zfs-system-8leaf",
+  "states": {
+    "act": "2026-09-02T12:04:30+08:00",
+    "archive": null,
+    "check": "2026-09-02T12:04:12+08:00",
+    "created": "2026-09-02T11:50:00+08:00",
+    "do": "2026-09-02T12:02:23+08:00",
+    "plan": "2026-09-02T11:50:00+08:00"
+  },
+  "status": "Completed",
+  "title": "system增zfs-zil至8叶全栈完成100% Rule"
+}

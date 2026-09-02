@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0526",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ONTOLOGY_FRAGMENT_DANGLING",
+      "path": "task.json",
+      "message": "meta.ontology_fragment 指向不存在路径: ontology/entity/zfs-system"
+    }
+  ],
+  "at": "2026-09-02T11:47:30.179295+08:00"
+}

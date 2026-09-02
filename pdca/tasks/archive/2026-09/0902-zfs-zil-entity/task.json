@@ -1,0 +1,68 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0527",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "ZIL三属性（lwb/slog/replay）已落且双源可回归（AC-1）",
+      "C4 L3+时序+状态机mermaid≥3且Source≥3（AC-2）",
+      "决策树+正例+反例已补（AC-3）",
+      "validate 0 + islands:0 + scaffold可产且gate --node PASS（AC-4）",
+      "收敛 valid:true（AC-5）"
+    ],
+    "created_at": "2026-09-02T11:25:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology/entity/zfs-zil.md",
+    "ontology_node_type": "entity",
+    "phase": "archive",
+    "record": "T0527-0902-zfs-zil-entity",
+    "scenario_type": "development",
+    "steps": [
+      {
+        "name": "三属性",
+        "description": "lwb/slog/replay双源",
+        "completion_criterion": "grep -q 双源 PASS"
+      },
+      {
+        "name": "三图",
+        "description": "C4+时序+状态机",
+        "completion_criterion": "mermaid≥3 Source≥3"
+      },
+      {
+        "name": "决策树正反例",
+        "description": "slog分支与漏commit反例",
+        "completion_criterion": "含决策树正反例"
+      },
+      {
+        "name": "全绿",
+        "description": "validate+gate",
+        "completion_criterion": "GATE OK"
+      }
+    ],
+    "completed_at": "2026-09-02T11:48:12+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5AC全满足，gate --node GATE OK 一次做对",
+      "at": "2026-09-02T11:47:56+08:00",
+      "verdict_id": "v0527-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:entity/zfs-zil 已沉淀（LWB四态+slog分流+claim/replay），来源 T0527-0902-zfs-zil-entity",
+      "at": "2026-09-02T11:48:12+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0902-zfs-zil-entity",
+  "states": {
+    "act": "2026-09-02T11:48:05+08:00",
+    "archive": "2026-09-02T11:48:23+08:00",
+    "check": "2026-09-02T11:47:40+08:00",
+    "created": "2026-09-02T11:25:00+08:00",
+    "do": "2026-09-02T11:44:22+08:00",
+    "plan": "2026-09-02T11:25:00+08:00"
+  },
+  "status": "Completed",
+  "title": "新建zfs-zil实体：LWB/slog/重放三态与ZPL解耦"
+}

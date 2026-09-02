@@ -1,0 +1,9 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index":1,"text":"system composed_of已增zfs-zil至8叶且grep可命中（AC-1）","criteria":["AC-1"],"evidence_ids":["E0529-system"]},
+    {"index":2,"text":"gate --check hundred --node system PASS coverage≥95%（AC-2）","criteria":["AC-2"],"evidence_ids":["E0529-system"]},
+    {"index":3,"text":"validate 0 + islands:0 + scaffold可产（AC-3）","criteria":["AC-3"],"evidence_ids":["E0529-system"]},
+    {"index":4,"text":"收敛 valid:true（AC-4）","criteria":["AC-4"],"evidence_ids":["E0529-system"]}
+  ]
+}

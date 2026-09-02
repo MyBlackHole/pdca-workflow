@@ -1,0 +1,55 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "6叶mermaid均≥3且Source≥3且gate --check diagram PASS（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "E0528-zfs-arc"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "6叶正例/反例/门禁仍完整且wc -l≥60（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "E0528-zfs-dmu"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "validate 0 + islands:0 + 6叶scaffold可产（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "E0528-zfs-dsl"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "gate --all 相关图项不因存量而FAIL（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "E0528-zfs-spa"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "收敛 valid:true（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "E0528-zfs-arc"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+{"id":"E0527-zil","file":"zfs-zil.md","kind":"entity","size":10153,"digest":"sha256:a62085c87d40fc00088831057ad690fea16435cad594466843c9d9617094dfe1","at":"2026-09-02T11:47:21+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}
+{"id":"convergence-map","file":"convergence-map.json","kind":"convergence-map","size":692,"digest":"sha256:0b0f50263713498fde0b41e1b86e7f7dddc725441afba196df21d235e2f39a6e","at":"2026-09-02T11:47:21+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

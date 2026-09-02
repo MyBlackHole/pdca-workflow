@@ -1,0 +1,2 @@
+{"id":"E0529-system","file":"zfs-system.md","kind":"entity","size":8903,"digest":"sha256:953eee603196ddc989e1fa0465a36c1b7ee07ea40f8c55a89a1aa1db9c1766a2","at":"2026-09-02T12:03:58+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"]}
+{"id":"convergence-map","file":"convergence-map.json","kind":"convergence-map","size":575,"digest":"sha256:87c1001c1646b1589840f69ee39b319efa561b3f0df55fb3522725deb4b1c7b8","at":"2026-09-02T12:04:03+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

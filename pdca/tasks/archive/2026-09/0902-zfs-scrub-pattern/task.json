@@ -1,0 +1,68 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0532",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "scrub/resilver三属性（scan/queue/repair）且双源可回归（AC-1）",
+      "C4+时序+状态机mermaid≥3且Source≥3（AC-2）",
+      "决策树+正例+反例已补（AC-3）",
+      "validate 0 + islands:0 + scaffold可产且gate --node PASS（AC-4）",
+      "收敛 valid:true（AC-5）"
+    ],
+    "created_at": "2026-09-02T12:10:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology/pattern/zfs-scrub-resilver.md",
+    "ontology_node_type": "pattern",
+    "phase": "archive",
+    "record": "T0532-0902-zfs-scrub-pattern",
+    "scenario_type": "development",
+    "steps": [
+      {
+        "name": "三属性",
+        "description": "scrub scan/queue/repair",
+        "completion_criterion": "双源 PASS"
+      },
+      {
+        "name": "三图",
+        "description": "C4+时序+状态机",
+        "completion_criterion": "mermaid≥3"
+      },
+      {
+        "name": "决策树正反例",
+        "description": "scrub/resilver分支",
+        "completion_criterion": "含决策树正反例"
+      },
+      {
+        "name": "全绿",
+        "description": "validate+gate",
+        "completion_criterion": "GATE OK"
+      }
+    ],
+    "completed_at": "2026-09-02T13:36:56+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5AC全满足，gate --node GATE OK",
+      "at": "2026-09-02T13:36:32+08:00",
+      "verdict_id": "v0532-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:pattern/zfs-scrub-resilver + ontology:pitfall/zfs-tunable-misconfig 已沉淀，来源 T0532-0902-zfs-scrub-pattern",
+      "at": "2026-09-02T13:36:56+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0902-zfs-scrub-pattern",
+  "states": {
+    "act": "2026-09-02T13:36:35+08:00",
+    "archive": "2026-09-02T13:37:01+08:00",
+    "check": "2026-09-02T13:36:18+08:00",
+    "created": "2026-09-02T12:10:00+08:00",
+    "do": "2026-09-02T13:33:17+08:00",
+    "plan": "2026-09-02T12:10:00+08:00"
+  },
+  "status": "Completed",
+  "title": "沉淀scrub/resilver运维pattern及tunable pitfall"
+}

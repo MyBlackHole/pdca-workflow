@@ -1,0 +1,62 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0530",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "ci-ontology-gate已接production-ontology-gate --all且GATE OK才放行（AC-1）",
+      "pre-commit与workflow均复用同一gate且本地可复核（AC-2）",
+      "validate 0 + islands:0 + gate --all OK 硬拦可验证（AC-3）",
+      "收敛 valid:true（AC-4）"
+    ],
+    "created_at": "2026-09-02T12:05:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "scripts/ci-ontology-gate.py",
+    "ontology_node_type": "domain",
+    "phase": "act",
+    "record": "T0530-0902-ci-production-gate",
+    "scenario_type": "development",
+    "steps": [
+      {
+        "name": "接gate",
+        "description": "ci-gate调production --all",
+        "completion_criterion": "GATE OK才0"
+      },
+      {
+        "name": "hook/workflow",
+        "description": "pre-commit与yml复用",
+        "completion_criterion": "本地可复核"
+      },
+      {
+        "name": "全绿",
+        "description": "validate+gate",
+        "completion_criterion": "GATE OK"
+      }
+    ],
+    "completed_at": "2026-09-02T12:08:00+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "4AC全满足，ci接gate且本地GATE OK",
+      "at": "2026-09-02T12:07:52+08:00",
+      "verdict_id": "v0530-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "scripts/ci-ontology-gate.py 已接入 production-ontology-gate --all 四维硬拦，来源 T0530-0902-ci-production-gate",
+      "at": "2026-09-02T12:08:00+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0902-ci-production-gate",
+  "states": {
+    "act": "2026-09-02T12:07:53+08:00",
+    "archive": null,
+    "check": "2026-09-02T12:07:51+08:00",
+    "created": "2026-09-02T12:05:00+08:00",
+    "do": "2026-09-02T12:05:44+08:00",
+    "plan": "2026-09-02T12:05:00+08:00"
+  },
+  "status": "Completed",
+  "title": "CI硬拦接入production-ontology-gate --all"
+}

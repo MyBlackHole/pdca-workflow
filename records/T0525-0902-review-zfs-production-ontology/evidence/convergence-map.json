@@ -1,0 +1,41 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "五维审查终版含方法论根因且全绿可复核（AC-1）",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["E0525-review"]
+    },
+    {
+      "index": 2,
+      "text": "生产本体科学门禁Checklist pattern已落且validate 0（AC-2）",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["E0525-pattern"]
+    },
+    {
+      "index": 3,
+      "text": "Gate一键脚本已落且--node/--all可判定（AC-3）",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["E0525-gate"]
+    },
+    {
+      "index": 4,
+      "text": "生产双模板已落且含八段占位（AC-4）",
+      "criteria": ["AC-4"],
+      "evidence_ids": ["E0525-template-entity", "E0525-template-system"]
+    },
+    {
+      "index": 5,
+      "text": "走通演示zfs-vdev稿经三件套一次通过（AC-5）",
+      "criteria": ["AC-5"],
+      "evidence_ids": ["E0525-vdev"]
+    },
+    {
+      "index": 6,
+      "text": "收敛 valid:true且disposition指向新pattern（AC-6）",
+      "criteria": ["AC-6"],
+      "evidence_ids": ["E0525-vdev"]
+    }
+  ]
+}

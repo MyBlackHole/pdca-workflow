@@ -1,0 +1,68 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0531",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "DDT三属性（table/lru/brt）双源可回归（AC-1）",
+      "C4 L3+时序+状态机mermaid≥3且Source≥3（AC-2）",
+      "决策树+正例+反例已补（AC-3）",
+      "validate 0 + islands:0 + scaffold可产且gate --node PASS（AC-4）",
+      "收敛 valid:true（AC-5）"
+    ],
+    "created_at": "2026-09-02T12:10:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology/entity/zfs-ddt.md",
+    "ontology_node_type": "entity",
+    "phase": "act",
+    "record": "T0531-0902-zfs-ddt-entity",
+    "scenario_type": "development",
+    "steps": [
+      {
+        "name": "三属性",
+        "description": "DDT table/lru/BRT",
+        "completion_criterion": "双源 PASS"
+      },
+      {
+        "name": "三图",
+        "description": "C4+时序+状态机",
+        "completion_criterion": "mermaid≥3"
+      },
+      {
+        "name": "决策树正反例",
+        "description": "dedup/scrub分支",
+        "completion_criterion": "含决策树正反例"
+      },
+      {
+        "name": "全绿",
+        "description": "validate+gate",
+        "completion_criterion": "GATE OK"
+      }
+    ],
+    "completed_at": "2026-09-02T13:36:56+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5AC全满足，gate --node GATE OK",
+      "at": "2026-09-02T13:36:32+08:00",
+      "verdict_id": "v0531-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:entity/zfs-ddt 已沉淀（DDT/BRT），来源 T0531-0902-zfs-ddt-entity",
+      "at": "2026-09-02T13:36:56+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0902-zfs-ddt-entity",
+  "states": {
+    "act": "2026-09-02T13:36:33+08:00",
+    "archive": null,
+    "check": "2026-09-02T13:36:16+08:00",
+    "created": "2026-09-02T12:10:00+08:00",
+    "do": "2026-09-02T13:33:15+08:00",
+    "plan": "2026-09-02T12:10:00+08:00"
+  },
+  "status": "Completed",
+  "title": "新建zfs-ddt实体：DDT表/LRU及BRT与dedup"
+}

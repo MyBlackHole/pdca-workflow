@@ -1,0 +1,63 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0528",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "6叶mermaid均≥3且Source≥3且gate --check diagram PASS（AC-1）",
+      "6叶正例/反例/门禁仍完整且wc -l≥60（AC-2）",
+      "validate 0 + islands:0 + 6叶scaffold可产（AC-3）",
+      "gate --all 相关图项不因存量而FAIL（AC-4）",
+      "收敛 valid:true（AC-5）"
+    ],
+    "created_at": "2026-09-02T11:50:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology/entity",
+    "ontology_node_type": "entity",
+    "phase": "archive",
+    "record": "T0528-0902-zfs-legacy-upgrade",
+    "scenario_type": "development",
+    "steps": [
+      {
+        "name": "补图",
+        "description": "6叶各增1 mermaid至≥3",
+        "completion_criterion": "mermaid≥3 Source≥3"
+      },
+      {
+        "name": "保门禁",
+        "description": "正反例门禁仍完整",
+        "completion_criterion": "wc -l≥60"
+      },
+      {
+        "name": "全绿",
+        "description": "validate+gate --all",
+        "completion_criterion": "GATE OK"
+      }
+    ],
+    "completed_at": "2026-09-02T12:04:36+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "AC全满足，gate --all/--node GATE OK",
+      "at": "2026-09-02T12:04:27+08:00",
+      "verdict_id": "v0528-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology/entity 6叶升级至3 mermaid（arc/dmu/dsl/spa/zio/zpl）且 domain/zfs-crypto 补图，gate --all 转 OK，来源 T0528-0902-zfs-legacy-upgrade",
+      "at": "2026-09-02T12:04:36+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0902-zfs-legacy-upgrade",
+  "states": {
+    "act": "2026-09-02T12:04:28+08:00",
+    "archive": "2026-09-02T12:04:38+08:00",
+    "check": "2026-09-02T12:04:10+08:00",
+    "created": "2026-09-02T11:50:00+08:00",
+    "do": "2026-09-02T12:02:21+08:00",
+    "plan": "2026-09-02T11:50:00+08:00"
+  },
+  "status": "Completed",
+  "title": "存量6叶补图至3 mermaid使gate --all转OK"
+}

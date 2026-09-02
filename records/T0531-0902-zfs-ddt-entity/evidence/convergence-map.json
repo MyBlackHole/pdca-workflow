@@ -1,0 +1,55 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "DDT三属性（table/lru/brt）双源可回归（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "E0531-ddt"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "C4 L3+时序+状态机mermaid≥3且Source≥3（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "E0531-ddt"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "决策树+正例+反例已补（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "E0531-ddt"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "validate 0 + islands:0 + scaffold可产且gate --node PASS（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "E0531-ddt"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "收敛 valid:true（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "E0531-ddt"
+      ]
+    }
+  ]
+}

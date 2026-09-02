@@ -1,0 +1,4 @@
+{"id":"E0530-ci","file":"ci-ontology-gate.py","kind":"script","size":3446,"digest":"sha256:17c44f9c9edbb0b99a21e55177929a3f17334a39129d31e36e831d05834ca0e6","at":"2026-09-02T12:07:36+08:00","criteria":["AC-1","AC-3","AC-4"]}
+{"id":"E0530-workflow","file":"ontology-gate.yml","kind":"document","size":302,"digest":"sha256:2037bdb27fb5d763474e8f42606a9dc150ede0ab01ba25509bf34f6da356ff23","at":"2026-09-02T12:07:37+08:00","criteria":["AC-2"]}
+{"id":"E0530-hook","file":"install-git-hook.sh","kind":"script","size":928,"digest":"sha256:326d78653259991fbfe51f2aabba8f401f8614899033ac9559eca396fb5f19fe","at":"2026-09-02T12:07:37+08:00","criteria":["AC-2"]}
+{"id":"convergence-map","file":"convergence-map.json","kind":"convergence-map","size":898,"digest":"sha256:2f2613abc1da8fdc5f3e57b613b8e05ad80ccaca2f6fa9710d8f206f85fb54ed","at":"2026-09-02T12:07:44+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

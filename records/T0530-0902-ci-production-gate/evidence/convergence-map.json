@@ -1,0 +1,46 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "ci-ontology-gate已接production-ontology-gate --all且GATE OK才放行（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "E0530-ci"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "pre-commit与workflow均复用同一gate且本地可复核（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "E0530-workflow",
+        "E0530-hook"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "validate 0 + islands:0 + gate --all OK 硬拦可验证（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "E0530-ci"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "收敛 valid:true（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "E0530-ci"
+      ]
+    }
+  ]
+}
