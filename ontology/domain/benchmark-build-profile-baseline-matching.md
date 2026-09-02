@@ -54,3 +54,36 @@ WAIT 背压测试曾断言"submit 返回 0 后回调必然已执行"——但 su
 
 - 口径规则适用于一切吞吐/延迟对照场景；终态不变量适用于所有"提交→异步执行"
   所有权转移协议的测试（post/work item/completion 类 API）。
+
+
+## C4 组件 — benchmark-build-profile-baseline-matching（P1补图）
+
+```mermaid
+graph TD
+    A[benchmark-build-profile-baseline-matching<br/>domain] --> B[core能力<br/>PDCA]
+    B --> C[实现<br/>scripts/]
+    %% Source: ontology/domain/benchmark-build-profile-baseline-matching.md:1 + ontology/concept/ontology-fidelity-criterion.md:1
+```
+
+Source: `ontology/domain/benchmark-build-profile-baseline-matching.md:1` + `ontology/concept/ontology-fidelity-criterion.md:1`
+
+## 正例
+
+```bash
+# 正例：benchmark-build-profile-baseline-matching 可通过本体复现
+grep -q 'benchmark-build-profile-baseline-matching' ontology/domain/benchmark-build-profile-baseline-matching.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'
+```
+
+## 反例
+
+```bash
+# 反例：缺图导致不可视化
+# 无 mermaid 时，AI无法从本体还原组件关系，需补图
+```
+
+## 门禁
+
+- **图门禁**：`grep -c 'mermaid' ontology/domain/benchmark-build-profile-baseline-matching.md` ≥1
+- **溯源门禁**：含 `Source:` 行号
+- **校验**：`python3 scripts/ontology-validate.py` 0 issues
+

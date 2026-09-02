@@ -47,3 +47,36 @@ attributes:
   更长的采样窗口 + 取中位数。
 - 系统负载本身波动 > 断言阈值时，配对对比只是可靠下限；更严格需空闲机器
   或 cgroup 隔离 CPU。
+
+
+## C4 组件 — benchmark-paired-comparison-noise（P1补图）
+
+```mermaid
+graph TD
+    A[benchmark-paired-comparison-noise<br/>domain] --> B[core能力<br/>PDCA]
+    B --> C[实现<br/>scripts/]
+    %% Source: ontology/domain/benchmark-paired-comparison-noise.md:1 + ontology/concept/ontology-fidelity-criterion.md:1
+```
+
+Source: `ontology/domain/benchmark-paired-comparison-noise.md:1` + `ontology/concept/ontology-fidelity-criterion.md:1`
+
+## 正例
+
+```bash
+# 正例：benchmark-paired-comparison-noise 可通过本体复现
+grep -q 'benchmark-paired-comparison-noise' ontology/domain/benchmark-paired-comparison-noise.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'
+```
+
+## 反例
+
+```bash
+# 反例：缺图导致不可视化
+# 无 mermaid 时，AI无法从本体还原组件关系，需补图
+```
+
+## 门禁
+
+- **图门禁**：`grep -c 'mermaid' ontology/domain/benchmark-paired-comparison-noise.md` ≥1
+- **溯源门禁**：含 `Source:` 行号
+- **校验**：`python3 scripts/ontology-validate.py` 0 issues
+

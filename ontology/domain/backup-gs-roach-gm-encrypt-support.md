@@ -62,3 +62,36 @@ attributes:
 
 - 备份链路：gs_roach 自身不可国密，需上层替代——备份链路前置国密 TLS 网关/隧道，或备份集导出后以 SM4 加密归档；备份集落盘由介质侧（后端 ZFS 承载）承担存储国密。
 - 源引擎 TDE（gaussdb 引擎 SM4_CTR）为数据库自有能力，属独立于备份工具的现实存在，可作为数据源静态加密背景，但**不纳入备份方案国密实现路径**。
+
+
+## C4 组件 — backup-gs-roach-gm-encrypt-support（P1补图）
+
+```mermaid
+graph TD
+    A[backup-gs-roach-gm-encrypt-support<br/>domain] --> B[core能力<br/>PDCA]
+    B --> C[实现<br/>scripts/]
+    %% Source: ontology/domain/backup-gs-roach-gm-encrypt-support.md:1 + ontology/concept/ontology-fidelity-criterion.md:1
+```
+
+Source: `ontology/domain/backup-gs-roach-gm-encrypt-support.md:1` + `ontology/concept/ontology-fidelity-criterion.md:1`
+
+## 正例
+
+```bash
+# 正例：backup-gs-roach-gm-encrypt-support 可通过本体复现
+grep -q 'backup-gs-roach-gm-encrypt-support' ontology/domain/backup-gs-roach-gm-encrypt-support.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'
+```
+
+## 反例
+
+```bash
+# 反例：缺图导致不可视化
+# 无 mermaid 时，AI无法从本体还原组件关系，需补图
+```
+
+## 门禁
+
+- **图门禁**：`grep -c 'mermaid' ontology/domain/backup-gs-roach-gm-encrypt-support.md` ≥1
+- **溯源门禁**：含 `Source:` 行号
+- **校验**：`python3 scripts/ontology-validate.py` 0 issues
+

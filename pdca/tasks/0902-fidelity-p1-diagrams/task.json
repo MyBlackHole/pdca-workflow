@@ -1,0 +1,60 @@
+{
+  "id": "T0538",
+  "slug": "0902-fidelity-p1-diagrams",
+  "title": "P1补图补例：中频域统计层（mermaid/Source/正反例）首批20节点",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "development",
+    "created_at": "2026-09-02T18:07:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "convergence": [
+      "首批20中频domain已补mermaid≥1且Source行号齐全（AC-1）",
+      "首批20已补正反例与门禁小节（AC-2）",
+      "audit MISSING_DIAGRAM/MISSING_SOURCE显著下降且可回归（AC-3）"
+    ],
+    "steps": [
+      {
+        "name": "20节点补图",
+        "description": "为Top20中频domain补C4/时序/状态机mermaid≥1且每图1 Source",
+        "completion_criterion": "20节点grep -c mermaid≥1且Source齐全"
+      },
+      {
+        "name": "20节点补例",
+        "description": "补正反例与门禁小节",
+        "completion_criterion": "20节点含正例/反例/门禁且行数≥60"
+      },
+      {
+        "name": "审计验证",
+        "description": "跑audit验证MISSING_DIAGRAM下降",
+        "completion_criterion": "audit MISSING_DIAGRAM 234→214且validate 0 issues"
+      }
+    ],
+    "record": "T0538-0902-fidelity-p1-diagrams",
+    "completed_at": "2026-09-02T18:08:46+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "3AC全满足，20中频域mermaid与正反例已补",
+      "verdict_id": "v0538-confirmed",
+      "at": "2026-09-02T18:09:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "首批20中频域补图补例已验证，批量脚本可复用至剩余181；来源 T0538-0902-fidelity-p1-diagrams",
+      "at": "2026-09-02T18:09:10+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-09-02T18:07:00+08:00",
+    "plan": "2026-09-02T18:07:00+08:00",
+    "do": "2026-09-02T18:08:06+08:00",
+    "check": "2026-09-02T18:08:46+08:00",
+    "act": "2026-09-02T18:08:48+08:00",
+    "archive": "2026-09-02T18:08:51+08:00"
+  }
+}

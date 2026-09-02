@@ -57,3 +57,36 @@ attributes:
 - 企业版"备份口令加密直选 SM4"无法从开源证明，需企业版文档/实测终判（备份自身国密需介质侧网关或介质静态加密承担）。
 - **源引擎 TDE（Oracle 租户表空间 SM4 等）属数据库自有能力**，本备份方案不以源 TDE 沿袭作为国密实现路径（已在文档中剔除该表述）。
 - OB 开源社区镜像不支持 Oracle 租户模式 → 无法在本地显式测 SM4-CBC；需企业版或 Oracle 模式租户实测。
+
+
+## C4 组件 — backup-ob-backup-gm-encrypt-support（P1补图）
+
+```mermaid
+graph TD
+    A[backup-ob-backup-gm-encrypt-support<br/>domain] --> B[core能力<br/>PDCA]
+    B --> C[实现<br/>scripts/]
+    %% Source: ontology/domain/backup-ob-backup-gm-encrypt-support.md:1 + ontology/concept/ontology-fidelity-criterion.md:1
+```
+
+Source: `ontology/domain/backup-ob-backup-gm-encrypt-support.md:1` + `ontology/concept/ontology-fidelity-criterion.md:1`
+
+## 正例
+
+```bash
+# 正例：backup-ob-backup-gm-encrypt-support 可通过本体复现
+grep -q 'backup-ob-backup-gm-encrypt-support' ontology/domain/backup-ob-backup-gm-encrypt-support.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'
+```
+
+## 反例
+
+```bash
+# 反例：缺图导致不可视化
+# 无 mermaid 时，AI无法从本体还原组件关系，需补图
+```
+
+## 门禁
+
+- **图门禁**：`grep -c 'mermaid' ontology/domain/backup-ob-backup-gm-encrypt-support.md` ≥1
+- **溯源门禁**：含 `Source:` 行号
+- **校验**：`python3 scripts/ontology-validate.py` 0 issues
+

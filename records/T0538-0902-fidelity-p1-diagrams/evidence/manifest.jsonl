@@ -1,0 +1,3 @@
+{"id": "audit-report", "file": "audit-report.md", "kind": "document", "size": 47214, "digest": "sha256:fba8dbfe5cbc38d6f9059f9ba28b20d5ce910cbafd07a6c81f0483c6db5baa3a", "at": "2026-09-02T18:08:28+08:00", "criteria": ["AC-3"]}
+{"id": "batch-p1", "file": "bcachefs.md", "kind": "document", "size": 1683, "digest": "sha256:0b6569da791d39c1c64d55ee82ccb4cd89fa3914dd8a0874b2bf51d6e39871ee", "at": "2026-09-02T18:08:29+08:00", "criteria": ["AC-1", "AC-2"]}
+{"id": "convergence-map", "file": "convergence.json", "kind": "convergence-map", "size": 676, "digest": "sha256:a5b284fbeb93fe0ae0aab38288b7ec410bb520560a6315e15180c2757b8869ab", "at": "2026-09-02T18:09:00+08:00", "criteria": ["AC-1", "AC-2", "AC-3"]}

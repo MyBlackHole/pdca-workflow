@@ -1,0 +1,35 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "首批20中频domain已补mermaid≥1且Source行号齐全（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "batch-p1"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "首批20已补正反例与门禁小节（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "batch-p1"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "audit MISSING_DIAGRAM/MISSING_SOURCE显著下降且可回归（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "audit-report"
+      ]
+    }
+  ]
+}

@@ -92,3 +92,36 @@ inline 每分支都需的；推 pointer 只有某些分支达的。
 - 杠杆是写作时的判定标准，不是自动检查；契约测试只守护"章节存在"，
   不守护"用法正确"。
 - 锚定词依赖模型先验——跨模型族（如中文模型）先验词不同，需本地验证。
+
+
+## C4 组件 — ai-efficiency-writing-for-agents-levers（P1补图）
+
+```mermaid
+graph TD
+    A[ai-efficiency-writing-for-agents-levers<br/>domain] --> B[core能力<br/>PDCA]
+    B --> C[实现<br/>scripts/]
+    %% Source: ontology/domain/ai-efficiency-writing-for-agents-levers.md:1 + ontology/concept/ontology-fidelity-criterion.md:1
+```
+
+Source: `ontology/domain/ai-efficiency-writing-for-agents-levers.md:1` + `ontology/concept/ontology-fidelity-criterion.md:1`
+
+## 正例
+
+```bash
+# 正例：ai-efficiency-writing-for-agents-levers 可通过本体复现
+grep -q 'ai-efficiency-writing-for-agents-levers' ontology/domain/ai-efficiency-writing-for-agents-levers.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'
+```
+
+## 反例
+
+```bash
+# 反例：缺图导致不可视化
+# 无 mermaid 时，AI无法从本体还原组件关系，需补图
+```
+
+## 门禁
+
+- **图门禁**：`grep -c 'mermaid' ontology/domain/ai-efficiency-writing-for-agents-levers.md` ≥1
+- **溯源门禁**：含 `Source:` 行号
+- **校验**：`python3 scripts/ontology-validate.py` 0 issues
+

@@ -79,3 +79,36 @@ D4（HITL 兜底）> D5（post-mortem 架构移交）> D6（CONTEXT 前置 + 双
 
 - 审查任务只产出报告，落地需另开 Improvement Task（T0242 仅审查）。
 - 外部平台依赖的候选（如 CI）判定依赖用户决策，报告需明示。
+
+
+## C4 组件 — ai-efficiency-skills-candidate-review（P1补图）
+
+```mermaid
+graph TD
+    A[ai-efficiency-skills-candidate-review<br/>domain] --> B[core能力<br/>PDCA]
+    B --> C[实现<br/>scripts/]
+    %% Source: ontology/domain/ai-efficiency-skills-candidate-review.md:1 + ontology/concept/ontology-fidelity-criterion.md:1
+```
+
+Source: `ontology/domain/ai-efficiency-skills-candidate-review.md:1` + `ontology/concept/ontology-fidelity-criterion.md:1`
+
+## 正例
+
+```bash
+# 正例：ai-efficiency-skills-candidate-review 可通过本体复现
+grep -q 'ai-efficiency-skills-candidate-review' ontology/domain/ai-efficiency-skills-candidate-review.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'
+```
+
+## 反例
+
+```bash
+# 反例：缺图导致不可视化
+# 无 mermaid 时，AI无法从本体还原组件关系，需补图
+```
+
+## 门禁
+
+- **图门禁**：`grep -c 'mermaid' ontology/domain/ai-efficiency-skills-candidate-review.md` ≥1
+- **溯源门禁**：含 `Source:` 行号
+- **校验**：`python3 scripts/ontology-validate.py` 0 issues
+

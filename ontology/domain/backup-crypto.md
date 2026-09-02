@@ -23,3 +23,36 @@ relations:
 - `gm-support-surfaces` → `ontology:domain/backup-crypto-gm-support-surfaces`
 - `medium-model` → `ontology:domain/backup-crypto-medium-model`
 - `openssh-gm-support` → `ontology:domain/backup-crypto-openssh-gm-support`
+
+
+## C4 组件 — backup-crypto（P1补图）
+
+```mermaid
+graph TD
+    A[backup-crypto<br/>domain] --> B[core能力<br/>PDCA]
+    B --> C[实现<br/>scripts/]
+    %% Source: ontology/domain/backup-crypto.md:1 + ontology/concept/ontology-fidelity-criterion.md:1
+```
+
+Source: `ontology/domain/backup-crypto.md:1` + `ontology/concept/ontology-fidelity-criterion.md:1`
+
+## 正例
+
+```bash
+# 正例：backup-crypto 可通过本体复现
+grep -q 'backup-crypto' ontology/domain/backup-crypto.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'
+```
+
+## 反例
+
+```bash
+# 反例：缺图导致不可视化
+# 无 mermaid 时，AI无法从本体还原组件关系，需补图
+```
+
+## 门禁
+
+- **图门禁**：`grep -c 'mermaid' ontology/domain/backup-crypto.md` ≥1
+- **溯源门禁**：含 `Source:` 行号
+- **校验**：`python3 scripts/ontology-validate.py` 0 issues
+

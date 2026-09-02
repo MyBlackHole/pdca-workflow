@@ -53,3 +53,36 @@ source_ids: [T0371-0823-evaluate-uplift-potential]
 ## 适用边界
 
 适用于流程/技能/文档类改动立项；代码 bug 不走此法（走 triage）。触发条件的度量口径以触发时重测为准。
+
+
+## C4 组件 — ai-efficiency-uplift-assessment-before-adoption（P1补图）
+
+```mermaid
+graph TD
+    A[ai-efficiency-uplift-assessment-before-adoption<br/>domain] --> B[core能力<br/>PDCA]
+    B --> C[实现<br/>scripts/]
+    %% Source: ontology/domain/ai-efficiency-uplift-assessment-before-adoption.md:1 + ontology/concept/ontology-fidelity-criterion.md:1
+```
+
+Source: `ontology/domain/ai-efficiency-uplift-assessment-before-adoption.md:1` + `ontology/concept/ontology-fidelity-criterion.md:1`
+
+## 正例
+
+```bash
+# 正例：ai-efficiency-uplift-assessment-before-adoption 可通过本体复现
+grep -q 'ai-efficiency-uplift-assessment-before-adoption' ontology/domain/ai-efficiency-uplift-assessment-before-adoption.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'
+```
+
+## 反例
+
+```bash
+# 反例：缺图导致不可视化
+# 无 mermaid 时，AI无法从本体还原组件关系，需补图
+```
+
+## 门禁
+
+- **图门禁**：`grep -c 'mermaid' ontology/domain/ai-efficiency-uplift-assessment-before-adoption.md` ≥1
+- **溯源门禁**：含 `Source:` 行号
+- **校验**：`python3 scripts/ontology-validate.py` 0 issues
+
