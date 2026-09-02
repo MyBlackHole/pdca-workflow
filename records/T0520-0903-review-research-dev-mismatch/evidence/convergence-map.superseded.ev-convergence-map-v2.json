@@ -1,0 +1,55 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "双轴报告已产且<400字/轴（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-report"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "根因已定位至to-tickets双层缺失（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-report"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "Flow Issue已登记（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-report"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "全绿且islands:0（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-report"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "收敛 valid:true（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-report"
+      ]
+    }
+  ]
+}

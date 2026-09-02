@@ -1,0 +1,3 @@
+{"id": "research-arc", "file": "research-arc.md", "kind": "document", "size": 24089, "digest": "sha256:4bbfed3ae983864d857c8c44e79f8920cae17d24633bd6fb7590987f7ab4e0a9", "at": "2026-09-01T14:30:00+08:00", "criteria": ["AC-1"]}
+{"id": "ontology-arc", "file": "zfs-arc.md", "kind": "entity", "size": 14263, "digest": "sha256:b46697bc5835e3573cfe9527cba016f29faf04473cef7e3cd35a5da28edf1cc2", "at": "2026-09-01T14:30:00+08:00", "criteria": ["AC-1"]}
+{"id": "convergence-map", "file": "convergence.json", "kind": "convergence-map", "size": 264, "digest": "sha256:81974b71b27d3ef432c527feb44f681ed45686ec41079db81d0b56fa0bc7e44d", "at": "2026-09-01T14:30:00+08:00", "criteria": ["AC-1"], "evidence_type_ref": "ontology:entity/evidence-convergence-map"}

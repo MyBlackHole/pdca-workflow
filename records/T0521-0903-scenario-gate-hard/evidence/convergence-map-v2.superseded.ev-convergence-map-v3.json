@@ -1,0 +1,57 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "双层闸已落且硬拦（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-task-identity-v2"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "check脚本已产可1/0（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-check"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "ci接入且GATE OK（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-ci"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "全绿且islands:0（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-task-identity",
+        "ev-check",
+        "ev-ci"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "收敛 valid:true（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-task-identity-v2"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+{"id":"research-spa","file":"research-spa.md","kind":"document","size":22107,"digest":"sha256:207d64deabfdcf06808f2a3b3cc7f30ecf72672e0a2b766e4097beba51bd1ea5","at":"2026-09-01T14:18:46+08:00","criteria":["AC-1"]}
+{"id":"ontology-spa","file":"zfs-spa.md","kind":"entity","size":13848,"digest":"sha256:091cd13b3a721a68f158f76e17bda18fbe29e2355057edbf12a067f823839378","at":"2026-09-01T14:18:47+08:00","criteria":["AC-1"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":224,"digest":"sha256:2bfb6c19d1d1d446a385e370c4a547a8dde811f515e4d12e17bb673e1ecc2e7b","at":"2026-09-01T14:18:47+08:00","criteria":["AC-1"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

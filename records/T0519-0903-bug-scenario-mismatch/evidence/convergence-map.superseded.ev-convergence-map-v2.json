@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "根因已定位",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-bug"
+      ]
+    }
+  ]
+}

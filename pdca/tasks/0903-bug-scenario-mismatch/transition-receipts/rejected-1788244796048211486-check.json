@@ -1,0 +1,20 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0519",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-3",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0519-0903-bug-scenario-mismatch/evidence/convergence-map-v2.json[3]",
+      "message": "listed evidence does not support AC-3",
+      "guidance": "re-register the supporting evidence with --criterion AC-3, or fix the map to cite evidence that actually covers it"
+    }
+  ],
+  "at": "2026-09-01T14:39:56.048189+08:00"
+}

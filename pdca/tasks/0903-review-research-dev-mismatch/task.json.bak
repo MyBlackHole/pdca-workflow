@@ -1,0 +1,73 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0520",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "双轴报告已产且<400字/轴（AC-1）",
+      "根因已定位至to-tickets双层缺失（AC-2）",
+      "Flow Issue已登记（AC-3）",
+      "全绿且islands:0（AC-4）",
+      "收敛 valid:true（AC-5）"
+    ],
+    "created_at": "2026-09-01T14:44:12+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "phase": "act",
+    "record": "T0520-0903-review-research-dev-mismatch",
+    "scenario_type": "review",
+    "steps": [
+      {
+        "name": "双轴报告",
+        "description": "Standards/Spec",
+        "completion_criterion": "各<400字且引file:line"
+      },
+      {
+        "name": "根因定位",
+        "description": "to-tickets双层",
+        "completion_criterion": "定位至继承截断"
+      },
+      {
+        "name": "Flow Issue",
+        "description": "登记",
+        "completion_criterion": "已登记"
+      },
+      {
+        "name": "全绿",
+        "description": "islands:0",
+        "completion_criterion": "GATE OK"
+      },
+      {
+        "name": "收敛",
+        "description": "登记与验证",
+        "completion_criterion": "valid:true"
+      }
+    ],
+    "completed_at": "2026-09-01T14:45:36+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "双轴报告各<400字且根因已定位",
+      "at": "2026-09-01T14:45:36+08:00",
+      "verdict_id": "v0520-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:principle/ontology-governs-ontology 双轴审查已完成，根因to-tickets双层缺失，来源 T0520-0903-review-research-dev-mismatch",
+      "at": "2026-09-01T14:45:50+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0903-review-research-dev-mismatch",
+  "states": {
+    "act": "2026-09-01T14:45:37+08:00",
+    "archive": null,
+    "check": "2026-09-01T14:45:35+08:00",
+    "created": "2026-09-01T14:44:12+08:00",
+    "do": "2026-09-01T14:44:13+08:00",
+    "plan": "2026-09-01T14:44:12+08:00"
+  },
+  "status": "Completed",
+  "title": "审查调研任务拆出开发子任务的scenario_type断层根因"
+}

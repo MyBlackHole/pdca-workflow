@@ -1,0 +1,73 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0521",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "双层闸已落且硬拦（AC-1）",
+      "check脚本已产可1/0（AC-2）",
+      "ci接入且GATE OK（AC-3）",
+      "全绿且islands:0（AC-4）",
+      "收敛 valid:true（AC-5）"
+    ],
+    "created_at": "2026-09-01T14:56:49+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "phase": "archive",
+    "record": "T0521-0903-scenario-gate-hard",
+    "scenario_type": "development",
+    "steps": [
+      {
+        "name": "双层闸",
+        "description": "research→research等",
+        "completion_criterion": "跨层无批注被SCENARIO_MISMATCH拦"
+      },
+      {
+        "name": "check脚本",
+        "description": "扫描混层",
+        "completion_criterion": "0/1可检"
+      },
+      {
+        "name": "ci接入",
+        "description": "GATE OK",
+        "completion_criterion": "ci调check"
+      },
+      {
+        "name": "全绿",
+        "description": "islands:0",
+        "completion_criterion": "GATE OK"
+      },
+      {
+        "name": "收敛",
+        "description": "登记与验证",
+        "completion_criterion": "valid:true"
+      }
+    ],
+    "completed_at": "2026-09-01T15:04:03+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5AC全满足，双层闸硬门禁已落",
+      "at": "2026-09-01T15:04:03+08:00",
+      "verdict_id": "v0521-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:principle/ontology-governs-ontology 双层闸已硬化，来源 T0521-0903-scenario-gate-hard",
+      "at": "2026-09-01T15:04:14+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0903-scenario-gate-hard",
+  "states": {
+    "act": "2026-09-01T15:04:05+08:00",
+    "archive": "2026-09-01T15:04:16+08:00",
+    "check": "2026-09-01T15:04:02+08:00",
+    "created": "2026-09-01T14:56:49+08:00",
+    "do": "2026-09-01T14:56:50+08:00",
+    "plan": "2026-09-01T14:56:49+08:00"
+  },
+  "status": "Completed",
+  "title": "硬门禁：research→development scenario_type双层闸防断层"
+}

@@ -1,0 +1,61 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0519",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "根因已定位且Flow Issue已登记（AC-1）",
+      "6 research叶已创建且validate通过（AC-2）",
+      "双层叶→根可GATE OK（AC-3）"
+    ],
+    "created_at": "2026-09-01T13:45:35+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "phase": "archive",
+    "record": "T0519-0903-bug-scenario-mismatch",
+    "scenario_type": "bugfix",
+    "steps": [
+      {
+        "name": "根因定位",
+        "description": "Flow Issue",
+        "completion_criterion": "scenario_type断层已登记"
+      },
+      {
+        "name": "6 research叶",
+        "description": "补research叶",
+        "completion_criterion": "6叶 research且validate通过"
+      },
+      {
+        "name": "双层叶→根",
+        "description": "GATE OK",
+        "completion_criterion": "compute-frontier valid:true"
+      }
+    ],
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "根因已定位且双层可GATE OK",
+      "at": "2026-09-01T14:39:56+08:00",
+      "verdict_id": "v0519-confirmed"
+    },
+    "completed_at": "2026-09-01T14:40:16+08:00",
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:concept/pdca-task 双层叶补正已验证，来源 T0519-0903-bug-scenario-mismatch",
+      "at": "2026-09-01T14:40:35+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0903-bug-scenario-mismatch",
+  "states": {
+    "act": "2026-09-01T14:40:35+08:00",
+    "archive": "2026-09-01T14:40:38+08:00",
+    "check": "2026-09-01T14:40:16+08:00",
+    "created": "2026-09-01T13:45:35+08:00",
+    "do": "2026-09-01T13:45:36+08:00",
+    "plan": "2026-09-01T13:45:35+08:00"
+  },
+  "status": "Completed",
+  "title": "Bug分析：调研任务拆出开发子任务的scenario_type断层"
+}

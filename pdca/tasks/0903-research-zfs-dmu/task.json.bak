@@ -1,0 +1,42 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0513",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "task identity is unique and immutable"
+    ],
+    "created_at": "2026-09-01T13:45:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "entity",
+    "phase": "act",
+    "record": "T0513-0903-research-zfs-dmu",
+    "scenario_type": "research",
+    "completed_at": "2026-09-01T14:38:50+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "ontology:entity/zfs-dmu 研究面面俱到已补，来源 T0513-0903-research-zfs-dmu",
+      "at": "2026-09-01T14:38:50+08:00",
+      "verdict_id": "vT0513-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:entity/zfs-dmu 研究面面俱到已补，来源 T0513-0903-research-zfs-dmu",
+      "at": "2026-09-01T14:39:19+08:00"
+    }
+  },
+  "parent": "T0503",
+  "slug": "0903-research-zfs-dmu",
+  "states": {
+    "act": "2026-09-01T14:38:52+08:00",
+    "archive": null,
+    "check": "2026-09-01T14:38:08+08:00",
+    "created": "2026-09-01T13:45:00+08:00",
+    "do": "2026-09-01T13:46:00+08:00",
+    "plan": "2026-09-01T13:45:00+08:00"
+  },
+  "status": "Completed",
+  "title": "调研ZFS-DMU：dnode/dbuf对象-块两级抽象与读写/脏数据路径本体细化"
+}
