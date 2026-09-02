@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""生产本体科学门禁（production-ontology-scientific-gate）：六维一键判定。
+"""生产本体科学门禁（production-ontology-scientific-gate）：七维一键判定。
 
-对齐 ontology:pattern/production-ontology-scientific-gate 的六维约束：
-  lifecycle / neon / oops / hundred / signal / diagram
+对齐 ontology:pattern/production-ontology-scientific-gate 的七维约束：
+  lifecycle / neon / oops / hundred / signal / diagram / realization
 
 用法：
   python3 scripts/production-ontology-gate.py --all
@@ -165,6 +165,41 @@ def check_diagram(node_id: str) -> tuple[bool,str]:
         return False, "missing 反例"
     return True, f"diagram PASS mermaid {mermaid} Source {source}"
 
+def check_realization(node_id: str) -> tuple[bool,str]:
+    # 第七维：本体可实现可校验——结构/行为/校验三完整，且 scaffold 可产
+    target = None
+    fm = {}
+    for p in ONT_DIR.rglob("*.md"):
+        f,_ = load_frontmatter(p)
+        if f.get("id")==node_id:
+            target = p
+            fm = f
+            break
+    if target is None:
+        return False, f"node {node_id} not found"
+    txt = target.read_text()
+    # 结构：C4 中必须出现可实现的类型/字段/接口关键词
+    structure_kw = ["struct ", "bset", "btree", "journal", "six_lock", "format", "bpos", "alloc", "super"]
+    if not any(kw in txt.lower() for kw in structure_kw):
+        return False, "realization missing structure 契约（C4 无 struct/字段/接口）"
+    # 行为：时序+状态机必须覆盖分支
+    if "时序" not in txt or "状态机" not in txt:
+        return False, "realization missing behavior 契约（时序/状态机缺）"
+    if "```mermaid" not in txt or "Source:" not in txt:
+        return False, "realization missing behavior provenance"
+    # 校验：正例/反例 + scaffold 可产
+    if "正例" not in txt or "反例" not in txt:
+        return False, "realization missing verification 契约（正例/反例缺）"
+    # scaffold 可产校验（轻量：节点存在且 attributes>=3）
+    attrs = fm.get("attributes") or []
+    if len(attrs) < 3:
+        return False, f"realization missing verification 契约（attributes {len(attrs)} <3）"
+    # 尝试 scaffold 生成（不实际跑 pytest，仅检查可产）
+    r = run([sys.executable, str(ROOT/"scripts/ontology_test_scaffold.py"), "--node", node_id, "--out", "/tmp/_realization_check.py"])
+    if r.returncode != 0:
+        return False, f"realization scaffold FAIL: {r.stderr[:300]}"
+    return True, f"realization PASS structure+behavior+verification scaffold可产"
+
 CHECKS = {
     "lifecycle": check_lifecycle,
     "neon": check_neon,
@@ -172,6 +207,7 @@ CHECKS = {
     "hundred": check_hundred,
     "signal": check_signal,
     "diagram": check_diagram,
+    "realization": check_realization,
 }
 
 def evaluate_one(node_id: str, checks):

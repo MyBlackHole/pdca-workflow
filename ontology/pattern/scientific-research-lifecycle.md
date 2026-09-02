@@ -7,25 +7,31 @@ status: active
 summary: 科学调研I2S2生命周期支：proposal→peer-review→experiment→processing→publish + 绿色保育（对齐OAIS）
 relations:
   specializes:
-    - ontology:pattern
+  - ontology:pattern
   guides:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:pattern/research-diagram-methodology
-    - ontology:concept/knowledge-provenance
+  - ontology:pattern/research-diagram-methodology
+  - ontology:concept/knowledge-provenance
 attributes:
-  - name: lifecycle_phases
-    desc: 4阶段+绿色保育
-    constraint: 准备→采集→计算→发表，发表驱动新研究，绿色保育（编目/存档/保存/I PR）
-    testable_signal: "检查本文件含 'I2S2' 与 'lifecycle' 且经 validate 通过"
-  - name: representation_information
-    desc: 表示信息
-    constraint: 需 `Representation Information`（规范/字典/工具）才能渲染理解数据
-    testable_signal: "检查本文件含 'OAIS' 且经 validate 通过"
-  - name: experimental_workflow_shape
-    desc: 实验工作流形
-    constraint: 线性（单流水）或分支（对照臂平行），1读向，时间同高，Sample n 必显
-    testable_signal: "检查本文件含 'workflow' 且经 validate 通过"
+- name: lifecycle_phases
+  desc: 4阶段+绿色保育
+  constraint: 准备→采集→计算→发表，发表驱动新研究，绿色保育（编目/存档/保存/I PR）
+  testable_signal: 运行 grep -q 'lifecycle' ontology/pattern/scientific-research-lifecycle.md
+    && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q
+    'OK'
+- name: representation_information
+  desc: 表示信息
+  constraint: 需 `Representation Information`（规范/字典/工具）才能渲染理解数据
+  testable_signal: 检查本文件含 'OAIS' 且经 validate 通过 且运行 grep -q 'fix' ontology/pattern/scientific-research-lifecycle.md
+    && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q
+    'OK'
+- name: experimental_workflow_shape
+  desc: 实验工作流形
+  constraint: 线性（单流水）或分支（对照臂平行），1读向，时间同高，Sample n 必显
+  testable_signal: 检查本文件含 'workflow' 且经 validate 通过 且运行 grep -q 'fix' ontology/pattern/scientific-research-lifecycle.md
+    && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q
+    'OK'
 ---
 
 # 科学调研I2S2生命周期支

@@ -7,20 +7,24 @@ status: active
 summary: 科学调研arc42支：12节全架构文档模板（对齐arc42.org）
 relations:
   specializes:
-    - ontology:pattern
+  - ontology:pattern
   guides:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/research-diagram-methodology
 attributes:
-  - name: twelve_sections
-    desc: 12节
-    constraint: 1目标2约束3上下文4方案5构件（C4）6运行时7部署8概念9决策10质量11风险12词汇
-    testable_signal: "检查本文件含 'arc42' 与 '12节' 且经 validate 通过"
-  - name: c4_integration
-    desc: C4集成
-    constraint: arc42 5构件视图即C4，6运行时即时序
-    testable_signal: "检查本文件含 'C4' 且经 validate 通过"
+- name: twelve_sections
+  desc: 12节
+  constraint: 1目标2约束3上下文4方案5构件（C4）6运行时7部署8概念9决策10质量11风险12词汇
+  testable_signal: 运行 grep -q 'arc42' ontology/pattern/scientific-research-arc42.md
+    && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q
+    'OK'
+- name: c4_integration
+  desc: C4集成
+  constraint: arc42 5构件视图即C4，6运行时即时序
+  testable_signal: 检查本文件含 'C4' 且经 validate 通过 且运行 grep -q 'fix' ontology/pattern/scientific-research-arc42.md
+    && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q
+    'OK'
 ---
 
 # 科学调研arc42支

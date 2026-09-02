@@ -1,0 +1,60 @@
+{
+  "id": "T0536",
+  "slug": "0902-fidelity-gate-calibration",
+  "title": "门禁误伤抽样与分层固化：补T0535有效误报率与本体契约",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "development",
+    "created_at": "2026-09-02T17:40:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "concept",
+    "convergence": [
+      "G6泛化门禁的有效误报率已通过20例抽样量化（AC-1）",
+      "门禁分层（精确硬阻断/脆性豁免/统计不阻断）已固化至fidelity-criterion本体（AC-2）",
+      "抽样方法与阈值判定已可复现（AC-3）"
+    ],
+    "steps": [
+      {
+        "name": "误伤抽样",
+        "description": "对G6的124泛化抽样20例，人工判定有效误报率（L3定义）",
+        "completion_criterion": "产出抽样表含20例判定与有效误报率计算"
+      },
+      {
+        "name": "分层固化",
+        "description": "将四象限决策树与四档处置写入fidelity-criterion本体",
+        "completion_criterion": "ontology-fidelity-criterion增补门禁分层小节且validate通过"
+      },
+      {
+        "name": "收敛验证",
+        "description": "登记抽样与固化证据，验证收敛",
+        "completion_criterion": "validate-convergence valid:true"
+      }
+    ],
+    "record": "T0536-0902-fidelity-gate-calibration",
+    "completed_at": "2026-09-02T18:00:50+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "3AC全满足，95%误报率校准后分层已固化",
+      "verdict_id": "v0536-confirmed",
+      "at": "2026-09-02T18:01:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "抽样95%误报率校准与门禁分层已固化至fidelity-criterion，可复用至后续门禁优化；来源 T0536-0902-fidelity-gate-calibration",
+      "at": "2026-09-02T18:01:10+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-09-02T17:40:00+08:00",
+    "plan": "2026-09-02T17:40:00+08:00",
+    "do": "2026-09-02T17:59:52+08:00",
+    "check": "2026-09-02T18:00:50+08:00",
+    "act": "2026-09-02T18:00:52+08:00",
+    "archive": "2026-09-02T18:00:55+08:00"
+  }
+}

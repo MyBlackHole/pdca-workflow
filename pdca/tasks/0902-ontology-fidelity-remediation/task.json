@@ -1,0 +1,78 @@
+{
+  "id": "T0534",
+  "slug": "0902-ontology-fidelity-remediation",
+  "title": "本体保真度治理：消除“为写而写”，实现可复现的完备本体",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "development",
+    "created_at": "2026-09-02T16:55:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "record": "T0534-0902-ontology-fidelity-remediation",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "6AC全满足，增量零容忍门禁已硬阻断且示范域达AI可复现标准",
+      "verdict_id": "v0534-confirmed",
+      "at": "2026-09-02T17:18:00+08:00"
+    },
+    "convergence": [
+      "本体“完整性”定义与可证伪度量已确立且门禁可执行（AC-1）",
+      "存量本体空洞抽样审计完成：量化泛化signal/空正文/不可实现节点并分类分级（AC-2）",
+      "至少1个示范域按“完整”标准重做为标杆：其attributes可独立派生实现且scaffold可证伪（AC-3）",
+      "本体生产门禁已加固：拒绝泛化signal/空正文/无mermaid溯源/不可scaffold（AC-4）",
+      "存量本体分批修复路径与优先级已明确且首批修复可验证（AC-5）",
+      "证据收敛可验证：convergence map逐条回链PRD验收与已登记证据且valid:true（AC-6）"
+    ],
+    "steps": [
+      {
+        "name": "完整性定义与度量",
+        "description": "明确什么叫“完整本体”：属性完备、约束可测、关系闭环、溯源可复现，并给出机器可检的度量与门禁规则",
+        "completion_criterion": "产出 ontology:concept/ontology-fidelity-criterion 节点含判定规则且production-ontology-gate新增check可执行"
+      },
+      {
+        "name": "存量空洞审计",
+        "description": "全量扫描ontology 276节点，量化泛化signal/空正文/无溯源/不可scaffold四类空洞并分级（致命/严重/一般）",
+        "completion_criterion": "产出审计报告records/T0534-*/audit-report.md含统计表与Top20修复清单且可回归"
+      },
+      {
+        "name": "示范域重做",
+        "description": "选取1个典型domain+其entity按完整标准重做为标杆，验证“仅凭本体可写出实现”",
+        "completion_criterion": "示范域≥3 attributes/条含grep动词+ mermaid≥2+Source行号+Scaffold可产且pytest可收集"
+      },
+      {
+        "name": "生产门禁加固",
+        "description": "加固ontology-validate与production-ontology-gate，拒绝空洞本体写入，CI与pre-commit阻断",
+        "completion_criterion": "提交含泛化signal/空正文的本体被门禁拒绝且CI gate复现"
+      },
+      {
+        "name": "分批修复路径",
+        "description": "给出存量210 domain+55 entity的分批修复优先级、工期与校验方式，首批完成可验证",
+        "completion_criterion": "产出修复路线图含批次、工时估算与首批≥5节点修复后gate全绿"
+      },
+      {
+        "name": "收敛与登记",
+        "description": "登记审计/示范/门禁证据并生成convergence map，跑validate-convergence得valid:true",
+        "completion_criterion": "evidence/manifest.jsonl含3+证据且validate-convergence valid:true"
+      }
+    ],
+    "completed_at": "2026-09-02T17:17:27+08:00",
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:concept/ontology-fidelity-criterion 七项清单+fidelity score+门禁本体锚定已沉淀为可复用知识；ai-efficiency-ticket-dag-ready-set 100分示范与首批5验证跑通；来源 T0534-0902-ontology-fidelity-remediation",
+      "at": "2026-09-02T17:18:30+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-09-02T16:55:00+08:00",
+    "plan": "2026-09-02T16:55:00+08:00",
+    "do": "2026-09-02T17:05:48+08:00",
+    "check": "2026-09-02T17:17:27+08:00",
+    "act": "2026-09-02T17:18:20+08:00",
+    "archive": "2026-09-02T17:18:54+08:00"
+  }
+}

@@ -1,0 +1,2 @@
+{"id": "audit-report", "file": "audit-report.md", "kind": "document", "size": 48463, "digest": "sha256:8c3c3b250f81e8e12fc1e25c05d5caf306066f12ce3ee0b22df7823ff49cda21", "at": "2026-09-02T18:03:33+08:00", "criteria": ["AC-1", "AC-2", "AC-3"]}
+{"id": "convergence-map", "file": "convergence.json", "kind": "convergence-map", "size": 694, "digest": "sha256:52a40c4b8d5585b9be6a26bc7659658a28409872c20bb71bb2aac43371a289d4", "at": "2026-09-02T18:20:00+08:00", "criteria": ["AC-1", "AC-2", "AC-3"]}

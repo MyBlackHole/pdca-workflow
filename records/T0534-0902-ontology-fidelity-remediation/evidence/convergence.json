@@ -1,0 +1,65 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "本体“完整性”定义与可证伪度量已确立且门禁可执行（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "fidelity-criterion"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "存量本体空洞抽样审计完成：量化泛化signal/空正文/不可实现节点并分类分级（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "audit-report"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "至少1个示范域按“完整”标准重做为标杆：其attributes可独立派生实现且scaffold可证伪（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "demo-domain"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "本体生产门禁已加固：拒绝泛化signal/空正文/无mermaid溯源/不可scaffold（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "gate-fidelity"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "存量本体分批修复路径与优先级已明确且首批修复可验证（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "roadmap"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "证据收敛可验证：convergence map逐条回链PRD验收与已登记证据且valid:true（AC-6）",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "roadmap"
+      ]
+    }
+  ]
+}

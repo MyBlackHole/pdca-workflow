@@ -1,0 +1,35 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "13例真泛化（泛化且无动词）已全部修复且可执行（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "audit-report"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "audit泛化124→0，validate对真泛化零容忍已验证（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "audit-report"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "豁免清单已清空或仅留非真泛化（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "audit-report"
+      ]
+    }
+  ]
+}

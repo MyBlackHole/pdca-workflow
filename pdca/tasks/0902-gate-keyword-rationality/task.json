@@ -1,0 +1,72 @@
+{
+  "id": "T0535",
+  "slug": "0902-gate-keyword-rationality",
+  "title": "门禁合理性审视：关键字脚本门禁对AI工作流的适用性与方法论依据",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "research",
+    "created_at": "2026-09-02T17:23:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "convergence": [
+      "AI工作流中门禁合理性的方法论依据已通过网络资料调研确立（AC-1）",
+      "当前关键字脚本门禁的成本/收益与误伤率已量化评估（AC-2）",
+      "关键字门禁 vs 语义/模型/抽样门禁的适用边界已明确（AC-3）",
+      "对存量门禁的保留/降级/替换建议已给出且可执行（AC-4）",
+      "调研报告已落records且收敛可验证（AC-5）"
+    ],
+    "steps": [
+      {
+        "name": "方法论调研",
+        "description": "搜索网络资料：AI工作流门禁、lint/门禁过度、语义校验、AI友好门禁等方法论",
+        "completion_criterion": "产出调研报告含≥5篇高信源文献综述与对门禁合理性的理论支撑"
+      },
+      {
+        "name": "存量门禁审计",
+        "description": "盘点当前python关键字门禁清单（validate/audit/gate等）并量化误判/维护成本",
+        "completion_criterion": "产出存量门禁清单含每条门禁的触发率、误伤案例、维护成本"
+      },
+      {
+        "name": "适用边界判定",
+        "description": "判定关键字门禁 vs 语义/模型/抽样门禁的适用场景与互补关系",
+        "completion_criterion": "产出决策树：何时用关键字、何时用语义、何时不用门禁"
+      },
+      {
+        "name": "改进建议",
+        "description": "对当前门禁给出保留/降级/替换/删除的具体建议与迁移路径",
+        "completion_criterion": "产出建议清单含每条门禁的处置意见与实现成本"
+      },
+      {
+        "name": "收敛与报告",
+        "description": "整合调研与审计为报告，登记证据并验证收敛",
+        "completion_criterion": "evidence/manifest含3+证据且validate-convergence valid:true"
+      }
+    ],
+    "record": "T0535-0902-gate-keyword-rationality",
+    "completed_at": "2026-09-02T17:27:47+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5AC全满足，6篇高信源与413节点实证一致支撑四档处置",
+      "verdict_id": "v0535-confirmed",
+      "at": "2026-09-02T17:28:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "方法论6篇+12条门禁量化+四象限决策树已沉淀为可复用知识；处置四档可指导后续门禁优化；来源 T0535-0902-gate-keyword-rationality",
+      "at": "2026-09-02T17:28:10+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-09-02T17:23:00+08:00",
+    "plan": "2026-09-02T17:23:00+08:00",
+    "do": "2026-09-02T17:24:21+08:00",
+    "check": "2026-09-02T17:27:47+08:00",
+    "act": "2026-09-02T17:28:04+08:00",
+    "archive": "2026-09-02T17:28:13+08:00"
+  }
+}

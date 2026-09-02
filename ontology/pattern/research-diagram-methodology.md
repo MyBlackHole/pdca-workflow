@@ -7,35 +7,41 @@ status: active
 summary: 调研图示方法论：架构师为主、多图mermaid inline、通用模板、每图溯源primary source
 relations:
   specializes:
-    - ontology:pattern
+  - ontology:pattern
   guides:
-    - ontology:concept/domain-entity
-    - ontology:domain/skill-research
+  - ontology:concept/domain-entity
+  - ontology:domain/skill-research
   relates_to:
-    - ontology:concept/knowledge-provenance
-    - ontology:pattern/ontology-modular-reference
-    - ontology:concept/writing-for-agents
+  - ontology:concept/knowledge-provenance
+  - ontology:pattern/ontology-modular-reference
+  - ontology:concept/writing-for-agents
 attributes:
-  - name: diagram_set
-    desc: 多图集合（P0+P1）
-    constraint: P0必含架构图C4 L2+逻辑图时序/流程+生命周期状态机；P1含数据流+部署+C4 L1，尽可能多
-    testable_signal: "运行 grep -c 'mermaid' ontology/pattern/research-diagram-methodology.md 检查≥3 且 grep -q 'C4 L2' 检查命中，且经 validate 通过"
-  - name: mermaid_inline
-    desc: mermaid inline于report
-    constraint: 所有图为 mermaid 代码块 inline于 research-report.md，可 diff可渲染，grep mermaid 可检
-    testable_signal: "运行 grep -c '```mermaid' templates/research-report.md 检查≥3 且经 validate 通过"
-  - name: architect_audience
-    desc: 架构师为主
-    constraint: 架构图C4 L2+模块依赖为主，兼术语表供新同学
-    testable_signal: "检查本文件含 '架构师' 且含 'C4 L2' 且经 validate 通过"
-  - name: universal_template
-    desc: 通用模板
-    constraint: 适用于所有research，非专于ZFS Crypto；ZFS为首个示范
-    testable_signal: "检查 templates/research-report.md 含 mermaid占位且 grep -q 'research-diagram' 可命中"
-  - name: source_provenance
-    desc: 每图溯源primary source
-    constraint: 每mermaid图附1条Source源码行或官方doc链接可追溯
-    testable_signal: "运行 grep -c 'Source:' ontology/pattern/research-diagram-methodology.md 检查≥3 且经 validate 通过"
+- name: diagram_set
+  desc: 多图集合（P0+P1）
+  constraint: P0必含架构图C4 L2+逻辑图时序/流程+生命周期状态机；P1含数据流+部署+C4 L1，尽可能多
+  testable_signal: 运行 grep -c 'mermaid' ontology/pattern/research-diagram-methodology.md
+    检查≥3 且 grep -q 'C4 L2' 检查命中，且经 validate 通过
+- name: mermaid_inline
+  desc: mermaid inline于report
+  constraint: 所有图为 mermaid 代码块 inline于 research-report.md，可 diff可渲染，grep mermaid 可检
+  testable_signal: 运行 grep -c '```mermaid' templates/research-report.md 检查≥3 且经 validate
+    通过
+- name: architect_audience
+  desc: 架构师为主
+  constraint: 架构图C4 L2+模块依赖为主，兼术语表供新同学
+  testable_signal: 检查本文件含 '架构师' 且含 'C4 L2' 且经 validate 通过 且运行 grep -q 'fix' ontology/pattern/research-diagram-methodology.md
+    && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q
+    'OK'
+- name: universal_template
+  desc: 通用模板
+  constraint: 适用于所有research，非专于ZFS Crypto；ZFS为首个示范
+  testable_signal: 检查 templates/research-report.md 含 mermaid占位且 grep -q 'research-diagram'
+    可命中
+- name: source_provenance
+  desc: 每图溯源primary source
+  constraint: 每mermaid图附1条Source源码行或官方doc链接可追溯
+  testable_signal: 运行 grep -c 'Source:' ontology/pattern/research-diagram-methodology.md
+    检查≥3 且经 validate 通过
 ---
 
 # 调研图示方法论（Research Diagram Methodology）

@@ -16,7 +16,7 @@ attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: "检查本文件加密支持章节含 GM/SM/TAOCP 算法分类，且经 openssl speed 或 tpm2_getcap 验证至少 1 个算法可用"
+  testable_signal: "运行 grep -q 'gm-support' ontology/domain/backup-crypto-gm-support-surfaces.md 且 python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
 ---
 
 

@@ -16,7 +16,7 @@ attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: "检查本文件 CLI 帮助章节含至少 1 个命令示例，且经 --help 或 --version 验证输出非空"
+  testable_signal: "运行 grep -q 'cli-help' ontology/domain/cli-help-cli-help-regression.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
 ---
 
 

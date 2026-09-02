@@ -1,0 +1,55 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AI工作流中门禁合理性的方法论依据已通过网络资料调研确立（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "research-report"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "当前关键字脚本门禁的成本/收益与误伤率已量化评估（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "gate-inventory"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "关键字门禁 vs 语义/模型/抽样门禁的适用边界已明确（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "decision-tree"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "对存量门禁的保留/降级/替换建议已给出且可执行（AC-4）",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "recommendations"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "调研报告已落records且收敛可验证（AC-5）",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "research-report"
+      ]
+    }
+  ]
+}

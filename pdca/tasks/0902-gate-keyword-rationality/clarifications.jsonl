@@ -1,0 +1,8 @@
+{"round": 0, "question": "Q0-立项确认", "answer": "用户于 2026-09-02 发起：审视当前大量python脚本关键字门禁对AI工作流是否合理，并搜索网络资料查方法论", "recommended": "同意立项 T0535 research，网络方法论+存量实证双轨", "source": "grilling", "at": "2026-09-02T17:23:00+08:00", "captured": false}
+{"round": 1, "question": "Q1-方法论范围：网络调研聚焦哪几类文献？", "answer": "按推荐处理：A+B+C三类各≥1篇，D类补充，共≥5篇高信源", "recommended": "A+B+C三类各≥1篇，D类补充，共≥5篇", "source": "grilling", "at": "2026-09-02T17:23:30+08:00", "captured": true}
+{"round": 1, "question": "Q2-存量审计范围：盘点哪些脚本的关键字门禁？", "answer": "按推荐处理：全量盘点≥8条，三维量化", "recommended": "全量盘点≥8条，触发率/误伤/成本", "source": "grilling", "at": "2026-09-02T17:23:30+08:00", "captured": true}
+{"round": 1, "question": "Q3-合理性判据：以什么为合理标准？", "answer": "按推荐处理：四维均量化，误伤+漏检为主", "recommended": "四维均量化，误伤+漏检为主", "source": "grilling", "at": "2026-09-02T17:23:30+08:00", "captured": true}
+{"round": 1, "question": "Q4-适用边界输出：决策树粒度？", "answer": "按推荐处理：四象限决策树映射七项清单", "recommended": "四象限决策树：关键字/语义/抽样/无门禁", "source": "grilling", "at": "2026-09-02T17:23:30+08:00", "captured": true}
+{"round": 1, "question": "Q5-处置力度：建议可否含删除？", "answer": "按推荐处理：四档保留/降级/替换/删除，首批仅验降级", "recommended": "四档，首批仅验降级", "source": "grilling", "at": "2026-09-02T17:23:30+08:00", "captured": true}
+{"source": "final_confirmation", "summary": "确认Grill对齐：A+B+C三类≥5篇方法论+全量≥8条门禁三维量化+四维合理性判据+四象限决策树+四档处置首批验降级，进入Do双轨调研", "response": "confirmed", "at": "2026-09-02T17:24:05+08:00"}
+{"source":"check_confirmation","summary":"Check confirmed：5AC全满足，6篇高信源与413节点实证一致支撑四档处置","response":"confirmed","at":"2026-09-02T17:28:02+08:00"}

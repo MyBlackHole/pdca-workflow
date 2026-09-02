@@ -1,0 +1,14 @@
+{"round": 0, "question": "Q0-立项确认：是否同意以 T0534 立项治理本体保真度“为写而写”问题", "answer": "用户于 2026-09-02 发起任务：处理本体无法真实表达完整信息、为写而写、无法复现原始特性的问题", "recommended": "同意立项，任务标题“本体保真度治理：消除为写而写，实现可复现的完备本体”，scenario=development", "source": "grilling", "at": "2026-09-02T16:55:00+08:00", "captured": false}
+{"round": 1, "question": "Q1-治理范围：哪些本体纳入完整性硬标准？", "answer": "全量一视同仁", "recommended": "仅业务域（domain/entity/pattern等）纳入硬标准；concept/process元本体维持现有validate", "source": "grilling", "at": "2026-09-02T17:00:00+08:00", "captured": true}
+{"round": 1, "question": "Q2-“完整”判定强度：采用哪档模板？", "answer": "自我审查是否完整体现知识的本体，不足着补充", "recommended": "A档八段为标杆、B档五段为底线，分致命/一般两级", "source": "grilling", "at": "2026-09-02T17:00:00+08:00", "captured": true}
+{"round": 1, "question": "Q3-泛化signal处置：是否立即硬拒绝？", "answer": "不允许泛化", "recommended": "新增独立 --check fidelity 门禁，存量列豁免清单分批清零", "source": "grilling", "at": "2026-09-02T17:00:00+08:00", "captured": true}
+{"round": 1, "question": "Q4-示范域选型：首个可实现标杆选哪？", "answer": "是否具备完整的信息提供 ai 可进行复现实现", "recommended": "选高频复用但当前空洞的domain叶+其entity，重做为标杆", "source": "grilling", "at": "2026-09-02T17:00:00+08:00", "captured": true}
+{"round": 1, "question": "Q5-存量修复策略：一次性还是分批？", "answer": "可以", "recommended": "分三批：P0高频复用域→P1中频→P2长尾，本任务完成P0首批≥5节点", "source": "grilling", "at": "2026-09-02T17:00:00+08:00", "captured": true}
+{"round": 1, "question": "Q6-度量口径：是否需要量化保真分？", "answer": "可以", "recommended": "fidelity score 0-100 + 致命/严重/一般三级", "source": "grilling", "at": "2026-09-02T17:00:00+08:00", "captured": true}
+{"round": 1, "question": "Q7-门禁落位：扩展现有脚本还是新增？", "answer": "可以", "recommended": "ontology-validate新增三码，production-ontology-gate新增--check fidelity，本体rule_spec锚定", "source": "grilling", "at": "2026-09-02T17:00:00+08:00", "captured": true}
+{"round": 2, "question": "Q8-全量零容忍的硬着陆确认", "answer": "按推荐处理：增量零容忍+存量限期清零", "recommended": "增量硬拒绝+存量限期清零（P0两周）", "source": "grilling", "at": "2026-09-02T17:05:00+08:00", "captured": true}
+{"round": 2, "question": "Q9-自我审查清单确认", "answer": "按推荐处理：同意七项清单逐本体自检", "recommended": "七项：概念定义+属性完备+关系闭环+行为可视化+正反例+门禁溯源+可scaffold", "source": "grilling", "at": "2026-09-02T17:05:00+08:00", "captured": true}
+{"round": 2, "question": "Q10-AI可复现验收确认", "answer": "按推荐处理：同意scaffold必要+盲测充分", "recommended": "新AI仅读本体→产出代码→跑通testable_signal，scaffold可产为必要、盲测为充分", "source": "grilling", "at": "2026-09-02T17:05:00+08:00", "captured": true}
+{"round": 2, "question": "Q11-示范域定点", "answer": "按推荐处理：同意先审计后定点", "recommended": "先跑全量审计按高频×空洞排序推荐示范域", "source": "grilling", "at": "2026-09-02T17:05:00+08:00", "captured": true}
+{"source":"final_confirmation","summary":"确认Grill两轮对齐：全量一视同仁、七项清单为完整性判据、零容忍泛化、AI可复现为金标准、分三批修复、量化保真分、门禁本体锚定；同意按PRD五件套进入Do","response":"confirmed","at":"2026-09-02T17:04:28+08:00"}
+{"source":"check_confirmation","summary":"Check结论confirmed：6AC全满足，增量零容忍门禁已硬阻断且示范域达AI可复现标准，conclusion.md已落盘","response":"confirmed","at":"2026-09-02T17:18:05+08:00"}

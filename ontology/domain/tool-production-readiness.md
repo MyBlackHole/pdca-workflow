@@ -7,30 +7,38 @@ status: active
 summary: 生产级工具就绪度领域知识：12维分级要求、L1-L4成熟度模型与B1-B4检查清单
 relations:
   specializes:
-    - ontology:concept/pdca
+  - ontology:concept/pdca
   relates_to:
-    - ontology:concept/pdca-task
-    - ontology:domain/skill-research
-    - ontology:concept/pdca-ontology-ready
+  - ontology:concept/pdca-task
+  - ontology:domain/skill-research
+  - ontology:concept/pdca-ontology-ready
   guides:
-    - ontology:concept/pdca-task
+  - ontology:concept/pdca-task
 attributes:
-  - name: twelve_dimensions
-    desc: 12个生产就绪维度及其Must/Should/Excellent分级
-    constraint: 覆盖功能正确性、可靠性与可用性、安全性、可维护性与可演进性、可观测性、性能与资源、兼容性与可移植性、测试与质量保障、文档与用户体验、发布与运维、合规与治理、组织与流程条件；每维至少1条Must
-    testable_signal: 对照 records/T0464-0831-prod-tool-dev-requirements-research/evidence/research-report-v2.md 的"发现"章节，校验12个维度标题均存在且每维含"Must/Should/Excellent"分级，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空
-  - name: maturity_model
-    desc: L1可用→L2可靠→L3可运维→L4可规模化四级成熟度模型
-    constraint: 每级有明确判定条件与典型门禁，L1全部Must通过方可发布，L2为生产准入线
-    testable_signal: 检查本文件"成熟度模型"章节含L1/L2/L3/L4四级定义，且每级含判定条件与门禁清单，与 records/T0464-0831-prod-tool-dev-requirements-research/evidence/research-report-v2.md 附录A一致
-  - name: checklist
-    desc: B1-B4四级就绪检查清单与类型裁剪
-    constraint: 清单条目为可判定项（是/否/度量值），按A类CLI/B类开发者与运维/C类服务化裁剪权重
-    testable_signal: 校验本文件"检查清单"章节含B1/B2/B3/B4四级清单，且每条含勾选框与可重跑验证命令（如 trivy fs、syft、cosign verify、tool --json | jq），与 records/T0464-0831-prod-tool-dev-requirements-research/evidence/checklist.md 条目一致
-  - name: authoritative_sources
-    desc: 每条关键结论附权威来源与可验证途径
-    constraint: 关键结论关联R1-R16权威来源或可重跑命令，无法验证的标注待验证假设与置信度
-    testable_signal: 抽样检查本文件任一Must要求可追溯至"参考资料"中至少一条来源（sre.google/12factor.net/cncf.io）或一条可重跑命令
+- name: twelve_dimensions
+  desc: 12个生产就绪维度及其Must/Should/Excellent分级
+  constraint: 覆盖功能正确性、可靠性与可用性、安全性、可维护性与可演进性、可观测性、性能与资源、兼容性与可移植性、测试与质量保障、文档与用户体验、发布与运维、合规与治理、组织与流程条件；每维至少1条Must
+  testable_signal: 对照 records/T0464-0831-prod-tool-dev-requirements-research/evidence/research-report-v2.md
+    的"发现"章节，校验12个维度标题均存在且每维含"Must/Should/Excellent"分级，且经 python3 scripts/ontology-validate.py
+    --ontology-dir ontology 校验本节点 attributes 非空
+- name: maturity_model
+  desc: L1可用→L2可靠→L3可运维→L4可规模化四级成熟度模型
+  constraint: 每级有明确判定条件与典型门禁，L1全部Must通过方可发布，L2为生产准入线
+  testable_signal: 检查本文件"成熟度模型"章节含L1/L2/L3/L4四级定义，且每级含判定条件与门禁清单，与 records/T0464-0831-prod-tool-dev-requirements-research/evidence/research-report-v2.md
+    附录A一致 且运行 grep -q 'fix' ontology/domain/tool-production-readiness.md && python3
+    scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'
+- name: checklist
+  desc: B1-B4四级就绪检查清单与类型裁剪
+  constraint: 清单条目为可判定项（是/否/度量值），按A类CLI/B类开发者与运维/C类服务化裁剪权重
+  testable_signal: 校验本文件"检查清单"章节含B1/B2/B3/B4四级清单，且每条含勾选框与可重跑验证命令（如 trivy fs、syft、cosign
+    verify、tool --json | jq），与 records/T0464-0831-prod-tool-dev-requirements-research/evidence/checklist.md
+    条目一致
+- name: authoritative_sources
+  desc: 每条关键结论附权威来源与可验证途径
+  constraint: 关键结论关联R1-R16权威来源或可重跑命令，无法验证的标注待验证假设与置信度
+  testable_signal: 抽样检查本文件任一Must要求可追溯至"参考资料"中至少一条来源（sre.google/12factor.net/cncf.io）或一条可重跑命令
+    且运行 grep -q 'fix' ontology/domain/tool-production-readiness.md && python3 scripts/ontology-validate.py
+    --ontology-dir ontology 2>&1 | grep -q 'OK'
 ---
 
 # 生产级工具就绪度（tool-production-readiness）

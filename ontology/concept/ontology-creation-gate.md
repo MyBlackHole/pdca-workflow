@@ -16,6 +16,10 @@ relations:
   - ontology:concept/ontology-rule-attr-testable
   - ontology:concept/ontology-rule-richness
   - ontology:concept/ontology-rule-guides-range
+  - ontology:concept/ontology-fidelity-criterion
+  - ontology:concept/ontology-rule-fidelity-generic
+  - ontology:concept/ontology-rule-fidelity-body
+  - ontology:concept/ontology-rule-fidelity-diagram
 ---
 # ontology-creation-gate
 

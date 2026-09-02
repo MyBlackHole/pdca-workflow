@@ -46,11 +46,17 @@ attributes:
     desc: 混合双向同树 + 多图mermaid集成（C4 L2+时序+状态机为P0，每图1 Source）
     constraint: 每个生产实体必含 C4 L3 组件 + 时序 + 状态机 + 决策树 + 正例 + 反例 + 门禁八段且 mermaid≥3且每图1 Source（openzfs/zfs file:line），系统聚合另含聚合决策树与正交度声明，符合 research-diagram-methodology
     testable_signal: "运行 python3 scripts/production-ontology-gate.py --check diagram --node ontology:entity/zfs-vdev 检查 mermaid≥3且每图含 Source 且 grep -q '决策树' ontology/entity/zfs-vdev.md 命中且 grep -q 'records' records/T0525-0902-review-zfs-production-ontology/report.md 命中"
+  - name: realization_verifiable_implementation
+    desc: 本体可实现可校验（realization）：本体即实现规约，派生实现细节完整、确定性可校验且错误可证伪
+    constraint: 每个生产实体必满足“可被直接实现”：①结构完整（C4 给出所有创建/销毁/持久化所需的字段与类型，且含 btree/bset/journal/alloc 等跨实体接口契约）②行为完整（时序+状态机覆盖全部成功/失败/重试/并发分支，无隐含状态）③校验完整（正例为最小可运行实现骨架，反例覆盖全部已知的误用模式，且 scaffold 派生的契约测试以确定性夹具证明实现对齐本体——即“按本体实现后，跑本体派生的测试必绿；违背本体，测试必红”）
+    testable_signal: "运行 python3 scripts/production-ontology-gate.py --check realization --node ontology:entity/bcachefs-btree 检查 realization PASS（含 structure/behavior/verification 三契约）且 python3 scripts/ontology_test_scaffold.py --node ontology:entity/bcachefs-btree --out /tmp/x.py 可产且 grep -q 'realization' ontology/pattern/production-ontology-scientific-gate.md 命中"
 ---
 
 # 生产本体科学保障门禁（Production Ontology Scientific Gate）
 
-> 综合 `METHONTOLOGY evolving prototype` + `NeOn 9场景` + `Ontology101 top-down/bottom-up/middle-out` + `OOPS! 41 pitfalls` + `OntoClean` + `PMI WBS 100% Rule/Yo-Yo` + `testable_signal→test 三模式`，解决“**为何本次未一次做对**”并保障“**下一次生产一次通过**”。本 pattern 即 T0525 三件套的 Checklist 源头，`scripts/production-ontology-gate.py` 为其可执行化，`templates/production-*.md` 为其落盘模板。
+> 综合 `METHONTOLOGY evolving prototype` + `NeOn 9场景` + `Ontology101 top-down/bottom-up/middle-out` + `OOPS! 41 pitfalls` + `OntoClean` + `PMI WBS 100% Rule/Yo-Yo` + `testable_signal→test 三模式` + `realization 可实现可校验`，解决“**为何本次未一次做对**”并保障“**下一次生产一次通过**”。本 pattern 即 T0525 三件套的 Checklist 源头，`scripts/production-ontology-gate.py` 为其可执行化，`templates/production-*.md` 为其落盘模板。
+
+> **新增第七维 realization（2026-09-02）**：本体“为了写而写”的根因是本体止于文档、无法被直接实现。`realization` 要求本体即实现规约——结构、行为、校验三完整，且派生的确定性夹具可证伪实现偏离（按本体实现必绿、违背必红）。
 
 ## 为何本次未一次做对（根因）
 
@@ -63,7 +69,7 @@ attributes:
 
 Source: `ontology/pattern/scientific-research-methodology.md:31` 四支 + `ontology/domain/ontology-hybrid-methodology.md:42` 双向同树 + `ontology/pattern/ontology-evaluation-oops.md:18` 41 pits + `ontology/pattern/ontology-metrics.md:34` health 三件套
 
-## 六维门禁（与 gate 脚本一一对应）
+## 七维门禁（与 gate 脚本一一对应，新增 realization）
 
 ### 1. METHONTOLOGY 五阶段（`--check lifecycle`）
 
@@ -100,6 +106,18 @@ Source: `ontology/pattern/testable-signal-to-test-derivation.md:32` 三模式 + 
 每个生产实体必含 `C4 L3 + 时序 + 状态机` 为 P0（`mermaid≥3`），系统聚合另含 `C4 L2 + 聚合决策树`，每图1 `Source: openzfs/zfs file:line`，`grep -c mermaid` 与 `Source:` 双硬拦。
 
 Source: `ontology/pattern/research-diagram-methodology.md:20` P0三图 + `ontology/pattern/scientific-research-methodology.md:24` 四支
+
+### 7. 可实现可校验 Realization（`--check realization`）
+
+本体止于文档即“为了写而写”。`realization` 要求**本体即规约**，满足三完整方可 `PASS`：
+
+- **结构完整**：`C4` 给出实现该实体所需的全部类型、字段、持久化格式与跨实体接口（`btree/six/journal/alloc` 的创建/销毁/序列化契约在 `C4` 中无缺口）
+- **行为完整**：`时序 + 状态机` 覆盖全部成功/失败/重试/并发分支，无隐含状态（`six read→intent→write` 升级、`trans restart 25码`、 `pin→reclaim` 等在图中可追）
+- **校验完整**：`正例`为最小可运行实现骨架（可直接翻译为代码），`反例`覆盖全部已知误用模式，且 `scaffold` 派生的契约测试以确定性夹具可证伪——**按本体实现必绿、违背本体必红**
+
+`gate --check realization --node <id>` 校验：`scaffold 可产 && pytest --collect-only 可收集 && 本体含 structure/behavior/verification 三契约关键词`，否则 `FAIL: realization missing`。
+
+Source: `METHONTOLOGY implement/evaluate + ontology/pattern/testable-signal-to-test-derivation.md:32` 派生实现
 
 ## 使用流程（PDCA 对接）
 
@@ -167,7 +185,9 @@ flowchart TD
     Q5 -- 否 --> A5[改 signal 为 grep -q 双源]
     Q5 -- 是 --> Q6{OOPS 41 critical=0?}
     Q6 -- 否 --> A6[修 P08/P10/P13]
-    Q6 -- 是 --> END([gate --node PASS → 提交])
+    Q6 -- 是 --> Q7{realization 三完整?}
+    Q7 -- 否 结构/行为/校验缺口 --> A7[补结构契约/行为分支/正反例夹具]
+    Q7 -- 是 --> END([gate --node PASS → 提交])
 ```
 
 Source: `ontology/domain/ontology-hybrid-methodology.md:47` 决策树 + `ontology/pattern/ontology-evaluation-oops.md`
@@ -184,7 +204,7 @@ python3 scripts/ontology-validate.py --ontology-dir ontology  # 0 issues
 python3 scripts/ontology_test_scaffold.py --node ontology:entity/zfs-vdev --out /tmp/x.py && pytest --collect-only
 ```
 
-命中：`gate --node` 六维全 PASS，`validate 0`，`scaffold` 可产，`islands:0`。
+命中：`gate --node` 七维全 PASS，`validate 0`，`scaffold` 可产，`islands:0`。
 
 ## 反例
 
@@ -205,15 +225,21 @@ attributes: [{name: foo, testable_signal: "由领域实践验证"}]
 # 反例4：NeOn 未选型导致重复造叶
 # 新建 zfs-zil 时未声明 S1 重用 vs 新建，gate --check neon -> FAIL: no scenario
 # 正确：PRD 写明 场景1重用 zfs-zpl 的 zil 子节 → 独立为 leaf 的重工程理由
+
+# 反例5：realization 缺结构契约导致不可实现
+# 实体 C4 仅含 CLI→wrappers 空壳，未给出 btree 的 six/cache/bset/journal pin 接口契约，按本体无法写出 bch2_btree_node_get
+# gate --check realization -> FAIL: missing structure 契约
+# 正确：C4 暴露 btree_cache→btree(six+format)→btree_node(bset*)→bkey 真实链
 ```
 
 ## 门禁
 
 - **模板门禁**：`wc -l ontology/pattern/production-ontology-scientific-gate.md ≥80 && grep -q '决策树' && grep -q '正例' && grep -q '反例' && grep -q '门禁'`
-- **属性门禁**：`attributes ≥5 且每条 testable_signal 含 grep -q 或 gate.py 动词`
+- **属性门禁**：`attributes ≥7 且每条 testable_signal 含 grep -q 或 gate.py 动词`（新增 realization）
 - **本体校验**：`python3 scripts/ontology-validate.py --ontology-dir ontology` 0 issues 且 `islands:0` 且 `guides` 合法（指向 domain-entity/process）
 - **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:pattern/production-ontology-scientific-gate --out /tmp/x.py` 可产
-- **Gate 自举门禁**：`python3 scripts/production-ontology-gate.py --node ontology:pattern/production-ontology-scientific-gate` GATE OK
+- **Gate 自举门禁**：`python3 scripts/production-ontology-gate.py --node ontology:pattern/production-ontology-scientific-gate` GATE OK（含 realization）
 - **走通门禁**：`python3 scripts/production-ontology-gate.py --node ontology:entity/zfs-vdev` GATE OK（若演示稿存在）
+- **实现门禁**：`python3 scripts/production-ontology-gate.py --check realization --node ontology:entity/bcachefs-btree` GATE OK（结构/行为/校验三完整）
 ```
 

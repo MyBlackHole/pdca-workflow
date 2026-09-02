@@ -1,0 +1,35 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "G6泛化门禁的有效误报率已通过20例抽样量化（AC-1）",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "sampling"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "门禁分层（精确硬阻断/脆性豁免/统计不阻断）已固化至fidelity-criterion本体（AC-2）",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "fidelity-criterion-v2"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "抽样方法与阈值判定已可复现（AC-3）",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "sampling"
+      ]
+    }
+  ]
+}

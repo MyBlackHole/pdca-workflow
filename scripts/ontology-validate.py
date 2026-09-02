@@ -54,6 +54,9 @@ RULE_IDS = {
     "attr": "ontology:concept/ontology-rule-attr-testable",
     "richness": "ontology:concept/ontology-rule-richness",
     "guides": "ontology:concept/ontology-rule-guides-range",
+    "fidelity_generic": "ontology:concept/ontology-rule-fidelity-generic",
+    "fidelity_body": "ontology:concept/ontology-rule-fidelity-body",
+    "fidelity_diagram": "ontology:concept/ontology-rule-fidelity-diagram",
 }
 
 
@@ -125,6 +128,9 @@ def validate(ont_dir: Path):
     COMPOSED_OF_RANGE = set(specs[RULE_IDS["richness"]].get("composed_of_range", []))
     DOMAIN_VOCAB = set(specs[RULE_IDS["guides"]].get("target_types", []))
     CONFIGURED_BY_TARGET = specs[RULE_IDS["guides"]].get("configured_by_target", TLS_CONFIG_ID)
+    # 保真度门禁参数（本体为权威）
+    FIDELITY_GENERIC_PHRASES = specs[RULE_IDS["fidelity_generic"]].get("generic_phrases", [])
+    FIDELITY_REQUIRED_VERBS = specs[RULE_IDS["fidelity_generic"]].get("required_verbs", [])
 
     # AC-1 directory-as-truth + AC-1b vocabulary + schema basics + AC-4 attribute coverage
     for path, type_dir, fm in assets:
@@ -151,6 +157,34 @@ def validate(ont_dir: Path):
             if not isinstance(attr, dict) or not str(attr.get(ATTR_TEST_FIELD, "")).strip():
                 issues.append({"path": str(path), "code": "ATTR_NO_TEST_SIGNAL",
                                "message": f"attributes[{i}] 缺少非空 {ATTR_TEST_FIELD}"})
+            else:
+                sig = str(attr.get(ATTR_TEST_FIELD, ""))
+                # 保真度：拒绝泛化signal（零容忍，Q3确认；T0536校准：含泛化且无动词才拒，95%误报率校准）
+                for phrase in FIDELITY_GENERIC_PHRASES:
+                    if phrase in sig:
+                        # T0536校准：泛化且无required_verbs才拒，否则为有效误报不阻断
+                        has_verb = any(v in sig for v in FIDELITY_REQUIRED_VERBS)
+                        if has_verb:
+                            break
+                        oid = fm.get("id", "")
+                        # 存量豁免：ontology/.fidelity-exempt.json 中的id在限期内豁免（由audit产出基线）
+                        exempt_ids = set()
+                        exempt_path = Path(ROOT) / "ontology" / ".fidelity-exempt.json"
+                        if exempt_path.is_file():
+                            try:
+                                data = json.loads(exempt_path.read_text(encoding="utf-8"))
+                                exempt_ids = set(data.get("ids", []))
+                            except Exception:
+                                pass
+                        if oid in exempt_ids:
+                            # 豁免期内不阻断，但仍记录为豁免提示（便于每日播报）
+                            pass
+                        else:
+                            issues.append({"path": str(path), "code": "ATTR_GENERIC",
+                                           "message": f"attributes[{i}].{ATTR_TEST_FIELD} 含泛化短语 '{phrase}'且无可执行动词（需含 {FIDELITY_REQUIRED_VERBS}）"})
+                        break
+                else:
+                    pass
 
     # AC-2 references non-dangling (relations 键 + 额外引用字段)
     for path, _type_dir, fm in assets:

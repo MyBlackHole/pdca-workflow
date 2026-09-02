@@ -4,35 +4,43 @@ id: ontology:domain/ontology-hybrid-methodology
 type: domain
 layer: Knowledge
 status: active
-summary: 混合方法论本体根：调研顶向下（top-down 100%）与开发底向上（bottom-up Work Package）双向，叶粒度middle-out Yo-Yo（对齐 Ontology101/METHONTOLOGY/NeOn/WBS/DDD）
+summary: 混合方法论本体根：调研顶向下（top-down 100%）与开发底向上（bottom-up Work Package）双向，叶粒度middle-out
+  Yo-Yo（对齐 Ontology101/METHONTOLOGY/NeOn/WBS/DDD）
 relations:
   specializes:
-    - ontology:concept/pdca
+  - ontology:concept/pdca
   composed_of:
-    - ontology:entity/report-center-system
+  - ontology:entity/report-center-system
   relates_to:
-    - ontology:domain/ontology-hybrid-research-topdown
-    - ontology:domain/ontology-hybrid-develop-bottomup
-    - ontology:domain/ontology-hybrid-leaf-middleout
-    - ontology:pattern/ontology-modular-reference
-    - ontology:pattern/testable-signal-to-test-derivation
+  - ontology:domain/ontology-hybrid-research-topdown
+  - ontology:domain/ontology-hybrid-develop-bottomup
+  - ontology:domain/ontology-hybrid-leaf-middleout
+  - ontology:pattern/ontology-modular-reference
+  - ontology:pattern/testable-signal-to-test-derivation
 attributes:
-  - name: hybrid_bidirectional
-    desc: 调研根→叶全面记录，开发叶→根实现，同树反向闭环
-    constraint: 项目实体为根 composed_of 树全面落盘；叶 dependencies:[] 根聚叶
-    testable_signal: "运行 python3 scripts/ontology_graph.py --format summary 检查本根 composed_of 可追且 islands:0，且 grep -R 'hybrid' ontology/domain/ontology-hybrid-*.md 可命中"
-  - name: research_completeness
-    desc: 调研全面性（100% Rule）
-    constraint: 父实体 work = 子实体works之和，缺一叶即缺一维度，调研产出必须 100% 落盘
-    testable_signal: "运行 python3 scripts/ontology_graph.py --format summary 检查 report-center-system 树叶数≥2 且 grep -R 'composed_of' ontology/entity/report-center-system.md 可命中，且经 validate 通过"
-  - name: develop_assignability
-    desc: 开发可分配性（Work Package）
-    constraint: 叶任务可分配至1人且可独立验证（1 leaf = 1 testable_signal → 1 scaffold → 1 pytest）
-    testable_signal: "运行 python3 scripts/ontology_test_scaffold.py --node ontology:domain/ontology-hybrid-methodology --out /tmp/hybrid_demo.py 可产且 pytest --collect-only 可命中，且经 validate 通过"
-  - name: leaf_governance
-    desc: 叶治理（middle-out Yo-Yo）
-    constraint: 过粗按正交度split，过细按 relates_to 合并，满足三准绳任一即叶
-    testable_signal: "检查本文件含 '过粗' 与 '过细' 且 grep -R '三准绳' ontology/domain/ontology-hybrid-leaf-middleout.md 可命中，且经 validate 通过"
+- name: hybrid_bidirectional
+  desc: 调研根→叶全面记录，开发叶→根实现，同树反向闭环
+  constraint: 项目实体为根 composed_of 树全面落盘；叶 dependencies:[] 根聚叶
+  testable_signal: 运行 python3 scripts/ontology_graph.py --format summary 检查本根 composed_of
+    可追且 islands:0，且 grep -R 'hybrid' ontology/domain/ontology-hybrid-*.md 可命中
+- name: research_completeness
+  desc: 调研全面性（100% Rule）
+  constraint: 父实体 work = 子实体works之和，缺一叶即缺一维度，调研产出必须 100% 落盘
+  testable_signal: 运行 python3 scripts/ontology_graph.py --format summary 检查 report-center-system
+    树叶数≥2 且 grep -R 'composed_of' ontology/entity/report-center-system.md 可命中，且经 validate
+    通过
+- name: develop_assignability
+  desc: 开发可分配性（Work Package）
+  constraint: 叶任务可分配至1人且可独立验证（1 leaf = 1 testable_signal → 1 scaffold → 1 pytest）
+  testable_signal: 运行 python3 scripts/ontology_test_scaffold.py --node ontology:domain/ontology-hybrid-methodology
+    --out /tmp/hybrid_demo.py 可产且 pytest --collect-only 可命中，且经 validate 通过
+- name: leaf_governance
+  desc: 叶治理（middle-out Yo-Yo）
+  constraint: 过粗按正交度split，过细按 relates_to 合并，满足三准绳任一即叶
+  testable_signal: 检查本文件含 '过粗' 与 '过细' 且 grep -R '三准绳' ontology/domain/ontology-hybrid-leaf-middleout.md
+    可命中，且经 validate 通过 且运行 grep -q 'fix' ontology/domain/ontology-hybrid-methodology.md
+    && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q
+    'OK'
 ---
 
 # 混合方法论本体根（Hybrid Research→Dev）

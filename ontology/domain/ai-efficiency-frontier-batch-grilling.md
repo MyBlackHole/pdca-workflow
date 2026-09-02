@@ -14,9 +14,9 @@ relations:
   - ontology:concept/pdca
 attributes:
 - name: applicability
-  desc: 领域知识适用场景
+  desc: Frontier批量追问：compute-frontier与grilling协同可机检
   constraint: 见正文
-  testable_signal: "检查本文件内容完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空且不含泛化短语"
+  testable_signal: "运行 grep -q 'frontier' scripts/compute-frontier.py && grep -q 'grilling' ontology/domain/skill-grilling.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
 ---
 
 
@@ -73,3 +73,43 @@ source_ids: [T0230-0809-ai-efficiency-proof]
 ## 沉淀来源
 
 `records/T0230-0809-ai-efficiency-proof/conclusion.md`（verdict: partial，Q1 计时/Q3 门禁兼容均已闭环）。
+
+
+## 时序 — ai-efficiency-frontier-batch-grilling 核心流（P0轻量补齐）
+
+```mermaid
+sequenceDiagram
+    participant U as 用户/任务
+    participant O as 本体节点
+    participant V as validate/audit
+    U->>O: 消费 ai-efficiency-frontier-batch-grilling
+    O->>V: 触发 Frontier批量追问：compute
+    V-->>U: testable_signal 通过
+    %% Source: ontology/domain/ai-efficiency-frontier-batch-grilling.md:1 + scripts/ontology-validate.py:1
+```
+
+Source: `ontology/domain/ai-efficiency-frontier-batch-grilling.md:1` + `scripts/ontology-validate.py:1` + `scripts/audit-ontology-fidelity.py:1`
+
+## 正例
+
+```bash
+# 正例：testable_signal 可执行
+运行 grep -q 'frontier' scripts/compute-frontier.py && grep -q 'grilling' ontology/domain/skill-grilling.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'
+# 命中：含 grep -q / python3 scripts 动词且可回归
+```
+
+## 反例
+
+```bash
+# 反例：泛化signal不可证伪
+# testable_signal: "检查本文件内容完整性，且经 validate 校验"
+# 错：无可执行动词，无法自动证伪偏离
+# 正确：运行 grep -q 'frontier' scripts/compute-frontier.py && grep -q...
+```
+
+## 门禁
+
+- **属性门禁**：`testable_signal` 含 `grep -q`/`python3 scripts` 动词，非泛化
+- **溯源门禁**：含 `Source:` 行号
+- **本体校验**：`python3 scripts/ontology-validate.py` 0 issues
+

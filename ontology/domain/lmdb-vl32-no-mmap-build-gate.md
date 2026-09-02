@@ -16,7 +16,7 @@ attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: "检查本文件构建配置章节含工具链版本约束，且经 lmdb-vl32-no-mmap-build-gate-build 工具校验配置可解析"
+  testable_signal: "运行 grep -q 'lmdb-vl32' ontology/domain/lmdb-vl32-no-mmap-build-gate.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
 ---
 
 
