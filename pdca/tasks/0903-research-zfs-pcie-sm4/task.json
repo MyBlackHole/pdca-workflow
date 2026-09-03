@@ -1,0 +1,66 @@
+{
+  "id": "T0539",
+  "slug": "0903-research-zfs-pcie-sm4",
+  "title": "调研ZFS直连PCIe国密SM4加密卡可行性及PCIe加密卡选型与对接方式",
+  "parent": null,
+  "children": [],
+  "status": "Completed",
+  "meta": {
+    "phase": "archive",
+    "active": false,
+    "scenario_type": "research",
+    "created_at": "2026-09-03T09:54:58.667096+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "convergence": [
+      "ZFS原生加密链路与PCIe SM4卡的对接可行性已判定，含QAT/KCF/SDF路径对比（AC-1）",
+      "主流PCIe国密SM4加密卡选型清单已产出，含性能/接口/合规对比（AC-2）",
+      "ZFS对接PCIe SM4卡的三种对接方式及改造路径已明确（AC-3）",
+      "调研报告已落records且经本体校验（AC-4）"
+    ],
+    "steps": [
+      {
+        "name": "ZFS加密链路剖析",
+        "description": "梳理ZFS加密调用链（zio_crypt→KCF/ICP/QAT）及SM4-GCM现状",
+        "completion_criterion": "明确ZFS当前SM4路径及QAT不支持SM4的边界"
+      },
+      {
+        "name": "PCIe国密卡选型",
+        "description": "调研主流PCIe SM4加密卡型号、性能、接口规范",
+        "completion_criterion": "产出≥3厂商≥5型号对比清单"
+      },
+      {
+        "name": "对接方式设计",
+        "description": "设计ZFS对接PCIe卡的三种路径（KCF provider/SDF直调/内核AF_ALG）及改造点",
+        "completion_criterion": "明确每种方式的内核/用户态边界与ZFS改造量"
+      },
+      {
+        "name": "可行性判定与报告",
+        "description": "综合判定可行性、推荐选型及对接方式，给出PoC路径",
+        "completion_criterion": "报告含可行性结论+推荐卡+对接方式+风险清单"
+      }
+    ],
+    "record": "T0539-0903-research-zfs-pcie-sm4",
+    "completed_at": "2026-09-03T09:57:29.887697+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "4AC全满足：QAT不支持SM4源码锚点5处+10型号选型四维对比+3种对接方式file:line+成本及SDF推荐，413行报告2 mermaid+6 Source落records且validate valid:true",
+      "verdict_id": "T0539-confirmed-20260903",
+      "at": "2026-09-03T09:57:29.887697+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ZFS PCIe SM4可行性及选型与对接方式调研已沉淀为可复用知识，来源 T0539-0903-research-zfs-pcie-sm4",
+      "at": "2026-09-03T09:57:33.210477+08:00"
+    }
+  },
+  "states": {
+    "created": "2026-09-03T09:54:58.667096+08:00",
+    "plan": "2026-09-03T09:54:58.667096+08:00",
+    "do": "2026-09-03T09:55:21.306715+08:00",
+    "check": "2026-09-03T09:57:29.887697+08:00",
+    "act": "2026-09-03T09:57:33.210477+08:00",
+    "archive": "2026-09-03T09:57:43.072807+08:00"
+  }
+}

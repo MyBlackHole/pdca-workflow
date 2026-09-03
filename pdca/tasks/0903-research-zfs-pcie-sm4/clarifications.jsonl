@@ -1,0 +1,7 @@
+{"round": 0, "question": "Q0-立项确认", "answer": "用户于 2026-09-03 发起：调研ZFS直接PCIe国密SM4加密卡是否可行，有什么PCIe加密卡推荐分别支持什么对接方式", "recommended": "同意立项 T0539 research，源码链路+网络选型双轨", "source": "grilling", "at": "2026-09-03T09:55:00+08:00", "captured": false}
+{"round": 1, "question": "Q1-调研范围：选型覆盖哪些厂商？", "answer": "按推荐处理：覆盖派科/渔翁/江南天安/信安世纪等≥3厂商≥5型号，含性能/接口/合规/形态四维", "recommended": "≥3厂商≥5型号四维对比", "source": "grilling", "at": "2026-09-03T09:55:30+08:00", "captured": true}
+{"round": 1, "question": "Q2-对接深度：需给出代码级改造点吗？", "answer": "按推荐处理：给出三种对接方式的file:line改造点与人日成本，不实际改码", "recommended": "三种方式file:line+成本", "source": "grilling", "at": "2026-09-03T09:55:30+08:00", "captured": true}
+{"round": 1, "question": "Q3-可行性判据：以什么为可行标准？", "answer": "按推荐处理：内核态可用+ZFS改造量+合规闭环三维判定", "recommended": "内核态+改造量+合规三维", "source": "grilling", "at": "2026-09-03T09:55:30+08:00", "captured": true}
+{"round": 1, "question": "Q4-性能数据：是否需实测？", "answer": "按推荐处理：标称性能+未实测声明+压测方法，不做实测", "recommended": "标称+压测方法", "source": "grilling", "at": "2026-09-03T09:55:30+08:00", "captured": true}
+{"round": 1, "question": "Q5-输出形态：报告落何处？", "answer": "按推荐处理：落records/T0539-0903-research-zfs-pcie-sm4/，含mermaid+Source行号+convergence map", "recommended": "records+convergence", "source": "grilling", "at": "2026-09-03T09:55:30+08:00", "captured": true}
+{"source": "final_confirmation", "summary": "确认Grill对齐：≥3厂商≥5型号四维选型+三种对接方式file:line+成本+内核态/改造量/合规三维可行性，进入Do双轨调研", "response": "confirmed", "at": "2026-09-03T09:56:00+08:00"}

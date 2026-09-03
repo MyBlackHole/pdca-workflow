@@ -1,0 +1,9 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "ZFS原生加密链路与PCIe SM4卡的对接可行性已判定，含QAT/KCF/SDF路径对比（AC-1）", "criteria": ["AC-1"], "evidence_ids": ["research-report"]},
+    {"index": 2, "text": "主流PCIe国密SM4加密卡选型清单已产出，含性能/接口/合规对比（AC-2）", "criteria": ["AC-2"], "evidence_ids": ["research-report"]},
+    {"index": 3, "text": "ZFS对接PCIe SM4卡的三种对接方式及改造路径已明确（AC-3）", "criteria": ["AC-3"], "evidence_ids": ["research-report"]},
+    {"index": 4, "text": "调研报告已落records且经本体校验（AC-4）", "criteria": ["AC-4"], "evidence_ids": ["research-report"]}
+  ]
+}
