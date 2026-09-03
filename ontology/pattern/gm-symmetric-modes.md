@@ -9,6 +9,7 @@ relations:
   specializes:
   - ontology:pattern
   guides:
+  - ontology:domain/encryption-modes
   - ontology:domain/gm-algorithm-suite
   relates_to:
   - ontology:domain/backup-crypto-gm-support-surfaces

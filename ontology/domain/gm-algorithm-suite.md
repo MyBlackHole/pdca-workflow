@@ -9,6 +9,7 @@ relations:
   specializes:
   - ontology:domain/backup-crypto
   relates_to:
+  - ontology:domain/encryption-modes
   - ontology:domain/zfs-crypto
   - ontology:domain/backup-crypto-gm-support-surfaces
 attributes:
@@ -46,19 +47,9 @@ attributes:
 
 `SM4` 为 `32` 轮 `Feistel`，每轮 `X_{i+4}=X_i xor T(X_{i+1} xor X_{i+2} xor X_{i+3} xor CK_i)`，`T = L ∘ τ`，`τ` 为 `S-box`（`256` 项 `8b` 置换）按字节查表，`L(B)=B xor ROTL(B,2) xor ROTL(B,10) xor ROTL(B,18) xor ROTL(B,24)`，`L'(B)=B xor ROTL(B,13) xor ROTL(B,23)` 用于密钥调度。密钥调度由 `FK[4]` 与 `CK[32]` 生成 `32` 轮密钥 `RK[32]`。
 
-## 3. 对称模式族不变量
+## 3. 对称模式族（独立域）
 
-对称模式按 `认证 / 并行 / 随机访问 / 填充 / IV` 正交分类，与算法无关：
-
-| 特性 | ECB | CBC | CFB | OFB | CTR | XTS | GCM | CCM |
-|------|-----|-----|-----|-----|-----|-----|-----|-----|
-| 并行 | 均并行 | 加密串行 | 解密并行 | 均串行 | 均并行 | 均并行 | 均并行 | 认证串行 |
-| 认证 | 无 | 无 | 无 | 无 | 无 | 无 | **AEAD** | **AEAD** |
-| 填充 | 需 | 需 | 无 | 无 | 无 | 窃取法 | 无 | 需 |
-| IV | 无 | 随机 | 随机 | 不可重用 | 不可重用 | tweak=LBA | 12B不可重用 | 唯一 |
-| 随机访问 | ✓ | × | △ | ✓预计算 | **✓最佳** | ✓ | ✓ | ✓ |
-
-`GM/T 0018-2012` `SDF` 仅 `ECB/CBC/CFB/OFB/MAC`，`2023` 新增 `GCM/CCM/XTS/CTR`；`ECB` 因泄露相等性在存储中禁用。
+对称模式族详见独立域 `ontology:domain/encryption-modes`（`ECB/CBC/CFB/OFB/CTR/XTS/GCM/CCM` 按 `认证/并行/随机访问/填充/IV` 正交分类）。本域仅保留与国密的交集：`GM/T 0018-2012` `SDF` 仅 `ECB/CBC/CFB/OFB/MAC`，`2023` 新增 `GCM/CCM/XTS/CTR`。
 
 ## 4. 指令分解
 
