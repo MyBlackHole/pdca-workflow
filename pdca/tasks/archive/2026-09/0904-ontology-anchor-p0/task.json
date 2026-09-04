@@ -1,0 +1,45 @@
+{
+  "children": [
+    "T2047",
+    "T2048"
+  ],
+  "dependencies": [],
+  "id": "T2046",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "AGENTS路由已修：4处缺失引用归零且可重跑",
+      "本体锚欠账已清：PHASE_STATUS与knowledge二选一落地且门禁可检"
+    ],
+    "created_at": "2026-09-04T15:42:21+08:00",
+    "ontology_anchor": "ontology:concept/pdca-architecture",
+    "ontology_fragment": "ontology",
+    "phase": "archive",
+    "scenario_type": "development",
+    "record": "T2046-0904-ontology-anchor-p0",
+    "completed_at": "2026-09-04T15:49:59+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "2 AC全过：AGENTS路由归零+PHASE_STATUS本体化与knowledge删保护，三检全过",
+      "at": "2026-09-04T15:58:07+08:00",
+      "verdict_id": "v2046-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:concept/pdca-phase-status 已新增：阶段→状态映射本体化，AGENTS路由归位与knowledge删保护同入",
+      "at": "2026-09-04T15:58:24+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0904-ontology-anchor-p0",
+  "states": {
+    "act": "2026-09-04T15:58:12+08:00",
+    "archive": "2026-09-04T15:59:59+08:00",
+    "check": "2026-09-04T15:49:59+08:00",
+    "created": "2026-09-04T15:42:21+08:00",
+    "do": "2026-09-04T15:46:47+08:00",
+    "plan": "2026-09-04T15:42:21+08:00"
+  },
+  "status": "Completed",
+  "title": "P0本体锚补齐：AGENTS路由与PHASE_STATUS/knowledge欠账清零"
+}

@@ -16,6 +16,7 @@ from typing import Any, Iterable
 from jsonschema import Draft202012Validator, FormatChecker
 
 PHASES = ("plan", "do", "check", "act", "archive")
+# 本体是源：映射定义见 ontology:concept/pdca-phase-status，代码仅为投射，改映射先改本体。
 PHASE_STATUS = {
     "plan": ("Pending", True),
     "do": ("InProgress", True),
@@ -23,7 +24,8 @@ PHASE_STATUS = {
     "act": ("Completed", True),
     "archive": ("Completed", False),
 }
-PROTECTED_PREFIXES = ("records", "knowledge", "pdca/journal")
+# ontology/ 为唯一知识载体：已删除不存在的 knowledge/ 保护（T2046，见 ontology:concept/knowledge-artifact）。
+PROTECTED_PREFIXES = ("records", "pdca/journal")
 ACCEPTANCE_HEADING = "## 验收标准"
 ACCEPTANCE_CHECKBOX = re.compile(r"^- \[[ xX]\] ")
 

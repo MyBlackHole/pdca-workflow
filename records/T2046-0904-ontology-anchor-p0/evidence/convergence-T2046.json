@@ -1,0 +1,17 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "AGENTS路由已修：4处缺失引用归零且可重跑",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["do-record"]
+    },
+    {
+      "index": 2,
+      "text": "本体锚欠账已清：PHASE_STATUS与knowledge二选一落地且门禁可检",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["do-record"]
+    }
+  ]
+}

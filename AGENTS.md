@@ -24,10 +24,10 @@
 ## 权威入口
 
 - 阶段流程：`$PDCA_HOME/ontology/process/flow-plan.md`、`$PDCA_HOME/ontology/process/flow-do.md`、`$PDCA_HOME/ontology/process/flow-check.md`、`$PDCA_HOME/ontology/process/flow-act.md`
-- 阶段转换：`$PDCA_HOME/ontology/domain/skill-advance-phase.md`
-- 任务拆解：`$PDCA_HOME/ontology/domain/skill-to-tickets.md`
-- 追问与对齐：`$PDCA_HOME/ontology/domain/skill-grilling.md`
-- 证据登记：`$PDCA_HOME/ontology/domain/skill-register-evidence.md`
+- 阶段转换：`$PDCA_HOME/ontology/domain/pdca/skill-advance-phase.md`
+- 任务拆解：`$PDCA_HOME/ontology/domain/pdca/skill-to-tickets.md`
+- 追问与对齐：`$PDCA_HOME/ontology/domain/pdca/skill-grilling.md`
+- 证据登记：`$PDCA_HOME/ontology/domain/pdca/skill-register-evidence.md`
 - 结论与日志：`write-conclusion`、`write-journal`
 - 完整技能索引：`$PDCA_HOME/SKILLS-INDEX.md`
 - 环境自检：`python3 "$PDCA_HOME/scripts/pdca-doctor.py" --json`
