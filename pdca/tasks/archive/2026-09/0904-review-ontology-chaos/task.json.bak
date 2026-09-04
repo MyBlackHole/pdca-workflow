@@ -1,0 +1,46 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T2045",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "本体信息全量审计已产：8桶/5域/426节点按完整度/可检性/孤岛三维分级且可重跑",
+      "混乱根因与分级清单已产：问题分级+根因定位+影响面，且每项含文件行级Source",
+      "整改路线图已产：P0本体结构/P1门禁对齐/P2增量规范三级，每级含repair策略与testable_signal模板",
+      "模板束缚已评且归一：四模板束缚四级评级+根因归一为本体不完整，含对比与松绑建议",
+      "全量本体化已产：模板/知识/事实全量本体化规范已产且纳入8桶版本与门禁，创造性经本体完整性释放可检",
+      "本体到代码已溯：py文件与PDCA本体对应矩阵已产，代码无私设本体，本体到代码单向可检"
+    ],
+    "completed_at": "2026-09-04T15:26:31+08:00",
+    "created_at": "2026-09-04T15:11:35+08:00",
+    "disposition": {
+      "at": "2026-09-04T15:28:50+08:00",
+      "outcome": "projected",
+      "reason": "ontology:concept/pdca-architecture 已归一：知识/事实/模板全量本体化+本体到代码单向，8桶路由与门禁闭环为架构约束，后续补本体即释创造性"
+    },
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "act",
+    "record": "T2045-0904-review-ontology-chaos",
+    "scenario_type": "research",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "7 AC 全通过：430 nodes审计+四类清单+ P0/P1/P2路线+模板束缚归一+全量本体化+本体到代码单向，6 mermaid 29 file: Source",
+      "at": "2026-09-04T15:28:12+08:00",
+      "verdict_id": "v2045-confirmed"
+    }
+  },
+  "parent": null,
+  "slug": "0904-review-ontology-chaos",
+  "states": {
+    "act": "2026-09-04T15:28:37+08:00",
+    "archive": null,
+    "check": "2026-09-04T15:26:31+08:00",
+    "created": "2026-09-04T15:11:35+08:00",
+    "do": "2026-09-04T15:12:22+08:00",
+    "plan": "2026-09-04T15:11:35+08:00"
+  },
+  "status": "Completed",
+  "title": "本体信息混乱审查：8桶全量审计与本体到代码单向溯源"
+}

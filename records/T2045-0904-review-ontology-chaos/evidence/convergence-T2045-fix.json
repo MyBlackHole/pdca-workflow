@@ -1,0 +1,66 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "本体信息全量审计已产：8桶/5域/426节点按完整度/可检性/孤岛三维分级且可重跑",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "research-report"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "混乱根因与分级清单已产：问题分级+根因定位+影响面，且每项含文件行级Source",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "research-report"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "整改路线图已产：P0本体结构/P1门禁对齐/P2增量规范三级，每级含repair策略与testable_signal模板",
+      "criteria": [
+        "AC-3",
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "research-report"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "模板束缚已评且归一：四模板束缚四级评级+根因归一为本体不完整，含对比与松绑建议",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "research-report"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "全量本体化已产：模板/知识/事实全量本体化规范已产且纳入8桶版本与门禁，创造性经本体完整性释放可检",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "research-report"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "本体到代码已溯：py文件与PDCA本体对应矩阵已产，代码无私设本体，本体到代码单向可检",
+      "criteria": [
+        "AC-7"
+      ],
+      "evidence_ids": [
+        "research-report"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{"at": "2026-09-04T15:11:35+08:00", "source": "grilling", "round": 1, "question": "审查范围", "response": "审查本体信息（ontology全量，不含任务记录）", "captured": true, "summary": "frontier 1: 本体信息全量，排除任务记录"}
+{"at": "2026-09-04T15:11:35+08:00", "source": "grilling", "round": 1, "question": "产出形态", "response": "A 审查报告 research-report.md + mermaid + Source", "captured": true, "summary": "frontier 2A 产出A"}
+{"at": "2026-09-04T15:11:35+08:00", "source": "grilling", "round": 1, "question": "判定标准", "response": "A 严格门禁对齐（gate_issues/validate/islands/pdca-doctor）", "captured": true, "summary": "frontier 3A 标准A"}
+{"at": "2026-09-04T15:11:35+08:00", "source": "grilling", "round": 1, "question": "沉淀处置", "response": "A 回沉 ontology:concept/pdca-task 等本体节点", "captured": true, "summary": "frontier 4A 沉淀A"}
+{"at": "2026-09-04T15:11:35+08:00", "source": "grilling", "round": 1, "question": "边界排除", "response": "不审查任务记录（records/pdca/tasks）", "captured": true, "summary": "frontier 5 排除任务记录，Grill Round1 全按推荐/确认，Never zero-touch 满足"}
+{"at": "2026-09-04T15:11:35+08:00", "source": "final_confirmation", "response": "confirmed", "summary": "Grilling Round1 5/5 captured:true，research本体审查范围/产出/标准/沉淀/排除已对齐，PRD已产，请求转Do"}
+{"at": "2026-09-04T15:15:00+08:00", "source": "grilling", "round": 2, "question": "模板指向", "response": "A 全部模板（prd/task/skill/8桶 frontmatter 全审）", "captured": true, "summary": "Round2 1A 全部模板"}
+{"at": "2026-09-04T15:15:00+08:00", "source": "grilling", "round": 2, "question": "限制表征", "response": "a填空化+b门禁过严为主因，c词汇收敛为次因", "captured": true, "summary": "Round2 2 a+b 主 c次"}
+{"at": "2026-09-04T15:15:00+08:00", "source": "grilling", "round": 2, "question": "判定标尺", "response": "A 对比实验（模板约束 vs 无模板多样性/覆盖度/HITL）", "captured": true, "summary": "Round2 3A 对比实验"}
+{"at": "2026-09-04T15:15:00+08:00", "source": "grilling", "round": 2, "question": "产出期望", "response": "A 束缚度四级评级+3条松绑策略", "captured": true, "summary": "Round2 4A 评级+松绑"}
+{"at": "2026-09-04T15:15:00+08:00", "source": "grilling", "round": 2, "question": "根因归一", "response": "创造性可通过本体完整性处理，本体不完整为根因，补本体即释创造性", "captured": true, "summary": "Round2 5 用户洞察：本体完整性释创造性，模板束缚根因归一为本体缺口"}
+{"at": "2026-09-04T15:18:00+08:00", "source": "grilling", "round": 3, "question": "模板本体化", "response": "四模板需本体化为ontology节点，纳入版本与门禁", "captured": true, "summary": "Round3 模板本体化：prd/task/skill/8桶 frontmatter 纳入本体，模板演进即本体演进，已采纳"}
+{"at": "2026-09-04T15:20:00+08:00", "source": "grilling", "round": 4, "question": "全量本体化", "response": "所有知识与事实都进行本体处理，知识/事实全量本体化为唯一事实源", "captured": true, "summary": "Round4 全量本体化：模板/知识/事实全量纳入本体，补完整性即释创造性，顶层归一"}
+{"at": "2026-09-04T15:22:00+08:00", "source": "grilling", "round": 5, "question": "本体到代码单向", "response": "py 文件没有与PDCA本体对应，必须由本体到代码，不允许现有代码再有私设本体", "captured": true, "summary": "Round5 本体到代码单向：scripts/*.py ↔ 本体溯源，代码不得私设本体，本体是源代码是投射，已采纳为AC-7"}
+{"source":"check_confirmation","summary":"Check Grill Round1 3/3 确认：1 单向性按81引用判据 2 沉淀归pdca-architecture 3 松绑仅建议，Never zero-touch 满足，verdict confirmed","response":"confirmed","at":"2026-09-04T15:28:12+08:00"}
