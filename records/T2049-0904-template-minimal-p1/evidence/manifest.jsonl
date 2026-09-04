@@ -1,0 +1,2 @@
+{"id":"do-record","file":"t2049-do.md","kind":"test-result","size":896,"digest":"sha256:f21a87f8396b704b93821f3b65bcd409cd67bf707ce73a37718656a2082524f1","at":"2026-09-04T16:10:52+08:00","criteria":["AC-1","AC-2"],"evidence_type_ref":"ontology:entity/evidence-test-result"}
+{"id":"convergence-map","file":"convergence-T2049.json","kind":"convergence-map","size":372,"digest":"sha256:05d990e1e3e25983db27487d772d499f3d26335217b6c77a911b8e73a653bd8a","at":"2026-09-04T16:10:53+08:00","criteria":["AC-1","AC-2"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

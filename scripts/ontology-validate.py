@@ -39,6 +39,12 @@ RELATION_KEYS = (
 )
 TYPE_VOCAB = {"domain", "entity", "concept", "process", "role",
               "pattern", "principle", "pitfall", "fact", "decision"}
+# ontology:concept/template-minimal：自由扩展注释块内跳过正文扫描（frontmatter 三件套校验不受影响）。
+TEMPLATE_EXEMPT_RE = re.compile(r"<!--\s*template-exempt\s*-->.*?<!--\s*/template-exempt\s*-->", re.DOTALL)
+
+
+def strip_template_exempt(text: str) -> str:
+    return TEMPLATE_EXEMPT_RE.sub("", text)
 KNOWLEDGE_VOCAB = {"pattern", "principle", "pitfall", "fact", "decision"}
 DOMAIN_VOCAB = {"domain", "entity", "concept", "process", "role"}
 # README §5 声明 configured_by 的 range 唯一为 TLSConfiguration 节点
@@ -333,7 +339,7 @@ def check_knowledge_refs(root: Path) -> list:
     if not ont_dir.is_dir():
         return issues
     for md in sorted(ont_dir.rglob("*.md")):
-        text = md.read_text(encoding="utf-8")
+        text = strip_template_exempt(md.read_text(encoding="utf-8"))
         # Match knowledge/ as a path reference (not the word "knowledge" in general)
         matches = re.findall(r'(?<![\w-])knowledge/', text)
         if matches:

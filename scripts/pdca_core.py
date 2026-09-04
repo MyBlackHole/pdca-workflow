@@ -27,6 +27,7 @@ PHASE_STATUS = {
 # ontology/ 为唯一知识载体：已删除不存在的 knowledge/ 保护（T2046，见 ontology:concept/knowledge-artifact）。
 PROTECTED_PREFIXES = ("records", "pdca/journal")
 ACCEPTANCE_HEADING = "## 验收标准"
+FREE_EXTENSION_HEADING = "## 自由扩展"
 ACCEPTANCE_CHECKBOX = re.compile(r"^- \[[ xX]\] ")
 
 
@@ -212,11 +213,12 @@ def acceptance_criteria(task_dir: Path) -> tuple[list[str], list[Issue]]:
                           "create prd.md with a section headed '## 验收标准' containing one '- [ ] AC-x: ...' checkbox per criterion")]
     in_section = False
     criteria: list[str] = []
+    # ontology:concept/template-minimal：自由扩展节不参与 AC 解析（发散区非验收区）。
     for line in prd.read_text(encoding="utf-8").splitlines():
         if line == ACCEPTANCE_HEADING:
             in_section = True
             continue
-        if in_section and line.startswith("## "):
+        if in_section and (line.startswith("## ") or line == FREE_EXTENSION_HEADING):
             break
         if in_section and ACCEPTANCE_CHECKBOX.match(line):
             criteria.append(f"AC-{len(criteria) + 1}")

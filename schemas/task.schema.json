@@ -149,6 +149,12 @@
           "type": ["string", "null"],
           "description": "任务锚定的本体元概念节点 id（默认 ontology:concept/pdca-task），使任务表达挂接本体图谱、消费 pdca-task 元概念的不变量"
         },
+        "extensions": {
+          "type": "object",
+          "description": "自由扩展区（ontology:concept/template-minimal）：供 AI 发散假设与新概念先行，门禁跳过其内容校验",
+          "additionalProperties": true,
+          "default": {}
+        },
         "steps": {
           "type": "array",
           "description": "技能/流程的可执行步骤序列",

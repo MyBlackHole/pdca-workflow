@@ -1,0 +1,7 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "最小模板本体已产：三件套约束+扩展区规范可检", "criteria": ["AC-1"], "evidence_ids": ["do-record"]},
+    {"index": 2, "text": "双投射已落地：extensions自由对象+自由扩展节+豁免标记，三检可过", "criteria": ["AC-2"], "evidence_ids": ["do-record"]}
+  ]
+}

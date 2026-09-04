@@ -1,0 +1,7 @@
+{"at":"2026-09-04T16:02:51+08:00","source":"task_identity","summary":"created with record identity T2049-0904-template-minimal-p1"}
+{"at": "2026-09-04T16:04:30+08:00", "source": "grilling", "round": 1, "question": "自由对象形态", "response": "A 自由对象：meta.extensions全自由，门禁跳过内容", "captured": true, "summary": "Round1 1A extensions自由对象"}
+{"at": "2026-09-04T16:04:30+08:00", "source": "grilling", "round": 1, "question": "豁免标记语法", "response": "A HTML注释块：template-exempt起止标记，validate跳过块内", "captured": true, "summary": "Round1 2A 注释块豁免"}
+{"at": "2026-09-04T16:04:30+08:00", "source": "grilling", "round": 1, "question": "PRD自由节地位", "response": "A 不纳入AC：自由扩展节不参与acceptance解析", "captured": true, "summary": "Round1 3A 自由节非AC"}
+{"at": "2026-09-04T16:04:30+08:00", "source": "grilling", "round": 1, "question": "skill是否同批", "response": "A 不同批：仅task.json+prd+validate，skill后续", "captured": true, "summary": "Round1 4A 范围最小，Never zero-touch满足"}
+{"source":"final_confirmation","summary":"Grilling Round1 4/4 captured:true（1A自由对象 2A注释豁免 3A自由节非AC 4A范围最小），PRD已产，子任务T2050/T2051已拆，请求转Do","response":"confirmed","at":"2026-09-04T16:05:04+08:00"}
+{"source":"check_confirmation","summary":"Check确认：结论2 AC对照do-record/convergence-map全过，verdict confirmed；Grill Round1 4/4 captured:true，Never zero-touch满足","response":"confirmed","at":"2026-09-04T16:11:33+08:00"}
