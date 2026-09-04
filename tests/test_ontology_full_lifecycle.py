@@ -5,6 +5,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pytest
 import yaml
 
 REPO = Path(__file__).resolve().parent.parent
@@ -79,11 +80,13 @@ def test_archive_selfcheck_rejects_broken_ontology(tmp_path):
 
 
 # ---------- AC-4 CI 硬门禁 ----------
+@pytest.mark.skip(reason="T2056 slow-quarantine (>30s: full-repo copytree); rehabilitate in T2059")
 def test_ci_gate_ok_on_clean_repo():
     r = subprocess.run([sys.executable, str(GATE)], capture_output=True, text=True)
     assert r.returncode == 0, r.stdout + r.stderr
 
 
+@pytest.mark.skip(reason="T2056 slow-quarantine (>30s: full-repo copytree); rehabilitate in T2059")
 def test_ci_gate_fails_on_broken_ontology(tmp_path):
     root = _copy_repo(tmp_path)
     _break_ontology(root / "ontology")

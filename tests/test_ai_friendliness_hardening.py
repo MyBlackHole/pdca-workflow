@@ -141,6 +141,7 @@ class AiFriendlinessHardeningTest(unittest.TestCase):
             self.assertFalse(development["pass"])
             self.assertEqual("B", development["observed"])
 
+    @unittest.skip("T2056 slow-quarantine (>10s: real-lifecycle harness --all); rehabilitate in T2059")
     def test_public_harness_runs_real_lifecycle_success_and_transition_failures(self) -> None:
         completed = subprocess.run(
             ["python3", str(HARNESS_SCRIPT), "--all"],

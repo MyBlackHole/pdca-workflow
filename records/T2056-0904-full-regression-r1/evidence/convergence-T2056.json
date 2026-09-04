@@ -1,0 +1,7 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "回归矩阵已产：pytest全量+门禁合成+旧任务抽检结果可重跑", "criteria": ["AC-1"], "evidence_ids": ["do-record"]},
+    {"index": 2, "text": "红项已清或已立案：全绿或红项转bugfix切片可检", "criteria": ["AC-2"], "evidence_ids": ["do-record"]}
+  ]
+}

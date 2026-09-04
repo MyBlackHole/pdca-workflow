@@ -1,0 +1,7 @@
+{"at":"2026-09-04T16:25:41+08:00","source":"task_identity","summary":"created with record identity T2056-0904-full-regression-r1"}
+{"at": "2026-09-04T16:27:11+08:00", "source": "grilling", "round": 1, "question": "pytest范围", "response": "A 全量：pytest tests/ -x -q", "captured": true, "summary": "Round1 1A pytest全量"}
+{"at": "2026-09-04T16:27:11+08:00", "source": "grilling", "round": 1, "question": "旧任务抽检", "response": "A 三新任务：T2046/T2049/T2052重跑validate-convergence", "captured": true, "summary": "Round1 2A 三新抽检"}
+{"at": "2026-09-04T16:27:11+08:00", "source": "grilling", "round": 1, "question": "红项策略", "response": "A 阈值制：≤3就地修，>3立案转bugfix", "captured": true, "summary": "Round1 3A 阈值制"}
+{"at": "2026-09-04T16:27:11+08:00", "source": "grilling", "round": 1, "question": "产出", "response": "A 报告+结论：test-result证据+conclusion，立案附单号", "captured": true, "summary": "Round1 4A 报告结论，Never zero-touch满足"}
+{"source":"final_confirmation","summary":"Grilling Round1 4/4 captured:true（1A全量 2A三新 3A阈值 4A报告结论），PRD已产，子任务T2057/T2058已拆，请求转Do","response":"confirmed","at":"2026-09-04T16:27:35+08:00"}
+{"source":"check_confirmation","summary":"Check确认：结论2 AC对照do-record/convergence-map全过，verdict confirmed；Grill Round1 4/4 captured:true，Never zero-touch满足","response":"confirmed","at":"2026-09-04T17:05:13+08:00"}

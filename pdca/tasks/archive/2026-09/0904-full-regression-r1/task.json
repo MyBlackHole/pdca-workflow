@@ -1,0 +1,45 @@
+{
+  "children": [
+    "T2057",
+    "T2058"
+  ],
+  "dependencies": [],
+  "id": "T2056",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "回归矩阵已产：pytest全量+门禁合成+旧任务抽检结果可重跑",
+      "红项已清或已立案：全绿或红项转bugfix切片可检"
+    ],
+    "created_at": "2026-09-04T16:25:41+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "archive",
+    "record": "T2056-0904-full-regression-r1",
+    "scenario_type": "review",
+    "completed_at": "2026-09-04T16:52:27+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "2 AC全过：441回归矩阵+零新增回归对照+104红立案T2059+5慢测隔离",
+      "at": "2026-09-04T17:05:13+08:00",
+      "verdict_id": "v2056-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:concept/pdca-architecture 回归规范已沉淀：慢非卡结论+基线对照方法+慢测隔离口径，104红立案T2059",
+      "at": "2026-09-04T17:05:29+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0904-full-regression-r1",
+  "states": {
+    "act": "2026-09-04T17:05:16+08:00",
+    "archive": "2026-09-04T17:05:55+08:00",
+    "check": "2026-09-04T16:52:27+08:00",
+    "created": "2026-09-04T16:25:41+08:00",
+    "do": "2026-09-04T16:27:42+08:00",
+    "plan": "2026-09-04T16:25:41+08:00"
+  },
+  "status": "Completed",
+  "title": "R1全量回归：pytest+门禁合成+旧任务抽检"
+}

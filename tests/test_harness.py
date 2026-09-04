@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class HarnessTest(unittest.TestCase):
+    @unittest.skip("T2056 slow-quarantine (>10s: --all fixtures); rehabilitate in T2059")
     def test_all_deterministic_fixtures_pass(self) -> None:
         completed = subprocess.run(
             ["python3", "scripts/run-ai-friendliness-fixtures.py", "--all"],

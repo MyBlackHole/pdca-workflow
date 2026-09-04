@@ -68,6 +68,9 @@ RULE_IDS = [
     "ontology:concept/ontology-rule-attr-testable",
     "ontology:concept/ontology-rule-richness",
     "ontology:concept/ontology-rule-guides-range",
+    "ontology:concept/ontology-rule-fidelity-generic",
+    "ontology:concept/ontology-rule-fidelity-body",
+    "ontology:concept/ontology-rule-fidelity-diagram",
 ]
 
 def _ensure_rules(tmp: Path) -> None:

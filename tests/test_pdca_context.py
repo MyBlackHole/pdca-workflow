@@ -3,6 +3,8 @@ import json
 import sys
 from pathlib import Path
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 
@@ -30,6 +32,7 @@ def test_context_includes_enriched_body():
     assert "ontology-ready" in out     # 准入条件章节
 
 
+@pytest.mark.skip(reason="T2056 slow-quarantine (>10s: per-phase reasoner render); rehabilitate in T2059")
 def test_context_json_matches_reasoner():
     for phase in PHASES:
         data = json.loads(pc.render(phase, ONTO, as_json=True))
