@@ -26,7 +26,7 @@ CANDIDATES = [
     {
         "id": "c2",
         "title": "Collapse duplicated step patterns",
-        "files": ["ontology/process/flow-do.md", "ontology/process/flow-check/SKILL.md"],
+        "files": ["ontology/process/flow-do.md", "ontology/process/flow-check.md"],
         "problem": "Same step text repeated",
         "solution": "One shared reference doc",
         "benefits": "Single source of truth",

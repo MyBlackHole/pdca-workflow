@@ -130,12 +130,12 @@ class DesignVocabContractTest(unittest.TestCase):
 
 class TicketDagDocumentContractTest(unittest.TestCase):
     def test_to_tickets_mentions_dependencies_and_ready_set(self) -> None:
-        text = (ROOT / "ontology/domain/skill-to-tickets.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/domain/pdca/skill-to-tickets.md").read_text(encoding="utf-8")
         self.assertIn("dependencies", text)
         self.assertIn("ready-set", text)
 
     def test_design_it_twice_skill_exists(self) -> None:
-        skill = ROOT / "ontology/domain/skill-design-it-twice.md"
+        skill = ROOT / "ontology/domain/pdca/skill-design-it-twice.md"
         self.assertTrue(skill.is_file())
         text = skill.read_text(encoding="utf-8")
         for term in ("module", "interface", "seam", "adapter", "depth"):

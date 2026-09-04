@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 import ontology_tree_split as ots
 
-SKILL = ROOT / "skills" / "to-tickets" / "SKILL.md"
+SKILL = ROOT / "ontology" / "domain" / "pdca" / "skill-to-tickets.md"
 SPEC = ROOT / "templates" / "to-spec" / "SPEC.md"
 
 

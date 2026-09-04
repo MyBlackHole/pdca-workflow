@@ -1,0 +1,7 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "skills布局簇全绿：目标测试重跑通过且FileNotFoundError清零", "criteria": ["AC-1"], "evidence_ids": ["do-record"]},
+    {"index": 2, "text": "flows布局簇全绿且无新增红：目标重跑通过且全量失败只减不增", "criteria": ["AC-2"], "evidence_ids": ["do-record"]}
+  ]
+}

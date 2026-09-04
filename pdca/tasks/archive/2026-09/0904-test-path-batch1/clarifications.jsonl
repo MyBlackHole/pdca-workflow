@@ -1,0 +1,6 @@
+{"at":"2026-09-04T17:07:34+08:00","source":"task_identity","summary":"created with record identity T2060-0904-test-path-batch1"}
+{"at": "2026-09-04T17:09:22+08:00", "source": "grilling", "round": 1, "question": "修法", "response": "A 改测试侧：夹具跟随T2036迁移，被测代码无辜", "captured": true, "summary": "Round1 1A 改测试侧"}
+{"at": "2026-09-04T17:09:22+08:00", "source": "grilling", "round": 1, "question": "范围", "response": "A 仅路径簇：FileNotFoundError约30个，同文件其它红留后批", "captured": true, "summary": "Round1 2A 仅路径簇"}
+{"at": "2026-09-04T17:09:22+08:00", "source": "grilling", "round": 1, "question": "验收", "response": "A 双检：目标簇全绿+全量无新增红", "captured": true, "summary": "Round1 3A 双检，Never zero-touch满足"}
+{"source":"final_confirmation","summary":"Grilling Round1 3/3 captured:true（1A改测试侧 2A仅路径簇 3A双检），PRD已产（2AC），子任务T2061/T2062已拆，convergence对齐2AC，请求转Do","response":"confirmed","at":"2026-09-04T17:09:54+08:00"}
+{"source":"check_confirmation","summary":"Check确认：结论AC-1/AC-2均为部分达成（路径清零但8内容残留回T2059），verdict partial；Grill Round1 3/3 captured:true，Never zero-touch满足","response":"partial","at":"2026-09-04T17:39:30+08:00"}

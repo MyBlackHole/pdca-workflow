@@ -13,9 +13,9 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SKILL_DIAG = ROOT / "ontology/domain/skill-diagnosing-bugs.md"
-SKILL_ANALYSIS = ROOT / "ontology/domain/skill-bug-analysis.md"
-SKILL_COMMIT = ROOT / "ontology/domain/skill-bug-commit-format.md"
+SKILL_DIAG = ROOT / "ontology/domain/pdca/skill-diagnosing-bugs.md"
+SKILL_ANALYSIS = ROOT / "ontology/domain/pdca/skill-bug-analysis.md"
+SKILL_COMMIT = ROOT / "ontology/domain/pdca/skill-bug-commit-format.md"
 FLOW_DO = ROOT / "ontology/process/flow-do.md"
 SCHEMA = ROOT / "schemas/clarification.schema.json"
 CLI = ROOT / "scripts/append-confirmation.py"

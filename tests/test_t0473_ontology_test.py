@@ -23,6 +23,6 @@ def test_t0473_scaffold_generates():
     data = json.loads(mp.read_text())
     assert data["node_id"] == NODE
 def test_t0473_strategy_linked():
-    txt = pathlib.Path("ontology/domain/skill-testing-strategy.md").read_text()
+    txt = pathlib.Path("ontology/domain/pdca/skill-testing-strategy.md").read_text()
     assert "ontology_test_scaffold.py" in txt
     assert "testable-signal-to-test-derivation" in txt

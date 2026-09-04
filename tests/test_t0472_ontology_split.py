@@ -12,7 +12,7 @@ def test_t0472_node_specializes():
     assert fm["type"] == "entity"
     assert "ontology:concept/domain-entity" in fm["relations"]["specializes"]
 def test_t0472_skill_default_tree():
-    txt = pathlib.Path("ontology/domain/skill-to-tickets.md").read_text()
+    txt = pathlib.Path("ontology/domain/pdca/skill-to-tickets.md").read_text()
     assert "关系树驱动拆分（默认，叶→根）" in txt
     assert "默认启用" in txt
     # T0484 硬化后为报错退出，不再回退

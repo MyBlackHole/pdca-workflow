@@ -10,7 +10,7 @@ ONT_DIR = pathlib.Path("ontology")
 def test_attr_ontology_deep_integration_overview_signals_non_generic():
     """属性断言：testable_signal 非空且非泛化（AC-4 补充）"""
     import yaml
-    fm = yaml.safe_load(pathlib.Path("ontology/domain/ontology-deep-integration-overview.md").read_text().split("---")[1])
+    fm = yaml.safe_load(pathlib.Path("ontology/domain/pdca/ontology-deep-integration-overview.md").read_text().split("---")[1])
     for attr in (fm.get("attributes") or []):
         sig = str(attr.get("testable_signal",""))
         assert sig.strip(), f"{attr.get('name')} 缺 testable_signal"

@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-MERGE_SKILL = ROOT / "skills" / "resolving-merge-conflicts" / "SKILL.md"
+MERGE_SKILL = ROOT / "ontology" / "domain" / "pdca" / "skill-resolving-merge-conflicts.md"
 
 
 def git(repo: Path, *args: str) -> str:

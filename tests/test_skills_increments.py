@@ -20,7 +20,7 @@ class SkillsIncrementsTest(unittest.TestCase):
     """T0265 落地 mattpocock/skills 三个可证明增量——结构契约测试。"""
 
     def read_skill(self, name: str) -> str:
-        path = ROOT / "skills" / name / "SKILL.md"
+        path = ROOT / "ontology" / "domain" / "pdca" / f"skill-{name}.md"
         self.assertTrue(path.is_file(), f"missing skill file: {path}")
         return path.read_text(encoding="utf-8")
 

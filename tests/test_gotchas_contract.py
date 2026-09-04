@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SCRIPT = ROOT / "scripts" / "check-skill-structure.py"
-SKILLS_DIR = ROOT / "skills"
+SKILLS_DIR = ROOT / "ontology" / "domain" / "pdca"
 PYTHON = sys.executable
 
 GOTCHAS_HEADERS = ("## 已知坑", "## Gotchas")
@@ -50,7 +50,7 @@ def scan_payload() -> dict:
 
 def test_core_skills_gotchas_reference_sources():
     for skill, tokens in CORE_SKILLS_SOURCES.items():
-        p = SKILLS_DIR / skill / "SKILL.md"
+        p = SKILLS_DIR / f"skill-{skill}.md"
         assert p.exists(), f"缺 {skill}/SKILL.md"
         body = gotchas_body(p)
         assert body, f"{skill} 缺 gotchas 段"
@@ -65,7 +65,7 @@ def test_core_skills_source_targets_exist():
     records = ROOT / "records"
     archive = ROOT / "pdca" / "tasks" / "archive" / "2026-08"
     for skill in CORE_SKILLS_SOURCES:
-        p = SKILLS_DIR / skill / "SKILL.md"
+        p = SKILLS_DIR / f"skill-{skill}.md"
         body = gotchas_body(p)
         targets = re.findall(r"T02\d\d", body)
         assert targets, f"{skill} gotchas 段无记录 id 引用"

@@ -13,7 +13,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 SCRIPT = "scripts/out-of-scope-manager.py"
-TRIAGE = ROOT / "skills" / "triage-work" / "SKILL.md"
+TRIAGE = ROOT / "ontology" / "domain" / "pdca" / "skill-triage-work.md"
 
 
 class OutOfScopeManagerTest(unittest.TestCase):

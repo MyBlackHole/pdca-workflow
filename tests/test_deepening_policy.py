@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-DESIGN_SKILL = ROOT / "skills" / "design-it-twice" / "SKILL.md"
+DESIGN_SKILL = ROOT / "ontology" / "domain" / "pdca" / "skill-design-it-twice.md"
 
 # 依赖分类 → 测试策略的确定性决策表（与 skill 文档契约一致）
 DEPENDENCY_POLICY = {

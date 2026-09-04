@@ -95,7 +95,7 @@ class GrillingDocumentContractTest(unittest.TestCase):
     """文档契约：技能与 flow 引用必须与批量问法一致（AC-1、AC-2、AC-6）。"""
 
     def test_grilling_skill_batch_semantics(self) -> None:
-        text = (ROOT / "ontology/domain/skill-grilling.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/domain/pdca/skill-grilling.md").read_text(encoding="utf-8")
         self.assertIn("frontier", text)
         self.assertIn("round", text)
         # 不再要求"一次只问一个 / 从不批量"
@@ -109,11 +109,11 @@ class GrillingDocumentContractTest(unittest.TestCase):
         self.assertNotIn("一次只问一个", text)
 
     def test_flow_check_reference_synced(self) -> None:
-        text = (ROOT / "ontology/process/flow-check/SKILL.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/process/flow-check.md").read_text(encoding="utf-8")
         self.assertIn("grilling", text)
 
     def test_round_shared_within_batch_semantics_documented(self) -> None:
-        text = (ROOT / "ontology/domain/skill-grilling.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/domain/pdca/skill-grilling.md").read_text(encoding="utf-8")
         self.assertIn("round", text)
 
 
@@ -123,16 +123,16 @@ class SourceConsistencyContractTest(unittest.TestCase):
     """
 
     def test_grilling_skill_uses_grilling_source(self) -> None:
-        text = (ROOT / "ontology/domain/skill-grilling.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/domain/pdca/skill-grilling.md").read_text(encoding="utf-8")
         self.assertIn('source: "grilling"', text)
 
     def test_flow_act_uses_grilling_source(self) -> None:
-        text = (ROOT / "ontology/process/flow-act/SKILL.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/process/flow-act.md").read_text(encoding="utf-8")
         self.assertIn('source: "grilling"', text)
         self.assertNotIn('source: "grill"', text)
 
     def test_flow_check_uses_grilling_source(self) -> None:
-        text = (ROOT / "ontology/process/flow-check/SKILL.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/process/flow-check.md").read_text(encoding="utf-8")
         self.assertIn('source: "grilling"', text)
         self.assertNotIn('source: "grill"', text)
 
@@ -142,7 +142,7 @@ class SourceConsistencyContractTest(unittest.TestCase):
         self.assertNotIn('source: "grill"', text)
 
     def test_no_old_grill_source_anywhere(self) -> None:
-        for rel in ("ontology/process/flow-act/SKILL.md", "ontology/process/flow-check/SKILL.md", "ontology/process/flow-plan.md"):
+        for rel in ("ontology/process/flow-act.md", "ontology/process/flow-check.md", "ontology/process/flow-plan.md"):
             text = (ROOT / rel).read_text(encoding="utf-8")
             self.assertNotIn('"grill"', text, f"{rel} 残留旧的 source: grill")
 
@@ -178,7 +178,7 @@ class Ac1BatchVerificationTest(unittest.TestCase):
         self.assertGreater(sequential_bytes / batch_bytes, 1.0)
 
     def test_ac1_flow_act_cites_three_questions(self) -> None:
-        text = (ROOT / "ontology/process/flow-act/SKILL.md").read_text(encoding="utf-8")
+        text = (ROOT / "ontology/process/flow-act.md").read_text(encoding="utf-8")
         for q in self.AC1_QUESTIONS:
             self.assertIn(q, text)
 
