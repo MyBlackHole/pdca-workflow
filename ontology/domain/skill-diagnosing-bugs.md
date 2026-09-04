@@ -75,7 +75,22 @@ Format — two-sided prediction: "If X is the cause, then changing Y will make t
 
 Each probe maps to one prediction. Change one variable at a time. Prefer debugger/REPL over logging. Tag every debug log with a unique prefix (`[DEBUG-xxxx]`). For perf: baseline measurement first, bisect second.
 
+## Phase 4.5 — Fix Approval（修复前用户确认门禁）
+
+**硬门禁：未获用户书面确认，不得进入 Phase 5 改代码。**
+
+- 向用户展示：已验证假设/根因（区分假设/设计错误、实现/环境错误、流程/证据遗漏三类，根因≠现象）、修复方案、回归测试计划、影响范围、回滚策略
+- 获用户明确确认后，用 CLI 落盘（`captured:true`，时间戳由 CLI 生成）：
+  ```bash
+  python3 "$PDCA_HOME/scripts/append-confirmation.py" --task-dir <task-dir> --source fix_confirmation --response confirmed --summary "<根因+方案+影响范围>"
+  ```
+- `fix_confirmation:confirmed` 未落盘前，禁止任何代码修改；`rejected` 则返回 Phase 3 重做假设
+
+科学依据：HITL Approval-Gate 模式（Agent 做事、Human 做决策）与 Zeller 科学调试法（假设→预测→实验→结论）的 Fix 前确认点；2-3 个战略门禁优于全量门禁，避免审批疲劳。
+
 ## Phase 5 — Fix + regression test
+
+**前置**：`clarifications.jsonl` 中 `fix_confirmation:confirmed` 已存在（`captured:true`）。
 
 Write regression test at the correct seam (one that exercises the real bug pattern). Watch it fail → apply fix → watch it pass → re-run original Phase 1 loop.
 
@@ -95,3 +110,4 @@ Bug fixed, regression test added, hypothesis recorded.
 ## 已知坑
 
 - 先复现再修复；无复现条件下乱改代码会引入回归且无法验证。
+- 未获 `fix_confirmation:confirmed` 就改代码属绕过门禁；存量任务缺确认由 `flow_audit` 记 `fix-confirmation` WARN 留痕，不阻断但须补录。

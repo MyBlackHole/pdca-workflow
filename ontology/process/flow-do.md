@@ -43,6 +43,8 @@ Do 阶段按 `meta.scenario_type` 路由到相应 agent skill 执行，是 PDCA 
 - **销毁清理安全**（详 `ontology:concept/destructive-cleanup-safety`）：可恢复清理须 dry-run 生成精确清单并固定恢复源为删除前不可变 commit（不引用会漂移的 HEAD）；apply 前重新验证每个目标仍处允许删除状态，任一漂移/越界/不可恢复则整批失败关闭。
 - **全局仓库配置**（详 `ontology:concept/pdca-home`）：`$PDCA_HOME` 为第一优先级；仅含 `ontology/process/flow-plan.md` 的目录为有效 workflow 仓库；外部项目经 `scripts/init-external.sh` 初始化。
 
+## 路径 A：development（软件功能开发）
+
 确认预先约定的 Seam
 先写失败的行为测试
 再写最小实现
@@ -50,16 +52,15 @@ Do 阶段按 `meta.scenario_type` 路由到相应 agent skill 执行，是 PDCA 
 所有切片完成后运行项目支持的全量验证
 进入双轴代码审查
 
+## 路径 B：bugfix（Bug 修复）
+
 确认回归 Seam
 先复现并写出失败的回归测试
+确认修复方案
 再做最小修复
 完成每个修复切片后运行定向回归测试或 typecheck
 所有修复切片完成后运行项目支持的全量验证
 进入双轴代码审查
-
-## 路径 A：development（软件功能开发）
-
-## 路径 B：bugfix（Bug 修复）
 
 ## 路径 C：research（需求调研/技术调研）
 

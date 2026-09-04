@@ -24,6 +24,13 @@
       }
     },
     {
+      "if": {"properties": {"source": {"const": "fix_confirmation"}}, "required": ["source"]},
+      "then": {
+        "required": ["summary", "response"],
+        "properties": {"response": {"enum": ["confirmed", "rejected"]}}
+      }
+    },
+    {
       "if": {"properties": {"source": {"const": "user_decision"}}, "required": ["source"]},
       "then": {
         "required": ["summary", "response", "decision"],

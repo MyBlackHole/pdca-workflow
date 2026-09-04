@@ -64,6 +64,7 @@ def execution_contract() -> dict:
                 "phases": [
                     {"id": "seam", "marker": "确认回归 Seam"},
                     {"id": "red", "marker": "先复现失败"},
+                    {"id": "fix-approval", "marker": "确认修复方案"},
                     {"id": "minimal-change", "marker": "最小修复"},
                     {"id": "focused-verification", "marker": "定向回归验证"},
                     {"id": "full-verification", "marker": "全量验证"},
@@ -97,6 +98,7 @@ description: execution fixture flow
 
 确认回归 Seam
 先复现失败
+确认修复方案
 最小修复
 定向回归验证
 全量验证
@@ -105,10 +107,10 @@ description: execution fixture flow
 
 
 def make_execution_root(root: Path) -> None:
-    (root / "ontology/process/flow-plan").mkdir(parents=True)
+    (root / "ontology/process/flow-plan").mkdir(parents=True, exist_ok=True)
     (root / "ontology/process/flow-plan.md").write_text("# plan\n", encoding="utf-8")
     flow = root / "ontology/process/flow-do.md"
-    flow.parent.mkdir(parents=True)
+    flow.parent.mkdir(parents=True, exist_ok=True)
     flow.write_text(execution_document(), encoding="utf-8")
     shutil.copytree(ROOT / "schemas", root / "schemas", dirs_exist_ok=True)
     (root / "pdca").mkdir(parents=True, exist_ok=True)

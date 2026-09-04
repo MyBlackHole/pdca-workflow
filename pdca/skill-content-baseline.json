@@ -14,8 +14,8 @@
     },
     {
       "file": "ontology/process/flow-do.md",
-      "bytes": 4747,
-      "reason": "T0379 lever cleanup and T0380 dialogue-log pointer at Z4; path migrated from ontology/process/flow-do.md; added route anchors and execution markers"
+      "bytes": 4771,
+      "reason": "T0542 bugfix 增加 fix-approval 标记（确认修复方案），对应 ai-execution-contract bugfix 新增 fix-approval phase"
     },
     {
       "file": "ontology/process/flow-plan.md",
@@ -34,13 +34,13 @@
     },
     {
       "file": "ontology/domain/skill-bug-analysis.md",
-      "bytes": 765,
-      "reason": "Initial baseline"
+      "bytes": 2633,
+      "reason": "T0542 修正根因模板：科学方法内核、双向预测、根因≠现象追到代码/配置/流程三类、增加 fix_confirmation 门禁"
     },
     {
       "file": "ontology/domain/skill-bug-commit-format.md",
-      "bytes": 684,
-      "reason": "Initial baseline"
+      "bytes": 1964,
+      "reason": "T0542 修正根因铁律：区分三类根因且与诊断假设一致，未获 fix_confirmation 不得提交"
     },
     {
       "file": "ontology/domain/skill-build-config.md",
@@ -79,8 +79,8 @@
     },
     {
       "file": "ontology/domain/skill-diagnosing-bugs.md",
-      "bytes": 3908,
-      "reason": "T0243 enhancement adds D1-D6 (Redact safety, explicit no-loop stop, non-determinism guidance, HITL template reference, post-mortem architecture handoff, CONTEXT prereq + two-sided hypotheses) with contract tests; necessity documented in PRD CC-2"
+      "bytes": 6394,
+      "reason": "T0542 增加 Phase 4.5 Fix Approval 门禁（fix_confirmation:confirmed 方可改代码），HITL+科学调试依据"
     },
     {
       "file": "ontology/domain/skill-domain-modeling-work.md",

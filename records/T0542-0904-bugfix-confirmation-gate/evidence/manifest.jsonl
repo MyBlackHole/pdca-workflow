@@ -1,0 +1,4 @@
+{"id":"ac1-gate","file":"t0542-ac1-evidence.md","kind":"test","size":1722,"digest":"sha256:411e3588acfc8e3857ce9d5bae654f97bdf967c26fdaae8dc84be482136eaf1d","at":"2026-09-04T09:47:24+08:00","criteria":["AC-1"]}
+{"id":"ac2-rootcause","file":"t0542-ac2-evidence.md","kind":"test","size":1452,"digest":"sha256:e9c117c58a2a98908a33f970f68ab1a2dcd9e14326fb02638adf2ee3d42ad5cb","at":"2026-09-04T09:47:25+08:00","criteria":["AC-2"]}
+{"id":"ac3-gate-tests","file":"t0542-ac3-evidence.md","kind":"test","size":1563,"digest":"sha256:07728f4e8b55bd34d978350e4d8bc90c8f7a28f48957fe66e42d33ce3b15755a","at":"2026-09-04T09:47:25+08:00","criteria":["AC-3"]}
+{"id":"convergence-map","file":"t0542-convergence.json","kind":"convergence-map","size":561,"digest":"sha256:1a273fdf221d71172374e6ae23ede186103bb9a8ba03659fbced4fc2a42b67c0","at":"2026-09-04T09:47:29+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

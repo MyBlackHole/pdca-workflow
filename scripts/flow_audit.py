@@ -150,6 +150,14 @@ def _plan_checks(root: Path, task_dir: Path, task: dict[str, Any]) -> list[dict[
 
 
 def _do_checks(root: Path, task_dir: Path, task: dict[str, Any]) -> list[dict[str, Any]]:
+    # HITL fix-confirmation gate (audit only, non-blocking for存量兼容): bugfix 需 fix_confirmation:confirmed
+    entries_for_fix, _ = clarification_issues(root, task_dir)
+    fix_issues: list[dict[str, str]] = []
+    if task.get("meta", {}).get("scenario_type") == "bugfix":
+        if not any(entry.get("source") == "fix_confirmation" and entry.get("response") == "confirmed" for entry in entries_for_fix):
+            fix_issues.append(
+                _issue("FIX_CONFIRMATION_MISSING", "clarifications.jsonl", "fix_confirmation:confirmed is required before code fix (HITL gate, audit WARN)")
+            )
     evidence = evidence_issues(root, task)
     registration_codes = {"RECORD_MISSING", "RECORD_PATH_INVALID", "EVIDENCE_MANIFEST_MISSING", "EVIDENCE_MANIFEST_INVALID", "EVIDENCE_EMPTY", "EVIDENCE_FILE_MISSING"}
     integrity_codes = {
@@ -200,6 +208,7 @@ def _do_checks(root: Path, task_dir: Path, task: dict[str, Any]) -> list[dict[st
         _check("ac-coverage", "every PRD acceptance criterion has non-map evidence", coverage),
         _check("evidence-integrity", "evidence size and SHA-256 match the manifest", integrity),
         _check("convergence-map", "Plan convergence maps to criteria and evidence", convergence),
+        _check("fix-confirmation", "bugfix has fix_confirmation before code change (HITL gate)", fix_issues),
     ]
 
 

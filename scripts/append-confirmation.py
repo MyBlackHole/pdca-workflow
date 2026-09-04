@@ -18,7 +18,7 @@ from pathlib import Path
 
 from pdca_core import load_jsonl, repo_root, schema_issues
 
-CONFIRMATION_SOURCES = ("final_confirmation", "check_confirmation", "direction_confirm")
+CONFIRMATION_SOURCES = ("final_confirmation", "check_confirmation", "direction_confirm", "fix_confirmation")
 RESPONSES = ("confirmed", "rejected", "partial")
 
 
@@ -53,6 +53,8 @@ def main() -> int:
 
     if args.source == "final_confirmation" and args.response != "confirmed":
         parser.error("--response must be 'confirmed' for final_confirmation")
+    if args.source == "fix_confirmation" and args.response not in ("confirmed", "rejected"):
+        parser.error("--response must be 'confirmed' or 'rejected' for fix_confirmation")
 
     entry: dict = {
         "source": args.source,

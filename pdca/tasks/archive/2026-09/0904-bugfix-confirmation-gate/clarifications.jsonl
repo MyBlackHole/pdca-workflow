@@ -1,0 +1,8 @@
+{"at":"2026-09-04T09:30:00+08:00","source":"task_identity","summary":"created with record identity T0542-0904-bugfix-confirmation-gate"}
+{"round":1,"q":"Q1 - fix_confirmation 落盘内容是否要求包含根因+修复方案+影响范围三要素？","a":"是，按档 B 要求三要素齐全方可进入修复","recommended":"是，三要素齐全","source":"grilling","at":"2026-09-04T09:31:00+08:00","captured":true,"status":"resolved"}
+{"round":1,"q":"Q2 - 存量 bugfix 任务无 fix_confirmation 是否阻断 do→check？","a":"不阻断，仅 flow_audit 记 WARN/issue 留痕，兼容存量","recommended":"不阻断，仅审计","source":"grilling","at":"2026-09-04T09:31:00+08:00","captured":true,"status":"resolved"}
+{"round":1,"q":"Q3 - 根因模板修正是否需与 diagnosing-bugs 双向预测一致且区分三类根因？","a":"是，bug-analysis 与 bug-commit-format 均改为：根因≠现象，区分假设/设计错误、实现/环境错误、流程/证据遗漏，且与诊断假设一致","recommended":"是，三类区分且与诊断一致","source":"grilling","at":"2026-09-04T09:31:00+08:00","captured":true,"status":"resolved"}
+{"round":1,"q":"Q4 - 是否在 flow-do 与 ai-execution-contract 中同步增加 fix-approval 标记？","a":"是，flow-do 路径 B 与 contract 同步增加，便于 grep 审计","recommended":"是，同步增加","source":"grilling","at":"2026-09-04T09:31:00+08:00","captured":true,"status":"resolved"}
+{"source":"final_confirmation","summary":"确认档B方案与科学方法论一致：fix_confirmation门禁+HITL+科学调试三类根因","response":"confirmed","at":"2026-09-04T09:36:00+08:00"}
+{"source":"fix_confirmation","summary":"根因：Do内无修复前确认门禁导致直接改代码；方案：档B fix_confirmation+HITL+科学调试三类根因；影响：diagnosing-bugs/bug-analysis/bug-commit-format/flow-do/contract/audit","response":"confirmed","at":"2026-09-04T09:46:47+08:00"}
+{"source":"check_confirmation","summary":"Check 结论已审阅：三 AC 均达成，门禁与根因模板符合预期，同意进入 Act","response":"confirmed","at":"2026-09-04T09:47:54+08:00"}

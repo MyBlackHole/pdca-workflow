@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "诊断到修复的确认门禁已落地且可审计（AC-1）",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["ac1-gate"]
+    },
+    {
+      "index": 2,
+      "text": "根因模板已修正且与诊断结论一致（AC-2）",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["ac2-rootcause"]
+    },
+    {
+      "index": 3,
+      "text": "全量门禁与契约测试通过（AC-3）",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["ac3-gate-tests"]
+    }
+  ]
+}

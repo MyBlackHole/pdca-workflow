@@ -48,16 +48,8 @@
         "phases": {
           "type": "array",
           "minItems": 6,
-          "maxItems": 6,
-          "prefixItems": [
-            {"allOf": [{"$ref": "#/$defs/phase"}, {"properties": {"id": {"const": "seam"}}}]},
-            {"allOf": [{"$ref": "#/$defs/phase"}, {"properties": {"id": {"const": "red"}}}]},
-            {"allOf": [{"$ref": "#/$defs/phase"}, {"properties": {"id": {"const": "minimal-change"}}}]},
-            {"allOf": [{"$ref": "#/$defs/phase"}, {"properties": {"id": {"const": "focused-verification"}}}]},
-            {"allOf": [{"$ref": "#/$defs/phase"}, {"properties": {"id": {"const": "full-verification"}}}]},
-            {"allOf": [{"$ref": "#/$defs/phase"}, {"properties": {"id": {"const": "code-review"}}}]}
-          ],
-          "items": false
+          "maxItems": 7,
+          "items": {"$ref": "#/$defs/phase"}
         },
         "receipt_policy": {"$ref": "#/$defs/receipt_policy"}
       },
@@ -81,6 +73,7 @@
           "enum": [
             "seam",
             "red",
+            "fix-approval",
             "minimal-change",
             "focused-verification",
             "full-verification",
@@ -115,6 +108,7 @@
       "enum": [
         "seam",
         "red",
+        "fix-approval",
         "minimal-change",
         "focused-verification",
         "full-verification",

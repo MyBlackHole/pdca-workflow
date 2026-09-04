@@ -26,6 +26,7 @@
       "phases": [
         {"id": "seam", "marker": "确认回归 Seam"},
         {"id": "red", "marker": "先复现并写出失败的回归测试"},
+        {"id": "fix-approval", "marker": "确认修复方案"},
         {"id": "minimal-change", "marker": "再做最小修复"},
         {"id": "focused-verification", "marker": "完成每个修复切片后运行定向回归测试或 typecheck"},
         {"id": "full-verification", "marker": "所有修复切片完成后运行项目支持的全量验证"},

@@ -24,6 +24,15 @@ PHASE_IDS = (
     "full-verification",
     "code-review",
 )
+BUGFIX_PHASE_IDS = (
+    "seam",
+    "red",
+    "fix-approval",
+    "minimal-change",
+    "focused-verification",
+    "full-verification",
+    "code-review",
+)
 RECEIPT_POLICY = {
     "slice": ["focused-verification"],
     "final": ["full-verification", "code-review"],
@@ -92,7 +101,8 @@ def load_contract(root: Path) -> dict[str, Any]:
         raise ExecutionError("EXECUTION_CONTRACT_INVALID", f"{CONTRACT_PATH}/routes", "route anchors must be unique")
     for index, route in enumerate(routes):
         phase_ids = [phase["id"] for phase in route["phases"]]
-        if phase_ids != list(PHASE_IDS):
+        expected = list(BUGFIX_PHASE_IDS if route["scenario"] == "bugfix" else PHASE_IDS)
+        if phase_ids != expected:
             raise ExecutionError(
                 "EXECUTION_CONTRACT_INVALID",
                 f"{CONTRACT_PATH}/routes/{index}/phases",

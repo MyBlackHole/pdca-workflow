@@ -1,0 +1,43 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0542",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "诊断到修复的确认门禁已落地且可审计（AC-1）",
+      "根因模板已修正且与诊断结论一致（AC-2）",
+      "全量门禁与契约测试通过（AC-3）"
+    ],
+    "created_at": "2026-09-04T09:30:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology/domain",
+    "phase": "act",
+    "record": "T0542-0904-bugfix-confirmation-gate",
+    "scenario_type": "bugfix",
+    "completed_at": "2026-09-04T09:47:33+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "三 AC 均达成，门禁可审计、根因模板一致、契约通过",
+      "verdict_id": "V0542",
+      "at": "2026-09-04T09:47:55+08:00"
+    },
+    "disposition": {
+      "outcome": "task_only",
+      "reason": "ontology:domain/skill-diagnosing-bugs, ontology:domain/skill-bug-analysis, ontology:domain/skill-bug-commit-format, ontology:process/flow-do 已沉淀；流程机制修复无新增实体",
+      "at": "2026-09-04T09:48:10+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0904-bugfix-confirmation-gate",
+  "states": {
+    "act": "2026-09-04T09:48:09+08:00",
+    "archive": null,
+    "check": "2026-09-04T09:47:33+08:00",
+    "created": "2026-09-04T09:30:00+08:00",
+    "do": "2026-09-04T09:39:03+08:00",
+    "plan": "2026-09-04T09:30:00+08:00"
+  },
+  "status": "Completed",
+  "title": "Bug修复流程增加修复前用户确认门禁并修正根因模板"
+}
