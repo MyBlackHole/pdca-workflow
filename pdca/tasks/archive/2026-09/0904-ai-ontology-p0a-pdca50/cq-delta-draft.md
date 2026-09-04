@@ -52,7 +52,7 @@ grep -q "disjoint" ontology/process/flow-*.md && echo "disjoint ok"
 ## 机审冷启动（disjointness）
 
 - **补**：`Plan/Do/Check/Act` 四阶段 `owl:disjointWith` + `Grilling/Triage` 互斥（`disjoint.ttl`，4 三元组）
-- **验**：`podman batch load→stats` → `79 classes/154 triples`（`pdca 50` + `disjoint`），`validate` 0 错，`islands:0` 保持
+- **验**：`validate` 0 错，`islands:0` 保持
 - **Source**: `file: pdca/tasks/0904-ai-ontology-p0a-pdca50/disjoint.ttl:1` `file: /tmp/pdca-50-disjoint.ttl:1`
 
 ## 人定量化（Round 2 4 问采样）
