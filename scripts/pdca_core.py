@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 """Strict PDCA validation primitives shared by repository scripts.
-
-Storage mode (T2036): primary = open-ontologies (Oxigraph, podman), md = provenance snapshot only.
-Validate via `podman run ghcr.io/fabio-rovai/open-ontologies validate`.
 """
 
 from __future__ import annotations
