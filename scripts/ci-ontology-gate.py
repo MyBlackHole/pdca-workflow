@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-architecture（提交级共享门禁）；本体是源、代码是投射。
 """CI / git-hook 共享门禁：ontology-validate + scenario双层 + production六维 + 相关任务收敛校验。
 
 退出码 0 = 通过；非 0 = 阻断。供 `.git/hooks/pre-commit` 与

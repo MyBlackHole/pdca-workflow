@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-continuous-improvement（backlog 查询）；本体是源、代码是投射。
 """Query compact Flow Issue backlog summaries or expand one issue's events."""
 
 from __future__ import annotations

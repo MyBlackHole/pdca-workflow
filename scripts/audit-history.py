@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-architecture（非严格任务保护清单）；本体是源、代码是投射。
 """Create and apply protected manifests for strict-schema-incompatible tasks."""
 
 from __future__ import annotations

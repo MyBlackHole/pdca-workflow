@@ -101,7 +101,7 @@ Source: `ontology/domain/ai-efficiency-ai-execution-and-invocation-contracts.md:
 
 ```bash
 # 反例：泛化signal不可证伪
-# testable_signal: "检查本文件内容完整性，且经 validate 校验"
+# testable_signal: "运行 grep -q 'AI 执行与技能调用合约' ontology/domain/pdca/ai-efficiency-ai-execution-and-invocation-contracts.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
 # 错：无可执行动词，无法自动证伪偏离
 # 正确：运行 grep -q 'capability-protocol' ontology/concept/capability...
 ```

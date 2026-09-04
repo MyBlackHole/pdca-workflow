@@ -1,0 +1,8 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "py溯源已清：43零引用分类归零或豁免标注可检", "criteria": ["AC-1"], "evidence_ids": ["do-record"]},
+    {"index": 2, "text": "桩节点已改：自指式signal改写为真可回归且门禁全过", "criteria": ["AC-2"], "evidence_ids": ["do-record"]},
+    {"index": 3, "text": "子单已明确：四子单留plan追踪保留（先例一致），工作落实父证据，无独立推进义务", "criteria": ["AC-3"], "evidence_ids": ["do-record"]}
+  ]
+}

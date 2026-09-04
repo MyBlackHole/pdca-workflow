@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-continuous-improvement（Flow Issue 治理回执）；本体是源、代码是投射。
 """Record a user-confirmed immutable Flow Issue governance decision."""
 
 from __future__ import annotations

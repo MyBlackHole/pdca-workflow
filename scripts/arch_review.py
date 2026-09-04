@@ -1,4 +1,5 @@
 """架构审查辅助工具：git 热点定位与 HTML 报告渲染。
+# NO-ONTOLOGY-INFRA[T2053]：通用 git 热点统计与 HTML 渲染，与 PDCA 领域无关。
 
 - `hotspots(root, *, days, limit)`：按近 N 天 git log 文件变更频次返回高变更路径。
 - `render_html(candidates, *, metrics, title)`：生成自包含 HTML（Tailwind + Mermaid）。

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/skill-invocation（调用别名与类型边）；本体是源、代码是投射。
 """Resolve and validate skill entry aliases and typed invocation edges."""
 
 from __future__ import annotations

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/skill-invocation（skill 结构契约）；本体是源、代码是投射。
 """PDCA skill 结构契约检查器（T0267）。
 
 对 `ontology/domain/skill-*.md` 全量执行结构契约检查，融合 Anthropic skill authoring

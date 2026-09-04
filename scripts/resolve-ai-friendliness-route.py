@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:domain/ai-efficiency-ai-friendliness-review-methodology（Do 路径机读路由）；本体是源、代码是投射。
 """Resolve the machine-readable Do-path contract without parsing Markdown."""
 
 from __future__ import annotations

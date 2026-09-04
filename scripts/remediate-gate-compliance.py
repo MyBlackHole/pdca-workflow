@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-architecture（门禁异常修复）；本体是源、代码是投射。
 """门禁合规存量修复器（T0271，第七轮）。
 
 对 T0270 审计发现的门禁异常执行安全修复：

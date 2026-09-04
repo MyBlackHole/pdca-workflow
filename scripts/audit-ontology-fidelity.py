@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/meta-ontology（保真度七检）；本体是源、代码是投射。
 """Audit ontology fidelity: seven-checklist scoring + severity, produce report.
 
 Usage:

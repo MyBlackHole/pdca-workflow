@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:process/flow-plan（任务全量校验）；本体是源、代码是投射。
 """Validate a strict PDCA task or every active/archived task."""
 
 from __future__ import annotations

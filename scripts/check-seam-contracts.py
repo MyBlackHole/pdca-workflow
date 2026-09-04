@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:process/flow-do（仓库级接缝门禁）；本体是源、代码是投射。
 """仓库级 seam 契约门禁：批量校验活跃任务 spec 的 seam 声明。
 
 对 pdca/tasks/（不含 archive/）下所有含 `### 声明的测试接缝` 子节的

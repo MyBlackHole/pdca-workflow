@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-ai-friendly-confirmation（确认时间戳真值）；本体是源、代码是投射。
 """Append one confirmation entry to clarifications.jsonl with a real timestamp.
 
 Why this exists: AI agents hand-writing ISO timestamps fabricate them (observed

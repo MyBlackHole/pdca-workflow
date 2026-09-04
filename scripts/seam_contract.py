@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:process/flow-do（声明接缝契约验证）；本体是源、代码是投射。
 """PRD seam 契约验证。
 
 解析 spec 的 `### 声明的测试接缝` 子节中的 `- seam: <测试文件> -> <被测模块>`

@@ -1,0 +1,47 @@
+{
+  "children": [
+    "T2053",
+    "T2054",
+    "T2055"
+  ],
+  "dependencies": [],
+  "id": "T2052",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "py溯源已清：43零引用分类归零或豁免标注可检",
+      "桩节点已改：自指式signal改写为真可回归且门禁全过",
+      "子单已明确：四子单留plan追踪保留（先例一致），工作落实父证据，无独立推进义务"
+    ],
+    "created_at": "2026-09-04T16:13:53+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "act",
+    "record": "T2052-0904-trace-stub-p2",
+    "scenario_type": "development",
+    "completed_at": "2026-09-04T16:23:24+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "3 AC全过：43py双轨+106桩全改+子单tracking保留，四检全过",
+      "at": "2026-09-04T16:24:01+08:00",
+      "verdict_id": "v2052-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:concept/template-minimal 首个规模化应用：双轨豁免语义与回溯口径落地，43py+106桩+子单明确",
+      "at": "2026-09-04T16:24:13+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0904-trace-stub-p2",
+  "states": {
+    "act": "2026-09-04T16:24:04+08:00",
+    "archive": null,
+    "check": "2026-09-04T16:23:24+08:00",
+    "created": "2026-09-04T16:13:53+08:00",
+    "do": "2026-09-04T16:15:08+08:00",
+    "plan": "2026-09-04T16:13:53+08:00"
+  },
+  "status": "Completed",
+  "title": "P2溯源与桩清偿：43py分类归零+桩改写+子单闭环"
+}

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:process/flow-plan（相邻阶段回滚）；本体是源、代码是投射。
 """Restore the adjacent strict phase from the transition backup."""
 
 from __future__ import annotations

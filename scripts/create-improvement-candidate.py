@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-continuous-improvement（改进候选 dry-run）；本体是源、代码是投射。
 """Create a dry-run Flow Improvement candidate without changing any task."""
 
 from __future__ import annotations

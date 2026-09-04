@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-task（任务身份重分配）；本体是源、代码是投射。
 """ID 撞车全链路重分配器（T0274）。
 
 为历史遗留的重复 task_id 撞车组执行全链路重分配：

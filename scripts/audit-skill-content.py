@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/knowledge-artifact（flow/skill 内容度量）；本体是源、代码是投射。
 """Measure reproducible, dependency-light flow/skill content metrics."""
 
 from __future__ import annotations

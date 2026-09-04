@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/grilling-methodology（批量问法轮数实证）；本体是源、代码是投射。
 """grilling 批量问法真实轮数统计演示。
 
 读取任务目录的 clarifications.jsonl，按 round 字段统计"批量问法"实际使用的

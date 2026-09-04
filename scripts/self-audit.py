@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-architecture（体系健康度聚合）；本体是源、代码是投射。
 """PDCA 体系健康度自我审查聚合器。
 
 聚合四类信号（doctor 一致性 / identity 唯一性 / seam 契约 / 门禁覆盖率），

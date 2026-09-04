@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-continuous-improvement（候选晋级正式任务）；本体是源、代码是投射。
 """Create a strict Plan-phase Improvement Task from an authorized candidate."""
 
 from __future__ import annotations

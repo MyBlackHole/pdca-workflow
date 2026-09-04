@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-architecture（技能索引路由防谎）；本体是源、代码是投射。
 """Generate stable JSON and Markdown indexes from flow/skill frontmatter."""
 
 from __future__ import annotations

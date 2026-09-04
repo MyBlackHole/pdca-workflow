@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:domain/skill-design-it-twice（接口设计词汇契约）；本体是源、代码是投射。
 """design-it-twice 词汇契约校验器。
 
 校验 design-it-twice 技能产出的接口设计文档只允许词汇表术语

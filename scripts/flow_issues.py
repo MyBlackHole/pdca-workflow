@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-continuous-improvement（Flow Issue 存储原语）；本体是源、代码是投射。
 """Shared strict storage primitives for Flow Issue CLI commands."""
 
 from __future__ import annotations

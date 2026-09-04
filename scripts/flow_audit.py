@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-architecture（转换级符合性审计）；本体是源、代码是投射。
 """Non-blocking, transition-level PDCA conformance audit."""
 
 from __future__ import annotations

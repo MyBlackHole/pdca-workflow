@@ -86,7 +86,7 @@ Source: `ontology/domain/ai-efficiency-lever-audit-limits.md:1` + `scripts/ontol
 
 ```bash
 # 反例：泛化signal不可证伪
-# testable_signal: "检查本文件内容完整性，且经 validate 校验"
+# testable_signal: "运行 grep -q '杠杆体检的局限：机器粗筛 + 人工定性' ontology/domain/pdca/ai-efficiency-lever-audit-limits.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
 # 错：无可执行动词，无法自动证伪偏离
 # 正确：运行 grep -q 'lever' ontology/domain/ai-efficiency-lever-audit...
 ```

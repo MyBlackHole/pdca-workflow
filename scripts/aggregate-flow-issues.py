@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-continuous-improvement（Flow Issue backlog 投影）；本体是源、代码是投射。
 """Build the deterministic Flow Issue backlog projection."""
 
 from __future__ import annotations

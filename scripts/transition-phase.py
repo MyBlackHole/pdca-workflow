@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:process/flow-plan（阶段原子推进与语义门禁）；本体是源、代码是投射。
 """Atomically transition one strict PDCA task after semantic gate validation."""
 
 from __future__ import annotations

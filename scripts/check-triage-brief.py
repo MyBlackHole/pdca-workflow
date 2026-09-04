@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/triage（brief 字段契约与采用率）；本体是源、代码是投射。
 """triager-brief 采用度检查器（T0268）。
 
 解析 `triager-brief.md`（AGENT-BRIEF 产出），断言核心字段契约，并对历史

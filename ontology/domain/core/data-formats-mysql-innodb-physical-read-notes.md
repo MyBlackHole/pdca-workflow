@@ -20,7 +20,7 @@ attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: "检查本文件内容完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空且不含泛化短语"
+  testable_signal: "运行 grep -q 'MySQL InnoDB 物理直读 → Parquet 工程要点' ontology/domain/core/data-formats-mysql-innodb-physical-read-notes.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
 ---
 
 

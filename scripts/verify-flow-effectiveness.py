@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-continuous-improvement（效果 verdict 冻结输入）；本体是源、代码是投射。
 """Write a frozen-input Flow Improvement effectiveness verdict."""
 
 from __future__ import annotations

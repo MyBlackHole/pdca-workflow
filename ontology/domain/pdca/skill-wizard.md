@@ -23,7 +23,7 @@ attributes:
   - name: applicability
     desc: 人才可执行的置备/迁移/切换向导
     constraint: 仅当步骤必须由人类在外部控制台/凭证/网络中操作时触发；agent可自执行的步骤不走wizard
-    testable_signal: "检查本文件内容完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空且不含泛化短语"
+    testable_signal: "运行 grep -q 'Wizard — HTIL 向导' ontology/domain/pdca/skill-wizard.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
   - name: library_identical
     desc: 向导库区identical
     constraint: template.sh 的 STAGES marker 以上 library 区与上游 identical，不手改；仅改STAGES区

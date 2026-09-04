@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/frontier（可答前沿独立验证）；本体是源、代码是投射。
 """to-tickets blocking edges 的 ready-set / DAG 独立验证工具。
 
 从 stdin 读 {task_id: [直接前置 task_id 列表]} JSON，输出 ready-set

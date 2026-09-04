@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:domain/ai-efficiency-ai-execution-and-invocation-contracts（测试优先执行契约）；本体是源、代码是投射。
 """Resolve and verify the test-first execution contract without parsing intent."""
 
 from __future__ import annotations

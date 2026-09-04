@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/capability-protocol（能力探针与引用诊断）；本体是源、代码是投射。
 """Diagnose repository discovery, references, dependencies, and abstract capabilities."""
 
 from __future__ import annotations

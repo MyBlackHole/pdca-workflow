@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-architecture（门禁合规审计）；本体是源、代码是投射。
 """PDCA 门禁合规审计器（T0270，第六轮）。
 
 扫描全量任务（archive/active/根目录），采集门禁要素覆盖：

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/meta-ontology（引用深度判定树）；本体是源、代码是投射。
 """Check ontology reference depth for instances.
 
 Validates that the link depth between instances and ontology nodes

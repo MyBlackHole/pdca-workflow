@@ -20,7 +20,7 @@ attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: "检查本文件内容完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空且不含泛化短语"
+  testable_signal: "运行 grep -q 'PG 100M 物理直读回归：FROZEN hint-bit 误判根因与修复（AC-10）' ontology/domain/core/data-formats-t0250-mysql-parquet-physical-evidence-ac10-pg-100m-frozen-fix.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
 ---
 
 

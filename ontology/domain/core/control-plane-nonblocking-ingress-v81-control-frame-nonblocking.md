@@ -20,7 +20,7 @@ attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: "检查本文件内容完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空且不含泛化短语"
+  testable_signal: "运行 grep -q '控制面非阻塞 ingress + 共享 work 池（v81 经验）' ontology/domain/core/control-plane-nonblocking-ingress-v81-control-frame-nonblocking.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
 ---
 
 

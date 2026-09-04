@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:domain/skill-wayfinder（决策票认领状态机）；本体是源、代码是投射。
 """Wayfinder ticket claim 状态机（T0265）。
 
 维护 wayfinding 决策票的认领状态，防止并发 session 重复处理同一张票。

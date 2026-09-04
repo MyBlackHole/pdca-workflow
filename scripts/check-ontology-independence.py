@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/meta-ontology（独立性判据）；本体是源、代码是投射。
 """检查本体独立性：domain/pattern 是否可脱离 records 独立理解。
 
 判据（按本体重构教训 T0539）：

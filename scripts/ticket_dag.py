@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/blocking-edges（依赖图与 ready-set）；本体是源、代码是投射。
 """to-tickets blocking edges 依赖图与 ready-set 计算。
 
 提供可复用的纯函数：从 task.id -> {直接前置 task.id} 映射计算 ready-set

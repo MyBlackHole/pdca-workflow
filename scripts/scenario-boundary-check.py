@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-scenario-boundary-rule（场景归属判定）；本体是源、代码是投射。
 """场景归属边界判定检查器（T0273）。
 
 解决 research/development 场景归属无机械判定手段的问题。判定标准：

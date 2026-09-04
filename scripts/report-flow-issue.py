@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-continuous-improvement（occurrence 上报接缝）；本体是源、代码是投射。
 """Report one immutable Flow Issue occurrence through the public CLI seam."""
 
 from __future__ import annotations

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/triage（决策兑现回读）；本体是源、代码是投射。
 """triager-brief 决策兑现回读器（T0269，第五轮）。
 
 从 `triager-brief.md` 提取关键决策（推荐方向 / 已验证问题 / 信息缺口 / 风险），

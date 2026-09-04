@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 本体投射[T2053]：ontology:concept/pdca-continuous-improvement（反馈环确定性夹具）；本体是源、代码是投射。
 """Run deterministic public-CLI fixtures for the Flow Issue feedback loop."""
 
 from __future__ import annotations
