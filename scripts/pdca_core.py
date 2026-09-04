@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Strict PDCA validation primitives shared by repository scripts."""
+"""Strict PDCA validation primitives shared by repository scripts.
+
+Storage mode (T2036): primary = open-ontologies (Oxigraph, podman), md = provenance snapshot only.
+Validate via `podman run ghcr.io/fabio-rovai/open-ontologies validate`.
+"""
 
 from __future__ import annotations
 
@@ -474,6 +478,21 @@ def task_issues(root: Path, task_dir: Path, include_phase_requirements: bool = T
             manifest = root / "records" / str(record_id) / "evidence" / "manifest.jsonl"
             if not manifest.is_file() or not manifest.read_text(encoding="utf-8").strip():
                 issues.append(Issue("DISPOSITION_RECORDS_ONLY_EMPTY", "/meta/disposition", "records-only 须有 evidence/manifest.jsonl 非空"))
+
+    # P1-2：journal 硬门禁（act→archive 需 journal 含 T{id}，绝不兼容旧数据）
+    if phase == "archive":
+        task_id_j = task.get("id", "")
+        journal_found = False
+        for jp in (root / "pdca" / "journal").glob("*.md"):
+            try:
+                if task_id_j in jp.read_text(encoding="utf-8"):
+                    journal_found = True
+                    break
+            except:
+                continue
+        if not journal_found:
+                issues.append(Issue("JOURNAL_MISSING", "pdca/journal", f"journal entry for {task_id_j} not found (act→archive requires journal with T{{id}})", "append to pdca/journal/YYYY-MM-DD.md via skill-write-journal"))
+
     return issues
 
 
@@ -583,6 +602,39 @@ def gate_issues(root: Path, task_dir: Path) -> tuple[str | None, list[Issue]]:
     if phase == "plan":
         if not _confirmed(entries, "final_confirmation", {"confirmed"}):
             issues.append(Issue("FINAL_CONFIRMATION_MISSING", "clarifications.jsonl", "confirmed response is required"))
+        # Grill 硬门禁：plan 需至少一次 grilling 的 captured:true 或 confirm-or-correct 摘要绑定
+        has_grilling_captured = any(
+            entry.get("source") == "grilling" and entry.get("captured") is True
+            for entry in entries
+        )
+        has_final = any(entry.get("source") == "final_confirmation" and entry.get("response") == "confirmed" for entry in entries)
+        # P0-2：to-tickets 硬门禁（非 research 且 children 为空，绝不兼容旧数据）
+        task_scenario = task.get("meta", {}).get("scenario_type", "")
+        task_children = task.get("children", [])
+        if task_scenario != "research" and not task_children:
+            issues.append(Issue(
+                "TICKETS_MISSING",
+                "task.json/children",
+                "non-research tasks require at least one child ticket (to-tickets not run)",
+                "run skill to-tickets to break down the task or set children explicitly"
+            ))
+        # 若仅有 final_confirmation 而无 grilling 轮次，视为自确认绕过（research/thin 输入的硬门禁由 skill-triage 约束，此处做通用 Never zero-touch 校验）
+        if has_final and not has_grilling_captured:
+            # 检查 final_confirmation 是否携带 grilling 绑定（summary 需显式含 grilling 轮次或 confirm-or-correct 绑定，且非否定表述）
+            has_binding = any(
+                entry.get("source") == "final_confirmation"
+                and any(kw in str(entry.get("summary", "")).lower() for kw in ["grilling round", "grilling 轮", "confirm-or-correct", "frontier empty"])
+                and "无 grill" not in str(entry.get("summary", ""))
+                and "无grill" not in str(entry.get("summary", ""))
+                for entry in entries
+            )
+            if not has_binding:
+                issues.append(Issue(
+                    "GRILLING_MISSING",
+                    "clarifications.jsonl",
+                    "plan requires at least one grilling round with captured:true or explicit confirm-or-correct binding (Never zero-touch)",
+                    "run skill-grilling at least one round, or include grilling summary in final_confirmation; self-written final_confirmation without ledger is blocked"
+                ))
     elif phase == "do":
         if not (task_dir / "prd.md").is_file():
             issues.append(Issue("PRD_MISSING", "prd.md", "PRD is required"))
@@ -597,6 +649,22 @@ def gate_issues(root: Path, task_dir: Path) -> tuple[str | None, list[Issue]]:
             issues.append(Issue("VERDICT_MISSING", "/meta/verdict", "verdict is required"))
         if not _confirmed(entries, "check_confirmation", {"confirmed", "rejected", "partial"}):
             issues.append(Issue("CHECK_CONFIRMATION_MISSING", "clarifications.jsonl", "check confirmation is required"))
+        # P0：check_confirmation 的 Never zero-touch 校验（绝不兼容旧数据）
+        has_check = any(entry.get("source") == "check_confirmation" and entry.get("response") in {"confirmed", "rejected", "partial"} for entry in entries)
+        has_grilling_for_check = any(entry.get("source") == "grilling" and entry.get("captured") is True for entry in entries)
+        if has_check and not has_grilling_for_check:
+            has_check_binding = any(
+                entry.get("source") == "check_confirmation"
+                and any(kw in str(entry.get("summary", "")).lower() for kw in ["grilling", "confirm-or-correct", "frontier", "verdict"])
+                for entry in entries
+            )
+            if not has_check_binding:
+                issues.append(Issue(
+                    "CHECK_GRILLING_MISSING",
+                    "clarifications.jsonl",
+                    "check requires at least one grilling round or explicit binding for verdict (Never zero-touch at Check)",
+                    "run skill-grilling on conclusion/verdict or include grilling summary in check_confirmation"
+                ))
     elif phase == "act":
         if "disposition" not in task["meta"]:
             issues.append(Issue("DISPOSITION_MISSING", "/meta/disposition", "disposition is required"))

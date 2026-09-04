@@ -1,0 +1,4 @@
+# CQ-core-001: 验证 core 模块的完整性
+# Source: ontology/domain/core/*.md
+PREFIX pdca: <http://pdca.local/ontology/>
+ASK { ?s pdca:part_of <http://pdca.local/ontology/domain/core> }

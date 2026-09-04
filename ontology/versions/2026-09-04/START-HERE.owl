@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://pdca.local/ontology/versions/2026-09-04#"
+     xml:base="http://pdca.local/ontology/versions/2026-09-04"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:dcterms="http://purl.org/dc/terms/">
+    <owl:Ontology rdf:about="http://pdca.local/ontology/versions/2026-09-04">
+        <owl:versionIRI rdf:resource="http://pdca.local/ontology/versions/2026-09-04/1.0.0"/>
+        <owl:versionInfo>1.0.0</owl:versionInfo>
+        <dcterms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+        <dcterms:created>2026-09-04</dcterms:created>
+        <owl:imports rdf:resource="http://pdca.local/ontology/domain/pdca"/>
+        <owl:imports rdf:resource="http://pdca.local/ontology/domain/core"/>
+        <owl:imports rdf:resource="http://pdca.local/ontology/domain/zfs"/>
+    </owl:Ontology>
+</rdf:RDF>

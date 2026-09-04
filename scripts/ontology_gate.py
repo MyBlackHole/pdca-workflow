@@ -47,7 +47,10 @@ def ontology_ready_issues(task: dict, root: Path) -> list:
                       f"meta.ontology_fragment 指向不存在路径: {frag}")]
     bad = []
     for md in sorted(frag_path.rglob("*.md")):
-        if md.name == "README.md":
+        if md.name == "README.md" or md.name == "FROZEN.md":
+            continue
+        # 跳过 FAIR 的非本体桶（versions/competency_questions 等）
+        if any(part in ("versions", "competency_questions", "provenance", "documentation") for part in md.parts):
             continue
         text = md.read_text(encoding="utf-8")
         if not text.startswith("---"):
@@ -70,7 +73,12 @@ def ontology_ready_issues(task: dict, root: Path) -> list:
                 bad.append(f"{md.name}: 缺字段 {f}")
         if fm.get("schema") != "pdca.asset/v1":
             bad.append(f"{md.name}: schema 非法")
-        if fm.get("type") != md.parent.name:
+        # 允许 domain 的物理子目录分域（domain/pdca 等），type 仍为 domain
+        expected_type = md.parent.name
+        # 若父目录为 domain 的子域（pdca/zfs 等），期望 type 仍为 domain
+        if md.parent.parent.name == "domain" and md.parent.name in ("pdca", "zfs", "bcachefs", "report-center", "core"):
+            expected_type = "domain"
+        if fm.get("type") != expected_type:
             bad.append(f"{md.name}: type!=目录名")
     if bad:
         return [Issue("ONTOLOGY_FRAGMENT_INVALID", "task.json", "; ".join(bad[:5]))]

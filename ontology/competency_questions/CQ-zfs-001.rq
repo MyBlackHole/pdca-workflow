@@ -1,0 +1,4 @@
+# CQ-zfs-001: 验证 zfs 模块的完整性
+# Source: ontology/domain/zfs/*.md
+PREFIX pdca: <http://pdca.local/ontology/>
+ASK { ?s pdca:part_of <http://pdca.local/ontology/domain/zfs> }

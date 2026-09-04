@@ -91,7 +91,10 @@ def extract_frontmatter(text: str) -> dict:
 def iter_assets(ont_dir: Path):
     for md in sorted(ont_dir.rglob("*.md")):
         rel = md.relative_to(ont_dir)
-        if rel.name == "README.md":
+        if rel.name in ("README.md", "FROZEN.md"):
+            continue
+        # 跳过 FAIR 非本体桶
+        if any(part in ("versions", "competency_questions", "provenance", "documentation") for part in rel.parts):
             continue
         yield md, rel.parts[0], extract_frontmatter(md.read_text(encoding="utf-8"))
 

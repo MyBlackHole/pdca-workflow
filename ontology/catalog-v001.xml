@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <group id="Folder Repository, 1.0" prefer="public" xml:base="">
+    <uri name="http://pdca.local/ontology/domain/pdca" uri="domain/pdca"/>
+    <uri name="http://pdca.local/ontology/domain/core" uri="domain/core"/>
+  </group>
+</catalog>
