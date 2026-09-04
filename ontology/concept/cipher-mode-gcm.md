@@ -4,6 +4,10 @@ id: ontology:concept/cipher-mode-gcm
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/cipher-mode-gcm/1.0.0
 summary: GCM 工作模式（CTR 加密 + GHASH 认证）AEAD 一体、并行、IV 12B 不可重用
 relations:
   specializes:

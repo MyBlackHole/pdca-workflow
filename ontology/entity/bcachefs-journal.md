@@ -4,6 +4,10 @@ id: ontology:entity/bcachefs-journal
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/bcachefs-journal/1.0.0
 summary: bcachefs 日志实体 — jset 环形 bucket、16 种 jset_entry 类型分工、journal_buf 预约环与 pin 追踪及 reclaim
 relations:
   specializes:

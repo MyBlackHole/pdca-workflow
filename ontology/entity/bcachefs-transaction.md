@@ -4,6 +4,10 @@ id: ontology:entity/bcachefs-transaction
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/bcachefs-transaction/1.0.0
 summary: bcachefs Transaction 实体 — btree_trans bump 内存、six 三态锁（read/intent/write+seq 乐观）与 25 种 restart 重试及 journal 并发环
 relations:
   specializes:

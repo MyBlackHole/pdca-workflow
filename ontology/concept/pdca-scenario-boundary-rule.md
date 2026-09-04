@@ -4,6 +4,10 @@ id: ontology:concept/pdca-scenario-boundary-rule
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/pdca-scenario-boundary-rule/1.0.0
 summary: 场景归属边界判定规则（含可测试代码产出→development，纯结论调研→research）
 relations:
   specializes:

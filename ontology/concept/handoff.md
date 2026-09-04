@@ -5,6 +5,10 @@ type: concept
 layer: Knowledge
 summary: 交接：将当前对话紧凑地压缩为交接文档，使另一个 agent 可以继续工作
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/handoff/1.0.0
 relations:
   specializes:
   - ontology:principle

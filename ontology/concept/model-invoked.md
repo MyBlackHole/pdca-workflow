@@ -4,6 +4,10 @@ id: ontology:concept/model-invoked
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/model-invoked/1.0.0
 summary: 模型调用技能：agent 可自主触发，常驻上下文负载
 relations:
   specializes:

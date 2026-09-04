@@ -4,6 +4,10 @@ id: ontology:pattern/scientific-research-arc42
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/scientific-research-arc42/1.0.0
 summary: 科学调研arc42支：12节全架构文档模板（对齐arc42.org）
 relations:
   specializes:

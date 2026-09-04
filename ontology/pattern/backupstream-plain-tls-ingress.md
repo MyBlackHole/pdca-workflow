@@ -4,6 +4,10 @@ id: ontology:pattern/backupstream-plain-tls-ingress
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/backupstream-plain-tls-ingress/1.0.0
 summary: backupstream 80 v80 架构：plain/TLS 双路径 ingress 与线程模型
 source_task: T0287
 relations:

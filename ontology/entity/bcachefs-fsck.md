@@ -4,6 +4,10 @@ id: ontology:entity/bcachefs-fsck
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/bcachefs-fsck/1.0.0
 summary: bcachefs Fsck 实体 — bch2_fs_recovery 26  passes、journal replay 与 check_topology/allocations/extents 分工
 relations:
   specializes:

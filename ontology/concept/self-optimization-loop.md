@@ -4,6 +4,10 @@ id: ontology:concept/self-optimization-loop
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/self-optimization-loop/1.0.0
 summary: PDCA 自我优化反馈链：记录→分析→决策→受控实施→效果验证，审计发现不是自动变更授权
 relations:
   specializes:

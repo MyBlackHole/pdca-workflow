@@ -4,6 +4,10 @@ id: ontology:concept/pdca-home
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/pdca-home/1.0.0
 summary: PDCA_HOME 环境变量配置与仓库发现规则（两种模式：独立 / 外部项目）
 relations:
   specializes:

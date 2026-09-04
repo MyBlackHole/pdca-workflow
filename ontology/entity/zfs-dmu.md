@@ -4,6 +4,10 @@ id: ontology:entity/zfs-dmu
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/zfs-dmu/1.0.0
 summary: ZFS DMU 实体 — dnode/dbuf 对象-块两级抽象与读写/脏数据路径
 relations:
   specializes:

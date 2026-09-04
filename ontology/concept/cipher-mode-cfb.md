@@ -4,6 +4,10 @@ id: ontology:concept/cipher-mode-cfb
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/cipher-mode-cfb/1.0.0
 summary: CFB 工作模式（流 C_{i-1} 反馈）解密并行、IV 随机、流无填充、小文件/文件名适配
 relations:
   specializes:

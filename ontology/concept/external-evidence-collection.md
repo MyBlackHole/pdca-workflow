@@ -4,6 +4,10 @@ id: ontology:concept/external-evidence-collection
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/external-evidence-collection/1.0.0
 summary: 外部项目产物须先复制到中央 workspace external-artifacts 再登记 Evidence
 relations:
   specializes:

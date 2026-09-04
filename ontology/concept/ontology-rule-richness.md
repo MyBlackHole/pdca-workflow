@@ -5,6 +5,10 @@ type: concept
 layer: Knowledge
 summary: AC-5 知识资产须有 guides/relates_to（关系丰富度）
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ontology-rule-richness/1.0.0
 rule_spec:
   knowledge_types:
   - pattern

@@ -4,6 +4,10 @@ id: ontology:concept/ontology-fidelity-criterion
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ontology-fidelity-criterion/1.0.0
 summary: 本体保真度与完备性判据 — 七项清单、fidelity score 与致命/严重/一般分级（AI可复现为金标准）
 relations:
   specializes:

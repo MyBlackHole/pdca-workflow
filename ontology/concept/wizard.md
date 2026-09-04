@@ -4,6 +4,10 @@ id: ontology:concept/wizard
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/wizard/1.0.0
 summary: 向导技能：交互式 bash 向导，引导用户完成步骤
 relations:
   specializes:

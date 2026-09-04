@@ -4,6 +4,10 @@ id: ontology:entity/zfs-zpl
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/zfs-zpl/1.0.0
 summary: ZFS ZPL 实体 — POSIX 层 zfs_znode/zpl_inode 与 DMU 对象映射、SA/bonus 及 ZIL 意图日志
 relations:
   specializes:

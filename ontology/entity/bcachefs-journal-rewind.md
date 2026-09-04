@@ -4,6 +4,10 @@ id: ontology:entity/bcachefs-journal-rewind
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/bcachefs-journal-rewind/1.0.0
 summary: bcachefs Journal Rewind 实体 — rewind_limit 下界、JSET_NO_FLUSH 候选枚举与 overwrite 旧值回退
 relations:
   specializes:

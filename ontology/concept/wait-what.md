@@ -6,6 +6,10 @@ summary: 上下文缺失时重新 pitch：用 CONTEXT.md 词汇重新表述
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/wait-what/1.0.0
 relations:
   specializes:
     - ontology:concept/domain-modeling

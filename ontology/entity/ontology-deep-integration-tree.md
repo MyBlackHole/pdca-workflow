@@ -4,6 +4,10 @@ id: ontology:entity/ontology-deep-integration-tree
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ontology-deep-integration-tree/1.0.0
 summary: 树形执行与依赖推导（composed_of 树补齐，叶→根 ready-set 调度与可视化）
 relations:
   specializes:

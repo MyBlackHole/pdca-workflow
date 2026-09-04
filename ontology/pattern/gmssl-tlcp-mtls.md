@@ -4,6 +4,10 @@ id: ontology:pattern/gmssl-tlcp-mtls
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/gmssl-tlcp-mtls/1.0.0
 summary: GMSSL 3.1.2 TLCP mTLS 支持速查与集成策略
 source_task: F139
 relations:

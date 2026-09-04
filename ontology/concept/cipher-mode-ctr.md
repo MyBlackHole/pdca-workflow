@@ -4,6 +4,10 @@ id: ontology:concept/cipher-mode-ctr
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/cipher-mode-ctr/1.0.0
 summary: CTR 工作模式（计数器 SM4(K,nonce||ctr)）均并行、无填充、需HMAC 补认证、nonce 不可重用
 relations:
   specializes:

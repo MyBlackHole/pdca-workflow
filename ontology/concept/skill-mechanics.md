@@ -4,6 +4,10 @@ id: ontology:concept/skill-mechanics
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/skill-mechanics/1.0.0
 summary: 技能编写机制参考——invocation 选择、router 模式、依赖表达
 description: "定义技能编写的三种机制：Invocation（model-invoked vs user-invoked 的精确机制）、Splitting by invocation（有独立触发词或另一技能需调用时拆为 model-invoked）、Router skills（user-invoked 技能过多时的路由模式）。来源 mattpocock/skills writing-for-agents SKILL-MECHANICS.md。"
 domain:

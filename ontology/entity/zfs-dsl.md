@@ -4,6 +4,10 @@ id: ontology:entity/zfs-dsl
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/zfs-dsl/1.0.0
 summary: ZFS DSL 实体 — dsl_pool/dsl_dataset/dsl_dir 数据集层与快照克隆语义
 relations:
   specializes:

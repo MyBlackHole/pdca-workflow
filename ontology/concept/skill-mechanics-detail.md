@@ -4,6 +4,10 @@ id: ontology:concept/skill-mechanics-detail
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/skill-mechanics-detail/1.0.0
 summary: 技能机制详细说明：frontmatter、invocation 选择和路由技能的详细机制
 relations:
   specializes:

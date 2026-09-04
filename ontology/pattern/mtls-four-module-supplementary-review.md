@@ -4,6 +4,10 @@ id: ontology:pattern/mtls-four-module-supplementary-review
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/mtls-four-module-supplementary-review/1.0.0
 summary: 四模块 TLS/mTLS 已 commit 修改补充审查范式
 source_task: T0364
 relations:

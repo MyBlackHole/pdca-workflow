@@ -4,6 +4,10 @@ id: ontology:pattern/scientific-research-c4
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/scientific-research-c4/1.0.0
 summary: 科学调研C4支：4层级+4补充图与边缘交叉靶（对齐c4model.com）
 relations:
   specializes:

@@ -4,6 +4,10 @@ id: ontology:concept/grounding-dependency
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/grounding-dependency/1.0.0
 summary: Grounding 依赖图：概念必须 grounding 后才能被后续块依赖
 relations:
   specializes:

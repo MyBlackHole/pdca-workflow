@@ -4,6 +4,10 @@ id: ontology:concept/cipher-mode-cbc
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/cipher-mode-cbc/1.0.0
 summary: CBC 工作模式（链式 P xor C_{i-1}）加密串行、无认证、IV 随机、需 HMAC 补认证
 relations:
   specializes:

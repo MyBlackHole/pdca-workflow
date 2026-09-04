@@ -4,6 +4,10 @@ id: ontology:concept/teach
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/teach/1.0.0
 summary: 教学技能：多会话教授新技能或概念
 relations:
   specializes:

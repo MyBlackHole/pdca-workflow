@@ -4,6 +4,10 @@ id: ontology:concept/no-op-judgment
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/no-op-judgment/1.0.0
 summary: no-op 的模型相对判定：是否改变默认行为取决于模型本身
 relations:
   specializes:

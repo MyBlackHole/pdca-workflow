@@ -4,6 +4,10 @@ id: ontology:pattern/zfs-scrub-resilver
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/zfs-scrub-resilver/1.0.0
 summary: ZFS scrub/resilver运维pattern：scan/queue/repair三态与vdev关联
 relations:
   specializes:

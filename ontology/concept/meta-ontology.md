@@ -5,6 +5,10 @@ type: concept
 layer: Knowledge
 summary: 本体的本体（ontology of ontology）——建模本体资产、创建门禁与校验规则的元元本体
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/meta-ontology/1.0.0
 ---
 # meta-ontology
 

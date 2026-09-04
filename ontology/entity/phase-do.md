@@ -5,6 +5,10 @@ type: entity
 layer: Knowledge
 summary: PDCA do 阶段
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/phase-do/1.0.0
 relations:
   specializes:
   - ontology:concept/pdca-phase

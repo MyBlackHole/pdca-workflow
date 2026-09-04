@@ -4,6 +4,10 @@ id: ontology:process/flow-do
 type: process
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/flow-do/1.0.0
 summary: Do 阶段流程实体：按 scenario_type 路由执行、ontology-ready 关卡、证据登记与执行器边界
 relations:
   specializes:
@@ -64,11 +68,28 @@ Do 阶段按 `meta.scenario_type` 路由到相应 agent skill 执行，是 PDCA 
 
 ## 路径 C：research（需求调研/技术调研）
 
+1. 识别 primary sources（官方 docs/源码/specs）全量追溯
+2. Systematic investigation，按 `skill-research` 多图模板产 `research-report.md`（≥3 mermaid 且每图 1 Source，`grep -c` 可检）
+3. 每结论附可复核验证途径，`register-evidence` 登记，`convergence-map` 映射
+4. Check 阶段本体沉淀决策（`ontology:`/`records-only`）并过 `settlement` 校验
+
 ## 路径 D：documentation（需求转技术文档）
+
+1. 按 `skill-research` 的 Diátaxis 四象限（`tutorial/how-to/reference/explanation`）选型，产 `docs/<topic>.md`
+2. 图与 Source 门禁同 research（≥3 mermaid/≥3 Source），`register-evidence --kind document`
+3. `convergence-map` 映射至 AC，`archive` 前过 `ontology-validate`
 
 ## 路径 E：design（架构设计）
 
+1. 调 `skill-codebase-design`/`design-it-twice`，产深模块接口双方案对比，选 seam/adapter/depth 最优
+2. 产 `design.md`（含接口契约与测试 seam），`register-evidence --kind design`
+3. 经 `grilling` 复核边界与取舍，`convergence-map` 可检
+
 ## 路径 F：review（代码审查）
+
+1. 调 `skill-code-review` 双轴（Standards/Spec）并行子代理，产 `review.md`
+2. `register-evidence --kind review`，`conclusion` 映射至 AC
+3. Check 阶段 `grilling` 复核覆盖与取舍，`settlement` 可检
 
 ## 来源
 

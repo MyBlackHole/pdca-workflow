@@ -4,6 +4,10 @@ id: ontology:pattern/mtls-handshake-enum-unify
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/mtls-handshake-enum-unify/1.0.0
 docType: Pattern
 tags: [mtls, enum]
 summary: 四模块握手算法枚举与名称映射收敛重构

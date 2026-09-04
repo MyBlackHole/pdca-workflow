@@ -4,6 +4,10 @@ id: ontology:concept/pdca-provable-skill-increments
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/pdca-provable-skill-increments/1.0.0
 summary: 可证明 Skill 增量方法谱系（T0265→T0272 八轮演进：从文档结构契约到体系健康度元验证）
 relations:
   specializes:

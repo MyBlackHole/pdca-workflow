@@ -4,6 +4,10 @@ id: ontology:pattern/ontology-modular-reference
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ontology-modular-reference/1.0.0
 summary: 本体模块化与实例引用模式：独立本体+强引用，按关系自然拆分，清单透传
 relations:
   specializes:

@@ -4,6 +4,10 @@ id: ontology:pattern/sbt-config-mtls-override
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/sbt-config-mtls-override/1.0.0
 summary: init_sbt_config 配置文件键解析模式（dmsbtex）
 source_task: T0366
 relations:

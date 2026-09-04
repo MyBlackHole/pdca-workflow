@@ -4,6 +4,10 @@ id: ontology:pattern/ontology-metrics
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ontology-metrics/1.0.0
 summary: 量化度量本体：本体健康×过程硬指标×追溯度×效果verdict（可验证可度量）
 relations:
   specializes:

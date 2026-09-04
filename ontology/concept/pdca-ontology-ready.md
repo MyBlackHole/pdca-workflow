@@ -5,6 +5,10 @@ type: concept
 layer: Knowledge
 summary: do 阶段准入门禁本体：任务领域本体片段须存在且 ontology-validate 通过
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/pdca-ontology-ready/1.0.0
 relations:
   specializes:
   - ontology:concept/pdca-gate

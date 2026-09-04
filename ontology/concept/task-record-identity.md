@@ -4,6 +4,10 @@ id: ontology:concept/task-record-identity
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/task-record-identity/1.0.0
 summary: Task/Record 身份不变量与 ID 撞车重分配方法论（scan→create 临界区、统一入口、不可变 record identity）
 relations:
   specializes:

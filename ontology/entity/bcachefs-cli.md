@@ -4,6 +4,10 @@ id: ontology:entity/bcachefs-cli
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/bcachefs-cli/1.0.0
 summary: bcachefs CLI 实体 — COMMAND_GROUPS 8 组 >35 leaf、CmdKind 三形态（typed/raw/group）与 dispatch/symlink 及 Cargo/Make/DKMS 三构建
 relations:
   specializes:

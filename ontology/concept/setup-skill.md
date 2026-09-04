@@ -4,6 +4,10 @@ id: ontology:concept/setup-skill
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/setup-skill/1.0.0
 summary: 设置技能：配置 repo 以使用技能库的模式
 relations:
   specializes:

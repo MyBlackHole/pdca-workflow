@@ -5,6 +5,10 @@ type: concept
 layer: Knowledge
 summary: AC-3 引用图无环（relations 构成的图须为 DAG）
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ontology-rule-acyclic/1.0.0
 rule_spec:
   graph_relation_keys:
   - specializes

@@ -4,6 +4,10 @@ id: ontology:concept/writing-for-agents
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/writing-for-agents/1.0.0
 summary: 为 Agent 写作：文档和技能的通用写作原则
 relations:
   specializes:

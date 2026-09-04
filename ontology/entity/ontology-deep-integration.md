@@ -4,6 +4,10 @@ id: ontology:entity/ontology-deep-integration
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ontology-deep-integration/1.0.0
 summary: 本体深度融合总体（WBS根，叶→根聚合，驱动拆分×测试×执行×知识闭环）
 relations:
   specializes:

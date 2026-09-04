@@ -4,6 +4,10 @@ id: ontology:concept/trigger-condition
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/trigger-condition/1.0.0
 summary: 触发条件：user-invoked 和 model-invoked 技能的形式化触发机制
 relations:
   specializes:

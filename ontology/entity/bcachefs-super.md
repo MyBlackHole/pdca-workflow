@@ -4,6 +4,10 @@ id: ontology:entity/bcachefs-super
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/bcachefs-super/1.0.0
 summary: bcachefs Super 实体 — bch_sb 固定头（csum/version/magic/uuid/seq）+ BCH_SB_FIELDS 15+ 可扩展字段（members/journal/crypt/recovery/counters）与 super_io 多副本
 relations:
   specializes:

@@ -4,6 +4,10 @@ id: ontology:concept/retrospective
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/retrospective/1.0.0
 summary: Act 阶段结构化回顾的七类改进候选模型，覆盖导航、校验、规范、指令分层、工具效率、空操作与信息可达性
 relations:
   specializes:

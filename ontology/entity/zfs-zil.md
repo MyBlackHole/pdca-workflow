@@ -4,6 +4,10 @@ id: ontology:entity/zfs-zil
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/zfs-zil/1.0.0
 summary: ZFS ZIL 实体 — 意图日志 LWB 链与 slog 分离及重放可测
 relations:
   specializes:

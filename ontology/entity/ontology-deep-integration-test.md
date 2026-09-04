@@ -4,6 +4,10 @@ id: ontology:entity/ontology-deep-integration-test
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ontology-deep-integration-test/1.0.0
 summary: 测试派生硬化（testable_signal 三模式自动生成测试骨架，与测试策略强绑定）
 relations:
   specializes:

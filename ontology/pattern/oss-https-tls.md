@@ -4,6 +4,10 @@ id: ontology:pattern/oss-https-tls
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/oss-https-tls/1.0.0
 summary: oss HTTPS / TLS 配置模型
 source_task: T0368
 relations:

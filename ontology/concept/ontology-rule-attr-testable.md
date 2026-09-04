@@ -5,6 +5,10 @@ type: concept
 layer: Knowledge
 summary: AC-4 属性须有可测试信号（attributes[].testable_signal 非空）
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ontology-rule-attr-testable/1.0.0
 rule_spec:
   attribute_test_field: testable_signal
 relations:

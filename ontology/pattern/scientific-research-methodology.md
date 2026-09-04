@@ -4,6 +4,10 @@ id: ontology:pattern/scientific-research-methodology
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/scientific-research-methodology/1.0.0
 summary: 科学调研方法论根：C4+Diátaxis+arc42+I2S2生命周期四支（对齐c4model/diataxis/arc42/Bath I2S2）
 relations:
   specializes:

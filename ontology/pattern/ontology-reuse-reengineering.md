@@ -4,6 +4,10 @@ id: ontology:pattern/ontology-reuse-reengineering
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ontology-reuse-reengineering/1.0.0
 summary: 本体复用重构（NeOn Scenario4）：重用与重构本体/非本体资源
 relations:
   specializes:

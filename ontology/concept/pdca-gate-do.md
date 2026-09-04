@@ -5,6 +5,10 @@ type: concept
 layer: Knowledge
 summary: do 阶段准入门禁：须满足 pdca-ontology-ready
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/pdca-gate-do/1.0.0
 relations:
   specializes:
   - ontology:concept/pdca-gate

@@ -4,6 +4,10 @@ id: ontology:concept/context-pointer
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/context-pointer/1.0.0
 summary: 上下文指针：引用域外材料并编码触发条件的上下文指针
 relations:
   specializes:

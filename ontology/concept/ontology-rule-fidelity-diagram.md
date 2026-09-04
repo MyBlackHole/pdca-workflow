@@ -4,6 +4,10 @@ id: ontology:concept/ontology-rule-fidelity-diagram
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ontology-rule-fidelity-diagram/1.0.0
 summary: 保真度门禁 — 行为可视化与溯源（mermaid/Source行号）
 relations:
   specializes:

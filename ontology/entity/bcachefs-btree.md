@@ -4,6 +4,10 @@ id: ontology:entity/bcachefs-btree
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/bcachefs-btree/1.0.0
 summary: bcachefs Btree 引擎本体 — 可实现规约：btree_cache 五态机 + struct btree(six+format+bset[3]) + B+树 COW 分裂/bpos寻址/iter-path 遍历及 journal pin 原子性（29 btree_id 为实例化参数）
 relations:
   specializes:

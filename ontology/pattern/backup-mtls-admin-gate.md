@@ -4,6 +4,10 @@ id: ontology:pattern/backup-mtls-admin-gate
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/backup-mtls-admin-gate/1.0.0
 summary: rpc 明文 admin 面需 mTLS 强制或 allow_list 校验，避免 sh -c 任意执行
 relations:
   relates_to:

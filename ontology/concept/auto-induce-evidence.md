@@ -4,6 +4,10 @@ id: ontology:concept/auto-induce-evidence
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/auto-induce-evidence/1.0.0
 summary: evidence→ontology 自动反哺：Act 阶段扫描未锚定 evidence 并经 induction 生成本体候选
 relations:
   specializes:

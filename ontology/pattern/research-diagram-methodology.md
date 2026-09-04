@@ -4,6 +4,10 @@ id: ontology:pattern/research-diagram-methodology
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/research-diagram-methodology/1.0.0
 summary: 调研图示方法论：架构师为主、多图mermaid inline、通用模板、每图溯源primary source
 relations:
   specializes:

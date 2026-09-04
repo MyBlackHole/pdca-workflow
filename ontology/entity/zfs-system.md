@@ -4,6 +4,10 @@ id: ontology:entity/zfs-system
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/zfs-system/1.0.0
 summary: ZFS 全栈系统聚合（composed_of DMU/DSL/SPA/ZIO/ZPL/ARC/VDEV/ZIL 八叶，C4 L2/L3 至 ZIO/VDEV pipeline 可建模）
 relations:
   specializes:

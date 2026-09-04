@@ -4,6 +4,10 @@ id: ontology:concept/cipher-mode-ofb
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/cipher-mode-ofb/1.0.0
 summary: OFB 工作模式（流 O_{i-1} 反馈）均串行、预计算、IV 不可重用、错误不扩散
 relations:
   specializes:

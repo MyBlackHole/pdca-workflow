@@ -5,6 +5,10 @@ type: concept
 layer: Knowledge
 summary: PDCA 阶段元概念（经典四阶段 plan/do/check/act；archive 为工作流运维扩展）
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/pdca-phase/1.0.0
 relations:
   specializes:
   - ontology:concept/pdca

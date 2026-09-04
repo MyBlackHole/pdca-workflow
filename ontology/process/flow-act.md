@@ -4,6 +4,10 @@ id: ontology:process/flow-act
 type: process
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/flow-act/1.0.0
 summary: Act 阶段流程实体：知识投影、自我优化闭环、ID 不变量、时间线一致性与运行时协调
 relations:
   specializes:

@@ -4,6 +4,10 @@ id: ontology:pattern/unified-first-stage-mtls-time
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/unified-first-stage-mtls-time/1.0.0
 summary: RPC/rdbcomm 统一第一阶段握手经验
 source_task: T0302
 relations:

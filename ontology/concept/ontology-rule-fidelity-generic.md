@@ -4,6 +4,10 @@ id: ontology:concept/ontology-rule-fidelity-generic
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ontology-rule-fidelity-generic/1.0.0
 summary: 保真度门禁 — 拒绝泛化signal（零容忍），attributes须含可执行动词
 relations:
   specializes:

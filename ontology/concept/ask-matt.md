@@ -4,6 +4,10 @@ id: ontology:concept/ask-matt
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ask-matt/1.0.0
 summary: 路由技能：根据用户描述推荐合适的 PDCA 入口
 relations:
   specializes:

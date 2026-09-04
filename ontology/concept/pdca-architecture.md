@@ -4,6 +4,10 @@ id: ontology:concept/pdca-architecture
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/pdca-architecture/1.0.0
 summary: PDCA 工作流核心资产边界与架构原则（flow/agent skill 分工、资产分层、阶段校验链、通用 kernel）
 relations:
   specializes:

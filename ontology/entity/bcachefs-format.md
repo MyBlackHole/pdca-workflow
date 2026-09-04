@@ -4,6 +4,10 @@ id: ontology:entity/bcachefs-format
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/bcachefs-format/1.0.0
 summary: bcachefs Format 实体 — per-device 选项解析、BCH_SB_FIELDS x-macro 超块与多副本 super 写入
 relations:
   specializes:

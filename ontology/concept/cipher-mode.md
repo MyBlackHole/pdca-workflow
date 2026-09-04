@@ -4,6 +4,10 @@ id: ontology:concept/cipher-mode
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/cipher-mode/1.0.0
 summary: 分组密码工作模式元概念：ECB/CBC/CFB/OFB/CTR/XTS/GCM/CCM 的 chaining 方式抽象
 relations:
   relates_to:

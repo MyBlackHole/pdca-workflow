@@ -4,6 +4,10 @@ id: ontology:concept/deterministic-fixture
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/deterministic-fixture/1.0.0
 summary: 确定性夹具：输入、预期输出和 pass/fail 信号均固定
 relations:
   specializes:

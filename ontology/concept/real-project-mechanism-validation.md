@@ -4,6 +4,10 @@ id: ontology:concept/real-project-mechanism-validation
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/real-project-mechanism-validation/1.0.0
 summary: T0234 真实工程实测：ready-set/seam/词汇契约三机制有效，集成测试捕获真实 bug，外部项目模式可行
 relations:
   specializes:

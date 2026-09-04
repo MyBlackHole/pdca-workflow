@@ -4,6 +4,10 @@ id: ontology:concept/pdca-source-diagram-doc-verification
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/pdca-source-diagram-doc-verification/1.0.0
 summary: 源码图解文档验证流程（函数级前置分析、mermaid 语法硬门禁、源码引用存在性核验、图例规范）
 relations:
   specializes:

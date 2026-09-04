@@ -5,6 +5,10 @@ type: concept
 layer: Knowledge
 summary: PDCA 管理模型元本体根概念
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/pdca/1.0.0
 docType: Concept
 tags: [pdca, meta-ontology]
 ---

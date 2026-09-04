@@ -4,6 +4,10 @@ id: ontology:concept/domain-modeling
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/domain-modeling/1.0.0
 summary: 领域建模：活跃构建和维护项目领域模型
 relations:
   specializes:

@@ -4,6 +4,10 @@ id: ontology:pattern/production-ontology-scientific-gate
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/production-ontology-scientific-gate/1.0.0
 summary: 生产本体科学保障门禁：METHONTOLOGY五阶段+NeOn+OOPS41+OntoClean+100% Rule+testable_signal 三件套一次做对
 relations:
   specializes:

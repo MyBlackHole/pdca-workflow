@@ -5,6 +5,10 @@ type: concept
 layer: Knowledge
 summary: AC-6 guides 范围（源须知识类、目标须领域/过程类）
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ontology-rule-guides-range/1.0.0
 rule_spec:
   source_types:
   - pattern

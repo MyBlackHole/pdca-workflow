@@ -4,6 +4,10 @@ id: ontology:concept/failure-mode
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/failure-mode/1.0.0
 summary: AI 四大失效模式：驱动技能矩阵设计的根本分类
 relations:
   specializes:

@@ -4,6 +4,10 @@ id: ontology:entity/bcachefs-device
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/bcachefs-device/1.0.0
 summary: bcachefs Device 实体 — device 组多态子命令、sb_field_members 事务与 replicas/disk_groups 及 udev/多路径
 relations:
   specializes:

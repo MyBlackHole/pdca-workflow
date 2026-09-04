@@ -4,6 +4,10 @@ id: ontology:pattern/mtls-handshake-netorder-libobk
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/mtls-handshake-netorder-libobk/1.0.0
 summary: libobk 握手 body 网络序改造经验
 source_task: T0362
 relations:

@@ -4,6 +4,10 @@ id: ontology:concept/cipher-mode-xts
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/cipher-mode-xts/1.0.0
 summary: XTS 工作模式（tweak=LBA 窃取法）盘加密专用、均并行、无额外存储、需双密钥
 relations:
   specializes:

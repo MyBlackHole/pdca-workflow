@@ -4,6 +4,10 @@ id: ontology:entity/bcachefs-alloc
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/bcachefs-alloc/1.0.0
 summary: bcachefs Alloc 实体 — bucket 四态、open_bucket 顺序写、WFQ 分配与 background copygc/discard/reclaim 协同
 relations:
   specializes:

@@ -4,6 +4,10 @@ id: ontology:concept/user-invoked
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/user-invoked/1.0.0
 summary: 用户调用技能：仅用户手动触发，零上下文负载
 relations:
   specializes:

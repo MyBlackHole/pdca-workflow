@@ -4,6 +4,10 @@ id: ontology:entity/bcachefs-btree-bset
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/bcachefs-btree-bset/1.0.0
 summary: bcachefs Bset 物理容器子概念 — btree 引擎的增量层：磁盘 bset/bkey_packed 变长 + 内存 bset_tree/aux 浮点路标 + bkey_format 动态位宽（被 btree 引擎 composed_of）
 relations:
   specializes:

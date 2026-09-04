@@ -4,6 +4,10 @@ id: ontology:concept/pdca-architecture-review-metrics
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/pdca-architecture-review-metrics/1.0.0
 summary: 架构审查的可证明指标与 HTML 可视化报告（热点扫描、#metrics JSON、arch-report 证据序列）
 relations:
   specializes:

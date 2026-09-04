@@ -5,6 +5,10 @@ type: concept
 layer: Knowledge
 summary: 本体校验器——执行 ontology-creation-gate 的自动化工具（scripts/ontology-validate.py）
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ontology-validate/1.0.0
 relations:
   specializes:
   - ontology:concept/meta-ontology

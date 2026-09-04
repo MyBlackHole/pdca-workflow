@@ -4,6 +4,10 @@ id: ontology:concept/skill-invocation-contract
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/skill-invocation-contract/1.0.0
 summary: 双 harness 调用约定与 openai.yaml 元数据规范
 description: "定义 Claude Code 和 Codex 双 harness 的调用模型：每个 SKILL.md 旁放 agents/openai.yaml 含 Codex UI 元数据；user-invoked 技能设 disable-model-invocation: true（Claude Code）/ policy.allow_implicit_invocation: false（Codex）；依赖通过 Call the Skill tool with \"name\" 显式调用。来源 mattpocock/skills .agents/invocation.md。"
 domain:

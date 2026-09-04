@@ -1,0 +1,81 @@
+---
+schema: pdca.asset/v1
+id: ontology:domain/core-btree-node-rewrite-key-extent-contract
+type: domain
+layer: Knowledge
+status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/core-btree-node-rewrite-key-extent-contract/1.0.0
+summary: btree 节点重写 key 构造的 extent 保留契约
+domain:
+- ontology:domain/core
+relations:
+  specializes:
+  - ontology:domain/core
+  relates_to:
+  - ontology:concept/pdca
+attributes:
+- name: applicability
+  desc: 领域知识适用场景
+  constraint: 见正文
+  testable_signal: "检查本文件 btree-node-rewrite-key-extent-contract 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+---
+
+
+# btree 节点重写 key 构造的 extent 保留契约
+
+来源：T0206 部分完成 PDCA（AC-5 验证测试失败暴露）+ T0207 修复收尾。
+
+## 事实
+
+T0205 引入的 `bch2_btree_node_rewrite` root 分支（interior.rs）用
+`child_ptr(n)` 构造自身指针键：**仅 mem_ptr 寻址、无 extent ptr**
+（journal-first 域内模式，节点 key 以内存指针标识）。重写成功后
+`bch2_btree_set_root_for_read` 将 slot.key 更新为该键。
+
+## 缺陷
+
+重写后 slot.key 丢失磁盘位置（extent ptr 为空）→ io 层（真实磁盘
+读盘模式）下重开恢复时，`bch2_btree_root_read` 重新读盘在
+`bch2_bkey_ptrs_c` 处返回 -2（无 ptr），节点无法再读回。上游语义：
+`bch2_btree_set_root` 后 root 记录**保留原 extent**（重写覆盖写原
+位置）。
+
+## 契约
+
+- **mem_ptr 寻址与 extent 寻址双模式**：engine journal-first 路径
+  用 mem_ptr（不读盘，无影响）；io 层读盘路径需要 extent ptr。
+- **节点指针键构造必须保留磁盘位置**：任何重写/指针更新生成的新
+  键，若旧键含 extent ptr（磁盘定位），新键必须继承（对齐上游
+  set_root 覆盖写语义）；仅当域内确定永不读盘（journal-first）时
+  才允许纯 mem_ptr 键。
+- **验证方式**：重写后从 slot 取 key → mem_ptr 清零 → 重新
+  root_read 必须成功（`rewritten_node_revalidates_on_reopen` 测试）。
+
+## 修复方向（T0207 已实施）
+
+root 分支 bkey_copy 前合并旧 extent ptr（从 b.key 拷贝 extent 到
+child_ptr(n) 生成的键）——`interior.rs` child_ptr 闭包经
+`bch2_bkey_ptrs_c` 取旧键 extent，非空则 `bch2_bkey_append_ptr`
+合并（对齐 `interior.c:515-518` `bch2_alloc_sectors_append_ptrs`
+语义）。
+
+## 落盘与重开语义（T0207 补充）
+
+- **重写仅 set_dirty**（journal-first）：节点落盘由事务提交/日志
+  flush 驱动，对应 `__btree_node_flush`（fs/btree/commit.c:254）
+  → `bch2_btree_node_write_trans`。
+- **写盘更新 key 的 sectors_written**（io.rs:431）：重开用的持久化
+  root 记录必须在 flush 之后从节点 key 序列化，否则
+  sectors_written=0 → 重开读后 ptr_written==0 触发二次重写
+  （seq 再递增）。上游同样：关闭时经 io.c `bch2_write_super`
+  → `bch2_btree_roots` 从内存节点 key 序列化 root 记录，而非
+  持续同步 root slot（slot.key 是重写时快照）。
+- **验证链路**（AC-5）：构造损坏 root → root_read 重写 →
+  模拟提交 flush 写盘 → 关闭序列化 root 记录（mem_ptr 清零）
+  → 重开 root_read 重新校验（magic/seq/level/范围逐项）→
+  无 need_rewrite（磁盘字节干净）、seq 持久化、键集正确、
+  拓扑校验通过。
+

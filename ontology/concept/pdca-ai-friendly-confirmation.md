@@ -4,6 +4,10 @@ id: ontology:concept/pdca-ai-friendly-confirmation
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/pdca-ai-friendly-confirmation/1.0.0
 summary: AI 友好确认与证据机制（时间由 CLI 生成、失败带 guidance、不可变记录仅 CLI 变更、早期失败）
 relations:
   specializes:

@@ -4,6 +4,10 @@ id: ontology:concept/knowledge-provenance
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/knowledge-provenance/1.0.0
 summary: Evidence/Experience/Knowledge 分层与来源封存规则（知识仅在 Act 显式投影，须记来源/摘要/理由/连续 revision）
 relations:
   specializes:

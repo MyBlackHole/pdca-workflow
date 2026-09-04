@@ -4,6 +4,10 @@ id: ontology:entity/zfs-spa
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/zfs-spa/1.0.0
 summary: ZFS SPA 实体 — Storage Pool Allocator 池分配器与 TXG 三状态机及 metaslab 空间分配
 relations:
   specializes:

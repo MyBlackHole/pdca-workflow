@@ -4,6 +4,10 @@ id: ontology:entity/zfs-ddt
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/zfs-ddt/1.0.0
 summary: ZFS DDT 实体 — 去重表 DDT与BRT削零及LRU
 relations:
   specializes:

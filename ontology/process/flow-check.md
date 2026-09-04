@@ -4,6 +4,10 @@ id: ontology:process/flow-check
 type: process
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/flow-check/1.0.0
 summary: Check 阶段流程实体：对照 PRD/证据/收敛条件、verify-convergence 门禁、证据与结论锚定
 relations:
   specializes:

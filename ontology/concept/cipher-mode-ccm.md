@@ -4,6 +4,10 @@ id: ontology:concept/cipher-mode-ccm
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/cipher-mode-ccm/1.0.0
 summary: CCM 工作模式（CBC-MAC + CTR）AEAD 认证串行、需填充、nonce 唯一、可替 GCM
 relations:
   specializes:

@@ -4,6 +4,10 @@ id: ontology:concept/timeline-integrity-gate
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/timeline-integrity-gate/1.0.0
 summary: PDCA 流程文件时间线一致性护栏（确认时间真实、states 单调、receipt 唯一推进、先干后补确认违规）
 relations:
   specializes:

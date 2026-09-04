@@ -4,6 +4,10 @@ id: ontology:pattern/mtls-server-alg-whitelist
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/mtls-server-alg-whitelist/1.0.0
 summary: 服务端握手算法白名单校验四模块落地范式
 source_task: T0357
 relations:

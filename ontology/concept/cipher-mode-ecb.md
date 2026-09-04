@@ -4,6 +4,10 @@ id: ontology:concept/cipher-mode-ecb
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/cipher-mode-ecb/1.0.0
 summary: ECB 工作模式（独立块 C=SM4(K,P)）均并行、无IV、泄露相等性、存储禁用
 relations:
   specializes:

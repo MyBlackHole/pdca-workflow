@@ -4,6 +4,10 @@ id: ontology:concept/auto-induce-flow-trigger
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/auto-induce-flow-trigger/1.0.0
 summary: FlowIssue→本体补强自动触发：occurrence 阈值达标后提示创建本体补强 candidate
 relations:
   specializes:

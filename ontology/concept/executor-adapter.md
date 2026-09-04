@@ -4,6 +4,10 @@ id: ontology:concept/executor-adapter
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/executor-adapter/1.0.0
 summary: Executor Registry 与平台 Adapter 的职责与信任边界（角色/平台类型/平台实现三层分离）
 relations:
   specializes:

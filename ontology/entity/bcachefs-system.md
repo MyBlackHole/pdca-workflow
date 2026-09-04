@@ -4,6 +4,10 @@ id: ontology:entity/bcachefs-system
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/bcachefs-system/1.0.0
 summary: bcachefs 全栈系统聚合（composed_of 12 叶 format/mount/fsck/device/journal/journal-rewind/btree/btree-bset/alloc/transaction/super/cli，C4 L2/L3 至 journal/btree/alloc pipeline 可建模）
 relations:
   specializes:

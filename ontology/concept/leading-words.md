@@ -4,6 +4,10 @@ id: ontology:concept/leading-words
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/leading-words/1.0.0
 summary: 锚定词：用预训练已有词锚定一类行为，以 token 而非句子重复
 relations:
   specializes:

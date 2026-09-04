@@ -4,6 +4,10 @@ id: ontology:concept/to-questionnaire
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/to-questionnaire/1.0.0
 summary: 问卷技能：将决策转化为 Markdown 问卷
 relations:
   specializes:

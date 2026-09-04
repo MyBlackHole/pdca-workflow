@@ -4,6 +4,10 @@ id: ontology:concept/destructive-cleanup-safety
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/destructive-cleanup-safety/1.0.0
 summary: 可恢复破坏性清理的恢复源固定与执行前重验证规则
 relations:
   specializes:

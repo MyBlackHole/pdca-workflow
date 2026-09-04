@@ -4,6 +4,10 @@ id: ontology:entity/ontology-deep-integration-knowledge
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ontology-deep-integration-knowledge/1.0.0
 summary: 全任务知识闭环（任意任务强制本体表达与产出，Act 统一沉淀）
 relations:
   specializes:

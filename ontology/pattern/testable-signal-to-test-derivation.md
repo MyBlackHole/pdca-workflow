@@ -4,6 +4,10 @@ id: ontology:pattern/testable-signal-to-test-derivation
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/testable-signal-to-test-derivation/1.0.0
 summary: testable_signal 到测试用例派生模式（属性断言/契约测试/收敛验证）
 relations:
   specializes:

@@ -5,6 +5,10 @@ type: concept
 layer: Knowledge
 summary: PDCA 能力协议（flow/skill 声明能力而非平台工具，doctor 解析）
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/capability-protocol/1.0.0
 relations:
   specializes:
   - ontology:concept/pdca

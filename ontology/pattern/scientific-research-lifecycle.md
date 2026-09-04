@@ -4,6 +4,10 @@ id: ontology:pattern/scientific-research-lifecycle
 type: pattern
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/scientific-research-lifecycle/1.0.0
 summary: 科学调研I2S2生命周期支：proposal→peer-review→experiment→processing→publish + 绿色保育（对齐OAIS）
 relations:
   specializes:

@@ -4,6 +4,10 @@ id: ontology:concept/pointer-wording
 type: concept
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/pointer-wording/1.0.0
 summary: 指针措辞：上下文指针的措辞决定触发可靠性，弱措辞即方差 bug
 relations:
   specializes:

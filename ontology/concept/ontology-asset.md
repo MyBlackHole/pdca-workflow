@@ -5,6 +5,10 @@ type: concept
 layer: Knowledge
 summary: 本体资产——ontology/ 下的一个节点文件（schema=pdca.asset/v1 + relations 构成的 KG 节点）
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/ontology-asset/1.0.0
 relations:
   specializes:
   - ontology:concept/meta-ontology

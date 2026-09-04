@@ -4,6 +4,10 @@ id: ontology:entity/report-center-web-entity
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/report-center-web-entity/1.0.0
 summary: ReportCenter Web 子系统实体（ReportCenterSystem 叶）
 attributes:
   - name: demo_api

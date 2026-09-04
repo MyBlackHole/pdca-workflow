@@ -4,6 +4,10 @@ id: ontology:entity/bcachefs-mount
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/bcachefs-mount/1.0.0
 summary: bcachefs Mount 实体 — bdev/handle/ioctl 三层 wrappers 与 degrade 路由及 fstab 集成
 relations:
   specializes:

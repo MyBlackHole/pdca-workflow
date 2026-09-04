@@ -4,6 +4,10 @@ id: ontology:entity/zfs-vdev
 type: entity
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/zfs-vdev/1.0.0
 summary: ZFS VDEV 实体 — 虚拟设备拓扑与队列调度及故障状态机
 relations:
   specializes:
