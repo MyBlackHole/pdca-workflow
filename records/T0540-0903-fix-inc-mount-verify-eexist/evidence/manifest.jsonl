@@ -1,0 +1,5 @@
+{"id":"ev-fix-diff","file":"fix-diff.md","kind":"document","size":1236,"digest":"sha256:7f860e8c4660142627cdc5042e9cf25af75cbd266b08e6f66c51e6090cb67642","at":"2026-09-03T16:55:51+08:00","criteria":["AC-1"]}
+{"id":"ev-test-report","file":"test-report.md","kind":"test","size":1139,"digest":"sha256:70ae32ac4af97f40eb0e82e6edc45fa66c3d923a8957d3aa4e74829877062fa6","at":"2026-09-03T16:55:52+08:00","criteria":["AC-2","AC-3"]}
+{"id":"ev-transfer-fix","file":"transfer_file.cpp","kind":"document","size":20400,"digest":"sha256:15f25c607291140a55bc2b7886a9cf4b3299f7c1fdf63d6b4e61a883e1eb0cf8","at":"2026-09-03T16:55:53+08:00","criteria":["AC-1"]}
+{"id":"ev-rpc-fix","file":"rpc.cpp","kind":"document","size":93915,"digest":"sha256:72dce8af8e3076f69d97ff6b8e8b9e478709ec4a2f8ee7c1b15980faa1235142","at":"2026-09-03T16:55:54+08:00","criteria":["AC-1"]}
+{"id":"convergence-map","file":"convergence-map.json","kind":"convergence-map","size":625,"digest":"sha256:bc217c06c01aec3cb61e1e9a384f4518283662709547e4e5635f3f9fe5c87b0c","at":"2026-09-03T16:56:39+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

@@ -1,0 +1,27 @@
+{
+  "children": [],
+  "id": "T2037",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "子占位"
+    ],
+    "created_at": "2026-09-04T10:50:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "plan",
+    "scenario_type": "research"
+  },
+  "parent": "T2036",
+  "slug": "0904-ontology-restructure-sub",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-09-04T10:50:00+08:00",
+    "do": null,
+    "plan": "2026-09-04T10:50:00+08:00"
+  },
+  "status": "Pending",
+  "title": "全面重构子占位（满足 TICKETS_MISSING）"
+}

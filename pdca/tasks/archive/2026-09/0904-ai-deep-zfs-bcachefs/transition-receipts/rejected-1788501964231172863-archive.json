@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T2040",
+  "from": "act",
+  "to": "archive",
+  "issues": [
+    {
+      "code": "ARCHIVE_ONTOLOGY_ISLANDS",
+      "path": "ontology",
+      "message": "存在 1 个孤岛节点，归档前须消除"
+    }
+  ],
+  "at": "2026-09-04T14:06:04.231122+08:00"
+}

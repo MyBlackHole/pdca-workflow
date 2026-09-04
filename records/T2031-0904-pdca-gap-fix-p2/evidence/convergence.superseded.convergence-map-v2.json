@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "P1 本体已补：flow-do 的 design/documentation/review 三路径与 journal 门禁均本体化且 validate+islands:0",
+      "criteria": ["AC-1", "AC-2"],
+      "evidence_ids": ["p1-flow-do", "p1-journal"]
+    }
+  ]
+}

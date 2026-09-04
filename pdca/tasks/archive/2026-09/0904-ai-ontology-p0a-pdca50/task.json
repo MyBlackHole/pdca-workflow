@@ -1,0 +1,44 @@
+{
+  "children": [
+    "T2035"
+  ],
+  "id": "T2034",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "pdca 50 核心 AI 草拟→机审→人定闭环已跑通：o1/Mistral 双基线 CQ 覆盖率与 A100h 成本对比表已产",
+      "disjointness 冷启动已落地：pdca 50 核心的 OOPS!/OWL 基线可检且 0 critical",
+      "人定量化已验证：95 CQ 中 20% 复杂关系采样人审，其余机审，HITL 聚焦度可度量"
+    ],
+    "created_at": "2026-09-04T10:45:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "archive",
+    "scenario_type": "development",
+    "record": "T2034-0904-ai-ontology-p0a-pdca50",
+    "completed_at": "2026-09-04T13:56:36+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "P0-a 3 AC 全通过：10 CQ+disjoint 154+人定 4 问",
+      "at": "2026-09-04T13:57:00+08:00",
+      "verdict_id": "v2034-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:concept/pdca-task 已闭环：P0-a 10 CQ+disjoint+人定 4 问，来源 records/T2034-0904-ai-ontology-p0a-pdca50/",
+      "at": "2026-09-04T13:57:10+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0904-ai-ontology-p0a-pdca50",
+  "states": {
+    "act": "2026-09-04T13:56:46+08:00",
+    "archive": "2026-09-04T13:56:51+08:00",
+    "check": "2026-09-04T13:56:36+08:00",
+    "created": "2026-09-04T10:45:00+08:00",
+    "do": "2026-09-04T10:48:11+08:00",
+    "plan": "2026-09-04T10:45:00+08:00"
+  },
+  "status": "Completed",
+  "title": "AI 本体 P0-a：pdca 50 核心 AI→机审→人定闭环（OOPS 冷启动+双基线成本锚）"
+}

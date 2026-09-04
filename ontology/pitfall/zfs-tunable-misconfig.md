@@ -4,6 +4,10 @@ id: ontology:pitfall/zfs-tunable-misconfig
 type: pitfall
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/zfs-tunable-misconfig/1.0.0
 summary: ZFS tunable误配pitfall：arc_p/metaslab_weight/l2arc_write_max阈值联动反模式
 relations:
   specializes:

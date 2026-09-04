@@ -1,0 +1,4 @@
+{"id":"cq-draft","file":"cq-delta-draft.md","kind":"document","size":5435,"digest":"sha256:238af3197d73fdaa00333067a9f001d19b55d487f6076726ab19cf8d32ddb953","at":"2026-09-04T13:56:31+08:00","criteria":["AC-1"]}
+{"id":"disjoint","file":"disjoint.ttl","kind":"document","size":284,"digest":"sha256:fc41f2dd08d6750bad40966d7f82b34824f00963ec6d55fb961a3039b23dc65e","at":"2026-09-04T13:56:32+08:00","criteria":["AC-2"]}
+{"id":"human-grill","file":"human-grill.md","kind":"document","size":200,"digest":"sha256:ca864e249c1a36b36cec64e65b5bddd6a26d9bbeb21c28b5f028bee9193ee709","at":"2026-09-04T13:56:33+08:00","criteria":["AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":709,"digest":"sha256:be1b908d306f878d1889089ae6cd4a6bf59cacd9f449a2ba34c2b6b07631c66f","at":"2026-09-04T13:56:34+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

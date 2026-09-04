@@ -1,0 +1,43 @@
+{
+  "children": [],
+  "id": "T2028",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "research-report.md 含全景架构与模块职责矩阵且每结论可回溯到 file:line 或 primary source",
+      "≥3 mermaid 图且每图附 Source 引证且 Source 总数≥3",
+      "版本/构建/CI 链路可重跑验证",
+      "结论含本体沉淀决策且通过 settlement 校验"
+    ],
+    "created_at": "2026-09-04T10:20:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "act",
+    "scenario_type": "research",
+    "record": "T2028-0904-research-aio-tools-6200-release-v2",
+    "completed_at": "2026-09-04T10:21:12+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "6 AC 全通过：33708 bytes 7 mermaid 13 Source valid:true，rdbcomm 增补，records-only 已决策",
+      "at": "2026-09-04T10:21:30+08:00",
+      "verdict_id": "v2028-confirmed"
+    },
+    "disposition": {
+      "outcome": "not_reusable",
+      "reason": "records-only：T2028 Grill合规重调，复用 T2027 快照事实并增补 rdbcomm 插件契约（MAX_PLUGINS 32/5MB），仍属快照特化未抽象通用 pattern，沉淀于 records/T2028-0904-research-aio-tools-6200-release-v2/",
+      "at": "2026-09-04T10:21:35+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0904-research-aio-tools-6200-release-v2",
+  "states": {
+    "act": "2026-09-04T10:21:23+08:00",
+    "archive": null,
+    "check": "2026-09-04T10:21:12+08:00",
+    "created": "2026-09-04T10:20:00+08:00",
+    "do": "2026-09-04T10:20:24+08:00",
+    "plan": "2026-09-04T10:20:00+08:00"
+  },
+  "status": "Completed",
+  "title": "重调 aio-tools 6200/release 全景（按推荐：全景+build事实+records-only，主链路+rdbcomm 增补）"
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T2034",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "TICKETS_MISSING",
+      "path": "task.json/children",
+      "message": "non-research tasks require at least one child ticket (to-tickets not run)",
+      "guidance": "run skill to-tickets to break down the task or set children explicitly"
+    }
+  ],
+  "at": "2026-09-04T10:48:03.736535+08:00"
+}

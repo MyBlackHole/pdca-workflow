@@ -1,0 +1,43 @@
+{
+  "children": [
+    "T2043"
+  ],
+  "id": "T2042",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "rpc.cpp:1544 的 ioctl_buff 已细化：connect/socket/handshake/EBADF/File exists 可区分且回归可检",
+      "rdbcomm 32/5MB 的 SHACL 已补：5MB 超限与 32 槽满分片可验"
+    ],
+    "created_at": "2026-09-04T14:10:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "archive",
+    "scenario_type": "bugfix",
+    "record": "T2042-0904-bugfix-rpc-rdbcomm-value",
+    "completed_at": "2026-09-04T14:16:01+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "2 AC 全通过：rpc 5 错+rdbcomm SHACL，本体→代码首验",
+      "at": "2026-09-04T14:16:30+08:00",
+      "verdict_id": "v2042-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:entity/aio-tools-6200-release 已增量：rpc 1544 5 错+rdbcomm SHACL，来源 records/T2042-0904-bugfix-rpc-rdbcomm-value/",
+      "at": "2026-09-04T14:16:40+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0904-bugfix-rpc-rdbcomm-value",
+  "states": {
+    "act": "2026-09-04T14:16:11+08:00",
+    "archive": "2026-09-04T14:16:15+08:00",
+    "check": "2026-09-04T14:16:01+08:00",
+    "created": "2026-09-04T14:10:00+08:00",
+    "do": "2026-09-04T14:14:57+08:00",
+    "plan": "2026-09-04T14:10:00+08:00"
+  },
+  "status": "Completed",
+  "title": "验证本体→代码：rpc 1544 细化 + rdbcomm SHACL（v1.0.0 首个 bugfix 垂直切片）"
+}

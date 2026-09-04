@@ -1,0 +1,41 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T2030",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "P0 加固：check_confirmation 与 to-tickets 硬门禁 已落地且 gate_issues/validate 可检"
+    ],
+    "created_at": "2026-09-04T10:25:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "archive",
+    "scenario_type": "development",
+    "record": "T2030-0904-pdca-gap-fix-p1",
+    "completed_at": "2026-09-04T10:29:36+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "P0 3 AC 全通过：CHECK_GRILLING_MISSING/TICKETS_MISSING 均硬且可检，T2029+ 生效",
+      "at": "2026-09-04T10:30:00+08:00",
+      "verdict_id": "v2030-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:concept/pdca-task 已加固：P0 双门禁（CHECK_GRILLING_MISSING/TICKETS_MISSING）可检，来源 records/T2030-0904-pdca-gap-fix-p1/",
+      "at": "2026-09-04T10:30:10+08:00"
+    }
+  },
+  "parent": "T2029",
+  "slug": "0904-pdca-gap-fix-p1",
+  "states": {
+    "act": "2026-09-04T10:29:49+08:00",
+    "archive": "2026-09-04T10:29:56+08:00",
+    "check": "2026-09-04T10:29:36+08:00",
+    "created": "2026-09-04T10:25:00+08:00",
+    "do": "2026-09-04T10:27:38+08:00",
+    "plan": "2026-09-04T10:25:00+08:00"
+  },
+  "status": "Completed",
+  "title": "P0 加固：check_confirmation 与 to-tickets 硬门禁"
+}

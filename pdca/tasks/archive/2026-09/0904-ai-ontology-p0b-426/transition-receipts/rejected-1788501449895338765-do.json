@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T2038",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "FINAL_CONFIRMATION_AFTER_TRANSITION",
+      "path": "clarifications.jsonl[3]/at",
+      "message": "final confirmation cannot be later than the transition moment",
+      "guidance": "set the confirmation 'at' to the real time the user confirmed (use scripts/append-confirmation.py; never hand-write timestamps)"
+    }
+  ],
+  "at": "2026-09-04T13:57:29.895320+08:00"
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "根因报告已产出且区分 EEXIST 与 IO_EOF（AC-1）",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["ev-analysis-report", "ev-evidence-index"]
+    },
+    {
+      "index": 2,
+      "text": "分级处置建议已给出且与证据一致（AC-2）",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["ev-analysis-report"]
+    },
+    {
+      "index": 3,
+      "text": "报告已登记且 convergence 回链通过（AC-3）",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["ev-analysis-report"]
+    }
+  ]
+}

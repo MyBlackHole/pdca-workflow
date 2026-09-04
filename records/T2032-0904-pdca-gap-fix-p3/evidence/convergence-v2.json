@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "P2 加固：flow_audit skill 调用覆盖审计 已落地且 gate_issues/validate 可检",
+      "criteria": ["AC-1", "AC-2"],
+      "evidence_ids": ["p2-audit"]
+    }
+  ]
+}

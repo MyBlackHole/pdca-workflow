@@ -1,0 +1,4 @@
+{"round":2,"question":"Q1 CQ-9 Reification prov 单溯 vs 双溯","answer":"全按推荐：prov 单溯","recommended":"保留 prov 单溯","source":"grilling","at":"2026-09-04T14:20:00+08:00","captured":true}
+{"round":2,"question":"Q2 CQ-12 Reification 是否加 sequence","answer":"全按推荐：加 sequence","recommended":"加 sequence","source":"grilling","at":"2026-09-04T14:20:01+08:00","captured":true}
+{"round":2,"question":"Q3 CQ-15 Reification 是否加 5MB","answer":"全按推荐：加 5MB 值","recommended":"加 5MB 值","source":"grilling","at":"2026-09-04T14:20:02+08:00","captured":true}
+{"round":2,"question":"Q4 CQ-19 Reification 是否溯 T0250 版","answer":"全按推荐：加 prov 溯版","recommended":"加 prov 溯 T0250 版","source":"grilling","at":"2026-09-04T14:20:03+08:00","captured":true}

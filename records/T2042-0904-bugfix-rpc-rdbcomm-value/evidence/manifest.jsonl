@@ -1,0 +1,3 @@
+{"id":"rpc-1544","file":"rpc-evidence.md","kind":"document","size":412,"digest":"sha256:31d7c4f4db0f42b96b19169f4e9842442fd0ab7a5748c41e833749ee0df431c3","at":"2026-09-04T14:15:57+08:00","criteria":["AC-1"]}
+{"id":"rdbcomm-shacl","file":"rdbcomm-shacl.ttl","kind":"document","size":548,"digest":"sha256:ba6b6394cffd35a466cd02f81ad071d9ca8c497d62aa10ee33eb8550de17368a","at":"2026-09-04T14:15:58+08:00","criteria":["AC-2"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":460,"digest":"sha256:a6b4ce431f480aa9c05283197d60f85aa7421f30b2b22a334e385634271a8dbd","at":"2026-09-04T14:15:59+08:00","criteria":["AC-1","AC-2"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

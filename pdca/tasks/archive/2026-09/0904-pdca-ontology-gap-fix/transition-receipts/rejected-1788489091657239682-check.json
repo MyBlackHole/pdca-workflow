@@ -1,0 +1,19 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T2029",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-2",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-4",
+      "message": "criterion must be covered by non-map evidence"
+    }
+  ],
+  "at": "2026-09-04T10:31:31.657219+08:00"
+}

@@ -4,6 +4,10 @@ id: ontology:pitfall/tls-cert-reload-appdata-safety
 type: pitfall
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/tls-cert-reload-appdata-safety/1.0.0
 summary: TLS 证书 ctx 热加载的安全陷阱
 source_task: T0366
 relations:

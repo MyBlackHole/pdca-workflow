@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "新顶层已全量：modules/patterns/versions/CQ/provenance/documentation/catalog 全桶可检且 426 节点 100% 迁移",
+      "criteria": ["AC-1", "AC-2"],
+      "evidence_ids": ["new-topology", "momo-cluster"]
+    },
+    {
+      "index": 2,
+      "text": "MOMo 模块化已全量：domain 208 按关键 notion 聚类为 modules/{pdca,zfs,bcachefs,report-center,core} 且 DAG 无环",
+      "criteria": ["AC-2", "AC-4"],
+      "evidence_ids": ["momo-cluster"]
+    },
+    {
+      "index": 3,
+      "text": "FAIR 全量合规：426 节点补 dcterms:license/created 等头且 askwol 全检通过且 START-HERE.owl 可加载",
+      "criteria": ["AC-3", "AC-5"],
+      "evidence_ids": ["fair-headers"]
+    }
+  ]
+}

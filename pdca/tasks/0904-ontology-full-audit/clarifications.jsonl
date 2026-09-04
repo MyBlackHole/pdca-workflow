@@ -1,0 +1,4 @@
+{"round":1,"question":"Q1 审计口径：全量 426 vs P0 50","answer":"按推荐：全量 426 一次，P0/P1/P2 分层","recommended":"全量 426 节点一次，P0 核心/P1 流程/P2 长尾分层","source":"grilling","at":"2026-09-04T10:37:20+08:00","captured":true}
+{"round":1,"question":"Q2 完整度分级阈值","answer":"按推荐：三模式为阈，grep 桩判桩","recommended":"以 testable-signal-to-test-derivation 三模式为阈","source":"grilling","at":"2026-09-04T10:37:21+08:00","captured":true}
+{"round":1,"question":"Q3 硬门禁强度","answer":"按推荐：全 scenario 必填，exempt 仅自举","recommended":"全 scenario 必填，exempt 仅本体自举","source":"grilling","at":"2026-09-04T10:37:22+08:00","captured":true}
+{"source":"final_confirmation","summary":"grilling round 1 frontier 3问已答（全按推荐：全量 426/P0-P2 分层、三模式阈、全 scenario 硬门禁），confirm-or-correct 已确认。","response":"confirmed","at":"2026-09-04T10:37:27+08:00"}

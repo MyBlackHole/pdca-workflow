@@ -1,0 +1,13 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pdca: <http://pdca.local/ontology#> .
+
+# 5 域互斥（MOMo 关键 notion 分离）
+pdca:pdcaDomain owl:disjointWith pdca:zfsDomain .
+pdca:pdcaDomain owl:disjointWith pdca:bcachefsDomain .
+pdca:pdcaDomain owl:disjointWith pdca:reportDomain .
+pdca:zfsDomain owl:disjointWith pdca:bcachefsDomain .
+pdca:coreDomain owl:disjointWith pdca:reportDomain .
+# 阶段互斥（复用 P0-a）
+pdca:PlanPhase owl:disjointWith pdca:DoPhase .
+pdca:DoPhase owl:disjointWith pdca:CheckPhase .
+pdca:CheckPhase owl:disjointWith pdca:ActPhase .

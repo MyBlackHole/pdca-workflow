@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "P0 门禁已硬：check_confirmation 校验 captured:true 且 to-tickets 非空校验均通过 gate_issues",
+      "criteria": ["AC-1", "AC-2"],
+      "evidence_ids": ["p0-done-v2"]
+    },
+    {
+      "index": 2,
+      "text": "P1 本体已补：flow-do 的 design/documentation/review 三路径与 journal 门禁均本体化且 validate+islands:0",
+      "criteria": ["AC-3", "AC-4"],
+      "evidence_ids": ["p1-done-v2"]
+    },
+    {
+      "index": 3,
+      "text": "P2 审计已闭环：flow_audit 可检测 manual skills 调用缺漏且证据链可回溯",
+      "criteria": ["AC-5"],
+      "evidence_ids": ["p2-done"]
+    }
+  ]
+}

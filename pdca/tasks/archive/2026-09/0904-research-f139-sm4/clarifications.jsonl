@@ -1,0 +1,5 @@
+{"round":1,"question":"Q1 squash 全景：4 提交合 1 的关联","answer":"全按推荐：全量 T0451/T0457/T0458 四遗留","recommended":"全量——UAF/RAND_bytes/allowed_values 三遗留全溯","source":"grilling","at":"2026-09-04T14:20:05+08:00","captured":true}
+{"round":1,"question":"Q2 三线实现：各 1 mermaid 还是仅 TLS 单图","answer":"全按推荐：各 1 mermaid","recommended":"各 1 mermaid：TLS/签发/模板 file:line 各溯","source":"grilling","at":"2026-09-04T14:20:06+08:00","captured":true}
+{"round":1,"question":"Q3 沉淀：pattern 还是 records-only","answer":"全按推荐：pattern","recommended":"pattern——SM4 的 TLS_SM4_GCM_SM3 阈值表可复用","source":"grilling","at":"2026-09-04T14:20:07+08:00","captured":true}
+{"source":"final_confirmation","summary":"grilling round 1 frontier 3问已答（全按推荐：squash 全量、三线各 1 mermaid、pattern 沉淀），confirm-or-correct 已确认 d3b99ac8。","response":"confirmed","at":"2026-09-04T14:20:15+08:00"}
+{"source":"check_confirmation","summary":"Check confirmed：5 AC 全通过，10556 bytes 5 mermaid 9 Source valid:true，squash 4 合 1 三线可溯，records-only 已决策。","response":"confirmed","at":"2026-09-04T14:25:27+08:00"}

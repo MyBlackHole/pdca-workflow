@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T2036",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ONTOLOGY_FRAGMENT_INVALID",
+      "path": "task.json",
+      "message": "backup.md: type!=目录名; bcachefs.md: type!=目录名; benchmark-build-profile-baseline-matching.md: type!=目录名; benchmark-paired-comparison-noise.md: type!=目录名; benchmark-small-pack-streaming-decode.md: type!=目录名"
+    }
+  ],
+  "at": "2026-09-04T13:37:01.578002+08:00"
+}

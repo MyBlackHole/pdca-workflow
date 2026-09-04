@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "增量备份遇到 mount_verify 临时目录消失不再中断整体备份（AC-1）",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["ev-fix-diff", "ev-transfer-fix", "ev-rpc-fix"]
+    },
+    {
+      "index": 2,
+      "text": "回归测试覆盖临时/非临时路径差异行为（AC-2）",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["ev-test-report"]
+    },
+    {
+      "index": 3,
+      "text": "存量单测与构建无回归（AC-3）",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["ev-test-report"]
+    }
+  ]
+}

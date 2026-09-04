@@ -1,0 +1,4 @@
+{"id":"new-topology","file":"t2036-verify.md","kind":"document","size":823,"digest":"sha256:ce1b505cb0ac7f1e16ebeb1f646dcee970d43fbefc0cd5687b47e05002fb8e7c","at":"2026-09-04T13:36:50+08:00","criteria":["AC-1","AC-2"]}
+{"id":"momo-cluster","file":"momo.md","kind":"document","size":54,"digest":"sha256:ebe54039f856ae20a6c52d7f269186bdfb78ab02a0863525e16f9cdf7d1bc6d2","at":"2026-09-04T13:36:51+08:00","criteria":["AC-2","AC-4"]}
+{"id":"fair-headers","file":"fair.md","kind":"document","size":59,"digest":"sha256:7e7c9795f7725ca3e59d04434c5bfbd27eff2e1019058cc7b38f52b0f484739f","at":"2026-09-04T13:36:52+08:00","criteria":["AC-3","AC-5"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":804,"digest":"sha256:f5b688979eccc856a596d8b408f84663c5b1055a7ba568183d0c78d919a7afc1","at":"2026-09-04T13:36:52+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

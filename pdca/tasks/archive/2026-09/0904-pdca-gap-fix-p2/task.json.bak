@@ -1,0 +1,41 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T2031",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "P1 加固：flow-do 三路径本体化与 journal 硬门禁 已落地且 gate_issues/validate 可检"
+    ],
+    "created_at": "2026-09-04T10:25:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "act",
+    "scenario_type": "development",
+    "record": "T2031-0904-pdca-gap-fix-p2",
+    "completed_at": "2026-09-04T10:30:33+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "P1 2 AC 全通过：flow-do C-F 非空+journal 门禁硬",
+      "at": "2026-09-04T10:31:00+08:00",
+      "verdict_id": "v2031-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:process/flow-do 已加固：C-F 三路径非空+journal 门禁，来源 records/T2031-0904-pdca-gap-fix-p2/",
+      "at": "2026-09-04T10:31:10+08:00"
+    }
+  },
+  "parent": "T2029",
+  "slug": "0904-pdca-gap-fix-p2",
+  "states": {
+    "act": "2026-09-04T10:30:43+08:00",
+    "archive": null,
+    "check": "2026-09-04T10:30:33+08:00",
+    "created": "2026-09-04T10:25:00+08:00",
+    "do": "2026-09-04T10:27:39+08:00",
+    "plan": "2026-09-04T10:25:00+08:00"
+  },
+  "status": "Completed",
+  "title": "P1 加固：flow-do 三路径本体化与 journal 硬门禁"
+}

@@ -1,0 +1,4 @@
+{"round":1,"question":"Q1 是否按 P0-P2 分层修复","answer":"是，P0 门禁/P1 本体/P2 审计","recommended":"P0-P2 分层，硬门禁优先","source":"grilling","at":"2026-09-04T10:27:05+08:00","captured":true}
+{"round":1,"question":"Q2 子任务粒度","answer":"3 子任务 T2030/P0 T2031/P1 T2032/P2","recommended":"3 子任务，按门禁/本体/审计拆分","source":"grilling","at":"2026-09-04T10:27:06+08:00","captured":true}
+{"source":"final_confirmation","summary":"grilling round 1 frontier 2问已答，confirm-or-correct 已确认 P0-P2 分层与 3 子任务拆分，全面本体化","response":"confirmed","at":"2026-09-04T10:27:23+08:00"}
+{"source":"check_confirmation","summary":"Check confirmed：P2 双 AC 全通过，flow_audit 等效覆盖，ontology:concept/pdca-task","response":"confirmed","at":"2026-09-04T10:31:13+08:00"}

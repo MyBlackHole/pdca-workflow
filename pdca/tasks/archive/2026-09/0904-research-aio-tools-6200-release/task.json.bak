@@ -1,0 +1,44 @@
+{
+  "children": [],
+  "id": "T2027",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "research-report.md 含架构全景与模块职责映射且每结论可回溯到 file:line 或 primary source",
+      "≥3 mermaid 图且每图附 Source 引证且 Source 总数≥3",
+      "版本/构建/CI 链路可重跑验证",
+      "结论含本体沉淀决策且通过 settlement 校验"
+    ],
+    "created_at": "2026-09-04T00:00:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": null,
+    "phase": "act",
+    "record": "T2027-0904-research-aio-tools-6200-release",
+    "scenario_type": "research",
+    "completed_at": "2026-09-04T10:03:49+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "6 AC 全通过：报告29522 bytes 6 mermaid 11 Source valid:true，本体沉淀 records-only 已决策",
+      "at": "2026-09-04T10:04:12+08:00",
+      "verdict_id": "v2027-confirmed"
+    },
+    "disposition": {
+      "outcome": "not_reusable",
+      "reason": "records-only：6200/release 快照特化调研（fe9d4364）含模块矩阵与链路模型但未抽象跨版本通用 pattern，暂不本体化，沉淀于 records/T2027-0904-research-aio-tools-6200-release/",
+      "at": "2026-09-04T10:04:30+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0904-research-aio-tools-6200-release",
+  "states": {
+    "act": "2026-09-04T10:04:27+08:00",
+    "archive": null,
+    "check": "2026-09-04T10:03:49+08:00",
+    "created": "2026-09-04T00:00:00+08:00",
+    "do": "2026-09-04T10:01:34+08:00",
+    "plan": "2026-09-04T00:00:00+08:00"
+  },
+  "status": "Completed",
+  "title": "调研 aio-tools 6200/release 全景：14 模块架构、版本与构建链路"
+}

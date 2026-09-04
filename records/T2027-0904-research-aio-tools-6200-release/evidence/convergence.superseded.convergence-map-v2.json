@@ -1,0 +1,29 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "research-report.md 含架构全景与模块职责映射且每结论可回溯到 file:line 或 primary source",
+      "criteria": ["AC-1", "AC-3", "AC-5"],
+      "evidence_ids": ["research-report"]
+    },
+    {
+      "index": 2,
+      "text": "≥3 mermaid 图且每图附 Source 引证且 Source 总数≥3",
+      "criteria": ["AC-1", "AC-2"],
+      "evidence_ids": ["research-report"]
+    },
+    {
+      "index": 3,
+      "text": "版本/构建/CI 链路可重跑验证",
+      "criteria": ["AC-3", "AC-4"],
+      "evidence_ids": ["research-report"]
+    },
+    {
+      "index": 4,
+      "text": "结论含本体沉淀决策且通过 settlement 校验",
+      "criteria": ["AC-6"],
+      "evidence_ids": ["research-report"]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix pdca: <http://pdca.local/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+pdca:RdbcommShape a sh:NodeShape ;
+    sh:targetClass pdca:Rdbcomm ;
+    sh:property [
+        sh:path pdca:msgSize ;
+        sh:maxInclusive 5242880 ;  # 5MB
+        sh:message "msgSize exceeds 5MB (RDBCOMM_MAX_MSG_LENGTH)" ;
+    ] ;
+    sh:property [
+        sh:path pdca:pluginCount ;
+        sh:maxInclusive 32 ;       # MAX_PLUGINS 32
+        sh:message "pluginCount exceeds MAX_PLUGINS 32" ;
+    ] .

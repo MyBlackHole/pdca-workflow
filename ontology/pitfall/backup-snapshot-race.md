@@ -4,6 +4,10 @@ id: ontology:pitfall/backup-snapshot-race
 type: pitfall
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/backup-snapshot-race/1.0.0
 summary: BackupHelper Snapshot 无超时与 m_sync_stat 竞态致提前 OnCopy 产出缺事件快照
 relations:
   relates_to:

@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "426 全量 AI 草拟已外扩：10 CQ 模板复用到 426 节点，F1 衰减与 A100h 成本锚表已更新至全量",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["cq-426"]
+    },
+    {
+      "index": 2,
+      "text": "426 全量机审已外扩：disjointness 扩展至全域且 OOPS!/OWL 0 critical 保持",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["disjoint-426"]
+    },
+    {
+      "index": 3,
+      "text": "426 全量人定已外扩：20% 采样从 4/10 扩至 85/426 复杂关系，HITL 可度量且 evidence 可回溯",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["human-12"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T2031",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T2031-0904-pdca-gap-fix-p2/evidence/convergence.json[1]/text",
+      "message": "text must equal the Plan convergence value"
+    }
+  ],
+  "at": "2026-09-04T10:30:24.570947+08:00"
+}

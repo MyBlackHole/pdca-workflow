@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "P1 加固：flow-do 三路径本体化与 journal 硬门禁 已落地且 gate_issues/validate 可检",
+      "criteria": ["AC-1", "AC-2"],
+      "evidence_ids": ["p1-flow-do", "p1-journal"]
+    }
+  ]
+}

@@ -4,6 +4,10 @@ id: ontology:pitfall/mtls-param-review-findings
 type: pitfall
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/mtls-param-review-findings/1.0.0
 summary: mTLS 参数链路审查发现四模块横向一致性陷阱
 source_task: T0348
 relations:

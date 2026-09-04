@@ -1,0 +1,43 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0540",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "增量备份遇到 mount_verify 临时目录消失不再中断整体备份（AC-1）",
+      "回归测试覆盖临时/非临时路径差异行为（AC-2）",
+      "存量单测与构建无回归（AC-3）"
+    ],
+    "created_at": "2026-09-03T16:51:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "phase": "act",
+    "record": "T0540-0903-fix-inc-mount-verify-eexist",
+    "scenario_type": "bugfix",
+    "ontology_fragment": "ontology",
+    "completed_at": "2026-09-03T16:57:28+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "三项 AC 均有直接证据支撑，构建与测试零回归，符合 PRD 目标",
+      "verdict_id": "v0540-confirmed",
+      "at": "2026-09-03T16:58:00+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:domain/backup 增量容错模式已验证，沉淀为 ephemeral-dir-tolerance 经验，关联 failure-mode #3",
+      "at": "2026-09-03T16:58:10+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0903-fix-inc-mount-verify-eexist",
+  "states": {
+    "act": "2026-09-03T16:58:05+08:00",
+    "archive": null,
+    "check": "2026-09-03T16:57:28+08:00",
+    "created": "2026-09-03T16:51:00+08:00",
+    "do": "2026-09-03T16:53:10+08:00",
+    "plan": "2026-09-03T16:51:00+08:00"
+  },
+  "status": "Completed",
+  "title": "修复增量备份遇到 mount_verify 临时目录时 EEXIST 失败导致整体备份中断"
+}

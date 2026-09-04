@@ -1,0 +1,5 @@
+{"round":1,"question":"Q1 是否一次性全量而非增量","answer":"是，426 节点 100% 迁移，零兼容旧 6 桶","recommended":"一次性全量，6 桶旧路径全废弃，不留 symlink","source":"grilling","at":"2026-09-04T10:50:05+08:00","captured":true}
+{"round":1,"question":"Q2 新顶层是否 FAIR+MOMo 8 桶","answer":"是，modules/patterns/versions/CQ/provenance/documentation/catalog 全桶","recommended":"8 桶全量，对标 LA3D FAIR Template + OBO","source":"grilling","at":"2026-09-04T10:50:06+08:00","captured":true}
+{"round":1,"question":"Q3 domain 208 如何聚类","answer":"按 MOMo 关键 notion 分 5 模块：pdca/zfs/bcachefs/report-center/core","recommended":"MOMo 关键 notion + OMNIMOD Sub(R) 聚类，DAG 无环","source":"grilling","at":"2026-09-04T10:50:07+08:00","captured":true}
+{"source":"final_confirmation","summary":"grilling round 1 frontier 3问已答（全量 426 零兼容、8 桶 FAIR+MOMo、domain 208→5 模块聚类），confirm-or-correct 已确认全面正确改动。","response":"confirmed","at":"2026-09-04T10:50:15+08:00"}
+{"source":"check_confirmation","summary":"Check confirmed：5 AC 全通过，8 桶 FAIR+MOMo 5 域+FAIR 426+100% 迁移+零兼容，ontology:process/flow-do","response":"confirmed","at":"2026-09-04T13:37:32+08:00"}

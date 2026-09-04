@@ -1,0 +1,29 @@
+{
+  "children": [],
+  "id": "T2033",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "全量本体审计矩阵已产：426 节点按 完整度/可检性/孤岛 三维分级且可重跑",
+      "重构路线图已产：P0 核心域/P1 流程域/P2 长尾域分级且每域含 repair 策略与 testable_signal 模板",
+      "“无本体不任务”硬门禁已落地且 gate_issues 可检"
+    ],
+    "created_at": "2026-09-04T10:35:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "do",
+    "scenario_type": "research"
+  },
+  "parent": null,
+  "slug": "0904-ontology-full-audit",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-09-04T10:35:00+08:00",
+    "do": "2026-09-04T10:37:34+08:00",
+    "plan": "2026-09-04T10:35:00+08:00"
+  },
+  "status": "InProgress",
+  "title": "PDCA 本体全量审计：426 节点完整度矩阵与重构路线图（无本体不任务）"
+}

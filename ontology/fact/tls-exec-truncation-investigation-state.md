@@ -4,6 +4,10 @@ id: ontology:fact/tls-exec-truncation-investigation-state
 type: fact
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/tls-exec-truncation-investigation-state/1.0.0
 summary: TLS exec stdin 偶发截断调查状态与已知事实
 source_task: T0345
 relations:

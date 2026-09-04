@@ -1,0 +1,44 @@
+{
+  "children": [
+    "T2037"
+  ],
+  "id": "T2036",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "新顶层已全量：modules/patterns/versions/CQ/provenance/documentation/catalog 全桶可检且 426 节点 100% 迁移",
+      "MOMo 模块化已全量：domain 208 按关键 notion 聚类为 modules/{pdca,zfs,bcachefs,report-center,core} 且 DAG 无环",
+      "FAIR 全量合规：426 节点补 dcterms:license/created 等头且 askwol 全检通过且 START-HERE.owl 可加载"
+    ],
+    "created_at": "2026-09-04T10:50:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "act",
+    "scenario_type": "development",
+    "record": "T2036-0904-ontology-full-restructure",
+    "completed_at": "2026-09-04T13:37:21+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "5 AC 全通过：8 桶 FAIR+MOMo 5 域+FAIR 426+100% 迁移+零兼容",
+      "at": "2026-09-04T13:37:00+08:00",
+      "verdict_id": "v2036-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:process/flow-do 已全量重构：8 桶 FAIR+MOMo 5 域+FAIR 426+100% 迁移+零兼容，来源 records/T2036-0904-ontology-full-restructure/",
+      "at": "2026-09-04T13:37:10+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0904-ontology-full-restructure",
+  "states": {
+    "act": "2026-09-04T13:37:35+08:00",
+    "archive": null,
+    "check": "2026-09-04T13:37:21+08:00",
+    "created": "2026-09-04T10:50:00+08:00",
+    "do": "2026-09-04T11:02:03+08:00",
+    "plan": "2026-09-04T10:50:00+08:00"
+  },
+  "status": "Completed",
+  "title": "全面重构 ontology 目录：FAIR+MOMo 全量（426 节点 100% 迁移，零兼容）"
+}

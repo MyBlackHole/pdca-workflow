@@ -1,0 +1,9 @@
+{"round":1,"question":"Q1 是否先定 5 模块再产规则体","answer":"是，MOMo 两阶段：先定模块再产规则体","recommended":"先定 zfs 的 5 模块（dmu/dsl/spa/zio/arc），再产规则体","source":"grilling","at":"2026-09-04T14:00:05+08:00","captured":true}
+{"round":1,"question":"Q2 是否 zfs/bcachefs 各 10 CQ","answer":"是，各 10 CQ 共 20 CQ","recommended":"zfs 10 + bcachefs 10 共 20 CQ，复用 10 CQ 模板","source":"grilling","at":"2026-09-04T14:00:06+08:00","captured":true}
+{"round":1,"question":"Q3 是否 4/20 复杂人审","answer":"是，4 Reification 人审","recommended":"20 CQ 中 4 Reification 人审，HITL 可度量","source":"grilling","at":"2026-09-04T14:00:07+08:00","captured":true}
+{"source":"final_confirmation","summary":"grilling round 1 frontier 3问已答（先定 5 模块、20 CQ、4/20 人审），confirm-or-correct 已确认。","response":"confirmed","at":"2026-09-04T14:00:15+08:00"}
+{"round":2,"question":"Q1 CQ-9 Reification prov 单溯 vs 双溯","answer":"全按推荐：prov 单溯","recommended":"保留 prov 单溯","source":"grilling","at":"2026-09-04T14:20:00+08:00","captured":true}
+{"round":2,"question":"Q2 CQ-12 Reification 是否加 sequence","answer":"全按推荐：加 sequence","recommended":"加 sequence","source":"grilling","at":"2026-09-04T14:20:01+08:00","captured":true}
+{"round":2,"question":"Q3 CQ-15 Reification 是否加 5MB","answer":"全按推荐：加 5MB 值","recommended":"加 5MB 值","source":"grilling","at":"2026-09-04T14:20:02+08:00","captured":true}
+{"round":2,"question":"Q4 CQ-19 Reification 是否溯 T0250 版","answer":"全按推荐：加 prov 溯版","recommended":"加 prov 溯 T0250 版","source":"grilling","at":"2026-09-04T14:20:03+08:00","captured":true}
+{"source":"check_confirmation","summary":"Check confirmed：3 AC 全通过，5 模块+5 规则体+人定 4 问，ontology:entity/zfs-system","response":"confirmed","at":"2026-09-04T14:05:58+08:00"}

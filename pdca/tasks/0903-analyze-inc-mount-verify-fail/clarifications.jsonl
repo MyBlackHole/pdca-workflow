@@ -1,0 +1,6 @@
+{"at":"2026-09-03T17:00:00+08:00","source":"task_identity","summary":"created with record identity T0541-0903-analyze-inc-mount-verify-fail"}
+{"round":1,"question":"Q1 - 是否允许直接改代码修复？","answer":"不允许，本次仅做分析产出报告，不修改 transfer_file.cpp/rpc.cpp","recommended":"纯分析，不改代码","source":"grilling","at":"2026-09-03T17:01:27+08:00","captured":true}
+{"round":1,"question":"Q2 - EEXIST 与 IO_EOF 哪个是真因？","answer":"真因为 IO_EOF(-3)：服务端 traversal 失败关闭连接，EEXIST 为 mkdir_path 遗留的 stale errno 污染","recommended":"以 IO_EOF 为真因，EEXIST 为噪音","source":"grilling","at":"2026-09-03T17:01:27+08:00","captured":true}
+{"round":1,"question":"Q3 - 报告需覆盖哪些链路？","answer":"FsMeta PathForEach→TYPE_NEW→backup_new_directory→readdir_tree→dir_traversal_at→连接关闭→PathForEachCallback failed","recommended":"端到端链路全覆盖","source":"grilling","at":"2026-09-03T17:01:27+08:00","captured":true}
+{"source":"final_confirmation","summary":"确认立项：纯分析不改代码，聚焦 EEXIST/IO_EOF 区分与端到端链路","response":"confirmed","at":"2026-09-03T17:01:32+08:00"}
+{"source":"check_confirmation","summary":"Check 确认：报告三级根因与分级建议完整，不改代码约束已遵守","response":"confirmed","at":"2026-09-03T17:03:13+08:00"}

@@ -1,0 +1,12 @@
+{"round":2,"question":"Q1 CQ-2 Reification","answer":"全按推荐：保留 Reification","recommended":"保留 Reification","source":"grilling","at":"2026-09-04T14:05:00+08:00","captured":true}
+{"round":2,"question":"Q2 CQ-9 Reification","answer":"全按推荐：加 prov","recommended":"加 prov","source":"grilling","at":"2026-09-04T14:05:01+08:00","captured":true}
+{"round":2,"question":"Q3 CQ-12 Reification","answer":"全按推荐：保留 Reification","recommended":"保留 Reification","source":"grilling","at":"2026-09-04T14:05:02+08:00","captured":true}
+{"round":2,"question":"Q4 CQ-15 Reification","answer":"全按推荐：加 5MB 具化","recommended":"加 5MB 具化","source":"grilling","at":"2026-09-04T14:05:03+08:00","captured":true}
+{"round":2,"question":"Q5 CQ-19 Reification","answer":"全按推荐：加 prov","recommended":"加 prov","source":"grilling","at":"2026-09-04T14:05:04+08:00","captured":true}
+{"round":2,"question":"Q6 CQ-3 Restriction","answer":"全按推荐：allValuesFrom + List","recommended":"allValuesFrom + List","source":"grilling","at":"2026-09-04T14:05:05+08:00","captured":true}
+{"round":2,"question":"Q7 CQ-5 Restriction","answer":"全按推荐：hasValue + normalize-space","recommended":"hasValue + normalize-space","source":"grilling","at":"2026-09-04T14:05:06+08:00","captured":true}
+{"round":2,"question":"Q8 CQ-6 Restriction","answer":"全按推荐：someValuesFrom","recommended":"someValuesFrom","source":"grilling","at":"2026-09-04T14:05:07+08:00","captured":true}
+{"round":2,"question":"Q9 CQ-10 Restriction","answer":"全按推荐：allValuesFrom","recommended":"allValuesFrom","source":"grilling","at":"2026-09-04T14:05:08+08:00","captured":true}
+{"round":2,"question":"Q10 CQ-16 Restriction","answer":"全按推荐：hasValue","recommended":"hasValue","source":"grilling","at":"2026-09-04T14:05:09+08:00","captured":true}
+{"round":2,"question":"Q11 CQ-18 Restriction","answer":"全按推荐：someValuesFrom","recommended":"someValuesFrom","source":"grilling","at":"2026-09-04T14:05:10+08:00","captured":true}
+{"round":2,"question":"Q12 CQ-20 Restriction","answer":"全按推荐：hasValue","recommended":"hasValue","source":"grilling","at":"2026-09-04T14:05:11+08:00","captured":true}

@@ -1,0 +1,17 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "rpc.cpp:1544 的 ioctl_buff 已细化：connect/socket/handshake/EBADF/File exists 可区分且回归可检",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["rpc-1544"]
+    },
+    {
+      "index": 2,
+      "text": "rdbcomm 32/5MB 的 SHACL 已补：5MB 超限与 32 槽满分片可验",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["rdbcomm-shacl"]
+    }
+  ]
+}

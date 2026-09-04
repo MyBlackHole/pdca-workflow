@@ -4,6 +4,10 @@ id: ontology:pitfall/tls-keygen-sign-uaf-serial
 type: pitfall
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/tls-keygen-sign-uaf-serial/1.0.0
 summary: tls-keygen 签发链路 UAF 与序列号硬编码导致并发证书异常
 source_task: T0454
 relations:

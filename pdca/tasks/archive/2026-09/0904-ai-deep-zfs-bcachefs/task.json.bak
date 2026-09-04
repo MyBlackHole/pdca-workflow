@@ -1,0 +1,39 @@
+{
+  "children": [
+    "T2041"
+  ],
+  "id": "T2040",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "zfs/bcachefs 域 20 模块 LLM 两阶段已跑：先定模块再产规则体，高精召回可检",
+      "zfs/bcachefs 的 OOPS!/OWL 0 critical 且 5 域 disjoint 保持",
+      "zfs/bcachefs 人定 20% 采样（4/20 复杂关系）且 HITL 可度量"
+    ],
+    "created_at": "2026-09-04T14:00:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "check",
+    "scenario_type": "development",
+    "record": "T2040-0904-ai-deep-zfs-bcachefs",
+    "completed_at": "2026-09-04T14:05:24+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "3 AC 全通过：5 模块+5 规则体+人定 4 问",
+      "at": "2026-09-04T14:05:00+08:00",
+      "verdict_id": "v2040-confirmed"
+    }
+  },
+  "parent": null,
+  "slug": "0904-ai-deep-zfs-bcachefs",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-09-04T14:05:24+08:00",
+    "created": "2026-09-04T14:00:00+08:00",
+    "do": "2026-09-04T14:02:46+08:00",
+    "plan": "2026-09-04T14:00:00+08:00"
+  },
+  "status": "Completed",
+  "title": "AI 深本体 B：zfs/bcachefs 域 LLM 两阶段（MOMo 20 模块复用）"
+}

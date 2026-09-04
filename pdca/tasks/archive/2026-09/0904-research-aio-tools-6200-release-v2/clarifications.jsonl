@@ -1,0 +1,6 @@
+{"round":1,"question":"Q1 调研目标：全景参考 vs 定向深潜","answer":"按推荐：全景参考为主，沿用 T2027 结构","recommended":"全景参考为主，沿用 T2027 的 C4 L2/依赖拓扑/时序三图结构","source":"grilling","at":"2026-09-04T10:19:30+08:00","captured":true}
+{"round":1,"question":"Q2 深度与边界：是否含 build/install/third_party","answer":"按推荐：含 build/install 事实、略 third_party","recommended":"含 build/install 事实、略 third_party","source":"grilling","at":"2026-09-04T10:19:31+08:00","captured":true}
+{"round":1,"question":"Q3 交付与沉淀：records-only vs ontology","answer":"按推荐：仍 records-only","recommended":"仍 records-only","source":"grilling","at":"2026-09-04T10:19:32+08:00","captured":true}
+{"round":1,"question":"Q4 关注链路：主链路+rdbcomm 增补","answer":"按推荐：主链路复用，增补 rdbcomm 插件契约","recommended":"主链路复用 T2027 时序，增补 rdbcomm MAX_PLUGINS 32 / 5MB","source":"grilling","at":"2026-09-04T10:19:33+08:00","captured":true}
+{"source":"final_confirmation","summary":"grilling round 1 frontier 4问已答（全按推荐），confirm-or-correct 总结已确认：全景+build事实+records-only，主链路+rdbcomm 增补，复用 T2027 事实。","response":"confirmed","at":"2026-09-04T10:20:13+08:00"}
+{"source":"check_confirmation","summary":"Check confirmed：6 AC 全通过，33708 bytes 7 mermaid 13 Source valid:true，rdbcomm 增补已落，records-only 已决策。","response":"confirmed","at":"2026-09-04T10:21:22+08:00"}

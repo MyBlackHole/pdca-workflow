@@ -4,6 +4,10 @@ id: ontology:principle/mtls-review-fd-session-boundary
 type: principle
 layer: Knowledge
 status: active
+dcterms_license: CC-BY-4.0
+dcterms_created: 2026-09-04
+dcterms_modified: 2026-09-04
+owl_versionIRI: http://pdca.local/ontology/mtls-review-fd-session-boundary/1.0.0
 summary: RPC/rdbcomm mTLS 审查：连接对象必须携带传输状态
 source_task: T0309
 relations:

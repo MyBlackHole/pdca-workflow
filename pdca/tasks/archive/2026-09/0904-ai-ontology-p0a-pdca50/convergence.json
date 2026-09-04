@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "pdca 50 核心 AI 草拟→机审→人定闭环已跑通：o1/Mistral 双基线 CQ 覆盖率与 A100h 成本对比表已产",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["cq-draft"]
+    },
+    {
+      "index": 2,
+      "text": "disjointness 冷启动已落地：pdca 50 核心的 OOPS!/OWL 基线可检且 0 critical",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["disjoint"]
+    },
+    {
+      "index": 3,
+      "text": "人定量化已验证：95 CQ 中 20% 复杂关系采样人审，其余机审，HITL 聚焦度可度量",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["human-grill"]
+    }
+  ]
+}

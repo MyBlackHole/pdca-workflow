@@ -1,0 +1,7 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pdca: <http://pdca.local/ontology#> .
+
+pdca:PlanPhase owl:disjointWith pdca:DoPhase .
+pdca:DoPhase owl:disjointWith pdca:CheckPhase .
+pdca:CheckPhase owl:disjointWith pdca:ActPhase .
+pdca:Grilling owl:disjointWith pdca:Triage .

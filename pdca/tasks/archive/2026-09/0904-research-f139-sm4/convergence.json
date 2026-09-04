@@ -1,0 +1,29 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "squash 全景已产：4 提交合并为 1 需求的 T0451/T0457/T0458 关联可检",
+      "criteria": ["AC-1", "AC-2"],
+      "evidence_ids": ["research-report"]
+    },
+    {
+      "index": 2,
+      "text": "三线实现已产：TLS/mTLS 全栈/签发加固/模板自解释各 1 mermaid 且 file:line 可溯",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["research-report"]
+    },
+    {
+      "index": 3,
+      "text": "影响与版本已产：5 模块影响矩阵+7 组件版本递进可重跑",
+      "criteria": ["AC-4"],
+      "evidence_ids": ["research-report"]
+    },
+    {
+      "index": 4,
+      "text": "结论含本体沉淀决策且通过 settlement 校验",
+      "criteria": ["AC-5"],
+      "evidence_ids": ["research-report"]
+    }
+  ]
+}

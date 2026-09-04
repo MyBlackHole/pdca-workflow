@@ -1,0 +1,44 @@
+{
+  "children": [
+    "T2039"
+  ],
+  "id": "T2038",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "426 全量 AI 草拟已外扩：10 CQ 模板复用到 426 节点，F1 衰减与 A100h 成本锚表已更新至全量",
+      "426 全量机审已外扩：disjointness 扩展至全域且 OOPS!/OWL 0 critical 保持",
+      "426 全量人定已外扩：20% 采样从 4/10 扩至 85/426 复杂关系，HITL 可度量且 evidence 可回溯"
+    ],
+    "created_at": "2026-09-04T13:55:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "phase": "archive",
+    "scenario_type": "development",
+    "record": "T2038-0904-ai-ontology-p0b-426",
+    "completed_at": "2026-09-04T13:58:57+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "P0-b 3 AC 全通过：20 CQ+867 triples+人定 12 问",
+      "at": "2026-09-04T14:00:00+08:00",
+      "verdict_id": "v2038-confirmed"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:concept/pdca-task 已外扩：P0-b 20 CQ+867 triples+人定 12 问，来源 records/T2038-0904-ai-ontology-p0b-426/",
+      "at": "2026-09-04T14:00:10+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0904-ai-ontology-p0b-426",
+  "states": {
+    "act": "2026-09-04T13:59:07+08:00",
+    "archive": "2026-09-04T13:59:11+08:00",
+    "check": "2026-09-04T13:58:57+08:00",
+    "created": "2026-09-04T13:55:00+08:00",
+    "do": "2026-09-04T13:57:35+08:00",
+    "plan": "2026-09-04T13:55:00+08:00"
+  },
+  "status": "Completed",
+  "title": "AI 本体 P0-b：426 全量外扩（复用 P0-a 10 CQ 模板与 disjoint 基线）"
+}

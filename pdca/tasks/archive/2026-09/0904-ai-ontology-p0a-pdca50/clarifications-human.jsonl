@@ -1,0 +1,4 @@
+{"round":2,"question":"Q1 CQ-3 Reification 是否保留","answer":"可以，保留 Reification","recommended":"保留 Reification","source":"grilling","at":"2026-09-04T13:40:00+08:00","captured":true}
+{"round":2,"question":"Q2 CQ-4 Restriction allValuesFrom vs some","answer":"可以，allValuesFrom","recommended":"allValuesFrom","source":"grilling","at":"2026-09-04T13:40:01+08:00","captured":true}
+{"round":2,"question":"Q3 CQ-6 hasValue 是否含空白归一","answer":"可以，hasValue + normalize-space","recommended":"hasValue + normalize-space","source":"grilling","at":"2026-09-04T13:40:02+08:00","captured":true}
+{"round":2,"question":"Q4 CQ-9 是否加 prov:wasDerivedFrom","answer":"可以，加 prov:wasDerivedFrom","recommended":"加 prov:wasDerivedFrom","source":"grilling","at":"2026-09-04T13:40:03+08:00","captured":true}

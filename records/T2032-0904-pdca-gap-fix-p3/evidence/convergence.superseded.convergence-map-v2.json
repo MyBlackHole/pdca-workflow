@@ -1,0 +1,11 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "P2 审计已闭环：flow_audit 可检测 manual skills 调用缺漏且证据链可回溯",
+      "criteria": ["AC-1", "AC-2"],
+      "evidence_ids": ["p2-audit"]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+{"id":"zfs-modules","file":"zfs-modules.md","kind":"document","size":1081,"digest":"sha256:5b9e24d71ee1f4ea2375fe10201d74f308734693ce826e98cf8a63eeb6fbcbf9","at":"2026-09-04T14:04:53+08:00","criteria":["AC-1"]}
+{"id":"zfs-rules","file":"zfs-rules.md","kind":"document","size":1787,"digest":"sha256:9481de91d0b47dc377245d515d186e853cd702c5babc4db86e3a38e8e765e41b","at":"2026-09-04T14:04:54+08:00","criteria":["AC-2"]}
+{"id":"human-4","file":"human4.md","kind":"document","size":124,"digest":"sha256:e9a0b0279b5b5b6121b9d06e6dfaa2d1fa479fce4d30f2fa35a1b421d8351e79","at":"2026-09-04T14:04:55+08:00","criteria":["AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":646,"digest":"sha256:245bb00c952bb9ffe729590b4b338ea132098d4209ec143801a37679afda09ae","at":"2026-09-04T14:04:56+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

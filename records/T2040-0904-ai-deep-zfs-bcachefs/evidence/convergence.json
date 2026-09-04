@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "zfs/bcachefs 域 20 模块 LLM 两阶段已跑：先定模块再产规则体，高精召回可检",
+      "criteria": ["AC-1", "AC-2"],
+      "evidence_ids": ["zfs-modules", "zfs-rules"]
+    },
+    {
+      "index": 2,
+      "text": "zfs/bcachefs 的 OOPS!/OWL 0 critical 且 5 域 disjoint 保持",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["zfs-rules"]
+    },
+    {
+      "index": 3,
+      "text": "zfs/bcachefs 人定 20% 采样（4/20 复杂关系）且 HITL 可度量",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["human-4"]
+    }
+  ]
+}

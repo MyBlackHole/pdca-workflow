@@ -1,0 +1,9 @@
+{"round":1,"question":"Q1 是否先 pdca 50 核心闭环再扩 426","answer":"是，P0-a 仅 50 核心含 OOPS 冷启动","recommended":"P0-a 仅 pdca 50 核心（18+32），冷启动 disjointness","source":"grilling","at":"2026-09-04T10:45:05+08:00","captured":true}
+{"round":1,"question":"Q2 双基线是否 o1 vs Mistral","answer":"是，对比 F1 衰减与 A100h 成本","recommended":"o1-preview+Ontogenia vs Mistral 7B 双基线","source":"grilling","at":"2026-09-04T10:45:06+08:00","captured":true}
+{"round":1,"question":"Q3 人定是否 20% 采样","answer":"是，20% 复杂 CQ 人审，余机审","recommended":"95 CQ 中 20% 复杂关系采样人审","source":"grilling","at":"2026-09-04T10:45:07+08:00","captured":true}
+{"source":"final_confirmation","summary":"grilling round 1 frontier 3问已答（P0-a 仅 50 核心、双基线、人定 20% 采样），confirm-or-correct 已确认。","response":"confirmed","at":"2026-09-04T10:45:15+08:00"}
+{"round":2,"question":"Q1 CQ-3 Reification 是否保留","answer":"可以，保留 Reification","recommended":"保留 Reification","source":"grilling","at":"2026-09-04T13:40:00+08:00","captured":true}
+{"round":2,"question":"Q2 CQ-4 Restriction allValuesFrom vs some","answer":"可以，allValuesFrom","recommended":"allValuesFrom","source":"grilling","at":"2026-09-04T13:40:01+08:00","captured":true}
+{"round":2,"question":"Q3 CQ-6 hasValue 是否含空白归一","answer":"可以，hasValue + normalize-space","recommended":"hasValue + normalize-space","source":"grilling","at":"2026-09-04T13:40:02+08:00","captured":true}
+{"round":2,"question":"Q4 CQ-9 是否加 prov:wasDerivedFrom","answer":"可以，加 prov:wasDerivedFrom","recommended":"加 prov:wasDerivedFrom","source":"grilling","at":"2026-09-04T13:40:03+08:00","captured":true}
+{"source":"check_confirmation","summary":"Check confirmed：P0-a 3 AC 全通过，10 CQ+disjoint 154+人定 4 问，ontology:concept/pdca-task","response":"confirmed","at":"2026-09-04T13:56:44+08:00"}
