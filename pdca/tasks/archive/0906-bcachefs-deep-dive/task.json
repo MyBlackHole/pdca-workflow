@@ -1,0 +1,44 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0490",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "新分析覆盖 EC数据路径/可观测/用户态工具且有代码佐证",
+      "新增至少 3 个不重复 domain 节点",
+      "优化项逐条落实且有依据",
+      "validate 全量 0 issues 且信号非泛化"
+    ],
+    "created_at": "2026-09-06T00:03:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology/domain/core.md",
+    "phase": "archive",
+    "record": "T0490-0906-bcachefs-deep-dive",
+    "scenario_type": "development",
+    "completed_at": "2026-09-06T00:19:08+08:00",
+    "verdict": {
+      "at": "2026-09-06T00:00:00+08:00",
+      "outcome": "confirmed",
+      "reason": "4 AC 全绿，5新节点+O3优化，validate 0 issues",
+      "verdict_id": "vt0490-confirmed"
+    },
+    "disposition": {
+      "at": "2026-09-06T00:00:00+08:00",
+      "outcome": "projected",
+      "reason": "ontology:domain/core 系列新增5节点，T0489三节点O3单向关联补强；O1双向环教训已记结论"
+    }
+  },
+  "parent": null,
+  "slug": "0906-bcachefs-deep-dive",
+  "states": {
+    "act": "2026-09-06T00:20:32+08:00",
+    "archive": "2026-09-06T00:20:45+08:00",
+    "check": "2026-09-06T00:19:08+08:00",
+    "created": "2026-09-06T00:03:00+08:00",
+    "do": "2026-09-06T00:09:54+08:00",
+    "plan": "2026-09-06T00:03:00+08:00"
+  },
+  "status": "Completed",
+  "title": "bcachefs 纵深分析与本体优化"
+}

@@ -14,6 +14,7 @@ relations:
   - ontology:domain/core-open-bucket-lifecycle-and-device-rw
   - ontology:domain/core-discard-boundary-guards
   - ontology:domain/core-device-bucket-geometry-pointer-contract
+  - ontology:domain/core-move-unified-relocation-engine
   - ontology:concept/pdca
 attributes:
 - name: applicability

@@ -13,6 +13,7 @@ relations:
   relates_to:
   - ontology:domain/core-journal-key-layout-validation
   - ontology:domain/core-journal-reclaim-proptest-pattern
+  - ontology:domain/core-observability-status-text-matrix
   - ontology:concept/pdca
 attributes:
 - name: applicability

@@ -13,6 +13,7 @@ relations:
   relates_to:
   - ontology:domain/core-fsck-repair-mode
   - ontology:domain/core-fsck-repair-fault-injection
+  - ontology:domain/core-observability-status-text-matrix
   - ontology:concept/pdca
 attributes:
 - name: applicability
