@@ -1,0 +1,1 @@
+{"items": [{"criteria": ["AC-1"], "evidence_ids": ["report-bcachefs-strengths"], "index": 1, "text": "优点清单覆盖内核主要子系统且每条有代码位置引用"}, {"criteria": ["AC-2"], "evidence_ids": ["report-bcachefs-strengths"], "index": 2, "text": "每条巧思有代码佐证非空泛评价"}, {"criteria": ["AC-3"], "evidence_ids": ["report-bcachefs-strengths"], "index": 3, "text": "报告文件存在且对话输出与文件一致"}], "schema": "pdca.convergence/v1"}
