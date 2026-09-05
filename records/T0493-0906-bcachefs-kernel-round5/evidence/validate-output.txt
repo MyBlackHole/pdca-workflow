@@ -1,0 +1,1 @@
+OK: /home/black/Documents/pdca-workflow-pro/ontology 通过本体契约校验
