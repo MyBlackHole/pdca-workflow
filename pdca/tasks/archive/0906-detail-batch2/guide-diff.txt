@@ -1,0 +1,50 @@
+diff --git a/ontology/domain/core-btreesearch-study-guide.md b/ontology/domain/core-btreesearch-study-guide.md
+index b2ad2a9c..465eb019 100644
+--- a/ontology/domain/core-btreesearch-study-guide.md
++++ b/ontology/domain/core-btreesearch-study-guide.md
+@@ -58,3 +58,5 @@ attributes:
+ 
+ - 学搜索先分三级，再逐级深入，最后看合并。
+ - 预取量按阶段调，高层不预取是定论。
++
++详见 T0536 代码级精讲扩充版报告（逐函数签名参数返回调用链）。
+diff --git a/ontology/domain/core-crypto-study-guide.md b/ontology/domain/core-crypto-study-guide.md
+index a3586c65..36344a44 100644
+--- a/ontology/domain/core-crypto-study-guide.md
++++ b/ontology/domain/core-crypto-study-guide.md
+@@ -59,3 +59,5 @@ attributes:
+ 
+ - 学压缩加密先定分层顺序，再逐层深入，最后看密钥。
+ - 安全不变量（顺序/步进/清零）背下来，性能可调安全不可调。
++
++详见 T0536 代码级精讲扩充版报告（逐函数签名参数返回调用链）。
+diff --git a/ontology/domain/core-recovery-study-guide.md b/ontology/domain/core-recovery-study-guide.md
+index 125753d9..5c9ae495 100644
+--- a/ontology/domain/core-recovery-study-guide.md
++++ b/ontology/domain/core-recovery-study-guide.md
+@@ -58,3 +58,5 @@ attributes:
+ 
+ - 学恢复先定编排，再看分级，最后看交互。
+ - 限流与账本是易漏点，单拎出来先学。
++
++详见 T0536 代码级精讲扩充版报告（逐函数签名参数返回调用链）。
+diff --git a/ontology/domain/core-snapshot-study-guide.md b/ontology/domain/core-snapshot-study-guide.md
+index 2da5165e..e47fc1f9 100644
+--- a/ontology/domain/core-snapshot-study-guide.md
++++ b/ontology/domain/core-snapshot-study-guide.md
+@@ -60,3 +60,5 @@ attributes:
+ 
+ - 学快照先定语义（分支树），再看判定，最后看删除。
+ - 删除与校验对照读，删是剪枝，验是验树。
++
++详见 T0536 代码级精讲扩充版报告（逐函数签名参数返回调用链）。
+diff --git a/ontology/domain/core-writepath-study-guide.md b/ontology/domain/core-writepath-study-guide.md
+index 5bbfb595..2dcb2890 100644
+--- a/ontology/domain/core-writepath-study-guide.md
++++ b/ontology/domain/core-writepath-study-guide.md
+@@ -59,3 +59,5 @@ attributes:
+ 
+ - 学写先分四段，再逐段深入，最后看降级。
+ - 预留与记账是贯穿线，单拎出来先学。
++
++详见 T0536 代码级精讲扩充版报告（逐函数签名参数返回调用链）。
