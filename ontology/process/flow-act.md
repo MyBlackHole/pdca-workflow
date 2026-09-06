@@ -31,8 +31,8 @@ Act 阶段处置知识、完成自我优化闭环，是 PDCA 周期中"学习并
 
 ## 阶段步骤（权威描述）
 
-1. **知识处置**：显式投影 `ontology/domain/<topic>-<slug>.md`，记来源 record/摘要/理由/连续 revision；相同内容与理由重试须幂等。`research` 场景须按 `ontology:domain/skill-research` 的“本体沉淀决策”做分流判定与记录（`conclusion.md##本体沉淀` + `meta.disposition` 显式关键词）；其余 `development/bugfix/design/review/documentation` 亦须关联既有本体节点或记录 `records-only` 理由，实现“无任务不知识”。
-2. **disposition 与 journal**：写入 `meta.disposition`（**全任务强制**含 `ontology:` 或 `records-only` 决策词；缺失时 `archive` 门禁拒收，见 `ontology_gate.disposition_ontology_issues`），更新 journal。
+1. **知识处置（本体强制产生，T0513 起）**：每个任务在 Act 必须新建或更新至少一个本体节点（`ontology/<type>/<slug>.md`），记来源 record/摘要/理由/连续 revision；相同内容与理由重试须幂等。`research` 场景须按 `ontology:domain/skill-research` 的“本体沉淀决策”执行本体化并记录（`conclusion.md##本体沉淀` 声明 `ontology:` + `meta.disposition` 含 `ontology:` 关键词）；其余 `development/bugfix/design/review/documentation` 同样必须新建或更新节点，不再接受 `records-only`。仅自举任务（`meta.ontology_exempt=true`，如创建 PDCA 元本体本身）可豁免。实现“无任务不知识、有任务必本体”。
+2. **disposition 与 journal**：写入 `meta.disposition`（**全任务强制**含 `ontology:` 决策词，仅自举任务豁免；缺失或含 `records-only` 时 `archive` 门禁拒收，见 `ontology_gate.disposition_ontology_issues`），更新 journal。
 3. **门禁**：通过 `pdca-gate`、archive 本体自检（ontology-validate + 孤岛检查）与 `check-research-ontology-settlement`（已扩展为全任务 `check-ontology-settlement`）后，经 `transition-phase.py` 进入 archive。
 
 ## 关键决策（已迁移自外部知识）

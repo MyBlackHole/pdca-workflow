@@ -1,0 +1,31 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0543",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "三层算法节点内容详实有依据",
+      "三查与validate全绿",
+      "证据登记进Check归档"
+    ],
+    "created_at": "2026-09-06T21:52:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology/domain/core.md",
+    "phase": "do",
+    "record": "T0543-0906-ec-algorithm",
+    "scenario_type": "development"
+  },
+  "parent": null,
+  "slug": "0906-ec-algorithm",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-09-06T21:52:00+08:00",
+    "do": "2026-09-06T21:52:54+08:00",
+    "plan": "2026-09-06T21:52:00+08:00"
+  },
+  "status": "InProgress",
+  "title": "EC算法三层本体生产"
+}

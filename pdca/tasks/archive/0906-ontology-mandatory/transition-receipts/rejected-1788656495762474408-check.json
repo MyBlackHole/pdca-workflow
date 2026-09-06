@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0513",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "CONVERGENCE_SUPPORT_MISSING",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0513-0906-ontology-mandatory/evidence/convergence-v2.json[2]",
+      "message": "listed evidence does not support AC-2",
+      "guidance": "re-register the supporting evidence with --criterion AC-2, or fix the map to cite evidence that actually covers it"
+    }
+  ],
+  "at": "2026-09-06T09:01:35.762411+08:00"
+}

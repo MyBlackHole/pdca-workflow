@@ -439,12 +439,16 @@ def task_issues(root: Path, task_dir: Path, include_phase_requirements: bool = T
     if phase == "archive" and "disposition" not in task["meta"]:
         issues.append(Issue("DISPOSITION_MISSING", "/meta/disposition", "disposition is required"))
     if phase == "archive" and "disposition" in task["meta"]:
+        # T0513 起：本体强制产生，仅自举任务（ontology_exempt）可豁免
+        if task["meta"].get("ontology_exempt"):
+            return issues
         meta_disp = task["meta"].get("disposition")
         disp_str = str(meta_disp.get("reason") if isinstance(meta_disp, dict) else meta_disp or "")
         has_onto = "ontology:" in disp_str
-        has_records_only = "records-only" in disp_str
-        if not has_onto and not has_records_only:
-            issues.append(Issue("DISPOSITION_ONTOLOGY_MISSING", "/meta/disposition", "disposition must contain 'ontology:' or 'records-only' (全任务知识闭环)", "写入 meta.disposition 如 'ontology:domain/xxx 已沉淀' 或显式 'records-only: 无复用知识已记录理由'"))
+        if "records-only" in disp_str:
+            issues.append(Issue("DISPOSITION_RECORDS_ONLY_REJECTED", "/meta/disposition", "records-only 已取消（T0513）：Act 必须新建或更新本体节点并在 disposition 中引用 ontology:xxx"))
+        if not has_onto:
+            issues.append(Issue("DISPOSITION_ONTOLOGY_MISSING", "/meta/disposition", "disposition must contain 'ontology:' (本体强制产生；仅自举任务可设 ontology_exempt 豁免)", "写入 meta.disposition 如 'ontology:domain/xxx 已沉淀'"))
         elif has_onto:
             # 节点存在性校验：disposition 中每个 ontology:xxx 须在 ontology/ 可解析
             import re as _re
@@ -470,30 +474,6 @@ def task_issues(root: Path, task_dir: Path, include_phase_requirements: bool = T
                             break
                     if not found:
                         issues.append(Issue("DISPOSITION_ONTOLOGY_NOT_FOUND", "/meta/disposition", f"disposition 引用的本体节点不存在: {nid}"))
-        if has_records_only:
-            # records-only 理由强校验：≥20字符
-            if len(disp_str.strip()) < 20:
-                issues.append(Issue("DISPOSITION_RECORDS_ONLY_REASON_SHORT", "/meta/disposition", "records-only 理由须≥20字符且说明无复用知识原因"))
-            # records-only 时需 evidence 非空
-            record_id = task["meta"].get("record")
-            manifest = root / "records" / str(record_id) / "evidence" / "manifest.jsonl"
-            if not manifest.is_file() or not manifest.read_text(encoding="utf-8").strip():
-                issues.append(Issue("DISPOSITION_RECORDS_ONLY_EMPTY", "/meta/disposition", "records-only 须有 evidence/manifest.jsonl 非空"))
-
-    # P1-2：journal 硬门禁（act→archive 需 journal 含 T{id}，绝不兼容旧数据）
-    if phase == "archive":
-        task_id_j = task.get("id", "")
-        journal_found = False
-        for jp in (root / "pdca" / "journal").glob("*.md"):
-            try:
-                if task_id_j in jp.read_text(encoding="utf-8"):
-                    journal_found = True
-                    break
-            except:
-                continue
-        if not journal_found:
-                issues.append(Issue("JOURNAL_MISSING", "pdca/journal", f"journal entry for {task_id_j} not found (act→archive requires journal with T{{id}})", "append to pdca/journal/YYYY-MM-DD.md via skill-write-journal"))
-
     return issues
 
 

@@ -3,11 +3,12 @@
 
 For scenario_type == research and phase in (act, archive):
 - conclusion.md must contain '## 本体沉淀' section
-- that section must explicitly mention 'ontology:' or 'records-only'
-- task.json meta.disposition.reason must contain 'ontology' or 'records-only'
-- if decision is 'ontology', at least one ontology/<type>/*.md must reference the record or task
+- that section must explicitly mention 'ontology:' (records-only 取消，T0513)
+- task.json meta.disposition.reason must contain 'ontology:'
+- at least one ontology/<type>/*.md must reference the record or task
+- tasks with meta.ontology_exempt=true (自举任务) are skipped
 
-Exit 0 when not applicable (non-research or not in act/archive) or when all checks pass.
+Exit 0 when not applicable (non-research, not in act/archive, or exempt) or when all checks pass.
 Exit 1 with RESEARCH_SETTLEMENT_* issues otherwise.
 
 Also validates that testable_signal entries in ontology nodes are refined
@@ -54,6 +55,10 @@ def main() -> int:
     if phase not in ("act", "archive"):
         print(f"SKIP: phase={phase} not in (act, archive)")
         return 0
+    # T0513 起：仅自举任务可豁免本体强制产生
+    if task.get("meta", {}).get("ontology_exempt"):
+        print(f"SKIP: ontology_exempt=true (self-bootstrap task)")
+        return 0
 
     issues = []
 
@@ -75,7 +80,7 @@ def main() -> int:
         # Fallback: try to find conclusion under task_dir? (should not happen in act)
         issues.append(f"RESEARCH_SETTLEMENT_MISSING: record dir not found for record={record}")
 
-    # Check conclusion has ## 本体沉淀 with explicit decision
+    # Check conclusion has ## 本体沉淀 with explicit ontology decision (records-only 已取消，T0513)
     if conclusion is not None:
         if "## 本体沉淀" not in conclusion:
             issues.append("RESEARCH_SETTLEMENT_MISSING: conclusion.md missing '## 本体沉淀' section")
@@ -83,20 +88,22 @@ def main() -> int:
             # Extract section
             section = conclusion.split("## 本体沉淀", 1)[1].split("\n## ", 1)[0]
             has_ontology = "ontology:" in section or "ontology/" in section
-            has_records_only = "records-only" in section
-            if not (has_ontology or has_records_only):
-                issues.append("RESEARCH_SETTLEMENT_MISSING: '## 本体沉淀' must explicitly contain 'ontology:' or 'records-only'")
+            if "records-only" in section:
+                issues.append("RESEARCH_SETTLEMENT_REJECTED: records-only 已取消（T0513），'## 本体沉淀' 必须声明 ontology: 及新建/更新节点")
+            if not has_ontology:
+                issues.append("RESEARCH_SETTLEMENT_MISSING: '## 本体沉淀' must explicitly contain 'ontology:'")
 
     # Check disposition
     disposition = task.get("meta", {}).get("disposition")
     if not disposition:
-        issues.append("RESEARCH_SETTLEMENT_MISSING: task.json meta.disposition missing (act must set disposition with ontology/records-only)")
+        issues.append("RESEARCH_SETTLEMENT_MISSING: task.json meta.disposition missing (act must set disposition with ontology)")
     else:
         reason = disposition.get("reason", "")
         has_ontology = "ontology" in reason.lower()
-        has_records_only = "records-only" in reason.lower()
-        if not (has_ontology or has_records_only):
-            issues.append("RESEARCH_SETTLEMENT_MISSING: meta.disposition.reason must contain 'ontology' or 'records-only'")
+        if "records-only" in reason.lower():
+            issues.append("RESEARCH_SETTLEMENT_REJECTED: records-only 已取消（T0513），meta.disposition.reason 必须包含 ontology")
+        if not has_ontology:
+            issues.append("RESEARCH_SETTLEMENT_MISSING: meta.disposition.reason must contain 'ontology'")
 
     # If decision is ontology, verify at least one ontology node references the record/task
     if conclusion and "ontology:" in conclusion:

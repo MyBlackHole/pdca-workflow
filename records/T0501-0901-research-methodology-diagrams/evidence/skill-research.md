@@ -68,15 +68,12 @@ model-invoked 模式下，AI 自动执行调研流程：
 
 ## 本体沉淀决策（Act 门禁）
 
-research 结论在 Check `confirmed/partial` 后，进入 Act 必须做显式的本体沉淀决策，避免高复用知识仅留 `records/`：
+research 结论在 Check `confirmed/partial` 后，进入 Act 必须执行本体化（T0513 起取消 `records-only` 分流，仅自举任务豁免），避免高复用知识仅留 `records/`：
 
-1. **分流判定**（满足任一即判定为“应本体化”）：
-   - 产出含可复用清单/模型/模式/阈值（如 Checklist、成熟度分级、阈值表、决策树）
-   - 结论被 PRD 验收标准或后续任务依赖（跨任务复用）
-   - 方法论/规范类研究（非一次性事实收集）
-2. **决策记录**：在 `records/<record-id>/conclusion.md` 增设 `## 本体沉淀` 章节，显式声明 `ontology` 或 `records-only` 及理由；`task.json#meta.disposition` 的 `reason` 须包含该决策关键词（`ontology:` 或 `records-only`）。
+1. **强制本体化**：research 任务一律新建或更新 `ontology/<type>/<slug>.md`（`pdca.asset/v1`），不再做分流判定、不再接受 `records-only`；仅 `meta.ontology_exempt=true` 的自举任务可豁免。
+2. **决策记录**：在 `records/<record-id>/conclusion.md` 增设 `## 本体沉淀` 章节，显式声明 `ontology:` 及新建/更新的节点 id 与理由；`task.json#meta.disposition` 的 `reason` 须包含 `ontology:` 关键词。
 3. **本体化执行**（判定为 `ontology` 时）：新建或更新 `ontology/<type>/<slug>.md`（`pdca.asset/v1`），`relations` 关联 `ontology:concept/pdca-task` 与来源 record，`attributes[].testable_signal` 可回归验证；信号须符合 `testable-signal-to-test-derivation` 三模式（属性断言/契约测试/收敛验证）结构，经 `ontology-validate` 与 `ontology_graph`（0 islands）校验后方可进入 `archive`。
-4. **校验**：运行 `python3 scripts/check-research-ontology-settlement.py --task-dir pdca/tasks/<task>`，漏决策或 `records-only` 无理由即 `RESEARCH_SETTLEMENT_MISSING`；校验 `attributes[].testable_signal` 不含泛化短语（符合 `testable-signal-to-test-derivation` 三模式）。
+4. **校验**：运行 `python3 scripts/check-research-ontology-settlement.py --task-dir pdca/tasks/<task>`，漏决策或 无 `ontology:` 声明即 `RESEARCH_SETTLEMENT_MISSING`；校验 `attributes[].testable_signal` 不含泛化短语（符合 `testable-signal-to-test-derivation` 三模式）。
 
 ## Exit
 
