@@ -55,6 +55,8 @@ journal 知识分散在 10 个本体节点（7 domain + 3 pattern）与 9200 行
 3. **崩溃恢复**：`core-journal-seq-blacklist-pin-reclaim`（保序）、
    `core-journal-lifecycle-flush`（生命周期），对照 read.c 三区；
    pattern 侧读 `seq-blacklist-ordering`、`clean-segment-fastpath`。
+   恢复读执行细节见 T0532 报告（多盘并发读、副本仲裁、桶定位、
+   间隙重读）：先读全再定界，单错容忍，定位分层，间隙显式。
 
 ## 七条启示速查
 
