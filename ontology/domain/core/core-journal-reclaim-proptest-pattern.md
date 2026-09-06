@@ -20,7 +20,7 @@ attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: "检查本文件 journal-reclaim-proptest-pattern 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+  testable_signal: "通读正文属性测试模式节，确认reclaim测试设计覆盖典型场景，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
 ---
 
 

@@ -20,7 +20,7 @@ attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: "检查本文件 discard-worker-fifo-fairness 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+  testable_signal: "通读正文FIFO公平节，确认队列语义与公平保证完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
 ---
 
 

@@ -1,0 +1,104 @@
+diff --git a/ontology/domain/core-device-bucket-geometry-pointer-contract.md b/ontology/domain/core-device-bucket-geometry-pointer-contract.md
+index 7baec1a9..f86f7682 100644
+--- a/ontology/domain/core-device-bucket-geometry-pointer-contract.md
++++ b/ontology/domain/core-device-bucket-geometry-pointer-contract.md
+@@ -16,7 +16,7 @@ attributes:
+ - name: applicability
+   desc: 领域知识适用场景
+   constraint: 见正文
+-  testable_signal: "检查本文件 device-bucket-geometry-pointer-contract 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
++  testable_signal: "通读正文geometry合约节，确认物理指针合约规则完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+ ---
+ 
+ 
+diff --git a/ontology/domain/core-discard-boundary-guards.md b/ontology/domain/core-discard-boundary-guards.md
+index fae25a8e..7b5add5d 100644
+--- a/ontology/domain/core-discard-boundary-guards.md
++++ b/ontology/domain/core-discard-boundary-guards.md
+@@ -16,7 +16,7 @@ attributes:
+ - name: applicability
+   desc: 领域知识适用场景
+   constraint: 见正文
+-  testable_signal: "检查本文件 discard-boundary-guards 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
++  testable_signal: "通读正文边界守卫节，确认开桶与设备可写判定规则完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+ ---
+ 
+ 
+diff --git a/ontology/domain/core-discard-worker-fifo-fairness.md b/ontology/domain/core-discard-worker-fifo-fairness.md
+index 46e5aef4..843c1543 100644
+--- a/ontology/domain/core-discard-worker-fifo-fairness.md
++++ b/ontology/domain/core-discard-worker-fifo-fairness.md
+@@ -16,7 +16,7 @@ attributes:
+ - name: applicability
+   desc: 领域知识适用场景
+   constraint: 见正文
+-  testable_signal: "检查本文件 discard-worker-fifo-fairness 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
++  testable_signal: "通读正文FIFO公平节，确认队列语义与公平保证完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+ ---
+ 
+ 
+diff --git a/ontology/domain/core-journal-key-layout-validation.md b/ontology/domain/core-journal-key-layout-validation.md
+index 1df5724b..45640b66 100644
+--- a/ontology/domain/core-journal-key-layout-validation.md
++++ b/ontology/domain/core-journal-key-layout-validation.md
+@@ -16,7 +16,7 @@ attributes:
+ - name: applicability
+   desc: 领域知识适用场景
+   constraint: 见正文
+-  testable_signal: "检查本文件 journal-key-layout-validation 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
++  testable_signal: "通读正文布局校验边界节，确认零长度截断与版本删除规则有代码依据，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+ ---
+ 
+ 
+diff --git a/ontology/domain/core-journal-reclaim-proptest-pattern.md b/ontology/domain/core-journal-reclaim-proptest-pattern.md
+index 669de431..1388c9d7 100644
+--- a/ontology/domain/core-journal-reclaim-proptest-pattern.md
++++ b/ontology/domain/core-journal-reclaim-proptest-pattern.md
+@@ -16,7 +16,7 @@ attributes:
+ - name: applicability
+   desc: 领域知识适用场景
+   constraint: 见正文
+-  testable_signal: "检查本文件 journal-reclaim-proptest-pattern 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
++  testable_signal: "通读正文属性测试模式节，确认reclaim测试设计覆盖典型场景，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+ ---
+ 
+ 
+diff --git a/ontology/domain/core-open-bucket-lifecycle-and-device-rw.md b/ontology/domain/core-open-bucket-lifecycle-and-device-rw.md
+index 1cd17d06..4d4e4ee9 100644
+--- a/ontology/domain/core-open-bucket-lifecycle-and-device-rw.md
++++ b/ontology/domain/core-open-bucket-lifecycle-and-device-rw.md
+@@ -16,7 +16,7 @@ attributes:
+ - name: applicability
+   desc: 领域知识适用场景
+   constraint: 见正文
+-  testable_signal: "检查本文件 open-bucket-lifecycle-and-device-rw 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
++  testable_signal: "通读正文生命周期节，确认开桶状态转换与设备初始化规则完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+ ---
+ 
+ 
+diff --git a/ontology/domain/core-pointer-trigger-derived-chain.md b/ontology/domain/core-pointer-trigger-derived-chain.md
+index c6be4e25..f23438e1 100644
+--- a/ontology/domain/core-pointer-trigger-derived-chain.md
++++ b/ontology/domain/core-pointer-trigger-derived-chain.md
+@@ -16,7 +16,7 @@ attributes:
+ - name: applicability
+   desc: 领域知识适用场景
+   constraint: 见正文
+-  testable_signal: "检查本文件 pointer-trigger-derived-chain 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
++  testable_signal: "通读正文三件套节，确认派生链与AC-1锚点规则完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+ ---
+ 
+ 
+diff --git a/ontology/domain/core-trigger-audit-derived-state-boundary.md b/ontology/domain/core-trigger-audit-derived-state-boundary.md
+index db565842..9920c3cc 100644
+--- a/ontology/domain/core-trigger-audit-derived-state-boundary.md
++++ b/ontology/domain/core-trigger-audit-derived-state-boundary.md
+@@ -16,7 +16,7 @@ attributes:
+ - name: applicability
+   desc: 领域知识适用场景
+   constraint: 见正文
+-  testable_signal: "检查本文件 trigger-audit-derived-state-boundary 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
++  testable_signal: "通读正文派生边界节，确认触发器审计边界规则完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+ ---
+ 
+ 
