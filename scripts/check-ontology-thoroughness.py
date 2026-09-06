@@ -85,17 +85,23 @@ def check_node(path: Path, root: Path) -> list[str]:
     if "relates_to" not in text and "guides" not in text:
         issues.append(f"STRUCT_REL_MISSING: {path.name} 缺 relates_to/guides")
 
-    # 二查详尽
-    secs = SECTIONS.get(ntype)
-    if secs is None:
-        issues.append(f"STRUCT_TYPE_UNKNOWN: {path.name} type={ntype} 无五要素映射")
-        return issues
+    # 二查详尽：新体裁（算法原理/解决问题/引入问题）优先判定
     body = text.split("---", 2)[-1] if text.startswith("---") else text
-    for elem, keys in secs.items():
-        if keys is None:
-            continue
-        if not any(k in body for k in keys):
-            issues.append(f"THOROUGH_ELEM_MISSING: {path.name} 缺{elem}节（{ '/'.join(keys) }）")
+    new_genre = ("## 算法原理" in body and "解决" in body and "引入" in body)
+    if new_genre:
+        for sec in ("## 算法原理", "解决", "引入"):
+            if sec not in body:
+                issues.append(f"THOROUGH_ELEM_MISSING: {path.name} 新体裁缺{sec}节")
+    else:
+        secs = SECTIONS.get(ntype)
+        if secs is None:
+            issues.append(f"STRUCT_TYPE_UNKNOWN: {path.name} type={ntype} 无五要素映射")
+            return issues
+        for elem, keys in secs.items():
+            if keys is None:
+                continue
+            if not any(k in body for k in keys):
+                issues.append(f"THOROUGH_ELEM_MISSING: {path.name} 缺{elem}节（{ '/'.join(keys) }）")
     numbered = re.findall(r"^#{0,3}\s*\d+\.\s+\*\*|^#{0,3}\s*\d+\.\s+\S", body, re.M)
     plain_numbered = re.findall(r"^\d+\.\s+", body, re.M)
     if len(numbered) + len(plain_numbered) < 3:
