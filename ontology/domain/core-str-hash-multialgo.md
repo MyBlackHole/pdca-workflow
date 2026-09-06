@@ -29,6 +29,12 @@ attributes:
 沉淀自 T0498（内核第十轮）。对照 bcachefs `fs/fs/str_hash.h`、
 `fs/fs/str_hash.c`、`fs/fs/dirent.c`、`fs/fs/xattr.c`。
 
+## 背景
+
+目录与 xattr 需哈希索引，但算法要演进、快照要隔离、消毒镜像要
+豁免。若哈希写死一种算法，升级即全量重建；若无视快照，跨快照
+查错键。
+
 ## 核心概念
 
 1. **四选一播种**：crc32c/crc64 直映射，siphash 按特性位选新

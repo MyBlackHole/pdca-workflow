@@ -35,6 +35,11 @@ attributes:
 `records/T0512-0906-study-sixlock/`。对照 bcachefs
 `fs/util/six.h` DOC。
 
+## 背景
+
+SIX 锁知识分散在 7 个本体节点（4 domain + 3 pattern）与源码 DOC
+中，初学者无入口。本节点做导航聚合，不重复机制内容。
+
 ## 学习路径（三阶段）
 
 1. **语义入门**：先读 `core-six-intent-seq-deadlock-free-locking`

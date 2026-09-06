@@ -49,6 +49,20 @@ description: 新本体资产写入前的门禁检查。校验 type 合法、引�
     - 操作：人工复核新增/修改节点的每个 `testable_signal` 是否包含"动词+对象+判定标准"结构；抽样执行对应验证脚本并登记 evidence，拒绝纯泛化信号入库
     - 集成结算门禁：运行 `python3 scripts/check-research-ontology-settlement.py --task-dir <task>` 校验 `testable_signal` 精化程度，发现泛化信号即 `RESEARCH_SETTLEMENT_GENERIC_SIGNAL` 阻断写入
 
+## 三查门禁（T0514 起，完整性五要素）
+
+新本体资产入库前必须过三查（`scripts/check-ontology-thoroughness.py`），
+表达知识的完整性而非机械计数：
+
+1. **一查结构**：frontmatter 合法、attributes≥2、specializes 与
+   relates_to/guides 齐全、体裁节齐全。
+2. **二查详尽**：背景问题、核心机制（编号条目带依据标记）、适用边界、
+   违反后果、关联导航五要素实质存在。
+3. **三查交叉**：引用节点存在、信号无泛化短语。
+
+脚本机检结构存在性；实质是否空洞由人工在清单确认环节把关。只卡新
+入库，不重跑历史。
+
 ## 与 ontology-validate.py 的衔接
 
 `ontology-validate.py` 是自动化执行者，覆盖：

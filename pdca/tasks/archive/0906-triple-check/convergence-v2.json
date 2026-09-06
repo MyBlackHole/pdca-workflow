@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "criteria": [
+        "AC-1",
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "thoroughness-script",
+        "skill-diff"
+      ],
+      "index": 1,
+      "text": "\u4e09\u67e5\u5185\u5bb9\u5b9a\u4e49\u660e\u786e\u53ef\u6267\u884c"
+    },
+    {
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "thoroughness-script"
+      ],
+      "index": 2,
+      "text": "\u68c0\u67e5\u811a\u672c\u5b9e\u73b0\u5e76\u96c6\u6210\u95e8\u7981"
+    },
+    {
+      "criteria": [
+        "AC-1",
+        "AC-2",
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "validate-output",
+        "thoroughness-script"
+      ],
+      "index": 3,
+      "text": "\u65b0\u95e8\u7981\u56de\u5f52\u9a8c\u8bc1\u901a\u8fc7"
+    }
+  ],
+  "schema": "pdca.convergence/v1"
+}
