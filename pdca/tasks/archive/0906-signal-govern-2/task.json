@@ -1,0 +1,44 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0510",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "7个老节点信号改写可执行",
+      "改写前后diff可审且语义不变",
+      "validate 全量 0 issues",
+      "无新增泛化信号"
+    ],
+    "created_at": "2026-09-06T08:45:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology/domain/core.md",
+    "phase": "archive",
+    "record": "T0510-0906-signal-govern-2",
+    "scenario_type": "development",
+    "completed_at": "2026-09-06T08:46:50+08:00",
+    "verdict": {
+      "at": "2026-09-06T00:00:00+08:00",
+      "outcome": "confirmed",
+      "reason": "4 AC 全绿，7信号改写diff纯洁，validate 0 issues",
+      "verdict_id": "vt0510-confirmed"
+    },
+    "disposition": {
+      "at": "2026-09-06T00:00:00+08:00",
+      "outcome": "projected",
+      "reason": "历史7节点信号治理完成，diff纯洁无语义变更"
+    }
+  },
+  "parent": null,
+  "slug": "0906-signal-govern-2",
+  "states": {
+    "act": "2026-09-06T08:47:38+08:00",
+    "archive": "2026-09-06T08:47:49+08:00",
+    "check": "2026-09-06T08:46:50+08:00",
+    "created": "2026-09-06T08:45:00+08:00",
+    "do": "2026-09-06T08:45:49+08:00",
+    "plan": "2026-09-06T08:45:00+08:00"
+  },
+  "status": "Completed",
+  "title": "老节点信号治理II"
+}

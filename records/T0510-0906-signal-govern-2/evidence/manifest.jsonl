@@ -1,0 +1,3 @@
+{"id":"govern-diff","file":"govern-diff.txt","kind":"document","size":5751,"digest":"sha256:1c92d3acfe9e9b7cb3e5f1322d4e188dacc89340d383e801b24cb5ebb8a24ecb","at":"2026-09-06T08:46:35+08:00","criteria":["AC-1","AC-2"]}
+{"id":"validate-output","file":"validate-output.txt","kind":"document","size":78,"digest":"sha256:18242016b05335b14b3fa02ba636c1b2feba5be9b79e65971251af73a3a74084","at":"2026-09-06T08:46:35+08:00","criteria":["AC-3","AC-4"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":492,"digest":"sha256:8097c1c3b5cbdcef9217666a0c91a55913d42ca4048e52dc8f320de19f70f932","at":"2026-09-06T08:46:49+08:00","criteria":["AC-1","AC-2","AC-3","AC-4"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}
