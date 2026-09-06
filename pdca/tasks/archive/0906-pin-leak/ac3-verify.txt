@@ -1,0 +1,3 @@
+AC-3 验证：证据登记进Check
+- node-pin-leak、validate-output 已登记（manifest 可查）
+- transition-phase.py --to check 待本验证后执行
