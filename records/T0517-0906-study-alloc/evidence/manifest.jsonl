@@ -1,0 +1,4 @@
+{"id":"report-alloc","file":"report.md","kind":"document","size":3269,"digest":"sha256:f8017f074442ebdc8e1df9a6a809ff3816b6bf623544a0e5ec17bee9a6ce40d5","at":"2026-09-06T09:45:21+08:00","criteria":["AC-1","AC-2"]}
+{"id":"node-alloc-guide","file":"core-alloc-study-guide.md","kind":"document","size":2616,"digest":"sha256:49852c4d87e2386461d24b0d333dc3cefc29cd42f10600a9be066316561cbe45","at":"2026-09-06T09:45:22+08:00","criteria":["AC-3"]}
+{"id":"validate-output","file":"validate-output.txt","kind":"document","size":78,"digest":"sha256:18242016b05335b14b3fa02ba636c1b2feba5be9b79e65971251af73a3a74084","at":"2026-09-06T09:45:23+08:00","criteria":["AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":437,"digest":"sha256:cb7bcce1d5ed360b61920790709c1a06f54b567e0498cd3bf5190c69c7050e58","at":"2026-09-06T09:45:37+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}
