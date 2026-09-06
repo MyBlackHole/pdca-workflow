@@ -1,0 +1,14 @@
+diff --git a/ontology/domain/core-journal-study-guide.md b/ontology/domain/core-journal-study-guide.md
+index cd31693a..47bdb800 100644
+--- a/ontology/domain/core-journal-study-guide.md
++++ b/ontology/domain/core-journal-study-guide.md
+@@ -57,6 +57,9 @@ journal 知识分散在 10 个本体节点（7 domain + 3 pattern）与 9200 行
+    pattern 侧读 `seq-blacklist-ordering`、`clean-segment-fastpath`。
+    恢复读执行细节见 T0532 报告（多盘并发读、副本仲裁、桶定位、
+    间隙重读）：先读全再定界，单错容忍，定位分层，间隙显式。
++   教学第六讲展开（T0542）：多盘并发闭包同步、坏盘置降级不整体失败；
++   副本仲裁四规则（同盘同扇幂等、同盘异扇报错、双好非全等报错、
++   一好一坏替换）；桶定位窥锚搜集分层；间隙先重读再问人不将就。
+ 
+ ## 七条启示速查
+ 
