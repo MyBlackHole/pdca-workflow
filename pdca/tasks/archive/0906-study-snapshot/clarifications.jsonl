@@ -1,0 +1,4 @@
+{"at": "2026-09-06T09:51:00+08:00", "source": "task_identity", "summary": "created with record identity T0519-0906-study-snapshot"}
+{"answer": "继续（启动第16轮）", "at": "2026-09-06T09:51:00+08:00", "question": "是否启动快照专题？", "recommended": "启动", "round": 1, "source": "grilling", "captured": true}
+{"source":"final_confirmation","summary":"用户继续确认覆盖T0519立项：快照专题学习报告+必产本体","response":"confirmed","at":"2026-09-06T09:51:36+08:00"}
+{"source":"check_confirmation","summary":"用户确认T0519结论：九节报告+指南节点","response":"confirmed","at":"2026-09-06T09:54:17+08:00"}
