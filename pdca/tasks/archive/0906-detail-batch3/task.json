@@ -1,0 +1,44 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0537",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "5篇报告扩充到代码级精讲",
+      "扩充内容有源码依据可复核",
+      "报告文件更新且对话交付摘要",
+      "5指南节点增补指向扩充版并过三查"
+    ],
+    "created_at": "2026-09-06T13:43:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology/domain/core.md",
+    "phase": "archive",
+    "record": "T0537-0906-detail-batch3",
+    "scenario_type": "research",
+    "completed_at": "2026-09-06T13:50:30+08:00",
+    "verdict": {
+      "at": "2026-09-06T00:00:00+08:00",
+      "outcome": "confirmed",
+      "reason": "4 AC 全绿，5篇精讲落盘+指南增补",
+      "verdict_id": "vt0537-confirmed"
+    },
+    "disposition": {
+      "at": "2026-09-06T00:00:00+08:00",
+      "outcome": "projected",
+      "reason": "ontology 5个指南节点已增补指向扩充版行：btreegc/reconcile/superblock/datamove/quota-study-guide"
+    }
+  },
+  "parent": null,
+  "slug": "0906-detail-batch3",
+  "states": {
+    "act": "2026-09-06T18:57:59+08:00",
+    "archive": "2026-09-06T18:58:16+08:00",
+    "check": "2026-09-06T13:50:30+08:00",
+    "created": "2026-09-06T13:43:00+08:00",
+    "do": "2026-09-06T13:44:07+08:00",
+    "plan": "2026-09-06T13:43:00+08:00"
+  },
+  "status": "Completed",
+  "title": "报告详细化第三批"
+}
