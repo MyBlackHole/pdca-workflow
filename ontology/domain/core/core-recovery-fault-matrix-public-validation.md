@@ -20,7 +20,7 @@ attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: "检查本文件 recovery-fault-matrix-public-validation 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+  testable_signal: "通读正文故障矩阵节，确认恢复验证覆盖规则完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
 ---
 
 

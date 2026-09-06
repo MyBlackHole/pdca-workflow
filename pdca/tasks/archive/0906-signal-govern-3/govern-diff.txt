@@ -1,0 +1,104 @@
+diff --git a/ontology/domain/core-derived-state-validator-recovery-gate.md b/ontology/domain/core-derived-state-validator-recovery-gate.md
+index 1405904b..5cd44970 100644
+--- a/ontology/domain/core-derived-state-validator-recovery-gate.md
++++ b/ontology/domain/core-derived-state-validator-recovery-gate.md
+@@ -16,7 +16,7 @@ attributes:
+ - name: applicability
+   desc: 领域知识适用场景
+   constraint: 见正文
+-  testable_signal: "检查本文件 derived-state-validator-recovery-gate 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
++  testable_signal: "通读正文校验门控节，确认派生校验与恢复发布规则完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+ ---
+ 
+ 
+diff --git a/ontology/domain/core-persistent-concurrency-crash-recovery.md b/ontology/domain/core-persistent-concurrency-crash-recovery.md
+index fecfa5b2..62afec85 100644
+--- a/ontology/domain/core-persistent-concurrency-crash-recovery.md
++++ b/ontology/domain/core-persistent-concurrency-crash-recovery.md
+@@ -16,7 +16,7 @@ attributes:
+ - name: applicability
+   desc: 领域知识适用场景
+   constraint: 见正文
+-  testable_signal: "检查本文件 persistent-concurrency-crash-recovery 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
++  testable_signal: "通读正文崩溃交错节，确认并发写者与崩溃点组合规则完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+ ---
+ 
+ 
+diff --git a/ontology/domain/core-physical-pointer-derived-state-recovery-boundary.md b/ontology/domain/core-physical-pointer-derived-state-recovery-boundary.md
+index fcf5d3f1..bcce043f 100644
+--- a/ontology/domain/core-physical-pointer-derived-state-recovery-boundary.md
++++ b/ontology/domain/core-physical-pointer-derived-state-recovery-boundary.md
+@@ -16,7 +16,7 @@ attributes:
+ - name: applicability
+   desc: 领域知识适用场景
+   constraint: 见正文
+-  testable_signal: "检查本文件 physical-pointer-derived-state-recovery-boundary 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
++  testable_signal: "通读正文恢复边界节，确认物理指针派生状态边界规则完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+ ---
+ 
+ 
+diff --git a/ontology/domain/core-recovery-derived-state-publication-gate.md b/ontology/domain/core-recovery-derived-state-publication-gate.md
+index f676e741..01207430 100644
+--- a/ontology/domain/core-recovery-derived-state-publication-gate.md
++++ b/ontology/domain/core-recovery-derived-state-publication-gate.md
+@@ -16,7 +16,7 @@ attributes:
+ - name: applicability
+   desc: 领域知识适用场景
+   constraint: 见正文
+-  testable_signal: "检查本文件 recovery-derived-state-publication-gate 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
++  testable_signal: "通读正文发布门槛节，确认派生状态发布规则完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+ ---
+ 
+ 
+diff --git a/ontology/domain/core-recovery-fault-matrix-public-validation.md b/ontology/domain/core-recovery-fault-matrix-public-validation.md
+index 02c652cf..c59eb533 100644
+--- a/ontology/domain/core-recovery-fault-matrix-public-validation.md
++++ b/ontology/domain/core-recovery-fault-matrix-public-validation.md
+@@ -16,7 +16,7 @@ attributes:
+ - name: applicability
+   desc: 领域知识适用场景
+   constraint: 见正文
+-  testable_signal: "检查本文件 recovery-fault-matrix-public-validation 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
++  testable_signal: "通读正文故障矩阵节，确认恢复验证覆盖规则完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+ ---
+ 
+ 
+diff --git a/ontology/domain/core-transactional-pointer-runner-publication.md b/ontology/domain/core-transactional-pointer-runner-publication.md
+index 443533f9..e873c8a2 100644
+--- a/ontology/domain/core-transactional-pointer-runner-publication.md
++++ b/ontology/domain/core-transactional-pointer-runner-publication.md
+@@ -16,7 +16,7 @@ attributes:
+ - name: applicability
+   desc: 领域知识适用场景
+   constraint: 见正文
+-  testable_signal: "检查本文件 transactional-pointer-runner-publication 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
++  testable_signal: "通读正文发布边界节，确认事务指针执行发布规则完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+ ---
+ 
+ 
+diff --git a/ontology/domain/core-verify-all-aggregate-pattern.md b/ontology/domain/core-verify-all-aggregate-pattern.md
+index ebb555e6..dea44a01 100644
+--- a/ontology/domain/core-verify-all-aggregate-pattern.md
++++ b/ontology/domain/core-verify-all-aggregate-pattern.md
+@@ -16,7 +16,7 @@ attributes:
+ - name: applicability
+   desc: 领域知识适用场景
+   constraint: 见正文
+-  testable_signal: "检查本文件 verify-all-aggregate-pattern 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
++  testable_signal: "通读正文聚合校验节，确认全量校验入口规则完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+ ---
+ 
+ 
+diff --git a/ontology/domain/core-worker-verify-checkpoint-pattern.md b/ontology/domain/core-worker-verify-checkpoint-pattern.md
+index 836854e2..72ff9d28 100644
+--- a/ontology/domain/core-worker-verify-checkpoint-pattern.md
++++ b/ontology/domain/core-worker-verify-checkpoint-pattern.md
+@@ -16,7 +16,7 @@ attributes:
+ - name: applicability
+   desc: 领域知识适用场景
+   constraint: 见正文
+-  testable_signal: "检查本文件 worker-verify-checkpoint-pattern 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
++  testable_signal: "通读正文检查点节，确认工作者一致性检查规则完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+ ---
+ 
+ 
