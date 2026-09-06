@@ -1,0 +1,8 @@
+ pdca/tasks/archive/0906-study-alloc/report.md      | 1304 +++++++++++++++++++-
+ pdca/tasks/archive/0906-study-btreetrans/report.md | 1081 +++++++++++++++-
+ pdca/tasks/archive/0906-study-ec/report.md         |  292 ++++-
+ pdca/tasks/archive/0906-study-journal/report.md    |  683 ++++++++--
+ pdca/tasks/archive/0906-study-sixlock/report.md    |  581 +++++++--
+ 5 files changed, 3620 insertions(+), 321 deletions(-)
+对话交付：5篇摘要随T0535汇报输出，全文位置为pdca/tasks/archive/0906-study-{sixlock,journal,ec,alloc,btreetrans}/report.md
+指南增补：5个指南节点各加指向扩充版行，见guide-diff.txt

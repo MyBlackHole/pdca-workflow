@@ -1,0 +1,24 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T0535",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-3",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "ACCEPTANCE_CRITERION_UNCOVERED",
+      "path": "AC-4",
+      "message": "criterion must be covered by non-map evidence"
+    },
+    {
+      "code": "CONVERGENCE_MAP_INVALID",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T0535-0906-detail-batch1/evidence/convergence.json[/items/0/criteria/0]",
+      "message": "'AC-0' does not match '^AC-[1-9][0-9]*$'"
+    }
+  ],
+  "at": "2026-09-06T11:42:59.555741+08:00"
+}
