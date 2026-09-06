@@ -1,0 +1,43 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "node-core-ec-rs-math",
+        "node-core-ec-rs-algorithm",
+        "node-core-ec-stripe-geometry",
+        "node-core-ec-stripe-alloc",
+        "node-core-ec-rs-principle"
+      ],
+      "index": 1,
+      "text": "5节点补问题修复防复发三段"
+    },
+    {
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "node-core-ec-rs-math",
+        "node-core-ec-rs-algorithm",
+        "node-core-ec-stripe-geometry",
+        "node-core-ec-stripe-alloc",
+        "node-core-ec-rs-principle"
+      ],
+      "index": 2,
+      "text": "每问题关联真实提交哈希"
+    },
+    {
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "validate-output"
+      ],
+      "index": 3,
+      "text": "三查与validate全绿"
+    }
+  ]
+}
