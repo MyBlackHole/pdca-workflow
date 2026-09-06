@@ -1,0 +1,5 @@
+{"id":"report-btreegc2","file":"report.md","kind":"document","size":2063,"digest":"sha256:0352c963577af452ad12091bc8178a35a4fda5953fa1513d595687548809dfb1","at":"2026-09-06T18:58:41+08:00","criteria":["AC-1","AC-2"]}
+{"id":"guide-diff","file":"guide-diff.txt","kind":"document","size":0,"digest":"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","at":"2026-09-06T18:58:51+08:00","criteria":["AC-3"]}
+{"id":"validate-output","file":"validate-output.txt","kind":"document","size":78,"digest":"sha256:18242016b05335b14b3fa02ba636c1b2feba5be9b79e65971251af73a3a74084","at":"2026-09-06T18:58:54+08:00","criteria":["AC-3"]}
+{"id":"node-btreegc-guide","file":"node-btreegc-guide.md","kind":"document","size":2397,"digest":"sha256:e3c69b7bf9eba78ab12ac02b3a3fece2d2c11054d3675e6f6a558ac3e1ddb4c8","at":"2026-09-06T18:59:53+08:00","criteria":["AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":422,"digest":"sha256:6c401e020f6bdef39479c7d5378b881f942f0c8e36bf72ccc80d7e48bcb22f09","at":"2026-09-06T19:00:13+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}
