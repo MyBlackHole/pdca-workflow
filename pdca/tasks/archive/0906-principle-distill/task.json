@@ -1,0 +1,44 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T0508",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "原则提炼有源节点依据",
+      "新增至少 2 个不重复 principle 节点",
+      "关联单向无环",
+      "validate 全量 0 issues 且信号非泛化"
+    ],
+    "created_at": "2026-09-06T08:37:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology/domain/core.md",
+    "phase": "archive",
+    "record": "T0508-0906-principle-distill",
+    "scenario_type": "development",
+    "completed_at": "2026-09-06T08:41:37+08:00",
+    "verdict": {
+      "at": "2026-09-06T00:00:00+08:00",
+      "outcome": "confirmed",
+      "reason": "4 AC 全绿，3 principle新增+6 pattern扩充，validate 0 issues",
+      "verdict_id": "vt0508-confirmed"
+    },
+    "disposition": {
+      "at": "2026-09-06T00:00:00+08:00",
+      "outcome": "projected",
+      "reason": "ontology:principle 新增3节点，6 pattern扩充至同等详细度"
+    }
+  },
+  "parent": null,
+  "slug": "0906-principle-distill",
+  "states": {
+    "act": "2026-09-06T08:42:17+08:00",
+    "archive": "2026-09-06T08:42:49+08:00",
+    "check": "2026-09-06T08:41:37+08:00",
+    "created": "2026-09-06T08:37:00+08:00",
+    "do": "2026-09-06T08:37:31+08:00",
+    "plan": "2026-09-06T08:37:00+08:00"
+  },
+  "status": "Completed",
+  "title": "原则节点提炼"
+}
