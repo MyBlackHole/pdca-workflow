@@ -1,0 +1,1 @@
+{"items": [{"criteria": ["AC-1"], "evidence_ids": ["report-btreesearch"], "index": 1, "text": "搜索机制讲透且有代码佐证"}, {"criteria": ["AC-2"], "evidence_ids": ["report-btreesearch"], "index": 2, "text": "学习报告文件存在且对话输出一致"}, {"criteria": ["AC-3"], "evidence_ids": ["node-btreesearch-guide", "validate-output"], "index": 3, "text": "新建指南导航节点并过三查"}], "schema": "pdca.convergence/v1"}
