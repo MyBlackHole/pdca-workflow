@@ -1,0 +1,67 @@
+diff --git a/ontology/domain/core-btree-transaction-memory-io.md b/ontology/domain/core-btree-transaction-memory-io.md
+index 6419c886..d7fc058a 100644
+--- a/ontology/domain/core-btree-transaction-memory-io.md
++++ b/ontology/domain/core-btree-transaction-memory-io.md
+@@ -33,8 +33,8 @@ attributes:
+ ## 核心概念
+ 
+ 1. **bump 分配 + 重启作废**：`mem/mem_top` 重启即 `mem_top=0`
+-   作废；`roundup8` 快道 + 按 2 幂扩容；超 64K 转 mempool 并以
+-   `restart_mem_realloced` 重启。修复循环用 lazy commit 到 1/4
++   作废；`roundup` 对齐快道 + 按 2 幂扩容；超 64K 转 mempool 并以
++   `BCH_ERR_transaction_restart_mem_realloced` 重启。修复循环用 lazy commit 到 1/4
+    即中途提交防 ENOMEM（`bch2_trans_kmalloc_ip`、
+    `bch2_trans_commit_lazy_if_full`）。
+ 2. **持锁零块层 IO**：`__bch2_btree_node_write` 只组 bio 挂链表，
+diff --git a/ontology/domain/core-checksum-negotiation-narrow.md b/ontology/domain/core-checksum-negotiation-narrow.md
+index 11fcd4e6..afa0421f 100644
+--- a/ontology/domain/core-checksum-negotiation-narrow.md
++++ b/ontology/domain/core-checksum-negotiation-narrow.md
+@@ -38,7 +38,7 @@ attributes:
+    `bch2_data_checksum_type`、`bch2_write_op_init`）。
+ 2. **首字段豁免**：自描述结构校验跳过首 csum 字段，起止按
+    vstruct 算，sb/bset/jset 通用；sb 用空 nonce 且拒非法类型
+-   （`csum_vstruct`、`validate_sb_checksum`）。
++   （`csum_vstruct`、超块读校验内联逻辑 `sb/io.c`）。
+ 3. **按需选型降级**：按字节数 + 上限逐档降级选 crc 位宽；指针
+    校验含合法性、范围、编码上限、nonce 连续
+    （`bch2_extent_crc_append`、`bch2_bkey_ptrs_validate`）。
+diff --git a/ontology/domain/core-dio-write-engine.md b/ontology/domain/core-dio-write-engine.md
+index d0508d66..d946ef1c 100644
+--- a/ontology/domain/core-dio-write-engine.md
++++ b/ontology/domain/core-dio-write-engine.md
+@@ -44,7 +44,7 @@ attributes:
+    nocow 置 FUA，否则记待刷（`__bch2_write_index`）。
+ 6. **FDM 防 fault 死锁**：每轮设清映射标记；fault 见标记回忙，
+    更大则放锁重取；失效后空转继续
+-   （`fdm_set/clear`、`bch2_fault`）。
++   （`fdm_set/clear`、`bch2_page_fault`）。
+ 7. **异步 mm 保持与 bio 复用**：入口存 mm，续跑绑核重入；同步
+    异步 bio 标志区分；完成按模式切换（`bch2_dio_write_continue`）。
+ 8. **双阶段结算**：每轮记位置扩容配额放页；终局放块引用释内存
+diff --git a/ontology/domain/core-observability-status-text-matrix.md b/ontology/domain/core-observability-status-text-matrix.md
+index 6e5f5c59..9054554c 100644
+--- a/ontology/domain/core-observability-status-text-matrix.md
++++ b/ontology/domain/core-observability-status-text-matrix.md
+@@ -35,7 +35,7 @@ attributes:
+ 
+ 1. **自白矩阵**：reconcile/recovery/journal/btree_cache/
+    copygc_wait/nocow_locks/io_timers 全实现 `__cold void
+-   *_to_text(printbuf*,…)`，`bch2_fs_show` 按需调度；挂死时
++   *_to_text(printbuf*,…)`，`bch2_fs_to_text` 按需调度；挂死时
+    `cat internal/*` 即得等待者 + 锁 + 进度，无需复现。
+ 2. **sysfs 零样板通道**：一个 SHOW 宏承包全部只读属性（内存
+    打印 → 换行 → 截断 → err 转换）；分发靠属性指针比对；
+diff --git a/ontology/domain/core-sb-error-persistence-display.md b/ontology/domain/core-sb-error-persistence-display.md
+index 5f50aee0..550cde32 100644
+--- a/ontology/domain/core-sb-error-persistence-display.md
++++ b/ontology/domain/core-sb-error-persistence-display.md
+@@ -47,7 +47,7 @@ attributes:
+    加编号否则构建失败（`bch2_decompress_sb_err`）。
+ 6. **写回同次折叠**：按内存数重建 v2 段后同次删 legacy 段；有错
+    误置位才落盘，未初始化直接不写（`bch2_sb_errors_from_cpu`、
+-   `bch2_sb_write`）。
++   `bch2_write_super`）。
+ 
+ ## 复用指南
+ 

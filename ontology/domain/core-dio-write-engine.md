@@ -44,7 +44,7 @@ attributes:
    nocow 置 FUA，否则记待刷（`__bch2_write_index`）。
 6. **FDM 防 fault 死锁**：每轮设清映射标记；fault 见标记回忙，
    更大则放锁重取；失效后空转继续
-   （`fdm_set/clear`、`bch2_fault`）。
+   （`fdm_set/clear`、`bch2_page_fault`）。
 7. **异步 mm 保持与 bio 复用**：入口存 mm，续跑绑核重入；同步
    异步 bio 标志区分；完成按模式切换（`bch2_dio_write_continue`）。
 8. **双阶段结算**：每轮记位置扩容配额放页；终局放块引用释内存

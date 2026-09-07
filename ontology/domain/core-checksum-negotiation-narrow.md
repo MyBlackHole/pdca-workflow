@@ -38,7 +38,7 @@ attributes:
    `bch2_data_checksum_type`、`bch2_write_op_init`）。
 2. **首字段豁免**：自描述结构校验跳过首 csum 字段，起止按
    vstruct 算，sb/bset/jset 通用；sb 用空 nonce 且拒非法类型
-   （`csum_vstruct`、`validate_sb_checksum`）。
+   （`csum_vstruct`、超块读校验内联逻辑 `sb/io.c`）。
 3. **按需选型降级**：按字节数 + 上限逐档降级选 crc 位宽；指针
    校验含合法性、范围、编码上限、nonce 连续
    （`bch2_extent_crc_append`、`bch2_bkey_ptrs_validate`）。

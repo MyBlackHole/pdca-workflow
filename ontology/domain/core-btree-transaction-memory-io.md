@@ -33,8 +33,8 @@ attributes:
 ## 核心概念
 
 1. **bump 分配 + 重启作废**：`mem/mem_top` 重启即 `mem_top=0`
-   作废；`roundup8` 快道 + 按 2 幂扩容；超 64K 转 mempool 并以
-   `restart_mem_realloced` 重启。修复循环用 lazy commit 到 1/4
+   作废；`roundup` 对齐快道 + 按 2 幂扩容；超 64K 转 mempool 并以
+   `BCH_ERR_transaction_restart_mem_realloced` 重启。修复循环用 lazy commit 到 1/4
    即中途提交防 ENOMEM（`bch2_trans_kmalloc_ip`、
    `bch2_trans_commit_lazy_if_full`）。
 2. **持锁零块层 IO**：`__bch2_btree_node_write` 只组 bio 挂链表，

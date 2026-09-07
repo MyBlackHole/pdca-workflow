@@ -1,0 +1,4 @@
+{"id":"audit-script","file":"audit-ontology-conformance.py","kind":"script","size":5130,"digest":"sha256:1ebac0a36a0e2c7f498dc1fa4ccde7b05acb961b583920a0aabc789b142cea18","at":"2026-09-07T07:30:49+08:00","criteria":["AC-1"]}
+{"id":"audit-report","file":"audit-report.txt","kind":"document","size":40,"digest":"sha256:f269d6ab374b1f32ff3a888d7594d3a246c7f712a5833cb3701d29d4b7c1c2e6","at":"2026-09-07T07:30:51+08:00","criteria":["AC-2"]}
+{"id":"fix-diff","file":"fix-diff.txt","kind":"document","size":3983,"digest":"sha256:90fb5a3cd16279abae78ee162757368c63de7e2fcf85f3c8faf1120b57d7ed35","at":"2026-09-07T07:30:53+08:00","criteria":["AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":407,"digest":"sha256:be0df29278fd6d7f184b527e8c2f7148c65a2be593af185e1e1ba39f143b6dd1","at":"2026-09-07T07:31:25+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

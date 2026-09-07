@@ -47,7 +47,7 @@ attributes:
    加编号否则构建失败（`bch2_decompress_sb_err`）。
 6. **写回同次折叠**：按内存数重建 v2 段后同次删 legacy 段；有错
    误置位才落盘，未初始化直接不写（`bch2_sb_errors_from_cpu`、
-   `bch2_sb_write`）。
+   `bch2_write_super`）。
 
 ## 复用指南
 

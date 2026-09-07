@@ -1,0 +1,1 @@
+{"items": [{"criteria": ["AC-1"], "evidence_ids": ["audit-script"], "index": 1, "text": "审计脚本实现并跑全102节点"}, {"criteria": ["AC-2"], "evidence_ids": ["audit-report"], "index": 2, "text": "审计报告列出全部不符合项"}, {"criteria": ["AC-3"], "evidence_ids": ["fix-diff", "audit-report"], "index": 3, "text": "不符合项修复并回归验证"}], "schema": "pdca.convergence/v1"}

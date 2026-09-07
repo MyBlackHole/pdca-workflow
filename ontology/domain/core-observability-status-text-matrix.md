@@ -35,7 +35,7 @@ attributes:
 
 1. **自白矩阵**：reconcile/recovery/journal/btree_cache/
    copygc_wait/nocow_locks/io_timers 全实现 `__cold void
-   *_to_text(printbuf*,…)`，`bch2_fs_show` 按需调度；挂死时
+   *_to_text(printbuf*,…)`，`bch2_fs_to_text` 按需调度；挂死时
    `cat internal/*` 即得等待者 + 锁 + 进度，无需复现。
 2. **sysfs 零样板通道**：一个 SHOW 宏承包全部只读属性（内存
    打印 → 换行 → 截断 → err 转换）；分发靠属性指针比对；
