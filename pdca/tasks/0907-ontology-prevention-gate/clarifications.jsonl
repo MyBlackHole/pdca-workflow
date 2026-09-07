@@ -1,0 +1,7 @@
+{"at":"2026-09-07T10:00:00+08:00","source":"task_identity","summary":"created with record identity T2068-0907-ontology-prevention-gate"}
+{"at":"2026-09-07T10:01:00+08:00","source":"grilling","question":"Q1-任务范围：本任务聚焦'预防'而非'治理存量'，是否确认？","answer":"确认。存量治理T0534/T0545已完成，本任务专攻未来创建的预防门禁","recommended":"聚焦预防：grounding检查+fidelity创建校验+CI/hook默认启用+Grill事实验证","captured":true}
+{"at":"2026-09-07T10:01:30+08:00","source":"grilling","question":"Q2-预防机制是否必须不可绕过？","answer":"必须不可绕过，不依赖开发者自觉","recommended":"CI/hook默认启用+ontology-validate --check all 强制","captured":true}
+{"at":"2026-09-07T10:02:00+08:00","source":"grilling","question":"Q3-grounding检查来源：代码文件路径还是records证据ID，还是两者都需要？","answer":"两者都需要：新本体须声明 grounding 来源（代码文件+行号 或 records 证据ID），验证时检查存在性","recommended":"双源接地：代码路径存在性检查+records证据ID可解析性检查","captured":true}
+{"at":"2026-09-07T10:02:30+08:00","source":"grilling","question":"Q4-Grill事实验证：现有规则4已要求agent自行查找，如何标记verified？","answer":"clarifications.jsonl中Grill记录增加verified:true标记，由append-confirmation.py验证","recommended":"verified:true标记+append-confirmation.py校验，确保事实性回答已被agent自行验证","captured":true}
+{"at":"2026-09-07T10:03:00+08:00","source":"grilling","question":"Q5-存量豁免清单是否继续有效？","answer":"继续有效，不影响存量节点","recommended":".fidelity-exempt.json 继续有效，增量零容忍","captured":true}
+{"source":"final_confirmation","summary":"确认Grill：聚焦预防（不治理存量）、不可绕过、双源接地、verified标记、存量豁免继续有效。同意按PRD五件套进入Do","response":"confirmed","at":"2026-09-07T10:05:00+08:00","captured":true,"verified":true}

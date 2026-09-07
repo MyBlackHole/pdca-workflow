@@ -46,8 +46,9 @@ Each round, the answers reshape the tree — settled decisions push the frontier
 2. **Each question with your recommended answer.** "I suggest X because Y. Do you agree?"
 3. **Walk the decision tree.** Each answer determines the next branch. Don't pre-guess.
 4. **Verifiable facts are not questions.** Look up what can be checked via filesystem, code analysis, or tools. When a frontier question needs a fact, dispatch a sub-agent or check the environment yourself — never ask the user for anything you could look up. **Non-blocking**: an exploration in flight is an unsettled prerequisite — only questions downstream of it wait; ask the rest of the frontier now.
+   - **本体特性强制验证**：当 Grill 问题涉及本体节点特性（attributes、relations、testable_signal 等）时，答案必须包含 `verified: true` 标记，表示 agent 已自行验证代码/证据来源。`append-confirmation.py` 支持 `--verified` 参数记录此标记。未标记 `verified: true` 的本体相关事实性回答在 `check` 阶段被驳回。
 5. **Only ask decisions the user can make.** Trade-offs, priorities, design choices.
-6. **Log every Q&A** to `clarifications.jsonl` with `source: "grilling"`: `{"round": N, "question": "...", "answer": "...", "recommended": "...", "source": "grilling", "at": "...", "captured": true|false}`. All questions in the same round share the same `round` number; each question is its own JSONL line.
+6. **Log every Q&A** to `clarifications.jsonl` with `source: "grilling"`：`{"round": N, "question": "...", "answer": "...", "recommended": "...", "source": "grilling", "at": "...", "captured": true|false, "verified": true|false}`。涉及本体特性的问题必须 `verified: true`（agent 自行验证代码/证据）。All questions in the same round share the same `round` number; each question is its own JSONL line.
 7. **Provenance 双态（HITL 红线）**：`"captured": true` 仅用于用户原文实时落盘（用户回合中的原话/选项回答，逐字不得改写）；AI 代填的预期问答一律 `"captured": false`（hypothesis 语义），禁止标记为用户实证。自问自答并标 true 即违反 HITL。
 8. **防重问**：每轮计算 frontier 前先读既往 `captured:true` 条目——已答问题不得重问，其答案作为已定前提参与本轮树形重塑（借鉴 triage notes 复用模式）。
 9. **必录三层**：用户元反馈原话、verdict 时自由文本修正、用户否决推荐答案的选择——三类必须 `captured:true` 落盘；常规 yes/no 确认与事实性问答不录（可从产物反推）。涉密内容沿用 Redact 原则（`<REDACTED>` 替代）。
@@ -94,4 +95,4 @@ Irreversible decisions → record in a corresponding `ontology/` node (add a 决
 
 - 每轮批量询问当前可答的所有决策问题并附推荐；勿单轮纠缠单个问题拖慢收敛。
 - 用户自由文本元反馈按规则 9 必录，类型用 `user_meta_feedback`。
-- **Plan 自我审计（执行层硬 checklist）**：`plan→do` 前必须自检：① `clarifications.jsonl` 含至少一条 `grilling` 的 `captured:true` 或 `final_confirmation` 摘要含 `grilling/frontier/confirm-or-correct` 绑定；② `prd.md` 的 AC 与 grilling 决策可追溯；③ 无 `captured:false` 冒充 `true`。未满足则阻断 `transition-phase`（`GRILLING_MISSING`）。
+- **Plan 自我审计（执行层硬 checklist）**：`plan→do` 前必须自检：① `clarifications.jsonl` 含至少一条 `grilling` 的 `captured:true` 或 `final_confirmation` 摘要含 `grilling/frontier/confirm-or-correct` 绑定；② `prd.md` 的 AC 与 grilling 决策可追溯；③ 无 `captured:false` 冒充 `true`；④ 涉及本体特性的 grilling 回答含 `verified: true` 标记。未满足则阻断 `transition-phase`（`GRILLING_MISSING`）。

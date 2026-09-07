@@ -46,6 +46,8 @@ def main() -> int:
     parser.add_argument("--response", required=True, choices=RESPONSES)
     parser.add_argument("--summary", required=True)
     parser.add_argument("--root", type=Path)
+    parser.add_argument("--verified", action="store_true", default=False,
+                        help="标记事实性回答已由 agent 自行验证（本体特性问题必须）")
     args = parser.parse_args()
 
     root = repo_root(args.root)
@@ -63,6 +65,8 @@ def main() -> int:
         "response": args.response,
         "at": datetime.now().astimezone().isoformat(timespec="seconds"),
     }
+    if args.verified:
+        entry["verified"] = True
     issues = schema_issues(root, entry, "clarification.schema.json")
     if issues:
         for issue in issues:

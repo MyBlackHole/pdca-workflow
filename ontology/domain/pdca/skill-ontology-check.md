@@ -42,12 +42,14 @@ description: 新本体资产写入前的门禁检查。校验 type 合法、引�
 2. frontmatter 满足 `pdca.asset/v1`：`schema=pdca.asset/v1`、`id`、`type`、`layer`、`summary`、`status`、`attributes[].{name,desc,constraint,testable_signal}`（KnowledgeArtifact 实例须有结构化 attributes，至少含 applicability/constraints/testable_signal 之一）。
 3. `type` 必须等于父目录名（**目录即真理**）。
 4. `relations.*` / `domain` 引用的 ontology id 必须在 `ontology/` 中存在对应节点（引用使用本体 id，如 `ontology:concept/foo`）。
-5. 运行 `python3 scripts/ontology-validate.py --ontology-dir ontology`：必须 0 issues（否则拒绝写入/提交）。
-6. 新增 KnowledgeArtifact 的 `attributes[].testable_signal` 不得为泛化描述（与 `ontology-validate` AC-4 衔接，脚本仅校验非空，人工门禁补位）：
-    - 拒绝泛化：如 `由领域实践与测试验证`、`符合领域最佳实践` 等无法直接派生断言的描述
-    - 合格要求：必须描述具体的验证动作、断言、工具或脚本（例："检查契约测试是否覆盖声明与实际的一致性断言"、"运行 seam_contract.py 对比 PRD 声明的 seam 清单与实际测试文件的一致性"、"执行 validate-convergence.py 检查 meta.convergence 回链完整性"）
-    - 操作：人工复核新增/修改节点的每个 `testable_signal` 是否包含"动词+对象+判定标准"结构；抽样执行对应验证脚本并登记 evidence，拒绝纯泛化信号入库
-    - 集成结算门禁：运行 `python3 scripts/check-research-ontology-settlement.py --task-dir <task>` 校验 `testable_signal` 精化程度，发现泛化信号即 `RESEARCH_SETTLEMENT_GENERIC_SIGNAL` 阻断写入
+5. **Grounding 检查**：新本体节点必须声明 grounding 来源（代码文件路径+行号 或 records 证据ID），通过 `python3 scripts/ontology-validate.py --check grounding --ontology-dir ontology` 验证来源存在性；未声明 grounding 来源的节点被拒绝写入。
+6. 运行 `python3 scripts/ontology-validate.py --ontology-dir ontology`：必须 0 issues（否则拒绝写入/提交）。
+7. 运行 `python3 scripts/ontology-validate.py --check fidelity --ontology-dir ontology`：fidelity 检查必须通过（泛化 signal、缺 Source、无正反例等致命问题阻断写入）。
+8. 新增 KnowledgeArtifact 的 `attributes[].testable_signal` 不得为泛化描述（与 `ontology-validate` AC-4 衔接，脚本仅校验非空，人工门禁补位）：
+     - 拒绝泛化：如 `由领域实践与测试验证`、`符合领域最佳实践` 等无法直接派生断言的描述
+     - 合格要求：必须描述具体的验证动作、断言、工具或脚本（例："检查契约测试是否覆盖声明与实际的一致性断言"、"运行 seam_contract.py 对比 PRD 声明的 seam 清单与实际测试文件的一致性"、"执行 validate-convergence.py 检查 meta.convergence 回链完整性"）
+     - 操作：人工复核新增/修改节点的每个 `testable_signal` 是否包含"动词+对象+判定标准"结构；抽样执行对应验证脚本并登记 evidence，拒绝纯泛化信号入库
+     - 集成结算门禁：运行 `python3 scripts/check-research-ontology-settlement.py --task-dir <task>` 校验 `testable_signal` 精化程度，发现泛化信号即 `RESEARCH_SETTLEMENT_GENERIC_SIGNAL` 阻断写入
 
 ## 三查门禁（T0514 起，完整性五要素）
 

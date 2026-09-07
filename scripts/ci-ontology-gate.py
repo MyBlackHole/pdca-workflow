@@ -27,6 +27,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="ontology CI gate")
     ap.add_argument("paths", nargs="*", help="changed paths to scope convergence check (optional)")
     ap.add_argument("--root", type=Path, default=ROOT)
+    ap.add_argument("--enforce-fidelity", action="store_true", default=False,
+                    help="启用保真度检查：fidelity 违规非0阻断")
     args = ap.parse_args()
     root = args.root
     failures: list[str] = []
@@ -52,6 +54,15 @@ def main() -> int:
         failures.append("production-ontology-gate 失败")
         sys.stdout.write(prod.stdout)
         sys.stderr.write(prod.stderr)
+
+    # 1d) 保真度检查（--enforce-fidelity 时启用）
+    if args.enforce_fidelity:
+        fid = _run([sys.executable, str(ROOT / "scripts" / "ontology-validate.py"),
+                    "--ontology-dir", str(root / "ontology"), "--check", "fidelity"])
+        if fid.returncode != 0:
+            failures.append("fidelity 检查失败")
+            sys.stdout.write(fid.stdout)
+            sys.stderr.write(fid.stderr)
 
     # 2) 相关任务的收敛校验
     for tdir in (root / "pdca" / "tasks").rglob("task.json"):

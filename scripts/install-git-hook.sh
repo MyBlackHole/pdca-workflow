@@ -19,7 +19,7 @@ cat > "$HOOK" <<'HOOK_EOF'
 ROOT=$(git rev-parse --show-toplevel)
 CHANGED=$(git diff --cached --name-only)
 echo "$CHANGED" | grep -qE '^(ontology/|pdca/tasks/)' || exit 0
-python3 "$ROOT/scripts/ci-ontology-gate.py" $CHANGED
+python3 "$ROOT/scripts/ci-ontology-gate.py" --enforce-fidelity $CHANGED
 HOOK_EOF
 
 chmod +x "$HOOK"

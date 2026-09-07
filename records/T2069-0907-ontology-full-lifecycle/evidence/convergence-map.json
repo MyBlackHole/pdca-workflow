@@ -1,0 +1,75 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "代码→本体自动生成：scripts/ontology-generate.py可执行，生成本体通过validate",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "ev-code-gen"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "本体→代码回测验证：scripts/ontology-backtest.py可执行，检测到不可执行signal输出报告",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "ev-backtest"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "持续监控与告警：scripts/ontology-drift-monitor.py可执行，CI中漂移时非0退出",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "ev-drift-monitor"
+      ]
+    },
+    {
+      "index": 4,
+      "text": "本体-代码版本联动：frontmatter新增code_version字段，scripts/ontology-version-link.py可执行",
+      "criteria": [
+        "AC-4"
+      ],
+      "evidence_ids": [
+        "ev-version-link"
+      ]
+    },
+    {
+      "index": 5,
+      "text": "影响分析：scripts/ontology-impact.py可执行，代码变更时识别影响的本体节点",
+      "criteria": [
+        "AC-5"
+      ],
+      "evidence_ids": [
+        "ev-impact"
+      ]
+    },
+    {
+      "index": 6,
+      "text": "覆盖率度量：scripts/ontology-coverage.py可执行，输出覆盖率报告",
+      "criteria": [
+        "AC-6"
+      ],
+      "evidence_ids": [
+        "ev-coverage"
+      ]
+    },
+    {
+      "index": 7,
+      "text": "端到端验证：6个方向全部通过validate-convergence",
+      "criteria": [
+        "AC-7"
+      ],
+      "evidence_ids": [
+        "ev-e2e"
+      ]
+    }
+  ]
+}
