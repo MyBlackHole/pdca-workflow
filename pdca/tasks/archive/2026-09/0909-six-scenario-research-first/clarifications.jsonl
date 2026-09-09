@@ -1,0 +1,8 @@
+{"at":"2026-09-09T10:18:06+08:00","source":"task_identity","summary":"created with record identity T2072-0909-six-scenario-research-first"}
+{"round":1,"question":"Q1 - 严格先调研后操作如何判定？A=Do准入有合法ontology_fragment即算先调研","answer":"同意A口径","recommended":"A=Do准入有合法ontology_fragment即算先调研（复用已有本体即可，不必每次新建research票）","source":"grilling","at":"2026-09-09T10:20:29+08:00","captured":true,"verified":true}
+{"round":1,"question":"Q2 - 输出深度选哪档？每场景给门禁代码+本体节点+验证命令","answer":"同意三件套","recommended":"每场景给门禁代码+本体节点+验证命令，可复核","source":"grilling","at":"2026-09-09T10:20:29+08:00","captured":true,"verified":true}
+{"round":1,"question":"Q3 - 是否按skill-research门禁产research-report.md并登记证据？","answer":"是产完整报告","recommended":"是，保证可归档，满足≥3 mermaid且每图1 Source","source":"grilling","at":"2026-09-09T10:20:29+08:00","captured":true,"verified":false}
+{"source":"final_confirmation","summary":"grilling round1 frontier empty已对齐：A口径(fragment合法即算)+三件套深度+完整research-report，confirm-or-correct通过，进入Do","response":"confirmed","at":"2026-09-09T10:20:51+08:00","verified":true}
+{"round":2,"question":"Check grilling - 结论是否被证据充分支撑？有无替代解释？","answer":"已核验：每AC有✅判定指证据ID，无替代解释","recommended":"确认支撑充分","source":"grilling","at":"2026-09-09T10:25:25+08:00","captured":true,"verified":true}
+{"round":2,"question":"Check grilling - 本体沉淀判定是否明确？","answer":"明确为ontology，新建concept节点","recommended":"ontology:concept/scenario-research-first-gate","source":"grilling","at":"2026-09-09T10:25:25+08:00","captured":true,"verified":true}
+{"source":"check_confirmation","summary":"grilling round2已复核conclusion/verdict支撑充分，verdict confirmed，同意进入Act","response":"confirmed","at":"2026-09-09T10:25:26+08:00","verified":true}

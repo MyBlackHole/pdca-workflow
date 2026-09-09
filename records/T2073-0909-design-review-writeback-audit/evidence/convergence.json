@@ -1,0 +1,1 @@
+{"items": [{"criteria": ["AC-1"], "evidence_ids": ["review-report"], "index": 1, "text": "双轴审查报告已产出"}, {"criteria": ["AC-2"], "evidence_ids": ["review-report"], "index": 2, "text": "回写缺口已定位"}, {"criteria": ["AC-3"], "evidence_ids": ["review-report"], "index": 3, "text": "证据已登记"}], "schema": "pdca.convergence/v1"}

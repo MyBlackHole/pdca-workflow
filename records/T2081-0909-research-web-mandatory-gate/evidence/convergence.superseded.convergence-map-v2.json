@@ -1,0 +1,37 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "门禁脚本与测试已产出",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "web-gate-script",
+        "web-gate-test"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "skill已更新",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "skill-update"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "收敛valid:true",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "web-gate-test",
+        "skill-update"
+      ]
+    }
+  ]
+}

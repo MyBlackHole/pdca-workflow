@@ -1,0 +1,2 @@
+{"id":"spec-finding","file":"spec-finding.md","kind":"document","size":291,"digest":"sha256:8d2acf6bec99a8fb08874fb4f9947edb10f69cca09bdbbcbf59334d1da7989d9","at":"2026-09-09T10:44:27+08:00","criteria":["AC-1"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":222,"digest":"sha256:d3b923cf87fff480de16f792270a5c20ad4bd12162a2e577fe3f951f6dfb4984","at":"2026-09-09T10:44:33+08:00","criteria":["AC-1"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

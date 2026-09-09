@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "技能与flow已更新",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "leaf-skill"
+      ]
+    }
+  ]
+}

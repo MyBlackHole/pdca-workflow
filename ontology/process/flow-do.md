@@ -69,7 +69,7 @@ Do 阶段按 `meta.scenario_type` 路由到相应 agent skill 执行，是 PDCA 
 ## 路径 C：research（需求调研/技术调研）
 
 1. 识别 primary sources（官方 docs/源码/specs）全量追溯
-2. Systematic investigation，按 `skill-research` 多图模板产 `research-report.md`（≥3 mermaid 且每图 1 Source，`grep -c` 可检）
+2. Systematic investigation，按 `skill-research` 多图模板产 `research-report.md`（≥3 mermaid 且每图 1 Source，`grep -c` 可检；T2081 起强制网络查询：参考资料≥2 URL 且正文≥1 http Source，`check-research-web-evidence.py` 通过）
 3. 每结论附可复核验证途径，`register-evidence` 登记，`convergence-map` 映射
 4. Check 阶段本体沉淀决策（`ontology:`/`records-only`）并过 `settlement` 校验
 

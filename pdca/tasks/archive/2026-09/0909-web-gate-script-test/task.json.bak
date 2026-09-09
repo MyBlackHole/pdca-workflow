@@ -1,0 +1,42 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T2082",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "脚本与测试已产出"
+    ],
+    "created_at": "2026-09-09T10:47:10+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "concept",
+    "phase": "act",
+    "record": "T2082-0909-web-gate-script-test",
+    "scenario_type": "research",
+    "completed_at": "2026-09-09T10:50:23+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "脚本测试叶收敛完成",
+      "verdict_id": "v2082-confirmed",
+      "at": "2026-09-09T10:50:33+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:concept/research-web-mandatory-gate 复用父任务沉淀，来源 T2082-0909-web-gate-script-test",
+      "at": "2026-09-09T10:50:46+08:00"
+    }
+  },
+  "parent": "T2081",
+  "slug": "0909-web-gate-script-test",
+  "states": {
+    "act": "2026-09-09T10:50:35+08:00",
+    "archive": null,
+    "check": "2026-09-09T10:50:23+08:00",
+    "created": "2026-09-09T10:47:10+08:00",
+    "do": "2026-09-09T10:50:03+08:00",
+    "plan": "2026-09-09T10:47:10+08:00"
+  },
+  "status": "Completed",
+  "title": "校验脚本与测试实现"
+}
