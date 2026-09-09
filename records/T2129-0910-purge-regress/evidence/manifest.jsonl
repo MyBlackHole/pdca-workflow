@@ -1,0 +1,2 @@
+{"id":"mini-report","file":"research-report.md","kind":"document","size":1399,"digest":"sha256:3313d0b05ef38340f834d85dffaaf81daed44d674570fc3e8a47ae6a049824a5","at":"2026-09-09T18:20:01+08:00","criteria":["AC-1"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":217,"digest":"sha256:214f441a9ac585f34cfee11987e5c80932b34cfce071c5873a03ba25ad4378c9","at":"2026-09-09T18:20:04+08:00","criteria":["AC-1"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

@@ -1,0 +1,5 @@
+{"at":"2026-09-09T15:55:00+08:00","source":"task_identity","summary":"created with record identity T2106-0910-guomi-scheme-review"}
+{"round":1,"question":"Q1 - 拆三叶全research属性","answer":"同意三叶","recommended":"行号验真/文档查缺/缺失项核验","source":"grilling","at":"2026-09-09T15:51:45+08:00","captured":true,"verified":false}
+{"round":1,"question":"Q2 - 叶独立上下文父只聚合","answer":"同意约定","recommended":"叶独立burn-down不互赖","source":"grilling","at":"2026-09-09T15:51:45+08:00","captured":true,"verified":false}
+{"round":1,"question":"Q3 - 本链为T2099先调研证据不重审","answer":"同意关联","recommended":"证据关联不重审已决范围","source":"grilling","at":"2026-09-09T15:51:45+08:00","captured":true,"verified":false}
+{"source":"final_confirmation","summary":"grilling round1 frontier empty已对齐：三叶全research+叶独立父聚合+关联T2099不重审，confirm-or-correct通过，进入Do","response":"confirmed","at":"2026-09-09T15:51:57+08:00","verified":true}

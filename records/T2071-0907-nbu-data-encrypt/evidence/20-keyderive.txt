@@ -1,0 +1,30 @@
+000000000004f5a0 T cmncrypto_getRandomBytes
+000000000004f4cc T cmncrypto_getRandomNumber
+0000000000042ac6 T mangle_aes_256_gcm_encrypt_with_rand_iv
+00000000000427c4 T mangleGetRandom
+                 U NB_101_BN_pseudo_rand@VERSION
+                 U NB_101_EVP_BytesToKey@VERSION
+                 U NB_101_EVP_DigestFinal_ex@VERSION
+                 U NB_101_EVP_DigestInit_ex@VERSION
+                 U NB_101_EVP_DigestUpdate@VERSION
+                 U NB_101_EVP_get_digestbyname@VERSION
+Pass phrases do not match.
+gen_32byte_digest
+Enter new NetBackup pass phrase: 
+Re-enter new NetBackup pass phrase: 
+Enter the NetBackup pass phrase to be deleted: 
+Re-enter the NetBackup pass phrase: 
+Digest of PP is %02x %02x %02x %02x ...
+Enter old key file pass phrase: (standard key file pass phrase) 
+Enter new key file pass phrase: (standard key file pass phrase) 
+Re-enter new key file pass phrase: (standard key file pass phrase) 
+    Digest of key: %02X %02X %02X %02X ...
+gen_20byte_digest
+Unable to generate the 32-byte key from pass phrase
+Unable to generate 20-byte digest from the key-iv
+key-iv digest does not match
+Unable to generate 32-byte key from pass phrase
+incorrect pass phrase length (%d) passed
+unable to decrypt pass phrase
+gen_20byte_digest
+gen_32byte_digest

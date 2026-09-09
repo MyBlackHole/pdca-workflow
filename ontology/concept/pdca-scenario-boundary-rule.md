@@ -43,6 +43,7 @@ python3 "$PDCA_HOME/scripts/scenario-boundary-check.py" --judge --desc "<任务�
 | T0271 gate-compliance-remediation | research | remediate-gate-compliance.py + test | development |
 | T0272 self-audit | research | self-audit.py + test | development |
 | T0163 pg/mysql parquet POC | research | pg_poc.py / mysql_poc.py / duckdb_poc.py | development |
+| T2099 存储国密落改调研 | development | 纯结论报告零代码产出（T2107重验） | research |
 
 ## 使用建议
 

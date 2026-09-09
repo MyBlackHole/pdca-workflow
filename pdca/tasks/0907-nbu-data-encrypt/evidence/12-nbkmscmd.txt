@@ -1,0 +1,32 @@
+-createKey
+Enter HMK passphrase : 
+Enter KPK passphrase : 
+Failed to read HMK passphrase with status : [%d]
+Failed to read KPK passphrase with status : [%d]
+HMK passphrase
+Key Group
+Key Group Info List
+Key Group Name
+key passphrase
+KMIP
+KMIP Attributes
+KPK passphrase
+netbackup/security/passphrase-constraints
+    Not all KMS types support key passphrase.
+-passphrasePath
+    Provide '%s' if random passphrases should be used for KMS configuration.
+Re-enter HMK passphrase : 
+Re-enter KPK passphrase : 
+                [%s <file path of the key passphrase>]
+    Specifies the file path of the passphrase that is used to encrypt the certificate private key.
+    Specifies the file path that has the passphrase that is used to create the key.
+    Specifies the host master key (HMK) ID to identify HMK passphrase.
+    Specifies the key protection key (KPK) ID to identify KPK passphrase.
+    Specifies whether random passphrases should be used or not.
+                [%s <private key passphrase file path if private key is encrypted using passphrase>]
+                      %s <The host master key (HMK) ID to identify HMK passphrase.>
+                      %s <The key protection key (KPK) ID to identify KPK passphrase.>
+The passphrase did not match.
+The passphrase file was successfully read.
+_Z9createKeyRKSsS0_R20t_KMS_Key_ParametersS0_RSsS3_
+_ZL12createKeyArg

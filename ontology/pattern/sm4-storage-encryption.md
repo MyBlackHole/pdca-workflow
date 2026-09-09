@@ -103,3 +103,23 @@ grep -c '```mermaid' ontology/pattern/sm4-storage-encryption.md  # ≥3
 > - **配置驱动原则**：S3 写模式不设默认、只由 `--gmssl` 配置控制，未指定默认明文；NFS 命令用独立 `--enc-algo` 参数（不用 `gmssl`）。
 > - **最小范围原则**：S3 防篡改、可观测性告警巡检不属本要求内容；灰度与回滚边界只在内部测试环境；密钥备份表述为与密文分离存放（非异地封存）。
 > - **真实示例原则**：形态示例用联网核实的 OpenZFS 官方真实输出并加注，不用示意值。
+
+## 修订记录 R3（T2107 落改清单，2026-09-09）
+
+> 来源 record：`records/T2107-0909-guomi-storage-research/`（结论 `confirmed`，证据 `guomi-research-report`+`guomi-zero-ontology-proof`）
+> 理由：方案在本仓（`F/143`）行号级重验，落改点清单如下，供后续实现票直接复用：
+>
+> - **S3三态口径统一**：CLI `--gmssl`（`s3file/main.cpp:139`，`atoi`无校验）与配置文件 bool 仅 0/1（`config.cpp:129-136`，`config_test` 拒 `2`）统一为 0/1/2；`=2` 走 SM4-GCM 每对象随机 12B nonce。
+> - **读端对象自适应**：s3mount 现状只看卷开关（`fuse-file.cpp:224,823,914`），改为按对象 `gmssl` 分支，缺 `sm4-nonce` 则 fail-closed；`meta_data_count` 2→3（`obs-service.cpp:309/370`）。
+> - **卷校验过渡**：`main.cpp:1488` 强一致校验阻断三态过渡，改为读端先行+写端按配置。
+> - **XOR 非合规声明**：`--encrypt` 系静态 XOR（`rpc-common.cpp:446-464`），不得计入国密；传输 `--tls-algorithm TLS_SM4_GCM_SM3` 已具备不动。
+> - **Y对齐**：Y2/Y3/Y6/Y7 本仓可改，Y1/Y4/Y5 记外部依赖（本仓无 ZFS 内核源码与 fio 环境）。
+
+## 修订记录 R4（T2125 补齐三缺口，2026-09-09）
+
+> 来源 record：`records/T2125-0910-guomi-storage-research2/`（结论 `confirmed`，逐章AC-1~AC-7）
+> 理由：T2107沉淀缺三块，本次补齐（NFS独立表达见新节点`ontology:pattern/sm4-nfs-encryption`）：
+>
+> - **NFS清单四字段**：`--enc-algo sm4-gcm/sm4-cbc`（默认明文）+ 管理侧清单算法/nonce/长度/校验和；半写清理重传；`--encrypt` XOR 非合规（`rpc-common.cpp:446`）。
+> - **密钥全量四条**：收发同钥；与密文分离存放；轮换按卷/桶另立项；丢钥即丢数据纳入变更流程。
+> - **门禁与灰度**：读端先行升级再允许写GCM；关闭解密的旧挂载点升级前清理；灰度只限内部测试环境。

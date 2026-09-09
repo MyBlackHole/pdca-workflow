@@ -1,0 +1,28 @@
+    7063:	e8 28 c0 ff ff       	call   3090 <malloc@plt>
+    7089:	e8 62 bd ff ff       	call   2df0 <V_snprintf@plt>
+    709d:	e8 7e bc ff ff       	call   2d20 <logmsg@plt>
+    70bd:	e8 ae bd ff ff       	call   2e70 <NB_101_EVP_EncryptUpdate@plt>
+    70e2:	e8 09 bd ff ff       	call   2df0 <V_snprintf@plt>
+    70f6:	e8 25 bc ff ff       	call   2d20 <logmsg@plt>
+    70fe:	e8 fd be ff ff       	call   3000 <free@plt>
+    7122:	e8 99 bc ff ff       	call   2dc0 <NB_101_EVP_EncryptFinal@plt>
+    7147:	e8 a4 bc ff ff       	call   2df0 <V_snprintf@plt>
+    715b:	e8 c0 bb ff ff       	call   2d20 <logmsg@plt>
+    7163:	e8 98 be ff ff       	call   3000 <free@plt>
+    719c:	e8 4f bc ff ff       	call   2df0 <V_snprintf@plt>
+    71b0:	e8 6b bb ff ff       	call   2d20 <logmsg@plt>
+    71b8:	e8 43 be ff ff       	call   3000 <free@plt>
+    71cd:	e8 6e bc ff ff       	call   2e40 <memcpy@plt>
+    71d5:	e8 26 be ff ff       	call   3000 <free@plt>
+    71f9:	e8 92 bd ff ff       	call   2f90 <__stack_chk_fail@plt>
+    720d:	c3                   	ret
+---
+   42b44:	e8 d7 33 fd ff       	call   15f20 <NB_101_EVP_aes_256_gcm@plt>
+   42b5f:	e8 bc 57 fd ff       	call   18320 <NB_101_EVP_EncryptInit_ex@plt>
+   42b84:	e8 67 34 fd ff       	call   15ff0 <NB_101_EVP_CIPHER_CTX_ctrl@plt>
+   42bbd:	e8 fe 3f fd ff       	call   16bc0 <mangleGetRandom@plt>
+   42be0:	e8 3b 57 fd ff       	call   18320 <NB_101_EVP_EncryptInit_ex@plt>
+   42c12:	e8 49 39 fd ff       	call   16560 <NB_101_EVP_EncryptUpdate@plt>
+   42c53:	e8 08 39 fd ff       	call   16560 <NB_101_EVP_EncryptUpdate@plt>
+   42cb2:	e8 f9 49 fd ff       	call   176b0 <NB_101_EVP_EncryptFinal_ex@plt>
+   42d39:	e8 b2 32 fd ff       	call   15ff0 <NB_101_EVP_CIPHER_CTX_ctrl@plt>

@@ -1,0 +1,8 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {"index": 1, "text": "算法清单可复现", "criteria": ["AC-1"], "evidence_ids": ["ev-ssl", "ev-evp", "ev-ciphers", "ev-mangle"]},
+    {"index": 2, "text": "加密链路可验证", "criteria": ["AC-2"], "evidence_ids": ["ev-client", "ev-tape", "ev-disk"]},
+    {"index": 3, "text": "结论有证据锚定", "criteria": ["AC-3"], "evidence_ids": ["ev-report", "ev-map"]}
+  ]
+}

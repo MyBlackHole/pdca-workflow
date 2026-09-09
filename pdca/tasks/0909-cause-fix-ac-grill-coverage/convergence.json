@@ -1,0 +1,1 @@
+{"items": [{"criteria": ["AC-1"], "evidence_ids": ["fix-ac-doc"], "index": 1, "text": "AC章节映射规范落地"}, {"criteria": ["AC-2"], "evidence_ids": ["fix-grill-doc"], "index": 2, "text": "Grill必问覆盖落地"}, {"criteria": ["AC-3", "AC-4"], "evidence_ids": ["fix-coverage-script", "fix-coverage-run", "fix-gate-ref"], "index": 3, "text": "覆盖校验脚本可跑"}], "schema": "pdca.convergence/v1"}

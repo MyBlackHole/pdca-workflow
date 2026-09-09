@@ -45,6 +45,9 @@ attributes:
 ## 违反后果
 以数量砍语义导致门禁退化为文档呼吁。
 
+## 执行记录（T2127）
+按分级裁决删25脚本与2测试文件、剪1测试6法：X4运行时导入、resolve×2被调、CI链、他人在途保留；全量失败集前后一致（仅少已删文件5旧失败），可revert。
+
 ## 关联导航
 - 元本体：`ontology:concept/meta-ontology`
 - 门禁：`ontology:concept/ontology-creation-gate`

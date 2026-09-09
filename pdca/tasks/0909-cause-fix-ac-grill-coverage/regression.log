@@ -1,0 +1,7 @@
+## AC-5 回归验证 2026-09-09T16:35:15+08:00
+```
+OK: ontology 通过本体契约校验
+OK: research settlement decision present for T2107 (record=T2107-0909-guomi-storage-research, phase=archive)
+OK: all 723 testable_signal entries are refined
+PY_COMPILE_OK
+```

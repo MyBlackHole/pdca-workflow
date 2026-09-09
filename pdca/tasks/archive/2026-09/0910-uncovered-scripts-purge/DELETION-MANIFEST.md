@@ -1,0 +1,30 @@
+# DELETION-MANIFEST T2127
+
+- scripts/aggregate-flow-issues.py
+- scripts/audit-history.py
+- scripts/audit-ontology-conformance.py
+- scripts/check-ontology-independence.py
+- scripts/check-ontology-reference-depth.py
+- scripts/check-scenario-mismatch.py
+- scripts/create-flow-issue-cutover.py
+- scripts/decide-flow-issue.py
+- scripts/ontology-backtest.py
+- scripts/ontology-coverage.py
+- scripts/ontology-drift-monitor.py
+- scripts/ontology-generate.py
+- scripts/ontology-impact.py
+- scripts/ontology-knowledge-applicability.py
+- scripts/ontology-knowledge-backtest.py
+- scripts/ontology-knowledge-evidence.py
+- scripts/ontology-knowledge-examples.py
+- scripts/ontology-knowledge-quality.py
+- scripts/ontology-knowledge-review.py
+- scripts/ontology-version-link.py
+- scripts/promote-improvement-candidate.py
+- scripts/query-flow-issues.py
+- scripts/remediate-id-collisions.py
+- scripts/report-flow-issue.py
+- scripts/run-flow-issue-fixtures.py
+- scripts/verify-flow-effectiveness.py
+- tests/test_flow_issues.py
+- tests/test_remediate_id_collisions.py

@@ -1,0 +1,47 @@
+{
+  "children": [
+    "T2128",
+    "T2129"
+  ],
+  "dependencies": [],
+  "id": "T2127",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "覆盖判据已对齐",
+      "dry-run清单已逐项确认",
+      "删除后全绿已提交"
+    ],
+    "created_at": "2026-09-09T17:15:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "concept",
+    "phase": "archive",
+    "record": "T2127-0910-uncovered-scripts-purge",
+    "scenario_type": "development",
+    "completed_at": "2026-09-09T17:54:05+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "分级完备且无回归，删件可revert",
+      "verdict_id": "v2127-confirmed",
+      "at": "2026-09-09T17:56:07+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:concept/process-complexity-ruling 已增补purge执行记录，来源 T2127-0910-uncovered-scripts-purge",
+      "at": "2026-09-09T17:56:35+08:00"
+    }
+  },
+  "parent": null,
+  "slug": "0910-uncovered-scripts-purge",
+  "states": {
+    "act": "2026-09-09T17:56:11+08:00",
+    "archive": "2026-09-09T17:56:42+08:00",
+    "check": "2026-09-09T17:54:05+08:00",
+    "created": "2026-09-09T17:15:00+08:00",
+    "do": "2026-09-09T17:44:30+08:00",
+    "plan": "2026-09-09T17:15:00+08:00"
+  },
+  "status": "Completed",
+  "title": "删除PDCA本体未覆盖逻辑脚本"
+}

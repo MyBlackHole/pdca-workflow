@@ -1,0 +1,1 @@
+{"items": [{"criteria": ["AC-1", "AC-2"], "evidence_ids": ["r2-report"], "index": 1, "text": "差距逐章可复核"}, {"criteria": ["AC-3", "AC-4", "AC-5"], "evidence_ids": ["r2-report"], "index": 2, "text": "落改本体全覆盖"}, {"criteria": ["AC-6", "AC-7"], "evidence_ids": ["r2-zero"], "index": 3, "text": "门禁零警告"}], "schema": "pdca.convergence/v1"}

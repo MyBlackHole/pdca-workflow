@@ -1,0 +1,29 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T2107",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T2107-0909-guomi-storage-research/evidence/convergence.json[4]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T2107-0909-guomi-storage-research/evidence/convergence.json[1]/text",
+      "message": "text must equal the Plan convergence value"
+    },
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T2107-0909-guomi-storage-research/evidence/convergence.json[2]/text",
+      "message": "text must equal the Plan convergence value"
+    },
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T2107-0909-guomi-storage-research/evidence/convergence.json[3]/text",
+      "message": "text must equal the Plan convergence value"
+    }
+  ],
+  "at": "2026-09-09T15:59:44.676292+08:00"
+}

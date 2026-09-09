@@ -1,0 +1,3 @@
+{"id":"deletion-manifest","file":"DELETION-MANIFEST.md","kind":"document","size":1048,"digest":"sha256:ea1e463272a3cf348733ac07b8bd8916b0caa70dea9a4be9a63e1f34f37632d6","at":"2026-09-09T17:53:47+08:00","criteria":["AC-2","AC-3"]}
+{"id":"blast-report","file":"research-report.md","kind":"document","size":1698,"digest":"sha256:a99daebdd7d5fdf23ae16ace94ea3912e0dc7e851bd97d4df89944baa42a6b02","at":"2026-09-09T17:53:48+08:00","criteria":["AC-1","AC-2"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":606,"digest":"sha256:250cde041ce487f3dc1db1fb385f011a49c06446c64ac2ffdfb21d81b24c8940","at":"2026-09-09T17:54:01+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

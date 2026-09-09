@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T2119",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "RESEARCH_FIRST_MISSING",
+      "path": "task.json",
+      "message": "plan→do requires prior research: an archived research child in-chain or a passing research-report.md (mermaid≥3/Source≥3/http Source≥1/URLs≥2)",
+      "guidance": "archive a research child ticket or add a passing research-report.md; bootstrap tasks may set ontology_exempt=true"
+    }
+  ],
+  "at": "2026-09-09T16:30:45.418333+08:00"
+}

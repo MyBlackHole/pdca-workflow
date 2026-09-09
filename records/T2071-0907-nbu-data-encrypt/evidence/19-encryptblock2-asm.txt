@@ -1,0 +1,6 @@
+  493985:	e8 c7 16 00 00       	call   495051 <OpenEncryptFunctions>
+  4939b1:	e8 ca 10 00 00       	call   494a80 <CryptErrorMessage>
+  4939cc:	48 8d 05 15 1a 55 00 	lea    0x551a15(%rip),%rax        # 9e53e8 <vdes_cbc_encrypt_p>
+  4939d3:	ff 10                	call   *(%rax)
+  4939f6:	e8 85 10 00 00       	call   494a80 <CryptErrorMessage>
+  493a18:	e8 a3 68 f8 ff       	call   41a2c0 <memcpy@plt>
