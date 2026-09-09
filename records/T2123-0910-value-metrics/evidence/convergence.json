@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "度量已采集",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "mini-report"
+      ]
+    }
+  ]
+}
