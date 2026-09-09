@@ -1,0 +1,6 @@
+{"at":"2026-09-09T11:00:49+08:00","source":"task_identity","summary":"created with record identity T2084-0909-tickets-leaf-gate-fix"}
+{"round":1,"question":"Q1 - 叶票如何定义？有parent无children是否豁免","answer":"为什么要豁免","recommended":"有parent无children即叶票豁免，父票仍卡；否则无限递归，叶工作永不可执行","source":"grilling","at":"2026-09-09T11:03:19+08:00","captured":true,"verified":false}
+{"round":1,"question":"Q2 - 拆3子票，卡住沿用转research单票制","answer":"同意3子票","recommended":"拆复现/修复/回归3子票","source":"grilling","at":"2026-09-09T11:03:19+08:00","captured":true,"verified":false}
+{"round":1,"question":"用户元反馈","answer":"为什么要豁免：因TICKETS对plan态非research全卡，叶票再拆无收敛；T2074等四次命中被迫转research造成场景错标；历史归档T0425/T0529空children可归档，P0-2门禁后才断裂；叶豁免保父票仍卡，递归终止","recommended":"采纳叶豁免口径","source":"grilling","at":"2026-09-09T11:03:19+08:00","captured":true,"verified":true}
+{"source":"final_confirmation","summary":"grilling round1 frontier empty已对齐：叶豁免口径（有parent无children豁免、父票仍卡）+3子票拆解，confirm-or-correct通过，进入Do","response":"confirmed","at":"2026-09-09T11:03:27+08:00","verified":true}
+{"source":"check_confirmation","summary":"grilling已复核conclusion/verdict支撑充分，verdict confirmed，同意进入Act","response":"confirmed","at":"2026-09-09T11:48:41+08:00","verified":true}

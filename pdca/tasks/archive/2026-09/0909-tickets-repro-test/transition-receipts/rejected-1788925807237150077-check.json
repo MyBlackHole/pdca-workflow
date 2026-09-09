@@ -1,0 +1,14 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T2085",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "CONVERGENCE_MAP_MISSING",
+      "path": "records/T2085-0909-tickets-repro-test/evidence/manifest.jsonl",
+      "message": "exactly one entry with id and kind convergence-map is required"
+    }
+  ],
+  "at": "2026-09-09T11:50:07.237131+08:00"
+}

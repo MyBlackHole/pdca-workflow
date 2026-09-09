@@ -1,0 +1,35 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "复现测试已产出",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "repro-test"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "门禁已修复",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "gate-fix"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "回归全绿",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "repro-test"
+      ]
+    }
+  ]
+}
