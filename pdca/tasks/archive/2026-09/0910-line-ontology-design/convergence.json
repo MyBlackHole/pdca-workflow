@@ -1,0 +1,35 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "行级口径已对齐",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "coverage-design"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "双方案对比已产出",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "coverage-design"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "design已登记",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "coverage-design"
+      ]
+    }
+  ]
+}
