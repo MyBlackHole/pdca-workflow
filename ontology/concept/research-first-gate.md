@@ -33,7 +33,7 @@ attributes:
 
 # 任务必须先调研门禁规则（research-first-gate）
 
-来源：T2092，记录 `records/T2092-0910-research-first-gate/conclusion.md`。Grounding：`scripts/pdca_core.py` 先调研门禁段、`tests/test_research_first_gate.py:1-160`。复用覆盖T2093-0910-rf-evidence-form/T2094-0910-rf-gate-test/T2095-0910-rf-doc-sync。
+来源：T2092，记录 `records/T2092-0910-research-first-gate/conclusion.md`。Grounding：`scripts/pdca_core.py` 先调研门禁段、`tests/test_research_first_gate.py:1-160`。复用覆盖T2093-0910-rf-evidence-form/T2094-0910-rf-gate-test/T2095-0910-rf-doc-sync（三报告自证通过新门禁）。
 
 ## 背景问题
 ontology-ready复用旧fragment即放行，无本次调研动作要求；T2072口径A确认现状后用户要求从严。

@@ -1,0 +1,42 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T2094",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "门禁与测试已产出"
+    ],
+    "created_at": "2026-09-09T13:58:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "concept",
+    "phase": "act",
+    "record": "T2094-0910-rf-gate-test",
+    "scenario_type": "development",
+    "completed_at": "2026-09-09T14:34:33+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "叶收敛完成",
+      "verdict_id": "v2094-confirmed",
+      "at": "2026-09-09T14:34:49+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:concept/research-first-gate 复用父任务沉淀，来源 T2094-0910-rf-gate-test",
+      "at": "2026-09-09T14:35:09+08:00"
+    }
+  },
+  "parent": "T2092",
+  "slug": "0910-rf-gate-test",
+  "states": {
+    "act": "2026-09-09T14:34:56+08:00",
+    "archive": null,
+    "check": "2026-09-09T14:34:33+08:00",
+    "created": "2026-09-09T13:58:00+08:00",
+    "do": "2026-09-09T14:34:06+08:00",
+    "plan": "2026-09-09T13:58:00+08:00"
+  },
+  "status": "Completed",
+  "title": "先调研门禁实现与测试"
+}
