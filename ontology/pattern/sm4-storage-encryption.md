@@ -84,3 +84,22 @@ grep -c '```mermaid' ontology/pattern/sm4-storage-encryption.md  # ≥3
 - 决策：`records/T2044-0904-research-f139-sm4/` 的 `1716` 业务事实晋为 `ontology:pattern/sm4-storage-encryption`，`composed_of` 待拆为 `sm4-zfs/sm4-s3` 二叶。
 
 *Diátaxis: reference* | *arc42: 5/6/12 节* | *C4 L2 可建模*
+
+## 修订记录 R1（T2076 评审补齐，2026-09-09）
+
+> 来源 record：`records/T2076-0909-storage-guomi-supplement/`（结论 `confirmed`，证据 `guomi-doc-v5`，复审 `存储国密加密技术方案评审.md ✅ 通过`）
+> 理由：首轮评审 15 项非绿（P1×11+P2×4）经三轮 Check 返工全部落地，本模式同步吸收可复用经验：
+>
+> - **NBU 对照法**：参考产品以 NBU 逆向实测为核心对照（mangle AES-256-GCM 每调用随机 12B IV+16B Tag、备份像内嵌 `.EnCrYpTiOn` 标记随数据走、KMS 按组管钥、无国密必须外挂），源自 `NBU数据加密算法使用总结.md` 第 3–5 节；“存储侧承担国密、NBU 零改造”立场的直接依据。
+> - **实现后形态表达法**：加密落地形态必须逐介质给出可审计表达——ZFS 属性三要素（`encryption/keystatus`/设备存在性）、S3 对象元数据表（`gmssl/sm4-nonce/file-size`）、NFS 文件布局（原文件名 + 管理侧清单），汇总为运维/审计统一清单（算法/随机数/密钥版本/状态/完整性五字段）。
+> - **容量无关裁定**：加密机制正确性与容量无关经作者裁定列入显式 non-goals，容量事项由存储容量专项承担；评审维度 12 由此转绿，P1 清零。
+
+## 修订记录 R2（T2088 五点修订，2026-09-09）
+
+> 来源 record：`records/T2088-0909-guomi-rework2/`（结论 `confirmed`，证据 `guomi-r2-doc-17`）
+> 理由：作者五点纠偏经十七轮 Check 返工落地，本模式同步吸收：
+>
+> - **容灾继承原则**：容灾端沿用复制的加密属性，不讨论两端加密不一致场景（删除非 raw 改算法设计）。
+> - **配置驱动原则**：S3 写模式不设默认、只由 `--gmssl` 配置控制，未指定默认明文；NFS 命令用独立 `--enc-algo` 参数（不用 `gmssl`）。
+> - **最小范围原则**：S3 防篡改、可观测性告警巡检不属本要求内容；灰度与回滚边界只在内部测试环境；密钥备份表述为与密文分离存放（非异地封存）。
+> - **真实示例原则**：形态示例用联网核实的 OpenZFS 官方真实输出并加注，不用示意值。
