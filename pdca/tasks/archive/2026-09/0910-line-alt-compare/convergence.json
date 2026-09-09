@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "备选对比已完成",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "cover-report"
+      ]
+    }
+  ]
+}
