@@ -1,0 +1,36 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "双轴审查报告已产出",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "review-report"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "六场景满足度已逐项判定",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "review-report",
+        "prescan-report"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "证据已登记",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "review-report"
+      ]
+    }
+  ]
+}

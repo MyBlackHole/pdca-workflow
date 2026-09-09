@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "Spec判定已产出",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "mini-report"
+      ]
+    }
+  ]
+}
