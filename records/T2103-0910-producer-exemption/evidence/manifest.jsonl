@@ -1,0 +1,4 @@
+{"id":"gate-test","file":"test_research_first_gate.py","kind":"test","size":4945,"digest":"sha256:5cd8bd4bb4c08c177e5da5e3b7f095878ea09cd810e2cb7fa3039549d139584b","at":"2026-09-09T15:39:51+08:00","criteria":["AC-2","AC-3"]}
+{"id":"gate-impl","file":"pdca_core.py","kind":"script","size":37925,"digest":"sha256:116b4d358af17c874089804e15dee05894fcfc01d2bb8611a1336812e6992049","at":"2026-09-09T15:39:52+08:00","criteria":["AC-2"]}
+{"id":"triage-brief","file":"triager-brief.md","kind":"document","size":970,"digest":"sha256:2c77bda5e7a4ce20f0f2eb95db689b23e0ad723d8bd8cbc7666c7f8c733650b2","at":"2026-09-09T15:39:53+08:00","criteria":["AC-1"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":581,"digest":"sha256:e6cc6c552833b2336ebb4f51253aca931f2faa83335ff1a3ae75025589e534a1","at":"2026-09-09T15:40:02+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

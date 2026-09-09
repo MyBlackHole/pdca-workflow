@@ -33,7 +33,7 @@ Do 阶段按 `meta.scenario_type` 路由到相应 agent skill 执行，是 PDCA 
 ## 阶段步骤（权威描述）
 
 1. **路由**：`flow-do` 依据 `task.json.meta.scenario_type` 选择 6 条 Do 路径之一（development/bugfix/research/design/review/documentation）。
-2. **ontology-ready 关卡**：`meta.ontology_fragment` 指向的领域片段须存在且结构合法（自举任务经 `meta.ontology_exempt` 豁免）；**先调研关卡（T2092 起，全场景）**：另须本次调研证据二选一——链内 `research` 子票已归档，或本次 `research-report.md` 通过门禁（`mermaid≥3/Source≥3/http Source≥1/URLs≥2`），仅 `ontology_exempt` 豁免（`RESEARCH_FIRST_MISSING` 阻断）。
+2. **ontology-ready 关卡**：`meta.ontology_fragment` 指向的领域片段须存在且结构合法（自举任务经 `meta.ontology_exempt` 豁免）；**先调研关卡（T2092 起，全场景）**：另须本次调研证据二选一——链内 `research` 子票已归档，或本次 `research-report.md` 通过门禁（`mermaid≥3/Source≥3/http Source≥1/URLs≥2`），仅 `ontology_exempt` 豁免（`RESEARCH_FIRST_MISSING` 阻断）；**生产者豁免（T2103 起）**：`research` 票免自身门禁。
 3. **执行**：调用对应 skill；外部产物先复制 `workspace/external-artifacts/` 再登记 Evidence。
 4. **证据登记**：`register-evidence` 把产物锚定到 `pdca-evidence` 子类型。
 5. **Phase Boundary 决策树**：收尾阶段必须输出 Phase Boundary 决策树，按序询问五个选项（①能继续吗→Continue；②上下文与后续无关→/clear；③需要跨 harness/目录/同事/支线分叉→/handoff；④任务可 AFK→Subagent；⑤否则 /compact），第一个 yes 获胜，mid-phase 永不决策。

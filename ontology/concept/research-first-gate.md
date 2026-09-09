@@ -26,9 +26,9 @@ attributes:
   constraint: 豁免任务跳过判定；其余含research自身一律核验
   testable_signal: 运行 pytest tests/test_research_first_gate.py 中豁免用例断言放行，且全量门禁测试不断言豁免外放行
 - name: self_reference_limitation
-  desc: 新鲜research叶票自指阻断为已知局限，需升级
-  constraint: 当前按口径锁定阻断行为；升级前不得擅自加生产者豁免
-  testable_signal: 运行 pytest tests/test_research_first_gate.py::ResearchFirstGateTest::test_research_leaf_self_reference_blocked 断言阻断成立
+  desc: T2103 起生产者豁免替代原阻断局限
+  constraint: scenario==research 的任务免自身门禁；非research判定与二选一不变；他人引用research任务作证据仍须其已归档
+  testable_signal: 运行 pytest tests/test_research_first_gate.py::ResearchFirstGateTest::test_research_producer_exempted 断言放行成立，且无证据dev任务运行 gate_issues 仍断言含RESEARCH_FIRST_MISSING
 ---
 
 # 任务必须先调研门禁规则（research-first-gate）
@@ -41,7 +41,7 @@ ontology-ready复用旧fragment即放行，无本次调研动作要求；T2072�
 ## 核心机制
 1. 证据二选一：链内research子票已归档（传递闭包），或本次报告通过图/网络门禁。（依据：`ontology:concept/pdca-gate-do`）
 2. 最小豁免：仅自举豁免，无父链继承。（依据：`ontology:concept/pdca-ontology-ready`）
-3. 自指局限：新鲜research叶票当前阻断并由测试锁定，待升级决策。（依据：`ontology:domain/skill-research`）
+3. 自指升级（T2103）：research生产者豁免自身门禁，他人引用仍须其归档。（依据：`ontology:domain/skill-research`）
 
 ## 适用边界
 全场景plan→do；旧任务不追溯（门禁仅新生效后转换触发）。
