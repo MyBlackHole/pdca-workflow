@@ -51,6 +51,7 @@ model-invoked：AI 自动调研领域主题并捕获发现为带引用的 Markdo
     ```
     **图门禁**：`grep -c '```mermaid' research-report.md` ≥3 且每图附1条 `Source:` primary source引证（源码行或官方doc），否则阻断；`grep -c 'Source:'` ≥3。
     **网络门禁（T2081 起）**：参考资料≥2 URL 且正文 `Source:` 行至少1条 httpURL，否则阻断；运行 `python3 scripts/check-research-web-evidence.py --report research-report.md` 须返回 valid 真。内部纯代码审查可豁免，需在结论论证并经 Grill 确认。
+    **先调研门禁（T2092 起，全场景 plan→do）**：本次调研证据二选一——链内 `research` 子票已归档，或本次 `research-report.md` 通过上述图/网络门禁；仅 `ontology_exempt` 豁免（`RESEARCH_FIRST_MISSING` 阻断，见 `scripts/pdca_core.py:gate_issues`）。
 4. 每条关键结论附至少一条**可复核验证途径**（重跑命令/SQL/复现步骤/可回看的 file:line 引用）；无法给出途径的结论降级为"待验证假设"并标注置信度。
 5. Register via `$PDCA_HOME/skills/register-evidence/SKILL.md`。
 
