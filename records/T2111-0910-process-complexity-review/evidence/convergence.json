@@ -1,0 +1,35 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "复杂度已量化归因",
+      "criteria": [
+        "AC-1"
+      ],
+      "evidence_ids": [
+        "complexity-report"
+      ]
+    },
+    {
+      "index": 2,
+      "text": "简化方向已给出",
+      "criteria": [
+        "AC-2"
+      ],
+      "evidence_ids": [
+        "complexity-report"
+      ]
+    },
+    {
+      "index": 3,
+      "text": "报告已登记",
+      "criteria": [
+        "AC-3"
+      ],
+      "evidence_ids": [
+        "complexity-report"
+      ]
+    }
+  ]
+}
