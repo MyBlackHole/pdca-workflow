@@ -10,8 +10,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-triage-work/1.0.0
+dcterms_modified: 2026-09-10
+owl_versionIRI: http://pdca.local/ontology/skill-triage-work/1.0.1
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -80,7 +80,7 @@ python3 "$PDCA_HOME/scripts/out-of-scope-manager.py" list
 
 ### 4. Grill (if info is insufficient)
 
-Load `$PDCA_HOME/skills/grilling/SKILL.md` to fill gaps. Log Q&A to `clarifications.jsonl` (`source: "triage"`).
+Load `ontology:domain/skill-grilling` to fill gaps. Log Q&A to `clarifications.jsonl` (`source: "triage"`).
 
 ### 5. Output
 

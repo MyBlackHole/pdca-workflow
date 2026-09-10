@@ -10,8 +10,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-web-research/1.0.0
+dcterms_modified: 2026-09-10
+owl_versionIRI: http://pdca.local/ontology/skill-web-research/1.0.1
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -34,7 +34,7 @@ description: 网络资料调研辅助技能。当实验阶段的场景为网络�
 - 将调研问题分解为 3-5 个可搜索的子问题
 - 为每个子问题定义中英文搜索关键词
 - 以 `prd.md` 中的假设和 Goal 为调研起点
-- 记录到当前会话工作目录（如 `workspace/{task-slug}/search-plan.md`）
+- 记录到当前任务目录（如 `pdca/tasks/{task-slug}/search-plan.md`）
 
 ## 搜索策略
 - 对每个子问题至少搜索 2 个独立来源
@@ -43,7 +43,7 @@ description: 网络资料调研辅助技能。当实验阶段的场景为网络�
 
 ## 信息整理
 - 对比多方来源，标注可信度（高/中/低）
-- 记录关键发现到 `workspace/{task-slug}/findings.md`
+- 记录关键发现到 `pdca/tasks/{task-slug}/findings.md`
 - 标注与原始假设一致或矛盾的发现
 
 ## 结论输出
@@ -51,7 +51,7 @@ description: 网络资料调研辅助技能。当实验阶段的场景为网络�
 - 对照 `prd.md` 验收标准逐项确认
 - 列出引用来源（URL + 标题）
 - 标注未确认/待验证的结论
-- 输出到 `workspace/{task-slug}/research-conclusion.md`
+- 输出到 `pdca/tasks/{task-slug}/research-report.md`（与 research 门禁同名）
 
 ## 已知坑
 

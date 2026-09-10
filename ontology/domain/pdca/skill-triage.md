@@ -13,8 +13,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-triage/1.0.0
+dcterms_modified: 2026-09-10
+owl_versionIRI: http://pdca.local/ontology/skill-triage/1.0.1
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -35,7 +35,7 @@ relations:
 1. 分类 issue 为 bug 或 enhancement（含 `research`：纯结论/报告，无可测试代码产出）
 2. 检查重复
 3. 验证 claim（事实性 claim 用代码/文档验证而非询问用户）
-4. **Grill 门禁（强制分支）**：按 `grill-protocol` 先 Gather signal → Build ledger（resolved/open）→ Branch：
+4. **Grill 门禁（强制分支）**：按 `skill-grilling` 先 Gather signal → Build ledger（resolved/open）→ Branch：
    - `research` 或输入仅含路径/单句（thin）→ **强制 `grill full`**（至少一轮 frontier，含推荐答案）
    - 其他 `mostly resolved` → 至少 **一次 `confirm-or-correct` 总结**（`Never zero-touch`：即使全 resolved 也必须一次显式确认，见 `ontology:concept/grilling-methodology`）
    - 仅当 ledger 显示全 resolved 且已获 `captured:true` 确认后，方可进入 5

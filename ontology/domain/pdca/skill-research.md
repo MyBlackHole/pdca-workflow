@@ -10,8 +10,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-research/1.0.0
+dcterms_modified: 2026-09-10
+owl_versionIRI: http://pdca.local/ontology/skill-research/1.0.1
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -53,16 +53,11 @@ model-invoked：AI 自动调研领域主题并捕获发现为带引用的 Markdo
     **网络门禁（T2081 起）**：参考资料≥2 URL 且正文 `Source:` 行至少1条 httpURL，否则阻断；运行 `python3 scripts/check-research-web-evidence.py --report research-report.md` 须返回 valid 真。内部纯代码审查可豁免，需在结论论证并经 Grill 确认。
     **先调研门禁（T2092 起，全场景 plan→do）**：本次调研证据二选一——链内 `research` 子票已归档，或本次 `research-report.md` 通过上述图/网络门禁；仅 `ontology_exempt` 豁免（`RESEARCH_FIRST_MISSING` 阻断，见 `scripts/pdca_core.py:gate_issues`）。**生产者豁免（T2103 起）**：`scenario==research` 的任务自身即调研，免自身门禁；他人引用该任务作证据仍须其已归档。
 4. 每条关键结论附至少一条**可复核验证途径**（重跑命令/SQL/复现步骤/可回看的 file:line 引用）；无法给出途径的结论降级为"待验证假设"并标注置信度。
-5. Register via `$PDCA_HOME/skills/register-evidence/SKILL.md`。
+5. Register via `ontology:domain/skill-register-evidence`（见该技能登记命令与已知坑）。
 
 ## Subagent 并行 Burn-down
 
-Research tickets 不再等待单独 session。创建 tickets 后，charting session 对每个 research ticket 触发 `/research` subagent 并行 burn-down。
-
-- 捕获发现到 throwaway `research/<name>` branch
-- 在实现问题上留下 context pointer
-- Research tickets 是"一个 ticket per session"规则的唯一例外
-- Subagent 并行 burn-down 时，每个 research ticket 独立 capture，不互相依赖
+Research tickets 的并行调度语义见 `ontology:domain/skill-to-tickets` Dispatch 节（有 `agent.spawn` 能力走 Adapter，无则主 session 顺序执行），此处不复述平台假设。约束仍有效：每个 research ticket 独立 capture，不互相依赖；在实现问题上留下 context pointer。
 
 ## Model-Invoked 行为
 
