@@ -14,6 +14,7 @@ relations:
   - ontology:concept/pdca-task
   relates_to:
   - ontology:concept/pdca-task
+  testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-scenario-boundary-rule' ontology/ tests/ scripts/ | wc -l) -ge 6"
 ---
 
 # 场景归属边界判定规则（pdca-scenario-boundary-rule）

@@ -12,6 +12,7 @@ owl_versionIRI: http://pdca.local/ontology/pdca-phase/1.0.0
 relations:
   specializes:
   - ontology:concept/pdca
+  testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-phase' ontology/ tests/ scripts/ | wc -l) -ge 16"
 ---
 # pdca-phase
 

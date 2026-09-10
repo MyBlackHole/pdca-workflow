@@ -14,6 +14,7 @@ relations:
   - ontology:concept/pdca-acceptance-criterion
   relates_to:
   - ontology:concept/pdca-acceptance-criterion
+  testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-source-diagram-doc-verification' ontology/ tests/ scripts/ | wc -l) -ge 2"
 ---
 
 # 源码图解文档验证流程（pdca-source-diagram-doc-verification）

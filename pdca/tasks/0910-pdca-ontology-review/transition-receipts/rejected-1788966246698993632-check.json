@@ -1,0 +1,24 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T2135",
+  "from": "do",
+  "to": "check",
+  "issues": [
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T2135-0910-pdca-ontology-review/evidence/convergence-v3.json[2]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_ITEM_UNKNOWN",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T2135-0910-pdca-ontology-review/evidence/convergence-v3.json[3]",
+      "message": "index is outside task convergence"
+    },
+    {
+      "code": "CONVERGENCE_TEXT_MISMATCH",
+      "path": "/home/black/Documents/pdca-workflow-pro/records/T2135-0910-pdca-ontology-review/evidence/convergence-v3.json[1]/text",
+      "message": "text must equal the Plan convergence value"
+    }
+  ],
+  "at": "2026-09-09T23:04:06.698958+08:00"
+}

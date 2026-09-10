@@ -15,6 +15,7 @@ relations:
   relates_to:
   - ontology:concept/pdca-continuous-improvement
   - ontology:concept/self-optimization-loop
+  testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-provable-skill-increments' ontology/ tests/ scripts/ | wc -l) -ge 3"
 ---
 
 # 可证明 Skill 增量方法谱系（pdca-provable-skill-increments）

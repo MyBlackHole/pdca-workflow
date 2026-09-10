@@ -21,6 +21,7 @@ relations:
   - ontology:concept/pdca-verdict
   - ontology:concept/pdca-acceptance-criterion
   - ontology:concept/pdca-architecture-review-metrics
+  testable_signal: "引用存活：test $(grep -rl 'ontology:process/flow-check' ontology/ tests/ scripts/ | wc -l) -ge 2"
 ---
 
 # PDCA Check 流程（flow-check）

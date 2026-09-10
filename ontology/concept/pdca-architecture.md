@@ -15,6 +15,7 @@ relations:
   relates_to:
   - ontology:concept/process
   - ontology:concept/pdca-task
+  testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-architecture' ontology/ tests/ scripts/ | wc -l) -ge 11"
 ---
 
 # PDCA 架构（pdca-architecture）

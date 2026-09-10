@@ -1,0 +1,9 @@
+{
+  "task": "T2135",
+  "valid": true,
+  "mapping": [
+    {"convergence": "结构审查全覆盖问题清单分级", "prd": "AC-1", "evidence": ["review-report"]},
+    {"convergence": "research-report通过门禁", "prd": "AC-2", "evidence": ["review-report"]},
+    {"convergence": "结构类附带修订验证语义类立项", "prd": "AC-3", "evidence": ["review-report"]}
+  ]
+}

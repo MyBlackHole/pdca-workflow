@@ -1,0 +1,24 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T2130",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "clarifications.jsonl[1]/",
+      "message": "'at' is a required property"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "clarifications.jsonl[2]/",
+      "message": "'at' is a required property"
+    },
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "clarifications.jsonl[3]/",
+      "message": "'at' is a required property"
+    }
+  ],
+  "at": "2026-09-09T21:12:50.090937+08:00"
+}

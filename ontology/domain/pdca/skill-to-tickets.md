@@ -10,8 +10,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-to-tickets/1.0.0
+dcterms_modified: 2026-09-10
+owl_versionIRI: http://pdca.local/ontology/skill-to-tickets/1.0.1
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -37,7 +37,7 @@ Parse `prd.md` and produce sub-task skeletons.
 
 ## Process
 
-1. Read `prd.md` and identify independent work units (sections, features, or phases).
+1. Read `prd.md` and identify work units along the ontology tree（见 `ontology:concept/pdca` 设计核心：每本体一子任务；`## 拆分映射` 章节→节点为输入，本体关系树为拆分主轴）。
 2. Scan `pdca/tasks/` and `pdca/tasks/archive/` for all `task.json` files to find duplicates and to pass `check-design-vocab` sanity; the **next task ID must not be computed manually** — use the uniform identity entrypoint.
 3. **本体一致性预检（拆分前，阻断门禁）**：把候选子任务的 slug/标题交给本体冲突检查，若与既有 `ontology` 节点重名，提示「已有本体节点 X，建议复用而非新建任务」，exit code=1 阻断拆解产出；无冲突 exit code=0 通过。已在 PRD `## 关联本体节点` 声明复用时，视为预期复用，提示后可继续（不阻断）。
 
@@ -73,7 +73,7 @@ python3 "$PDCA_HOME/scripts/task_identity.py" create \
 The entrypoint assigns the global unique task ID, derives the immutable `meta.record`, creates `records/<record>/`, and writes `task.json` / `clarifications.jsonl` / `prd.md` atomically. **Never scan-and-write `task.json` directly.**
 
 5. Update parent `task.json` → append sub-task IDs to `children` array.
-6. Copy relevant sections of `prd.md` into each sub-task's `prd.md`.
+6. Copy relevant sections of `prd.md` into each sub-task's `prd.md`, rewritten per 子票 PRD 实质化规范第 1 条（回链父 AC 编号，非原文照搬）。
 
 ## Blocking edges（依赖边）
 
@@ -93,6 +93,15 @@ python3 scripts/compute-frontier.py < dag.json
 - **ready-set** = 所有"未完成且所有直接前置已完成"的任务集合（可并行任务集）。
 - 依赖图非法（有环 / 缺失引用 / 自环）→ 拒绝拆解产出，修复依赖后再校验。
 - 顺序执行时按 `batches` 分批：每批是当前全部可并行任务，批间串行。
+
+## 子票 PRD 实质化规范（final_confirmation 前必备）
+
+骨架创建后、父票 final_confirmation 前，每个子票 `prd.md` 必须满足：
+
+1. **验收继承**：每条子 AC 注明回链父 PRD 编号，格式 `AC-x（回链父 AC-y）`；无父 AC 可链时注明来源（triage brief 期望行为第 N 条）。
+2. **拆分映射对齐**：`## 拆分映射` 每行 `章节 -> 节点` 的节点须与本子票 `task.json` 的 `ontology_anchor` 一致；单子票单节点，一对多即拆分过粗，打回重拆。
+3. **测试接缝声明**：`development`/`bugfix` 子票必须含 `### 声明的测试接缝`（格式 `- seam: <测试文件> -> <被测模块>`）；`research`/`design`/`review`/`documentation` 子票免声明，但须在 PRD 写一句免责依据。
+4. **反例拒收**：`- [ ] AC-1 示例验收` 原样未改即视为未实质化，`plan→do` 拒收。
 
 ## Rules
 
@@ -127,6 +136,7 @@ Read the doctor result for the abstract `agent.spawn` capability. When available
 
 - Pass the child task's `prd.md` content as the prompt
 - The subagent runs a full PDCA cycle (plan→do→check→act→archive) independently
+- 拆分主轴为本体树（见 `ontology:concept/pdca` 设计核心）：每本体一子任务；B（知识产出）/A（代码变更）/C（评审校验）各阶段的子任务都跑完整循环
 - The subagent does NOT do user alignment — all user-facing decisions stay in the parent session
 - Collect return values: conclusion summary + evidence manifest path
 - After all subagents complete, merge evidence back to parent task's evidence/

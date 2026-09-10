@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/flow-plan/1.0.0
+dcterms_modified: 2026-09-10
+owl_versionIRI: http://pdca.local/ontology/flow-plan/1.0.1
 summary: Plan 阶段流程实体：triage→Grill→PRD→任务拆解→final_confirmation 门禁
 relations:
   specializes:
@@ -20,6 +20,7 @@ relations:
   - ontology:concept/pdca-architecture
   - ontology:concept/pdca-scenario-boundary-rule
   - ontology:concept/pdca-ai-friendly-confirmation
+  testable_signal: "引用存活：test $(grep -rl 'ontology:process/flow-plan' ontology/ tests/ scripts/ | wc -l) -ge 5"
 ---
 
 # PDCA Plan 流程（flow-plan）
@@ -37,7 +38,7 @@ Plan 阶段是 PDCA 周期的第一个阶段，产出经用户 `final_confirmati
 
 ## 关键决策（已迁移自外部知识）
 
-- **项目操作约定**：SKILL.md 的 frontmatter 与 body 分离管理（改 `meta.phase` 只动 frontmatter）；根文档（README/AGENTS/SKILLS-INDEX）手动 `git add+commit`；任务 ID 单调递增（扫 `pdca/tasks/` 与 `archive/` 取最大值+1）；flow 步骤须对应实际 skill 调用。
+- **项目操作约定**：改 `task.json` 的 `meta.phase` 只动该字段，不连带手改 `states`（由 `transition-phase.py` 写）；根文档（README/AGENTS/SKILLS-INDEX）手动 `git add+commit`；任务 ID 单调递增（扫 `pdca/tasks/` 与 `archive/` 取最大值+1）；flow 步骤须对应实际 skill 调用。
 - **架构原则**（详 `ontology:concept/pdca-architecture`）：flow skill 是标准流程不可改，业务专有逻辑写 agent skill；资产分层 Evidence/Experience/Knowledge/Skill；阶段校验链 `phase → advance-phase → flow-<phase> 入口 → 步骤 → 手动推进`。
 - **通用 kernel 原则**：PDCA 作为稳定外循环；领域行为由 `task.json.meta.scenario_type` 提供（6 条 Do 路径）；Check 产物是 Evidence；阶段 Decision 必须引用证据；Artifact 类型保持开放。
 - **场景边界**（详 `ontology:concept/pdca-scenario-boundary-rule`）：含可测试代码产出（脚本/测试/可回归验证）→ `development`；纯结论性调研/报告 → `research`。

@@ -14,6 +14,7 @@ relations:
   - ontology:concept/pdca
   relates_to:
   - ontology:concept/pdca
+  testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-home' ontology/ tests/ scripts/ | wc -l) -ge 3"
 ---
 
 # 全局仓库配置（pdca-home）

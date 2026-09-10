@@ -15,6 +15,7 @@ relations:
   relates_to:
   - ontology:entity/phase-act
   - ontology:entity/phase-plan
+  testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-continuous-improvement' ontology/ tests/ scripts/ | wc -l) -ge 19"
 ---
 # pdca-continuous-improvement
 

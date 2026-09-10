@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/flow-do/1.0.0
+dcterms_modified: 2026-09-10
+owl_versionIRI: http://pdca.local/ontology/flow-do/1.0.1
 summary: Do 阶段流程实体：按 scenario_type 路由执行、ontology-ready 关卡、证据登记与执行器边界
 relations:
   specializes:
@@ -24,6 +24,12 @@ relations:
   - ontology:concept/destructive-cleanup-safety
   - ontology:concept/real-project-mechanism-validation
   - ontology:concept/pdca-home
+  - ontology:domain/skill-tdd
+  - ontology:domain/skill-code-review
+  - ontology:domain/skill-research
+  - ontology:domain/skill-codebase-design
+  - ontology:domain/skill-design-it-twice
+  testable_signal: "引用存活：test $(grep -rl 'ontology:process/flow-do' ontology/ tests/ scripts/ | wc -l) -ge 6"
 ---
 
 # PDCA Do 流程（flow-do）
@@ -32,7 +38,7 @@ Do 阶段按 `meta.scenario_type` 路由到相应 agent skill 执行，是 PDCA 
 
 ## 阶段步骤（权威描述）
 
-1. **路由**：`flow-do` 依据 `task.json.meta.scenario_type` 选择 6 条 Do 路径之一（development/bugfix/research/design/review/documentation）。
+1. **路由**：`flow-do` 依据 `task.json.meta.scenario_type` 选择三条 Do 路径之一（A 代码变更 ←development/bugfix；B 知识产出 ←research/documentation；C 评审校验 ←design/review）。
 2. **ontology-ready 关卡**：`meta.ontology_fragment` 指向的领域片段须存在且结构合法（自举任务经 `meta.ontology_exempt` 豁免）；**先调研关卡（T2092 起，全场景）**：另须本次调研证据二选一——链内 `research` 子票已归档，或本次 `research-report.md` 通过门禁（`mermaid≥3/Source≥3/http Source≥1/URLs≥2`），仅 `ontology_exempt` 豁免（`RESEARCH_FIRST_MISSING` 阻断）；**生产者豁免（T2103 起）**：`research` 票免自身门禁。
 3. **执行**：调用对应 skill；外部产物先复制 `workspace/external-artifacts/` 再登记 Evidence。
 4. **证据登记**：`register-evidence` 把产物锚定到 `pdca-evidence` 子类型。
@@ -47,7 +53,7 @@ Do 阶段按 `meta.scenario_type` 路由到相应 agent skill 执行，是 PDCA 
 - **销毁清理安全**（详 `ontology:concept/destructive-cleanup-safety`）：可恢复清理须 dry-run 生成精确清单并固定恢复源为删除前不可变 commit（不引用会漂移的 HEAD）；apply 前重新验证每个目标仍处允许删除状态，任一漂移/越界/不可恢复则整批失败关闭。
 - **全局仓库配置**（详 `ontology:concept/pdca-home`）：`$PDCA_HOME` 为第一优先级；仅含 `ontology/process/flow-plan.md` 的目录为有效 workflow 仓库；外部项目经 `scripts/init-external.sh` 初始化。
 
-## 路径 A：development（软件功能开发）
+## 路径 A：代码变更（development / bugfix）
 
 确认预先约定的 Seam
 先写失败的行为测试
@@ -55,41 +61,28 @@ Do 阶段按 `meta.scenario_type` 路由到相应 agent skill 执行，是 PDCA 
 完成每个垂直切片后运行定向测试或 typecheck
 所有切片完成后运行项目支持的全量验证
 进入双轴代码审查
+其中 bugfix 另需：先复现并写出失败的回归测试、确认修复方案；以回归 Seam 代替行为 Seam。
+方法详 `ontology:domain/skill-tdd`、`ontology:domain/skill-code-review`。
 
-## 路径 B：bugfix（Bug 修复）
-
-确认回归 Seam
-先复现并写出失败的回归测试
-确认修复方案
-再做最小修复
-完成每个修复切片后运行定向回归测试或 typecheck
-所有修复切片完成后运行项目支持的全量验证
-进入双轴代码审查
-
-## 路径 C：research（需求调研/技术调研）
+## 路径 B：知识产出（research / documentation）
 
 1. 识别 primary sources（官方 docs/源码/specs）全量追溯
 2. Systematic investigation，按 `skill-research` 多图模板产 `research-report.md`（≥3 mermaid 且每图 1 Source，`grep -c` 可检；T2081 起强制网络查询：参考资料≥2 URL 且正文≥1 http Source，`check-research-web-evidence.py` 通过）
 3. 每结论附可复核验证途径，`register-evidence` 登记，`convergence-map` 映射
 4. Check 阶段本体沉淀决策（`ontology:`/`records-only`）并过 `settlement` 校验
+其中 documentation 另需：按 `skill-research` 的 Diátaxis 四象限（`tutorial/how-to/reference/explanation`）选型，产 `docs/<topic>.md`；`register-evidence --kind document`；`archive` 前过 `ontology-validate`。
+方法详 `ontology:domain/skill-research`。
 
-## 路径 D：documentation（需求转技术文档）
+## 路径 C：评审校验（design / review）
 
-1. 按 `skill-research` 的 Diátaxis 四象限（`tutorial/how-to/reference/explanation`）选型，产 `docs/<topic>.md`
-2. 图与 Source 门禁同 research（≥3 mermaid/≥3 Source），`register-evidence --kind document`
-3. `convergence-map` 映射至 AC，`archive` 前过 `ontology-validate`
+调对应 skill 产文档，经 `grilling` 复核边界与取舍，`convergence-map` 可检。
+其中 design：调 `skill-codebase-design`/`design-it-twice`，产深模块接口双方案对比，选 seam/adapter/depth 最优；产 `design.md`（含接口契约与测试 seam），`register-evidence --kind design`。
+其中 review：调 `skill-code-review` 双轴（Standards/Spec）并行子代理，产 `review.md`；`register-evidence --kind review`，`conclusion` 映射至 AC；Check 阶段 `grilling` 复核覆盖与取舍，`settlement` 可检。
+方法详 `ontology:domain/skill-codebase-design`、`ontology:domain/skill-design-it-twice`、`ontology:domain/skill-code-review`。
 
-## 路径 E：design（架构设计）
+## 路由值说明
 
-1. 调 `skill-codebase-design`/`design-it-twice`，产深模块接口双方案对比，选 seam/adapter/depth 最优
-2. 产 `design.md`（含接口契约与测试 seam），`register-evidence --kind design`
-3. 经 `grilling` 复核边界与取舍，`convergence-map` 可检
-
-## 路径 F：review（代码审查）
-
-1. 调 `skill-code-review` 双轴（Standards/Spec）并行子代理，产 `review.md`
-2. `register-evidence --kind review`，`conclusion` 映射至 AC
-3. Check 阶段 `grilling` 复核覆盖与取舍，`settlement` 可检
+`meta.scenario_type` 六值（development/bugfix/research/design/review/documentation）保持不变，仍为路由与门禁分支键；上文三路径仅为正文组织，映射为 A→development/bugfix、B→research/documentation、C→design/review。
 
 ## 来源
 

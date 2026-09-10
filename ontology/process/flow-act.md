@@ -23,6 +23,7 @@ relations:
   - ontology:concept/task-record-identity
   - ontology:concept/timeline-integrity-gate
   - ontology:concept/pdca-provable-skill-increments
+  testable_signal: "引用存活：test $(grep -rl 'ontology:process/flow-act' ontology/ tests/ scripts/ | wc -l) -ge 4"
 ---
 
 # PDCA Act 流程（flow-act）

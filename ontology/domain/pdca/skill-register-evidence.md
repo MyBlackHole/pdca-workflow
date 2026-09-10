@@ -10,8 +10,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-register-evidence/1.0.0
+dcterms_modified: 2026-09-10
+owl_versionIRI: http://pdca.local/ontology/skill-register-evidence/1.0.1
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -49,7 +49,7 @@ and the old manifest row gains `superseded_by` — never hand-edit the immutable
 manifest.
 
 Never hand-write `clarifications.jsonl` entries: use
-`python3 "$PDCA_HOME/scripts/append-confirmation.py" --task-dir <task-dir> --source final_confirmation|check_confirmation|direction_confirm --response confirmed --summary "<reason>"`
+`python3 "$PDCA_HOME/scripts/append-confirmation.py" --task-dir <task-dir> --source final_confirmation|check_confirmation|direction_confirm|fix_confirmation --response confirmed --summary "<reason>"`
 which stamps the real timestamp and validates the entry before appending.
 
 Completion criterion: every PRD acceptance criterion has trustworthy evidence or
@@ -67,6 +67,7 @@ excluded from acceptance coverage and cannot count as evidence for itself.
 - 同一源文件只能登记**一条**证据：一条证据覆盖多个 AC 用多个 `--criterion` 重复传参，而非拆多条（T0374）。
 - **`--source` 是 evidence 目录的唯一写入通道**：勿手动 mkdir/cp 预置同名文件再登记——会撞 duplicate filename；也勿先写空文件占位（空文件会被如实登记 size=0）（T0374）。
 - `--replace` supersede 时新条目必须换一个新 `--file` 名，沿用旧名被拒（T0374）。
+- transition `plan→do` 会重置 `task.json` 的 `meta.convergence` 与 `meta.ontology_fragment`，do 后、check 前须重补（T2137 起三现）。
 
 ## --kind 与本体的锚定（来自 T0414 闭环）
 

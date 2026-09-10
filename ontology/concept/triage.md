@@ -12,6 +12,7 @@ summary: 分诊：状态机、Agent 就绪简要、AI 免责声明
 relations:
   specializes:
   - ontology:principle
+  testable_signal: "引用存活：test $(grep -rl 'ontology:concept/triage' ontology/ tests/ scripts/ | wc -l) -ge 24"
 ---
 
 

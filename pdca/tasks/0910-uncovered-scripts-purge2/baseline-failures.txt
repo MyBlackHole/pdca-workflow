@@ -1,0 +1,53 @@
+E           AssertionError: 'CONTENT_EXECUTION_CONTRACT_FAILED' not found in {'CONTENT_BASELINE_INVALID'}
+FAILED tests/test_ai_friendliness_hardening.py::AiFriendlinessHardeningTest::test_content_budget_fails_closed_for_missing_baseline_asset
+FAILED tests/test_ai_friendliness_hardening.py::AiFriendlinessHardeningTest::test_content_budget_rejects_growth_and_allows_explicit_reasoned_baseline
+FAILED tests/test_ai_friendliness_hardening.py::AiFriendlinessHardeningTest::test_public_harness_detects_contract_mutation_with_all_document_anchors_intact
+FAILED tests/test_convergence.py::ConvergenceContractTest::test_cli_reports_json_and_exit_status
+FAILED tests/test_convergence.py::ConvergenceContractTest::test_do_to_check_gate_uses_convergence_validation
+FAILED tests/test_convergence.py::ConvergenceContractTest::test_do_to_check_transition_fails_closed
+FAILED tests/test_diagnosing_bugs_enhance.py::DiagnosingBugsHitlContractTest::test_hitl_template_file_exists
+FAILED tests/test_execution_and_invocation_contracts.py::ContentAuditContractTest::test_budget_cannot_hide_execution_or_invocation_contract_drift
+FAILED tests/test_execution_and_invocation_contracts.py::InvocationContractTest::test_rejects_stale_alias_and_undeclared_document_edge
+FAILED tests/test_execution_and_invocation_contracts.py::InvocationContractTest::test_resolves_alias_and_rejects_automatic_to_manual_edge
+FAILED tests/test_flow_audit.py::FlowAuditTest::test_cli_audits_all_transitions_and_preserves_failed_attempts
+FAILED tests/test_gate_compliance.py::GateRejectionLeakTest::test_rejected_receipt_written_on_non_adjacent_transition
+FAILED tests/test_gate_compliance.py::GateRejectionLeakTest::test_success_path_still_writes_success_receipt
+FAILED tests/test_gotchas_contract.py::test_all_gotchas_headers_non_empty - A...
+FAILED tests/test_gotchas_contract.py::test_core_skills_source_targets_exist
+FAILED tests/test_grilling_efficiency.py::Ac1BatchVerificationTest::test_ac1_flow_act_cites_three_questions
+FAILED tests/test_grilling_efficiency.py::GrillingDocumentContractTest::test_flow_check_reference_synced
+FAILED tests/test_grilling_efficiency.py::SourceConsistencyContractTest::test_flow_act_uses_grilling_source
+FAILED tests/test_grilling_efficiency.py::SourceConsistencyContractTest::test_flow_check_uses_grilling_source
+FAILED tests/test_grilling_efficiency.py::SourceConsistencyContractTest::test_flow_plan_uses_grilling_source
+FAILED tests/test_ontology_fragment_scope.py::test_exempt_not_blocked - asser...
+FAILED tests/test_ontology_reason.py::test_gate_exempt - assert [Issue(code='...
+FAILED tests/test_operations.py::OperationsTest::test_doctor_reports_seam_contracts_segment
+FAILED tests/test_operations.py::OperationsTest::test_doctor_uses_explicit_fallbacks
+FAILED tests/test_operations.py::OperationsTest::test_generated_index_is_current
+FAILED tests/test_operations.py::OperationsTest::test_transition_is_adjacent_and_idempotent
+FAILED tests/test_operations.py::PlanTimestampBackfillTest::test_existing_plan_timestamp_not_overwritten
+FAILED tests/test_operations.py::PlanTimestampBackfillTest::test_plan_backfilled_from_confirmation_moment
+FAILED tests/test_pdca_task_consumption.py::test_anchor_exempt_skips - script...
+FAILED tests/test_seam_contract.py::FlowPlanSeamGateTest::test_flow_plan_has_p3_5
+FAILED tests/test_seam_contract.py::FlowPlanSeamGateTest::test_flow_plan_p6_gate_checks_seams
+FAILED tests/test_self_audit.py::SelfAuditTest::test_four_categories_covered
+FAILED tests/test_self_audit.py::SelfAuditTest::test_root_cause_classification
+FAILED tests/test_skill_structure.py::test_all_official_skills_pass_structure_contract
+FAILED tests/test_skill_structure.py::test_bad_name_reported - IndexError: li...
+FAILED tests/test_skill_structure.py::test_empty_gotchas_reported - IndexErro...
+FAILED tests/test_skill_structure.py::test_error_exit_code - assert 0 == 1
+FAILED tests/test_skill_structure.py::test_long_description_reported - IndexE...
+FAILED tests/test_skill_structure.py::test_long_name_reported - IndexError: l...
+FAILED tests/test_skill_structure.py::test_missing_gotchas_reported - IndexEr...
+FAILED tests/test_skill_structure.py::test_overlong_file_reported - IndexErro...
+FAILED tests/test_skill_structure.py::test_person_warning_reported - IndexErr...
+FAILED tests/test_skill_structure.py::test_warning_blocks_with_exit_code_flag
+FAILED tests/test_skill_structure.py::test_windows_path_reported - IndexError...
+FAILED tests/test_skill_structure.py::test_xml_in_name_reported - IndexError:...
+FAILED tests/test_state_contract.py::ContractTest::test_plan_gate_accepts_confirmed_response
+FAILED tests/test_t0477_ontology_existing_tree.py::test_t0477_validate_and_islands
+FAILED tests/test_triage_brief.py::test_field_coverage_bounds - AssertionErro...
+FAILED tests/test_triage_brief.py::test_historical_baseline_no_regression - A...
+FAILED tests/test_workflow_ai_usability.py::EarlyPrdGateTest::test_plan_to_do_accepts_checkbox_style_acceptance
+>           self.assertIn("CONTENT_EXECUTION_CONTRACT_FAILED", execution_codes)
+SUBFAILED(phase='archive') tests/test_state_contract.py::ContractTest::test_every_phase_accepts_a_complete_valid_task

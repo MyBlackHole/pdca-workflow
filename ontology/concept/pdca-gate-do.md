@@ -15,6 +15,7 @@ relations:
   relates_to:
   - ontology:entity/phase-do
   - ontology:concept/pdca-ontology-ready
+  testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-gate-do' ontology/ tests/ scripts/ | wc -l) -ge 8"
 ---
 # pdca-gate-do
 

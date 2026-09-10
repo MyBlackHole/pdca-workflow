@@ -7,8 +7,8 @@ summary: PDCA 管理模型元本体根概念
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/pdca/1.0.0
+dcterms_modified: 2026-09-10
+owl_versionIRI: http://pdca.local/ontology/pdca/1.0.1
 docType: Concept
 tags: [pdca, meta-ontology]
 ---
@@ -28,4 +28,14 @@ PDCA（Plan-Do-Check-Act，又称 **Deming Cycle** / **Shewhart Cycle**）是本
   - 载体：`pdca-task`（一个完整 PDCA 周期的载体，由 `task.json` 跟踪）。
   - 循环：`pdca-continuous-improvement`。
 - **控制与执行消费**：`scripts/ontology_reason.py` 读取上述节点驱动阶段转换/准入/证据识别；`scripts/pdca_context.py` 在各阶段入口实时输出对应元本体知识（见 `ontology/README.md`）。
+
+## 设计核心：本体树驱动（B→A→C）
+
+- **本体是什么**：本体是知识的最小可验证单元，即一个 `ontology/<type>/<slug>.md` 资产：有全局唯一 id、有类型（concept/entity/pattern/process/domain）、有关系边（specializes/part_of/relates_to/composed_of）、有可验证信号（attributes/testable_signal）。分层验证：普通本体四件套显式具备；根本体（无父节点，如本节点）的验证信号是其子树的整体校验（`ontology-validate` 通过 + 孤岛检查为零）。
+- **本体树**：一个任务目标就是本体的实现；实体由一个或多个本体构成，本体又由一到多个本体构成——所以是棵树。树中每个节点都须满足叶标准才停：独立单职责、可直接实现、无需再拆。
+- **B（建树，走知识产出路径）**：产出或者更新本体树；每个本体发起独立的 B 子任务（子 agent），递归至每节点满足叶标准即停。B 必有本体更新（新建或修订，不接受零更新）。
+- **A（按树实现，走代码变更路径）**：对 B 产出的本体树进行实现，每个本体发起一个子任务（子 agent）；严格一对一：一个本体恰一实现，一实现恰属一本体；共享能力须明确唯一主归属本体，其余使用者记跨本体调用（调用不占归属）。细节不管，但细节必有主：实现内部的每个逻辑单元（函数/分支/拒绝码）必须回链到其归属本体定义的某一要素（职责/关系/验收/testable），无本体依据的细节不得存在。
+- **C（逐项校验，走评审校验路径）**：A 的产出内容都是根据本体进行的，与 B 的产出本体树一一对应（每本体恰一实现）；逐项校验是否遵循本体。
+- **路径映射**：B→`flow-do` 路径 B（知识产出），A→路径 A（代码变更），C→路径 C（评审校验）。
+- **闭环语义**：PDCA 是单个本体的执行闭环；B、A、C 是知识产出、代码变更、评审校验三类大任务的抽象；B/A/C 各阶段的每本体子任务都跑完整循环。
 

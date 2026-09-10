@@ -10,8 +10,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-verify-convergence/1.0.0
+dcterms_modified: 2026-09-10
+owl_versionIRI: http://pdca.local/ontology/skill-verify-convergence/1.0.1
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -79,4 +79,4 @@ python3 "$PDCA_HOME/scripts/validate-convergence.py" --task-dir <task-dir>
 
 ## 已知坑
 
-- convergence 文本必须与 task.json `meta.convergence` 逐字一致（CONVERGENCE_TEXT_MISMATCH）；convergence-map 不能作为自身证据。
+- convergence 文本必须与 task.json `meta.convergence` 逐字一致（CONVERGENCE_TEXT_MISMATCH，细则见 `ontology:domain/skill-register-evidence` 已知坑，此处不复述）；convergence-map 不能作为自身证据。

@@ -12,6 +12,7 @@ owl_versionIRI: http://pdca.local/ontology/pdca-transition/1.0.0
 relations:
   specializes:
   - ontology:concept/pdca
+  testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-transition' ontology/ tests/ scripts/ | wc -l) -ge 10"
 ---
 # pdca-transition
 

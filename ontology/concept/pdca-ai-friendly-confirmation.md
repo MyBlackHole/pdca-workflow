@@ -14,6 +14,7 @@ relations:
   - ontology:concept/pdca-verdict
   relates_to:
   - ontology:concept/pdca-verdict
+  testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-ai-friendly-confirmation' ontology/ tests/ scripts/ | wc -l) -ge 4"
 ---
 
 # AI 友好确认与证据机制（pdca-ai-friendly-confirmation）

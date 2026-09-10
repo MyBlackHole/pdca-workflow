@@ -1,0 +1,2 @@
+{"id":"ref-report","file":"research-report.md","kind":"document","size":1795,"digest":"sha256:7348a5b30817a59242bafd7ed86e053e67413f2f3bf1cb39edba755e66435296","at":"2026-09-10T08:30:15+08:00","criteria":["AC-1","AC-2","AC-3"]}
+{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":396,"digest":"sha256:4f083e592485589da2e87869a1c8194e372524506461dc4066b51d73c885e284","at":"2026-09-10T08:30:17+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}
