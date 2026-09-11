@@ -1,4 +1,0 @@
-{"id":"report-snapshot","file":"report.md","kind":"document","size":2943,"digest":"sha256:4e6c7634420cc9e287d776757dd618244f7d61cd2c40060d247b8e93453c188d","at":"2026-09-06T09:52:31+08:00","criteria":["AC-1","AC-2"]}
-{"id":"node-snapshot-guide","file":"core-snapshot-study-guide.md","kind":"document","size":2235,"digest":"sha256:d52413c4ddd9be7470c75ab31584acb086f850ae8bbb3e28e96455ae22b582cc","at":"2026-09-06T09:52:31+08:00","criteria":["AC-3"]}
-{"id":"validate-output","file":"validate-output.txt","kind":"document","size":78,"digest":"sha256:18242016b05335b14b3fa02ba636c1b2feba5be9b79e65971251af73a3a74084","at":"2026-09-06T09:52:32+08:00","criteria":["AC-3"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":443,"digest":"sha256:78b629638292ea9c84a14790df972d06e0219f3854643ad06c5445dfaca73c53","at":"2026-09-06T09:52:47+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

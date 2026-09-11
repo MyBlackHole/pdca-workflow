@@ -1,19 +1,28 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/backup-mtls-admin-gate
 type: pattern
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/backup-mtls-admin-gate/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/backup-mtls-admin-gate/3.1.0
 summary: rpc 明文 admin 面需 mTLS 强制或 allow_list 校验，避免 sh -c 任意执行
 relations:
   relates_to:
   - ontology:domain/backup
-  specializes:
+  instance_of:
   - ontology:pattern
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # mTLS Admin Gate

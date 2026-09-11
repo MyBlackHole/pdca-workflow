@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-closure-sync-waitlist
 type: domain
 layer: Knowledge
@@ -8,19 +8,34 @@ summary: closure同步休眠语义 + 单归属等待队列 + 返回分化
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 引用计数异步原语、同步等待异步完成、公平唤醒场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 fs/vendor/closure.c 在仓库中存在且含 bch2_closure_wait 定义"
+  testable_signal: 抽查正文引用的 fs/vendor/closure.c 在仓库中存在且含 bch2_closure_wait 定义
+  evidence_level: unclassified
 - name: constraints
   desc: 等待队列前提
   constraint: 见正文
-  testable_signal: "通读正文约束节，确认单归属、引用占位、内存屏障三条前提在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，确认单归属、引用占位、内存屏障三条前提在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # closure同步休眠 + 公平等待队列

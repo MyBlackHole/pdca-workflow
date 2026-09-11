@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-journal-three-conflicts
 type: domain
 layer: Knowledge
@@ -8,23 +8,38 @@ summary: journal三矛盾场景化讲解：保序/空间/回收
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-journal-seq-blacklist-pin-reclaim
   - ontology:domain/core-journal-space-topk-ram
   - ontology:domain/core-journal-watermark-thread
   - ontology:domain/core-journal-study-guide
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: journal 三矛盾教学、场景化理解场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文三个场景的代码依据存在"
+  testable_signal: 抽查正文三个场景的代码依据存在
+  evidence_level: unclassified
 - name: constraints
   desc: 讲解适用前提
   constraint: 见正文
-  testable_signal: "通读正文三矛盾节，确认每矛盾含场景冲突解法三段且有代码依据"
+  testable_signal: 通读正文三矛盾节，确认每矛盾含场景冲突解法三段且有代码依据
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # journal 三矛盾场景化讲解

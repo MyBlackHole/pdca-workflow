@@ -1,6 +1,0 @@
-{
-  "schema": "pdca.convergence-validation/v1",
-  "task_dir": "/home/black/Documents/pdca-workflow-pro/pdca/tasks/0911-pdca-runtime-contract-projection",
-  "valid": true,
-  "issues": []
-}

@@ -1,27 +1,38 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-feature-commit-format
 name: feature-commit-format
-summary: Commit new features with structured format including requirement description, background, implementation, impact scope, and testing verification.
-description: Use when implementing new features and committing changes — commit messages must include requirement description, background, implementation, impact scope, and testing verification
+summary: Commit new features with structured format including requirement description, background, implementation,
+  impact scope, and testing verification.
+description: Use when implementing new features and committing changes — commit messages must include requirement
+  description, background, implementation, impact scope, and testing verification
 invocation: manual
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-feature-commit-format/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/skill-feature-commit-format/3.1.0
 relations:
-  specializes:
-    - ontology:concept/pdca-task
   relates_to:
-    - ontology:concept/writing-for-agents
-    - ontology:concept/triage
-  testable_signal: "运行 grep -q 'Feature Commit Format' ontology/domain/pdca/skill-feature-commit-format.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:concept/writing-for-agents
+  - ontology:concept/triage
+  - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
+revision: 3.1.0
+authority: reference
+validation:
+  structural_checks:
+  - 递归解析本节点身份及关系列表；目标 ID 必须可定位。引用数量不作为行为验证。
+  claim_status: unverified
+  adoption: claim_review_required
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
-
 
 ---
 name: feature-commit-format

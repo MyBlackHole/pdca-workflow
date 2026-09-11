@@ -1,13 +1,13 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/ask-matt
 type: concept
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/ask-matt/1.0.1
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/ask-matt/3.1.0
 summary: 路由技能：根据用户描述推荐合适的 PDCA 入口
 relations:
   specializes:
@@ -20,9 +20,19 @@ attributes:
   desc: 适用于所有需要路由到合适 PDCA 入口的场景
   constraint: 见正文
   testable_signal: 检查新技能是否声明其针对的失效模式；治不了明确病的技能不应存在
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 3.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
-# Ask Matt（路由技能）
+# 路由技能：根据用户描述推荐合适的 PDCA 入口
 
 根据用户描述推荐合适的 PDCA 入口。初次使用或不确定从哪开始时，从这里入手。
 
@@ -54,4 +64,4 @@ attributes:
 - 路由目标必须是已声明的 manual entry
 - alias 必须解析到现有 manual entry
 - 入口文档暴露的 alias 与 contract 必须双向一致
-- triage 输出的 `ontology_role` 必须是三个专业职责之一，`execution_contract` 必须恰含 `work_product`、`required_actions`、`constraints`、`testable_signal`
+- triage 输出的 `scene` 必须是三个专业职责之一，`execution_contract` 必须恰含 `work_product`、`required_actions`、`constraints`、`testable_signal`

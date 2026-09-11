@@ -1,13 +1,13 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/grounding-dependency
 type: concept
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/grounding-dependency/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/grounding-dependency/3.1.0
 summary: Grounding 依赖图：概念必须 grounding 后才能被后续块依赖
 relations:
   specializes:
@@ -17,6 +17,16 @@ attributes:
   desc: 适用于所有知识资产和长文档的分段生成
   constraint: 见正文
   testable_signal: 检查知识资产中每个概念是否声明了 requires/grounds；候选续写是否仅从当前 grounded 集合可达
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Grounding Dependency（Grounding 依赖图）

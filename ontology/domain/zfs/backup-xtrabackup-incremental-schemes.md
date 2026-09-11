@@ -1,28 +1,41 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/backup-xtrabackup-incremental-schemes
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/backup-xtrabackup-incremental-schemes/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/backup-xtrabackup-incremental-schemes/3.1.0
 summary: XtraBackup 8.0 系列增量备份方案速览（通用知识）
 domain:
 - ontology:domain/backup
 relations:
-  specializes:
-  - ontology:domain/backup
   relates_to:
   - ontology:concept/pdca
+  - ontology:domain/backup
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: "运行 grep -q 'XtraBackup 8.0 系列增量备份方案速览（通用知识）' ontology/domain/zfs/backup-xtrabackup-incremental-schemes.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
+  testable_signal: 运行 grep -q 'XtraBackup 8.0 系列增量备份方案速览（通用知识）' ontology/domain/zfs/backup-xtrabackup-incremental-schemes.md；文本命中仅证明描述存在，领域行为需另行验证。
+  verification_level: structural
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
-
 
 # XtraBackup 8.0 系列增量备份方案速览（通用知识）
 
@@ -86,19 +99,19 @@ attributes:
 ```mermaid
 graph TD
     A[backup-xtrabackup-incremental-schemes<br/>domain] --> B[core能力<br/>PDCA]
-    B --> C[实现<br/>scripts/]
-    %% Source: ontology/domain/backup-xtrabackup-incremental-schemes.md:1 + ontology/concept/ontology-fidelity-criterion.md:1
+    B --> C[实现<br/>契约产物]
+    %% Source: ontology/domain/zfs/backup-xtrabackup-incremental-schemes.md:1 + ontology/concept/ontology-fidelity-criterion.md:1
 ```
 
-Source: `ontology/domain/backup-xtrabackup-incremental-schemes.md:1` + `ontology/concept/ontology-fidelity-criterion.md:1`
+Source: `ontology/domain/zfs/backup-xtrabackup-incremental-schemes.md:1` + `ontology/concept/ontology-fidelity-criterion.md:1`
 
 ## 正例
 
 ```bash
 # 正例：backup-xtrabackup-incremental-schemes 可通过本体复现
-grep -q 'backup-xtrabackup-incremental-schemes' ontology/domain/backup-xtrabackup-incremental-schemes.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'
 ```
 
+结构审查使用 ontology:concept/ontology-creation-gate；旧工作流命令已移除。
 ## 反例
 
 ```bash
@@ -106,9 +119,6 @@ grep -q 'backup-xtrabackup-incremental-schemes' ontology/domain/backup-xtrabacku
 # 无 mermaid 时，AI无法从本体还原组件关系，需补图
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **图门禁**：`grep -c 'mermaid' ontology/domain/backup-xtrabackup-incremental-schemes.md` ≥1
-- **溯源门禁**：含 `Source:` 行号
-- **校验**：`python3 scripts/ontology-validate.py` 0 issues
-
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。

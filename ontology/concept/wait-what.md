@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/wait-what
 name: Wait-What
 summary: 上下文缺失时重新 pitch：用 CONTEXT.md 词汇重新表述
@@ -8,11 +8,20 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/wait-what/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/wait-what/3.1.0
 relations:
   specializes:
-    - ontology:concept/domain-modeling
+  - ontology:concept/domain-modeling
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Wait-What
@@ -49,4 +58,3 @@ relations:
 ## 边界
 
 `wait-what` 是触发机制，不是自动检查；它约束提问方式而非替代人工判断。
-

@@ -1,50 +1,67 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/ontology-creation-gate
 type: concept
+semantic_kind: class
 layer: Knowledge
-summary: 本体创建门禁——新本体资产写入前的强制校验点，其权威依据来自本 meta-ontology 的规则节点
 status: active
+authority: normative
+revision: 3.4.0
+summary: 本体创建与发布审查
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ontology-creation-gate/1.0.0
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
-  - ontology:concept/meta-ontology
+  - ontology:concept/entity
   relates_to:
-  - ontology:concept/ontology-validate
+  - ontology:concept/ontology-asset
   - ontology:concept/ontology-rule-type-controlled
   - ontology:concept/ontology-rule-non-dangling
   - ontology:concept/ontology-rule-acyclic
   - ontology:concept/ontology-rule-attr-testable
   - ontology:concept/ontology-rule-richness
   - ontology:concept/ontology-rule-guides-range
-  - ontology:concept/ontology-fidelity-criterion
-  - ontology:concept/ontology-rule-fidelity-generic
-  - ontology:concept/ontology-rule-fidelity-body
-  - ontology:concept/ontology-rule-fidelity-diagram
+  - ontology:concept/ontology-reuse
+  - ontology:concept/ontology-evolution
+  - ontology:concept/ontology-adoption
+  - ontology:concept/task-decomposition
 ---
-# ontology-creation-gate
 
-本体创建门禁：新 `ontology/<type>/<slug>.md` 资产写入前/后的强制校验点。
+# 本体创建与发布审查
 
-- **权威依据（关键）**：本门禁不是由脚本自由定义的，而是由本 meta-ontology 承载——它**依据**（`relates_to`）下列规则节点，并**由**（`configured_by`）`ontology-validate` 执行：
-  - `ontology-rule-type-controlled`（AC-1）
-  - `ontology-rule-non-dangling`（AC-2）
-  - `ontology-rule-acyclic`（AC-3）
-  - `ontology-rule-attr-testable`（AC-4）
-  - `ontology-rule-richness`（AC-5）
-  - `ontology-rule-guides-range`（AC-6）
-- **人工入口**：`skills/ontology-check` 是本门禁的人工/流程入口；其 AC 清单即上述规则节点的镜像。
-- **自动执行者**：`scripts/ontology-validate.py`（`ontology-validate`）。
-- **受检对象**：`ontology-asset`。
+## 适用条件
 
-## 决策背景（原 ADR-0033 / 0034 / 0036）
-- ADR-0033：采纳 ONTOLOGY_GUIDE 为兼容吸收方案，指南当时置于 docs/（不放入 ontology/，以免破坏 ontology-validate 扫描）；现该指南已并入 ontology/README.md（元指南与契约权威合一）；pdca.asset/v1 frontmatter + relations 仍为唯一事实源。
-- ADR-0034：本体创建门禁的权威依据从"文档/脚本"升级为本体节点（meta-ontology / ontology-creation-gate / ontology-rule-*），使门禁可图谱追溯。
-- ADR-0036：补齐全流程闭环——证据锚定 pdca-evidence 子类型、结论锚定 pdca-verdict 三态、archive 前跑 ontology-validate + 孤岛检查、提交级 pre-commit/CI 硬门禁。
+新建/修订候选并准备发布为活动本体时执行；普通任务未改本体不强制全库扫描。
 
-## 决策背景（原 ADR-0030：知识资产全部物理归并至 ontology/）
-- 背景：PDCA 知识管理需把"按主题"存放重构为"按完整本体"组织；四层模型（Evidence/Experience/Knowledge/Skill）资产如何归并？
-- 决策：方案 B——四层资产全部物理归并到 ontology/ 统一按本体组织；PDCA 机制层（flows/skills/task.json）不动；被迁资产在新位置 frontmatter 保留 source_task 回链，records/<record>/ 保留空壳+redirect。理由：用户要求"完整本体表达"，避免 ontology+records 双层割裂。
+## 输入
+
+候选内容、原版本、来源证据、任务基线及变更理由。按需读取关联ontology-rule节点。
+
+## 动作
+
+1. 检查首段YAML、必需字段、唯一身份、目录分组、受控词表和版本差异。
+2. 递归检查引用和受影响的反向依赖；类/实例关系范围、按关系区分的循环、属性可验证性及有意义关联逐项审查。
+3. 验证行为主张的真实证据、正反例与适用边界。结构检查通过不自动批准内容真实；外部源码未提供时不能宣称重跑通过。
+4. 比较已有知识和当前活动规则，记录重复、冲突、兼容性和候选处置；涉及核心规则发布需独立授权，不能自行修改本任务验收。
+5. 写发布审查记录和版本引用；只有获准发布的内容进入active。未通过则保留candidate并给出具体问题。
+
+## 输出与完成判据
+
+逐规则通过/失败/未执行清单、受影响节点及证据、发布决定。可以使用宿主通用YAML/图/摘要工具提高确定性，但本仓库不捆绑脚本，也不宣称配置了CI/hook硬门禁。
+
+## 工作目标节点的额外要求
+
+工作树冻结还必须满足TREE-01/NODE-01/TEST-01：父需求覆盖、唯一组成归属、组合不变量、三场景测试契约、正反例oracle与上下文预算。建模时可审候选产物，不能把候选当当前任务验收规则。
+
+## 3.3：内容审查与提交分工
+
+本节点只负责内容/来源/语义/案例审查，EVOLVE-01负责候选base、不可变版本和发布提交；不能用本节点“内容合格”回执代替资源所有权或用户发布许可。审查对象须为最终payload/manifest，作者与独立审查任务身份分开，普通节点自检不自动充当共享发布审查。
+
+检查：REUSE检索与分类理由；旧新允许行为/适用域/接口/错误/状态及case差异；所有适用必需base约束未被局部排除；编辑性变更无行为漂移；真实来源和错误定义负控制；ADOPT影响范围及索引缺口。候选基于旧head或合并后字节改变，则旧审查/授权不得继续使用。
+
+## 建模和入库的新增审查项
+
+DECOMP-01：每个节点有真实分解理由，不用children空自证；scope覆盖全部用户/父义务，跨分片事实审查不得无人负责。NODE-01：协议、被审对象、业务实体分离；定义不等于本次草稿目录。REUSE-01：知识与实例新建独立决策，明确现有采用/本地差异/必需或延期发布；可复用payload独立可读且不泄露任务隐私。
+
+分别执行合法叶、应拆分、无进展递归、共享只读、没有历史records但已有定义、缺反例运行与错误判定器控制。共享审查不只数文件/关键词，所有必需case要在其suite内解析；缺任何必需定义/oracle时不能给“全库已通过”。

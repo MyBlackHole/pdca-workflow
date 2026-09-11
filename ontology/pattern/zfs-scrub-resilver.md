@@ -1,36 +1,52 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/zfs-scrub-resilver
 type: pattern
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/zfs-scrub-resilver/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/zfs-scrub-resilver/3.1.0
 summary: ZFS scrub/resilver运维pattern：scan/queue/repair三态与vdev关联
 relations:
-  specializes:
-    - ontology:pattern
   guides:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:entity/zfs-vdev
-    - ontology:entity/zfs-spa
-    - ontology:pattern/production-ontology-scientific-gate
+  - ontology:entity/zfs-vdev
+  - ontology:entity/zfs-spa
+  - ontology:pattern/production-ontology-scientific-gate
+  instance_of:
+  - ontology:pattern
 attributes:
-  - name: scrub_scan
-    desc: scrub扫描与dsl_scan可测，对应C4 L3
-    constraint: 覆盖 dsl_scan_t/scrub的 scan发起与 dsl_scan_visit 可测且 C4 L3 可建模
-    testable_signal: "运行 grep -q 'dsl_scan' records/T0532-0902-zfs-scrub-pattern/report.md 2>/dev/null || grep -q 'dsl_scan' ontology/pattern/zfs-scrub-resilver.md 命中且 grep -q 'dsl_scan' /tmp/zfs/module/zfs/dsl_scan.c 命中"
-  - name: resilver_queue
-    desc: resilver队列与vdev_queue可测，对应时序图
-    constraint: 覆盖 resilver的 vdev_queue入队与 resilver_defer 可测且时序可建模
-    testable_signal: "运行 grep -q 'resilver' records/T0532-0902-zfs-scrub-pattern/report.md 2>/dev/null || grep -q 'resilver' ontology/pattern/zfs-scrub-resilver.md 命中且 grep -q 'resilver' /tmp/zfs/module/zfs/vdev.c 命中"
-  - name: repair_ereport
-    desc: repair与ereport可测，对应状态机
-    constraint: 覆盖 zfs_ereport与 repair的 SCANNING/FINISHED两态及状态机可建模
-    testable_signal: "运行 grep -q 'zfs_ereport' records/T0532-0902-zfs-scrub-pattern/report.md 2>/dev/null || grep -q 'zfs_ereport' ontology/pattern/zfs-scrub-resilver.md 命中且 grep -q 'zfs_ereport' /tmp/zfs/module/zfs/zfs_ereport.c 命中"
+- name: scrub_scan
+  desc: scrub扫描与dsl_scan可测，对应C4 L3
+  constraint: 覆盖 dsl_scan_t/scrub的 scan发起与 dsl_scan_visit 可测且 C4 L3 可建模
+  testable_signal: 运行 grep -q 'dsl_scan' records/T0532-0902-zfs-scrub-pattern/report.md 2>/dev/null || grep -q 'dsl_scan'
+    ontology/pattern/zfs-scrub-resilver.md 命中且 grep -q 'dsl_scan' /tmp/zfs/module/zfs/dsl_scan.c 命中
+  evidence_level: structure
+- name: resilver_queue
+  desc: resilver队列与vdev_queue可测，对应时序图
+  constraint: 覆盖 resilver的 vdev_queue入队与 resilver_defer 可测且时序可建模
+  testable_signal: 运行 grep -q 'resilver' records/T0532-0902-zfs-scrub-pattern/report.md 2>/dev/null || grep -q 'resilver'
+    ontology/pattern/zfs-scrub-resilver.md 命中且 grep -q 'resilver' /tmp/zfs/module/zfs/vdev.c 命中
+  evidence_level: structure
+- name: repair_ereport
+  desc: repair与ereport可测，对应状态机
+  constraint: 覆盖 zfs_ereport与 repair的 SCANNING/FINISHED两态及状态机可建模
+  testable_signal: 运行 grep -q 'zfs_ereport' records/T0532-0902-zfs-scrub-pattern/report.md 2>/dev/null || grep -q
+    'zfs_ereport' ontology/pattern/zfs-scrub-resilver.md 命中且 grep -q 'zfs_ereport' /tmp/zfs/module/zfs/zfs_ereport.c
+    命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # ZFS Scrub/Resilver 运维 Pattern

@@ -1,28 +1,40 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/data-formats-t0250-mysql-parquet-physical-evidence-ac7-100m-benchmark
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/data-formats-t0250-mysql-parquet-physical-evidence-ac7-100m-benchmark/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/data-formats-t0250-mysql-parquet-physical-evidence-ac7-100m-benchmark/3.1.0
 summary: AC-7 100M 行端到端全路径对照（MySQL 8.0 → Parquet）
 domain:
 - ontology:domain/data-formats
 relations:
-  specializes:
-  - ontology:domain/data-formats
   relates_to:
   - ontology:concept/pdca
+  - ontology:domain/data-formats
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: "检查本文件基准测试场景含至少 1 个可重跑验证命令，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+  testable_signal: 检查本文件基准测试场景含至少 1 个可重跑验证命令
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
-
 
 # AC-7 100M 行端到端全路径对照（MySQL 8.0 → Parquet）
 

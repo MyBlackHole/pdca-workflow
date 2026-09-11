@@ -1,1 +1,0 @@
-agent_tree_runtime.cpp FT_TREE_DELETE branch rewritten to explicit block; semantics unchanged

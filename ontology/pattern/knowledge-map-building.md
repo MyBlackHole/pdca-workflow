@@ -1,48 +1,62 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/knowledge-map-building
 type: pattern
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-10
-dcterms_modified: 2026-09-10
-owl_versionIRI: http://pdca.local/ontology/knowledge-map-building/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/knowledge-map-building/3.1.0
 summary: 知识地图构建方法论：05主03辅骨架、版本化目录布局、§〇版本路由、孤岛裁决、三项实证
 relations:
-  specializes:
-  - ontology:pattern
   guides:
   - ontology:domain/skill-research
   relates_to:
   - ontology:concept/pdca-task
   - ontology:pattern/research-diagram-methodology
+  instance_of:
+  - ontology:pattern
 attributes:
 - name: skeleton_05_primary
   desc: 05为主骨架
   constraint: 每分册必含能力总览表（能力→代码→使用方）+ 复用扩展指南 + 影响范围表 + 不该放入的边界；吸收03任务链写法与实证铁律
   testable_signal: 运行 grep -l '能力总览' /home/black/Public/aio/rdb-skills/skills/rdb-tools-design/references/*/6.2.0.0.md
     检查命中4份能力分册且 grep -q '产物清单' 构建分册 且经 validate 通过
+  evidence_level: structure
 - name: versioned_layout
   desc: 版本化目录布局
   constraint: 分册各为目录，每版本一文件 `<tag>.md`；00-index 含 §〇 三步选版本 + 向下取底 + 已建版本清单；SKILL 先定版本流程
-  testable_signal: 运行 ls /home/black/Public/aio/rdb-skills/skills/rdb-tools-design/references/
-    检查5个分册目录存在且 grep -q '版本路由' references/00-index.md 且经 validate 通过
+  testable_signal: 运行 ls /home/black/Public/aio/rdb-skills/skills/rdb-tools-design/references/ 检查5个分册目录存在且 grep
+    -q '版本路由' references/00-index.md 且经 validate 通过
+  evidence_level: structure
 - name: island_triage
   desc: 孤岛裁决清单
   constraint: SKILL 含孤岛与废弃裁决速查 + 落码原则禁区；每分册有孤岛/冗余章节；命中孤岛即停
-  testable_signal: 运行 grep -q '孤岛' /home/black/Public/aio/rdb-skills/skills/rdb-tools-design/SKILL.md
-    且各分册 grep -c '孤岛' 均≥1 且经 validate 通过
+  testable_signal: 运行 grep -q '孤岛' /home/black/Public/aio/rdb-skills/skills/rdb-tools-design/SKILL.md 且各分册 grep
+    -c '孤岛' 均≥1 且经 validate 通过
+  evidence_level: structure
 - name: evidence_discipline
   desc: 三项实证纪律
   constraint: 每条路径过存在/现行链路/逐字一致三项实证；无法确认即标记不猜测；文档滞后以代码为准并记录差异
-  testable_signal: 运行 grep -q '三项实证' /home/black/Public/aio/rdb-skills/skills/rdb-tools-design/SKILL.md
-    且 grep -q '无法确认' 各分册至少一处诚实标记样例或差异清单 且经 validate 通过
+  testable_signal: 运行 grep -q '三项实证' /home/black/Public/aio/rdb-skills/skills/rdb-tools-design/SKILL.md 且 grep -q
+    '无法确认' 各分册至少一处诚实标记样例或差异清单 且经 validate 通过
+  evidence_level: structure
 - name: contract_check
   desc: 契约核对表
   constraint: 跨模块隐式契约逐字核对表（常量发送方 = 接收分发方）；定位结论含契约核对结果
-  testable_signal: 运行 grep -q '契约核对' /home/black/Public/aio/rdb-skills/skills/rdb-tools-design/SKILL.md
-    检查命中且经 validate 通过
+  testable_signal: 运行 grep -q '契约核对' /home/black/Public/aio/rdb-skills/skills/rdb-tools-design/SKILL.md 检查命中且经 validate
+    通过
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # 知识地图构建方法论（Knowledge Map Building）

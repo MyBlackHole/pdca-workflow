@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-journal-pin-leak-tradeoff
 type: domain
 layer: Knowledge
@@ -8,21 +8,36 @@ summary: 错误路径泄漏pin换正确性权衡讲解
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-journal-pin-lifetime-flush
   - ontology:domain/core-journal-seq-blacklist-pin-reclaim
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 日志错误路径引用处理、空间换正确性决策场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文借条语义与关闭函数的对应关系"
+  testable_signal: 抽查正文借条语义与关闭函数的对应关系
+  evidence_level: unclassified
 - name: constraints
   desc: 泄漏决策前提
   constraint: 见正文
-  testable_signal: "通读正文三段，确认借条语义、不泄漏后果、泄漏代价三条在引用代码中有对应实现"
+  testable_signal: 通读正文三段，确认借条语义、不泄漏后果、泄漏代价三条在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # 错误路径泄漏 pin 换正确性

@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-userspace-device-manage
 type: domain
 layer: Knowledge
@@ -8,20 +8,35 @@ summary: 设备增删上下线改态扩容疏散全命令集
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-userspace-device-scan
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 设备增删、上下线、改态、扩容、疏散命令场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 src/commands/device.rs 在仓库中存在且含 cmd_device_add 定义"
+  testable_signal: 抽查正文引用的 src/commands/device.rs 在仓库中存在且含 cmd_device_add 定义
+  evidence_level: unclassified
 - name: constraints
   desc: 设备命令前提
   constraint: 见正文
-  testable_signal: "通读正文约束节，确认在线离线分流、强制分档、失败回滚三条前提在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，确认在线离线分流、强制分档、失败回滚三条前提在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # 设备管理全命令集语义

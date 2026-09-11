@@ -1,28 +1,40 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-btree-split-proptest-enomem-restart-pattern
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/core-btree-split-proptest-enomem-restart-pattern/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/core-btree-split-proptest-enomem-restart-pattern/3.1.0
 summary: btree 分裂压力测试 + ENOMEM restart 修复模式
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: "通读正文压力测试节，确认分裂与ENOMEM重启修复规则完整，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
+  testable_signal: 通读正文压力测试节，确认分裂与ENOMEM重启修复规则完整
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
-
 
 # btree 分裂压力测试 + ENOMEM restart 修复模式
 

@@ -1,32 +1,39 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-handoff
-name: handoff
-summary: Hand off work between phases with proper documentation.
-description: Compact the current conversation into a handoff document so another agent can continue the work.
-invocation: manual
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 持久化交接
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-handoff/1.0.0
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-    - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
   relates_to:
-    - ontology:concept/domain-modeling
-    - ontology:concept/triage
-  testable_signal: "运行 grep -q 'ontology:domain/skill-handoff' ontology/domain/pdca/skill-handoff.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:concept/pdca-task
+  - ontology:concept/pdca-recovery
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
+# 持久化交接
 
---
+## 适用条件
 
-Run `$PDCA_HOME/skills/handoff-work/SKILL.md`.
+当前执行契约包含本动作时按需读取；本技能不拥有阶段转换或授权权力。
 
-## 已知坑
+## 动作与判据
 
-- 压缩对话勿丢关键决策与未竟事项；交接文档须 redact 敏感信息。
+保存任务身份、最后合法阶段、固定基线、产物、证据、待决请求和已知风险。交接仅使用明确持久化输入，不复制活动对话；新独立任务使用新绑定，不冒充原会话。
+
+## 失败处理
+
+缺必需输入、来源或工具时报告具体缺项及影响；未执行与未知结果不得写成成功。

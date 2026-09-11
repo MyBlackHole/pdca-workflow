@@ -1,1 +1,0 @@
-scripts/ontology-impact.py executable, impact graph generated

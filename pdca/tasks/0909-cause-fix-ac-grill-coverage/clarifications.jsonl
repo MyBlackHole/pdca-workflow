@@ -1,4 +1,0 @@
-{"at":"2026-09-09T16:19:34+08:00","source":"task_identity","summary":"created with record identity T2115-0909-cause-fix-ac-grill-coverage"}
-{"source":"grilling","at":"2026-09-09T16:21:27+08:00","round":1,"question":"三原因修法范围","answer":"三件全做","recommended":"AC规范+Grill必问+覆盖脚本","captured":true,"status":"resolved","decision":"T2115母票执行三件，T2116/2117/2118为叶分解"}
-{"source":"final_confirmation","summary":"grilling round1三件全做+子agent并行+立项三连确认；confirm-or-correct通过PRD与3叶分解，进入Do","response":"confirmed","at":"2026-09-09T16:26:28+08:00"}
-{"source":"check_confirmation","summary":"verdict confirmed：5项AC全过，脚本灵敏度如实说明，进Act","response":"confirmed","at":"2026-09-09T16:37:06+08:00"}

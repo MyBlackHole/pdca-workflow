@@ -1,55 +1,58 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:process/flow-act
 type: process
+semantic_kind: class
 layer: Knowledge
 status: active
+authority: normative
+revision: 3.4.1
+summary: Act：交付、失败返工与知识处置
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/flow-act/1.0.1
-summary: Act 阶段流程实体：知识投影、自我优化闭环、ID 不变量、时间线一致性与运行时协调
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
   - ontology:concept/process
-  part_of:
-  - ontology:concept/pdca
   relates_to:
-  - ontology:concept/pdca-phase
-  - ontology:entity/phase-act
-  - ontology:concept/pdca-continuous-improvement
-  - ontology:concept/knowledge-provenance
-  - ontology:concept/self-optimization-loop
-  - ontology:concept/task-record-identity
-  - ontology:concept/timeline-integrity-gate
-  - ontology:concept/pdca-provable-skill-increments
-  testable_signal: "引用存活：test $(grep -rl 'ontology:process/flow-act' ontology/ tests/ scripts/ | wc -l) -ge 4"
+  - ontology:concept/pdca-gate
+  - ontology:concept/pdca-transition
+  - ontology:concept/pdca-task
+  - ontology:concept/task-unit-test
+  - ontology:concept/task-rework
+  - ontology:process/work-scenarios
+  - ontology:concept/task-control
+  - ontology:concept/resource-ownership
+  - ontology:concept/ontology-evolution
+  - ontology:concept/ontology-adoption
+  - ontology:concept/task-decomposition
 ---
 
-# PDCA Act 流程（flow-act）
+# Act：交付、失败返工与知识处置
 
-Act 阶段处置知识、完成自我优化闭环，是 PDCA 周期中"学习并固化"的环节，之后进入 archive。
+## 适用、输入与动作
 
-## 阶段步骤（权威描述）
 
-1. **知识处置（本体强制产生，T0513 起）**：每个任务在 Act 必须新建或更新至少一个本体节点（`ontology/<type>/<slug>.md`），记来源 record/摘要/理由/连续 revision；相同内容与理由重试须幂等。知识处置对三个 `ontology_role` 使用同一规则；需要调研、设计或审查工具时，只能由 `execution_contract.required_actions` 选择，并按对应工具要求保留来源。`conclusion.md##本体沉淀` 声明 `ontology:`，`meta.disposition` 含 `ontology:` 关键词，不接受 `records-only`。仅自举任务（`meta.ontology_exempt=true`，如创建 PDCA 元本体本身）可豁免。实现“无任务不知识、有任务必本体”。
-2. **disposition 与 journal**：写入 `meta.disposition`（**全任务强制**含 `ontology:` 决策词，仅自举任务豁免；缺失或含 `records-only` 时 `archive` 门禁拒收，见 `ontology_gate.disposition_ontology_issues`），更新 journal。
-3. **门禁**：通过 `pdca-gate`、archive 本体自检（ontology-validate + 孤岛检查）与 `check-research-ontology-settlement`（已扩展为全任务 `check-ontology-settlement`）后，经 `transition-phase.py` 进入 archive。
+当前phase=act且Check→Act合法；读取LEARN-01、REWORK-01、SCENE-01与GATE-01。
 
-## 关键决策（已迁移自外部知识）
+1. 记录知识处置与理由；无新增知识可no_new_knowledge，失败反例可形成候选，不为归档强制造本体。
+2. 输出当前节点固定交付包、delivery_usable及限制；建模交付子seed，执行交付实际产物，审查交付subject_conformance。错误/partial实现不冒充父可用输入；按VERDICT-01本地验收即可正常归档，不等待祖先回归，相关工作issue仍可开放。
+3. 对缺陷记录最小复现、原失败版本、根因/不确定性、影响集合与回归要求；申请同节点相应场景的新attempt、新Agent。旧任务不能代后继执行其Plan。
+4. 发布事件交给宿主更新树清单；任务自身不得同时改共享索引或父任务状态。失效传播按REWORK-01，后继未测试前不能宣称修复已完成。
+5. 核对请求已处理、未知副作用已解释、产物和证据可恢复；满足GATE-01并确认无抢先停止事件后写第四回执/最终快照，再交回写权和资源；不能先撤掉自身记录权限导致无法落盘。
 
-- **知识来源封存**（详 `ontology:concept/knowledge-provenance`）：`records/<id>/evidence/` 存内容寻址原始事实，`experience.md` 存情境化经验，进入 Act 前同时封存两者摘要；`ontology/domain/` 是跨任务演进知识而非实验副本；默认检索优先 ontology/domain/skill，需解释经 manifest 来源边回 experience，需核验只展开 Evidence 摘要。
-- **自我优化闭环**（详 `ontology:concept/self-optimization-loop` 与 `ontology:concept/pdca-provable-skill-increments`）：完整闭环为 记录→分析→决策→受控实施→效果验证；改进候选仍走正常 Plan/Grill/final confirmation，不得由审计器直接改权威流程；效果是后续周期判定而非候选自证；可证明优先——每个机制配硬指标与测试断言。
-- **ID 不变量与撞车重分配**（详 `ontology:concept/task-record-identity`）：`task.id` 分配须处仓库级临界区；创建入口统一（triage/to-tickets/Act follow-up 复用 `task_identity.py create`）；record identity 创建时生成且不可变；occurrence 目录 identity 须等于 payload `record_id`；历史归并仅由 immutable relocation/alias receipt 表达。撞车重分配按"被引用为主干/格式规范/创建早"判定主流方，引用归属按 slug 特征词区分任务树，先引用扫描后重命名，flow-events 内 `record_id`/`task_id` 同步。
-- **时间线一致性**（详 `ontology:concept/timeline-integrity-gate`）：`final_confirmation.at` 取自执行时刻不可编造；`states` 须单调 `created≤plan≤do≤check≤act≤archive`；阶段推进仅经 `transition-phase.py`，其 `receipt.at` 须等于 `states.<target>`；先干后补确认属违规；plan 时间戳由转换自动补写（`clarifications.jsonl` 的 confirmation.at 优先）。
-- **运行时协调**（详 `ontology:concept/runtime-transition-coordinator`）：自动阶段推进须是基于 Evidence 快照的单阶段 CAS，非观察事件后递归调用；协调锁同时覆盖事实写入者与状态写入者；重试成功须绑定 ontology role、execution contract 与 Evidence 快照 digest 的 transition receipt；Check→Act 不能仅凭 Validator pass 自动宣称"已学习"。
+输出固定交付、知识处置、issue/后继引用与归档回执。候选未发布不等于必须一直阻塞；明确candidate_only即可按规则处理。不得重开归档或抹除失败。
 
-## 来源
+Act期间真实取消仍按CONTROL-01停止而非强行归档；提出后继引用不是批准后继写入。
 
-- `（原知识层）record-knowledge-provenance.md`
-- `（原知识层）self-optimization-loop.md`
-- `（原知识层）task-record-identity-invariants.md`
-- `（原知识层）id-collision-remediation.md`
-- `（原知识层）timeline-integrity-gates.md`
-- `（原知识层）runtime-transition-coordinator.md`
-- `（原知识层）provable-skill-increments.md`
+## 交付与发布不是同一个事件
+
+当前节点交付包含固定definition_refs、有效契约、reuse-decision/adoption行和待发布候选引用；宿主按ADOPT-01登记采用。共享本体发布事件执行EVOLVE-01：候选的独立审查/明确授权/base检查完成才提交，不能因为任务completed就提升head。当前库采用索引未知处写coverage_incomplete，不宣称全库迁移完成。
+
+## 知识去向与局部结束
+
+交付包关联definition_artifact、当前实例、decomposition、suite、REUSE决定与knowledge_obligations。existing_reuse不新造文件；shared_required/deferred指向独立候选和具名接续责任，实际入库引用EVOLVE回执，不移动运行日志。节点本地正常归档可以早于库发布，但工作级知识义务保持未完成。
+
+只有已固定的节点/seed/交付由宿主装配树视图。root Agent不独占全树后续写入，也不批准子阶段。终态回执在固定交付之后，外部索引关联两者，不回填交付文件制造摘要环。
+
+正常第四边与交付完成后，使用独立[archive-receipt](../../templates/archive-receipt.md)记录实际交回/结清；不能把task.md的archive字符串当独立终态。返工issue绑定旧写权结清和新授权，后继产物使用新路径，不覆盖旧版本。

@@ -1,1 +1,0 @@
-{"items": [{"criteria": ["AC-1"], "evidence_ids": ["delayer-integration"], "index": 1, "text": "模式节点去任务化"}, {"criteria": ["AC-2", "AC-3"], "evidence_ids": ["delayer-integration"], "index": 2, "text": "NFS去重"}, {"criteria": ["AC-4", "AC-5"], "evidence_ids": ["delayer-integration"], "index": 3, "text": "signal指稳定源"}], "schema": "pdca.convergence/v1"}

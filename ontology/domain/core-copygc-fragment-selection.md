@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-copygc-fragment-selection
 type: domain
 layer: Knowledge
@@ -8,20 +8,35 @@ summary: CopyGC碎片选桶 + 预留 + 去重 + 独立线程
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-move-unified-relocation-engine
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 数据侧碎片清运、最差桶选择、预留保障场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 fs/data/copygc.c 在仓库中存在且含 bch2_copygc_get_buckets 定义"
+  testable_signal: 抽查正文引用的 fs/data/copygc.c 在仓库中存在且含 bch2_copygc_get_buckets 定义
+  evidence_level: unclassified
 - name: constraints
   desc: 选桶清运前提
   constraint: 见正文
-  testable_signal: "通读正文约束节，确认碎片排序、预留比例、去重三条前提在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，确认碎片排序、预留比例、去重三条前提在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # CopyGC 碎片选桶策略

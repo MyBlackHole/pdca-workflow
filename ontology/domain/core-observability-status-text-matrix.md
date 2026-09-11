@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-observability-status-text-matrix
 type: domain
 layer: Knowledge
@@ -8,21 +8,36 @@ summary: 全子系统 status_to_text 自白矩阵 + sysfs 统一通道
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-journal-reclaim-proptest-pattern
   - ontology:domain/core-fsck-repair-mode
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 长任务黑盒问题定位、挂死现场取证、统一运维接口场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 fs/debug/sysfs.c 在仓库中存在且含 bch2_fs_show 定义"
+  testable_signal: 抽查正文引用的 fs/debug/sysfs.c 在仓库中存在且含 bch2_fs_show 定义
+  evidence_level: unclassified
 - name: constraints
   desc: 自白矩阵的前提
   constraint: 见正文
-  testable_signal: "通读正文约束节，确认只读不持长锁、流式分段、挂死可用三条前提在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，确认只读不持长锁、流式分段、挂死可用三条前提在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # 全子系统 status_to_text 自白矩阵

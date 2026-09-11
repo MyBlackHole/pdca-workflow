@@ -1,25 +1,39 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/mtls-handshake-enum-unify
 type: pattern
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/mtls-handshake-enum-unify/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/mtls-handshake-enum-unify/3.1.0
 docType: Pattern
-tags: [mtls, enum]
+tags:
+- mtls
+- enum
 summary: 四模块握手算法枚举与名称映射收敛重构
 source_task: T0359
 relations:
-  specializes: [ontology:pattern]
-  guides: [ontology:entity/mtls-handshake]
+  guides:
+  - ontology:entity/mtls-handshake
+  instance_of:
+  - ontology:pattern
 attributes:
-  - name: applicability
-    desc: 多模块各自定义同一组算法枚举与映射的工程
-    constraint: ""
-    testable_signal: 枚举/映射单头定义，模块别名宏复用，include guard 不冲突，全量构建通过
+- name: applicability
+  desc: 多模块各自定义同一组算法枚举与映射的工程
+  constraint: ''
+  testable_signal: 枚举/映射单头定义，模块别名宏复用，include guard 不冲突，全量构建通过
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # 四模块握手算法枚举与名称映射收敛重构

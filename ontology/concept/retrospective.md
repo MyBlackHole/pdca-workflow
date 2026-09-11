@@ -1,52 +1,69 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/retrospective
 type: concept
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/retrospective/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/retrospective/3.1.0
 summary: Act 阶段结构化回顾的七类改进候选模型，覆盖导航、校验、规范、指令分层、工具效率、空操作与信息可达性
 relations:
   specializes:
-    - ontology:concept/pdca-continuous-improvement
+  - ontology:concept/pdca-continuous-improvement
   relates_to:
-    - ontology:concept/self-optimization-loop
+  - ontology:concept/self-optimization-loop
 attributes:
-  - name: applicability
-    desc: 适用于编码会话结束或 Act 阶段的横向回顾，需具备可回溯的会话原始材料
-    constraint: 仅在存在任务产出、执行轨迹或校验结果等一次资料时触发；不替代 Plan 阶段 grilling 或 Check 结论判定
-    testable_signal: 检查回顾记录是否标注触发范围与输入材料清单；无材料时应标记跳过而非虚构候选
-  - name: navigation
-    desc: Navigation 维度——评估 Agent 定位目标文件、模块或上下文指针的阻力
-    constraint: 仅当寻址存在可复现阻力或缺少入口映射时才形成候选
-    testable_signal: 检查候选是否指向具体文件路径、指针缺失点或寻址耗时轨迹；无依据的导航建议视为无效
-  - name: automated_checks
-    desc: Automated checks 维度——评估是否可通过自动化校验捕获会话中出现的人工失误
-    constraint: 候选须对应可落地的检查形态（lint、类型、测试、文件系统校验等）且能复现错误
-    testable_signal: 检查候选是否说明拟新增的检查类型、触发样例与预期拦截效果；无法复现的检查不予采纳
-  - name: coding_standards
-    desc: Coding standards 维度——评估是否需为审查视角新增可强制执行的编码规范
-    constraint: 规范候选须区分实施视角与审查视角，且可在审查阶段被客观判定
-    testable_signal: 检查候选是否为审查方可执行的判定规则；仅描述倾向而无法判定的规则视为不完整
-  - name: global_agents
-    desc: Global AGENTS.md 维度——评估全局指令中是否存在应下沉到编码规范或自动化检查的条目
-    constraint: 仅当全局指令可被更低层约束替代且下沉后可被自动或审查捕获时才迁移
-    testable_signal: 检查候选是否指明原全局条目、拟迁移目标层级及迁移后可被捕获的验证路径
-  - name: tool_economy
-    desc: Tool economy 维度——评估会话中是否存在可合并、缓存或替代的高成本工具调用
-    constraint: 候选须关联到具体调用频次或成本观测，不做无数据猜测
-    testable_signal: 检查候选是否引用轨迹中的调用序列或成本对比；无轨迹依据的经济性建议视为无效
-  - name: no_ops
-    desc: No-ops 维度——评估转向文件中不改变 Agent 行为的无效指令
-    constraint: 仅当指令在实际执行中无可观测行为差异时才判定为无操作
-    testable_signal: 检查候选是否以对比实验或轨迹说明该指令有无行为差异；无对比依据的判定不采纳
-  - name: information_access
-    desc: Information access 维度——评估提升 Agent 信息可达性的机会
-    constraint: 候选须在不扩大越权的前提下增加只读或可观测信息源
-    testable_signal: 检查候选是否说明拟开放的信息源、只读边界与预期可观测增益；涉及越权的访问不予采纳
+- name: applicability
+  desc: 适用于编码会话结束或 Act 阶段的横向回顾，需具备可回溯的会话原始材料
+  constraint: 仅在存在任务产出、执行轨迹或校验结果等一次资料时触发；不替代 Plan 阶段 grilling 或 Check 结论判定
+  testable_signal: 检查回顾记录是否标注触发范围与输入材料清单；无材料时应标记跳过而非虚构候选
+  evidence_level: unclassified
+- name: navigation
+  desc: Navigation 维度——评估 Agent 定位目标文件、模块或上下文指针的阻力
+  constraint: 仅当寻址存在可复现阻力或缺少入口映射时才形成候选
+  testable_signal: 检查候选是否指向具体文件路径、指针缺失点或寻址耗时轨迹；无依据的导航建议视为无效
+  evidence_level: unclassified
+- name: automated_checks
+  desc: Automated checks 维度——评估是否可通过自动化校验捕获会话中出现的人工失误
+  constraint: 候选须对应可落地的检查形态（lint、类型、测试、文件系统校验等）且能复现错误
+  testable_signal: 检查候选是否说明拟新增的检查类型、触发样例与预期拦截效果；无法复现的检查不予采纳
+  evidence_level: unclassified
+- name: coding_standards
+  desc: Coding standards 维度——评估是否需为审查视角新增可强制执行的编码规范
+  constraint: 规范候选须区分实施视角与审查视角，且可在审查阶段被客观判定
+  testable_signal: 检查候选是否为审查方可执行的判定规则；仅描述倾向而无法判定的规则视为不完整
+  evidence_level: unclassified
+- name: global_agents
+  desc: Global AGENTS.md 维度——评估全局指令中是否存在应下沉到编码规范或自动化检查的条目
+  constraint: 仅当全局指令可被更低层约束替代且下沉后可被自动或审查捕获时才迁移
+  testable_signal: 检查候选是否指明原全局条目、拟迁移目标层级及迁移后可被捕获的验证路径
+  evidence_level: unclassified
+- name: tool_economy
+  desc: Tool economy 维度——评估会话中是否存在可合并、缓存或替代的高成本工具调用
+  constraint: 候选须关联到具体调用频次或成本观测，不做无数据猜测
+  testable_signal: 检查候选是否引用轨迹中的调用序列或成本对比；无轨迹依据的经济性建议视为无效
+  evidence_level: unclassified
+- name: no_ops
+  desc: No-ops 维度——评估转向文件中不改变 Agent 行为的无效指令
+  constraint: 仅当指令在实际执行中无可观测行为差异时才判定为无操作
+  testable_signal: 检查候选是否以对比实验或轨迹说明该指令有无行为差异；无对比依据的判定不采纳
+  evidence_level: unclassified
+- name: information_access
+  desc: Information access 维度——评估提升 Agent 信息可达性的机会
+  constraint: 候选须在不扩大越权的前提下增加只读或可观测信息源
+  testable_signal: 检查候选是否说明拟开放的信息源、只读边界与预期可观测增益；涉及越权的访问不予采纳
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Retrospective（七分类回顾）

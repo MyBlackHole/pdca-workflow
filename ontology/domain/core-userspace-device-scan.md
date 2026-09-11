@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-userspace-device-scan
 type: domain
 layer: Knowledge
@@ -8,19 +8,34 @@ summary: 设备快扫补扫 + 无udev兜底 + 死SB过滤 + 显式信任
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 按 UUID/LABEL 找盘、udev 缺失兜底、陈旧副本过滤场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 src/device_scan.rs 在仓库中存在且含 get_devices_by_uuid 定义"
+  testable_signal: 抽查正文引用的 src/device_scan.rs 在仓库中存在且含 get_devices_by_uuid 定义
+  evidence_level: unclassified
 - name: constraints
   desc: 扫描前提
   constraint: 见正文
-  testable_signal: "通读正文约束节，确认期望数回落、兜底条件、显式信任三条前提在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，确认期望数回落、兜底条件、显式信任三条前提在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # 设备扫描快扫补扫体系

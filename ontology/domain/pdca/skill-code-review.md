@@ -1,41 +1,39 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-code-review
-name: code-review
-summary: Review code for quality, correctness, and best practices.
-description: |
-  双轴代码审查。对照编码标准（标准轴）和原始 spec（规范轴）两个独立维度
-  审查变更差异；当前 PDCA 任务一对一绑定全新子 Agent 自主审查，协调 Agent 派发后立即挂起；agent.spawn 不可用时阻断执行。
-invocation: manual
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 按正确性与风险审查
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/skill-code-review/1.0.1
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-    - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
   relates_to:
-    - ontology:concept/domain-modeling
-    - ontology:concept/triage
-  testable_signal: "运行 grep -q 'ontology:domain/skill-code-review' ontology/domain/pdca/skill-code-review.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:concept/pdca-evidence
+  - ontology:domain/skill-code-review-checklist
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
+# 按正确性与风险审查
 
--------|------|------|
-| Blocking | 规范缺失 / 安全漏洞 / 数据丢失 | 必须修复 |
-| Warning | 坏味 / 风格不一致 | 建议修复 |
-| Info | 可优化项 | 记录即可 |
+## 适用条件
 
-**门禁**: Blocking = 0
+当前执行契约包含本动作时按需读取；本技能不拥有阶段转换或授权权力。
 
-## 退出
-- 通过 → 继续 Do/Act 流程
-- 未通过 → 修复 → 重新审查
+## 动作与判据
 
-## 已知坑
+确定变更范围与基线，追踪真实调用链，分别检查行为正确性和接口/资源/并发风险。每项发现标位置、触发条件、影响与建议验证；未证实问题标假设。审查不能替代测试，也不能替用户批准。
 
-- 双轴审查勿只盯标准轴（编码风格）而忽略规范轴（原始 spec 是否满足）——偏离 spec 的"好代码"同样不合格。
+## 失败处理
+
+缺必需输入、来源或工具时报告具体缺项及影响；未执行与未知结果不得写成成功。

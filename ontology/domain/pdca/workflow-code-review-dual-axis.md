@@ -1,77 +1,33 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/workflow-code-review-dual-axis
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 审查的行为与工程两轴
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/workflow-code-review-dual-axis/1.0.1
-summary: 双轴代码审查模式
-domain:
-- ontology:domain/workflow
-relations:
-  specializes:
-  - ontology:domain/workflow
-  relates_to:
-  - ontology:concept/pdca
-attributes:
-- name: applicability
-  desc: 领域知识适用场景
-  constraint: 见正文
-  testable_signal: "运行 grep -q '双轴代码审查模式' ontology/domain/pdca/workflow-code-review-dual-axis.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
----
-
-
----
-schema: pdca.asset/v1
-id: knowledge:workflow.code-review-dual-axis
-layer: knowledge
-summary: 将代码审查拆分为标准轴和规范轴并行运行，防止单一维度掩盖问题
-tags: [code-review, quality]
-ontology_roles: [ontology_conformance_verification]
-execution_contract:
-  work_product: 双轴代码审查报告
-  required_actions: [code-review]
-  constraints: [标准轴与规范轴独立, finding必须绑定证据]
-  testable_signal: 报告同时覆盖标准轴与规范轴并登记review证据
-phases: [do, check]
-applies_when: [进行正式代码审查]
-excludes_when: []
+aliases:
+- knowledge:workflow.code-review-dual-axis
 source_ids: []
-confidence: high
-status: active
+dcterms_modified: '2026-09-12'
+relations:
+  instance_of:
+  - ontology:concept/knowledge-artifact
+  relates_to:
+  - ontology:process/select-task-subgraph
+  - ontology:concept/pdca-execution-contract
+  - ontology:concept/pdca-feedback
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
-# 双轴代码审查模式
+# 审查的行为与工程两轴
 
-## 概念
-将代码审查拆分为两个独立维度并行运行，防止单一维度掩盖另一维度的问题。
-
-## 双轴定义
-
-| 轴 | 审查内容 | 评判标准 |
-|----|----------|----------|
-| **标准轴** | 编码规范、代码坏味 | 项目文档标准 + Fowler 坏味基线 |
-| **规范轴** | 功能实现正确性 | 原始 PRD / spec / issue |
-
-## 适用场景
-- 任何需要正式代码审查的变更
-- 特别适用于：大变更、跨团队 PR、安全敏感代码
-
-## 关键规则
-- 两个轴由独立子代理并行执行，互不污染上下文
-- 不合并、不排序报告，各自独立呈现
-- 结尾只做每轴发现计数，不做跨轴排名
-
-## 为什么需要两个轴
-同一变更可能通过一轴而失败另一轴：
-- **标准通过、规范失败**：代码合规但实现错误功能
-- **规范通过、标准失败**：功能正确但破坏编码规范
-
-## 参考实现
-- `skills/code-review/SKILL.md`
-
-## 坏味基线（Fowler 《Refactoring》 ch.3）
-参见 `skills/code-review/SKILL.md` 中的完整 12 种坏味列表。始终是判断（judgement call）而非硬性违规，项目文档标准优先。
+行为轴检查是否满足契约与失败语义；工程轴检查接口、所有权、并发、兼容性和验证。两轴发现都需具名位置、条件和证据。

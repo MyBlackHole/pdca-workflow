@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-observability-study-guide
 type: domain
 layer: Knowledge
@@ -8,8 +8,6 @@ summary: 可观测体系专题学习指南与节点导航
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-observability-status-text-matrix
   - ontology:domain/core-time-stats-cheap-instrumentation
@@ -17,15 +15,32 @@ relations:
   - ontology:domain/core-chardev-control-plane
   - ontology:principle/observability-first
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 可观测机制系统学习、节点导航场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 5 个可观测节点 id 全部存在"
+  testable_signal: 抽查正文引用的 5 个可观测节点 id 全部存在
+  evidence_level: unclassified
 - name: constraints
   desc: 学习顺序前提
   constraint: 见正文
-  testable_signal: "通读正文学习路径节，确认三阶段顺序与每阶段节点映射在正文中明确"
+  testable_signal: 通读正文学习路径节，确认三阶段顺序与每阶段节点映射在正文中明确
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # 可观测体系专题学习指南

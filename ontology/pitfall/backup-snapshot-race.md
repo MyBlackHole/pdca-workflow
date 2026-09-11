@@ -1,19 +1,28 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pitfall/backup-snapshot-race
 type: pitfall
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/backup-snapshot-race/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/backup-snapshot-race/3.1.0
 summary: BackupHelper Snapshot 无超时与 m_sync_stat 竞态致提前 OnCopy 产出缺事件快照
 relations:
   relates_to:
   - ontology:domain/backup
-  specializes:
+  instance_of:
   - ontology:pitfall
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Backup Snapshot 无超时与竞态

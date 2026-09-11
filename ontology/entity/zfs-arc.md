@@ -1,34 +1,53 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/zfs-arc
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/zfs-arc/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/zfs-arc/3.1.0
 summary: ZFS ARC 实体 — Adaptive Replacement Cache 自适应缓存与 L2ARC/dbuf 协作
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:domain/zfs-crypto
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/scientific-research-methodology
+  - ontology:domain/zfs-crypto
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/scientific-research-methodology
 attributes:
-  - name: arc_adaptive_p_ghost
-    desc: ARC 自适应 MRU/MFU/ghost 四态与 ARC_p 均衡可测，对应 C4 L3 自适应循环与状态机可视化
-    constraint: 覆盖 T1(MRU)/B1(ghost MRU)/T2(MFU)/B2(ghost MFU) 四链表与 ARC_p 在 0..c 间自适应，ghost 命中时 p 按 |B| 增量调整，经 C4 L3 与状态机可一图建模
-    testable_signal: "运行 grep -q 'ARC_p' records/T0518-0903-research-zfs-arc/research-arc.md 且 grep -q 'ghost' records/T0518-0903-research-zfs-arc/research-arc.md 且 grep -q 'buf_hash_find' module/zfs/arc.c 命中"
-  - name: l2arc_persistence_compressed
-    desc: L2ARC 持久化与压缩 ARC 及 l2arc_write_max 头室可测，对应时序图 l2arc_feed → l2arc_write_buffers 持久化链
-    constraint: 覆盖 zfs_compressed_arc_enabled 对 b_pabd 压缩物理块影响、l2arc_write_max/l2arc_headroom/l2arc_write_boost 控制回写速率、l2arc_feed_thread 周期扫描与 zfetch 预取协同 arc_read
-    testable_signal: "运行 grep -q 'L2ARC' records/T0518-0903-research-zfs-arc/research-arc.md 且 grep -q 'l2arc_write_max' records/T0518-0903-research-zfs-arc/research-arc.md 且 grep -q 'zfs_compressed_arc_enabled' module/zfs/arc.c 命中"
-  - name: buf_hash_lock_hierarchy
-    desc: buf_hash 2048 锁分层与 ARC 链表锁协同及 arc_hdr 状态机可测
-    constraint: 覆盖 buf_hash_table[2048] 每桶独立 hash 锁、buf_hash_find 返回持锁头、ARC_state 链表锁与 hash 锁的分层获取顺序及 arc_hdr_t 的 ANON/MRU/MFU/ghost/L2CACHE 状态机，经时序与状态机可建模
-    testable_signal: "运行 grep -q 'buf_hash' records/T0518-0903-research-zfs-arc/research-arc.md 且 grep -q 'stateDiagram' records/T0518-0903-research-zfs-arc/research-arc.md 且 grep -q 'buf_hash_table' module/zfs/arc.c 命中"
+- name: arc_adaptive_p_ghost
+  desc: ARC 自适应 MRU/MFU/ghost 四态与 ARC_p 均衡可测，对应 C4 L3 自适应循环与状态机可视化
+  constraint: 覆盖 T1(MRU)/B1(ghost MRU)/T2(MFU)/B2(ghost MFU) 四链表与 ARC_p 在 0..c 间自适应，ghost 命中时 p 按 |B| 增量调整，经 C4
+    L3 与状态机可一图建模
+  testable_signal: 运行 grep -q 'ARC_p' records/T0518-0903-research-zfs-arc/research-arc.md 且 grep -q 'ghost' records/T0518-0903-research-zfs-arc/research-arc.md
+    且 grep -q 'buf_hash_find' module/zfs/arc.c 命中
+  evidence_level: structure
+- name: l2arc_persistence_compressed
+  desc: L2ARC 持久化与压缩 ARC 及 l2arc_write_max 头室可测，对应时序图 l2arc_feed → l2arc_write_buffers 持久化链
+  constraint: 覆盖 zfs_compressed_arc_enabled 对 b_pabd 压缩物理块影响、l2arc_write_max/l2arc_headroom/l2arc_write_boost 控制回写速率、l2arc_feed_thread
+    周期扫描与 zfetch 预取协同 arc_read
+  testable_signal: 运行 grep -q 'L2ARC' records/T0518-0903-research-zfs-arc/research-arc.md 且 grep -q 'l2arc_write_max'
+    records/T0518-0903-research-zfs-arc/research-arc.md 且 grep -q 'zfs_compressed_arc_enabled' module/zfs/arc.c
+    命中
+  evidence_level: structure
+- name: buf_hash_lock_hierarchy
+  desc: buf_hash 2048 锁分层与 ARC 链表锁协同及 arc_hdr 状态机可测
+  constraint: 覆盖 buf_hash_table[2048] 每桶独立 hash 锁、buf_hash_find 返回持锁头、ARC_state 链表锁与 hash 锁的分层获取顺序及 arc_hdr_t 的
+    ANON/MRU/MFU/ghost/L2CACHE 状态机，经时序与状态机可建模
+  testable_signal: 运行 grep -q 'buf_hash' records/T0518-0903-research-zfs-arc/research-arc.md 且 grep -q 'stateDiagram'
+    records/T0518-0903-research-zfs-arc/research-arc.md 且 grep -q 'buf_hash_table' module/zfs/arc.c 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # ZFS ARC（Adaptive Replacement Cache）
@@ -161,14 +180,8 @@ memcpy(dbuf->db_data, abd, len); // 错：绕过 arc_read 的 buf_hash 与 ARC_s
 // 正确：经 arc_read → buf_hash_find → arc_l2c_only→T1/T2 状态机回填
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' records/T0518-0903-research-zfs-arc/research-arc.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' records/T0518-0903-research-zfs-arc/research-arc.md` ≥3 且每图附 `openzfs/zfs file:line`
-- **正文门禁**：`wc -l ontology/entity/zfs-arc.md` ≥60 且 `grep -q '决策树' ontology/entity/zfs-arc.md && grep -q '正例' ontology/entity/zfs-arc.md && grep -q '反例' ontology/entity/zfs-arc.md && grep -q '门禁' ontology/entity/zfs-arc.md`
-- **属性门禁**：`attributes` 数量 ≥3 且每条 `testable_signal` 含 `grep -q` 动词+判定
-- **本体校验**：`python3 scripts/ontology-validate.py --ontology-dir ontology` 0 issues 且 `python3 scripts/ontology_graph.py --format summary` `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/zfs-arc --out /tmp/test_zfs_arc_scaffold.py` 可产且 `pytest` 可收集
-- **收敛门禁**：`python3 scripts/validate-convergence.py --task-dir pdca/tasks/0903-research-zfs-arc` `valid:true`
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `openzfs/zfs/module/zfs/arc.c:1-200`（ARC operation 与 ARC_p 自适应）+ `openzfs/zfs/module/zfs/arc.c:320-500`（arc_read 四分支）+ `openzfs/zfs/module/zfs/arc.c:800-950`（buf_hash_table 2048 与 buf_hash_find）+ `openzfs/zfs/module/zfs/arc.c:1200-1500`（arc_evict 与 ghost 迁移）+ `openzfs/zfs/module/zfs/l2arc.c:80-250`（l2arc_feed 与 l2arc_write_max）+ `openzfs/zfs/include/sys/arc_impl.h:40-180`（arc_hdr_t/b_pabd/arc_state_t）

@@ -1,34 +1,55 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/bcachefs-device
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/bcachefs-device/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/bcachefs-device/3.1.0
 summary: bcachefs Device 实体 — device 组多态子命令、sb_field_members 事务与 replicas/disk_groups 及 udev/多路径
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/production-ontology-scientific-gate
-    - ontology:pattern/scientific-research-methodology
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/production-ontology-scientific-gate
+  - ontology:pattern/scientific-research-methodology
 attributes:
-  - name: device_group_polymorphism
-    desc: device 组多态（add/remove/online/offline/evacuate/fail/set-state）与 btree_trans + sb_field_members 原子提交可测
-    constraint: 覆盖 src/commands/device.rs 的 Group { add/remove/online/offline } + src/device_scan.rs 的 open_scan + fs/sb/members.c 的 bch_sb_field_ops_members (validate/to_text) + trans_commit 时 journal pin，经时序与决策树可一图建模
-    testable_signal: "运行 grep -q 'device' /home/black/Documents/bcachefs-tools/src/commands/device.rs && grep -q 'bch_sb_field_ops_members' /home/black/Documents/bcachefs-tools/fs/sb/members.c && grep -q 'open_scan' /home/black/Documents/bcachefs-tools/src/device_scan.rs 且 grep -q 'device' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: replicas_disk_groups_failure_domain
-    desc: replicas 副本策略与 disk_groups 故障域及 target 分发可测
-    constraint: 覆盖 fs/sb/members 的 replicas 字段 + fs/alloc/disk_groups.* 的 failure domain + foreground.c 的 target (foreground/background/promote) + replicas 元数据，经 C4 L3 与决策树可一图建模
-    testable_signal: "运行 grep -q 'replicas' /home/black/Documents/bcachefs-tools/fs/sb/members.c && grep -q 'disk_groups' /home/black/Documents/bcachefs-tools/fs/alloc/disk_groups.h && grep -q 'BCH_DATA_' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h 且 grep -q 'device' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: udev_multipath_and_sysfs_online
-    desc: udev 规则、device_multipath 多路径与 sysfs online/offline 状态机可测
-    constraint: 覆盖 src/device_multipath.rs 的 find_multipath_holder + bcachefs-udev.rules + sysfs 的 DeviceNameMode(mapper) + online/offline 的 trans 路径，经状态机与正例可一图建模
-    testable_signal: "运行 grep -q 'multipath' /home/black/Documents/bcachefs-tools/src/device_multipath.rs && grep -q 'udev' /home/black/Documents/bcachefs-tools/src/wrappers/sysfs.rs && grep -q 'mapper_names' /home/black/Documents/bcachefs-tools/src/commands/device.rs 且 grep -q 'device' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
+- name: device_group_polymorphism
+  desc: device 组多态（add/remove/online/offline/evacuate/fail/set-state）与 btree_trans + sb_field_members 原子提交可测
+  constraint: 覆盖 src/commands/device.rs 的 Group { add/remove/online/offline } + src/device_scan.rs 的 open_scan +
+    fs/sb/members.c 的 bch_sb_field_ops_members (validate/to_text) + trans_commit 时 journal pin，经时序与决策树可一图建模
+  testable_signal: 运行 grep -q 'device' /home/black/Documents/bcachefs-tools/src/commands/device.rs && grep -q 'bch_sb_field_ops_members'
+    /home/black/Documents/bcachefs-tools/fs/sb/members.c && grep -q 'open_scan' /home/black/Documents/bcachefs-tools/src/device_scan.rs
+    且 grep -q 'device' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: replicas_disk_groups_failure_domain
+  desc: replicas 副本策略与 disk_groups 故障域及 target 分发可测
+  constraint: 覆盖 fs/sb/members 的 replicas 字段 + fs/alloc/disk_groups.* 的 failure domain + foreground.c 的 target (foreground/background/promote)
+    + replicas 元数据，经 C4 L3 与决策树可一图建模
+  testable_signal: 运行 grep -q 'replicas' /home/black/Documents/bcachefs-tools/fs/sb/members.c && grep -q 'disk_groups'
+    /home/black/Documents/bcachefs-tools/fs/alloc/disk_groups.h && grep -q 'BCH_DATA_' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h
+    且 grep -q 'device' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: udev_multipath_and_sysfs_online
+  desc: udev 规则、device_multipath 多路径与 sysfs online/offline 状态机可测
+  constraint: 覆盖 src/device_multipath.rs 的 find_multipath_holder + bcachefs-udev.rules + sysfs 的 DeviceNameMode(mapper)
+    + online/offline 的 trans 路径，经状态机与正例可一图建模
+  testable_signal: 运行 grep -q 'multipath' /home/black/Documents/bcachefs-tools/src/device_multipath.rs && grep -q
+    'udev' /home/black/Documents/bcachefs-tools/src/wrappers/sysfs.rs && grep -q 'mapper_names' /home/black/Documents/bcachefs-tools/src/commands/device.rs
+    且 grep -q 'device' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Bcachefs Device（设备管理）
@@ -135,14 +156,8 @@ bcachefs device add --target foreground /mnt /dev/sdc
 // 正确：find_multipath_holder 警告并要求加 mapper 设备
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' ontology/entity/bcachefs-device.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' ontology/entity/bcachefs-device.md` ≥3 且每图含 `Source: /home/black/Documents/bcachefs-tools/... file:line`
-- **正文门禁**：`wc -l ontology/entity/bcachefs-device.md` ≥80 且含 `决策树` `正例` `反例` `门禁`
-- **属性门禁**：`attributes` ≥3 且每条 `testable_signal` 含 `grep -q` 且双源可回归
-- **本体校验**：`python3 scripts/ontology-validate.py` 0 issues 且 `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/bcachefs-device --out /tmp/x.py` 可产
-- **Gate 门禁**：`python3 scripts/production-ontology-gate.py --node ontology:entity/bcachefs-device` GATE OK
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `/home/black/Documents/bcachefs-tools/src/commands/device.rs:1` + `/home/black/Documents/bcachefs-tools/fs/sb/members.c:1` + `/home/black/Documents/bcachefs-tools/src/device_multipath.rs:1`

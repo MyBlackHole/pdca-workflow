@@ -1,18 +1,22 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/verdict-rejected
 type: entity
+semantic_kind: class
 layer: Knowledge
-summary: 结论：驳回（不成立/不采纳）
 status: active
+authority: normative
+revision: 2.0.0
+summary: 结论类型：rejected
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/verdict-rejected/1.0.0
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
   - ontology:concept/pdca-verdict
+outcome: rejected
 ---
-# verdict-rejected
 
-PDCA 阶段结论：任务产出被驳回，结论不成立或不采纳。对应 `meta.verdict.outcome = "rejected"`，须经 `pdca-verdict` 子类型锚定。
+# 结论类型：rejected
+
+业务语义和聚合判据由VERDICT-01定义；用户确认由CONFIRM-01单独表达，不把本类型当作用户授权。

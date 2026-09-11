@@ -1,74 +1,39 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-implement
-name: implement
-summary: 从规格说明构建实现——红绿重构驱动的垂直切片
-description: |
-  从 spec 或 ticket 构建实现——以红绿重构循环驱动，每个垂直切片是一个追踪弹（tracer bullet）。
-  使用场景：从已确认的 spec 或 ticket 构建功能或修复 bug。
-invocation: manual
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 按已确认契约实现
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-implement/1.0.0
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-    - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
   relates_to:
-    - ontology:concept/completion-criterion
-    - ontology:concept/tracer-bullet
-    - ontology:concept/triage
-    - ontology:concept/design-tree
-    - ontology:concept/to-spec
-  testable_signal: "运行 grep -q 'Implement — PDCA 版' ontology/domain/pdca/skill-implement.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:process/flow-do
+  - ontology:concept/pdca-execution-contract
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
+# 按已确认契约实现
 
-# Implement — PDCA 版
+## 适用条件
 
-从 spec 或 ticket 构建实现——以红绿重构循环驱动，每个垂直切片是一个追踪弹。
+当前执行契约包含本动作时按需读取；本技能不拥有阶段转换或授权权力。
 
-## 核心做法
+## 动作与判据
 
-1. **从 spec 构建**：spec 是实现的唯一输入；不实现 spec 之外的内容
-2. **红绿重构**：先写失败测试（红），再写最少代码通过（绿），然后重构
-3. **垂直切片**：每个实现是一个穿过每一层的窄但完整的路径
-4. **pre-agreed seams**：在实现前先声明测试接缝
-5. **code-review**：实现完成后进行双轴审查
-6. **提交**：使用 feature-commit-format 提交
+从执行投影选择依赖已满足的步骤，做范围内修改并运行对应验证。记录真实差异与失败；范围不清或必要能力失效时停止，不自行扩大修改或降低验收。
 
-## 实现流程
+## 失败处理
 
-1. 读取 spec
-2. 声明 pre-agreed seams
-3. 编写失败测试（红）
-4. 编写最少代码通过（绿）
-5. 重构
-6. 运行 code-review
-7. 提交
-
-## 与相关概念的关系
-
-- `to-spec`：spec 是实现的输入
-- `tdd`：红绿重构循环
-- `tracer-bullet`：垂直切片实现
-- `code-review`：实现后的双轴审查
-- `design-it-twice`：接口设计
-
-## AI 效率机制
-
-- spec 驱动实现，减少猜测
-- 红绿重构提供快速反馈
-- 垂直切片确保完整性
-- pre-agreed seams 确保可测试性
-
-## 已知坑
-
-- 实现 spec 之外的内容是范围漂移
-- 不写测试直接写实现是盲飞
-- 跳过 code-review 直接提交是风险
-- 缺少 pre-agreed seams 会导致测试隔离不足
+缺必需输入、来源或工具时报告具体缺项及影响；未执行与未知结果不得写成成功。

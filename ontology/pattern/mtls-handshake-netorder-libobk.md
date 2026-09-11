@@ -1,23 +1,35 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/mtls-handshake-netorder-libobk
 type: pattern
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/mtls-handshake-netorder-libobk/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/mtls-handshake-netorder-libobk/3.1.0
 summary: libobk 握手 body 网络序改造经验
 source_task: T0362
 relations:
-  specializes: [ontology:pattern]
-  guides: [ontology:entity/mtls-handshake]
+  guides:
+  - ontology:entity/mtls-handshake
+  instance_of:
+  - ontology:pattern
 attributes:
-  - name: applicability
-    desc: libobk 握手帧 body 由主机序统一为网络序
-    constraint: ""
-    testable_signal: 收发均 htons/ntohs，测试断言契约字节序而非仅行为
+- name: applicability
+  desc: libobk 握手帧 body 由主机序统一为网络序
+  constraint: ''
+  testable_signal: 收发均 htons/ntohs，测试断言契约字节序而非仅行为
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # libobk 握手 body 网络序改造经验（M5 / T0362）

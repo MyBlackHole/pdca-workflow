@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/seq-optimistic-relock
 type: pattern
 layer: Knowledge
@@ -7,24 +7,40 @@ status: active
 summary: seq版本号乐观掉锁重拿模式
 source_task: T0505
 relations:
-  specializes: [ontology:pattern]
   relates_to:
   - ontology:domain/core-six-intent-seq-deadlock-free-locking
   - ontology:domain/core-btree-transaction-memory-io
   - ontology:domain/core-util-sync-primitives
+  instance_of:
+  - ontology:pattern
 attributes:
-  - name: applicability
-    desc: 需掉锁做 IO 再重拿、长持锁转短持锁场景
-    constraint: ""
-    testable_signal: 运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查源节点 core-btree-transaction-memory-io 存在
-  - name: consequences
-    desc: 掉锁期间并发不阻塞、重拿失败需重走、seq 递增有成本
-    constraint: ""
-    testable_signal: 通读正文后果节，确认三条后果在源节点与引用代码中有对应实现
-  - name: violations
-    desc: 不用本模式的典型后果
-    constraint: ""
-    testable_signal: 通读正文违反节，确认每条后果有源节点依据且可在引用代码中定位
+- name: applicability
+  desc: 需掉锁做 IO 再重拿、长持锁转短持锁场景
+  constraint: ''
+  testable_signal: 抽查源节点 core-btree-transaction-memory-io 存在
+  evidence_level: unclassified
+- name: consequences
+  desc: 掉锁期间并发不阻塞、重拿失败需重走、seq 递增有成本
+  constraint: ''
+  testable_signal: 通读正文后果节，确认三条后果在源节点与引用代码中有对应实现
+  evidence_level: unclassified
+- name: violations
+  desc: 不用本模式的典型后果
+  constraint: ''
+  testable_signal: 通读正文违反节，确认每条后果有源节点依据且可在引用代码中定位
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # seq 乐观掉锁重拿

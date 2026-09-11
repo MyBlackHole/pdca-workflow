@@ -1,25 +1,35 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:decision/t2153-opt-backlog
 type: decision
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-10
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/t2153-opt-backlog/1.0.1
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/t2153-opt-backlog/3.1.0
 summary: T2153优化 backlog 决议 Santiago：P0已修2项，P1候选8项，P2候选2项的归口与状态
 relations:
-  specializes:
-  - ontology:decision
   relates_to:
   - ontology:concept/pdca
   - ontology:process/flow-do
+  instance_of:
+  - ontology:decision
 attributes:
 - name: backlog_status
   desc: P0x2/P1x8/P2x2 清单归口与实施状态
   constraint: P0 已修；P1/P2 每项被 Improvement Task 认领后更新状态
-  testable_signal: "test $(grep -c 'P1' pdca/tasks/0910-pdca-opt-survey/research-report.md) -ge 3"
+  testable_signal: test $(grep -c 'P1' pdca/tasks/0910-pdca-opt-survey/research-report.md) -ge 3
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # 优化 backlog 决议（T2153）

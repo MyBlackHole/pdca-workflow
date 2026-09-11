@@ -1,34 +1,51 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/zfs-zpl
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/zfs-zpl/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/zfs-zpl/3.1.0
 summary: ZFS ZPL 实体 — POSIX 层 zfs_znode/zpl_inode 与 DMU 对象映射、SA/bonus 及 ZIL 意图日志
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:domain/zfs-crypto
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/scientific-research-methodology
+  - ontology:domain/zfs-crypto
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/scientific-research-methodology
 attributes:
-  - name: posix_mapping_transit
-    desc: POSIX 语义到 DMU 对象的映射可测，经 C4 L3 与时序一图建模
-    constraint: 覆盖 zpl_inode ↔ zfs_znode ↔ dnode 的 object 上下映射与 zfs_vnops 读/写/创建/删除分发及 VFS 超级块挂载
-    testable_signal: "运行 grep -q 'zfs_znode' records/T0517-0903-research-zfs-zpl/research-zpl.md 且 grep -q 'zpl_inode' records/T0517-0903-research-zfs-zpl/research-zpl.md 且 grep -q 'zfs_vnops' records/T0517-0903-research-zfs-zpl/research-zpl.md && grep -q 'zfs_znode' module/zfs/zfs_znode.c 命中"
-  - name: sa_bonus_inline
-    desc: SA 与 bonus 缓冲布局可测，经 C4 L3 与时序可一图建模
-    constraint: 覆盖 SA System Attributes 与 dnode bonus 对小文件 inline 存储、xattr spill 及 DN_BONUS 布局，时序覆盖 zfs_create→sa_bulk_update→dmu_bonus_hold
-    testable_signal: "运行 grep -q 'SA.*bonus' records/T0517-0903-research-zfs-zpl/research-zpl.md 且 grep -q 'DN_BONUS' records/T0517-0903-research-zfs-zpl/research-zpl.md && grep -q 'DN_BONUS' include/sys/dnode.h 命中"
-  - name: zil_intent_commit
-    desc: ZIL 意图日志的提交与重放可测，对应状态机 zil_lwb 与时序 zil_commit
-    constraint: 覆盖 zil_commit/zil_create/zil_lwb_write_issue/slog 分流与 spa_sync 衔接，状态机覆盖 LWB_OPEN→ISSUED→WRITE_DONE→DONE 及 TXG 分离
-    testable_signal: "运行 grep -q 'zil_commit' records/T0517-0903-research-zfs-zpl/research-zpl.md 且 grep -q 'zil_lwb' records/T0517-0903-research-zfs-zpl/research-zpl.md && grep -q 'zil_commit' module/zfs/zil.c 命中"
+- name: posix_mapping_transit
+  desc: POSIX 语义到 DMU 对象的映射可测，经 C4 L3 与时序一图建模
+  constraint: 覆盖 zpl_inode ↔ zfs_znode ↔ dnode 的 object 上下映射与 zfs_vnops 读/写/创建/删除分发及 VFS 超级块挂载
+  testable_signal: 运行 grep -q 'zfs_znode' records/T0517-0903-research-zfs-zpl/research-zpl.md 且 grep -q 'zpl_inode'
+    records/T0517-0903-research-zfs-zpl/research-zpl.md 且 grep -q 'zfs_vnops' records/T0517-0903-research-zfs-zpl/research-zpl.md
+    && grep -q 'zfs_znode' module/zfs/zfs_znode.c 命中
+  evidence_level: structure
+- name: sa_bonus_inline
+  desc: SA 与 bonus 缓冲布局可测，经 C4 L3 与时序可一图建模
+  constraint: 覆盖 SA System Attributes 与 dnode bonus 对小文件 inline 存储、xattr spill 及 DN_BONUS 布局，时序覆盖 zfs_create→sa_bulk_update→dmu_bonus_hold
+  testable_signal: 运行 grep -q 'SA.*bonus' records/T0517-0903-research-zfs-zpl/research-zpl.md 且 grep -q 'DN_BONUS'
+    records/T0517-0903-research-zfs-zpl/research-zpl.md && grep -q 'DN_BONUS' include/sys/dnode.h 命中
+  evidence_level: structure
+- name: zil_intent_commit
+  desc: ZIL 意图日志的提交与重放可测，对应状态机 zil_lwb 与时序 zil_commit
+  constraint: 覆盖 zil_commit/zil_create/zil_lwb_write_issue/slog 分流与 spa_sync 衔接，状态机覆盖 LWB_OPEN→ISSUED→WRITE_DONE→DONE
+    及 TXG 分离
+  testable_signal: 运行 grep -q 'zil_commit' records/T0517-0903-research-zfs-zpl/research-zpl.md 且 grep -q 'zil_lwb'
+    records/T0517-0903-research-zfs-zpl/research-zpl.md && grep -q 'zil_commit' module/zfs/zil.c 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # ZFS ZPL（POSIX Layer）
@@ -169,14 +186,8 @@ lwb->lwb_state = LWB_ISSUED; // 错：手动改状态未持 zl_lock，且有 itx
 // 正确：由 zil_lwb_write_issue 持 zl_lock 原子置 ISSUED 并开新 OPEN lwb，新 itx 入新 lwb
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' records/T0517-0903-research-zfs-zpl/research-zpl.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' records/T0517-0903-research-zfs-zpl/research-zpl.md` ≥3 且每图附 `openzfs/zfs file:line`
-- **正文门禁**：`wc -l ontology/entity/zfs-zpl.md` ≥60 且 `grep -q '决策树' ontology/entity/zfs-zpl.md && grep -q '正例' ontology/entity/zfs-zpl.md && grep -q '反例' ontology/entity/zfs-zpl.md && grep -q '门禁' ontology/entity/zfs-zpl.md`
-- **属性门禁**：`attributes` 数量 ≥3 且每条 `testable_signal` 含 `grep -q` 动词+判定
-- **本体校验**：`python3 scripts/ontology-validate.py --ontology-dir ontology` 0 issues 且 `python3 scripts/ontology_graph.py --format summary` `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/zfs-zpl --out /tmp/test_zfs_zpl_scaffold.py` 可产且 `pytest` 可收集
-- **收敛门禁**：`python3 scripts/validate-convergence.py --task-dir pdca/tasks/0903-research-zfs-zpl` `valid:true`
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `openzfs/zfs/include/sys/zfs_znode.h:40-120`（`zfs_znode_t`）+ `openzfs/zfs/module/zfs/zfs_znode.c:40-180`（`zfs_zget`）+ `openzfs/zfs/module/zpl/zpl_inode.c:80-200`（`ITOZ/PTOI`）+ `openzfs/zfs/module/zfs/zfs_vnops.c:600-900`（`zfs_write`）+ `openzfs/zfs/module/zfs/zfs_sa.c:80-180`（`SA spill`）+ `openzfs/zfs/include/sys/dnode.h:80-180`（`DN_BONUS`）+ `openzfs/zfs/module/zfs/zil.c:200-1050`（`zil_commit/lwb`）+ `openzfs/zfs/include/sys/zil.h:80-180`

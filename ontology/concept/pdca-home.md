@@ -1,43 +1,31 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/pdca-home
 type: concept
+semantic_kind: class
 layer: Knowledge
-status: active
+status: deprecated
+authority: reference
+revision: 3.1.0
+summary: 已退役：pdca-home
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/pdca-home/1.0.0
-summary: PDCA_HOME 环境变量配置与仓库发现规则（两种模式：独立 / 外部项目）
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
-  - ontology:concept/pdca
+  - ontology:concept/entity
   relates_to:
-  - ontology:concept/pdca
-  testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-home' ontology/ tests/ scripts/ | wc -l) -ge 3"
+  - ontology:concept/task-record-identity
+replaced_by: ontology:concept/task-record-identity
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
-# 全局仓库配置（pdca-home）
+# 已退役：pdca-home
 
-## PDCA_HOME
+不再依赖全局PDCA_HOME或外部初始化脚本。入口使用明确项目根和授权路径，不自动注入目标项目。
 
-所有路径引用以 `$PDCA_HOME` 为基路径：
-
-```bash
-export PDCA_HOME=~/pdca-workflow
-```
-
-## 仓库发现规则
-
-1. `PDCA_HOME` 环境变量为第一优先级。
-2. 仅包含 `ontology/process/flow-plan.md` 的目录视为有效 workflow 仓库。
-3. 外部项目通过 `scripts/init-external.sh` 初始化，在项目根目录生成引用 `$PDCA_HOME` 的 `AGENTS.md`。
-
-## 两种模式
-
-- **独立模式**：当前仓库即是 workflow root，`PDCA_HOME` 指向本项目。
-- **外部项目模式**：`PDCA_HOME` 指向管理中心仓库，外部项目通过 init 脚本获得引用。
-
-## 来源
-
-- `（原知识层）global-repo-config.md`
+旧ID仅作迁移定位，不能用作活动执行规则。现行权威：ontology:concept/task-record-identity。

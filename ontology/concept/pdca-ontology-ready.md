@@ -1,28 +1,26 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/pdca-ontology-ready
 type: concept
+semantic_kind: class
 layer: Knowledge
-summary: do 阶段准入门禁本体：任务领域本体片段须存在且 ontology-validate 通过
 status: active
+authority: normative
+revision: 3.1.0
+summary: 本体基线可用性
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/pdca-ontology-ready/1.0.0
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
-  - ontology:concept/pdca-gate
+  - ontology:concept/entity
   relates_to:
-  - ontology:entity/phase-do
-  testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-ontology-ready' ontology/ tests/ scripts/ | wc -l) -ge 9"
+  - ontology:process/select-task-subgraph
+  - ontology:concept/pdca-execution-contract
 ---
-# pdca-ontology-ready
 
-do 阶段准入条件元概念（由 `pdca-gate-do.relates_to` 引用）。
+# 本体基线可用性
 
-- **含义**：进入 do 前，`meta.ontology_fragment` 指向的本体片段须存在且为合法 `pdca.asset/v1`（frontmatter + relations 通过 `ontology-validate`）；或 `meta.ontology_exempt=true` 豁免。
-- **理由**：保证执行产物能挂接到本体图谱，避免产生无法被机器消费的"孤儿"资产。
+进入Do前按CONTEXT-01和CONTRACT-01确认已选本体版本存在、可重读且适用。当前节点可以选择极小知识上下文；建模使用已有元规则验收候选，不能以ontology_exempt跳过用户确认、安全边界或基线。
 
-## 决策背景（原 ADR-0031：本体存储选型 md 优先 + 图升级路径）
-- 背景：本体承载方式选型——markdown 文件 vs 生产级图数据库（Neo4j/RDF）。
-- 决策：当前采用 markdown 承载（ontology/<type>/<slug>.md + pdca.asset/v1 frontmatter + ontology-validate 门禁），因项目强依赖"文档即知识、可审阅、可版本化 git diff"；同时保留升级到图数据库路径（触发条件满足时平滑迁移至 Neo4j property graph 或 RDF triple store，不丢失语义）。
+就绪唯一权威为SCHED-01的scene表：ontology_modeling使用用户目标或已交付父seed，不要求整树已经冻结；ontology_projection必须有TREE-01真实冻结；ontology_conformance_verification需要同一冻结树的固定release与审查输入。所有场景都需要各自NODE/TEST合同、真实能力与授权。不得用modeling例外执行projection，也不得用projection冻结要求阻止根建模。

@@ -1,11 +1,16 @@
-__pycache__/
-*.pyc
+# Editor and local caches
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.cache/
+# Local secrets and explicitly private evidence are never publication inputs.
+.env
+records/*/artifacts/private/
 
-# POC 大数据产物（不入库）
-**/poc-output/**/*.csv
-**/poc-output/**/*.tsv
-**/poc-output/**/*.parquet
-
-# 静态库编译产物
-*.a
-records/T0456-0831-pdca-ontology-closed-loop-review/
+# Cross-project private evidence remains local; this is not an access-control boundary.
+records/**/artifacts/private/
+records/projects/**/private/

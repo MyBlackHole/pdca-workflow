@@ -1,37 +1,64 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/zfs-crypto
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/zfs-crypto/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/zfs-crypto/3.1.0
 summary: OpenZFS 存储加密体系（含 SM4-GCM 国密扩展）的端到端领域知识
 relations:
-  specializes:
-  - ontology:domain/backup-crypto
   relates_to:
   - ontology:concept/pdca
   - ontology:domain/backup-crypto-medium-model
+  - ontology:domain/backup-crypto
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: algorithm_suite_coverage
   desc: 加密算法套件与参数的覆盖完整性
   constraint: 须覆盖 ZIO_CRYPT 枚举、zio_crypt_table、KCF/ICP 与 SM4 扩展
-  testable_signal: "运行 grep -q 'zio_crypt' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md 且 grep -q 'ZIO_CRYPT_SM4_GCM' include/sys/fs/zfs.h 命中且 grep -q 'zio_crypt_table' module/os/linux/zfs/zio_crypt.c 命中"
+  testable_signal: 运行 grep -q 'zio_crypt' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md
+    且 grep -q 'ZIO_CRYPT_SM4_GCM' include/sys/fs/zfs.h 命中且 grep -q 'zio_crypt_table' module/os/linux/zfs/zio_crypt.c
+    命中
+  evidence_level: structure
 - name: key_hierarchy_depth
   desc: 密钥分层与生命周期深度
   constraint: 四层密钥与 PBKDF2/HKDF、spa_keystore 三树、ZAP 持久
-  testable_signal: "运行 grep -q 'zio_crypt' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md 且 grep -q 'WRAPPING_KEY_LEN' include/sys/zio_crypt.h 命中"
+  testable_signal: 运行 grep -q 'zio_crypt' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md
+    且 grep -q 'WRAPPING_KEY_LEN' include/sys/zio_crypt.h 命中
+  evidence_level: structure
 - name: datapath_traceability
   desc: 数据路径可追溯性
   constraint: 覆盖 zio↔spa_do_crypt↔KCF、IV/salt 生成、ZIL/DNODE/ABD 特化
-  testable_signal: "运行 grep -q 'zio_crypt' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md 且 grep -q 'zio_do_crypt_uio' module/os/linux/zfs/zio_crypt.c 命中且 grep -q 'zio_crypt_generate_iv' module/os/linux/zfs/zio_crypt.c 命中"
+  testable_signal: 运行 grep -q 'zio_crypt' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md
+    且 grep -q 'zio_do_crypt_uio' module/os/linux/zfs/zio_crypt.c 命中且 grep -q 'zio_crypt_generate_iv' module/os/linux/zfs/zio_crypt.c
+    命中
+  evidence_level: structure
 - name: transform_encrypt_branch
   desc: ZIO transform 栈 encrypt 分支与 abd 替换可测，对应 ZIO_STAGE_ENCRYPT(1<<6) 的压栈-弹栈及 IV/salt 生成与 ZIO pipeline 协同
-  constraint: 覆盖 ZIO_STAGE_ENCRYPT(1<<6) 在 ZIO_WRITE_PIPELINE(WRITE_COMPRESS后、CHECKSUM_GENERATE前) 的位置与 zio_pipeline[6]=zio_encrypt、zio_encrypt(zio.c:4953) 七分支（GANG/非allocating/非encrypted/RAW/L>0/OBJSET/!ENCRYPTED/主加密）与 zio_decrypt(zio.c:571) 回调、zio_push_transform/zio_pop_transforms(502)的 zt_orig_abd/zt_bufsize/zt_transform 链与 abd 替换（eabd psize/NULL）、zio_read_bp_init(1806)的 PROTECTED→push(zio_decrypt) 读侧压栈、spa_do_crypt_abd(2826)的 salt/IV 双分支（!dedup→get_salt+generate_iv 随机 / dedup→generate_iv_salt_dedup HMAC确定性 / ZIL已生成）、zio_crypt_key_get_salt(361)的 atomic_inc_64 + 400M→hkdf 轮换、zio_crypt_table[ZIO_CRYPT_FUNCTIONS](198)的 7套件(aes-128/192/256-ccm/gcm + sm4-gcm) 与 ZC_TYPE_CCM/GCM、zio_do_crypt_uio(394)的 CCM/GCM 参数分支与 crypto_encrypt/decrypt(ECKSUM)、ZIL(zio_crypt_init_uios_zil:1403)的 zil_chain_t.zc_eck 与 DNODE(zio_crypt_init_uios_dnode:1615)的 bonus 特化及 no_crypt 短路，经 C4 L3 与时序/状态机可一图建模
-  testable_signal: "运行 grep -q 'zio_crypt' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md 且 grep -q 'ZIO_STAGE_ENCRYPT' include/sys/zio_impl.h 命中且 grep -q 'zio_encrypt' module/zfs/zio.c 命中且 grep -q 'zio_decrypt' module/zfs/zio.c 命中且 grep -q 'zio_push_transform' module/zfs/zio.c 命中"
+  constraint: 覆盖 ZIO_STAGE_ENCRYPT(1<<6) 在 ZIO_WRITE_PIPELINE(WRITE_COMPRESS后、CHECKSUM_GENERATE前) 的位置与 zio_pipeline[6]=zio_encrypt、zio_encrypt(zio.c:4953)
+    七分支（GANG/非allocating/非encrypted/RAW/L>0/OBJSET/!ENCRYPTED/主加密）与 zio_decrypt(zio.c:571) 回调、zio_push_transform/zio_pop_transforms(502)的
+    zt_orig_abd/zt_bufsize/zt_transform 链与 abd 替换（eabd psize/NULL）、zio_read_bp_init(1806)的 PROTECTED→push(zio_decrypt)
+    读侧压栈、spa_do_crypt_abd(2826)的 salt/IV 双分支（!dedup→get_salt+generate_iv 随机 / dedup→generate_iv_salt_dedup HMAC确定性
+    / ZIL已生成）、zio_crypt_key_get_salt(361)的 atomic_inc_64 + 400M→hkdf 轮换、zio_crypt_table[ZIO_CRYPT_FUNCTIONS](198)的
+    7套件(aes-128/192/256-ccm/gcm + sm4-gcm) 与 ZC_TYPE_CCM/GCM、zio_do_crypt_uio(394)的 CCM/GCM 参数分支与 crypto_encrypt/decrypt(ECKSUM)、ZIL(zio_crypt_init_uios_zil:1403)的
+    zil_chain_t.zc_eck 与 DNODE(zio_crypt_init_uios_dnode:1615)的 bonus 特化及 no_crypt 短路，经 C4 L3 与时序/状态机可一图建模
+  testable_signal: 运行 grep -q 'zio_crypt' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md
+    且 grep -q 'ZIO_STAGE_ENCRYPT' include/sys/zio_impl.h 命中且 grep -q 'zio_encrypt' module/zfs/zio.c 命中且 grep -q
+    'zio_decrypt' module/zfs/zio.c 命中且 grep -q 'zio_push_transform' module/zfs/zio.c 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # OpenZFS 存储加密体系（ZFS-Crypto）
@@ -275,12 +302,12 @@ Source: `openzfs/zfs/module/os/linux/zfs/zio_crypt.c:198` + `openzfs/zfs/include
 - **transform 栈门禁**：`grep -q 'zio_push_transform' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md && grep -q 'zio_pop_transforms' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md && grep -q 'zio_encrypt' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md && grep -q 'zio_decrypt' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md && grep -q 'abd.*替换' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md`
 - **IV/salt 门禁**：`grep -q 'zio_crypt_generate_iv' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md && grep -q 'zio_crypt_key_get_salt' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md && grep -q 'zio_crypt_generate_iv_salt_dedup' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md && grep -q 'ZIO_DATA_IV_LEN' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md`
 - **编码门禁**：`grep -q 'zio_crypt_encode_params_bp' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md && grep -q 'zio_crypt_encode_mac_bp' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md && grep -q 'DVA\[2\]' records/T0524-0903-research-zfs-encrypt-transform/research-encrypt-transform.md`
-- **正文门禁**：`wc -l ontology/domain/zfs-crypto.md` ≥80 且 `grep -q '决策树' ontology/domain/zfs-crypto.md && grep -q '正例' ontology/domain/zfs-crypto.md && grep -q '反例' ontology/domain/zfs-crypto.md && grep -q '门禁' ontology/domain/zfs-crypto.md && grep -q 'Encrypt-Transform' ontology/domain/zfs-crypto.md`
-- **属性门禁**：`attributes` 数量 ≥4 且每条 `testable_signal` 含 `grep -q` 动词+判定，且 `grep -q "zio_crypt" ontology/domain/zfs-crypto.md` 命中且 `grep -q "ZIO_STAGE_ENCRYPT" ontology/domain/zfs-crypto.md` 命中
-- **本体校验**：`python3 scripts/ontology-validate.py --ontology-dir ontology` 0 issues 且 `python3 scripts/ontology_graph.py --format summary` `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:domain/zfs-crypto --out /tmp/test_zfs_crypto_scaffold.py` 可产且 `pytest` 可收集
-- **收敛门禁**：`python3 scripts/validate-convergence.py --task-dir pdca/tasks/0903-research-zfs-encrypt-transform` `valid:true`
-- **T0500 回归门禁**：`grep -q 'Wrapping.*AES-256-CCM' ontology/domain/zfs-crypto.md` 仍命中（不破坏已有门禁）
+- **正文门禁**：`wc -l ontology/domain/zfs/zfs-crypto.md` ≥80 且 `grep -q '决策树' ontology/domain/zfs/zfs-crypto.md && grep -q '正例' ontology/domain/zfs/zfs-crypto.md && grep -q '反例' ontology/domain/zfs/zfs-crypto.md && grep -q '门禁' ontology/domain/zfs/zfs-crypto.md && grep -q 'Encrypt-Transform' ontology/domain/zfs/zfs-crypto.md`
+- **属性门禁**：`attributes` 数量 ≥4 且每条 `testable_signal` 含 `grep -q` 动词+判定，且 `grep -q "zio_crypt" ontology/domain/zfs/zfs-crypto.md` 命中且 `grep -q "ZIO_STAGE_ENCRYPT" ontology/domain/zfs/zfs-crypto.md` 命中
+结构检查参照 ontology:concept/ontology-creation-gate；测试设计与实际运行分别记录，不以缺失的旧工具声称验证通过。
+结构检查参照 ontology:concept/ontology-creation-gate；测试设计与实际运行分别记录，不以缺失的旧工具声称验证通过。
+结构检查参照 ontology:concept/ontology-creation-gate；测试设计与实际运行分别记录，不以缺失的旧工具声称验证通过。
+- **T0500 回归门禁**：`grep -q 'Wrapping.*AES-256-CCM' ontology/domain/zfs/zfs-crypto.md` 仍命中（不破坏已有门禁）
 
 Source: `openzfs/zfs/include/sys/fs/zfs.h:1954-1969`（`enum zio_encrypt`）+ `openzfs/zfs/include/sys/zio_crypt.h:46-72`（`zio_crypt_info_t`）+ `openzfs/zfs/module/os/linux/zfs/zio_crypt.c:198-209`（`zio_crypt_table`）+ `openzfs/zfs/module/os/linux/zfs/zio_crypt.c:361-384`（`zio_crypt_key_get_salt`）+ `openzfs/zfs/module/os/linux/zfs/zio_crypt.c:662-740`（`generate_iv/dedup`）+ `openzfs/zfs/module/zfs/zio.c:4953-5096`（`zio_encrypt` 七分支）+ `openzfs/zfs/module/zfs/zio.c:502-538`（`zio_push_transform`）+ `openzfs/zfs/module/zfs/zio.c:571-702`（`zio_decrypt`）+ `openzfs/zfs/include/sys/zio_impl.h:137`（`ZIO_STAGE_ENCRYPT`）+ `openzfs/zfs/include/sys/zio_impl.h:224-230`（`ZIO_WRITE_PIPELINE`）
 

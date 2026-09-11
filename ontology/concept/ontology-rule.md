@@ -1,21 +1,23 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/ontology-rule
 type: concept
+semantic_kind: class
 layer: Knowledge
-summary: 本体校验规则元概念——ontology-creation-gate 所依据的单条规则的类节点
 status: active
+authority: normative
+revision: 2.0.0
+summary: 本体规则
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ontology-rule/1.0.0
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
-  - ontology:concept/meta-ontology
+  - ontology:concept/entity
+  relates_to:
+  - ontology:concept/ontology-asset
 ---
-# ontology-rule
 
-本体校验规则元概念：一条"本体创建应满足的约束"。所有具体规则（`ontology-rule-*`）均 `specializes` 本节点。
+# 本体规则
 
-- **与门禁关系**：规则节点被 `ontology-creation-gate` 通过 `relates_to` 引用，作为门禁的权威依据。
-- **实例**：`ontology-rule-type-controlled`(AC-1)、`ontology-rule-non-dangling`(AC-2)、`ontology-rule-acyclic`(AC-3)、`ontology-rule-attr-testable`(AC-4)、`ontology-rule-richness`(AC-5)、`ontology-rule-guides-range`(AC-6)。
+一条本体规则定义可观察约束与失败判据。规则是否适用由任务选中的本体片段确定；不能把规则文件存在当作规则已执行。

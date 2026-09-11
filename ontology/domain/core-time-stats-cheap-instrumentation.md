@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-time-stats-cheap-instrumentation
 type: domain
 layer: Knowledge
@@ -8,19 +8,34 @@ summary: time_stats 懒升级埋点 + 双均值防漂移 + X 宏一源多用
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 全路径性能埋点、低开销分位数、卡因归因场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 fs/util/time_stats.c 在仓库中存在且含 quantiles_update 定义"
+  testable_signal: 抽查正文引用的 fs/util/time_stats.c 在仓库中存在且含 quantiles_update 定义
+  evidence_level: unclassified
 - name: constraints
   desc: 低开销埋点的前提
   constraint: 见正文
-  testable_signal: "通读正文约束节，确认懒升级阈值、双均值权重、关开关零开销三条前提在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，确认懒升级阈值、双均值权重、关开关零开销三条前提在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # time_stats 低开销埋点体系

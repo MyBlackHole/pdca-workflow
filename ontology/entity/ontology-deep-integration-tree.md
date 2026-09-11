@@ -1,23 +1,30 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/ontology-deep-integration-tree
 type: entity
+semantic_kind: class
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 本体组成树与有界节点上下文
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ontology-deep-integration-tree/1.0.0
-summary: 树形执行与依赖推导（composed_of 树补齐，叶→根 ready-set 调度与可视化）
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/entity
+  relates_to:
+  - ontology:concept/work-ontology-tree
+  - ontology:process/select-task-subgraph
+  - ontology:process/work-scenarios
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 3.0.0
 ---
 
-# 树形执行与依赖推导
+# 本体组成树与有界节点上下文
 
-叶子实体3：使 WBS 树可执行、可视。
-
-- 补齐领域 `composed_of` 边（父聚合子，部分-整体真实语义），保证 `ontology_tree_split` 能叶→根生成 `dependencies`
-- 运行期由 `scripts/compute-frontier.py` 计算 `ready-set/batches`，叶可并行，根等待 YAGNI
-- 新增可视化：`scripts/ontology_graph.py --format dot` 导出 WBS 树，或在 PRD 附录渲染树图
+TREE-01定义唯一父归属的工作目标树；CONTEXT-01只选择当前节点所需知识与固定输入，不能把知识图投影成另一套任意任务结构。每节点各场景完整PDCA见SCENE-01；父节点实现真实组合，不合并孩子任务。

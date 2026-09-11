@@ -1,3 +1,0 @@
-{"id":"ev2153-opt-report","file":"research-report.md","kind":"document","size":3058,"digest":"sha256:cf0049e95307d122c7306cf7df2df30f5ef7b18496d20919f1a3ddc031e94c21","at":"2026-09-10T13:58:06+08:00","criteria":["AC-1","AC-2"]}
-{"id":"ev2153-index-fix","file":"generate-skills-index.py","kind":"script","size":3514,"digest":"sha256:4857bf44d985e4212548db64a00d25429864b806fcd543b655ea28327cb5146d","at":"2026-09-10T13:58:07+08:00","criteria":["AC-3"]}
-{"id":"ev2153-convergence-map","file":"convergence-map.json","kind":"convergence-map","size":366,"digest":"sha256:598d25c04f5b64cee0e36befec5a66d8705f6fdfc1108c403f6a0fbe48a30663","at":"2026-09-10T13:58:16+08:00","criteria":["AC-1"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

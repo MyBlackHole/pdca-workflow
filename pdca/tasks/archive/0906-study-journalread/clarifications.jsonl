@@ -1,4 +1,0 @@
-{"at": "2026-09-06T10:56:00+08:00", "source": "task_identity", "summary": "created with record identity T0532-0906-study-journalread"}
-{"answer": "journal恢复（避重T0515）", "at": "2026-09-06T10:56:00+08:00", "question": "下一个学习报告主题？", "recommended": "待问", "round": 1, "source": "grilling", "captured": true}
-{"source":"final_confirmation","summary":"用户确认启动T0532：journal恢复读路径专题","response":"confirmed","at":"2026-09-06T10:57:06+08:00"}
-{"source":"check_confirmation","summary":"用户确认T0532结论：八节报告+指南增补","response":"confirmed","at":"2026-09-06T11:17:16+08:00"}

@@ -1,19 +1,24 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/evidence-review
 type: entity
+semantic_kind: class
 layer: Knowledge
-summary: 证据类型 review
 status: active
+authority: normative
+revision: 2.0.0
+summary: 证据类型：review
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/evidence-review/1.0.0
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
   - ontology:concept/pdca-evidence
-  relates_to:
-  - ontology:concept/pdca-acceptance-criterion
+evidence_kind: review
 ---
-# evidence-review
 
+# 证据类型：review
+
+对产物/证据的具体审查，包含对象版本、发现与理由；不能仅写通过。
+
+字段、完整性与来源规则全部由EVIDENCE-01定义。

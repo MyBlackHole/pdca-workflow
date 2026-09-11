@@ -1,7 +1,0 @@
-{
-  "schema": "pdca.rollback/v1",
-  "task_id": "T2177",
-  "from": "do",
-  "to": "plan",
-  "at": "2026-09-11T15:37:06+08:00"
-}

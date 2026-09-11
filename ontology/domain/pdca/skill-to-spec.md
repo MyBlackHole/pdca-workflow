@@ -1,31 +1,42 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-to-spec
 name: to-spec
 summary: 将对话转化为规格说明——grilling 输出的结构化捕获
-description: |
-  将 grilling 会话的输出转化为正式规格说明（spec），作为后续实现的依据。
+description: '将 grilling 会话的输出转化为正式规格说明（spec），作为后续实现的依据。
+
   使用场景：grilling 或 grill-with-docs 会话后，将决策树和共识转化为可验证的 spec。
+
+  '
 invocation: manual
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-to-spec/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/skill-to-spec/3.1.0
 relations:
-  specializes:
-    - ontology:concept/pdca-task
   relates_to:
-    - ontology:concept/grilling-methodology
-    - ontology:concept/domain-modeling
-    - ontology:concept/tracer-bullet
-    - ontology:concept/design-tree
-  testable_signal: "运行 grep -q 'To Spec — PDCA 版' ontology/domain/pdca/skill-to-spec.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:concept/grilling-methodology
+  - ontology:concept/domain-modeling
+  - ontology:concept/tracer-bullet
+  - ontology:concept/design-tree
+  - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
+revision: 3.1.0
+authority: reference
+validation:
+  structural_checks:
+  - 递归解析本节点身份及关系列表；目标 ID 必须可定位。引用数量不作为行为验证。
+  claim_status: unverified
+  adoption: claim_review_required
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
-
 
 # To Spec — PDCA 版
 

@@ -1,47 +1,39 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-domain-modeling
-name: domain-modeling
-summary: Create and maintain domain models for the PDCA workflow system.
-description: |
-  在 Grill 过程中或独立对话中，主动构建和打磨项目的共享语言。
-  模糊术语落定后立即写入 CONTEXT.md，硬决策记录为 ADR。
-  
-invocation: manual
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 建立领域语义模型
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-domain-modeling/1.0.0
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-    - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
   relates_to:
-    - ontology:concept/domain-modeling
-  testable_signal: "运行 grep -q 'ontology:domain/skill-domain-modeling' ontology/domain/pdca/skill-domain-modeling.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:process/select-task-subgraph
+  - ontology:concept/ontology-asset
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
+# 建立领域语义模型
 
---
+## 适用条件
 
-Run `$PDCA_HOME/skills/domain-modeling-work/SKILL.md`.
+当前执行契约包含本动作时按需读取；本技能不拥有阶段转换或授权权力。
 
-## 文件结构（单/多上下文）
+## 动作与判据
 
-- 单上下文：`CONTEXT.md` 于根 + `docs/adr/`
-- 多上下文：`CONTEXT-MAP.md` 于根路由，每 bounded context 独立 `CONTEXT.md`（如 `src/ordering/CONTEXT.md`）+ 分层 `docs/adr/`
-- 惰性创建：仅当有可写术语/决策时才建文件；无 MAP 即单上下文
+区分类与实例，识别实体、属性、关系和约束；复用已存在节点，记录新增理由。模型应能指导产物和验收，不能只有名词分类。候选发布遵循本体创建门禁。
 
-## 多上下文路由
+## 失败处理
 
-1. 读 `CONTEXT-MAP.md` 定位所属上下文
-2. 术语更新写入对应 `CONTEXT.md`，跨上下文冲突在 MAP 层决策
-3. ADR 按 system-wide vs context-specific 分层
-
-## 已知坑
-
-- 共享语言勿造生僻自造词；每个术语须有明确定义，模糊术语立即更新 CONTEXT.md。
-- 多上下文下勿将 system-wide 决策写入单 context ADR。
+缺必需输入、来源或工具时报告具体缺项及影响；未执行与未知结果不得写成成功。

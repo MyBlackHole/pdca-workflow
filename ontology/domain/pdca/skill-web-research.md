@@ -1,58 +1,39 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-web-research
-name: web-research
-summary: Conduct web research on domain topics and best practices.
-description: 网络资料调研辅助技能。当 execution_contract.required_actions 选择 web-research 时，提供问题拆解、搜索策略、信息整理和结论输出的结构化指导。
-invocation: manual
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 外部来源检索
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/skill-web-research/1.0.2
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-    - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
   relates_to:
-    - ontology:concept/domain-modeling
-    - ontology:concept/domain-model
-  testable_signal: "运行 grep -q 'Web Research（网络资料调研）' ontology/domain/pdca/skill-web-research.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:domain/skill-research
+  - ontology:concept/capability-protocol
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
+# 外部来源检索
 
----
-name: web-research
-description: 网络资料调研辅助技能。当 execution_contract.required_actions 选择 web-research 时，提供问题拆解、搜索策略、信息整理和结论输出的结构化指导。
----
+## 适用条件
 
-# Web Research（网络资料调研）
+当前执行契约包含本动作时按需读取；本技能不拥有阶段转换或授权权力。
 
-## 问题拆解
-- 将调研问题分解为 3-5 个可搜索的子问题
-- 为每个子问题定义中英文搜索关键词
-- 以 `prd.md` 中的假设和 Goal 为调研起点
-- 记录到当前任务目录（如 `pdca/tasks/{task-slug}/search-plan.md`）
+## 动作与判据
 
-## 搜索策略
-- 对每个子问题至少搜索 2 个独立来源
-- 优先官方文档、权威来源
-- 使用工具: `websearch`（关键词搜索）、`webfetch`（页面抓取）、`context7`（库文档查询）
+契约需要在线资料时使用宿主真实检索工具，核对发布时间与事件时间、版本、来源质量及相关性。保存实际取得的来源，不捏造URL访问、原文或引用。网络不可用时注明影响，不能将离线推测表述为实时查证。
 
-## 信息整理
-- 对比多方来源，标注可信度（高/中/低）
-- 记录关键发现到 `pdca/tasks/{task-slug}/findings.md`
-- 标注与原始假设一致或矛盾的发现
+## 失败处理
 
-## 结论输出
-- 总结调研结果，回答原始问题
-- 对照 `prd.md` 验收标准逐项确认
-- 列出引用来源（URL + 标题）
-- 标注未确认/待验证的结论
-- 输出到 `pdca/tasks/{task-slug}/research-report.md`（与 research 门禁同名）
-
-## 已知坑
-
-- 仅当 `execution_contract.required_actions` 选择 `web-research` 时加载；记录每条结论的来源链接，勿凭记忆引用。
+缺必需输入、来源或工具时报告具体缺项及影响；未执行与未知结果不得写成成功。

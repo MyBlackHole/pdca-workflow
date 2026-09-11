@@ -1,8 +1,0 @@
-{
-  "schema": "pdca.convergence/v1",
-  "items": [
-    {"index": 1, "text": "外围10节点引用型testable严格通过", "criteria": ["AC-1"], "evidence_ids": ["ref-report"]},
-    {"index": 2, "text": "research-report通过门禁", "criteria": ["AC-2"], "evidence_ids": ["ref-report"]},
-    {"index": 3, "text": "validate通过收敛valid:true证据已登记", "criteria": ["AC-3"], "evidence_ids": ["ref-report"]}
-  ]
-}

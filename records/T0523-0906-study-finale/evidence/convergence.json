@@ -1,1 +1,0 @@
-{"items": [{"criteria": ["AC-1"], "evidence_ids": ["report-finale"], "index": 1, "text": "全景报告覆盖九专题且有启示"}, {"criteria": ["AC-2"], "evidence_ids": ["report-finale"], "index": 2, "text": "总报告文件存在且对话输出一致"}, {"criteria": ["AC-3"], "evidence_ids": ["node-study-map", "validate-output"], "index": 3, "text": "新建总导航节点并过三查"}], "schema": "pdca.convergence/v1"}

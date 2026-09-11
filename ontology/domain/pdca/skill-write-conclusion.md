@@ -1,64 +1,39 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-write-conclusion
-name: write-conclusion
-summary: Write conclusions for PDCA cycles with proper evidence and dispositions.
-description: Write records/<record-id>/conclusion.md with structured findings, then record verdict in task.json. Use at end of Check phase.
-invocation: manual
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 形成验收结论
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/skill-write-conclusion/1.0.1
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-    - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
   relates_to:
-    - ontology:concept/domain-modeling
-    - ontology:concept/triage
-  testable_signal: "运行 grep -q 'ontology:domain/skill-write-conclusion' ontology/domain/pdca/skill-write-conclusion.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:concept/pdca-verdict
+  - ontology:process/flow-check
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
+# 形成验收结论
 
---
-schema: pdca.asset/v1
-id: <record-id>
-phase: check
-source_ids: [<evidence-id-1>, ...]
----
+## 适用条件
 
-## 上下文
-## 假设与结果
-## 分析
-## 失败原因（仅 rejected/partial）
-## 适用边界
-## 下一轮建议
-```
+当前执行契约包含本动作时按需读取；本技能不拥有阶段转换或授权权力。
 
-"分析"节逐条 AC 判定行使用固定格式（保证机器可检索）：
+## 动作与判据
 
-```markdown
-- **AC-1** ✅ <一句话判定>（<evidence-id>）
-- **AC-2** ❌ <未满足原因>（<evidence-id 或 explicit-failure 说明>）
-```
+按VERDICT-01聚合逐项AC结果，说明成立部分、失败、局限和未运行项，保存conclusion.md并固定待确认版本。禁止把生成文档本身当作用户确认或阶段转换。
 
-Then record verdict in `task.json` `meta.verdict`:
+## 失败处理
 
-```json
-{
-  "outcome": "confirmed|rejected|partial",
-  "reason": "<reasoning>",
-  "verdict_id": "<unique-id>",
-  "at": "<timestamp>"
-}
-```
-
-Completion criterion: conclusion.md 含 verdict 四字段（outcome/reason/verdict_id/at）且**每个 AC** 都有一行 `✅/❌` 判定指向证据 ID；缺任一字段或任一 AC 无判定行即未完成。`execution_contract.required_actions` 选择 `research` 工具时，关键结论还须附可复核验证途径（与 skills/research 第 4 步呼应）。
-
-## 已知坑
-
-- 判据已前置化：四字段与逐条判定是完成条件本身，不再是事后补救——写完即自检，勿依赖 Check 门禁兜底（T0265 源头，T0376 固化）。
-- 结论中不得仅解释未覆盖的 AC——每个 AC 须有证据或显式失败。
+缺必需输入、来源或工具时报告具体缺项及影响；未执行与未知结果不得写成成功。

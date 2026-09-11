@@ -1,34 +1,51 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/gm-algorithm-suite
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/gm-algorithm-suite/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/gm-algorithm-suite/3.1.0
 summary: 国密算法体系（SM1-SM4/SM7/SM9）本体与 SM4 分组结构及对称模式族不变量
 relations:
-  specializes:
-  - ontology:domain/backup-crypto
   relates_to:
   - ontology:domain/encryption-modes
   - ontology:domain/zfs-crypto
   - ontology:domain/backup-crypto-gm-support-surfaces
+  - ontology:domain/backup-crypto
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: algorithm_family
   desc: 国密算法族划分（对称 SM1/SM4、非对称 SM2、杂凑 SM3、标识 SM7/SM9）及标准归属
-  constraint: 须区分 SM1(未公开分组,卡内)/SM2(GB/T 32918 256b 椭圆曲线)/SM3(GB/T 32905 512→256 杂凑)/SM4(GB/T 32907 128/128 Feistel) 及 SM7/SM9
-  testable_signal: "运行 grep -q 'GB/T 32907' ontology/domain/gm-algorithm-suite.md 且 grep -q 'GB/T 32905' ontology/domain/gm-algorithm-suite.md 且 grep -q 'GB/T 32918' ontology/domain/gm-algorithm-suite.md"
+  constraint: 须区分 SM1(未公开分组,卡内)/SM2(GB/T 32918 256b 椭圆曲线)/SM3(GB/T 32905 512→256 杂凑)/SM4(GB/T 32907 128/128 Feistel)
+    及 SM7/SM9
+  testable_signal: 运行 grep -q 'GB/T 32907' ontology/domain/core/gm-algorithm-suite.md 且 grep -q 'GB/T 32905' ontology/domain/core/gm-algorithm-suite.md
+    且 grep -q 'GB/T 32918' ontology/domain/core/gm-algorithm-suite.md
+  evidence_level: structure
 - name: sm4_structure
   desc: SM4 分组结构（S-box/L/Feistel 32轮）与密钥调度
   constraint: 须含 S-box 256项、L/L' 线性变换、FK[4]/CK[32]、X_{i+4}=X_i xor T(...) 32轮 Feistel
-  testable_signal: "运行 grep -q 'S-box' ontology/domain/gm-algorithm-suite.md 且 grep -q 'Feistel' ontology/domain/gm-algorithm-suite.md && grep -q '32轮' ontology/domain/gm-algorithm-suite.md"
+  testable_signal: 运行 grep -q 'S-box' ontology/domain/core/gm-algorithm-suite.md 且 grep -q 'Feistel' ontology/domain/core/gm-algorithm-suite.md
+    && grep -q '32轮' ontology/domain/core/gm-algorithm-suite.md
+  evidence_level: structure
 - name: sm4_instruction_decomposition
   desc: SM4E/SM4EKEY 指令分解与 SM4-GCM 的 CTR+GHASH 映射
   constraint: 须含 SM4E(Vd=4Round,8次完成32轮)/SM4EKEY 及 PMULL 的 GHASH，8×SM4E 完成32轮
-  testable_signal: "运行 grep -q 'SM4E' ontology/domain/gm-algorithm-suite.md && grep -q 'GHASH' ontology/domain/gm-algorithm-suite.md && grep -q 'PMULL' ontology/domain/gm-algorithm-suite.md"
+  testable_signal: 运行 grep -q 'SM4E' ontology/domain/core/gm-algorithm-suite.md && grep -q 'GHASH' ontology/domain/core/gm-algorithm-suite.md
+    && grep -q 'PMULL' ontology/domain/core/gm-algorithm-suite.md
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # 国密算法体系与 SM4 结构
@@ -57,6 +74,10 @@ attributes:
 
 ## 4. 指令分解
 
-`SM4E Vd=SM4_4Round(Vn,Vm)` 对 `Vn(128b)` 用 `Vm(轮密钥)` 做 `4` 轮 `SM4`（`S-box+L`），`8` 次完成 `32` 轮；`SM4EKEY Vd=NextKey(Vn,Vm)` 由 `Vn`+`Vm(CK)` 生成下 `4` 轮轮密钥。`GCM = CTR 加密 + GHASH 认证`：`CTR` 的 `SM4` 由 `SM4E/SM4EKEY` 加速（`8×SM4E` 并行 `4-8` 路），`GHASH(tag=GHASH(AAD,C) xor SM4(K,0))` 由 `PMULL`（`GF(2^128)`）加速，`sm4-ce-gcm` 将两者交错流水。
+`SM4E Vd=SM4_4Round(Vn,Vm)` 对 `Vn(128b)` 用 `Vm(轮密钥)` 做 `4` 轮 `SM4`（`S-box+L`），`8` 次完成 `32` 轮；`SM4EKEY Vd=NextKey(Vn,Vm)` 由 `Vn`+`Vm(CK)` 生成下 `4` 轮轮密钥。`GCM = CTR 加密 + GHASH 认证`：`CTR` 的 `SM4` 由 `SM4E/SM4EKEY` 加速（`8×SM4E` 并行 `4-8` 路），`GHASH（格式化后的认证哈希S；标签应由E_K(J0)掩码，H=E_K(0^128)不是标签掩码；定义见GCM节点）` 由 `PMULL`（`GF(2^128)`）加速，`sm4-ce-gcm` 将两者交错流水。
 
 Source: `GM/T 32907-2016` + `GB/T 32905-2016` + `GB/T 32918-2016` + `GM/T 0018-2012/2023` + `arch/arm64/crypto/sm4-ce-gcm-core.S`
+
+
+## 本次纠错范围
+仅纠正本页继承的GCM标签公式；CPU/SDF/私有实现的其余主张仍unverified，需任务逐claim核验，不能从公式修正推导硬件性能或产品支持。

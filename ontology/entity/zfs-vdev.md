@@ -1,35 +1,51 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/zfs-vdev
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/zfs-vdev/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/zfs-vdev/3.1.0
 summary: ZFS VDEV 实体 — 虚拟设备拓扑与队列调度及故障状态机
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:pattern/production-ontology-scientific-gate
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/scientific-research-methodology
-    - ontology:domain/zfs-crypto
+  - ontology:pattern/production-ontology-scientific-gate
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/scientific-research-methodology
+  - ontology:domain/zfs-crypto
 attributes:
-  - name: vdev_topology_mirror_raidz
-    desc: VDEV 拓扑与 mirror/raidz/draid/file/disk 多态及 C4 L3 可视化
-    constraint: 覆盖 vdev_t/vdev_ops_t/vdev_children AVL/mirror映射/raidz奇偶及 C4 L3 组件图，含 spa_config nvlist 序列化
-    testable_signal: "运行 grep -q 'vdev_t' records/T0525-0902-review-zfs-production-ontology/report.md 且 grep -q 'vdev_t' /tmp/zfs/include/sys/vdev_impl.h 命中"
-  - name: vdev_queue_scheduling
-    desc: VDEV 队列调度与 deadline/I/O 聚合可测，对应时序图 vdev_queue_io → vdev_disk_io_start
-    constraint: 覆盖 vdev_queue_t/vdev_queue_io/vdev_queue_aggregate 的 deadline 调度与叶 vdev_queue 限流，时序覆盖 spa_taskq_dispatch → vdev_queue_io → leaf
-    testable_signal: "运行 grep -q 'vdev_queue' records/T0525-0902-review-zfs-production-ontology/report.md 且 grep -q 'vdev_queue_io' /tmp/zfs/module/zfs/vdev_queue.c 命中"
-  - name: vdev_fault_state
-    desc: VDEV 故障状态机 HEALTHY/DEGRADED/FAULTED/OFFLINE/REMOVED 及探活可测
-    constraint: 覆盖 vdev_state_t/vdev_aux_t/vdev_probe 的 HEALTHY→DEGRADED→FAULTED→OFFLINE 四态及 scrub/resilver 触发，状态机可一图建模
-    testable_signal: "运行 grep -q 'stateDiagram' records/T0525-0902-review-zfs-production-ontology/report.md 且 grep -q 'VDEV_STATE_HEALTHY' /tmp/zfs/include/sys/vdev.h 命中"
+- name: vdev_topology_mirror_raidz
+  desc: VDEV 拓扑与 mirror/raidz/draid/file/disk 多态及 C4 L3 可视化
+  constraint: 覆盖 vdev_t/vdev_ops_t/vdev_children AVL/mirror映射/raidz奇偶及 C4 L3 组件图，含 spa_config nvlist 序列化
+  testable_signal: 运行 grep -q 'vdev_t' records/T0525-0902-review-zfs-production-ontology/report.md 且 grep -q 'vdev_t'
+    /tmp/zfs/include/sys/vdev_impl.h 命中
+  evidence_level: structure
+- name: vdev_queue_scheduling
+  desc: VDEV 队列调度与 deadline/I/O 聚合可测，对应时序图 vdev_queue_io → vdev_disk_io_start
+  constraint: 覆盖 vdev_queue_t/vdev_queue_io/vdev_queue_aggregate 的 deadline 调度与叶 vdev_queue 限流，时序覆盖 spa_taskq_dispatch
+    → vdev_queue_io → leaf
+  testable_signal: 运行 grep -q 'vdev_queue' records/T0525-0902-review-zfs-production-ontology/report.md 且 grep -q
+    'vdev_queue_io' /tmp/zfs/module/zfs/vdev_queue.c 命中
+  evidence_level: structure
+- name: vdev_fault_state
+  desc: VDEV 故障状态机 HEALTHY/DEGRADED/FAULTED/OFFLINE/REMOVED 及探活可测
+  constraint: 覆盖 vdev_state_t/vdev_aux_t/vdev_probe 的 HEALTHY→DEGRADED→FAULTED→OFFLINE 四态及 scrub/resilver 触发，状态机可一图建模
+  testable_signal: 运行 grep -q 'stateDiagram' records/T0525-0902-review-zfs-production-ontology/report.md 且 grep
+    -q 'VDEV_STATE_HEALTHY' /tmp/zfs/include/sys/vdev.h 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # ZFS VDEV（Virtual Device）
@@ -169,15 +185,8 @@ vdev_add_child(root, new_vdev);
 // 正确：vdev_add_child 后 spa_config_sync 入 MOS
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' records/T0525-0902-review-zfs-production-ontology/report.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' records/T0525-0902-review-zfs-production-ontology/report.md` ≥3 且每图附 `openzfs/zfs file:line`
-- **正文门禁**：`wc -l ontology/entity/zfs-vdev.md` ≥60 且 `grep -q '决策树' ontology/entity/zfs-vdev.md && grep -q '正例' ontology/entity/zfs-vdev.md && grep -q '反例' ontology/entity/zfs-vdev.md && grep -q '门禁' ontology/entity/zfs-vdev.md`
-- **属性门禁**：`attributes` 数量 ≥3 且每条 `testable_signal` 含 `grep -q` 动词+判定且双源可回归（records + /tmp/zfs）
-- **本体校验**：`python3 scripts/ontology-validate.py --ontology-dir ontology` 0 issues 且 `python3 scripts/ontology_graph.py --format summary` `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/zfs-vdev --out /tmp/test_zfs_vdev_scaffold.py` 可产且 `pytest --collect-only` 可命中
-- **Gate 门禁**：`python3 scripts/production-ontology-gate.py --node ontology:entity/zfs-vdev` GATE OK
-- **收敛门禁**：`python3 scripts/validate-convergence.py --task-dir pdca/tasks/0902-review-zfs-production-ontology` valid:true
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `openzfs/zfs/include/sys/vdev_impl.h:40-120` + `openzfs/zfs/include/sys/vdev.h:60-120` + `openzfs/zfs/module/zfs/vdev_queue.c:80-180` + `openzfs/zfs/module/zfs/vdev_disk.c:40-120` + `openzfs/zfs/module/zfs/vdev_probe.c:40-120`

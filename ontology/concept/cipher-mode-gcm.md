@@ -1,14 +1,14 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/cipher-mode-gcm
 type: concept
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-07
-owl_versionIRI: http://pdca.local/ontology/cipher-mode-gcm/1.0.0
-summary: GCM 工作模式（CTR 加密 + GHASH 认证）AEAD 一体、并行、IV 12B 不可重用
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/cipher-mode-gcm/3.1.0
+summary: GCM：区分H、J0与标签，固定标准与向量，不用关键词证明算法
 relations:
   specializes:
   - ontology:concept/cipher-mode
@@ -16,35 +16,54 @@ relations:
   - ontology:domain/encryption-modes
   - ontology:concept/cipher-mode
 attributes:
-- name: aead_structure
-  desc: GCM 的 CTR+GHASH AEAD 结构（GHASH GF(2^128) + CTR 密钥流），分组密码 E 典型为 AES，国密实例为 SM4
-  constraint: 须含 CTR 加密与 GHASH 认证并行交错、tag=GHASH(AAD,C) xor E(K,0^128)、IV 96位推荐不可重用；SM4 仅可作为 E 的实例出现，不得写死为主公式
-  testable_signal: "运行 grep -q 'GHASH' ontology/concept/cipher-mode-gcm.md && grep -q 'CTR' ontology/concept/cipher-mode-gcm.md && grep -q '不可重用' ontology/concept/cipher-mode-gcm.md"
-- name: hardware_acceleration
-  desc: GCM 通用硬件分解：CTR 侧分组密码指令 + GHASH 侧有限域乘法指令
-  constraint: 须含 AES-NI 加速 CTR 与 PCLMULQDQ 加速 GHASH；SM4 实例为 SM4E(4轮/次,8次32轮)+PMULL（如 arm64 sm4-ce-gcm 400 优先级），仅可作为实例出现
-  testable_signal: "运行 grep -q 'AES-NI' ontology/concept/cipher-mode-gcm.md && grep -q 'PCLMULQDQ' ontology/concept/cipher-mode-gcm.md"
+- name: tag_construction
+  desc: H不等于标签掩码
+  constraint: H=E_K(0^128)；T=MSB_t(E_K(J0) xor S)
+  testable_signal: 按tests/crypto-regression.md固定向量逐字节核对；使用H代替E_K(J0)的变体必须失败
+  evidence_level: behavior
+- name: nonce_and_lengths
+  desc: 参数适用范围
+  constraint: 同key的IV须按固定协议满足唯一性；标签是离散支持值，不是32至128的连续区间
+  testable_signal: 核验固定版本标准与当前任务选定参数，缺少nonce管理证据不能认定安全
+  evidence_level: source
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+  content_review: 2026-09-12; pinned sources only; not latest-release certification
+validation:
+  claim_status: source_checked_scoped
+  adoption: claim_review_required
+  checked_claims:
+  - GCM_TAG
+  - GCM_FORMAT
+  - GCM_TAG_LENGTH
+  source_refs:
+  - https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf
+  - https://raw.githubusercontent.com/openssl/openssl/openssl-3.0.16/test/recipes/30-test_evp_data/evpciph_aes_common.txt
+  runtime_validation: not_run
 ---
 
-# GCM 工作模式
+# GCM：认证加密的定义边界
 
-`GCM`（`Galois/Counter Mode`）为 `NIST SP 800-38D` 标准化的 `AEAD` 一体模式，分组密码 `E` 典型为 `AES`（即 `AES-GCM`），国密实例为 `SM4`（即 `SM4-GCM`，见 `GB/T 32907-2016`），二者同构。
+本条按NIST SP 800-38D（2007）§5.2/7/8限定算法；不是对2026年最新修订、SM4产品支持或具体加速代码的认证。[标准](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf)
 
-## 结构
+## 构造（长度均为bit）
 
-`GCM = CTR 加密 + GHASH 认证` 并行交错。`CTR` 段 `keystream = E(K, nonce||ctr)` 生成密钥流异或明文；`GHASH` 段 `tag = GHASH(AAD, C) xor E(K, 0^128)` 在 `GF(2^128)` 上多项式哈希 `AAD` 与密文，全长 `tag 128b`，标准允许截断至 `32–128b`（截断直接降低伪造界）。`AAD` 明文传输但纳入认证，改动即验签失败。
+`H=E_K(0^128)`。96位IV时`J0=IV||0^31||1`；其他允许长度按标准GHASH格式派生，不能直接拼接/截断。`C=GCTR_K(inc32(J0),P)`。
 
-## 不变量
+令`v=(-len(A)) mod 128`、`u=(-len(C)) mod 128`：
+`S=GHASH_H(A||0^v||C||0^u||[len(A)]_64||[len(C)]_64)`，64位长度以大端编码。
+`T=MSB_t(E_K(J0) xor S)`。`H`负责GHASH乘法，`E_K(J0)`负责标签掩码，二者不可互换。
 
-- **AEAD 一体**：加密与认证一次完成，无需外加 `HMAC`。
-- **均并行**：`CTR` 与 `GHASH` 均可多路并行。
-- **无填充**：流式 `CTR`，任意长度。
-- **IV 96位推荐不可重用**：`nonce 96b` 为推荐长度（其他长度经 `GHASH` 压缩派生，性能与安全次之）；同一 `key` 下 nonce 重用双后果——`CTR` 密钥流重用泄露明文异或，`GHASH` 子密钥 `H` 可恢复致任意伪造。`ZFS` 取 `12B` 约束为实例（`zfs/module/os/linux/zfs/zio_crypt.c:752` 的 `ZIO_DATA_IV_LEN`）。
-- **单 IV 加密上限约 64GB**：`32` 位计数器耗尽即须换 `IV`。
-- **验签失败整体丢弃**：解密 `Final` 重算比对，不一致不得区分错因、不得降级放行（防预言机；NBU `mangle` 解密 `Final` 失败丢弃即此规则实例）。
+该固定标准的t为128/120/112/104/96 bit，32/64 bit另有短标签使用限制；实现可以支持更小子集，但不能虚构任意长度。当前教学回归固定128 bit，不构成短标签部署建议。同key下IV不可重用；P受标准长度上限约束。验证失败不得把候选明文交给应用。
 
-## 硬件分解
+## 单元测试与错误定义反例
 
-通用分解：`AES-NI`（`AESENC`）加速 `CTR` 的分组密码，`PCLMULQDQ` 加速 `GHASH` 的有限域乘法。SM4 实例：`SM4E Vd=SM4_4Round(Vn,Vm)`（`4` 轮/次，`8` 次 `32` 轮）加速 `CTR`，`PMULL` 加速 `GHASH`，`arch/arm64/crypto/sm4-ce-gcm` 以 `400` 优先级自动择优为例。
+[固定向量与变体](../../tests/crypto-regression.md)覆盖空消息、单块、带AAD非整块、非96位IV，以及标签/AAD/密文/IV篡改。预期必须来自独立已发布向量，不能取目标实现输出。
 
-Source: `NIST SP 800-38D` + `GB/T 32907-2016` + `arch/arm64/crypto/sm4-ce-gcm-core.S:741` + `T2071 evidence/21-tag-iv-asm.txt`（NBU 每调随机 12B IV、16B Tag 实例）
+负控制保留全部GHASH/CTR关键词、只把标签掩码换成H；关键词检查仍可能成功，行为向量必须失败。修复定义后升级suite与任务基线，旧结果只对旧字节有效。
+
+先固定接口的明文释放时机、真实API错误和nonce来源；本文件不说明任何特定库自动附带nonce/tag/AAD。

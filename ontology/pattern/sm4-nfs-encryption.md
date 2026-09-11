@@ -1,24 +1,36 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/sm4-nfs-encryption
 type: pattern
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-09
-dcterms_modified: 2026-09-09
-owl_versionIRI: http://pdca.local/ontology/sm4-nfs-encryption/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/sm4-nfs-encryption/3.1.0
 summary: SM4 NFS 文件存储加密子模式（aio-speed预加密落盘，原文件名+管理侧清单）
 relations:
-  specializes:
-    - ontology:pattern/sm4-storage-encryption
   relates_to:
-    - ontology:entity/aio-tools-6200-release
+  - ontology:entity/aio-tools-6200-release
+  - ontology:pattern/sm4-storage-encryption
+  instance_of:
+  - ontology:pattern
 attributes:
-  - name: nfs_sm4_preencrypt
-    desc: NFS客户端SM4预加密后落盘可测
-    constraint: aio-speed新增--enc-algo语义，密文按原文件名写入NFS，算法/nonce/长度/校验和由管理侧清单维护
-    testable_signal: "运行 grep -q 'enc-algo' /home/black/Public/aio/F/143/存储国密加密技术方案.md 命中且 grep -q '管理侧清单' /home/black/Public/aio/F/143/存储国密加密技术方案.md 命中且 grep -q 'sm4-nfs-encryption' ontology/pattern/sm4-nfs-encryption.md 命中"
+- name: nfs_sm4_preencrypt
+  desc: NFS客户端SM4预加密后落盘可测
+  constraint: aio-speed新增--enc-algo语义，密文按原文件名写入NFS，算法/nonce/长度/校验和由管理侧清单维护
+  testable_signal: 运行 grep -q 'enc-algo' /home/black/Public/aio/F/143/存储国密加密技术方案.md 命中且 grep -q '管理侧清单' /home/black/Public/aio/F/143/存储国密加密技术方案.md
+    命中且 grep -q 'sm4-nfs-encryption' ontology/pattern/sm4-nfs-encryption.md 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # SM4 NFS 文件存储加密子模式

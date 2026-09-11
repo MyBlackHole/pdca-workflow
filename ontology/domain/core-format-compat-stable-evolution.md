@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-format-compat-stable-evolution
 type: domain
 layer: Knowledge
@@ -8,19 +8,34 @@ summary: FEATURE/COMPAT 双位 + stable 映射 + X 宏防漂移的格式演进
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 磁盘格式向前兼容、内存枚举与磁盘位隔离、多后端选项一致性场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 fs/bcachefs_format.h 在仓库中存在且含 BCH_COMPAT 定义"
+  testable_signal: 抽查正文引用的 fs/bcachefs_format.h 在仓库中存在且含 BCH_COMPAT 定义
+  evidence_level: unclassified
 - name: constraints
   desc: 演进机制的启用前提
   constraint: 见正文
-  testable_signal: "通读正文约束节，确认拒挂条件、映射表完整性、生成一致性三条前提在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，确认拒挂条件、映射表完整性、生成一致性三条前提在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # FEATURE/COMPAT 双位 + stable 映射 + X 宏防漂移

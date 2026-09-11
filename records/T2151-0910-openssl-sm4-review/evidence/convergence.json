@@ -1,1 +1,0 @@
-{"items": [{"criteria": ["AC-1", "AC-2", "AC-3"], "evidence_ids": ["ossl-report"], "index": 1, "text": "API对照可复核"}, {"criteria": ["AC-4"], "evidence_ids": ["ossl-prd"], "index": 2, "text": "替换结论可判定"}, {"criteria": ["AC-5"], "evidence_ids": ["ossl-zero-v2"], "index": 3, "text": "沉淀s3节点"}], "schema": "pdca.convergence/v1"}

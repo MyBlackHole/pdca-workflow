@@ -1,8 +1,0 @@
-{
-  "schema": "pdca.convergence/v1",
-  "items": [
-    {"index": 1, "text": "算法清单可复现", "criteria": ["AC-1"], "evidence_ids": ["ev-evp", "ev-ciphers", "ev-mangle", "ev-hard", "ev-geninit", "ev-digest", "ev-kdf"]},
-    {"index": 2, "text": "加密链路可验证", "criteria": ["AC-2"], "evidence_ids": ["ev-client", "ev-tape", "ev-bpkeyfile", "ev-nbkms", "ev-nbcrypt", "ev-msdp", "ev-mdec", "ev-eb2"]},
-    {"index": 3, "text": "结论有证据锚定", "criteria": ["AC-3"], "evidence_ids": ["ev-report3"]}
-  ]
-}

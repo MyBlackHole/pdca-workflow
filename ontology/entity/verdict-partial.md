@@ -1,18 +1,22 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/verdict-partial
 type: entity
+semantic_kind: class
 layer: Knowledge
-summary: 结论：部分成立（采纳确凿部分，派生跟进）
 status: active
+authority: normative
+revision: 2.0.0
+summary: 结论类型：partial
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/verdict-partial/1.0.0
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
   - ontology:concept/pdca-verdict
+outcome: partial
 ---
-# verdict-partial
 
-PDCA 阶段结论：任务产出部分成立，仅沉淀确凿可复用部分并派生跟进任务。对应 `meta.verdict.outcome = "partial"`，须经 `pdca-verdict` 子类型锚定。
+# 结论类型：partial
+
+业务语义和聚合判据由VERDICT-01定义；用户确认由CONFIRM-01单独表达，不把本类型当作用户授权。

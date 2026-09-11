@@ -1,42 +1,33 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/ontology-reuse-reengineering
 type: pattern
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: normative
+revision: 3.3.0
+summary: 复用优先的本体演进
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ontology-reuse-reengineering/1.0.0
-summary: 本体复用重构（NeOn Scenario4）：重用与重构本体/非本体资源
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-    - ontology:pattern
-  guides:
-    - ontology:concept/domain-entity
-    - ontology:entity/report-center-system
+  instance_of:
+  - ontology:pattern
   relates_to:
-    - ontology:domain/ontology-hybrid-methodology
-    - ontology:pattern/ontology-modular-reference
-attributes:
-  - name: reuse_scenario4
-    desc: NeOn Scenario4 重用重构
-    constraint: 重用 `report-center-system` 等存量本体，经重构（改 `composed_of`/`attributes`）产新本体，边可 `graph` 追
-    testable_signal: "检查 ontology/pattern/ontology-reuse-reengineering.md 含 'Scenario4' 且 grep -R 'reuse' ontology/ 可命中，且经 validate 通过"
-  - name: non_ontological_reuse
-    desc: 非本体资源重用
-    constraint: 重用 `docs/` `records/` 非本体资源经 `ontology_induction.py` 转本体
-    testable_signal: "运行 python3 scripts/ontology_induction.py --help 可调且经 validate 通过"
-  - name: reengineering_trace
-    desc: 重构可追溯
-    constraint: 重构前后 `graph --format dot` 可 `diff`，`disposition` 含来源 `record`
-    testable_signal: "检查 records/T04*/conclusion.md 含 'ontology:' 且 graph 可追"
+  - ontology:concept/ontology-creation-gate
+  - ontology:concept/pdca-evidence
+  - ontology:concept/pdca-continuous-improvement
+  - ontology:concept/ontology-reuse
+  - ontology:concept/ontology-evolution
+  - ontology:concept/ontology-adoption
+provenance:
+  pre_review_revision: 2.0.0
+  promotion_basis: 当前用户确认的复用优先设计；非外部技术事实认证
 ---
 
-# 本体复用重构（NeOn Scenario4）
+# 复用优先的本体演进：导航
 
-> 来源 `NeOn Scenario 4` 重用与重构本体/非本体资源
+本节点只定位规则，不维护第二份工作协议。建模决策见[REUSE-01](../concept/ontology-reuse.md)，候选与共享版本见[EVOLVE-01](../concept/ontology-evolution.md)，跨树采用/影响/显式迁移见[ADOPT-01](../concept/ontology-adoption.md)。
 
-- **重用**：存量 `ontology:entity/report-center-system` 经 `relates_to`/`composed_of` 复用
-- **重构**：改 `attributes`/`relations` 产新本体，`graph --format dot` 可 `diff` 追溯
-- **非本体转本体**：`docs/` `records/` 经 `ontology_induction.py` 转本体 `pattern`
+原ID保留；本版依用户已确认设计成为规范导航，不代表任何旧领域事实已验证。复用定义仍保留每目标节点完整PDCA；确认已有知识不强制造新节点。

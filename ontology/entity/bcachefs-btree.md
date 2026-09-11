@@ -1,42 +1,70 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/bcachefs-btree
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/bcachefs-btree/1.0.0
-summary: bcachefs Btree 引擎本体 — 可实现规约：btree_cache 五态机 + struct btree(six+format+bset[3]) + B+树 COW 分裂/bpos寻址/iter-path 遍历及 journal pin 原子性（29 btree_id 为实例化参数）
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/bcachefs-btree/3.1.0
+summary: bcachefs Btree 引擎本体 — 可实现规约：btree_cache 五态机 + struct btree(six+format+bset[3]) + B+树 COW 分裂/bpos寻址/iter-path
+  遍历及 journal pin 原子性（29 btree_id 为实例化参数）
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   composed_of:
-    - ontology:entity/bcachefs-btree-bset
+  - ontology:entity/bcachefs-btree-bset
   relates_to:
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/production-ontology-scientific-gate
-    - ontology:pattern/scientific-research-methodology
-    - ontology:entity/bcachefs-journal
-    - ontology:entity/bcachefs-transaction
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/production-ontology-scientific-gate
+  - ontology:pattern/scientific-research-methodology
+  - ontology:entity/bcachefs-journal
+  - ontology:entity/bcachefs-transaction
 attributes:
-  - name: engine_structure_complete
-    desc: 引擎结构完整（可实现）：C4 给出全部创建/销毁/持久化所需类型与接口且含跨实体契约，经实现可直接写出 alloc/destroy/序列化
-    constraint: 覆盖 struct btree (six_lock c + btree_node *data/aux + bset_tree set[3] + nr/writes + key) + btree_node (磁盘 bset 容器 + min/max/format) + btree_cache 五态 NONE→FREED→FREEABLE→CLEAN→DIRTY (bc->lock + six write 栅栏) + btree_write/bkey 格式 + bbpos寻址 (btree_id+level+bpos) + BTREE_MAX_DEPTH，经 C4 可一图实现
-    testable_signal: "运行 grep -q 'struct btree' /home/black/Documents/bcachefs-tools/fs/btree/types.h 且 grep -q 'btree_node_cache' /home/black/Documents/bcachefs-tools/fs/btree/cache.c 且 grep -q 'BTREE_MAX_DEPTH' /home/black/Documents/bcachefs-tools/fs/btree/types.h 且 grep -q 'btree' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: engine_behavior_complete
-    desc: 引擎行为完整（可实现）：时序+状态机覆盖全部成功/失败/重试/并发分支，无隐含状态，经实现可复现全部路径
-    constraint: 覆盖 btree_trans→btree_path→six read/intent/write 升级 + cache_state 五态机 + split/compact COW + iter/path 遍历 + bch2_btree_node_get(fill/cannibalize) 三路径 + transaction_restart 25码重试，经时序+状态机双图可一图实现且无隐含分支
-    testable_signal: "运行 grep -q 'bch2_btree_node_get' /home/black/Documents/bcachefs-tools/fs/btree/cache.c 且 grep -q 'six_lock' /home/black/Documents/bcachefs-tools/fs/util/six.h 且 grep -q 'transaction_restart' /home/black/Documents/bcachefs-tools/fs/errcode.h 且 grep -q 'btree' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: engine_verification_falsifiable
-    desc: 引擎校验完整（可证伪）：正例为最小可运行骨架（按本体翻译即绿），反例覆盖全部误用且测试可红，经确定性夹具可证明实现对齐
-    constraint: 覆盖 正例=按 C4/时序可直接翻译的 bch2_btree_node_mem_alloc→fill→insert→pin→write 骨架 + 反例=跳六锁/跳 hash 校验/跳 pin/误 split 根 四类 + scaffold 派生的契约测试以 btree_id/level/bpos 三元组断言可证伪（违背本体测试必红）
-    testable_signal: "运行 grep -q 'kill_btree_node' /home/black/Documents/bcachefs-tools/src/commands/kill_btree_node.rs 且 grep -q 'bset_tree' /home/black/Documents/bcachefs-tools/fs/btree/types.h 且 python3 scripts/ontology_test_scaffold.py --node ontology:entity/bcachefs-btree --out /tmp/x.py 可产且 grep -q 'btree' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: forest_parameterization
-    desc: 森林实例化参数 29 btree_id 非本体定义，仅为引擎的 btree_id 维度的枚举，BCH_BTREE_IDS() 每项含 BTREE_IS_* + KEY_TYPE_* 位图
-    constraint: 覆盖 BCH_BTREE_IDS() 29 项（extents/inodes/dirents/xattrs/alloc/quotas/stripes/reflink/.../accounting/damage）每项 x(name,nr,flags,keys,desc)，引擎以 btree_id 为维度实例化（b->c.btree_id + hash_val + bbpos），经 C4 附录可一图建模且不喧宾夺主
-    testable_signal: "运行 grep -q 'BCH_BTREE_IDS' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h 且 grep -q 'BTREE_ID_extents' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h 且 grep -q 'bbpos' /home/black/Documents/bcachefs-tools/fs/btree/bbpos_types.h 且 grep -q 'btree' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
+- name: engine_structure_complete
+  desc: 引擎结构完整（可实现）：C4 给出全部创建/销毁/持久化所需类型与接口且含跨实体契约，经实现可直接写出 alloc/destroy/序列化
+  constraint: 覆盖 struct btree (six_lock c + btree_node *data/aux + bset_tree set[3] + nr/writes + key) + btree_node
+    (磁盘 bset 容器 + min/max/format) + btree_cache 五态 NONE→FREED→FREEABLE→CLEAN→DIRTY (bc->lock + six write 栅栏) + btree_write/bkey
+    格式 + bbpos寻址 (btree_id+level+bpos) + BTREE_MAX_DEPTH，经 C4 可一图实现
+  testable_signal: 运行 grep -q 'struct btree' /home/black/Documents/bcachefs-tools/fs/btree/types.h 且 grep -q 'btree_node_cache'
+    /home/black/Documents/bcachefs-tools/fs/btree/cache.c 且 grep -q 'BTREE_MAX_DEPTH' /home/black/Documents/bcachefs-tools/fs/btree/types.h
+    且 grep -q 'btree' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: engine_behavior_complete
+  desc: 引擎行为完整（可实现）：时序+状态机覆盖全部成功/失败/重试/并发分支，无隐含状态，经实现可复现全部路径
+  constraint: 覆盖 btree_trans→btree_path→six read/intent/write 升级 + cache_state 五态机 + split/compact COW + iter/path
+    遍历 + bch2_btree_node_get(fill/cannibalize) 三路径 + transaction_restart 25码重试，经时序+状态机双图可一图实现且无隐含分支
+  testable_signal: 运行 grep -q 'bch2_btree_node_get' /home/black/Documents/bcachefs-tools/fs/btree/cache.c 且 grep
+    -q 'six_lock' /home/black/Documents/bcachefs-tools/fs/util/six.h 且 grep -q 'transaction_restart' /home/black/Documents/bcachefs-tools/fs/errcode.h
+    且 grep -q 'btree' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: engine_verification_falsifiable
+  desc: 引擎校验完整（可证伪）：正例为最小可运行骨架（按本体翻译即绿），反例覆盖全部误用且测试可红，经确定性夹具可证明实现对齐
+  constraint: 覆盖 正例=按 C4/时序可直接翻译的 bch2_btree_node_mem_alloc→fill→insert→pin→write 骨架 + 反例=跳六锁/跳 hash 校验/跳 pin/误
+    split 根 四类 + scaffold 派生的契约测试以 btree_id/level/bpos 三元组断言可证伪（违背本体测试必红）
+  testable_signal: 运行 grep -q 'kill_btree_node' /home/black/Documents/bcachefs-tools/src/commands/kill_btree_node.rs
+    且 grep -q 'bset_tree' /home/black/Documents/bcachefs-tools/fs/btree/types.h
+  evidence_level: structure
+- name: forest_parameterization
+  desc: 森林实例化参数 29 btree_id 非本体定义，仅为引擎的 btree_id 维度的枚举，BCH_BTREE_IDS() 每项含 BTREE_IS_* + KEY_TYPE_* 位图
+  constraint: 覆盖 BCH_BTREE_IDS() 29 项（extents/inodes/dirents/xattrs/alloc/quotas/stripes/reflink/.../accounting/damage）每项
+    x(name,nr,flags,keys,desc)，引擎以 btree_id 为维度实例化（b->c.btree_id + hash_val + bbpos），经 C4 附录可一图建模且不喧宾夺主
+  testable_signal: 运行 grep -q 'BCH_BTREE_IDS' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h 且 grep -q
+    'BTREE_ID_extents' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h 且 grep -q 'bbpos' /home/black/Documents/bcachefs-tools/fs/btree/bbpos_types.h
+    且 grep -q 'btree' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # Bcachefs Btree 引擎（B+树引擎，可实现规约）
@@ -186,12 +214,8 @@ btree_check_header(c, b); // min/max vs key.p
 
 > **校验契约（可证伪）**：派生的确定性夹具以 `btree_id/level/bpos + hash_val + cache_state + six counts` 四元组断言，按本体实现必绿，违背任一反例必红（`scaffold` 的 `test_convergence` 即此模式）。
 
-## 门禁 — realization 三完整
+## 使用与验证边界
 
-- **结构门禁**：`C4` 暴露 `struct btree / btree_node / bset_tree / six_lock / bbpos / hash_val` 且含 `composed_of btree-bset`，否则非可实现
-- **行为门禁**：`时序`覆盖 `hit/miss/竞争` 三路径 + `状态机`覆盖 `NONE→DIRTY` 五态 + `six` 三态，否则有隐含分支
-- **校验门禁**：`正例`为骨架可编译，`反例`≥4 类误用，`scaffold` 可产且 `pytest --collect-only` 绿，否则不可证伪
-- **本体门禁**：`python3 scripts/ontology-validate.py` 0 issues 且 `islands:0`
-- **Gate 门禁**：`python3 scripts/production-ontology-gate.py --check realization --node ontology:entity/bcachefs-btree` PASS（结构+行为+校验）
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `/home/black/Documents/bcachefs-tools/fs/btree/cache.c:3` + `/home/black/Documents/bcachefs-tools/fs/btree/types.h:94` + `/home/black/Documents/bcachefs-tools/fs/btree/cache.c:409` + `/home/black/Documents/bcachefs-tools/fs/btree/cache.c:1376` + `/home/black/Documents/bcachefs-tools/fs/btree/bbpos_types.h:1`

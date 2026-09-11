@@ -1,13 +1,13 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/no-op-judgment
 type: concept
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/no-op-judgment/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/no-op-judgment/3.1.0
 summary: no-op 的模型相对判定：是否改变默认行为取决于模型本身
 relations:
   specializes:
@@ -17,6 +17,16 @@ attributes:
   desc: 适用于所有文档中判断某句是否 no-op 的场景
   constraint: 见正文
   testable_signal: 检查文档中是否存在弱词 no-op（如 be thorough）；失败时是否删整句而非删词
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # No-op 的模型相对判定

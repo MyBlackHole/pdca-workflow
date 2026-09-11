@@ -1,79 +1,38 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-register-evidence
-name: register-evidence
-summary: Register evidence for PDCA cycle validation and tracking.
-description: Safely register immutable task artifacts with digest and acceptance-criteria mappings. Use before moving Do to Check.
-invocation: manual
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 登记可复核证据
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-10
-owl_versionIRI: http://pdca.local/ontology/skill-register-evidence/1.0.1
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-    - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
   relates_to:
-    - ontology:concept/domain-modeling
-    - ontology:concept/triage
-  testable_signal: "运行 grep -q 'ontology:domain/skill-register-evidence' ontology/domain/pdca/skill-register-evidence.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:concept/pdca-evidence
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
+# 登记可复核证据
 
----
-name: register-evidence
-description: Safely register immutable task artifacts with digest and acceptance-criteria mappings. Use before moving Do to Check.
----
+## 适用条件
 
-Use the validated registration command:
+当前执行契约包含本动作时按需读取；本技能不拥有阶段转换或授权权力。
 
-```bash
-python3 "$PDCA_HOME/scripts/register-evidence.py" \
-  --record <record-id> \
-  --source <artifact-path> \
-  --id <short-id> \
-  --kind <type> \
-  --criterion <acceptance-criterion-id>
-```
+## 动作与判据
 
-The command confines files to `records/<record-id>/evidence/`, computes size and
-SHA-256 itself, requires at least one acceptance criterion, rejects duplicate IDs
-or filenames, and atomically updates the manifest.
+读取真实产物/输出，核对授权路径和来源，使用真实摘要工具，写evidence.md条目并关联AC。依据EVIDENCE-01选择类型，更正使用新版本。只有工具实际运行才登记运行结果；没有输出则记录未执行或未知，不填pass。
 
-To correct a registered entry, use `--replace <old-id>` (with a new `--id` and a
-different `--file`): the old artifact is renamed to `<name>.superseded.<new-id>.ext`
-and the old manifest row gains `superseded_by` — never hand-edit the immutable
-manifest.
+## 失败处理
 
-Never hand-write `clarifications.jsonl` entries: use
-`python3 "$PDCA_HOME/scripts/append-confirmation.py" --task-dir <task-dir> --source final_confirmation|check_confirmation|direction_confirm|fix_confirmation --response confirmed --summary "<reason>"`
-which stamps the real timestamp and validates the entry before appending.
-
-Completion criterion: every PRD acceptance criterion has trustworthy evidence or
-an explicit failure; Do→Check 不接受仅在结论中解释的未覆盖 AC。
-
-After substantive evidence is registered, use `verify-convergence` to create and
-register the fixed `convergence-map` control artifact. A convergence map is
-excluded from acceptance coverage and cannot count as evidence for itself.
-
-## 已知坑
-
-- `--file` 必须唯一文件名：同源多证据用 id 前缀（如 ac2-triage-work-SKILL.md），重复文件名会被拒绝（T0266）。
-- convergence-map 文本必须与 task.json `meta.convergence` **逐字一致**，否则报 CONVERGENCE_TEXT_MISMATCH；用 `--replace` + 新 id 修正（T0266）。
-- `--source` 必须实际存在的文件路径，不存在即失败。
-- 同一源文件只能登记**一条**证据：一条证据覆盖多个 AC 用多个 `--criterion` 重复传参，而非拆多条（T0374）。
-- **`--source` 是 evidence 目录的唯一写入通道**：勿手动 mkdir/cp 预置同名文件再登记——会撞 duplicate filename；也勿先写空文件占位（空文件会被如实登记 size=0）（T0374）。
-- `--replace` supersede 时新条目必须换一个新 `--file` 名，沿用旧名被拒（T0374）。
-- transition `plan→do` 会重置 `task.json` 的 `meta.convergence` 与 `meta.ontology_fragment`，do 后、check 前须重补（T2137 起三现）。
-
-## --kind 与本体的锚定（来自 T0414 闭环）
-
-`--kind` 必须命中**允许集合**之一，否则 `register-evidence` 直接报错：
-
-- **`pdca-evidence` 子类型短名**：本体节点 `ontology:entity/evidence-<short>`（其 `relations.specializes` 含 `ontology:concept/pdca-evidence`）提供短名 `<short>`（如 `evidence-convergence-map` → `convergence-map`）。命中时条目写入 `evidence_type_ref` 指向该本体节点 id，使证据锚定到本体（如 `convergence-map`、`review`、`test-result` 等）。
-- **支持型 kind（向后兼容）**：`document` / `documentation` / `concept` / `entity` / `process` / `role` / `pattern` / `principle` / `pitfall` / `fact` / `decision` / `knowledge` / `test` / `script` / `adr` / `skill` / `validation-report` / `redirect`。这些作为未定型支持证据被接受，但**不**强制写入 `evidence_type_ref`。
-
-新证据类型请优先定义为 `ontology:entity/evidence-<short>` 节点（specializes `pdca-evidence`），再从 `--kind <short>` 登记，保持证据与本体一致。可用 `scripts/register-evidence.py` 内部的 `evidence_subtype_map()` 查看当前生效的子类型短名集合。
+缺必需输入、来源或工具时报告具体缺项及影响；未执行与未知结果不得写成成功。

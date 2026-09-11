@@ -1,23 +1,35 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/gmssl-tlcp-mtls
 type: pattern
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/gmssl-tlcp-mtls/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/gmssl-tlcp-mtls/3.1.0
 summary: GMSSL 3.1.2 TLCP mTLS 支持速查与集成策略
 source_task: F139
 relations:
-  specializes: [ontology:pattern]
-  guides: [ontology:entity/mtls-handshake]
+  guides:
+  - ontology:entity/mtls-handshake
+  instance_of:
+  - ontology:pattern
 attributes:
-  - name: applicability
-    desc: GMSSL 3.1.2 TLCP mTLS 集成场景
-    constraint: ""
-    testable_signal: 连接生命周期 vtable 抽象封装 GMSSL/OpenSSL 差异，编译链接通过
+- name: applicability
+  desc: GMSSL 3.1.2 TLCP mTLS 集成场景
+  constraint: ''
+  testable_signal: 连接生命周期 vtable 抽象封装 GMSSL/OpenSSL 差异，编译链接通过
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # GMSSL TLCP mTLS 支持速查

@@ -1,4 +1,0 @@
-{"id":"report-ec","file":"report.md","kind":"document","size":3454,"digest":"sha256:177188c062ba461a82e4d5a72d89c46d643a93a9c35d9b1fd471483c75308454","at":"2026-09-06T09:42:12+08:00","criteria":["AC-1","AC-2"]}
-{"id":"node-ec-guide","file":"core-ec-study-guide.md","kind":"document","size":2056,"digest":"sha256:f8d690984d0c1888b3c29ba8aabe1d245a9badb91a9e5f5a6b4407ef59bf56bf","at":"2026-09-06T09:42:13+08:00","criteria":["AC-3"]}
-{"id":"validate-output","file":"validate-output.txt","kind":"document","size":78,"digest":"sha256:18242016b05335b14b3fa02ba636c1b2feba5be9b79e65971251af73a3a74084","at":"2026-09-06T09:42:14+08:00","criteria":["AC-3"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":421,"digest":"sha256:e373245d5de92b72f7208b3d35e70c46906f461158c6675005345a8d60298e50","at":"2026-09-06T09:42:28+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

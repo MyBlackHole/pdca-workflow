@@ -1,41 +1,30 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/runtime-transition-coordinator
 type: concept
+semantic_kind: class
 layer: Knowledge
 status: active
+authority: normative
+revision: 3.0.0
+summary: 宿主写入协调，不是父 Agent 审批
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/runtime-transition-coordinator/1.0.1
-summary: Runtime 阶段流转的并发锁、CAS、门禁和幂等规则（基于 Evidence 快照的单阶段 CAS，非递归）
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
-  - ontology:concept/pdca-transition
+  - ontology:concept/entity
   relates_to:
+  - ontology:concept/pdca-task
+  - ontology:concept/capability-protocol
   - ontology:concept/pdca-transition
-  - ontology:concept/ontology-creation-gate
+  - ontology:process/independent-work-review
 ---
 
-# Runtime 阶段协调器（runtime-transition-coordinator）
+# 宿主写入协调，不是父 Agent 审批
 
-## 结论
+运行时只提供写入交接、消息路由、调度事件和恢复辅助；不担任每任务Do→Check的审查批准者，也不与子Agent同时写task.md。
 
-自动阶段推进必须是基于 Evidence 快照的单阶段 CAS，而不是在观察事件后递归调用下一阶段。协调锁必须同时覆盖事实写入者和状态写入者，否则 Planner gate 存在 stale-read。
+当前Agent依据GATE-01和TRANSITION-01自行推进。真实用户确认由可信消息通道记录；独立审查由第三场景新Agent执行。
 
-## 关键发现
-
-- Journal append、Planner fold、task/state commit 必须共享固定锁顺序。
-- 重试成功不能只看目标 state；必须有绑定 ontology role、execution contract 与 Evidence 快照 digest 的 transition receipt。
-- 单文件原子 rename 只能防止截断读取；跨文件崩溃恢复仍需 receipt/recovery。
-- Check → Act 不能仅凭 Validator pass 自动宣称"已学习"，必须等待决策与知识模型。
-- Do 恢复的确定性门禁只能生成内容寻址的 pending conformance bundle，不能自行写入通过 receipt；协调器必须用独立命令绑定 bundle digest、决定与理由。
-- `awaiting_confirmation` 禁止直接接收完成事件。协调器必须先绑定请求之后新增的当前任务 `clarifications.jsonl` 条目及摘要，再把同一 Agent 恢复到 `suspended_waiting_agent`。
-
-## 建议
-
-Check → Act 和 Act → archive 还需结构化 verdict 与 knowledge disposition，不能只依据验证器通过或文件存在自动推进。
-
-## 来源
-
-- `（原知识层）runtime-transition-coordinator.md`
+single_writer_best_effort不是文件锁、CAS或跨文件事务。任务要求更强语义时由CAP-01核验宿主能力；派发未知、重复写入者、固定包漂移或分叉按RECOVERY-01阻断。

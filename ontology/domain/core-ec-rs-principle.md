@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-ec-rs-principle
 type: domain
 layer: Knowledge
@@ -8,21 +8,36 @@ summary: RS纠删数学原理：有限域/生成矩阵/编解码全流程
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-ec-rs-math
   - ontology:domain/core-ec-rs-algorithm
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: RS 纠删数学原理理解、PQ 语义溯源场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文数学断言与 io.c 调用语义一致"
+  testable_signal: 抽查正文数学断言与 io.c 调用语义一致
+  evidence_level: unclassified
 - name: constraints
   desc: 原理边界前提
   constraint: 见正文
-  testable_signal: "通读正文三节，确认只讲 bcachefs 用到的 P/Q 子集数学，不展开通用编码理论"
+  testable_signal: 通读正文三节，确认只讲 bcachefs 用到的 P/Q 子集数学，不展开通用编码理论
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # RS 纠删数学原理（bcachefs 子集）

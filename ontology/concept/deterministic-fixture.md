@@ -1,13 +1,13 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/deterministic-fixture
 type: concept
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/deterministic-fixture/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/deterministic-fixture/3.1.0
 summary: 确定性夹具：输入、预期输出和 pass/fail 信号均固定
 relations:
   specializes:
@@ -19,18 +19,31 @@ attributes:
   desc: 适用于所有需要确定性验证的场景
   constraint: 见正文
   testable_signal: 检查夹具是否包含输入、预期输出和 pass/fail 信号
+  evidence_level: unclassified
 - name: input
   desc: 夹具输入
   constraint: 固定不变
   testable_signal: 检查输入是否可复现
+  evidence_level: unclassified
 - name: expected_output
   desc: 预期输出
   constraint: 固定不变
   testable_signal: 检查输出是否与预期一致
+  evidence_level: unclassified
 - name: pass_fail_signal
   desc: pass/fail 信号
   constraint: 二值可观察
   testable_signal: 检查信号是否明确
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Deterministic Fixture（确定性夹具）

@@ -1,2 +1,0 @@
-{"id":"leaf-skill","file":"skill-research.md","kind":"document","size":5932,"digest":"sha256:12a95923223a8116ebbd78458232ef651d20a625f25e7f0ccc11e3a9eeae82fb","at":"2026-09-09T10:50:14+08:00","criteria":["AC-1"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":223,"digest":"sha256:501e84dcf7e6e3d1240f5bbda40d5747343d9cde3764c8454aaf1d5f7ad32f7d","at":"2026-09-09T10:50:15+08:00","criteria":["AC-1"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

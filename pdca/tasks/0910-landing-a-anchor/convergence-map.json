@@ -1,1 +1,0 @@
-{"items":[{"criteria":["AC-1"],"evidence_ids":["ev2152-anchor-report"],"index":1,"text":"新节点按领域挂分支不再默认挂pdca-task"},{"criteria":["AC-2"],"evidence_ids":["ev2152-anchor-audit"],"index":2,"text":"既有弱关联清点有迁移清单"},{"criteria":["AC-3"],"evidence_ids":["ev2152-anchor-tests"],"index":3,"text":"回归全绿"}],"schema":"pdca.convergence/v1"}

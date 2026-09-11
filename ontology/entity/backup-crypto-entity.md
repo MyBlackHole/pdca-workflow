@@ -1,22 +1,32 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/backup-crypto-entity
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/backup-crypto-entity/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/backup-crypto-entity/3.1.0
 summary: Backup Crypto 实体（BackupSystem 叶）
 attributes:
-  - name: demo_crypto
-    desc: Demo crypto 桩
-    constraint: GET /api/crypto/demo 返回 {"crypto":1}
-    testable_signal: "运行 python3 -m pytest tests/test_crypto_demo.py -v 检查桩返回 {crypto:1}，且 scaffold 通过"
+- name: demo_crypto
+  desc: Demo crypto 桩
+  constraint: GET /api/crypto/demo 返回 {"crypto":1}
+  testable_signal: 运行 python3 -m pytest tests/test_crypto_demo.py -v 检查桩返回 {crypto:1}，且 scaffold 通过
+  evidence_level: unclassified
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Backup Crypto 实体

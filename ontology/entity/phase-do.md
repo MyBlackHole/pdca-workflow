@@ -1,25 +1,27 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/phase-do
 type: entity
+semantic_kind: individual
 layer: Knowledge
-summary: PDCA do 阶段
 status: active
+authority: normative
+revision: 3.2.0
+summary: 阶段值：do
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/phase-do/1.0.1
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
+  instance_of:
   - ontology:concept/pdca-phase
+  relates_to:
+  - ontology:concept/pdca-phase-status
+phase_value: do
+state_kind: method_phase
 ---
-# phase-do
 
-PDCA 的执行阶段：按 PRD 验收标准实现，并登记可复核证据。
+# 阶段值：do
 
-- **科学方法内核**：Do 是"**按 Plan 的预测/假说做小范围、可观测的试验**"——用最小可逆变更把预测落到可测量产物上，并**忠实记录原始观测数据**（不筛选、不粉饰），为 Check 提供可比对事实（对应经典 PDCA 的"do a small-scale test"）。Do 只负责产生证据，不负责判定。
-- **目的**：以最小可逆变更产出满足 AC 的增量，保留 digest 可复核证据。
-- **进入条件**：`meta.phase=do`、PRD 含验收标准、`meta.ontology_role` 是三个专业职责之一、`meta.execution_contract` 四字段完整且 `ontology-ready` 门禁通过。
-- **关键活动**：按 `meta.ontology_role` 读取 `execution_contract` → 执行契约动作 → 运行本体孤岛自检 → 登记 evidence → 生成并登记 `convergence-map` → 提交（如有变更）。
-- **退出**：`meta.phase` → `check`，且 evidence 与收敛映射齐备。
-- **对应流程**：`ontology/process/flow-{plan,do,check,act}.md`。
+这是`pdca-phase`的具名阶段值。字段编码及终态含义由`pdca-phase-status`定义。
+
+动作协议为 ontology:process/flow-do；准入/退出以GATE-01和TRANSITION-01为准。

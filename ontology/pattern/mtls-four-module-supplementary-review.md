@@ -1,23 +1,35 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/mtls-four-module-supplementary-review
 type: pattern
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/mtls-four-module-supplementary-review/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/mtls-four-module-supplementary-review/3.1.0
 summary: 四模块 TLS/mTLS 已 commit 修改补充审查范式
 source_task: T0364
 relations:
-  specializes: [ontology:pattern]
-  guides: [ontology:process/code-review-process]
+  guides:
+  - ontology:process/code-review-process
+  instance_of:
+  - ontology:pattern
 attributes:
-  - name: applicability
-    desc: 多模块合并前对已 commit TLS/mTLS 改动的独立审查
-    constraint: ""
-    testable_signal: 缓冲区总长分配/strtol 全串校验/三态 bool 收敛均通过审查清单
+- name: applicability
+  desc: 多模块合并前对已 commit TLS/mTLS 改动的独立审查
+  constraint: ''
+  testable_signal: 缓冲区总长分配/strtol 全串校验/三态 bool 收敛均通过审查清单
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # 四模块 TLS/mTLS 已 commit 修改补充审查范式（T0364）

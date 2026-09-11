@@ -1,118 +1,34 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/ai-efficiency-ai-execution-and-invocation-contracts
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 执行与调用契约
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/ai-efficiency-ai-execution-and-invocation-contracts/1.0.1
-summary: AI 执行与技能调用合约
-domain:
-- ontology:domain/ai-efficiency
+aliases:
+- knowledge.ai-efficiency.ai-execution-and-invocation-contracts
+source_ids:
+- R0161
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-  - ontology:domain/ai-efficiency
+  instance_of:
+  - ontology:concept/knowledge-artifact
   relates_to:
-  - ontology:concept/pdca
-attributes:
-- name: applicability
-  desc: AI执行与调用契约：capability-protocol 声明的抽象能力可机检
-  constraint: 见正文
-  testable_signal: "运行 grep -q 'capability-protocol' ontology/concept/capability-protocol.md 且 python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
+  - ontology:process/select-task-subgraph
+  - ontology:concept/pdca-execution-contract
+  - ontology:concept/pdca-feedback
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
+# 执行与调用契约
 
----
-schema: pdca.asset/v1
-id: knowledge.ai-efficiency.ai-execution-and-invocation-contracts
-summary: 用独立 execution/invocation contract、公共 resolver 和故障注入提升 AI 工作流的可判定性
-tags: [ai-efficiency, workflow, contracts, evaluation, pdca]
-ontology_roles: [ontology_modeling, ontology_projection, ontology_conformance_verification]
-execution_contract:
-  work_product: 可判定的执行与技能调用合约
-  required_actions: [校验职责, 校验四字段契约, 校验调用权限]
-  constraints: [工具名不承担职责或路径分类]
-  testable_signal: resolver仅消费ontology_role与四字段execution_contract且调用边合法
-phases: [plan, do, check, act]
-source_ids: [R0161]
----
-
-# AI 执行与技能调用合约
-
-## 分层原则
-
-不要把专业职责、具体执行动作和技能调用权限放进同一个事实源：
-
-- **ontology role** 只声明 `ontology_modeling`、`ontology_projection`、`ontology_conformance_verification` 三个专业职责之一。
-- **execution contract** 以 `work_product`、`required_actions`、`constraints`、`testable_signal` 决定工作内容；test-first、切片验证或调研等仅在 `required_actions` 中按需选择。
-- **invocation contract** 只声明用户入口 alias 与调用边；技能名称和 `invocation` 类型继续由 SKILL frontmatter 提供。
-
-职责分离让每一层可以独立故障注入，也避免复制类型字段造成漂移。
-
-## 执行循环
-
-当 `execution_contract.required_actions` 要求代码投射与测试优先时，最小垂直切片按以下顺序执行：
-
-1. 确认预先约定的 Seam。
-2. 写出失败的行为/回归测试。
-3. 做最小实现或修复。
-4. 完成切片后运行定向测试或 typecheck。
-5. 所有切片完成后运行全量验证，再做双轴代码审查。
-
-证据只需记录完成切片的定向验证，以及最终全量验证和审查；不伪造每次微循环的运行回执。顺序应由公共 resolver 验证实际 flow 文档，而不是只检查标题或关键字是否存在。
-
-## 调用权限
-
-- flow 和 automatic skill 只能调用 automatic worker。
-- manual skill 是用户入口，可以委托 automatic worker，但不应成为内部 flow 的直接目标。
-- alias 必须解析到现有 manual entry；entry 文档暴露的 alias 与 contract 必须双向一致。
-- 每一条显式 `$PDCA_HOME/skills/<name>/SKILL.md` 引用都必须有已声明且类型合法的调用边。
-
-将 triage、domain-modeling、handoff 等共享工作抽成 automatic worker，同时保留 manual 薄壳入口，可同时满足用户显式进入和流程自动编排。
-
-## 验证与边界
-
-公共 resolver 应输出稳定错误码；fixture 至少覆盖正常路径、顺序交换、非法 manual edge、未知/stale alias、缺失引用和生命周期 gate 反例。内容 baseline 只能检查成本和断链，不能替代行为合约验证。
-
-这些机制证明的是文档、导航、调用权限和生命周期判断的确定性一致性，不是真实 LLM 成功率、遵循率、token、延迟、成本或多 Agent 效果。后者必须由固定 runner、保留任务集和前后配对指标单独验证。
-
-
-## 时序 — ai-efficiency-ai-execution-and-invocation-contracts 核心流（P0轻量补齐）
-
-```mermaid
-sequenceDiagram
-    participant U as 用户/任务
-    participant O as 本体节点
-    participant V as validate/audit
-    U->>O: 消费 ai-efficiency-ai-execution-and-invocation-contracts
-    O->>V: 触发 AI执行与调用契约：capability
-    V-->>U: testable_signal 通过
-    %% Source: ontology/domain/ai-efficiency-ai-execution-and-invocation-contracts.md:1 + scripts/ontology-validate.py:1
-```
-
-Source: `ontology/domain/ai-efficiency-ai-execution-and-invocation-contracts.md:1` + `scripts/ontology-validate.py:1` + `scripts/audit-ontology-fidelity.py:1`
-
-## 正例
-
-```bash
-# 正例：testable_signal 可执行
-运行 grep -q 'capability-protocol' ontology/concept/capability-protocol.md 且 python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'
-# 命中：含 grep -q / python3 scripts 动词且可回归
-```
-
-## 反例
-
-```bash
-# 反例：泛化signal不可证伪
-# testable_signal: "运行 grep -q 'AI 执行与技能调用合约' ontology/domain/pdca/ai-efficiency-ai-execution-and-invocation-contracts.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-# 错：无可执行动词，无法自动证伪偏离
-# 正确：运行 grep -q 'capability-protocol' ontology/concept/capability...
-```
-
-## 门禁
-
-- **属性门禁**：`testable_signal` 含 `grep -q`/`python3 scripts` 动词，非泛化
-- **溯源门禁**：含 `Source:` 行号
-- **本体校验**：`python3 scripts/ontology-validate.py` 0 issues
+局部技能只能执行当前任务契约允许的动作；入口、输入、输出和失败路径清楚才能减少反复猜测。调用工具成功不等于业务验收通过。

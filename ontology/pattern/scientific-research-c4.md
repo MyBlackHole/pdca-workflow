@@ -1,39 +1,51 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/scientific-research-c4
 type: pattern
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/scientific-research-c4/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/scientific-research-c4/3.1.0
 summary: 科学调研C4支：4层级+4补充图与边缘交叉靶（对齐c4model.com）
 relations:
-  specializes:
-  - ontology:pattern
   guides:
   - ontology:concept/domain-entity
   relates_to:
   - ontology:pattern/research-diagram-methodology
+  instance_of:
+  - ontology:pattern
 attributes:
 - name: four_levels
   desc: C4 4层级
   constraint: L1 Context/L2 Container/L3 Component/L4 Code 每图单层级，不混层
-  testable_signal: 运行 grep -q 'c4' ontology/pattern/scientific-research-c4.md && python3
-    scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'
+  testable_signal: 运行 grep -q 'c4' ontology/pattern/scientific-research-c4.md；文本命中仅证明描述存在，领域行为需另行验证。
+  verification_level: structural
+  evidence_level: structure
 - name: supplementary
   desc: 4补充图
   constraint: dynamic/deployment/landscape/decision 四补充
-  testable_signal: 检查本文件含 'dynamic' 与 'deployment' 且经 validate 通过 且运行 grep -q 'fix'
-    ontology/pattern/scientific-research-c4.md && python3 scripts/ontology-validate.py
-    --ontology-dir ontology 2>&1 | grep -q 'OK'
+  testable_signal: 检查本文件含 'dynamic' 与 'deployment' 且经 validate 通过 且运行 grep -q 'fix' ontology/pattern/scientific-research-c4.md；文本命中仅证明描述存在，领域行为需另行验证。
+  verification_level: structural
+  evidence_level: structure
 - name: edge_target
   desc: 边缘交叉靶
   constraint: 6元以下0交叉，7-12元<3，>12元<5（Purchase et al.）
-  testable_signal: 检查本文件含 'edge' 与 '交叉' 且经 validate 通过，且 graph islands:0 且运行 grep
-    -q 'fix' ontology/pattern/scientific-research-c4.md && python3 scripts/ontology-validate.py
-    --ontology-dir ontology 2>&1 | grep -q 'OK'
+  testable_signal: 检查本文件含 'edge' 与 '交叉' 且经 validate 通过，且 graph islands:0 且运行 grep -q 'fix' ontology/pattern/scientific-research-c4.md；文本命中仅证明描述存在，领域行为需另行验证。
+  verification_level: structural
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # 科学调研C4支

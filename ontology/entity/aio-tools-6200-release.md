@@ -1,34 +1,55 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/aio-tools-6200-release
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/aio-tools-6200-release/1.0.0
-summary: aio-tools 6200/release 快照实体（6.2.0.0-release fe9d4364，14 模块+libs+third_party，488 文件/18.9万 LOC，11 变量双层版本链，xmake 四阶段 CI，fsdeamon↔aio-speedd 主链路+rdbcomm 32/5MB）
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/aio-tools-6200-release/3.1.0
+summary: aio-tools 6200/release 快照实体（6.2.0.0-release fe9d4364，14 模块+libs+third_party，488 文件/18.9万 LOC，11 变量双层版本链，xmake
+  四阶段 CI，fsdeamon↔aio-speedd 主链路+rdbcomm 32/5MB）
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:pattern/scientific-research-methodology
-    - ontology:pattern/research-diagram-methodology
-    - ontology:concept/pdca-task
+  - ontology:pattern/scientific-research-methodology
+  - ontology:pattern/research-diagram-methodology
+  - ontology:concept/pdca-task
 attributes:
-  - name: c4_l2_completeness
-    desc: C4 L2 14 模块+libs+第三方容器覆盖
-    constraint: 覆盖 rpc/fs-backup/fsbackup_kernel/rdbcomm/s3tools/libobk/dmsbtex/xbsa/bwlimit 等14 模块+libs+third_party 的容器边界与依赖拓扑，mermaid 可渲染且每图1 Source
-    testable_signal: "运行 grep -q 'C4 L2' records/T2028-0904-research-aio-tools-6200-release-v2/research-report.md 且 grep -q 'C4Container' ontology/entity/aio-tools-6200-release.md 命中且 grep -c '```mermaid' ontology/entity/aio-tools-6200-release.md | awk '{exit !($1>=3)}'"
-  - name: version_chain_closure
-    desc: 11 变量双层版本链闭环
-    constraint: xmake.lua 11 变量→version.h.in/log.in→build/version.h/log+*.version→tools-versions.txt 的声明-模板-生成-同步链路可重跑，fsdaemon_version=rpc_version 同轨显式
-    testable_signal: "运行 grep -q 'fsdaemon_version = rpc_version' /home/black/Public/aio/aio-tools/6200/release/xmake.lua 且 cat /home/black/Public/aio/aio-tools/6200/release/build/version.log | grep -q 'rpc \"3.6.4.19\"' 且 grep -q 'version_chain' ontology/entity/aio-tools-6200-release.md 命中"
-  - name: rdbcomm_plugin_contract
-    desc: rdbcomm 32 槽/5MB 插件契约与状态机
-    constraint: MAX_PLUGINS 32 槽位 freelist、5MB 消息上限、module_t 四回调生命周期与 handle_mange 句柄池可建模，状态机 mermaid 可渲染
-    testable_signal: "运行 grep -q 'MAX_PLUGINS 32' /home/black/Public/aio/aio-tools/6200/release/rdbcomm/module.h 且 grep -q 'RDBCOMM_MAX_MSG_LENGTH' /home/black/Public/aio/aio-tools/6200/release/rdbcomm/rdbcomm.h 且 grep -q 'stateDiagram' ontology/entity/aio-tools-6200-release.md 命中"
+- name: c4_l2_completeness
+  desc: C4 L2 14 模块+libs+第三方容器覆盖
+  constraint: 覆盖 rpc/fs-backup/fsbackup_kernel/rdbcomm/s3tools/libobk/dmsbtex/xbsa/bwlimit 等14 模块+libs+third_party
+    的容器边界与依赖拓扑，mermaid 可渲染且每图1 Source
+  testable_signal: 运行 grep -q 'C4 L2' records/T2028-0904-research-aio-tools-6200-release-v2/research-report.md 且
+    grep -q 'C4Container' ontology/entity/aio-tools-6200-release.md 命中且 grep -c '```mermaid' ontology/entity/aio-tools-6200-release.md
+    | awk '{exit !($1>=3)}'
+  evidence_level: structure
+- name: version_chain_closure
+  desc: 11 变量双层版本链闭环
+  constraint: xmake.lua 11 变量→version.h.in/log.in→build/version.h/log+*.version→tools-versions.txt 的声明-模板-生成-同步链路可重跑，fsdaemon_version=rpc_version
+    同轨显式
+  testable_signal: 运行 grep -q 'fsdaemon_version = rpc_version' /home/black/Public/aio/aio-tools/6200/release/xmake.lua
+    且 cat /home/black/Public/aio/aio-tools/6200/release/build/version.log | grep -q 'rpc "3.6.4.19"' 且 grep -q 'version_chain'
+    ontology/entity/aio-tools-6200-release.md 命中
+  evidence_level: structure
+- name: rdbcomm_plugin_contract
+  desc: rdbcomm 32 槽/5MB 插件契约与状态机
+  constraint: MAX_PLUGINS 32 槽位 freelist、5MB 消息上限、module_t 四回调生命周期与 handle_mange 句柄池可建模，状态机 mermaid 可渲染
+  testable_signal: 运行 grep -q 'MAX_PLUGINS 32' /home/black/Public/aio/aio-tools/6200/release/rdbcomm/module.h 且
+    grep -q 'RDBCOMM_MAX_MSG_LENGTH' /home/black/Public/aio/aio-tools/6200/release/rdbcomm/rdbcomm.h 且 grep -q 'stateDiagram'
+    ontology/entity/aio-tools-6200-release.md 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # aio-tools 6200/release 快照实体

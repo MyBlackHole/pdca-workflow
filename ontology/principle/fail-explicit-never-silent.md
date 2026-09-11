@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:principle/fail-explicit-never-silent
 type: principle
 layer: Knowledge
@@ -7,20 +7,35 @@ status: active
 summary: 显式失败禁止静默原则
 source_task: T0508
 relations:
-  specializes: [ontology:principle]
   relates_to:
   - ontology:domain/core-fsck-interactive-error-handling
   - ontology:domain/core-sb-error-persistence-display
   - ontology:domain/core-checksum-negotiation-narrow
+  instance_of:
+  - ontology:principle
 attributes:
-  - name: applicability
-    desc: 错误上报、免校验快路、未知输入处理
-    constraint: ""
-    testable_signal: 运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查源节点 core-fsck-interactive-error-handling 存在
-  - name: violations
-    desc: 违反本原则的典型后果
-    constraint: ""
-    testable_signal: 通读正文违反节，确认每条后果有源节点依据且可在引用代码中有对应实现
+- name: applicability
+  desc: 错误上报、免校验快路、未知输入处理
+  constraint: ''
+  testable_signal: 抽查源节点 core-fsck-interactive-error-handling 存在
+  evidence_level: unclassified
+- name: violations
+  desc: 违反本原则的典型后果
+  constraint: ''
+  testable_signal: 通读正文违反节，确认每条后果有源节点依据且可在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # 显式失败禁止静默

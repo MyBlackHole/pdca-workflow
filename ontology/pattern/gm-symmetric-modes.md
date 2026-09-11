@@ -1,80 +1,47 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/gm-symmetric-modes
 type: pattern
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/gm-symmetric-modes/1.0.0
-summary: 对称模式选型模式：按认证/随机访问/盘加密三力权衡 ECB/CBC/CTR/XTS/GCM/CCM
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/gm-symmetric-modes/3.1.0
+summary: 模式选型研究边界：先固定协议与支持证据
 relations:
-  specializes:
-  - ontology:pattern
   guides:
   - ontology:domain/encryption-modes
   - ontology:domain/gm-algorithm-suite
   relates_to:
   - ontology:domain/backup-crypto-gm-support-surfaces
+  instance_of:
+  - ontology:pattern
 attributes:
-- name: decision_coverage
-  desc: 三力决策覆盖（是否需AEAD/是否需随机访问/是否盘加密）
-  constraint: 须覆盖 ECB(禁用)/CBC(串行需HMAC)/CTR(并行需HMAC)/XTS(盘加密)/GCM(AEAD一体)/CCM(可替) 的判定路径
-  testable_signal: "运行 grep -q '是否需认证' ontology/pattern/gm-symmetric-modes.md && grep -q '盘.*加密' ontology/pattern/gm-symmetric-modes.md && grep -q 'GCM' ontology/pattern/gm-symmetric-modes.md"
-- name: gcm_completeness
-  desc: GCM/CCM 的 AEAD 一体性与 IV 唯一性约束
-  constraint: 须含 GCM(CCM 为 AEAD，IV/nonce 不可重用，ZFS 12B 约束为实例)
-  testable_signal: "运行 grep -q 'AEAD' ontology/pattern/gm-symmetric-modes.md && grep -q '不可重用' ontology/pattern/gm-symmetric-modes.md"
+- name: source_binding
+  desc: 导航不构成算法或产品实现证据
+  constraint: 以对应模式的固定来源、任务适用范围和真实测试为准
+  testable_signal: 检查claim-review来源与固定版本；向量见tests/crypto-regression.md，链接存在只作结构检查
+  evidence_level: source
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
-# 对称模式选型模式
+# 对称模式选型：任务需要决定的内容
 
-## 上下文
+本节点仅组织选型问题，不发布未经核验的硬件能力或性能排序。旧版决策图中的模式归属和绝对化判定撤回，原文保留在v3归档/补丁。
 
-存储或传输场景需为 `SM4/AES` 等分组密码选择工作模式，面临 `认证 / 并行 / 随机访问 / 填充 / IV` 五力权衡；`GM/T 0018` 的 `SDF` 版本差异（`2012` 仅 `ECB/CBC`，`2023` 增 `GCM`）进一步约束可选集。
+选型任务首先固定数据访问和认证单位、兼容协议、持久化布局、nonce生命周期、密钥管理、允许副作用及威胁边界。再从[模式索引](../domain/core/encryption-modes.md)选择候选，核验具体标准与构建支持，使用正反向互通测试决定是否符合目标。
 
-## 问题
+GCM/CCM不是全部认证加密方案的穷举。XTS固定key/tweak/plaintext会重复产生相同密文，不能据此提供版本变化认证。CFB与CBC-CTS不是同一模式。具体纠错依据与向量只保留在对应模式节点，避免这里再建一套oracle。
 
-如何在 `ECB/CBC/CFB/OFB/CTR/XTS/GCM/CCM` 中选择满足 `认证 / 随机访问 / 盘加密` 的模式，避免 `ECB` 泄露、`CBC` 串行、`OFB` 预计算失效及 `GCM/CCM` 的 `IV` 重用灾难。
+GM/T、SDF卡能力、CPU内核加速及私有SM4-ZFS支持需提供准确版本、接口注册、构建和实测证据；此前历史任务号不能当作当前部署支持证明。性能结论必须用目标平台和数据尺寸对比，不凭“并行”推断最佳。相关事实未核验时不写进必需验收条件。
 
-## 解
-
-按三力逐级分流，`认证` 为首要分水岭：
-
-```mermaid
-flowchart TD
-    START([新存储加密选型]) --> Q0{是否需认证 AEAD?}
-    Q0 -- 是 --> Q1{是否需随机访问?}
-    Q1 -- 是 --> GCM[GCM：CTR+GHASH<br/>AEAD 并行 无填充<br/>IV 12B不可重用]
-    Q1 -- 否 --> CCM[CCM：CBC-MAC+CTR<br/>AEAD 串行 需填充]
-    Q0 -- 否 --> Q2{是否盘/扇区加密?}
-    Q2 -- 是 --> XTS[XTS：tweak=LBA<br/>盘加密专用<br/>需双密钥 窃取法]
-    Q2 -- 否 --> Q3{是否流且可预计算?}
-    Q3 -- 是 --> CTR[CTR：计数器<br/>均并行 需HMAC]
-    Q3 -- 否 --> Q4{是否需隐藏相等性?}
-    Q4 -- 是 --> CBC[CBC：链式<br/>加密串行 需HMAC]
-    Q4 -- 否 --> ECB[ECB：独立块<br/>禁用 泄露相等性]
-```
-
-`GCM`（`CTR+GHASH` 并行）与 `CCM`（`CBC-MAC+CTR` 认证串行）为唯二 `AEAD` 一体方案；`XTS`（`tweak=LBA` 窃取法）为盘加密专用无需额外存储；`CTR` 为并行最佳但需外加 `HMAC`；`CBC/CFB/OFB` 为流/链式，无认证且分别串行。
-
-## 后果
-
-- `ECB` 任何存储场景禁用（同明文同密文）；`CBC/CFB/OFB` 无认证，需 `HMAC` 补且 `OFB` 完全串行、`CBC` 加密串行。
-- `GCM/CCM` 的 `IV/nonce` 绝不可重用（`GCM` 重用泄露 `GHASH` 密钥，`ZFS` 为 `12B` 约束）；`CCM` 认证串行略低于 `GCM`。
-- `2012` 版 `SDF` 仅 `ECB/CBC`，若目标仅 `GCM`（如 `ZFS SM4 GCM-only`）则存量卡零收益，需 `2023` 版 `SGD_SM4_GCM` 或 `CPU sm4-ce-gcm`。
-
-## 实例
-
-| 场景 | 推荐 | 理由 |
-|------|------|------|
-| 块存储 `AEAD` 随机访问 | **GCM** | 唯一 `AEAD` 并行一体，现货 `sm4-ce-gcm` |
-| 全盘 `FDE` | **XTS**（+可选 `HMAC`） | `tweak=LBA` 隐藏同扇区相等性 |
-| 文件名/小流 | `CFB/CTS` | 流无填充 |
-| 存量卡 `CBC` | `CBC+HMAC` | 成熟但串行 |
-
-## 门禁
-
-- `grep -q '是否需认证' ontology/pattern/gm-symmetric-modes.md && grep -q 'GCM' ontology/pattern/gm-symmetric-modes.md && grep -q 'AEAD' ontology/pattern/gm-symmetric-modes.md`
-- `python3 scripts/ontology-validate.py --ontology-dir ontology` 0 issues
+采用前填写claim-review；本页仍是unverified研究导航，不自动认证全部链接或特定产品。

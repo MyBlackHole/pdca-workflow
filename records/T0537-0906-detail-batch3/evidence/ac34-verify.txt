@@ -1,8 +1,0 @@
- pdca/tasks/archive/0906-study-btreegc/report.md    | 551 ++++++++++++++-
- pdca/tasks/archive/0906-study-datamove/report.md   | 527 +++++++++++++-
- pdca/tasks/archive/0906-study-quota/report.md      | 309 +++++++-
- pdca/tasks/archive/0906-study-reconcile/report.md  | 785 ++++++++++++++++++++-
- pdca/tasks/archive/0906-study-superblock/report.md | 383 +++++++++-
- 5 files changed, 2418 insertions(+), 137 deletions(-)
-对话交付：5篇摘要随T0537汇报输出，全文位置为pdca/tasks/archive/0906-study-{btreegc,reconcile,superblock,datamove,quota}/report.md
-指南增补：5个指南节点各加指向扩充版行，见guide-diff.txt

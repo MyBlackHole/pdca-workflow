@@ -1,30 +1,34 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/pdca-acceptance-criterion
 type: concept
+semantic_kind: class
 layer: Knowledge
-summary: PDCA 验收标准（AC）元概念
 status: active
+authority: normative
+revision: 3.0.0
+summary: 验收条件与判断层级
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/pdca-acceptance-criterion/1.0.2
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
   - ontology:concept/entity
-  testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-acceptance-criterion' ontology/ tests/ scripts/ | wc -l) -ge 9"
+  relates_to:
+  - ontology:concept/pdca-evidence
+  - ontology:concept/pdca-verdict
 ---
-# pdca-acceptance-criterion
 
-验收标准（AC）元概念。PRD 中以 `- [ ] AC-x:` 复选框声明的可验证条件。
+# 验收条件与判断层级
 
-- **含义**：每个 AC 必须能被至少一条 evidence 映射支撑；`conclusion.md` 中每个 AC 判定行须可 grep 到证据 ID。
-- **理由**：把"完成"定义为可复核的证据映射，而非主观声称。
+每项验收条件至少包含稳定 `id`、期望、必须性、验证方法、产物/规则来源与失败判据。通过条件应在 Plan 中明确，不能在看到结果后倒推。
 
-## AC 章节映射规则（来源报告产物）
+区分三个层级：结构检查验证字段/引用是否存在；行为检查验证真实动作及结果；授权检查验证真实用户/宿主授权。结构通过不能替代行为发生，模型描述不能替代授权。
 
-- **逐章映射**：当 `execution_contract.work_product` 是基于来源的报告时，AC 必须逐源文档章节编号映射（如“方案§3.2→AC-2”），每个 AC 注明覆盖的源章节；`conclusion.md` 中 AC 判定行须能 grep 到源章节号。
-- **禁用不可判定词**：AC正文禁用“完整、齐全、全面、充分”。
-  - 坏例子：“落改点清单完整”。
-  - 好例子：“S3落改点覆盖方案§3.2三态与§3.8清单表达”。
-- **动因**：T2107的AC-2教训（来源records/T2107-0909-guomi-storage-research/conclusion.md）：AC-2“落改点清单”表述不可判定，复核依赖人工解读源章节，故新增本规则。
+结果采用 `pass`、`fail`、`unknown`、`not_run`，每项写理由。pass 必须指向真实、与当前基线相关的证据；unknown/not_run 不是 pass。测试全部被跳过、空证据集、只检查自身文字时不得宣布业务通过。
+
+具体字段见任务模板；最终聚合规则由 `pdca-verdict` 定义。
+
+## 任务单元测试绑定
+
+每条必须AC关联NODE-01约束、TEST-01 suite与CASE-01案例、真实run及版本。模板、文字正反例和结构检查不能替代行为测试；对error/blocked聚合unknown，not_run仍未运行。内部组合和根节点同样有自己的必需案例。

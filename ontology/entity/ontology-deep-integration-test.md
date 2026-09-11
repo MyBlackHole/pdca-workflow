@@ -1,23 +1,31 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/ontology-deep-integration-test
 type: entity
+semantic_kind: class
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: ontology-deep-integration-test
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ontology-deep-integration-test/1.0.0
-summary: 测试派生硬化（testable_signal 三模式自动生成测试骨架，与测试策略强绑定）
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/entity
+  relates_to:
+  - ontology:process/select-task-subgraph
+  - ontology:concept/pdca-task
+  - ontology:concept/pdca-evidence
+  - ontology:concept/pdca-continuous-improvement
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
-# 测试派生硬化
+# ontology-deep-integration-test
 
-叶子实体2：打通本体到测试的自动链路。
-
-- 依据 `ontology:pattern/testable-signal-to-test-derivation` 三模式（属性断言/契约测试/收敛验证），新增 `scripts/ontology_test_scaffold.py --node ontology:xxx`
-- 输入本体节点 `attributes[].testable_signal`，输出 `tests/test_<slug>.py` 骨架与映射表
-- 与 `ontology:domain/skill-testing-strategy` 强绑定：`testing-strategy` 生成测试计划时必须引用本体信号源
+从属性约束派生可观察测试，区分结构断言、真实行为、授权与效果；生成测试设计不是执行通过。

@@ -1,66 +1,39 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-prototype
-name: prototype
-summary: Create prototypes to validate assumptions before full implementation.
-description: Build a throwaway prototype to answer a design question — a single shareable HTML file for state/logic questions, or several radically different UI variations toggleable from one route. Capture on a throwaway branch. Use when the question is "does this design feel right?" or "what should this look like?".
-invocation: model-invoked
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 可丢弃的验证性原型
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-prototype/1.0.0
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-    - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
   relates_to:
-    - ontology:concept/design-tree
-    - ontology:concept/domain-model
-    - ontology:domain/skill-research
-    - ontology:concept/skill-mechanics
-  testable_signal: "运行 grep -q 'Prototype — 模型驱动的快速原型验证' ontology/domain/pdca/skill-prototype.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:concept/pdca-execution-contract
+  - ontology:concept/pdca-evidence
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
+# 可丢弃的验证性原型
 
-# Prototype — 模型驱动的快速原型验证
+## 适用条件
 
-model-invoked：AI 自动构建 throwaway 原型回答设计问题，捕获到 throwaway branch。
+当前执行契约包含本动作时按需读取；本技能不拥有阶段转换或授权权力。
 
-## 触发条件
+## 动作与判据
 
-当问题为 "does this design feel right?" 或 "what should this look like?" 时触发。
+原型只验证具名假设，明确非生产范围、输入和退出判据。保存实际观测与无法覆盖的情况；不要将原型可运行直接等同于可生产发布。
 
-## Pick a branch
+## 失败处理
 
-- **Logic / state model** → build a single self-contained HTML file (plain HTML/CSS/JS, no build, no server) exercising the core state machine. Non-developers can open by double-click and drive in their own domain language: labelled state panel, always-available free-play buttons, tabbed guided walkthroughs.
-- **UI / look & feel** → generate several radically different UI variations on a single route, switchable via a URL param.
-
-## Rules
-
-1. **Clearly marked as throwaway.** Locate next to the code it's prototyping; name so it's obviously not production.
-2. **One command to run.** Use the project's existing runner.
-3. **No persistence.** State lives in memory unless the question itself is about persistence.
-4. **No polish.** No tests, no error handling beyond runnability, no abstractions.
-5. **Surface state.** After every action (logic) or on every variant switch (UI), show the full relevant state.
-6. **Capture on throwaway branch.** Commit prototype to `prototype/<name>` throwaway branch (out of main) and leave a context pointer on the implementation issue. Do not delete — the prototype is captured as runnable evidence.
-7. **Answer persists.** Verdict + question captured durably in issue/ADR/commit.
-
-## Throwaway Branch 策略
-
-- **分支命名**：`prototype/<name>`，明确标识为原型而非生产代码
-- **不在 main 上修改**：所有原型提交到 throwaway branch
-- **Context pointer**：在实现问题上留下 context pointer，关联原型证据
-- **自动清理**：原型验证完成后，throwaway branch 可保留作为证据，但不合并到 main
-
-## Exit
-
-Question answered and validated decisions folded into real code. Prototype committed to throwaway branch with context pointer.
-
-## 已知坑
-
-- throwaway 原型回答完设计问题即弃，勿演化为生产代码——它未经过生产级审查。
-- 原型不再删除：捕获为可运行证据在 `prototype/<name>` throwaway branch 上，在实现问题上留下 context pointer。
-- model-invoked 模式下，AI 自动构建原型，用户只需验证结果。
+缺必需输入、来源或工具时报告具体缺项及影响；未执行与未知结果不得写成成功。

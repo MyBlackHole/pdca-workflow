@@ -1,20 +1,33 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/sm4-s3-encryption
 type: pattern
 layer: Knowledge
 status: active
 summary: SM4 S3 对象存储加密子模式（s3file 工具 SM4 加密上传）
 relations:
-  specializes:
-    - ontology:pattern/sm4-storage-encryption
   relates_to:
-    - ontology:entity/aio-tools-6200-release
+  - ontology:entity/aio-tools-6200-release
+  - ontology:pattern/sm4-storage-encryption
+  instance_of:
+  - ontology:pattern
 attributes:
-  - name: s3_sm4_upload
-    desc: S3 对象存储 SM4 加密上传
-    constraint: S3 对象存储的 s3file 工具 SM4 加密上传，对象落盘前加密
-    testable_signal: "运行 grep -q 's3file' /home/black/Public/aio/aio-tools/6200/F/139/备份传输存储国密SM4全流程加密方案.md 且 grep -q 'S3' /home/black/Public/aio/aio-tools/6200/F/139/备份传输存储国密SM4全流程加密方案.md 命中"
+- name: s3_sm4_upload
+  desc: S3 对象存储 SM4 加密上传
+  constraint: S3 对象存储的 s3file 工具 SM4 加密上传，对象落盘前加密
+  testable_signal: 运行 grep -q 's3file' /home/black/Public/aio/aio-tools/6200/F/139/备份传输存储国密SM4全流程加密方案.md 且 grep
+    -q 'S3' /home/black/Public/aio/aio-tools/6200/F/139/备份传输存储国密SM4全流程加密方案.md 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # SM4 S3 对象存储加密子模式

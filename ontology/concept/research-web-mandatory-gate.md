@@ -1,51 +1,24 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/research-web-mandatory-gate
 type: concept
+semantic_kind: class
 layer: Knowledge
 status: active
+authority: normative
+revision: 2.0.0
+summary: 外部检索的条件与边界
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-09
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/research-web-mandatory-gate/1.0.1
-summary: research强制网络查询门禁规则（参考资料≥2 URL且正文≥1 http Source）
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
-  - ontology:concept/pdca-task
+  - ontology:concept/entity
   relates_to:
+  - ontology:concept/research-first-gate
   - ontology:domain/skill-research
-  - ontology:domain/skill-web-research
-  - ontology:concept/pdca-gate-do
-attributes:
-- name: url_count_gate
-  desc: research-report须含≥2 URL且正文≥1 http Source，否则阻断
-  constraint: 参考资料节≥2 URL，正文Source行≥1 httpURL；内部纯代码审查可豁免，需结论论证并经Grill确认
-  testable_signal: 运行 python3 scripts/check-research-web-evidence.py --report <research-report.md> 断言缺URL返回非零、有URL返回零，且运行 pytest tests/test_research_web_evidence.py 断言3 passed
-- name: skill_flow_sync
-  desc: 技能与流程文字已同步强制条款
-  constraint: skill-research网络门禁段与flow-do的execution_contract调研动作条款含T2081要求且validate通过
-  testable_signal: 运行 grep -q T2081 ontology/domain/pdca/skill-research.md ontology/process/flow-do.md 断言命中，且运行 python3 scripts/ontology-validate.py --ontology-dir ontology 断言返回OK
 ---
 
-# research强制网络查询门禁规则（research-web-mandatory-gate）
+# 外部检索的条件与边界
 
-来源：T2081，记录 `records/T2081-0909-research-web-mandatory-gate/conclusion.md`。复用覆盖T2082-0909-web-gate-script-test/T2083-0909-web-gate-skill-flow。Grounding：`scripts/check-research-web-evidence.py:1-40`、`tests/test_research_web_evidence.py:1-50`。
-
-## 背景问题
-research只卡mermaid/Source，web查询靠自觉，T2072旧报告0 URL仍通过。
-
-## 核心机制
-1. URL计数门禁：参考资料≥2 URL且正文≥1 http Source，`check-research-web-evidence.py`执行。（依据：`ontology:domain/skill-research`）
-2. 技能流程同步：`skill-research` 网络门禁与 `flow-do` 的契约化调研动作保持一致。（依据：`ontology:process/flow-do`）
-3. 豁免：内部纯代码审查可豁免，需结论论证并经Grill确认。（依据：`ontology:domain/skill-web-research`）
-
-## 适用边界
-适用于契约选择 `research` 工具或把调研报告声明为 `work_product` 的任务；旧报告不追溯。
-
-## 违反后果
-缺URL的research-report被门禁拒收，Do→Check不放行。
-
-## 关联导航
-- 技能：`ontology:domain/skill-research`、`ontology:domain/skill-web-research`
-- 准入：`ontology:concept/pdca-gate-do`
-- 执行：`ontology:process/flow-do`
+是否需要网络由用户要求、事实时效和契约决定，不统一要求两个URL。内部代码任务可只依据获授权的源码。要求检索而宿主无能力时如实记录缺失；实际访问和引用相关性优先于链接计数。

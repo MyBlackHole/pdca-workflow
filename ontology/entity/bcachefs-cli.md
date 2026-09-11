@@ -1,34 +1,60 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/bcachefs-cli
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/bcachefs-cli/1.0.0
-summary: bcachefs CLI 实体 — COMMAND_GROUPS 8 组 >35 leaf、CmdKind 三形态（typed/raw/group）与 dispatch/symlink 及 Cargo/Make/DKMS 三构建
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/bcachefs-cli/3.1.0
+summary: bcachefs CLI 实体 — COMMAND_GROUPS 8 组 >35 leaf、CmdKind 三形态（typed/raw/group）与 dispatch/symlink 及 Cargo/Make/DKMS
+  三构建
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/production-ontology-scientific-gate
-    - ontology:pattern/scientific-research-methodology
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/production-ontology-scientific-gate
+  - ontology:pattern/scientific-research-methodology
 attributes:
-  - name: command_groups_and_cmdkind
-    desc: COMMAND_GROUPS 8 组 >35 leaf（CmdDef { name/about/kind } + CmdKind typed/raw/group + typed_cmd!/raw_cmd! 宏）与 Group 子命令分发可测
-    constraint: 覆盖 src/commands/mod.rs:12 的 CmdDef/CmdKind + 52 typed_cmd! + 70 raw_cmd! + 234 COMMAND_GROUPS 8 组 + 133 dispatch_with_path 按 Group 递归分发 + 209 defers_shrinkers 对 mount/fusemount，经 C4 L3 与决策树可一图建模
-    testable_signal: "运行 grep -q 'COMMAND_GROUPS' /home/black/Documents/bcachefs-tools/src/commands/mod.rs && grep -q 'CmdKind' /home/black/Documents/bcachefs-tools/src/commands/mod.rs && grep -q 'typed_cmd' /home/black/Documents/bcachefs-tools/src/commands/mod.rs 且 grep -q 'cli' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: dispatch_and_symlink_shunt
-    desc: dispatch 总线（dispatch/matches/clap_command/build_cli）与 symlink 分流（mkfs/fsck/mount/fusemount → format/fsck/mount/fusemount）及 usage 分组打印可测
-    constraint: 覆盖 src/bcachefs.rs:263 的 main() 中 symlink 判 mkfs/fsck/mount/fusemount + missing/--help 分支 + raid_init + defers_shrinkers + 未知命令→usage 分组打印，经时序与状态机可一图建模
-    testable_signal: "运行 grep -q 'symlink' /home/black/Documents/bcachefs-tools/src/bcachefs.rs && grep -q 'dispatch' /home/black/Documents/bcachefs-tools/src/commands/mod.rs && grep -q 'bcachefs_usage' /home/black/Documents/bcachefs-tools/src/bcachefs.rs 且 grep -q 'cli' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: cargo_make_dkms_tri_build
-    desc: Cargo workspace（resolver2 + members 6）与 Make（VERSION:= + DKMSDIR + SRCS→libbcachefs.a）及 DKMS（dkms.conf/Make + 6.16）三构建联动可测
-    constraint: 覆盖 Cargo.toml:1 [workspace] resolver2 + members [.,fs,shim,bindgen,docgen] + Makefile:13 VERSION:=git describe --dirty + 22 DKMSDIR + 240 SRCS→AR + bch_bindgen/build.rs:404 x-macro + fs/build.rs:1 watch_dir + -rdynamic，经 C4 L3 与时序可一图建模
-    testable_signal: "运行 grep -q 'workspace' /home/black/Documents/bcachefs-tools/Cargo.toml && grep -q 'VERSION:=' /home/black/Documents/bcachefs-tools/Makefile && grep -q 'bch_bindgen' /home/black/Documents/bcachefs-tools/Cargo.toml 且 grep -q 'cli' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
+- name: command_groups_and_cmdkind
+  desc: COMMAND_GROUPS 8 组 >35 leaf（CmdDef { name/about/kind } + CmdKind typed/raw/group + typed_cmd!/raw_cmd! 宏）与
+    Group 子命令分发可测
+  constraint: 覆盖 src/commands/mod.rs:12 的 CmdDef/CmdKind + 52 typed_cmd! + 70 raw_cmd! + 234 COMMAND_GROUPS 8 组
+    + 133 dispatch_with_path 按 Group 递归分发 + 209 defers_shrinkers 对 mount/fusemount，经 C4 L3 与决策树可一图建模
+  testable_signal: 运行 grep -q 'COMMAND_GROUPS' /home/black/Documents/bcachefs-tools/src/commands/mod.rs && grep
+    -q 'CmdKind' /home/black/Documents/bcachefs-tools/src/commands/mod.rs && grep -q 'typed_cmd' /home/black/Documents/bcachefs-tools/src/commands/mod.rs
+    且 grep -q 'cli' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: dispatch_and_symlink_shunt
+  desc: dispatch 总线（dispatch/matches/clap_command/build_cli）与 symlink 分流（mkfs/fsck/mount/fusemount → format/fsck/mount/fusemount）及
+    usage 分组打印可测
+  constraint: 覆盖 src/bcachefs.rs:263 的 main() 中 symlink 判 mkfs/fsck/mount/fusemount + missing/--help 分支 + raid_init
+    + defers_shrinkers + 未知命令→usage 分组打印，经时序与状态机可一图建模
+  testable_signal: 运行 grep -q 'symlink' /home/black/Documents/bcachefs-tools/src/bcachefs.rs && grep -q 'dispatch'
+    /home/black/Documents/bcachefs-tools/src/commands/mod.rs && grep -q 'bcachefs_usage' /home/black/Documents/bcachefs-tools/src/bcachefs.rs
+    且 grep -q 'cli' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: cargo_make_dkms_tri_build
+  desc: Cargo workspace（resolver2 + members 6）与 Make（VERSION:= + DKMSDIR + SRCS→libbcachefs.a）及 DKMS（dkms.conf/Make
+    + 6.16）三构建联动可测
+  constraint: 覆盖 Cargo.toml:1 [workspace] resolver2 + members [.,fs,shim,bindgen,docgen] + Makefile:13 VERSION:=git
+    describe --dirty + 22 DKMSDIR + 240 SRCS→AR + bch_bindgen/build.rs:404 x-macro + fs/build.rs:1 watch_dir + -rdynamic，经
+    C4 L3 与时序可一图建模
+  testable_signal: 运行 grep -q 'workspace' /home/black/Documents/bcachefs-tools/Cargo.toml && grep -q 'VERSION:='
+    /home/black/Documents/bcachefs-tools/Makefile && grep -q 'bch_bindgen' /home/black/Documents/bcachefs-tools/Cargo.toml
+    且 grep -q 'cli' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Bcachefs CLI（命令行框架）
@@ -149,14 +175,8 @@ bcachefs dump --help              // Typed: clap 派生 help 按 COMMAND_GROUPS 
 // 正确：format 手工解析按裸 path 边界累积 DevOpts（format.rs:1 注释）
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' ontology/entity/bcachefs-cli.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' ontology/entity/bcachefs-cli.md` ≥3 且每图含 `Source: /home/black/Documents/bcachefs-tools/... file:line`
-- **正文门禁**：`wc -l ontology/entity/bcachefs-cli.md` ≥80 且含 `决策树` `正例` `反例` `门禁`
-- **属性门禁**：`attributes` ≥3 且每条 `testable_signal` 含 `grep -q` 且双源可回归
-- **本体校验**：`python3 scripts/ontology-validate.py` 0 issues 且 `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/bcachefs-cli --out /tmp/x.py` 可产
-- **Gate 门禁**：`python3 scripts/production-ontology-gate.py --node ontology:entity/bcachefs-cli` GATE OK
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `/home/black/Documents/bcachefs-tools/src/commands/mod.rs:12` + `/home/black/Documents/bcachefs-tools/src/bcachefs.rs:263` + `/home/black/Documents/bcachefs-tools/Cargo.toml:1`

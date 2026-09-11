@@ -1,61 +1,38 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-code-review-checklist
-name: code-review-checklist
-summary: Conduct code reviews, review pull requests, and perform quality assurance.
-description: Use when conducting code reviews, reviewing pull requests, or performing quality assurance on C, C++, Rust, Go, or Python code
-invocation: manual
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 审查覆盖清单
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-code-review-checklist/1.0.0
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-    - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
   relates_to:
-    - ontology:concept/domain-modeling
-    - ontology:concept/triage
-  testable_signal: "运行 grep -q 'Code Review Checklist' ontology/domain/pdca/skill-code-review-checklist.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:concept/pdca-evidence
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
+# 审查覆盖清单
 
----
-name: code-review-checklist
-description: Use when conducting code reviews, reviewing pull requests, or performing quality assurance on C, C++, Rust, Go, or Python code
----
+## 适用条件
 
-# Code Review Checklist
+当前执行契约包含本动作时按需读取；本技能不拥有阶段转换或授权权力。
 
-## 通用审查维度
+## 动作与判据
 
-**正确性**: 是否覆盖了所有边界条件？错误路径有处理吗？并发安全吗？
-**安全性**: 输入有校验吗？SQL 注入/XSS/路径穿越防护？敏感信息不落日志？
-**性能**: 有无 N+1 查询？有无不必要的内存分配？热点路径能 benchmark 吗？
-**可维护性**: 命名自文档化？函数职责单一？无死代码/调试代码？
-**错误处理**: 错误被吞掉了吗？调用方能否区分错误类型？资源正确释放？
+按实际变更选择检查面：输入验证、错误/取消路径、资源所有权、并发与顺序、边界/溢出、兼容性、可观测性和测试。检查不适用项说明理由，不为填满表声称已执行所有验证。
 
-## 严重度
-- 🔴 **Blocking**: 功能缺失/安全漏洞/数据丢失 — 必须修复
-- 🟠 **Warning**: 代码异味/缺少注释/风格不一致 — 建议修复
-- 🟢 **Info**: 非功能性建议/可优化项 — 记录即可
+## 失败处理
 
-## 审查意见格式
-```
-({severity}) {file}:{line} — {问题说明}
-
-{建议的修改}
-```
-
-## 审查前自检
-- [ ] 功能完整（对照 prd.md 验收标准）
-- [ ] 编译通过，测试通过
-- [ ] 无 TODO/FIXME/调试代码
-- [ ] 无硬编码密钥/敏感信息
-
-## 已知坑
-
-- checklist 必须逐项过并给出依据；跳过或"通过"无依据的审查无价值。
+缺必需输入、来源或工具时报告具体缺项及影响；未执行与未知结果不得写成成功。

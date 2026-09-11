@@ -1,2 +1,0 @@
-{"id":"complexity-report","file":"research-report.md","kind":"document","size":2661,"digest":"sha256:088d704fd9a2d9ec0ff495a647b2fbbf850df35e43635abca9b48445dbe8d2fe","at":"2026-09-09T16:03:35+08:00","criteria":["AC-1","AC-2","AC-3"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":574,"digest":"sha256:0b9775510a2908d00cf1b7c1ba489a7ad63be0095389c95e387c9ee91203300e","at":"2026-09-09T16:03:36+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

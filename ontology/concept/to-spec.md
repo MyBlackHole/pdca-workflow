@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/to-spec
 name: To Spec
 summary: 将对话转化为规格说明：grilling 输出的结构化捕获
@@ -8,11 +8,22 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/to-spec/1.0.0
+dcterms_modified: '2026-09-13'
+owl_versionIRI: http://pdca.local/ontology/to-spec/3.4.6
 relations:
   specializes:
-    - ontology:concept/pdca-task
+  - ontology:concept/process
+  guides:
+  - ontology:concept/pdca-task
+revision: 3.4.6
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # To Spec
@@ -52,3 +63,7 @@ relations:
 
 spec 是 grilling 输出的捕获，不是新创建的文档；spec 的质量取决于 grilling 的深度。
 
+
+## 类别与采用边界
+
+本节点定义规格整理方法，不是完整PDCA任务子类。本文讨论已有讨论到规格的转换，不限制规格只能来自grilling；原需求、依据和确认仍须可追溯。

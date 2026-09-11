@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-userspace-usage-matrix
 type: domain
 layer: Knowledge
@@ -8,19 +8,34 @@ summary: 用量冗余矩阵 + degraded折算 + EC分组
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 文件系统用量展示、降级折算、纠删配置分组场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 src/commands/fs_usage.rs 在仓库中存在且含 durability_matrix_add 定义"
+  testable_signal: 抽查正文引用的 src/commands/fs_usage.rs 在仓库中存在且含 durability_matrix_add 定义
+  evidence_level: unclassified
 - name: constraints
   desc: 矩阵展示前提
   constraint: 见正文
-  testable_signal: "通读正文约束节，确认动态扩维、缺盘折算、缓存分流三条前提在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，确认动态扩维、缺盘折算、缓存分流三条前提在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # 用量冗余矩阵展示

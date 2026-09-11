@@ -1,7 +1,0 @@
-{"at":"2026-09-09T17:15:00+08:00","source":"task_identity","summary":"created with record identity T2127-0910-uncovered-scripts-purge"}
-{"round":1,"question":"Q1 - 覆盖范围是否含改进环","answer":"不含","recommended":"含改进环（用户否决，仅四阶段流程，FlowIssue链可删）","source":"grilling","at":"2026-09-09T17:35:31+08:00","captured":true,"verified":false}
-{"round":1,"question":"Q2 - 测试引用脚本","answer":"连带删改","recommended":"连带删改同批确认","source":"grilling","at":"2026-09-09T17:35:31+08:00","captured":true,"verified":false}
-{"round":1,"question":"Q3 - 并发在用脚本","answer":"一并裁决","recommended":"排除在外（用户否决，连并发项一起判）","source":"grilling","at":"2026-09-09T17:35:31+08:00","captured":true,"verified":false}
-{"round":2,"question":"分级裁决执行确认","answer":"删除","recommended":"X保留Y连带Z除他人在途删，逐项 blast 半径已呈递","source":"grilling","at":"2026-09-09T17:39:06+08:00","captured":true,"verified":false}
-{"source":"final_confirmation","summary":"grilling已对齐分级裁决（X保留Y连带Z删），blast半径闭环，进入Do","response":"confirmed","at":"2026-09-09T17:44:27+08:00","verified":true}
-{"source":"check_confirmation","summary":"grilling已复核conclusion/verdict支撑充分，verdict confirmed，同意进入Act","response":"confirmed","at":"2026-09-09T17:56:07+08:00","verified":true}

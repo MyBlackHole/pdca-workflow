@@ -1,34 +1,55 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/bcachefs-mount
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/bcachefs-mount/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/bcachefs-mount/3.1.0
 summary: bcachefs Mount 实体 — bdev/handle/ioctl 三层 wrappers 与 degrade 路由及 fstab 集成
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/production-ontology-scientific-gate
-    - ontology:pattern/scientific-research-methodology
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/production-ontology-scientific-gate
+  - ontology:pattern/scientific-research-methodology
 attributes:
-  - name: wrappers_three_layer
-    desc: wrappers 三层（bdev 块设备打开/handle *mut bch_fs 封装/ioctl 类型安全派生）与 sysfs/super_io 可测
-    constraint: 覆盖 src/wrappers/mod.rs 7 模块（bdev/handle/ioctl/super_io/sysfs/sb_display/online_iter）+ handle RAII + ioctl 由 fs/codegen.rs 的 ioctls_gen 派生 + super_io 的 bch2_read_super/write_super，经 C4 L3 与时序可一图建模
-    testable_signal: "运行 grep -q 'wrappers' /home/black/Documents/bcachefs-tools/src/wrappers/mod.rs 且 grep -q 'handle' /home/black/Documents/bcachefs-tools/src/wrappers/handle.rs 且 grep -q 'ioctl' /home/black/Documents/bcachefs-tools/src/wrappers/ioctl.rs 且 grep -q 'mount' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: mount_degrade_and_fstab
-    desc: mount 降级（degraded=very/no）与 fstab/mount.bcachefs.sh 集成可测
-    constraint: 覆盖 mount.rs 的 degraded 选项映射 BCH_DEGRADED_* + bch2_fs_alloc 后 journal_read + recovery 26 passes + mount(2) 与 mount.bcachefs.sh 多设备拼装，经时序与决策树可一图建模
-    testable_signal: "运行 grep -q 'degraded' /home/black/Documents/bcachefs-tools/src/commands/mount.rs 且 grep -q 'bch2_fs_alloc' /home/black/Documents/bcachefs-tools/fs/sb/io.c 且 grep -q 'mount.bcachefs' /home/black/Documents/bcachefs-tools/mount.bcachefs.sh 且 grep -q 'mount' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: fusemount_and_wait_devices
-    desc: fusemount（FUSE 回退）与 wait_devices 等待可测
-    constraint: 覆盖 fusemount.rs 的 fuser 直接对 /dev/fuse（无 libfuse3）+ defers_shrinkers 延迟 shrinker + wait_devices 轮询 /sys/fs/bcachefs，经状态机与正例可一图建模
-    testable_signal: "运行 grep -q 'fusemount' /home/black/Documents/bcachefs-tools/src/commands/fusemount.rs 且 grep -q 'defers_shrinkers' /home/black/Documents/bcachefs-tools/src/commands/mod.rs 且 grep -q 'wait_devices' /home/black/Documents/bcachefs-tools/src/commands/wait_devices.rs 且 grep -q 'mount' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
+- name: wrappers_three_layer
+  desc: wrappers 三层（bdev 块设备打开/handle *mut bch_fs 封装/ioctl 类型安全派生）与 sysfs/super_io 可测
+  constraint: 覆盖 src/wrappers/mod.rs 7 模块（bdev/handle/ioctl/super_io/sysfs/sb_display/online_iter）+ handle RAII
+    + ioctl 由 fs/codegen.rs 的 ioctls_gen 派生 + super_io 的 bch2_read_super/write_super，经 C4 L3 与时序可一图建模
+  testable_signal: 运行 grep -q 'wrappers' /home/black/Documents/bcachefs-tools/src/wrappers/mod.rs 且 grep -q 'handle'
+    /home/black/Documents/bcachefs-tools/src/wrappers/handle.rs 且 grep -q 'ioctl' /home/black/Documents/bcachefs-tools/src/wrappers/ioctl.rs
+    且 grep -q 'mount' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: mount_degrade_and_fstab
+  desc: mount 降级（degraded=very/no）与 fstab/mount.bcachefs.sh 集成可测
+  constraint: 覆盖 mount.rs 的 degraded 选项映射 BCH_DEGRADED_* + bch2_fs_alloc 后 journal_read + recovery 26 passes + mount(2)
+    与 mount.bcachefs.sh 多设备拼装，经时序与决策树可一图建模
+  testable_signal: 运行 grep -q 'degraded' /home/black/Documents/bcachefs-tools/src/commands/mount.rs 且 grep -q 'bch2_fs_alloc'
+    /home/black/Documents/bcachefs-tools/fs/sb/io.c 且 grep -q 'mount.bcachefs' /home/black/Documents/bcachefs-tools/mount.bcachefs.sh
+    且 grep -q 'mount' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: fusemount_and_wait_devices
+  desc: fusemount（FUSE 回退）与 wait_devices 等待可测
+  constraint: 覆盖 fusemount.rs 的 fuser 直接对 /dev/fuse（无 libfuse3）+ defers_shrinkers 延迟 shrinker + wait_devices 轮询
+    /sys/fs/bcachefs，经状态机与正例可一图建模
+  testable_signal: 运行 grep -q 'fusemount' /home/black/Documents/bcachefs-tools/src/commands/fusemount.rs 且 grep
+    -q 'defers_shrinkers' /home/black/Documents/bcachefs-tools/src/commands/mod.rs 且 grep -q 'wait_devices' /home/black/Documents/bcachefs-tools/src/commands/wait_devices.rs
+    且 grep -q 'mount' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Bcachefs Mount（挂载）
@@ -143,14 +164,8 @@ mount.bcachefs /dev/sda:/dev/sdb /mnt -o degraded
 // 正确：fusemount 直写 /dev/fuse，经 fuser crate
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' ontology/entity/bcachefs-mount.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' ontology/entity/bcachefs-mount.md` ≥3 且每图含 `Source: /home/black/Documents/bcachefs-tools/... file:line`
-- **正文门禁**：`wc -l ontology/entity/bcachefs-mount.md` ≥80 且含 `决策树` `正例` `反例` `门禁`
-- **属性门禁**：`attributes` ≥3 且每条 `testable_signal` 含 `grep -q` 且双源可回归
-- **本体校验**：`python3 scripts/ontology-validate.py` 0 issues 且 `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/bcachefs-mount --out /tmp/x.py` 可产
-- **Gate 门禁**：`python3 scripts/production-ontology-gate.py --node ontology:entity/bcachefs-mount` GATE OK
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `/home/black/Documents/bcachefs-tools/src/wrappers/mod.rs:1` + `/home/black/Documents/bcachefs-tools/src/wrappers/handle.rs:1` + `/home/black/Documents/bcachefs-tools/mount.bcachefs.sh:1`

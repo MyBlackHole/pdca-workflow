@@ -1,53 +1,50 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/ghash
 type: concept
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-07
-dcterms_modified: 2026-09-07
-owl_versionIRI: http://pdca.local/ontology/ghash/1.0.0
-summary: GHASH 有限域多项式认证哈希（GF(2^128) Horner 求值，密钥 H=E(K,0)，ε-AXU 不可伪造界）
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/ghash/3.1.0
+summary: GHASH递推与GCM输入格式分离；不以简化概率式证明实现安全
 relations:
   relates_to:
   - ontology:concept/cipher-mode-gcm
   - ontology:domain/encryption-modes
+  specializes:
+  - ontology:concept/entity
 attributes:
-- name: poly_structure
-  desc: GHASH 的 Horner 多项式结构（GF(2^128)，约化多项式 x^128+x^7+x^2+x+1，末尾长度块）
-  constraint: 须含 Horner 求值、GF(2^128)、H=E(K,0^128)、len(AAD)||len(C) 长度块
-  testable_signal: "运行 grep -q 'Horner' ontology/concept/ghash.md && grep -q 'GF(2^128)' ontology/concept/ghash.md && grep -q '长度块' ontology/concept/ghash.md"
-- name: unforgeability_bound
-  desc: GHASH 的 ε-AXU 不可伪造界（q 次伪造、l 块长度下约 q·l/2^128，截断 Tag 直接降界）
-  constraint: 须含 AXU、伪造界 q·l/2^128、截断代价
-  testable_signal: "运行 grep -q 'AXU' ontology/concept/ghash.md && grep -q '伪造' ontology/concept/ghash.md && grep -q '截断' ontology/concept/ghash.md"
-- name: reuse_collapse
-  desc: Nonce 重用致 H 可解的崩塌条件与弱密钥 H=0
-  constraint: 须含重用解 H（禁断攻击）、H=0 弱密钥、与 CTR 密钥流重用的双后果区分
-  testable_signal: "运行 grep -q '禁断' ontology/concept/ghash.md && grep -q 'H=0' ontology/concept/ghash.md && grep -q '重用' ontology/concept/ghash.md"
+- name: recurrence
+  desc: 有限域递推
+  constraint: Y0=0；Yi=(Y_(i-1) xor Xi)·H，128位分组；GCM另行构造含长度的输入
+  testable_signal: 对GCM固定向量核对域乘法/bit顺序/长度格式，错误长度或错掩码须被识别
+  evidence_level: behavior
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+  content_review: 2026-09-12; pinned sources only; not latest-release certification
+validation:
+  claim_status: source_checked_scoped
+  adoption: claim_review_required
+  checked_claims:
+  - GHASH_RECURRENCE
+  - GCM_FORMAT_BOUNDARY
+  source_refs:
+  - https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf
+  runtime_validation: not_run
 ---
 
-# GHASH 认证哈希
+# GHASH与GCM标签不是同一个函数
 
-`GHASH` 是 `GCM` 的认证半壁：把 `AAD` 与密文 `C` 按 `16B` 切块 `X1…Xn`（末尾追加 `len(AAD)||len(C)` 长度块），以子密钥 `H = E(K, 0^128)` 为求值点，在 `GF(2^128)`（约化多项式 `x^128+x^7+x^2+x+1`）上做 `Horner` 求值 `Y = X1·H^n + … + Xn·H`，最终 `Tag = Y xor E(K, J0)`。
+按[SP 800-38D（2007）§6.3–6.4/7.1](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf)，GHASH对完整128位分组递推：`Y0=0`，`Yi=(Y_(i-1) xor Xi)·H`。域为GF(2^128)，约化多项式为`x^128+x^7+x^2+x+1`；bit串映射必须与标准一致。
 
-## 安全性在哪里
+GCM负责先格式化AAD、密文、补零和bit长度，再调用GHASH；GHASH本身不会自动推断AAD边界或追加长度。GCM标签还需要`E_K(J0)`掩码与所选截断，见[cipher-mode-gcm](cipher-mode-gcm.md)。
 
-三层，缺一即崩：
+旧版把通用认证界简化为一个固定概率公式、把所有nonce重用样本称作可直接解线性方程、把一次乘法指令称作完整域乘法，均不再作为本节点约束。安全边界和加速策略需要各自前提与来源，不能靠术语生成验收。
 
-1. **`H` 机密 → AXU 不可伪造界**：`H` 由分组密码在固定输入下导出，对无密钥者伪随机。`GHASH` 是 `ε-AXU`（近异或泛哈希）族：不同输入在未知 `H` 下碰撞/伪造概率 `≤ l/2^128`（`l` 为块数）；`q` 次在线伪造总界约 `q·l/2^128`。这就是 Tag `128b` 对应 `2^-128` 伪造概率的来源；Tag 截断到 `t` 位则界直接降到约 `q·2^-t`。
-2. **掩码一次一密**：`E(K, J0)` 对哈希值做一次一密式遮蔽，同一 `(AAD,C)` 在不同 `nonce` 下 Tag 不同；掩码流 `CTR` 与哈希可并行是 GCM 高速的原因。
-3. **归约到底层与 nonce 唯一**：以上两条分别归约到分组密码是伪随机置换（`H` 与掩码不可区分于随机）与同一 `key` 下 `nonce` 永不重用。
-
-## 崩塌条件
-
-- **Nonce 重用（禁断攻击）**：同一 `nonce` 下两组 `(C,T)` 联立即得关于 `H` 的线性方程，可解出 `H`，之后任意伪造。这是 GCM 最严重的失败模式，与 `CTR` 密钥流重用泄明文异或是两个独立后果。
-- **弱密钥 `H=0`**：此时 `GHASH` 恒为零，认证完全消失（概率极低但标准明确保留该 caveat）。
-- **单 IV 约 64GB**：`32` 位计数器耗尽则 `CTR` 回绕，等同重用。
-
-## 硬件分解
-
-`GHASH` 即大数乘累加，`PCLMULQDQ`（`x86`）/`PMULL`（`arm64`）一条指令完成 `GF(2^128)` 乘法；与 `AES-NI/SM4E` 的 `CTR` 部分交错流水即 `GCM` 高速实现。
-
-Source: `NIST SP 800-38D` + `T2071 evidence/21-tag-iv-asm.txt`（NBU `Final` 验签即重算比对实例）
+单元测试采用[密码回归](../../tests/crypto-regression.md)：正确构造匹配公开向量；省略长度、交换AAD/C或用H当掩码都应违反对应向量。参考测试只证明这些样本，不证明任意实现安全。

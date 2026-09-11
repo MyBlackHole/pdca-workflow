@@ -1,30 +1,32 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/ontology-rule-acyclic
 type: concept
+semantic_kind: class
 layer: Knowledge
-summary: AC-3 引用图无环（relations 构成的图须为 DAG）
 status: active
+authority: normative
+revision: 2.0.0
+summary: 按关系语义检查循环
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ontology-rule-acyclic/1.0.0
-rule_spec:
-  graph_relation_keys:
-  - specializes
-  - instance_of
-  - composed_of
-  - configured_by
-  - part_of
-  - guides
-  - relates_to
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
   - ontology:concept/ontology-rule
+  relates_to:
+  - ontology:concept/ontology-asset
+rule_spec:
+  acyclic_relation_sets:
+  - - specializes
+  - - requires
+    - depends_on
+  part_graph: composed_of + reversed(part_of), deduplicated
+  cycles_allowed:
+  - relates_to
+  - guides
 ---
-# ontology-rule-acyclic
 
-**AC-3（关系无环）**：`specializes` 必须形成以 `Entity` 为根的有向无环树；所有关系图（含 `composed_of`）无环。
+# 按关系语义检查循环
 
-- 对应 `ontology-validate.py` 的 AC-3 实现（CYCLE）。
-- 违反示例：`A specializes B` 且 `B specializes A`。
+分别检查specializes继承图、requires/depends_on执行依赖图和严格部分图无环。part_of反转为composed_of方向后去重；允许composed_of/part_of互逆表达同一事实。relates_to/guides可双向，不做全图DAG要求。A依赖B且B依赖A必须阻断，A相关B且B相关A允许。

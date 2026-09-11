@@ -1,23 +1,35 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pitfall/tls-cert-reload-appdata-safety
 type: pitfall
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/tls-cert-reload-appdata-safety/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/tls-cert-reload-appdata-safety/3.1.0
 summary: TLS 证书 ctx 热加载的安全陷阱
 source_task: T0366
 relations:
-  specializes: [ontology:pitfall]
-  guides: [ontology:entity/x509-certificate]
+  guides:
+  - ontology:entity/x509-certificate
+  instance_of:
+  - ontology:pitfall
 attributes:
-  - name: applicability
-    desc: 持有长生命周期 SSL_CTX 缓存槽的证书热加载/轮换
-    constraint: ""
-    testable_signal: reload 后 app_data 重定向到长生命周期槽，避免 UAF；测试忽略 SIGPIPE
+- name: applicability
+  desc: 持有长生命周期 SSL_CTX 缓存槽的证书热加载/轮换
+  constraint: ''
+  testable_signal: reload 后 app_data 重定向到长生命周期槽，避免 UAF；测试忽略 SIGPIPE
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # TLS 证书 ctx 热加载的安全陷阱

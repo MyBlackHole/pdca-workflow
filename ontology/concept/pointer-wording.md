@@ -1,13 +1,13 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/pointer-wording
 type: concept
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/pointer-wording/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/pointer-wording/3.1.0
 summary: 指针措辞：上下文指针的措辞决定触发可靠性，弱措辞即方差 bug
 relations:
   specializes:
@@ -17,6 +17,16 @@ attributes:
   desc: 适用于所有写给 AI 消费的上下文指针
   constraint: 见正文
   testable_signal: 检查指针是否前置首词；同义分支是否收拢；常载指针是否修剪
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Pointer Wording（指针措辞）

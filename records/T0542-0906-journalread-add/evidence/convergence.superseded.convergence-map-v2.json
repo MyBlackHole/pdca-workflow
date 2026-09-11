@@ -1,1 +1,0 @@
-{"items": [{"criteria": ["AC-1"], "evidence_ids": ["guide-diff"], "index": 1, "text": "指南增补恢复读执行细节"}, {"criteria": ["AC-2"], "evidence_ids": ["guide-diff", "validate-output"], "index": 2, "text": "三查与validate全绿"}, {"criteria": ["AC-3"], "evidence_ids": ["guide-diff", "validate-output"], "index": 3, "text": "证据登记进Check归档"}], "schema": "pdca.convergence/v1"}

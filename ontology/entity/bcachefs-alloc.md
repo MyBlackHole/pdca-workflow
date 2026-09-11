@@ -1,34 +1,55 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/bcachefs-alloc
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/bcachefs-alloc/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/bcachefs-alloc/3.1.0
 summary: bcachefs Alloc 实体 — bucket 四态、open_bucket 顺序写、WFQ 分配与 background copygc/discard/reclaim 协同
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/production-ontology-scientific-gate
-    - ontology:pattern/scientific-research-methodology
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/production-ontology-scientific-gate
+  - ontology:pattern/scientific-research-methodology
 attributes:
-  - name: bucket_four_state_and_open_bucket
-    desc: bucket 四态 dirty/cached/need_discard/free（512K-16M）与 open_bucket 顺序写 append-only 及 bucket 字段（gen/dirty_sectors/cached_sectors/stripe）可测
-    constraint: 覆盖 DOC_LATEX(allocator) bucket 四态 + bucket { gen_valid/data_type/generation/dirty_sectors/cached_sectors/stripe } + open_bucket { dev/gen/sectors_free/ec } + bucket_gens 阵列，经 C4 L3 与状态机可一图建模
-    testable_signal: "运行 grep -q 'struct bucket' /home/black/Documents/bcachefs-tools/fs/alloc/buckets_types.h 且 grep -q 'open_bucket' /home/black/Documents/bcachefs-tools/fs/alloc/types.h 且 grep -q 'BUCKET' /home/black/Documents/bcachefs-tools/fs/alloc/background.c 且 grep -q 'alloc' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: wfq_foreground_and_copygc_background
-    desc: foreground WFQ 选盘（1/free_space）与 background copygc 搬运、discard TRIM、journal reclaim 三协作可测
-    constraint: 覆盖 foreground WFQ next_alloc+=1/free_space + alloc_request { cl/nr_replicas/watermark/target } + background move/copygc + discard_state + journal_space_from，经时序与决策树可一图建模
-    testable_signal: "运行 grep -q 'bch2_alloc_sectors' /home/black/Documents/bcachefs-tools/fs/alloc/foreground.c 且 grep -q 'copygc' /home/black/Documents/bcachefs-tools/fs/alloc/background.c 且 grep -q 'journal_space_from' /home/black/Documents/bcachefs-tools/fs/journal/reclaim.c 且 grep -q 'alloc' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: buckets_gens_stale_detection
-    desc: bucket_gens 代数防 stale 指针与 GC stale 检测可测
-    constraint: 覆盖 bucket_gens { rcu_head/first_bucket/nbuckets/b[] } + generation 递增 + oldest_gen 窗口 + PTR_GC_BUCKET 标记 stale + backpointers 校验，经状态机与正例可一图建模
-    testable_signal: "运行 grep -q 'bucket_gens' /home/black/Documents/bcachefs-tools/fs/alloc/buckets_types.h 且 grep -q 'generation' /home/black/Documents/bcachefs-tools/fs/alloc/buckets_types.h 且 grep -q 'PTR_GC' /home/black/Documents/bcachefs-tools/fs/alloc/check_data.c 且 grep -q 'alloc' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
+- name: bucket_four_state_and_open_bucket
+  desc: bucket 四态 dirty/cached/need_discard/free（512K-16M）与 open_bucket 顺序写 append-only 及 bucket 字段（gen/dirty_sectors/cached_sectors/stripe）可测
+  constraint: 覆盖 DOC_LATEX(allocator) bucket 四态 + bucket { gen_valid/data_type/generation/dirty_sectors/cached_sectors/stripe
+    } + open_bucket { dev/gen/sectors_free/ec } + bucket_gens 阵列，经 C4 L3 与状态机可一图建模
+  testable_signal: 运行 grep -q 'struct bucket' /home/black/Documents/bcachefs-tools/fs/alloc/buckets_types.h 且 grep
+    -q 'open_bucket' /home/black/Documents/bcachefs-tools/fs/alloc/types.h 且 grep -q 'BUCKET' /home/black/Documents/bcachefs-tools/fs/alloc/background.c
+    且 grep -q 'alloc' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: wfq_foreground_and_copygc_background
+  desc: foreground WFQ 选盘（1/free_space）与 background copygc 搬运、discard TRIM、journal reclaim 三协作可测
+  constraint: 覆盖 foreground WFQ next_alloc+=1/free_space + alloc_request { cl/nr_replicas/watermark/target } + background
+    move/copygc + discard_state + journal_space_from，经时序与决策树可一图建模
+  testable_signal: 运行 grep -q 'bch2_alloc_sectors' /home/black/Documents/bcachefs-tools/fs/alloc/foreground.c 且
+    grep -q 'copygc' /home/black/Documents/bcachefs-tools/fs/alloc/background.c 且 grep -q 'journal_space_from' /home/black/Documents/bcachefs-tools/fs/journal/reclaim.c
+    且 grep -q 'alloc' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: buckets_gens_stale_detection
+  desc: bucket_gens 代数防 stale 指针与 GC stale 检测可测
+  constraint: 覆盖 bucket_gens { rcu_head/first_bucket/nbuckets/b[] } + generation 递增 + oldest_gen 窗口 + PTR_GC_BUCKET
+    标记 stale + backpointers 校验，经状态机与正例可一图建模
+  testable_signal: 运行 grep -q 'bucket_gens' /home/black/Documents/bcachefs-tools/fs/alloc/buckets_types.h 且 grep
+    -q 'generation' /home/black/Documents/bcachefs-tools/fs/alloc/buckets_types.h 且 grep -q 'PTR_GC' /home/black/Documents/bcachefs-tools/fs/alloc/check_data.c
+    且 grep -q 'alloc' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Bcachefs Alloc（空间分配）
@@ -144,14 +165,8 @@ bch2_trans_update(trans, BTREE_ID_alloc, pos, &bucket_key); // 持久 alloc btre
 // 正确：检查 generation - oldest_gen <96 否则先 reclaim
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' ontology/entity/bcachefs-alloc.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' ontology/entity/bcachefs-alloc.md` ≥3 且每图含 `Source: /home/black/Documents/bcachefs-tools/... file:line`
-- **正文门禁**：`wc -l ontology/entity/bcachefs-alloc.md` ≥80 且含 `决策树` `正例` `反例` `门禁`
-- **属性门禁**：`attributes` ≥3 且每条 `testable_signal` 含 `grep -q` 且双源可回归
-- **本体校验**：`python3 scripts/ontology-validate.py` 0 issues 且 `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/bcachefs-alloc --out /tmp/x.py` 可产
-- **Gate 门禁**：`python3 scripts/production-ontology-gate.py --node ontology:entity/bcachefs-alloc` GATE OK
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `/home/black/Documents/bcachefs-tools/fs/alloc/buckets_types.h:37` + `/home/black/Documents/bcachefs-tools/fs/alloc/types.h:44` + `/home/black/Documents/bcachefs-tools/fs/alloc/background.c:1`

@@ -1,2 +1,0 @@
-{"source":"final_confirmation","summary":"用户确认按当前 PRD 进入 Do 阶段，优化 T2154 aio-tools 知识地图的调用链执行细节。","response":"confirmed","at":"2026-09-11T10:27:28+08:00"}
-{"round":1,"question":"调用链优化边界与验收方式","answer":"确认采用推荐：只补强 SKILL.md 与 00-index.md 的可执行路由协议，保留 T2154 五分册与 6.2.0.0 基线；以入口矩阵、失败回退和本地引用检查验收。","recommended":"只补强导航协议与入口矩阵，不重做知识地图调研。","source":"grilling","at":"2026-09-11T10:30:00+08:00","captured":true,"verified":true,"status":"resolved","decision":"T2155 聚焦调用链细节，沿用 T2154 已验证事实。"}

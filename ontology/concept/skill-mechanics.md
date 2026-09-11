@@ -1,97 +1,29 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/skill-mechanics
 type: concept
+semantic_kind: class
 layer: Knowledge
 status: active
+authority: normative
+revision: 3.4.6
+summary: 技能与流程的分工
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-mechanics/1.0.0
-summary: 技能编写机制参考——invocation 选择、router 模式、依赖表达
-description: "定义技能编写的三种机制：Invocation（model-invoked vs user-invoked 的精确机制）、Splitting by invocation（有独立触发词或另一技能需调用时拆为 model-invoked）、Router skills（user-invoked 技能过多时的路由模式）。来源 mattpocock/skills writing-for-agents SKILL-MECHANICS.md。"
-domain:
-- ontology:domain/ai-efficiency
+dcterms_modified: '2026-09-13'
 relations:
   specializes:
-  - ontology:domain/ai-efficiency
+  - ontology:concept/entity
   relates_to:
-  - ontology:concept/writing-for-agents
-  - ontology:concept/pointer-wording
-attributes:
-- name: applicability
-  desc: 技能编写时选择 invocation 模式和 router 模式的适用场景
-  constraint: 见正文
-  testable_signal: 运行 python3 scripts/check-skill-structure.py 检查 SKILL.md 的 frontmatter 是否包含合法的 invocation 配置，缺失或非法时退出非0
-- name: constraints
-  desc: user-invoked 不可调用其他 user-invoked；model-invoked 可被 user-invoked 调用
-  constraint: 遵循 invocation 层级规则
-  testable_signal: 检查所有 user-invoked 技能的依赖关系无循环
-- name: testable_signal
-  desc: invocation 配置按层级规则可机检判定
-  constraint: user-invoked 技能须显式标记且依赖无环，标记缺失或成环即失败
-  testable_signal: 运行 python3 scripts/check-skill-structure.py 检查 SKILL.md 的 invocation 标记与依赖层级，且 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空，任一检查非0或存在环即失败
+  - ontology:concept/skill-invocation-contract
+  - ontology:concept/pdca-architecture
 ---
 
-# 技能机制（Skill Mechanics）
+# 技能与流程的分工
 
-定义技能编写的三种核心机制，来源 mattpocock/skills `writing-for-agents/SKILL-MECHANICS.md`。
+流程决定当前阶段，技能描述如何完成契约内某动作。本项目领域skill节点可以直接阅读，不需要独立skills目录或专用命令。入口只指向本体，不复制规则。
 
-## 1. Invocation 选择
 
-### model-invoked
+## 定义、调用、实例
 
-- **标记**：省略 `disable-model-invocation`（Claude Code）/ 不设 `policy.allow_implicit_invocation: false`（Codex）
-- **谁调用**：AI 自动 + 用户均可
-- **规则**：可调用 model-invoked，不可调用其他 user-invoked
-- **描述**：需写清触发条件（`description` 面向模型带触发条件短语）
-
-### user-invoked
-
-- **标记**：`disable-model-invocation: true`（Claude Code）/ `policy.allow_implicit_invocation: false`（Codex）
-- **谁调用**：仅用户打字
-- **规则**：可调用 model-invoked，不可调用其他 user-invoked
-- **描述**：面向人类，`description` 用自然语言
-
-### 关键约束
-
-- **user-invoked 不可调用其他 user-invoked**（包括通过 Skill tool 按名称调用）
-- **model-invoked 可被 user-invoked 调用**
-- 依赖表达方式：显式 `Call the Skill tool with "name"`，而非 `/name` 风格的 hint
-
-## 2. Splitting by invocation
-
-当满足以下任一条件时，技能应拆分为 model-invoked：
-
-- 有独立触发词
-- 另一技能需调用它
-- 步骤太长导致 AI 想跳步
-
-## 3. Router skills
-
-当 user-invoked 技能过多时，使用 router 技能进行路由：
-
-- 一个 user-invoked 技能命名其他技能及何时使用
-- 依赖表达方式：显式 `Call the Skill tool with "name"`
-- router 本身应为 user-invoked
-
-## 4. 完整调用层级
-
-```
-user-invoked → model-invoked → model-invoked
-     ↓              ↓              ↓
-  grill-me     grilling     tdd
-  ask-matt     researching  code-review
-  wayfinder    prototype    domain-modeling
-```
-
-## 适用边界
-
-- 适用于所有 skill 文件的 frontmatter 设计和 invocation 配置
-- 对本地 `skill-writing-great-skills.md` 和 `skill-ask-matt.md` 有直接参考价值
-- 与 `ontology:concept/skill-invocation-contract` 互补：skill-mechanics 定义机制，skill-invocation-contract 定义契约
-
-## 来源
-
-- `records/T0450-0831-ontology-closed-loop-review/report.md`（来源 ID: T0450-0831-ontology-closed-loop-review）
-- mattpocock/skills `writing-for-agents/SKILL-MECHANICS.md`
+知识资产描述可复用动作；调用契约确定本次合法输入/输出、前置和失败处理；records记录真实任务的一次调用及证据。三者不得互相冒充。`skill-as-ontology`、`ontology-skill-model`是解释性资料，不为本条增加第二套权威或线性知识依赖。Agent只是使用者，能力与原生工具绑定按CAP-01；不要求平台专用adapter。

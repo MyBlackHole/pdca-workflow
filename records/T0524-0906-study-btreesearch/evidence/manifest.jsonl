@@ -1,4 +1,0 @@
-{"id":"report-btreesearch","file":"report.md","kind":"document","size":1898,"digest":"sha256:36a1747407df94016a99c1331bc8a7daeec1ca4bfd1709ced7864907a2012274","at":"2026-09-06T10:14:44+08:00","criteria":["AC-1","AC-2"]}
-{"id":"node-btreesearch-guide","file":"core-btreesearch-study-guide.md","kind":"document","size":2151,"digest":"sha256:725a5cb518303446d44d751cee74ab938e5ac77069a4495c6ee540ff54e9a185","at":"2026-09-06T10:14:45+08:00","criteria":["AC-3"]}
-{"id":"validate-output","file":"validate-output.txt","kind":"document","size":78,"digest":"sha256:18242016b05335b14b3fa02ba636c1b2feba5be9b79e65971251af73a3a74084","at":"2026-09-06T10:14:46+08:00","criteria":["AC-3"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":448,"digest":"sha256:9036b2edc622866ead2dd622cd7df3ef77eab3e9da036fae560a367a9f4e74b3","at":"2026-09-06T10:15:04+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

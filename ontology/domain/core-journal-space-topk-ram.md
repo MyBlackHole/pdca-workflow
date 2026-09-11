@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-journal-space-topk-ram
 type: domain
 layer: Knowledge
@@ -8,20 +8,35 @@ summary: journal三视角记账 + Top-K短板 + RAM钳制 + 快慢水位
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-journal-seq-blacklist-pin-reclaim
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 日志空间多视角记账、异构设备短板仲裁、预留快慢路径场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 fs/journal/reclaim.c 在仓库中存在且含 journal_dev_space_available 定义"
+  testable_signal: 抽查正文引用的 fs/journal/reclaim.c 在仓库中存在且含 journal_dev_space_available 定义
+  evidence_level: unclassified
 - name: constraints
   desc: 记账仲裁前提
   constraint: 见正文
-  testable_signal: "通读正文约束节，确认末桶保留、Top-K取值、非对称钳制三条前提在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，确认末桶保留、Top-K取值、非对称钳制三条前提在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # journal三视角记账 + Top-K 短板

@@ -1,34 +1,24 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/ontology-rule-richness
 type: concept
+semantic_kind: class
 layer: Knowledge
-summary: AC-5 知识资产须有 guides/relates_to（关系丰富度）
 status: active
+authority: normative
+revision: 2.0.0
+summary: 有意义的领域挂接
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ontology-rule-richness/1.0.0
-rule_spec:
-  knowledge_types:
-  - pattern
-  - principle
-  - pitfall
-  - fact
-  - decision
-  required_relations:
-  - guides
-  - relates_to
-  composed_of_range:
-  - entity
-  - concept
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
   - ontology:concept/ontology-rule
+  relates_to:
+  - ontology:concept/ontology-asset
+rule_spec: {}
 ---
-# ontology-rule-richness
 
-**AC-5（关系丰富度）**：每个 KnowledgeArtifact 实例（`pattern`/`principle`/`pitfall`/`fact`/`decision` 类资产）应至少 1 条 `guides` 或 `relates_to`，防止退化为纯分类法（taxonomy）。
+# 有意义的领域挂接
 
-- 对应 `ontology-validate.py` 的 AC-5 实现（NO_GUIDES）。
-- 注：仅对知识资产类型生效；`concept`/`entity` 等类型豁免（如"类节点"刻意用 concept 以豁免本约束）。
+知识实例应通过guides或relates_to关联其适用主题/过程；不要为凑引用数加根节点。无关联的候选需说明用途并补充必要关系。孤岛是审查线索，不是全部任务归档必须扫描全库的业务门禁。

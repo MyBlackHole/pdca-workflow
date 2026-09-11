@@ -1,26 +1,23 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/pdca-gate-do
 type: concept
+semantic_kind: class
 layer: Knowledge
-summary: do 阶段准入门禁：须满足 pdca-ontology-ready
 status: active
+authority: normative
+revision: 2.0.0
+summary: Do准入的引用节点
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/pdca-gate-do/1.0.0
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
-  - ontology:concept/pdca-gate
+  - ontology:concept/entity
   relates_to:
-  - ontology:entity/phase-do
-  - ontology:concept/pdca-ontology-ready
-  testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-gate-do' ontology/ tests/ scripts/ | wc -l) -ge 8"
+  - ontology:concept/pdca-gate
 ---
-# pdca-gate-do
 
-do 阶段准入门禁：声明进入 do 须满足 `pdca-ontology-ready`（由 `relates_to` 引用）。
+# Do准入的引用节点
 
-- **准入条件来源**：`ontology_reason.admission_conditions("do")` 读取本节点的 `relates_to`，实测返回 `["ontology-ready"]`。
-- **适用范围**：对所有 `ontology_role` 在 `phase=do` 时均生效，具体 skill route 再选择执行分支；仅显式 `ontology_exempt=true` 可豁免（须说明原因）。
-- **理由**：执行前必须确认本任务的领域本体片段已声明且结构合法，或明确豁免，否则执行无语义锚点、产物易成孤儿资产。
+Do准入唯一判据是GATE-01的`plan_to_do`。本节点不另建一套准入条件，也不以skill名称路由任务。

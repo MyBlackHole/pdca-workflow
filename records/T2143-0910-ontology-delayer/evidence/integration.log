@@ -1,7 +1,0 @@
-## 集成验证 2026-09-10T09:32:19+08:00
-```
-OK: ontology 通过本体契约校验
-AC-5 grep-exit(1=零命中):
-grep-exit=1
-OK: 7/7 topics covered
-```

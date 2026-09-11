@@ -1,53 +1,43 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/task-record-identity
 type: concept
+semantic_kind: class
 layer: Knowledge
 status: active
+authority: normative
+revision: 3.4.0
+summary: 任务身份、尝试与唯一记录
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/task-record-identity/1.0.0
-summary: Task/Record 身份不变量与 ID 撞车重分配方法论（scan→create 临界区、统一入口、不可变 record identity）
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
-  - ontology:concept/pdca-task
+  - ontology:concept/entity
   relates_to:
   - ontology:concept/pdca-task
-  - ontology:concept/timeline-integrity-gate
+  - ontology:concept/work-ontology-tree
+  - ontology:concept/task-unit-test
+  - ontology:concept/task-rework
 ---
 
-# Task / Record Identity Invariants（task-record-identity）
+# 任务身份、尝试与唯一记录
 
-来源：T0261 交叉验证 + T0262 落地（`scripts/task_identity.py`、`flow_audit.py` audit fail-closed、identity_diagnostics）。
+任务目录为records/<task-id>/，与records/works/<work-id>/工作树和清单分离。真实唯一task_id不能使用无锁扫描最大数加一；撞名不覆盖。
 
-## 已证实的不变量
+使用pdca.task/v3.2。字段的完整清单见当前模板；主要字段包括：task_id、work_id、tree_revision、node_id、scene、attempt、predecessor_task_id、rework_issue_ref、revision、title、phase、execution_state、writer、conversation_ref、baseline、test_suite_ref、dependencies、parent_node_id、last_transition、control_view_ref、last_control_event、terminal_reason、termination_ref、wait_policy_ref、pinned_graph、resource_reservation_refs、capability_check_refs、extensions。scene是唯一场景字段，不再双写ontology_role；parent_node_id是组成归属，不是parent_agent_id。
 
-1. `task.id` 分配的 scan→create 必须处于同一个仓库级临界区；仅"扫描后取最大值+1"不能防并发同 ID。
-2. task 创建入口必须统一：triage、to-tickets、Act follow-up 统一 CLI `task_identity.py create`；仅保护 promotion 仍留竞态旁路。
-3. record identity 必须在 task 创建时生成并保持不可变；audit 不应在 record 缺失时把 `task.id` 当临时 record identity。
-4. occurrence 目录 identity 必须等于 payload `record_id`；严格 fail-closed 投影保留问题可见性。
-5. 历史目录归并只能由 immutable relocation/alias receipt 表达（绑定源/目标 identity、原因、时间、操作者、digest）；无 receipt 时保持错误。
+attempt由SCHED-01真实槽所有者从1单调分配，历史编号不复用；同一工作/树/节点/场景最多一个有效写入者；重试新task_id新Agent。writer派发前为空，交接后绑定真实ID/回执。conversation_ref必须来自真实宿主。恢复原任务不修改attempt。
 
-## T0262 落地形态
+Plan草稿允许空baseline与测试绑定；进入Do前完整固定。revision是任务快照版本，artifact_revision、suite_revision、run_id独立记录，不能相互冒充。
 
-- 统一原子入口：仓库级 flock + `_next_task_id` reservation + `O_EXCL` create-only + 异常清理半成品；`create_task` 强制 `record="{task_id}-{slug}"`，不一致抛 `RECORD_MISMATCH`。
-- 入口收敛：triage/to-tickets/Act follow-up 统一 `task_identity.py create`；promotion 复用 `_create_task_unlocked`。
-- audit fail-closed：移除 `task.id` fallback，缺 record/非法路径写入 `records/__quarantine/flow-audit.json`。
-- 只读诊断 `identity_diagnostics`：重复 task ID、重复 slug、event path mismatch、record 派生不匹配；接入 `validate-workflow.py --all` 与 `pdca-doctor.py`。
+records/<task-id>/tests/保存suite快照、cases引用和runs；artifacts保存基线/实际产物/固定包；issues保存本任务发现，工作级issue清单由宿主单写者维护。模板中的空值不是通过记录。
 
-## ID 撞车重分配方法论（T0274）
 
-- **主流方判定**：被其他任务作 parent 引用（主干）→ 保留；无引用时 `Txxxx-slug` 规范格式优先；其余按创建时间早者保留。
-- **上下文感知引用判定**：撞车组内可能存在两棵任务树，按引用者 slug 特征词判定归属（如 CDM/报表 vs RPC），避免字符串级误伤。
-- **执行顺序**：先引用扫描后重命名；records 旧格式统一为 `Txxxx-slug`；目录重命名仅替换 `Txxxx-` 前缀；flow-events 内 `record_id`/`task_id` 必须同步；验证 doctor duplicate/event_path_mismatches 无新增。
-- 含活跃任务的撞车组整组跳过。
+protocol_revision在派发前从当前工作实际选择并固定的协议发布清单取得，禁止本文件另写一个固定版本常量。protocol_baseline_ref绑定该清单与字节；业务baseline可在Plan后形成。schema版本更换不能在旧任务内覆写。控制event序号、四条阶段sequence、业务operation_id、测试run_id各有独立作用域。
 
-## 来源
+## 版本与任务定位
 
-- `（原知识层）task-record-identity-invariants.md`
-- `（原知识层）id-collision-remediation.md`
+仓库分发的 [协议清单](../../protocol-release.md)用于定位版本，不是用户运行授权；派发前将所选版本及其规则闭包保存为可重读快照。任务 schema 可继续 pdca.task/v3.2，资产有自己的 revision，不能为了数字相同改写未变化规则或旧记录。
 
-## 决策背景（原 ADR-0024：统一 task/record identity 原子创建事务）
-- 背景：T0260 发现 23 个 task ID 冲突与 5 条 event path mismatch；普通 scan→create 缺仓库级临界区会生成重复 ID，audit 在 meta.record 缺失时回退 task.id 会制造第二 record identity。
-- 决策：组合方案——单一创建入口 `scripts/task_identity.py` 在锁内完成 ID reservation + slug 查重 + record 生成 + create-only 写入；audit 移除 task.id fallback 并 fail-closed；task 出生即生成不可变 meta.record。历史事件不自动改写。
+唯一主记录为 records/<task-id>/task.md；树/场景清单用 task_id 和固定引用定位，不另造第二份可写 task.md。准备记录尚无真实 task_id/Agent 时保持未知，不宣称已派发或完成。attempt、writer、capability/reuse/交付记录必须来自同一真实尝试链；不凭改编号修复来源冲突。

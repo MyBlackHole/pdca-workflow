@@ -1,48 +1,60 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/tool-production-readiness
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/tool-production-readiness/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/tool-production-readiness/3.1.0
 summary: 生产级工具就绪度领域知识：12维分级要求、L1-L4成熟度模型与B1-B4检查清单
 relations:
-  specializes:
-  - ontology:concept/pdca
   relates_to:
   - ontology:concept/pdca-task
   - ontology:domain/skill-research
   - ontology:concept/pdca-ontology-ready
+  - ontology:concept/pdca
   guides:
   - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: twelve_dimensions
   desc: 12个生产就绪维度及其Must/Should/Excellent分级
   constraint: 覆盖功能正确性、可靠性与可用性、安全性、可维护性与可演进性、可观测性、性能与资源、兼容性与可移植性、测试与质量保障、文档与用户体验、发布与运维、合规与治理、组织与流程条件；每维至少1条Must
-  testable_signal: 对照 records/T0464-0831-prod-tool-dev-requirements-research/evidence/research-report-v2.md
-    的"发现"章节，校验12个维度标题均存在且每维含"Must/Should/Excellent"分级，且经 python3 scripts/ontology-validate.py
-    --ontology-dir ontology 校验本节点 attributes 非空
+  testable_signal: 对照 records/T0464-0831-prod-tool-dev-requirements-research/evidence/research-report-v2.md 的"发现"章节，校验12个维度标题均存在且每维含"Must/Should/Excellent"分级
+  evidence_level: unclassified
 - name: maturity_model
   desc: L1可用→L2可靠→L3可运维→L4可规模化四级成熟度模型
   constraint: 每级有明确判定条件与典型门禁，L1全部Must通过方可发布，L2为生产准入线
   testable_signal: 检查本文件"成熟度模型"章节含L1/L2/L3/L4四级定义，且每级含判定条件与门禁清单，与 records/T0464-0831-prod-tool-dev-requirements-research/evidence/research-report-v2.md
-    附录A一致 且运行 grep -q 'fix' ontology/domain/tool-production-readiness.md && python3
-    scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'
+    附录A一致；文本命中仅证明描述存在，领域行为需另行验证。
+  verification_level: structural
+  evidence_level: unclassified
 - name: checklist
   desc: B1-B4四级就绪检查清单与类型裁剪
   constraint: 清单条目为可判定项（是/否/度量值），按A类CLI/B类开发者与运维/C类服务化裁剪权重
-  testable_signal: 校验本文件"检查清单"章节含B1/B2/B3/B4四级清单，且每条含勾选框与可重跑验证命令（如 trivy fs、syft、cosign
-    verify、tool --json | jq），与 records/T0464-0831-prod-tool-dev-requirements-research/evidence/checklist.md
-    条目一致
+  testable_signal: 校验本文件"检查清单"章节含B1/B2/B3/B4四级清单，且每条含勾选框与可重跑验证命令（如 trivy fs、syft、cosign verify、tool --json | jq），与
+    records/T0464-0831-prod-tool-dev-requirements-research/evidence/checklist.md 条目一致
+  evidence_level: unclassified
 - name: authoritative_sources
   desc: 每条关键结论附权威来源与可验证途径
   constraint: 关键结论关联R1-R16权威来源或可重跑命令，无法验证的标注待验证假设与置信度
-  testable_signal: 抽样检查本文件任一Must要求可追溯至"参考资料"中至少一条来源（sre.google/12factor.net/cncf.io）或一条可重跑命令
-    且运行 grep -q 'fix' ontology/domain/tool-production-readiness.md && python3 scripts/ontology-validate.py
-    --ontology-dir ontology 2>&1 | grep -q 'OK'
+  testable_signal: 抽样检查本文件任一Must要求可追溯至"参考资料"中至少一条来源（sre.google/12factor.net/cncf.io）或一条可重跑命令；文本命中仅证明描述存在，领域行为需另行验证。
+  verification_level: structural
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # 生产级工具就绪度（tool-production-readiness）
@@ -137,8 +149,10 @@ attributes:
 - 发布前跑PRR轻量版（L2门禁）
 - 缺陷修复按bugfix路径补回归用例
 
-## 溯源
+## 历史溯源（非运行指令）
 
 - 调研任务：T0464 `pdca/tasks/archive/2026-08/0831-prod-tool-dev-requirements-research/task.json:1`
 - 证据：`records/T0464-0831-prod-tool-dev-requirements-research/evidence/research-report-v2.md:1`、`checklist.md:1`
 - 结论：`records/T0464-0831-prod-tool-dev-requirements-research/conclusion.md:1` verdict confirmed
+
+历史记录未随原包提供，上述定位仅保留来源线索，不证明本次任务已执行或资料可访问。

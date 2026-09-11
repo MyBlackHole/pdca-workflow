@@ -1,26 +1,36 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/tdd-tests
 name: tdd-tests
 summary: tests 辅助文档
-description: |
-  TDD 技能辅助文档。
+description: 'TDD 技能辅助文档。
+
+  '
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/tdd-tests/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/tdd-tests/3.1.0
 relations:
-  specializes:
-    - ontology:concept/pdca-task
   relates_to:
-    - ontology:concept/domain-modeling
-  testable_signal: "检查本文件TDD相关章节的完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空且不含泛化短语"
-
+  - ontology:concept/domain-modeling
+  - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
+revision: 3.1.0
+authority: reference
+validation:
+  structural_checks:
+  - 递归解析本节点身份及关系列表；目标 ID 必须可定位。引用数量不作为行为验证。
+  claim_status: unverified
+  adoption: claim_review_required
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
-
 
 # 好测试与坏测试
 

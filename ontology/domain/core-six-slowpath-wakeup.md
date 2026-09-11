@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-six-slowpath-wakeup
 type: domain
 layer: Knowledge
@@ -8,20 +8,35 @@ summary: six trylock 回补 + 降级升级 + 定向唤醒 + 等待图快照
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-six-intent-seq-deadlock-free-locking
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 读写锁快慢路径、锁模式转换、公平唤醒与死锁检测场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 fs/util/six.c 在仓库中存在且含 __do_six_trylock 定义"
+  testable_signal: 抽查正文引用的 fs/util/six.c 在仓库中存在且含 __do_six_trylock 定义
+  evidence_level: unclassified
 - name: constraints
   desc: 快慢路径前提
   constraint: 见正文
-  testable_signal: "通读正文约束节，确认伪唤醒回补、转换原子性、发布配对三条前提在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，确认伪唤醒回补、转换原子性、发布配对三条前提在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # six 慢路径唤醒与等待图快照

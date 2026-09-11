@@ -1,29 +1,24 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/grilling-methodology
 type: concept
+semantic_kind: class
 layer: Knowledge
 status: active
+authority: normative
+revision: 2.0.0
+summary: 围绕真实不确定性的澄清
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/grilling-methodology/1.0.0
-summary: 追问方法论：设计树、前沿、轮次、事实而非观点、完成标准
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
-  - ontology:principle
+  - ontology:concept/entity
+  relates_to:
+  - ontology:process/flow-plan
+  - ontology:concept/pdca-ai-friendly-confirmation
 ---
 
+# 围绕真实不确定性的澄清
 
-# Grilling Methodology
-
-追问方法论：设计树、前沿、轮次、事实而非观点、完成标准
-
-## 覆盖必问轮（research 类任务 Grill 必备）
-
-- research 类任务 Grill 必须包含一轮覆盖必问，必问三项：
-  1. 本体锚定哪几个节点；
-  2. 本次新增还是修订源文档哪几章；
-  3. 沉淀计划是什么。
-- 该轮须 `captured:true` 落盘到 `clarifications.jsonl`。
-- 动因：T2107 三轮 Grill 漏问覆盖导致本体缺三块，来源 `records/T2107-0909-guomi-storage-research/conclusion.md` 偏差记录。
+先检查已给信息，再提出影响实施/验收的最小问题，说明选项与权衡。能够从获授权资料查到的事实先查证；不得把推荐答案记成用户答案。已有明确回答无需重问。

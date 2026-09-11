@@ -1,23 +1,31 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/benchmark
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/benchmark/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/benchmark/3.1.0
 summary: benchmark 领域知识根节点（由 ontology/domain/benchmark/ 迁移）
 relations:
-  specializes:
-  - ontology:concept/pdca
   relates_to:
   - ontology:concept/pdca
-  testable_signal: "检查本文件基准测试相关章节的完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空且不含泛化短语"
-
+  instance_of:
+  - ontology:concept/knowledge-artifact
+revision: 3.1.0
+authority: reference
+validation:
+  structural_checks:
+  - 递归解析本节点身份及关系列表；目标 ID 必须可定位。引用数量不作为行为验证。
+  claim_status: unverified
+  adoption: claim_review_required
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
-
 
 # benchmark（领域知识根节点）
 
@@ -35,19 +43,19 @@ relations:
 ```mermaid
 graph TD
     A[benchmark<br/>domain] --> B[core能力<br/>PDCA]
-    B --> C[实现<br/>scripts/]
-    %% Source: ontology/domain/benchmark.md:1 + ontology/concept/ontology-fidelity-criterion.md:1
+    B --> C[实现<br/>契约产物]
+    %% Source: ontology/domain/core/benchmark.md:1 + ontology/concept/ontology-fidelity-criterion.md:1
 ```
 
-Source: `ontology/domain/benchmark.md:1` + `ontology/concept/ontology-fidelity-criterion.md:1`
+Source: `ontology/domain/core/benchmark.md:1` + `ontology/concept/ontology-fidelity-criterion.md:1`
 
 ## 正例
 
 ```bash
 # 正例：benchmark 可通过本体复现
-grep -q 'benchmark' ontology/domain/benchmark.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'
 ```
 
+结构审查使用 ontology:concept/ontology-creation-gate；旧工作流命令已移除。
 ## 反例
 
 ```bash
@@ -55,9 +63,6 @@ grep -q 'benchmark' ontology/domain/benchmark.md && python3 scripts/ontology-val
 # 无 mermaid 时，AI无法从本体还原组件关系，需补图
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **图门禁**：`grep -c 'mermaid' ontology/domain/benchmark.md` ≥1
-- **溯源门禁**：含 `Source:` 行号
-- **校验**：`python3 scripts/ontology-validate.py` 0 issues
-
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。

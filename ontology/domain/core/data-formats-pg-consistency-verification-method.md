@@ -1,28 +1,41 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/data-formats-pg-consistency-verification-method
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/data-formats-pg-consistency-verification-method/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/data-formats-pg-consistency-verification-method/3.1.0
 summary: PG→Parquet 转换校验方法：五维校验 + mutation 基线
 domain:
 - ontology:domain/data-formats
 relations:
-  specializes:
-  - ontology:domain/data-formats
   relates_to:
   - ontology:concept/pdca
+  - ontology:domain/data-formats
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: "运行 grep -q 'PG→Parquet 转换校验方法：五维校验 + mutation 基线' ontology/domain/core/data-formats-pg-consistency-verification-method.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
+  testable_signal: 运行 grep -q 'PG→Parquet 转换校验方法：五维校验 + mutation 基线' ontology/domain/core/data-formats-pg-consistency-verification-method.md；文本命中仅证明描述存在，领域行为需另行验证。
+  verification_level: structural
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
-
 
 # PG→Parquet 转换校验方法：五维校验 + mutation 基线
 

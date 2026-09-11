@@ -1,34 +1,55 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/bcachefs-format
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/bcachefs-format/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/bcachefs-format/3.1.0
 summary: bcachefs Format 实体 — per-device 选项解析、BCH_SB_FIELDS x-macro 超块与多副本 super 写入
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/production-ontology-scientific-gate
-    - ontology:pattern/scientific-research-methodology
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/production-ontology-scientific-gate
+  - ontology:pattern/scientific-research-methodology
 attributes:
-  - name: per_device_opts_parsing
-    desc: per-device 选项（--label/discard/replicas）逐设备聚合 bch_opt_strs 与手工解析（clap 无法表达）可测
-    constraint: 覆盖 format.rs 注释“手工 225 行解析” + DevOpts 按设备累积 + bch2_parse_one_opt 动态 opts 表 + --encrypted/--replicas 映射多底层 opts，经时序与决策树可一图建模
-    testable_signal: "运行 grep -q 'per-device' /home/black/Documents/bcachefs-tools/src/commands/format.rs 且 grep -q 'DevOpts' /home/black/Documents/bcachefs-tools/src/commands/format_util.rs 且 grep -q 'bch2_parse_one_opt' /home/black/Documents/bcachefs-tools/fs/opts.c 且 grep -q 'format' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: bch_sb_extensible_fields
-    desc: bch_sb 可扩展字段集（BCH_SB_FIELDS x-macro 定义 members/replicas/clean/crypt 等）与 4 副本 super 写入可测
-    constraint: 覆盖 struct bch_sb (__packed __aligned(8) 含 csum/version/magic/uuid/seq/block_size + flags[7]/features[2]) + BCH_SB_FIELDS x-macro + bch_sb_field_ops.validate/to_text 各在 sb/*.c 实现 + bch2_write_super 多副本，经 C4 L3 与时序可一图建模
-    testable_signal: "运行 grep -q 'BCH_SB_FIELDS' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h 且 grep -q 'bch_sb' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h 且 grep -q 'bch2_write_super' /home/black/Documents/bcachefs-tools/fs/sb/io.c 且 grep -q 'format' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: version_and_key_write
-    desc: metadata 版本解析（major.minor → u32）与加密 key 落盘后打印 super 可测
-    constraint: 覆盖 version_parse ((major<<10)|minor) + version_to_string + metadata_version_current + Passphrase 经 key.rs 写入 + Printbuf 打印 super，经状态机与正例可一图建模
-    testable_signal: "运行 grep -q 'version_parse' /home/black/Documents/bcachefs-tools/src/commands/format.rs 且 grep -q 'metadata_version' /home/black/Documents/bcachefs-tools/src/commands/format.rs 且 grep -q 'Passphrase' /home/black/Documents/bcachefs-tools/src/key.rs 且 grep -q 'format' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
+- name: per_device_opts_parsing
+  desc: per-device 选项（--label/discard/replicas）逐设备聚合 bch_opt_strs 与手工解析（clap 无法表达）可测
+  constraint: 覆盖 format.rs 注释“手工 225 行解析” + DevOpts 按设备累积 + bch2_parse_one_opt 动态 opts 表 + --encrypted/--replicas
+    映射多底层 opts，经时序与决策树可一图建模
+  testable_signal: 运行 grep -q 'per-device' /home/black/Documents/bcachefs-tools/src/commands/format.rs 且 grep -q
+    'DevOpts' /home/black/Documents/bcachefs-tools/src/commands/format_util.rs 且 grep -q 'bch2_parse_one_opt' /home/black/Documents/bcachefs-tools/fs/opts.c
+    且 grep -q 'format' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: bch_sb_extensible_fields
+  desc: bch_sb 可扩展字段集（BCH_SB_FIELDS x-macro 定义 members/replicas/clean/crypt 等）与 4 副本 super 写入可测
+  constraint: 覆盖 struct bch_sb (__packed __aligned(8) 含 csum/version/magic/uuid/seq/block_size + flags[7]/features[2])
+    + BCH_SB_FIELDS x-macro + bch_sb_field_ops.validate/to_text 各在 sb/*.c 实现 + bch2_write_super 多副本，经 C4 L3 与时序可一图建模
+  testable_signal: 运行 grep -q 'BCH_SB_FIELDS' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h 且 grep -q
+    'bch_sb' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h 且 grep -q 'bch2_write_super' /home/black/Documents/bcachefs-tools/fs/sb/io.c
+    且 grep -q 'format' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: version_and_key_write
+  desc: metadata 版本解析（major.minor → u32）与加密 key 落盘后打印 super 可测
+  constraint: 覆盖 version_parse ((major<<10)|minor) + version_to_string + metadata_version_current + Passphrase 经
+    key.rs 写入 + Printbuf 打印 super，经状态机与正例可一图建模
+  testable_signal: 运行 grep -q 'version_parse' /home/black/Documents/bcachefs-tools/src/commands/format.rs 且 grep
+    -q 'metadata_version' /home/black/Documents/bcachefs-tools/src/commands/format.rs 且 grep -q 'Passphrase' /home/black/Documents/bcachefs-tools/src/key.rs
+    且 grep -q 'format' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Bcachefs Format（格式化）
@@ -142,14 +163,8 @@ Source: `/home/black/Documents/bcachefs-tools/src/commands/format.rs:1` + `/home
 // 正确：bch_sb_field_ops.validate 逐字段校验后才 bch2_write_super
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' ontology/entity/bcachefs-format.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' ontology/entity/bcachefs-format.md` ≥3 且每图含 `Source: /home/black/Documents/bcachefs-tools/... file:line`
-- **正文门禁**：`wc -l ontology/entity/bcachefs-format.md` ≥80 且含 `决策树` `正例` `反例` `门禁`
-- **属性门禁**：`attributes` ≥3 且每条 `testable_signal` 含 `grep -q` 且双源可回归
-- **本体校验**：`python3 scripts/ontology-validate.py` 0 issues 且 `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/bcachefs-format --out /tmp/x.py` 可产
-- **Gate 门禁**：`python3 scripts/production-ontology-gate.py --node ontology:entity/bcachefs-format` GATE OK
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `/home/black/Documents/bcachefs-tools/src/commands/format.rs:1` + `/home/black/Documents/bcachefs-tools/fs/bcachefs_format.h:1178` + `/home/black/Documents/bcachefs-tools/fs/sb/io.c:1`

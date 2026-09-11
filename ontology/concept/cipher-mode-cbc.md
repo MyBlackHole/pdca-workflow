@@ -1,13 +1,13 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/cipher-mode-cbc
 type: concept
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/cipher-mode-cbc/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/cipher-mode-cbc/3.1.0
 summary: CBC 工作模式（链式 P xor C_{i-1}）加密串行、无认证、IV 随机、需 HMAC 补认证
 relations:
   specializes:
@@ -18,11 +18,22 @@ attributes:
 - name: chaining_structure
   desc: CBC 链式结构（C_i = SM4(K, P_i xor C_{i-1})，C_0=IV）
   constraint: 须含链式 xor、前块密文反馈、C_0=IV，加密串行/解密并行
-  testable_signal: "运行 grep -q '链式' ontology/concept/cipher-mode-cbc.md && grep -q '串行' ontology/concept/cipher-mode-cbc.md"
+  testable_signal: 运行 grep -q '链式' ontology/concept/cipher-mode-cbc.md && grep -q '串行' ontology/concept/cipher-mode-cbc.md
+  evidence_level: structure
 - name: iv_and_auth
   desc: IV 随机性与无认证需 HMAC
   constraint: 须含 IV 随机不可预测、无认证需外加 HMAC-SM3/SHA512
-  testable_signal: "运行 grep -q 'IV.*随机' ontology/concept/cipher-mode-cbc.md && grep -q 'HMAC' ontology/concept/cipher-mode-cbc.md"
+  testable_signal: 运行 grep -q 'IV.*随机' ontology/concept/cipher-mode-cbc.md && grep -q 'HMAC' ontology/concept/cipher-mode-cbc.md
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # CBC 工作模式

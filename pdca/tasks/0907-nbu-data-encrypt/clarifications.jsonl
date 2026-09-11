@@ -1,4 +1,0 @@
-{"at":"2026-09-07T15:00:00+08:00","source":"task_identity","summary":"created with record identity T2071-0907-nbu-data-encrypt"}
-{"round": 1, "question": "Q1-分析深度/输出形态/对比范围三问", "answer": "逆向实测深度分析；研究报告+链路图；仅NBU现状", "recommended": "逆向实测+报告+链路图；仅NBU现状（用户已选）", "source": "grilling", "at": "2026-09-07T16:02:37+08:00", "captured": true}
-{"source":"final_confirmation","summary":"确认以T2071立项：逆向实测深度、报告+链路图、仅NBU现状边界，PRD验收标准已对齐","response":"confirmed","at":"2026-09-07T16:02:43+08:00"}
-{"source":"check_confirmation","summary":"grilling已收敛：确认conclusion verdict=confirmed，三AC映射ev证据，收敛valid，可进Act","response":"confirmed","at":"2026-09-07T16:19:55+08:00"}

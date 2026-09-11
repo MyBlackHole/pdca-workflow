@@ -1,35 +1,24 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/ontology-rule-guides-range
 type: concept
+semantic_kind: class
 layer: Knowledge
-summary: AC-6 guides 范围（源须知识类、目标须领域/过程类）
 status: active
+authority: normative
+revision: 2.0.0
+summary: 关系的类与实例范围
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ontology-rule-guides-range/1.0.0
-rule_spec:
-  source_types:
-  - pattern
-  - principle
-  - pitfall
-  - fact
-  - decision
-  target_types:
-  - domain
-  - entity
-  - concept
-  - process
-  - role
-  configured_by_target: ontology:entity/tls-configuration
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
   - ontology:concept/ontology-rule
+  relates_to:
+  - ontology:concept/ontology-asset
+rule_spec: {}
 ---
-# ontology-rule-guides-range
 
-**AC-6（guides 关系范围）**：`guides` 的 source 必为 KnowledgeArtifact 子类实例，target 必为 DomainEntity / Process 类节点。
+# 关系的类与实例范围
 
-- 对应 `ontology-validate.py` 的 AC-6 实现（GUIDES_RANGE）。
-- 违反示例：`guides` 指向一个 `concept` 类节点（非领域/过程类）。
+specializes的两端必须为class，instance_of源为individual且目标为class。guides源为知识实例或知识类，目标为确实受其指导的实体/过程/主题，不能仅按目录猜语义。configured_by目标须是当前领域声明的配置节点；通用规则不限定TLSConfiguration。

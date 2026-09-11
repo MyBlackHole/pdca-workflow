@@ -1,34 +1,58 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/bcachefs-transaction
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/bcachefs-transaction/1.0.0
-summary: bcachefs Transaction 实体 — btree_trans bump 内存、six 三态锁（read/intent/write+seq 乐观）与 25 种 restart 重试及 journal 并发环
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/bcachefs-transaction/3.1.0
+summary: bcachefs Transaction 实体 — btree_trans bump 内存、six 三态锁（read/intent/write+seq 乐观）与 25 种 restart 重试及 journal
+  并发环
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/production-ontology-scientific-gate
-    - ontology:pattern/scientific-research-methodology
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/production-ontology-scientific-gate
+  - ontology:pattern/scientific-research-methodology
 attributes:
-  - name: btree_trans_bump_and_restart
-    desc: btree_trans bump allocator（restart 即作废）与 25 种 BCH_ERR_transaction_restart 子码及 for_each_btree_key 重试宏可测
-    constraint: 覆盖 struct btree_trans { mem/mem_top/mem_bytes + sorted/nr_paths + restarted/restart_count + journal_res + srcu_idx } + errcode.h:209 25 restart 子码（relock/relock_path/intent/too_many_iters/lock_node_reused/fill_mem_alloc/commit/nested 等）+ for_each_btree_key/commit_do 重试环 + BCACHEFS_INJECT_TRANSACTION_RESTARTS 注入，经时序与状态机可一图建模
-    testable_signal: "运行 grep -q 'struct btree_trans' /home/black/Documents/bcachefs-tools/fs/btree/types.h 且 grep -q 'BCH_ERR_transaction_restart' /home/black/Documents/bcachefs-tools/fs/errcode.h 且 grep -q 'for_each_btree_key' /home/black/Documents/bcachefs-tools/fs/btree/iter.h 且 grep -q 'transaction' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: six_lock_three_state_and_seq
-    desc: six 共享/意图/独占三态锁与 seq 乐观重取及 btree_path 层级锁快照可测
-    constraint: 覆盖 util/six.h 三态（read 与 intent 兼容但 intent 互斥，intent→write 防升级死锁）+ seq 在 write 加解锁递增 + six_relock_read 乐观重取 + btree_path { l[4]{b,iter,lock_seq} + locks_want/nodes_locked } 层级快照，经 C4 L3 与状态机可一图建模
-    testable_signal: "运行 grep -q 'six_lock' /home/black/Documents/bcachefs-tools/fs/util/six.h 且 grep -q 'six_relock_read' /home/black/Documents/bcachefs-tools/fs/util/six.h 且 grep -q 'btree_path' /home/black/Documents/bcachefs-tools/fs/btree/types.h 且 grep -q 'transaction' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: journal_ring_concurrency_and_srcu
-    desc: journal 预约环 4 槽并发与 SRCU 读侧无锁及 journal_entry_pin flush 协同可测
-    constraint: 覆盖 JOURNAL_STATE_BUF_NR=4  ringbuf + journal_res_state { cur_entry_offset/idx/buf0-3_count } + commit hook 中 journal pin + srcu_idx + transaction restart 计数，经时序与决策树可一图建模
-    testable_signal: "运行 grep -q 'JOURNAL_STATE_BUF_NR' /home/black/Documents/bcachefs-tools/fs/journal/types.h 且 grep -q 'journal_res_state' /home/black/Documents/bcachefs-tools/fs/journal/types.h 且 grep -q 'srcu_idx' /home/black/Documents/bcachefs-tools/fs/btree/types.h 且 grep -q 'transaction' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
+- name: btree_trans_bump_and_restart
+  desc: btree_trans bump allocator（restart 即作废）与 25 种 BCH_ERR_transaction_restart 子码及 for_each_btree_key 重试宏可测
+  constraint: 覆盖 struct btree_trans { mem/mem_top/mem_bytes + sorted/nr_paths + restarted/restart_count + journal_res
+    + srcu_idx } + errcode.h:209 25 restart 子码（relock/relock_path/intent/too_many_iters/lock_node_reused/fill_mem_alloc/commit/nested
+    等）+ for_each_btree_key/commit_do 重试环 + BCACHEFS_INJECT_TRANSACTION_RESTARTS 注入，经时序与状态机可一图建模
+  testable_signal: 运行 grep -q 'struct btree_trans' /home/black/Documents/bcachefs-tools/fs/btree/types.h 且 grep
+    -q 'BCH_ERR_transaction_restart' /home/black/Documents/bcachefs-tools/fs/errcode.h 且 grep -q 'for_each_btree_key'
+    /home/black/Documents/bcachefs-tools/fs/btree/iter.h 且 grep -q 'transaction' records/T0533-0902-research-bcachefs-tools/research-report.md
+    命中
+  evidence_level: structure
+- name: six_lock_three_state_and_seq
+  desc: six 共享/意图/独占三态锁与 seq 乐观重取及 btree_path 层级锁快照可测
+  constraint: 覆盖 util/six.h 三态（read 与 intent 兼容但 intent 互斥，intent→write 防升级死锁）+ seq 在 write 加解锁递增 + six_relock_read
+    乐观重取 + btree_path { l[4]{b,iter,lock_seq} + locks_want/nodes_locked } 层级快照，经 C4 L3 与状态机可一图建模
+  testable_signal: 运行 grep -q 'six_lock' /home/black/Documents/bcachefs-tools/fs/util/six.h 且 grep -q 'six_relock_read'
+    /home/black/Documents/bcachefs-tools/fs/util/six.h 且 grep -q 'btree_path' /home/black/Documents/bcachefs-tools/fs/btree/types.h
+    且 grep -q 'transaction' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: journal_ring_concurrency_and_srcu
+  desc: journal 预约环 4 槽并发与 SRCU 读侧无锁及 journal_entry_pin flush 协同可测
+  constraint: 覆盖 JOURNAL_STATE_BUF_NR=4  ringbuf + journal_res_state { cur_entry_offset/idx/buf0-3_count } + commit
+    hook 中 journal pin + srcu_idx + transaction restart 计数，经时序与决策树可一图建模
+  testable_signal: 运行 grep -q 'JOURNAL_STATE_BUF_NR' /home/black/Documents/bcachefs-tools/fs/journal/types.h 且 grep
+    -q 'journal_res_state' /home/black/Documents/bcachefs-tools/fs/journal/types.h 且 grep -q 'srcu_idx' /home/black/Documents/bcachefs-tools/fs/btree/types.h
+    且 grep -q 'transaction' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Bcachefs Transaction（事务/并发）
@@ -146,14 +170,8 @@ ret = bch2_trans_commit(trans, NULL, NULL, BCH_TRANS_COMMIT_no_enospc);
 // 正确：read→intent(互斥栅栏)→write
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' ontology/entity/bcachefs-transaction.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' ontology/entity/bcachefs-transaction.md` ≥3 且每图含 `Source: /home/black/Documents/bcachefs-tools/... file:line`
-- **正文门禁**：`wc -l ontology/entity/bcachefs-transaction.md` ≥80 且含 `决策树` `正例` `反例` `门禁`
-- **属性门禁**：`attributes` ≥3 且每条 `testable_signal` 含 `grep -q` 且双源可回归
-- **本体校验**：`python3 scripts/ontology-validate.py` 0 issues 且 `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/bcachefs-transaction --out /tmp/x.py` 可产
-- **Gate 门禁**：`python3 scripts/production-ontology-gate.py --node ontology:entity/bcachefs-transaction` GATE OK
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `/home/black/Documents/bcachefs-tools/fs/btree/types.h:645` + `/home/black/Documents/bcachefs-tools/fs/util/six.h:1` + `/home/black/Documents/bcachefs-tools/fs/errcode.h:209`

@@ -1,3 +1,0 @@
-{"at":"2026-09-11T10:56:21+08:00","source":"task_identity","summary":"created with record identity T2165-0911-pdca-abc-core-scenes-migration"}
-{"source":"final_confirmation","summary":"承接 T2164：实施 A/B/C 核心场景与 skill/tool 路由迁移，不保留旧六值兼容读取","response":"confirmed","at":"2026-09-11T10:56:45+08:00"}
-{"round":1,"question":"实施边界是否沿用已确认的 T2156 决策","answer":"确认修正：核心只保留 A/B/C，六个旧 scenario_type 不保留兼容层，具体差异由 skill/tool 路由表达","recommended":"同步修改权威本体、flow-do、schema 和生产路由脚本，并增加回归验证。","source":"grilling","at":"2026-09-11T10:56:45+08:00","captured":true,"verified":true}

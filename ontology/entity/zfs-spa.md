@@ -1,34 +1,52 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/zfs-spa
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/zfs-spa/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/zfs-spa/3.1.0
 summary: ZFS SPA 实体 — Storage Pool Allocator 池分配器与 TXG 三状态机及 metaslab 空间分配
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:domain/zfs-crypto
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/scientific-research-methodology
+  - ontology:domain/zfs-crypto
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/scientific-research-methodology
 attributes:
-  - name: spa_pool_vdev_metaslab_topology
-    desc: SPA 池拓扑与 VDEV/metaslab/space_map 三级空间结构及 C4 L3 可视化
-    constraint: 覆盖 spa_t/spa_config/vdev树/metaslab_class/space_map/range_tree 的层级与 C4 L3 组件图，space_map 以 sm_pp_block 三段序列化
-    testable_signal: "运行 grep -q 'metaslab_class' records/T0515-0903-research-zfs-spa/research-spa.md 且 grep -q 'space_map' records/T0515-0903-research-zfs-spa/research-spa.md 且 grep -q 'spa_t' module/zfs/spa.c 命中"
-  - name: txg_state_sync_convergence
-    desc: TXG 三状态机 open/quiescing/syncing 与 spa_sync 多 pass 收敛及状态机可视化
-    constraint: 覆盖 txg_init/txg_hold_open/txg_quiesce/txg_quiesce_thread/txg_sync_thread 与 zfs_txg_timeout=5s，以及 spa_sync 的 zfs_sync_pass_deferred_free/dont_compress/rewrite 三收敛开关与 spa_taskq_dispatch
-    testable_signal: "运行 grep -q 'txg_quiesce' records/T0515-0903-research-zfs-spa/research-spa.md 且 grep -q 'spa_sync' records/T0515-0903-research-zfs-spa/research-spa.md 且 grep -q 'zfs_txg_timeout' module/zfs/txg.c 命中"
-  - name: metaslab_allocation_weight
-    desc: metaslab 权重分配与空间定价及分配时序可测
-    constraint: 覆盖 metaslab_alloc/metaslab_weight/space_map_alloc 的按权重选 metaslab、定价选 segment、range_tree 第一适配及碎片/负载/距离权重，时序图覆盖 zio_alloc ↔ metaslab_alloc ↔ vdev_queue
-    testable_signal: "运行 grep -q 'metaslab_alloc' records/T0515-0903-research-zfs-spa/research-spa.md 且 grep -q 'space_map' records/T0515-0903-research-zfs-spa/research-spa.md 且 grep -q 'metaslab_weight' module/zfs/metaslab.c 命中"
+- name: spa_pool_vdev_metaslab_topology
+  desc: SPA 池拓扑与 VDEV/metaslab/space_map 三级空间结构及 C4 L3 可视化
+  constraint: 覆盖 spa_t/spa_config/vdev树/metaslab_class/space_map/range_tree 的层级与 C4 L3 组件图，space_map 以 sm_pp_block
+    三段序列化
+  testable_signal: 运行 grep -q 'metaslab_class' records/T0515-0903-research-zfs-spa/research-spa.md 且 grep -q 'space_map'
+    records/T0515-0903-research-zfs-spa/research-spa.md 且 grep -q 'spa_t' module/zfs/spa.c 命中
+  evidence_level: structure
+- name: txg_state_sync_convergence
+  desc: TXG 三状态机 open/quiescing/syncing 与 spa_sync 多 pass 收敛及状态机可视化
+  constraint: 覆盖 txg_init/txg_hold_open/txg_quiesce/txg_quiesce_thread/txg_sync_thread 与 zfs_txg_timeout=5s，以及 spa_sync
+    的 zfs_sync_pass_deferred_free/dont_compress/rewrite 三收敛开关与 spa_taskq_dispatch
+  testable_signal: 运行 grep -q 'txg_quiesce' records/T0515-0903-research-zfs-spa/research-spa.md 且 grep -q 'spa_sync'
+    records/T0515-0903-research-zfs-spa/research-spa.md 且 grep -q 'zfs_txg_timeout' module/zfs/txg.c 命中
+  evidence_level: structure
+- name: metaslab_allocation_weight
+  desc: metaslab 权重分配与空间定价及分配时序可测
+  constraint: 覆盖 metaslab_alloc/metaslab_weight/space_map_alloc 的按权重选 metaslab、定价选 segment、range_tree 第一适配及碎片/负载/距离权重，时序图覆盖
+    zio_alloc ↔ metaslab_alloc ↔ vdev_queue
+  testable_signal: 运行 grep -q 'metaslab_alloc' records/T0515-0903-research-zfs-spa/research-spa.md 且 grep -q 'space_map'
+    records/T0515-0903-research-zfs-spa/research-spa.md 且 grep -q 'metaslab_weight' module/zfs/metaslab.c 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # ZFS SPA（Storage Pool Allocator）
@@ -150,14 +168,8 @@ metaslab_free(dva, txg); // 错：首 pass 即 space_map_free，若本 TXG 后�
 // 正确：若 txg_sync_pass < zfs_sync_pass_deferred_free 则入 deferred free list，下一 TXG 再 space_map_free
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' records/T0515-0903-research-zfs-spa/research-spa.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' records/T0515-0903-research-zfs-spa/research-spa.md` ≥3 且每图附 `openzfs/zfs file:line`
-- **正文门禁**：`wc -l ontology/entity/zfs-spa.md` ≥60 且 `grep -q '决策树' ontology/entity/zfs-spa.md && grep -q '正例' ontology/entity/zfs-spa.md && grep -q '反例' ontology/entity/zfs-spa.md && grep -q '门禁' ontology/entity/zfs-spa.md`
-- **属性门禁**：`attributes` 数量 ≥3 且每条 `testable_signal` 含 `grep -q` 动词+判定
-- **本体校验**：`python3 scripts/ontology-validate.py --ontology-dir ontology` 0 issues 且 `python3 scripts/ontology_graph.py --format summary` `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/zfs-spa --out /tmp/test_zfs_spa_scaffold.py` 可产且 `pytest` 可收集
-- **收敛门禁**：`python3 scripts/validate-convergence.py --task-dir pdca/tasks/0903-research-zfs-spa` `valid:true`
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `openzfs/zfs/module/zfs/txg.c:20-80`（TXG 三状态）+ `openzfs/zfs/module/zfs/spa.c:2400-2600`（spa_sync 多 pass 与 zfs_sync_pass_*）+ `openzfs/zfs/module/zfs/metaslab.c:400-600`（metaslab_weight 定价）+ `openzfs/zfs/include/sys/spa_impl.h:80-200`（spa_t/vdev树）+ `openzfs/zfs/include/sys/metaslab.h:40-120`（metaslab_t/space_map）+ `openzfs/zfs/include/sys/txg.h:20-60`（tx_state_t）

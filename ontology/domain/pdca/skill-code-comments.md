@@ -1,27 +1,39 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-code-comments
 name: code-comments
 summary: Add Chinese annotation comments to code and embed business-understanding diagrams alongside source code.
-description: Use when adding Chinese annotation comments to code, when asked to translate/add supplementary comments in Chinese to existing code, or when needing to embed business-understanding diagrams (ASCII / Mermaid) alongside source code for clearer business logic visualization, or when documenting technical principles / architecture decisions / algorithm mechanisms / system architecture understanding inline for deeper code comprehension
+description: Use when adding Chinese annotation comments to code, when asked to translate/add supplementary comments
+  in Chinese to existing code, or when needing to embed business-understanding diagrams (ASCII / Mermaid) alongside
+  source code for clearer business logic visualization, or when documenting technical principles / architecture
+  decisions / algorithm mechanisms / system architecture understanding inline for deeper code comprehension
 invocation: manual
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-code-comments/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/skill-code-comments/3.1.0
 relations:
-  specializes:
-    - ontology:concept/pdca-task
   relates_to:
-    - ontology:concept/domain-modeling
-    - ontology:concept/writing-for-agents
-  testable_signal: "运行 grep -q 'Adding Chinese Code Comments (代码备注)' ontology/domain/pdca/skill-code-comments.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:concept/domain-modeling
+  - ontology:concept/writing-for-agents
+  - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
+revision: 3.1.0
+authority: reference
+validation:
+  structural_checks:
+  - 递归解析本节点身份及关系列表；目标 ID 必须可定位。引用数量不作为行为验证。
+  claim_status: unverified
+  adoption: claim_review_required
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
-
 
 ---
 name: code-comments

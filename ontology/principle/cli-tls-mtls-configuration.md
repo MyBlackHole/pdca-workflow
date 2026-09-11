@@ -1,23 +1,35 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:principle/cli-tls-mtls-configuration
 type: principle
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/cli-tls-mtls-configuration/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/cli-tls-mtls-configuration/3.1.0
 summary: 工具 CLI TLS/mTLS 配置约定
 source_task: T0323
 relations:
-  specializes: [ontology:principle]
-  guides: [ontology:entity/tls-configuration]
+  guides:
+  - ontology:entity/tls-configuration
+  instance_of:
+  - ontology:principle
 attributes:
-  - name: applicability
-    desc: 同时提供明文和 mTLS 的客户端/服务端工具配置入口
-    constraint: ""
-    testable_signal: 参数解析拒绝未知算法和非 0/1 的 mTLS 值，并输出工具名及参数名
+- name: applicability
+  desc: 同时提供明文和 mTLS 的客户端/服务端工具配置入口
+  constraint: ''
+  testable_signal: 参数解析拒绝未知算法和非 0/1 的 mTLS 值，并输出工具名及参数名
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # 工具 CLI TLS/mTLS 配置约定

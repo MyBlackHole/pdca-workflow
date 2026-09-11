@@ -1,4 +1,0 @@
-{"id":"report-superblock","file":"report.md","kind":"document","size":2183,"digest":"sha256:b677cbc5c0b07a436d76d868b44d936df72adbc967d863d93ef9c328bc6f970a","at":"2026-09-06T10:45:12+08:00","criteria":["AC-1","AC-2"]}
-{"id":"node-superblock-guide","file":"core-superblock-study-guide.md","kind":"document","size":2221,"digest":"sha256:7b4e20871ccb3b6962a15763efa60a721e47bbf90a889e63e1f61607d22491c7","at":"2026-09-06T10:45:13+08:00","criteria":["AC-3"]}
-{"id":"validate-output","file":"validate-output.txt","kind":"document","size":78,"digest":"sha256:18242016b05335b14b3fa02ba636c1b2feba5be9b79e65971251af73a3a74084","at":"2026-09-06T10:45:14+08:00","criteria":["AC-3"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":445,"digest":"sha256:263c632fc62a4adaf7b768d2c1862a74a7f82dc883af95ce77026cda224dfa21","at":"2026-09-06T10:45:29+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

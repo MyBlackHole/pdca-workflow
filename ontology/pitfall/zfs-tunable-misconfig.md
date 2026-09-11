@@ -1,36 +1,53 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pitfall/zfs-tunable-misconfig
 type: pitfall
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/zfs-tunable-misconfig/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/zfs-tunable-misconfig/3.1.0
 summary: ZFS tunable误配pitfall：arc_p/metaslab_weight/l2arc_write_max阈值联动反模式
 relations:
-  specializes:
-    - ontology:pitfall
   guides:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:entity/zfs-arc
-    - ontology:entity/zfs-spa
-    - ontology:pattern/production-ontology-scientific-gate
+  - ontology:entity/zfs-arc
+  - ontology:entity/zfs-spa
+  - ontology:pattern/production-ontology-scientific-gate
+  instance_of:
+  - ontology:pitfall
 attributes:
-  - name: arc_p_misconfig
-    desc: ARC p误配导致LRU退化可测
-    constraint: 覆盖 arc_p误设为0或c导致MRU/MFU失衡且可测，反模式可一图建模
-    testable_signal: "运行 grep -q 'ARC_p' records/T0532-0902-zfs-scrub-pattern/report.md 2>/dev/null || grep -q 'ARC_p' ontology/pitfall/zfs-tunable-misconfig.md 命中且 grep -q 'ARC_p' /tmp/zfs/module/zfs/arc.c 命中"
-  - name: metaslab_weight_misconfig
-    desc: metaslab_weight误配导致ENOSPC可测
-    constraint: 覆盖 weight误设导致高碎片仍被选且可测，反模式可一图建模
-    testable_signal: "运行 grep -q 'metaslab_weight' records/T0532-0902-zfs-scrub-pattern/report.md 2>/dev/null || grep -q 'metaslab_weight' ontology/pitfall/zfs-tunable-misconfig.md 命中且 grep -q 'metaslab_weight' /tmp/zfs/module/zfs/metaslab.c 命中"
-  - name: l2arc_write_max_misconfig
-    desc: l2arc_write_max误配导致写放大可测
-    constraint: 覆盖 l2arc_write_max过大导致cache vdev写放大且可测，反模式可一图建模
-    testable_signal: "运行 grep -q 'l2arc_write_max' records/T0532-0902-zfs-scrub-pattern/report.md 2>/dev/null || grep -q 'l2arc_write_max' ontology/pitfall/zfs-tunable-misconfig.md 命中且 grep -q 'l2arc_write_max' /tmp/zfs/module/zfs/l2arc.c 命中"
+- name: arc_p_misconfig
+  desc: ARC p误配导致LRU退化可测
+  constraint: 覆盖 arc_p误设为0或c导致MRU/MFU失衡且可测，反模式可一图建模
+  testable_signal: 运行 grep -q 'ARC_p' records/T0532-0902-zfs-scrub-pattern/report.md 2>/dev/null || grep -q 'ARC_p'
+    ontology/pitfall/zfs-tunable-misconfig.md 命中且 grep -q 'ARC_p' /tmp/zfs/module/zfs/arc.c 命中
+  evidence_level: structure
+- name: metaslab_weight_misconfig
+  desc: metaslab_weight误配导致ENOSPC可测
+  constraint: 覆盖 weight误设导致高碎片仍被选且可测，反模式可一图建模
+  testable_signal: 运行 grep -q 'metaslab_weight' records/T0532-0902-zfs-scrub-pattern/report.md 2>/dev/null || grep
+    -q 'metaslab_weight' ontology/pitfall/zfs-tunable-misconfig.md 命中且 grep -q 'metaslab_weight' /tmp/zfs/module/zfs/metaslab.c
+    命中
+  evidence_level: structure
+- name: l2arc_write_max_misconfig
+  desc: l2arc_write_max误配导致写放大可测
+  constraint: 覆盖 l2arc_write_max过大导致cache vdev写放大且可测，反模式可一图建模
+  testable_signal: 运行 grep -q 'l2arc_write_max' records/T0532-0902-zfs-scrub-pattern/report.md 2>/dev/null || grep
+    -q 'l2arc_write_max' ontology/pitfall/zfs-tunable-misconfig.md 命中且 grep -q 'l2arc_write_max' /tmp/zfs/module/zfs/l2arc.c
+    命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # ZFS Tunable 误配 Pitfall

@@ -1,0 +1,46 @@
+# 正式记录关系检查边界
+
+本文件按CONTRACT-01/GATE-01/TEST-01/EVIDENCE-01/TREE-01定位机械核验，不新增权威或运行状态。
+
+## 门禁
+
+每个适用checks元素必须有predicate_id、required布尔值、可定位权威authority_ref、verification_action、可解析且固定的evidence_refs及observation_ref。authority_ref可以是当前protocol-release注册的规则ID；不能是任意非空字符串。缺少元素级subject时继承gate的subject；显式给出时必须绑定同一被核验对象。
+
+Plan→Do绑定当前baseline，Do→Check绑定当前run，Check→Act绑定当前review，Act→archive绑定当前delivery。这里是维护示例的有限绑定方式，不替代真实场景要求的其他材料。review.phase必须为check，且task与baseline归属一致。记录中的satisfied仅是待核验的声明，维护程序不认证证据的自然语言含义或宿主来源。
+
+## run、观测与辅助集合
+
+本版合成示例的fixture-evidence观测固定task/work/tree/node/scene/attempt/run_id、case_id、effective_case_digest、artifact_digest、checker_digest和visible_input_manifest_digest。run_id是身份而非指回run的摘要，避免run→observation→run循环。其他任务的观测不能冒充当前run；需要外部证据复用时另作具名绑定，本profile未实现该语义时明确unsupported，不自动放行。
+
+可见输入集合每个files成员均为固定ref/digest；核对至少包含本次artifact，拒绝重复成员、空清单、悬空或未固定引用。示例的独立输入模式要求answers_included=false；true表示不能证明此项分离，false也不能证明真实工具访问隔离。实际盲测必须另有宿主证据。
+
+证据保留清单核对本次全部observation、raw_evidence、artifact、checker和可见输入清单。允许额外具名保留材料，但不允许漏项或用另一run的同名观测代替。清单和观测的task/attempt/run身份必须与引用它们的run匹配。此处fixture字段投影只用于合成材料，真实记录来源、实际执行与保留能力仍需单独核验。
+
+## 层级树与清单
+
+整树检查从外部固定basis推导work/tree/root和节点集合，检查根无父、非根唯一父、父子互相对应、可达且无环；再交叉核对node文件、tree-spec、manifest与执行图。父局部交付仅核对自身和直接seed，不要求未展开后代闭合；不得把全树profile用于否决合法递归中间态。
+
+清单role必须与实际对象schema、scene和选定task/attempt相符；role名称存在不证明用途正确。案例constraint_mapping的source/local两端均须存在于对应有效case约束；不能只验证source。
+
+## 覆盖输出
+
+检查器输出逐检查组的authority_refs、scope、input_refs、断言数及pass/fail/unknown/not_implemented/not_run。不支持的profile返回incomplete且非零退出。已完成的字段/关系子集可报告pass，整体验收仍incomplete，production_eligible始终false。真实语义、宿主授权、隔离、写权和最终发布未执行不得继承任何子集pass。
+
+## 非成功记录
+
+停止/失败/异常后继按[生命周期记录附件](lifecycle-records.md)选择独立profile。合法停止的记录一致性不等于业务完成；正常失败收尾保留四条边和原失败，不用取消逃避确认。
+
+## 真实记录反例的有限维护profile
+
+新附件的records扫描只判断明确的格式/类型/有限字段与引用，不消费历史批准。review-evidence子集从外部固定要求集合展开case/assertion，比较观察、版本与保留文件；unknown schema/profile不自动通过。完整实时Agent/授权/写权/四边效力仍未实现，输出必须把这一层列为not_implemented且production_eligible=false。
+
+具名断言观察必须来自实际记录或明确标记的合成fixture。真实原文比较与合成关系测试分别报告；26/45成员反例的检测只证明两个固定摘录不相等，不证明真实源码布局。受限解析器遇到宏/嵌套/未知语法报告unsupported，不把空解析结果当作相等。
+
+
+## 3.4.7 有限解析与防止错误PASS
+
+本版本地ref可为带digest的对象，或由伴随摘要固定；具名/跨根引用由调用方在候选集合外显式选择目录与对象映射。已解析不代表已授权，真实权限仍由宿主提供。不支持的引用角色或摘要关系报告incomplete。completed-review与draft分开；旧records真实来源不因采用检查失败而改变。
+
+review-evidence子集严格核对visible/retained的task_id、正整数attempt、run_id，已提供的其他身份也不得错配；默认blind检查已知case/oracle文件及同字节副本不进入subject可见集。transparent独立声明，不计盲测能力。evidence_integrity_result与subject_conformance分别计算，正确否定不是错误审查。
+
+索引格式错误生成具名finding；内部检查器异常使用checker_error而非业务违例，不计击杀。结果以新的调用身份、输入指纹和结构化状态写入新位置；旧结果不得覆盖或重用。

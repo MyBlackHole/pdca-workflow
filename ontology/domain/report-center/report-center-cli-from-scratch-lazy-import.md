@@ -1,28 +1,41 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/report-center-cli-from-scratch-lazy-import
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/report-center-cli-from-scratch-lazy-import/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/report-center-cli-from-scratch-lazy-import/3.1.0
 summary: CLI 从零重写 + 惰性导入 + Keyset 分页（T0217 沉淀）
 domain:
 - ontology:domain/report-center
 relations:
-  specializes:
-  - ontology:domain/report-center
   relates_to:
   - ontology:concept/pdca
+  - ontology:domain/report-center
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: "运行 grep -q 'lazy-import' ontology/domain/report-center-cli-from-scratch-lazy-import.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
+  testable_signal: 运行 grep -q 'lazy-import' ontology/domain/report-center/report-center-cli-from-scratch-lazy-import.md；文本命中仅证明描述存在，领域行为需另行验证。
+  verification_level: structural
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
-
 
 # CLI 从零重写 + 惰性导入 + Keyset 分页（T0217 沉淀）
 
@@ -65,7 +78,5 @@ CDM 报表中心需要 collection-service 经既有 rpc 工具通道在 CDM 主�
 
 ## 流程改进（供后续任务复用）
 
-- do 阶段 task.json 被外部工具改回 `phase:plan` 时，用 `transition-receipts/` 的
-  before/after digest 核对，补写 `states` 时间戳后重跑 `transition-phase --to do` 恢复。
-- 确认/裁决记录必须用 `append-confirmation.py`（真实时钟 + schema 校验），
-  手写 `at` 时间戳会被 schema 拒绝。
+- 当前任务状态不一致时按 ontology:concept/pdca-recovery 核对真实回执；不得补写时间或重复推进来掩盖不一致。
+- 真实用户确认按 ontology:concept/pdca-ai-friendly-confirmation；不依赖已移除的专用CLI。

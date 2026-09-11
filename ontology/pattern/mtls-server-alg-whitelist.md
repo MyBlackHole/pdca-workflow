@@ -1,23 +1,36 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/mtls-server-alg-whitelist
 type: pattern
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/mtls-server-alg-whitelist/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/mtls-server-alg-whitelist/3.1.0
 summary: 服务端握手算法白名单校验四模块落地范式
 source_task: T0357
 relations:
-  specializes: [ontology:pattern]
-  guides: [ontology:entity/mtls-handshake, ontology:entity/tls-configuration]
+  guides:
+  - ontology:entity/mtls-handshake
+  - ontology:entity/tls-configuration
+  instance_of:
+  - ontology:pattern
 attributes:
-  - name: applicability
-    desc: 服务端入口处白名单校验客户端算法枚举值
-    constraint: ""
-    testable_signal: 非法算法回显式错误码（0x8005）fail-closed，不依赖下游 NULL 回落
+- name: applicability
+  desc: 服务端入口处白名单校验客户端算法枚举值
+  constraint: ''
+  testable_signal: 非法算法回显式错误码（0x8005）fail-closed，不依赖下游 NULL 回落
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # 服务端握手算法白名单校验 — 四模块落地范式（T0357）

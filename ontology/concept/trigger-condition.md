@@ -1,13 +1,13 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/trigger-condition
 type: concept
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/trigger-condition/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/trigger-condition/3.1.0
 summary: 触发条件：user-invoked 和 model-invoked 技能的形式化触发机制
 relations:
   specializes:
@@ -19,14 +19,26 @@ attributes:
   desc: 适用于所有技能的触发条件建模
   constraint: 见正文
   testable_signal: 检查每个技能是否声明触发短语和触发条件
+  evidence_level: unclassified
 - name: trigger_phrase
   desc: 触发短语（如 'Use when...'），用于招募模型先验
   constraint: 至少声明一个触发短语
   testable_signal: 检查技能描述是否包含声明式触发短语
+  evidence_level: unclassified
 - name: trigger_context
   desc: 触发条件（场景、上下文），定义技能何时被激活
   constraint: 见正文
   testable_signal: 检查触发条件是否覆盖所有预期场景
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Trigger Condition（触发条件）

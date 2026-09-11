@@ -1,13 +1,13 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/cipher-mode-ofb
 type: concept
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/cipher-mode-ofb/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/cipher-mode-ofb/3.1.0
 summary: OFB 工作模式（流 O_{i-1} 反馈）均串行、预计算、IV 不可重用、错误不扩散
 relations:
   specializes:
@@ -18,11 +18,22 @@ attributes:
 - name: feedback_structure
   desc: OFB 反馈结构（O_i = SM4(K, O_{i-1})，C = P xor O_i，O_0=IV）
   constraint: 须含 O_{i-1} 反馈、均串行、预计算
-  testable_signal: "运行 grep -q 'O_{i-1}' ontology/concept/cipher-mode-ofb.md && grep -q '均串行' ontology/concept/cipher-mode-ofb.md"
+  testable_signal: 运行 grep -q 'O_{i-1}' ontology/concept/cipher-mode-ofb.md && grep -q '均串行' ontology/concept/cipher-mode-ofb.md
+  evidence_level: structure
 - name: iv_constraint
   desc: IV 不可重用与错误特性（预计算、1位错误仅影响1位）
   constraint: 须含 IV 不可重用（重用=密钥流重用）、预计算、错误不扩散
-  testable_signal: "运行 grep -q '不可重用' ontology/concept/cipher-mode-ofb.md && grep -q '预计算' ontology/concept/cipher-mode-ofb.md"
+  testable_signal: 运行 grep -q '不可重用' ontology/concept/cipher-mode-ofb.md && grep -q '预计算' ontology/concept/cipher-mode-ofb.md
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # OFB 工作模式

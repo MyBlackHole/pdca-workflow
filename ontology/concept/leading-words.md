@@ -1,13 +1,13 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/leading-words
 type: concept
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/leading-words/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/leading-words/3.1.0
 summary: 锚定词：用预训练已有词锚定一类行为，以 token 而非句子重复
 relations:
   specializes:
@@ -17,6 +17,16 @@ attributes:
   desc: 适用于所有写给 AI 消费的文档和技能
   constraint: 见正文
   testable_signal: 检查文档中是否存在自造词未用已有词锚定；同义短语是否收拢为单 token
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Leading Words（锚定词）

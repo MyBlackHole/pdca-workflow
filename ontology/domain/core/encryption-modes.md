@@ -1,64 +1,48 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/encryption-modes
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/encryption-modes/1.0.0
-summary: 分组密码工作模式族（ECB/CBC/CFB/OFB/CTR/XTS/GCM/CCM）不变量与 AEAD/随机访问/IV 约束
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/encryption-modes/3.1.0
+summary: 工作模式索引：不复制算法公式作为第二权威
 relations:
-  specializes:
-  - ontology:domain/backup-crypto
   relates_to:
   - ontology:domain/backup-crypto-gm-support-surfaces
+  - ontology:domain/backup-crypto
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
-- name: mode_invariants
-  desc: 8 模式不变量（并行/认证/填充/IV/随机访问）正交分类
-  constraint: 须覆盖 ECB(并行无认证泄露)/CBC(加密串行无认证)/CTR(均并行无认证)/XTS(盘加密 tweak)/GCM(CCM 为 AEAD，IV 不可重用)
-  testable_signal: "运行 grep -q 'GCM.*AEAD.*GHASH' ontology/domain/encryption-modes.md && grep -q 'XTS.*tweak' ontology/domain/encryption-modes.md && grep -q 'ECB.*泄露' ontology/domain/encryption-modes.md"
-- name: aead_boundary
-  desc: AEAD 一体性边界（GCM/CCM 为唯二 AEAD，IV/nonce 不可重用）
-  constraint: 须含 GCM(CTR+GHASH 并行) 与 CCM(CBC-MAC+CTR 串行) 为 AEAD，IV 12B/唯一性约束
-  testable_signal: "运行 grep -q 'AEAD' ontology/domain/encryption-modes.md && grep -q '不可重用' ontology/domain/encryption-modes.md && grep -q 'GCM.*CTR.*GHASH' ontology/domain/encryption-modes.md"
-- name: storage_adaptation
-  desc: 存储适配约束（随机访问/盘加密/流）
-  constraint: 须含 ECB(禁用)/CTR(最佳并行)/XTS(盘加密窃取法) 的存储适配判定
-  testable_signal: "运行 grep -q '随机访问' ontology/domain/encryption-modes.md && grep -q '盘加密' ontology/domain/encryption-modes.md"
+- name: source_binding
+  desc: 导航不构成算法或产品实现证据
+  constraint: 以对应模式的固定来源、任务适用范围和真实测试为准
+  testable_signal: 检查claim-review来源与固定版本；向量见tests/crypto-regression.md，链接存在只作结构检查
+  evidence_level: source
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
-# 分组密码工作模式族
+# 分组密码模式资料索引
 
-分组密码（如 `SM4/AES 128b`）的工作模式定义 `明文块→密文块` 的 chaining 方式，决定 `并行 / 认证 / 随机访问 / 填充 / IV` 五力权衡。
+本页是导航，不再复制未经验证的“最佳/唯二/通用12B”选型表或第二套公式。具体模式定义与限制只按固定版本节点采用：
 
-## 1. 模式不变量
+| 节点 | 采用时必须核对 |
+|---|---|
+| [GCM](../../concept/cipher-mode-gcm.md) | H与标签掩码J0分离、格式化、nonce管理、具体tag长度与向量 |
+| [CCM](../../concept/cipher-mode-ccm.md) | M/L、B0、AAD编码、必要补零、S0掩码 |
+| [XTS](../../concept/cipher-mode-xts.md) | 数据单元tweak、GF推进、尾块、确定性和没有认证 |
+| [CFB](../../concept/cipher-mode-cfb.md) | 不与CBC-CTS混同，实际协议与库能力需版本匹配 |
 
-| 模式 | 原理 | 并行 | 认证 | 填充 | IV/tweak | 随机访问 |
-|------|------|------|------|------|----------|----------|
-| ECB | 独立 `C=SM4(K,P)` | 均并行 | 无 | 需 | 无 | ✓ |
-| CBC | 链式 `C_i=SM4(K,P_i xor C_{i-1})` `C_0=IV` | 加密串行 | 无 | 需 | 随机 | × |
-| CFB | 流 `keystream=SM4(K,C_{i-1})` | 解密并行 | 无 | 无 | 随机 | △ |
-| OFB | 流 `O_i=SM4(K,O_{i-1})` | 均串行 | 无 | 无 | 不可重用 | ✓预计算 |
-| CTR | 计数器 `keystream=SM4(K,nonce||ctr)` | 均并行 | 无 | 无 | 不可重用 | **✓最佳** |
-| XTS | `C=P xor E(K2,tweak) → SM4(K1) → xor` `tweak=LBA` | 均并行 | 无 | 窃取法 | tweak | ✓ |
-| **GCM** | `CTR+GHASH` `tag=GHASH(AAD,C) xor SM4(K,0)` | 均并行 | **AEAD** | 无 | 12B不可重用 | ✓ |
-| CCM | `CBC-MAC+CTR` | 认证串行 | **AEAD** | 需 | 唯一 | ✓ |
+原页重复的错误GCM掩码和固定XTS输入不同输出结论已撤回。列表不是全部AEAD的穷举，也不推导所有存储都应选某一模式。随机读取能否独立认证取决于实际认证单元、布局与协议，不能从“CTR可寻址”直接推出。
 
-`ECB` 因同明文同密文泄露相等性，存储中禁用；`CBC/CFB/OFB/CTR/XTS` 无认证，需外加 `HMAC`；`GCM/CCM` 为唯二 `AEAD` 一体。
-
-## 2. AEAD 一体性
-
-`GCM`（`CTR` 加密 + `GHASH GF(2^128)` 认证并行交错）与 `CCM`（`CBC-MAC` 认证串行 + `CTR` 加密）为 `AEAD` 唯二，`IV/nonce` 绝不可重用（`GCM` 重用泄露 `GHASH` 密钥）。
-
-## 3. 存储适配
-
-- **随机访问**：`CTR/GCM/XTS` 均并行最佳，`CBC` 加密串行不适大块。
-- **盘加密**：`XTS` 以 `tweak=LBA` 使同扇区同明文不同密文，无额外存储，窃取法免填充，为 `FDE` 专用。
-- **流/文件名**：`CFB/CTS` 流无填充适小块。
-
-## 4. 门禁
-
-- `grep -q 'GCM.*AEAD.*GHASH' ontology/domain/encryption-modes.md && grep -q 'XTS.*tweak' ontology/domain/encryption-modes.md && grep -q 'ECB.*泄露' ontology/domain/encryption-modes.md`
-- `python3 scripts/ontology-validate.py --ontology-dir ontology` 0 issues
+测试采用[公开向量与错误变体](../../../tests/crypto-regression.md)；各引用节点仍须claim-review。其他模式节点未因本索引修正而自动获得事实认证。

@@ -1,1 +1,0 @@
-{"items":[{"criteria":["AC-1"],"evidence_ids":["ev2149-gate-report","ev2149-scanner","ev2149-tests"],"index":1,"text":"悬空引用已修复"},{"criteria":["AC-2"],"evidence_ids":["ev2149-role"],"index":2,"text":"role目录已补建"},{"criteria":["AC-3"],"evidence_ids":["ev2149-gate-ok","ev2149-tests"],"index":3,"text":"门禁全绿有证据"}],"schema":"pdca.convergence/v1"}

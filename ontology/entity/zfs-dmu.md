@@ -1,33 +1,51 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/zfs-dmu
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/zfs-dmu/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/zfs-dmu/3.1.0
 summary: ZFS DMU 实体 — dnode/dbuf 对象-块两级抽象与读写/脏数据路径
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:domain/zfs-crypto
-    - ontology:pattern/research-diagram-methodology
+  - ontology:domain/zfs-crypto
+  - ontology:pattern/research-diagram-methodology
 attributes:
-  - name: dnode_dbuf_abstraction
-    desc: dnode/dbuf 两级抽象与 dn_struct_rwlock/db_mtx 协同及 C4 L3 Component 可视化
-    constraint: 覆盖 dnode_hold → dbuf_whichblock → dbuf_hold → dbuf_read 状态机 DB_CACHED/DB_FILL，经 C4 L3 Component 图可一图建模
-    testable_signal: "运行 grep -q 'dnode.*dbuf' records/T0513-0903-research-zfs-dmu/research-dmu.md 且 grep -q 'dmu_buf_hold_array_by_dnode' records/T0513-0903-research-zfs-dmu/research-dmu.md 且 grep -q 'dnode_hold' module/zfs/dmu.c 命中"
-  - name: dirty_throttle_signal
-    desc: 脏数据记账与 TXG 反压可测，对应时序图 dmu_buf_hold→will_dirty→tx_assign→dsl_pool_dirty_space→txg_kick
-    constraint: dsl_pool_dirty_space 累加 dp_dirty_pertxg 并在 zfs_dirty_data_sync_percent 触发 txg_kick，时序图覆盖 will_dirty/will_fill→tx_assign 完整链
-    testable_signal: "运行 grep -q 'dsl_pool_dirty_space' records/T0513-0903-research-zfs-dmu/research-dmu.md 且 grep -q 'will_dirty' records/T0513-0903-research-zfs-dmu/research-dmu.md 且 grep -q 'zfs_dirty_data_sync_percent' module/zfs/dsl_pool.c 命中"
-  - name: dbuf_state_lifecycle
-    desc: dbuf 状态机 DB_CACHED/DB_FILL/DB_READ/DB_EVICTING/DB_UNCACHED 与 db_mtx/dn_struct_rwlock 锁序及并发回收可测
-    constraint: 覆盖 DB_FILL→DB_CACHED、DB_CACHED→DB_EVICTING→DB_UNCACHED，db_mtx 护 db_state/dirty、dn_struct_rwlock 护 dn_dbufs 树，evict 需先抓 dn_struct_rwlock 再 db_mtx 避免死锁
-    testable_signal: "运行 grep -q 'stateDiagram' records/T0513-0903-research-zfs-dmu/research-dmu.md 且 grep -q 'DB_CACHED.*DB_FILL.*DB_READ' records/T0513-0903-research-zfs-dmu/research-dmu.md 且 grep -q 'dbuf.*state' module/zfs/dbuf.c 命中"
+- name: dnode_dbuf_abstraction
+  desc: dnode/dbuf 两级抽象与 dn_struct_rwlock/db_mtx 协同及 C4 L3 Component 可视化
+  constraint: 覆盖 dnode_hold → dbuf_whichblock → dbuf_hold → dbuf_read 状态机 DB_CACHED/DB_FILL，经 C4 L3 Component 图可一图建模
+  testable_signal: 运行 grep -q 'dnode.*dbuf' records/T0513-0903-research-zfs-dmu/research-dmu.md 且 grep -q 'dmu_buf_hold_array_by_dnode'
+    records/T0513-0903-research-zfs-dmu/research-dmu.md 且 grep -q 'dnode_hold' module/zfs/dmu.c 命中
+  evidence_level: structure
+- name: dirty_throttle_signal
+  desc: 脏数据记账与 TXG 反压可测，对应时序图 dmu_buf_hold→will_dirty→tx_assign→dsl_pool_dirty_space→txg_kick
+  constraint: dsl_pool_dirty_space 累加 dp_dirty_pertxg 并在 zfs_dirty_data_sync_percent 触发 txg_kick，时序图覆盖 will_dirty/will_fill→tx_assign
+    完整链
+  testable_signal: 运行 grep -q 'dsl_pool_dirty_space' records/T0513-0903-research-zfs-dmu/research-dmu.md 且 grep
+    -q 'will_dirty' records/T0513-0903-research-zfs-dmu/research-dmu.md 且 grep -q 'zfs_dirty_data_sync_percent'
+    module/zfs/dsl_pool.c 命中
+  evidence_level: structure
+- name: dbuf_state_lifecycle
+  desc: dbuf 状态机 DB_CACHED/DB_FILL/DB_READ/DB_EVICTING/DB_UNCACHED 与 db_mtx/dn_struct_rwlock 锁序及并发回收可测
+  constraint: 覆盖 DB_FILL→DB_CACHED、DB_CACHED→DB_EVICTING→DB_UNCACHED，db_mtx 护 db_state/dirty、dn_struct_rwlock 护
+    dn_dbufs 树，evict 需先抓 dn_struct_rwlock 再 db_mtx 避免死锁
+  testable_signal: 运行 grep -q 'stateDiagram' records/T0513-0903-research-zfs-dmu/research-dmu.md 且 grep -q 'DB_CACHED.*DB_FILL.*DB_READ'
+    records/T0513-0903-research-zfs-dmu/research-dmu.md 且 grep -q 'dbuf.*state' module/zfs/dbuf.c 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # ZFS DMU（Data Management Unit）
@@ -130,14 +148,8 @@ dmu_buf_hold(os, object, off, FTAG, &db, NULL);
 dmu_buf_will_dirty(db, tx); // 错：读后无修改不应置脏，触发无谓 txg_kick 与写放大
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' records/T0513-0903-research-zfs-dmu/research-dmu.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' records/T0513-0903-research-zfs-dmu/research-dmu.md` ≥3 且每图附 `openzfs/zfs file:line`
-- **正文门禁**：`wc -l ontology/entity/zfs-dmu.md` ≥60 且 `grep -q '决策树' ontology/entity/zfs-dmu.md && grep -q '正例' ontology/entity/zfs-dmu.md && grep -q '反例' ontology/entity/zfs-dmu.md && grep -q '门禁' ontology/entity/zfs-dmu.md`
-- **属性门禁**：`attributes` 数量 ≥3 且每条 `testable_signal` 含 `grep -q` 动词+判定
-- **本体校验**：`python3 scripts/ontology-validate.py --ontology-dir ontology` 0 issues 且 `python3 scripts/ontology_graph.py --format summary` `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/zfs-dmu --out /tmp/test_zfs_dmu_scaffold.py` 可产且 `pytest` 可收集
-- **收敛门禁**：`python3 scripts/validate-convergence.py --task-dir pdca/tasks/0903-research-zfs-dmu` `valid:true`
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `openzfs/zfs/module/zfs/dmu.c:740`（`dmu_buf_hold_array_by_dnode`）+ `openzfs/zfs/module/zfs/dmu.c:1180`（`dmu_read_impl`）+ `openzfs/zfs/module/zfs/dmu.c:2400`（`dmu_buf_will_dirty`）+ `openzfs/zfs/module/zfs/dsl_pool.c:20-60`（Write Throttle）+ `openzfs/zfs/module/zfs/dbuf.c:80-180`（`dbuf_state_t`）

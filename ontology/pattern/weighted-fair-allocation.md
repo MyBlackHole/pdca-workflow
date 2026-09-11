@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/weighted-fair-allocation
 type: pattern
 layer: Knowledge
@@ -7,23 +7,39 @@ status: active
 summary: 虚拟时间加权公平分配模式
 source_task: T0507
 relations:
-  specializes: [ontology:pattern]
   relates_to:
   - ontology:domain/core-allocator-wfq-watermark-reservation
   - ontology:domain/core-lru-bitmap-selfheal
+  instance_of:
+  - ontology:pattern
 attributes:
-  - name: applicability
-    desc: 多资源按容量加权分配、新成员加入场景
-    constraint: ""
-    testable_signal: 运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查源节点 core-allocator-wfq-watermark-reservation 存在
-  - name: consequences
-    desc: 按需分配无饿死、新成员不独占、需虚拟时间同步
-    constraint: ""
-    testable_signal: 通读正文后果节，确认三条后果在源节点与引用代码中有对应实现
-  - name: violations
-    desc: 不用本模式的典型后果
-    constraint: ""
-    testable_signal: 通读正文违反节，确认每条后果有源节点依据且可在引用代码中定位
+- name: applicability
+  desc: 多资源按容量加权分配、新成员加入场景
+  constraint: ''
+  testable_signal: 抽查源节点 core-allocator-wfq-watermark-reservation 存在
+  evidence_level: unclassified
+- name: consequences
+  desc: 按需分配无饿死、新成员不独占、需虚拟时间同步
+  constraint: ''
+  testable_signal: 通读正文后果节，确认三条后果在源节点与引用代码中有对应实现
+  evidence_level: unclassified
+- name: violations
+  desc: 不用本模式的典型后果
+  constraint: ''
+  testable_signal: 通读正文违反节，确认每条后果有源节点依据且可在引用代码中定位
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # 虚拟时间加权公平分配

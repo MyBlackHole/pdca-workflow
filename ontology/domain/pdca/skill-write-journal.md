@@ -1,63 +1,39 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-write-journal
-name: write-journal
-summary: Write work journals for PDCA cycle tracking.
-description: Append a task summary or daily note to pdca/journal/YYYY-MM-DD.md. Use when closing a task (flow-act) or when the user says "写日志" / "记日志".
-invocation: manual
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 记录工作事实
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-write-journal/1.0.0
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-    - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
   relates_to:
-    - ontology:concept/domain-modeling
-    - ontology:concept/triage
-  testable_signal: "检查本文件journal相关章节的完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空且不含泛化短语"
-
+  - ontology:concept/pdca-evidence
+  - ontology:concept/task-record-identity
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
+# 记录工作事实
 
----
-name: write-journal
-description: Append a task summary or daily note to pdca/journal/YYYY-MM-DD.md. Use when closing a task (flow-act) or when the user says "写日志" / "记日志".
----
+## 适用条件
 
-# Write Journal
+当前执行契约包含本动作时按需读取；本技能不拥有阶段转换或授权权力。
 
-Append a lightweight entry to `$PDCA_HOME/pdca/journal/YYYY-MM-DD.md`（不存在则创建）。
+## 动作与判据
 
-## Mode A: Task Close（flow-act 自动调用）
-先检查 `task.json` 中 `meta.disposition` 是否存在。不存在则终止，提示"请先完成 flow-act 步骤 3（记录处置）后再写日志"。
+在当前任务记录实际动作、结果、偏差和来源；已有证据用ID引用，不复制大量工具日志到核心上下文。时间来自真实工具，没有则明确未知；日志不能替代转换回执、授权或验收证据。
 
-通过后从当前任务提取以下信息追加到当日日志：
+## 失败处理
 
-```markdown
-## 任务进度
-- <task-id>: <任务标题> [<阶段>→<目标阶段>]
-
-## 关键决策
-- <本任务中产生的关键决策>
-
-## 阻塞项
-- <如无则写"无">
-```
-
-## Mode B: Manual（用户说"写日志"时）
-1. 采集用户输入：今天做了什么、有什么决策、阻塞
-2. 按格式追加到当日日志
-
-## 格式维护
-- 已有当日日志 → 追加到末尾
-- 无当日日志 → 创建文件，以 `# YYYY-MM-DD` 开头
-- 不要覆盖之前的内容
-
-## 已知坑
-
-- 已有当日日志必须**追加**到末尾，不得覆盖历史内容（T0264）。
-- 无当日日志时创建文件须以 `# YYYY-MM-DD` 开头。
+缺必需输入、来源或工具时报告具体缺项及影响；未执行与未知结果不得写成成功。

@@ -1,34 +1,53 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/zfs-dsl
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/zfs-dsl/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/zfs-dsl/3.1.0
 summary: ZFS DSL 实体 — dsl_pool/dsl_dataset/dsl_dir 数据集层与快照克隆语义
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:domain/zfs-crypto
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/scientific-research-methodology
+  - ontology:domain/zfs-crypto
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/scientific-research-methodology
 attributes:
-  - name: dataset_snapshot_clone_lifecycle
-    desc: 数据集/快照/克隆生命周期与 deadlist/ds_prev 分支及 C4 L3 克隆树可视化
-    constraint: 覆盖 ds_prev_snap_obj/txg、ds_next_clones AVL、ds_deadlist/bptree 的 block_born/block_kill 上卷与 parent_delta，状态机覆盖 HEAD→SNAPSHOT→CLONE→DESTROYED 四态及可测分支
-    testable_signal: "运行 grep -q 'dsl_dataset_snapshot' records/T0514-0903-research-zfs-dsl/research-dsl.md 且 grep -q 'ds_deadlist' records/T0514-0903-research-zfs-dsl/research-dsl.md 且 grep -q 'dsl_dataset_block_born' module/zfs/dsl_dataset.c 命中"
-  - name: pool_sync_txg_convergence
-    desc: DSL Pool Sync 多 pass 收敛与 dp_dirty_* TXG 链表协同及 C4 L3 Pool 可视化
-    constraint: 首 pass 写用户 dirty dbuf、后续 pass 只写元数据与 MOS，dp_dirty_datasets/dp_dirty_dirs/dp_sync_tasks 按 TXG 聚合由 spa_sync 驱动多 pass 收敛直至无 dirty
-    testable_signal: "运行 grep -q 'dsl_pool_sync' records/T0514-0903-research-zfs-dsl/research-dsl.md 且 grep -q 'dp_dirty_datasets' records/T0514-0903-research-zfs-dsl/research-dsl.md 且 grep -q 'dsl_pool_sync' module/zfs/dsl_pool.c 命中"
-  - name: dir_head_clone_namespace
-    desc: dsl_dir 命名空间与 head/克隆分支语义可测，对应时序图 create→snapshot→clone→promote
-    constraint: dd_head_dataset 唯一可写头、快照为只读 ds_prev 链节点、克隆以 ds_prev.snap_obj 指向 origin 快照并挂 origin ds_next_clones，时序图覆盖 dsl_dataset_clone ↔ dsl_dir_create_sync
-    testable_signal: "运行 grep -q 'sequenceDiagram' records/T0514-0903-research-zfs-dsl/research-dsl.md 且 grep -q 'dd_head_dataset' records/T0514-0903-research-zfs-dsl/research-dsl.md 且 grep -q 'dsl_dir' module/zfs/dsl_dir.c 命中"
+- name: dataset_snapshot_clone_lifecycle
+  desc: 数据集/快照/克隆生命周期与 deadlist/ds_prev 分支及 C4 L3 克隆树可视化
+  constraint: 覆盖 ds_prev_snap_obj/txg、ds_next_clones AVL、ds_deadlist/bptree 的 block_born/block_kill 上卷与 parent_delta，状态机覆盖
+    HEAD→SNAPSHOT→CLONE→DESTROYED 四态及可测分支
+  testable_signal: 运行 grep -q 'dsl_dataset_snapshot' records/T0514-0903-research-zfs-dsl/research-dsl.md 且 grep
+    -q 'ds_deadlist' records/T0514-0903-research-zfs-dsl/research-dsl.md 且 grep -q 'dsl_dataset_block_born' module/zfs/dsl_dataset.c
+    命中
+  evidence_level: structure
+- name: pool_sync_txg_convergence
+  desc: DSL Pool Sync 多 pass 收敛与 dp_dirty_* TXG 链表协同及 C4 L3 Pool 可视化
+  constraint: 首 pass 写用户 dirty dbuf、后续 pass 只写元数据与 MOS，dp_dirty_datasets/dp_dirty_dirs/dp_sync_tasks 按 TXG 聚合由 spa_sync
+    驱动多 pass 收敛直至无 dirty
+  testable_signal: 运行 grep -q 'dsl_pool_sync' records/T0514-0903-research-zfs-dsl/research-dsl.md 且 grep -q 'dp_dirty_datasets'
+    records/T0514-0903-research-zfs-dsl/research-dsl.md 且 grep -q 'dsl_pool_sync' module/zfs/dsl_pool.c 命中
+  evidence_level: structure
+- name: dir_head_clone_namespace
+  desc: dsl_dir 命名空间与 head/克隆分支语义可测，对应时序图 create→snapshot→clone→promote
+  constraint: dd_head_dataset 唯一可写头、快照为只读 ds_prev 链节点、克隆以 ds_prev.snap_obj 指向 origin 快照并挂 origin ds_next_clones，时序图覆盖
+    dsl_dataset_clone ↔ dsl_dir_create_sync
+  testable_signal: 运行 grep -q 'sequenceDiagram' records/T0514-0903-research-zfs-dsl/research-dsl.md 且 grep -q 'dd_head_dataset'
+    records/T0514-0903-research-zfs-dsl/research-dsl.md 且 grep -q 'dsl_dir' module/zfs/dsl_dir.c 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # ZFS DSL（Dataset Layer）
@@ -158,14 +177,8 @@ dsl_dataset_destroy_sync(snap, tx); // 若内部未调用 dsl_deadlist_merge(sna
 // 则 snap 独占块永留 bptree，zpool 空间不回缩，bp 泄漏
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' records/T0514-0903-research-zfs-dsl/research-dsl.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' records/T0514-0903-research-zfs-dsl/research-dsl.md` ≥3 且每图附 `openzfs/zfs file:line`
-- **正文门禁**：`wc -l ontology/entity/zfs-dsl.md` ≥60 且 `grep -q '决策树' ontology/entity/zfs-dsl.md && grep -q '正例' ontology/entity/zfs-dsl.md && grep -q '反例' ontology/entity/zfs-dsl.md && grep -q '门禁' ontology/entity/zfs-dsl.md`
-- **属性门禁**：`attributes` 数量 ≥3 且每条 `testable_signal` 含 `grep -q` 动词+判定
-- **本体校验**：`python3 scripts/ontology-validate.py --ontology-dir ontology` 0 issues 且 `python3 scripts/ontology_graph.py --format summary` `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/zfs-dsl --out /tmp/test_zfs_dsl_scaffold.py` 可产且 `pytest` 可收集
-- **收敛门禁**：`python3 scripts/validate-convergence.py --task-dir pdca/tasks/0903-research-zfs-dsl` `valid:true`
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `openzfs/zfs/module/zfs/dsl_dataset.c:40-180`（block_born/block_kill 与 deadlist）+ `openzfs/zfs/module/zfs/dsl_dataset.c:740-1250`（snapshot/clone/destroy 全链）+ `openzfs/zfs/module/zfs/dsl_pool.c:20-80`（pool sync 多 pass）+ `openzfs/zfs/include/sys/dsl_dataset.h:60-160` + `openzfs/zfs/include/sys/dsl_dir.h:40-100` + `openzfs/zfs/module/zfs/dsl_deadlist.c:40-120`

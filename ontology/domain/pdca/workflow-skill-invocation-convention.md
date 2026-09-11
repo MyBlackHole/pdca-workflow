@@ -1,64 +1,33 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/workflow-skill-invocation-convention
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 技能不取得流程控制权
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/workflow-skill-invocation-convention/1.0.1
-summary: 'Skill 调用约定：invocation: manual'
-domain:
-- ontology:domain/workflow
-relations:
-  specializes:
-  - ontology:domain/workflow
-  relates_to:
-  - ontology:concept/pdca
-attributes:
-- name: applicability
-  desc: 领域知识适用场景
-  constraint: 见正文
-  testable_signal: "运行 grep -q 'Skill 调用约定：invocation: manual' ontology/domain/pdca/workflow-skill-invocation-convention.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
----
-
-
----
-schema: pdca.asset/v1
-id: knowledge:workflow.skill-invocation-convention
-layer: knowledge
-summary: "invocation: manual 标记区分用户调用和模型自动调用两类技能"
-tags: [skill, invocation, convention]
-ontology_roles: [ontology_modeling, ontology_projection, ontology_conformance_verification]
-execution_contract:
-  work_product: 合法技能调用图
-  required_actions: [校验invocation类型, 校验调用边]
-  constraints: [manual仅作用户入口, 工具名不承担任务分类]
-  testable_signal: 所有调用边目标存在且invocation类型合法
-phases: [plan, do, check, act]
-applies_when: [设计或修改技能调用策略]
-excludes_when: []
+aliases:
+- knowledge:workflow.skill-invocation-convention
 source_ids: []
-confidence: high
-status: active
+dcterms_modified: '2026-09-12'
+relations:
+  instance_of:
+  - ontology:concept/knowledge-artifact
+  relates_to:
+  - ontology:process/select-task-subgraph
+  - ontology:concept/pdca-execution-contract
+  - ontology:concept/pdca-feedback
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
-# Skill 调用约定：invocation: manual
+# 技能不取得流程控制权
 
-## 概念
-SKILL.md 的 YAML 前置元数据中的 `invocation: manual` 字段标记该技能**仅限用户显式请求时作为入口加载**。它可以委托 automatic worker，但 flow 和 automatic skill 不得直接调用它。
-
-## 设计意图
-区分两类技能：
-1. **用户调用（交互式）** — 需要用户参与对话，如 `grill`（追问）、`domain-modeling`（术语确认）
-2. **模型调用（自动化）** — AI 可在流程步骤中自主加载，如 `code-review`、`secure-coding`
-
-## 使用规则
-- 交互式入口在 frontmatter 中添加 `invocation: manual`，实际工作抽到 automatic worker
-- 自动化技能不添加此字段
-- flow 和 automatic skill 只能引用 automatic worker；manual 入口之间也不互相调用
-- alias 与调用边由 `pdca/skill-invocation-contract.json` 声明，并由 public resolver 校验
-
-## 适用场景
-任何使用 SKILL.md 作为 AI 工作流定义的项目。
+局部技能是当前阶段内动作，不得代签用户确认、直接改phase或发布新门禁。统一按契约选择动作，失败回报事实而不是编造执行回执。

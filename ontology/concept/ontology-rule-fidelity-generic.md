@@ -1,40 +1,23 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/ontology-rule-fidelity-generic
 type: concept
+semantic_kind: class
 layer: Knowledge
 status: active
+authority: normative
+revision: 2.0.0
+summary: 验证信号必须指向观测
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ontology-rule-fidelity-generic/1.0.0
-summary: 保真度门禁 — 拒绝泛化signal（零容忍），attributes须含可执行动词
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
-    - ontology:concept/ontology-rule
-rule_spec:
-  generic_phrases:
-    - "检查本文件"
-    - "相关章节的完整性"
-    - "相关章节的定义完整性"
-    - "检查本文件内容完整性"
-    - "检查本文件核心相关章节"
-  required_verbs:
-    - "grep -q"
-    - "grep -c"
-    - "python3 scripts/"
-    - "gate.py"
-    - "scaffold"
-    - "pytest"
-  code: ATTR_GENERIC
+  - ontology:concept/entity
+  relates_to:
+  - ontology:concept/ontology-rule-attr-testable
 ---
 
-# ontology-rule-fidelity-generic
+# 验证信号必须指向观测
 
-**保真度门禁 — 零容忍泛化signal（Q3确认）**
-
-若 `attributes[].testable_signal` 含 `generic_phrases` 任一短语，或不含 `required_verbs` 任一可执行动词，则判 `[ATTR_GENERIC]` 致命，直接阻断。
-
-- 对应 `ontology-validate.py` 的 fidelity 检查（`--check fidelity` 或默认增量）。
-- 存量豁免由 `audit-report.md` 豁免清单承载，限期清零；增量提交零容忍。
-- 权威来源：`ontology:concept/ontology-fidelity-criterion` 的七项清单第2项。
+要求具体对象、判断方法和失败判据。多写“运行”“检查”“grep”并不自动让信号有效；字段存在与测试真实行为是不同层。不能引用缺失脚本当作已验证。

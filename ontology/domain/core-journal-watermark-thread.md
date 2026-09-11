@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-journal-watermark-thread
 type: domain
 layer: Knowledge
@@ -8,20 +8,35 @@ summary: journal水位四条件 + 双指针推进 + 节拍刷盘线程
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-journal-seq-blacklist-pin-reclaim
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 日志水位触发回收、脏指针推进、后台节拍刷盘场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 fs/journal/reclaim.c 在仓库中存在且含 bch2_journal_set_watermark 定义"
+  testable_signal: 抽查正文引用的 fs/journal/reclaim.c 在仓库中存在且含 bch2_journal_set_watermark 定义
+  evidence_level: unclassified
 - name: constraints
   desc: 水位推进前提
   constraint: 见正文
-  testable_signal: "通读正文约束节，确认四条件或语义、指针前移、节拍唤醒三条前提在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，确认四条件或语义、指针前移、节拍唤醒三条前提在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # journal 水位机线程

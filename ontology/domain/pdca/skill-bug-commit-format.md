@@ -1,27 +1,38 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-bug-commit-format
 name: bug-commit-format
-summary: Commit bug fixes with structured format including description, root cause, solution, impact scope, and performance impact.
-description: Use when fixing bugs and committing changes — commit messages must include bug description, root cause, solution, impact scope, and performance impact
+summary: Commit bug fixes with structured format including description, root cause, solution, impact scope, and
+  performance impact.
+description: Use when fixing bugs and committing changes — commit messages must include bug description, root cause,
+  solution, impact scope, and performance impact
 invocation: manual
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-bug-commit-format/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/skill-bug-commit-format/3.1.0
 relations:
-  specializes:
-    - ontology:concept/pdca-task
   relates_to:
-    - ontology:pattern
-    - ontology:concept/writing-for-agents
-  testable_signal: "运行 grep -q 'Bug Commit Format' ontology/domain/pdca/skill-bug-commit-format.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:pattern
+  - ontology:concept/writing-for-agents
+  - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
+revision: 3.1.0
+authority: reference
+validation:
+  structural_checks:
+  - 递归解析本节点身份及关系列表；目标 ID 必须可定位。引用数量不作为行为验证。
+  claim_status: unverified
+  adoption: claim_review_required
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
-
 
 ---
 name: bug-commit-format

@@ -1,8 +1,0 @@
-{
-  "schema": "pdca.convergence/v1",
-  "items": [
-    {"index": 1, "text": "三技能逐条审查清单分级", "criteria": ["AC-1"], "evidence_ids": ["ref-report"]},
-    {"index": 2, "text": "错改当场结构立项", "criteria": ["AC-2"], "evidence_ids": ["ref-report"]},
-    {"index": 3, "text": "报告门禁validate证据齐备", "criteria": ["AC-3"], "evidence_ids": ["ref-report"]}
-  ]
-}

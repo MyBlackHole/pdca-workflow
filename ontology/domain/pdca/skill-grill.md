@@ -1,36 +1,39 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-grill
-name: grill
-summary: Interview the user relentlessly about a plan, design, or conclusion.
-description: Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
-invocation: manual
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 澄清关键假设
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-grill/1.0.0
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-    - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
   relates_to:
-    - ontology:concept/grilling-methodology
-    - ontology:concept/triage
-  testable_signal: "运行 grep -q 'ontology:domain/skill-grill' ontology/domain/pdca/skill-grill.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:concept/grilling-methodology
+  - ontology:concept/pdca-ai-friendly-confirmation
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
+# 澄清关键假设
 
----
-name: grill
-description: Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
-invocation: manual
----
+## 适用条件
 
-Run a `$PDCA_HOME/skills/grilling/SKILL.md` session, using `$PDCA_HOME/skills/domain-modeling-work/SKILL.md`.
+当前执行契约包含本动作时按需读取；本技能不拥有阶段转换或授权权力。
 
-## 已知坑
+## 动作与判据
 
-- 逐轮追问直至决策树闭合，勿在信息不足时跳过 grill 直接进入方案。
+沿目标、边界、风险与验收寻找实质未知；先复用已有回答，再一次提出足以推进的少量问题。意见、推荐与用户答案分离，形成基线后由CONFIRM-01确认，不固定轮数。
+
+## 失败处理
+
+缺必需输入、来源或工具时报告具体缺项及影响；未执行与未知结果不得写成成功。

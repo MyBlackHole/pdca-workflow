@@ -1,70 +1,39 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-context-orchestration
-name: context-orchestration
-summary: 知识资产分层、溯源、检索评估与 AI 提效方法调研
-description: |
-  知识资产分层、溯源、检索评估与 AI 提效方法调研
-  
-invocation: manual
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 阶段上下文组织
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/skill-context-orchestration/1.0.1
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-    - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
   relates_to:
-    - ontology:concept/domain-modeling
-    - ontology:concept/domain-model
-  testable_signal: "运行 grep -q 'ontology:domain/skill-context-orchestration' ontology/domain/pdca/skill-context-orchestration.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:process/select-task-subgraph
+  - ontology:concept/pdca-task
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
+# 阶段上下文组织
 
---
-schema: pdca.asset/v1
-id: conclusion:T0075--07-26-调研知识资产管理与-ai-提效方法
-layer: experience
-summary: 知识资产分层、溯源、检索评估与 AI 提效方法调研
-tags: [knowledge-management, ai-efficiency, rag, provenance, pdca]
-ontology_roles: [ontology_modeling, ontology_projection, ontology_conformance_verification]
-execution_contract:
-  work_product: 最小、可追溯的当前任务上下文包
-  required_actions: [按任务指纹检索, 核验来源链, 仅注入契约所需上下文]
-  constraints: [不得以请求标签替代职责契约筛选, 不得把模型摘要当事实]
-  testable_signal: 上下文包逐项回链 source_ids 且覆盖当前任务契约
-phases: [do, check, act]
-applies_when: [设计集中式知识资产管理、AI 上下文检索或任意 PDCA 知识闭环]
-excludes_when: [需要未经验证的自动知识发布]
-source_ids: [evidence:T0075--07-26-调研知识资产管理与-ai-提效方法:sha256:7cfbe39c1fa5c7d06c8688b48cbb972800381d3609fde176152279e46dfcd720]
-confidence: high
-status: active
----
+## 适用条件
 
-# 结论
+当前执行契约包含本动作时按需读取；本技能不拥有阶段转换或授权权力。
 
-## 假设验证
+## 动作与判据
 
-成立。分层、来源链、最小上下文、检索/生成评估和 PDCA 闭环共同构成比无结构文档堆积更可靠的 AI 提效基础；但语义正确性仍必须由 validator 和人工边界控制。
+保留根规则索引、当前任务身份、固定契约与当前阶段必要指引；领域资料按需加载。当前任务恢复只读持久化记录。不得将协调器或其他任务活动对话复制给新子Agent。输出当前使用的文件/ID/版本清单，而不是声称上下文隔离已经实现。
 
-## 结果
+## 失败处理
 
-- 完成 8 个来源的调研，覆盖知识管理、溯源、RAG、评估、Agent 指令和可信度风险。
-- 明确 Evidence、Experience、Knowledge、Skill 四层边界和单向来源链。
-- 形成任务指纹 → 候选资产 → 证据核验 → 最小上下文 → 执行 → 经验/知识/技能投影闭环。
-- 给出软件开发、资料调研、代码/文档审查和日常工作的应用方式。
-- 输出 `ontology/domain/research-knowledge-assets-ai-efficiency.md`，满足 PRD 的来源、范围和落地建议验收标准。
-
-## 边界与下一轮
-
-- 本调研没有建立真实生产数据集，因此没有给出检索 Recall、Groundedness 或延迟的实测值。
-- 下一步应建立小型评估集，记录 retrieval、groundedness、relevance、completeness 和误报反馈。
-- Knowledge/Skill 的自动投影只能生成草稿，必须经过 evidence、Check 和 disposition。
-
-## 已知坑
-
-知识资产分层、溯源、检索评估与 AI 提效方法调研过程中可能遇到的数据溯源断裂、检索精度不足等问题。后续发现问题时在此记录，确保技能使用过程中遇到的问题能够被跟踪和解决。
+缺必需输入、来源或工具时报告具体缺项及影响；未执行与未知结果不得写成成功。

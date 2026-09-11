@@ -1,1 +1,0 @@
-{"items": [{"criteria": ["AC-1"], "evidence_ids": ["report-journalread"], "index": 1, "text": "恢复读机制讲透且有代码佐证"}, {"criteria": ["AC-2"], "evidence_ids": ["report-journalread"], "index": 2, "text": "学习报告文件存在且对话输出一致"}, {"criteria": ["AC-3"], "evidence_ids": ["guide-diff", "validate-output"], "index": 3, "text": "指南增补并过三查"}], "schema": "pdca.convergence/v1"}

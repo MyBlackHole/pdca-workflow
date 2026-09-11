@@ -1,46 +1,53 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/pdca-continuous-improvement
 type: concept
+semantic_kind: class
 layer: Knowledge
-summary: PDCA 是持续改进循环（act 后回到 plan），本工作流单任务生命周期则在 archive 终止
 status: active
+authority: normative
+revision: 3.4.0
+summary: 知识处置、候选与发布
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/pdca-continuous-improvement/1.0.1
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
   - ontology:concept/entity
   relates_to:
-  - ontology:entity/phase-act
-  - ontology:entity/phase-plan
-  testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-continuous-improvement' ontology/ tests/ scripts/ | wc -l) -ge 19"
+  - ontology:concept/ontology-creation-gate
+  - ontology:concept/pdca-execution-contract
+  - ontology:concept/pdca-feedback
+  - ontology:concept/ontology-reuse
+  - ontology:concept/ontology-evolution
+  - ontology:concept/ontology-adoption
+disposition_values:
+- new_knowledge
+- revise_knowledge
+- confirm_existing
+- no_new_knowledge
+- reject_hypothesis
+- candidate_only
 ---
-# pdca-continuous-improvement
 
-PDCA 的本质是**持续改进循环**，而非单向流水线（ASQ："a circle has no end… repeated again and again"；Wikipedia："implemented in spirals"）。
+# 知识处置、候选与发布
 
-- **循环语义**：`act`（处理/标准化）完成后，应带着学到的经验**回到 `plan`** 开启新一轮改进。即 `plan → do → check → act → (新) plan` 无终点循环。
-- **本工作流的双层建模**：
-  - *方法论层*：PDCA 是环，由本概念承载 `act ↔ plan` 的循环关系。
-  - *任务生命周期层*：单任务是有终点的流水线，`act` 之后进入运维扩展节点 `archive`（见 `ontology:entity/phase-archive`），任务因此终止；但方法论上的"下一轮 plan"对应于**新建任务**或在同一任务内发起新的 Grill/PRD 迭代。
-- **为何不建成 `transition-act-plan` 边**：任务转换图必须保持无环（`ontology-validate` 禁止 CYCLE，且单任务生命周期须能终止）。故循环以**概念关系**表达，而非可执行的任务转换边。
+## LEARN-01：强制处置，不强制造知识
 
-## 决策背景（原 ADR-0004：Flow Issue 使用独立不可变事件文件）
-- 背景：T0159 需把 PDCA 机制问题作为聚合/诊断/改进的事实输入；旧 flow-audit.json 整体更新 latest/attempts，不满足单事件不可变，整文件摘要每次变化。
-- 决策：每个 occurrence 使用独立 JSON 文件（独占创建保证幂等/不可覆盖、并发互不修改、稳定路径与摘要、损坏隔离）；聚合视图随算法升级重建；符合 records/ 不可变约束。
+每任务Act记录disposition、理由、证据与对象。值保持new_knowledge/revise_knowledge/confirm_existing/no_new_knowledge/reject_hypothesis/candidate_only。已有知识满足时confirm_existing或no_new_knowledge合法；失败可提供反例但不能自证普遍事实。
 
-## 知识沉淀管线（原 docs/project-architecture-design.md §3.2）
+## 复用、局部细化与共享演进
 
-改进闭环的载体是知识资产的逐级提炼，每级同步更新 `manifest.jsonl`：
+建模检索和决定由REUSE-01负责。当前参数/特有约束留在NODE或local delta；真正可复用修订按EVOLVE-01候选流程。候选位于records/<task-id>/artifacts/candidates/，wrapper明确candidate，最终payload字节未经发布不能因active字段而成为权威。
 
-```
-原始事实 → Evidence（register-evidence 登记，manifest.jsonl）
-        → Experience（records/ 中的 conclusion.md）
-        → Knowledge（ontology/domain/ 下的 .md，由 flow-act 步骤 2 提炼）
-        → Skill（skills/ 下的 SKILL.md，由 writing-skills 创建）
-```
+发布的内容审查由ontology-creation-gate承担，版本/授权/并发提交由EVOLVE-01唯一规定，跨树采用和显式迁移由ADOPT-01负责。本节点不另定义发布时序或门禁。当前任务不边降低自己的标准边通过；旧树和任务保持固定输入。
 
-- `records/` 下的文件创建后不可修改（不可变记录约束），保证事实源稳定可追溯。
-- flow-act 步骤 2 负责从经验提炼 Knowledge；稳定知识可进一步沉淀为 Skill，形成可跨会话/跨任务复用的资产。
+本地节点正常完成可先交付并保留candidate_only，不等待共享库发布或其他工作迁移。实质后续修订/审查属于明确工作树节点的新任务及新Agent；目录提交只是宿主事件，不建立隐形无节点业务任务，不让父Agent审批子任务阶段。
+
+所有效果结论须来自真实工作记录；引用数、文件数量、元数据状态或参考模型通过不能证明成功率提高。
+
+## 知识去向不是归档时临时决定
+
+沿用 REUSE-01 的知识义务：existing_reuse 不强制写新 ontology；local_only 说明本地性；shared_required/deferred 保留候选位置、目标库/ID、接续负责人、授权及未完成事项。Act 的 candidate_only 不能取消已确认发布义务，也不能把文件还在 records 写成共享库已更新。
+
+本地任务完整结束不等待所有后代/其他工作；工作索引单独跟踪知识目标。需要实质入库审查、合并或补证时由具名知识维护节点新任务执行，宿主仅提交已审授权字节。禁止整目录搬迁任务日志、确认和测试 actual 到 ontology。

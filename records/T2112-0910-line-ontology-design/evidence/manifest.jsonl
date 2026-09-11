@@ -1,2 +1,0 @@
-{"id":"coverage-design","file":"design.md","kind":"document","size":2493,"digest":"sha256:e519c4bb14ab63252e5cc9aa950178adce2b8ac360b21d115cae0ec3d9290bd7","at":"2026-09-09T16:20:06+08:00","criteria":["AC-1","AC-2","AC-3"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":568,"digest":"sha256:bc744b0ef683b418c840e55bd7c53339e6a26d13faa5c816c4d6f2590d00de45","at":"2026-09-09T16:20:07+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

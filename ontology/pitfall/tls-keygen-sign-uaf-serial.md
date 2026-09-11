@@ -1,23 +1,35 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pitfall/tls-keygen-sign-uaf-serial
 type: pitfall
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/tls-keygen-sign-uaf-serial/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/tls-keygen-sign-uaf-serial/3.1.0
 summary: tls-keygen 签发链路 UAF 与序列号硬编码导致并发证书异常
 source_task: T0454
 relations:
-  specializes: [ontology:pitfall]
-  guides: [ontology:entity/x509-certificate]
+  guides:
+  - ontology:entity/x509-certificate
+  instance_of:
+  - ontology:pitfall
 attributes:
-  - name: applicability
-    desc: 使用 libs/tls_keygen.c 签发宿主机证书（tls_keygen_sign_with_algo）的 sm2/ed25519 双算法签发
-    constraint: ""
-    testable_signal: 单进程内连续签发多张 host 证书（sm2+ed25519×server/client）后，openssl verify 均 OK 且 serial 唯一、pubkey 与 CSR 一致
+- name: applicability
+  desc: 使用 libs/tls_keygen.c 签发宿主机证书（tls_keygen_sign_with_algo）的 sm2/ed25519 双算法签发
+  constraint: ''
+  testable_signal: 单进程内连续签发多张 host 证书（sm2+ed25519×server/client）后，openssl verify 均 OK 且 serial 唯一、pubkey 与 CSR 一致
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # tls-keygen 签发链路 UAF 与序列号硬编码陷阱

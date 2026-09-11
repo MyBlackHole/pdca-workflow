@@ -1,42 +1,59 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-project-goal
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/core-project-goal/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/core-project-goal/3.1.0
 summary: 项目主要目标
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 领域知识适用场景
   constraint: 见正文
-  testable_signal: "检查本文件 project-goal 相关章节的定义完整性，且经 python3 scripts/ontology-validate.py --ontology-dir ontology 校验本节点 attributes 非空"
----
-
-
----
-schema: pdca.asset/v1
-id: knowledge:core/project-goal
-layer: knowledge
-summary: PDCA 项目的使命是提升 AI 处理任意事情的效率、准确性和可复用性
-tags: [project-goal, pdca, knowledge, experience, skills, ai-efficiency]
-scenarios: [default]
-phases: [plan, do, check, act]
-applies_when: [设计流程、组织知识经验、创建或复用 skill、评估新功能时]
+  testable_signal: 检查本文件 project-goal 相关章节的定义完整性
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+aliases:
+- knowledge:core/project-goal
+applies_when:
+- 设计流程、组织知识经验、创建或复用 skill、评估新功能时
 excludes_when: []
-source_ids: [experience:T0060--07-26-记录-pdca-项目主要目标与效率使命]
+source_ids:
+- experience:T0060--07-26-记录-pdca-项目主要目标与效率使命
+phases:
+- plan
+- do
+- check
+- act
 confidence: high
-status: active
+tags:
+- project-goal
+- pdca
+- knowledge
+- experience
+- skills
+- ai-efficiency
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # 项目主要目标

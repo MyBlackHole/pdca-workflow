@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-vfs-compat-shim
 type: domain
 layer: Knowledge
@@ -8,20 +8,35 @@ summary: 跨内核VFS拆除路径双分支垫片
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-vfs-namespace-operations
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 跨内核版本 VFS 接口兼容、拆除路径适配场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 fs/vfs/ioctl.c 在仓库中存在且含 start_removing_user_path_at 定义"
+  testable_signal: 抽查正文引用的 fs/vfs/ioctl.c 在仓库中存在且含 start_removing_user_path_at 定义
+  evidence_level: unclassified
 - name: constraints
   desc: 垫片前提
   constraint: 见正文
-  testable_signal: "通读正文约束节，确认版本分支、写者配对两条前提在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，确认版本分支、写者配对两条前提在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # 跨内核 VFS 拆除垫片

@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-journal-seq-blacklist-pin-reclaim
 type: domain
 layer: Knowledge
@@ -8,22 +8,37 @@ summary: journal seq 黑名单保序 + pin 分级 reclaim + clean 段跳过回�
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-journal-key-layout-validation
   - ontology:domain/core-journal-reclaim-proptest-pattern
   - ontology:domain/core-observability-status-text-matrix
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 日志结构存储的崩溃恢复保序、回收死锁避免、干净关闭加速场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 fs/journal/seq_blacklist.c 与 fs/sb/clean.c 在仓库中存在"
+  testable_signal: 抽查正文引用的 fs/journal/seq_blacklist.c 与 fs/sb/clean.c 在仓库中存在
+  evidence_level: unclassified
 - name: constraints
   desc: 三机制的启用前提与代价
   constraint: 见正文
-  testable_signal: "通读正文约束节，确认黑名单持久化、分级门限、clean 校验失败回退三条前提在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，确认黑名单持久化、分级门限、clean 校验失败回退三条前提在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # seq 黑名单保序 + pin 分级 reclaim + clean 段

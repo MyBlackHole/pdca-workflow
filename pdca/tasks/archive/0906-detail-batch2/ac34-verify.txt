@@ -1,8 +1,0 @@
- .../tasks/archive/0906-study-btreesearch/report.md |  510 +++++++++-
- pdca/tasks/archive/0906-study-crypto/report.md     |  622 +++++++++++-
- pdca/tasks/archive/0906-study-recovery/report.md   | 1021 +++++++++++++++++++-
- pdca/tasks/archive/0906-study-snapshot/report.md   |  469 ++++++++-
- pdca/tasks/archive/0906-study-writepath/report.md  |  882 ++++++++++++++++-
- 5 files changed, 3355 insertions(+), 149 deletions(-)
-对话交付：5篇摘要随T0536汇报输出，全文位置为pdca/tasks/archive/0906-study-{snapshot,crypto,btreesearch,writepath,recovery}/report.md
-指南增补：5个指南节点各加指向扩充版行，见guide-diff.txt

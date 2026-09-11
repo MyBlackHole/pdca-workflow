@@ -1,13 +1,13 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/cipher-mode-ecb
 type: concept
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/cipher-mode-ecb/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/cipher-mode-ecb/3.1.0
 summary: ECB 工作模式（独立块 C=SM4(K,P)）均并行、无IV、泄露相等性、存储禁用
 relations:
   specializes:
@@ -18,7 +18,17 @@ attributes:
 - name: independence_leakage
   desc: ECB 独立块与相等性泄露（同明文同密文）
   constraint: 须含独立块 C=SM4(K,P)、泄露相等性、存储中禁用
-  testable_signal: "运行 grep -q '泄露.*相等性' ontology/concept/cipher-mode-ecb.md && grep -q '禁用' ontology/concept/cipher-mode-ecb.md"
+  testable_signal: 运行 grep -q '泄露.*相等性' ontology/concept/cipher-mode-ecb.md && grep -q '禁用' ontology/concept/cipher-mode-ecb.md
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # ECB 工作模式

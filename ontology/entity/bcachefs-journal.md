@@ -1,34 +1,59 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/bcachefs-journal
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/bcachefs-journal/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/bcachefs-journal/3.1.0
 summary: bcachefs 日志实体 — jset 环形 bucket、16 种 jset_entry 类型分工、journal_buf 预约环与 pin 追踪及 reclaim
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/production-ontology-scientific-gate
-    - ontology:pattern/scientific-research-methodology
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/production-ontology-scientific-gate
+  - ontology:pattern/scientific-research-methodology
 attributes:
-  - name: jset_entry_type_coverage
-    desc: jset 16 种 jset_entry 类型分工全覆盖（btree_keys/btree_root/blacklist/usage/clock/log/overwrite/write_buffer/rewind 等）及每类作用场景与解决的 crash consistency 问题可溯
-    constraint: 覆盖 BCH_JSET_ENTRY_TYPES() 16 项（0 btree_keys 提交的 btree 更新 /1 btree_root 每次提交的根指针快照 /3-4 blacklist 单点/区间拉黑 /5 usage 加密 nonce 最大 key version /7 clock 读写 sectors 时钟 /9 log 诊断日志 /10 overwrite 覆写前值供 rewind /11 write_buffer 先写缓冲 /12 datetime 墙钟 /13 log_bkey 带 key 的结构化日志 /14 rewind_limit 可回退下界 /15 rewind 回退区间），每类表格含场景与问题，经 C4 L3 与决策树可一图建模
-    testable_signal: "运行 grep -q 'BCH_JSET_ENTRY_btree_keys' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h 且 grep -q 'rewind_limit' records/T0533-0902-research-bcachefs-tools/research-report.md 且 grep -q 'BCH_JSET_ENTRY_TYPES' ontology/entity/bcachefs-journal.md 命中"
-  - name: journal_buf_ring_pin_reclaim
-    desc: journal_buf 预约环（NR=4 + FIFO in_flight）与 pin 追踪及 reclaim 三重防覆写可测
-    constraint: 覆盖 journal_buf ring[JOURNAL_STATE_BUF_NR=4] + ringbuf + FIFO in_flight + journal_entry_pin_list (spinlock + unflushed[Nr]/flushed + journal_entry_pin flush fn + seq) + reclaim 三态（journal_space_discarded/clean_ondisk/clean）及 last_seq 对比 dirty bucket 判定，经时序与状态机可一图建模
-    testable_signal: "运行 grep -q 'journal_buf' records/T0533-0902-research-bcachefs-tools/research-report.md 且 grep -q 'journal_entry_pin' /home/black/Documents/bcachefs-tools/fs/journal/types.h 且 grep -q 'journal_space_from' /home/black/Documents/bcachefs-tools/fs/journal/reclaim.c 命中"
-  - name: jset_on_disk_format_and_replay
-    desc: jset 磁盘格式（csum/magic/seq/last_seq/u64s + jset_entry start[0] + bkey_i）与 crash replay 时序可测
-    constraint: 覆盖 struct jset (csum/magic/seq/version/flags/u64s/_write_clock/last_seq/start[0]) + struct jset_entry (u64s/btree_id/level/type/start[0]) + BSET 内 bkey_i 连续数组 + replay 顺序 redo（按 seq 单调）及 last_seq 为 oldest dirty 下界，经 C4 L3 与时序可一图建模
-    testable_signal: "运行 grep -q 'struct jset' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h 且 grep -q 'last_seq' records/T0533-0902-research-bcachefs-tools/research-report.md 且 grep -q 'bch2_journal_read' /home/black/Documents/bcachefs-tools/fs/journal/read.c 命中"
+- name: jset_entry_type_coverage
+  desc: jset 16 种 jset_entry 类型分工全覆盖（btree_keys/btree_root/blacklist/usage/clock/log/overwrite/write_buffer/rewind
+    等）及每类作用场景与解决的 crash consistency 问题可溯
+  constraint: 覆盖 BCH_JSET_ENTRY_TYPES() 16 项（0 btree_keys 提交的 btree 更新 /1 btree_root 每次提交的根指针快照 /3-4 blacklist 单点/区间拉黑
+    /5 usage 加密 nonce 最大 key version /7 clock 读写 sectors 时钟 /9 log 诊断日志 /10 overwrite 覆写前值供 rewind /11 write_buffer
+    先写缓冲 /12 datetime 墙钟 /13 log_bkey 带 key 的结构化日志 /14 rewind_limit 可回退下界 /15 rewind 回退区间），每类表格含场景与问题，经 C4 L3 与决策树可一图建模
+  testable_signal: 运行 grep -q 'BCH_JSET_ENTRY_btree_keys' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h
+    且 grep -q 'rewind_limit' records/T0533-0902-research-bcachefs-tools/research-report.md 且 grep -q 'BCH_JSET_ENTRY_TYPES'
+    ontology/entity/bcachefs-journal.md 命中
+  evidence_level: structure
+- name: journal_buf_ring_pin_reclaim
+  desc: journal_buf 预约环（NR=4 + FIFO in_flight）与 pin 追踪及 reclaim 三重防覆写可测
+  constraint: 覆盖 journal_buf ring[JOURNAL_STATE_BUF_NR=4] + ringbuf + FIFO in_flight + journal_entry_pin_list (spinlock
+    + unflushed[Nr]/flushed + journal_entry_pin flush fn + seq) + reclaim 三态（journal_space_discarded/clean_ondisk/clean）及
+    last_seq 对比 dirty bucket 判定，经时序与状态机可一图建模
+  testable_signal: 运行 grep -q 'journal_buf' records/T0533-0902-research-bcachefs-tools/research-report.md 且 grep
+    -q 'journal_entry_pin' /home/black/Documents/bcachefs-tools/fs/journal/types.h 且 grep -q 'journal_space_from'
+    /home/black/Documents/bcachefs-tools/fs/journal/reclaim.c 命中
+  evidence_level: structure
+- name: jset_on_disk_format_and_replay
+  desc: jset 磁盘格式（csum/magic/seq/last_seq/u64s + jset_entry start[0] + bkey_i）与 crash replay 时序可测
+  constraint: 覆盖 struct jset (csum/magic/seq/version/flags/u64s/_write_clock/last_seq/start[0]) + struct jset_entry
+    (u64s/btree_id/level/type/start[0]) + BSET 内 bkey_i 连续数组 + replay 顺序 redo（按 seq 单调）及 last_seq 为 oldest dirty
+    下界，经 C4 L3 与时序可一图建模
+  testable_signal: 运行 grep -q 'struct jset' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h 且 grep -q
+    'last_seq' records/T0533-0902-research-bcachefs-tools/research-report.md 且 grep -q 'bch2_journal_read' /home/black/Documents/bcachefs-tools/fs/journal/read.c
+    命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Bcachefs Journal（日志）
@@ -177,14 +202,8 @@ jset_entry_init(..., BCH_JSET_ENTRY_clock);      // 7: IO 时钟
 // 正确：prio_ptrs 仅兼容读，写路径禁发
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' ontology/entity/bcachefs-journal.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' ontology/entity/bcachefs-journal.md` ≥3 且每图含 `Source: /home/black/Documents/bcachefs-tools/... file:line`
-- **正文门禁**：`wc -l ontology/entity/bcachefs-journal.md` ≥80 且含 `决策树` `正例` `反例` `门禁`
-- **属性门禁**：`attributes` ≥3 且每条 `testable_signal` 含 `grep -q` 且双源 `records + /home/black/Documents/bcachefs-tools` 可回归
-- **本体校验**：`python3 scripts/ontology-validate.py` 0 issues 且 `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/bcachefs-journal --out /tmp/x.py` 可产
-- **Gate 门禁**：`python3 scripts/production-ontology-gate.py --node ontology:entity/bcachefs-journal` GATE OK
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `/home/black/Documents/bcachefs-tools/fs/bcachefs_format.h:1624` + `/home/black/Documents/bcachefs-tools/fs/journal/types.h:37` + `/home/black/Documents/bcachefs-tools/fs/journal/reclaim.c:35`

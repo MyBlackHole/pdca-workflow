@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-read-fragment-bounce
 type: domain
 layer: Knowledge
@@ -8,20 +8,35 @@ summary: 读片段浅继承 + 弹跳全读置位
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-read-promote-tiering
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 读 bio 片段拆分、弹跳缓冲、全读标志场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 fs/data/read.h 在仓库中存在且含 rbio_init_fragment 定义"
+  testable_signal: 抽查正文引用的 fs/data/read.h 在仓库中存在且含 rbio_init_fragment 定义
+  evidence_level: unclassified
 - name: constraints
   desc: 片段继承前提
   constraint: 见正文
-  testable_signal: "通读正文约束节，确认浅继承范围、置位条件两条前提在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，确认浅继承范围、置位条件两条前提在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # 读片段浅继承与弹跳置位

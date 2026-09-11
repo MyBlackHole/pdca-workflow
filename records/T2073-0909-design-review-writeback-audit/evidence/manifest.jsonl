@@ -1,2 +1,0 @@
-{"id":"review-report","file":"review.md","kind":"review","size":1846,"digest":"sha256:126c5d74aede8db0ba38844c55afa9e1b997fd8a253dd881e11ca4e7891f96da","at":"2026-09-09T10:39:13+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-review"}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":356,"digest":"sha256:5c61a19b887d678360353af6f7dd364bff3287ed7b2c1e0d359df8d6304f63d9","at":"2026-09-09T10:39:22+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

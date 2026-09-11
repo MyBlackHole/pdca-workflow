@@ -1,25 +1,27 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/phase-archive
 type: entity
+semantic_kind: individual
 layer: Knowledge
-summary: 本工作流任务生命周期的运维扩展终态（非 PDCA 方法论阶段）
 status: active
+authority: normative
+revision: 3.2.0
+summary: 工作流正常归档终态，不属于方法阶段
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/phase-archive/1.0.0
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-  - ontology:concept/pdca-phase
+  instance_of:
+  - ontology:concept/workflow-state
+  relates_to:
+  - ontology:concept/pdca-phase-status
+phase_value: archive
+state_kind: terminal
 ---
-# phase-archive
 
-**运维扩展终态**：归档动作由 `act` 收尾触发，作为独立节点存在。它**不是 PDCA 方法论的阶段**（PDCA 方法论只有 plan/do/check/act 四阶段，见 `ontology:concept/pdca-phase`）。
+# 工作流终态：archive
 
-- **目的**：将已完成任务移出活跃任务区，保留不可变记录（本工作流单任务生命周期的终点）。
-- **进入条件**：act 收尾完成，`meta.disposition` 已设。
-- **关键活动**：`advance-phase` 设 `phase=archive` + `active=false` → 二次提交 metadata → `mv` 任务目录到 `pdca/tasks/archive/YYYY-MM/`。
-- **与 PDCA 循环的关系**：方法论上的"下一轮 plan"由 `ontology:concept/pdca-continuous-improvement` 承载，而非由本节点回到 plan；本节点仅终止单任务。
-- **对应约定**：`ontology/process/flow-{plan,do,check,act}.md` 的 Ac8。
+这是workflow-state的终态实例，不是pdca-phase实例，也不是第五个PDCA方法阶段。保留稳定ID和phase_value=archive，兼容旧任务记录中的phase编码。
 
+STATE-01要求archive与completed双向匹配并具备四条正常转换回执。异常终止保留原方法phase，用execution_state=interrupted，不能直接跳到archive。归档材料只读；完整性问题记录在独立报告中，不重开旧任务。

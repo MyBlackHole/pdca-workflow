@@ -1,23 +1,35 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/link-level-mtls-test-pattern
 type: pattern
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/link-level-mtls-test-pattern/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/link-level-mtls-test-pattern/3.1.0
 summary: 链接级 mTLS/握手测试模式与测试证书 CN 约束
 source_task: T0352
 relations:
-  specializes: [ontology:pattern]
-  guides: [ontology:entity/tls-test-harness]
+  guides:
+  - ontology:entity/tls-test-harness
+  instance_of:
+  - ontology:pattern
 attributes:
-  - name: applicability
-    desc: 将握手测试从 fork+execl 工具二进制迁移为链接级形式
-    constraint: ""
-    testable_signal: socketpair+fork 决策树复刻、SIGPIPE 忽略、CN 白名单 [A-Za-z0-9._-] 校验通过
+- name: applicability
+  desc: 将握手测试从 fork+execl 工具二进制迁移为链接级形式
+  constraint: ''
+  testable_signal: socketpair+fork 决策树复刻、SIGPIPE 忽略、CN 白名单 [A-Za-z0-9._-] 校验通过
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # 链接级 mTLS/握手测试模式与测试证书 CN 约束

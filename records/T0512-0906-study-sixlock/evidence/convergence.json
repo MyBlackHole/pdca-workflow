@@ -1,1 +1,0 @@
-{"items": [{"criteria": ["AC-1"], "evidence_ids": ["report-sixlock"], "index": 1, "text": "SIX锁机制讲透且有代码佐证"}, {"criteria": ["AC-2"], "evidence_ids": ["report-sixlock"], "index": 2, "text": "学习报告文件存在且对话输出一致"}, {"criteria": ["AC-3"], "evidence_ids": ["report-sixlock"], "index": 3, "text": "报告覆盖三态/升降级/死锁/性能四方面"}], "schema": "pdca.convergence/v1"}

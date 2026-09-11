@@ -1,23 +1,24 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/ontology-rule-attr-testable
 type: concept
+semantic_kind: class
 layer: Knowledge
-summary: AC-4 属性须有可测试信号（attributes[].testable_signal 非空）
 status: active
+authority: normative
+revision: 2.0.0
+summary: 属性约束与可观察验证
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ontology-rule-attr-testable/1.0.0
-rule_spec:
-  attribute_test_field: testable_signal
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
   - ontology:concept/ontology-rule
+  relates_to:
+  - ontology:concept/ontology-asset
+rule_spec: {}
 ---
-# ontology-rule-attr-testable
 
-**AC-4（属性可测）**：若 `ontology-asset` 声明了 `attributes`，则每个 `attributes[].testable_signal` 必须非空（描述如何验证该属性，供派生测试）。
+# 属性约束与可观察验证
 
-- 对应 `ontology-validate.py` 的 AC-4 实现（ATTR_NO_TEST_SIGNAL）。
-- 注：仅当资产声明 `attributes` 时触发；不含 `attributes` 的资产不报错（本规则约束"有属性则须可测"，而非"必须有属性"）。
+每项验收性属性必须有非空constraint和testable_signal；信号说明观测对象、判断方法与失败判据。结构检查不能替代行为测试。对实际代码不存在的测试不填通过，而是明确未执行或生成待运行测试设计。

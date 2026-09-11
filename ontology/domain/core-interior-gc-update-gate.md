@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-interior-gc-update-gate
 type: domain
 layer: Knowledge
@@ -8,20 +8,35 @@ summary: interior更新双路径门控 + 最高水位特权 + GC读写互斥
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-btree-transaction-memory-io
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: btree内部节点指针更新、GC与分裂并发、异步落盘场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 fs/btree/interior.c 在仓库中存在且含 bch2_btree_node_update_key 定义"
+  testable_signal: 抽查正文引用的 fs/btree/interior.c 在仓库中存在且含 bch2_btree_node_update_key 定义
+  evidence_level: unclassified
 - name: constraints
   desc: 更新门控前提
   constraint: 见正文
-  testable_signal: "通读正文约束节，确认意图锁持有、水位放行、读写互斥三条前提在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，确认意图锁持有、水位放行、读写互斥三条前提在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # interior更新门控 + GC 读写互斥

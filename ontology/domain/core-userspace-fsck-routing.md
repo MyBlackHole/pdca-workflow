@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-userspace-fsck-routing
 type: domain
 layer: Knowledge
@@ -8,20 +8,35 @@ summary: fsck在线三选路由 + 版本仲裁 + fd中继取码
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-userspace-device-scan
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 文件系统检查路由选择、版本错位仲裁、进度中继场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 src/commands/fsck.rs 在仓库中存在且含 cmd_fsck 定义"
+  testable_signal: 抽查正文引用的 src/commands/fsck.rs 在仓库中存在且含 cmd_fsck 定义
+  evidence_level: unclassified
 - name: constraints
   desc: 路由中继前提
   constraint: 见正文
-  testable_signal: "通读正文约束节，确认在线优先、版本双向命中、中继取码三条前提在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，确认在线优先、版本双向命中、中继取码三条前提在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # fsck 三选路由与中继

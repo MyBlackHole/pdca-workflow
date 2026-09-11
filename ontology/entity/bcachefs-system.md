@@ -1,55 +1,77 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/bcachefs-system
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/bcachefs-system/1.0.0
-summary: bcachefs 全栈系统聚合（composed_of 12 叶 format/mount/fsck/device/journal/journal-rewind/btree/btree-bset/alloc/transaction/super/cli，C4 L2/L3 至 journal/btree/alloc pipeline 可建模）
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/bcachefs-system/3.1.0
+summary: bcachefs 全栈系统聚合（composed_of 12 叶 format/mount/fsck/device/journal/journal-rewind/btree/btree-bset/alloc/transaction/super/cli，C4
+  L2/L3 至 journal/btree/alloc pipeline 可建模）
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   composed_of:
-    - ontology:entity/bcachefs-format
-    - ontology:entity/bcachefs-mount
-    - ontology:entity/bcachefs-fsck
-    - ontology:entity/bcachefs-device
-    - ontology:entity/bcachefs-journal
-    - ontology:entity/bcachefs-journal-rewind
-    - ontology:entity/bcachefs-btree
-    - ontology:entity/bcachefs-btree-bset
-    - ontology:entity/bcachefs-alloc
-    - ontology:entity/bcachefs-transaction
-    - ontology:entity/bcachefs-super
-    - ontology:entity/bcachefs-cli
+  - ontology:entity/bcachefs-format
+  - ontology:entity/bcachefs-mount
+  - ontology:entity/bcachefs-fsck
+  - ontology:entity/bcachefs-device
+  - ontology:entity/bcachefs-journal
+  - ontology:entity/bcachefs-journal-rewind
+  - ontology:entity/bcachefs-btree
+  - ontology:entity/bcachefs-btree-bset
+  - ontology:entity/bcachefs-alloc
+  - ontology:entity/bcachefs-transaction
+  - ontology:entity/bcachefs-super
+  - ontology:entity/bcachefs-cli
   relates_to:
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/scientific-research-methodology
-    - ontology:pattern/production-ontology-scientific-gate
-    - ontology:domain/bcachefs
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/scientific-research-methodology
+  - ontology:pattern/production-ontology-scientific-gate
+  - ontology:domain/bcachefs
 attributes:
-  - name: c4_l2_coverage
-    desc: C4 L2 全栈容器覆盖
-    constraint: 覆盖 bcachefs→commands(30+ leaf)→wrappers→fs/(journal/btree/alloc/sb/recovery)→DKMS 横切 Rust/C 边界，mermaid 可渲染且每图1 Source
-    testable_signal: "运行 grep -q 'C4 L2' records/T0533-0902-research-bcachefs-tools/research-report.md 且 grep -q 'C4 L2' ontology/entity/bcachefs-system.md 命中且 grep -c '```mermaid' ontology/entity/bcachefs-system.md | awk '{exit !($1>=3)}'"
-  - name: journal_btree_pipeline_depth
-    desc: journal/btree/bset pipeline 下钻至 L3 可测
-    constraint: 下钻至 jset/bset/bkey_packed 磁盘格式与 bset_tree/aux 内存格式及 journal_buf 预约环，含 bkey_format 动态位宽且 C4 L3 可建模
-    testable_signal: "运行 grep -q 'jset' records/T0533-0902-research-bcachefs-tools/research-report.md 且 grep -q 'bset' records/T0533-0902-research-bcachefs-tools/research-report.md 且 grep -q 'bset' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h 命中"
-  - name: twelve_leaf_completeness
-    desc: 十二叶 composed_of 完整性与 100% Rule
-    constraint: composed_of 恰为 12 叶 (format/mount/fsck/device/journal/journal-rewind/btree/btree-bset/alloc/transaction/super/cli) 且可 scaffold 且 ls bcachefs-*.md ≥10，符合 production-ontology-scientific-gate hundred 检查
-    testable_signal: "运行 python3 scripts/production-ontology-gate.py --check hundred --node ontology:entity/bcachefs-system 检查 PASS 且 python3 scripts/ontology_graph.py --format summary | grep -q 'islands: 0' 且 ls ontology/entity/bcachefs-*.md | wc -l | awk '{exit !($1>=10)}'"
+- name: c4_l2_coverage
+  desc: C4 L2 全栈容器覆盖
+  constraint: 覆盖 bcachefs→commands(30+ leaf)→wrappers→fs/(journal/btree/alloc/sb/recovery)→DKMS 横切 Rust/C 边界，mermaid
+    可渲染且每图1 Source
+  testable_signal: 运行 grep -q 'C4 L2' records/T0533-0902-research-bcachefs-tools/research-report.md 且 grep -q 'C4
+    L2' ontology/entity/bcachefs-system.md 命中且 grep -c '```mermaid' ontology/entity/bcachefs-system.md | awk '{exit
+    !($1>=3)}'
+  evidence_level: structure
+- name: journal_btree_pipeline_depth
+  desc: journal/btree/bset pipeline 下钻至 L3 可测
+  constraint: 下钻至 jset/bset/bkey_packed 磁盘格式与 bset_tree/aux 内存格式及 journal_buf 预约环，含 bkey_format 动态位宽且 C4 L3 可建模
+  testable_signal: 运行 grep -q 'jset' records/T0533-0902-research-bcachefs-tools/research-report.md 且 grep -q 'bset'
+    records/T0533-0902-research-bcachefs-tools/research-report.md 且 grep -q 'bset' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h
+    命中
+  evidence_level: structure
+- name: twelve_leaf_completeness
+  desc: 十二叶 composed_of 完整性与 100% Rule
+  constraint: composed_of 恰为 12 叶 (format/mount/fsck/device/journal/journal-rewind/btree/btree-bset/alloc/transaction/super/cli)
+    且可 scaffold 且 ls bcachefs-*.md ≥10，符合 production-ontology-scientific-gate hundred 检查
+  testable_signal: 核对属性 twelve_leaf_completeness 的定义与正文对应内容一致；此项仅为文档结构审查，不证明所述领域行为已运行。
+  verification_level: structural
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # Bcachefs 全栈系统（Bcachefs System）
 
 bcachefs 全栈聚合，`composed_of` 12 叶 `format/mount/fsck/device/journal/journal-rewind/btree/btree-bset/alloc/transaction/super/cli`，以 `research-diagram-methodology` 多图 `mermaid` 为证据（C4 L2 全栈 + journal/btree pipeline 时序 + 聚合决策树），每图附 `Source: /home/black/Documents/bcachefs-tools/... file:line`。
 
-验证：`grep -c '```mermaid' ontology/entity/bcachefs-system.md` ≥3 且 `python3 scripts/ontology-validate.py` 0 issue 且 `islands:0` 且 `production-ontology-gate --node bcachefs-system` GATE OK。
+结构检查参照 ontology:concept/ontology-creation-gate；测试设计与实际运行分别记录，不以缺失的旧工具声称验证通过。
 
 Source: `records/T0533-0902-research-bcachefs-tools/research-report.md`（8图全覆盖）+ `/home/black/Documents/bcachefs-tools/src/bcachefs.rs:263` + `/home/black/Documents/bcachefs-tools/src/commands/mod.rs:234` + `/home/black/Documents/bcachefs-tools/fs/bcachefs_format.h:1`
 
@@ -159,15 +181,8 @@ Source: `/home/black/Documents/bcachefs-tools/src/commands/mod.rs:234` + `/home/
 // 正确：经 bch2_trans_begin → alloc → trans_commit 走 journal 原子提交
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' ontology/entity/bcachefs-system.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' ontology/entity/bcachefs-system.md` ≥3 且每图含 `Source: /home/black/Documents/bcachefs-tools/... file:line`
-- **正文门禁**：`wc -l ontology/entity/bcachefs-system.md` ≥60 且含 `决策树` `正例` `反例` `门禁`
-- **属性门禁**：`attributes` ≥3 且每条 `testable_signal` 含 `grep -q`
-- **本体校验**：`python3 scripts/ontology-validate.py` 0 issues 且 `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/bcachefs-system --out /tmp/x.py` 可产
-- **Gate 门禁**：`python3 scripts/production-ontology-gate.py --node ontology:entity/bcachefs-system` GATE OK
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `records/T0533-0902-research-bcachefs-tools/research-report.md` + `/home/black/Documents/bcachefs-tools/src/bcachefs.rs:263` + `/home/black/Documents/bcachefs-tools/fs/bcachefs_format.h:1`
-

@@ -1,2 +1,0 @@
-{"id":"report-bcachefs-strengths","file":"report.md","kind":"document","size":16523,"digest":"sha256:556b64340405f4a7cafaca639c326fbc4fe25d8e5d0768a81a08ca8dde434a95","at":"2026-09-05T23:45:24+08:00","criteria":["AC-1","AC-2","AC-3"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":488,"digest":"sha256:fd1e226164e3729fefe127caee17cc65c2abc4f675b588c72cfd4f3ce81978ea","at":"2026-09-05T23:48:10+08:00","criteria":["AC-1","AC-2","AC-3"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

@@ -1,31 +1,31 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/ontology-deep-integration
 type: entity
+semantic_kind: class
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: ontology-deep-integration
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ontology-deep-integration/1.0.0
-summary: 本体深度融合总体（WBS根，叶→根聚合，驱动拆分×测试×执行×知识闭环）
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
-    - ontology:concept/domain-entity
-  composed_of:
-    - ontology:entity/ontology-deep-integration-split
-    - ontology:entity/ontology-deep-integration-test
-    - ontology:entity/ontology-deep-integration-tree
-    - ontology:entity/ontology-deep-integration-knowledge
+  - ontology:concept/entity
+  relates_to:
+  - ontology:process/select-task-subgraph
+  - ontology:concept/pdca-task
+  - ontology:concept/pdca-evidence
+  - ontology:concept/pdca-continuous-improvement
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
-# 本体深度融合总体
+# ontology-deep-integration
 
-WBS 根实体，聚合四个叶子实体，体现“本体即树、叶→根执行”。
-
-- **叶1 拆分门禁硬化**：`ontology:entity/ontology-deep-integration-split` — to-tickets 默认本体对齐，clash-check 阻断强化
-- **叶2 测试派生硬化**：`ontology:entity/ontology-deep-integration-test` — testable_signal 三模式自动骨架
-- **叶3 树形执行**：`ontology:entity/ontology-deep-integration-tree` — composed_of 树补齐与 ready-set 可视化
-- **叶4 知识闭环**：`ontology:entity/ontology-deep-integration-knowledge` — 任意任务强制本体产出
-
-高层属性 = 四叶 `attributes` 聚合；执行时叶可并行，根依赖全部叶完成，符合 `ontology:concept/pdca-task` 的 dependencies/ready-set 语义。
+本体集成根：语义、投影、验证与知识处置通过明确版本和证据关联，不需要自带生成器。

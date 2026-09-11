@@ -1,51 +1,70 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/zfs-system
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/zfs-system/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/zfs-system/3.1.0
 summary: ZFS 全栈系统聚合（composed_of DMU/DSL/SPA/ZIO/ZPL/ARC/VDEV/ZIL 八叶，C4 L2/L3 至 ZIO/VDEV pipeline 可建模）
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   composed_of:
-    - ontology:entity/zfs-dmu
-    - ontology:entity/zfs-dsl
-    - ontology:entity/zfs-spa
-    - ontology:entity/zfs-zio
-    - ontology:entity/zfs-zpl
-    - ontology:entity/zfs-arc
-    - ontology:entity/zfs-vdev
-    - ontology:entity/zfs-zil
+  - ontology:entity/zfs-dmu
+  - ontology:entity/zfs-dsl
+  - ontology:entity/zfs-spa
+  - ontology:entity/zfs-zio
+  - ontology:entity/zfs-zpl
+  - ontology:entity/zfs-arc
+  - ontology:entity/zfs-vdev
+  - ontology:entity/zfs-zil
   relates_to:
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/scientific-research-methodology
-    - ontology:pattern/production-ontology-scientific-gate
-    - ontology:domain/zfs-crypto
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/scientific-research-methodology
+  - ontology:pattern/production-ontology-scientific-gate
+  - ontology:domain/zfs-crypto
 attributes:
-  - name: c4_l2_coverage
-    desc: C4 L2 全栈容器覆盖
-    constraint: 覆盖 ZPL→DMU→DSL→SPA→ZIO→VDEV 横切 ARC/ZIL 的容器图且 mermaid 可渲染且每图1 Source
-    testable_signal: "运行 grep -q 'C4 L2' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -q 'C4 L2' ontology/entity/zfs-system.md 命中且 grep -c '```mermaid' ontology/entity/zfs-system.md | awk '{exit !($1>=3)}'"
-  - name: zio_pipeline_depth
-    desc: ZIO/VDEV pipeline 下钻至 L3 可测
-    constraint: 下钻至 ZIO stage 位图与 VDEV queue pipeline 宏，含 compress/encrypt/checksum/vdev_queue 分支且 C4 L3 可建模
-    testable_signal: "运行 grep -q 'ZIO.*PIPELINE' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -q 'ZIO_STAGE_VDEV_IO_START' /tmp/zfs/include/sys/zio_impl.h 命中且 grep -q 'vdev_queue' /tmp/zfs/module/zfs/vdev_queue.c 命中"
-  - name: eight_leaf_completeness
-    desc: 八叶 composed_of 完整性与 100% Rule
-    constraint: composed_of 恰为 dmu/dsl/spa/zio/zpl/arc/vdev/zil 八叶且可 scaffold 且覆盖率≥95%（以 module/zfs/*.c 140 文件为参照），符合 production-ontology-scientific-gate 的 hundred 检查
-    testable_signal: "运行 python3 scripts/production-ontology-gate.py --check hundred --node ontology:entity/zfs-system 检查 PASS 且 python3 scripts/ontology_graph.py --format summary | grep -q 'islands: 0' 且 ls ontology/entity/zfs-*.md | wc -l | awk '{exit !($1>=9)}'"
+- name: c4_l2_coverage
+  desc: C4 L2 全栈容器覆盖
+  constraint: 覆盖 ZPL→DMU→DSL→SPA→ZIO→VDEV 横切 ARC/ZIL 的容器图且 mermaid 可渲染且每图1 Source
+  testable_signal: 运行 grep -q 'C4 L2' records/T0503-0903-research-zfs-implementation/research-report.md 且 grep -q
+    'C4 L2' ontology/entity/zfs-system.md 命中且 grep -c '```mermaid' ontology/entity/zfs-system.md | awk '{exit !($1>=3)}'
+  evidence_level: structure
+- name: zio_pipeline_depth
+  desc: ZIO/VDEV pipeline 下钻至 L3 可测
+  constraint: 下钻至 ZIO stage 位图与 VDEV queue pipeline 宏，含 compress/encrypt/checksum/vdev_queue 分支且 C4 L3 可建模
+  testable_signal: 运行 grep -q 'ZIO.*PIPELINE' records/T0503-0903-research-zfs-implementation/research-report.md
+    且 grep -q 'ZIO_STAGE_VDEV_IO_START' /tmp/zfs/include/sys/zio_impl.h 命中且 grep -q 'vdev_queue' /tmp/zfs/module/zfs/vdev_queue.c
+    命中
+  evidence_level: structure
+- name: eight_leaf_completeness
+  desc: 八叶 composed_of 完整性与 100% Rule
+  constraint: composed_of 恰为 dmu/dsl/spa/zio/zpl/arc/vdev/zil 八叶且可 scaffold 且覆盖率≥95%（以 module/zfs/*.c 140 文件为参照），符合
+    production-ontology-scientific-gate 的 hundred 检查
+  testable_signal: 核对属性 eight_leaf_completeness 的定义与正文对应内容一致；此项仅为文档结构审查，不证明所述领域行为已运行。
+  verification_level: structural
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # ZFS 全栈系统（ZFS System）
 
 OpenZFS 实现全栈的系统聚合，`composed_of` 八叶 `zfs-dmu`/`zfs-dsl`/`zfs-spa`/`zfs-zio`/`zfs-zpl`/`zfs-arc`/`zfs-vdev`/`zfs-zil`，以 `research-diagram-methodology` 多图 `mermaid` 为可视化证据（C4 L2 全栈 + ZIO/VDEV pipeline 时序 + 聚合决策树），每图附 `Source: file:line` 直达 `openzfs/zfs#master`。
 
-验证：`grep -c '```mermaid' ontology/entity/zfs-system.md` ≥3 且 `python3 scripts/ontology-validate.py` 0 issue 且 `islands:0` 且 `production-ontology-gate --node zfs-system` GATE OK。
+结构检查参照 ontology:concept/ontology-creation-gate；测试设计与实际运行分别记录，不以缺失的旧工具声称验证通过。
 
 Source: `records/T0503-0903-research-zfs-implementation/research-report.md`（6 图全覆盖）+ `openzfs/zfs/include/sys/zio_impl.h:60-260` + `openzfs/zfs/include/sys/vdev_impl.h:40-120`
 
@@ -106,10 +125,10 @@ flowchart TD
     A2 --> Q3
     Q3 -- 否 缺维度 --> A5[补缺口叶<br/>如 ZIL/DDT]
     Q3 -- 是 --> END([gate --check hundred PASS])
-    %% Source: ontology/domain/ontology-hybrid-methodology.md:47
+    %% Source: ontology/domain/pdca/ontology-hybrid-methodology.md:47
 ```
 
-Source: `ontology/domain/ontology-hybrid-methodology.md:47` 三准绳 + `ontology/pattern/production-ontology-scientific-gate.md:120` 决策树
+Source: `ontology/domain/pdca/ontology-hybrid-methodology.md:47` 三准绳 + `ontology/pattern/production-ontology-scientific-gate.md:120` 决策树
 
 ## 正例
 
@@ -117,10 +136,10 @@ Source: `ontology/domain/ontology-hybrid-methodology.md:47` 三准绳 + `ontolog
 # 正例：按三件套新增一叶并保持 100% Rule
 cp templates/production-entity.md ontology/entity/zfs-newleaf.md
 # 填：3 attributes + C4 L3 + 时序 + 状态机 + 决策树 + 正反例 + 门禁 179行
-python3 scripts/production-ontology-gate.py --node ontology:entity/zfs-newleaf  # GATE OK
+结构检查参照 ontology:concept/ontology-creation-gate；测试设计与实际运行分别记录，不以缺失的旧工具声称验证通过。
 # 更新 system composed_of 加入新叶
-python3 scripts/production-ontology-gate.py --check hundred --node ontology:entity/zfs-system  # PASS 覆盖率≥95% 8/8
-python3 scripts/ontology-validate.py --ontology-dir ontology  # 0 issues
+结构检查参照 ontology:concept/ontology-creation-gate；测试设计与实际运行分别记录，不以缺失的旧工具声称验证通过。
+结构检查参照 ontology:concept/ontology-creation-gate；测试设计与实际运行分别记录，不以缺失的旧工具声称验证通过。
 ```
 
 命中：`gate --node` 六维 PASS，`validate 0`，`scaffold` 可产，`islands:0`，`composed_of` 7叶与 `zfs-*.md` 8文件一致。
@@ -141,15 +160,8 @@ python3 scripts/ontology-validate.py --ontology-dir ontology  # 0 issues
 # 正确：改为 "运行 grep -q 'vdev_t' records/... 且 grep -q 'vdev_t' /tmp/zfs/... 命中"
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' ontology/entity/zfs-system.md` ≥3 且 `grep -c 'Source:' ontology/entity/zfs-system.md` ≥3
-- **溯源门禁**：每图附 `openzfs/zfs file:line` 或 `records/T0503 file:line`
-- **正文门禁**：`wc -l ontology/entity/zfs-system.md` ≥80 且 `grep -q '决策树' && grep -q '正例' && grep -q '反例' && grep -q '门禁'`
-- **属性门禁**：`attributes` ≥3 且每条 `testable_signal` 含 `grep -q` 或 `gate.py` 动词且双源可回归
-- **100% 门禁**：`python3 scripts/production-ontology-gate.py --check hundred --node ontology:entity/zfs-system` PASS 且 `composed_of` 7叶
-- **本体校验**：`python3 scripts/ontology-validate.py --ontology-dir ontology` 0 issues 且 `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/zfs-system --out /tmp/x.py` 可产
-- **Gate 门禁**：`python3 scripts/production-ontology-gate.py --node ontology:entity/zfs-system` GATE OK 且 `gate --all` 不因 system 而 FAIL
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `records/T0503-0903-research-zfs-implementation/research-report.md` + `openzfs/zfs/include/sys/zio_impl.h:60-260` + `openzfs/zfs/include/sys/vdev_impl.h:40-120`

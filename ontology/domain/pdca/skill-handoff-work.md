@@ -1,51 +1,39 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-handoff-work
-name: handoff-work
-summary: Handle work handoffs between phases and team members.
-description: Write a compact, redacted handoff record for a future session or agent.
-invocation: manual
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 交接包核验
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-handoff-work/1.0.0
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-    - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
   relates_to:
-    - ontology:concept/handoff
-    - ontology:concept/domain-modeling
-  testable_signal: "运行 grep -q 'ontology:domain/skill-handoff-work' ontology/domain/pdca/skill-handoff-work.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:domain/skill-handoff
+  - ontology:concept/pdca-evidence
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
+# 交接包核验
 
----|-----|----------|------|
-| 1 | 下一步需要本块作一手依据，或推理余量充足？ | **继续** | 零成本零损失，最先排除其余选项 |
-| 2 | 本块全部内容对后续无关紧要？ | **清窗** | 最便宜的一手；误删相关上下文的代价单向（why 读 diff 也回不来） |
-| 3 | 跨 harness/目录/同事/中途分叉支线？ | **交接（本技能）** | 买到的是可移植性；没有东西在旅行就不需要 |
-| 4 | 任务可无人值守完成？ | **子代理** | 主会话原封不动 |
-| 5 | 以上皆否 | **压缩** | 默认着陆点而非首选；压缩时下指令保住下一步所需 |
+## 适用条件
 
-底层是一手源/二手源交换：除"继续"外每个动作都把一手源（信息全、噪声大、
-腾挪小）换成二手源（有损、低噪、空间大）。只有当留下的成本大于收益才付
-有损代价。
+当前执行契约包含本动作时按需读取；本技能不拥有阶段转换或授权权力。
 
-## 对话摘要存档（dialogue-log）
+## 动作与判据
 
-每次阶段转换前，向任务目录 `dialogue-log.md` **追加**一段摘要（≤2KB/段），四要素：
+重读交接包的路径、版本和摘要，确认可在授权范围恢复事实；缺失材料列明影响。不因交接者说“已完成”而跳过当前任务验收。
 
-1. 本阶段讨论要点（≤5 条）
-2. 被否决的备选及否决理由——防止后续 session 重新提议
-3. 用户关键反应原话（与 clarifications 的 `captured:true` 条目互引）
-4. 未解决即跳过的疑点
+## 失败处理
 
-明确不做：全量逐句、常规 yes/no 确认、工具输出。涉密内容 Redact。
-
-## 已知坑
-
-- 记录须 compact 且保留决策链，供未来 session 恢复上下文；冗余细节会稀释可恢复性。
-- 五问都是判断题且按序问——跳过前面直接压缩的典型失败是新会话对被摘要压扁的决策自信地错。
+缺必需输入、来源或工具时报告具体缺项及影响；未执行与未知结果不得写成成功。

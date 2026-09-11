@@ -1,34 +1,56 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/bcachefs-fsck
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/bcachefs-fsck/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/bcachefs-fsck/3.1.0
 summary: bcachefs Fsck 实体 — bch2_fs_recovery 26  passes、journal replay 与 check_topology/allocations/extents 分工
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/production-ontology-scientific-gate
-    - ontology:pattern/scientific-research-methodology
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/production-ontology-scientific-gate
+  - ontology:pattern/scientific-research-methodology
 attributes:
-  - name: recovery_26_passes
-    desc: BCH_RECOVERY_PASSES 26+ pass 列表及依赖（BIT_ULL）与 ratelimit 持久化可测
-    constraint: 覆盖 passes_format.h:24 的 26+ pass（scan_for_btree_nodes/check_topology/check_allocations/journal_replay/check_extents/check_snapshots/check_backpointers 等）+ 依赖位 + bch_sb_field_recovery_passes + recovery_pass_entry {last_run/last_runtime/flags}，经 C4 L3 与状态机可一图建模
-    testable_signal: "运行 grep -q 'BCH_RECOVERY_PASSES' /home/black/Documents/bcachefs-tools/fs/init/passes_format.h 且 grep -q 'journal_replay' /home/black/Documents/bcachefs-tools/fs/init/passes_format.h 且 grep -q 'check_allocations' /home/black/Documents/bcachefs-tools/fs/init/passes_format.h 且 grep -q 'fsck' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: fsck_journal_rewind_recovery_pass_cli
-    desc: fsck/recovery_pass/journal_rewind_info 三 CLI 与 bch2_fs_recovery 调度可测
-    constraint: 覆盖 src/commands/fsck.rs + recovery_pass.rs + journal_rewind_info.rs:119 的 open_scan → journal_start_info → rewound_from/to 调度 + recovery_pass 可单跑指定 pass，经时序与决策树可一图建模
-    testable_signal: "运行 grep -q 'fsck' /home/black/Documents/bcachefs-tools/src/commands/fsck.rs 且 grep -q 'recovery_pass' /home/black/Documents/bcachefs-tools/src/commands/recovery_pass.rs 且 grep -q 'journal_rewind_info' /home/black/Documents/bcachefs-tools/src/commands/journal_rewind_info.rs 且 grep -q 'fsck' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: check_alloc_extents_backpointers
-    desc: 三大 check 分工（topology/allocations/extents）与 gc/backpointers 一致性可测
-    constraint: 覆盖 check_topology（bdev 拓扑）+ check_allocations（bucket 碎片与 gen）+ check_extents（extent 与 backpointers 交叉）+ check_data.c:233 PTR_GC_BUCKET stale 判定，经 C4 L3 与正例可一图建模
-    testable_signal: "运行 grep -q 'check_allocations' /home/black/Documents/bcachefs-tools/fs/init/passes_format.h 且 grep -q 'check_extents' /home/black/Documents/bcachefs-tools/fs/init/passes_format.h 且 grep -q 'PTR_GC' /home/black/Documents/bcachefs-tools/fs/alloc/check_data.c 且 grep -q 'fsck' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
+- name: recovery_26_passes
+  desc: BCH_RECOVERY_PASSES 26+ pass 列表及依赖（BIT_ULL）与 ratelimit 持久化可测
+  constraint: 覆盖 passes_format.h:24 的 26+ pass（scan_for_btree_nodes/check_topology/check_allocations/journal_replay/check_extents/check_snapshots/check_backpointers
+    等）+ 依赖位 + bch_sb_field_recovery_passes + recovery_pass_entry {last_run/last_runtime/flags}，经 C4 L3 与状态机可一图建模
+  testable_signal: 运行 grep -q 'BCH_RECOVERY_PASSES' /home/black/Documents/bcachefs-tools/fs/init/passes_format.h
+    且 grep -q 'journal_replay' /home/black/Documents/bcachefs-tools/fs/init/passes_format.h 且 grep -q 'check_allocations'
+    /home/black/Documents/bcachefs-tools/fs/init/passes_format.h 且 grep -q 'fsck' records/T0533-0902-research-bcachefs-tools/research-report.md
+    命中
+  evidence_level: structure
+- name: fsck_journal_rewind_recovery_pass_cli
+  desc: fsck/recovery_pass/journal_rewind_info 三 CLI 与 bch2_fs_recovery 调度可测
+  constraint: 覆盖 src/commands/fsck.rs + recovery_pass.rs + journal_rewind_info.rs:119 的 open_scan → journal_start_info
+    → rewound_from/to 调度 + recovery_pass 可单跑指定 pass，经时序与决策树可一图建模
+  testable_signal: 运行 grep -q 'fsck' /home/black/Documents/bcachefs-tools/src/commands/fsck.rs 且 grep -q 'recovery_pass'
+    /home/black/Documents/bcachefs-tools/src/commands/recovery_pass.rs 且 grep -q 'journal_rewind_info' /home/black/Documents/bcachefs-tools/src/commands/journal_rewind_info.rs
+    且 grep -q 'fsck' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: check_alloc_extents_backpointers
+  desc: 三大 check 分工（topology/allocations/extents）与 gc/backpointers 一致性可测
+  constraint: 覆盖 check_topology（bdev 拓扑）+ check_allocations（bucket 碎片与 gen）+ check_extents（extent 与 backpointers
+    交叉）+ check_data.c:233 PTR_GC_BUCKET stale 判定，经 C4 L3 与正例可一图建模
+  testable_signal: 运行 grep -q 'check_allocations' /home/black/Documents/bcachefs-tools/fs/init/passes_format.h 且
+    grep -q 'check_extents' /home/black/Documents/bcachefs-tools/fs/init/passes_format.h 且 grep -q 'PTR_GC' /home/black/Documents/bcachefs-tools/fs/alloc/check_data.c
+    且 grep -q 'fsck' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Bcachefs Fsck（一致性检查）
@@ -144,14 +166,8 @@ bcachefs journal_rewind_info /dev/sda # 枚举 [floor,latest] 内 JSET_NO_FLUSH=
 // 正确：以 rewind_limit 为下界（JSET 14 类型）
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' ontology/entity/bcachefs-fsck.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' ontology/entity/bcachefs-fsck.md` ≥3 且每图含 `Source: /home/black/Documents/bcachefs-tools/... file:line`
-- **正文门禁**：`wc -l ontology/entity/bcachefs-fsck.md` ≥80 且含 `决策树` `正例` `反例` `门禁`
-- **属性门禁**：`attributes` ≥3 且每条 `testable_signal` 含 `grep -q` 且双源可回归
-- **本体校验**：`python3 scripts/ontology-validate.py` 0 issues 且 `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/bcachefs-fsck --out /tmp/x.py` 可产
-- **Gate 门禁**：`python3 scripts/production-ontology-gate.py --node ontology:entity/bcachefs-fsck` GATE OK
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `/home/black/Documents/bcachefs-tools/fs/init/passes_format.h:24` + `/home/black/Documents/bcachefs-tools/fs/init/passes_types.h:7` + `/home/black/Documents/bcachefs-tools/src/commands/fsck.rs:1`

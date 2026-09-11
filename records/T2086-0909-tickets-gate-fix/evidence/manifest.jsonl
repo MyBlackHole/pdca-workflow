@@ -1,2 +1,0 @@
-{"id":"leaf-ev","file":"pdca_core.py","kind":"script","size":35230,"digest":"sha256:03b8894cdfb05bb89cd511b34083c3b77fbbaf11689f3b8a6dee98939afe441b","at":"2026-09-09T11:50:03+08:00","criteria":["AC-1"]}
-{"id":"convergence-map","file":"convergence.json","kind":"convergence-map","size":213,"digest":"sha256:b146bc6702bb6fc8c2c4d2c7a3d503daaad6f8f12616ad4ffa13b031ae89c5ed","at":"2026-09-09T11:50:22+08:00","criteria":["AC-1"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

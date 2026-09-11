@@ -1,41 +1,31 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/setup-skill
 type: concept
+semantic_kind: class
 layer: Knowledge
-status: active
+status: deprecated
+authority: reference
+revision: 3.1.0
+summary: 已退役：setup-skill
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/setup-skill/1.0.0
-summary: 设置技能：配置 repo 以使用技能库的模式
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
-  - ontology:concept/skill-mechanics
+  - ontology:concept/entity
   relates_to:
-  - ontology:concept/router-skill
-attributes:
-- name: applicability
-  desc: 适用于所有需要配置 repo 以使用技能库的场景
-  constraint: 见正文
-  testable_signal: 检查技能是否声明其配置模式
-- name: trigger_phrase
-  desc: 触发短语
-  constraint: 至少声明一个
-  testable_signal: 检查是否包含声明式触发短语
-- name: trigger_context
-  desc: 触发条件
-  constraint: 见正文
-  testable_signal: 检查触发条件是否覆盖所有预期场景
+  - ontology:concept/capability-protocol
+replaced_by: ontology:concept/capability-protocol
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 2.0.0
 ---
 
-# Setup Skill（设置技能）
+# 已退役：setup-skill
 
-配置 repo 以使用技能库的通用模式。
+不提供平台setup、安装或工具注入。宿主能力映射以真实工具说明为准。
 
-## 原则
-
-- setup 技能在 repo 首次使用时运行一次
-- 配置内容包括：issue tracker 选择、triage 标签、领域文档布局
-- 配置结果持久化，后续技能可直接引用
-- setup 完成后引导用户进入入口技能（如 ask-matt）
+旧ID仅作迁移定位，不能用作活动执行规则。现行权威：ontology:concept/capability-protocol。

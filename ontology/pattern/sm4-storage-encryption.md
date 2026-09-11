@@ -1,25 +1,41 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/sm4-storage-encryption
 type: pattern
 layer: Knowledge
 status: active
 summary: 国密SM4全流程存储加密模式（ZFS/S3/NFS/备份四场景，155 MB/s 基线，TLS_SM4_GCM_SM3 阈值表）
 relations:
-  specializes:
-    - ontology:pattern
   relates_to:
-    - ontology:entity/aio-tools-6200-release
-    - ontology:concept/pdca-task
+  - ontology:entity/aio-tools-6200-release
+  - ontology:concept/pdca-task
+  instance_of:
+  - ontology:pattern
 attributes:
-  - name: sm4_threshold_table
-    desc: SM4 国密阈值表可复用
-    constraint: 含 TLS_SM4_GCM_SM3=国密SM4-GCM-SM3(TLS1.3) 与 TLS_AES_256_GCM_SHA384 的枚举阈值表，allowed_values 可检
-    testable_signal: "运行 grep -q 'TLS_SM4_GCM_SM3' /home/black/Public/aio/aio-tools/6200/F/139/libs/rdb-config.h 且 grep -q 'allowed_values' /home/black/Public/aio/aio-tools/6200/F/139/libs/rdb-config.h 命中且 grep -q 'sm4-storage-encryption' ontology/pattern/sm4-storage-encryption.md 命中"
-  - name: four_scenario_coverage
-    desc: ZFS/S3/NFS/备份四场景架构覆盖
-    constraint: 覆盖 ZFS 块存储/S3 对象存储/NFS 文件存储/备份介质四场景的 SM4 透明加密数据流，mermaid 可渲染且每图 1 Source
-    testable_signal: "运行 grep -q '155 MB/s' /home/black/Public/aio/aio-tools/6200/F/139/备份传输存储国密SM4全流程加密方案.md 且 grep -q 'C4 L2' ontology/pattern/sm4-storage-encryption.md 命中且 grep -c '```mermaid' ontology/pattern/sm4-storage-encryption.md | awk '{exit !($1>=3)}'"
+- name: sm4_threshold_table
+  desc: SM4 国密阈值表可复用
+  constraint: 含 TLS_SM4_GCM_SM3=国密SM4-GCM-SM3(TLS1.3) 与 TLS_AES_256_GCM_SHA384 的枚举阈值表，allowed_values 可检
+  testable_signal: 运行 grep -q 'TLS_SM4_GCM_SM3' /home/black/Public/aio/aio-tools/6200/F/139/libs/rdb-config.h 且
+    grep -q 'allowed_values' /home/black/Public/aio/aio-tools/6200/F/139/libs/rdb-config.h 命中且 grep -q 'sm4-storage-encryption'
+    ontology/pattern/sm4-storage-encryption.md 命中
+  evidence_level: structure
+- name: four_scenario_coverage
+  desc: ZFS/S3/NFS/备份四场景架构覆盖
+  constraint: 覆盖 ZFS 块存储/S3 对象存储/NFS 文件存储/备份介质四场景的 SM4 透明加密数据流，mermaid 可渲染且每图 1 Source
+  testable_signal: 运行 grep -q '155 MB/s' /home/black/Public/aio/aio-tools/6200/F/139/备份传输存储国密SM4全流程加密方案.md 且 grep
+    -q 'C4 L2' ontology/pattern/sm4-storage-encryption.md 命中且 grep -c '```mermaid' ontology/pattern/sm4-storage-encryption.md
+    | awk '{exit !($1>=3)}'
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # 国密SM4全流程存储加密模式（SM4 Storage Encryption Pattern）

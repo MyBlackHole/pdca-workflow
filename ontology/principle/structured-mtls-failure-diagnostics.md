@@ -1,25 +1,39 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:principle/structured-mtls-failure-diagnostics
 type: principle
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/structured-mtls-failure-diagnostics/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/structured-mtls-failure-diagnostics/3.1.0
 docType: Principle
-tags: [mtls, diagnostics]
+tags:
+- mtls
+- diagnostics
 summary: mTLS 失败日志应同时表达角色、阶段、算法与凭据路径
 source_task: T0314
 relations:
-  specializes: [ontology:principle]
-  guides: [ontology:entity/tls-session]
+  guides:
+  - ontology:entity/tls-session
+  instance_of:
+  - ontology:principle
 attributes:
-  - name: applicability
-    desc: TLS/mTLS 初始化和握手失败日志场景
-    constraint: ""
-    testable_signal: 失败日志含 role/stage/算法配置/CA/证书/私钥路径，不记录私钥内容
+- name: applicability
+  desc: TLS/mTLS 初始化和握手失败日志场景
+  constraint: ''
+  testable_signal: 失败日志含 role/stage/算法配置/CA/证书/私钥路径，不记录私钥内容
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # 迁移知识

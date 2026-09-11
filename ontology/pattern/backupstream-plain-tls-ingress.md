@@ -1,23 +1,35 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/backupstream-plain-tls-ingress
 type: pattern
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/backupstream-plain-tls-ingress/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/backupstream-plain-tls-ingress/3.1.0
 summary: backupstream 80 v80 架构：plain/TLS 双路径 ingress 与线程模型
 source_task: T0287
 relations:
-  specializes: [ontology:pattern]
-  guides: [ontology:entity/tls-session]
+  guides:
+  - ontology:entity/tls-session
+  instance_of:
+  - ontology:pattern
 attributes:
-  - name: applicability
-    desc: 备份流 80 v80 架构的明文/TLS 双网络主线与事件化 ingress
-    constraint: ""
-    testable_signal: 慢客户端压测下业务线程数不增长（256 单字节 HELLO 客户端 Agent 线程 33→1，caps 请求 3ms 级）
+- name: applicability
+  desc: 备份流 80 v80 架构的明文/TLS 双网络主线与事件化 ingress
+  constraint: ''
+  testable_signal: 慢客户端压测下业务线程数不增长（256 单字节 HELLO 客户端 Agent 线程 33→1，caps 请求 3ms 级）
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # backupstream 80.0.0 架构对照：plain/TLS 双路径 ingress 与线程模型

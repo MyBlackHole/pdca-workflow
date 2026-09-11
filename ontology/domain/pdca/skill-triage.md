@@ -1,67 +1,39 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/skill-triage
-name: triage
-summary: Triage incoming tasks and prioritize based on impact and urgency.
-description: |
-  Classify issues as bug or enhancement, check for duplicates, verify the claim,
-  grill if needed, and output an agent-ready task.json + prd.md + brief.
-
-invocation: manual
 type: domain
+semantic_kind: individual
 layer: Knowledge
 status: active
+authority: reference
+revision: 3.1.0
+summary: 确定本体职责和范围
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/skill-triage/1.0.2
+dcterms_modified: '2026-09-12'
 relations:
-  specializes:
-    - ontology:concept/pdca-task
+  instance_of:
+  - ontology:concept/knowledge-artifact
   relates_to:
-    - ontology:concept/domain-modeling
-    - ontology:concept/skill-invocation-contract
-  testable_signal: "运行 grep -q 'Triage — 任务分诊' ontology/domain/pdca/skill-triage.md && python3 scripts/ontology-validate.py --ontology-dir ontology 2>&1 | grep -q 'OK'"
-
+  - ontology:process/flow-plan
+  - ontology:concept/pdca-execution-contract
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  pre_review_revision: 3.0.0
 ---
 
+# 确定本体职责和范围
 
-# Triage — 任务分诊
+## 适用条件
 
-分类 incoming tasks 并按 impact 和 urgency 优先级排序。
+当前执行契约包含本动作时按需读取；本技能不拥有阶段转换或授权权力。
 
-## 流程
+## 动作与判据
 
-1. 记录 issue 是 bug 或 enhancement，并选择 `ontology_modeling`、`ontology_projection`、`ontology_conformance_verification` 之一；bug/enhancement 不参与职责或路径映射
-2. 检查重复
-3. 验证 claim（事实性 claim 用代码/文档验证而非询问用户）
-4. **Grill 门禁（强制分支）**：按 `skill-grilling` 先 Gather signal → Build ledger（resolved/open）→ Branch：
-   - `execution_contract.required_actions` 要求基于来源的调研，或输入仅含路径/单句（thin）→ **强制 `grill full`**（至少一轮 frontier，含推荐答案）
-   - 其他 `mostly resolved` → 至少 **一次 `confirm-or-correct` 总结**（`Never zero-touch`：即使全 resolved 也必须一次显式确认，见 `ontology:concept/grilling-methodology`）
-   - 仅当 ledger 显示全 resolved 且已获 `captured:true` 确认后，方可进入 5
-5. 输出 agent-ready task.json + prd.md + brief；task 必须含一个专业职责及 `work_product`、`required_actions`、`constraints`、`testable_signal` 四字段契约（`final_confirmation` 必须绑定 `grilling` 轮次或 `confirm-or-correct` 摘要，纯自写无 ledger 视为门禁阻断）
+识别目标及三个scene之一，写四字段契约草稿、必须澄清项和范围排除。任务名称或工具名不代替职责。资料充分时直接形成待确认基线，不因输入短而机械追加一轮问题。
 
-## External PR 处理
+## 失败处理
 
-Triage 扩展以处理外部 pull requests：
-
-- PR 视为带附件的 issue，走相同角色、状态机和流程
-- Discovery 仅暴露外部 PR
-- bug-only 的"reproduce"步骤泛化为"verify the claim"
-- 冗余检查解析已实现请求为 `wontfix`
-- **HITL/AFK 分类**：外部 PR 需人工审核时为 HITL；可自动合并时为 AFK
-
-## Model-Invoked 辅助
-
-model-invoked 模式下，AI 可自动辅助 triage 流程：
-- 自动分类 issue 类型
-- 自动检查重复
-- 自动生成 task.json + prd.md 草稿
-
-## 已知坑
-
-- 查重须搜活跃+归档 task 与 knowledge，事实性 claim 用代码/文档验证而非询问用户。
-- PR 处理需 `triage` skill 已安装；外部 PR 默认关闭，需在 setup 中启用。
-- HITL ticket 必须通过 live exchange 解决，不可由 agent 自主回答。
-- **Grill 硬门禁**：契约要求基于来源的调研或 thin 输入时，跳过 grill 或自写 `final_confirmation` 属 `timeline-integrity-gate` 违规；`Never zero-touch` 未满足时 `transition-phase` 应拒 `plan→do`。
-- **Provenance 双态**：`clarifications.jsonl` 的 `captured:true` 仅用户原文，AI 代填一律 `false`（`skill-grilling:7`）；自问自答标 true 即 HITL 违规。
+缺必需输入、来源或工具时报告具体缺项及影响；未执行与未知结果不得写成成功。

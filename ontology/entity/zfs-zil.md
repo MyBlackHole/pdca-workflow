@@ -1,37 +1,52 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/zfs-zil
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/zfs-zil/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/zfs-zil/3.1.0
 summary: ZFS ZIL 实体 — 意图日志 LWB 链与 slog 分离及重放可测
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:entity/zfs-zpl
-    - ontology:entity/zfs-vdev
-    - ontology:pattern/production-ontology-scientific-gate
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/scientific-research-methodology
-    - ontology:domain/zfs-crypto
+  - ontology:entity/zfs-zpl
+  - ontology:entity/zfs-vdev
+  - ontology:pattern/production-ontology-scientific-gate
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/scientific-research-methodology
+  - ontology:domain/zfs-crypto
 attributes:
-  - name: zil_lwb_chain
-    desc: ZIL LWB 链 OPEN→ISSUED→WRITE_DONE→DONE 四态与 zl_itx_list 可测，对应 C4 L3 与状态机
-    constraint: 覆盖 zilog_t/zil_lwb_t/lwb_state 四态及 zil_commit→zil_lwb_write_issue 的 LWB 链 C4 L3 与状态机可一图建模
-    testable_signal: "运行 grep -q 'zil_lwb' records/T0527-0902-zfs-zil-entity/report.md 2>/dev/null || grep -q 'zil_lwb' ontology/entity/zfs-zil.md 命中且 grep -q 'zil_lwb' /tmp/zfs/include/sys/zil.h 命中"
-  - name: slog_separate_dispatch
-    desc: slog 分离分发与主池回退可测，对应时序图 zil_commit → slog vdev
-    constraint: 覆盖 spa_slog_vdev 判定、zil_lwb_write_issue 经 zio_create 至 slog 与主池的时序分流及 ZIO pipeline 衔接
-    testable_signal: "运行 grep -q 'slog' records/T0527-0902-zfs-zil-entity/report.md 2>/dev/null || grep -q 'slog' ontology/entity/zfs-zil.md 命中且 grep -q 'slog' /tmp/zfs/module/zfs/zil.c 命中"
-  - name: zil_claim_replay
-    desc: ZIL 重放 claim→replay 可测，对应状态机 replay 触发与 TXG 分离
-    constraint: 覆盖 zil_claim→zil_replay 的掉电重放链与 TXG 分离（LWB_DONE 需 txg_synced），状态机可一图建模
-    testable_signal: "运行 grep -q 'zil_claim' records/T0527-0902-zfs-zil-entity/report.md 2>/dev/null || grep -q 'zil_claim' ontology/entity/zfs-zil.md 命中且 grep -q 'zil_claim' /tmp/zfs/module/zfs/zil.c 命中"
+- name: zil_lwb_chain
+  desc: ZIL LWB 链 OPEN→ISSUED→WRITE_DONE→DONE 四态与 zl_itx_list 可测，对应 C4 L3 与状态机
+  constraint: 覆盖 zilog_t/zil_lwb_t/lwb_state 四态及 zil_commit→zil_lwb_write_issue 的 LWB 链 C4 L3 与状态机可一图建模
+  testable_signal: 运行 grep -q 'zil_lwb' records/T0527-0902-zfs-zil-entity/report.md 2>/dev/null || grep -q 'zil_lwb'
+    ontology/entity/zfs-zil.md 命中且 grep -q 'zil_lwb' /tmp/zfs/include/sys/zil.h 命中
+  evidence_level: structure
+- name: slog_separate_dispatch
+  desc: slog 分离分发与主池回退可测，对应时序图 zil_commit → slog vdev
+  constraint: 覆盖 spa_slog_vdev 判定、zil_lwb_write_issue 经 zio_create 至 slog 与主池的时序分流及 ZIO pipeline 衔接
+  testable_signal: 运行 grep -q 'slog' records/T0527-0902-zfs-zil-entity/report.md 2>/dev/null || grep -q 'slog' ontology/entity/zfs-zil.md
+    命中且 grep -q 'slog' /tmp/zfs/module/zfs/zil.c 命中
+  evidence_level: structure
+- name: zil_claim_replay
+  desc: ZIL 重放 claim→replay 可测，对应状态机 replay 触发与 TXG 分离
+  constraint: 覆盖 zil_claim→zil_replay 的掉电重放链与 TXG 分离（LWB_DONE 需 txg_synced），状态机可一图建模
+  testable_signal: 运行 grep -q 'zil_claim' records/T0527-0902-zfs-zil-entity/report.md 2>/dev/null || grep -q 'zil_claim'
+    ontology/entity/zfs-zil.md 命中且 grep -q 'zil_claim' /tmp/zfs/module/zfs/zil.c 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # ZFS ZIL（ZFS Intent Log）
@@ -159,14 +174,8 @@ zil_claim(spa, ub); // 仅 claim 未 replay，itx 仍在 lwb 链未回放至 DMU
 // 正确：claim 后必 zil_replay 逐 itx 回放
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' records/T0527-0902-zfs-zil-entity/report.md 2>/dev/null || grep -c '```mermaid' ontology/entity/zfs-zil.md | awk '{exit !($1>=3)}'`
-- **溯源门禁**：`grep -c 'Source:' ontology/entity/zfs-zil.md` ≥3 且每图附 `openzfs/zfs file:line`
-- **正文门禁**：`wc -l ontology/entity/zfs-zil.md` ≥80 且 `grep -q '决策树' && grep -q '正例' && grep -q '反例' && grep -q '门禁'`
-- **属性门禁**：`attributes` ≥3 且每条 `testable_signal` 含 `grep -q` 动词+判定且双源可回归
-- **本体校验**：`python3 scripts/ontology-validate.py --ontology-dir ontology` 0 issues 且 `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/zfs-zil --out /tmp/x.py` 可产
-- **Gate 门禁**：`python3 scripts/production-ontology-gate.py --node ontology:entity/zfs-zil` GATE OK
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `openzfs/zfs/include/sys/zil.h:80-180` + `openzfs/zfs/module/zfs/zil.c:200-1050` + `openzfs/zfs/module/zfs/zfs_vnops.c:600-900`

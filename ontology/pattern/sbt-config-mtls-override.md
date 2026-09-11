@@ -1,23 +1,35 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/sbt-config-mtls-override
 type: pattern
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/sbt-config-mtls-override/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/sbt-config-mtls-override/3.1.0
 summary: init_sbt_config 配置文件键解析模式（dmsbtex）
 source_task: T0366
 relations:
-  specializes: [ontology:pattern]
-  guides: [ontology:entity/tls-configuration]
+  guides:
+  - ontology:entity/tls-configuration
+  instance_of:
+  - ontology:pattern
 attributes:
-  - name: applicability
-    desc: dmsbtex/sbt.c 增加 --key=value 解析写入 tls_cfg
-    constraint: ""
-    testable_signal: 解析块置于 --backup-dirs 之前；基线+仅覆盖存在键；非法 fail-closed
+- name: applicability
+  desc: dmsbtex/sbt.c 增加 --key=value 解析写入 tls_cfg
+  constraint: ''
+  testable_signal: 解析块置于 --backup-dirs 之前；基线+仅覆盖存在键；非法 fail-closed
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # init_sbt_config 配置文件键解析模式（dmsbtex）

@@ -1,28 +1,24 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/context-pointer
 type: concept
+semantic_kind: class
 layer: Knowledge
 status: active
+authority: normative
+revision: 2.0.0
+summary: 具名、版本固定的上下文指针
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/context-pointer/1.0.0
-summary: 上下文指针：引用域外材料并编码触发条件的上下文指针
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
-  - ontology:concept/writing-for-agents
-attributes:
-- name: applicability
-  desc: 适用于所有写给 AI 消费的上下文指针
-  constraint: 见正文
-  testable_signal: 检查指针是否前置首词；同义分支是否收拢；常载指针是否修剪
-- name: branch_trigger
-  desc: 分支触发条件列表，定义指针在哪些分支下触发
-  constraint: 见正文
-  testable_signal: 检查每个分支是否有对应的触发条件
+  - ontology:concept/entity
+  relates_to:
+  - ontology:process/select-task-subgraph
+  - ontology:concept/pdca-evidence
 ---
 
-# Context Pointer
+# 具名、版本固定的上下文指针
 
-上下文指针：引用域外材料并编码触发条件的上下文指针
+指针包含node_id或source_ref、固定版本/内容摘要、明确读取理由和触发条件。启动只加载必要规则，领域正文按需读取。路径可读不等于已获授权；历史绝对路径不是当前环境可用性的证据。

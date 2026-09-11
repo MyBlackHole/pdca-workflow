@@ -1,27 +1,24 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:concept/pdca-feedback
 type: concept
+semantic_kind: class
 layer: Knowledge
-summary: PDCA 执行结果的效果反馈与持续改进输入
 status: active
+authority: normative
+revision: 2.0.0
+summary: 任务反馈的证据范围
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-11
-dcterms_modified: 2026-09-11
-owl_versionIRI: http://pdca.local/ontology/pdca-feedback/1.0.1
+dcterms_modified: '2026-09-12'
 relations:
   specializes:
-    - ontology:concept/entity
+  - ontology:concept/entity
   relates_to:
-    - ontology:concept/pdca-verdict
-    - ontology:concept/pdca-evidence
-    - ontology:concept/pdca-continuous-improvement
-attributes:
-  - name: outcome_feedback
-    desc: confirmed 结果的实际效果记录
-    constraint: 有遥测则记录可复核效果，无遥测必须显式记录 unknown
-    testable_signal: "grep -q 'unknown' ontology/process/pdca-feedback.md && grep -q '效果' ontology/process/pdca-feedback.md"
+  - ontology:concept/pdca-continuous-improvement
+  - ontology:concept/pdca-task
 ---
-# PDCA 效果反馈
 
-`confirmed` 只表示本轮验收条件满足，不等于长期效果已经证明。Act 必须记录实际效果；没有遥测或后续观察时记录 `unknown`，并把待观察项带入下一轮 Plan。
+# 任务反馈的证据范围
+
+反馈记录执行偏差、影响、证据、尚未知信息和建议。跨任务效果分析必须是独立授权的任务，输入是明确导入的历史记录副本；当前任务协调器不能借“反馈”检查其他任务活动目录。没有真实遥测则写unknown。

@@ -1,23 +1,35 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:fact/tls-exec-truncation-investigation-state
 type: fact
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/tls-exec-truncation-investigation-state/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/tls-exec-truncation-investigation-state/3.1.0
 summary: TLS exec stdin 偶发截断调查状态与已知事实
 source_task: T0345
 relations:
-  specializes: [ontology:fact]
-  guides: [ontology:entity/exec-stdin-pump]
+  guides:
+  - ontology:entity/exec-stdin-pump
+  instance_of:
+  - ontology:fact
 attributes:
-  - name: applicability
-    desc: loopback TLS + 32MiB 单向 stdin 场景
-    constraint: ""
-    testable_signal: 确证 sent=61440≈初始 credit 量级，agent 接收侧无丢弃（DIAGRX client eof）
+- name: applicability
+  desc: loopback TLS + 32MiB 单向 stdin 场景
+  constraint: ''
+  testable_signal: 确证 sent=61440≈初始 credit 量级，agent 接收侧无丢弃（DIAGRX client eof）
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # TLS exec stdin 偶发截断——调查状态与已知事实（T0347 输入）

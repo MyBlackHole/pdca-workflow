@@ -1,34 +1,57 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/bcachefs-journal-rewind
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/bcachefs-journal-rewind/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/bcachefs-journal-rewind/3.1.0
 summary: bcachefs Journal Rewind 实体 — rewind_limit 下界、JSET_NO_FLUSH 候选枚举与 overwrite 旧值回退
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/production-ontology-scientific-gate
-    - ontology:pattern/scientific-research-methodology
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/production-ontology-scientific-gate
+  - ontology:pattern/scientific-research-methodology
 attributes:
-  - name: rewind_limit_floor_and_candidates
-    desc: rewind_limit 下界（BCH_JSET_ENTRY_rewind_limit 14）与 [floor,latest] 内 JSET_NO_FLUSH==false 的 flush 条目候选枚举可测
-    constraint: 覆盖 journal_rewind_info.rs:79 jset_rewind_limit 扫 payload entry_payload_le64 + floor_seq 为 min seq on disk 或 rewind_limit 值 + latest_p 为最大 seq + 枚举 [floor,latest] 内 JSET_NO_FLUSH==false 的 flush 条目为候选 + -n 截断取最近 N，经时序与决策树可一图建模
-    testable_signal: "运行 grep -q 'jset_rewind_limit' /home/black/Documents/bcachefs-tools/src/commands/journal_rewind_info.rs && grep -q 'BCH_JSET_ENTRY_rewind_limit' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h && grep -q 'JSET_NO_FLUSH' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h 且 grep -q 'journal-rewind' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: overwrite_and_rewind_range
-    desc: overwrite 旧值（type 10）与 rewind 区间（type 15 rewind range from/to）的回退语义可测
-    constraint: 覆盖 BCH_JSET_ENTRY_overwrite 存被覆写旧 key + BCH_JSET_ENTRY_rewind 存 from/to range + rewind 时该区间内 key 均带 overwrite 供反向恢复，经 C4 L3 与状态机可一图建模
-    testable_signal: "运行 grep -q 'overwrite' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h && grep -q 'BCH_JSET_ENTRY_rewind' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h && grep -q 'rewind' /home/black/Documents/bcachefs-tools/src/commands/journal_rewind_info.rs 且 grep -q 'journal-rewind' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: open_scan_and_journal_replay_rewind
-    desc: open_scan 扫描与 journal replay 在 rewind 后的重放可测
-    constraint: 覆盖 device_scan::open_scan → JournalEntries::collect(c_fs) → bch2_journal_entry_missing_range 处理空洞 → journal_replay_print 分事务边界 [log(level0) → 非事务] 高亮 经 rewind 后重新 replay 至 rewind seq，经时序与正例可一图建模
-    testable_signal: "运行 grep -q 'open_scan' /home/black/Documents/bcachefs-tools/src/device_scan.rs && grep -q 'JournalEntries' /home/black/Documents/bcachefs-tools/src/commands/list_journal.rs && grep -q 'bch2_journal_read' /home/black/Documents/bcachefs-tools/fs/journal/read.c 且 grep -q 'journal-rewind' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
+- name: rewind_limit_floor_and_candidates
+  desc: rewind_limit 下界（BCH_JSET_ENTRY_rewind_limit 14）与 [floor,latest] 内 JSET_NO_FLUSH==false 的 flush 条目候选枚举可测
+  constraint: 覆盖 journal_rewind_info.rs:79 jset_rewind_limit 扫 payload entry_payload_le64 + floor_seq 为 min seq
+    on disk 或 rewind_limit 值 + latest_p 为最大 seq + 枚举 [floor,latest] 内 JSET_NO_FLUSH==false 的 flush 条目为候选 + -n 截断取最近
+    N，经时序与决策树可一图建模
+  testable_signal: 运行 grep -q 'jset_rewind_limit' /home/black/Documents/bcachefs-tools/src/commands/journal_rewind_info.rs
+    && grep -q 'BCH_JSET_ENTRY_rewind_limit' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h && grep -q
+    'JSET_NO_FLUSH' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h 且 grep -q 'journal-rewind' records/T0533-0902-research-bcachefs-tools/research-report.md
+    命中
+  evidence_level: structure
+- name: overwrite_and_rewind_range
+  desc: overwrite 旧值（type 10）与 rewind 区间（type 15 rewind range from/to）的回退语义可测
+  constraint: 覆盖 BCH_JSET_ENTRY_overwrite 存被覆写旧 key + BCH_JSET_ENTRY_rewind 存 from/to range + rewind 时该区间内 key 均带
+    overwrite 供反向恢复，经 C4 L3 与状态机可一图建模
+  testable_signal: 运行 grep -q 'overwrite' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h && grep -q 'BCH_JSET_ENTRY_rewind'
+    /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h && grep -q 'rewind' /home/black/Documents/bcachefs-tools/src/commands/journal_rewind_info.rs
+    且 grep -q 'journal-rewind' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: open_scan_and_journal_replay_rewind
+  desc: open_scan 扫描与 journal replay 在 rewind 后的重放可测
+  constraint: 覆盖 device_scan::open_scan → JournalEntries::collect(c_fs) → bch2_journal_entry_missing_range 处理空洞
+    → journal_replay_print 分事务边界 [log(level0) → 非事务] 高亮 经 rewind 后重新 replay 至 rewind seq，经时序与正例可一图建模
+  testable_signal: 运行 grep -q 'open_scan' /home/black/Documents/bcachefs-tools/src/device_scan.rs && grep -q 'JournalEntries'
+    /home/black/Documents/bcachefs-tools/src/commands/list_journal.rs && grep -q 'bch2_journal_read' /home/black/Documents/bcachefs-tools/fs/journal/read.c
+    且 grep -q 'journal-rewind' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Bcachefs Journal Rewind（日志回退）
@@ -143,14 +166,8 @@ bcachefs journal_rewind --seq 450 /dev/sda
 // 正确：rewinding 区间内每 key 均带 overwrite 旧值
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' ontology/entity/bcachefs-journal-rewind.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' ontology/entity/bcachefs-journal-rewind.md` ≥3 且每图含 `Source: /home/black/Documents/bcachefs-tools/... file:line`
-- **正文门禁**：`wc -l ontology/entity/bcachefs-journal-rewind.md` ≥80 且含 `决策树` `正例` `反例` `门禁`
-- **属性门禁**：`attributes` ≥3 且每条 `testable_signal` 含 `grep -q` 且双源可回归
-- **本体校验**：`python3 scripts/ontology-validate.py` 0 issues 且 `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/bcachefs-journal-rewind --out /tmp/x.py` 可产
-- **Gate 门禁**：`python3 scripts/production-ontology-gate.py --node ontology:entity/bcachefs-journal-rewind` GATE OK
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `/home/black/Documents/bcachefs-tools/src/commands/journal_rewind_info.rs:79` + `/home/black/Documents/bcachefs-tools/fs/bcachefs_format.h:1624` + `/home/black/Documents/bcachefs-tools/fs/journal/read.h:78`

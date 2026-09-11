@@ -1,1 +1,0 @@
-scripts/ontology-validate.py --check fidelity verified

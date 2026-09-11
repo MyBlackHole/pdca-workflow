@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-six-intent-seq-deadlock-free-locking
 type: domain
 layer: Knowledge
@@ -8,20 +8,35 @@ summary: SIX三态锁 intent 占位 + seq 乐观重锁 + 等待图环检测的�
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-persistent-concurrency-crash-recovery
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 读多写少、多节点原子更新、需掉锁做 IO 的树形结构并发场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文引用的 fs/btree/locking.c 与 fs/util/six.h 在仓库中存在且含 SIX_LOCK_intent 定义"
+  testable_signal: 抽查正文引用的 fs/btree/locking.c 与 fs/util/six.h 在仓库中存在且含 SIX_LOCK_intent 定义
+  evidence_level: unclassified
 - name: constraints
   desc: 三机制的启用前提与代价
   constraint: 见正文
-  testable_signal: "通读正文约束节，逐条确认前提（事务幂等可重启、seq 递增语义、等待图仅阻塞时运行）在引用代码中有对应实现"
+  testable_signal: 通读正文约束节，逐条确认前提（事务幂等可重启、seq 递增语义、等待图仅阻塞时运行）在引用代码中有对应实现
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # SIX intent + seq 乐观重锁 + 环检测的无死锁并发

@@ -1,5 +1,5 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:domain/core-ec-rs-math
 type: domain
 layer: Knowledge
@@ -8,20 +8,35 @@ summary: RS纠删数学原理：异或P与syndrome Q
 domain:
 - ontology:domain/core
 relations:
-  specializes:
-  - ontology:domain/core
   relates_to:
   - ontology:domain/core-ec-rs-algorithm
   - ontology:concept/pdca
+  - ontology:domain/core
+  instance_of:
+  - ontology:concept/knowledge-artifact
 attributes:
 - name: applicability
   desc: 纠删数学原理理解、PQ 生成恢复语义场景
   constraint: 见正文
-  testable_signal: "运行 python3 scripts/ontology-validate.py --ontology-dir ontology 确认本节点 attributes 非空且 relations 无空悬；抽查正文 P/Q 生成恢复规则与 io.c 调用对应"
+  testable_signal: 抽查正文 P/Q 生成恢复规则与 io.c 调用对应
+  evidence_level: unclassified
 - name: constraints
   desc: 数学子集前提
   constraint: 见正文
-  testable_signal: "通读正文三节，确认只讲 bcachefs 用到的 P/Q 子集且上限明确"
+  testable_signal: 通读正文三节，确认只讲 bcachefs 用到的 P/Q 子集且上限明确
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+dcterms_modified: '2026-09-12'
+semantic_kind: individual
+validation:
+  structural_checks:
+  - ontology:concept/ontology-creation-gate
+  claim_status: unverified
+  adoption: claim_review_required
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
 ---
 
 # RS 纠删数学原理（bcachefs 子集）

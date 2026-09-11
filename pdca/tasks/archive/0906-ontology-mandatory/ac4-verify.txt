@@ -1,5 +1,0 @@
-AC-4 验证：T0512 按新流程可归档
-1. T0512 现状：research/check，ontology_exempt=true，无##本体沉淀章节
-2. 新流程要求：取消 exempt（非自举）→ 补##本体沉淀（ontology:）→ 新建SIX学习节点 → disposition含ontology: → validate → archive
-3. 同构逻辑已验证：T0489（ontology处置）在新门禁下通过；exempt任务跳过；records-only被拒
-4. 结论：T0512 按上述三步操作后可归档，门禁链条无缺口

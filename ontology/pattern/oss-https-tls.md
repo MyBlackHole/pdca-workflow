@@ -1,23 +1,36 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:pattern/oss-https-tls
 type: pattern
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/oss-https-tls/1.0.0
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/oss-https-tls/3.1.0
 summary: oss HTTPS / TLS 配置模型
 source_task: T0368
 relations:
-  specializes: [ontology:pattern]
-  guides: [ontology:entity/tls-configuration, ontology:entity/tls-session]
+  guides:
+  - ontology:entity/tls-configuration
+  - ontology:entity/tls-session
+  instance_of:
+  - ontology:pattern
 attributes:
-  - name: applicability
-    desc: aio-oss 由明文 HTTP 支持 HTTPS 使用证书
-    constraint: ""
-    testable_signal: 单端口 HTTPS、算法前缀解析、4 层优先级、受限 TLS 保留 h2 套件、证书缺失 exit=1
+- name: applicability
+  desc: aio-oss 由明文 HTTP 支持 HTTPS 使用证书
+  constraint: ''
+  testable_signal: 单端口 HTTPS、算法前缀解析、4 层优先级、受限 TLS 保留 h2 套件、证书缺失 exit=1
+  evidence_level: unclassified
+revision: 3.1.0
+authority: reference
+semantic_kind: individual
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # oss HTTPS / TLS 配置模型（T0368）

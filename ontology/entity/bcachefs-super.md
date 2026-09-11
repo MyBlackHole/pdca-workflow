@@ -1,34 +1,57 @@
 ---
-schema: pdca.asset/v1
+schema: pdca.asset/v2
 id: ontology:entity/bcachefs-super
 type: entity
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/bcachefs-super/1.0.0
-summary: bcachefs Super 实体 — bch_sb 固定头（csum/version/magic/uuid/seq）+ BCH_SB_FIELDS 15+ 可扩展字段（members/journal/crypt/recovery/counters）与 super_io 多副本
+dcterms_modified: '2026-09-12'
+owl_versionIRI: http://pdca.local/ontology/bcachefs-super/3.1.0
+summary: bcachefs Super 实体 — bch_sb 固定头（csum/version/magic/uuid/seq）+ BCH_SB_FIELDS 15+ 可扩展字段（members/journal/crypt/recovery/counters）与
+  super_io 多副本
 relations:
   specializes:
-    - ontology:concept/domain-entity
+  - ontology:concept/domain-entity
   relates_to:
-    - ontology:pattern/research-diagram-methodology
-    - ontology:pattern/production-ontology-scientific-gate
-    - ontology:pattern/scientific-research-methodology
+  - ontology:pattern/research-diagram-methodology
+  - ontology:pattern/production-ontology-scientific-gate
+  - ontology:pattern/scientific-research-methodology
 attributes:
-  - name: bch_sb_fixed_and_extensible
-    desc: bch_sb 固定头（csum/version/magic/uuid/label/offset/seq/block_size + flags[7]/features[2]）与 BCH_SB_FIELDS 15+ 可扩展字段可测
-    constraint: 覆盖 struct bch_sb (__packed __aligned(8) 1178) 固定头 + BCH_SB_FIELDS x-macro (members/journal_v2/crypt/clean/ext/recovery_passes/counters/disk_groups 等 15+) + 每字段 bch_sb_field_ops.validate/to_text 在 sb/*.c 实现，经 C4 L3 与时序可一图建模
-    testable_signal: "运行 grep -q 'BCH_SB_FIELDS' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h && grep -q 'struct bch_sb' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h && grep -q 'bch_sb_field_ops' /home/black/Documents/bcachefs-tools/fs/sb/clean.c 且 grep -q 'super' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: super_io_multi_copy_and_seq
-    desc: super_io 多副本（offset 8k 起 4 副本）与 seq 单调选最新及 bch2_read_super 扫描可测
-    constraint: 覆盖 wrappers/super_io.rs 的 SUPERBLOCK_SIZE_DEFAULT + bch2_read_super 扫描各 offset 选最大 seq + bch2_write_super 顺序写 4 副本 + seq 递增，经时序与状态机可一图建模
-    testable_signal: "运行 grep -q 'bch2_read_super' /home/black/Documents/bcachefs-tools/fs/sb/io.c && grep -q 'bch2_write_super' /home/black/Documents/bcachefs-tools/fs/sb/io.c && grep -q 'SUPERBLOCK_SIZE' /home/black/Documents/bcachefs-tools/src/wrappers/super_io.rs 且 grep -q 'super' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
-  - name: sb_display_and_opts_table
-    desc: sb_display 打印与 opts 表（bch2_parse_one_opt）及 crypt/nonce 可测
-    constraint: 覆盖 wrappers/sb_display.rs 的 printbuf→Rust 展示 + fs/opts.c 的 BCH_OPTS x-macro 动态 opts 表 + sb/crypt 的 bch_encrypted_key + journal seq_blacklist 的 nonce，经 C4 L3 与决策树可一图建模
-    testable_signal: "运行 grep -q 'sb_display' /home/black/Documents/bcachefs-tools/src/wrappers/sb_display.rs && grep -q 'bch2_parse_one_opt' /home/black/Documents/bcachefs-tools/fs/opts.c && grep -q 'bch_encrypted_key' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h 且 grep -q 'super' records/T0533-0902-research-bcachefs-tools/research-report.md 命中"
+- name: bch_sb_fixed_and_extensible
+  desc: bch_sb 固定头（csum/version/magic/uuid/label/offset/seq/block_size + flags[7]/features[2]）与 BCH_SB_FIELDS 15+
+    可扩展字段可测
+  constraint: 覆盖 struct bch_sb (__packed __aligned(8) 1178) 固定头 + BCH_SB_FIELDS x-macro (members/journal_v2/crypt/clean/ext/recovery_passes/counters/disk_groups
+    等 15+) + 每字段 bch_sb_field_ops.validate/to_text 在 sb/*.c 实现，经 C4 L3 与时序可一图建模
+  testable_signal: 运行 grep -q 'BCH_SB_FIELDS' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h && grep
+    -q 'struct bch_sb' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h && grep -q 'bch_sb_field_ops' /home/black/Documents/bcachefs-tools/fs/sb/clean.c
+    且 grep -q 'super' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: super_io_multi_copy_and_seq
+  desc: super_io 多副本（offset 8k 起 4 副本）与 seq 单调选最新及 bch2_read_super 扫描可测
+  constraint: 覆盖 wrappers/super_io.rs 的 SUPERBLOCK_SIZE_DEFAULT + bch2_read_super 扫描各 offset 选最大 seq + bch2_write_super
+    顺序写 4 副本 + seq 递增，经时序与状态机可一图建模
+  testable_signal: 运行 grep -q 'bch2_read_super' /home/black/Documents/bcachefs-tools/fs/sb/io.c && grep -q 'bch2_write_super'
+    /home/black/Documents/bcachefs-tools/fs/sb/io.c && grep -q 'SUPERBLOCK_SIZE' /home/black/Documents/bcachefs-tools/src/wrappers/super_io.rs
+    且 grep -q 'super' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+- name: sb_display_and_opts_table
+  desc: sb_display 打印与 opts 表（bch2_parse_one_opt）及 crypt/nonce 可测
+  constraint: 覆盖 wrappers/sb_display.rs 的 printbuf→Rust 展示 + fs/opts.c 的 BCH_OPTS x-macro 动态 opts 表 + sb/crypt 的
+    bch_encrypted_key + journal seq_blacklist 的 nonce，经 C4 L3 与决策树可一图建模
+  testable_signal: 运行 grep -q 'sb_display' /home/black/Documents/bcachefs-tools/src/wrappers/sb_display.rs && grep
+    -q 'bch2_parse_one_opt' /home/black/Documents/bcachefs-tools/fs/opts.c && grep -q 'bch_encrypted_key' /home/black/Documents/bcachefs-tools/fs/bcachefs_format.h
+    且 grep -q 'super' records/T0533-0902-research-bcachefs-tools/research-report.md 命中
+  evidence_level: structure
+revision: 3.1.0
+authority: reference
+semantic_kind: class
+provenance:
+  migration_review: structure_and_protocol_only; domain_claims_not_revalidated
+  pre_review_revision: 2.0.0
+validation:
+  claim_status: unverified
+  adoption: claim_review_required
 ---
 
 # Bcachefs Super（超块）
@@ -139,14 +162,8 @@ bch2_write_super(c, sb); // seq++ 后顺序写 4副本
 // 正确：seq++ 后写，read 选 max seq
 ```
 
-## 门禁
+## 使用与验证边界
 
-- **多图门禁**：`grep -c '```mermaid' ontology/entity/bcachefs-super.md` ≥3
-- **溯源门禁**：`grep -c 'Source:' ontology/entity/bcachefs-super.md` ≥3 且每图含 `Source: /home/black/Documents/bcachefs-tools/... file:line`
-- **正文门禁**：`wc -l ontology/entity/bcachefs-super.md` ≥80 且含 `决策树` `正例` `反例` `门禁`
-- **属性门禁**：`attributes` ≥3 且每条 `testable_signal` 含 `grep -q` 且双源可回归
-- **本体校验**：`python3 scripts/ontology-validate.py` 0 issues 且 `islands:0`
-- **脚手架门禁**：`python3 scripts/ontology_test_scaffold.py --node ontology:entity/bcachefs-super --out /tmp/x.py` 可产
-- **Gate 门禁**：`python3 scripts/production-ontology-gate.py --node ontology:entity/bcachefs-super` GATE OK
+结构审查按 ontology:concept/ontology-creation-gate。正文中的领域断言需在授权的实际源码版本中核对；原历史路径和记录不是当前任务已执行证据。图表、行数或测试骨架数量不作为默认通过条件。
 
 Source: `/home/black/Documents/bcachefs-tools/fs/bcachefs_format.h:1178` + `/home/black/Documents/bcachefs-tools/fs/sb/io.c:1` + `/home/black/Documents/bcachefs-tools/src/wrappers/super_io.rs:1`

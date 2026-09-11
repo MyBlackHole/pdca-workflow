@@ -1,0 +1,141 @@
+# v3文件改动清单
+
+相对pdca-md：新增67，修改58，删除0；路径以压缩包根为准。完整内容差异在独立patch。所有原本体ID保留，未把领域知识整体删除。
+
+## 新增
+
+| 路径 |
+|---|
+| `examples/range-task/README.md` |
+| `examples/range-task/cases/D01.md` |
+| `examples/range-task/cases/D02.md` |
+| `examples/range-task/cases/D03.md` |
+| `examples/range-task/cases/D04.md` |
+| `examples/range-task/cases/D05.md` |
+| `examples/range-task/cases/D06.md` |
+| `examples/range-task/cases/D07.md` |
+| `examples/range-task/cases/D08.md` |
+| `examples/range-task/cases/D09.md` |
+| `examples/range-task/cases/N01.md` |
+| `examples/range-task/cases/N02.md` |
+| `examples/range-task/cases/N03.md` |
+| `examples/range-task/cases/N04.md` |
+| `examples/range-task/cases/N05.md` |
+| `examples/range-task/cases/N06.md` |
+| `examples/range-task/cases/N07.md` |
+| `examples/range-task/cases/P01.md` |
+| `examples/range-task/cases/P02.md` |
+| `examples/range-task/cases/P03.md` |
+| `examples/range-task/cases/P04.md` |
+| `examples/range-task/cases/P05.md` |
+| `examples/range-task/cases/P06.md` |
+| `examples/range-task/cases/P07.md` |
+| `examples/range-task/cases/P08.md` |
+| `examples/range-task/cases/P09.md` |
+| `examples/range-task/cases/T01.md` |
+| `examples/range-task/cases/T02.md` |
+| `examples/range-task/cases/T03.md` |
+| `examples/range-task/cases/T04.md` |
+| `examples/range-task/cases/T05.md` |
+| `examples/range-task/cases/T06.md` |
+| `examples/range-task/cases/T07.md` |
+| `examples/range-task/cases/T08.md` |
+| `examples/range-task/cases/T09.md` |
+| `examples/range-task/cases/T10.md` |
+| `examples/range-task/cases/T11.md` |
+| `examples/range-task/mutations.md` |
+| `examples/range-task/node.md` |
+| `examples/range-task/rework-walkthrough.md` |
+| `examples/range-task/suite.md` |
+| `examples/seven-node-work/README.md` |
+| `examples/seven-node-work/nodes/A.md` |
+| `examples/seven-node-work/nodes/A1.md` |
+| `examples/seven-node-work/nodes/A2.md` |
+| `examples/seven-node-work/nodes/B.md` |
+| `examples/seven-node-work/nodes/B2.md` |
+| `examples/seven-node-work/nodes/R.md` |
+| `examples/seven-node-work/scene-tests.md` |
+| `examples/seven-node-work/tree.md` |
+| `ontology/concept/task-rework.md` |
+| `ontology/concept/task-test-case.md` |
+| `ontology/concept/task-unit-test.md` |
+| `ontology/concept/work-node-contract.md` |
+| `ontology/concept/work-ontology-tree.md` |
+| `ontology/concept/work-tree-scheduling.md` |
+| `ontology/process/independent-work-review.md` |
+| `ontology/process/work-scenarios.md` |
+| `templates/conformance-review.md` |
+| `templates/delivery.md` |
+| `templates/rework.md` |
+| `templates/scenario-coverage.md` |
+| `templates/test-case.md` |
+| `templates/test-run.md` |
+| `templates/test-suite.md` |
+| `templates/work-node.md` |
+| `templates/work-tree.md` |
+## 修改
+
+| 路径 |
+|---|
+| `AGENTS.md` |
+| `README.md` |
+| `migration/CHANGES.md` |
+| `migration/README.md` |
+| `migration/VALIDATION.md` |
+| `ontology/INDEX.md` |
+| `ontology/README.md` |
+| `ontology/concept/ask-matt.md` |
+| `ontology/concept/blocking-edges.md` |
+| `ontology/concept/capability-protocol.md` |
+| `ontology/concept/frontier.md` |
+| `ontology/concept/ontology-asset.md` |
+| `ontology/concept/ontology-creation-gate.md` |
+| `ontology/concept/ontology-fidelity-criterion.md` |
+| `ontology/concept/pdca-acceptance-criterion.md` |
+| `ontology/concept/pdca-ai-friendly-confirmation.md` |
+| `ontology/concept/pdca-architecture.md` |
+| `ontology/concept/pdca-evidence.md` |
+| `ontology/concept/pdca-execution-contract.md` |
+| `ontology/concept/pdca-gate.md` |
+| `ontology/concept/pdca-ontology-ready.md` |
+| `ontology/concept/pdca-phase-status.md` |
+| `ontology/concept/pdca-recovery.md` |
+| `ontology/concept/pdca-task.md` |
+| `ontology/concept/pdca-transition.md` |
+| `ontology/concept/pdca-verdict.md` |
+| `ontology/concept/pdca.md` |
+| `ontology/concept/phase-boundary-decision-tree.md` |
+| `ontology/concept/runtime-transition-coordinator.md` |
+| `ontology/concept/task-decomposition.md` |
+| `ontology/concept/task-record-identity.md` |
+| `ontology/domain/pdca/ontology-hybrid-methodology.md` |
+| `ontology/domain/pdca/skill-domain-modeling-work.md` |
+| `ontology/domain/pdca/skill-testing-strategy.md` |
+| `ontology/domain/pdca/skill-to-tickets.md` |
+| `ontology/domain/pdca/skill-triage-work.md` |
+| `ontology/domain/pdca/skill-triage.md` |
+| `ontology/domain/pdca/skill-verify-convergence.md` |
+| `ontology/entity/evidence-test-result.md` |
+| `ontology/entity/ontology-deep-integration-tree.md` |
+| `ontology/process/flow-act.md` |
+| `ontology/process/flow-check.md` |
+| `ontology/process/flow-do.md` |
+| `ontology/process/flow-plan.md` |
+| `ontology/process/pdca-flow-model.md` |
+| `ontology/process/select-task-subgraph.md` |
+| `records/README.md` |
+| `templates/README.md` |
+| `templates/baseline.md` |
+| `templates/conclusion.md` |
+| `templates/dispatch.md` |
+| `templates/evidence.md` |
+| `templates/request.md` |
+| `templates/response.md` |
+| `templates/review-package.md` |
+| `templates/task.md` |
+| `templates/transition.md` |
+| `tests/behavior-cases.md` |
+## 删除
+
+| 路径 |
+|---|
