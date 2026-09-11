@@ -10,6 +10,7 @@ import tempfile
 import hashlib
 from datetime import datetime
 from pathlib import Path
+
 from typing import Any, Callable
 
 from flow_issues import create_occurrence, cutover_is_active
@@ -151,10 +152,17 @@ def _plan_checks(root: Path, task_dir: Path, task: dict[str, Any]) -> list[dict[
 
 
 def _do_checks(root: Path, task_dir: Path, task: dict[str, Any]) -> list[dict[str, Any]]:
-    # HITL fix-confirmation gate (audit only, non-blocking for存量兼容): bugfix 需 fix_confirmation:confirmed
+    # 修复确认必须是四字段执行契约中的显式动作，不使用额外控制字段。
     entries_for_fix, _ = clarification_issues(root, task_dir)
     fix_issues: list[dict[str, str]] = []
-    if task.get("meta", {}).get("scenario_type") == "bugfix":
+    contract = task.get("meta", {}).get("execution_contract") or {}
+    actions = contract.get("required_actions") if isinstance(contract, dict) else []
+    needs_fix_approval = isinstance(actions, list) and any(
+        isinstance(action, str)
+        and ("fix_confirmation" in action.casefold() or "确认修复方案" in action)
+        for action in actions
+    )
+    if needs_fix_approval:
         if not any(entry.get("source") == "fix_confirmation" and entry.get("response") == "confirmed" for entry in entries_for_fix):
             fix_issues.append(
                 _issue("FIX_CONFIRMATION_MISSING", "clarifications.jsonl", "fix_confirmation:confirmed is required before code fix (HITL gate, audit WARN)")
@@ -209,7 +217,7 @@ def _do_checks(root: Path, task_dir: Path, task: dict[str, Any]) -> list[dict[st
         _check("ac-coverage", "every PRD acceptance criterion has non-map evidence", coverage),
         _check("evidence-integrity", "evidence size and SHA-256 match the manifest", integrity),
         _check("convergence-map", "Plan convergence maps to criteria and evidence", convergence),
-        _check("fix-confirmation", "bugfix has fix_confirmation before code change (HITL gate)", fix_issues),
+        _check("fix-confirmation", "execution contract has required human fix confirmation", fix_issues),
     ]
 
 

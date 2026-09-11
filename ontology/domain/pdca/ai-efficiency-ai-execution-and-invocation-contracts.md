@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ai-efficiency-ai-execution-and-invocation-contracts/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/ai-efficiency-ai-execution-and-invocation-contracts/1.0.1
 summary: AI 执行与技能调用合约
 domain:
 - ontology:domain/ai-efficiency
@@ -29,7 +29,12 @@ schema: pdca.asset/v1
 id: knowledge.ai-efficiency.ai-execution-and-invocation-contracts
 summary: 用独立 execution/invocation contract、公共 resolver 和故障注入提升 AI 工作流的可判定性
 tags: [ai-efficiency, workflow, contracts, evaluation, pdca]
-scenarios: [development, bugfix, research, documentation, design, review]
+ontology_roles: [ontology_modeling, ontology_projection, ontology_conformance_verification]
+execution_contract:
+  work_product: 可判定的执行与技能调用合约
+  required_actions: [校验职责, 校验四字段契约, 校验调用权限]
+  constraints: [工具名不承担职责或路径分类]
+  testable_signal: resolver仅消费ontology_role与四字段execution_contract且调用边合法
 phases: [plan, do, check, act]
 source_ids: [R0161]
 ---
@@ -38,17 +43,17 @@ source_ids: [R0161]
 
 ## 分层原则
 
-不要把场景路由、路径内执行顺序和技能调用权限放进同一个事实源：
+不要把专业职责、具体执行动作和技能调用权限放进同一个事实源：
 
-- **route contract** 只决定 scenario 进入哪条 Do 路径。
-- **execution contract** 只决定 development/bugfix 路径内的 test-first 顺序、切片验证和最终验证语义。
+- **ontology role** 只声明 `ontology_modeling`、`ontology_projection`、`ontology_conformance_verification` 三个专业职责之一。
+- **execution contract** 以 `work_product`、`required_actions`、`constraints`、`testable_signal` 决定工作内容；test-first、切片验证或调研等仅在 `required_actions` 中按需选择。
 - **invocation contract** 只声明用户入口 alias 与调用边；技能名称和 `invocation` 类型继续由 SKILL frontmatter 提供。
 
 职责分离让每一层可以独立故障注入，也避免复制类型字段造成漂移。
 
 ## 执行循环
 
-development 和 bugfix 的最小垂直切片应按以下顺序执行：
+当 `execution_contract.required_actions` 要求代码投射与测试优先时，最小垂直切片按以下顺序执行：
 
 1. 确认预先约定的 Seam。
 2. 写出失败的行为/回归测试。
@@ -111,4 +116,3 @@ Source: `ontology/domain/ai-efficiency-ai-execution-and-invocation-contracts.md:
 - **属性门禁**：`testable_signal` 含 `grep -q`/`python3 scripts` 动词，非泛化
 - **溯源门禁**：含 `Source:` 行号
 - **本体校验**：`python3 scripts/ontology-validate.py` 0 issues
-

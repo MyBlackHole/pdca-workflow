@@ -1,0 +1,87 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T2182",
+  "meta": {
+    "active": true,
+    "completion_criteria": [
+      "现有 rdb-tools-design 按 rdb-feature-design 范式形成共享入口、总索引和业务域版本地图结构",
+      "五个现有知识域目录各新增独立的 6.1.1.0.md",
+      "SKILL.md 与 00-index.md 可按版本、工具、需求和协议路由到 6110 版本页",
+      "6110 版本页中不出现 6200 或 6.2.0.0 事实依赖",
+      "所有链路节点由 6110 release@5ec42fd4 源码复核且产品源码零改动"
+    ],
+    "convergence": [
+      "rdb-tools-design 形成类似 rdb-feature-design 的多版本知识地图",
+      "6110 release 的逐操作源码调用链事实可按五个业务域直接检索",
+      "6110 版本页事实完全独立且不依赖 6200 知识"
+    ],
+    "created_at": "2026-09-11T16:41:15+08:00",
+    "execution_contract": {
+      "constraints": [
+        "事实基线仅限 /home/black/Public/aio/aio-tools/6110/release 的 6.1.1.0-release 分支 5ec42fd4",
+        "不纳入 6110/IPV6、6110/test 或 6110/old-dm sibling 树",
+        "不读取、复制、比较或引用 6200 源码及 rdb-tools-design/各目录下的 6.2.0.0.md 业务事实",
+        "模仿 rdb-feature-design 的共享入口、总索引、业务域目录和每版本一文件结构",
+        "产物写入现有 /home/black/Public/aio/rdb-skills/skills/rdb-tools-design，不新建带 -6110 后缀的 skill",
+        "保留现有 6.2.0.0.md 内容和路径，仅更新共享路由并新增 6.1.1.0.md",
+        "不修改 aio-tools 产品源码或构建行为",
+        "不要求真实编译、部署、端口可达或外部系统联调"
+      ],
+      "required_actions": [
+        "从 6110 release 独立枚举实际交付工具和全部外部可触发操作",
+        "更新现有 SKILL.md 为版本中立入口，并更新 references/00-index.md 的版本、工具、需求和协议路由",
+        "在五个现有知识域目录分别新增 6.1.1.0.md，逐操作展开真实 path:symbol 调用链并闭合跨端协议或标记未闭合",
+        "删除错误的 skills/rdb-tools-design-6110 草案，不创建 00-signals.md 或 01-call-chains.md",
+        "仅用 6110 release 源码校验工具操作覆盖、全部锚点、协议双端、独立性和产品树零改动"
+      ],
+      "testable_signal": "现有 rdb-tools-design 保持共享 SKILL+00-index+五个业务域目录；五个目录各新增 6.1.1.0.md；6110 路由和全部工具操作可达；6110 页无 6200/6.2.0.0 事实依赖；quick_validate 通过且产品源码零改动",
+      "work_product": "现有 /home/black/Public/aio/rdb-skills/skills/rdb-tools-design 的 6.1.1.0 版本化逐操作调用链地图，结构模仿 rdb-feature-design"
+    },
+    "ontology_anchor": "ontology:concept/skill-invocation-contract",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "domain",
+    "ontology_role": "ontology_projection",
+    "phase": "do",
+    "record": "T2182-0911-rdb-tools-6110-release-call-chains",
+    "steps": [
+      {
+        "name": "reference-contract",
+        "description": "提炼 rdb-feature-design 的版本化知识地图结构并映射到现有 rdb-tools-design",
+        "completion_criterion": "共享入口、总索引、五个业务域目录和每版本一文件的契约定义完成"
+      },
+      {
+        "name": "release-inventory",
+        "description": "从6110 release独立枚举业务工具与公开操作",
+        "completion_criterion": "每个候选交付物都有入口、kind、安装或外部消费证据"
+      },
+      {
+        "name": "version-routing",
+        "description": "更新现有 SKILL 与 00-index 的 6.1.1.0 版本路由",
+        "completion_criterion": "版本、工具、需求和协议均能路由到对应 6.1.1.0 页面"
+      },
+      {
+        "name": "call-chain-facts",
+        "description": "在五个现有知识域目录新增 6.1.1.0.md 并逐操作展开源码事实调用链",
+        "completion_criterion": "入口分发核心边界对端返回可定位或明确未闭合，6110 页面自完备且不依赖 6200"
+      },
+      {
+        "name": "independent-validation",
+        "description": "校验覆盖锚点协议独立性skill格式和产品树状态",
+        "completion_criterion": "全部AC有证据且6110产品树零改动"
+      }
+    ]
+  },
+  "parent": null,
+  "slug": "0911-rdb-tools-6110-release-call-chains",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-09-11T16:41:15+08:00",
+    "do": "2026-09-11T17:54:07+08:00",
+    "plan": "2026-09-11T16:41:15+08:00"
+  },
+  "status": "InProgress",
+  "title": "分析 aio-tools 6110 release 逐操作调用链"
+}

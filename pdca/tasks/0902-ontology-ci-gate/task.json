@@ -15,7 +15,6 @@
     "ontology_node_type": "entity",
     "phase": "archive",
     "record": "T0478-0902-ontology-ci-gate",
-    "scenario_type": "development",
     "verdict": {
       "outcome": "confirmed",
       "reason": "3AC全绿，CI门禁已固化",
@@ -27,7 +26,8 @@
       "reason": "ontology:entity/ontology-deep-integration-knowledge CI门禁已固化",
       "at": "2026-09-01T08:08:53+08:00"
     },
-    "completed_at": "2026-09-01T08:09:23+08:00"
+    "completed_at": "2026-09-01T08:09:23+08:00",
+    "ontology_role": "ontology_projection"
   },
   "parent": null,
   "slug": "0902-ontology-ci-gate",

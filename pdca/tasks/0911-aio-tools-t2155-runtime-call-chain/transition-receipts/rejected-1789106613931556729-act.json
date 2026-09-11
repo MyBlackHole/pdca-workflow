@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T2157",
+  "from": "check",
+  "to": "act",
+  "issues": [
+    {
+      "code": "SCHEMA_INVALID",
+      "path": "/meta/disposition/outcome",
+      "message": "'knowledge_reuse' is not one of ['projected', 'not_reusable', 'task_only']",
+      "guidance": "fix the field at /meta/disposition/outcome in task.schema.json to satisfy the schema"
+    }
+  ],
+  "at": "2026-09-11T14:03:33.931538+08:00"
+}

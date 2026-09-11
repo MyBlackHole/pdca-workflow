@@ -8,7 +8,6 @@
   "meta": {
     "phase": "archive",
     "active": false,
-    "scenario_type": "development",
     "created_at": "2026-09-02T16:55:00+08:00",
     "ontology_anchor": "ontology:concept/pdca-task",
     "ontology_fragment": "ontology",
@@ -65,7 +64,8 @@
       "outcome": "projected",
       "reason": "ontology:concept/ontology-fidelity-criterion 七项清单+fidelity score+门禁本体锚定已沉淀为可复用知识；ai-efficiency-ticket-dag-ready-set 100分示范与首批5验证跑通；来源 T0534-0902-ontology-fidelity-remediation",
       "at": "2026-09-02T17:18:30+08:00"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "states": {
     "created": "2026-09-02T16:55:00+08:00",

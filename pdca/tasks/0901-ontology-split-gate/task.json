@@ -14,7 +14,6 @@
     "ontology_node_type": "entity",
     "phase": "archive",
     "record": "T0472-0901-ontology-split-gate",
-    "scenario_type": "development",
     "verdict": {
       "outcome": "confirmed",
       "reason": "本体证明测试全绿，2AC全覆盖",
@@ -26,7 +25,8 @@
       "outcome": "projected",
       "reason": "ontology:entity/ontology-deep-integration-split 本体证明测试全绿，2AC全覆盖，来源 T0472-0901-ontology-split-gate",
       "at": "2026-09-01T08:02:26+08:00"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "parent": "T0471",
   "slug": "0901-ontology-split-gate",

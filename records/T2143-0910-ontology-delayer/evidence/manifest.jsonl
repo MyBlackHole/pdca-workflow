@@ -1,0 +1,2 @@
+{"id":"delayer-integration","file":"integration.log","kind":"validation-report","size":152,"digest":"sha256:0b37849de20b4f61b73170299ff83d06bbad73cd6016406929ac6c76b37fa944","at":"2026-09-10T09:32:21+08:00","criteria":["AC-1","AC-2","AC-3","AC-4","AC-5"]}
+{"id":"delayer-convergence","file":"convergence.json","kind":"convergence-map","size":379,"digest":"sha256:7c798a3325d4dd2133213e7c90292bbd584879910b4da3ffcbe0d4659acd7bd1","at":"2026-09-10T09:32:52+08:00","criteria":["AC-1"],"evidence_type_ref":"ontology:entity/evidence-convergence-map"}

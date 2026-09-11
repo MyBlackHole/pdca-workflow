@@ -1,7 +1,6 @@
-"""先调研门禁回归测试（T2092）。
+"""当前任务的先调研门禁回归测试。
 
-口径：全场景plan→do须有本次调研证据二选一——链内research子票已归档，或本次research-report通过门禁
-（≥3 mermaid/≥3 Source/正文≥1 http Source/全篇≥2 URL）；仅ontology_exempt豁免。
+口径：plan→do 只接受当前任务自身的合格 research-report；关联任务的 archive 状态不得代理当前任务准入。
 """
 from __future__ import annotations
 
@@ -51,14 +50,22 @@ def make_task(
     parent: str | None,
     children: list[str],
     exempt: bool = False,
+    required_actions: list[str] | None = None,
+    work_product: str = "implementation",
 ) -> None:
     meta: dict = {
         "phase": "plan",
         "active": True,
-        "scenario_type": scenario,
+        "ontology_role": scenario,
         "created_at": "2026-09-09T10:00:00+08:00",
         "convergence": ["evidence ready"],
         "ontology_fragment": "ontology",
+        "execution_contract": {
+            "work_product": work_product,
+            "required_actions": required_actions or ["implement change"],
+            "constraints": [],
+            "testable_signal": "tests pass",
+        },
     }
     if exempt:
         meta["ontology_exempt"] = True
@@ -124,33 +131,62 @@ class ResearchFirstGateTest(unittest.TestCase):
             out[task_id] = d
         return out
 
-    def test_dev_without_research_blocked(self) -> None:
-        ds = self._tasks(("T9001", "0909-nodev", "development", None, [], False))
-        self.assertTrue(research_first_blocked(self.root, ds["T9001"]))
+    def test_role_alone_does_not_imply_research(self) -> None:
+        ds = self._tasks(("T9001", "0909-nodev", "ontology_projection", None, [], False))
+        self.assertFalse(research_first_blocked(self.root, ds["T9001"]))
 
-    def test_dev_with_archived_research_child_passes(self) -> None:
+    def test_explicit_research_action_without_report_is_blocked(self) -> None:
+        task_dir = self.root / "pdca/tasks/0909-explicit-research"
+        make_task(
+            task_dir,
+            "T9010",
+            "0909-explicit-research",
+            "ontology_projection",
+            None,
+            [],
+            required_actions=["执行技术调研", "implement change"],
+        )
+        self.assertTrue(research_first_blocked(self.root, task_dir))
+
+    def test_archived_related_task_does_not_satisfy_current_task(self) -> None:
         ds = self._tasks(
-            ("T9002", "0909-padev", "development", None, ["T9003"], False),
-            ("T9003", "0909-chres", "research", "T9002", [], False),
+            ("T9002", "0909-padev", "ontology_projection", None, ["T9003"], False),
+            ("T9003", "0909-chres", "ontology_modeling", "T9002", [], False),
         )
         child = json.loads((ds["T9003"] / "task.json").read_text(encoding="utf-8"))
         child["meta"]["phase"] = "archive"
         (ds["T9003"] / "task.json").write_text(json.dumps(child), encoding="utf-8")
-        self.assertFalse(research_first_blocked(self.root, ds["T9002"]))
+        parent = json.loads((ds["T9002"] / "task.json").read_text(encoding="utf-8"))
+        parent["meta"]["execution_contract"]["required_actions"] = ["执行技术调研"]
+        (ds["T9002"] / "task.json").write_text(json.dumps(parent), encoding="utf-8")
+        self.assertTrue(research_first_blocked(self.root, ds["T9002"]))
 
     def test_dev_with_passing_report_passes(self) -> None:
-        ds = self._tasks(("T9004", "0909-repdev", "development", None, [], False))
+        ds = self._tasks(("T9004", "0909-repdev", "ontology_projection", None, [], False))
+        task = json.loads((ds["T9004"] / "task.json").read_text(encoding="utf-8"))
+        task["meta"]["execution_contract"]["required_actions"] = ["perform research"]
+        (ds["T9004"] / "task.json").write_text(json.dumps(task), encoding="utf-8")
         (ds["T9004"] / "research-report.md").write_text(PASSING_REPORT, encoding="utf-8")
         self.assertFalse(research_first_blocked(self.root, ds["T9004"]))
 
     def test_exempt_skips(self) -> None:
-        ds = self._tasks(("T9005", "0909-exempt", "bugfix", None, [], True))
+        ds = self._tasks(("T9005", "0909-exempt", "ontology_projection", None, [], True))
         self.assertFalse(research_first_blocked(self.root, ds["T9005"]))
 
     def test_research_producer_exempted(self) -> None:
         """T2103 生产者豁免：research票自身即调研，免自身门禁（他人引用仍须证据）。"""
-        ds = self._tasks(("T9006", "0909-resleaf", "research", None, [], False))
-        self.assertFalse(research_first_blocked(self.root, ds["T9006"]))
+        task_dir = self.root / "pdca/tasks/0909-resleaf"
+        make_task(
+            task_dir,
+            "T9006",
+            "0909-resleaf",
+            "ontology_modeling",
+            None,
+            [],
+            required_actions=["perform research"],
+            work_product="research-report.md",
+        )
+        self.assertFalse(research_first_blocked(self.root, task_dir))
 
 
 if __name__ == "__main__":

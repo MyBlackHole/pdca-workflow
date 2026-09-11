@@ -25,7 +25,6 @@
     "ontology_node_type": "entity",
     "phase": "archive",
     "record": "T0505-0903-zfs-system-dev",
-    "scenario_type": "development",
     "steps": [
       {
         "name": "6叶实现",
@@ -64,7 +63,8 @@
       "outcome": "projected",
       "reason": "ontology:entity/zfs-system 叶→根实现聚合已验证，来源 T0505-0903-zfs-system-dev",
       "at": "2026-09-01T13:39:08+08:00"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "parent": null,
   "slug": "0903-zfs-system-dev",

@@ -15,7 +15,6 @@
     "ontology_node_type": "entity",
     "phase": "archive",
     "record": "T0479-0902-business-first-demo",
-    "scenario_type": "development",
     "verdict": {
       "outcome": "confirmed",
       "reason": "3AC全绿，新路径首单可复用",
@@ -27,7 +26,8 @@
       "outcome": "projected",
       "reason": "ontology:entity/report-center-web-entity Demo 已沉淀，桩接口可复用",
       "at": "2026-09-01T08:11:16+08:00"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "parent": null,
   "slug": "0902-business-first-demo",

@@ -572,23 +572,6 @@ def timeline_issues(root: Path, task_dir: Path) -> list[Issue]:
     return issues
 
 
-def _task_index(root: Path) -> dict[str, dict]:
-    """Index all tasks by id for chain queries (T2092 先调研门禁)."""
-    index: dict[str, dict] = {}
-    tasks_root = root / "pdca" / "tasks"
-    if not tasks_root.is_dir():
-        return index
-    for path in sorted(tasks_root.rglob("task.json")):
-        try:
-            data = load_json(path)
-        except Exception:
-            continue
-        tid = data.get("id")
-        if isinstance(tid, str):
-            index[tid] = data
-    return index
-
-
 def _research_report_ok(task_dir: Path) -> bool:
     """本次 research-report 是否通过门禁（T2092 口径 b）."""
     try:
@@ -605,26 +588,24 @@ def _research_report_ok(task_dir: Path) -> bool:
     return len(set(re.findall(r"https?://\S+", text))) >= 2
 
 
-def _research_first_ok(root: Path, task: dict, task_dir: Path) -> bool:
-    """先调研二选一：链内 research 子票已归档，或本次 research-report 通过（T2092）. """
-    if _research_report_ok(task_dir):
-        return True
-    index = _task_index(root)
-    seen = {task.get("id")}
-    frontier = list(task.get("children", []) or [])
-    while frontier:
-        tid = frontier.pop()
-        if tid in seen:
-            continue
-        seen.add(tid)
-        node = index.get(tid)
-        if not isinstance(node, dict):
-            continue
-        meta = node.get("meta", {}) or {}
-        if meta.get("scenario_type") == "research" and meta.get("phase") == "archive":
-            return True
-        frontier.extend(node.get("children", []) or [])
-    return False
+def _research_first_ok(task_dir: Path) -> bool:
+    """Only the current task's persisted research report can satisfy admission."""
+    return _research_report_ok(task_dir)
+
+
+def _contract_requires_research(task_meta: dict[str, Any]) -> bool:
+    """Research is an explicit action, never an ontology-role inference."""
+    contract = task_meta.get("execution_contract")
+    work_product = contract.get("work_product") if isinstance(contract, dict) else None
+    if isinstance(work_product, str) and (
+        "research-report" in work_product.casefold() or "调研报告" in work_product
+    ):
+        return False
+    actions = contract.get("required_actions") if isinstance(contract, dict) else None
+    return isinstance(actions, list) and any(
+        isinstance(action, str) and ("research" in action.casefold() or "调研" in action)
+        for action in actions
+    )
 
 
 def gate_issues(root: Path, task_dir: Path) -> tuple[str | None, list[Issue]]:
@@ -644,28 +625,15 @@ def gate_issues(root: Path, task_dir: Path) -> tuple[str | None, list[Issue]]:
             for entry in entries
         )
         has_final = any(entry.get("source") == "final_confirmation" and entry.get("response") == "confirmed" for entry in entries)
-        # P0-2：to-tickets 硬门禁（非 research 且 children 为空，绝不兼容旧数据）
-        # T2084 叶豁免：有 parent 无 children 的非 research 票为叶票，豁免以终止递归；无 parent 仍阻断
-        task_scenario = task.get("meta", {}).get("scenario_type", "")
-        task_children = task.get("children", [])
-        task_parent = task.get("parent")
-        is_leaf = task_parent is not None and not task_children
-        if task_scenario != "research" and not task_children and not is_leaf:
-            issues.append(Issue(
-                "TICKETS_MISSING",
-                "task.json/children",
-                "non-research tasks require at least one child ticket (to-tickets not run)",
-                "run skill to-tickets to break down the task or set children explicitly"
-            ))
-        # T2092 先调研门禁：全场景 plan→do 须有本次调研证据二选一；仅 ontology_exempt 豁免
-        # T2103 生产者豁免：research 票自身即调研，免自身门禁（他人引用仍须证据）
+        task_meta = task.get("meta", {})
+        # 只有四字段执行契约显式要求调研时才启用门禁；职责本身不推导动作。
         if not (task.get("meta") or {}).get("ontology_exempt"):
-            if task_scenario != "research" and not _research_first_ok(root, task, task_dir):
+            if _contract_requires_research(task_meta) and not _research_first_ok(task_dir):
                 issues.append(Issue(
                     "RESEARCH_FIRST_MISSING",
                     "task.json",
-                    "plan→do requires prior research: an archived research child in-chain or a passing research-report.md (mermaid≥3/Source≥3/http Source≥1/URLs≥2)",
-                    "archive a research child ticket or add a passing research-report.md; bootstrap tasks may set ontology_exempt=true",
+                    "an explicit research action requires the current task's passing research-report.md (mermaid≥3/Source≥3/http Source≥1/URLs≥2)",
+                    "add a passing research-report.md to the current task or remove the research action if it is not required",
                 ))
         # 若仅有 final_confirmation 而无 grilling 轮次，视为自确认绕过（research/thin 输入的硬门禁由 skill-triage 约束，此处做通用 Never zero-touch 校验）
         if has_final and not has_grilling_captured:

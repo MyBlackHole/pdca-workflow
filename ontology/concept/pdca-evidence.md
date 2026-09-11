@@ -7,11 +7,11 @@ summary: PDCA 证据元概念
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/pdca-evidence/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/pdca-evidence/1.0.1
 relations:
   specializes:
-  - ontology:concept/pdca
+  - ontology:concept/entity
   testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-evidence' ontology/ tests/ scripts/ | wc -l) -ge 14"
 ---
 # pdca-evidence

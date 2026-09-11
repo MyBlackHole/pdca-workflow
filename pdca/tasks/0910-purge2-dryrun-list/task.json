@@ -12,7 +12,7 @@
     "ontology_anchor": "ontology:concept/pdca-task",
     "phase": "plan",
     "record": "T2132-0910-purge2-dryrun-list",
-    "scenario_type": "development"
+    "ontology_role": "ontology_projection"
   },
   "parent": "T2130",
   "slug": "0910-purge2-dryrun-list",

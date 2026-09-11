@@ -13,8 +13,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-design-it-twice/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/skill-design-it-twice/1.0.1
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -47,26 +47,25 @@ relations:
 - 依赖分类（in-process / local-substitutable / remote-owned / true-external）
 - 让约束落地的示意代码草稿
 
-展示给用户，随即进入步骤 2（用户在 sub-agent 并行工作时阅读思考）。
+展示给用户，随即进入步骤 2（用户在子 Agent 并行工作时阅读思考）。
 
 ### 2. 并行产出方案
 
-`agent.spawn` 可用时并行启动 2 个以上 sub-agent（不可用时主 session 顺序执行，
-但保持方案彼此独立，不互相污染）。每个 sub-agent 分配**不同的设计约束**：
+每个候选方案任务都是独立 PDCA 循环。其协调 Agent 经 Adapter 调用 `agent.spawn`，一次性启动与当前任务一对一绑定的全新子 Agent/子智能体上下文后进入 `suspended_waiting_agent`；子 Agent 自主执行，不共享其他任务的活动上下文。能力不可用时 fail-closed，当前任务保持未执行，不得由协调 Agent 顺序产出方案。每个子 Agent 分配**不同的设计约束**：
 
-- Agent 1: "最小化接口——最多 1–3 个入口点，最大化每个入口点的杠杆"
-- Agent 2: "最大化灵活性——支持多种用例与扩展"
-- Agent 3: "为最常见调用者优化——让默认情形平凡化"
-- Agent 4（如有）: "围绕端口与适配器设计跨接缝依赖"
+- 子 Agent 1: "最小化接口——最多 1–3 个入口点，最大化每个入口点的杠杆"
+- 子 Agent 2: "最大化灵活性——支持多种用例与扩展"
+- 子 Agent 3: "为最常见调用者优化——让默认情形平凡化"
+- 子 Agent 4（如有）: "围绕端口与适配器设计跨接缝依赖"
 
-每个 sub-agent 产出：
+每个子 Agent 产出：
 1. 接口（类型、方法、参数 + 不变式、顺序约束、错误模式）
 2. 调用者如何使用它的示例
 3. 实现藏在接缝后面的是什么
 4. 依赖策略与适配器
 5. 取舍——哪里杠杆高、哪里薄
 
-sub-agent 的 brief 必须包含词汇表与 CONTEXT.md 词汇，确保命名一致。
+子 Agent 的 brief 必须包含词汇表与 CONTEXT.md 词汇，确保命名一致。
 
 ### 3. 展示与对比
 
@@ -115,8 +114,7 @@ sub-agent 的 brief 必须包含词汇表与 CONTEXT.md 词汇，确保命名一
 
 ## 与 code-review 的关系
 
-design-it-twice 是设计阶段（Do E 路径前的方案生成），code-review 是审查阶段
-（对已实现 diff 的双轴审查）。前者防锚定，后者防缺陷，不重叠。
+`design-it-twice` 是候选方案生成工具，`code-review` 是对已实现 diff 的双轴审查工具。两者由 `execution_contract.required_actions` 选择，不是任务职责或 Do 路由字段；前者防锚定，后者防缺陷，不重叠。
 
 ## 完成
 

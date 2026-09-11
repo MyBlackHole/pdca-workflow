@@ -22,7 +22,6 @@
     "ontology_node_type": "entity",
     "phase": "archive",
     "record": "T0482-0903-ontology-consolidation",
-    "scenario_type": "development",
     "completed_at": "2026-09-01T08:37:44+08:00",
     "verdict": {
       "outcome": "confirmed",
@@ -34,7 +33,8 @@
       "outcome": "projected",
       "reason": "ontology:domain/ontology-deep-integration-overview 已深化：信号去泛化×模板硬化×复用检索×Act收紧，4叶叶→根，来源 T0482-0903-ontology-consolidation",
       "at": "2026-09-01T08:37:51+08:00"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "parent": null,
   "slug": "0903-ontology-consolidation",

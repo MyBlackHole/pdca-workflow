@@ -19,7 +19,7 @@
     "ontology_node_type": "concept",
     "phase": "plan",
     "record": "T2106-0910-guomi-scheme-review",
-    "scenario_type": "research"
+    "ontology_role": "ontology_modeling"
   },
   "parent": null,
   "slug": "0910-guomi-scheme-review",

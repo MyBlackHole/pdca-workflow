@@ -1,0 +1,43 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T2151",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "API对照可复核",
+      "替换结论可判定",
+      "沉淀s3节点"
+    ],
+    "created_at": "2026-09-10T12:00:35+08:00",
+    "ontology_anchor": "ontology:pattern/sm4-s3-encryption",
+    "ontology_fragment": "ontology",
+    "phase": "archive",
+    "record": "T2151-0910-openssl-sm4-review",
+    "disposition": {
+      "at": "2026-09-10T12:07:00+08:00",
+      "outcome": "projected",
+      "reason": "ontology:pattern/sm4-s3-encryption已加SM4库选型节（含纠错注），覆盖7/7零警告"
+    },
+    "verdict": {
+      "at": "2026-09-10T12:05:22+08:00",
+      "outcome": "confirmed",
+      "reason": "conclusion.md five ACs with evidence incl. self-correction; s3 settlement to Act",
+      "verdict_id": "V-T2151-01"
+    },
+    "completed_at": "2026-09-10T12:04:06+08:00",
+    "ontology_role": "ontology_modeling"
+  },
+  "parent": null,
+  "slug": "0910-openssl-sm4-review",
+  "states": {
+    "act": "2026-09-10T12:05:42+08:00",
+    "archive": "2026-09-10T12:06:08+08:00",
+    "check": "2026-09-10T12:04:06+08:00",
+    "created": "2026-09-10T12:00:35+08:00",
+    "do": "2026-09-10T12:02:32+08:00",
+    "plan": "2026-09-10T12:00:35+08:00"
+  },
+  "status": "Completed",
+  "title": "openssl替换gmssl SM4审查"
+}

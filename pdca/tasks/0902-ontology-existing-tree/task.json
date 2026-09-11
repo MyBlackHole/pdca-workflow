@@ -15,7 +15,6 @@
     "ontology_node_type": "entity",
     "phase": "archive",
     "record": "T0477-0902-ontology-existing-tree",
-    "scenario_type": "development",
     "steps": [
       {
         "name": "ReportCenter 树",
@@ -44,7 +43,8 @@
       "outcome": "projected",
       "reason": "ontology:entity/report-center-system 与 ontology:entity/backup-system 已沉淀，6 entity 森林可复制",
       "at": "2026-09-01T08:07:13+08:00"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "parent": null,
   "slug": "0902-ontology-existing-tree",

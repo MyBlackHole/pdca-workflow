@@ -1,0 +1,10 @@
+Command:
+rg -n 'scenario_type|execute-in-main-session|ai-friendliness-route-contract|ai-execution-contract|resolve-ai-friendliness-route|resolve-ai-execution-contract|requires_fix_confirmation|路径 [A-F]|route_id' config schemas scripts tests pdca/*.json pdca_runtime ontology/process/flow-do.md
+
+Exit status: 1
+Output: empty
+Interpretation: ripgrep found zero active control-surface matches in the declared scope.
+
+Excluded by design: historical records, journals, archived tasks, unrelated active
+task prose, version snapshots, and generated historical indexes. They are not
+runtime consumers and were outside T2181's authorized mutation scope.

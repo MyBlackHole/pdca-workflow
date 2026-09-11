@@ -34,7 +34,7 @@ def make_task_json(phase: str, task_id: str, slug: str,
         "meta": {
             "phase": phase,
             "active": True,
-            "scenario_type": "development",
+            "ontology_role": "ontology_projection",
             "created_at": "2026-08-15T00:00:00+08:00",
             "convergence": ["fixture convergence"] if convergence else [],
             "record": f"R-{task_id}",

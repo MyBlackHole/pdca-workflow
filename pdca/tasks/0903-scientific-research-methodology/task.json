@@ -17,7 +17,6 @@
     "ontology_node_type": "pattern",
     "phase": "archive",
     "record": "T0502-0903-scientific-research-methodology",
-    "scenario_type": "development",
     "steps": [
       {
         "name": "根+4叶创建",
@@ -56,7 +55,8 @@
       "outcome": "projected",
       "reason": "ontology:pattern/scientific-research-methodology 已沉淀（C4+Diátaxis+arc42+I2S2四支），来源 T0502-0903-scientific-research-methodology",
       "at": "2026-09-01T11:53:19+08:00"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "parent": null,
   "slug": "0903-scientific-research-methodology",

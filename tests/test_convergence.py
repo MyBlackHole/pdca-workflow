@@ -37,11 +37,12 @@ class ConvergenceContractTest(unittest.TestCase):
             "meta": {
                 "phase": "do",
                 "active": True,
-                "scenario_type": "development",
+                "ontology_role": "ontology_projection",
                 "created_at": "2026-07-28T10:00:00+08:00",
                 "convergence": ["tests prove behavior", "gate rejects unsupported claims"],
                 "record": "R9001",
                 "ontology_exempt": True,
+                "ontology_exempt_reason": "Synthetic convergence fixture has no ontology deliverable.",
             },
             "states": {
                 "created": "2026-07-28T10:00:00+08:00",

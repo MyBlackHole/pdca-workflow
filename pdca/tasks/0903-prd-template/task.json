@@ -14,7 +14,6 @@
     "ontology_node_type": "domain",
     "phase": "archive",
     "record": "T0484-0903-prd-template",
-    "scenario_type": "development",
     "completed_at": "2026-09-01T08:36:16+08:00",
     "verdict": {
       "outcome": "confirmed",
@@ -26,7 +25,8 @@
       "outcome": "projected",
       "reason": "ontology:domain/skill-to-tickets 模板硬化，来源 T0484-0903-prd-template",
       "at": "2026-09-01T08:36:47+08:00"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "parent": "T0482",
   "slug": "0903-prd-template",

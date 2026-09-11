@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ai-efficiency-ai-friendliness-review-methodology/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/ai-efficiency-ai-friendliness-review-methodology/1.0.1
 summary: AI 工作流友好度审查方法
 domain:
 - ontology:domain/ai-efficiency
@@ -29,7 +29,12 @@ schema: pdca.asset/v1
 id: knowledge.ai-efficiency.ai-friendliness-review-methodology
 summary: 用可执行门禁、故障注入和配对实验判断工作流改动是否真实提升 AI
 tags: [ai-efficiency, workflow, evaluation, pdca]
-scenarios: [development, bugfix, research, documentation, design, review]
+ontology_roles: [ontology_modeling, ontology_projection, ontology_conformance_verification]
+execution_contract:
+  work_product: AI工作流友好度审查报告
+  required_actions: [验证职责契约路由, 故障注入, 配对评测]
+  constraints: [不得以标题命中替代行为验证]
+  testable_signal: 相同输入的前后配对显示门禁、导航、成本或恢复指标可判定
 phases: [plan, do, check, act]
 source_ids: [R0135-ai-friendliness-hardening, R0140-agent-workflow-landscape, R0141-convergence-validator, R0160]
 ---
@@ -68,7 +73,7 @@ source_ids: [R0135-ai-friendliness-hardening, R0140-agent-workflow-landscape, R0
 
 ## 可执行评测合约
 
-- 将场景到执行路径的映射放入严格、机器可读的 contract；公共 resolver 只读取 contract，Markdown 只保留面向人的说明。必须同时测试 resolver 行为和文档锚点，不能用标题存在证明路由正确。
+- 将 `ontology_role` 与四字段 `execution_contract` 放入严格、机器可读的事实源；公共 resolver 只读取该事实源，Markdown 只保留面向人的说明。必须同时测试 resolver 行为和文档锚点，不能用标题存在证明路由正确。
 - 夹具应构造保持标题不变但交换映射的反例，以验证 oracle 能拒绝契约漂移。引用故障必须删除实际被引用的受控文件，不能由测试分支直接返回预期错误码。
 - 共享阶段语义用一个完整成功链和按转换分组的关键失败反例覆盖。成功链只经公共相邻 transition 生成 receipt；Plan 的确认、Do 的 PRD/evidence/convergence、Check 的 conclusion/verdict/确认和 Act 的 disposition 均应由真实 gate 拒绝缺失输入。
 - bytes baseline 必须覆盖全部当前审计资产，新增、遗漏、陈旧或超预算都 fail-closed。更新 baseline 是版本控制中的显式治理动作，必须有非空理由，并同时通过断链检查和相关 deterministic fixture，不能以提高 baseline 掩盖行为回归。
@@ -97,9 +102,9 @@ UTF-8 bytes 可作为零模型依赖的稳定代理，但不得称为真实 toke
 - 严格校验：`schemas/`、`scripts/validate-workflow.py`
 - 能力诊断：`scripts/pdca-doctor.py`
 - 内容审查：`scripts/audit-skill-content.py`
-- 配对基准：`scripts/run-ai-friendliness-fixtures.py`
+- 执行契约测试：`tests/test_pdca_runtime.py`、`tests/test_task_contract.py`、`tests/test_ontology_projection_runtime.py`
 - 综合记录：`records/R0135-ai-friendliness-hardening/conclusion.md`
-- 可执行路由与生命周期评测：`pdca/ai-friendliness-route-contract.json`、`scripts/resolve-ai-friendliness-route.py`、`scripts/run-ai-friendliness-fixtures.py`
+- 当前任务执行与生命周期评测：`pdca_runtime/`、`scripts/pdca-runtime.py`
 - 内容预算：`pdca/skill-content-baseline.json`、`scripts/audit-skill-content.py --check-budget`
 
 
@@ -133,4 +138,3 @@ grep -q 'ai-efficiency-ai-friendliness-review-methodology' ontology/domain/ai-ef
 - **图门禁**：`grep -c 'mermaid' ontology/domain/ai-efficiency-ai-friendliness-review-methodology.md` ≥1
 - **溯源门禁**：含 `Source:` 行号
 - **校验**：`python3 scripts/ontology-validate.py` 0 issues
-

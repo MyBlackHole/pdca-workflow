@@ -1,0 +1,4 @@
+{"round":1,"question":"增量审查范围","answer":"继续，按四项补充范围执行","recommended":"补充 BackupHelper、method/requestType、6610/6611、构建运行时装配链","source":"grilling","captured":true,"verified":true,"status":"resolved","decision":"基于 T2155 增量补齐真实运行时调用链，不改源码行为。","at":"2026-09-11T11:32:00+08:00"}
+{"round":2,"question":"工具粒度纠偏","answer":"所有工具都应独立存在调用链","recommended":"每个可交付 tool 单独登记入口、分发、核心、输出/副作用和调用方状态","source":"user_meta_feedback","captured":true,"verified":true,"status":"resolved","decision":"T2157 扩展为全量可交付工具调用链清单，不按五大类吞并独立工具。","at":"2026-09-11T11:34:00+08:00"}
+{"source":"final_confirmation","summary":"用户确认工具粒度纠偏：所有可交付工具均需独立存在调用链，不按大类隐藏入口。","response":"confirmed","at":"2026-09-11T11:36:18+08:00"}
+{"source":"check_confirmation","summary":"提交并确认 T2157 Check 结论，接受所有工具独立调用链与 fsbackup 补全结果。","response":"confirmed","at":"2026-09-11T14:02:04+08:00"}

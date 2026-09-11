@@ -18,7 +18,7 @@
     "ontology_node_type": "concept",
     "phase": "do",
     "record": "T2119-0910-scope-coverage-impl",
-    "scenario_type": "development"
+    "ontology_role": "ontology_projection"
   },
   "parent": null,
   "slug": "0910-scope-coverage-impl",

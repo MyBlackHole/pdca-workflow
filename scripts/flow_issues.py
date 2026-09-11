@@ -991,7 +991,7 @@ def promote_candidate(
                 root,
                 slug=slug,
                 title=title,
-                scenario_type="development",
+                ontology_role="ontology_projection",
                 created_at=created_at,
                 extra_meta={"convergence": [f"{candidate_id} effectiveness verification"], "improvement_source": source},
                 initial_clarification=clarification,

@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ai-efficiency-mattpocock-skills-enhancement-mechanisms/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/ai-efficiency-mattpocock-skills-enhancement-mechanisms/1.0.1
 summary: mattpocock/skills 提升 AI 的机制（增量沉淀）
 domain:
 - ontology:domain/ai-efficiency
@@ -29,7 +29,12 @@ schema: pdca.asset/v1
 id: knowledge.ai-efficiency.mattpocock-skills-enhancement-mechanisms
 summary: mattpocock/skills v1.2.3 提升 AI 的机制全景——四大失效模式驱动设计法、双轨触发的薄组合器架构、phase-boundary 五选项树、grounding 依赖图写作法、深模块 lint 化；含与 pdca-workflow 的 16 域对照结论
 tags: [ai-efficiency, skills, workflow, grilling, tdd, architecture, docs]
-scenarios: [development, bugfix, research, documentation, design, review]
+ontology_roles: [ontology_modeling, ontology_projection, ontology_conformance_verification]
+execution_contract:
+  work_product: 技能增强机制评估
+  required_actions: [按失效模式选择工具, 核验机制增量]
+  constraints: [skill只作执行工具, 不产生任务分类]
+  testable_signal: 每项增强均回链失效模式、来源与验证方式
 phases: [plan, do, check, act]
 source_ids: [T0370-0823-skills-ai-enhancement]
 ---
@@ -83,7 +88,7 @@ setup-ts-deep-modules 用 dependency-cruiser 四条 error 规则把深模块词�
 16 能力域逐项对照见报告附A。核心结论：
 - pdca 强在**流程刚性与证据链**（schema/gate/evidence/convergence 硬门禁）。
 - 对方强在**文档经济学与上下文卫生**（双负载核算、引导词、phase-boundary 树）。
-- 待落地差距：P8 双负载核算合入 writing-great-skills；P7 phase-boundary 决策树入 flow-do 收尾；prototype-branch 证据类型；research 场景补可验证信号要求。
+- 待落地差距：P8 双负载核算合入 writing-great-skills；P7 phase-boundary 决策树入 flow-do 收尾；prototype-branch 证据类型；契约选择 `research` 工具时补可验证信号要求。
 
 ## 适用边界
 
@@ -120,4 +125,3 @@ grep -q 'ai-efficiency-mattpocock-skills-enhancement-mechanisms' ontology/domain
 - **图门禁**：`grep -c 'mermaid' ontology/domain/ai-efficiency-mattpocock-skills-enhancement-mechanisms.md` ≥1
 - **溯源门禁**：含 `Source:` 行号
 - **校验**：`python3 scripts/ontology-validate.py` 0 issues
-

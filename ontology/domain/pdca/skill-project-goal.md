@@ -12,8 +12,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-project-goal/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/skill-project-goal/1.0.1
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -31,7 +31,12 @@ id: conclusion:T0060--07-26-记录-pdca-项目主要目标与效率使命
 layer: experience
 summary: 固化 PDCA 项目的效率、准确性、知识经验和 skills 持续增强使命
 tags: [project-goal, pdca, knowledge, experience, skills, ai-efficiency]
-scenarios: [default]
+ontology_roles: [ontology_modeling, ontology_projection, ontology_conformance_verification]
+execution_contract:
+  work_product: 与项目使命对齐的任务目标
+  required_actions: [读取项目使命, 对齐任务目标与验收]
+  constraints: [不得用请求类型替代专业职责]
+  testable_signal: 目标明确关联ontology_role与四字段execution_contract
 phases: [do, check, act]
 applies_when: [评估项目功能范围和设计方向时]
 excludes_when: []

@@ -10,8 +10,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-ask-matt/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/skill-ask-matt/1.0.1
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -63,12 +63,12 @@ Session 内阶段切换点按序询问，第一个 yes 获胜：
 
 | 用户说 | 推荐入口 |
 |--------|----------|
-| "我想做一个新功能/新模块" | `/triage` → Plan → Do |
-| "有个 bug 要修" | `/triage` → Plan(bugfix) → Do |
-| "调研/分析/了解一下 XXX" | 直接创建 research 类型 task |
-| "审查/Review 代码" | 直接创建 review 类型 task |
-| "把需求写成技术文档" | 直接创建 documentation 类型 task |
-| "设计 XXX 的架构" | 直接创建 design 类型 task |
+| "我想做一个新功能/新模块" | `/triage` → 选择专业职责并填写四字段契约 → Plan |
+| "有个 bug 要修" | `/triage` → 通常为 `ontology_projection`，以契约确认 |
+| "调研/分析/了解一下 XXX" | `/triage` → 通常为 `ontology_modeling`，把 `research` 工具写入 `required_actions` |
+| "审查/Review 代码" | `/triage` → 通常为 `ontology_conformance_verification`，把 `code-review` 写入 `required_actions` |
+| "把需求写成技术文档" | `/triage` → 由文档所投射的本体目标选择职责，文档写作写入 `required_actions` |
+| "设计 XXX 的架构" | `/triage` → 通常为 `ontology_modeling`，把 `design-it-twice` 写入 `required_actions` |
 | "有个大工程要做" | `/wayfinder` 先画地图 |
 | "代码结构需要改进" | `/codebase-design` 深度审查 |
 | "帮我理清思路/对齐目标" | `/grill` 追问门禁 |
@@ -78,11 +78,12 @@ Session 内阶段切换点按序询问，第一个 yes 获胜：
 ## 流程
 
 1. 询问用户想做什么
-2. 根据上表匹配入口，向用户推荐并确认
+2. 根据上表匹配入口，向用户推荐并确认 `ontology_role` 与 `execution_contract` 四字段
 3. 用户确认后引导进入对应入口
 4. 不匹配时询问用户期望的入口
 
 ## 已知坑
 
 - 入口路由勿重复追问已确认的需求；推荐后应直接进入对应 flow。
+- 用户措辞只提供职责与契约候选，必须经 triage 确认后进入标准 Do 流程。
 - Wayfinder 的 HITL ticket 必须通过 live exchange 解决，不可由 agent 自主回答。

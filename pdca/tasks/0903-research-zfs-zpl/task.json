@@ -13,7 +13,6 @@
     "ontology_node_type": "entity",
     "phase": "archive",
     "record": "T0517-0903-research-zfs-zpl",
-    "scenario_type": "research",
     "completed_at": "2026-09-01T14:38:59+08:00",
     "verdict": {
       "outcome": "confirmed",
@@ -25,7 +24,8 @@
       "outcome": "projected",
       "reason": "ontology:entity/zfs-zpl 研究面面俱到已补，来源 T0517-0903-research-zfs-zpl",
       "at": "2026-09-01T14:39:31+08:00"
-    }
+    },
+    "ontology_role": "ontology_modeling"
   },
   "parent": "T0503",
   "slug": "0903-research-zfs-zpl",

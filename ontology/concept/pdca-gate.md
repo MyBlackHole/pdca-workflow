@@ -7,11 +7,11 @@ summary: PDCA 阶段准入门禁元概念
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/pdca-gate/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/pdca-gate/1.0.1
 relations:
   specializes:
-  - ontology:concept/pdca
+  - ontology:concept/entity
   testable_signal: "引用存活：test $(grep -rl 'ontology:concept/pdca-gate' ontology/ tests/ scripts/ | wc -l) -ge 12"
 ---
 # pdca-gate
@@ -20,4 +20,3 @@ relations:
 
 - **理由**：把"什么条件下才能进入某阶段"从分散的口头约定提升为机器可校验的本体关系，避免跳阶段或证据不全就推进。
 - **驱动**：`ontology_reason.admission_conditions(phase)` 读取 `pdca-gate-<phase>.relates_to` 产出准入条件列表；元本体缺失时回退到硬编码最小核心。
-

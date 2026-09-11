@@ -40,7 +40,7 @@ Source: `tests/test_ticket_dag.py:1-40` + `scripts/ticket_dag.py:1-30` + `script
 
 ## C4 L2 — to-tickets 拆解至 ready-set 调度
 
-`to-tickets` 将 PRD 按 `meta.scenario_type` 拆解为子 `task.json`，每子声明 `dependencies: ["Txxxx"]` 仅存直接边；`ready_set(tasks, done)` 纯函数计算可执行集；`compute-frontier.py` 将 ready-set 按 batches 分批调度；`check-design-vocab.py` 对设计文档做词汇白名单校验。C4 以 `PRD → to-tickets → task.json(dependencies) → ready_set → batches → check-design-vocab` 主链呈现。
+`to-tickets` 将 PRD 按 `meta.ontology_role` 与 `execution_contract` 拆解为子 `task.json`，每子声明 `dependencies: ["Txxxx"]` 仅存直接边；`ready_set(tasks, done)` 纯函数计算可执行集；`compute-frontier.py` 将 ready-set 按 batches 分批调度；`check-design-vocab.py` 对设计文档做词汇白名单校验。C4 以 `PRD → to-tickets → task.json(dependencies) → ready_set → batches → check-design-vocab` 主链呈现。
 
 ```mermaid
 graph TD

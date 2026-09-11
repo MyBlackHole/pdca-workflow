@@ -13,9 +13,8 @@ capabilities:
     required: true
     probe: git
   agent.spawn:
-    required: false
+    required: true
     probe: environment:PDCA_AGENT_SPAWN
-    fallback: execute-in-main-session
   context.retrieve:
     required: false
     probe: command:pdca

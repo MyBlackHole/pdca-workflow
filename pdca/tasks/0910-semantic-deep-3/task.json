@@ -13,7 +13,6 @@
     "ontology_anchor": "ontology:concept/pdca-task",
     "phase": "archive",
     "record": "T2141-0910-semantic-deep-3",
-    "scenario_type": "research",
     "ontology_fragment": "ontology",
     "ontology_node_type": "concept",
     "completed_at": "2026-09-10T08:30:20+08:00",
@@ -27,7 +26,8 @@
       "outcome": "projected",
       "reason": "两技能1.0.1改字投影至 ontology:concept/pdca",
       "at": "2026-09-10T08:31:00+08:00"
-    }
+    },
+    "ontology_role": "ontology_modeling"
   },
   "parent": "T2130",
   "slug": "0910-semantic-deep-3",

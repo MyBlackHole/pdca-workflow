@@ -14,40 +14,40 @@ def _root() -> Path:
 
 def test_research_missing_blocked():
     root = _root()
-    for scen in ("research", "design", "review", "documentation"):
-        task = {"meta": {"phase": "do", "scenario_type": scen}}
+    for scen in ("ontology_modeling", "ontology_conformance_verification", "ontology_conformance_verification", "ontology_modeling"):
+        task = {"meta": {"phase": "do", "ontology_role": scen}}
         issues = ontology_ready_issues(task, root)
         assert any(i.code == "ONTOLOGY_FRAGMENT_MISSING" for i in issues), scen
 
 
 def test_development_missing_blocked():
     root = _root()
-    for scen in ("development", "bugfix"):
-        task = {"meta": {"phase": "do", "scenario_type": scen}}
+    for scen in ("ontology_projection", "ontology_projection"):
+        task = {"meta": {"phase": "do", "ontology_role": scen}}
         issues = ontology_ready_issues(task, root)
         assert any(i.code == "ONTOLOGY_FRAGMENT_MISSING" for i in issues)
 
 
 def test_exempt_not_blocked():
     root = _root()
-    for scen in ("research", "design", "review", "documentation", "development"):
-        task = {"meta": {"phase": "do", "scenario_type": scen, "ontology_exempt": True}}
+    for scen in ("ontology_modeling", "ontology_conformance_verification", "ontology_conformance_verification", "ontology_modeling", "ontology_projection"):
+        task = {"meta": {"phase": "do", "ontology_role": scen, "ontology_exempt": True}}
         assert ontology_ready_issues(task, root) == []
 
 
 def test_fragment_ok():
     root = _root()
-    for scen in ("research", "design", "review"):
-        task = {"meta": {"phase": "do", "scenario_type": scen, "ontology_fragment": "ontology"}}
+    for scen in ("ontology_modeling", "ontology_conformance_verification", "ontology_conformance_verification"):
+        task = {"meta": {"phase": "do", "ontology_role": scen, "ontology_fragment": "ontology"}}
         assert ontology_ready_issues(task, root) == []
 
 
 def test_guidance_contains_scenario_and_hint():
     root = _root()
-    task = {"meta": {"phase": "do", "scenario_type": "research"}}
+    task = {"meta": {"phase": "do", "ontology_role": "ontology_modeling"}}
     issues = ontology_ready_issues(task, root)
     msg = issues[0].message
-    assert "research" in msg
+    assert "ontology_modeling" in msg
     assert "ontology_exempt" in msg
     assert issues[0].guidance is not None
 
@@ -55,5 +55,5 @@ def test_guidance_contains_scenario_and_hint():
 def test_non_do_not_blocked():
     root = _root()
     for phase in ("plan", "check", "act", "archive"):
-        task = {"meta": {"phase": phase, "scenario_type": "research"}}
+        task = {"meta": {"phase": phase, "ontology_role": "ontology_modeling"}}
         assert ontology_ready_issues(task, root) == []

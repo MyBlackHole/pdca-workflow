@@ -1,0 +1,5 @@
+{"answer": "openssl4 EVP，且原有gmssl也替换成openssl4 EVP（CBC保持旧key/iv）", "at": "2026-09-11T10:28:00+08:00", "captured": true, "question": "新增SM4-GCM用哪个库实现？CBC旧路径是否保持gmssl不动？", "round": 1, "source": "grilling", "status": "resolved"}
+{"answer": "不接受Tag缀尾/全元数据二选一，要求更好的方式；已提案纯元数据方案（sm4-nonce+sm4-tag独立键，内容即纯密文），随PRD确认", "at": "2026-09-11T10:28:00+08:00", "captured": true, "question": "GCM nonce/Tag存哪里？", "round": 1, "source": "grilling", "status": "resolved"}
+{"answer": "按对象元数据自适应", "at": "2026-09-11T10:28:00+08:00", "captured": true, "question": "读端按什么决定解密模式？", "round": 1, "source": "grilling", "status": "resolved"}
+{"answer": "s3mount也改为三态", "at": "2026-09-11T10:28:00+08:00", "captured": true, "question": "--gmssl取值与s3mount语义？", "round": 1, "source": "grilling", "status": "resolved"}
+{"source":"final_confirmation","summary":"绑定 grilling 轮次1（4问全captured）确认T2157 PRD立项：CBC/GCM统一openssl4 EVP、GCM纯元数据落盘、自适应读、双边三态，进入Do阶段","response":"confirmed","at":"2026-09-11T10:34:35+08:00"}

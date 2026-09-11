@@ -54,7 +54,7 @@ plan → do → check → act → archive
 | 阶段 | 流程定义 | 产出 |
 |------|---------|------|
 | **Plan** | `$PDCA_HOME/ontology/process/flow-plan.md` | `task.json` + `prd.md`，用户确认后方可进入 Do |
-| **Do** | `$PDCA_HOME/ontology/process/flow-do.md` | 代码/文档/调研报告，按场景类型选择执行路径 |
+| **Do** | `$PDCA_HOME/ontology/process/flow-do.md` | 按 `meta.ontology_role` 与四字段 `meta.execution_contract` 产出实现或知识资产并登记证据 |
 | **Check** | `$PDCA_HOME/ontology/process/flow-check.md` | `conclusion.md` + 证据清单，判定通过/失败 |
 | **Act** | `$PDCA_HOME/ontology/process/flow-act.md` | 知识沉淀 + journal 日志 + 归档 |
 
@@ -86,8 +86,8 @@ pdca/tasks/<MMDD-slug>/
 
 | 技能 | 作用 |
 |------|------|
-| `ask-matt` | （推荐入口）描述你想做什么，AI 推荐入口和路径 |
-| `triage` | 将模糊输入分类为 bug/feature，查重后创建任务 |
+| `ask-matt` | （推荐入口）描述你想做什么，AI 推荐入口并交给 triage 对齐职责与契约 |
+| `triage` | 将模糊输入转为一个专业职责和四字段执行契约，查重后创建任务 |
 | `grill` | 对你进行 relentless 追问，理清需求边界 |
 | `code-review` | 双轴审查（代码质量 + 需求对齐） |
 | `write-journal` | 自动或手动写入每日工作日志 |
@@ -112,16 +112,15 @@ Plan 阶段必须完成用户确认才能进入 Do。`advance-phase` 会在 `cla
 git commit -m "task <id>: <描述>"
 ```
 
-## 常见场景
+## 专业职责与执行契约
 
-| 场景 | `scenario_type` | 执行路径 |
-|------|----------------|---------|
-| 开发新功能 | `development` | 原型→编码→TDD→审查→证据 |
-| 修复 Bug | `bugfix` | 诊断→修复→TDD→审查→证据 |
-| 技术调研 | `research` | Research→报告→证据 |
-| 编写文档 | `documentation` | 文档编写→审查→证据 |
-| 架构设计 | `design` | 方案→评审→ADR→证据 |
-| 代码审查 | `review` | 审查→报告→证据 |
+| `ontology_role` | 职责 | 契约动作示例 |
+|------|------|------|
+| `ontology_modeling` | 建立或修订概念、关系、约束和可验证信号 | 可在 `required_actions` 中选择调研、原型或双方案设计工具 |
+| `ontology_projection` | 将已确认的本体约束投射为代码、文档、配置或其他实现资产 | 可在 `required_actions` 中选择诊断、TDD、文档写作或审查工具 |
+| `ontology_conformance_verification` | 核验本体、实现、证据和验收标准的一致性 | 可在 `required_actions` 中选择代码审查、来源核验或契约测试工具 |
+
+每个任务的 `meta.execution_contract` 必须恰含 `work_product`、`required_actions`、`constraints` 和 `testable_signal`。工具名称只描述契约动作，不形成任务类别、Do 分支或阶段门禁。
 
 ## 外部项目 FAQ
 

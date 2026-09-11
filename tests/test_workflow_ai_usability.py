@@ -52,7 +52,7 @@ def make_task(root: Path, phase: str = "plan", ac_text: str | None = None) -> Pa
         "meta": {
             "phase": phase,
             "active": phase != "archive",
-            "scenario_type": "development",
+            "ontology_role": "ontology_projection",
             "created_at": "2026-07-28T10:00:00+08:00",
             "convergence": ["fixture passes"],
         },

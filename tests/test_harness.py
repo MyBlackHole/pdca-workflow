@@ -1,26 +1,26 @@
 from __future__ import annotations
 
-import json
 import subprocess
 import unittest
 from pathlib import Path
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 class HarnessTest(unittest.TestCase):
-    @unittest.skip("T2056 slow-quarantine (>10s: --all fixtures); rehabilitate in T2059")
-    def test_all_deterministic_fixtures_pass(self) -> None:
+    def test_runtime_cli_exposes_current_task_commands(self) -> None:
         completed = subprocess.run(
-            ["python3", "scripts/run-ai-friendliness-fixtures.py", "--all"],
+            ["python3", "scripts/pdca-runtime.py", "--help"],
             cwd=ROOT,
-            check=True,
             capture_output=True,
             text=True,
         )
-        result = json.loads(completed.stdout)
-        self.assertEqual(22, result["fixture_count"])
-        self.assertEqual(0, result["failed"])
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        self.assertIn("prepare-dispatch", completed.stdout)
+        self.assertIn("resume-conformance", completed.stdout)
+        self.assertNotIn("poll", completed.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

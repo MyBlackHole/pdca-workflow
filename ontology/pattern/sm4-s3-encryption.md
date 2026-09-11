@@ -30,9 +30,16 @@ flowchart TD
 ```
 Source: `file: F/139/备份传输存储国密SM4全流程加密方案.md:1`
 
-## F/143 落改细节（T2107，2026-09-09）
+## S3落改规则
 
-> 来源 record：`records/T2107-0909-guomi-storage-research/`（行号级重验，零代码改动）
+> 来源 record：`records/T2107-0909-guomi-storage-research/`、`records/T2125-0910-guomi-storage-research2/`
 
-- 写端现状只分支 `gmssl==1`（`s3tools/s3file/main.cpp:923,954`），key/IV 硬编码（`:919-922`）；GCM 需每对象随机 12B nonce 并新增 `sm4-nonce` 元数据。
-- 读端现状按卷开关解密（`s3mount/fuse-file.cpp:224,823,914`），需按对象 `gmssl` 自适应；`config.cpp:129-136` bool 口径需扩为三态。
+- 落改规则：multiscale 下三态统一、读端按对象自适应、meta_data_count 2→3 新增 sm4-nonce。
+
+## SM4库选型（T2151，2026-09-10）
+
+> 来源 record：`records/T2151-0910-openssl-sm4-review/`（结论 `confirmed`，含初判纠错记录）
+
+- 现状：s3file/s3mount 直调 GmSSL 底 API（`sm4_cbc_padding_*`等），链预编译 gmssl；openssl4（3.x线，libs静态链接）未被 s3 侧使用。
+- 替换结论：可行但须重写调用层——CBC 走 `EVP_sm4_cbc`、GCM 走 provider 取数（legacy 无 `EVP_sm4_gcm`，provider 有 `cipher_sm4_gcm.c` 含硬加速）；xmake 由预编译 gmssl 切 openssl4 包。
+- 前提：provider 运行时可用性验证 + 与 GmSSL 产出互通测试（本次只审查未验证）；纠错注：初判漏查 provider 路径误言不可替换，深查整树后反转。

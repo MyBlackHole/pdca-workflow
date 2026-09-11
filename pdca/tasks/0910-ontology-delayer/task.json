@@ -1,0 +1,47 @@
+{
+  "children": [
+    "T2144",
+    "T2145",
+    "T2146"
+  ],
+  "dependencies": [],
+  "id": "T2143",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "模式节点去任务化",
+      "NFS去重",
+      "signal指稳定源"
+    ],
+    "created_at": "2026-09-10T09:27:47+08:00",
+    "ontology_anchor": "ontology:pattern/sm4-storage-encryption",
+    "ontology_fragment": "ontology",
+    "phase": "archive",
+    "record": "T2143-0910-ontology-delayer",
+    "disposition": {
+      "at": "2026-09-10T12:01:00+08:00",
+      "outcome": "projected",
+      "reason": "ontology:pattern/sm4-storage-encryption等四节点已去任务化分层，signal指稳定源；openssl替换问题另立审查票"
+    },
+    "verdict": {
+      "at": "2026-09-10T12:00:00+08:00",
+      "outcome": "confirmed",
+      "reason": "conclusion.md five ACs with evidence; openssl review split to follow-up ticket",
+      "verdict_id": "V-T2143-01"
+    },
+    "completed_at": "2026-09-10T09:33:10+08:00",
+    "ontology_role": "ontology_projection"
+  },
+  "parent": null,
+  "slug": "0910-ontology-delayer",
+  "states": {
+    "act": "2026-09-10T12:00:13+08:00",
+    "archive": "2026-09-10T12:00:28+08:00",
+    "check": "2026-09-10T09:33:10+08:00",
+    "created": "2026-09-10T09:27:47+08:00",
+    "do": "2026-09-10T09:30:13+08:00",
+    "plan": "2026-09-10T09:27:47+08:00"
+  },
+  "status": "Completed",
+  "title": "本体混层重构"
+}

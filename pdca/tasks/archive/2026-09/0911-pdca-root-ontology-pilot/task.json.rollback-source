@@ -1,0 +1,51 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T2175",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "PDCA根概念历史表述准确",
+      "本体图与任务投影结构分离",
+      "语义节点与序列化载体分离",
+      "根节点关系机读且无实现耦合",
+      "ontology-validate通过"
+    ],
+    "created_at": "2026-09-11T14:00:00+08:00",
+    "execution_contract": {
+      "constraints": [
+        "只修改 PDCA 根本体及必要术语关系",
+        "不展开其余流程节点",
+        "不创建 Python runtime"
+      ],
+      "required_actions": [
+        "修正历史归因",
+        "区分本体图与任务投影",
+        "区分语义节点与序列化资产",
+        "建立根节点机读关系",
+        "移除实现耦合并验证"
+      ],
+      "testable_signal": "PDCA 根节点关系完整且 ontology-validate 通过",
+      "work_product": "重构后的 ontology:concept/pdca 根本体"
+    },
+    "ontology_anchor": "ontology:concept/pdca",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "concept",
+    "ontology_role": "ontology_modeling",
+    "phase": "check",
+    "record": "T2175-0911-pdca-root-ontology-pilot",
+    "completed_at": "2026-09-11T14:07:11+08:00"
+  },
+  "parent": "T2170",
+  "slug": "0911-pdca-root-ontology-pilot",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-09-11T14:07:11+08:00",
+    "created": "2026-09-11T14:00:00+08:00",
+    "do": "2026-09-11T14:01:19+08:00",
+    "plan": "2026-09-11T14:00:00+08:00"
+  },
+  "status": "Completed",
+  "title": "试点重构 PDCA 根本体 ontology:concept/pdca"
+}

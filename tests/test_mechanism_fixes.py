@@ -51,17 +51,17 @@ class DesignVocabScopedTest(unittest.TestCase):
         result = json.loads(proc.stdout.splitlines()[-1])
         self.assertTrue(result["vocab_ok"])
         self.assertFalse(result["skipped"])
-        self.assertEqual(result["doc_type"], "design")
+        self.assertEqual(result["doc_type"], "ontology_conformance_verification")
 
     def test_design_doc_type_checks_forbidden_terms(self) -> None:
-        result = run_vocab(FORBIDDEN_TEXT, "design")
+        result = run_vocab(FORBIDDEN_TEXT, "ontology_conformance_verification")
         self.assertFalse(result["vocab_ok"])
         self.assertFalse(result["skipped"])
         for term in ("component", "API", "boundary", "service"):
             self.assertIn(term, result["violations"])
 
     def test_design_doc_type_accepts_vocab_terms(self) -> None:
-        result = run_vocab(DESIGN_TEXT, "design")
+        result = run_vocab(DESIGN_TEXT, "ontology_conformance_verification")
         self.assertTrue(result["vocab_ok"])
         self.assertEqual(result["violations"], [])
 
@@ -91,7 +91,7 @@ class StateTimeOrderGuidanceTest(unittest.TestCase):
             "meta": {
                 "phase": "do",
                 "active": True,
-                "scenario_type": "development",
+                "ontology_role": "ontology_projection",
                 "created_at": "2026-07-28T09:00:00+08:00",
                 "convergence": ["T9001"],
             },

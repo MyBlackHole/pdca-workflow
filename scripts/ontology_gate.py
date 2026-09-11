@@ -36,9 +36,9 @@ def ontology_ready_issues(task: dict, root: Path) -> list:
         return []
     frag = meta.get("ontology_fragment")
     if not frag:
-        scen = meta.get("scenario_type", "unknown")
+        scen = meta.get("ontology_role", "unknown")
         return [Issue("ONTOLOGY_FRAGMENT_MISSING", "task.json",
-                      f"do 前置 ontology-ready：meta.ontology_fragment 未设置（scenario_type={scen}）；"
+                          f"do 前置 ontology-ready：meta.ontology_fragment 未设置（ontology_role={scen}）；"
                       f"请声明 ontology_fragment 或设 ontology_exempt=true 并说明豁免原因",
                       "设置 meta.ontology_fragment 指向 ontology 片段，或在 task.json 设 ontology_exempt=true")]
     frag_path = Path(frag) if Path(frag).is_absolute() else (root / frag)

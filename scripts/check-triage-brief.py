@@ -9,7 +9,7 @@
   - category：`## 分类` / `category` / `类型`
   - evidence：`## 事实核验` / `## 已验证问题` / `fact` / `核验` / `验证`
   - dedup：`## 查重` / `查重` / `dedup`
-  - scenario：`scenario_type` / `场景`
+  - ontology role：`ontology_role` / `本体职责`
   - priority：`priority` / `优先级` / `P0` / `P1` / `P2`
   - actionable：`风险` / `信息缺口` / `推荐方向` / `下一步`
 
@@ -32,7 +32,7 @@ FIELDS = {
     "category": [r"##\s*分类", r"category", r"类型"],
     "evidence": [r"##\s*事实核验", r"##\s*已验证问题", r"fact", r"核验", r"验证"],
     "dedup": [r"##\s*查重", r"查重", r"dedup"],
-    "scenario": [r"scenario_type", r"场景"],
+    "ontology_role": [r"ontology_role", r"本体职责"],
     "priority": [r"priority", r"优先级", r"\bP0\b", r"\bP1\b", r"\bP2\b"],
     "actionable": [r"风险", r"信息缺口", r"推荐方向", r"下一步", r"信息缺口"],
 }

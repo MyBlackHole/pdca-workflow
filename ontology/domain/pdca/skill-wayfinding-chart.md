@@ -10,8 +10,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-wayfinding-chart/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/skill-wayfinding-chart/1.0.2
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -65,8 +65,14 @@ description: 绘制 Wayfinder 决策地图。由 wayfinder 委托加载，不直
 ## Question
 <此票解决的决策或调研问题>
 
-## Type
-research | prototype | grilling | task
+## Ontology Role
+ontology_modeling | ontology_projection | ontology_conformance_verification
+
+## Execution Contract
+- work_product: <本票产物>
+- required_actions: [<可选工具或动作>]
+- constraints: [<边界与禁止项>]
+- testable_signal: <可验证完成信号>
 
 ## Blocked By
 - <阻塞此票的票 ID>
@@ -75,8 +81,8 @@ research | prototype | grilling | task
 open | in-progress | resolved
 ```
 
-### 5. 并行执行 Research 票
-`agent.spawn` 可用时通过当前环境 Adapter 并行解决 research 票；不可用时由主 session 按风险优先级顺序执行。
+### 5. 按 ready-set 执行票
+每张可执行票都是独立 PDCA 任务，并行性只由依赖边与 ready-set 决定。当前任务的协调 Agent 必须通过 Adapter 调用 `agent.spawn`，一次性启动一对一的全新子 Agent/子智能体上下文后进入 `suspended_waiting_agent`；子 Agent 按 `ontology_role` 与 `execution_contract` 自主执行。恢复后只读当前任务持久化产物并执行 `ontology_conformance_verification`，不得检查其他任务。能力不可用时 fail-closed，不得由协调 Agent 或既有子 Agent 执行。
 
 ## 已知坑
 

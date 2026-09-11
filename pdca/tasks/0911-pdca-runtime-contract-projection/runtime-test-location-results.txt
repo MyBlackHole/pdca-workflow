@@ -1,0 +1,17 @@
+T2181 runtime test location validation
+
+Present:
+- pdca_runtime/tests/__init__.py
+- pdca_runtime/tests/runtime_fixtures.py
+- pdca_runtime/tests/test_task_contract.py
+- pdca_runtime/tests/test_ontology_projection_runtime.py
+- pdca_runtime/tests/test_pdca_runtime.py
+
+Removed from the legacy test directory:
+- tests/runtime_fixtures.py
+- tests/test_task_contract.py
+- tests/test_ontology_projection_runtime.py
+- tests/test_pdca_runtime.py
+
+Result: runtime tests are colocated under pdca_runtime/tests; legacy cases are
+not part of the final correction validation command.

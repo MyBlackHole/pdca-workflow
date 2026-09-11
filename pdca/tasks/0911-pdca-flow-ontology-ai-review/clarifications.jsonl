@@ -1,0 +1,4 @@
+{"at":"2026-09-11T11:07:33+08:00","source":"task_identity","summary":"created with record identity T2166-0911-pdca-flow-ontology-ai-review"}
+{"source":"final_confirmation","summary":"用户确认 T2166：先建模 PDCA 流程本体，再审查其是否符合 AI 工作流，输出模型缺口与 Improvement Task 边界","response":"confirmed","at":"2026-09-11T11:09:50+08:00"}
+{"round":1,"question":"T2166 是否先建模 PDCA 流程本体，再审查其 AI 工作流一致性","answer":"确认立项","recommended":"先产出统一流程本体模型，再逐项审查 AI 工作流的上下文、执行、证据、确认和恢复能力。","source":"grilling","at":"2026-09-11T11:09:50+08:00","captured":true,"verified":true}
+{"source":"check_confirmation","summary":"用户确认 T2166：PDCA流程本体模型可作为设计基线；全链路旧 scenario_type 清理继续由 T2165 承担","response":"confirmed","at":"2026-09-11T11:34:14+08:00"}

@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ai-efficiency-contract-test-pattern/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/ai-efficiency-contract-test-pattern/1.0.1
 summary: 契约测试模式（Contract Test Pattern）
 domain:
 - ontology:domain/ai-efficiency
@@ -28,7 +28,12 @@ schema: pdca.asset/v1
 id: knowledge.ai-efficiency.contract-test-pattern
 summary: 契约测试模式——用"机器可读清单 + 一致性断言"把文档/术语/seam 声明与实际实现的一致性做成可回归验证的硬指标（T0231/T0232/T0233 三例已验证，T0240 扩展为仓库级批量门禁）
 tags: [ai-efficiency, contract, testing, pdca, seames, vocabulary]
-scenarios: [plan, check]
+ontology_roles: [ontology_projection, ontology_conformance_verification]
+execution_contract:
+  work_product: 声明与实现一致的契约测试
+  required_actions: [解析机器可读清单, 对比实际产物, 运行正反例]
+  constraints: [仅按契约产物类型限定范围]
+  testable_signal: 声明漂移、产物缺失和范围误报均有确定性反例
 phases: [plan, check]
 source_ids: [T0233-0809-seam-contract, T0231-0809-followup-frontier-batch-spread, T0232-0809-ticket-dag-design-twice, T0240-0809-seam-ci-gate, T0241-0809-seam-doctor-gate, T0244-0809-pdca-flow-impl-review]
 ---
@@ -52,8 +57,8 @@ source_ids: [T0233-0809-seam-contract, T0231-0809-followup-frontier-batch-spread
    词表），自由文本无法被契约测试守护。
 2. **一致性断言**。契约测试对比"声明"与"实际"（实际测试文件、实际文档、
    实际词表），不测声明本身。
-3. **范围限定**。契约只约束有实际产物可对比的场景（如 seam 契约只限
-   development/bugfix），避免假阴性。
+3. **范围限定**。契约只约束有实际产物可对比的 `execution_contract`（如 seam
+   契约只在 `required_actions` 声明修改可执行代码并指定测试接缝时适用），避免假阴性。
 4. **不追溯**。历史产物缺清单信息即跳过，契约守护未来（同 T0232 schema
    旧任务不强制补齐）。
 5. **去重**。契约测试应引用实现的纯函数（parse/check），不重复定义，
@@ -92,7 +97,7 @@ doctor 是每次体检都跑的既有入口，无需 CI 也能自动拦截漂移
 ## 复用场景
 
 - 任何"文档声明 vs 实际实现"的一致性守护：API 合约、路由契约、命名规范。
-- CI 门禁：对每个 development spec 运行 seam_contract.py。
+- CI 门禁：对每个契约声明可执行代码与测试接缝的 spec 运行 seam_contract.py。
 
 ## CI 就绪度审查（T0244）
 

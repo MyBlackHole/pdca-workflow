@@ -15,7 +15,6 @@
     "ontology_node_type": "concept",
     "phase": "archive",
     "record": "T2071-0907-nbu-data-encrypt",
-    "scenario_type": "research",
     "completed_at": "2026-09-07T16:06:14+08:00",
     "verdict": {
       "outcome": "confirmed",
@@ -27,7 +26,8 @@
       "outcome": "projected",
       "reason": "ontology:concept/nbu-data-encryption 已新建沉淀NBU三链模型与GCM多Tag规则，报告247行7图证据13+收敛valid",
       "at": "2026-09-07T16:21:00+08:00"
-    }
+    },
+    "ontology_role": "ontology_modeling"
   },
   "parent": null,
   "slug": "0907-nbu-data-encrypt",

@@ -3,15 +3,15 @@ schema: pdca.asset/v1
 id: ontology:domain/skill-context-retrieval
 name: context-retrieval
 summary: Retrieve relevant context from knowledge assets for task execution.
-description: 按任务场景、阶段、标签和来源链选择最小可信 AI 上下文
+description: 按任务职责、执行契约、阶段、标签和来源链选择最小可信 AI 上下文
 invocation: manual
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-context-retrieval/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/skill-context-retrieval/1.0.1
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -28,10 +28,15 @@ schema: pdca.asset/v1
 id: skill:context-retrieval
 layer: skill
 name: context-retrieval
-description: 按任务场景、阶段、标签和来源链选择最小可信 AI 上下文
+description: 按任务职责、执行契约、阶段、标签和来源链选择最小可信 AI 上下文
 summary: 从结构化四层资产中检索并组装当前任务的最小可信上下文
 tags: [context-retrieval, provenance]
-scenarios: [default]
+ontology_roles: [ontology_modeling, ontology_projection, ontology_conformance_verification]
+execution_contract:
+  work_product: 最小可信上下文集合
+  required_actions: [按职责与契约检索, 核验来源链]
+  constraints: [禁止以请求标签替代职责契约过滤, 用户禁止读取时停止]
+  testable_signal: 所选资产逐项解释与当前execution_contract的关系
 phases: [plan, do, check, act]
 applies_when: [开始任务或阶段切换后需要加载历史上下文]
 excludes_when: [用户明确要求不读取历史资料]
@@ -43,7 +48,7 @@ status: active
 
 ## 输入
 
-- 当前任务的目标、scenario、PDCA phase、约束和关键实体。
+- 当前任务的目标、`ontology_role`、`execution_contract`、PDCA phase、约束和关键实体。
 
 ## 执行步骤
 
@@ -74,4 +79,4 @@ status: active
 
 ## 已知坑
 
-- 按任务场景/阶段/标签选最小可信资产，勿全量加载历史记录凑上下文。
+- 按任务职责/执行契约/阶段/标签选最小可信资产，勿全量加载历史记录凑上下文。

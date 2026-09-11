@@ -51,7 +51,7 @@ bash "$PDCA_HOME/scripts/rollback-phase.sh" <task-dir>
 
 - check_confirmation 必须带 `response` 字段，缺 response 会被 transition 拒绝（T0265 教训）。
 - PRD `## 验收标准` 必须是 `- [ ] AC-x: ...` checkbox 格式；`### AC-x` 标题式会被拒。
-- development/bugfix 场景 PRD 必须含 `### 声明的测试接缝` 子节，缺失即拒绝。
+- 本体投射职责的 PRD 必须含 `### 声明的测试接缝` 子节，缺失即拒绝。
 - 改本体正文必须双改版本（`dcterms_modified` 取落盘日 + `owl_versionIRI` 修订号加一），详 `ontology:concept/version-bump-rule`；正文变版本不变即 `VERSION_STALE` 阻断。
 - transition `plan→do` 会重置 `meta.convergence` 与 `meta.ontology_fragment`，须在 do 后、check 前重补（T2137 教训）。
 - 手写 `clarifications.jsonl` 行必填 `at` 字段；`task_identity` 偶发错写 ledger（T2137/T2138），创建后须核对首行（T2138 教训）。

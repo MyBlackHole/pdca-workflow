@@ -18,7 +18,6 @@
     "ontology_fragment": "ontology/domain",
     "phase": "archive",
     "record": "T0545-0906-conformance-audit",
-    "scenario_type": "development",
     "completed_at": "2026-09-07T07:31:29+08:00",
     "verdict": {
       "at": "2026-09-06T00:00:00+08:00",
@@ -30,7 +29,8 @@
       "at": "2026-09-06T00:00:00+08:00",
       "outcome": "projected",
       "reason": "ontology 5个节点符号误用已修复；scripts/audit-ontology-conformance.py 新检查脚本已建"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "parent": null,
   "slug": "0906-conformance-audit",

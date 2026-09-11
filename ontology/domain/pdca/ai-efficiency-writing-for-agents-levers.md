@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ai-efficiency-writing-for-agents-levers/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/ai-efficiency-writing-for-agents-levers/1.0.1
 summary: 为 AI 写文档的 4 个杠杆
 domain:
 - ontology:domain/ai-efficiency
@@ -29,7 +29,12 @@ schema: pdca.asset/v1
 id: knowledge.ai-efficiency.writing-for-agents-levers
 summary: 为 AI 写文档的 4 个杠杆——锚定词（leading words）/指针措辞（pointer wording）/双负载（two loads）/no-op 模型相对判定；来源 mattpocock writing-for-agents，已增补至本地 writing-great-skills（T0245 实例）
 tags: [ai-efficiency, writing, docs, skills, agents, tokens]
-scenarios: [plan, do, act]
+ontology_roles: [ontology_modeling, ontology_projection, ontology_conformance_verification]
+execution_contract:
+  work_product: 面向Agent的低负载文档
+  required_actions: [应用写作杠杆, 检查上下文与认知负载]
+  constraints: [保持语义与来源, 不以压缩牺牲可执行性]
+  testable_signal: 文档通过必要性测试且保留可执行完成标准
 phases: [plan, do, act]
 source_ids: [T0245-0809-writing-for-agents-levers]
 ---
@@ -128,4 +133,3 @@ grep -q 'ai-efficiency-writing-for-agents-levers' ontology/domain/ai-efficiency-
 - **图门禁**：`grep -c 'mermaid' ontology/domain/ai-efficiency-writing-for-agents-levers.md` ≥1
 - **溯源门禁**：含 `Source:` 行号
 - **校验**：`python3 scripts/ontology-validate.py` 0 issues
-

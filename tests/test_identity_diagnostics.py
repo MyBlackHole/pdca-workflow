@@ -42,7 +42,7 @@ class IdentityDiagnosticsTest(unittest.TestCase):
             "meta": {
                 "phase": "plan",
                 "active": True,
-                "scenario_type": "development",
+                "ontology_role": "ontology_projection",
                 "created_at": "2026-08-14T10:00:00+08:00",
                 "convergence": ["fixture"],
                 "record": f"{task_id}-{slug}",

@@ -1,0 +1,20 @@
+{
+  "schema": "pdca.conformance-correction-request/v1",
+  "task_id": "T2181",
+  "review_cycle": 2,
+  "requested_at": "2026-09-11T18:19:07+08:00",
+  "review_path": "pdca/tasks/0911-pdca-runtime-contract-projection/conformance-review.md",
+  "review_digest": "sha256:815b406c2b0a60c7305fca374cd4d5ae66318be0be5d942cf6b40d5d5f0c3b25",
+  "required_findings": [
+    "F7",
+    "F8",
+    "F9"
+  ],
+  "constraints": [
+    "Use only the current T2181 persisted task inputs and implementation surfaces.",
+    "Continue with the already bound T2181 child Agent; do not create another Agent or task.",
+    "Preserve prior evidence through append-only replacement metadata.",
+    "Keep T2181 in Do and do not create Check, Act, archive, verdict, disposition, journal, or user-confirmation artifacts.",
+    "Write a cycle-2 completion marker for explicit coordinator resume and review cycle 3."
+  ]
+}

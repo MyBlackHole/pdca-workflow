@@ -17,7 +17,6 @@
     "ontology_node_type": "domain",
     "phase": "archive",
     "record": "T0489-0902-wizard-domain-map",
-    "scenario_type": "development",
     "steps": [
       {
         "name": "wizard节点",
@@ -61,7 +60,8 @@
       "outcome": "projected",
       "reason": "ontology:domain/skill-wizard 已沉淀，ontology:concept/domain-modeling 已深化 CONTEXT-MAP 路由，来源 T0489-0902-wizard-domain-map",
       "at": "2026-09-01T09:42:00+08:00"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "parent": null,
   "slug": "0902-wizard-domain-map",

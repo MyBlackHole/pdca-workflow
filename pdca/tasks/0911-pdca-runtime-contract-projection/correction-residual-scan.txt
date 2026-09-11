@@ -1,0 +1,9 @@
+T2181 correction cycle 1 active-control residual scan
+
+Scope: config schemas scripts tests pdca/*.json pdca_runtime ontology/process/flow-do.md
+Pattern: scenario_type|execute-in-main-session|ai-friendliness-route-contract|ai-execution-contract|resolve-ai-friendliness-route|resolve-ai-execution-contract|requires_fix_confirmation|路径 [A-F]|route_id
+Result: zero matches (rg exit 1).
+
+Manifest/report cache scan scope: projection-manifest.json, context-manifest.json,
+validation-report.md, agent-result.md
+Result: zero generated interpreter cache path matches (rg exit 1).

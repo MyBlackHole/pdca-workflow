@@ -19,7 +19,6 @@
     "ontology_node_type": "concept",
     "phase": "archive",
     "record": "T2070-0907-ontology-knowledge-fidelity",
-    "scenario_type": "development",
     "steps": [
       {
         "name": "适用场景定义",
@@ -68,7 +67,8 @@
       "reason": "6个脚本全部可执行，知识类本体空洞问题已可检测和量化",
       "verdict_id": "vt2070-confirmed",
       "at": "2026-09-07T12:30:00+08:00"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "parent": null,
   "slug": "0907-ontology-knowledge-fidelity",

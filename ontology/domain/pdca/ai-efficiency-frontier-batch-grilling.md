@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ai-efficiency-frontier-batch-grilling/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/ai-efficiency-frontier-batch-grilling/1.0.1
 summary: Grilling Frontier 批量问法
 domain:
 - ontology:domain/ai-efficiency
@@ -29,7 +29,12 @@ schema: pdca.asset/v1
 id: knowledge.ai-efficiency.frontier-batch-grilling
 summary: grilling 采用 frontier 批量问法——每轮同时提出当前可答的全部决策问题并附推荐答案，用轮数对比证明效率收益
 tags: [ai-efficiency, grilling, interaction, pdca, productivity]
-scenarios: [plan, check]
+ontology_roles: [ontology_modeling, ontology_projection, ontology_conformance_verification]
+execution_contract:
+  work_product: 已收敛的决策ledger
+  required_actions: [按frontier批量追问, 记录推荐答案与未决项]
+  constraints: [强依赖问题按依赖批次串行]
+  testable_signal: 轮数等于决策依赖图的frontier批次数且所有决定有用户来源
 phases: [plan, check]
 source_ids: [T0230-0809-ai-efficiency-proof]
 ---
@@ -116,4 +121,3 @@ Source: `ontology/domain/ai-efficiency-frontier-batch-grilling.md:1` + `scripts/
 - **属性门禁**：`testable_signal` 含 `grep -q`/`python3 scripts` 动词，非泛化
 - **溯源门禁**：含 `Source:` 行号
 - **本体校验**：`python3 scripts/ontology-validate.py` 0 issues
-

@@ -1,0 +1,15 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T2148",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "GRILLING_MISSING",
+      "path": "clarifications.jsonl",
+      "message": "plan requires at least one grilling round with captured:true or explicit confirm-or-correct binding (Never zero-touch)",
+      "guidance": "run skill-grilling at least one round, or include grilling summary in final_confirmation; self-written final_confirmation without ledger is blocked"
+    }
+  ],
+  "at": "2026-09-10T09:57:17.492761+08:00"
+}

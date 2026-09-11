@@ -1,0 +1,1 @@
+{"items":[{"criteria":["AC-1","AC-2"],"evidence_ids":["t2169-gap-report","t2169-flow-ontology-v2"],"index":1,"text":"流程本体剩余问题清单完成"},{"criteria":["AC-2","AC-3"],"evidence_ids":["t2169-gap-report"],"index":2,"text":"问题按严重性排序"},{"criteria":["AC-3","AC-4"],"evidence_ids":["t2169-gap-report","t2169-flow-ontology-v2"],"index":3,"text":"后续本体优化边界明确"}],"schema":"pdca.convergence/v1"}

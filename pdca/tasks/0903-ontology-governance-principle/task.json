@@ -17,7 +17,6 @@
     "ontology_node_type": "principle",
     "phase": "archive",
     "record": "T0497-0903-ontology-governance-principle",
-    "scenario_type": "development",
     "steps": [
       {
         "name": "准则沉淀",
@@ -56,7 +55,8 @@
       "outcome": "projected",
       "reason": "ontology:principle/ontology-governs-ontology 已沉淀（本体治理本体+PDCA基于PDCA本体+调研基于调研方法论+表达受元本体约束+科学控AI），来源 T0497-0903-ontology-governance-principle",
       "at": "2026-09-01T10:34:05+08:00"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "parent": null,
   "slug": "0903-ontology-governance-principle",

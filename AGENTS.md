@@ -15,7 +15,7 @@
 
 1. Plan 阶段完成 triage、逐轮 Grill、方向确认、PRD 和任务拆解。
 2. 只有当前任务 `clarifications.jsonl` 存在用户确认的 `source: "final_confirmation"`，才能进入 Do。
-3. Do 阶段按 `meta.scenario_type` 执行，并通过 `register-evidence` 登记证据后才能进入 Check。
+3. Do 阶段按 `meta.ontology_role` 的专业职责与 `meta.execution_contract` 的产物、动作、约束和可验证信号执行，并通过 `register-evidence` 登记证据后才能进入 Check。
 4. Check 阶段必须对照 PRD、证据和收敛条件写入 `records/<record-id>/conclusion.md`，并取得结论确认后才能进入 Act。
 5. Act 阶段必须完成知识处置、journal 和 `meta.disposition`，通过门禁后才能归档。
 

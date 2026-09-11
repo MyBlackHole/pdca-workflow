@@ -3,15 +3,15 @@ schema: pdca.asset/v1
 id: ontology:domain/skill-web-research
 name: web-research
 summary: Conduct web research on domain topics and best practices.
-description: 网络资料调研辅助技能。当实验阶段的场景为网络调研时，提供问题拆解、搜索策略、信息整理和结论输出的结构化指导。
+description: 网络资料调研辅助技能。当 execution_contract.required_actions 选择 web-research 时，提供问题拆解、搜索策略、信息整理和结论输出的结构化指导。
 invocation: manual
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-10
-owl_versionIRI: http://pdca.local/ontology/skill-web-research/1.0.1
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/skill-web-research/1.0.2
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -25,7 +25,7 @@ relations:
 
 ---
 name: web-research
-description: 网络资料调研辅助技能。当实验阶段的场景为网络调研时，提供问题拆解、搜索策略、信息整理和结论输出的结构化指导。
+description: 网络资料调研辅助技能。当 execution_contract.required_actions 选择 web-research 时，提供问题拆解、搜索策略、信息整理和结论输出的结构化指导。
 ---
 
 # Web Research（网络资料调研）
@@ -55,4 +55,4 @@ description: 网络资料调研辅助技能。当实验阶段的场景为网络�
 
 ## 已知坑
 
-- 仅实验阶段场景为网络调研时加载；记录每条结论的来源链接，勿凭记忆引用。
+- 仅当 `execution_contract.required_actions` 选择 `web-research` 时加载；记录每条结论的来源链接，勿凭记忆引用。

@@ -95,7 +95,7 @@ def test_existing_ontology_still_passes():
 
 # ── G13 check-design-vocab ──
 
-def _run_design_check(text: str, doc_type: str = "design") -> subprocess.CompletedProcess:
+def _run_design_check(text: str, doc_type: str = "ontology_conformance_verification") -> subprocess.CompletedProcess:
     return subprocess.run(
         [sys.executable, str(CHECK_DESIGN), "--doc-type", doc_type],
         input=text,

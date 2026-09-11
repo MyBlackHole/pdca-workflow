@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/workflow-code-review-dual-axis/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/workflow-code-review-dual-axis/1.0.1
 summary: 双轴代码审查模式
 domain:
 - ontology:domain/workflow
@@ -30,7 +30,12 @@ id: knowledge:workflow.code-review-dual-axis
 layer: knowledge
 summary: 将代码审查拆分为标准轴和规范轴并行运行，防止单一维度掩盖问题
 tags: [code-review, quality]
-scenarios: [code-review, software-development]
+ontology_roles: [ontology_conformance_verification]
+execution_contract:
+  work_product: 双轴代码审查报告
+  required_actions: [code-review]
+  constraints: [标准轴与规范轴独立, finding必须绑定证据]
+  testable_signal: 报告同时覆盖标准轴与规范轴并登记review证据
 phases: [do, check]
 applies_when: [进行正式代码审查]
 excludes_when: []

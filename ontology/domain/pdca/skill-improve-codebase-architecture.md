@@ -49,7 +49,7 @@ python3 "$PDCA_HOME/scripts/arch_review.py" --root "$PDCA_HOME" --out "$PDCA_HOM
 
 在原四维分析基础上，用热点路径优先：
 
-1. **Flow coverage** — `scenario_type` 值是否缺对应 flow 路径？对照 `ontology/process/flow-do.md`。
+1. **Flow coverage** — `ontology_role` 是否有对应职责、`execution_contract` 是否完整？对照 `ontology/process/flow-do.md`。
 2. **Skill consistency** — `ontology/process/flow-*/flow-*.md` 引用的 `skills/<name>/SKILL.md` 是否存在？报告孤儿与未引用。
 3. **Knowledge–process mapping** — `ontology/domain/` 的原则在 `ontology/process/`/`skills/` 有无对应实现？
 4. **File smells** — 超过 200 行的文件、重复步骤模式、混合职责。

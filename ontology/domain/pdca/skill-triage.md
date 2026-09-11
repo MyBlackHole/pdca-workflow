@@ -13,8 +13,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-10
-owl_versionIRI: http://pdca.local/ontology/skill-triage/1.0.1
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/skill-triage/1.0.2
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -32,14 +32,14 @@ relations:
 
 ## 流程
 
-1. 分类 issue 为 bug 或 enhancement（含 `research`：纯结论/报告，无可测试代码产出）
+1. 记录 issue 是 bug 或 enhancement，并选择 `ontology_modeling`、`ontology_projection`、`ontology_conformance_verification` 之一；bug/enhancement 不参与职责或路径映射
 2. 检查重复
 3. 验证 claim（事实性 claim 用代码/文档验证而非询问用户）
 4. **Grill 门禁（强制分支）**：按 `skill-grilling` 先 Gather signal → Build ledger（resolved/open）→ Branch：
-   - `research` 或输入仅含路径/单句（thin）→ **强制 `grill full`**（至少一轮 frontier，含推荐答案）
+   - `execution_contract.required_actions` 要求基于来源的调研，或输入仅含路径/单句（thin）→ **强制 `grill full`**（至少一轮 frontier，含推荐答案）
    - 其他 `mostly resolved` → 至少 **一次 `confirm-or-correct` 总结**（`Never zero-touch`：即使全 resolved 也必须一次显式确认，见 `ontology:concept/grilling-methodology`）
    - 仅当 ledger 显示全 resolved 且已获 `captured:true` 确认后，方可进入 5
-5. 输出 agent-ready task.json + prd.md + brief（`final_confirmation` 必须绑定 `grilling` 轮次或 `confirm-or-correct` 摘要，纯自写无 ledger 视为门禁阻断）
+5. 输出 agent-ready task.json + prd.md + brief；task 必须含一个专业职责及 `work_product`、`required_actions`、`constraints`、`testable_signal` 四字段契约（`final_confirmation` 必须绑定 `grilling` 轮次或 `confirm-or-correct` 摘要，纯自写无 ledger 视为门禁阻断）
 
 ## External PR 处理
 
@@ -63,5 +63,5 @@ model-invoked 模式下，AI 可自动辅助 triage 流程：
 - 查重须搜活跃+归档 task 与 knowledge，事实性 claim 用代码/文档验证而非询问用户。
 - PR 处理需 `triage` skill 已安装；外部 PR 默认关闭，需在 setup 中启用。
 - HITL ticket 必须通过 live exchange 解决，不可由 agent 自主回答。
-- **Grill 硬门禁**：`research/thin` 输入跳过 grill 或自写 `final_confirmation` 属 `timeline-integrity-gate` 违规；`Never zero-touch` 未满足时 `transition-phase` 应拒 `plan→do`。
+- **Grill 硬门禁**：契约要求基于来源的调研或 thin 输入时，跳过 grill 或自写 `final_confirmation` 属 `timeline-integrity-gate` 违规；`Never zero-touch` 未满足时 `transition-phase` 应拒 `plan→do`。
 - **Provenance 双态**：`clarifications.jsonl` 的 `captured:true` 仅用户原文，AI 代填一律 `false`（`skill-grilling:7`）；自问自答标 true 即 HITL 违规。

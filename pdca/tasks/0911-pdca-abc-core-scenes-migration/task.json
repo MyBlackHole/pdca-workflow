@@ -1,0 +1,32 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T2165",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "权威本体与流程统一",
+      "schema与脚本统一",
+      "回归验证通过"
+    ],
+    "created_at": "2026-09-11T10:56:21+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "pattern",
+    "phase": "do",
+    "ontology_role": "ontology_projection",
+    "record": "T2165-0911-pdca-abc-core-scenes-migration"
+  },
+  "parent": "T2164",
+  "slug": "0911-pdca-abc-core-scenes-migration",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-09-11T10:56:21+08:00",
+    "do": "2026-09-11T10:57:40+08:00",
+    "plan": "2026-09-11T10:56:21+08:00"
+  },
+  "status": "InProgress",
+  "title": "实施A/B/C核心场景与skill路由迁移 ontology:pattern/pdca-core-scene-layering"
+}

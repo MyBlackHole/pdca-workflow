@@ -23,13 +23,13 @@
     "ontology_fragment": "ontology",
     "phase": "archive",
     "record": "T2076-0909-storage-guomi-supplement",
-    "scenario_type": "documentation",
     "verdict": {
       "at": "2026-09-09T11:01:52+08:00",
       "outcome": "confirmed",
       "reason": "conclusion.md six ACs mapped to guomi-doc-v5; spec-review 1.1.0 re-review 23 green, P0 zero",
       "verdict_id": "V-T2076-01"
-    }
+    },
+    "ontology_role": "ontology_modeling"
   },
   "parent": null,
   "slug": "0909-storage-guomi-supplement",

@@ -15,7 +15,7 @@
     {
       "file": "ontology/process/flow-do.md",
       "bytes": 4771,
-      "reason": "T0542 bugfix 增加 fix-approval 标记（确认修复方案），对应 ai-execution-contract bugfix 新增 fix-approval phase"
+      "reason": "T0542 增加人工修复确认标记并保留内容预算基线"
     },
     {
       "file": "ontology/process/flow-plan.md",

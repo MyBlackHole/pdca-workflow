@@ -7,11 +7,11 @@ summary: PDCA 是持续改进循环（act 后回到 plan），本工作流单任
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/pdca-continuous-improvement/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/pdca-continuous-improvement/1.0.1
 relations:
   specializes:
-  - ontology:concept/pdca
+  - ontology:concept/entity
   relates_to:
   - ontology:entity/phase-act
   - ontology:entity/phase-plan

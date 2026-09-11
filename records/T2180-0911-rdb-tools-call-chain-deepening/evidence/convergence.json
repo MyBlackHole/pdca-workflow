@@ -1,0 +1,23 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "23个工具的实际调用链达到rdb-feature-design同类颗粒度",
+      "criteria": ["AC-1", "AC-3", "AC-5", "AC-6"],
+      "evidence_ids": ["t2180-call-chain-index-v1", "t2180-fs-call-chains-v1", "t2180-rpc-rdbcomm-call-chains-v1", "t2180-libs-call-chains-v1", "t2180-s3-xbsa-call-chains-v1", "t2180-build-runtime-routing-v1", "t2180-validation-report-v1"]
+    },
+    {
+      "index": 2,
+      "text": "调用链覆盖入口分发核心下游和返回而非单行摘要",
+      "criteria": ["AC-2", "AC-3", "AC-7"],
+      "evidence_ids": ["t2180-skill-contract-v1", "t2180-fs-call-chains-v1", "t2180-rpc-rdbcomm-call-chains-v1", "t2180-libs-call-chains-v1", "t2180-s3-xbsa-call-chains-v1", "t2180-validation-report-v1"]
+    },
+    {
+      "index": 3,
+      "text": "跨进程协议交接的发送端与接收端均可定位",
+      "criteria": ["AC-3", "AC-4", "AC-8"],
+      "evidence_ids": ["t2180-fs-call-chains-v1", "t2180-rpc-rdbcomm-call-chains-v1", "t2180-s3-xbsa-call-chains-v1", "t2180-validation-report-v1"]
+    }
+  ]
+}

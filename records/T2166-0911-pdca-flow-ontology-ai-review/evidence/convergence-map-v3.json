@@ -1,0 +1,1 @@
+{"items":[{"criteria":["AC-1"],"evidence_ids":["t2166-design","t2166-flow-ontology-v2"],"index":1,"text":"PDCA流程本体模型完成"},{"criteria":["AC-2","AC-3"],"evidence_ids":["t2166-review"],"index":2,"text":"AI工作流一致性审查完成"},{"criteria":["AC-4"],"evidence_ids":["t2166-design","t2166-review","t2166-flow-ontology-v2"],"index":3,"text":"模型缺口与改进任务边界明确"}],"schema":"pdca.convergence/v1"}

@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ai-efficiency-lever-audit-limits/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/ai-efficiency-lever-audit-limits/1.0.1
 summary: 杠杆体检的局限：机器粗筛 + 人工定性
 domain:
 - ontology:domain/ai-efficiency
@@ -29,7 +29,12 @@ schema: pdca.asset/v1
 id: knowledge.ai-efficiency.lever-audit-limits
 summary: 写作杠杆体检的局限实证——no-op/sediment 判定是 model-relative 的，机器启发式粗筛 5 条全误报，真实冗余需人工语境审读；源自 T0379 对 45 资产的体检
 tags: [ai-efficiency, audit, writing-levers, limits]
-scenarios: [documentation, review]
+ontology_roles: [ontology_modeling, ontology_conformance_verification]
+execution_contract:
+  work_product: 写作杠杆审计结论
+  required_actions: [机器粗筛, 人工语境定性]
+  constraints: [不得自动删除启发式命中]
+  testable_signal: 每条候选均记录人工真伪裁决与理由
 phases: [do, check]
 source_ids: [T0379-0823-skills-round3-uplift]
 ---
@@ -96,4 +101,3 @@ Source: `ontology/domain/ai-efficiency-lever-audit-limits.md:1` + `scripts/ontol
 - **属性门禁**：`testable_signal` 含 `grep -q`/`python3 scripts` 动词，非泛化
 - **溯源门禁**：含 `Source:` 行号
 - **本体校验**：`python3 scripts/ontology-validate.py` 0 issues
-

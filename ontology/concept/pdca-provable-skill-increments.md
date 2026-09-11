@@ -31,7 +31,7 @@ relations:
 
 ## 机制谱系（要点）
 
-1. **AGENT-BRIEF 结构化模板**（triage-work）：字段含 category/scenario_type/summary/current-desired behavior/key interfaces/AC 等；AC 可测、durability over precision（写概念级接口不写 `:line`/具体路径）；质量约束接入自动门禁。
+1. **AGENT-BRIEF 结构化模板**（triage-work）：字段含 category/ontology_role/execution_contract/summary/current-desired behavior/key interfaces/AC 等；AC 可测、durability over precision（写概念级接口不写 `:line`/具体路径）；质量约束接入自动门禁。
 2. **Wide-Refactor 保绿序列化**（to-tickets）：expand→分批迁移→contract→(integrate-and-verify)，每批 `blocked by` 上一批，逐批保持 CI 绿。
 3. **Ticket Claim 并发防冲突**（wayfinding-work）：`check-ticket-claims.py` 状态机，仅 `open+unblocked+unclaimed` 票可选，重复 claim→`ALREADY_CLAIMED`、非认领者 resolve→`NOT_CLAIMANT`。
 4. **out-of-scope 概念聚合知识库**：`ontology/domain/out-of-scope-<concept>.md` 一个概念一个文件，同概念追加 `## Prior requests`，`--implemented` 拒绝污染。

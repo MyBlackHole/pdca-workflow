@@ -1,0 +1,285 @@
+....................F.FF...................F................F....FF....F........F....FFF..........FFF...................EFF.......................................FF...........F....F................F...F..........................................F.....................
+======================================================================
+ERROR: test_transition_is_adjacent_and_idempotent (test_operations.OperationsTest.test_transition_is_adjacent_and_idempotent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_operations.py", line 210, in test_transition_is_adjacent_and_idempotent
+    first = subprocess.run(command, check=True, capture_output=True, text=True)
+  File "/usr/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['python3', '/home/black/Documents/pdca-workflow-pro/scripts/transition-phase.py', '/tmp/tmpdamttozz/pdca/tasks/0728-transition-test', '--to', 'do', '--root', '/tmp/tmpdamttozz']' returned non-zero exit status 1.
+
+======================================================================
+FAIL: test_cli_reports_json_and_exit_status (test_convergence.ConvergenceContractTest.test_cli_reports_json_and_exit_status)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_convergence.py", line 277, in test_cli_reports_json_and_exit_status
+    self.assertEqual(0, valid.returncode)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_do_to_check_gate_uses_convergence_validation (test_convergence.ConvergenceContractTest.test_do_to_check_gate_uses_convergence_validation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_convergence.py", line 240, in test_do_to_check_gate_uses_convergence_validation
+    self.assertEqual("do", phase)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+AssertionError: 'do' != None
+
+======================================================================
+FAIL: test_do_to_check_transition_fails_closed (test_convergence.ConvergenceContractTest.test_do_to_check_transition_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_convergence.py", line 261, in test_do_to_check_transition_fails_closed
+    self.assertIn(
+    ~~~~~~~~~~~~~^
+        "CONVERGENCE_ITEM_MISSING",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        {item["code"] for item in json.loads(completed.stdout)["issues"]},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+AssertionError: 'CONVERGENCE_ITEM_MISSING' not found in {'ONTOLOGY_EXEMPT_REASON_MISSING'}
+
+======================================================================
+FAIL: test_hitl_template_file_exists (test_diagnosing_bugs_enhance.DiagnosingBugsHitlContractTest.test_hitl_template_file_exists)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_diagnosing_bugs_enhance.py", line 62, in test_hitl_template_file_exists
+    self.assertTrue(TEMPLATE.is_file())
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_cli_audits_all_transitions_and_preserves_failed_attempts (test_flow_audit.FlowAuditTest.test_cli_audits_all_transitions_and_preserves_failed_attempts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_flow_audit.py", line 225, in test_cli_audits_all_transitions_and_preserves_failed_attempts
+    self.assertEqual(0, plan_result.returncode, plan_result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1 : 
+
+======================================================================
+FAIL: test_rejected_receipt_written_on_non_adjacent_transition (test_gate_compliance.GateRejectionLeakTest.test_rejected_receipt_written_on_non_adjacent_transition)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_gate_compliance.py", line 120, in test_rejected_receipt_written_on_non_adjacent_transition
+    self.assertIn("NON_ADJACENT_TRANSITION", result.stdout)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'NON_ADJACENT_TRANSITION' not found in '{"status": "rejected", "error": "ILLEGAL_TRANSITION", "from": "plan", "to": "check"}\n'
+
+======================================================================
+FAIL: test_success_path_still_writes_success_receipt (test_gate_compliance.GateRejectionLeakTest.test_success_path_still_writes_success_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_gate_compliance.py", line 132, in test_success_path_still_writes_success_receipt
+    self.assertEqual(0, result.returncode, result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1 : 
+
+======================================================================
+FAIL: test_ac1_flow_act_cites_three_questions (test_grilling_efficiency.Ac1BatchVerificationTest.test_ac1_flow_act_cites_three_questions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_grilling_efficiency.py", line 183, in test_ac1_flow_act_cites_three_questions
+    self.assertIn(q, text)
+    ~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: '这个结论的适用范围和限制是什么？' not found in '---\nschema: pdca.asset/v1\nid: ontology:process/flow-act\ntype: process\nlayer: Knowledge\nstatus: active\ndcterms_license: CC-BY-4.0\ndcterms_created: 2026-09-04\ndcterms_modified: 2026-09-11\nowl_versionIRI: http://pdca.local/ontology/flow-act/1.0.1\nsummary: Act 阶段流程实体：知识投影、自我优化闭环、ID 不变量、时间线一致性与运行时协调\nrelations:\n  specializes:\n  - ontology:concept/process\n  part_of:\n  - ontology:concept/pdca\n  relates_to:\n  - ontology:concept/pdca-phase\n  - ontology:entity/phase-act\n  - ontology:concept/pdca-continuous-improvement\n  - ontology:concept/knowledge-provenance\n  - ontology:concept/self-optimization-loop\n  - ontology:concept/task-record-identity\n  - ontology:concept/timeline-integrity-gate\n  - ontology:concept/pdca-provable-skill-increments\n  testable_signal: "引用存活：test $(grep -rl \'ontology:process/flow-act\' ontology/ tests/ scripts/ | wc -l) -ge 4"\n---\n\n# PDCA Act 流程（flow-act）\n\nAct 阶段处置知识、完成自我优化闭环，是 PDCA 周期中"学习并固化"的环节，之后进入 archive。\n\n## 阶段步骤（权威描述）\n\n1. **知识处置（本体强制产生，T0513 起）**：每个任务在 Act 必须新建或更新至少一个本体节点（`ontology/<type>/<slug>.md`），记来源 record/摘要/理由/连续 revision；相同内容与理由重试须幂等。知识处置对三个 `ontology_role` 使用同一规则；需要调研、设计或审查工具时，只能由 `execution_contract.required_actions` 选择，并按对应工具要求保留来源。`conclusion.md##本体沉淀` 声明 `ontology:`，`meta.disposition` 含 `ontology:` 关键词，不接受 `records-only`。仅自举任务（`meta.ontology_exempt=true`，如创建 PDCA 元本体本身）可豁免。实现“无任务不知识、有任务必本体”。\n2. **disposition 与 journal**：写入 `meta.disposition`（**全任务强制**含 `ontology:` 决策词，仅自举任务豁免；缺失或含 `records-only` 时 `archive` 门禁拒收，见 `ontology_gate.disposition_ontology_issues`），更新 journal。\n3. **门禁**：通过 `pdca-gate`、archive 本体自检（ontology-validate + 孤岛检查）与 `check-research-ontology-settlement`（已扩展为全任务 `check-ontology-settlement`）后，经 `transition-phase.py` 进入 archive。\n\n## 关键决策（已迁移自外部知识）\n\n- **知识来源封存**（详 `ontology:concept/knowledge-provenance`）：`records/<id>/evidence/` 存内容寻址原始事实，`experience.md` 存情境化经验，进入 Act 前同时封存两者摘要；`ontology/domain/` 是跨任务演进知识而非实验副本；默认检索优先 ontology/domain/skill，需解释经 manifest 来源边回 experience，需核验只展开 Evidence 摘要。\n- **自我优化闭环**（详 `ontology:concept/self-optimization-loop` 与 `ontology:concept/pdca-provable-skill-increments`）：完整闭环为 记录→分析→决策→受控实施→效果验证；改进候选仍走正常 Plan/Grill/final confirmation，不得由审计器直接改权威流程；效果是后续周期判定而非候选自证；可证明优先——每个机制配硬指标与测试断言。\n- **ID 不变量与撞车重分配**（详 `ontology:concept/task-record-identity`）：`task.id` 分配须处仓库级临界区；创建入口统一（triage/to-tickets/Act follow-up 复用 `task_identity.py create`）；record identity 创建时生成且不可变；occurrence 目录 identity 须等于 payload `record_id`；历史归并仅由 immutable relocation/alias receipt 表达。撞车重分配按"被引用为主干/格式规范/创建早"判定主流方，引用归属按 slug 特征词区分任务树，先引用扫描后重命名，flow-events 内 `record_id`/`task_id` 同步。\n- **时间线一致性**（详 `ontology:concept/timeline-integrity-gate`）：`final_confirmation.at` 取自执行时刻不可编造；`states` 须单调 `created≤plan≤do≤check≤act≤archive`；阶段推进仅经 `transition-phase.py`，其 `receipt.at` 须等于 `states.<target>`；先干后补确认属违规；plan 时间戳由转换自动补写（`clarifications.jsonl` 的 confirmation.at 优先）。\n- **运行时协调**（详 `ontology:concept/runtime-transition-coordinator`）：自动阶段推进须是基于 Evidence 快照的单阶段 CAS，非观察事件后递归调用；协调锁同时覆盖事实写入者与状态写入者；重试成功须绑定 ontology role、execution contract 与 Evidence 快照 digest 的 transition receipt；Check→Act 不能仅凭 Validator pass 自动宣称"已学习"。\n\n## 来源\n\n- `（原知识层）record-knowledge-provenance.md`\n- `（原知识层）self-optimization-loop.md`\n- `（原知识层）task-record-identity-invariants.md`\n- `（原知识层）id-collision-remediation.md`\n- `（原知识层）timeline-integrity-gates.md`\n- `（原知识层）runtime-transition-coordinator.md`\n- `（原知识层）provable-skill-increments.md`\n'
+
+======================================================================
+FAIL: test_flow_check_reference_synced (test_grilling_efficiency.GrillingDocumentContractTest.test_flow_check_reference_synced)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_grilling_efficiency.py", line 113, in test_flow_check_reference_synced
+    self.assertIn("grilling", text)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 'grilling' not found in '---\nschema: pdca.asset/v1\nid: ontology:process/flow-check\ntype: process\nlayer: Knowledge\nstatus: active\ndcterms_license: CC-BY-4.0\ndcterms_created: 2026-09-04\ndcterms_modified: 2026-09-04\nowl_versionIRI: http://pdca.local/ontology/flow-check/1.0.0\nsummary: Check 阶段流程实体：对照 PRD/证据/收敛条件、verify-convergence 门禁、证据与结论锚定\nrelations:\n  specializes:\n  - ontology:concept/process\n  part_of:\n  - ontology:concept/pdca\n  relates_to:\n  - ontology:concept/pdca-phase\n  - ontology:entity/phase-check\n  - ontology:concept/pdca-evidence\n  - ontology:concept/pdca-verdict\n  - ontology:concept/pdca-acceptance-criterion\n  - ontology:concept/pdca-architecture-review-metrics\n  testable_signal: "引用存活：test $(grep -rl \'ontology:process/flow-check\' ontology/ tests/ scripts/ | wc -l) -ge 2"\n---\n\n# PDCA Check 流程（flow-check）\n\nCheck 阶段对照 PRD、证据与收敛条件，判定任务是否达成，是 PDCA 中"判定"环节。\n\n## 阶段步骤（权威描述）\n\n1. **对照验证**：依据 `prd.md` 的验收标准、登记的证据与 `convergence.json` 收敛条件逐项核验。\n2. **verify-convergence 门禁**：阶段 Decision 必须引用证据；结论须映射 `pdca-verdict` 三态节点（confirmed/rejected/partial）。\n3. **证据锚定**：`register-evidence --kind` 须命中 `pdca-evidence` 子类型允许表，写 `evidence_type_ref`。\n4. **结论确认**：用户 `check_confirmation` 确认 verdict 后，方经门禁进入 Act。\n\n## 关键决策（已迁移自外部知识）\n\n- **架构审查可证明指标**（详 `ontology:concept/pdca-architecture-review-metrics`）：`arch_review.py::hotspots` 按近 N 天 git 变更频次定位热点；`render_html` 生成自包含 HTML（每候选一张卡片 + `#metrics` 带 `data-metrics` JSON）；审查结果经 `register-evidence --kind arch-report` 登记成跨轮次可比证据；测试断言结构契约而非 CDN 渲染细节。\n- **自我优化审计教训**（详 `ontology:concept/self-optimization-loop` 与 `（原知识层）real-usage-effectiveness-audit.md`）：审计须先建独立真实参照集再检查捕获，不能用 occurrence 自证；发现能力分四轴（覆盖/信噪/可行动性/转化及时性）；三层证据（实现正确性/运行数据可用性/效果闭环）不可互相替代；AI 效率证据仅记录一次成功/返工、交互轮次、门禁失败，结构化遥测缺失时写 `unknown` 不得冒充。\n\n## 来源\n\n- `（原知识层）architecture-review-metrics.md`\n- `（原知识层）real-usage-effectiveness-audit.md`\n'
+
+======================================================================
+FAIL: test_flow_act_uses_grilling_source (test_grilling_efficiency.SourceConsistencyContractTest.test_flow_act_uses_grilling_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_grilling_efficiency.py", line 131, in test_flow_act_uses_grilling_source
+    self.assertIn('source: "grilling"', text)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'source: "grilling"' not found in '---\nschema: pdca.asset/v1\nid: ontology:process/flow-act\ntype: process\nlayer: Knowledge\nstatus: active\ndcterms_license: CC-BY-4.0\ndcterms_created: 2026-09-04\ndcterms_modified: 2026-09-11\nowl_versionIRI: http://pdca.local/ontology/flow-act/1.0.1\nsummary: Act 阶段流程实体：知识投影、自我优化闭环、ID 不变量、时间线一致性与运行时协调\nrelations:\n  specializes:\n  - ontology:concept/process\n  part_of:\n  - ontology:concept/pdca\n  relates_to:\n  - ontology:concept/pdca-phase\n  - ontology:entity/phase-act\n  - ontology:concept/pdca-continuous-improvement\n  - ontology:concept/knowledge-provenance\n  - ontology:concept/self-optimization-loop\n  - ontology:concept/task-record-identity\n  - ontology:concept/timeline-integrity-gate\n  - ontology:concept/pdca-provable-skill-increments\n  testable_signal: "引用存活：test $(grep -rl \'ontology:process/flow-act\' ontology/ tests/ scripts/ | wc -l) -ge 4"\n---\n\n# PDCA Act 流程（flow-act）\n\nAct 阶段处置知识、完成自我优化闭环，是 PDCA 周期中"学习并固化"的环节，之后进入 archive。\n\n## 阶段步骤（权威描述）\n\n1. **知识处置（本体强制产生，T0513 起）**：每个任务在 Act 必须新建或更新至少一个本体节点（`ontology/<type>/<slug>.md`），记来源 record/摘要/理由/连续 revision；相同内容与理由重试须幂等。知识处置对三个 `ontology_role` 使用同一规则；需要调研、设计或审查工具时，只能由 `execution_contract.required_actions` 选择，并按对应工具要求保留来源。`conclusion.md##本体沉淀` 声明 `ontology:`，`meta.disposition` 含 `ontology:` 关键词，不接受 `records-only`。仅自举任务（`meta.ontology_exempt=true`，如创建 PDCA 元本体本身）可豁免。实现“无任务不知识、有任务必本体”。\n2. **disposition 与 journal**：写入 `meta.disposition`（**全任务强制**含 `ontology:` 决策词，仅自举任务豁免；缺失或含 `records-only` 时 `archive` 门禁拒收，见 `ontology_gate.disposition_ontology_issues`），更新 journal。\n3. **门禁**：通过 `pdca-gate`、archive 本体自检（ontology-validate + 孤岛检查）与 `check-research-ontology-settlement`（已扩展为全任务 `check-ontology-settlement`）后，经 `transition-phase.py` 进入 archive。\n\n## 关键决策（已迁移自外部知识）\n\n- **知识来源封存**（详 `ontology:concept/knowledge-provenance`）：`records/<id>/evidence/` 存内容寻址原始事实，`experience.md` 存情境化经验，进入 Act 前同时封存两者摘要；`ontology/domain/` 是跨任务演进知识而非实验副本；默认检索优先 ontology/domain/skill，需解释经 manifest 来源边回 experience，需核验只展开 Evidence 摘要。\n- **自我优化闭环**（详 `ontology:concept/self-optimization-loop` 与 `ontology:concept/pdca-provable-skill-increments`）：完整闭环为 记录→分析→决策→受控实施→效果验证；改进候选仍走正常 Plan/Grill/final confirmation，不得由审计器直接改权威流程；效果是后续周期判定而非候选自证；可证明优先——每个机制配硬指标与测试断言。\n- **ID 不变量与撞车重分配**（详 `ontology:concept/task-record-identity`）：`task.id` 分配须处仓库级临界区；创建入口统一（triage/to-tickets/Act follow-up 复用 `task_identity.py create`）；record identity 创建时生成且不可变；occurrence 目录 identity 须等于 payload `record_id`；历史归并仅由 immutable relocation/alias receipt 表达。撞车重分配按"被引用为主干/格式规范/创建早"判定主流方，引用归属按 slug 特征词区分任务树，先引用扫描后重命名，flow-events 内 `record_id`/`task_id` 同步。\n- **时间线一致性**（详 `ontology:concept/timeline-integrity-gate`）：`final_confirmation.at` 取自执行时刻不可编造；`states` 须单调 `created≤plan≤do≤check≤act≤archive`；阶段推进仅经 `transition-phase.py`，其 `receipt.at` 须等于 `states.<target>`；先干后补确认属违规；plan 时间戳由转换自动补写（`clarifications.jsonl` 的 confirmation.at 优先）。\n- **运行时协调**（详 `ontology:concept/runtime-transition-coordinator`）：自动阶段推进须是基于 Evidence 快照的单阶段 CAS，非观察事件后递归调用；协调锁同时覆盖事实写入者与状态写入者；重试成功须绑定 ontology role、execution contract 与 Evidence 快照 digest 的 transition receipt；Check→Act 不能仅凭 Validator pass 自动宣称"已学习"。\n\n## 来源\n\n- `（原知识层）record-knowledge-provenance.md`\n- `（原知识层）self-optimization-loop.md`\n- `（原知识层）task-record-identity-invariants.md`\n- `（原知识层）id-collision-remediation.md`\n- `（原知识层）timeline-integrity-gates.md`\n- `（原知识层）runtime-transition-coordinator.md`\n- `（原知识层）provable-skill-increments.md`\n'
+
+======================================================================
+FAIL: test_flow_check_uses_grilling_source (test_grilling_efficiency.SourceConsistencyContractTest.test_flow_check_uses_grilling_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_grilling_efficiency.py", line 136, in test_flow_check_uses_grilling_source
+    self.assertIn('source: "grilling"', text)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'source: "grilling"' not found in '---\nschema: pdca.asset/v1\nid: ontology:process/flow-check\ntype: process\nlayer: Knowledge\nstatus: active\ndcterms_license: CC-BY-4.0\ndcterms_created: 2026-09-04\ndcterms_modified: 2026-09-04\nowl_versionIRI: http://pdca.local/ontology/flow-check/1.0.0\nsummary: Check 阶段流程实体：对照 PRD/证据/收敛条件、verify-convergence 门禁、证据与结论锚定\nrelations:\n  specializes:\n  - ontology:concept/process\n  part_of:\n  - ontology:concept/pdca\n  relates_to:\n  - ontology:concept/pdca-phase\n  - ontology:entity/phase-check\n  - ontology:concept/pdca-evidence\n  - ontology:concept/pdca-verdict\n  - ontology:concept/pdca-acceptance-criterion\n  - ontology:concept/pdca-architecture-review-metrics\n  testable_signal: "引用存活：test $(grep -rl \'ontology:process/flow-check\' ontology/ tests/ scripts/ | wc -l) -ge 2"\n---\n\n# PDCA Check 流程（flow-check）\n\nCheck 阶段对照 PRD、证据与收敛条件，判定任务是否达成，是 PDCA 中"判定"环节。\n\n## 阶段步骤（权威描述）\n\n1. **对照验证**：依据 `prd.md` 的验收标准、登记的证据与 `convergence.json` 收敛条件逐项核验。\n2. **verify-convergence 门禁**：阶段 Decision 必须引用证据；结论须映射 `pdca-verdict` 三态节点（confirmed/rejected/partial）。\n3. **证据锚定**：`register-evidence --kind` 须命中 `pdca-evidence` 子类型允许表，写 `evidence_type_ref`。\n4. **结论确认**：用户 `check_confirmation` 确认 verdict 后，方经门禁进入 Act。\n\n## 关键决策（已迁移自外部知识）\n\n- **架构审查可证明指标**（详 `ontology:concept/pdca-architecture-review-metrics`）：`arch_review.py::hotspots` 按近 N 天 git 变更频次定位热点；`render_html` 生成自包含 HTML（每候选一张卡片 + `#metrics` 带 `data-metrics` JSON）；审查结果经 `register-evidence --kind arch-report` 登记成跨轮次可比证据；测试断言结构契约而非 CDN 渲染细节。\n- **自我优化审计教训**（详 `ontology:concept/self-optimization-loop` 与 `（原知识层）real-usage-effectiveness-audit.md`）：审计须先建独立真实参照集再检查捕获，不能用 occurrence 自证；发现能力分四轴（覆盖/信噪/可行动性/转化及时性）；三层证据（实现正确性/运行数据可用性/效果闭环）不可互相替代；AI 效率证据仅记录一次成功/返工、交互轮次、门禁失败，结构化遥测缺失时写 `unknown` 不得冒充。\n\n## 来源\n\n- `（原知识层）architecture-review-metrics.md`\n- `（原知识层）real-usage-effectiveness-audit.md`\n'
+
+======================================================================
+FAIL: test_flow_plan_uses_grilling_source (test_grilling_efficiency.SourceConsistencyContractTest.test_flow_plan_uses_grilling_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_grilling_efficiency.py", line 141, in test_flow_plan_uses_grilling_source
+    self.assertIn('source: "grilling"', text)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'source: "grilling"' not found in '---\nschema: pdca.asset/v1\nid: ontology:process/flow-plan\ntype: process\nlayer: Knowledge\nstatus: active\ndcterms_license: CC-BY-4.0\ndcterms_created: 2026-09-04\ndcterms_modified: 2026-09-11\nowl_versionIRI: http://pdca.local/ontology/flow-plan/1.0.2\nsummary: Plan 阶段流程实体：triage→Grill→PRD→任务拆解→final_confirmation 门禁\nrelations:\n  specializes:\n  - ontology:concept/process\n  part_of:\n  - ontology:concept/pdca\n  relates_to:\n  - ontology:concept/pdca-phase\n  - ontology:entity/phase-plan\n  - ontology:concept/pdca-architecture\n  - ontology:concept/pdca-ai-friendly-confirmation\n  testable_signal: "引用存活：test $(grep -rl \'ontology:process/flow-plan\' ontology/ tests/ scripts/ | wc -l) -ge 5"\n---\n\n# PDCA Plan 流程（flow-plan）\n\nPlan 阶段是 PDCA 周期的第一个阶段，产出经用户 `final_confirmation` 确认的 PRD 与任务拆解。\n\n## 阶段步骤（权威描述）\n\n1. **triage**：识别 `ontology_role`，并产出结构化的本体产出契约。\n2. **Grill（追问对齐）**：逐轮向用户追问，收敛需求与边界。**硬门禁**：`execution_contract.required_actions` 要求基于来源的调研，或输入为 thin（仅路径/单句）时，强制至少一轮 `grilling`（frontier + 推荐答案）；其他 `mostly resolved` 至少一次 `confirm-or-correct` 总结（`Never zero-touch`）。`final_confirmation` 必须绑定 `grilling` 的 `captured:true` 轮次或确认摘要，纯自写无 ledger 视为门禁阻断（见 `ontology:domain/skill-triage`）。\n3. **方向确认**：与用户对齐方案，避免误解。\n4. **PRD 撰写**：含 `### 验收标准` 复选框（门禁硬要求）。\n5. **任务拆解（to-tickets）**：按 `meta.ontology_role` 和产出契约拆分为子任务或票。\n6. **final_confirmation 门禁**：用户明确确认立项后，方经 `transition-phase.py` 进入 Do（门禁校验 `captured:true` 来源，见 `scripts/pdca_core.py:gate_issues`）。\n\n## 关键决策（已迁移自外部知识）\n\n- **项目操作约定**：改 `task.json` 的 `meta.phase` 只动该字段，不连带手改 `states`（由 `transition-phase.py` 写）；根文档（README/AGENTS/SKILLS-INDEX）手动 `git add+commit`；任务 ID 单调递增（扫 `pdca/tasks/` 与 `archive/` 取最大值+1）；flow 步骤须对应实际 skill 调用。\n- **架构原则**（详 `ontology:concept/pdca-architecture`）：flow skill 是标准流程不可改，业务专有逻辑写 agent skill；资产分层 Evidence/Experience/Knowledge/Skill；阶段校验链 `phase → advance-phase → flow-<phase> 入口 → 步骤 → 手动推进`。\n- **通用 kernel 原则**：PDCA 作为稳定外循环；核心职责由 `task.json.meta.ontology_role` 提供，具体行为由 `execution_contract` 提供；Check 产物是 Evidence；阶段 Decision 必须引用证据；Artifact 类型保持开放。\n- **职责边界**：本体产出契约以 work product、required actions、constraints 和 testable signal 四字段声明全部具体行为。\n- **确认机制**（详 `ontology:concept/pdca-ai-friendly-confirmation`）：时间戳由 CLI 生成（`append-confirmation.py` 自动填真实 `at`）；失败须带 `guidance` 可执行；不可变记录只能由 CLI 变更（evidence 修正走 `--replace`）。\n\n## 来源\n\n- `（原知识层）architecture.md`\n- `（原知识层）cli-behavior.md`\n- `（原知识层）generic-ai-workflow-kernel.md`\n- `（原知识层）ai-friendly-confirmation.md`\n'
+
+======================================================================
+FAIL: test_default_doc_type_is_design (test_mechanism_fixes.DesignVocabScopedTest.test_default_doc_type_is_design)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_mechanism_fixes.py", line 54, in test_default_doc_type_is_design
+    self.assertEqual(result["doc_type"], "ontology_conformance_verification")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'design' != 'ontology_conformance_verification'
+- design
++ ontology_conformance_verification
+
+
+======================================================================
+FAIL: test_design_doc_type_accepts_vocab_terms (test_mechanism_fixes.DesignVocabScopedTest.test_design_doc_type_accepts_vocab_terms)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_mechanism_fixes.py", line 64, in test_design_doc_type_accepts_vocab_terms
+    result = run_vocab(DESIGN_TEXT, "ontology_conformance_verification")
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_mechanism_fixes.py", line 38, in run_vocab
+    assert proc.returncode == 0, proc.stderr
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: usage: check-design-vocab.py [-h] [--doc-type {design,other}]
+check-design-vocab.py: error: argument --doc-type: invalid choice: 'ontology_conformance_verification' (choose from 'design', 'other')
+
+
+======================================================================
+FAIL: test_design_doc_type_checks_forbidden_terms (test_mechanism_fixes.DesignVocabScopedTest.test_design_doc_type_checks_forbidden_terms)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_mechanism_fixes.py", line 57, in test_design_doc_type_checks_forbidden_terms
+    result = run_vocab(FORBIDDEN_TEXT, "ontology_conformance_verification")
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_mechanism_fixes.py", line 38, in run_vocab
+    assert proc.returncode == 0, proc.stderr
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: usage: check-design-vocab.py [-h] [--doc-type {design,other}]
+check-design-vocab.py: error: argument --doc-type: invalid choice: 'ontology_conformance_verification' (choose from 'design', 'other')
+
+
+======================================================================
+FAIL: test_existing_plan_timestamp_not_overwritten (test_operations.PlanTimestampBackfillTest.test_existing_plan_timestamp_not_overwritten)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_operations.py", line 389, in test_existing_plan_timestamp_not_overwritten
+    self.assertEqual("transitioned", json.loads(result.stdout)["status"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'transitioned' != 'rejected'
+- transitioned
++ rejected
+
+
+======================================================================
+FAIL: test_plan_backfilled_from_confirmation_moment (test_operations.PlanTimestampBackfillTest.test_plan_backfilled_from_confirmation_moment)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_operations.py", line 293, in test_plan_backfilled_from_confirmation_moment
+    self.assertEqual("transitioned", json.loads(result.stdout)["status"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'transitioned' != 'rejected'
+- transitioned
++ rejected
+
+
+======================================================================
+FAIL: test_flow_plan_has_p3_5 (test_seam_contract.FlowPlanSeamGateTest.test_flow_plan_has_p3_5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_seam_contract.py", line 116, in test_flow_plan_has_p3_5
+    self.assertIn("P3.5", text)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: 'P3.5' not found in '---\nschema: pdca.asset/v1\nid: ontology:process/flow-plan\ntype: process\nlayer: Knowledge\nstatus: active\ndcterms_license: CC-BY-4.0\ndcterms_created: 2026-09-04\ndcterms_modified: 2026-09-11\nowl_versionIRI: http://pdca.local/ontology/flow-plan/1.0.2\nsummary: Plan 阶段流程实体：triage→Grill→PRD→任务拆解→final_confirmation 门禁\nrelations:\n  specializes:\n  - ontology:concept/process\n  part_of:\n  - ontology:concept/pdca\n  relates_to:\n  - ontology:concept/pdca-phase\n  - ontology:entity/phase-plan\n  - ontology:concept/pdca-architecture\n  - ontology:concept/pdca-ai-friendly-confirmation\n  testable_signal: "引用存活：test $(grep -rl \'ontology:process/flow-plan\' ontology/ tests/ scripts/ | wc -l) -ge 5"\n---\n\n# PDCA Plan 流程（flow-plan）\n\nPlan 阶段是 PDCA 周期的第一个阶段，产出经用户 `final_confirmation` 确认的 PRD 与任务拆解。\n\n## 阶段步骤（权威描述）\n\n1. **triage**：识别 `ontology_role`，并产出结构化的本体产出契约。\n2. **Grill（追问对齐）**：逐轮向用户追问，收敛需求与边界。**硬门禁**：`execution_contract.required_actions` 要求基于来源的调研，或输入为 thin（仅路径/单句）时，强制至少一轮 `grilling`（frontier + 推荐答案）；其他 `mostly resolved` 至少一次 `confirm-or-correct` 总结（`Never zero-touch`）。`final_confirmation` 必须绑定 `grilling` 的 `captured:true` 轮次或确认摘要，纯自写无 ledger 视为门禁阻断（见 `ontology:domain/skill-triage`）。\n3. **方向确认**：与用户对齐方案，避免误解。\n4. **PRD 撰写**：含 `### 验收标准` 复选框（门禁硬要求）。\n5. **任务拆解（to-tickets）**：按 `meta.ontology_role` 和产出契约拆分为子任务或票。\n6. **final_confirmation 门禁**：用户明确确认立项后，方经 `transition-phase.py` 进入 Do（门禁校验 `captured:true` 来源，见 `scripts/pdca_core.py:gate_issues`）。\n\n## 关键决策（已迁移自外部知识）\n\n- **项目操作约定**：改 `task.json` 的 `meta.phase` 只动该字段，不连带手改 `states`（由 `transition-phase.py` 写）；根文档（README/AGENTS/SKILLS-INDEX）手动 `git add+commit`；任务 ID 单调递增（扫 `pdca/tasks/` 与 `archive/` 取最大值+1）；flow 步骤须对应实际 skill 调用。\n- **架构原则**（详 `ontology:concept/pdca-architecture`）：flow skill 是标准流程不可改，业务专有逻辑写 agent skill；资产分层 Evidence/Experience/Knowledge/Skill；阶段校验链 `phase → advance-phase → flow-<phase> 入口 → 步骤 → 手动推进`。\n- **通用 kernel 原则**：PDCA 作为稳定外循环；核心职责由 `task.json.meta.ontology_role` 提供，具体行为由 `execution_contract` 提供；Check 产物是 Evidence；阶段 Decision 必须引用证据；Artifact 类型保持开放。\n- **职责边界**：本体产出契约以 work product、required actions、constraints 和 testable signal 四字段声明全部具体行为。\n- **确认机制**（详 `ontology:concept/pdca-ai-friendly-confirmation`）：时间戳由 CLI 生成（`append-confirmation.py` 自动填真实 `at`）；失败须带 `guidance` 可执行；不可变记录只能由 CLI 变更（evidence 修正走 `--replace`）。\n\n## 来源\n\n- `（原知识层）architecture.md`\n- `（原知识层）cli-behavior.md`\n- `（原知识层）generic-ai-workflow-kernel.md`\n- `（原知识层）ai-friendly-confirmation.md`\n'
+
+======================================================================
+FAIL: test_flow_plan_p6_gate_checks_seams (test_seam_contract.FlowPlanSeamGateTest.test_flow_plan_p6_gate_checks_seams)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_seam_contract.py", line 121, in test_flow_plan_p6_gate_checks_seams
+    self.assertIn("声明的测试接缝", text)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '声明的测试接缝' not found in '---\nschema: pdca.asset/v1\nid: ontology:process/flow-plan\ntype: process\nlayer: Knowledge\nstatus: active\ndcterms_license: CC-BY-4.0\ndcterms_created: 2026-09-04\ndcterms_modified: 2026-09-11\nowl_versionIRI: http://pdca.local/ontology/flow-plan/1.0.2\nsummary: Plan 阶段流程实体：triage→Grill→PRD→任务拆解→final_confirmation 门禁\nrelations:\n  specializes:\n  - ontology:concept/process\n  part_of:\n  - ontology:concept/pdca\n  relates_to:\n  - ontology:concept/pdca-phase\n  - ontology:entity/phase-plan\n  - ontology:concept/pdca-architecture\n  - ontology:concept/pdca-ai-friendly-confirmation\n  testable_signal: "引用存活：test $(grep -rl \'ontology:process/flow-plan\' ontology/ tests/ scripts/ | wc -l) -ge 5"\n---\n\n# PDCA Plan 流程（flow-plan）\n\nPlan 阶段是 PDCA 周期的第一个阶段，产出经用户 `final_confirmation` 确认的 PRD 与任务拆解。\n\n## 阶段步骤（权威描述）\n\n1. **triage**：识别 `ontology_role`，并产出结构化的本体产出契约。\n2. **Grill（追问对齐）**：逐轮向用户追问，收敛需求与边界。**硬门禁**：`execution_contract.required_actions` 要求基于来源的调研，或输入为 thin（仅路径/单句）时，强制至少一轮 `grilling`（frontier + 推荐答案）；其他 `mostly resolved` 至少一次 `confirm-or-correct` 总结（`Never zero-touch`）。`final_confirmation` 必须绑定 `grilling` 的 `captured:true` 轮次或确认摘要，纯自写无 ledger 视为门禁阻断（见 `ontology:domain/skill-triage`）。\n3. **方向确认**：与用户对齐方案，避免误解。\n4. **PRD 撰写**：含 `### 验收标准` 复选框（门禁硬要求）。\n5. **任务拆解（to-tickets）**：按 `meta.ontology_role` 和产出契约拆分为子任务或票。\n6. **final_confirmation 门禁**：用户明确确认立项后，方经 `transition-phase.py` 进入 Do（门禁校验 `captured:true` 来源，见 `scripts/pdca_core.py:gate_issues`）。\n\n## 关键决策（已迁移自外部知识）\n\n- **项目操作约定**：改 `task.json` 的 `meta.phase` 只动该字段，不连带手改 `states`（由 `transition-phase.py` 写）；根文档（README/AGENTS/SKILLS-INDEX）手动 `git add+commit`；任务 ID 单调递增（扫 `pdca/tasks/` 与 `archive/` 取最大值+1）；flow 步骤须对应实际 skill 调用。\n- **架构原则**（详 `ontology:concept/pdca-architecture`）：flow skill 是标准流程不可改，业务专有逻辑写 agent skill；资产分层 Evidence/Experience/Knowledge/Skill；阶段校验链 `phase → advance-phase → flow-<phase> 入口 → 步骤 → 手动推进`。\n- **通用 kernel 原则**：PDCA 作为稳定外循环；核心职责由 `task.json.meta.ontology_role` 提供，具体行为由 `execution_contract` 提供；Check 产物是 Evidence；阶段 Decision 必须引用证据；Artifact 类型保持开放。\n- **职责边界**：本体产出契约以 work product、required actions、constraints 和 testable signal 四字段声明全部具体行为。\n- **确认机制**（详 `ontology:concept/pdca-ai-friendly-confirmation`）：时间戳由 CLI 生成（`append-confirmation.py` 自动填真实 `at`）；失败须带 `guidance` 可执行；不可变记录只能由 CLI 变更（evidence 修正走 `--replace`）。\n\n## 来源\n\n- `（原知识层）architecture.md`\n- `（原知识层）cli-behavior.md`\n- `（原知识层）generic-ai-workflow-kernel.md`\n- `（原知识层）ai-friendly-confirmation.md`\n'
+
+======================================================================
+FAIL: test_four_categories_covered (test_self_audit.SelfAuditTest.test_four_categories_covered)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_self_audit.py", line 35, in test_four_categories_covered
+    self.assertTrue(
+    ~~~~~~~~~~~~~~~^
+        {"id_collision", "schema", "seam"}.issubset(cats),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        f"缺少核心类别: {cats}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+AssertionError: False is not true : 缺少核心类别: {'seam', 'record_mismatch', 'id_collision', 'gate_incomplete', 'legacy_no_gate'}
+
+======================================================================
+FAIL: test_root_cause_classification (test_self_audit.SelfAuditTest.test_root_cause_classification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_self_audit.py", line 57, in test_root_cause_classification
+    self.assertTrue(seam_external, "round 系列 seam 缺失应归 external-project")
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : round 系列 seam 缺失应归 external-project
+
+======================================================================
+FAIL: test_every_phase_accepts_a_complete_valid_task (test_state_contract.ContractTest.test_every_phase_accepts_a_complete_valid_task) (phase='archive')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_state_contract.py", line 140, in test_every_phase_accepts_a_complete_valid_task
+    self.assertEqual([], task_issues(self.root, self.task_dir))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != [Issue(code='DISPOSITION_ONTOLOGY_MISSING'[167 chars]淀'")]
+
+Second list contains 1 additional elements.
+First extra element 0:
+Issue(code='DISPOSITION_ONTOLOGY_MISSING', path='/meta/disposition', message="disposition must contain 'ontology:' (本体强制产生；仅自举任务可设 ontology_exempt 豁免)", guidance="写入 meta.disposition 如 'ontology:domain/xxx 已沉淀'")
+
+- []
++ [Issue(code='DISPOSITION_ONTOLOGY_MISSING',
++        path='/meta/disposition',
++        message="disposition must contain 'ontology:' (本体强制产生；仅自举任务可设 "
++                'ontology_exempt 豁免)',
++        guidance="写入 meta.disposition 如 'ontology:domain/xxx 已沉淀'")]
+
+======================================================================
+FAIL: test_plan_gate_accepts_confirmed_response (test_state_contract.ContractTest.test_plan_gate_accepts_confirmed_response)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_state_contract.py", line 81, in test_plan_gate_accepts_confirmed_response
+    self.assertEqual([], issues)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: Lists differ: [] != [Issue(code='GRILLING_MISSING', path='clar[304 chars]ed')]
+
+Second list contains 1 additional elements.
+First extra element 0:
+Issue(code='GRILLING_MISSING', path='clarifications.jsonl', message='plan requires at least one grilling round with captured:true or explicit confirm-or-correct binding (Never zero-touch)', guidance='run skill-grilling at least one round, or include grilling summary in final_confirmation; self-written final_confirmation without ledger is blocked')
+
+- []
++ [Issue(code='GRILLING_MISSING',
++        path='clarifications.jsonl',
++        message='plan requires at least one grilling round with captured:true '
++                'or explicit confirm-or-correct binding (Never zero-touch)',
++        guidance='run skill-grilling at least one round, or include grilling '
++                 'summary in final_confirmation; self-written '
++                 'final_confirmation without ledger is blocked')]
+
+======================================================================
+FAIL: test_plan_to_do_accepts_checkbox_style_acceptance (test_workflow_ai_usability.EarlyPrdGateTest.test_plan_to_do_accepts_checkbox_style_acceptance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/black/Documents/pdca-workflow-pro/tests/test_workflow_ai_usability.py", line 373, in test_plan_to_do_accepts_checkbox_style_acceptance
+    self.assertEqual(0, completed.returncode, completed.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1 : 
+
+----------------------------------------------------------------------
+Ran 266 tests in 19.127s
+
+FAILED (failures=24, errors=1)

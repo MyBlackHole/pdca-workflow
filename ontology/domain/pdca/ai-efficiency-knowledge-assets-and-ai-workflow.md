@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ai-efficiency-knowledge-assets-and-ai-workflow/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/ai-efficiency-knowledge-assets-and-ai-workflow/1.0.1
 summary: 知识资产与 AI 工作流
 domain:
 - ontology:domain/ai-efficiency
@@ -29,9 +29,14 @@ id: knowledge:ai-efficiency.knowledge-assets-and-ai-workflow
 layer: knowledge
 summary: 以分层、来源链、最小上下文和验证闭环管理知识资产并提升 AI 效率
 tags: [knowledge-management, ai-efficiency, rag, provenance, pdca]
-scenarios: [research, default, software-development, code-review]
+ontology_roles: [ontology_modeling, ontology_projection, ontology_conformance_verification]
+execution_contract:
+  work_product: 可检索、可追溯的最小知识上下文
+  required_actions: [按职责与契约检索, 核验来源, 评估检索质量]
+  constraints: [不以请求标签替代职责契约筛选, 未验证结论不得自动投影]
+  testable_signal: 上下文通过retrieval、groundedness、relevance、completeness评估
 phases: [plan, do, check, act]
-applies_when: [需要为任意场景建立可检索、可追溯和可复用的 AI 知识上下文]
+applies_when: [需要为任意专业职责建立可检索、可追溯和可复用的 AI 知识上下文]
 excludes_when: [需要未经验证的自动知识发布]
 source_ids: [experience:T0075--07-26-调研知识资产管理与-ai-提效方法]
 confidence: high
@@ -50,11 +55,11 @@ AI 提效的可靠闭环是：
 任务指纹 → 候选资产 → 来源核验 → 最小上下文 → 执行 → Check → Experience → Knowledge/Skill 草稿
 ```
 
-检索应同时考虑场景、阶段、标签、可信度、时效和适用边界；默认只注入最小可信上下文。RAG 输出必须分别评估 retrieval、groundedness、relevance 和 completeness。未通过 evidence、validator 和 Check 的结论不得自动投影为 Knowledge 或 Skill。
+检索应同时考虑 `ontology_role`、`execution_contract`、阶段、标签、可信度、时效和适用边界；默认只注入最小可信上下文。RAG 输出必须分别评估 retrieval、groundedness、relevance 和 completeness。未通过 evidence、validator 和 Check 的结论不得自动投影为 Knowledge 或 Skill。
 
 ## 落地规则
 
-- 每项资产记录 `source_ids`、`scenarios`、`phases`、`confidence`、`status` 和版本关系。
+- 每项资产记录 `source_ids`、`ontology_roles`、`execution_contract`、`phases`、`confidence`、`status` 和版本关系。
 - 任务开始先检索 Knowledge，只有需要核验时才展开 Experience/Evidence。
 - 软件开发用历史架构、失败经验和测试策略减少上下文准备；调研用来源分级和冲突保留避免把搜索摘要当事实；审查用 Skill 固化清单并要求 finding 绑定证据；日常 journal 先作为 Experience 候选。
 - 资产生命周期至少包含 draft、active、superseded、retired；冲突和 misleading 反馈不能静默覆盖。

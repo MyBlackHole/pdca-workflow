@@ -123,14 +123,10 @@ def main() -> int:
             missing_required.append(name)
         else:
             status = "fallback"
-        capabilities.append(
-            {
-                "name": name,
-                "status": status,
-                "probe": definition["probe"],
-                "fallback": definition.get("fallback"),
-            }
-        )
+        capability = {"name": name, "status": status, "probe": definition["probe"]}
+        if "fallback" in definition:
+            capability["fallback"] = definition["fallback"]
+        capabilities.append(capability)
 
     references = local_references(root)
     missing_references = [item for item in references if not item["exists"]]

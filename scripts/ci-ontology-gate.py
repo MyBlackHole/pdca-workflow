@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # 本体投射[T2053]：ontology:concept/pdca-architecture（提交级共享门禁）；本体是源、代码是投射。
-"""CI / git-hook 共享门禁：ontology-validate + scenario双层 + production六维 + 相关任务收敛校验。
+"""CI / git-hook shared gate for ontology, production checks, and convergence.
 
 退出码 0 = 通过；非 0 = 阻断。供 `.git/hooks/pre-commit` 与
 `.github/workflows/ontology-gate.yml` 复用，使本体门禁成为提交级硬门禁。
@@ -41,21 +41,14 @@ def main() -> int:
         sys.stdout.write(val.stdout)
         sys.stderr.write(val.stderr)
 
-    # 1b) 双层闸 scenario_type 校验
-    sc = _run([sys.executable, str(ROOT / "scripts" / "check-scenario-mismatch.py")])
-    if sc.returncode != 0:
-        failures.append("scenario双层闸 失败")
-        sys.stdout.write(sc.stdout)
-        sys.stderr.write(sc.stderr)
-
-    # 1c) 生产本体科学门禁（六维：lifecycle/neon/oops/hundred/signal/diagram）
+    # 1b) 生产本体科学门禁（lifecycle/neon/oops/hundred/signal/diagram）
     prod = _run([sys.executable, str(ROOT / "scripts" / "production-ontology-gate.py"), "--all"])
     if prod.returncode != 0:
         failures.append("production-ontology-gate 失败")
         sys.stdout.write(prod.stdout)
         sys.stderr.write(prod.stderr)
 
-    # 1d) 保真度检查（--enforce-fidelity 时启用）
+    # 1c) 保真度检查（--enforce-fidelity 时启用）
     if args.enforce_fidelity:
         fid = _run([sys.executable, str(ROOT / "scripts" / "ontology-validate.py"),
                     "--ontology-dir", str(root / "ontology"), "--check", "fidelity"])
@@ -95,7 +88,7 @@ def main() -> int:
     if failures:
         print(f"\nGATE FAILED: {len(failures)} 项失败")
         return 1
-    print("GATE OK: ontology-validate + scenario双层 + production六维 + 相关任务收敛 均通过")
+    print("GATE OK: ontology-validate + production checks + relevant convergence passed")
     return 0
 
 

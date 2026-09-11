@@ -1,0 +1,4 @@
+{"at":"2026-09-11T15:24:24+08:00","source":"task_identity","summary":"created with record identity T2179-0911-independent-pdca-ticket-gate-projection"}
+{"round":1,"question":"是否执行独立 T2179，先删除 TICKETS_MISSING 生命周期耦合，再恢复 T2178 本体建模？","answer":"确认","recommended":"只投射 ontology:concept/pdca-task 的独立任务准入规则，保持其他 Plan 门禁不变。","source":"grilling","at":"2026-09-11T15:26:32+08:00","captured":true,"verified":true}
+{"source":"final_confirmation","summary":"用户确认 T2179 PRD 与最小 ontology_projection 范围，绑定 grilling round 1，批准进入 Do。","response":"confirmed","at":"2026-09-11T15:27:08+08:00","verified":true}
+{"source":"check_confirmation","summary":"用户确认 T2179 verdict 为 confirmed；AC-1 至 AC-5 的独立任务门禁投射结论成立。","response":"confirmed","at":"2026-09-11T15:45:31+08:00","verified":true}

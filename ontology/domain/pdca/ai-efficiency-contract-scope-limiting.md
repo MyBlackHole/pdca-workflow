@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ai-efficiency-contract-scope-limiting/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/ai-efficiency-contract-scope-limiting/1.0.1
 summary: 契约场景限定原则
 domain:
 - ontology:domain/ai-efficiency
@@ -29,7 +29,12 @@ schema: pdca.asset/v1
 id: knowledge.ai-efficiency.contract-scope-limiting
 summary: 契约场景限定原则——机器可读契约必须显式限定适用文档类型，避免对通用文本误报（T0234 发现、T0238 修复）
 tags: [ai-efficiency, contract, testing, scope]
-scenarios: [plan, check]
+ontology_roles: [ontology_projection, ontology_conformance_verification]
+execution_contract:
+  work_product: 限定适用对象的机器可读契约
+  required_actions: [声明产物类型, 验证正反例]
+  constraints: [不得以任务类别控制校验范围]
+  testable_signal: 同一校验器对适用产物拒绝违规且对不适用产物不误报
 phases: [plan, do, check]
 source_ids: [T0238-0809-mechanism-fixes, T0234-0809-fastapi-app-verify]
 ---

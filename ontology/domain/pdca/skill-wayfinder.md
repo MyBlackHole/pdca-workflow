@@ -13,8 +13,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-wayfinder/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/skill-wayfinder/1.0.1
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -30,27 +30,22 @@ relations:
 
 # Wayfinder — 决策地图导航
 
-将大型需求拆解为多 session 可推进的决策地图。Ticket 4类 `wayfinder:research/prototype/grilling/task` 分 HITL/AFK（对齐 mattpocock/skills wayfinder label）。
+将大型需求拆解为多 session 可推进的决策地图。每张 ticket 声明一个 `ontology_role`、四字段 `execution_contract` 和交互模式；`research`、`prototype`、`grilling` 只可写入 `required_actions` 作为工具动作。
 
-## Ticket 分类
+## Ticket 执行约束
 
-每个 ticket 类型分类为 **HITL**（human in the loop）或 **AFK**（agent alone）：
+每个 ticket 根据契约是否需要真实用户输入声明 **HITL**（human in the loop）或 **AFK**（agent alone）：
 
 - **HITL ticket** 只通过 live exchange 解决——grilling agent 如果自己回答了问题，就违反了 HITL
 - **AFK ticket** 可由 agent 独立完成
 
-### HITL/AFK 分类规则
+### HITL/AFK 判定规则
 
-| Ticket 类型 | 分类 | 说明 |
+| 契约条件 | 模式 | 说明 |
 |-------------|------|------|
-| Research | AFK | 读文档/代码/知识库，输出事实 |
-| Prototype | HITL | 做粗糙原型验证设计假设 |
-| Grinding | HITL | 与用户对话逐条决策，联动 domain-modeling |
-| Task | 混合 | 必须在决策前完成的手工工作 |
-| Triage | HITL | 分类 incoming tasks，需人工判断 |
-| Wayfinder | HITL | 画决策地图，需人工确认方向 |
-| To-questionnaire | AFK | 发送问卷，可异步完成 |
-| Wait-wait | AFK | 一句话纠偏，可快速完成 |
+| `required_actions` 只含可独立完成的检索、原型制作或事实核验 | AFK | Agent 可独立产出并登记证据 |
+| `required_actions` 含 grilling、方向选择或用户偏好裁决 | HITL | 必须通过 live exchange 解决 |
+| 契约同时含独立动作与用户裁决 | 混合 | 拆成有依赖边的独立 ticket |
 
 ### HITL 约束
 
@@ -73,4 +68,4 @@ relations:
 
 - 拆解粒度以"多 session 可推进"为界，勿过度拆解成碎片化决策票。
 - HITL ticket 必须通过 live exchange 解决，不可由 agent 自主回答。
-- HITL/AFK 分类是 wayfinder 的核心机制——分类错误会导致 ticket 执行方式不当。
+- HITL/AFK 判定是 wayfinder 的核心机制，但不得反向成为任务职责或阶段路由。

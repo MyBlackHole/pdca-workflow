@@ -1,0 +1,23 @@
+{
+  "items": [
+    {
+      "index": 1,
+      "criteria": ["AC-1"],
+      "evidence_ids": ["ev-t2155-skill-v1"],
+      "text": "调用链协议覆盖入口判断、版本选择、分册跳转、证据读取与失败回退"
+    },
+    {
+      "index": 2,
+      "criteria": ["AC-2"],
+      "evidence_ids": ["ev-t2155-index-v1"],
+      "text": "五类 aio-tools 入口均有可执行路由矩阵与稳定锚点"
+    },
+    {
+      "index": 3,
+      "criteria": ["AC-3"],
+      "evidence_ids": ["ev-t2155-index-v1", "ev-t2155-research-v1"],
+      "text": "T2154 版本基线可追溯且本地引用校验通过"
+    }
+  ],
+  "schema": "pdca.convergence/v1"
+}

@@ -31,7 +31,7 @@ def _cleanup(slug: str, record: str | None) -> None:
 def test_anchor_default_points_to_pdca_task():
     slug = "0830-anchor-default"
     res = task_identity.create_task(
-        ROOT, slug=slug, title="t", scenario_type="development", created_at=CREATED_AT
+        ROOT, slug=slug, title="t", ontology_role="ontology_projection", created_at=CREATED_AT
     )
     try:
         tj = json.loads((ROOT / "pdca" / "tasks" / slug / "task.json").read_text(encoding="utf-8"))
@@ -43,8 +43,8 @@ def test_anchor_default_points_to_pdca_task():
 def test_anchor_exempt_skips():
     slug = "0830-anchor-exempt"
     res = task_identity.create_task(
-        ROOT, slug=slug, title="t", scenario_type="development",
-        created_at=CREATED_AT, extra_meta={"ontology_exempt": True},
+        ROOT, slug=slug, title="t", ontology_role="ontology_projection",
+        created_at=CREATED_AT, extra_meta={"ontology_exempt": True, "ontology_exempt_reason": "本体自举测试任务，用于验证默认本体锚点的豁免行为"},
     )
     try:
         tj = json.loads((ROOT / "pdca" / "tasks" / slug / "task.json").read_text(encoding="utf-8"))
@@ -102,7 +102,7 @@ def test_node_type_rejected_when_not_in_ontology_vocab(monkeypatch):
     slug = "0830-node-type"
     try:
         task_identity.create_task(
-            ROOT, slug=slug, title="t", scenario_type="development",
+            ROOT, slug=slug, title="t", ontology_role="ontology_projection",
             created_at=CREATED_AT, ontology_node_type="ghost",
         )
         raise AssertionError("expected ONTOLOGY_NODE_TYPE_INVALID")
@@ -116,12 +116,12 @@ def test_child_inherits_parent_anchor():
     parent_slug = "0830-parent-anchor"
     child_slug = "0830-child-anchor"
     parent = task_identity.create_task(
-        ROOT, slug=parent_slug, title="p", scenario_type="development", created_at=CREATED_AT
+        ROOT, slug=parent_slug, title="p", ontology_role="ontology_projection", created_at=CREATED_AT
     )
     child = None
     try:
         child = task_identity.create_task(
-            ROOT, slug=child_slug, title="c", scenario_type="development",
+            ROOT, slug=child_slug, title="c", ontology_role="ontology_projection",
             created_at=CREATED_AT, parent=parent["task_id"],
         )
         ctj = json.loads((ROOT / "pdca" / "tasks" / child_slug / "task.json").read_text(encoding="utf-8"))

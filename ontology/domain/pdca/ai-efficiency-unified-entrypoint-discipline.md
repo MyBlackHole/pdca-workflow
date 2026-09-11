@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ai-efficiency-unified-entrypoint-discipline/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/ai-efficiency-unified-entrypoint-discipline/1.0.1
 summary: 统一入口纪律
 domain:
 - ontology:domain/ai-efficiency
@@ -29,7 +29,12 @@ schema: pdca.asset/v1
 id: knowledge.ai-efficiency.unified-entrypoint-discipline
 summary: AI 执行者统一入口纪律——7 类门禁失误中 5 类同根（绕过脚本手工改文件）；四入口速查与字段约束；源自 T0374 历史任务审查的失误复盘
 tags: [ai-efficiency, discipline, gates, entrypoint]
-scenarios: [development, bugfix, research, documentation, design, review]
+ontology_roles: [ontology_modeling, ontology_projection, ontology_conformance_verification]
+execution_contract:
+  work_product: 统一入口操作记录
+  required_actions: [使用权威CLI入口, 保留receipt与digest]
+  constraints: [禁止手改受控状态与不可变记录]
+  testable_signal: 每个受控动作均可回链对应CLI产物
 phases: [plan, do, check, act, archive]
 source_ids: [T0374-0823-history-review-self-improve]
 ---
@@ -94,4 +99,3 @@ grep -q 'ai-efficiency-unified-entrypoint-discipline' ontology/domain/ai-efficie
 - **图门禁**：`grep -c 'mermaid' ontology/domain/ai-efficiency-unified-entrypoint-discipline.md` ≥1
 - **溯源门禁**：含 `Source:` 行号
 - **校验**：`python3 scripts/ontology-validate.py` 0 issues
-

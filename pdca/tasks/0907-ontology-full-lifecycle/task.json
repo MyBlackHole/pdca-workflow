@@ -19,7 +19,6 @@
     "ontology_node_type": "concept",
     "phase": "do",
     "record": "T2069-0907-ontology-full-lifecycle",
-    "scenario_type": "development",
     "steps": [
       {
         "name": "代码→本体自动生成",
@@ -56,7 +55,8 @@
         "description": "6个方向全部验证通过",
         "completion_criterion": "validate-convergence valid:true"
       }
-    ]
+    ],
+    "ontology_role": "ontology_projection"
   },
   "parent": null,
   "slug": "0907-ontology-full-lifecycle",

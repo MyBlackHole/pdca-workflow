@@ -60,7 +60,7 @@ class OperationsTest(unittest.TestCase):
             self.assertNotEqual(0, duplicate.returncode)
             self.assertIn("duplicate evidence id", duplicate.stderr)
 
-    def test_doctor_uses_explicit_fallbacks(self) -> None:
+    def test_doctor_fails_closed_when_spawn_is_missing(self) -> None:
         environment = {
             key: value
             for key, value in os.environ.items()
@@ -70,15 +70,17 @@ class OperationsTest(unittest.TestCase):
             ["python3", "scripts/pdca-doctor.py", "--json"],
             cwd=ROOT,
             env=environment,
-            check=True,
             capture_output=True,
             text=True,
         )
         result = json.loads(completed.stdout)
-        self.assertTrue(result["valid"])
+        self.assertNotEqual(0, completed.returncode)
+        self.assertFalse(result["valid"])
         self.assertEqual("repository-fallback", result["pdca_home_source"])
         capabilities = {item["name"]: item for item in result["capabilities"]}
-        self.assertEqual("execute-in-main-session", capabilities["agent.spawn"]["fallback"])
+        self.assertEqual("missing", capabilities["agent.spawn"]["status"])
+        self.assertNotIn("fallback", capabilities["agent.spawn"])
+        self.assertIn("agent.spawn", result["missing_required"])
         self.assertEqual("filesystem-search", capabilities["context.retrieve"]["fallback"])
 
     def test_doctor_reports_seam_contracts_segment(self) -> None:
@@ -87,11 +89,11 @@ class OperationsTest(unittest.TestCase):
             for key, value in os.environ.items()
             if key not in {"PDCA_HOME", "PDCA_AGENT_SPAWN", "PDCA_NETWORK_FETCH"}
         }
+        environment["PDCA_AGENT_SPAWN"] = "available"
         completed = subprocess.run(
             ["python3", "scripts/pdca-doctor.py", "--json"],
             cwd=ROOT,
             env=environment,
-            check=True,
             capture_output=True,
             text=True,
         )
@@ -166,7 +168,7 @@ class OperationsTest(unittest.TestCase):
                 "meta": {
                     "phase": "plan",
                     "active": True,
-                    "scenario_type": "development",
+                    "ontology_role": "ontology_projection",
                     "created_at": "2026-07-28T10:00:00+08:00",
                     "convergence": ["transition succeeds"],
                 },
@@ -188,7 +190,7 @@ class OperationsTest(unittest.TestCase):
                 json.dumps(
                     {
                         "source": "final_confirmation",
-                        "summary": "approved",
+                        "summary": "approved after grilling round 1",
                         "response": "confirmed",
                         "at": "2026-07-28T10:00:01+08:00",
                     }
@@ -238,7 +240,7 @@ class PlanTimestampBackfillTest(unittest.TestCase):
             "meta": {
                 "phase": "plan",
                 "active": True,
-                "scenario_type": "development",
+                "ontology_role": "ontology_projection",
                 "created_at": "2026-07-28T10:00:00+08:00",
                 "convergence": ["backfill succeeds"],
             },
@@ -270,7 +272,7 @@ class PlanTimestampBackfillTest(unittest.TestCase):
                 json.dumps(
                     {
                         "source": "final_confirmation",
-                        "summary": "approved",
+                        "summary": "approved after grilling round 1",
                         "response": "confirmed",
                         "at": "2026-07-28T10:05:00+08:00",
                     }
@@ -318,7 +320,7 @@ class PlanTimestampBackfillTest(unittest.TestCase):
                 "parent": None,
                 "children": [],
                 "status": "Pending",
-                "meta": {"phase": "plan", "active": True, "scenario_type": "development"},
+                "meta": {"phase": "plan", "active": True, "ontology_role": "ontology_projection"},
                 "states": {
                     "created": "2026-07-28T10:00:00+08:00",
                     "plan": None,
@@ -366,7 +368,7 @@ class PlanTimestampBackfillTest(unittest.TestCase):
                 json.dumps(
                     {
                         "source": "final_confirmation",
-                        "summary": "approved",
+                        "summary": "approved after grilling round 1",
                         "response": "confirmed",
                         "at": "2026-07-28T10:05:00+08:00",
                     }

@@ -5,15 +5,15 @@ name: code-review
 summary: Review code for quality, correctness, and best practices.
 description: |
   双轴代码审查。对照编码标准（标准轴）和原始 spec（规范轴）两个独立维度
-  审查变更差异，在可用时用独立执行器运行双轴，否则在主会话保持两轴独立。
+  审查变更差异；当前 PDCA 任务一对一绑定全新子 Agent 自主审查，协调 Agent 派发后立即挂起；agent.spawn 不可用时阻断执行。
 invocation: manual
 type: domain
 layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-code-review/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/skill-code-review/1.0.1
 relations:
   specializes:
     - ontology:concept/pdca-task

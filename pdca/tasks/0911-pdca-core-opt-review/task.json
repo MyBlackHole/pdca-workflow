@@ -1,0 +1,44 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T2156",
+  "meta": {
+    "active": false,
+    "convergence": [
+      "T2153 backlog完成二次复核",
+      "流程本体核心优化必要性明确",
+      "后续改进候选排序可立项"
+    ],
+    "created_at": "2026-09-11T10:14:17+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "concept",
+    "phase": "archive",
+    "record": "T2156-0911-pdca-core-opt-review",
+    "completed_at": "2026-09-11T10:35:25+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "用户确认：核心只保留 A/B/C，六个 scenario_type 不保留兼容层，具体工具差异由 skill/tool 路由表达；名称采用本体建模、本体实现、本体验证。",
+      "verdict_id": "v2156-confirmed",
+      "at": "2026-09-11T10:40:10+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "ontology:pattern/pdca-core-scene-layering 已沉淀；后续另立 Improvement Task 将核心场景统一为 A/B/C，并将具体差异交由 skill/tool 路由处理，不保留旧六场景兼容层。",
+      "at": "2026-09-11T10:42:00+08:00"
+    },
+    "ontology_role": "ontology_modeling"
+  },
+  "parent": null,
+  "slug": "0911-pdca-core-opt-review",
+  "states": {
+    "act": "2026-09-11T10:40:51+08:00",
+    "archive": "2026-09-11T10:43:00+08:00",
+    "check": "2026-09-11T10:35:25+08:00",
+    "created": "2026-09-11T10:14:17+08:00",
+    "do": "2026-09-11T10:32:23+08:00",
+    "plan": "2026-09-11T10:14:17+08:00"
+  },
+  "status": "Completed",
+  "title": "PDCA流程本体核心优化二次复核 ontology:concept/pdca"
+}

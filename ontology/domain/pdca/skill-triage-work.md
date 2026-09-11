@@ -10,8 +10,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-10
-owl_versionIRI: http://pdca.local/ontology/skill-triage-work/1.0.1
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/skill-triage-work/1.0.2
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -38,25 +38,14 @@ Two categories: `bug` (existing behaviour broken) or `enhancement` (new/improvem
 
 ### 1. Classify
 
-| Input shape | category | scenario_type |
-|-------------|----------|---------------|
-| Bug report / defect | `bug` | `bugfix` |
-| New feature / module | `enhancement` | `development` |
-| "Research / analyse X" | `enhancement` | `research` |
-| "Write docs for X" | `enhancement` | `documentation` |
-| "Design architecture for X" | `enhancement` | `design` |
-| "Review code in X" | `enhancement` | `review` |
-| Refactor / optimisation | `enhancement` | `development` |
-| Uncertain | keep `needs-triage` | leave blank |
+| Input shape | category | ontology_role | execution_contract focus |
+|-------------|----------|---------------|--------------------------|
+| 建立或修订概念、关系、约束 | `enhancement` | `ontology_modeling` | 知识或本体产物、来源动作、范围约束、可验证信号 |
+| 将已确认本体投射为代码、文档或配置 | `bug` / `enhancement` | `ontology_projection` | 投射产物、实现/修复动作、测试约束、行为信号 |
+| 核验本体与实现、证据或结论的一致性 | `bug` / `enhancement` | `ontology_conformance_verification` | 审查产物、逐项核验动作、独立性约束、符合性信号 |
+| Uncertain | keep `needs-triage` | leave blank | leave blank |
 
-**边界判定规则**（T0273）：当输入形态落在 `research` 与 `development` 之间时，用可测试代码产出裁决——**含脚本/测试/可回归验证产物 → `development`**；**纯结论性调研/报告 → `research`**。机械判定运行：
-
-```bash
-python3 "$PDCA_HOME/scripts/scenario-boundary-check.py" --judge --desc "<任务描述>" \
-  [--code-scripts "<脚本产出>"] [--code-tests "<测试产出>"]
-```
-
-已知错配实例：T0268-T0272 标 research 但产出脚本+测试（应为 development）；T0163 POC 含 `pg_poc.py`/`mysql_poc.py` 等代码但标 research（应为 development）。新任务 triage 时若产出倾向代码，优先按 development 走 A 路径（含 TDD/回归验证），避免 research 路径缺测试环节。
+`bug` 和 `enhancement` 只描述请求性质，不决定专业职责或执行路径。调研、TDD、诊断、文档写作、`design-it-twice` 和 `code-review` 都是可选动作或工具名称；根据目标把它们写入 `execution_contract.required_actions`，不得据此创建另一套任务类别。
 
 ### 2. Deduplicate
 
@@ -90,9 +79,11 @@ Load `ontology:domain/skill-grilling` to fill gaps. Log Q&A to `clarifications.j
 python3 "$PDCA_HOME/scripts/task_identity.py" create \
   --slug <MMDD-slug> \
   --title "<短标题>" \
-  --scenario-type <development|bugfix|research|documentation|design|review> \
+  --ontology-role <ontology_modeling|ontology_projection|ontology_conformance_verification> \
   --created-at <ISO now>
 ```
+
+创建后必须补齐 `meta.execution_contract` 的 `work_product`、`required_actions`、`constraints` 和 `testable_signal`；缺一项即保持 `needs-info`，不得进入 Plan 终审。
 
 The entrypoint assigns the global unique task ID, derives the immutable `meta.record` (`T<id>-<MMDD>-<slug>`), creates `records/<record>/`, and writes `task.json` / `clarifications.jsonl` / `prd.md` atomically. **Never scan-and-write `task.json` directly** — that race produced historical duplicate IDs.
 
@@ -106,7 +97,7 @@ Then append:
 # Triage Brief — <slug>
 
 - **category**: <bug|enhancement>
-- **scenario_type**: <development|bugfix|research|documentation|design|review>
+- **ontology_role**: <ontology_modeling|ontology_projection|ontology_conformance_verification>；**execution_contract**: <work_product + required_actions + constraints + testable_signal>
 - **summary**: <请求一句话>
 - **current behavior**: <现状行为>
 - **desired behavior**: <期望行为>

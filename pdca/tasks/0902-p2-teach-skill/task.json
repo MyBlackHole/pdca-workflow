@@ -16,7 +16,6 @@
     "ontology_node_type": "domain",
     "phase": "archive",
     "record": "T0491-0902-p2-teach-skill",
-    "scenario_type": "development",
     "steps": [
       {
         "name": "teach节点",
@@ -54,7 +53,8 @@
       "outcome": "projected",
       "reason": "ontology:domain/skill-teach 已沉淀，来源 T0491-0902-p2-teach-skill",
       "at": "2026-09-01T09:47:38+08:00"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "parent": null,
   "slug": "0902-p2-teach-skill",

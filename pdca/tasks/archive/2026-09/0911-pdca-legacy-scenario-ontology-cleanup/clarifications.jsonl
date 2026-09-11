@@ -1,0 +1,5 @@
+{"at":"2026-09-11T15:16:46+08:00","source":"task_identity","summary":"created with record identity T2178-0911-pdca-legacy-scenario-ontology-cleanup"}
+{"round":1,"question":"是否先发起独立 ontology_modeling PDCA，清理核心权威入口的旧场景控制语义，再进行 runtime ontology_projection？","answer":"好","recommended":"先清理全局代理入口、阶段流程、阶段概念、分诊与旧场景边界本体，完成全入口残留扫描后再投射 runtime。","source":"grilling","at":"2026-09-11T15:16:46+08:00","captured":true,"verified":true}
+{"source":"direction_confirm","summary":"用户同意先建立独立 ontology_modeling PDCA 清理核心权威入口旧场景控制语义，再进行 runtime ontology_projection。","response":"confirmed","at":"2026-09-11T15:20:16+08:00","verified":true}
+{"source":"final_confirmation","summary":"用户确认 T2178 PRD、八项验收标准、ontology_modeling 范围及先建模后投射顺序，批准进入 Do。","response":"confirmed","at":"2026-09-11T15:23:02+08:00","verified":true}
+{"source":"check_confirmation","summary":"用户确认 T2178 verdict 为 confirmed；核心权威入口旧场景控制语义清理结论成立。","response":"confirmed","at":"2026-09-11T16:19:21+08:00","verified":true}

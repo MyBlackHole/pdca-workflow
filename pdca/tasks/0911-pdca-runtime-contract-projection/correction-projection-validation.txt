@@ -1,0 +1,8 @@
+{
+  "authority_nodes": 569,
+  "bounded_nodes": 6,
+  "execution_leaves": 9,
+  "projection_digest": "sha256:84b51b60a992c8f2f3a6b55a05cb75f8fbf069ebadcd80dcaf1673ceb2b6dff8",
+  "status": "passed",
+  "task_id": "T2181"
+}

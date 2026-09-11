@@ -1,0 +1,47 @@
+{
+  "schema": "pdca.convergence/v1",
+  "items": [
+    {
+      "index": 1,
+      "text": "PDCA根概念历史表述准确",
+      "criteria": ["AC-1"],
+      "evidence_ids": ["pdca-root-model-v3", "root-validation-v3"]
+    },
+    {
+      "index": 2,
+      "text": "本体图与任务投影结构分离",
+      "criteria": ["AC-2"],
+      "evidence_ids": ["pdca-root-model-v3", "root-validation-v3"]
+    },
+    {
+      "index": 3,
+      "text": "语义节点与序列化载体分离",
+      "criteria": ["AC-3"],
+      "evidence_ids": ["pdca-root-model-v3", "root-validation-v3"]
+    },
+    {
+      "index": 4,
+      "text": "根节点关系机读且无实现耦合",
+      "criteria": ["AC-4", "AC-5", "AC-6"],
+      "evidence_ids": ["pdca-root-model-v3", "root-validation-v3"]
+    },
+    {
+      "index": 5,
+      "text": "本体树驱动作为核心设计原则被保留并具有三层结构定义",
+      "criteria": ["AC-8"],
+      "evidence_ids": ["pdca-root-model-v3", "root-validation-v3"]
+    },
+    {
+      "index": 6,
+      "text": "子任务派发后主任务停止运行并在恢复时仅从持久化子任务文档重建状态",
+      "criteria": ["AC-9", "AC-10"],
+      "evidence_ids": ["pdca-root-model-v3", "root-validation-v3"]
+    },
+    {
+      "index": 7,
+      "text": "ontology-validate通过",
+      "criteria": ["AC-7"],
+      "evidence_ids": ["root-validation-v3"]
+    }
+  ]
+}

@@ -20,7 +20,6 @@
     "ontology_node_type": "entity",
     "phase": "archive",
     "record": "T0476-0901-ontology-integration-verify",
-    "scenario_type": "development",
     "verdict": {
       "outcome": "confirmed",
       "reason": "3AC全满足，本体测试与门禁全绿",
@@ -32,7 +31,8 @@
       "outcome": "projected",
       "reason": "ontology:entity/ontology-deep-integration 根集成验证，本体独立与全绿已证",
       "at": "2026-09-01T08:04:02+08:00"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "parent": "T0471",
   "slug": "0901-ontology-integration-verify",

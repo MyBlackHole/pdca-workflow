@@ -21,7 +21,7 @@ FULL_BRIEF = """# T9999 Triage Brief
 ## 分类
 
 - category: enhancement
-- scenario_type: development
+- ontology_role: development
 - priority: P1
 
 ## 查重与关系

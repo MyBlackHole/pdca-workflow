@@ -1,34 +1,35 @@
 # PDCA 体系健康度自我审查报告
 
-- 异常总数: 75
+- 异常总数: 86
 
 ## 汇总
 
 | 维度 | 计数 |
 |------|------|
 | gate_incomplete | 5 |
-| id_collision | 57 |
+| id_collision | 58 |
 | legacy_no_gate | 12 |
-| seam | 1 |
+| record_mismatch | 6 |
+| seam | 5 |
 
 | 严重度 | 计数 |
 |--------|------|
-| blocking | 62 |
-| integrity | 1 |
+| blocking | 63 |
+| integrity | 11 |
 | noise | 12 |
 
 | 根因 | 计数 |
 |------|------|
 | legacy | 12 |
-| real-defect | 63 |
+| real-defect | 74 |
 
 ## 门禁覆盖率
 
-- receipts 80.3% (236/294)，verdict 83.0%，rejected receipts 333 条
+- receipts 77.9% (271/348)，verdict 77.6%，rejected receipts 386 条
 
 ## 问题明细（按严重度）
 
-### 阻断门禁 (62)
+### 阻断门禁 (63)
 
 | task_id | slug | 类别 | 根因 | 明细 |
 |---------|------|------|------|------|
@@ -94,12 +95,23 @@
 | T0540 | 0903-fix-inc-mount-verify-eexist / 0906-three-conflicts | id_collision | real-defect | 同一 task_id 出现在 2 个目录 |
 | T0541 | 0903-analyze-inc-mount-verify-fail / 0906-pin-leak | id_collision | real-defect | 同一 task_id 出现在 2 个目录 |
 | T0542 | 0906-ec-lectures / 0906-journalread-add / 0904-bugfix-confirmation-gate | id_collision | real-defect | 同一 task_id 出现在 3 个目录 |
+| T2157 | 0911-aio-tools-t2155-runtime-call-chain / 0911-s3tools-sm4-gcm | id_collision | real-defect | 同一 task_id 出现在 2 个目录 |
 
-### 数据完整性 (1)
+### 数据完整性 (11)
 
 | task_id | slug | 类别 | 根因 | 明细 |
 |---------|------|------|------|------|
 | T0545 | 0906-conformance-audit | seam | real-defect | 测试文件缺失: scripts/audit-ontology-conformance.py |
+| T2130 | 0910-uncovered-scripts-purge2 | seam | real-defect | 测试文件缺失: tests/test_purge2_blast.py; 测试文件缺失: tests/test_purge2_blast.py |
+| T2131 | 0910-purge2-rescan | seam | real-defect | 测试文件缺失: tests/test_purge2_blast.py |
+| T2132 | 0910-purge2-dryrun-list | seam | real-defect | 测试文件缺失: tests/test_purge2_blast.py |
+| T2133 | 0910-purge2-delete-verify | seam | real-defect | 测试文件缺失: tests/test_purge2_blast.py; 测试文件缺失: tests/test_purge2_blast.py |
+| T2158 | 0911-s3tools-gcm-t1-cbc-evp | record_mismatch | real-defect | record=T2157-0911-s3tools-sm4-gcm/T2158 期望=T2158-0911-s3tools-gcm-t1-cbc-evp |
+| T2159 | 0911-s3tools-gcm-t2-meta | record_mismatch | real-defect | record=T2157-0911-s3tools-sm4-gcm/T2159 期望=T2159-0911-s3tools-gcm-t2-meta |
+| T2160 | 0911-s3tools-gcm-t3-write | record_mismatch | real-defect | record=T2157-0911-s3tools-sm4-gcm/T2160 期望=T2160-0911-s3tools-gcm-t3-write |
+| T2161 | 0911-s3tools-gcm-t4-read | record_mismatch | real-defect | record=T2157-0911-s3tools-sm4-gcm/T2161 期望=T2161-0911-s3tools-gcm-t4-read |
+| T2162 | 0911-s3tools-gcm-t5-config | record_mismatch | real-defect | record=T2157-0911-s3tools-sm4-gcm/T2162 期望=T2162-0911-s3tools-gcm-t5-config |
+| T2163 | 0911-s3tools-gcm-t6-verify | record_mismatch | real-defect | record=T2157-0911-s3tools-sm4-gcm/T2163 期望=T2163-0911-s3tools-gcm-t6-verify |
 
 ### 仅统计噪音 (12)
 
@@ -120,6 +132,7 @@
 
 ## 修复候选清单（不执行，另立任务）
 
-- **[high] ID 撞车清理**: 57 组 task_id 重复（跨目录），identity 歧义影响可追溯性 → 建议范围: 为每组冲突决定保留/重命名，更新依赖引用与记录
+- **[high] ID 撞车清理**: 58 组 task_id 重复（跨目录），identity 歧义影响可追溯性 → 建议范围: 为每组冲突决定保留/重命名，更新依赖引用与记录
 - **[high] 真违规门禁修复**: 5 项 gate_incomplete 非豁免（缺失 verdict/final_confirmation 等） → 建议范围: 按 T0271 remediate 模式补全或如实豁免
-- **[medium] seam 契约补齐**: 1 项声明的测试接缝与实际测试不一致 → 建议范围: 补齐缺失测试文件或修正 seam 声明（外部项目需确认测试位置）
+- **[medium] record 派生一致性修复**: 6 项 record 字段与派生规则不符 → 建议范围: 按 identity 派生规则修正 task.json meta.record
+- **[medium] seam 契约补齐**: 5 项声明的测试接缝与实际测试不一致 → 建议范围: 补齐缺失测试文件或修正 seam 声明（外部项目需确认测试位置）

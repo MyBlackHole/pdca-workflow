@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/flow-act/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/flow-act/1.0.1
 summary: Act 阶段流程实体：知识投影、自我优化闭环、ID 不变量、时间线一致性与运行时协调
 relations:
   specializes:
@@ -32,7 +32,7 @@ Act 阶段处置知识、完成自我优化闭环，是 PDCA 周期中"学习并
 
 ## 阶段步骤（权威描述）
 
-1. **知识处置（本体强制产生，T0513 起）**：每个任务在 Act 必须新建或更新至少一个本体节点（`ontology/<type>/<slug>.md`），记来源 record/摘要/理由/连续 revision；相同内容与理由重试须幂等。`research` 场景须按 `ontology:domain/skill-research` 的“本体沉淀决策”执行本体化并记录（`conclusion.md##本体沉淀` 声明 `ontology:` + `meta.disposition` 含 `ontology:` 关键词）；其余 `development/bugfix/design/review/documentation` 同样必须新建或更新节点，不再接受 `records-only`。仅自举任务（`meta.ontology_exempt=true`，如创建 PDCA 元本体本身）可豁免。实现“无任务不知识、有任务必本体”。
+1. **知识处置（本体强制产生，T0513 起）**：每个任务在 Act 必须新建或更新至少一个本体节点（`ontology/<type>/<slug>.md`），记来源 record/摘要/理由/连续 revision；相同内容与理由重试须幂等。知识处置对三个 `ontology_role` 使用同一规则；需要调研、设计或审查工具时，只能由 `execution_contract.required_actions` 选择，并按对应工具要求保留来源。`conclusion.md##本体沉淀` 声明 `ontology:`，`meta.disposition` 含 `ontology:` 关键词，不接受 `records-only`。仅自举任务（`meta.ontology_exempt=true`，如创建 PDCA 元本体本身）可豁免。实现“无任务不知识、有任务必本体”。
 2. **disposition 与 journal**：写入 `meta.disposition`（**全任务强制**含 `ontology:` 决策词，仅自举任务豁免；缺失或含 `records-only` 时 `archive` 门禁拒收，见 `ontology_gate.disposition_ontology_issues`），更新 journal。
 3. **门禁**：通过 `pdca-gate`、archive 本体自检（ontology-validate + 孤岛检查）与 `check-research-ontology-settlement`（已扩展为全任务 `check-ontology-settlement`）后，经 `transition-phase.py` 进入 archive。
 
@@ -42,7 +42,7 @@ Act 阶段处置知识、完成自我优化闭环，是 PDCA 周期中"学习并
 - **自我优化闭环**（详 `ontology:concept/self-optimization-loop` 与 `ontology:concept/pdca-provable-skill-increments`）：完整闭环为 记录→分析→决策→受控实施→效果验证；改进候选仍走正常 Plan/Grill/final confirmation，不得由审计器直接改权威流程；效果是后续周期判定而非候选自证；可证明优先——每个机制配硬指标与测试断言。
 - **ID 不变量与撞车重分配**（详 `ontology:concept/task-record-identity`）：`task.id` 分配须处仓库级临界区；创建入口统一（triage/to-tickets/Act follow-up 复用 `task_identity.py create`）；record identity 创建时生成且不可变；occurrence 目录 identity 须等于 payload `record_id`；历史归并仅由 immutable relocation/alias receipt 表达。撞车重分配按"被引用为主干/格式规范/创建早"判定主流方，引用归属按 slug 特征词区分任务树，先引用扫描后重命名，flow-events 内 `record_id`/`task_id` 同步。
 - **时间线一致性**（详 `ontology:concept/timeline-integrity-gate`）：`final_confirmation.at` 取自执行时刻不可编造；`states` 须单调 `created≤plan≤do≤check≤act≤archive`；阶段推进仅经 `transition-phase.py`，其 `receipt.at` 须等于 `states.<target>`；先干后补确认属违规；plan 时间戳由转换自动补写（`clarifications.jsonl` 的 confirmation.at 优先）。
-- **运行时协调**（详 `ontology:concept/runtime-transition-coordinator`）：自动阶段推进须是基于 Evidence 快照的单阶段 CAS，非观察事件后递归调用；协调锁同时覆盖事实写入者与状态写入者；重试成功须绑定 Scenario digest 的 transition receipt；Check→Act 不能仅凭 Validator pass 自动宣称"已学习"。
+- **运行时协调**（详 `ontology:concept/runtime-transition-coordinator`）：自动阶段推进须是基于 Evidence 快照的单阶段 CAS，非观察事件后递归调用；协调锁同时覆盖事实写入者与状态写入者；重试成功须绑定 ontology role、execution contract 与 Evidence 快照 digest 的 transition receipt；Check→Act 不能仅凭 Validator pass 自动宣称"已学习"。
 
 ## 来源
 

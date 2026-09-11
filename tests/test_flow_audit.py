@@ -34,7 +34,7 @@ class FlowAuditTest(unittest.TestCase):
                 "meta": {
                     "phase": "plan",
                     "active": True,
-                    "scenario_type": "development",
+                    "ontology_role": "ontology_projection",
                     "created_at": "2026-07-30T10:00:00+08:00",
                     "convergence": ["audit stays confined"],
                     "record": "..",
@@ -97,7 +97,7 @@ class FlowAuditTest(unittest.TestCase):
                 "meta": {
                     "phase": "plan",
                     "active": True,
-                    "scenario_type": "development",
+                    "ontology_role": "ontology_projection",
                     "created_at": "2026-07-30T10:00:00+08:00",
                     "convergence": ["no fallback identity"],
                 },
@@ -168,7 +168,7 @@ class FlowAuditTest(unittest.TestCase):
                 "meta": {
                     "phase": "plan",
                     "active": True,
-                    "scenario_type": "development",
+                    "ontology_role": "ontology_projection",
                     "created_at": "2026-07-30T10:00:00+08:00",
                     "convergence": ["audit every transition"],
                     "record": "R9002",

@@ -10,8 +10,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-10
-owl_versionIRI: http://pdca.local/ontology/skill-research/1.0.1
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/skill-research/1.0.2
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -51,13 +51,13 @@ model-invoked：AI 自动调研领域主题并捕获发现为带引用的 Markdo
     ```
     **图门禁**：`grep -c '```mermaid' research-report.md` ≥3 且每图附1条 `Source:` primary source引证（源码行或官方doc），否则阻断；`grep -c 'Source:'` ≥3。
     **网络门禁（T2081 起）**：参考资料≥2 URL 且正文 `Source:` 行至少1条 httpURL，否则阻断；运行 `python3 scripts/check-research-web-evidence.py --report research-report.md` 须返回 valid 真。内部纯代码审查可豁免，需在结论论证并经 Grill 确认。
-    **先调研门禁（T2092 起，全场景 plan→do）**：本次调研证据二选一——链内 `research` 子票已归档，或本次 `research-report.md` 通过上述图/网络门禁；仅 `ontology_exempt` 豁免（`RESEARCH_FIRST_MISSING` 阻断，见 `scripts/pdca_core.py:gate_issues`）。**生产者豁免（T2103 起）**：`scenario==research` 的任务自身即调研，免自身门禁；他人引用该任务作证据仍须其已归档。
+    **契约化先调研门禁**：当任务的 `execution_contract.required_actions` 要求基于来源的调研时，前置证据二选一——已归档依赖任务产出的合格调研报告，或当前 `research-report.md` 通过上述图/网络门禁；仅 `ontology_exempt` 豁免（缺失时以 `RESEARCH_FIRST_MISSING` 阻断）。若 `execution_contract.work_product` 本身就是调研报告，则只校验当前产物质量，不要求它先为自身提供前置证据。`research` 是本 skill 的工具名称，不是 `task.json` 的路由或门禁控制值。
 4. 每条关键结论附至少一条**可复核验证途径**（重跑命令/SQL/复现步骤/可回看的 file:line 引用）；无法给出途径的结论降级为"待验证假设"并标注置信度。
 5. Register via `ontology:domain/skill-register-evidence`（见该技能登记命令与已知坑）。
 
-## Subagent 并行 Burn-down
+## 子 Agent 并行 Burn-down
 
-Research tickets 的并行调度语义见 `ontology:domain/skill-to-tickets` Dispatch 节（有 `agent.spawn` 能力走 Adapter，无则主 session 顺序执行），此处不复述平台假设。约束仍有效：每个 research ticket 独立 capture，不互相依赖；在实现问题上留下 context pointer。
+Research tickets 的调度语义见 `ontology:domain/skill-to-tickets` Dispatch 节：每个 ticket 都是独立 PDCA 任务，由其协调 Agent 经 Adapter 一次性启动一对一的全新子 Agent/子智能体上下文并立即进入 `suspended_waiting_agent`；子 Agent 在当前任务内自主执行。恢复后只读当前任务持久化产物并执行 `ontology_conformance_verification`，不得检查其他任务。`agent.spawn` 不可用时 fail-closed，不得由协调 Agent 或既有子 Agent 兜底。
 
 ## Model-Invoked 行为
 
@@ -92,5 +92,5 @@ Findings written to research-report.md and registered as evidence. Findings capt
 ## 已知坑
 
 - 只采信高信任 primary source；二手转述/低信源结论须标注置信度，勿当作事实。
-- Subagent 并行 burn-down 时，每个 research ticket 独立 capture，不互相依赖。
+- 子 Agent 并行 burn-down 时，每个 research ticket 独立 capture，不互相依赖。
 - model-invoked 模式下，AI 驱动调研，用户只需验证最终发现。

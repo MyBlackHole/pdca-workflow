@@ -12,8 +12,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-context-orchestration/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/skill-context-orchestration/1.0.1
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -31,9 +31,14 @@ id: conclusion:T0075--07-26-调研知识资产管理与-ai-提效方法
 layer: experience
 summary: 知识资产分层、溯源、检索评估与 AI 提效方法调研
 tags: [knowledge-management, ai-efficiency, rag, provenance, pdca]
-scenarios: [research, default, software-development, code-review]
+ontology_roles: [ontology_modeling, ontology_projection, ontology_conformance_verification]
+execution_contract:
+  work_product: 最小、可追溯的当前任务上下文包
+  required_actions: [按任务指纹检索, 核验来源链, 仅注入契约所需上下文]
+  constraints: [不得以请求标签替代职责契约筛选, 不得把模型摘要当事实]
+  testable_signal: 上下文包逐项回链 source_ids 且覆盖当前任务契约
 phases: [do, check, act]
-applies_when: [设计集中式知识资产管理、AI 上下文检索或任意场景的 PDCA 知识闭环]
+applies_when: [设计集中式知识资产管理、AI 上下文检索或任意 PDCA 知识闭环]
 excludes_when: [需要未经验证的自动知识发布]
 source_ids: [evidence:T0075--07-26-调研知识资产管理与-ai-提效方法:sha256:7cfbe39c1fa5c7d06c8688b48cbb972800381d3609fde176152279e46dfcd720]
 confidence: high

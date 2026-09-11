@@ -22,13 +22,13 @@
     "ontology_fragment": "ontology",
     "phase": "archive",
     "record": "T2088-0909-guomi-rework2",
-    "scenario_type": "documentation",
     "verdict": {
       "at": "2026-09-09T14:14:40+08:00",
       "outcome": "confirmed",
       "reason": "conclusion.md nine ACs mapped to guomi-r2-doc-17; 17 rework rounds landed",
       "verdict_id": "V-T2088-01"
-    }
+    },
+    "ontology_role": "ontology_modeling"
   },
   "parent": null,
   "slug": "0909-guomi-rework2",

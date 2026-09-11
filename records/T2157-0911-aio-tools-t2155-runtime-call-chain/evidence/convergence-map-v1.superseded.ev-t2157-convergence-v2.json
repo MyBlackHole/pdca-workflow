@@ -1,0 +1,8 @@
+{
+  "items": [
+    {"index": 1, "criteria": ["AC-1"], "evidence_ids": ["ev-t2157-index-v1"], "text": "BackupHelper 子进程与 unix socket 调用链可定位"},
+    {"index": 2, "criteria": ["AC-2"], "evidence_ids": ["ev-t2157-index-v1"], "text": "fs-cli method 与 FS requestType 分发对照可复核"},
+    {"index": 3, "criteria": ["AC-3"], "evidence_ids": ["ev-t2157-index-v1", "ev-t2157-research-v1"], "text": "6610/6611 端口和运行时装配入口不再混淆"}
+  ],
+  "schema": "pdca.convergence/v1"
+}

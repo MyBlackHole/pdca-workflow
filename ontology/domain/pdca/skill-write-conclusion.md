@@ -10,8 +10,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/skill-write-conclusion/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/skill-write-conclusion/1.0.1
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -56,7 +56,7 @@ Then record verdict in `task.json` `meta.verdict`:
 }
 ```
 
-Completion criterion: conclusion.md 含 verdict 四字段（outcome/reason/verdict_id/at）且**每个 AC** 都有一行 `✅/❌` 判定指向证据 ID；缺任一字段或任一 AC 无判定行即未完成。research 场景的关键结论还须附可复核验证途径（与 skills/research 第 4 步呼应）。
+Completion criterion: conclusion.md 含 verdict 四字段（outcome/reason/verdict_id/at）且**每个 AC** 都有一行 `✅/❌` 判定指向证据 ID；缺任一字段或任一 AC 无判定行即未完成。`execution_contract.required_actions` 选择 `research` 工具时，关键结论还须附可复核验证途径（与 skills/research 第 4 步呼应）。
 
 ## 已知坑
 

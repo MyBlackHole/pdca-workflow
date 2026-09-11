@@ -1,0 +1,1 @@
+{"items":[{"criteria":["AC-1"],"evidence_ids":["ev2147-research-report"],"index":1,"text":"本体落地交付物与验收已对齐"},{"criteria":["AC-2","AC-3"],"evidence_ids":[],"index":2,"text":"路径A执行链可回归验证"},{"criteria":["AC-1"],"evidence_ids":[],"index":3,"text":"不再区分议题有治理结论"}],"schema":"pdca.convergence/v1"}

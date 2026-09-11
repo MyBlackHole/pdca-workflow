@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/runtime-transition-coordinator/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/runtime-transition-coordinator/1.0.1
 summary: Runtime 阶段流转的并发锁、CAS、门禁和幂等规则（基于 Evidence 快照的单阶段 CAS，非递归）
 relations:
   specializes:
@@ -26,9 +26,11 @@ relations:
 ## 关键发现
 
 - Journal append、Planner fold、task/state commit 必须共享固定锁顺序。
-- 重试成功不能只看目标 state；必须有绑定 Scenario digest 的 transition receipt。
+- 重试成功不能只看目标 state；必须有绑定 ontology role、execution contract 与 Evidence 快照 digest 的 transition receipt。
 - 单文件原子 rename 只能防止截断读取；跨文件崩溃恢复仍需 receipt/recovery。
 - Check → Act 不能仅凭 Validator pass 自动宣称"已学习"，必须等待决策与知识模型。
+- Do 恢复的确定性门禁只能生成内容寻址的 pending conformance bundle，不能自行写入通过 receipt；协调器必须用独立命令绑定 bundle digest、决定与理由。
+- `awaiting_confirmation` 禁止直接接收完成事件。协调器必须先绑定请求之后新增的当前任务 `clarifications.jsonl` 条目及摘要，再把同一 Agent 恢复到 `suspended_waiting_agent`。
 
 ## 建议
 

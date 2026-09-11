@@ -1,0 +1,5 @@
+{"at":"2026-09-10T12:00:35+08:00","source":"task_identity","summary":"created with record identity T2151-0910-openssl-sm4-review"}
+{"source":"grilling","at":"2026-09-10T12:01:20+08:00","round":1,"question":"审查范围","answer":"全项审查","recommended":"API对照+构建链接+沉淀s3","captured":true,"status":"resolved","decision":"T2151全项：CBC/GCM对照、构建归属、s3沉淀"}
+{"source":"grilling","at":"2026-09-10T12:01:20+08:00","round":2,"question":"覆盖必问","answer":"同意沉淀方案","recommended":"锚定s3节点沉替换结论","captured":true,"status":"resolved","decision":"章节=CBC对照/GCM对照/构建链接，沉淀入sm4-s3节点"}
+{"source":"final_confirmation","summary":"grilling round1-2全项+覆盖必问；confirm-or-correct通过AC-1至AC-5，进入Do","response":"confirmed","at":"2026-09-10T12:02:31+08:00"}
+{"source":"check_confirmation","summary":"verdict confirmed：对照完整含纠错记录，s3沉淀进Act","response":"confirmed","at":"2026-09-10T12:05:22+08:00"}

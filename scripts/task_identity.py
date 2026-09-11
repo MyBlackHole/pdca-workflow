@@ -31,6 +31,11 @@ from ontology_reason import controlled_node_types, load_ontology
 TASK_ID_RE = re.compile(r"^T[0-9]{4,}$")
 SAFE_NAME = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 TRANSITIONS = {"created", "plan", "do", "check", "act", "archive"}
+ONTOLOGY_ROLES = {
+    "ontology_modeling",
+    "ontology_projection",
+    "ontology_conformance_verification",
+}
 
 # 本体节点类型词表（与 scripts/ontology-validate.py:TYPE_VOCAB 对齐）。
 # 任务创建时可用 --ontology-node-type 显式声明本任务主体产出的节点类型，
@@ -42,6 +47,26 @@ ONTOLOGY_NODE_TYPES = {
 
 # pdca-task 元概念节点 id；任务创建时默认锚定到此节点（消费该元概念）。
 PDCA_TASK_NODE = "ontology:concept/pdca-task"
+
+# T2152 默认锚定收紧：标题/slug 关键词 → 领域分支 concept。
+# 仅精确命中才路由；未命中回落 PDCA_TASK_NODE（行为不变，零误伤）。
+# 匹配顺序即优先级（bcachefs 含 core 语义，排首位）。
+DOMAIN_ANCHOR_ROUTES: tuple[tuple[str, str], ...] = (
+    ("bcachefs", "ontology:concept/domain-bcachefs"),
+    ("report-center", "ontology:concept/domain-report-center"),
+    ("zfs", "ontology:concept/domain-zfs"),
+)
+
+
+def _route_anchor_by_domain(title: str, slug: str) -> str | None:
+    """按标题/slug 关键词路由领域分支锚定；未命中返回 None（调用方回落默认）。"""
+    text = f"{slug} {title}".lower()
+    if slug.lower().startswith("core-") or text.startswith("core-"):
+        return "ontology:concept/domain-core"
+    for keyword, anchor in DOMAIN_ANCHOR_ROUTES:
+        if keyword in text:
+            return anchor
+    return None
 
 
 class TaskIdentityError(Exception):
@@ -94,6 +119,20 @@ def _fsync_directory(path: Path) -> None:
         os.close(descriptor)
 
 
+def _atomic_replace_file(path: Path, content: bytes) -> None:
+    """Atomically update an existing task projection under the identity lock."""
+    descriptor, temporary = tempfile.mkstemp(prefix=path.name + ".", dir=path.parent)
+    try:
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
+
+
 def _next_task_id(root: Path) -> str:
     highest = 0
     for task_path in (root / "pdca" / "tasks").glob("**/task.json"):
@@ -126,6 +165,16 @@ def _find_task_by_id(root: Path, task_id: str) -> dict[str, Any] | None:
             continue
         if task.get("id") == task_id:
             return task
+    return None
+
+
+def _find_task_path(root: Path, task_id: str) -> Path | None:
+    for path in sorted((root / "pdca" / "tasks").glob("**/task.json")):
+        try:
+            if load_json(path).get("id") == task_id:
+                return path
+        except (OSError, json.JSONDecodeError):
+            continue
     return None
 
 
@@ -200,7 +249,7 @@ def create_task(
     *,
     slug: str,
     title: str,
-    scenario_type: str,
+    ontology_role: str,
     created_at: str,
     parent: str | None = None,
     dependencies: tuple[str, ...] = (),
@@ -217,6 +266,8 @@ def create_task(
         raise TaskIdentityError("TASK_SLUG_INVALID", "--slug", "must be a strict PDCA task slug (MMDD-name)")
     if not title.strip():
         raise TaskIdentityError("TASK_TITLE_MISSING", "--title", "must be nonempty")
+    if ontology_role not in ONTOLOGY_ROLES:
+        raise TaskIdentityError("ONTOLOGY_ROLE_INVALID", "--ontology-role", "must be a professional ontology responsibility")
     if parent is not None and not TASK_ID_RE.fullmatch(parent):
         raise TaskIdentityError("PARENT_ID_INVALID", "--parent", "must be a strict task ID")
     if forced_record is not None and not SAFE_NAME.fullmatch(forced_record):
@@ -228,7 +279,7 @@ def create_task(
             root,
             slug=slug,
             title=title,
-            scenario_type=scenario_type,
+            ontology_role=ontology_role,
             created_at=parsed_created,
             parent=parent,
             dependencies=dependencies,
@@ -248,7 +299,7 @@ def _create_task_unlocked(
     *,
     slug: str,
     title: str,
-    scenario_type: str,
+    ontology_role: str,
     created_at: str,
     parent: str | None = None,
     dependencies: tuple[str, ...] = (),
@@ -311,8 +362,14 @@ def _create_task_unlocked(
             effective_anchor = parent_anchor
             is_default_anchor = False
         else:
-            effective_anchor = PDCA_TASK_NODE
-            is_default_anchor = True
+            # T2152 收紧：先按领域关键词路由分支，仅未命中回落 pdca-task。
+            routed = _route_anchor_by_domain(title, slug)
+            if routed is not None:
+                effective_anchor = routed
+                is_default_anchor = False
+            else:
+                effective_anchor = PDCA_TASK_NODE
+                is_default_anchor = True
     if effective_anchor is not None:
         node = _ontology_anchor_node(root, effective_anchor)
         if node is not None and node.get("type") == "concept":
@@ -330,19 +387,19 @@ def _create_task_unlocked(
                 "ONTOLOGY_ANCHOR_TYPE", "--ontology-anchor",
                 f"anchor must be a concept node, got {node.get('type')!r}",
             )
-    # 双层闸：research父仅生research叶，development父仅生development叶，跨层需显式ontology批注（T0520）
+    # 父子本体职责跨层时必须显式声明本体批次，避免执行路由隐式改变任务语义。
     if parent:
         parent_task = _find_task_by_id(root, parent)
         if parent_task:
-            p_scen = (parent_task.get("meta") or {}).get("scenario_type")
-            if p_scen and p_scen != scenario_type:
+            parent_role = (parent_task.get("meta") or {}).get("ontology_role")
+            if parent_role and parent_role != ontology_role:
                 # 跨层需显式 ontology: 批注于 title/convergence，不以继承 fragment 充数（防 research→development 直跳缺 research 叶）
                 has_onto = "ontology:" in title.lower() or (convergence and any("ontology" in c.lower() for c in convergence))
                 if not has_onto:
                     raise TaskIdentityError(
                         "SCENARIO_MISMATCH",
-                        "--scenario-type",
-                        f"parent {parent} is {p_scen} but child is {scenario_type}, cross-layer requires explicit ontology: batch (e.g., add 'ontology:xxx' to title/convergence)",
+                        "--ontology-role",
+                        f"parent {parent} is {parent_role} but child role is {ontology_role}, cross-role creation requires explicit ontology: batch (e.g., add 'ontology:xxx' to title/convergence)",
                     )
     if effective_fragment is not None:
         _validate_ontology_fragment(root, effective_fragment)
@@ -361,7 +418,7 @@ def _create_task_unlocked(
     meta: dict[str, Any] = {
         "phase": "plan",
         "active": True,
-        "scenario_type": scenario_type,
+        "ontology_role": ontology_role,
         "created_at": created_at,
         "convergence": convergence_items,
         "record": record,
@@ -423,6 +480,16 @@ def _create_task_unlocked(
         manifest_dir.mkdir(parents=True, exist_ok=True)
         created_manifest = True
         _write_new_file(manifest_dir / "task.json", canonical_bytes(task))
+        if parent:
+            parent_path = _find_task_path(root, parent)
+            if parent_path is None:
+                raise TaskIdentityError("PARENT_NOT_FOUND", "--parent", f"parent task not found: {parent}")
+            parent_task = load_json(parent_path)
+            children = parent_task.setdefault("children", [])
+            if task_id not in children:
+                children.append(task_id)
+            _validate(root, parent_task, "task.schema.json", "parent task.json")
+            _atomic_replace_file(parent_path, canonical_bytes(parent_task))
         _fsync_directory(destination)
         _fsync_directory(manifest_dir)
         _fsync_directory(tasks_root)
@@ -509,22 +576,22 @@ def _build_create(parse: Callable[[], dict[str, str | None]]) -> dict[str, Any]:
     root = options.pop("root", None)
     forced_record = options.pop("record", None)
     resolved = repo_root(Path(root) if root else None)
-    required = {"slug", "title", "created-at", "scenario-type"}
+    required = {"slug", "title", "created-at", "ontology-role"}
     values = {name: options.get(name) for name in required}
     missing = [name for name in sorted(required) if not values[name]]
     if missing:
         raise TaskIdentityError("ARG_MISSING", "--" + missing[0], "missing required option")
     slug = values["slug"]
     title = values["title"]
-    scenario_type = values["scenario-type"]
+    ontology_role = values["ontology-role"]
     created_at = values["created-at"]
     convergence = options.get("convergence")
-    assert slug is not None and title is not None and scenario_type is not None and created_at is not None
+    assert slug is not None and title is not None and ontology_role is not None and created_at is not None
     return create_task(
         resolved,
         slug=slug,
         title=title,
-        scenario_type=scenario_type,
+        ontology_role=ontology_role,
         created_at=created_at,
         parent=options.get("parent"),
         dependencies=_parse_dependencies(options.get("dependencies")),

@@ -9,9 +9,9 @@
   "do_started_at": "2026-09-04T14:00:00Z",
   "scenario_type": "development",
   "meta": {
-    "scenario_type": "development",
     "complexity": "high",
-    "estimated_duration": "11-17 weeks"
+    "estimated_duration": "11-17 weeks",
+    "ontology_role": "ontology_projection"
   },
   "acceptance_criteria": [
     "数据文件一致性恢复（WAL/Redo）可用",
@@ -79,7 +79,10 @@
       "description": "建立统一的引擎框架，支持 PG 和 MySQL，dlopen 动态加载，版本自动分发",
       "estimate": "2-3 周",
       "priority": "high",
-      "dependencies": ["T001", "T003"],
+      "dependencies": [
+        "T001",
+        "T003"
+      ],
       "acceptance_criteria": [
         "统一 API 接口可用",
         "支持多版本 PG/MySQL",
@@ -92,7 +95,10 @@
       "description": "将数据读取与 Parquet 写入集成，支持 PG 和 MySQL",
       "estimate": "1-2 周",
       "priority": "high",
-      "dependencies": ["T001", "T003"],
+      "dependencies": [
+        "T001",
+        "T003"
+      ],
       "acceptance_criteria": [
         "PG heap → Parquet 可用",
         "MySQL .ibd → Parquet 可用",

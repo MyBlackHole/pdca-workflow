@@ -1,0 +1,4 @@
+# Ontology graph summary
+nodes: 569
+edges: 1727
+islands: 0

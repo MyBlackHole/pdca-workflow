@@ -21,13 +21,13 @@
     "ontology_node_type": "entity",
     "phase": "archive",
     "record": "T0522-0903-research-zfs-checksum",
-    "scenario_type": "research",
     "verdict": {
       "at": "2026-09-02T10:05:00+08:00",
       "outcome": "confirmed",
       "reason": "3 项 AC 全部达成，研究 3 mermaid+16 Source 覆盖 7 算法与 GENERATE/VERIFY，本体 3 attrs+决策树正反例门禁 257 行，证据链 valid:true 且 manifest 3 条对齐",
       "verdict_id": "T0522-confirmed-20260902"
-    }
+    },
+    "ontology_role": "ontology_modeling"
   },
   "parent": null,
   "slug": "0903-research-zfs-checksum",

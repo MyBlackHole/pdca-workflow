@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ai-efficiency-uplift-assessment-before-adoption/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/ai-efficiency-uplift-assessment-before-adoption/1.0.1
 summary: 外部实践引进前的评估法
 domain:
 - ontology:domain/ai-efficiency
@@ -29,7 +29,12 @@ schema: pdca.asset/v1
 id: knowledge.ai-efficiency.uplift-assessment-before-adoption
 summary: 外部实践引进前的立项前评估法——现状核实防重复建设、五维评估、触发条件型观察层；源自 T0371 对 mattpocock/skills 引进的评估实践
 tags: [ai-efficiency, assessment, adoption, methodology]
-scenarios: [development, bugfix, research, documentation, design, review]
+ontology_roles: [ontology_modeling, ontology_projection, ontology_conformance_verification]
+execution_contract:
+  work_product: 外部实践采用评估
+  required_actions: [核实现状, 评估收益与成本, 定义采用信号]
+  constraints: [防止重复建设, 无可证明收益不采用]
+  testable_signal: 每个候选均有现状证据与采用或拒绝判据
 phases: [plan, check, act]
 source_ids: [T0371-0823-evaluate-uplift-potential]
 ---
@@ -89,4 +94,3 @@ grep -q 'ai-efficiency-uplift-assessment-before-adoption' ontology/domain/ai-eff
 - **图门禁**：`grep -c 'mermaid' ontology/domain/ai-efficiency-uplift-assessment-before-adoption.md` ≥1
 - **溯源门禁**：含 `Source:` 行号
 - **校验**：`python3 scripts/ontology-validate.py` 0 issues
-

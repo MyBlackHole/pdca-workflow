@@ -1,0 +1,55 @@
+{
+  "digest": "sha256:a264aa8b0f15b1e72925445b2edc7e12a8c6b90fb917a60bc9b89324592949b3",
+  "files": [
+    {
+      "digest": "sha256:c4c86cc732da5bae1cea77534055d2351219e7f043000bc46a7271f1d50cd505",
+      "path": "AGENTS.md"
+    },
+    {
+      "digest": "sha256:aeeae3c7333ec62912edbc8d8df5acf5ec7acf68c17824c036a1dfb1e3959ee7",
+      "path": "ontology/concept/capability-protocol.md"
+    },
+    {
+      "digest": "sha256:46294e2e1a7c5a6e4f39bf211adb2a99516019bcbe52396935dd9641c9d7a7e2",
+      "path": "ontology/concept/executor-adapter.md"
+    },
+    {
+      "digest": "sha256:f4eff988bfb5968c6c12a923d92bac89c140d79ab059691a14f6e6522394e4a0",
+      "path": "ontology/concept/pdca-task.md"
+    },
+    {
+      "digest": "sha256:5dc9ab1307fb8afecca31d511f2ee34915115ad2b03143e4c31eae3cf4a6f3ca",
+      "path": "ontology/concept/pdca.md"
+    },
+    {
+      "digest": "sha256:9735f7606143fc010f6d7657ae5c060f46377f1ef576b41e003f60a4877dabac",
+      "path": "ontology/concept/runtime-transition-coordinator.md"
+    },
+    {
+      "digest": "sha256:5603fdfb6f871d798c50eb47b4480245b31a71a3825feb3449099b6491001931",
+      "path": "ontology/domain/pdca/skill-register-evidence.md"
+    },
+    {
+      "digest": "sha256:adb4792bf3ad056ccc2549359cd0b3dba1c071f1716ff4b2581cb2f6cf689b03",
+      "path": "ontology/process/flow-do.md"
+    },
+    {
+      "digest": "sha256:44ff57fb80df8aacf931862a66fd4ccbc115b1e0de66dc72abafbfae38eec765",
+      "path": "pdca/tasks/0911-pdca-runtime-contract-projection/bootstrap-binding-receipt.json"
+    },
+    {
+      "digest": "sha256:5ec555b84e818547b1cba97773070e7fc1cb23299979fa1aa4e41d3dbcdf67aa",
+      "path": "pdca/tasks/0911-pdca-runtime-contract-projection/bootstrap-dispatch-request.json"
+    },
+    {
+      "digest": "sha256:995f151571e5e634ec700502143f7dcdb2b5796ac277d5e1ca1a5f1f15761d0c",
+      "path": "pdca/tasks/0911-pdca-runtime-contract-projection/prd.md"
+    },
+    {
+      "digest": "sha256:b532f0ffbb4634557f77e2eb49cd081bce2c25238531053df41e08c4f31de8b9",
+      "path": "pdca/tasks/0911-pdca-runtime-contract-projection/task.json"
+    }
+  ],
+  "schema": "pdca.agent-context-manifest/v1",
+  "task_id": "T2181"
+}

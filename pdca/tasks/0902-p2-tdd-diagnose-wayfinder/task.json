@@ -17,7 +17,6 @@
     "ontology_node_type": "domain",
     "phase": "archive",
     "record": "T0490-0902-p2-tdd-diagnose-wayfinder",
-    "scenario_type": "development",
     "steps": [
       {
         "name": "tdd书面确认",
@@ -60,7 +59,8 @@
       "outcome": "projected",
       "reason": "ontology:domain/skill-tdd + skill-diagnosing-bugs + skill-wayfinder 已深化，来源 T0490-0902-p2-tdd-diagnose-wayfinder",
       "at": "2026-09-01T09:45:33+08:00"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "parent": null,
   "slug": "0902-p2-tdd-diagnose-wayfinder",

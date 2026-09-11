@@ -10,8 +10,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-10
-owl_versionIRI: http://pdca.local/ontology/skill-to-tickets/1.0.1
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/skill-to-tickets/1.0.2
 relations:
   specializes:
     - ontology:concept/pdca-task
@@ -33,7 +33,7 @@ Parse `prd.md` and produce sub-task skeletons.
 ## Input
 
 - `prd.md` in the current task directory
-- Parent `task.json` with `id` and `meta.scenario_type`
+- Parent `task.json` with `id`, `meta.ontology_role` and `meta.execution_contract`
 
 ## Process
 
@@ -62,7 +62,7 @@ python3 "$PDCA_HOME/scripts/task_identity.py" create \
   --title "<短标题>" \
   --parent <parent task ID> \
   --dependencies <direct-predecessor task IDs, comma-separated> \
-  --scenario-type <inherit from parent> \
+  --ontology-role <inherit from parent> \
   --created-at <ISO now> \
   --ontology-fragment <继承父任务的 ontology_fragment，若父有> \
   --ontology-node-type <继承父任务的 ontology_node_type，若父有>
@@ -100,14 +100,14 @@ python3 scripts/compute-frontier.py < dag.json
 
 1. **验收继承**：每条子 AC 注明回链父 PRD 编号，格式 `AC-x（回链父 AC-y）`；无父 AC 可链时注明来源（triage brief 期望行为第 N 条）。
 2. **拆分映射对齐**：`## 拆分映射` 每行 `章节 -> 节点` 的节点须与本子票 `task.json` 的 `ontology_anchor` 一致；单子票单节点，一对多即拆分过粗，打回重拆。
-3. **测试接缝声明**：`development`/`bugfix` 子票必须含 `### 声明的测试接缝`（格式 `- seam: <测试文件> -> <被测模块>`）；`research`/`design`/`review`/`documentation` 子票免声明，但须在 PRD 写一句免责依据。
+3. **测试接缝声明**：`ontology_projection` 子票的 `execution_contract` 若要求修改可执行代码，PRD 必须含 `### 声明的测试接缝`（格式 `- seam: <测试文件> -> <被测模块>`）；其他职责或不修改可执行代码的契约可免声明，但须在 PRD 写明免责依据。skill 名称不得作为该门禁的任务路由字段。
 4. **反例拒收**：`- [ ] AC-1 示例验收` 原样未改即视为未实质化，`plan→do` 拒收。
 
 ## Rules
 
 - ID allocation is monotonic and repository-global: the `task_identity.py` entrypoint scans both active and archived tasks inside its lock; never hand-derive the next ID.
 - Do not create sub-tasks for units smaller than one PDCA cycle.
-- A sub-task inherits `scenario_type` from the parent unless overridden.
+- A sub-task inherits `ontology_role` and the execution contract from the parent unless an explicit ontology batch changes them.
 - A sub-task inherits `meta.ontology_fragment` / `meta.ontology_node_type` from the parent unless overridden (`task_identity.py` 自动继承；拆分前应先经本体冲突预检).
 - Always commit sub-task directories in the same commit as the parent update.
 - `dependencies` 只存直接前置；禁止写入传递依赖全集。
@@ -132,18 +132,21 @@ python3 scripts/compute-frontier.py < dag.json
 
 ## Dispatch（仅在 P6 终审后）
 
-Read the doctor result for the abstract `agent.spawn` capability. When available, pass each confirmed child PRD through the current environment Adapter. When unavailable, execute child tasks sequentially in the main session.
+`parent` 与 `dependencies` 只用于表达拆分关系、直接前置边与 ready-set 调度，不使任何任务成为另一任务的生命周期控制者或验收代理。每个拆出的任务都须作为独立 PDCA 循环，完成自己的 P6 终审后再调度。
 
-- Pass the child task's `prd.md` content as the prompt
-- The subagent runs a full PDCA cycle (plan→do→check→act→archive) independently
-- 拆分主轴为本体树（见 `ontology:concept/pdca` 设计核心）：每本体一子任务；B（知识产出）/A（代码变更）/C（评审校验）各阶段的子任务都跑完整循环
-- The subagent does NOT do user alignment — all user-facing decisions stay in the parent session
-- Collect return values: conclusion summary + evidence manifest path
-- After all subagents complete, merge evidence back to parent task's evidence/
-- Never dispatch before the parent P6 final confirmation
+读取 doctor 对抽象能力 `agent.spawn` 的探测结果。该能力是调度必需项：当前任务的协调 Agent 必须通过 Adapter，一次性启动与当前 PDCA 任务一对一绑定的全新子 Agent/子智能体上下文。若能力不可用，必须 fail-closed 并保持当前任务未执行；不得回退协调 Agent，也不得复用既有子 Agent 上下文。
+
+- 将当前任务的 `prd.md`、task metadata 与明确的 context pointer 作为持久化输入
+- 每个独立 PDCA 任务都获得一个全新子 Agent 上下文，不共享其他任务或协调 Agent 的活动上下文
+- 子 Agent 在当前任务上下文内自主执行
+- 拆分主轴为本体树（见 `ontology:concept/pdca` 设计核心）：每本体一子任务；`ontology_modeling`、`ontology_projection`、`ontology_conformance_verification` 三个专业职责下的子任务都跑完整循环，不保留其他职责别名
+- 派发后协调 Agent 立即进入 `suspended_waiting_agent` 并停止运行
+- 恢复后只读当前任务持久化产物并执行 `ontology_conformance_verification`，禁止检查其他任务
+- 需要用户确认时，当前任务只持久化 `awaiting_confirmation`，由主会话转交真实确认；子 Agent 不得代签
+- Never dispatch before the current task P6 final confirmation
 - Never guess or call a platform-specific tool when `agent.spawn` is unavailable
 
 ## 已知坑
 
-- 子任务在父 P6 final_confirmation 前**禁止调度**（T0265）。
-- `agent.spawn` 不可用时不猜平台工具，由主 session 顺序执行。
+- 当前任务在自身 P6 final_confirmation 前**禁止调度**（T0265）。
+- `agent.spawn` 不可用时 fail-closed，当前任务保持未执行；不得猜平台工具、不得由协调 Agent 执行、不得复用任何既有子 Agent 上下文。

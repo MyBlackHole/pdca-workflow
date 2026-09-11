@@ -17,7 +17,6 @@
     "ontology_node_type": "pattern",
     "phase": "archive",
     "record": "T0504-0903-zfs-crypto-diagram-fill",
-    "scenario_type": "documentation",
     "steps": [
       {
         "name": "回补件",
@@ -56,7 +55,8 @@
       "outcome": "projected",
       "reason": "ontology:pattern/research-diagram-methodology 回补3图可直接合入T0500，来源 T0504-0903-zfs-crypto-diagram-fill",
       "at": "2026-09-01T12:08:36+08:00"
-    }
+    },
+    "ontology_role": "ontology_modeling"
   },
   "parent": null,
   "slug": "0903-zfs-crypto-diagram-fill",

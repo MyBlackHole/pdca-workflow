@@ -23,7 +23,8 @@
 | **内容成本指标** | 默认使用 UTF-8 bytes 进行跨环境比较；模型真实 token 只由 Agent runner 实测 |
 | **内容预算** | 每个 flow/skill 资产的版本化 UTF-8 bytes baseline；默认拒绝增长，只有记录必要性并通过非退化验证的显式豁免才可更新 |
 | **确定性夹具** | 输入、预期输出和 pass/fail 信号均固定，可在不调用 Agent 模型的情况下重复执行的测试场景 |
-| **路由合约** | AI 友好评测使用的严格、机器可读 scenario→路径映射，是测试的唯一事实源；用于验证导航与评测 oracle，不等同于真实模型能力或语义成功率 |
+| **ontology_role** | Do 阶段唯一专业职责字段，只允许 `ontology_modeling`、`ontology_projection`、`ontology_conformance_verification`；请求标签和工具名称不得映射为另一套职责或路径 |
+| **execution_contract** | 决定具体工作内容的唯一结构化契约，必须恰含 `work_product`、`required_actions`、`constraints`、`testable_signal`；调研、诊断、TDD、设计和审查仅作为 `required_actions` 可选工具动作 |
 | **生命周期夹具** | 使用真实 gate/transition 逻辑构造的 PDCA 完整成功路径与按转换分组的关键失败路径；不以手工常量返回替代门禁行为 |
 | **convergence map** | Do 收尾时生成并登记的结构化证据映射；逐条把 Plan 中的 `meta.convergence` 回链到 PRD 验收条件和已登记 evidence ID，本身不作为验收通过证据 |
 | **Flow Issue Occurrence** | 一次具体发生、可追溯且写入后不可修改的 PDCA 机制问题事实；不等同于聚合问题或改进授权 |

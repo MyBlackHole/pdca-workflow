@@ -124,20 +124,6 @@ def deterministic_contract_issues(root: Path) -> list[dict[str, str]]:
     script_dir = Path(__file__).resolve().parent
     contracts = (
         (
-            "pdca/ai-friendliness-route-contract.json",
-            "resolve-ai-friendliness-route.py",
-            "--verify-document",
-            "CONTENT_ROUTE_CONTRACT_FAILED",
-            "route document verification",
-        ),
-        (
-            "pdca/ai-execution-contract.json",
-            "resolve-ai-execution-contract.py",
-            "--verify-document",
-            "CONTENT_EXECUTION_CONTRACT_FAILED",
-            "execution document verification",
-        ),
-        (
             "pdca/skill-invocation-contract.json",
             "resolve-skill-invocation.py",
             "--verify-documents",
@@ -158,19 +144,6 @@ def deterministic_contract_issues(root: Path) -> list[dict[str, str]]:
                     issue_code,
                     contract.relative_to(root).as_posix(),
                     f"{label} failed: {payload.get('code', 'CLI_OUTPUT_INVALID')}",
-                )
-            )
-    fixture = root / "tests/fixtures/ai-friendliness-scenarios.json"
-    if fixture.is_file():
-        status, payload = command_payload(
-            [sys.executable, str(script_dir / "run-ai-friendliness-fixtures.py"), "--all", "--root", str(root)]
-        )
-        if status != 0:
-            issues.append(
-                budget_issue(
-                    "CONTENT_FIXTURE_FAILED",
-                    fixture.relative_to(root).as_posix(),
-                    f"deterministic fixture failed: {payload.get('failed', 'CLI_OUTPUT_INVALID')}",
                 )
             )
     return issues

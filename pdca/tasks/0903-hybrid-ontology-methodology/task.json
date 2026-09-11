@@ -17,7 +17,6 @@
     "ontology_node_type": "domain",
     "phase": "archive",
     "record": "T0495-0903-hybrid-ontology-methodology",
-    "scenario_type": "development",
     "steps": [
       {
         "name": "根+3叶创建",
@@ -56,7 +55,8 @@
       "outcome": "projected",
       "reason": "ontology:domain/ontology-hybrid-methodology 已沉淀（研调顶向下/开发底向上/叶middle-out）并以report-center-system示范应用，来源 T0495-0903-hybrid-ontology-methodology",
       "at": "2026-09-01T10:23:27+08:00"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "parent": null,
   "slug": "0903-hybrid-ontology-methodology",

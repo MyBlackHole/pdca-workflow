@@ -8,7 +8,6 @@
   "meta": {
     "phase": "archive",
     "active": false,
-    "scenario_type": "research",
     "created_at": "2026-09-03T09:54:58.667096+08:00",
     "ontology_anchor": "ontology:concept/pdca-task",
     "ontology_fragment": "ontology",
@@ -53,7 +52,8 @@
       "outcome": "projected",
       "reason": "ZFS PCIe SM4可行性及选型与对接方式调研已沉淀为可复用知识，来源 T0539-0903-research-zfs-pcie-sm4",
       "at": "2026-09-03T09:57:33.210477+08:00"
-    }
+    },
+    "ontology_role": "ontology_modeling"
   },
   "states": {
     "created": "2026-09-03T09:54:58.667096+08:00",

@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/ai-efficiency-skills-candidate-review/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/ai-efficiency-skills-candidate-review/1.0.1
 summary: 技能候选系统化审查（Skills Candidate Review）
 domain:
 - ontology:domain/ai-efficiency
@@ -29,7 +29,12 @@ schema: pdca.asset/v1
 id: knowledge.ai-efficiency.skills-candidate-review
 summary: 技能候选系统化审查方法论——审查前先核实本地现状（对象修正）、逐候选深挖原文差距、可证明收益假设优先、产出含判定与优先级（T0242 实例：4 候选仅 1 处增强，D1-D6 深挖确认）
 tags: [ai-efficiency, skills, review, mattpocock, assessment]
-scenarios: [do, act]
+ontology_roles: [ontology_modeling, ontology_conformance_verification]
+execution_contract:
+  work_product: 技能候选审查报告
+  required_actions: [核实现状, 对比原文差距, 评估可证明收益]
+  constraints: [不得把skill名称作为任务路由]
+  testable_signal: 每个候选均有证据化采用判定与优先级
 phases: [do, check]
 source_ids: [T0242-0809-skills-candidates-review, T0243-0809-diagnosing-bugs-enhance]
 ---
@@ -115,4 +120,3 @@ grep -q 'ai-efficiency-skills-candidate-review' ontology/domain/ai-efficiency-sk
 - **图门禁**：`grep -c 'mermaid' ontology/domain/ai-efficiency-skills-candidate-review.md` ≥1
 - **溯源门禁**：含 `Source:` 行号
 - **校验**：`python3 scripts/ontology-validate.py` 0 issues
-

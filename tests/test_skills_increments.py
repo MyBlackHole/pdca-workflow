@@ -30,7 +30,7 @@ class SkillsIncrementsTest(unittest.TestCase):
         text = self.read_skill("triage-work")
         for field in (
             "category",
-            "scenario_type",
+            "ontology_role",
             "summary",
             "current behavior",
             "desired behavior",

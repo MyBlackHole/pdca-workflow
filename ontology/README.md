@@ -140,9 +140,9 @@ attributes:
 
 本体不是"plan 阶段声明一次就完事"，它在各阶段被主动消费（详见 `ontology/process/flow-*.md`）：
 
-- **Plan（`flow-plan`）**：development/bugfix 任务须声明 `meta.ontology_fragment`（本任务构建/复用的本体目录或文件）；Do 前置 `ontology-ready` 关卡校验其存在且 `pdca.asset/v1` 结构合法；本体自举任务设 `meta.ontology_exempt=true` 豁免。
-- **Do（`flow-do`）**：实现前/中对照 `meta.ontology_fragment`——复用既有 `id`/`type`/`relations`；新概念以 `pdca.asset/v1` frontmatter + `relations` 落盘到 `ontology/` 对应目录；变更后跑 `python3 scripts/ontology_graph.py --format summary` 确认无孤岛。`ontology_exempt` / 空片段则跳过。
-- **Check（`flow-check`）**：development/bugfix 若 `ontology_fragment` 存在，须确认 `python3 scripts/ontology-validate.py` 通过且本体变更已在 `evidence/manifest.jsonl` 登记；Grill 追问"结论是否可被既有 ontology 节点 / `relations` 支撑"。
+- **Plan（`flow-plan`）**：triage 必须选择 `meta.ontology_role` 三个专业职责之一，并填写 `meta.execution_contract` 的 `work_product`、`required_actions`、`constraints`、`testable_signal`。任务须声明本次构建或复用的 `meta.ontology_fragment`；Do 前置 `ontology-ready` 关卡校验其存在且 `pdca.asset/v1` 结构合法，本体自举任务仅可通过 `meta.ontology_exempt=true` 显式豁免。
+- **Do（`flow-do`）**：按 `meta.ontology_role` 承担专业职责，按四字段 `meta.execution_contract` 决定具体产物、动作、约束和验证信号。执行前/中对照 `meta.ontology_fragment`，复用既有 `id`/`type`/`relations`；新概念以 `pdca.asset/v1` frontmatter + `relations` 落盘到 `ontology/` 对应目录；变更后跑 `python3 scripts/ontology_graph.py --format summary` 确认无孤岛。调研、诊断、TDD、设计和审查名称仅为 `required_actions` 可选工具。
+- **Check（`flow-check`）**：对所有专业职责统一核验 PRD、已登记 Evidence、收敛条件和执行契约；`ontology_fragment` 存在时须确认 `python3 scripts/ontology-validate.py` 通过且本体变更已在 `evidence/manifest.jsonl` 登记。Grill 追问"结论是否可被既有 ontology 节点 / `relations` 支撑"。
 - **Act（`flow-act`）**：知识沉淀优先关联既有 ontology 节点而非孤立条目；架构改进若发现本体缺口（缺失节点 / 关系），创建本体补强任务（`meta.ontology_fragment` 指向待补强目录）。
 
 > 本体消费的前提是 `meta.ontology_fragment` 存在；普通任务（片段为空或 `ontology_exempt`）不增加额外负担。

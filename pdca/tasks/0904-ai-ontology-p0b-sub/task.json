@@ -10,7 +10,7 @@
     "ontology_anchor": "ontology:concept/pdca-task",
     "ontology_fragment": "ontology",
     "phase": "plan",
-    "scenario_type": "research"
+    "ontology_role": "ontology_modeling"
   },
   "parent": "T2038",
   "slug": "0904-ai-ontology-p0b-sub",

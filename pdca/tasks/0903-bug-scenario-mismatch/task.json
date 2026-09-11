@@ -15,7 +15,6 @@
     "ontology_node_type": "domain",
     "phase": "archive",
     "record": "T0519-0903-bug-scenario-mismatch",
-    "scenario_type": "bugfix",
     "steps": [
       {
         "name": "根因定位",
@@ -44,7 +43,8 @@
       "outcome": "projected",
       "reason": "ontology:concept/pdca-task 双层叶补正已验证，来源 T0519-0903-bug-scenario-mismatch",
       "at": "2026-09-01T14:40:35+08:00"
-    }
+    },
+    "ontology_role": "ontology_projection"
   },
   "parent": null,
   "slug": "0903-bug-scenario-mismatch",

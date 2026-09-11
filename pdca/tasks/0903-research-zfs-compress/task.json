@@ -21,13 +21,13 @@
     "ontology_node_type": "entity",
     "phase": "archive",
     "record": "T0523-0903-research-zfs-compress",
-    "scenario_type": "research",
     "verdict": {
       "at": "2026-09-02T11:00:00+08:00",
       "outcome": "confirmed",
       "reason": "3 项 AC 全部达成，研究 3 mermaid+15 Source 覆盖 lz4/zstd/gzip/zle 与 WRITE_COMPRESS/DECOMPRESS 及 lsize→psize，本体 transform_stack 细化至 compress_func/zio_compress_info_t/compress_empty 且 3 attrs+决策树正反例门禁 257 行，证据链 manifest 4 条+convergence 3 项 valid:true 且 ontology-validate OK islands:0",
       "verdict_id": "T0523-confirmed-20260902"
-    }
+    },
+    "ontology_role": "ontology_modeling"
   },
   "parent": null,
   "slug": "0903-research-zfs-compress",

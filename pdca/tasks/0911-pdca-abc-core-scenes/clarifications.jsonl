@@ -1,0 +1,2 @@
+{"at":"2026-09-11T10:55:33+08:00","source":"task_identity","summary":"created with record identity T2164-0911-pdca-abc-core-scenes"}
+{"source":"final_confirmation","summary":"用户确认修正：核心只保留 A/B/C；六个旧 scenario_type 不保留兼容层，直接下沉为 skill/tool 路由并同步修正权威本体、流程、schema 和脚本","response":"confirmed","at":"2026-09-11T10:56:45+08:00"}

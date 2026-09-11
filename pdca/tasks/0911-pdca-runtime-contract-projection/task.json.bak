@@ -1,0 +1,87 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T2181",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "runtime 只消费三个专业职责与四字段执行契约",
+      "权威本体图被投影为当前任务有界子图与可追溯执行树或 DAG",
+      "每个 PDCA 的 Do 只绑定一个全新子 Agent",
+      "派发后协调器挂起且恢复只读取当前任务持久化产物",
+      "agent.spawn 不可用时 fail-closed 且不存在主会话回退",
+      "旧场景路由 contract、resolver 和测试控制语义全部删除"
+    ],
+    "created_at": "2026-09-11T16:27:06+08:00",
+    "execution_contract": {
+      "constraints": [
+        "在新 pdca_runtime 目录实现核心，不继续向顶层脚本堆叠业务逻辑",
+        "不读取 parent、children、dependencies 或其他任务状态决定当前任务生命周期",
+        "不保留 scenario_type、六场景、A/B/C 路由或 execute-in-main-session 兼容入口",
+        "Python runtime 不直接伪造平台子 Agent，平台 Adapter 只通过显式派发请求和回执接入",
+        "子 Agent 上下文新鲜度由平台 Adapter 声明，runtime 不通过跨任务扫描推断",
+        "不修改历史 records、journal、归档任务或无关活跃任务"
+      ],
+      "required_actions": [
+        "盘点配置、Schema、Python 和测试中的旧场景控制消费者",
+        "在 pdca_runtime 中实现权威本体图到当前任务有界子图及执行树或 DAG 的投影",
+        "实现职责与严格四字段执行契约校验以及当前任务派发状态机",
+        "新增 executable-task Schema 和追加式 Agent execution receipt Schema",
+        "实现 agent.spawn 必需能力预检、锁保护 CAS 一次性派发、协调挂起和 fail-closed",
+        "实现只读当前任务持久化产物的恢复与本体实现符合性验证入口",
+        "记录 T2181 一次性自举派发 request 与 binding receipt 后立即挂起协调会话",
+        "迁移现有 CLI、配置、Schema 和测试并删除旧场景 contract/resolver",
+        "登记目标测试、完整回归、本体校验和残留扫描证据"
+      ],
+      "testable_signal": "T2181 自举 receipt 证明原生 fresh spawn 后协调器停止；目标 runtime 测试覆盖本体三层投影、三种职责、并发/重复/缺失 spawn 拒绝、挂起与当前任务恢复；旧控制语义零命中；完整测试相对 261 tests/37 failures/5 errors/2 skipped 基线无新增失败，本体和 convergence 校验通过",
+      "work_product": "新 pdca_runtime 核心包、本体 projection manifest、executable-task 与 Agent execution receipt Schema、迁移后的 CLI/配置及完整回归测试"
+    },
+    "ontology_anchor": "ontology:concept/executor-adapter",
+    "ontology_exempt": true,
+    "ontology_exempt_reason": "本任务投射 ontology 子 Agent runtime，并删除当前阻断自身启动的隐式 research 门禁，属于 PDCA runtime 自举修复；仍须更新既有本体节点完成 Act 沉淀。",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "concept",
+    "ontology_role": "ontology_projection",
+    "phase": "plan",
+    "record": "T2181-0911-pdca-runtime-contract-projection",
+    "steps": [
+      {
+        "completion_criterion": "形成配置、Schema、Python、contract 与测试的消费者清单",
+        "description": "识别旧场景控制与子 Agent 执行契约的实现差距",
+        "name": "inventory-runtime-drift"
+      },
+      {
+        "completion_criterion": "本体有界子图与执行树或 DAG 的每个叶节点均可追溯到动作和退出判据",
+        "description": "建立本体树驱动的当前任务 projection manifest",
+        "name": "build-runtime-core"
+      },
+      {
+        "completion_criterion": "派发、挂起、结果登记、确认等待和恢复转换均有拒绝式测试",
+        "description": "实现一对一子 Agent 派发与当前任务持久化状态机",
+        "name": "project-agent-lifecycle"
+      },
+      {
+        "completion_criterion": "旧场景 contract、resolver、Schema 与控制测试无活跃消费者",
+        "description": "迁移入口并删除不兼容的旧控制表面",
+        "name": "remove-legacy-runtime"
+      },
+      {
+        "completion_criterion": "目标测试、完整回归、本体与残留扫描结果全部登记为证据",
+        "description": "执行本体实现符合性验证并形成可复核报告",
+        "name": "verify-projection"
+      }
+    ]
+  },
+  "parent": null,
+  "slug": "0911-pdca-runtime-contract-projection",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": null,
+    "created": "2026-09-11T16:27:06+08:00",
+    "do": null,
+    "plan": "2026-09-11T16:27:06+08:00"
+  },
+  "status": "Pending",
+  "title": "投射 PDCA 子 Agent 执行契约到 runtime"
+}

@@ -18,7 +18,6 @@
     "ontology_node_type": "domain",
     "phase": "archive",
     "record": "T0492-0902-scenario-ontology-coverage",
-    "scenario_type": "review",
     "steps": [
       {
         "name": "基于本体判定",
@@ -57,7 +56,8 @@
       "outcome": "projected",
       "reason": "ontology:concept/pdca-task 全场景核验已沉淀，豁免硬指标建议已给出，来源 T0492-0902-scenario-ontology-coverage",
       "at": "2026-09-01T09:54:21+08:00"
-    }
+    },
+    "ontology_role": "ontology_conformance_verification"
   },
   "parent": null,
   "slug": "0902-scenario-ontology-coverage",

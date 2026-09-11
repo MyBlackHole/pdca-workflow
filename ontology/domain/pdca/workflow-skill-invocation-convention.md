@@ -6,8 +6,8 @@ layer: Knowledge
 status: active
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: 2026-09-04
-owl_versionIRI: http://pdca.local/ontology/workflow-skill-invocation-convention/1.0.0
+dcterms_modified: 2026-09-11
+owl_versionIRI: http://pdca.local/ontology/workflow-skill-invocation-convention/1.0.1
 summary: 'Skill 调用约定：invocation: manual'
 domain:
 - ontology:domain/workflow
@@ -30,7 +30,12 @@ id: knowledge:workflow.skill-invocation-convention
 layer: knowledge
 summary: "invocation: manual 标记区分用户调用和模型自动调用两类技能"
 tags: [skill, invocation, convention]
-scenarios: [default]
+ontology_roles: [ontology_modeling, ontology_projection, ontology_conformance_verification]
+execution_contract:
+  work_product: 合法技能调用图
+  required_actions: [校验invocation类型, 校验调用边]
+  constraints: [manual仅作用户入口, 工具名不承担任务分类]
+  testable_signal: 所有调用边目标存在且invocation类型合法
 phases: [plan, do, check, act]
 applies_when: [设计或修改技能调用策略]
 excludes_when: []

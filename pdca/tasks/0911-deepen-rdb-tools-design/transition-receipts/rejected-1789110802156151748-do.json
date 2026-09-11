@@ -1,0 +1,21 @@
+{
+  "schema": "pdca.gate-rejection/v1",
+  "task_id": "T2176",
+  "from": "plan",
+  "to": "do",
+  "issues": [
+    {
+      "code": "TICKETS_MISSING",
+      "path": "task.json/children",
+      "message": "non-research tasks require at least one child ticket (to-tickets not run)",
+      "guidance": "run skill to-tickets to break down the task or set children explicitly"
+    },
+    {
+      "code": "RESEARCH_FIRST_MISSING",
+      "path": "task.json",
+      "message": "plan→do requires prior research: an archived research child in-chain or a passing research-report.md (mermaid≥3/Source≥3/http Source≥1/URLs≥2)",
+      "guidance": "archive a research child ticket or add a passing research-report.md; bootstrap tasks may set ontology_exempt=true"
+    }
+  ],
+  "at": "2026-09-11T15:13:22.156109+08:00"
+}

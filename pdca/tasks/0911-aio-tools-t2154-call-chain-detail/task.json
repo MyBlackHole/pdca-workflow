@@ -1,0 +1,35 @@
+{
+  "children": [],
+  "dependencies": [
+    "T2154"
+  ],
+  "id": "T2155",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "调用链协议覆盖入口判断、版本选择、分册跳转、证据读取与失败回退",
+      "五类 aio-tools 入口均有可执行路由矩阵与稳定锚点",
+      "T2154 版本基线可追溯且本地引用校验通过"
+    ],
+    "created_at": "2026-09-11T00:00:00+08:00",
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "concept",
+    "phase": "check",
+    "record": "T2155-0911-aio-tools-t2154-call-chain-detail",
+    "completed_at": "2026-09-11T11:05:07+08:00",
+    "ontology_role": "ontology_projection"
+  },
+  "parent": "T2154",
+  "slug": "0911-aio-tools-t2154-call-chain-detail",
+  "states": {
+    "act": null,
+    "archive": null,
+    "check": "2026-09-11T11:05:07+08:00",
+    "created": "2026-09-11T00:00:00+08:00",
+    "do": "2026-09-11T10:30:46+08:00",
+    "plan": "2026-09-11T00:00:00+08:00"
+  },
+  "status": "Completed",
+  "title": "优化 T2154 aio-tools 知识地图调用链细节"
+}

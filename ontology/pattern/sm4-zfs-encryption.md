@@ -30,9 +30,8 @@ flowchart TD
 ```
 Source: `file: F/139/备份传输存储国密SM4全流程加密方案.md:1`
 
-## F/143 承接清单（T2107，2026-09-09）
+## ZFS承接规则
 
 > 来源 record：`records/T2107-0909-guomi-storage-research/`（本仓无内核源码，记外部依赖）
 
-- 承接参数：新建数据集 `encryption=sm4-gcm`、`load-key/unload-key` 行为、`zfs send/recv` 继承源端加密属性、灰度只在内部测试环境。
-- 对应方案验收 Y4/Y5，验证环境在内核仓，不在本任务验证面。
+- 规则：`encryption=sm4-gcm` 数据集经 `load-key` 启用、`send/recv` 继承源端加密属性、仅内测灰度启用。

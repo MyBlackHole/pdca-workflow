@@ -1,0 +1,56 @@
+[
+  {
+    "action_index": 1,
+    "step_name": "inventory-runtime-drift",
+    "ontology_id": "ontology:concept/executor-adapter",
+    "depends_on": []
+  },
+  {
+    "action_index": 2,
+    "step_name": "build-runtime-core",
+    "ontology_id": "ontology:concept/pdca",
+    "depends_on": ["action-001"]
+  },
+  {
+    "action_index": 3,
+    "step_name": "project-agent-lifecycle",
+    "ontology_id": "ontology:concept/pdca-task",
+    "depends_on": ["action-002"]
+  },
+  {
+    "action_index": 4,
+    "step_name": "build-runtime-core",
+    "ontology_id": "ontology:concept/pdca-task",
+    "depends_on": ["action-002"]
+  },
+  {
+    "action_index": 5,
+    "step_name": "project-agent-lifecycle",
+    "ontology_id": "ontology:concept/runtime-transition-coordinator",
+    "depends_on": ["action-003", "action-004"]
+  },
+  {
+    "action_index": 6,
+    "step_name": "project-agent-lifecycle",
+    "ontology_id": "ontology:concept/pdca",
+    "depends_on": ["action-005"]
+  },
+  {
+    "action_index": 7,
+    "step_name": "project-agent-lifecycle",
+    "ontology_id": "ontology:concept/executor-adapter",
+    "depends_on": ["action-005"]
+  },
+  {
+    "action_index": 8,
+    "step_name": "remove-legacy-runtime",
+    "ontology_id": "ontology:process/flow-do",
+    "depends_on": ["action-003", "action-004"]
+  },
+  {
+    "action_index": 9,
+    "step_name": "verify-projection",
+    "ontology_id": "ontology:process/flow-do",
+    "depends_on": ["action-006", "action-007", "action-008"]
+  }
+]

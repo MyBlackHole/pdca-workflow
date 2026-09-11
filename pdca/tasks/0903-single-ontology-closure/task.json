@@ -18,7 +18,6 @@
     "ontology_node_type": "domain",
     "phase": "archive",
     "record": "T0494-0903-single-ontology-closure",
-    "scenario_type": "review",
     "steps": [
       {
         "name": "attributes核验",
@@ -62,7 +61,8 @@
       "outcome": "projected",
       "reason": "ontology:concept/knowledge-provenance 单节点闭环已核验，修复清单已给出，来源 T0494-0903-single-ontology-closure",
       "at": "2026-09-01T10:03:01+08:00"
-    }
+    },
+    "ontology_role": "ontology_conformance_verification"
   },
   "parent": null,
   "slug": "0903-single-ontology-closure",

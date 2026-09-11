@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check research tasks' ontology settlement decision in Act.
 
-For scenario_type == research and phase in (act, archive):
+For execution_contract.work_product == research-report and phase in (act, archive):
 - conclusion.md must contain '## 本体沉淀' section
 - that section must explicitly mention 'ontology:' (records-only 取消，T0513)
 - task.json meta.disposition.reason must contain 'ontology:'
@@ -44,13 +44,14 @@ def main() -> int:
         return 1
 
     task = load_json(task_path)
-    scenario = task.get("meta", {}).get("scenario_type")
+    contract = task.get("meta", {}).get("execution_contract") or {}
+    work_product = contract.get("work_product")
     phase = task.get("meta", {}).get("phase")
     record = task.get("meta", {}).get("record")
 
     # Only check research tasks in act/archive
-    if scenario != "research":
-        print(f"SKIP: scenario_type={scenario} not research")
+    if work_product != "research-report":
+        print(f"SKIP: work_product={work_product} not research-report")
         return 0
     if phase not in ("act", "archive"):
         print(f"SKIP: phase={phase} not in (act, archive)")

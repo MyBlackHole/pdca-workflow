@@ -25,7 +25,7 @@ def make_task(task_id: str, slug: str, phase: str,
     meta = {
         "phase": phase,
         "active": True,
-        "scenario_type": "development",
+        "ontology_role": "ontology_projection",
         "created_at": "2026-08-15T00:00:00+08:00",
         "convergence": ["fixture"],
         "record": f"R-{task_id}",

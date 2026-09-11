@@ -1,0 +1,62 @@
+{
+  "children": [],
+  "dependencies": [],
+  "id": "T2179",
+  "meta": {
+    "active": true,
+    "convergence": [
+      "独立无 children 的 PDCA 可进入 Do",
+      "parent 与 children 只表达调度关系",
+      "旧 TICKETS_MISSING 生命周期耦合被删除",
+      "门禁回归测试通过"
+    ],
+    "created_at": "2026-09-11T15:24:24+08:00",
+    "execution_contract": {
+      "constraints": [
+        "只修改独立任务 ticket 准入门禁及直接回归测试",
+        "保持 final confirmation、Grill、PRD、本体就绪和相邻转换门禁不变",
+        "不执行旧场景本体清理或 Agent runtime 全量投射"
+      ],
+      "required_actions": [
+        "删除 TICKETS_MISSING parent/children 生命周期分支",
+        "把任务关系限定为拆分与调度信息",
+        "覆盖三个专业职责的无 children 独立任务",
+        "运行目标测试和相关 Plan 门禁回归"
+      ],
+      "testable_signal": "无 children 的独立任务不产生 TICKETS_MISSING，目标测试和相关门禁回归通过",
+      "work_product": "符合 ontology:concept/pdca-task 的独立任务 Plan→Do 门禁投射"
+    },
+    "ontology_anchor": "ontology:concept/pdca-task",
+    "ontology_exempt": true,
+    "ontology_exempt_reason": "本任务修复阻断独立 PDCA 启动的 ontology 自举门禁，必须先完成最小投射才能恢复正常本体工作流。",
+    "ontology_fragment": "ontology",
+    "ontology_node_type": "concept",
+    "ontology_role": "ontology_projection",
+    "phase": "act",
+    "record": "T2179-0911-independent-pdca-ticket-gate-projection",
+    "completed_at": "2026-09-11T15:43:05+08:00",
+    "verdict": {
+      "outcome": "confirmed",
+      "reason": "AC-1 至 AC-5 均由当前有效证据覆盖，首次跨任务遍历缺口已修正，直接测试和相关 Plan 门禁回归全部通过。",
+      "verdict_id": "V-T2179-20260911",
+      "at": "2026-09-11T15:43:05+08:00"
+    },
+    "disposition": {
+      "outcome": "projected",
+      "reason": "已将 ontology:concept/pdca-task 的独立生命周期约束投射到 Plan→Do 门禁：任务关系仅用于调度，当前任务准入不再读取关联任务状态。",
+      "at": "2026-09-11T15:45:39+08:00"
+    }
+  },
+  "parent": "T2178",
+  "slug": "0911-independent-pdca-ticket-gate-projection",
+  "states": {
+    "act": "2026-09-11T15:45:39+08:00",
+    "archive": null,
+    "check": "2026-09-11T15:43:05+08:00",
+    "created": "2026-09-11T15:24:24+08:00",
+    "do": "2026-09-11T15:27:55+08:00",
+    "plan": "2026-09-11T15:24:24+08:00"
+  },
+  "status": "Completed",
+  "title": "投射 ontology:concept/pdca-task 独立任务门禁"
+}
