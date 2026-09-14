@@ -1,0 +1,32 @@
+#!/bin/sh
+
+set -eu
+
+repository='https://github.com/MyBlackHole/pdca-workflow.git'
+pdca_root="$HOME/.agents/pdca"
+skills_dir="$HOME/.agents/skills"
+
+if ! command -v git >/dev/null 2>&1; then
+    echo 'PDCA installation requires Git.' >&2
+    exit 1
+fi
+
+if [ -e "$pdca_root" ] || [ -L "$pdca_root" ]; then
+    echo "Refusing to install: central root already exists: $pdca_root" >&2
+    exit 1
+fi
+
+if [ -e "$skills_dir" ] || [ -L "$skills_dir" ]; then
+    echo "Refusing to install: skill discovery path already exists: $skills_dir" >&2
+    exit 1
+fi
+
+mkdir -p "$HOME/.agents"
+git clone "$repository" "$pdca_root"
+ln -s "$pdca_root/skills" "$skills_dir"
+
+printf '%s\n' \
+    "PDCA root: $pdca_root" \
+    "Skill discovery link: $skills_dir -> $pdca_root/skills" \
+    'Start a new host session and invoke: $pdca' \
+    "Update manually: git -C \"$pdca_root\" pull"
