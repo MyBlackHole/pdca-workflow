@@ -1,23 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/ontology-rule-fidelity-diagram
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 图与来源的实际价值
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/ontology-fidelity-criterion
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 图与来源的实际价值
+# 已退役的 3.x 条款
 
-复杂关系、状态变化或数据流可用图辅助，但无需为凑图数重复文字。对照实际来源检查节点和边，图源版本可定位；无渲染工具时不宣称已经渲染通过。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/ontology-rule-fidelity-diagram.md)仅作迁移比较，不作为正常读取的下一步。

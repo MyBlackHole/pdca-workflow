@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/context-pointer
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 具名、版本固定的上下文指针
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:process/select-task-subgraph
-  - ontology:concept/pdca-evidence
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 具名、版本固定的上下文指针
+# 已退役的 3.x 条款
 
-指针包含node_id或source_ref、固定版本/内容摘要、明确读取理由和触发条件。启动只加载必要规则，领域正文按需读取。路径可读不等于已获授权；历史绝对路径不是当前环境可用性的证据。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/context-pointer.md)仅作迁移比较，不作为正常读取的下一步。

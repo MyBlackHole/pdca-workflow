@@ -1,58 +1,20 @@
 ---
-schema: pdca.conformance-review/v3
-review_task_id: null
-work_id: null
-tree_revision: null
-node_id: null
-release_ref: null
-subject_artifact_refs: []
-child_review_refs: []
-subject_conformance: null
-review_task_verdict: null
-test_run_refs: []
-issues: []
-protocol_revision: 3.4.11
-requirements_basis_ref: null
-requirements_basis_digest: null
-subject_snapshot_ref: null
+schema: pdca.conformance-review/v4
+protocol_revision: 4.0.0-rc.1
+task_id: null
+attempt: null
+requirement_refs: []
 definition_refs: []
-coverage_ref: null
-claim_scope: null
-limitations: []
+subject_refs: []
+projection_map_ref: null
+findings: []
+result: not_run
 ---
 
-# 独立对应审查报告草稿
+# 三向符合性
 
-只能由新的独立节点审查任务产生真实报告。review_task_verdict评价审查任务，subject_conformance评价被审实现，二者不能混淆。
+原需求→模型：每项义务有对象／约束或明确缺口。
+模型→投影：每项采用约束映射到目标位置，目标的实质主张无无依据增加。
+产物→行为：实际运行覆盖适用预期及反例，未运行保持not_run。
 
-## 定义到实现、实现到定义
-
-| 约束 | 实现位置/固定版本 | 正反例run/原始证据 | 符合性 | 缺失/额外行为/理由 |
-|---|---|---|---|---|
-
-## 组合与证据
-
-真实孩子接口/错误传播/整体不变量；测试器控制样本、反例/变体、版本漂移、未知项；孩子PASS不替代父组合审查。
-
-## 缺陷与处置
-
-按 [发现核验](../ontology/process/independent-work-review.md#review-counterevidence)填写既有issues及正文；发现问题不直接修改被审对象。
-
-| issue/主张 | 固定位置与触发 | 支持证据 | 已查反证及适用条件 | 确认／否定／unknown及理由 | 影响、取证或关闭回归 |
-|---|---|---|---|---|---|
-
-“否定”只针对该发现；不代表所有必需约束通过。严重性依据可证影响，无法核验的运行或权限前提单列。
-
-
-## 固定集合与具名断言
-
-claim_scope明确exact_declaration/abstract_contract/layout/behavior或本次具体方法范围。coverage从固定requirements_basis独立展开，正向到实现与观察、反向到遗漏/额外行为；不按报告目录生成分母。缺源代码和配置的事实保持unknown，维护观察不可填写独立任务已完成。
-
-
-## 结果消费核对
-
-实际来源、当次采用版本、具体违例与证据缺口分开说明。输出前将每项确定差异与本表及subject_conformance反向核对；报告自身完成不改写对象符合性。对历史材料不把缺项直接解释为操作未执行。
-
-## 专业范围与建议
-
-按 [REVIEW](../ontology/process/independent-work-review.md#review-professional-findings)说明所选方向、实际追踪路径和未覆盖项。确定违例、缺证据和建议分开；建议列依据、替代与代价，不混入缺陷数或用评分改变subject_conformance。建议涉及修改时另按原授权与REWORK处理，审查不代修。重复发现归并保留不同触发证据，分歧不以票数裁决。
+每行给requirement/object/constraint/target/observation/verdict，保留反证。哈希、链接和文件数量不能代替这些核对。

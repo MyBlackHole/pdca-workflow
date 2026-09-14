@@ -1,28 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:entity/evidence-test-result
 type: entity
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 3.0.0
-summary: 证据类型：逐案例真实测试结果
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/pdca-evidence
-  relates_to:
-  - ontology:concept/task-unit-test
-  - ontology:concept/task-test-case
-  - ontology:concept/pdca-evidence
-evidence_kind: test-result
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 证据类型：逐案例真实测试结果
+# 已退役的 3.x 条款
 
-证据类型为test-result。字段依EVIDENCE-01/TEST-01，必须可回链suite/case/run/实现及环境版本、实际输入输出/断言、退出状态/清理与原始产物；测试计划、示例期望或模型自述不是结果。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
 
-正确实现run与错误实现变体run分开；invalid mutation不能作为killed。失败/未知/未执行不得隐藏，返工保留旧记录。
+[当前PDCA](../concept/pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/entity/evidence-test-result.md)仅作迁移比较，不作为正常读取的下一步。

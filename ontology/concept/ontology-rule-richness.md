@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/ontology-rule-richness
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 有意义的领域挂接
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/ontology-rule
-  relates_to:
-  - ontology:concept/ontology-asset
-rule_spec: {}
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 有意义的领域挂接
+# 已退役的 3.x 条款
 
-知识实例应通过guides或relates_to关联其适用主题/过程；不要为凑引用数加根节点。无关联的候选需说明用途并补充必要关系。孤岛是审查线索，不是全部任务归档必须扫描全库的业务门禁。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/ontology-rule-richness.md)仅作迁移比较，不作为正常读取的下一步。

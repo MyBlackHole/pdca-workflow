@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/pdca-feedback
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 任务反馈的证据范围
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-11
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/pdca-continuous-improvement
-  - ontology:concept/pdca-task
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 任务反馈的证据范围
+# 已退役的 3.x 条款
 
-反馈记录执行偏差、影响、证据、尚未知信息和建议。跨任务效果分析必须是独立授权的任务，输入是明确导入的历史记录副本；当前任务协调器不能借“反馈”检查其他任务活动目录。没有真实遥测则写unknown。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/pdca-feedback.md)仅作迁移比较，不作为正常读取的下一步。

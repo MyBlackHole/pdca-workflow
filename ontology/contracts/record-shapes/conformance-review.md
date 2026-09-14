@@ -1,43 +1,13 @@
 ---
-schema: pdca.record-shape/v1
-authority: CONTRACT-01
-protocol_revision: 3.4.11
-profile: fixed_formal_record_example
-record_kind: conformance-review
-template_ref: ../../../templates/conformance-review.md
-template_digest: 5a8bec5e2735ce35581e84ed0ab73b69a9e50b30efe6636adb9bd7dc551e1636
-shape:
-  strings:
-  - review_task_id
-  - work_id
-  - tree_revision
-  - node_id
-  - subject_conformance
-  - review_task_verdict
-  - claim_scope
-  lists:
-  - subject_artifact_refs
-  - test_run_refs
-  references:
-  - requirements_basis_ref
-  - subject_snapshot_ref
-  - coverage_ref
-  digests:
-  - requirements_basis_digest
-  positive_integers: []
-  booleans: []
-  mappings: []
-  enums:
-    subject_conformance:
-    - pass
-    - fail
-    - unknown
-    review_task_verdict:
-    - confirmed
-    - partial
-    - rejected
+schema: pdca.legacy-reference/v1
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# conformance-review固定字段投影
+# 已退役的 3.x 条款
 
-按CONTRACT/REVIEW核对拟作为完整审查记录的有限字段；草稿可空但不能因此通过。字段与引用匹配不认证独立Agent、真实确认或自然语言结论。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](../../concept/pdca.md)；[原3.4.11字节副本](../../../legacy/v3.4.11/ontology/contracts/record-shapes/conformance-review.md)仅作迁移比较，不作为正常读取的下一步。

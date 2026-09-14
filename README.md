@@ -1,23 +1,23 @@
-# PDCA Tree · Markdown-native
+# PDCA 4.0.0-rc.1
 
-<!-- pdca:current-release:start -->
-当前维护快照 **3.4.11** · [协议清单](protocol-release.md) · [变更](migration/v3.4.11-CHANGES.md) · [迁移](migration/v3.4.11-MIGRATION.md) · [验证范围](migration/v3.4.11-VALIDATION.md)
-<!-- pdca:current-release:end -->
+用户控制任务与阶段推进；独立可交互的 Agent 执行当前阶段；本体、投影及验证交付可核对。此版为候选版，尚未在真实宿主完成运行验收。
 
-主包保持纯 Markdown：三个场景、每节点完整 PDCA、真实新 Agent、Plan/Check 两处确认、平台中立、无 adapter。当前版本是维护快照，不表示宿主执行或发布资格已获证明。
+[开始使用](USE-PDCA.md) · [技能入口](SKILL.md) · [当前规则](ontology/concept/pdca.md) · [迁移](migration/v4.0.0-rc.1-MIGRATION.md) · [验证范围](tests/README.md)
 
-## 开始使用
+## 工作方式
 
-支持标准技能发现的宿主从 [SKILL.md](SKILL.md)进入；已安装全局规则的宿主从 [global-entry](bootstrap/global-entry.md)进入。二者交接到同一个 [USE-PDCA](USE-PDCA.md)和[入口检查](bootstrap/entry-check.md)，不重复启动任务。
+任务 Agent 提出当前目标与边界 → 用户明确启动 Plan → 计划完成后等待 → 用户启动 Do → 实施完成后等待 → 用户启动 Check → 检查完成后等待 → 用户启动 Act → 执行批准的处置后停止。
 
-先固定真实 TARGET_ROOT、PDCA_ROOT 与协议快照，再按[角色与事件](bootstrap/entry-check.md#role-actions)行动。新工作目标是入口 cwd；恢复不换根、不重建身份。协议资料留在获权 PDCA records，业务源码留在获权目标目录。
+不是每步问“继续吗”：每次说明具体目标、范围、固定输入、预期产物和风险。已有明确答案直接引用。一个明确回复可批准若干具名任务当前已固定的阶段对象，不能预批未来对象。
 
-## 维护与验证
+一个节点／场景／attempt 一个独立会话；同一任务贯穿四阶段。父 Agent 不监工、不代签；一个任务等待，不干扰其他已经获准的任务。
 
-[模板](templates/README.md) · [验证入口](tests/README.md) · [按需规则](ontology/LOAD-MAP.md) · [知识索引](ontology/INDEX.md)。本轮验证程序随独立验证包交付，不成为日常运行依赖；完整分发包把源码、验证器、固定原输入与结果一起绑定。
+## 项目数据在项目中
 
-静态检查、检查器自测、实际宿主行为与效果对照分别报告。原真实 records 不回写，不因格式或导出缺项被改称模拟；旧 PASS 不自动继承到新版本。
+技能包只保存规则、模板、方法和参考库。目标项目 `.pdca/` 保存任务、本体、映射、确认与证据；产品文档／代码在批准的项目路径。不会默认把记录写回技能仓库。
 
-## 历史
+## 与 3.x 的区别
 
-[3.4.7 变更](migration/v3.4.7-CHANGES.md) · [3.4.6 变更](migration/v3.4.6-CHANGES.md) · [3.4.4 验证](migration/v3.4.4-VALIDATION.md) · [派发扩展](migration/agent-dispatch.1-CHANGES.md)。这些说明只适用于其固定版本，不能代替上方当前验证入口。旧任务按原快照接续。
+移除就绪即自动派发、Do→Check 自动推进和仅两次确认的默认行为；四阶段启动都需要具体用户授权。归档是已批准 Act 的记录收尾，不是第五个方法阶段。Check 后修复需要新的 Do 启动对象；旧证据不可沿用。
+
+改写过的旧文件保存在 `legacy/v3.4.11/`，不参与当前发现与默认读集。旧测试不冒充 4.x 验收。当前机制没有提供运行时强制或“永不遗忘”的保证：实际宿主创建、通信、恢复和权限仍需测试。

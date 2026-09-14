@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/pdca-source-diagram-doc-verification
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 源码图解的验证步骤
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/pdca-evidence
-  - ontology:concept/ontology-rule-fidelity-diagram
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 源码图解的验证步骤
+# 已退役的 3.x 条款
 
-明确获授权源码版本，先核对相关函数/结构/调用边，再比较图和正文；图中的状态、错误分支和生命周期须有来源支持。宿主有渲染工具时验证语法并保存实际结果，否则标注未渲染。数量与行数不替代正确性。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/pdca-source-diagram-doc-verification.md)仅作迁移比较，不作为正常读取的下一步。

@@ -1,23 +1,16 @@
-# 原生 Agent 调用语义：按需参考，不是兼容认证
+# 原生 Agent 能力：检查语义，不猜工具名
 
-仅在为实际宿主选择创建/继续方式时读取。本页不是adapter、工具Registry或新权威；TASK/CAP/RECOVERY优先。源码/官方文档查阅日期：2026-09-14；本机宿主运行验收均为 **NOT_RUN**。现场工具schema、版本、权限和初始化配置必须匹配，否则记unknown并重新核对，不按名字猜API。
+此候选版不认证任何用户宿主配置；真实验收为 NOT_RUN。使用现场工具 schema 与原生文档，确认下列语义后才能正式派发。旧版本源码笔记保存在 legacy，只用于比较，不作为当前参数承诺。
 
-## 先固定适用条件
+| 能力 | 必须核验 |
+|---|---|
+| new | 新实例是否复制父历史、加载哪些公共指令／记忆；明确关闭未授权继承 |
+| communicate | 用户如何看到请求并向该实例回复；统一界面应无损绑定任务与对象 |
+| continue | 是否继续原会话；原身份、状态丢失时是否偷偷新建 |
+| suspend | 等用户时如何挂起、取消和继续；是否误占所有任务的交互位 |
+| writes | 记录与业务写域、外部操作、共享仓库权限；会话隔离不代表文件沙箱 |
+| events | 创建、完成、失败、取消的原生回执在哪里；不能以 Agent 自述认证 |
 
-在现有 capability-check 记录宿主/工具版本（或源码commit/blob）、模型、权限、工作区、预加载规则/记忆、实际创建/继续动作及原生回执映射。只核验实际使用的宿主，不要求加载全部产品。以下是候选语义，不是可盲目复制的完整调用命令。
+环境固定版本／配置和原生来源，逐调用固定参数、消息与结果。示意 `fresh`、`fork`、`resume` 名称没有跨产品统一语义；工具不存在或语义不明就阻断，而不是猜等价调用。
 
-| 宿主与查阅范围 | 新任务 | 原任务继续 | 特别检查 |
-|---|---|---|---|
-| Codex MultiAgentV2，源码commit `6f39a47bb3b04de4c804187bfbf55edc56939aab` | 所查spawn参数中显式 `fork_turns: "none"` 不走父历史fork；省略/空值默认 `all`；该V2拒绝旧 `fork_context` | 使用现场提供的原实例后续消息/继续接口，不再次spawn。保留返回路由句柄与原生thread映射 | 该快照返回task_name/nickname，并非所有宿主都直接返回thread ID；类型、名称和实例不同。V1/V2不可混用。参数不控制主动粘贴的历史 |
-| Claude Code 官方subagents/skills文档，2026-09-14读到的页面 | 普通非conversation-fork子Agent拥有新上下文；Skill的 `context: fork` 文档说明不携带当前历史，与fork当前conversation不同 | 选择当前文档/工具支持可恢复的类型，并用原生标识继续；不能给四阶段分别执行新建入口 | 公共规则/预加载skills/记忆仍可能进入；检查实际初始化。前后台参数只控制等待，不证明隔离；一次性类型不足以承担完整任务 |
-| OpenCode `dev` 的task.ts，Git blob `d8ca640cfba9a52d97e5180fda0ffa719910592b` | 不传task_id的分支新建child session，再向该session提交prompt | task_id指定旧session；本次实际返回session须与期望一致 | 所查代码捕获旧session查找失败后可能新建；这种返回不能叫恢复成功。parentID关联不等于复制父会话；还要检查prompt/公共输入 |
-
-不会自动安装、更新工具或关闭权限保护。宿主只能更名、不能控制历史或继续原实例时，正式执行阻断；主Agent内联完成不算等价能力。上下文独立与写权隔离分别按CAP/RESOURCE核实。
-
-## 已核对来源
-
-- [Codex固定源码：V2参数解析](https://github.com/openai/codex/blob/6f39a47bb3b04de4c804187bfbf55edc56939aab/codex-rs/core/src/tools/handlers/multi_agents_v2/spawn.rs)（约283–348行）。
-- [Claude Code：subagents](https://code.claude.com/docs/en/sub-agents)及[Skills的fork语义](https://code.claude.com/docs/en/skills)。动态页面不是固定实现；版本升级需核验。
-- [OpenCode task.ts](https://github.com/anomalyco/opencode/blob/dev/packages/opencode/src/tool/task.ts)（约42–202行，查阅时Git blob如上；分支会变化）。
-
-来源描述运行机制，不证明当前主机已正确调用。创建参数/初始化材料和本次回执必须另行保存；不得把此页或测试夹具复制成隔离证据。
+没有原生可交互子 Agent 的宿主不满足正式任务要求；不能退化成父 Agent 内联执行。独立验证包可检查导出的有限记录，但不能代替宿主现场验收。

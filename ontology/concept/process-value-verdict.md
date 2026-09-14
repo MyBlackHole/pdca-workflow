@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/process-value-verdict
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 流程规则的价值判定
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-09
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/pdca-feedback
-  - ontology:concept/pdca-continuous-improvement
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 流程规则的价值判定
+# 已退役的 3.x 条款
 
-评价规则是否减少真实错误、返工或授权风险；没有实际样本时只作设计判断，不能以自评得分冒充效果。低价值规则可以作为候选改动提交，不直接覆盖当前任务基线。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/process-value-verdict.md)仅作迁移比较，不作为正常读取的下一步。

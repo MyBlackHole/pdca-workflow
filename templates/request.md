@@ -1,38 +1,30 @@
 ---
-schema: pdca.request/v3.2
+schema: pdca.request/v4
+protocol_revision: 4.0.0-rc.1
 task_id: null
+attempt: null
 request_id: null
-kind: null
+scope_kind: task
+work_id: null
+tree_revision: null
+action: null
+kind: phase_start
 phase: null
+run_id: null
 subject_ref: null
 subject_digest: null
-producer_ref: null
 conversation_ref: null
+producer_ref: null
+input_refs: []
 created_at: null
-protocol_revision: 3.4.11
-attempt: null
-wait_policy_ref: null
-wait_policy_digest: null
-deadline: null
-time_source_ref: null
 ---
 
-# 当前任务请求
+# 当前阶段启动说明
 
-kind为plan_confirmation/check_confirmation/clarification之一。匹配当前阶段，采用真实对象摘要，不能写假身份。
+明确本任务、场景、attempt及将启动的Plan／Do／Check／Act。展示目标、范围／非目标、固定输入及版本、预期真实产物、验收、写域、风险和未决问题。Act说明是否发布／沉淀。
 
-## 请求事项
+用户批准前不执行目标阶段；可读必要上下文形成请求，不借此做建模或业务变更。上阶段结果与下阶段目标可一并呈现，避免重复盘问。
 
-明确需要确认或澄清的具体对象、目标和风险。
+kind=clarification只问事实，不启动阶段。请求固定后不更改对象，同一请求不授权多run；多个待决对象的“同意”不可猜。确认内容保存为control/subjects/<request-id>.md不可变快照；request中的subject_ref/digest指向它，不指会更新的task.md，不自哈希。
 
-## 固定输入
-
-列出基线、证据、产物的版本和摘要；提交后不更改同一请求的对象。发生变化建立新请求并保留旧记录。
-
-## 暂停与返回
-
-请求未获匹配的真实响应前保持相应等待状态；完成事件不能越过未满足请求。
-
-## 期限和终局
-
-按CONTROL-01具体化deadline；explicit_wait无自动截止。可信请求决策而非Agent消息时间决定consumed/expired/cancelled/superseded；相同request_id不换对象，迟到响应不能复活。
+工作级动作使用kind=work_action、scope_kind=work及work_id/tree_revision/action；task/attempt/phase/run留空，固定具名任务集／树清单。它不代替任何阶段的phase_start。

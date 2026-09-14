@@ -1,16 +1,17 @@
 ---
-schema: pdca.request-decision/v1
-decision_id: null
-scope_kind: null
-work_id: null
-tree_revision: null
-proposal_id: null
+schema: pdca.request-decision/v4
+protocol_revision: 4.0.0-rc.1
 task_id: null
 attempt: null
+decision_id: null
+scope_kind: task
+work_id: null
+tree_revision: null
 request_id: null
 request_digest: null
 kind: null
 phase: null
+run_id: null
 conversation_ref: null
 subject_ref: null
 subject_digest: null
@@ -18,20 +19,13 @@ terminal_state: null
 response: null
 response_ref: null
 source_ref: null
-policy_ref: null
-deadline: null
-decision_time: null
-time_source_ref: null
-previous_control_ref: null
-control_revision: null
 backend_order_receipt_ref: null
-protocol_revision: 3.4.11
 ---
 
-# 请求唯一终局草稿
+# 确认消费记录
 
-CONTROL-01定义pending只转一次：consumed/expired/cancelled/superseded。consumed需要真实响应及身份/对象/期限通过；response=confirmed才可能支持阶段批准，其他响应不批准。expired不需要伪造用户source，而应引用已授权policy和实际时钟依据。
+固定请求、原始响应来源及真实顺序，核对task/attempt/phase/run/会话/对象一致。只有consumed + confirmed且未撤权可启动该run；rejected/cancelled/superseded不授权。
 
-任务scope的task/attempt/phase/conversation全匹配；work scope使用work/tree/proposal与工作会话、subject=manifest，无task/phase。不交叉消费。
+工作级work_action按work/tree/action/固定对象匹配，不虚构task/phase；离线task trace检查器不涵盖工作级裁决。
 
-决策时间由同一可信宿主提交边界产生，deadline严格小于比较；不能用客户端发送时间追认过期消息。同一决策重复返回原记录，冲突保留并阻断。任务后续取消可使已批准请求不再允许新的动作，不能把consumed当永久执行权。
+这是可审计投影，不是签发器。不能凭执行Agent自填字段产生批准。相同请求重复返回原状态，不能重放；新对象要新请求，迟到消息不复活。

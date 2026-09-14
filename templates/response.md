@@ -1,33 +1,26 @@
 ---
-schema: pdca.response/v3.2
+schema: pdca.response/v4
+protocol_revision: 4.0.0-rc.1
 task_id: null
+attempt: null
 request_id: null
+scope_kind: task
+work_id: null
 kind: null
+phase: null
+run_id: null
+subject_ref: null
 subject_digest: null
 response: null
 source_ref: null
 actor_ref: null
 conversation_ref: null
-recorded_at: null
-protocol_revision: 3.4.11
-attempt: null
-phase: null
-subject_ref: null
 host_received_event_ref: null
+recorded_at: null
 ---
 
-# 独立响应
+# 用户真实回应副本
 
-仅由TASK-01授权的可信消息通道填写；子Agent不得填写自己的批准响应。
+保留可核实的原生消息ID／transcript、用户actor、原始文字及当前显示对象。confirmed/rejected/needs_change/clarification_answer不互换。
 
-## 来源
-
-用户确认必须定位真实用户消息或可信宿主回执；澄清响应必须定位当前任务真实用户消息。时间未知留空，不能倒填。
-
-## 决定和理由
-
-用户确认响应为confirmed/rejected/needs_change；clarification响应为clarification_answer，澄清回答本身不是阶段批准。
-
-记录真实意见、发现、局限及需要补足的材料。请求ID、task_id、对象摘要任一不符则不得消费。
-
-此文件只保存真实回应，不等于批准已经消费。CONTROL-01决策回执匹配身份、期限和任务控制状态后才可供门禁使用；Agent不能签自己的确认。
+执行Agent可抄录真实消息，但不能认证自己生成的批准，不能用父Agent转述或source:user标签冒充原始用户来源。摘要不认证身份；无法核对保持等待。时间未知留空，不倒填。

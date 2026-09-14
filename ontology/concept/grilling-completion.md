@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/grilling-completion
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 澄清完成条件
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/pdca-ai-friendly-confirmation
-  - ontology:process/flow-plan
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 澄清完成条件
+# 已退役的 3.x 条款
 
-当目标、作用域、安全约束、产物和验收已足够确定时结束追问，形成可确认基线。不要仅为满足至少一轮而重复问题；正式确认仍由CONFIRM-01对具体版本完成。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/grilling-completion.md)仅作迁移比较，不作为正常读取的下一步。

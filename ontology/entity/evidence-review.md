@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:entity/evidence-review
 type: entity
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 证据类型：review
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/pdca-evidence
-evidence_kind: review
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 证据类型：review
+# 已退役的 3.x 条款
 
-对产物/证据的具体审查，包含对象版本、发现与理由；不能仅写通过。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
 
-字段、完整性与来源规则全部由EVIDENCE-01定义。
+[当前PDCA](../concept/pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/entity/evidence-review.md)仅作迁移比较，不作为正常读取的下一步。

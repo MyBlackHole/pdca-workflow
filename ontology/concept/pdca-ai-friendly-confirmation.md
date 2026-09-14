@@ -4,84 +4,59 @@ id: ontology:concept/pdca-ai-friendly-confirmation
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 3.4.1
-summary: 按任务独立交互与真实确认
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/pdca-task
-  - ontology:concept/pdca-execution-contract
-  - ontology:concept/pdca-verdict
-  - ontology:concept/task-rework
-  - ontology:concept/task-control
+status: active
+authority: normative
+revision: 4.0.0-rc.1
+dcterms_modified: '2026-09-14'
+summary: CONFIRM-01：每阶段目标沟通与用户显式启动
 confirmation_spec:
   kind_phases:
-    plan_confirmation:
+    phase_start:
     - plan
-    check_confirmation:
+    - do
     - check
+    - act
     clarification:
     - plan
     - do
     - check
     - act
-  request_decision_required: true
-  identity_fields:
-  - task_id
-  - attempt
-  - request_id
-  - kind
-  - phase
-  - conversation_ref
-  - subject_ref
-  - subject_digest
-  timeout_authority: CONTROL-01
+  advance_policy: explicit_user_operation
+  future_blanket_approval: false
+  work_action_scope: work_not_phase
+  work_actions:
+  - create_tasks
+  - freeze_tree
+  - start_scene
+  - migrate
 ---
 
-# 独立交互、真实来源与确认消费
+# CONFIRM-01：每阶段目标沟通与用户显式启动
 
-## CONFIRM-01：一个任务一个明确会话
+## 请求与授权
 
-每task_id/attempt绑定conversation_ref，用户可独立进入。统一界面可以按ID无损路由，不由父Agent理解后代答/批准。任务请求保存control/requests，真实响应保存control/responses，单一宿主请求决策保存control/decisions；响应可来自用户消息或可信宿主回执，不能由执行Agent自行签字。
+所有 Plan、Do、Check、Act 的**开始**都要有 `kind=phase_start` 请求；`phase` 表示待启动的目标阶段。Plan 入口请求包含问题、目标、范围、非目标、约束和预期产物；Do 包含批准计划和写域；Check 固定产物及验收依据；Act 固定检查结论、处置、发布／知识权限。
 
-| kind | 允许phase | 确认对象 | 有效响应 |
-|---|---|---|---|
-| plan_confirmation | plan | 当前CONTRACT-01冻结基线 | confirmed/rejected/needs_change |
-| check_confirmation | check | 当前固定结论包，含suite/verdict | confirmed/rejected/needs_change |
-| clarification | plan/do/check/act | 明确事实问题及对象 | clarification_answer |
+请求显示给用户，包含 task/attempt/scene、目标阶段、run_id、原会话、固定输入及 subject_ref/digest。对象摘要由实际字节计算，不能用“待计算”、模板占位或仅标题。首次 Plan 前只做目标沟通和最小能力核验，不能把建模／写业务文件放到所谓准备步骤。
 
-澄清不批准阶段、不扩大权限、不改变冻结oracle。Check对失败判定的confirmed可使任务进入Act，但不把业务outcome改成成功。拒绝/needs_change保持阶段；必要时按REWORK-01提出返工，不能偷回Do。
+上阶段报告可同时提出下一阶段对象；一个明确回应即可启动，不重复审批。只有一个未变的当前待确认事项时自然语言“同意”可绑定它；多个事项或内容变化必须澄清。可批量批准**已经存在且逐项具名**的不同任务当前对象，不预批未来阶段或未来模型版本。
 
-## 请求身份、来源与准入谓词
+`clarification` 只补事实，不授权阶段／扩大写域。`confirmed` 表示允许该阶段开始，不表示验收通过。阶段完成且所有检查通过也不产生下一阶段授权。
 
-任务请求/响应必须匹配task_id、attempt、request_id、kind、phase、conversation_ref、subject_ref/digest。请求还固定派发已授权的wait_policy_ref/digest、具体化deadline/time_source（explicit_wait明确无截止），生产者、范围/风险。完整基线校验与真实用户确认是两个独立条件。
+## 工作级操作不是第五阶段
 
-接纳用户回应先验证真实source_ref、actor、当前对象版本和请求类型；歧义“同意”只能澄清本请求。可一次明确确认多个具名对象及各自摘要，每个对象独立记录相同真实来源；未来对象、未列任务、新attempt不能继承此授权。
+具名任务创建、整树冻结、场景启动、迁移可复用同一request/response/decision用途，kind=work_action、scope_kind=work，绑定work_id、tree_revision、action和固定对象；task/attempt/phase/run留空。不得拿工作级消息直接批准未来阶段。一次真实消息可同时明确列出当前已固定的工作动作与阶段对象，各自记录引用，不重复盘问。共享发布如属于当前Act，应列入Act的具体处置权限，不另启动隐藏流程。
 
-实际消息接收不等于消费。由CONTROL-01单一可信事件所有者创建不可变request-decision；Agent引用已消费决策，不重写回应。有效阶段确认必须为匹配对象的consumed/confirmed、当前任务未stopping/interrupted、未被后续取消/替代、授权控制视图仍有效。decision保留source和后端排序依据；摘要固定内容但不认证身份。
+## 来源与消费
 
-## 等待、期限和迟到回应
+使用原生用户消息 ID／可恢复 transcript、actor、路由会话和原始文本。Agent 可保存引用或抄录，但不得将自己的总结、父 Agent转述、`source:user` 标签当真实来源。哈希只固定内容，不认证发言者。无法核实用户消息就等待，不自动补 signed/consumed。
 
-等待策略、截止时比较、confirmed与expired竞争统一由CONTROL-01定义，不在这里复制另一套时钟。explicit_wait允许持续等待并保留取消；deadline_interrupt到期不批准、不自动授权重试。相同请求只取一个终局；已expired/cancelled/superseded的请求收到迟到回应只记审计，不复活旧任务。
+请求、响应、request-decision 沿用三个现有记录用途。匹配 task/attempt/request/phase/run/subject/conversation；请求终局只有 consumed、rejected、cancelled、superseded。消耗一次后重复消息幂等返回原状态，不能启动新 run。物化 decision 必须引用实际 response 和可信顺序；执行者自填 confirmed 没有原生来源仍无效。
 
-confirmed先消费也不能免于随后真实用户取消，下一阶段提交仍核对控制资格。新的请求必须新request_id；同对象已有有效响应不重复索要。等待只暂停当前任务，不占用无关节点的会话或隐式控制其phase。
+## 等待与变更
 
-## 用户取消与异常接续
+阶段结束保存完成事件，execution_state=awaiting_confirmation，当前 phase 保持最后实际阶段。无超时自动批准；取消／撤权优先。输入、目标、验收或计划变化使关联未消费请求失效，新对象重新沟通。已批准但尚未执行的对象变化同样不得运行。
 
-真实取消在任何非终态都按CONTROL-01安全停止；取消确认不是第五个方法阶段，也不是替代原Check业务判定。先停止新增动作、对账在途操作、撤销写权，才能记录interrupted和接续条件。Agent不得为绕过Check确认自行取消并派新Agent继续修改。
-
-## 整树确认
-
-TREE-01采用独立工作级tree_confirmation schema，不混入任务请求kind。身份为work/tree/proposal/request/work_conversation/manifest_digest，无task_id/phase；同样需要wait-policy、request-decision和当前发布资格。过期仅阻止该提案冻结，不复活已完成根Agent。其余来源/终局原则相同，节点Plan/Check确认不能代替整树确认。
-
-## 启动批准与阶段批准的边界
-
-用户“开始任务/开始优化”只授权该请求范围内的工作，不是对尚未生成基线、Check包、后继attempt或整树提案的预先签认。相同真实消息可明确列明多个已存在对象；每个消费决策仍绑定自己的task/attempt/request/object摘要。无可核实来源或排序时保持待确认，不由Agent生成一个confirmed作为补偿。
-
-真实消息已明确确认同一对象时复用合法来源，不重复询问。内容改变必须新请求；禁止重写历史响应、替换其摘要或把本次重新核对时间写成原批准时间。
+Plan 完成不是 Do 授权；Do 完成不是 Check 授权；Check 完成不是 Act 授权。Act 启动需明确是否仅归档、是否发布或沉淀；用户未授权发布，不从“接受”推断。树冻结、知识发布和新场景另有具名对象，不被阶段批准覆盖。

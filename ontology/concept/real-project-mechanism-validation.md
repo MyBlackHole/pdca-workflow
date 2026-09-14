@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/real-project-mechanism-validation
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 真实项目验证与模拟区分
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/pdca-evidence
-  - ontology:concept/capability-protocol
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 真实项目验证与模拟区分
+# 已退役的 3.x 条款
 
-机制验证在契约授权的真实项目环境运行，保存实际命令、版本、输出、退出状态和副作用。临时fixture可验证结构/边界，不等于真实多Agent执行；失败、未运行和不可用的能力如实报告。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/real-project-mechanism-validation.md)仅作迁移比较，不作为正常读取的下一步。

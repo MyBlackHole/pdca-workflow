@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/knowledge-provenance
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 知识来源与可复核范围
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/ontology-asset
-  - ontology:concept/pdca-evidence
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 知识来源与可复核范围
+# 已退役的 3.x 条款
 
-本体知识保留来源任务、原始资料locator、版本、采用理由与局限。来源字段不是relations图边；缺失历史材料标为不可复核，不能补造任务记录。本次迁移未复验继承的领域源码事实，使用前应核对授权的实际源码版本。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/knowledge-provenance.md)仅作迁移比较，不作为正常读取的下一步。

@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/triage-state-machine
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 需求分诊不是额外生命周期
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/pdca-phase-status
-  - ontology:process/flow-plan
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 需求分诊不是额外生命周期
+# 已退役的 3.x 条款
 
-分诊在Plan中完成：识别目标、职责、契约和必须澄清的问题。用户已给答案直接引用；有实质未知才提问。无需固定P1-P6阶段或强制追问轮数，正式phase由状态规范定义。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/triage-state-machine.md)仅作迁移比较，不作为正常读取的下一步。

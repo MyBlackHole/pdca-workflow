@@ -1,32 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:entity/transition-act-archive
 type: entity
 semantic_kind: individual
 layer: Knowledge
-status: active
-authority: normative
-revision: 3.2.0
-summary: 转换：act → archive
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  instance_of:
-  - ontology:concept/pdca-transition
-  relates_to:
-  - ontology:entity/phase-act
-  - ontology:entity/phase-archive
-  - ontology:concept/pdca-gate
-transition_spec:
-  from: act
-  to: archive
-  gate_id: act_to_archive
-  sequence: 4
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 转换：act → archive
+# 已退役的 3.x 条款
 
-仅定义边和门禁标识。具体准入由GATE-01、提交/恢复由TRANSITION-01与RECOVERY-01定义；不按列表顺序推断首尾。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
 
-固定sequence=4，唯一键为(task_id,sequence)。取消事件不占用编号；合法提交和恢复只依TRANSITION-01。
+[当前PDCA](../concept/pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/entity/transition-act-archive.md)仅作迁移比较，不作为正常读取的下一步。

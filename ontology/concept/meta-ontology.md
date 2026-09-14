@@ -1,25 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/meta-ontology
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 元本体：规则的语义来源
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/ontology-asset
-  - ontology:concept/ontology-creation-gate
-  - ontology:concept/ontology-rule
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 元本体：规则的语义来源
+# 已退役的 3.x 条款
 
-本体资产、关系规则和创建审查也由本体节点表达；活动权威由ONTOLOGY-01划定。规则说明不等于宿主的执行机制，不能因为规则自描述就声称获得了权限或原子性。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/meta-ontology.md)仅作迁移比较，不作为正常读取的下一步。

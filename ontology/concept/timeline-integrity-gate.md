@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/timeline-integrity-gate
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 事件顺序与真实时间
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/pdca-transition
-  - ontology:concept/pdca-ai-friendly-confirmation
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 事件顺序与真实时间
+# 已退役的 3.x 条款
 
-阶段顺序来自TRANSITION-01的回执链。用户确认来源来自CONFIRM-01。时间由实际宿主或工具提供；缺可信时间时保留顺序与unknown，不倒填时间让操作看似获得事前授权。相同时间戳不能证明因果，时间排序不能代替回执。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/timeline-integrity-gate.md)仅作迁移比较，不作为正常读取的下一步。

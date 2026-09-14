@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/pdca-architecture-review-metrics
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 架构审查的可证明指标
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/pdca-evidence
-  - ontology:domain/skill-code-review
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 架构审查的可证明指标
+# 已退役的 3.x 条款
 
-在契约要求架构审查时记录模块耦合、变更范围、测试覆盖和缺陷证据；指标来自实际读取/执行。可按需用宿主工具绘图或生成报告，不要求缺失的HTML生成器。内容和证据可复核优先于图表数量。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/pdca-architecture-review-metrics.md)仅作迁移比较，不作为正常读取的下一步。

@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/auto-induce-evidence
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 从证据提取知识候选
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/pdca-evidence
-  - ontology:concept/pdca-continuous-improvement
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 从证据提取知识候选
+# 已退役的 3.x 条款
 
-在Act按当前任务evidence和conclusion识别可复用认识、反例或已知知识的确认。记录来源、适用边界与置信度；候选先保存在任务内，不自动发布，不把证据类型当知识类型。具体处置由LEARN-01决定。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/auto-induce-evidence.md)仅作迁移比较，不作为正常读取的下一步。

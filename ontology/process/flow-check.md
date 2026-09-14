@@ -4,60 +4,29 @@ id: ontology:process/flow-check
 type: process
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 3.4.11
-summary: Check：当前任务自检与明确失败判定
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
+status: active
+authority: normative
+revision: 4.0.0-rc.1
 dcterms_modified: '2026-09-14'
-relations:
-  specializes:
-  - ontology:concept/process
-  relates_to:
-  - ontology:concept/pdca-gate
-  - ontology:concept/pdca-transition
-  - ontology:concept/pdca-task
-  - ontology:concept/task-unit-test
-  - ontology:concept/task-rework
-  - ontology:process/work-scenarios
-  - ontology:concept/task-control
-  - ontology:concept/ontology-reuse
-  - ontology:concept/ontology-adoption
-  - ontology:concept/task-decomposition
+summary: Check：按固定依据核对，不自动修业务对象
 ---
 
-# Check：当前任务自检与明确失败判定
+# Check：按固定依据核对，不自动修业务对象
 
-## 适用、输入与动作
+## 进入前
 
+用户明确启动当前Check run，绑定最新Do产物、模型、映射、原需求及AC/oracle。同Agent保持原绑定。检查对象变化使旧请求失效；不能复用旧PASS证明新文件。
 
-当前phase=check，有合法Do→Check回执；输入为原基线、最终产物与真实测试结果包，不要求父层审查回执。读取TEST-01、VERDICT-01、CONFIRM-01。
+## 本阶段自主执行
 
-1. 按 [EVIDENCE 消费顺序](../concept/pdca-evidence.md#evidence-consumption)逐项读取对象、执行、actual/oracle并回链最终判定；检查每个必须AC与案例的覆盖、过期PASS、未解决flaky和假mutation kill，不能只复述Do摘要。
-2. 比较Plan预测与Do实际，按pass/fail/unknown/not_run逐项解释；有可疑发现时用 [反证核验](independent-work-review.md#review-counterevidence)复核已有材料，并按 [缺陷/未知/建议](independent-work-review.md#review-professional-findings)分类。组合节点核对真实孩子/接口/状态传播；孩子通过不代替本节点通过，建议不冒充违约。
-3. 生成conclusion.md和任务verdict；独立审查场景必须额外给subject_conformance，二者不混淆。
-4. 新发现实现问题创建issue/返工建议，不回Do修改。需要新实验/范围时记录REWORK-01后继建议；旧槽未完成正常交回或CONTROL-01安全终止前，不得实际启动新attempt。
-5. 固定结论包并请求当前任务真实用户确认；认可失败判定可进入Act。满足GATE-01后记录转换。
+逐AC核验对象→执行→actual／expected→反证→结论。对可疑问题追踪实际路径及上游保护；不能仅搜索失败即断言不存在。区分确定违例、缺证据unknown与建议；置信度不是证明。
 
-输出明确结论、证据回链、缺陷与真实确认。用户拒绝保持Check（真实取消/授权期限到期则走CONTROL-01异常终止）；可澄清现有证据和判定，但不能改原产物偷做修复。
+SCENE的必需模型与映射是验收底线。结构／链接／hash通过仍须检查需求覆盖、语义与行为。正确发现违例可完成审查任务，但subject_conformance仍fail；未运行记not_run。
 
-正常Check确认与异常替代是两条不同路径。新attempt不能继承旧结论请求的迟到批准，不能为绕过确认由AI自行取消。
+不改冻结业务产物、模型目标或oracle。确实是检查工具／环境／夹具问题时，可在本次明确授权的测试写域内修复并保存前后证据；预期及业务对象不变。否则先沟通，不用“修测试”掩盖业务修改。
 
-## 复用与更新审查
+## 完成与等待
 
-modeling逐项审查检索完整性声明、必须约束映射、local delta、兼容性和adoption来源；无新知识可通过而不伪造新增节点。禁止只看名称/版本号、从候选active字段推断已发布、忽略当前错误公告。共享候选通过本任务Check不替代EVOLVE-01独立发布审查和明确发布许可。
-
-## 建模交付的交叉检查
-
-核对原目标→业务定义→当前实例→需求责任→分解结论→三场景suite。DECOMP-01对每个子seed不预设原子叶；只读规范可共享，不能把兄弟引用当拥有权冲突。使用TEST-01具名反例的实际结果检验判定器，缺失case或只有“无此错误”不得标反例能力通过。
-
-current_task_pass、node_definition_ready、tree_freeze_ready与knowledge_goal_satisfied分别判断。当前本地交付可用不意味着后代/共享发布已完成；必须发布事项仍未完成时明确其状态，不能通过candidate_only消失。
-
-必需覆盖须验证案例语义，不只解析ID；未来suite复用必须有明确绑定。发现其他节点必需缺口时创建有阻断范围的issue并通知工作索引，不能记“无issue”或移交冻结后才修。当前发现者可如实通过，被影响交付仍需处置。Check修夹具依REWORK-01保留原error，不偷改业务产物或oracle。
-
-## 同一事实的跨表达一致性
-
-对承担关键约束的文字、状态表、流程图/时序图和案例，列出同一主体/前提/版本下的顺序与含义，验证互相一致；明确图区分数据流与提交先后时不误报。原始来源固定后再确定oracle，不能从被审图生成预期证明自身。故意颠倒关键先后、删除否定条件、遗漏测试约束的报告应被反例识别。缺目标源快照时只报告表达内部矛盾，不推断目标实现存在同样bug。
-
-本任务是只读研究时，projection执行研究并交付解释/证据，不因此扩大为源码重构；所有建议修改另按原目标/授权处理。
+保存含反证与局限的结论，列出接受、返修、延期或失败归档的建议。向用户说明Act将做什么、是否发布／更新知识，然后停止。用户选择返修时先形成新Do目标请求，不自动回Do。用户接受不把违例改为PASS。

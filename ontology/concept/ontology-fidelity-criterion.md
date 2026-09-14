@@ -1,26 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/ontology-fidelity-criterion
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 3.0.0
-summary: 本体质量：语义可用而非形式计数
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/ontology-creation-gate
-  - ontology:concept/ontology-rule-attr-testable
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 本体质量：语义可用而非形式计数
+# 已退役的 3.x 条款
 
-审查定义、适用/排除、属性、关系、来源、正反例和可执行验证是否支持实际使用。图表在确实帮助解释时提供；正文行数、图数、grep命中和可生成测试骨架不作为默认硬门禁。结构合格不代表行为已验证。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
 
-工作节点质量必须落实NODE-01与TEST-01的可运行案例、反例区分力、覆盖矩阵和返工回归，不是每篇写“正例/反例”两个标题。叶与父组合节点都需要测试。
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/ontology-fidelity-criterion.md)仅作迁移比较，不作为正常读取的下一步。

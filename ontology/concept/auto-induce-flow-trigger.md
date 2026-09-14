@@ -1,23 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/auto-induce-flow-trigger
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 流程改进候选触发
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/pdca-continuous-improvement
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 流程改进候选触发
+# 已退役的 3.x 条款
 
-发现重复返工、门禁误判、信息缺失或权威冲突时记录候选；必须有具体观测与影响，不能仅因某个关键词出现就创建改进任务。触发只产生候选，不修改活动规则。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/auto-induce-flow-trigger.md)仅作迁移比较，不作为正常读取的下一步。

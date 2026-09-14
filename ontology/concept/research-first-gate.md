@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/research-first-gate
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 调研前置依赖由契约决定
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-09
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/pdca-execution-contract
-  - ontology:domain/skill-research
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 调研前置依赖由契约决定
+# 已退役的 3.x 条款
 
-只有契约声明需要来源调研且动作依赖调研结果时，才把调研作为执行前置。调研报告本身作为work_product时不能要求它先提供自己。已导入的固定来源可使用；不强制外网、图数或URL数量来替代相关性和可信性。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/research-first-gate.md)仅作迁移比较，不作为正常读取的下一步。

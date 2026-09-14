@@ -1,21 +1,3 @@
----
-schema: pdca.work-release-receipt/v1
-protocol_revision: 3.4.11
-receipt_id: null
-release_id: null
-release_manifest_ref: null
-release_manifest_digest: null
-review_refs: []
-issue_closure_refs: []
-knowledge_fulfillment_refs: []
-authorization_ref: null
-host_event_ref: null
-release_approved: null
-limitations: []
----
+# 3.x 模板历史指针
 
-# 工作发布判定与回执
-
-VERDICT-01/REVIEW-01：绑定精确release候选、每节点必需审查/组合符合性、当前阻断issue处置和适用知识义务。授权按原合同实际取得，不因本模板自动新增默认发布权限。
-
-缺任一必需证据或unknown/stale不得true。报告本身通过不等于subject符合。回执在候选清单之外，变更新发布ID和新审查，不修改旧清单/批准。
+本模板不再用于4.x；请从[当前模板](README.md)选择。原始字节保存在[历史副本](../legacy/v3.4.11/templates/work-release-receipt.md)，不从旧示例复制状态或批准。

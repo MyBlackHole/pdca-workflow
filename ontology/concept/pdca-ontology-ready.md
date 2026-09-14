@@ -1,26 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/pdca-ontology-ready
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 3.1.0
-summary: 本体基线可用性
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:process/select-task-subgraph
-  - ontology:concept/pdca-execution-contract
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 本体基线可用性
+# 已退役的 3.x 条款
 
-进入Do前按CONTEXT-01和CONTRACT-01确认已选本体版本存在、可重读且适用。当前节点可以选择极小知识上下文；建模使用已有元规则验收候选，不能以ontology_exempt跳过用户确认、安全边界或基线。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
 
-就绪唯一权威为SCHED-01的scene表：ontology_modeling使用用户目标或已交付父seed，不要求整树已经冻结；ontology_projection必须有TREE-01真实冻结；ontology_conformance_verification需要同一冻结树的固定release与审查输入。所有场景都需要各自NODE/TEST合同、真实能力与授权。不得用modeling例外执行projection，也不得用projection冻结要求阻止根建模。
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/pdca-ontology-ready.md)仅作迁移比较，不作为正常读取的下一步。

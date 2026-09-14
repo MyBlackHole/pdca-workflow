@@ -1,27 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/workflow-state
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 3.2.0
-summary: 任务工作流位置的共同类，区分方法阶段与终态
 dcterms_license: CC-BY-4.0
 dcterms_created: '2026-09-12'
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/pdca-phase-status
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 工作流状态值的共同类
+# 已退役的 3.x 条款
 
-本类表示任务记录phase字段的合法工作流位置，不代表全部都是PDCA方法阶段。`pdca-phase`是它的子类，实例只有plan/do/check/act；archive直接属于本类，state_kind=terminal。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
 
-查询pdca-phase实例得到四个方法阶段。查询workflow-state时包含其子类实例，得到五个工作流值。execution_state（例如stopping/interrupted）是另一维度，不是这些phase值的实例。
-
-字段与合法组合只由STATE-01定义；类型修复不改变四条正常边或持久化`phase=archive`兼容编码，不添加父Agent审批。
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/workflow-state.md)仅作迁移比较，不作为正常读取的下一步。

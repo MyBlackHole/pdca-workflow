@@ -1,48 +1,13 @@
 ---
-schema: pdca.record-shape/v1
-authority: CONTRACT-01
-protocol_revision: 3.4.11
-profile: fixed_formal_record_example
-record_kind: transition
-template_ref: ../../../templates/transition.md
-template_digest: 2980415d691a0c04e76f836c450adfd0f402a6c16503410af82d70387c5bb832
-shape:
-  strings:
-  - task_id
-  - gate_id
-  - actor_ref
-  lists:
-  - inputs
-  references:
-  - inputs_manifest_ref
-  - gate_check_ref
-  - writer_grant_ref
-  - commit_receipt_ref
-  digests:
-  - baseline_digest
-  - inputs_digest
-  - gate_check_digest
-  positive_integers:
-  - attempt
-  - sequence
-  - observed_control_revision
-  booleans: []
-  mappings: []
-  enums:
-    decision:
-    - approved
-    from:
-    - plan
-    - do
-    - check
-    - act
-    to:
-    - do
-    - check
-    - act
-    - archive
+schema: pdca.legacy-reference/v1
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# transition 固定记录字段投影
+# 已退役的 3.x 条款
 
-按需读取；继承[CONTRACT-01](../../concept/pdca-execution-contract.md#contract-fixed-records)。仅覆盖已列profile；未列字段不自动成为必填，草稿不作为完成记录核验。schema沿用正式模板，不另造简化字段。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](../../concept/pdca.md)；[原3.4.11字节副本](../../../legacy/v3.4.11/ontology/contracts/record-shapes/transition.md)仅作迁移比较，不作为正常读取的下一步。

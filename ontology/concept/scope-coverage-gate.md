@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/scope-coverage-gate
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 契约范围与产物覆盖
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-09
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/pdca-execution-contract
-  - ontology:concept/pdca-acceptance-criterion
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 契约范围与产物覆盖
+# 已退役的 3.x 条款
 
-Plan列明in-scope/out-of-scope和AC，Do/Check逐项回链产物与证据。不得为提高覆盖率增加不相关动作，也不因文章标题与任务相同就禁止复用。范围变更遵循CONTRACT-01重新确立基线。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/scope-coverage-gate.md)仅作迁移比较，不作为正常读取的下一步。

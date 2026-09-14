@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/ontology-rule-attr-testable
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 属性约束与可观察验证
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/ontology-rule
-  relates_to:
-  - ontology:concept/ontology-asset
-rule_spec: {}
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 属性约束与可观察验证
+# 已退役的 3.x 条款
 
-每项验收性属性必须有非空constraint和testable_signal；信号说明观测对象、判断方法与失败判据。结构检查不能替代行为测试。对实际代码不存在的测试不填通过，而是明确未执行或生成待运行测试设计。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/ontology-rule-attr-testable.md)仅作迁移比较，不作为正常读取的下一步。

@@ -1,24 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/grilling-methodology
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 2.0.0
-summary: 围绕真实不确定性的澄清
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:process/flow-plan
-  - ontology:concept/pdca-ai-friendly-confirmation
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 围绕真实不确定性的澄清
+# 已退役的 3.x 条款
 
-先检查已给信息，再提出影响实施/验收的最小问题，说明选项与权衡。能够从获授权资料查到的事实先查证；不得把推荐答案记成用户答案。已有明确回答无需重问。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/grilling-methodology.md)仅作迁移比较，不作为正常读取的下一步。

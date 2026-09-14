@@ -1,27 +1,19 @@
 ---
-schema: pdca.asset/v2
 id: ontology:concept/phase-boundary-decision-tree
 type: concept
 semantic_kind: class
 layer: Knowledge
-status: active
-authority: normative
-revision: 3.0.0
-summary: 阶段、场景与等待的边界
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
-relations:
-  specializes:
-  - ontology:concept/entity
-  relates_to:
-  - ontology:concept/pdca-gate
-  - ontology:concept/pdca-recovery
-  - ontology:concept/task-rework
+schema: pdca.asset/v2
+status: retired
+authority: reference
+revision: 4.0.0-rc.1
+summary: 3.x历史条款定位，不适用于4.x执行
 ---
 
-# 阶段、场景与等待的边界
+# 已退役的 3.x 条款
 
-先RECOVERY-01核验完整回执链，再按GATE-01判断当前任务的下一条边。scene不是phase；awaiting_confirmation/awaiting_input不是新增阶段。没有等待父审查放行的通用状态。
+本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
 
-Do内有限修复不形成新PDCA；进入Check以后需要实现返工则原任务诚实处置，新attempt新Agent完整循环。第三场景审查不由任务内部Check递归派生。
+[当前PDCA](pdca.md)；[原3.4.11字节副本](../../legacy/v3.4.11/ontology/concept/phase-boundary-decision-tree.md)仅作迁移比较，不作为正常读取的下一步。
