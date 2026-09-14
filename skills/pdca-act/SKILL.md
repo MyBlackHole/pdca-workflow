@@ -11,7 +11,7 @@ metadata:
 
 安装后的入口会给出真实 **PDCA_ROOT** 和当前发布快照。直接从源码读取时，由用户明确集中根，或核对该文件真实路径所在的根；定位不等于批准业务操作。路径冲突时停止，不在目标项目创建 `.pdca/` 或另一份 records。
 
-先读[共同恢复入口](../../bootstrap/entry-check.md)，再读集中项目 context、自己的 task/原 Agent 绑定、最后完整事件和当前请求。已有任务采用 `protocol_baseline_ref` 所在快照；与本入口版本或摘要不同，则只作定位并读取原快照方法，不用这里的新方法推进旧任务。
+先读[共同恢复入口](../../ontology/contracts/entry-recovery.md)，再读集中项目 context、自己的 task/原 Agent 绑定、最后完整事件和当前请求。已有任务采用 `protocol_baseline_ref` 所在快照；与本入口版本或摘要不同，则只作定位并读取原快照方法，不用这里的新方法推进旧任务。
 
 当前会话不是该任务执行者时，只把真实用户操作路由回原 Agent 后停止本地执行；不可路由就阻断。**切换 Skill 不换 Agent**，不要调用新建工具、设置自动 fork 或由父 Agent 接管。加载方法、文件存在和上一阶段 PASS 都不授权本阶段。
 

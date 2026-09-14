@@ -1,13 +1,41 @@
 ---
-schema: pdca.legacy-reference/v1
-status: retired
-authority: reference
-revision: 4.0.0-rc.1
-summary: 3.x历史条款定位，不适用于4.x执行
+schema: pdca.contract/v4
+protocol_revision: 4.0.0-rc.2
+authority: normative
+status: active
 ---
 
-# 已退役的 3.x 条款
+# 用户真实回应副本：记录格式
 
-本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+本契约定义该记录的 schema、字段与填写约束；以下完整 Markdown 示例是规范格式。字段中的 null、空列表及未验证状态表示尚未取得事实，不构成授权、执行成功或资源取得证明。按实际证据填写，保留原始来源与未知。
 
-[当前PDCA](../../concept/pdca.md)；[原3.4.11字节副本](../../../legacy/v3.4.11/ontology/contracts/record-shapes/response.md)仅作迁移比较，不作为正常读取的下一步。
+## 示例
+
+```markdown
+---
+schema: pdca.response/v4
+protocol_revision: 4.0.0-rc.2
+task_id: null
+attempt: null
+request_id: null
+scope_kind: task
+work_id: null
+kind: null
+phase: null
+run_id: null
+subject_ref: null
+subject_digest: null
+response: null
+source_ref: null
+actor_ref: null
+conversation_ref: null
+host_received_event_ref: null
+recorded_at: null
+---
+
+# 用户真实回应副本
+
+保留可核实的原生消息ID／transcript、用户actor、原始文字及当前显示对象。confirmed/rejected/needs_change/clarification_answer不互换。
+
+执行Agent可抄录真实消息，但不能认证自己生成的批准，不能用父Agent转述或source:user标签冒充原始用户来源。摘要不认证身份；无法核对保持等待。时间未知留空，不倒填。
+```

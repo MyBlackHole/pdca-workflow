@@ -33,7 +33,7 @@ resource_spec:
 
 ## 预约与取得
 
-[预约模板](../../templates/resource-reservation.md)位于集中records/resources；由宿主提供的资源管理能力或用户指定的单一账本写者持有元数据写权。它是资源服务职责，不是父Agent的阶段监督职责。任务Agent提出请求、提供操作回执并独立执行；不得并发手改同一预约。
+[预约记录契约](../contracts/record-shapes/resource-reservation.md)位于集中records/resources；由宿主提供的资源管理能力或用户指定的单一账本写者持有元数据写权。它是资源服务职责，不是父Agent的阶段监督职责。任务Agent提出请求、提供操作回执并独立执行；不得并发手改同一预约。
 
 requested → held → revoking → released/retained。held必须引用实际取得回执与规范化资源集合；requested或纯Markdown中自填held不提供排他。恢复旧预约不得更换owner_task_id/attempt；新拥有者另有取得依据，旧拥有者不能释放新预约。
 
@@ -45,7 +45,7 @@ requested → held → revoking → released/retained。held必须引用实际�
 
 ## 操作、未知与结清
 
-每个有副作用的调用按[operation](../../templates/operation.md)保存task/attempt/run、operation_id、资源/预约、参数摘要、幂等依据与原生请求结果。先登记再调用；崩溃或超时没有返回仍为unknown，不推断未执行。仅在同一后端幂等键已核验，或查询证明未产生副作用时重试，不宣称exactly-once。
+每个有副作用的调用按[operation](../contracts/record-shapes/operation.md)保存task/attempt/run、operation_id、资源/预约、参数摘要、幂等依据与原生请求结果。先登记再调用；崩溃或超时没有返回仍为unknown，不推断未执行。仅在同一后端幂等键已核验，或查询证明未产生副作用时重试，不宣称exactly-once。
 
 每次副作用、恢复、资源路径或权限变化重新核对拥有者和实际目标。取消先停止新增动作，撤销访问并核对已接纳的在途操作；停止会话、租期过期、心跳消失、删除锁文件或task completed均不自动released。
 

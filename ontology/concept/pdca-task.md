@@ -25,4 +25,4 @@ summary: TASK-01：一任务一可交互逻辑执行者
 
 输入只含公共规则、固定需求和具名允许材料；不继承其他任务完整活动历史，不通过共享记忆绕过。任务 record writer 为绑定 Agent；消息副本由可信来源导出，执行者可以抄录但不能认证自己编造的批准。
 
-对应模板：[task](../../templates/task.md)、[assignment](../../templates/agent-assignment.md)、[dispatch](../../templates/dispatch.md)。
+对应记录契约：[task](../contracts/record-shapes/task.md)、[assignment](../contracts/record-shapes/agent-assignment.md)、[dispatch](../contracts/record-shapes/dispatch.md)。

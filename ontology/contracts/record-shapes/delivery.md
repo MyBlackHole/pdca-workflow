@@ -1,13 +1,44 @@
 ---
-schema: pdca.legacy-reference/v1
-status: retired
-authority: reference
-revision: 4.0.0-rc.1
-summary: 3.x历史条款定位，不适用于4.x执行
+schema: pdca.contract/v4
+protocol_revision: 4.0.0-rc.2
+authority: normative
+status: active
 ---
 
-# 已退役的 3.x 条款
+# 本任务实际交付：记录格式
 
-本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+本契约定义该记录的 schema、字段与填写约束；以下完整 Markdown 示例是规范格式。字段中的 null、空列表及未验证状态表示尚未取得事实，不构成授权、执行成功或资源取得证明。按实际证据填写，保留原始来源与未知。
 
-[当前PDCA](../../concept/pdca.md)；[原3.4.11字节副本](../../../legacy/v3.4.11/ontology/contracts/record-shapes/delivery.md)仅作迁移比较，不作为正常读取的下一步。
+## 示例
+
+```markdown
+---
+schema: pdca.delivery/v4
+protocol_revision: 4.0.0-rc.2
+task_id: null
+attempt: null
+work_id: null
+node_id: null
+scene: null
+definition_refs: []
+artifact_refs: []
+projection_map_refs: []
+test_run_refs: []
+check_ref: null
+act_decision_ref: null
+task_execution: null
+subject_conformance: unknown
+delivery_usable: false
+scene_coverage:
+  ontology_modeling: not_run
+  ontology_projection: not_run
+  ontology_conformance_verification: not_run
+limitations: []
+---
+
+# 本任务实际交付
+
+modeling列真正本体源、采用和实例；projection列固定源／目标／映射；verification列需求／模型／产物核对和实际证据。不能以产品文档列表自动充当本体源。
+
+场景覆盖按真实记录填，不能推断未来场景。业务失败可诚实归档，delivery_usable不因用户确认自动true。Act只执行具体批准的发布／归档／知识动作。
+```

@@ -1,13 +1,22 @@
 ---
-schema: pdca.legacy-reference/v1
-status: retired
-authority: reference
-revision: 4.0.0-rc.1
-summary: 3.x历史条款定位，不适用于4.x执行
+schema: pdca.contract/v4
+protocol_revision: 4.0.0-rc.2
+authority: normative
+status: active
 ---
 
-# 已退役的 3.x 条款
+# 4.x 当前记录格式
 
-本位置只保留旧ID／路径兼容，不是4.x规则。旧阶段转换、宿主调度及记录schema不得用于新任务。
+下表中的记录契约是当前格式的唯一权威，字段与完整示例在各自契约中。其他旧格式不适用，不能混用 schema 或旧自动转换。
 
-[当前PDCA](../../concept/pdca.md)；[原3.4.11字节副本](../../../legacy/v3.4.11/ontology/contracts/record-shapes/index.md)仅作迁移比较，不作为正常读取的下一步。
+| 用途 | 记录契约 |
+|---|---|
+| 项目与任务 | [context](project-task-context.md)、[task](task.md)、[assignment](agent-assignment.md)、[dispatch](dispatch.md)、[capability](capability-check.md) |
+| 计划与授权 | [baseline](baseline.md)、[request](request.md)、[response](response.md)、[decision](request-decision.md) |
+| 阶段与证据 | [transition](transition.md)、[evidence](evidence.md)、[conclusion](conclusion.md)、[delivery](delivery.md) |
+| 集中资源与操作 | [resource-reservation](resource-reservation.md)、[operation](operation.md) |
+| 模型与对应检查 | [ontology-revision](ontology-revision.md)、[conformance-review](conformance-review.md) |
+
+复用现有记录用途，schema升级到v4只为表达每阶段启动、run与明确绑定；不增加平行Goal／Phase／EvidenceContract。空值是真正未取得的事实，不把示例变成默认成功。
+
+plan.md与投影mapping.md可按已批准任务直接编写，不要求每项都再生成一种表单。projection mapping至少有需求／模型对象或约束／目标位置／规则／验证及未知。

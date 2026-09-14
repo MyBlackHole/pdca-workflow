@@ -74,4 +74,4 @@ ontology_modeling交付项目本体源及工作实例；ontology_projection从�
 
 下列28项原有权威ID保留，具体文件由发布清单解析；本版本改写其适用语义。按事件读取，不通读全部。其他资产只有经显式采用才是任务参考；不因authority字段或旧索引命中自动成为4.x控制规则。
 
-当前最短路径：八个Skill入口 → bootstrap/entry-check.md → 集中task／confirmation → 当前阶段与当前scene的方法。阶段与场景是两个维度，加载或切换Skill不新建Agent、不自动授权。权限／恢复／模型细则在相关事件发生时读取。
+当前最短路径：八个Skill入口 → [共同恢复入口](../contracts/entry-recovery.md) → 集中task／confirmation → 当前阶段与当前scene的方法。阶段与场景是两个维度，加载或切换Skill不新建Agent、不自动授权。权限／恢复／模型细则在相关事件发生时读取。

@@ -23,4 +23,4 @@ Plan前把用户问题、目标、范围、非目标、预期产物写在任务�
 
 各场景的必需产物由SCENE与已批准目标共同确定。知识地图只有满足稳定对象身份、关系、约束、来源和可检验性才可作为本体，不因叫ontology_modeling而自动合格。
 
-模板在templates/README.md；只有发布入口列出的v4模板采用。旧字段索引／生成规则在legacy，不从旧模板抄入默认PASS或两次确认语义。
+记录格式在[记录契约索引](../contracts/record-shapes/index.md)，仅采用其中列出的 v4 schema 与示例。旧字段索引／生成规则在 legacy，不从旧格式抄入默认 PASS 或两次确认语义。
