@@ -25,7 +25,7 @@ mkdir -p "$HOME/.agents"
 # Claim a new directory before cloning so failure cleanup cannot own an
 # installation that existed before this invocation.
 mkdir "$pdca_root"
-if git clone "$repository" "$pdca_root"; then
+if git clone "$repository" "$pdca_root"  --depth 1; then
     :
 else
     clone_status=$?
