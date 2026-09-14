@@ -1,0 +1,61 @@
+{
+  "version": "4.0.0-rc.2",
+  "skills": [
+    {
+      "name": "pdca",
+      "kind": "entry",
+      "phase": null,
+      "scene": null,
+      "path": "skills/pdca/SKILL.md"
+    },
+    {
+      "name": "pdca-plan",
+      "kind": "phase",
+      "phase": "plan",
+      "scene": null,
+      "path": "skills/pdca-plan/SKILL.md"
+    },
+    {
+      "name": "pdca-do",
+      "kind": "phase",
+      "phase": "do",
+      "scene": null,
+      "path": "skills/pdca-do/SKILL.md"
+    },
+    {
+      "name": "pdca-check",
+      "kind": "phase",
+      "phase": "check",
+      "scene": null,
+      "path": "skills/pdca-check/SKILL.md"
+    },
+    {
+      "name": "pdca-act",
+      "kind": "phase",
+      "phase": "act",
+      "scene": null,
+      "path": "skills/pdca-act/SKILL.md"
+    },
+    {
+      "name": "pdca-ontology-modeling",
+      "kind": "scene",
+      "phase": null,
+      "scene": "ontology_modeling",
+      "path": "skills/pdca-ontology-modeling/SKILL.md"
+    },
+    {
+      "name": "pdca-ontology-projection",
+      "kind": "scene",
+      "phase": null,
+      "scene": "ontology_projection",
+      "path": "skills/pdca-ontology-projection/SKILL.md"
+    },
+    {
+      "name": "pdca-ontology-conformance-verification",
+      "kind": "scene",
+      "phase": null,
+      "scene": "ontology_conformance_verification",
+      "path": "skills/pdca-ontology-conformance-verification/SKILL.md"
+    }
+  ]
+}

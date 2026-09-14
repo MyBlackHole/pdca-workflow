@@ -8,7 +8,7 @@ dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
 status: active
 authority: normative
-revision: 4.0.0-rc.1
+revision: 4.0.0-rc.2
 dcterms_modified: '2026-09-14'
 summary: Act：执行用户批准的处置，然后停止
 ---
@@ -27,4 +27,4 @@ summary: Act：执行用户批准的处置，然后停止
 
 ## 完成
 
-固定phase_completed、archived记录与最终task索引，发布归还回执。归档是本次Act处置的一部分，不新增第五阶段。报告实际结果与尚未启动的建议，停止；不自动新建任务、继续projection／verification或开启下一attempt。
+固定phase_completed、archived记录与最终task索引，保存集中资源归还或隔离回执；有未决影响时保持retained，不因归档释放冲突作用域。归档是本次Act处置的一部分，不新增第五阶段。报告实际结果与尚未启动的建议，停止；不自动新建任务、继续projection／verification或开启下一attempt。

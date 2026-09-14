@@ -1,0 +1,6 @@
+#!/bin/sh
+# Installation and central project registration only; never starts an Agent.
+set -eu
+HERE=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+export PYTHONDONTWRITEBYTECODE=1
+exec python3 "$HERE/scripts/install.py" "$@"

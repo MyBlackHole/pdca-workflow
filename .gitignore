@@ -14,3 +14,13 @@ records/*/artifacts/private/
 # Cross-project private evidence remains local; this is not an access-control boundary.
 records/**/artifacts/private/
 records/projects/**/private/
+
+# Local installation state and central mutable data (ignore is not access control).
+.pdca-install.json
+.pdca-install*.lock
+__pycache__/
+*.pyc
+records/
+ontology/projects/
+*.tar.gz
+*.tar

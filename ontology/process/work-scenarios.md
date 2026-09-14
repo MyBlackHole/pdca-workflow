@@ -8,7 +8,7 @@ dcterms_license: CC-BY-4.0
 dcterms_created: '2026-09-12'
 status: active
 authority: normative
-revision: 4.0.0-rc.1
+revision: 4.0.0-rc.2
 dcterms_modified: '2026-09-14'
 summary: SCENE-01：本体源—投影—符合性，场景间也等用户
 scene_ids:
@@ -24,7 +24,7 @@ scene_start_policy: explicit_user_operation
 
 ## ontology_modeling
 
-输入用户确认目标、固定事实来源与复用定义。Do建立领域本体源及工作实例：对象id、属性语义、关系端点／含义、约束与不变量、适用实例或理由、来源和未知。保存在项目本体目录或明确采用的已有目录，不以任务日志、七份知识文档或只含调度节点的树自动替代。
+输入用户确认目标、固定事实来源与复用定义。Do建立领域本体源及工作实例：对象id、属性语义、关系端点／含义、约束与不变量、适用实例或理由、来源和未知。保存在集中PDCA_ROOT/ontology/projects/<project>/works/<work>/<revision>或明确采用的已有模型位置，不以任务日志、七份知识文档或只含调度节点的树自动替代。
 
 Check对照原需求、定义与来源验证覆盖和约束，既检查结构也检查语义；没有模型就记录缺失，不能重解释场景名使其通过。模型可以Markdown+frontmatter，不强制YAML文件或专用生成器。复用也要有固定定义、采用依据和实际实例。
 
@@ -42,7 +42,7 @@ Act固定目标release和映射，未运行verification仍标not_run，不自动
 
 用户显式启动新的独立审查任务，读取原需求、同版本模型、固定投影及实际证据。分别判断需求→模型、模型→投影、产物→行为；不允许错误模型与错误投影互相证明。
 
-审查Agent不修改被审业务产物或oracle。Check报告pass/fail/unknown及证据和反证；原始命令失败不等于对象失败，未检查不等于通过。Act由用户选择接受、仅归档或提出返工／发布；真实违例不能被认可消息覆盖。
+审查Agent不修改被审业务产物或oracle。Plan固定验证问题和标准；Do实施检查并产生报告；本任务Check核验这些检查是否实际发生、覆盖是否足够以及结论是否被证据支持，不递归再建审查Agent。Check报告pass/fail/unknown及证据和反证；原始命令失败不等于对象失败，未检查不等于通过。Act由用户选择接受、仅归档或提出返工／发布；真实违例不能被认可消息覆盖。
 
 ## 覆盖与依赖
 

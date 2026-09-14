@@ -1,6 +1,6 @@
 ---
 schema: pdca.capability-check/v4
-protocol_revision: 4.0.0-rc.1
+protocol_revision: 4.0.0-rc.2
 task_id: null
 attempt: null
 environment_ref: null
