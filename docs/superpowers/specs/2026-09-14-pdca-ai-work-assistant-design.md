@@ -18,8 +18,8 @@ curl -fsSL https://raw.githubusercontent.com/MyBlackHole/pdca-workflow/main/inst
 
 1. 检查当前系统提供 `git`；
 2. 若 `~/.agents/pdca` 已存在，退出且不修改它；
-3. 克隆 `https://github.com/MyBlackHole/pdca-workflow.git` 到 `~/.agents/pdca`；
-4. 若 `~/.agents/skills` 已存在（包括目录或符号链接），退出且不合并、不替换；
+3. 若 `~/.agents/skills` 已存在（包括目录或符号链接），退出且不合并、不替换；
+4. 克隆 `https://github.com/MyBlackHole/pdca-workflow.git` 到 `~/.agents/pdca`；
 5. 创建 `~/.agents/skills -> ~/.agents/pdca/skills` 符号链接；
 6. 输出集中根、发现路径、显式 Skill 调用和更新说明。
 
@@ -28,6 +28,8 @@ curl -fsSL https://raw.githubusercontent.com/MyBlackHole/pdca-workflow/main/inst
 ## 集中数据、Git 与授权
 
 `~/.agents/pdca` 是唯一的 `PDCA_ROOT`，也是 Git 工作副本。它保存本体、Skills 与集中 `records/`；已绑定业务项目是 `TARGET_ROOT`。业务项目不创建 `.pdca/`，不接收安装器写入。
+
+`records/` 与 `ontology/projects/` 必须从 `.gitignore` 移除，成为可审阅、可由用户明确提交的 Git 数据；仅私有证据路径和本地秘密继续忽略。Git 跟踪不扩大读取或写入授权。
 
 `$pdca` 取代旧 `setup register/locate`：用户明确批准后，它在 `records/projects/` 创建或定位绑定。每个绑定、任务或事件记录写入时都记录当时 Git `HEAD` 与工作树状态，供追溯；不复制规则快照、不自动 checkout 历史提交，也不把当前 Git 状态冒充不可变快照。
 
