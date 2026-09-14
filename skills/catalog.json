@@ -9,6 +9,13 @@
       "path": "skills/pdca/SKILL.md"
     },
     {
+      "name": "pdca-assist",
+      "kind": "entry",
+      "phase": null,
+      "scene": null,
+      "path": "skills/pdca-assist/SKILL.md"
+    },
+    {
       "name": "pdca-plan",
       "kind": "phase",
       "phase": "plan",

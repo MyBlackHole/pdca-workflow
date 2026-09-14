@@ -1,5 +1,6 @@
 """Current document/link regression checks, not host or Agent acceptance."""
 from pathlib import Path
+import json
 import re
 import subprocess
 import unittest
@@ -105,6 +106,71 @@ class CurrentLinkTests(unittest.TestCase):
 
 class SafetyDefinitionTests(unittest.TestCase):
     """Safety assertions migrated from the old installer-independent checks."""
+    def test_assist_has_one_catalog_entry_and_index_link(self):
+        catalog = json.loads((ROOT / 'skills/catalog.json').read_text())
+        entries = catalog['skills']
+        matches = [entry for entry in entries if entry['name'] == 'pdca-assist']
+        self.assertEqual(len(matches), 1)
+        self.assertEqual(matches[0]['path'], 'skills/pdca-assist/SKILL.md')
+        self.assertEqual(sum(entry['path'] == 'skills/pdca-assist/SKILL.md'
+                             for entry in entries), 1)
+        self.assertEqual({entry['name'] for entry in entries},
+                         {'pdca', 'pdca-assist', *PHASES, *SCENES})
+        self.assertIn('[pdca-assist](pdca-assist/SKILL.md)',
+                      (ROOT / 'skills/README.md').read_text())
+
+    def test_assist_is_bound_read_only_and_suggestion_only(self):
+        path = ROOT / 'skills/pdca-assist/SKILL.md'
+        self.assertTrue(path.is_file(), 'missing explicit assistant Skill')
+        content = path.read_text()
+        for requirement in ('用户显式调用', '当前已绑定的 TARGET_ROOT',
+                            '不扫描其他项目', '用户选择', '不创建任务',
+                            '不启动阶段', '不派发 Agent', '不创建记录',
+                            '不创建资源预约', '不写入 TARGET_ROOT',
+                            '任务地图', '项目上下文', '证据审阅', '协作交接',
+                            '每个视角最多一个候选动作', '影响', '所需授权',
+                            'git rev-parse HEAD', 'git status --porcelain'):
+            with self.subTest(requirement=requirement):
+                self.assertIn(requirement, content)
+
+    def test_binding_records_git_state_and_separates_write_from_commit_consent(self):
+        content = (ROOT / 'skills/pdca/SKILL.md').read_text()
+        for requirement in ('记录写入授权', 'Git 提交授权', '另行明确',
+                            'git rev-parse HEAD', 'git status --porcelain',
+                            'project_id', 'workspace_id', 'target_root',
+                            'pdca_root', 'records_root', 'rules_git_head',
+                            'rules_git_status', '不自动提交',
+                            '不在目标项目创建 `.pdca/`'):
+            with self.subTest(requirement=requirement):
+                self.assertIn(requirement, content)
+
+    def test_assist_host_acceptance_remains_unverified(self):
+        content = (ROOT / 'tests/host-acceptance.md').read_text()
+        self.assertIn('catalog.json', content)
+        self.assertIn('pdca-assist', content)
+        self.assertNotIn('八个入口', content)
+        rows = [line for line in content.splitlines()
+                if re.match(r'\| H\d+ \|', line)]
+        self.assertTrue(rows)
+        self.assertTrue(all(row.endswith('| NOT_RUN |') for row in rows))
+
+    def test_project_binding_contracts_use_git_provenance(self):
+        paths = ('ontology/contracts/project-workspace.md',
+                 'ontology/contracts/entry-recovery.md',
+                 'ontology/contracts/record-shapes/project-task-context.md')
+        for relative in paths:
+            with self.subTest(contract=relative):
+                content = (ROOT / relative).read_text()
+                self.assertIn('rules_git_head', content)
+                self.assertIn('rules_git_status', content)
+                self.assertIn('记录写入授权', content)
+                self.assertNotIn('快照是本任务规则根', content)
+                self.assertNotIn('安装器项目登记', content)
+        shape = (SHAPES / 'project-task-context.md').read_text()
+        for field in ('project_id', 'workspace_id', 'target_root', 'pdca_root',
+                      'records_root', 'rules_git_head', 'rules_git_status'):
+            self.assertRegex(shape, rf'(?m)^{field}: ')
+
     def test_phase_entries_do_not_spawn(self):
         for name in PHASES:
             with self.subTest(skill=name):
