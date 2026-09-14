@@ -22,7 +22,16 @@ if [ -e "$skills_dir" ] || [ -L "$skills_dir" ]; then
 fi
 
 mkdir -p "$HOME/.agents"
-git clone "$repository" "$pdca_root"
+# Claim a new directory before cloning so failure cleanup cannot own an
+# installation that existed before this invocation.
+mkdir "$pdca_root"
+if git clone "$repository" "$pdca_root"; then
+    :
+else
+    clone_status=$?
+    rm -rf -- "$pdca_root"
+    exit "$clone_status"
+fi
 ln -s "$pdca_root/skills" "$skills_dir"
 
 printf '%s\n' \

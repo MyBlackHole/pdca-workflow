@@ -13,7 +13,7 @@ metadata:
 
 1. 根据[项目绑定契约](../../ontology/contracts/project-workspace.md)，核对本 Skill 真实路径所在 PDCA_ROOT 与用户指定或既有会话绑定的一个 `project_id`/`workspace_id`。只读取对应集中 `project-context.md`，确认 `records_root=PDCA_ROOT/records` 与当前已绑定的 TARGET_ROOT。没有绑定、多个匹配、路径冲突或无读取权限时停止，报告缺口并建议用户通过 `pdca` 明确定位/绑定；不自动调用该入口。
 2. 不扫描其他项目，不读取未关联目录或无关历史记录。只按当前绑定导航读取该项目必要的集中 records；在宿主权限允许的范围内读取当前 TARGET_ROOT 的相关源码、文档与 Git 状态。路径先规范化，符号链接或记录链接不能扩大项目读取范围；必要文件越界或无权限时停止并说明。不得因建议而执行测试、构建、安装或其他可能写文件的命令。
-3. 在 PDCA_ROOT 中只读运行 `git rev-parse HEAD`、`git status --porcelain`，报告规则 HEAD、工作树状态以及绑定所记录的 `rules_git_head`/`rules_git_status` 的差异；Git 状态查询使用 `GIT_OPTIONAL_LOCKS=0` 避免索引刷新。TARGET_ROOT 为 Git 工作副本且读取获准时同样只读查询，并分别标明目标与规则 Git 状态。目标不是 Git 仓库则如实说明；集中根 Git 命令失败、无有效 HEAD 或状态无法核实时停止，不猜测或修复。
+3. 在 PDCA_ROOT 中只读运行 `GIT_OPTIONAL_LOCKS=0 git rev-parse HEAD`、`GIT_OPTIONAL_LOCKS=0 git status --porcelain`，禁用可选索引写入，报告规则 HEAD、工作树状态以及绑定所记录的 `rules_git_head`/`rules_git_status` 的差异。TARGET_ROOT 为 Git 工作副本且读取获准时使用相同命令查询，并分别标明目标与规则 Git 状态。目标不是 Git 仓库则如实说明；集中根 Git 命令失败、无有效 HEAD 或状态无法核实时停止，不猜测或修复。
 4. 工作树有未提交改动时只报告风险，提供审阅、提交、暂存或继续的选项，不执行 Git 修改。集中 records 可被 Git 跟踪不代表可以读取其他项目，也不代表已获记录写入或 Git 提交授权。
 
 ## 四个建议视角

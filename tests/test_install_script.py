@@ -30,6 +30,7 @@ class GitInstallerTests(unittest.TestCase):
             "printf '\\n' >> \"$GIT_LOG\"\n"
             "if [ \"$1\" = clone ]; then\n"
             "  mkdir -p \"$3/.git\" \"$3/skills\"\n"
+            "  exit \"${GIT_CLONE_STATUS:-0}\"\n"
             "fi\n"
         )
         fake_git.chmod(0o755)
@@ -113,6 +114,21 @@ class GitInstallerTests(unittest.TestCase):
 
         self.assertNotEqual(result.returncode, 0)
         self.assertFalse((self.home / ".agents").exists())
+
+    def test_failed_clone_cleans_only_its_new_destination(self) -> None:
+        existing = self.home / ".agents/unrelated/keep.txt"
+        existing.parent.mkdir(parents=True)
+        existing.write_text("user data")
+
+        result = self.run_installer({**self.env, "GIT_CLONE_STATUS": "7"})
+
+        self.assertEqual(result.returncode, 7, result.stderr)
+        self.assertIn(f"clone {REPOSITORY}", self.git_log.read_text())
+        self.assertFalse((self.home / ".agents/pdca").exists())
+        self.assertFalse((self.home / ".agents/skills").exists())
+        self.assertEqual(existing.read_text(), "user data")
+        self.assertEqual(sorted(path.name for path in (self.home / ".agents").iterdir()),
+                         ["unrelated"])
 
 
 if __name__ == "__main__":

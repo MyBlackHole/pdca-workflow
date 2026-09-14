@@ -34,10 +34,21 @@ FORMER_TEMPLATE_CONTRACTS = {
 PHASES = ('pdca-plan', 'pdca-do', 'pdca-check', 'pdca-act')
 SCENES = ('pdca-ontology-modeling', 'pdca-ontology-projection',
           'pdca-ontology-conformance-verification')
+REMOVED_PATHS = (
+    'setup', 'scripts/install.py', 'scripts/common.py',
+    'scripts/build_manifest.py', 'scripts/check_release.py',
+    'tests/test_install.py', 'release-manifest.md', 'protocol-release.md',
+    'SKILL.md', 'USE-PDCA.md', 'migration/v4.0.0-rc.2-MIGRATION.md',
+    'bootstrap', 'templates',
+)
 
 
 def current_documents():
-    yield from sorted((ROOT / 'skills').rglob('SKILL.md'))
+    for relative in ('AGENTS.md', 'README.md', 'INSTALL.md',
+                     'ontology/README.md', 'ontology/INDEX.md'):
+        yield ROOT / relative
+    yield from sorted((ROOT / 'tests').glob('*.md'))
+    yield from sorted((ROOT / 'skills').rglob('*.md'))
     for path in sorted((ROOT / 'ontology').rglob('*.md')):
         content = path.read_text()
         if not content.startswith('---\n'):
@@ -49,6 +60,12 @@ def current_documents():
 
 
 class CurrentLinkTests(unittest.TestCase):
+    def test_superseded_package_layers_are_absent(self):
+        for relative in REMOVED_PATHS:
+            with self.subTest(removed_path=relative):
+                path = ROOT / relative
+                self.assertFalse(path.exists() or path.is_symlink(), relative)
+
     def test_current_documents_have_resolvable_relative_links(self):
         for path in current_documents():
             for target in re.findall(r'\[[^\]\n]*\]\(([^)\n]+)\)', path.read_text()):
@@ -58,6 +75,10 @@ class CurrentLinkTests(unittest.TestCase):
                     continue
                 with self.subTest(document=str(path.relative_to(ROOT)), target=target):
                     resolved = (path.parent / unquote(parsed.path)).resolve()
+                    for relative in REMOVED_PATHS:
+                        removed = ROOT / relative
+                        self.assertFalse(resolved == removed or removed in resolved.parents,
+                                         f'link to removed path: {resolved}')
                     self.assertTrue(resolved.exists(), f'missing target: {resolved}')
 
     def test_current_documents_do_not_depend_on_removed_directories(self):
@@ -106,6 +127,16 @@ class CurrentLinkTests(unittest.TestCase):
 
 class SafetyDefinitionTests(unittest.TestCase):
     """Safety assertions migrated from the old installer-independent checks."""
+    def test_read_only_git_queries_disable_optional_locks(self):
+        for path in current_documents():
+            content = path.read_text()
+            for command in re.finditer(r'\bgit (?:rev-parse HEAD|status --porcelain)\b',
+                                       content):
+                with self.subTest(document=str(path.relative_to(ROOT)),
+                                  command=command.group()):
+                    self.assertTrue(content[:command.start()].endswith('GIT_OPTIONAL_LOCKS=0 '),
+                                    'read-only queries must disable optional index writes')
+
     def test_assist_has_one_catalog_entry_and_index_link(self):
         catalog = json.loads((ROOT / 'skills/catalog.json').read_text())
         entries = catalog['skills']

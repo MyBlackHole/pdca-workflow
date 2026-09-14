@@ -16,7 +16,7 @@ metadata:
 ## 显式绑定与 Git 追溯
 
 1. 新增或修改绑定前，展示稳定的 `project_id`、`workspace_id`、真实 `target_root`、`pdca_root`、`records_root=PDCA_ROOT/records` 及具体待写路径 `records/projects/<project_id>/workspaces/<workspace_id>/project-context.md`。核对用户的**记录写入授权**，明确批准后才写；已给出的有效授权无需重复索取。绑定只登记元数据，不创建任务、不启动阶段、不修改目标项目指令或 ignore。
-2. 在 PDCA_ROOT 内只读执行 `git rev-parse HEAD` 与 `git status --porcelain`；可用 `GIT_OPTIONAL_LOCKS=0` 避免状态查询刷新索引。每次获准写入绑定、任务或事件前重新采集，将当时 HEAD 写入 `rules_git_head`，将工作树状态原样写入 `rules_git_status`（干净时为空字符串），按[上下文格式](../../ontology/contracts/record-shapes/project-task-context.md)保存。命令失败、无有效 HEAD 或根不是预期 Git 工作副本时停止，不编造值。
+2. 在 PDCA_ROOT 内只读执行 `GIT_OPTIONAL_LOCKS=0 git rev-parse HEAD` 与 `GIT_OPTIONAL_LOCKS=0 git status --porcelain`，禁用可选索引写入。每次获准写入绑定、任务或事件前重新采集，将当时 HEAD 写入 `rules_git_head`，将工作树状态原样写入 `rules_git_status`（干净时为空字符串），按[上下文格式](../../ontology/contracts/record-shapes/project-task-context.md)保存。命令失败、无有效 HEAD 或根不是预期 Git 工作副本时停止，不编造值。
 3. Git HEAD 与工作树状态只作追溯，不是不可变规则快照；不复制规则、不自动 checkout 历史提交。遇到未提交改动只报告风险，给出审阅、提交、暂存或继续的选项；用户尚未明确如何处理时不改动 Git。已有任务不自动改绑或升级规则；原依据不可用或与当前规则冲突时说明缺口并停止。
 4. **Git 提交授权**与记录写入授权分开。只有用户另行明确要求提交具体范围后，才能执行相应 `git add`/`git commit`；已有写记录批准不算提交批准，提交范围不明时先确认。AI 不自动提交、拉取、切换分支、暂存、还原或覆盖集中工作树；Git 跟踪不扩大任何项目的读写授权。
 

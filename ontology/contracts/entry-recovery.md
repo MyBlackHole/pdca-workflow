@@ -11,7 +11,7 @@ status: active
 
 1. **根与项目。** 从用户指定或既有会话的集中 `records/projects/<project>/workspaces/<workspace>/project-context.md` 只读定位一个绑定，核对项目/工作区身份及真实 `target_root`、`pdca_root`、`records_root`。既有任务绑定优先于 cwd/环境变量；与 Skill 真实路径所在 Git 根冲突时停止，不能转到 TARGET_ROOT/.pdca。新增或修改绑定须按[项目契约](project-workspace.md)先取得记录写入授权；多个绑定或多个候选任务时询问，不选最新。
 2. **原任务。** 读取自己的 task、dispatch 原生身份、最后完整事件、run 与待请求。阶段 Skill 收到调用但当前会话不是该执行者时，只路由真实用户操作至原实例并停止本地执行；不可路由就阻断，不重新 spawn、不由父 Agent 代做。
-3. **Git 依据。** 核对记录的 `rules_git_head`/`rules_git_status` 与集中工作副本当前只读查询的 HEAD/工作树状态；每次获准写入绑定、任务或事件前重新采集并保存。命令失败或无有效 HEAD 时停止。这些字段只作追溯，不是不可变规则快照，不复制规则或自动 checkout；发现原任务依据缺失、规则变动影响既有授权或冲突时报告并停止，不自动重写原任务。Git 提交授权独立于记录写入授权，不自动提交、拉取、切换分支、暂存、还原或覆盖。
+3. **Git 依据。** 在集中根只读执行 `GIT_OPTIONAL_LOCKS=0 git rev-parse HEAD` 与 `GIT_OPTIONAL_LOCKS=0 git status --porcelain`，禁用可选索引写入，核对当前 HEAD/工作树状态与记录的 `rules_git_head`/`rules_git_status`；每次获准写入绑定、任务或事件前重新采集并保存。命令失败或无有效 HEAD 时停止。这些字段只作追溯，不是不可变规则快照，不复制规则或自动 checkout；发现原任务依据缺失、规则变动影响既有授权或冲突时报告并停止，不自动重写原任务。Git 提交授权独立于记录写入授权，不自动提交、拉取、切换分支、暂存、还原或覆盖。
 4. **本次授权。** 核对 request/原始用户 response/消费、task/attempt/phase/run/subject 和撤销；加载 Skill、状态 running、上阶段 PASS 均不代替授权。重复回应不启动新 run；目标或输入变动先重新沟通。
 5. **资源。** 按 [RESOURCE](../concept/resource-ownership.md)核对集中预约与真实后端作用域。记录和模型写入也有拥有者，不能把集中根当全局可写区。结果未知保留占用，只对账原操作。
 

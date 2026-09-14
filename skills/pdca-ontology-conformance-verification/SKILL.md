@@ -9,9 +9,9 @@ metadata:
 
 ## 先定位，不以加载当授权
 
-安装后的入口会给出真实 **PDCA_ROOT** 和当前发布快照。直接从源码读取时，由用户明确集中根，或核对该文件真实路径所在的根；定位不等于批准业务操作。路径冲突时停止，不在目标项目创建 `.pdca/` 或另一份 records。
+核对本文件经符号链接解析后的真实路径，定位集中 Git 工作副本 **PDCA_ROOT**。既有任务绑定优先于 cwd 或环境变量；与入口所在根冲突时停止，不在目标项目创建 `.pdca/` 或另一份 records。定位不等于批准业务操作。
 
-先读[共同恢复入口](../../ontology/contracts/entry-recovery.md)，再读集中项目 context、自己的 task/原 Agent 绑定、最后完整事件和当前请求。已有任务采用 `protocol_baseline_ref` 所在快照；与本入口版本或摘要不同，则只作定位并读取原快照方法，不用这里的新方法推进旧任务。
+先读[共同恢复入口](../../ontology/contracts/entry-recovery.md)，再读当前绑定项目 context、自己的 task/原 Agent 绑定、最后完整事件和当前请求。核对记录的 `rules_git_head`/`rules_git_status`；每次获准写入记录前按共同入口重新采集当前 Git 来源。已有任务不自动改绑或升级规则，原依据缺失或规则冲突时停止；不复制规则、不自动 checkout，不以新规则改写原授权。
 
 ## 两种读取方式，禁止递归创建
 
