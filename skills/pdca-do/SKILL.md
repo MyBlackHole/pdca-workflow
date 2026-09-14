@@ -2,7 +2,7 @@
 name: pdca-do
 description: 用户明确启动或继续现有 PDCA 任务的 Do 阶段时使用。核对批准计划、集中资源和原会话，只实施当前 run，不自动 Check。
 metadata:
-  version: 4.0.0-rc.2
+  version: 4.0.0-rc.3
 ---
 
 # Do：在原任务里实施获准计划

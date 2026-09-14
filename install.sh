@@ -32,7 +32,16 @@ else
     rm -rf -- "$pdca_root"
     exit "$clone_status"
 fi
-ln -s "$pdca_root/skills" "$skills_dir"
+
+# -T refuses a directory that appeared after the preflight instead of placing
+# a nested link inside it.  That preserves the no-merge installer contract.
+if ln -sT "$pdca_root/skills" "$skills_dir"; then
+    :
+else
+    link_status=$?
+    rm -rf -- "$pdca_root"
+    exit "$link_status"
+fi
 
 printf '%s\n' \
     "PDCA root: $pdca_root" \

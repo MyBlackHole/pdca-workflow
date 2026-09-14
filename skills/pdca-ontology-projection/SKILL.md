@@ -2,7 +2,7 @@
 name: pdca-ontology-projection
 description: 用户明确选择本体投影场景，或已有投影任务需要场景方法时使用。从固定模型产生目标产物和映射，不脱离模型或自动启动符合性验证。
 metadata:
-  version: 4.0.0-rc.2
+  version: 4.0.0-rc.3
 ---
 
 # 本体投影：模型与真实目标之间有可审查映射

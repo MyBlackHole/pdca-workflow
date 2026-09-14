@@ -2,7 +2,7 @@
 name: pdca-check
 description: 用户明确启动现有 PDCA 任务的 Check 时使用。核验固定产物、标准和证据，在原会话完成，不修改业务对象或自动返工。
 metadata:
-  version: 4.0.0-rc.2
+  version: 4.0.0-rc.3
 ---
 
 # Check：核验事实，不自动修正业务对象

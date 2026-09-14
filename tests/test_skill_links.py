@@ -150,6 +150,16 @@ class SafetyDefinitionTests(unittest.TestCase):
         self.assertIn('[pdca-assist](pdca-assist/SKILL.md)',
                       (ROOT / 'skills/README.md').read_text())
 
+    def test_current_package_version_is_consistent(self):
+        version = (ROOT / 'VERSION').read_text().strip()
+        catalog = json.loads((ROOT / 'skills/catalog.json').read_text())
+        self.assertEqual(version, '4.0.0-rc.3')
+        self.assertEqual(catalog['version'], version)
+        for entry in catalog['skills']:
+            with self.subTest(skill=entry['name']):
+                content = (ROOT / entry['path']).read_text()
+                self.assertIn(f'version: {version}', content)
+
     def test_assist_is_bound_read_only_and_suggestion_only(self):
         path = ROOT / 'skills/pdca-assist/SKILL.md'
         self.assertTrue(path.is_file(), 'missing explicit assistant Skill')
@@ -201,6 +211,18 @@ class SafetyDefinitionTests(unittest.TestCase):
         for field in ('project_id', 'workspace_id', 'target_root', 'pdca_root',
                       'records_root', 'rules_git_head', 'rules_git_status'):
             self.assertRegex(shape, rf'(?m)^{field}: ')
+
+    def test_current_recovery_and_index_use_git_not_removed_release_layers(self):
+        for relative in ('ontology/contracts/entry-recovery.md',
+                         'ontology/concept/pdca-recovery.md',
+                         'ontology/INDEX.md', 'ontology/concept/pdca.md'):
+            with self.subTest(document=relative):
+                content = (ROOT / relative).read_text()
+                self.assertNotIn('发布清单', content)
+                self.assertNotIn('集中协议快照', content)
+        recovery = (ROOT / 'ontology/concept/pdca-recovery.md').read_text()
+        self.assertIn('rules_git_head', recovery)
+        self.assertIn('rules_git_status', recovery)
 
     def test_phase_entries_do_not_spawn(self):
         for name in PHASES:

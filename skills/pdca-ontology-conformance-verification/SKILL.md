@@ -2,7 +2,7 @@
 name: pdca-ontology-conformance-verification
 description: 用户明确选择本体符合性验证，或该任务需要核验方法时使用。分别检查需求到模型、模型到投影、产物到行为，不把链接检查当语义证明。
 metadata:
-  version: 4.0.0-rc.2
+  version: 4.0.0-rc.3
 ---
 
 # 本体符合性验证：需求、模型、投影与行为分别核验

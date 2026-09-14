@@ -30,6 +30,13 @@ class GitInstallerTests(unittest.TestCase):
             "printf '\\n' >> \"$GIT_LOG\"\n"
             "if [ \"$1\" = clone ]; then\n"
             "  mkdir -p \"$3/.git\" \"$3/skills\"\n"
+            "  if [ \"${GIT_CREATE_SKILLS_DURING_CLONE:-0}\" = 1 ]; then\n"
+            "    mkdir -p \"$HOME/.agents/skills\"\n"
+            "  fi\n"
+            "  if [ \"${GIT_CREATE_SKILLS_LINK_DURING_CLONE:-0}\" = 1 ]; then\n"
+            "    mkdir -p \"$HOME/.agents/external-skills\"\n"
+            "    ln -s \"$HOME/.agents/external-skills\" \"$HOME/.agents/skills\"\n"
+            "  fi\n"
             "  exit \"${GIT_CLONE_STATUS:-0}\"\n"
             "fi\n"
         )
@@ -129,6 +136,28 @@ class GitInstallerTests(unittest.TestCase):
         self.assertEqual(existing.read_text(), "user data")
         self.assertEqual(sorted(path.name for path in (self.home / ".agents").iterdir()),
                          ["unrelated"])
+
+    def test_refuses_discovery_directory_created_during_clone(self) -> None:
+        result = self.run_installer(
+            {**self.env, "GIT_CREATE_SKILLS_DURING_CLONE": "1"}
+        )
+
+        self.assertNotEqual(result.returncode, 0)
+        self.assertTrue((self.home / ".agents/skills").is_dir())
+        self.assertFalse((self.home / ".agents/skills/skills").exists())
+        self.assertFalse((self.home / ".agents/pdca").exists())
+
+    def test_refuses_discovery_directory_link_created_during_clone(self) -> None:
+        result = self.run_installer(
+            {**self.env, "GIT_CREATE_SKILLS_LINK_DURING_CLONE": "1"}
+        )
+
+        skills_dir = self.home / ".agents/skills"
+        self.assertNotEqual(result.returncode, 0)
+        self.assertTrue(skills_dir.is_symlink())
+        self.assertEqual(skills_dir.resolve(), self.home / ".agents/external-skills")
+        self.assertFalse((self.home / ".agents/external-skills/skills").exists())
+        self.assertFalse((self.home / ".agents/pdca").exists())
 
 
 if __name__ == "__main__":
