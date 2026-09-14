@@ -6,11 +6,11 @@ semantic_kind: class
 layer: Knowledge
 status: active
 authority: normative
-revision: 3.4.9
+revision: 3.4.11
 summary: Check：当前任务自检与明确失败判定
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-13'
+dcterms_modified: '2026-09-14'
 relations:
   specializes:
   - ontology:concept/process
@@ -35,7 +35,7 @@ relations:
 当前phase=check，有合法Do→Check回执；输入为原基线、最终产物与真实测试结果包，不要求父层审查回执。读取TEST-01、VERDICT-01、CONFIRM-01。
 
 1. 按 [EVIDENCE 消费顺序](../concept/pdca-evidence.md#evidence-consumption)逐项读取对象、执行、actual/oracle并回链最终判定；检查每个必须AC与案例的覆盖、过期PASS、未解决flaky和假mutation kill，不能只复述Do摘要。
-2. 比较Plan预测与Do实际，按pass/fail/unknown/not_run逐项解释；有可疑发现时用 [反证核验](independent-work-review.md#review-counterevidence)复核已有材料。组合节点核对真实孩子/接口/状态传播；孩子通过不代替本节点通过。
+2. 比较Plan预测与Do实际，按pass/fail/unknown/not_run逐项解释；有可疑发现时用 [反证核验](independent-work-review.md#review-counterevidence)复核已有材料，并按 [缺陷/未知/建议](independent-work-review.md#review-professional-findings)分类。组合节点核对真实孩子/接口/状态传播；孩子通过不代替本节点通过，建议不冒充违约。
 3. 生成conclusion.md和任务verdict；独立审查场景必须额外给subject_conformance，二者不混淆。
 4. 新发现实现问题创建issue/返工建议，不回Do修改。需要新实验/范围时记录REWORK-01后继建议；旧槽未完成正常交回或CONTROL-01安全终止前，不得实际启动新attempt。
 5. 固定结论包并请求当前任务真实用户确认；认可失败判定可进入Act。满足GATE-01后记录转换。

@@ -14,7 +14,7 @@ retained_resource_refs: []
 blocked_actions: []
 blocked_reasons: []
 integrity_status: null
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 ---
 
 # 宿主控制视图草稿

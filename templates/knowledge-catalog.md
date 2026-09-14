@@ -1,7 +1,7 @@
 ---
 schema: pdca.knowledge-catalog/v1
 state: draft
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 library_id: null
 generation: null
 previous_catalog_digest: null

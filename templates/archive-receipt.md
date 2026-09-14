@@ -1,6 +1,6 @@
 ---
 schema: pdca.archive-receipt/v1
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 receipt_id: null
 task_id: null
 work_id: null

@@ -1,6 +1,6 @@
 ---
 schema: pdca.project-index/v1
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 extension_revision: cross-project.2
 project_id: null
 workspace_bindings: []

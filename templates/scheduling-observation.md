@@ -1,7 +1,7 @@
 ---
 schema: pdca.scheduling-observation/v1
 extension_revision: agent-dispatch.1
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 observation_id: null
 work_id: null
 tree_revision: null

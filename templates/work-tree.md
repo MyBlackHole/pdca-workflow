@@ -10,7 +10,7 @@ confirmation_ref: null
 supersedes: null
 proposal_id: null
 freeze_receipt_ref: null
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 dependency_graph_refs: []
 dependency_check_refs: []
 wait_policy_ref: null

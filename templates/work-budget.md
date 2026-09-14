@@ -1,6 +1,6 @@
 ---
 schema: pdca.work-budget/v1
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 budget_id: null
 work_id: null
 scope: null

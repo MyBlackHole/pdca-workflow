@@ -1,11 +1,11 @@
 ---
 schema: pdca.record-shape/v1
 authority: CONTRACT-01
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 profile: fixed_formal_record_example
 record_kind: test-case-binding
 template_ref: ../../../templates/test-case-binding.md
-template_digest: 3505419061bc0ab9b0e62ed28f8008b34738582af417589717d6eec8c94a4ff5
+template_digest: 33c31e86d76871c70d34cb9a21425278a01b66e1fc5463eb3e40321ba321aa9b
 shape:
   strings:
   - binding_id

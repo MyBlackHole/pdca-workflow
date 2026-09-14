@@ -25,7 +25,7 @@ time_source_ref: null
 previous_control_ref: null
 control_revision: null
 backend_order_receipt_ref: null
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 ---
 
 # 请求唯一终局草稿

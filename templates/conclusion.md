@@ -9,7 +9,7 @@ disposition: null
 candidate_refs: []
 follow_up_refs: []
 confirmed_package_ref: null
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 ---
 
 # 结论与处置
@@ -27,7 +27,7 @@ protocol_revision: 3.4.10
 
 ## 知识处置
 
-按LEARN-01选择disposition，写理由、来源、复用价值和候选/已有节点引用。没有新增知识可以明确说明，不强制制造节点。
+按 [LEARN-01](../ontology/concept/pdca-continuous-improvement.md#learn-bounded-experience)选择disposition，写来源/版本、适用条件、观察与推断、反证、复用价值和重评触发。引用候选/已有节点；没有新增知识可明确说明，不强制制造节点。
 
 ## 失败与后续行动
 

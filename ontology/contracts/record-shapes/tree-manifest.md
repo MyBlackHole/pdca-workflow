@@ -1,11 +1,11 @@
 ---
 schema: pdca.record-shape/v1
 authority: CONTRACT-01
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 profile: fixed_formal_record_example
 record_kind: tree-manifest
 template_ref: ../../../templates/tree-manifest.md
-template_digest: 91a3c56b2773bf237a89849c9002e38854d282929510b493f3bd15ecda47ef42
+template_digest: 6436a62efbe576e2f22b6ce0c54957cc1b3614549cddb6dd35da500dfccb721c
 shape:
   strings:
   - work_id

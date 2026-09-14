@@ -6,11 +6,11 @@ semantic_kind: class
 layer: Knowledge
 status: active
 authority: normative
-revision: 3.4.1
+revision: 3.4.11
 summary: Act：交付、失败返工与知识处置
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
+dcterms_modified: '2026-09-14'
 relations:
   specializes:
   - ontology:concept/process
@@ -35,7 +35,7 @@ relations:
 
 当前phase=act且Check→Act合法；读取LEARN-01、REWORK-01、SCENE-01与GATE-01。
 
-1. 记录知识处置与理由；无新增知识可no_new_knowledge，失败反例可形成候选，不为归档强制造本体。
+1. 按 [LEARN 有界经验](../concept/pdca-continuous-improvement.md#learn-bounded-experience)记录知识处置、适用条件与证据；无新增知识可no_new_knowledge，失败反例可形成候选，不为归档强制造本体。
 2. 输出当前节点固定交付包、delivery_usable及限制；建模交付子seed，执行交付实际产物，审查交付subject_conformance。错误/partial实现不冒充父可用输入；按VERDICT-01本地验收即可正常归档，不等待祖先回归，相关工作issue仍可开放。
 3. 对缺陷记录最小复现、原失败版本、根因/不确定性、影响集合与回归要求；申请同节点相应场景的新attempt、新Agent。旧任务不能代后继执行其Plan。
 4. 发布事件交给宿主更新树清单；任务自身不得同时改共享索引或父任务状态。失效传播按REWORK-01，后继未测试前不能宣称修复已完成。

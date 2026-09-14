@@ -6,7 +6,7 @@ semantic_kind: class
 layer: Knowledge
 status: active
 authority: normative
-revision: 3.4.10
+revision: 3.4.11
 summary: 本体树驱动的三场景 AI 工作协议
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
@@ -90,7 +90,7 @@ rule_authorities:
   EVOLVE-01: ontology:concept/ontology-evolution
   ADOPT-01: ontology:concept/ontology-adoption
   DECOMP-01: ontology:concept/task-decomposition
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 ---
 
 # 本体树驱动的三场景 AI 工作协议

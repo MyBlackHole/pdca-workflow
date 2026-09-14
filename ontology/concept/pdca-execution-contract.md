@@ -6,11 +6,11 @@ semantic_kind: class
 layer: Knowledge
 status: active
 authority: normative
-revision: 3.4.7
+revision: 3.4.11
 summary: 节点场景执行契约与不可漂移基线
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-11
-dcterms_modified: '2026-09-13'
+dcterms_modified: '2026-09-14'
 relations:
   specializes:
   - ontology:concept/entity
@@ -25,7 +25,7 @@ relations:
   - ontology:concept/ontology-reuse
   - ontology:concept/ontology-adoption
 record_shape_index_ref: ../contracts/record-shapes/index.md
-record_shape_index_digest: db496ad2a58d1dcd1def84e0bd3922a783ee8ebf9275d878a8f0ef2edc7b8092
+record_shape_index_digest: 41d7aa0cb4b787438faf4661cd169eef47d327a5240e9641c226b220bf30ad3a
 ---
 
 # 节点场景执行契约与不可漂移基线
@@ -113,3 +113,12 @@ modeling基线的`current_modeling_input_suite_ref`指向[通用建模入口](..
 有限字段投影不等于完整引用解析。已提供的引用逐项检查实际文件/具名映射、固定摘要、目标类型和适用身份；无法支持的引用语义报告unsupported。草稿、合法首回执及停止/失败记录选择自己的profile，不能强加已归档成功的必需字段。
 
 发布核验从独立选定的版本化规则注册表及必需分发集合出发，核对资产ID/ref/revision/role、支持文件、规范依赖与全部摘要。候选注册表和候选清单一起缩减仍不能改变外部要求；不得写死永久250项。未知发布版本需独立适用策略，不自动继承旧版通过。版本化维护策略属于独立验证附件，不是新增PDCA权威、签名或发布授权。
+
+<a id="contract-professional-plan"></a>
+## CONTRACT-01 · 从原问题形成可检验方案
+
+在既有baseline正文完成，不另建审批或schema。将原请求/父seed整理为：谁或哪个系统在什么条件下遇到什么问题、当前做法与可观察代价、目标行为/不变量、非目标、事实与待证假设。性能写清操作、负载、指标/单位和比较条件；研究写清要回答的问题、来源版本及证据边界。已有答案直接引用，不重复盘问；没有商业目标的学习/开源任务不强加付费需求。保留用户原目标，不用自己的改写覆盖授权。
+
+存在实质取舍时比较推荐方案与最小可行替代（可以是维持现状），写理由、代价、失败影响、回退可行性和重新评估的触发条件；唯一合理的机械修改说明依据即可，不凑方案/评分。缺少会改变范围、安全或验收的事实则指出具体缺项；不能编造测量或假定用户同意。讨论中的建议不替代CONFIRM-01。
+
+由已固定要求选择当前适用的专业方法，按[方法导航](../../bootstrap/work-methods.md)将路径、风险和判据写入原required_actions、constraints、testable_signal及suite正文。检查方向不是额外Agent或节点，不按文件数/变更行数豁免高风险检查；不适用须有依据，不能删已确认义务。方法发现新要求时按原冻结/REWORK边界处理，不在Check扩大基线。

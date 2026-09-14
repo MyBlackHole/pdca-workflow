@@ -1,7 +1,7 @@
 # PDCA Tree · Markdown-native
 
 <!-- pdca:current-release:start -->
-当前维护快照 **3.4.10** · [协议清单](protocol-release.md) · [变更](migration/v3.4.10-CHANGES.md) · [迁移](migration/v3.4.10-MIGRATION.md) · [验证范围](migration/v3.4.10-VALIDATION.md)
+当前维护快照 **3.4.11** · [协议清单](protocol-release.md) · [变更](migration/v3.4.11-CHANGES.md) · [迁移](migration/v3.4.11-MIGRATION.md) · [验证范围](migration/v3.4.11-VALIDATION.md)
 <!-- pdca:current-release:end -->
 
 主包保持纯 Markdown：三个场景、每节点完整 PDCA、真实新 Agent、Plan/Check 两处确认、平台中立、无 adapter。当前版本是维护快照，不表示宿主执行或发布资格已获证明。

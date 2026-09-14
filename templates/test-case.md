@@ -21,7 +21,7 @@ failure_signature: null
 cleanup: null
 kills: []
 regression_issue: null
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 test_layer: null
 subject_ref: null
 oracle_ref: null

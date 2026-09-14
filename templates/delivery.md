@@ -16,7 +16,7 @@ limitations: []
 open_issues: []
 node_local_pass: null
 delivery_profile: full
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 definition_refs: []
 definition_manifest_refs: []
 modeling_decision_ref: null
@@ -56,7 +56,7 @@ issue_impact_refs: []
 
 ## 结果与后续
 
-为什么可用/不可用；局部执行成功与独立审查/最终发布分开。修复后旧包保留并按依赖标stale，不覆盖。
+为什么可用/不可用；列实际已验证范围、明确违例、证据不足/未运行、延期事项及原因，沿用原TEST/VERDICT值，不增加best-effort等成功状态。未满足的必需义务不能用“延期”消除。局部执行成功与独立审查/最终发布分开；修复后旧包保留并按依赖标stale，不覆盖。
 
 
 ## 局部通过与可用性

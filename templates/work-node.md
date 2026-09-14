@@ -12,7 +12,7 @@ test_suites:
   ontology_modeling: null
   ontology_projection: null
   ontology_conformance_verification: null
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 dependencies: []
 resource_scope: []
 modeling_decision_ref: null

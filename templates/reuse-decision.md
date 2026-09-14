@@ -1,7 +1,7 @@
 ---
 schema: pdca.reuse-decision/v1.1
 state: draft
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 decision_id: null
 task_id: null
 work_id: null

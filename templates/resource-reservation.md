@@ -18,7 +18,7 @@ inflight_operation_refs: []
 release_receipt_ref: null
 retention_reason: null
 isolation_refs: []
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 ---
 
 # 实际资源预约草稿

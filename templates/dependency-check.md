@@ -18,7 +18,7 @@ cycle_witness: []
 topological_order_ref: null
 source_edge_refs: []
 commit_receipt_ref: null
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 ---
 
 # 依赖图检查与提交回执草稿

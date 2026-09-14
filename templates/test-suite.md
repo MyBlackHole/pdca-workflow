@@ -12,7 +12,7 @@ coverage: []
 required_cases: []
 repair_budget: null
 acceptance_scope: node_scene_artifact
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 test_layer: null
 input_contract: null
 local_binding_refs: []

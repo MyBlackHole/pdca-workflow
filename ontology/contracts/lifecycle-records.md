@@ -1,7 +1,7 @@
 ---
 schema: pdca.lifecycle-record-contract/v1
 authority: CONTRACT-01
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 profile: lifecycle_record_examples
 record_shapes:
   task:

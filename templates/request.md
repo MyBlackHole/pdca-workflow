@@ -9,7 +9,7 @@ subject_digest: null
 producer_ref: null
 conversation_ref: null
 created_at: null
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 attempt: null
 wait_policy_ref: null
 wait_policy_digest: null

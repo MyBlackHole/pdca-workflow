@@ -1,11 +1,11 @@
 ---
 schema: pdca.record-shape/v1
 authority: CONTRACT-01
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 profile: fixed_formal_record_example
 record_kind: work-node
 template_ref: ../../../templates/work-node.md
-template_digest: ecaa74785e6ca58c85c0911526e5eebad4f337a94ff3a5855c1674612e2bf6d0
+template_digest: 84322c5de62e84a63d8e03fef01d5080fd1e7daab1dd0d4d9b22fed866428e71
 shape:
   strings:
   - work_id

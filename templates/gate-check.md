@@ -1,6 +1,6 @@
 ---
 schema: pdca.gate-check/v1
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 check_id: null
 task_id: null
 attempt: null

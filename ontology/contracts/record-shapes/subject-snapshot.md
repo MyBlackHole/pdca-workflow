@@ -1,11 +1,11 @@
 ---
 schema: pdca.record-shape/v1
 authority: CONTRACT-01
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 profile: fixed_formal_record_example
 record_kind: subject-snapshot
 template_ref: ../../../templates/subject-snapshot.md
-template_digest: e5156598aa15388863a5e06170729ee165e2637b1210df619ed2b635af3b80fa
+template_digest: f760c101a995c43e0fa6fcf2644ad6be449e04c21a71fdb2f0b75f44c34ef6ee
 shape:
   strings:
   - snapshot_id

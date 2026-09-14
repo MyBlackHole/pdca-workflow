@@ -14,7 +14,7 @@ result_package_refs: []
 decision: null
 actor_ref: null
 recorded_at: null
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 attempt: null
 inputs_digest: null
 confirmation_decision_refs: []

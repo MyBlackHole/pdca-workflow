@@ -1,6 +1,6 @@
 ---
 schema: pdca.work-release-receipt/v1
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 receipt_id: null
 release_id: null
 release_manifest_ref: null

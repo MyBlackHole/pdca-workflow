@@ -1,6 +1,6 @@
 ---
 schema: pdca.integrity-event/v1
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 event_id: null
 record_kind: maintenance_observation
 source_archive_ref: null

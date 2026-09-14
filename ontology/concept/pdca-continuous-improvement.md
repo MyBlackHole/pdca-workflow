@@ -6,11 +6,11 @@ semantic_kind: class
 layer: Knowledge
 status: active
 authority: normative
-revision: 3.4.0
+revision: 3.4.11
 summary: 知识处置、候选与发布
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
+dcterms_modified: '2026-09-14'
 relations:
   specializes:
   - ontology:concept/entity
@@ -51,3 +51,10 @@ disposition_values:
 沿用 REUSE-01 的知识义务：existing_reuse 不强制写新 ontology；local_only 说明本地性；shared_required/deferred 保留候选位置、目标库/ID、接续负责人、授权及未完成事项。Act 的 candidate_only 不能取消已确认发布义务，也不能把文件还在 records 写成共享库已更新。
 
 本地任务完整结束不等待所有后代/其他工作；工作索引单独跟踪知识目标。需要实质入库审查、合并或补证时由具名知识维护节点新任务执行，宿主仅提交已审授权字节。禁止整目录搬迁任务日志、确认和测试 actual 到 ontology。
+
+<a id="learn-bounded-experience"></a>
+## LEARN-01 · 留下可再验证的经验，不制造通用结论
+
+在原disposition正文引用问题/决策、实际对象版本和run，记录适用前提、支持与反证、采用的处理、未验证范围及重新核验触发条件；将观察、用户明确陈述和推断分开。一次通过、多人同意或高置信度自评不支持“普遍安全/必然更快”。失败反例可使原假设被否定，无新知识也可正常处置。
+
+后续任务仅显式导入适用的具名固定材料并独立核验，不能通过经验文件或共享记忆复制前任务完整活动历史。结论被新证据推翻时追加纠正/失效范围，按EVOLVE/ADOPT处理候选与采用，不覆盖旧run、确认或自动发布。

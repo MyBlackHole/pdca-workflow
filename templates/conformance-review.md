@@ -11,7 +11,7 @@ subject_conformance: null
 review_task_verdict: null
 test_run_refs: []
 issues: []
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 requirements_basis_ref: null
 requirements_basis_digest: null
 subject_snapshot_ref: null
@@ -52,3 +52,7 @@ claim_scope明确exact_declaration/abstract_contract/layout/behavior或本次具
 ## 结果消费核对
 
 实际来源、当次采用版本、具体违例与证据缺口分开说明。输出前将每项确定差异与本表及subject_conformance反向核对；报告自身完成不改写对象符合性。对历史材料不把缺项直接解释为操作未执行。
+
+## 专业范围与建议
+
+按 [REVIEW](../ontology/process/independent-work-review.md#review-professional-findings)说明所选方向、实际追踪路径和未覆盖项。确定违例、缺证据和建议分开；建议列依据、替代与代价，不混入缺陷数或用评分改变subject_conformance。建议涉及修改时另按原授权与REWORK处理，审查不代修。重复发现归并保留不同触发证据，分歧不以票数裁决。

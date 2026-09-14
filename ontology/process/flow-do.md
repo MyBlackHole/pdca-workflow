@@ -6,11 +6,11 @@ semantic_kind: class
 layer: Knowledge
 status: active
 authority: normative
-revision: 3.4.9
+revision: 3.4.11
 summary: Do：实现节点、运行测试与有限修复
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-13'
+dcterms_modified: '2026-09-14'
 relations:
   specializes:
   - ontology:concept/process
@@ -37,7 +37,7 @@ relations:
 
 1. 每个副作用调用先按RESOURCE-01核验当前控制/owner和operation_id；按scene实际生成节点定义/实现实体/独立审查；组合实现必须使用固定真实孩子版本，不代孩子做其任务。
 2. 先检查测试器与夹具，再运行当前节点全部必需suite，保留正反例的actual、断言、原始证据、环境和实现摘要。非法输入正确拒绝也应为pass；环境error不能冒充正确拒绝。
-3. 发现失败先固定run与复现。合同不变且Do修复预算剩余时按REWORK-01同任务修复，生成新实现版本、新run，最终全必需回归；预算耗尽或需改目标时停止实现尝试，记录失败/新任务建议。
+3. 发现失败先固定run与复现，按 [TEST 定位与复验](../concept/task-unit-test.md#test-professional-paths)用可推翻的假设定位，不连续猜改。合同不变且Do修复预算剩余时按REWORK-01同任务修复，生成新实现版本、新run，最终全必需回归；预算耗尽或需改目标时停止实现尝试，记录失败/新任务建议。
 4. 建立AC→case→run→artifact映射，附真实输入版本、原始输出及局限；按 [EVIDENCE 消费入口](../concept/pdca-evidence.md#evidence-consumption)使后续能核验actual，不只交付“已通过”。区分失败、unknown/not_run和旧版本stale，不用映射自证正确。
 5. 固定当前结果包，自行核对完整性与GATE-01。无父Agent放行要求；完整失败记录同样可进入Check。
 6. 用TRANSITION-01记录Do→Check。冻结后不再改该产物版本。

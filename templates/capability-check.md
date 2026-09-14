@@ -14,7 +14,7 @@ time_source_ref: null
 supersedes_ref: null
 checker_ref: null
 limitations: []
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 ---
 
 # 实际能力核验草稿

@@ -1,7 +1,7 @@
 ---
 schema: pdca.ontology-advisory/v1
 state: draft
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 notice_id: null
 library_id: null
 issuer_ref: null

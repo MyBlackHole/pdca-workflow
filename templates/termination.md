@@ -17,7 +17,7 @@ retained_resource_refs: []
 released_resource_refs: []
 sealing_owner_ref: null
 backend_receipt_ref: null
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 ---
 
 # 非正常尝试终止回执草稿

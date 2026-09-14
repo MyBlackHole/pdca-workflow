@@ -1,4 +1,4 @@
-# 本体定位索引 · 3.4.10
+# 本体定位索引 · 3.4.11
 
 仅定位；不将全索引作为每个任务常驻输入。authority、asset_role、采用证据和实际版本决定适用性。共享定义在ontology，运行事实在records。
 
@@ -87,9 +87,9 @@
 | `ontology:concept/pdca-ai-friendly-confirmation` | [pdca-ai-friendly-confirmation.md](concept/pdca-ai-friendly-confirmation.md) | 3.4.1 | normative | 按任务独立交互与真实确认 |
 | `ontology:concept/pdca-architecture-review-metrics` | [pdca-architecture-review-metrics.md](concept/pdca-architecture-review-metrics.md) | 2.0.0 | normative | 架构审查的可证明指标 |
 | `ontology:concept/pdca-architecture` | [pdca-architecture.md](concept/pdca-architecture.md) | 3.0.0 | normative | 规则、执行与事实的三层边界 |
-| `ontology:concept/pdca-continuous-improvement` | [pdca-continuous-improvement.md](concept/pdca-continuous-improvement.md) | 3.4.0 | normative | 知识处置、候选与发布 |
+| `ontology:concept/pdca-continuous-improvement` | [pdca-continuous-improvement.md](concept/pdca-continuous-improvement.md) | 3.4.11 | normative | 知识处置、候选与发布 |
 | `ontology:concept/pdca-evidence` | [pdca-evidence.md](concept/pdca-evidence.md) | 3.4.9 | normative | 证据、测试运行与不可变版本 |
-| `ontology:concept/pdca-execution-contract` | [pdca-execution-contract.md](concept/pdca-execution-contract.md) | 3.4.7 | normative | 节点场景执行契约与不可漂移基线 |
+| `ontology:concept/pdca-execution-contract` | [pdca-execution-contract.md](concept/pdca-execution-contract.md) | 3.4.11 | normative | 节点场景执行契约与不可漂移基线 |
 | `ontology:concept/pdca-feedback` | [pdca-feedback.md](concept/pdca-feedback.md) | 2.0.0 | normative | 任务反馈的证据范围 |
 | `ontology:concept/pdca-gate-do` | [pdca-gate-do.md](concept/pdca-gate-do.md) | 2.0.0 | normative | Do准入的引用节点 |
 | `ontology:concept/pdca-gate` | [pdca-gate.md](concept/pdca-gate.md) | 3.4.7 | normative | 任务自主阶段门禁与测试判据 |
@@ -103,7 +103,7 @@
 | `ontology:concept/pdca-task` | [pdca-task.md](concept/pdca-task.md) | 3.4.10 | normative | 每节点完整任务与全新自主 Agent |
 | `ontology:concept/pdca-transition` | [pdca-transition.md](concept/pdca-transition.md) | 3.4.2 | normative | 单阶段转换、回执与幂等 |
 | `ontology:concept/pdca-verdict` | [pdca-verdict.md](concept/pdca-verdict.md) | 3.4.7 | normative | 任务判定、被审对象与发布结果 |
-| `ontology:concept/pdca` | [pdca.md](concept/pdca.md) | 3.4.10 | normative | 本体树驱动的三场景 AI 工作协议 |
+| `ontology:concept/pdca` | [pdca.md](concept/pdca.md) | 3.4.11 | normative | 本体树驱动的三场景 AI 工作协议 |
 | `ontology:concept/phase-boundary-decision-tree` | [phase-boundary-decision-tree.md](concept/phase-boundary-decision-tree.md) | 3.0.0 | normative | 阶段、场景与等待的边界 |
 | `ontology:pitfall` | [pitfall.md](concept/pitfall.md) | 3.1.0 | reference | Pitfall 类：易错点/反模式 |
 | `ontology:concept/pointer-wording` | [pointer-wording.md](concept/pointer-wording.md) | 3.1.0 | reference | 指针措辞：上下文指针的措辞决定触发可靠性，弱措辞即方差 bug |
@@ -137,7 +137,7 @@
 | `ontology:concept/task-record-identity` | [task-record-identity.md](concept/task-record-identity.md) | 3.4.0 | normative | 任务身份、尝试与唯一记录 |
 | `ontology:concept/task-rework` | [task-rework.md](concept/task-rework.md) | 3.4.7 | normative | 失败、返工与回归：任务级闭环 |
 | `ontology:concept/task-test-case` | [task-test-case.md](concept/task-test-case.md) | 3.4.6 | normative | 单元测试案例：输入、oracle 与失败诊断 |
-| `ontology:concept/task-unit-test` | [task-unit-test.md](concept/task-unit-test.md) | 3.4.7 | normative | 任务单元测试：正例、反例、覆盖与证据 |
+| `ontology:concept/task-unit-test` | [task-unit-test.md](concept/task-unit-test.md) | 3.4.11 | normative | 任务单元测试：正例、反例、覆盖与证据 |
 | `ontology:concept/teach` | [teach.md](concept/teach.md) | 3.1.0 | reference | 教学技能：多会话教授新技能或概念 |
 | `ontology:concept/template-minimal` | [template-minimal.md](concept/template-minimal.md) | 2.0.0 | normative | 模板的最小性 |
 | `ontology:concept/timeline-integrity-gate` | [timeline-integrity-gate.md](concept/timeline-integrity-gate.md) | 2.0.0 | normative | 事件顺序与真实时间 |
@@ -587,11 +587,11 @@
 | `ontology:principle/ontology-governs-ontology` | [ontology-governs-ontology.md](principle/ontology-governs-ontology.md) | 3.1.0 | reference | 本体演进也服从已固定规则 |
 | `ontology:principle/structured-mtls-failure-diagnostics` | [structured-mtls-failure-diagnostics.md](principle/structured-mtls-failure-diagnostics.md) | 3.1.0 | reference | mTLS 失败日志应同时表达角色、阶段、算法与凭据路径 |
 | `ontology:process/code-review-process` | [code-review-process.md](process/code-review-process.md) | 3.1.0 | reference | CodeReviewProcess：四模块补充审查过程 |
-| `ontology:process/flow-act` | [flow-act.md](process/flow-act.md) | 3.4.1 | normative | Act：交付、失败返工与知识处置 |
-| `ontology:process/flow-check` | [flow-check.md](process/flow-check.md) | 3.4.9 | normative | Check：当前任务自检与明确失败判定 |
-| `ontology:process/flow-do` | [flow-do.md](process/flow-do.md) | 3.4.9 | normative | Do：实现节点、运行测试与有限修复 |
-| `ontology:process/flow-plan` | [flow-plan.md](process/flow-plan.md) | 3.4.9 | normative | Plan：固定当前节点目标与单元测试 |
-| `ontology:process/independent-work-review` | [independent-work-review.md](process/independent-work-review.md) | 3.4.9 | normative | 独立审查：定义与实现逐项对应 |
+| `ontology:process/flow-act` | [flow-act.md](process/flow-act.md) | 3.4.11 | normative | Act：交付、失败返工与知识处置 |
+| `ontology:process/flow-check` | [flow-check.md](process/flow-check.md) | 3.4.11 | normative | Check：当前任务自检与明确失败判定 |
+| `ontology:process/flow-do` | [flow-do.md](process/flow-do.md) | 3.4.11 | normative | Do：实现节点、运行测试与有限修复 |
+| `ontology:process/flow-plan` | [flow-plan.md](process/flow-plan.md) | 3.4.11 | normative | Plan：固定当前节点目标与单元测试 |
+| `ontology:process/independent-work-review` | [independent-work-review.md](process/independent-work-review.md) | 3.4.11 | normative | 独立审查：定义与实现逐项对应 |
 | `ontology:process/pdca-flow-model` | [pdca-flow-model.md](process/pdca-flow-model.md) | 3.0.0 | normative | 三场景与当前任务阶段入口 |
 | `ontology:process/select-task-subgraph` | [select-task-subgraph.md](process/select-task-subgraph.md) | 3.4.9 | normative | 当前节点的有界上下文选择 |
 | `ontology:process/work-scenarios` | [work-scenarios.md](process/work-scenarios.md) | 3.4.2 | normative | 三场景整树交接与逐节点覆盖 |

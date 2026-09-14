@@ -1,7 +1,7 @@
 ---
 schema: pdca.ontology-revision/v1.1
 state: draft
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 proposal_id: null
 candidate_revision: null
 origin_task_id: null

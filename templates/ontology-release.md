@@ -1,7 +1,7 @@
 ---
 schema: pdca.ontology-release/v1
 state: draft
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 manifest_id: null
 library_id: null
 definition_id: null

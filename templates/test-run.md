@@ -20,7 +20,7 @@ case_results: []
 mutation_run: false
 mutant_id: null
 raw_evidence_refs: []
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 effective_case_refs: []
 regression_extension_refs: []
 checker_ref: null

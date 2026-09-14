@@ -1,11 +1,11 @@
 ---
 schema: pdca.record-shape/v1
 authority: CONTRACT-01
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 profile: fixed_formal_record_example
 record_kind: test-run
 template_ref: ../../../templates/test-run.md
-template_digest: 695e0725a32eea8fcc8411292766321658776490c72c2e5a22fb26418b610ff6
+template_digest: 925245a0e898f99c0dbe07edff15f784361aa48fbfc98e90b6b76968a6bd217e
 shape:
   strings:
   - task_id

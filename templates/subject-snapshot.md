@@ -1,6 +1,6 @@
 ---
 schema: pdca.subject-snapshot/v1
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 snapshot_id: null
 purpose: null
 scope_source_ref: null

@@ -20,7 +20,7 @@ close_evidence: []
 local_delivery_refs: []
 affected_regression_refs: []
 review_refs: []
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 successor_route: null
 termination_ref: null
 old_slot_release_ref: null

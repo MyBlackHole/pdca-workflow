@@ -1,6 +1,6 @@
 ---
 schema: pdca.tree-readiness/v1
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 check_id: null
 work_id: null
 tree_revision: null

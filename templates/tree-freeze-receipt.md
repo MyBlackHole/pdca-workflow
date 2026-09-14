@@ -13,7 +13,7 @@ response_ref: null
 response_digest: null
 closure_verified: null
 writer_ref: null
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 request_decision_ref: null
 graph_check_refs: []
 observed_control_revision: null

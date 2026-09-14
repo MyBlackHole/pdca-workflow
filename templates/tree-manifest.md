@@ -1,7 +1,7 @@
 ---
 schema: pdca.tree-manifest/v1
 state: draft
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 work_id: null
 tree_revision: null
 proposal_id: null

@@ -9,7 +9,7 @@ authorization_scope: null
 deadline_rule: null
 clock_requirements: null
 host_owner_ref: null
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 ---
 
 # 派发前等待策略草稿

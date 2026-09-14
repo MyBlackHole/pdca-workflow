@@ -10,7 +10,7 @@ manifest_digest: null
 work_conversation_ref: null
 producer_ref: null
 question: null
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 wait_policy_ref: null
 wait_policy_digest: null
 deadline: null

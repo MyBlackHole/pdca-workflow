@@ -1,7 +1,7 @@
 ---
 schema: pdca.ontology-impact/v1
 state: draft
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 impact_id: null
 source_publication_or_advisory_ref: null
 library_id: null

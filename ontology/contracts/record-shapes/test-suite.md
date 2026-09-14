@@ -1,11 +1,11 @@
 ---
 schema: pdca.record-shape/v1
 authority: CONTRACT-01
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 profile: fixed_formal_record_example
 record_kind: test-suite
 template_ref: ../../../templates/test-suite.md
-template_digest: 8c05ba9c4d65493316c941251309cca702e5458c2fbb0e1d68e3fa3f360ad364
+template_digest: 148a9c91fcfbf9b0d9d596312621c36048a048a19a6c6c1725a32c08861fc5e6
 shape:
   strings:
   - suite_id

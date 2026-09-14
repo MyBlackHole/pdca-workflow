@@ -13,7 +13,7 @@ controls: []
 coverage_gaps: []
 raw_evidence_refs: []
 result: null
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 ---
 
 # 观测能力绑定

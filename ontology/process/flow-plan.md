@@ -6,11 +6,11 @@ semantic_kind: class
 layer: Knowledge
 status: active
 authority: normative
-revision: 3.4.9
+revision: 3.4.11
 summary: Plan：固定当前节点目标与单元测试
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-13'
+dcterms_modified: '2026-09-14'
 relations:
   specializes:
   - ontology:concept/process
@@ -37,8 +37,8 @@ relations:
 当前phase=plan，TASK-01真实绑定已建立。读取当前节点/seed、SCENE-01、CONTRACT-01、TEST-01与CONFIRM-01；按CONTEXT-01控制输入。
 
 1. 核对树节点、场景、attempt、已授权图版本与调度就绪。按CAP-01检查派发时控制/等待策略；任何有副作用的Plan探测先经RESOURCE-01授权/准入。建模从当前节点向直接孩子定义seed；实现从孩子已交付产物组合；审查固定被审release。不能把别的目标节点并入本任务。
-2. 明确四字段契约、全部必须AC、输入输出/状态/副作用、写域与适用约束；外部事实附claim-review，blocked资料不进入验收基线。
-3. 固定suite和CASE-01案例：每约束正例、反例、适用边界、组合/故障与错误实现样本，oracle独立且可运行。补齐环境与清理、run记录方式、回归策略、有限修复预算。
+2. 按 [CONTRACT 问题与取舍](../concept/pdca-execution-contract.md#contract-professional-plan)从原目标形成四字段契约、全部必须AC、输入输出/状态/副作用、写域与适用约束；外部事实附claim-review，blocked资料不进入验收基线。
+3. 按 [TEST 路径与风险](../concept/task-unit-test.md#test-professional-paths)固定suite和CASE-01案例：每约束正例、反例、适用边界、组合/故障与错误实现样本，oracle独立且可运行。补齐环境与清理、run记录方式、回归策略、有限修复预算。
 4. 内部动作可分步骤；建模评估拆分时按 [DECOMP 可独立拒收见证](../concept/task-decomposition.md#decomp-rejection-witness)明确产物、oracle和失败边界，记录到既有decomposition。读文件/测试调用不自动成为任务；真实节点仍各有完整PDCA，由SCHED-01调度。
 5. 冻结基线、套件和授权范围，提出真实Plan确认；同对象已有答案直接引用，不重复索取。
 6. 核对图检查仍匹配、业务资源取得、能力真实可用和当前请求的consumed/confirmed；再按GATE-01/TRANSITION-01进入Do。

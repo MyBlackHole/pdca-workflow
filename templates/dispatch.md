@@ -11,7 +11,7 @@ conversation_ref: null
 autonomy_evidence_ref: null
 writer_revocation_ref: null
 capabilities: []
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 attempt: null
 slot_ref: null
 slot_claim_receipt_ref: null

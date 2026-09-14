@@ -53,6 +53,7 @@
 
 | 已出现的条件 | 当前必读位置 | 结果写回哪里 |
 |---|---|---|
+| 当前Plan要选择专业工作方法 | [CONTRACT 问题与取舍](concept/pdca-execution-contract.md#contract-professional-plan)、[方法导航](../bootstrap/work-methods.md) | 原baseline与AC/suite正文 |
 | 建模需要决定节点/内部步骤 | [DECOMP 拒收见证](concept/task-decomposition.md#decomp-rejection-witness) | 原NODE.decomposition |
 | Check或采用依赖产物 | [EVIDENCE 消费顺序](concept/pdca-evidence.md#evidence-consumption) | 原AC映射/conclusion |
 | 核验一个可疑发现 | [REVIEW 反证](process/independent-work-review.md#review-counterevidence) | 原issues与审查正文 |

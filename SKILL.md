@@ -3,7 +3,7 @@ name: pdca
 description: 用户明确选择 PDCA、已加载全局规则选用 PDCA，或继续/恢复已有 PDCA 任务时使用。普通开发、讨论 PDCA 概念或维护本规则库，不因本技能可见而自动启动正式流程；明确本次不用 PDCA 时不启用。
 compatibility: 正式执行需真实隔离 Agent、原会话继续、确认路由及获权文件工具；不依赖特定产品、adapter 或捆绑运行器。
 metadata:
-  version: "3.4.10"
+  version: "3.4.11"
 ---
 
 # PDCA：按当前事实进入，不从头重复启动

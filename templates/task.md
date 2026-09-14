@@ -20,7 +20,7 @@ dependencies: []
 parent_node_id: null
 last_transition: null
 extensions: {}
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 control_view_ref: null
 last_control_event: null
 terminal_reason: null

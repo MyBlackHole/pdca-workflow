@@ -1,6 +1,6 @@
 ---
 schema: pdca.regression-extension/v1
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 extension_id: null
 issue_ref: null
 frozen_contract_suite_ref: null

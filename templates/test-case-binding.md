@@ -1,6 +1,6 @@
 ---
 schema: pdca.test-case-binding/v1
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 binding_id: null
 source_suite_ref: null
 source_suite_revision: null

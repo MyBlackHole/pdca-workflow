@@ -1,6 +1,6 @@
 ---
 schema: pdca.protocol-release/v1
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 distribution_kind: repository_snapshot
 runtime_publication_proven: false
 rule_authorities:
@@ -293,12 +293,12 @@ assets:
     algorithm: sha256
     value: 900c5263baed946f4a41fb8e5cfa6a0e6f41db860cc62d2756089d86fa338b35
 - id: ontology:concept/pdca-continuous-improvement
-  revision: 3.4.0
+  revision: 3.4.11
   role: protocol_or_normative_navigation
   ref: ontology/concept/pdca-continuous-improvement.md
   digest:
     algorithm: sha256
-    value: c0f4d8d531482c4ed59f9181d742b6973884cc4adef68e7f393a86d3ab121db4
+    value: b772a587da1f316db231cc0f87ae026bba66fa37adc481c31604af91610ba46c
 - id: ontology:concept/pdca-evidence
   revision: 3.4.9
   role: protocol_or_normative_navigation
@@ -307,12 +307,12 @@ assets:
     algorithm: sha256
     value: db22e30b0344b944580a8eb9644c3aded6541dfe97161f3cdbade3668d68907b
 - id: ontology:concept/pdca-execution-contract
-  revision: 3.4.7
+  revision: 3.4.11
   role: protocol_or_normative_navigation
   ref: ontology/concept/pdca-execution-contract.md
   digest:
     algorithm: sha256
-    value: 179f776752061ef10dde3761fcf6eb59801e6b58bd655a5bedcd26a27e911db9
+    value: 452000dd5efe6648c3630e4c0131b2e3b0898aea1f317150d825c5b69aad869e
 - id: ontology:concept/pdca-feedback
   revision: 2.0.0
   role: protocol_or_normative_navigation
@@ -398,12 +398,12 @@ assets:
     algorithm: sha256
     value: 16861d5581df97b94eeca6953fe2aba461e042c98a1e474f5899ca0fafc4058f
 - id: ontology:concept/pdca
-  revision: 3.4.10
+  revision: 3.4.11
   role: protocol_or_normative_navigation
   ref: ontology/concept/pdca.md
   digest:
     algorithm: sha256
-    value: 8fffa40f0b9f507b34fc271d5f828fce78520f6fb00a0d3ea477d4d386e6a6df
+    value: 35c76928e87b0fec693161bff6c99f9984b00247847733648e29e959a580fa1c
 - id: ontology:concept/phase-boundary-decision-tree
   revision: 3.0.0
   role: protocol_or_normative_navigation
@@ -545,12 +545,12 @@ assets:
     algorithm: sha256
     value: 46c695bc1f846d66b3c02bd142493f86891521479d358e3c66a60bd1007d2bda
 - id: ontology:concept/task-unit-test
-  revision: 3.4.7
+  revision: 3.4.11
   role: protocol_or_normative_navigation
   ref: ontology/concept/task-unit-test.md
   digest:
     algorithm: sha256
-    value: d5701d5503a0767396a9d1ab64ae51523e45dae4e2c46d05464d95bf02f777c8
+    value: f1c0e5a7975ed7f204d47e70a0cc43777d5c59c43e4647815518711d9f9ea5db
 - id: ontology:concept/template-minimal
   revision: 2.0.0
   role: protocol_or_normative_navigation
@@ -727,40 +727,40 @@ assets:
     algorithm: sha256
     value: db3bce8fe2f968a9b1df917914a421f534755a95b1673b7a1da1607677f3a58e
 - id: ontology:process/flow-act
-  revision: 3.4.1
+  revision: 3.4.11
   role: protocol_or_normative_navigation
   ref: ontology/process/flow-act.md
   digest:
     algorithm: sha256
-    value: 2a921cd48a1963fd97c6e5531dba425d33ce00cb4eedc3f056eb16233a037799
+    value: 508e5bf837352ba2d034c101ff912ddee5eb85b8b20086f3ad798c32f519a42b
 - id: ontology:process/flow-check
-  revision: 3.4.9
+  revision: 3.4.11
   role: protocol_or_normative_navigation
   ref: ontology/process/flow-check.md
   digest:
     algorithm: sha256
-    value: 8c96a80e2185f341c178dce7a79361d283dd44dfe5f7f66483b1768f5b8d2496
+    value: 6d37232f59ee5043455b5128216ec0fdd295b8dea33cfaa9ecd82db26b87a898
 - id: ontology:process/flow-do
-  revision: 3.4.9
+  revision: 3.4.11
   role: protocol_or_normative_navigation
   ref: ontology/process/flow-do.md
   digest:
     algorithm: sha256
-    value: 9eb5541e2eaca14e23f77e2dc4001311b67c0ea7cc634dadaaf857e61ac9096e
+    value: 7fd27684c0e42ac40f1b25ee085ea23d408e79dc6b2a44a19b45abfb5e16dff0
 - id: ontology:process/flow-plan
-  revision: 3.4.9
+  revision: 3.4.11
   role: protocol_or_normative_navigation
   ref: ontology/process/flow-plan.md
   digest:
     algorithm: sha256
-    value: 0c108a3df77a45412d393f4d4a91c3a7c5d5ec5ffb911af95066fddda6cf9461
+    value: ae8341ab3fd9e87da44e84ef429a3c986137de9a1ecf5c4b051862d931e4037e
 - id: ontology:process/independent-work-review
-  revision: 3.4.9
+  revision: 3.4.11
   role: protocol_or_normative_navigation
   ref: ontology/process/independent-work-review.md
   digest:
     algorithm: sha256
-    value: 555d7fbc3b330f5c5b23161c6ee2e54dad5f43585684421a1e46c46c0f5a640c
+    value: ce606f65a9303442fe57e35c5f1c8634180c8c51d793c310baf551c53a5ccf49
 - id: ontology:process/pdca-flow-model
   revision: 3.0.0
   role: protocol_or_normative_navigation
@@ -832,15 +832,15 @@ supporting_files:
 - ref: README.md
   digest:
     algorithm: sha256
-    value: 7ad4b0f4a2c8d73c9871b44c720393c124284d6e2ced0eb031975fef8208dc67
+    value: 42f940d103318b725349150db0fd4d2b36154016f13b4fc6da9b518f042c9e2f
 - ref: ontology/INDEX.md
   digest:
     algorithm: sha256
-    value: c8a1b05e674073378f5be0db52baf098631e0e97dbcf130b83e7783328843c5c
+    value: 97d81d20e2bbb49748827953410bf737e59cd1a5f42b5c698fa6d6931ad3a53a
 - ref: ontology/LOAD-MAP.md
   digest:
     algorithm: sha256
-    value: d22c0a103085eeffdc58fe47327cc370944cbd10ae8c9174a3070ea6173029c1
+    value: 68cf87d30bbaab01540911817a070a817f1ca131e4c8ce72abcdeb2c2a59137d
 - ref: ontology/README.md
   digest:
     algorithm: sha256
@@ -848,223 +848,223 @@ supporting_files:
 - ref: templates/README.md
   digest:
     algorithm: sha256
-    value: ebf27869c7f2385aef4828f82cc6e246add731833faa79ceaeee63d60c44f375
+    value: 1c71fa23e1144d72b0940c7ec1f2f4e0bdb9e8a0260d062a2c6d5a2db463d471
 - ref: templates/archive-receipt.md
   digest:
     algorithm: sha256
-    value: c5587e3693d436fabcb4d6af5b67b4c832d92570bec40fd0f2c399f62f52a6f2
+    value: bad1580c3e58c3b40764f9d57b36622ed5e63d59c400ba7c6d8b28f369350fa0
 - ref: templates/baseline.md
   digest:
     algorithm: sha256
-    value: 0d0788b6e7b31a8c4886be32111aaf18a20a2c412957876728edf608ef955f23
+    value: 3eb56c27a9219e5f508f65a9edf4e4f6b9238fc7e8acd66a17b212fbf276eedd
 - ref: templates/capability-check.md
   digest:
     algorithm: sha256
-    value: ffc586a56aaed85a5638b8e189ea491d3610b1cbf0652af93c20d686d6ffb973
+    value: 7035e0258980e02fb3a02dd19eccfea5465044f51158d3c1dea44bcb0cceab37
 - ref: templates/claim-review.md
   digest:
     algorithm: sha256
-    value: 699c8ec1ff294e1efeb22fbd5a9632b79e3118cd89a231d39fe1607cd4dde3f1
+    value: 4e2f1b2075d9a67d3da46bedbd16be39244a009aca78142578a87591c80c19d4
 - ref: templates/conclusion.md
   digest:
     algorithm: sha256
-    value: c3836617ec1dbcff9a21cb17c00411dfcb35829421fdc32f5db4d3d58b59f743
+    value: 7ea2c53ffbfa6e0efa0fe75d571694817d265817337d3d0143ed7edd151a17c0
 - ref: templates/conformance-review.md
   digest:
     algorithm: sha256
-    value: 8a334b9ab131df814856dc1932d7a4c81c36d34a89d5771c0208639a6d02c4b0
+    value: 5a8bec5e2735ce35581e84ed0ab73b69a9e50b30efe6636adb9bd7dc551e1636
 - ref: templates/control-event.md
   digest:
     algorithm: sha256
-    value: fcc12f6045460f824a24b210b0dc6b78ca63a71f93bb82498b0bb5b0bbad0cd9
+    value: 46dbea5d47b68478ff6b47334a38d4accf471867069338b8dfc4dfc87a85d35d
 - ref: templates/control-state.md
   digest:
     algorithm: sha256
-    value: 016b70f5d84cba1e16c2180b6f927ddc4eab6392d782c5926207ec88971244c6
+    value: 50296d92eb13eb4029242f8d4b2e63f839a1070ab5f41d301cbd7ebb1e004870
 - ref: templates/delivery.md
   digest:
     algorithm: sha256
-    value: e959a7ac78a003d785b8d81b1c9fb499ab0c787620fd8caa00aa6c49c30a5a09
+    value: b9e0498a08c193393c22a2f9e85233dc107086adb73e09162da0b5dd782721de
 - ref: templates/dependency-check.md
   digest:
     algorithm: sha256
-    value: 142ed8e5dcb4ecfecc1f8ebcbf28ed298bebac032abc00f4faa4f0e1711e68cb
+    value: 014da8fa23fcd783ef671361f5d1764b0961dd57fe71a4a98d0ca3b212b181b7
 - ref: templates/dependency-snapshot.md
   digest:
     algorithm: sha256
-    value: aa88681af88c6f7c77de0279f039499bb2e4d497e1c8e139329ac02e11bf4053
+    value: 0b3d12171db9e4fc0f0a7fb3b357aaea3b7aedb5bd56de6fa77a909282b0f335
 - ref: templates/dispatch.md
   digest:
     algorithm: sha256
-    value: 7f943092f2791a6391bd17a672c18bf7617401c06776c43419d89c7cc85db0ff
+    value: 7838ca17296a1e3afacdb4060cebf60f33140a8263141724c95513be1a4d5bc0
 - ref: templates/evidence.md
   digest:
     algorithm: sha256
-    value: 25e2c1912f75d7a8df58cc6c79cfc3c64d09f779f0347714f96e0d90e7a6836b
+    value: 667b96921d8bca2be3f98e3d1aefd4ee928f9810b798bd7b23f0722c2b7e4e02
 - ref: templates/gate-check.md
   digest:
     algorithm: sha256
-    value: 2573ff0e445e08df5fb2fcf3a8b44482b7491b2a4ccad1a6029ca389ad815e11
+    value: 2677e26afbdba060822196a773d3c3a9225ed4de036eef858d85abf85a7ddccc
 - ref: templates/integrity-event.md
   digest:
     algorithm: sha256
-    value: dc99ce179f5d6cd33a57c1e39a83cb3eb9d300d0131df5ff124bae8cdefa2dd5
+    value: dfdf8adb29e01929275d319e7422d92162a39f5b710e4c473869601da0233efc
 - ref: templates/knowledge-catalog.md
   digest:
     algorithm: sha256
-    value: 4e0397c4a38038c4d6bad5c6d6f979e930fb8633a4d19479563965b389bb99f3
+    value: 3cebe01fdc011e5347c9421a4941b4fd92230f21db7c1493080fd59bedec7045
 - ref: templates/observation-binding.md
   digest:
     algorithm: sha256
-    value: c5be54574c3d5752613baca80f0a431288a87b66683e33075a0235187f6d0b8a
+    value: 7a2979f210e1e4ad7724e4c91e3d80813506ca81835a1dcc9e112c5ee60b8265
 - ref: templates/ontology-adoption.md
   digest:
     algorithm: sha256
-    value: 6a6dd377d39b0fdf10028e2256610e7ca1bac3cefbca282a5f8e21d2ca4f2864
+    value: eb643288f8c3cc10c7e65a5e891dce10bd7fb7c257b3b927e34f25829fc34e99
 - ref: templates/ontology-advisory.md
   digest:
     algorithm: sha256
-    value: bb5e3568fab610701154611666603fce5a29ec5c3b21d6d61f9a39142f5daf9a
+    value: 513a977755a4355584a9baf3a8f1f8d82ec6d7570748662728f4ff15e348655a
 - ref: templates/ontology-impact.md
   digest:
     algorithm: sha256
-    value: 3c215950e77c9f80731365aa0b3d050612e6882b3d2add64fb327d3c3cf9381a
+    value: df9ef08daa906b5c890b41dd017a62a1671d2ae73fef108b7a601035e8f874b5
 - ref: templates/ontology-publication.md
   digest:
     algorithm: sha256
-    value: df32f3619c35c9470c87c3dd4e63e9955fd8aef23cb16dfbcaa74bfe09c6eea9
+    value: 67f8dad0d81bf5de5608f27190066f599e07256c2888ddf216e3cd880ec1aef7
 - ref: templates/ontology-release.md
   digest:
     algorithm: sha256
-    value: de7781d4e6bb25ea7ac9185a478bbb2d4833a59e606e56ec36fdac4d761587e2
+    value: 3b2190be5600dcb418a0742b593a3dbd8b96e2366b8c6db46da1e733f950c962
 - ref: templates/ontology-revision.md
   digest:
     algorithm: sha256
-    value: 9299db6ec379e1c93f516aef943646fa402e7a87ed0e592ebb3ca3dc0ca01753
+    value: 0f61b4ec294d794f4d55cf4500166abadf0b4a013d671c2a7a9606f27ba2f9b8
 - ref: templates/operation.md
   digest:
     algorithm: sha256
-    value: e856f734bb51bbc3379e6612cf5858426fe8b7c55697b82a1c95dedb127cb059
+    value: 7dbd94c4c8b9bfb041bd621956d98d6eb52510c7aa117bc1b7bc872096b40d3e
 - ref: templates/regression-extension.md
   digest:
     algorithm: sha256
-    value: 525de451b2eb91caf85b38d7730c963a208acadc8676603d7a8fafeea463a779
+    value: 39b76ae00ef3ded3b35a4a773b6fa736b1b6956fe639b6b74607d3f50ad67008
 - ref: templates/request-decision.md
   digest:
     algorithm: sha256
-    value: f7a9b13a147a224a95bd75c37ece2fa16fd01a335881519cfdff027e8fbef333
+    value: ad3efd387aed51951a5c9f9ed18e9116fbb1dabd0099f40f48cdcb38c64bbd77
 - ref: templates/request.md
   digest:
     algorithm: sha256
-    value: 166e627f689dd263d84b80ed4c4ef87a7d3f4b66a8afb432279c40fa0f405796
+    value: 4f57b4201fac723e76def691364d54218675a86c528b3434dd16eaafcbd95f30
 - ref: templates/resource-reservation.md
   digest:
     algorithm: sha256
-    value: 24f7e47ddf1d3d18169cb2ffe7a152e6969321fe2bdd8bfccca76c9a452a9f33
+    value: 467fd42417ac1b268319b629afd65ea43900425428b253731e0e87cc341a8395
 - ref: templates/response.md
   digest:
     algorithm: sha256
-    value: 277b21ea3c27c6068bf3811ab577d556d00d34784b4d89701e809d0a41c6c7d2
+    value: 5ce838a1353f64d4c31bb3bb110ca5ad0aac752cecdd51423ceaec2c012cc4fa
 - ref: templates/reuse-decision.md
   digest:
     algorithm: sha256
-    value: b48b5d9ce1c821a23d75f8c22c22dcca00962af571cf3a56679659bb29f0f7a1
+    value: 7d9cdd190ffaff256148db72bc2e4f6d397abf8a20f5b64f27e4d93f6e6b5475
 - ref: templates/review-package.md
   digest:
     algorithm: sha256
-    value: b9eafaf991793ee51b60547456bc66a939e430889f5fff5008563657303583b4
+    value: c1608aacfbd6c30af2c1f9a5b15100b9c6519070003059a3311411f78cf15984
 - ref: templates/rework.md
   digest:
     algorithm: sha256
-    value: 1f19fed84c15ee3bb6fb97e4443df2d488ead12b90f496176705ce17de6ad75c
+    value: 7bb010e29b6c6fa5fcc717acde59e370e18a1d85a1353545eb619d8f3215cf36
 - ref: templates/scenario-coverage.md
   digest:
     algorithm: sha256
-    value: b99bf00c37b02e2b19b7182f2e5d04bb1eddf2122e8a58fcbdd7e66317ab7cf2
+    value: 3a15124b732350953766404351e3340cd2bdf72073175cfe77750f79df11cbbc
 - ref: templates/subject-snapshot.md
   digest:
     algorithm: sha256
-    value: e5156598aa15388863a5e06170729ee165e2637b1210df619ed2b635af3b80fa
+    value: f760c101a995c43e0fa6fcf2644ad6be449e04c21a71fdb2f0b75f44c34ef6ee
 - ref: templates/task.md
   digest:
     algorithm: sha256
-    value: 1409bf24be104cbf2ee23796a11ad76d75a943191980ded935427670d530612e
+    value: 7b35d783f805c6005b5bddeddc339c9d35b8d3517e8a9eb3ecfd1acc366c7da3
 - ref: templates/termination.md
   digest:
     algorithm: sha256
-    value: bc15ab1f7324e4d1831fa250343c0b597f31de99d721ec66cd30fe9b9c67548b
+    value: aa9721c418c2168d305fea9b45d54a16237edf5912e4faed8cbb427202dede41
 - ref: templates/test-case-binding.md
   digest:
     algorithm: sha256
-    value: 3505419061bc0ab9b0e62ed28f8008b34738582af417589717d6eec8c94a4ff5
+    value: 33c31e86d76871c70d34cb9a21425278a01b66e1fc5463eb3e40321ba321aa9b
 - ref: templates/test-case.md
   digest:
     algorithm: sha256
-    value: fe7de33ace2d3681d4753ff78334707e6e395e597579c336365378e64ddb2303
+    value: 0c0a7c6fcf5be1cf52bbd05ca343392bf834344ced84f22ba7c17fa0c286fdd3
 - ref: templates/test-run.md
   digest:
     algorithm: sha256
-    value: 695e0725a32eea8fcc8411292766321658776490c72c2e5a22fb26418b610ff6
+    value: 925245a0e898f99c0dbe07edff15f784361aa48fbfc98e90b6b76968a6bd217e
 - ref: templates/test-suite.md
   digest:
     algorithm: sha256
-    value: 8c05ba9c4d65493316c941251309cca702e5458c2fbb0e1d68e3fa3f360ad364
+    value: 148a9c91fcfbf9b0d9d596312621c36048a048a19a6c6c1725a32c08861fc5e6
 - ref: templates/transition.md
   digest:
     algorithm: sha256
-    value: e3a4a238e830f6fab8e5bf0b3701d65262c62227a50d0ad05398cf4f828b38f4
+    value: 2980415d691a0c04e76f836c450adfd0f402a6c16503410af82d70387c5bb832
 - ref: templates/tree-confirmation-request.md
   digest:
     algorithm: sha256
-    value: 1378789c65076c615bd0fe8ebc36644a98fc25b15fd1fce0ead5dbb89e310800
+    value: ff3c0be0933c65e6e01f9d8f677dcf0bb186815c5b5eb3d0a9f1fed20ac5fa5b
 - ref: templates/tree-confirmation-response.md
   digest:
     algorithm: sha256
-    value: c6b10804f3e17b902ed709b3c129600807f43c7b3287d56badbc917d2d9b0b82
+    value: 0afe387e702d85a5ecd6a60a618ec32b5347eed8a66ababe6bb960666e1cccf4
 - ref: templates/tree-freeze-receipt.md
   digest:
     algorithm: sha256
-    value: 73fa35eedc735c8747ab21c3e300ba478282bdd5d3e619579e3021231af6f3cd
+    value: 49017598aad4b55c513e84e05d47e21fe50d7c418b5c82afee6eba2a1e18d9b3
 - ref: templates/tree-manifest.md
   digest:
     algorithm: sha256
-    value: 91a3c56b2773bf237a89849c9002e38854d282929510b493f3bd15ecda47ef42
+    value: 6436a62efbe576e2f22b6ce0c54957cc1b3614549cddb6dd35da500dfccb721c
 - ref: templates/tree-readiness.md
   digest:
     algorithm: sha256
-    value: b1e08b419c65c16a7e97376398ce20e3c4a8f73970ece8c954615bd0476ebaa8
+    value: a7e753e062f850e7ea9f52ad04b608e9fc23c7f04f78f65238a9696c8278f234
 - ref: templates/tree-spec.md
   digest:
     algorithm: sha256
-    value: 781edd8a5f1254d8d076fe5b02163aadd15a211d633af3723ceb8381bfc3ec9f
+    value: 030526198635576767d58cfa75764561610f982b4dda02a6c087f50795febe85
 - ref: templates/wait-policy.md
   digest:
     algorithm: sha256
-    value: caca9c2c78f397636aa7e0a2065c94b13c83fb40ab16992ddbf0a87df6da1a4f
+    value: 7fa8428e9633a843d530c48702566933afcf89607832cfac3e8b1b5f6c29bc82
 - ref: templates/work-budget.md
   digest:
     algorithm: sha256
-    value: 4d05b1b1f2dc12142c40a3c3adfe51163a35134e133aca7bf425d94611477638
+    value: 5e13c126d06baf209b44c531bd8e5138f7f16df07960ccf114ce3c3e1f3ba452
 - ref: templates/work-node.md
   digest:
     algorithm: sha256
-    value: ecaa74785e6ca58c85c0911526e5eebad4f337a94ff3a5855c1674612e2bf6d0
+    value: 84322c5de62e84a63d8e03fef01d5080fd1e7daab1dd0d4d9b22fed866428e71
 - ref: templates/work-release-manifest.md
   digest:
     algorithm: sha256
-    value: b0523f943c9103bec5d4d723cbfb2660a7183add1b1ca6b10ed14ca419369d84
+    value: 42fac402d643f522d7f46fc8c24a2ff709d9573625f47302348fb863dd5cb1f2
 - ref: templates/work-release-receipt.md
   digest:
     algorithm: sha256
-    value: 99a74b14ebf33db24cfc0b4e6ad92a8745653be7473e6f8bfd41bbd13d42223a
+    value: 46bf6613961a2fb4d46f2fed3c9331530078a8d5d4d39d4985a6262800670dac
 - ref: templates/work-tree.md
   digest:
     algorithm: sha256
-    value: 63e8d60161d8c700a56621497caaaf183177d90665a272cc8302db0755d0258d
+    value: 019605d67eb5bdfa4da571e5871ffc6213085acaa9cb95c65f184e3fb3c967f1
 - ref: tests/README.md
   digest:
     algorithm: sha256
-    value: e5d246bbdeaaa9c100ac7c2635639e17a5554c892dc3d23c760822d0c702b6e3
+    value: decb99d547c4e00e21d4f61b5ab83265eab9969bcdc35232631dcda6e22f02dd
 - ref: tests/audit-contracts/README.md
   digest:
     algorithm: sha256
@@ -1138,87 +1138,87 @@ supporting_files:
 - ref: ontology/contracts/record-shapes/archive-receipt.md
   digest:
     algorithm: sha256
-    value: 61a5ff0cad839c771d9d70b4c26843222dc76f85f9f813b2033185e3d80467a1
+    value: 15814e267094cb9ea5432b4e0e7317070aaffdb73d4ee7d8dfdb0fc599bcc489
 - ref: ontology/contracts/record-shapes/baseline.md
   digest:
     algorithm: sha256
-    value: 95491d3266c31a94b289f0404d643f9e81b254a8b3a6e8afc34526cbf90a96cd
+    value: 1d82b17f9ea183e7225ef22c706236786e3fac454375131f495ec6c150c958f8
 - ref: ontology/contracts/record-shapes/delivery.md
   digest:
     algorithm: sha256
-    value: 446b1324019f3f19626346b8862defffa63c2fc6ed37e2c1f21859aac6abbb40
+    value: 64d1a92b889ccc606cfcfe00fab60c5ebc645df2b80e5c92f06beb36eac8c7a6
 - ref: ontology/contracts/record-shapes/dependency-check.md
   digest:
     algorithm: sha256
-    value: e513e6df89c2dcb0b26170c44ccb5695dec42be58fa5e0a4d9f10b904f072ab7
+    value: 84a1848469d026341ab78bd2cfdf55ed6dc554834f5dc486985b1738373ce547
 - ref: ontology/contracts/record-shapes/dependency-snapshot.md
   digest:
     algorithm: sha256
-    value: 731f6f807576e5916b39e1bca57d5a35b1fa0ae7fda31281b244016150e0b3d8
+    value: d011a7df77bb3e3906fb211d7c61305f6882e5fd2b601bba545a685b937e0a85
 - ref: ontology/contracts/record-shapes/gate-check.md
   digest:
     algorithm: sha256
-    value: 26a60486cba5a34572ac20ff086a73cd125271d92b46190e909dae00ac23392f
+    value: eb4aa7f72c07aabf405f51128ff23f1ee6fe106cc0a77a7cc4baf0116a64df14
 - ref: ontology/contracts/record-shapes/index.md
   digest:
     algorithm: sha256
-    value: 6c74cc434bff4ccc10d9aec15f472b89e0f4ccd8528e94e292b9c2971704d30f
+    value: 41d7aa0cb4b787438faf4661cd169eef47d327a5240e9641c226b220bf30ad3a
 - ref: ontology/contracts/record-shapes/request-decision.md
   digest:
     algorithm: sha256
-    value: 55aaa2f5227159dfdcb31a0055663b50257bfa7da2fe0818df6bde3eaa20f845
+    value: bcdbd2c5848f94491795cd63a8e891809df6460449ae68746b77447fd5129638
 - ref: ontology/contracts/record-shapes/request.md
   digest:
     algorithm: sha256
-    value: a0488db919ea9576fb45390617a15b7b67f94a2e835550428cbc515c9e11bd2a
+    value: cb6b450110ccd7cdd55b17a57ba07550c69968f9c0aa6b2e614a3215fe641587
 - ref: ontology/contracts/record-shapes/response.md
   digest:
     algorithm: sha256
-    value: 5ccfbfb0bf50d21df91fca040bed7323a7a5b77576788073bbe76e1539210ff5
+    value: 11611bf6b814755a7473428b0333b7173687219d25c6298cded969aab276fa2a
 - ref: ontology/contracts/record-shapes/review-package.md
   digest:
     algorithm: sha256
-    value: 8b12ab5d7d81eae81696949917d114fbae666412a34bb85199610ac32c21a85f
+    value: 9196650edb90cb649ad089e99532b692a5b95feae6a6e1d5d9442bfdf56fe71f
 - ref: ontology/contracts/record-shapes/subject-snapshot.md
   digest:
     algorithm: sha256
-    value: cdd3d3b981a7d3677fc6c85abee50b07ad3fa51391370f974992f598a44c7448
+    value: 700edb57eabad8a13bf59892c050a6ba87d0d07f81b55d7eb0ceda268e26394c
 - ref: ontology/contracts/record-shapes/task.md
   digest:
     algorithm: sha256
-    value: 531d6fb118057a57cb24d84d2a0b910a996774b12b4e1d4741ac9fe1692785ea
+    value: caed40bbe963345bcd2beba27e705af553829d99df763efe785390e891bbf3d0
 - ref: ontology/contracts/record-shapes/test-case-binding.md
   digest:
     algorithm: sha256
-    value: beb3fe051a6c672eaea63988e9ccbaec42c00597db3c9013657c0bf96722666f
+    value: d3c259393286a9f506f70ea90db3984cdf3dad91a1ad7a45b92e8acfdaf2b286
 - ref: ontology/contracts/record-shapes/test-case.md
   digest:
     algorithm: sha256
-    value: a52a185cecc0ba56a559144a18ad86e57afb3ff1647840b8cca5fcc9f50950c2
+    value: c82f6209019a1fcdb47816687e6411e84abd4d8885d34bff040a1caebfcfc174
 - ref: ontology/contracts/record-shapes/test-run.md
   digest:
     algorithm: sha256
-    value: 0239d3c5c3979c2e984d94716470391aba5546ec8f7e65d2726a8efa74a2ba82
+    value: f63b80b6750e0a2ac86e2338e3d6dcaa69e1fe52723679b4a683e8c63b060d8e
 - ref: ontology/contracts/record-shapes/test-suite.md
   digest:
     algorithm: sha256
-    value: 00ac3af6d67d135d4f7acf0f2b0cb7cbda83883b7aef12b95ba6ae71c911d279
+    value: 0ad7d462529604efc1637b47286855e8aed1f58f2fa9d64d077792074e621c41
 - ref: ontology/contracts/record-shapes/transition.md
   digest:
     algorithm: sha256
-    value: e5aa99b49e39d28b1561459cacfa7a914f0bd5c863a751b4da65402d359ee491
+    value: a54e2eb601ebc4cc4224dc031aa143bfe204e47310aa440c88a2fb6e66a7aae3
 - ref: ontology/contracts/record-shapes/tree-manifest.md
   digest:
     algorithm: sha256
-    value: cb1f990ee31ff430badf79b780408036417250f0b351f352c3d1bc6cd46f766a
+    value: dd732d8921d044f9bfea5def10da0c7a9c438f5bbe5fb81581814a2cda83960e
 - ref: ontology/contracts/record-shapes/tree-spec.md
   digest:
     algorithm: sha256
-    value: 11eef8116b560401fefedc4cfabd7db591d25fe0fa9299c6844bd0e65577c9e5
+    value: ffacd905865d7f6155b60b12d6db07258ac2f4669c19842ac1e8685a6ba88568
 - ref: ontology/contracts/record-shapes/work-node.md
   digest:
     algorithm: sha256
-    value: 8a981fec6c653e6e37154df674c90a319fdac35589edc2491c8c8757153e9148
+    value: 47c7874b02a2cf32712aba5d08341c6d3e88a9e8ab029e175153a5601cbcd20a
 - ref: tests/record-relations/manifest.md
   digest:
     algorithm: sha256
@@ -1240,7 +1240,7 @@ supporting_files:
   role: bounded_lifecycle_contract_or_suite
   digest:
     algorithm: sha256
-    value: aed90f77994d508625347e8ac736d2935d307dde16692cd54142d749cb826710
+    value: f28b132715ebb048270391b569a0286f2ed683e8099cc133c6c06b81f0783ed8
 - ref: tests/lifecycle-records/suite.md
   role: bounded_lifecycle_contract_or_suite
   digest:
@@ -1285,22 +1285,22 @@ supporting_files:
   role: cross_project_extension
   digest:
     algorithm: sha256
-    value: c4affa70a05d255635b8bb4c348ce31522891c4e2fcfaf469863631a88c67033
+    value: aa4616a258bc7d97d72f5bef47a7b781d21e7d4acb2c77795f7db348fd60af17
 - ref: templates/project-index.md
   role: cross_project_extension
   digest:
     algorithm: sha256
-    value: dcb8458eae9513a3e4be6c432404c1ec844425ed91eaccda33c981841e0f783e
+    value: 52b89f1689f452c5bdc0a6bfc91f687007b71151b1e79830ce55c6fa211926e9
 - ref: templates/project-task-context.md
   role: cross_project_extension
   digest:
     algorithm: sha256
-    value: 52f518d3a2b996a10fe49841baab153f8e925add6aa5681cdd5655252f353076
+    value: 66809557033d3657d4a5b3dcb1e9a0d3230f926d6f2be641c625776b3d8df3e9
 - ref: templates/project-workspace.md
   role: cross_project_extension
   digest:
     algorithm: sha256
-    value: c3750d5984da3c1f4634818d1e570819b74f26ca3024a54e0810b1d8b6ecb432
+    value: f22ff8e7ccb3a4dcdb1f063b008264222e38f5c6be5c3c0d6feb043701924b37
 - ref: tests/cross-project/suite.md
   role: cross_project_extension
   digest:
@@ -1365,17 +1365,17 @@ supporting_files:
   role: full_pdca_dispatch_extension
   digest:
     algorithm: sha256
-    value: e5d8d19994634b18fec5db2f6b1bbd17f7fb41eafd8dde9bfc2c7dd4bee9af03
+    value: ac58d254b357489aab5c9a74b46bcf8aaf727b1447956d16498a2af059db0660
 - ref: templates/agent-assignment.md
   role: full_pdca_dispatch_extension
   digest:
     algorithm: sha256
-    value: bb172387a2d9ae7f362acc3c1ab292378913f4805249b3c2bee637fa87fc2347
+    value: 828baff5884b56c7c68922e74507abac123a2c0f58b6ac76a92e4b2cb804ac86
 - ref: templates/scheduling-observation.md
   role: full_pdca_dispatch_extension
   digest:
     algorithm: sha256
-    value: e454d2031ea9a10cae94d0c91837409c687a8a0f558bbcf539fdc5dc1766ef3c
+    value: e95a6ebdc9935045b0199edc8768006cccbdefe3cba1ded0c4f6b2f79a7baddc
 - ref: tests/agent-dispatch/README.md
   role: full_pdca_dispatch_extension
   digest:
@@ -1415,7 +1415,7 @@ supporting_files:
   role: records_repair_maintenance
   digest:
     algorithm: sha256
-    value: 830630c3043ba13a88371fb4be744c15b24a1cec0902fa68f05bf53cfebcb6cc
+    value: db22e1f2d84e9b16beba5d1c3b526d77481c019aa4b1a54fb4f417bd695ed21d
 - ref: migration/v3.4.7-CHANGES.md
   role: records_integrity_maintenance
   digest:
@@ -1440,7 +1440,7 @@ supporting_files:
   role: skill_entry_navigation
   digest:
     algorithm: sha256
-    value: 4292d61e361a912b4c195f3236d887e8884890cda7656b168d3c8e5e659c515b
+    value: 2639611a9f60ad8fcf15e89d1e2bfb9357cc5994bd4169cd4a2dac758dfb68b9
 - ref: tests/entry-maintenance/suite.md
   role: entry_maintenance
   digest:
@@ -1511,6 +1511,31 @@ supporting_files:
   digest:
     algorithm: sha256
     value: a39aa2fc0b733deaf309ad3c8276ce6ed049bbffbc354e978788ce7b83825e6b
+- ref: bootstrap/work-methods.md
+  role: professional_method_navigation
+  digest:
+    algorithm: sha256
+    value: 91abb2fd17bd3fee9c55fe85ce5eb8ce50bcb523017f2cc3e52859e0d7180645
+- ref: tests/professional-work/suite.md
+  role: professional_method_eval_navigation
+  digest:
+    algorithm: sha256
+    value: d48999eb61f9eff0928d7fe68e8e857167092413802b6cddbd9288c2bbe3e776
+- ref: migration/v3.4.11-CHANGES.md
+  role: release_documentation
+  digest:
+    algorithm: sha256
+    value: ebf636908ce04dee42dd0d40ef8edab5aa828611860bf0c4ddb8d834d871c944
+- ref: migration/v3.4.11-MIGRATION.md
+  role: release_documentation
+  digest:
+    algorithm: sha256
+    value: c9a9725522904fd7da94663e8319092045b231f0e3e5fd12c203186c9fb411bc
+- ref: migration/v3.4.11-VALIDATION.md
+  role: release_documentation
+  digest:
+    algorithm: sha256
+    value: b35099e6912046b0b3c3eb8a264131340ffab696951230ba081bf7e78aca4513
 extension_revisions:
   entry_bootstrap: cross-project.2-hotfix.3
   project_workspace: cross-project.2

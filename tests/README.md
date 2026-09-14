@@ -1,7 +1,7 @@
 # 验证分层
 
 <!-- pdca:current-validation:start -->
-当前维护版本 **3.4.10**；本轮覆盖与未覆盖项见 [v3.4.10 验证说明](../migration/v3.4.10-VALIDATION.md)。
+当前维护版本 **3.4.11**；本轮覆盖与未覆盖项见 [v3.4.11 验证说明](../migration/v3.4.11-VALIDATION.md)。
 <!-- pdca:current-validation:end -->
 
 [behavior-cases](behavior-cases.md)中的68个宿主行为正反例继续保留，需在目标宿主执行。本轮没有运行它们。结构检查、检查器合成控制、真实运行和效果 A/B 不能互相冒充。
@@ -25,3 +25,7 @@
 ## 3.4.10 派发／恢复加固
 
 [有限回放与六组现场验收](agent-dispatch/recovery.md)区分synthetic工具控制和真实宿主执行。原59例不改写；新工具配在本版本独立验证附件，不能用回放pass填补NH01–NH06的NOT_RUN。
+
+## 专业工作方法
+
+[专业方法试点](professional-work/suite.md)独立比较问题定义、风险路径、证据与建议边界；12个公开请求与判据在外置验证包分离，真实行为NOT_RUN。不替代已有18个行为试点或真实宿主验收。

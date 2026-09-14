@@ -4,7 +4,7 @@ task_id: null
 baseline_id: null
 created_at: null
 created_at_source: null
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 work_id: null
 tree_revision: null
 node_id: null
@@ -90,3 +90,9 @@ current_modeling_input_suite_ref为本次实际验收绑定；produced_node_scen
 
 
 requirements_basis固定适用权威、原请求/seed与当前要求来源；由核验入口独立选定，不能由候选自证。模板空值是草稿，不代表未知项通过。
+
+## 问题、方案与风险（写入当前正文，不新增记录类型）
+
+按 [CONTRACT](../ontology/concept/pdca-execution-contract.md#contract-professional-plan)引用已知事实：原问题/现状、目标行为与非目标、事实/假设、推荐及实质替代的代价和重评条件；机械工作不凑备选。研究目标不强加商业门槛。
+
+按 [TEST](../ontology/concept/task-unit-test.md#test-professional-paths)补充原AC覆盖：`要求 → 路径/风险 → case/oracle → 观察`；[专业方法](../bootstrap/work-methods.md)仅选择适用方向，不把它们派发成额外Agent。现有确认冻结上述范围，不因方法提示增加新审批。

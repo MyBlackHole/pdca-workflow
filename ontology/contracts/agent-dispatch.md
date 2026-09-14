@@ -1,7 +1,7 @@
 ---
 schema: pdca.agent-dispatch-contract/v1
 extension_revision: agent-dispatch.1
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 authority_refs: [TASK-01, SCHED-01, CAP-01, CONTRACT-01, RESOURCE-01, CONFIRM-01]
 assignment_template_ref: ../../templates/agent-assignment.md
 scheduling_template_ref: ../../templates/scheduling-observation.md

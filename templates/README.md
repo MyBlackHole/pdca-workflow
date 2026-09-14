@@ -1,7 +1,7 @@
 # 模板：草稿不等于运行记录
 
 <!-- pdca:current-template-version:start -->
-当前基础模板 `protocol_revision=3.4.10`；实际采用固定[发布清单](../protocol-release.md)及其摘要。
+当前基础模板 `protocol_revision=3.4.11`；实际采用固定[发布清单](../protocol-release.md)及其摘要。
 <!-- pdca:current-template-version:end -->
 
 schema 与资产 revision 独立演进；现有 work-node/baseline/delivery/work-tree 及控制/测试 schema 不机械升级。模板的 protocol_revision 是本分发快照的采用版本，不表示同号 schema。空字段/fixture 不产生授权、运行或 PASS。

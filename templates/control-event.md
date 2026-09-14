@@ -21,7 +21,7 @@ capability_check_refs: []
 reservation_refs: []
 recorded_at: null
 time_source_ref: null
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 ---
 
 # 控制事件草稿

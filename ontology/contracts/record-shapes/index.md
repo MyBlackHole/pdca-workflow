@@ -1,7 +1,7 @@
 ---
 schema: pdca.record-shape-index/v1
 authority: CONTRACT-01
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 profile: fixed_formal_record_example
 records:
   task:

@@ -1,11 +1,11 @@
 ---
 schema: pdca.record-shape/v1
 authority: CONTRACT-01
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 profile: fixed_formal_record_example
 record_kind: gate-check
 template_ref: ../../../templates/gate-check.md
-template_digest: 2573ff0e445e08df5fb2fcf3a8b44482b7491b2a4ccad1a6029ca389ad815e11
+template_digest: 2677e26afbdba060822196a773d3c3a9225ed4de036eef858d85abf85a7ddccc
 shape:
   strings:
   - check_id

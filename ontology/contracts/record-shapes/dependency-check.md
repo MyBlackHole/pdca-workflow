@@ -1,11 +1,11 @@
 ---
 schema: pdca.record-shape/v1
 authority: CONTRACT-01
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 profile: fixed_formal_record_example
 record_kind: dependency-check
 template_ref: ../../../templates/dependency-check.md
-template_digest: 142ed8e5dcb4ecfecc1f8ebcbf28ed298bebac032abc00f4faa4f0e1711e68cb
+template_digest: 014da8fa23fcd783ef671361f5d1764b0961dd57fe71a4a98d0ca3b212b181b7
 shape:
   strings:
   - check_id

@@ -1,11 +1,11 @@
 ---
 schema: pdca.record-shape/v1
 authority: CONTRACT-01
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 profile: fixed_formal_record_example
 record_kind: tree-spec
 template_ref: ../../../templates/tree-spec.md
-template_digest: 781edd8a5f1254d8d076fe5b02163aadd15a211d633af3723ceb8381bfc3ec9f
+template_digest: 030526198635576767d58cfa75764561610f982b4dda02a6c087f50795febe85
 shape:
   strings:
   - work_id

@@ -1,7 +1,7 @@
 ---
 schema: pdca.project-workspace-contract/v2
 extension_revision: cross-project.2
-protocol_revision: 3.4.10
+protocol_revision: 3.4.11
 authority_refs:
 - CONTRACT-01
 - RESOURCE-01
