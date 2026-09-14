@@ -29,7 +29,7 @@ class GitInstallerTests(unittest.TestCase):
             "printf '%s ' \"$@\" >> \"$GIT_LOG\"\n"
             "printf '\\n' >> \"$GIT_LOG\"\n"
             "if [ \"$1\" = clone ]; then\n"
-            "  mkdir -p \"$3/.git\"\n"
+            "  mkdir -p \"$3/.git\" \"$3/skills\"\n"
             "fi\n"
         )
         fake_git.chmod(0o755)
@@ -61,6 +61,7 @@ class GitInstallerTests(unittest.TestCase):
             (self.home / ".agents/skills").resolve(),
             self.home / ".agents/pdca/skills",
         )
+        self.assertTrue((self.home / ".agents/skills").is_dir())
         self.assertIn(f"clone {REPOSITORY}", self.git_log.read_text())
 
     def test_refuses_an_existing_central_root_before_invoking_git(self) -> None:
@@ -76,6 +77,28 @@ class GitInstallerTests(unittest.TestCase):
     def test_refuses_an_existing_discovery_path_before_invoking_git(self) -> None:
         skills_dir = self.home / ".agents/skills"
         skills_dir.mkdir(parents=True)
+
+        result = self.run_installer()
+
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(self.git_log.exists())
+        self.assertFalse((self.home / ".agents/pdca").exists())
+
+    def test_refuses_a_dangling_central_root_symlink_before_invoking_git(self) -> None:
+        central_root = self.home / ".agents/pdca"
+        central_root.parent.mkdir(parents=True)
+        central_root.symlink_to(self.base / "missing-central-root", target_is_directory=True)
+
+        result = self.run_installer()
+
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(self.git_log.exists())
+        self.assertFalse((self.home / ".agents/skills").exists())
+
+    def test_refuses_a_dangling_discovery_symlink_before_invoking_git(self) -> None:
+        skills_dir = self.home / ".agents/skills"
+        skills_dir.parent.mkdir(parents=True)
+        skills_dir.symlink_to(self.base / "missing-skills", target_is_directory=True)
 
         result = self.run_installer()
 
