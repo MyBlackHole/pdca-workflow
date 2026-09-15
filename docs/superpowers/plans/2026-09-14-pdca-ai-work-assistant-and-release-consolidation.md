@@ -251,9 +251,9 @@ git commit -m "feat: add PDCA assist workbench"
 - Modify: `skills/pdca-do/SKILL.md`
 - Modify: `skills/pdca-check/SKILL.md`
 - Modify: `skills/pdca-act/SKILL.md`
-- Modify: `skills/pdca-ontology-modeling/SKILL.md`
-- Modify: `skills/pdca-ontology-projection/SKILL.md`
-- Modify: `skills/pdca-ontology-conformance-verification/SKILL.md`
+- Modify: `skills/pdca-model/SKILL.md`
+- Modify: `skills/pdca-implement/SKILL.md`
+- Modify: `skills/pdca-verify/SKILL.md`
 - Test: `tests/test_install.py`
 
 **Interfaces:**

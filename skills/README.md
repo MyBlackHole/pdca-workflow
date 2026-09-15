@@ -10,9 +10,9 @@
 | [pdca-do](pdca-do/SKILL.md) | 用户明确启动或继续现有 PDCA 任务的 Do 阶段时使用。核对批准计划、集中资源和原会话，只实施当前 run，不自动 Check。 |
 | [pdca-check](pdca-check/SKILL.md) | 用户明确启动现有 PDCA 任务的 Check 时使用。核验固定产物、标准和证据，在原会话完成，不修改业务对象或自动返工。 |
 | [pdca-act](pdca-act/SKILL.md) | 用户明确批准现有 PDCA 任务的 Act 处置时使用。按批准范围交付、归档或发布，记录资源结清后停止，不启动下一场景。 |
-| [pdca-ontology-modeling](pdca-ontology-modeling/SKILL.md) | 用户明确选择本体建模场景，或已有建模任务需要场景方法时使用。定义领域模型与工作实例交付；不以知识地图冒充模型，不自动开始 Plan。 |
-| [pdca-ontology-projection](pdca-ontology-projection/SKILL.md) | 用户明确选择本体投影场景，或已有投影任务需要场景方法时使用。从固定模型产生目标产物和映射，不脱离模型或自动启动符合性验证。 |
-| [pdca-ontology-conformance-verification](pdca-ontology-conformance-verification/SKILL.md) | 用户明确选择本体符合性验证，或该任务需要核验方法时使用。分别检查需求到模型、模型到投影、产物到行为，不把链接检查当语义证明。 |
+| [pdca-model](pdca-model/SKILL.md) | 用户明确选择本体建模场景，或已有建模任务需要场景方法时使用。定义领域模型与工作实例交付；不以知识地图冒充模型，不自动开始 Plan。 |
+| [pdca-implement](pdca-implement/SKILL.md) | 用户明确选择本体投影场景，或已有投影任务需要场景方法时使用。从固定模型产生目标产物和映射，不脱离模型或自动启动符合性验证。 |
+| [pdca-verify](pdca-verify/SKILL.md) | 用户明确选择本体符合性验证，或该任务需要核验方法时使用。分别检查需求到模型、模型到投影、产物到行为，不把链接检查当语义证明。 |
 
 四阶段每次匹配用户操作后启动，完成后停止；一个任务使用多个 Skill 但保持原 Agent。已有 task 绑定优先，读取场景方法不创建场景任务。中央项目/任务登记和资源预约对所有入口相同；业务项目不自动生成 `.pdca/`。记录写入与 Git 提交分别授权。
 

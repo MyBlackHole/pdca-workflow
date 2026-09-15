@@ -1,5 +1,5 @@
 {
-  "version": "4.0.0-rc.3",
+  "version": "5.0.0-rc.1",
   "skills": [
     {
       "name": "pdca",
@@ -44,25 +44,25 @@
       "path": "skills/pdca-act/SKILL.md"
     },
     {
-      "name": "pdca-ontology-modeling",
+      "name": "pdca-model",
       "kind": "scene",
       "phase": null,
       "scene": "ontology_modeling",
-      "path": "skills/pdca-ontology-modeling/SKILL.md"
+      "path": "skills/pdca-model/SKILL.md"
     },
     {
-      "name": "pdca-ontology-projection",
+      "name": "pdca-implement",
       "kind": "scene",
       "phase": null,
       "scene": "ontology_projection",
-      "path": "skills/pdca-ontology-projection/SKILL.md"
+      "path": "skills/pdca-implement/SKILL.md"
     },
     {
-      "name": "pdca-ontology-conformance-verification",
+      "name": "pdca-verify",
       "kind": "scene",
       "phase": null,
       "scene": "ontology_conformance_verification",
-      "path": "skills/pdca-ontology-conformance-verification/SKILL.md"
+      "path": "skills/pdca-verify/SKILL.md"
     }
   ]
 }

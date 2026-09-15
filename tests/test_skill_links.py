@@ -32,8 +32,7 @@ FORMER_TEMPLATE_CONTRACTS = {
     'README.md': ('index.md', None),
 }
 PHASES = ('pdca-plan', 'pdca-do', 'pdca-check', 'pdca-act')
-SCENES = ('pdca-ontology-modeling', 'pdca-ontology-projection',
-          'pdca-ontology-conformance-verification')
+SCENES = ('pdca-model', 'pdca-implement', 'pdca-verify')
 REMOVED_PATHS = (
     'setup', 'scripts/install.py', 'scripts/common.py',
     'scripts/build_manifest.py', 'scripts/check_release.py',
@@ -153,7 +152,7 @@ class SafetyDefinitionTests(unittest.TestCase):
     def test_current_package_version_is_consistent(self):
         version = (ROOT / 'VERSION').read_text().strip()
         catalog = json.loads((ROOT / 'skills/catalog.json').read_text())
-        self.assertEqual(version, '4.0.0-rc.3')
+        self.assertEqual(version, '5.0.0-rc.1')
         self.assertEqual(catalog['version'], version)
         for entry in catalog['skills']:
             with self.subTest(skill=entry['name']):
@@ -272,11 +271,11 @@ class SafetyDefinitionTests(unittest.TestCase):
         self.assertIn('Do 完成不是 Check 授权', content)
 
     def test_domain_source_is_not_logs(self):
-        content = (ROOT / 'skills/pdca-ontology-modeling/SKILL.md').read_text()
-        self.assertIn('稳定对象ID', content)
-        self.assertIn('工作节点实例', content)
-        content = (ROOT / 'skills/pdca-ontology-conformance-verification/SKILL.md').read_text()
-        self.assertIn('不递归创建新审查任务', content)
+        content = (ROOT / 'skills/pdca-model/SKILL.md').read_text()
+        self.assertIn('稳定层', content)
+        self.assertIn('假设层', content)
+        content = (ROOT / 'skills/pdca-verify/SKILL.md').read_text()
+        self.assertIn('递归创建', content)
 
 
 if __name__ == '__main__':
