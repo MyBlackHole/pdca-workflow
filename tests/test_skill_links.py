@@ -152,7 +152,7 @@ class SafetyDefinitionTests(unittest.TestCase):
     def test_current_package_version_is_consistent(self):
         version = (ROOT / 'VERSION').read_text().strip()
         catalog = json.loads((ROOT / 'skills/catalog.json').read_text())
-        self.assertEqual(version, '5.0.0-rc.1')
+        self.assertEqual(version, '5.0.0-rc.2')
         self.assertEqual(catalog['version'], version)
         for entry in catalog['skills']:
             with self.subTest(skill=entry['name']):

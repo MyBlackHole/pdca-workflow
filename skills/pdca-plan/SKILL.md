@@ -2,7 +2,7 @@
 name: pdca-plan
 description: 用户明确启动或继续现有 PDCA 任务的 Plan 阶段时使用。与用户确认问题和目标，在原 Agent 内制定计划并等待 Do 授权。
 metadata:
-  version: 5.0.0-rc.1
+  version: 5.0.0-rc.2
 ---
 
 # Plan：确认问题，建立可验收计划

@@ -2,7 +2,7 @@
 name: pdca-act
 description: 用户明确批准现有 PDCA 任务的 Act 处置时使用。按批准范围交付、归档或发布，记录资源结清后停止，不启动下一场景。
 metadata:
-  version: 5.0.0-rc.1
+  version: 5.0.0-rc.2
 ---
 
 # Act：执行获准处置，保留真实结论

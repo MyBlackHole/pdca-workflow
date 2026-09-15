@@ -2,7 +2,7 @@
 name: pdca-model
 description: 用户明确选择本体建模场景，或已有建模任务需要场景方法时使用。定义领域模型与工作实例交付；不以知识地图冒充模型，不自动开始 Plan。
 metadata:
-  version: 5.0.0-rc.1
+  version: 5.0.0-rc.2
 ---
 
 # 本体建模

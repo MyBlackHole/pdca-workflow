@@ -2,7 +2,7 @@
 name: pdca-assist
 description: 仅在用户显式调用 pdca-assist，为当前已绑定项目选择下一步工作建议时使用。普通请求不自动启用。
 metadata:
-  version: 5.0.0-rc.1
+  version: 5.0.0-rc.2
 ---
 
 # PDCA Assist：当前项目的只读工作建议

@@ -2,7 +2,7 @@
 name: pdca-verify
 description: 用户明确选择本体符合性验证，或该任务需要核验方法时使用。分别检查需求到模型、模型到投影、产物到行为，不把链接检查当语义证明。
 metadata:
-  version: 5.0.0-rc.1
+  version: 5.0.0-rc.2
 ---
 
 # 本体符合性验证
