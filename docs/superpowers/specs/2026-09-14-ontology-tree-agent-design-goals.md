@@ -93,7 +93,7 @@ ontology_tree:
   work_id: ecommerce-order-system
   tree_revision: v1
   created_at: 2026-09-15
-  status: frozen
+  state: frozen
 
   # 根节点（汇聚节点）
   root:
@@ -102,7 +102,7 @@ ontology_tree:
     responsibility: "电商订单系统"
     description: "处理用户下单、支付、库存、通知的完整流程"
     ontology_revision: v1
-    status: frozen
+    state: frozen
     
     # 稳定层（契约）
     stable_layer:
@@ -132,13 +132,13 @@ ontology_tree:
           category: interface
           confidence: 0.8
           basis: "初步设计讨论"
-          status: hypothesis
+          state: hypothesis
         - id: OS-H2
           statement: "订单处理时间 < 3秒"
           category: constraint
           confidence: 0.7
           basis: "性能需求"
-          status: hypothesis
+          state: hypothesis
       
       constraints:
         - id: OS-C1
@@ -146,7 +146,7 @@ ontology_tree:
           category: implementation
           confidence: 0.9
           basis: "业务需求"
-          status: hypothesis
+          state: hypothesis
     
     # 子节点
     children:
@@ -155,7 +155,7 @@ ontology_tree:
         responsibility: "订单服务"
         description: "管理订单生命周期"
         ontology_revision: v1
-        status: frozen
+        state: frozen
         
         stable_layer:
           responsibilities:
@@ -182,13 +182,13 @@ ontology_tree:
               category: implementation
               confidence: 0.8
               basis: "技术选型"
-              status: hypothesis
+              state: hypothesis
             - id: OS-S2
               statement: "订单ID格式为 UUID v4"
               category: interface
               confidence: 0.9
               basis: "设计规范"
-              status: hypothesis
+              state: hypothesis
         
         # 叶节点，不再有 children
         children: []
@@ -198,7 +198,7 @@ ontology_tree:
         responsibility: "库存服务"
         description: "管理商品库存"
         ontology_revision: v1
-        status: frozen
+        state: frozen
         
         stable_layer:
           responsibilities:
@@ -219,13 +219,13 @@ ontology_tree:
               category: implementation
               confidence: 0.7
               basis: "性能优化"
-              status: hypothesis
+              state: hypothesis
             - id: IS-H2
               statement: "库存锁定超时时间 = 30分钟"
               category: constraint
               confidence: 0.8
               basis: "业务规则"
-              status: hypothesis
+              state: hypothesis
         
         children: []
         
@@ -234,7 +234,7 @@ ontology_tree:
         responsibility: "支付服务"
         description: "处理支付请求"
         ontology_revision: v1
-        status: frozen
+        state: frozen
         
         stable_layer:
           responsibilities:
@@ -258,13 +258,13 @@ ontology_tree:
               category: constraint
               confidence: 0.7
               basis: "网关SLA"
-              status: hypothesis
+              state: hypothesis
             - id: PS-H2
               statement: "支付回调使用异步通知"
               category: interface
               confidence: 0.9
               basis: "网关文档"
-              status: hypothesis
+              state: hypothesis
         
         children: []
         
@@ -273,7 +273,7 @@ ontology_tree:
         responsibility: "通知服务"
         description: "发送订单通知"
         ontology_revision: v1
-        status: frozen
+        state: frozen
         
         stable_layer:
           responsibilities:
@@ -299,13 +299,13 @@ ontology_tree:
               category: constraint
               confidence: 0.7
               basis: "邮件服务商SLA"
-              status: hypothesis
+              state: hypothesis
             - id: NS-H2
               statement: "通知模板使用 Jinja2"
               category: implementation
               confidence: 0.8
               basis: "技术选型"
-              status: hypothesis
+              state: hypothesis
         
         children: []
 
@@ -412,7 +412,7 @@ version_management:
     - version: v1
       date: 2026-09-15
       changes: "初始版本"
-      status: frozen
+      state: frozen
       
     - version: v2
       date: null
