@@ -83,6 +83,343 @@ note: "三个节点可以并行建模，但父节点需要等待它们完成"
 
 建模同时产生假设层：对接口细节、实现约束、测试方法的陈述，标注为 hypothesis 状态，等待实施验证。
 
+## 完整本体树示例
+
+### 示例：电商订单系统
+
+```yaml
+# 完整本体树结构
+ontology_tree:
+  work_id: ecommerce-order-system
+  tree_revision: v1
+  created_at: 2026-09-15
+  status: frozen
+
+  # 根节点（汇聚节点）
+  root:
+    node_id: order-system
+    node_kind: aggregate
+    responsibility: "电商订单系统"
+    description: "处理用户下单、支付、库存、通知的完整流程"
+    ontology_revision: v1
+    status: frozen
+    
+    # 稳定层（契约）
+    stable_layer:
+      responsibilities:
+        - "接收用户订单请求"
+        - "协调库存、支付、通知服务"
+        - "保证订单流程的原子性"
+      dependencies:
+        - node: order-service
+          nature: core-service
+        - node: inventory-service
+          nature: core-service
+        - node: payment-service
+          nature: core-service
+        - node: notification-service
+          nature: support-service
+      acceptance_criteria:
+        - "订单创建成功率 > 99.9%"
+        - "订单处理时间 < 5秒"
+        - "支付失败时库存回滚"
+    
+    # 假设层（演进）
+    hypothesis_layer:
+      hypotheses:
+        - id: OS-H1
+          statement: "订单服务提供 create_order(user_id, items) 接口"
+          category: interface
+          confidence: 0.8
+          basis: "初步设计讨论"
+          status: hypothesis
+        - id: OS-H2
+          statement: "订单处理时间 < 3秒"
+          category: constraint
+          confidence: 0.7
+          basis: "性能需求"
+          status: hypothesis
+      
+      constraints:
+        - id: OS-C1
+          statement: "订单状态变更需要持久化"
+          category: implementation
+          confidence: 0.9
+          basis: "业务需求"
+          status: hypothesis
+    
+    # 子节点
+    children:
+      - node_id: order-service
+        node_kind: implementable
+        responsibility: "订单服务"
+        description: "管理订单生命周期"
+        ontology_revision: v1
+        status: frozen
+        
+        stable_layer:
+          responsibilities:
+            - "创建订单"
+            - "查询订单"
+            - "取消订单"
+            - "更新订单状态"
+          dependencies:
+            - node: inventory-service
+              nature: dependency
+              required: true
+            - node: payment-service
+              nature: dependency
+              required: true
+          acceptance_criteria:
+            - "订单创建成功后返回订单ID"
+            - "订单状态变更可追溯"
+            - "并发创建不产生重复订单"
+        
+        hypothesis_layer:
+          hypotheses:
+            - id: OS-S1
+              statement: "订单服务使用 PostgreSQL 存储订单数据"
+              category: implementation
+              confidence: 0.8
+              basis: "技术选型"
+              status: hypothesis
+            - id: OS-S2
+              statement: "订单ID格式为 UUID v4"
+              category: interface
+              confidence: 0.9
+              basis: "设计规范"
+              status: hypothesis
+        
+        # 叶节点，不再有 children
+        children: []
+        
+      - node_id: inventory-service
+        node_kind: implementable
+        responsibility: "库存服务"
+        description: "管理商品库存"
+        ontology_revision: v1
+        status: frozen
+        
+        stable_layer:
+          responsibilities:
+            - "查询库存"
+            - "锁定库存"
+            - "释放库存"
+            - "扣减库存"
+          dependencies: []
+          acceptance_criteria:
+            - "库存查询响应时间 < 100ms"
+            - "并发锁定不超卖"
+            - "库存变更实时同步"
+        
+        hypothesis_layer:
+          hypotheses:
+            - id: IS-H1
+              statement: "库存服务使用 Redis 缓存热点数据"
+              category: implementation
+              confidence: 0.7
+              basis: "性能优化"
+              status: hypothesis
+            - id: IS-H2
+              statement: "库存锁定超时时间 = 30分钟"
+              category: constraint
+              confidence: 0.8
+              basis: "业务规则"
+              status: hypothesis
+        
+        children: []
+        
+      - node_id: payment-service
+        node_kind: implementable
+        responsibility: "支付服务"
+        description: "处理支付请求"
+        ontology_revision: v1
+        status: frozen
+        
+        stable_layer:
+          responsibilities:
+            - "发起支付"
+            - "查询支付状态"
+            - "处理支付回调"
+            - "退款"
+          dependencies:
+            - node: gateway-adapter
+              nature: external-api
+              required: true
+          acceptance_criteria:
+            - "支付成功率 > 99.5%"
+            - "支付回调延迟 < 3秒"
+            - "支持多种支付方式"
+        
+        hypothesis_layer:
+          hypotheses:
+            - id: PS-H1
+              statement: "支付网关响应时间 < 2秒"
+              category: constraint
+              confidence: 0.7
+              basis: "网关SLA"
+              status: hypothesis
+            - id: PS-H2
+              statement: "支付回调使用异步通知"
+              category: interface
+              confidence: 0.9
+              basis: "网关文档"
+              status: hypothesis
+        
+        children: []
+        
+      - node_id: notification-service
+        node_kind: implementable
+        responsibility: "通知服务"
+        description: "发送订单通知"
+        ontology_revision: v1
+        status: frozen
+        
+        stable_layer:
+          responsibilities:
+            - "发送订单确认通知"
+            - "发送支付成功通知"
+            - "发送发货通知"
+          dependencies:
+            - node: email-provider
+              nature: external-api
+              required: false
+            - node: sms-provider
+              nature: external-api
+              required: false
+          acceptance_criteria:
+            - "通知发送成功率 > 99%"
+            - "邮件通知延迟 < 5秒"
+            - "短信通知延迟 < 3秒"
+        
+        hypothesis_layer:
+          hypotheses:
+            - id: NS-H1
+              statement: "邮件发送延迟 < 5秒"
+              category: constraint
+              confidence: 0.7
+              basis: "邮件服务商SLA"
+              status: hypothesis
+            - id: NS-H2
+              statement: "通知模板使用 Jinja2"
+              category: implementation
+              confidence: 0.8
+              basis: "技术选型"
+              status: hypothesis
+        
+        children: []
+
+  # 依赖关系
+  dependencies:
+    - from: order-service
+      to: inventory-service
+      type: hard
+      description: "创建订单前需锁定库存"
+      
+    - from: order-service
+      to: payment-service
+      type: hard
+      description: "订单创建后需发起支付"
+      
+    - from: order-system
+      to: notification-service
+      type: soft
+      description: "订单状态变更后发送通知"
+
+  # 实施顺序
+  implementation_order:
+    - phase: 1
+      nodes: [inventory-service]
+      reason: "无外部依赖，可独立实施"
+      
+    - phase: 2
+      nodes: [payment-service, notification-service]
+      reason: "支付服务依赖网关适配器，通知服务依赖外部服务商"
+      
+    - phase: 3
+      nodes: [order-service]
+      reason: "依赖库存和支付服务"
+      
+    - phase: 4
+      nodes: [order-system]
+      reason: "汇聚节点，需等待所有子节点完成"
+
+  # 验证顺序
+  verification_order:
+    - phase: 1
+      nodes: [inventory-service, payment-service, notification-service]
+      reason: "先验证可实施叶节点"
+      
+    - phase: 2
+      nodes: [order-service]
+      reason: "验证依赖叶节点的服务"
+      
+    - phase: 3
+      nodes: [order-system]
+      reason: "验证汇聚节点的跨节点约束"
+```
+
+### 本体树可视化
+
+```text
+order-system (aggregate)
+├── order-service (implementable)
+│   ├── dependencies: inventory-service, payment-service
+│   └── hypotheses: OS-S1, OS-S2
+├── inventory-service (implementable)
+│   ├── dependencies: none
+│   └── hypotheses: IS-H1, IS-H2
+├── payment-service (implementable)
+│   ├── dependencies: gateway-adapter (external)
+│   └── hypotheses: PS-H1, PS-H2
+└── notification-service (implementable)
+    ├── dependencies: email-provider, sms-provider (external)
+    └── hypotheses: NS-H1, NS-H2
+```
+
+### 本体树状态流转
+
+```text
+draft
+  ↓ (用户确认冻结)
+ontology_frozen
+  ↓ (实施就绪)
+implement_ready
+  ↓ (用户确认实施)
+implementing
+  ↓ (实施完成)
+implemented
+  ↓ (验证就绪)
+verify_ready
+  ↓ (用户确认验证)
+verifying
+  ↓ (验证完成)
+verified
+```
+
+### 本体树版本管理
+
+```yaml
+version_management:
+  # 版本号规则
+  versioning_rules:
+    - "主版本号：本体结构重大变更"
+    - "次版本号：节点添加/删除"
+    - "修订号：假设变更/约束调整"
+    
+  # 版本历史
+  version_history:
+    - version: v1
+      date: 2026-09-15
+      changes: "初始版本"
+      status: frozen
+      
+    - version: v2
+      date: null
+      changes: "待定"
+      status: draft
+```
+
 ### 2. `pdca-implement`：自底向上实施本体树
 
 首次实施只使用整棵树已固定版本的本体；未冻结的新子树不得混入已有版本的实施。从没有未满足依赖的可实施叶节点开始，逐步向根推进。每个可实施节点只有在用户确认后才由宿主派发独立上下文的 Agent，并形成独立 PDCA 任务；该 Agent 只读取完成本节点所需的本体切片、依赖产物和授权。

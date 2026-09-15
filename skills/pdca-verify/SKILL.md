@@ -24,6 +24,15 @@ metadata:
 
 - **检验结果**：supported/contradicted/supported_revised/partially_supported
 - **置信度计算**：有证据支持，有计算过程
+- **检验范围**：汇聚节点只检验自己的假设，可实施节点检验所有假设，跨节点接口在汇聚节点验证
+
+## 置信度传递规则
+
+子节点验证后的置信度传递给父节点，父节点使用验证后置信度作为初始值并重新验证。详细规则见[设计文档](../../docs/superpowers/specs/2026-09-14-ontology-tree-agent-design-goals.md#假设置信度传递规则)。
+
+## 本体复用
+
+复用假设需要在新上下文中重新验证，复用置信度 = 原始置信度 × 上下文系数。详细规则见[设计文档](../../docs/superpowers/specs/2026-09-14-ontology-tree-agent-design-goals.md#本体复用)。
 
 ## 阶段方法
 

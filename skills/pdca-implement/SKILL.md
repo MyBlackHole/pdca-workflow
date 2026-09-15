@@ -24,6 +24,11 @@ metadata:
 
 - **反馈类型**：validated/invalidated/revised/pending
 - **置信度更新**：有证据支持，有计算过程
+- **置信度传递**：子节点验证后的置信度传递给父节点，父节点使用验证后置信度作为初始值并重新验证
+
+## 本体变更与失效传播
+
+本体发生实质变化时产生新 `ontology_revision`，旧 PASS 不得静默迁移到新本体。变更传播规则：直接修改节点标为 `stale`，依赖节点标为 `stale`，必需子节点为 `stale` 时父节点不得保持 `verified`。详细规则见[设计文档](../../docs/superpowers/specs/2026-09-14-ontology-tree-agent-design-goals.md#本体变更与失效传播)。
 
 ## 阶段方法
 

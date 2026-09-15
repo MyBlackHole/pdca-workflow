@@ -25,6 +25,16 @@ metadata:
 - **稳定层**：职责边界、依赖性质、验收标准 → 修改触发 revision
 - **假设层**：接口、约束、实现、测试 → 修改不触发 revision
 
+**边界判定**：改变此陈述需要重新冻结本体树 → 稳定层；改变此陈述不影响其他节点的职责边界 → 假设层。详细规则见[设计文档](../../docs/superpowers/specs/2026-09-14-ontology-tree-agent-design-goals.md#假设层与稳定层的边界判定)。
+
+## 节点状态索引
+
+每个本体节点维护可重建的 `ontology-node-state` 索引，包含节点状态、依赖、假设等信息。详细 schema 见[设计文档](../../docs/superpowers/specs/2026-09-14-ontology-tree-agent-design-goals.md#节点状态索引)。
+
+## 就绪与用户确认
+
+状态流转：`draft → awaiting_ontology_freeze_confirmation → ontology_frozen → implement_ready → ...`。任意阶段可为 `blocked`、`failed` 或 `stale`。详细规则见[设计文档](../../docs/superpowers/specs/2026-09-14-ontology-tree-agent-design-goals.md#就绪与用户确认)。
+
 ## 阶段方法
 
 | 阶段 | 动作与交付 |
