@@ -1,6 +1,8 @@
 ---
 name: code-review-checklist
-description: Use when conducting code reviews, reviewing pull requests, or performing quality assurance on C, C++, Rust, Go, or Python code
+description: 代码审查、PR 审查或 C/C++/Rust/Go/Python 质量保证时使用。
+metadata:
+  version: 5.0.0-rc.2
 ---
 
 # Code Review Checklist (代码审查检查清单)

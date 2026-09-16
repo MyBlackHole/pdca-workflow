@@ -1,6 +1,8 @@
 ---
 name: bug-commit-format
-description: Use when fixing bugs and committing changes - commit messages must include bug description, root cause, solution, impact scope, and performance impact
+description: 提交 bug 修复代码时使用。提交信息需包含 bug 描述、根因、方案、影响范围和性能影响。
+metadata:
+  version: 5.0.0-rc.2
 ---
 
 # Bug 修复提交格式

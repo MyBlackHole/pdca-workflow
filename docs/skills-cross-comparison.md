@@ -30,7 +30,7 @@ PDCA 的 skill 体系分为两层：
 | 层 | Skill | 注册状态 | 职责 |
 |----|-------|---------|------|
 | **核心层（9 个）** | pdca, pdca-assist, pdca-plan, pdca-do, pdca-check, pdca-act, pdca-model, pdca-implement, pdca-verify | 已注册在 `catalog.json` | 工作流管理：规则、本体、记录、资源预约 |
-| **补充层（8 个）** | bug-commit-format, feature-commit-format, build-system, chinese-environment, code-comments, code-review-checklist, secure-coding, testing-strategy | 未注册在 `catalog.json`，存在于 `skills/` 目录 | 代码开发辅助：提交规范、审查、测试、安全、构建 |
+| **补充层（8 个）** | bug-commit-format, feature-commit-format, build-config, chinese-environment, code-comments, code-review-checklist, secure-coding, testing-strategy | 未注册在 `catalog.json`，存在于 `skills/` 目录 | 代码开发辅助：提交规范、审查、测试、安全、构建 |
 
 **关键区别：** 核心层遵循严格规则（切换 Skill 不换 Agent、逐阶段授权、不自动串联）；补充层是独立的代码开发参考技能，不参与 PDCA 四阶段流程。
 
@@ -109,7 +109,7 @@ gstack 每个 SKILL.md 文件（65K-118K bytes）中约 70-80% 是**共享基础
 | **文档生成** | — | — | — | `document-release`（更新文档）、`document-generate`（Diataxis 框架） |
 | **知识管理** | ontology/（规则 + 本体 + 决策） | — | `CONTEXT.md` + ADR（领域词汇） | `learn`（跨会话学习记忆） |
 | **代码注释** | `code-comments`（中文注释 + 业务逻辑图 + 技术原理） | — | — | — |
-| **构建配置** | `build-system`（C/C++/Rust/Go/Python 速查） | — | — | — |
+| **构建配置** | `build-config`（C/C++/Rust/Go/Python 速查） | — | — | — |
 | **中文环境** | `chinese-environment`（全中文项目环境） | — | — | — |
 | **研究调查** | — | — | `research`（后台代理调查原始来源，产出引用 Markdown） | — |
 | **合并冲突** | — | — | `resolving-merge-conflicts`（逐 hunk 按意图解决，不 --abort） | — |
@@ -177,7 +177,7 @@ gstack 每个 SKILL.md 文件（65K-118K bytes）中约 70-80% 是**共享基础
 | **调试方法论** | Superpowers（四阶段）/ mattpocock（6 阶段）/ gstack（根因） | 高 | ✅ | 补充层完全缺失调试 skill |
 | **接收代码审查** | Superpowers（receiving-code-review） | 中 | ⚠️ | code-review-checklist 覆盖了"怎么审"，但缺"怎么接收审查反馈" |
 | **验证门控** | Superpowers（verification-before-completion） | 中 | ⚠️ | pdca-check 已有验证框架，但补充层缺代码级验证门控 |
-| **构建配置** | gstack | 低 | ❌ | build-system 已覆盖 5 语言速查 |
+| **构建配置** | gstack | 低 | ❌ | build-config 已覆盖 5 语言速查 |
 
 ---
 

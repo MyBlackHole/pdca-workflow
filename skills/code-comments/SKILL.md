@@ -1,6 +1,8 @@
 ---
 name: code-comments
-description: Use when adding Chinese annotation comments to code, when asked to translate/add supplementary comments in Chinese to existing code, or when needing to embed business-understanding diagrams (ASCII / Mermaid) alongside source code for clearer business logic visualization, or when documenting technical principles / architecture decisions / algorithm mechanisms / system architecture understanding inline for deeper code comprehension
+description: 中文注释补充、业务逻辑可视化（ASCII/Mermaid 图）或技术原理文档化时使用。
+metadata:
+  version: 5.0.0-rc.2
 ---
 
 # Adding Chinese Code Comments (代码备注)

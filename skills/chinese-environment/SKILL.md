@@ -1,6 +1,8 @@
 ---
 name: chinese-environment
-description: Use when setting up a project for Chinese-speaking developers, or when all output (docs, comments, commits) should be in Chinese
+description: 全中文项目环境搭建（文档、注释、提交全部中文）时使用。
+metadata:
+  version: 5.0.0-rc.2
 ---
 
 # Chinese Environment (中文环境)

@@ -1,6 +1,8 @@
 ---
 name: feature-commit-format
-description: Use when implementing new features and committing changes - commit messages must include requirement description, background, implementation, impact scope, and testing verification
+description: 提交新功能代码时使用。提交信息需包含需求描述、背景、实现、影响范围和测试验证。
+metadata:
+  version: 5.0.0-rc.2
 ---
 
 # 需求开发提交格式

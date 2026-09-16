@@ -1,6 +1,8 @@
 ---
 name: secure-coding
-description: Use when reviewing code for security vulnerabilities, implementing security-critical logic, or auditing C/C++/Rust/Go/Python code
+description: 安全审查、安全关键逻辑实现或 C/C++/Rust/Go/Python 安全审计时使用。
+metadata:
+  version: 5.0.0-rc.2
 ---
 
 # Secure Coding (安全编码规范)

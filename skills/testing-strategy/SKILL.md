@@ -1,6 +1,8 @@
 ---
 name: testing-strategy
-description: Use when designing test plans, deciding what/how to test, choosing testing tools and frameworks, or reviewing test coverage for C, C++, Rust, Go, or Python projects
+description: 测试策略设计、测试工具/框架选择或 C/C++/Rust/Go/Python 测试覆盖审查时使用。
+metadata:
+  version: 5.0.0-rc.2
 ---
 
 # Testing Strategy (测试策略)

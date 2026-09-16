@@ -1,6 +1,8 @@
 ---
 name: build-config
-description: Use when setting up build configuration for new projects, adding/managing dependencies, or switching between C/C++/Rust/Go/Python build systems
+description: 构建配置搭建、依赖管理或 C/C++/Rust/Go/Python 构建系统切换时使用。
+metadata:
+  version: 5.0.0-rc.2
 ---
 
 # Build Config (构建配置速查)
