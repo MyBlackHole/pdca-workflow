@@ -48,11 +48,11 @@ validation:
 | 用户说 | 推荐入口 |
 |--------|----------|
 | "我想做一个新功能/新模块" | `/triage` → 职责与契约 → Plan |
-| "有个 bug 要修" | `/triage` → 通常为 `ontology_projection`，以契约确认 |
-| "调研/分析/了解一下 XXX" | `/triage` → 通常为 `ontology_modeling`，可选 `research` 工具 |
-| "审查/Review 代码" | `/triage` → 通常为 `ontology_conformance_verification`，可选 `code-review` 工具 |
+| "有个 bug 要修" | `/triage` → 通常为 `pdca-implement`，以契约确认 |
+| "调研/分析/了解一下 XXX" | `/triage` → 通常为 `pdca-model`，可选 `research` 工具 |
+| "审查/Review 代码" | `/triage` → 通常为 `pdca-verify`，可选 `code-review` 工具 |
 | "把需求写成技术文档" | `/triage` → 按本体目标选职责，文档写作作为契约动作 |
-| "设计 XXX 的架构" | `/triage` → 通常为 `ontology_modeling`，可选 `design-it-twice` 工具 |
+| "设计 XXX 的架构" | `/triage` → 通常为 `pdca-model`，可选 `design-it-twice` 工具 |
 | "有个大工程要做" | `/wayfinder` 先画地图 |
 | "代码结构需要改进" | `/codebase-design` 深度审查 |
 | "帮我理清思路/对齐目标" | `/grill` 追问门禁 |

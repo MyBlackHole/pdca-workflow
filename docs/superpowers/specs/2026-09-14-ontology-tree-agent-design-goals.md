@@ -571,9 +571,9 @@ draft
 
 | 短入口 | 对应现有场景 | 职责 |
 |---|---|---|
-| `pdca-model` | `ontology_modeling` | 自顶向下建立或修订本体树，等待用户确认冻结。 |
-| `pdca-implement` | `ontology_projection` | 提示 `implement_ready` 的具名节点；用户确认后由宿主派发独立实施 Agent。 |
-| `pdca-verify` | `ontology_conformance_verification` | 提示 `verify_ready` 的具名节点；用户确认后由宿主派发独立验证 Agent。 |
+| `pdca-model` | `pdca-model` | 自顶向下建立或修订本体树，等待用户确认冻结。 |
+| `pdca-implement` | `pdca-implement` | 提示 `implement_ready` 的具名节点；用户确认后由宿主派发独立实施 Agent。 |
+| `pdca-verify` | `pdca-verify` | 提示 `verify_ready` 的具名节点；用户确认后由宿主派发独立验证 Agent。 |
 
 三个入口只处理当前绑定项目和固定本体版本。它们读取节点状态索引以提出建议，随后仍由宿主原生机制创建或路由独立任务。实施 Agent 不得验证自己的交付；父级只根据真实记录更新索引，不监工、代答或自动推进。
 

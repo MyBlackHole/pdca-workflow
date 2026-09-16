@@ -9,7 +9,7 @@ description: Use when designing test plans, deciding what/how to test, choosing 
 
 Systematic framework for designing effective, maintainable, and cost-efficient test suites. Covers what to test, how to test, and what NOT to test — across the full test pyramid and all 5 languages.
 
-**Companion skills:** `test-driven-development` (TDD workflow), `code-review-checklist` (testing review items), `build-config` (test runner setup)
+**Companion skills:** `tdd-workflow` (TDD 工作流), `code-review-checklist` (测试审查项), `build-config` (测试运行器配置)
 
 ---
 

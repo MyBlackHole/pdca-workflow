@@ -47,21 +47,21 @@
       "name": "pdca-model",
       "kind": "scene",
       "phase": null,
-      "scene": "ontology_modeling",
+      "scene": "pdca-model",
       "path": "skills/pdca-model/SKILL.md"
     },
     {
       "name": "pdca-implement",
       "kind": "scene",
       "phase": null,
-      "scene": "ontology_projection",
+      "scene": "pdca-implement",
       "path": "skills/pdca-implement/SKILL.md"
     },
     {
       "name": "pdca-verify",
       "kind": "scene",
       "phase": null,
-      "scene": "ontology_conformance_verification",
+      "scene": "pdca-verify",
       "path": "skills/pdca-verify/SKILL.md"
     }
   ]

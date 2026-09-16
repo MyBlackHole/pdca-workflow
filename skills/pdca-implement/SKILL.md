@@ -1,6 +1,6 @@
 ---
 name: pdca-implement
-description: 用户明确选择本体投影场景，或已有投影任务需要场景方法时使用。从固定模型产生目标产物和映射，不脱离模型或自动启动符合性验证。
+description: 用户明确选择本体投影场景，或已有投影任务需要场景方法时使用。不脱离模型。
 metadata:
   version: 5.0.0-rc.2
 ---
@@ -40,5 +40,7 @@ metadata:
 | Act | 固定目标版本、映射、实际验证范围和缺项 |
 
 **子任务拆分**：当任务代码规模 > 500 LOC、预计时间 > 40 小时或 Agent 置信度 < 0.7 时，建议拆分。拆分需用户批准，每个子任务对应独立 Agent 和独立 PDCA。详细规则见[子任务拆分详细设计](../../docs/superpowers/specs/2026-09-15-subtask-splitting-design.md)。
+
+**棘轮规则：** 投影只前进不后退。发现需要先建模时，升级到 pdca-model 场景；不降级跳过必要的建模步骤。
 
 详细规则见[设计文档](../../docs/superpowers/specs/2026-09-14-ontology-tree-agent-design-goals.md)。

@@ -37,8 +37,28 @@ Systematic code review framework that ensures consistent coverage across all rev
            ↓
         第三遍: 跨文件一致性 & 边界情况
            ↓
+        第四遍: 范围漂移检测 (是否做了批准范围外的事)
+           ↓
         撰写审查意见 (分类 + 严重度 + 建议)
 ```
+
+---
+
+## 双轴审查（可选增强）
+
+当有明确的 issue/spec/需求文档时，使用双轴审查：
+
+### 轴 1：标准（已有）
+即上方的 Review Flow + 检查清单。
+
+### 轴 2：规格符合性
+对照 issue/spec 逐项检查：
+1. 获取 fixed point（commit SHA / branch / tag）
+2. 识别 spec 来源（issue 引用、spec 文件、用户参数）
+3. 逐项检查：代码是否实现了 spec 要求的每个行为
+4. 报告：spec 要求了但代码没实现的 / 代码实现了但 spec 没要求的
+
+两个轴独立报告，不合并评分。
 
 ---
 

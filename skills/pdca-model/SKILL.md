@@ -1,6 +1,6 @@
 ---
 name: pdca-model
-description: 用户明确选择本体建模场景，或已有建模任务需要场景方法时使用。定义领域模型与工作实例交付；不以知识地图冒充模型，不自动开始 Plan。
+description: 用户明确选择本体建模场景，或已有建模任务需要场景方法时使用。不以知识地图冒充模型。
 metadata:
   version: 5.0.0-rc.2
 ---
@@ -34,6 +34,8 @@ metadata:
 ## 就绪与用户确认
 
 状态流转：`draft → awaiting_ontology_freeze_confirmation → ontology_frozen → implement_ready → ...`。任意阶段可为 `blocked`、`failed` 或 `stale`。详细规则见[设计文档](../../docs/superpowers/specs/2026-09-14-ontology-tree-agent-design-goals.md#就绪与用户确认)。
+
+**棘轮规则：** 状态只能前进，不能后退。发现复杂度不足时，升级场景（如 implement 发现需要先建模）；不降级逃避（如 model 发现太难就跳过）。
 
 ## 阶段方法
 

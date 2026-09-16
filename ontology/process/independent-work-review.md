@@ -15,7 +15,7 @@ summary: REVIEW-01：独立符合性场景，不代替节点自己的Check
 
 # REVIEW-01：独立符合性场景，不代替节点自己的Check
 
-用户显式创建ontology_conformance_verification任务，新的独立Agent读取固定需求／定义／实现和证据，不继承实现者完整活动历史。实现报告是待核验主张，不是事实。
+用户显式创建pdca-verify任务，新的独立Agent读取固定需求／定义／实现和证据，不继承实现者完整活动历史。实现报告是待核验主张，不是事实。
 
 每个节点仍自行执行完整四阶段并与你确认每阶段目标。局部与组合审查分别有真实对象，不以另一个Agent的PASS替代。不要把一个节点的Plan、Do、Check、Act拆给四个Agent。
 

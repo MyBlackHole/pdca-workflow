@@ -66,7 +66,7 @@ design_spec:
 
 ## 三场景是真实对象链
 
-ontology_modeling交付项目本体源及工作实例；ontology_projection从固定模型产生目标实体并记录映射；ontology_conformance_verification核对需求、模型、产物与必要实际行为。每个场景内部仍有四阶段，不以四份文字假装执行。Markdown可承载本体，文件格式本身不是验收依据。
+pdca-model交付项目本体源及工作实例；pdca-implement从固定模型产生目标实体并记录映射；pdca-verify核对需求、模型、产物与必要实际行为。每个场景内部仍有四阶段，不以四份文字假装执行。Markdown可承载本体，文件格式本身不是验收依据。
 
 本体、任务、确认、证据和资源预约集中在PDCA_ROOT管理；TARGET_ROOT只写获准业务产物，不默认生成.pdca。规则文件与活动任务记录只读，记录及模型按拥有者授权写入。保留目标、AC／oracle、身份、版本和恢复边界；专业方法按需使用。历史3.x规则不再控制4.x，新版本不追认旧任务合法。
 

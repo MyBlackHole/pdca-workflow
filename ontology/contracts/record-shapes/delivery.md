@@ -30,9 +30,9 @@ task_execution: null
 subject_conformance: unknown
 delivery_usable: false
 scene_coverage:
-  ontology_modeling: not_run
-  ontology_projection: not_run
-  ontology_conformance_verification: not_run
+  pdca-model: not_run
+  pdca-implement: not_run
+  pdca-verify: not_run
 limitations: []
 ---
 
