@@ -1,7 +1,7 @@
 # Skills 横向对比：PDCA vs 热门方案
 
 > **对比对象：** PDCA、Superpowers、mattpocock/skills、gstack
-> **日期：** 2026-09-16（v3 — 全面探索四个项目完整结构 + 逐条读取所有 skill 文件后修订）
+> **日期：** 2026-09-16（v4 — 两轮优化后更新：场景名统一、补充层治理、核心 skill 增强、新增 tdd-workflow/systematic-debugging）
 > **数据来源：** 本地安装文件（PDCA 仓库 + Superpowers）+ GitHub API 获取（mattpocock 37 个 skill + gstack 23+ 个 skill）
 > **目的：** 评估 PDCA 在 AI 编码技能生态中的位置，识别可借鉴项与不适用项
 
@@ -13,14 +13,14 @@
 |------|------|-------------|-------------------|--------|
 | **定位** | 工作流管理/记录系统 + 代码开发补充技能 | 完整软件开发方法论 | 可组合的工程技能集 | 虚拟工程团队 |
 | **核心理念** | 集中管理规则、本体、记录与资源预约；代码技能作为补充 | TDD + 子代理 + 验证优先 | 小而可组合，不控制流程 | 角色化专家团队 |
-| **Skill 数量** | 9 核心（2 入口 + 4 阶段 + 3 场景）+ 8 补充（代码开发） | 14 | 37（18 工程 + 7 生产力 + 4 杂项 + 8 进行中） | 23+ skill + 8 tool + 11 iOS skill |
+| **Skill 数量** | 9 核心（2 入口 + 4 阶段 + 3 场景）+ 10 补充（代码开发） | 14 | 37（18 工程 + 7 生产力 + 4 杂项 + 8 进行中） | 23+ skill + 8 tool + 11 iOS skill |
 | **宿主** | OpenCode | Claude Code / OpenCode / Codex | Claude Code / OpenCode | Claude Code + 9 其他 |
 | **安装方式** | 符号链接 + Git 工作副本 | Git 插件 / 符号链接 | `npx skills@latest add` / Claude 插件 | `git clone` + `./setup` |
 | **架构模式** | 双层（核心工作流 + 代码开发补充）+ 双根（PDCA_ROOT + TARGET_ROOT） | 平铺 skill 目录 | 用户调用 + 模型调用分离 | 角色化 skill + power tool |
 | **记录管理** | 31 种记录形状 + Git 跟踪 | 账本（progress.md） | Issue Tracker（GitHub/Linear/本地） | 无专用记录系统 |
 | **授权模型** | 逐阶段用户授权 + 资源预约 | 审批门控（hard gate） | 无显式授权 | 无显式授权 |
 | **领域建模** | pdca-model（本体建模） | — | grill-with-docs（CONTEXT.md + ADR） | design-consultation（DESIGN.md） |
-| **代码开发** | 8 个补充 skill（提交格式、审查清单、TDD 策略、安全编码等） | TDD + 调试 + 审查全流程 | implement + code-review + diagnosing-bugs | ship + review + qa + investigate |
+| **代码开发** | 10 个补充 skill（提交格式、审查清单、TDD、调试、安全编码等） | TDD + 调试 + 审查全流程 | implement + code-review + diagnosing-bugs | ship + review + qa + investigate |
 | **Stars** | — | ~20k | — | 133k |
 
 ### PDCA 双层架构说明
@@ -30,7 +30,7 @@ PDCA 的 skill 体系分为两层：
 | 层 | Skill | 注册状态 | 职责 |
 |----|-------|---------|------|
 | **核心层（9 个）** | pdca, pdca-assist, pdca-plan, pdca-do, pdca-check, pdca-act, pdca-model, pdca-implement, pdca-verify | 已注册在 `catalog.json` | 工作流管理：规则、本体、记录、资源预约 |
-| **补充层（8 个）** | bug-commit-format, feature-commit-format, build-config, chinese-environment, code-comments, code-review-checklist, secure-coding, testing-strategy | 未注册在 `catalog.json`，存在于 `skills/` 目录 | 代码开发辅助：提交规范、审查、测试、安全、构建 |
+| **补充层（10 个）** | bug-commit-format, feature-commit-format, build-config, chinese-environment, code-comments, code-review-checklist, secure-coding, testing-strategy, tdd-workflow, systematic-debugging | 未注册在 `catalog.json`，存在于 `skills/` 目录 | 代码开发辅助：提交规范、审查、测试、安全、构建、TDD、调试 |
 
 **关键区别：** 核心层遵循严格规则（切换 Skill 不换 Agent、逐阶段授权、不自动串联）；补充层是独立的代码开发参考技能，不参与 PDCA 四阶段流程。
 
