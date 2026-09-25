@@ -1,6 +1,6 @@
 # 当前执行权威索引 · 4.0.0-rc.3
 
-只列28项沿用ID的当前权威；pdca总入口、阶段方法、记录形状与引导由本索引、Skill目录及当前Git工作树共同定位。旧INDEX完整字节在legacy。参考库未删除，按REUSE检索并固定采用，不自动执行其方法。
+只列 28 项沿用 ID 的当前规则权威；它是 AI 查询 authority 的目录，不是要求一次性加载的 manifest。具体何时读取由 [LOAD-MAP](LOAD-MAP.md)、当前 Skill、phase/scene 方法和事件需要决定。旧 INDEX 完整字节在 legacy。参考库未删除，按 REUSE 检索并经 ADOPT 固定采用，不自动执行其方法。
 
 | ID | 当前文件 |
 |---|---|

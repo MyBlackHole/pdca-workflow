@@ -9,7 +9,7 @@ dcterms_created: 2026-09-04
 status: active
 authority: normative
 revision: 4.0.0-rc.3
-dcterms_modified: '2026-09-14'
+dcterms_modified: '2026-09-25'
 summary: PDCA：用户控制推进，独立任务执行
 protocol_revision: 4.0.0-rc.3
 rule_authorities:
@@ -51,7 +51,7 @@ design_spec:
   bundled_workflow_code: false
   project_data_root: PDCA_ROOT/records
   resource_model: central_cross_project
-  skill_entry_count: 8
+  skill_entry_count: 9
 ---
 
 # PDCA：用户控制推进，独立任务执行
@@ -72,6 +72,6 @@ pdca-model交付项目本体源及工作实例；pdca-implement从固定模型�
 
 ## 权威与读集
 
-下列28项原有权威ID保留，具体文件由当前索引、Skill目录与Git工作树定位；本版本改写其适用语义。按事件读取，不通读全部。其他资产只有经显式采用才是任务参考；不因authority字段或旧索引命中自动成为4.x控制规则。
+下列 28 项原有权威 ID 保留，由 [INDEX](../INDEX.md) 定位；[LOAD-MAP](../LOAD-MAP.md) 定义 AI 按事件最小读取的方法。规则只维护在当前 authority/Skill/phase/scene 契约中，不通过 validator 或额外 manifest 再实现一遍。其他资产只有经 REUSE/ADOPT 固定版本后才是任务参考。
 
-当前最短路径：八个Skill入口 → [共同恢复入口](../contracts/entry-recovery.md) → 集中task／confirmation → 当前阶段与当前scene的方法。阶段与场景是两个维度，加载或切换Skill不新建Agent、不自动授权。权限／恢复／模型细则在相关事件发生时读取。
+当前最短路径：九个 Skill 入口 → [LOAD-MAP](../LOAD-MAP.md) → [共同恢复入口](../contracts/entry-recovery.md) → 集中 task/confirmation → 当前阶段与当前 scene 的方法。阶段与场景是两个维度，加载或切换Skill不新建Agent、不自动授权。权限／恢复／模型细则在相关事件发生时读取。

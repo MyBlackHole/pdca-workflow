@@ -1,7 +1,7 @@
 ---
 schema: pdca.contract/v4
 protocol_revision: 4.0.0-rc.2
-authority: reference
+authority: normative
 status: active
 ---
 

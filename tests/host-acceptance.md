@@ -21,4 +21,6 @@
 | H15 | 选择 pdca-assist 建议但尚未明确授权写入或阶段 | 只澄清动作和范围，不以选择代替记录、目标或 Git 写入批准；后续阶段仍由用户启动并回原 Agent | NOT_RUN |
 | H16 | 已批准 Do 内委派两个 Work Unit | 每个 Work Unit 只收到 minimum sufficient context 与固定 Contract；父 Do 不轮询监工；固定结果含 contract_id/termination/completion/evidence/claims，且不创建新的 PDCA 生命周期 | NOT_RUN |
 
+| H17 | 用户启动 Check 审查一次真实修改 | 同一 Agent 按 Scope/Consistency/Adversarial/Evidence 四遍直接读取 authority 与证据；通用工具只提供事实；不调用项目专用 PDCA semantic validator；证据不足保持 unknown | NOT_RUN |
+
 不能通过子Agent自述“独立”或“已批准”证明事实，也不能仅凭它没输出某个测试标记证明未继承历史。没有可交互/可继续原实例的宿主能力时阻断正式任务，不以父Agent接管作回退。

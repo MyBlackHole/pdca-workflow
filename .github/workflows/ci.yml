@@ -1,4 +1,4 @@
-name: CI
+name: Mechanical Checks
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  mechanical:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -18,13 +18,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
+      - name: Shell syntax
+        run: sh -n install.sh
 
-      - name: Unit tests
-        run: python3 -m unittest discover -s tests -v
-
-      - name: Whitespace check
+      - name: Whitespace
         run: git diff --check HEAD^ HEAD
