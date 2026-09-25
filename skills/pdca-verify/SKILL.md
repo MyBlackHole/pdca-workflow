@@ -1,48 +1,57 @@
 ---
 name: pdca-verify
-description: 用户明确选择本体符合性验证，或该任务需要核验方法时使用。不把链接检查当语义证明。
+description: 用户明确选择本体符合性验证，或已有验证任务需要场景方法时使用。验证同一节点的需求→模型→实现→行为。
 metadata:
   version: 5.0.0-rc.2
 ---
 
-# 本体符合性验证
+# 本体符合性验证：验证实现是否忠实
 
 ## 先定位，不以加载当授权
 
-核对本文件经符号链接解析后的真实路径，定位集中 Git 工作副本 **PDCA_ROOT**。既有任务绑定优先于 cwd 或环境变量；与入口所在根冲突时停止，不在目标项目创建 `.pdca/` 或另一份 records。定位不等于批准业务操作。
+定位 **PDCA_ROOT**、原 verify task/Agent 和真实 user operation。
+先读[共同恢复入口](../../ontology/contracts/entry-recovery.md)。
+已有 task 不自动改 scene/revision；当前会话不是原执行者时只路由，不接管。
 
-先读[共同恢复入口](../../ontology/contracts/entry-recovery.md)，再读当前绑定项目 context、自己的 task/原 Agent 绑定、最后完整事件和当前请求。核对记录的 `rules_git_head`/`rules_git_status`；每次获准写入记录前按共同入口重新采集当前 Git 来源。已有任务不自动改绑或升级规则，原依据缺失或规则冲突时停止；不复制规则、不自动 checkout，不以新规则改写原授权。
+## 验证身份
 
-## 两种读取方式，禁止递归创建
+Verify task 必须绑定与被审实现一致的：
 
-- **用户选择场景入口**：先定位具名work/node/scene。已有该场景任务就回原Agent；没有任务时只提出范围、输入、交付和创建请求，用户明确批准后按[派发入口](../../ontology/contracts/agent-dispatch.md)创建独立可交互任务。创建成功还须由任务Agent展示Plan目标并等待启动，不连续跑四阶段。
-- **已有阶段任务读取方法**：核对 task.scene 匹配后，只读下面的阶段方法。不要再次触发创建/选择分支，不调用总入口生成另一个任务。场景不匹配就停止，不能静默更改scene。
+- `work_id/node_id`；
+- ontology revision；
+- implementation/mapping version；
+- requirement/AC/oracle；
+- CONTEXT-01 选择出的最小本体子图；
+- 必要 dependency deliverables 与行为证据。
 
-一个场景里的每个节点都是独立完整PDCA，同一任务四阶段由原Agent/会话执行；场景Skill不是一个阶段，也不是额外Agent。所有过程记录和资源回到同一PDCA_ROOT，各任务只读获准输入、不共享活动历史。阶段完成报告后等待，不自动开始下阶段或下一场景。
+Verify 不重新建模、不重新拆任务，也不读取实现 Agent 的完整活动历史。
+实现报告只是 claim，不是事实。
 
-## 假设检验
+## 验证链
 
-- **检验结果**：supported/contradicted/supported_revised/partially_supported
-- **置信度计算**：有证据支持，有计算过程
-- **检验范围**：汇聚节点只检验自己的假设，可实施节点检验所有假设，跨节点接口在汇聚节点验证
+逐层核验：
 
-## 置信度传递规则
+1. **requirement → model**：当前 node 的需求是否被对象/关系/约束覆盖；
+2. **model → implementation**：模型语义是否在 mapping/target 中真实表达；
+3. **implementation → behavior**：真实运行/可观察行为是否满足模型和需求；
+4. **node → neighbors**：必要 composition/dependency interface 是否与固定邻接交付一致。
 
-子节点验证后的置信度传递给父节点，父节点使用验证后置信度作为初始值并重新验证。详细规则见[设计文档](../../docs/superpowers/specs/2026-09-14-ontology-tree-agent-design-goals.md#假设置信度传递规则)。
+错误模型与错误实现不能互相证明；没有运行事实保持 unknown/not_run。
 
-## 本体复用
+## 独立上下文
 
-复用假设需要在新上下文中重新验证，复用置信度 = 原始置信度 × 上下文系数。详细规则见[设计文档](../../docs/superpowers/specs/2026-09-14-ontology-tree-agent-design-goals.md#本体复用)。
-
-**棘轮规则：** 验证结论只前进不后退。发现模型有根本缺陷时，升级到 pdca-model 场景；不降级跳过必要的修复。
+Fresh verify Agent 只接收当前 node 的最小子图、固定 implementation/mapping 和必要证据。
+不继承 implement Agent 的调试历史、推理过程、未固定假设或父/兄弟 conversation，
+以减少确认偏差与上下文污染。
 
 ## 阶段方法
 
 | 阶段 | 动作与交付 |
 |---|---|
-| Plan | 固定原需求、模型版本、投影/产品版本、适用行为证据与检查标准 |
-| Do | 执行核验：需求是否由模型覆盖，模型是否被投影忠实表达，产物实际行为是否符合要求 |
-| Check | 检查Do是否实际执行、证据是否属于当前版本、覆盖和反证是否充分 |
+| Plan | 固定 node/revision、实现版本、mapping、验证问题、反例方向、行为证据需求和标准 |
+| Do | 执行 requirement→model→implementation→behavior 及必要接口核验，保存事实/反证 |
+| Check | 使用 AI Scope/Consistency/Adversarial/Evidence 四遍审查，核验 Do 的证据与结论 |
 | Act | 用户明确选择接受、失败归档、提出返工或获准发布 |
 
-详细规则见[设计文档](../../docs/superpowers/specs/2026-09-14-ontology-tree-agent-design-goals.md)。
+发现模型根本错误时报告 affected node/relation/constraint，由用户决定是否启动新的 pdca-model；
+不能在 verify 内静默修改模型或 implementation。

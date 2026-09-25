@@ -35,7 +35,7 @@ metadata:
 4. 列出真实交付、对象路径、AC/oracle、正反测试、业务/记录写域、资源保证和停止条件。
 5. 每个执行步骤写明具体操作、预期结果和验证方法；禁止用 TBD/TODO、“之后实现”、“添加验证”、“处理边缘情况”等占位语句冒充计划。
 6. 将可在同一 Do 中独立执行的部分定义为 **Do-only Work Unit**；每个 Work Unit 写明输入、输出、作用域、资源、终止条件、完成条件和证据要求。
-7. 只有具备独立可拒收成果与验证边界的部分才生成正式子节点 seed；不要按代码行数、预计工时、模块数量或 Agent 置信度自动创建任务。
+7. 正式子节点 seed 必须先能回指固定 ontology/work instance 中的具名 object/node、与当前节点的语义关系和适用 constraint，再同时具备独立职责、固定 I/O、可独立拒收成果与验证边界。仅有代码结构、LOC、工时、token、并行度或 Agent 置信度不能产生正式任务。
 8. Plan 获批准后范围冻结。后续 Do 若新增产物、改变 AC/oracle、扩大写域/资源或引入不可逆副作用，必须停止并重新取得用户明确操作。
 
 ## 决策复杂度
@@ -46,8 +46,7 @@ metadata:
 
 ## 正式节点与 Work Unit 的边界
 
-- **正式工作节点**：独立职责 + 固定输入/输出 + 可独立拒收成果 + 独立验证边界。
-  Plan 只产生候选 seed；用户批准创建后才进入独立 Agent 的完整 PDCA。
+- **正式工作节点**：由固定 ontology object/work instance 与语义关系产生候选，并满足独立职责 + 固定输入/输出 + 可独立拒收成果 + 独立验证边界。Plan 只产生 seed；用户批准后由 fresh Agent 执行完整 PDCA，CONTEXT-01 从该节点选择 minimum sufficient ontology subgraph。
 - **Do-only Work Unit**：只是当前任务 Do 内的执行切片，不创建 task/attempt，不拥有 Plan/Check/Act。
   它遵循 [CONTRACT-01](../../ontology/concept/pdca-execution-contract.md) 的
   `C=(I,O,S,R,T,Φ,Ψ)`，可内联或委派，但不能扩张父 Do 的授权。
@@ -57,7 +56,7 @@ metadata:
 ## 自审
 
 Plan 完成前确认：每个需求有 AC/验证；无占位符；依赖明确；每个交付可验收；
-Work Unit 不越界；正式子节点具有独立拒收理由；没有未批准范围。
+Work Unit 不越界；正式子节点有明确 ontology 来源关系、独立拒收理由和上下文边界；没有未批准范围。
 
 ## 报告与停止
 

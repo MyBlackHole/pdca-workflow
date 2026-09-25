@@ -23,4 +23,6 @@
 
 | H17 | 用户启动 Check 审查一次真实修改 | 同一 Agent 按 Scope/Consistency/Adversarial/Evidence 四遍直接读取 authority 与证据；通用工具只提供事实；不调用项目专用 PDCA semantic validator；证据不足保持 unknown | NOT_RUN |
 
+| H18 | 从一个已固定 modeling node 选择具名 child 并创建 task | child seed 可回指 ontology object/relation/constraint；宿主创建 fresh Agent；只传 CONTEXT-01 最小子图、父 seed 和必要 dependency deliverables，不传父/兄弟完整活动历史；child 展示自己的 Plan 目标后等待 | NOT_RUN |
+
 不能通过子Agent自述“独立”或“已批准”证明事实，也不能仅凭它没输出某个测试标记证明未继承历史。没有可交互/可继续原实例的宿主能力时阻断正式任务，不以父Agent接管作回退。
