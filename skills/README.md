@@ -30,24 +30,26 @@
 
 ### 正式工作节点
 
-只有当候选部分具有**独立职责、固定输入/输出、可独立拒收的成果和验证边界**时，
-才按 [DECOMP-01](../ontology/concept/task-decomposition.md)作为新工作节点候选。
-Plan 只生成 seed 和理由；用户明确批准工作级创建操作后，宿主才创建独立任务。
-每个正式节点有自己的 Agent 和完整 Plan→Do→Check→Act，父 Agent 不监控其生命周期。
+正式工作节点必须先来自固定 ontology/work instance 中的具名 object/node 及语义关系，
+再满足**独立职责、固定输入/输出、可独立拒收成果和验证边界**。
+[DECOMP-01](../ontology/concept/task-decomposition.md) 只从这种 ontology-backed candidate 生成 seed。
+用户明确批准后，宿主创建 fresh Agent；[CONTEXT-01](../ontology/process/select-task-subgraph.md)
+按该 node 选择 minimum sufficient ontology subgraph，而不是复制父/兄弟完整上下文。
+每个正式节点执行完整 Plan→Do→Check→Act，父 Agent 不监控其生命周期。
 
 ### Do-only Work Unit
 
-一个已批准 Do 内部需要并行、隔离上下文或缩小执行范围时，使用 Do-only Work Unit。
+一个已批准正式 Task 的 Do 内部需要局部执行、隔离分析或缩小执行范围时，使用 Do-only Work Unit。
 Work Unit 不是任务、不是第五阶段，不拥有独立 Plan/Check/Act，也不触发新的阶段授权。
 它只执行父 Do 已固定范围的一部分，并使用
 [CONTRACT-01](../ontology/concept/pdca-execution-contract.md)定义的
 `C=(I,O,S,R,T,Φ,Ψ)` 边界。
 
 - 可在原 Agent 内执行，也可委派给隔离上下文的执行者或外部工具；不绑定具体宿主 API。
-- 只传 minimum sufficient context 和共享不变量，不复制父任务完整历史。
+- 它的输入是正式 Task 子图的进一步局部切片，不建立新的 ontology/task 上下文边界。
 - 父 Do 不轮询、不监工；只消费原生完成事件、固定结果或用户主动返回的结果。
 - Work Unit 若需要扩大目标、AC、写域、资源或不可逆副作用，立即停止并回到用户授权边界。
 - 数据依赖可定义阻塞边；“ready”只表示当前 Do 内可执行，不授权创建新的正式任务。
 
-不使用 LOC、预计工时或 Agent 置信度作为强制拆分阈值。详细设计见
+不使用 LOC、预计工时、token、并行度或 Agent 置信度作为正式任务拆分依据。详细设计见
 [Do 工作单元与正式节点拆分](../docs/superpowers/specs/2026-09-15-subtask-splitting-design.md)。

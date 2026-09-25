@@ -1,29 +1,36 @@
 ---
 schema: pdca.contract/v4
-protocol_revision: 4.0.0-rc.2
+protocol_revision: 4.0.0-rc.3
 authority: normative
 status: active
 ---
 
 # 本任务说明与状态索引：记录格式
 
-本契约定义该记录的 schema、字段与填写约束；以下完整 Markdown 示例是规范格式。字段中的 null、空列表及未验证状态表示尚未取得事实，不构成授权、执行成功或资源取得证明。按实际证据填写，保留原始来源与未知。
+本契约定义该记录的 schema、字段与填写约束。null、空列表和未验证状态表示事实尚未取得，
+不构成授权、执行成功或资源取得证明。
 
 ## 示例
 
 ```markdown
 ---
 schema: pdca.task/v4
-protocol_revision: 4.0.0-rc.2
+protocol_revision: 4.0.0-rc.3
 task_id: null
 attempt: null
 work_id: null
 tree_revision: null
 node_id: null
+ontology_revision: null
+ontology_object_refs: []
+root_seed_ref: null
 scene: null
 title: null
 phase: plan
 execution_state: unexecuted
+context_refs: []
+parent_seed_ref: null
+dependency_refs: []
 writer: null
 conversation_ref: null
 baseline: null
@@ -36,7 +43,16 @@ dispatch_ref: null
 
 # 本任务说明与状态索引
 
-用户问题／目标、范围／非目标、成功标准、约束、当前待确认事项。引用真实原消息，不由父Agent代定目标。
+用户问题/目标、当前 node responsibility、范围/非目标、预期 output、AC/oracle、约束与当前待确认事项。
+引用真实原消息，不由父 Agent 代定目标。
 
-phase初始plan不代表Plan已运行。每次依最后完整事件重建；阶段完成保持最后phase并置awaiting_confirmation。pending_request_ref指向具体下一动作；自身字段不产生批准。
+普通 ontology-backed task 的 `ontology_revision + node_id + scene + attempt` 是任务语义身份的一部分。
+唯一 root modeling bootstrap 在模型字段尚为空时必须设置 `root_seed_ref`；root seed 固定用户目标/范围/来源，
+不能作为 child task 的替代模型。
+
+`context_refs` 是 CONTEXT-01 选择出的具名必要输入，不是完整父上下文的快照；
+`dependency_refs` 指向固定依赖交付/接口，不指向兄弟完整活动历史。
+
+phase 初始 plan 不代表 Plan 已运行。每次依最后完整事件重建；
+阶段完成保持最后 phase 并置 awaiting_confirmation。字段本身不产生批准。
 ```

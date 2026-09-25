@@ -34,6 +34,31 @@ TARGET_ROOT/
 
 业务项目不自动生成 `.pdca/` 或独立流程记录，不接收安装器写入。公共知识、项目模型、任务记录和业务产物分别授权；集中存储与 Git 跟踪均不扩大跨项目读取或写入范围。外部已有模型可经明确采用后，以来源、版本、映射和证据集中登记。
 
+## 本体驱动的任务与上下文
+
+正式工作不是按文件数、LOC、工时、token 或“想并行”拆 Task。主链是：
+
+```text
+用户目标
+  -> root modeling bootstrap
+  -> ontology object / relation / constraint
+  -> work node
+  -> task seed
+  -> 用户创建
+  -> fresh Agent
+  -> minimum sufficient ontology subgraph
+  -> 独立 PDCA
+```
+
+首次 root modeling 是唯一允许在尚无 ontology node 时创建的 bootstrap task；它负责建立第一个 root node/revision。
+之后的正式 child、implement、verify task 都必须绑定固定 node/revision。
+
+同一个 node 在三个场景中保持语义身份：Model 定义“应该是什么”，Implement 把模型投影到真实实体，
+Verify 检查 requirement→model→implementation→behavior。正式拆分同时建立上下文边界：
+child Agent 只取得当前 node、必要关系端点、依赖交付、共享不变量和 scene 输入，不继承父/兄弟完整活动历史。
+
+Do-only Work Unit 只是正式 Task 内的局部执行切片，不产生新的 node/task，也不能替代这种正式上下文隔离。
+
 ## 阶段与场景
 
 总入口 `$pdca` 负责绑定、定位和分流，`$pdca-assist` 负责只读建议。四个阶段入口 `$pdca-plan`、`$pdca-do`、`$pdca-check`、`$pdca-act` 操作已有任务；三个本体场景入口分别提供建模、投影和符合性验证的对象与方法，完整名称见 [Skill 索引](skills/README.md)。

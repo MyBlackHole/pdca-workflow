@@ -8,7 +8,7 @@ dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
 status: active
 authority: normative
-revision: 4.0.0-rc.2
+revision: 4.0.0-rc.3
 dcterms_modified: '2026-09-25'
 summary: Plan：与你确认问题，再形成计划
 ---
@@ -30,13 +30,16 @@ AC/oracle、测试/反例、写域和停止条件。
 计划覆盖真实本体源或对应场景对象，不允许把任务名称当交付证明。
 发现目标含糊先问具体决策问题，事实性问题由 Agent 自查；不要把“知识地图”替代正式模型。
 
-执行分解先判断边界：
-- 具有独立职责、固定输入/输出、可独立拒收成果和验证边界的部分，只生成正式工作节点候选 seed；
-  是否创建由用户工作级操作决定。
-- 当前 Do 内的实现切片使用 [CONTRACT-01](../concept/pdca-execution-contract.md)
-  的 Do-only Work Unit，不创建新的 PDCA 生命周期。
+正式分解必须从当前固定 ontology/work instance 出发：
+- 先定位具名 ontology object/work instance、与当前节点的语义关系及适用 constraint；
+- 只有该候选同时满足 NODE-01 的独立职责、固定 I/O、可独立拒收成果和验证边界，才生成正式 child seed；
+- seed 必须记录来源 ontology revision、node/relation、dependency、组合责任和 CONTEXT-01 上下文边界；
+- 是否创建由用户工作级操作决定，Plan 不能直接 spawn。
 
-不使用 LOC、预计工时、模块数量或 Agent 置信度作为强制拆分阈值。
+如果只是当前 Do 的机械执行切片，使用 [CONTRACT-01](../concept/pdca-execution-contract.md)
+的 Do-only Work Unit，不创建 node/task/Agent。
+
+不使用 LOC、预计工时、模块数量、token、并行度或 Agent 置信度作为正式拆分依据。
 
 ## 完成与等待
 

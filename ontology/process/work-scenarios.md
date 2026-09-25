@@ -8,9 +8,9 @@ dcterms_license: CC-BY-4.0
 dcterms_created: '2026-09-12'
 status: active
 authority: normative
-revision: 4.0.0-rc.2
-dcterms_modified: '2026-09-14'
-summary: SCENE-01：本体源—投影—符合性，场景间也等用户
+revision: 4.0.0-rc.3
+dcterms_modified: '2026-09-25'
+summary: SCENE-01：同一本体工作节点依次建模、实现投影、验证实现
 scene_ids:
 - pdca-model
 - pdca-implement
@@ -18,32 +18,100 @@ scene_ids:
 scene_start_policy: explicit_user_operation
 ---
 
-# SCENE-01：本体源—投影—符合性，场景间也等用户
+# SCENE-01：Model → Implement → Verify
 
-三个场景固定为pdca-model、pdca-implement、pdca-verify。每个场景的每个正式节点都是独立任务，自己的Agent执行四阶段；不能用三个场景冒充Plan/Do/Check。
+三个场景固定为 `pdca-model`、`pdca-implement`、`pdca-verify`。
+它们描述同一个 ontology-backed work node 的三种工作对象，不是 Plan/Do/Check 的别名。
 
-## pdca-model
+```text
+user requirement
+      -> pdca-model
+      -> fixed ontology node / relation / constraint
+      -> pdca-implement
+      -> real projected entity + mapping
+      -> pdca-verify
+      -> requirement -> model -> implementation -> behavior evidence
+```
 
-输入用户确认目标、固定事实来源与复用定义。Do建立领域本体源及工作实例：对象id、属性语义、关系端点／含义、约束与不变量、适用实例或理由、来源和未知。保存在集中PDCA_ROOT/ontology/projects/<project>/works/<work>/<revision>或明确采用的已有模型位置，不以任务日志、七份知识文档或只含调度节点的树自动替代。
+每个正式 node/scene 都是独立 task，使用自己的 fresh Agent 和 CONTEXT-01 选择出的 minimum sufficient subgraph；
+同一 task 内仍由原 Agent 完成 Plan→Do→Check→Act。
 
-Check对照原需求、定义与来源验证覆盖和约束，既检查结构也检查语义；没有模型就记录缺失，不能重解释场景名使其通过。模型可以Markdown+frontmatter，不强制YAML文件或专用生成器。复用也要有固定定义、采用依据和实际实例。
+## 跨场景身份
 
-Act在批准范围内固定model release／节点seed及场景覆盖；本地完成、整树冻结和知识发布分开。提出后续任务建议，**不自动启动孩子或projection**。
+同一个 work node 在三个场景中保持：
 
-## pdca-implement
+- 相同 `work_id/node_id`；
+- 可追溯的 ontology revision；
+- 相同 responsibility 与核心 relation/constraint；
+- scene-specific 输入/输出与 AC。
 
-输入固定且获准采用的模型版本、工作目标与投影规则。Do生成代码、文档、配置或其他真实实体；记录每项需求／模型对象／约束对应哪个目标位置、如何映射和如何验证。可由Agent写，也可工具生成；必须忠实映射，不禁止合理人工写作。
+Implement/Verify 不得静默修改 node responsibility、composition 或 ontology meaning。
+模型缺失或错误时停止并提出 modeling/新 revision，而不是在实现/验证场景重新拆一棵任务树。
 
-Check既检查source→target遗漏，也检查target→source无依据增加，并运行所需业务测试。仅有目标文件而没有模型源／映射不足以称投影完成；纯hash和链接不证明行为。
+## pdca-model：定义“应该是什么”
 
-Act固定目标release和映射，未运行verification仍标not_run，不自动进入第三场景。
+输入用户目标、固定事实来源和已采用定义。
+Do 建立领域 ontology 及当前 work instance：
 
-## pdca-verify
+- objects/entities；
+- attributes；
+- semantic relations；
+- constraints/invariants；
+- requirement coverage；
+- work node candidates；
+- composition relation；
+- dependency relation candidates；
+- current node / direct child seed / leaf reason。
 
-用户显式启动新的独立审查任务，读取原需求、同版本模型、固定投影及实际证据。分别判断需求→模型、模型→投影、产物→行为；不允许错误模型与错误投影互相证明。
+正式 child seed 必须按 TREE-01 / NODE-01 / DECOMP-01 从模型关系产生，
+不能由代码结构、LOC、token 或并行需求反推一个“模型节点”。
 
-审查Agent不修改被审业务产物或oracle。Plan固定验证问题和标准；Do实施检查并产生报告；本任务Check核验这些检查是否实际发生、覆盖是否足够以及结论是否被证据支持，不递归再建审查Agent。Check报告pass/fail/unknown及证据和反证；原始命令失败不等于对象失败，未检查不等于通过。Act由用户选择接受、仅归档或提出返工／发布；真实违例不能被认可消息覆盖。
+Check 对照原需求、事实来源和反例验证模型覆盖、关系含义和约束可检验性。
+Act 只按批准范围固定 ontology revision / work tree / node seed；不自动创建孩子或启动 implement。
+
+## pdca-implement：把模型投影成真实实体
+
+输入当前 `node_id`、固定 ontology revision、CONTEXT-01 子图、目标位置和 mapping rules。
+Do 生成代码、文档、配置、数据结构或其他真实实体，并记录：
+
+```text
+ontology object / relation / constraint
+            -> implementation target
+            -> projection rule
+            -> verification signal
+```
+
+Implement 只实现当前 node 的责任和允许写域。
+已有模型中的正式 child 由自己的 task/Agent 实现；当前 task 不把兄弟/孩子完整上下文吸入父任务。
+
+如果 Do 内需要局部拆执行，可以使用 Work Unit；Work Unit 不创造 node_id 或正式 child。
+发现新的独立 ontology responsibility 时停止扩张，回到 modeling/decomposition。
+
+Check 双向检查 source→target 遗漏与 target→source 无模型依据增加，并运行必要产品验证。
+Act 固定 implementation release/mapping；未运行 pdca-verify 时仍为 not_run。
+
+## pdca-verify：验证实现是否忠实于模型和需求
+
+用户显式启动新的独立 verify task。
+它绑定与被审实现相同的 `work_id/node_id` 和固定 ontology revision，只读取该节点所需的最小子图、
+固定 implementation/mapping 以及行为证据。
+
+验证链：
+
+1. requirement → model：需求是否被该节点模型覆盖；
+2. model → implementation：object/relation/constraint 是否被忠实投影；
+3. implementation → behavior：实际行为是否满足模型和需求；
+4. composition/dependency：当前节点与必要邻接节点的固定接口是否一致。
+
+错误模型和错误实现不能互相证明。审查 Agent 不修改被审业务对象或 oracle。
+Plan 固定验证问题和标准；Do 实施核验；Check 使用 AI 四遍审查验证核验本身；
+Act 由用户选择接受、失败归档、返工或获准发布。
 
 ## 覆盖与依赖
 
-N节点首次完整三场景需要3N任务覆盖；未获准或未运行明确not_run，不自动创建来凑数量。内部节点要验证实际组合。失败任务可诚实收尾，不能让delivery_usable=true掩盖模型／产物缺失。每次启动既需要输入ready，也需要具体用户操作。
+工作树定义 composition，DEPENDENCY-01 定义真实输入/产物依赖。
+CONTEXT-01 根据二者只选择当前 task 必需的本体子图，不继承其他 Agent 活动历史。
+
+一个 node 的 modeling 完成不表示 implement/verify 已完成；
+一个 child 完成不表示 parent 组合自动成立；所有未获准或未运行场景明确 not_run。
+输入 ready 只产生可启动建议，仍需要用户具体操作。

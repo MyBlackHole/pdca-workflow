@@ -6,6 +6,15 @@
 
 [ontology/INDEX.md](ontology/INDEX.md) 是当前 authority 的定位索引，[ontology/LOAD-MAP.md](ontology/LOAD-MAP.md) 定义 AI 按事件最小读取的方法。domain/entity/pattern 等参考知识不能因路径、链接或 authority 字段自动进入任务，必须按 REUSE/ADOPT 固定采用。
 
+## 任务结构不变量
+
+除唯一 root modeling bootstrap 外，正式 Task 必须来源于固定 ontology/work node 及语义关系。
+Task 创建后使用 fresh Agent，并由 CONTEXT-01 从该 node 选择 minimum sufficient ontology subgraph；
+父/兄弟完整 conversation、未采用 reference 和无关 ontology 分支默认不得传入。
+
+Model 定义 node/relation/constraint，Implement 投影同一 node，Verify 验证同一 node 的实现。
+Do-only Work Unit 只属于现有 Task 的 Do，不能创建正式 node/task 或替代 fresh-context 隔离。
+
 ## 审查原则
 
 维护 PDCA 本身时，不创建 Python/Shell 等项目专用 semantic validator 来重新编码 PDCA 规则。

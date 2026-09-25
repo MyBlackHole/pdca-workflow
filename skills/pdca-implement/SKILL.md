@@ -1,59 +1,64 @@
 ---
 name: pdca-implement
-description: 用户明确选择本体投影场景，或已有投影任务需要场景方法时使用。不脱离模型。
+description: 用户明确选择本体投影场景，或已有投影任务需要场景方法时使用。只实现固定本体节点，不重新发明任务树。
 metadata:
   version: 5.0.0-rc.2
 ---
 
-# 本体投影
+# 本体投影：把固定节点实现为真实实体
 
 ## 先定位，不以加载当授权
 
-核对本文件经符号链接解析后的真实路径，定位集中 Git 工作副本 **PDCA_ROOT**。
-既有任务绑定优先于 cwd 或环境变量；与入口所在根冲突时停止，不在目标项目创建 `.pdca/`
-或另一份 records。定位不等于批准业务操作。
+定位 **PDCA_ROOT** 和原 task/Agent；已有绑定优先于 cwd/环境变量。
+先读[共同恢复入口](../../ontology/contracts/entry-recovery.md)并核对当前 user operation、node、ontology revision、
+Plan/AC、写域和依赖。当前会话不是该任务执行者时只路由回原 Agent，不接管。
 
-先读[共同恢复入口](../../ontology/contracts/entry-recovery.md)，再读当前绑定项目 context、
-自己的 task/原 Agent 绑定、最后完整事件和当前请求。核对记录的
-`rules_git_head`/`rules_git_status`；每次获准写入记录前按共同入口重新采集当前 Git 来源。
-已有任务不自动改绑或升级规则，原依据缺失或规则冲突时停止；不复制规则、不自动 checkout。
+## 场景身份
 
-## 两种读取方式，禁止递归创建
+Implement task 必须已经绑定：
 
-- **用户选择场景入口**：先定位具名 work/node/scene。已有该场景任务就回原 Agent；
-  没有任务时只提出范围、输入、交付和创建请求，用户明确批准后按
-  [派发入口](../../ontology/contracts/agent-dispatch.md)创建独立可交互任务。
-  创建成功后任务 Agent 先展示 Plan 目标并等待，不连续跑四阶段。
-- **已有阶段任务读取方法**：核对 task.scene 匹配后，只读下面的阶段方法。
-  **不要再次触发创建**/选择分支，不调用总入口生成另一个任务。
+- `work_id/node_id`；
+- 固定 ontology revision；
+- 当前 node responsibility / I/O / constraints；
+- [CONTEXT-01](../../ontology/process/select-task-subgraph.md) 选择出的最小本体子图；
+- 当前 scene 的目标写域与 mapping rules。
 
-一个正式场景节点是独立完整 PDCA，同一任务四阶段由原 Agent/会话执行。
-阶段完成报告后等待，不自动开始下阶段或下一场景。
+没有这些固定模型输入时，不能用“实现过程中顺便补模型”继续。
 
-## 假设反馈与失效传播
+## 投影
 
-反馈类型为 validated/invalidated/revised/pending；置信度必须由证据支持。
-本体实质变化产生新 `ontology_revision`，旧 PASS 不得静默迁移；
-直接修改节点及真实依赖节点按规则标 stale。详细规则见
-[设计文档](../../docs/superpowers/specs/2026-09-14-ontology-tree-agent-design-goals.md)。
+Do 将当前节点模型投影为真实代码、文档、配置、schema 或其他实体，并保存：
+
+```text
+ontology object / relation / constraint
+              -> target location
+              -> projection rule
+              -> evidence / verification signal
+```
+
+只实现当前 node 的职责。兄弟/孩子正式节点由各自 task/Agent 处理；
+组合时只读取其固定 deliverable/interface，不吸收完整活动历史。
+
+## Work Unit
+
+Work Unit 只用于当前正式 task 的 Do 内部局部执行、隔离分析或工具调用。
+它是当前 CONTEXT-01 子图的进一步切片：
+
+- 不创建 node_id；
+- 不创建正式 child task；
+- 不拥有新的 ontology responsibility；
+- 不扩大父 task 的 context/authority。
+
+如果执行发现新的独立 ontology object/responsibility、关系或约束缺口，
+停止当前扩张并提出 pdca-model / DECOMP 候选。
 
 ## 阶段方法
 
 | 阶段 | 动作与交付 |
 |---|---|
-| Plan | 固定获准模型版本、原需求、目标位置、映射规则、验收标准、业务写域，并区分正式节点与 Do-only Work Unit |
-| Do | 生成真实代码、文档、配置等实体；记录模型→目标映射、假设反馈和证据；执行切片使用 Work Unit Contract，不隐藏创建新 PDCA |
-| Check | 双向检查 source→target 遗漏、target→source 无依据增加，并运行产品级验证 |
-| Act | 固定目标版本、映射、实际验证范围和缺项 |
+| Plan | 固定 node/revision、最小 context refs、目标位置、mapping、AC、业务写域和必要依赖 |
+| Do | 投影真实实体，保存 model→target mapping、实际操作和证据；局部切片可用 Work Unit |
+| Check | 检查 source→target 遗漏、target→source 无模型依据增加、接口/约束和必要产品行为 |
+| Act | 固定 implementation version、mapping、证据与未验证范围 |
 
-**分解规则：** 不用 LOC、预计工时或 Agent 置信度作为硬阈值。
-具有独立可拒收成果和验证边界的部分，按
-[DECOMP-01](../../ontology/concept/task-decomposition.md)生成正式节点候选并等待用户创建；
-其余执行切片留在当前 Do，使用
-[CONTRACT-01](../../ontology/concept/pdca-execution-contract.md) 的 Do-only Work Unit。
-详细设计见[Do 工作单元与正式节点拆分](../../docs/superpowers/specs/2026-09-15-subtask-splitting-design.md)。
-
-**棘轮规则：** 投影发现模型缺失或根本错误时，报告阻断并由用户决定是否启动 pdca-model；
-不能在当前投影任务中静默改 scene 或跳过建模。
-
-详细规则见[设计文档](../../docs/superpowers/specs/2026-09-14-ontology-tree-agent-design-goals.md)。
+模型缺失或根本错误时报告阻断，由用户决定新的 modeling 工作；不能静默改 scene 或重定义 node。

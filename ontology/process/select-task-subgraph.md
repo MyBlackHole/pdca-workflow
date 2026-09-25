@@ -6,30 +6,103 @@ semantic_kind: class
 layer: Knowledge
 status: active
 authority: normative
-revision: 4.0.0-rc.3
+revision: 4.0.0-rc.4
 dcterms_modified: '2026-09-25'
-summary: CONTEXT-01：只读当前动作需要的事实
+summary: CONTEXT-01：按本体关系选择任务最小必要子图，隔离父兄弟活动上下文
 ---
 
-# CONTEXT-01：只读当前动作需要的事实
+# CONTEXT-01：从本体图选择任务最小必要子图
 
-每次从集中 records 中的具名项目 context、自己的 task/事件/请求开始；按目标阶段读方法，
-按 SCENE 读产物规则，遇到能力、资源、恢复事件再读对应权威。
-相同规则版本已读可复用，可变任务状态和用户操作必须重核。
+Task 上下文不是“父 Agent 已经知道的所有东西”，而是围绕当前 `node_id`
+从固定 ontology/work graph 中选择的 **minimum sufficient subgraph**。
 
-不递归加载全 ontology、legacy、所有模板或兄弟记录。
-**全局 Skill 九入口**只作运行方法选择，阶段入口不换执行者；读取场景方法不重新创建场景任务。
-同仓库未列入 `skills/catalog.json` 的工程参考 Skill 不属于全局运行入口。
+这个子图选择是正式任务上下文隔离的主要机制；摘要压缩、token 截断和 Do-only Work Unit
+不能替代它。
 
-集中资源冲突查询只需作用域及 owner 等最小元数据，不需要其他任务完整会话。
-任务输入显式列公共规则、需求、定义、产物和来源；参考资产先做适用性核验，
-不把旧 normative 字段当当前授权。关系存在不代表必须追读整图。
+## 根 modeling bootstrap
 
-Do-only Work Unit 只读取其 Contract 声明的 minimum sufficient context 与共享不变量，
-不继承父任务或兄弟 Work Unit 的完整活动历史。
+第一个 root modeling task 尚未有 ontology subgraph。它的最小上下文只来自：
+用户确认的 root goal seed、允许的事实来源、明确采用的复用定义、当前 modeling/PDCA authority、
+项目绑定与创建授权。
 
-压缩摘要只留项目/task/attempt/Agent 绑定、当前阶段、固定对象指针、当前 Work Unit Contract、
-未决操作与待用户事项。恢复读取原始记录，不能只信摘要；缺必要内容阻断，不重新解释目标。
+它不得为了“先了解项目”默认读取整个 ontology/source/history。
+当 root modeling Act 固定 root node/revision 后，后续 child/implement/verify 全部使用下面的正常子图规则。
 
-评估上下文成本需含初次、重复读取、恢复重查与返工，不以字数减少宣称效果。
-独立输入不等于禁止共享固定允许的模型，但禁止未选择的活动对话和共享记忆。
+## 选择锚点
+
+对于已经 ontology-backed 的 task，从当前 task 已固定的：
+
+- project/work；
+- ontology revision；
+- tree revision；
+- node_id；
+- scene；
+- parent seed；
+- dependency refs；
+- Plan/AC/oracle
+
+开始选择，不从父 conversation 开始。
+
+## 必须包含
+
+按实际关系加入：
+
+1. **current node**：节点定义、work instance、responsibility、I/O、constraints、AC；
+2. **parent boundary**：理解当前职责所需的直接 parent seed、composition relation、共享接口；
+3. **required relation endpoints**：当前 node 的输入/输出/约束语义无法解释时所需的具名端点；
+4. **dependency deliverables**：DEPENDENCY-01 中当前 task 真正消费的固定产物/interface/version；
+5. **shared invariants**：明确适用于当前 node 的跨节点约束；
+6. **original requirements**：当前 node/scene 需要覆盖的用户需求及其来源；
+7. **scene inputs**：
+   - model：事实来源、复用定义、当前工作实例边界；
+   - implement：固定 model revision、mapping rules、目标写域；
+   - verify：原需求、同 revision model、固定 implementation/mapping、行为证据；
+8. **当前事件 authority**：按 LOAD-MAP 追加的 phase/scene/资源/恢复规则。
+
+## 默认排除
+
+除非当前节点能指出具体需要，否则不加入：
+
+- 整个 ontology；
+- 整个 source tree；
+- 父 Agent 完整 conversation；
+- 兄弟任务 Plan/Do/Check/Act 活动历史；
+- sibling 的临时假设、调试日志和思考过程；
+- unrelated ontology branches；
+- 未经 REUSE/ADOPT 的 reference；
+- “以后也许有用”的历史材料。
+
+关系存在也不意味着必须追读关系另一端的全部内容；只读取完成当前语义所需的最小端点定义或固定交付。
+
+## 子图如何落地
+
+不新增 `subgraph.json`、ContextManifest 或另一套 schema。
+选择结果直接以现有记录中的固定 refs 表达：
+
+- task：node / ontology / scene 身份；
+- assignment：传给 Agent 的 input/definition/context refs；
+- baseline：Plan 固定的 input/definition refs；
+- evidence：实际核验对象和来源。
+
+每个 ref 应能定位固定版本/摘要及角色。无法说明用途的 ref 不应默认传入。
+
+## 新信息与扩张
+
+执行中如果发现缺少信息：
+
+- 若只是当前 node 已有关系的必要端点，在原授权读域内补充具名 ref；
+- 若暴露新的 ontology responsibility、未建模实体或新的跨节点义务，停止当前扩张，
+  回到 modeling / DECOMP-01 形成候选，而不是把整个上下文扩大；
+- 若输入变化使 task 身份/AC失效，按当前 PDCA 规则重新沟通。
+
+## Work Unit
+
+Do-only Work Unit 的 context 是当前正式 task 子图的**进一步局部切片**。
+它不能反过来定义正式 task 边界，也不能从父任务之外偷偷继承更多上下文。
+
+## 恢复
+
+压缩摘要只保存 task/attempt/Agent、当前 phase、固定 ontology/node/context refs、
+未决 operation 和待用户事项。恢复时重新读取原始 refs 和当前状态，不能只信摘要。
+
+上下文质量以“是否足以完成当前节点且没有引入无关活动历史”判断，不以 token 数字越少越好。
