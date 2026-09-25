@@ -9,38 +9,51 @@ metadata:
 
 ## 先定位，不以加载当授权
 
-核对本文件经符号链接解析后的真实路径，定位集中 Git 工作副本 **PDCA_ROOT**。既有任务绑定优先于 cwd 或环境变量；与入口所在根冲突时停止，不在目标项目创建 `.pdca/` 或另一份 records。定位不等于批准业务操作。
+核对本文件经符号链接解析后的真实路径，定位集中 Git 工作副本 **PDCA_ROOT**。
+既有任务绑定优先于 cwd 或环境变量；与入口所在根冲突时停止，不在目标项目创建 `.pdca/`
+或另一份 records。定位不等于批准业务操作。
 
-先读[共同恢复入口](../../ontology/contracts/entry-recovery.md)，再读当前绑定项目 context、自己的 task/原 Agent 绑定、最后完整事件和当前请求。核对记录的 `rules_git_head`/`rules_git_status`；每次获准写入记录前按共同入口重新采集当前 Git 来源。已有任务不自动改绑或升级规则，原依据缺失或规则冲突时停止；不复制规则、不自动 checkout，不以新规则改写原授权。
+先读[共同恢复入口](../../ontology/contracts/entry-recovery.md)，再读当前绑定项目 context、
+自己的 task/原 Agent 绑定、最后完整事件和当前请求。核对记录的
+`rules_git_head`/`rules_git_status`；每次获准写入记录前按共同入口重新采集当前 Git 来源。
+已有任务不自动改绑或升级规则，原依据缺失或规则冲突时停止；不复制规则、不自动 checkout。
 
 ## 两种读取方式，禁止递归创建
 
-- **用户选择场景入口**：先定位具名work/node/scene。已有该场景任务就回原Agent；没有任务时只提出范围、输入、交付和创建请求，用户明确批准后按[派发入口](../../ontology/contracts/agent-dispatch.md)创建独立可交互任务。创建成功还须由任务Agent展示Plan目标并等待启动，不连续跑四阶段。
-- **已有阶段任务读取方法**：核对 task.scene 匹配后，只读下面的阶段方法。不要再次触发创建/选择分支，不调用总入口生成另一个任务。场景不匹配就停止，不能静默更改scene。
+- **用户选择场景入口**：先定位具名 work/node/scene。已有该场景任务就回原 Agent；
+  没有任务时只提出范围、输入、交付和创建请求，用户明确批准后按
+  [派发入口](../../ontology/contracts/agent-dispatch.md)创建独立可交互任务。
+  创建成功后任务 Agent 先展示 Plan 目标并等待，不连续跑四阶段。
+- **已有阶段任务读取方法**：核对 task.scene 匹配后，只读下面的阶段方法。
+  **不要再次触发创建**/选择分支，不调用总入口生成另一个任务。
 
-一个场景里的每个节点都是独立完整PDCA，同一任务四阶段由原Agent/会话执行；场景Skill不是一个阶段，也不是额外Agent。所有过程记录和资源回到同一PDCA_ROOT，各任务只读获准输入、不共享活动历史。阶段完成报告后等待，不自动开始下阶段或下一场景。
+一个正式场景节点是独立完整 PDCA，同一任务四阶段由原 Agent/会话执行。
+阶段完成报告后等待，不自动开始下阶段或下一场景。
 
-## 假设反馈
+## 假设反馈与失效传播
 
-- **反馈类型**：validated/invalidated/revised/pending
-- **置信度更新**：有证据支持，有计算过程
-- **置信度传递**：子节点验证后的置信度传递给父节点，父节点使用验证后置信度作为初始值并重新验证
-
-## 本体变更与失效传播
-
-本体发生实质变化时产生新 `ontology_revision`，旧 PASS 不得静默迁移到新本体。变更传播规则：直接修改节点标为 `stale`，依赖节点标为 `stale`，必需子节点为 `stale` 时父节点不得保持 `verified`。详细规则见[设计文档](../../docs/superpowers/specs/2026-09-14-ontology-tree-agent-design-goals.md#本体变更与失效传播)。
+反馈类型为 validated/invalidated/revised/pending；置信度必须由证据支持。
+本体实质变化产生新 `ontology_revision`，旧 PASS 不得静默迁移；
+直接修改节点及真实依赖节点按规则标 stale。详细规则见
+[设计文档](../../docs/superpowers/specs/2026-09-14-ontology-tree-agent-design-goals.md)。
 
 ## 阶段方法
 
 | 阶段 | 动作与交付 |
 |---|---|
-| Plan | 固定已获准采用的模型版本、原需求、目标类型/位置、映射规则、验收标准和业务写域 |
-| Do | 生成代码、文档、配置等真实实体；记录假设反馈和置信度变化；**当任务过大时，建议拆分并等待用户批准** |
-| Check | 双向检查源到目标遗漏、目标到源无依据增加；执行产品测试 |
+| Plan | 固定获准模型版本、原需求、目标位置、映射规则、验收标准、业务写域，并区分正式节点与 Do-only Work Unit |
+| Do | 生成真实代码、文档、配置等实体；记录模型→目标映射、假设反馈和证据；执行切片使用 Work Unit Contract，不隐藏创建新 PDCA |
+| Check | 双向检查 source→target 遗漏、target→source 无依据增加，并运行产品级验证 |
 | Act | 固定目标版本、映射、实际验证范围和缺项 |
 
-**子任务拆分**：当任务代码规模 > 500 LOC、预计时间 > 40 小时或 Agent 置信度 < 0.7 时，建议拆分。拆分需用户批准，每个子任务对应独立 Agent 和独立 PDCA。详细规则见[子任务拆分详细设计](../../docs/superpowers/specs/2026-09-15-subtask-splitting-design.md)。
+**分解规则：** 不用 LOC、预计工时或 Agent 置信度作为硬阈值。
+具有独立可拒收成果和验证边界的部分，按
+[DECOMP-01](../../ontology/concept/task-decomposition.md)生成正式节点候选并等待用户创建；
+其余执行切片留在当前 Do，使用
+[CONTRACT-01](../../ontology/concept/pdca-execution-contract.md) 的 Do-only Work Unit。
+详细设计见[Do 工作单元与正式节点拆分](../../docs/superpowers/specs/2026-09-15-subtask-splitting-design.md)。
 
-**棘轮规则：** 投影只前进不后退。发现需要先建模时，升级到 pdca-model 场景；不降级跳过必要的建模步骤。
+**棘轮规则：** 投影发现模型缺失或根本错误时，报告阻断并由用户决定是否启动 pdca-model；
+不能在当前投影任务中静默改 scene 或跳过建模。
 
 详细规则见[设计文档](../../docs/superpowers/specs/2026-09-14-ontology-tree-agent-design-goals.md)。

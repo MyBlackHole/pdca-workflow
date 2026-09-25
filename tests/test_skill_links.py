@@ -278,5 +278,66 @@ class SafetyDefinitionTests(unittest.TestCase):
         self.assertIn('递归创建', content)
 
 
+    def test_installer_discovery_surface_matches_catalog(self):
+        catalog = json.loads((ROOT / 'skills/catalog.json').read_text())
+        expected = {entry['name'] for entry in catalog['skills']}
+        install = (ROOT / 'install.sh').read_text()
+        match = re.search(r"runtime_skills='([^']+)'", install)
+        self.assertIsNotNone(match, 'installer must declare explicit runtime skills')
+        self.assertEqual(set(match.group(1).split()), expected)
+        self.assertNotIn('ln -sT "$pdca_root/skills" "$skills_dir"', install)
+        self.assertIn('skills_dir_preexisting', install)
+
+    def test_do_only_work_unit_contract_is_bounded_execution(self):
+        contract = (ROOT / 'ontology/concept/pdca-execution-contract.md').read_text()
+        for requirement in (
+            'Do-only Work Unit', 'C=(I,O,S,R,T,Φ,Ψ)', 'minimum sufficient context',
+            'contract_id', 'termination', 'completion', 'outputs', 'evidence',
+            'claims', 'limitations', '不轮询、不监工',
+        ):
+            with self.subTest(requirement=requirement):
+                self.assertIn(requirement, contract)
+
+        do_skill = (ROOT / 'skills/pdca-do/SKILL.md').read_text()
+        for requirement in (
+            'Do-only Work Unit', 'C=(I,O,S,R,T,Φ,Ψ)', 'inline', 'delegated',
+            'external', 'minimum sufficient context', '不轮询、不监工',
+            '不维护子执行者生命周期',
+        ):
+            with self.subTest(do_requirement=requirement):
+                self.assertIn(requirement, do_skill)
+
+    def test_runtime_decomposition_has_no_numeric_split_thresholds(self):
+        paths = (
+            'skills/README.md',
+            'skills/pdca-plan/SKILL.md',
+            'skills/pdca-do/SKILL.md',
+            'skills/pdca-implement/SKILL.md',
+            'ontology/concept/task-decomposition.md',
+            'ontology/concept/pdca-execution-contract.md',
+        )
+        forbidden = ('> 500 LOC', '> 40 小时', '> 8 小时', '置信度 < 0.7')
+        for relative in paths:
+            content = (ROOT / relative).read_text()
+            for marker in forbidden:
+                with self.subTest(document=relative, marker=marker):
+                    self.assertNotIn(marker, content)
+
+    def test_plan_completion_requires_a_new_user_operation_for_do(self):
+        flow = (ROOT / 'ontology/process/flow-plan.md').read_text()
+        plan = (ROOT / 'skills/pdca-plan/SKILL.md').read_text()
+        self.assertIn('phase_completed', flow)
+        self.assertIn('之后的新用户操作', flow)
+        self.assertIn('future blanket approval', flow)
+        self.assertIn('之后的新用户操作', plan)
+        self.assertIn('future blanket approval', plan)
+
+    def test_context_index_names_nine_runtime_entries(self):
+        content = (ROOT / 'ontology/process/select-task-subgraph.md').read_text()
+        self.assertIn('全局 Skill 九入口', content)
+        self.assertNotIn('全局Skill八入口', content)
+        self.assertIn('skills/catalog.json', content)
+
+
 if __name__ == '__main__':
     unittest.main()
