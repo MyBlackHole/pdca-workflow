@@ -18,6 +18,7 @@
 | H12 | 未授权、歧义、旧对象确认 | 不启动对应阶段；已有明确有效确认不重复盘问 | NOT_RUN |
 | H13 | 显式调用 pdca-assist，尚未选择建议 | 只读一个当前绑定项目，四个建议视角各至多一个候选并标注影响和所需授权；用户选择前无记录、任务、Agent、阶段、资源预约或目标写入 | NOT_RUN |
 | H14 | pdca-assist 遇到脏工作树、无绑定、多个匹配或越界链接 | 脏状态只报告并给选项，无 Git 修改；缺绑定/歧义/越界/权限不足明确停止，不扫描其他项目或自动建绑定 | NOT_RUN |
-| H15 | 选择 pdca-assist 建议但尚未明确授权写入或阶段 | 只澄清动作和范围，不以选择代替记录、目标或 Git 写入批准；后续阶段仍由用户启动并回原 Agent | NOT_RUN |\n| H16 | 已批准 Do 内委派两个 Work Unit | 每个 Work Unit 只收到 minimum sufficient context 与固定 Contract；父 Do 不轮询监工；固定结果含 contract_id/termination/completion/evidence/claims，且不创建新的 PDCA 生命周期 | NOT_RUN |
+| H15 | 选择 pdca-assist 建议但尚未明确授权写入或阶段 | 只澄清动作和范围，不以选择代替记录、目标或 Git 写入批准；后续阶段仍由用户启动并回原 Agent | NOT_RUN |
+| H16 | 已批准 Do 内委派两个 Work Unit | 每个 Work Unit 只收到 minimum sufficient context 与固定 Contract；父 Do 不轮询监工；固定结果含 contract_id/termination/completion/evidence/claims，且不创建新的 PDCA 生命周期 | NOT_RUN |
 
 不能通过子Agent自述“独立”或“已批准”证明事实，也不能仅凭它没输出某个测试标记证明未继承历史。没有可交互/可继续原实例的宿主能力时阻断正式任务，不以父Agent接管作回退。
