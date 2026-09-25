@@ -49,8 +49,9 @@ Work Unit 只用于当前正式 task 的 Do 内部局部执行、隔离分析或
 - 不拥有新的 ontology responsibility；
 - 不扩大父 task 的 context/authority。
 
-如果执行发现新的独立 ontology object/responsibility、关系或约束缺口，
-停止当前扩张并提出 pdca-model / DECOMP 候选。
+Work Unit 发现模型缺口时把证据交回原任务，由
+[EVOLVE-01](../../ontology/concept/ontology-evolution.md) 判断受影响动作；
+不因每个新关系端点自动转场，也不以局部执行名义修补固定模型或扩大职责。
 
 ## 阶段方法
 
@@ -61,4 +62,5 @@ Work Unit 只用于当前正式 task 的 Do 内部局部执行、隔离分析或
 | Check | 检查 source→target 遗漏、target→source 无模型依据增加、接口/约束和必要产品行为 |
 | Act | 固定 implementation version、mapping、证据与未验证范围 |
 
-模型缺失或根本错误时报告阻断，由用户决定新的 modeling 工作；不能静默改 scene 或重定义 node。
+模型缺失或错误时停止依赖错误模型的实施，仍可按 CONTEXT-01 在原授权读域核实并在获准记录区报告。
+修订建议不是新模型的编写或采用；需要 modeling 时由用户决定，不能静默改 scene 或重定义 node。

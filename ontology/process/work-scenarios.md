@@ -8,7 +8,7 @@ dcterms_license: CC-BY-4.0
 dcterms_created: '2026-09-12'
 status: active
 authority: normative
-revision: 4.0.0-rc.3
+revision: 4.0.0-rc.4
 dcterms_modified: '2026-09-25'
 summary: SCENE-01：同一本体工作节点依次建模、实现投影、验证实现
 scene_ids:
@@ -46,7 +46,8 @@ user requirement
 - scene-specific 输入/输出与 AC。
 
 Implement/Verify 不得静默修改 node responsibility、composition 或 ontology meaning。
-模型缺失或错误时停止并提出 modeling/新 revision，而不是在实现/验证场景重新拆一棵任务树。
+模型缺失或错误时按 [EVOLVE-01](../concept/ontology-evolution.md) 处置：停止依赖错误模型的实施，
+在原授权范围内继续核实、报告；不在实现/验证场景修补模型或重新拆一棵任务树。
 
 ## pdca-model：定义“应该是什么”
 
@@ -66,8 +67,9 @@ Do 建立领域 ontology 及当前 work instance：
 正式 child seed 必须按 TREE-01 / NODE-01 / DECOMP-01 从模型关系产生，
 不能由代码结构、LOC、token 或并行需求反推一个“模型节点”。
 
-Check 对照原需求、事实来源和反例验证模型覆盖、关系含义和约束可检验性。
-Act 只按批准范围固定 ontology revision / work tree / node seed；不自动创建孩子或启动 implement。
+modeling Do 的内部细化、职责变更与 M1→M2 关系由 EVOLVE-01 定义；输入版本固定不等于禁止产生新候选。
+Check 对照原需求、固定输入、变化差量和反例验证候选模型覆盖、关系含义和约束可检验性。
+Act 只按批准范围固定 ontology revision / work tree / node seed；不自动采用到其他任务、创建孩子或启动 implement。
 
 ## pdca-implement：把模型投影成真实实体
 
@@ -85,7 +87,7 @@ Implement 只实现当前 node 的责任和允许写域。
 已有模型中的正式 child 由自己的 task/Agent 实现；当前 task 不把兄弟/孩子完整上下文吸入父任务。
 
 如果 Do 内需要局部拆执行，可以使用 Work Unit；Work Unit 不创造 node_id 或正式 child。
-发现新的独立 ontology responsibility 时停止扩张，回到 modeling/decomposition。
+发现新的独立职责时按 EVOLVE-01 报告并停止受影响的扩张；不自动切换 modeling 或派发任务。
 
 Check 双向检查 source→target 遗漏与 target→source 无模型依据增加，并运行必要产品验证。
 Act 固定 implementation release/mapping；未运行 pdca-verify 时仍为 not_run。
@@ -93,8 +95,9 @@ Act 固定 implementation release/mapping；未运行 pdca-verify 时仍为 not_
 ## pdca-verify：验证实现是否忠实于模型和需求
 
 用户显式启动新的独立 verify task。
-它绑定与被审实现相同的 `work_id/node_id` 和固定 ontology revision，只读取该节点所需的最小子图、
-固定 implementation/mapping 以及行为证据。
+它绑定与被审实现相同的 `work_id/node_id` 和固定 ontology revision，初始读取必要子图、
+固定 implementation/mapping 以及行为证据；按 CONTEXT-01 在获准读域寻找模型未表达的关系和反证，
+不扩大写域、不替换固定输入，也不把待核实资料自动采用为权威。
 
 验证链：
 
