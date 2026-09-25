@@ -84,9 +84,15 @@ Work Unit 可有数据依赖和阻塞边；ready 只意味着在**当前已批�
 
 ## 正式工作节点不是 Work Unit
 
-具有独立职责、固定输入/输出、可独立拒收成果和验证边界的工作，应按
-[DECOMP-01](task-decomposition.md)成为正式节点候选。用户批准创建后，
-它拥有独立 Agent 与完整 Plan→Do→Check→Act；不能把它伪装成 Work Unit 绕过阶段授权。
+正式节点首先必须来自固定 ontology/work instance 中的具名 object/node 与语义关系，
+再按 [NODE-01](work-node-contract.md) / [DECOMP-01](task-decomposition.md)
+验证独立职责、固定 I/O、可独立拒收成果和验证边界。
+用户批准创建后，它绑定 node_id/ontology revision，由 fresh Agent 使用
+[CONTEXT-01](../process/select-task-subgraph.md) 选择出的 minimum sufficient subgraph
+执行完整 Plan→Do→Check→Act。
+
+Work Unit 只是这个正式 task 的 Do 内局部执行切片，不能因为上下文很大、想并行或需要另一个执行者，
+就反向创造新的 ontology responsibility 或正式节点。
 
 各场景必需产物仍由 SCENE 与已批准目标共同确定。知识地图只有满足稳定对象身份、关系、约束、
 来源和可检验性才可作为本体，不因叫 pdca-model 而自动合格。
