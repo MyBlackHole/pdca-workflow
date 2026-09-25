@@ -1,23 +1,41 @@
-# 当前验证入口
+# AI 审查与现场验收
 
-```bash
-python3 -m unittest discover -s tests -v
-git diff --check
-```
+PDCA 不维护项目专用语义验证脚本。
 
-测试需要 Python 3.10+ 标准库、POSIX shell 与 Git，无 API 密钥，不启动真实宿主，也不修改真实用户目录。
+过去的 Python tests 把“Skill 数量、authority、阶段边界、ontology 加载规则”等 PDCA 语义重新编码成 assert，
+会形成第二套规则系统：修改一条规则时需要同时修改 ontology、Skill 和 validator。
+当前改为由 AI 在 Check 阶段直接读取唯一权威并验证真实对象与证据。
 
-[安装器测试](test_install_script.py) 在临时 HOME 中运行真实 `install.sh`，使用可控 Git 替身验证：
-集中 Git 根克隆、仅九个 catalog 运行入口进入发现目录、与其他 Skill 共存、同名冲突拒绝、
-并发路径出现时安全停止，以及失败回滚不删除原有用户数据。它不证明真实网络克隆或宿主发现成功。
+## AI Check
 
-[文档与链接检查](test_skill_links.py) 覆盖当前维护入口、使用/安装文档、Skill、本体权威/契约与测试说明的相对链接，
-并检查九入口发现面、逐阶段用户操作、Do-only Work Unit Contract、minimum sufficient context、
-父 Do 不轮询监工，以及运行规则不再依赖 LOC/工时/置信度拆分阈值。
+每次正式 Check 按 [flow-check](../ontology/process/flow-check.md) 完成四遍审查：
 
-检查仍只证明静态定义和本地安装行为，不证明 Agent 实际遵守、原生 Agent 隔离、事件路由或资源后端。
-资源语义检查也不是生产资源锁/仲裁实现。
+1. **Scope Review**：Plan 与真实 diff/产物对照，发现遗漏和范围膨胀；
+2. **Consistency Review**：Skill、authority、Plan、model/mapping、records 与实现交叉核对；
+3. **Adversarial Review**：主动寻找能够推翻当前结论的反例、绕过路径和 stale evidence；
+4. **Evidence Review**：每个重要结论绑定 subject、authority/AC、observation、counterevidence、reasoning、limitation。
 
-[现场验收](host-acceptance.md) 仍全部 `NOT_RUN`。真实宿主发现、独立 Agent、
-阶段交互、Work Unit 委派/返回和辅助建议授权需要在目标宿主现场验证；
-不要把静态单测或合成轨迹描述为现场兼容性结论。
+最终 verdict 继续使用 EVIDENCE-01 / VERDICT-01；证据不足保持 unknown/not_run。
+
+## 工具边界
+
+允许通用工具提供事实，例如：
+
+- `git diff/status/show/log`；
+- 文本搜索和文件读取；
+- JSON/YAML 等通用格式解析器；
+- `sh -n`、编译器语法检查；
+- TARGET_ROOT 自己已有的单元、集成、系统测试和静态分析。
+
+禁止新增 `validate_pdca.py`、`check_authority.py`、`test_runtime_surface.py` 一类解释 PDCA 语义的程序。
+工具不能决定阶段授权、authority 优先级、ontology 是否可自动采用或最终业务符合性。
+
+## CI
+
+CI 只保留低维护成本、与 PDCA 语义无关的机械检查，例如 shell syntax 和 `git diff --check`。
+CI 成功不表示 Check PASS。
+
+## 现场验收
+
+[host-acceptance.md](host-acceptance.md) 验证真实宿主发现、Agent 身份/恢复、阶段交互、资源与授权语义。
+这些项目仍需真实宿主或人工/AI 现场执行，不能由静态脚本替代。

@@ -2,7 +2,7 @@
 
 PDCA 在一个 Git 工作副本中集中管理规则、本体、项目记录与资源预约。用户通过九个 Skill 入口定位项目、选择工作建议和逐阶段推进任务；同一任务始终由原 Agent 与用户交互。
 
-[安装、更新与宿主发现](INSTALL.md) · [Skill 索引](skills/README.md) · [当前本体](ontology/README.md) · [验证](tests/README.md)
+[安装、更新与宿主发现](INSTALL.md) · [Skill 索引](skills/README.md) · [当前本体](ontology/README.md) · [AI 审查与现场验收](tests/README.md)
 
 ## 开始使用
 
@@ -15,6 +15,8 @@ PDCA 在一个 Git 工作副本中集中管理规则、本体、项目记录与�
 ## 双根与归属
 
 `PDCA_ROOT` 是集中 Git 工作副本，默认 `~/.agents/pdca`；`TARGET_ROOT` 是当前绑定业务项目的规范化真实路径。入口经符号链接解析后的根应与绑定一致；既有任务绑定优先于 cwd 或环境变量，冲突时停止。
+
+[INDEX](ontology/INDEX.md) 只负责定位当前 authority，[LOAD-MAP](ontology/LOAD-MAP.md) 负责告诉 AI 在当前事件下最小读取什么。大量 domain/entity/pattern 等知识资产继续保留，但不会因为存在、被链接或标有 `authority` 就自动注入任务；只有按 REUSE/ADOPT 固定版本后的资料才进入当前任务输入。
 
 ```text
 PDCA_ROOT/
@@ -39,6 +41,12 @@ TARGET_ROOT/
 每个场景、节点和 attempt 都由绑定的可交互 Agent 完成四阶段。切换 Skill 不换 Agent；父会话调用阶段入口时，只无损路由用户原始操作到原实例，不监工、不代答、不接管。不能继续原实例时阻断。
 
 仅发现或加载 Skill 不授权创建或启动。任务获准创建后，原任务 Agent 先确认 Plan 目标并等待；每个阶段由用户明确启动，完成后报告产物、限制和下一目标并等待。三个场景各有完整 PDCA，读取场景方法不再次创建任务，也不自动串联场景。
+
+## AI 审查
+
+PDCA 语义不通过项目专用验证脚本重复实现。Check 直接读取固定 Plan、当前 authority、真实 diff/产物和证据，按 Scope、Consistency、Adversarial、Evidence 四遍进行 AI 审查。
+
+Git、文本搜索、格式解析器、编译器、shell syntax check 以及业务项目已有测试可以提供事实；它们不解释 PDCA，也不替代 Check。规则冲突或证据不足时保持 unknown，而不是修改 validator 让检查通过。
 
 ## Git 来源与记录授权
 

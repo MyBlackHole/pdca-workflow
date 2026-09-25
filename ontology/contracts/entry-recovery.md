@@ -7,7 +7,7 @@ status: active
 
 # 每次正式消息／阶段／恢复的共同入口
 
-本页是恢复与分流方法，不创建授权。只读取当前任务所需内容，勿通读整个资源库。
+本页是恢复与分流方法，不创建授权。按 [LOAD-MAP](../LOAD-MAP.md) 只读取当前任务与当前事件需要的规则；参考知识必须按 REUSE/ADOPT 固定版本后才进入任务输入。勿通读整个资源库。
 
 1. **根与项目。** 从用户指定或既有会话的集中 `records/projects/<project>/workspaces/<workspace>/project-context.md` 只读定位一个绑定，核对项目/工作区身份及真实 `target_root`、`pdca_root`、`records_root`。既有任务绑定优先于 cwd/环境变量；与 Skill 真实路径所在 Git 根冲突时停止，不能转到 TARGET_ROOT/.pdca。新增或修改绑定须按[项目契约](project-workspace.md)先取得记录写入授权；多个绑定或多个候选任务时询问，不选最新。
 2. **原任务。** 读取自己的 task、dispatch 原生身份、最后完整事件、run 与待请求。阶段 Skill 收到调用但当前会话不是该执行者时，只路由真实用户操作至原实例并停止本地执行；不可路由就阻断，不重新 spawn、不由父 Agent 代做。

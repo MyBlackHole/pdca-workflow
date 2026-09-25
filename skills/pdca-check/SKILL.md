@@ -5,67 +5,51 @@ metadata:
   version: 5.0.0-rc.2
 ---
 
-# Check：核验事实，不自动修正业务对象
+# Check：AI 直接审查，不用脚本重写 PDCA 规则
 
 ## 先定位，不以加载当授权
 
-核对本文件经符号链接解析后的真实路径，定位集中 Git 工作副本 **PDCA_ROOT**。既有任务绑定优先于 cwd 或环境变量；与入口所在根冲突时停止，不在目标项目创建 `.pdca/` 或另一份 records。定位不等于批准业务操作。
+核对本文件经符号链接解析后的真实路径，定位集中 Git 工作副本 **PDCA_ROOT**。
+既有任务绑定优先于 cwd 或环境变量；与入口所在根冲突时停止，不在 TARGET_ROOT 创建另一套规则或 records。
 
-先读[共同恢复入口](../../ontology/contracts/entry-recovery.md)，再读当前绑定项目 context、自己的 task/原 Agent 绑定、最后完整事件和当前请求。核对记录的 `rules_git_head`/`rules_git_status`；每次获准写入记录前按共同入口重新采集当前 Git 来源。已有任务不自动改绑或升级规则，原依据缺失或规则冲突时停止；不复制规则、不自动 checkout，不以新规则改写原授权。
+先读[共同恢复入口](../../ontology/contracts/entry-recovery.md)，再读当前绑定项目 context、
+自己的 task/原 Agent、最后完整事件和当前请求。当前会话不是该任务执行者时，只路由真实用户操作回原 Agent；
+**不可路由就阻断**。**切换 Skill 不换 Agent**。
 
-当前会话不是该任务执行者时，只把真实用户操作路由回原 Agent 后停止本地执行；不可路由就阻断。**切换 Skill 不换 Agent**，不要调用新建工具、设置自动 fork 或由父 Agent 接管。加载方法、文件存在和上一阶段 PASS 都不授权本阶段。
+开始前核对 task/attempt/phase/run/subject 的原始用户回应、最新 Do 产物、固定 Plan/AC/oracle、
+撤权状态、资源和实际对象版本。旧 PASS 不能用于新字节。
 
-开始前核对匹配 task/attempt/phase/run/subject 的原始用户回应、固定输入及撤权状态，并核验集中资源预约及实际写权。缺项时展示本阶段目标和缺项后等待；已有明确确认不要重复盘问。无任务时返回总入口定位，不在阶段 Skill 中新建。
+## AI Review
 
-## 当前 run 的动作
+读取[Check 方法](../../ontology/process/flow-check.md)和当前 scene 方法，按四遍完成：
 
-1. 锁定最新 Do run 的需求、模型、目标产物、映射与 AC/oracle；旧 PASS 不能用于新字节。读取[Check 方法](../../ontology/process/flow-check.md)及当前场景方法。
-2. 逐项核对对象→实际执行→actual/expected→反证→结论。命令退出 0 不证明业务符合；缺模型、映射或必需运行事实就列缺项，不缩小标准。
-3. 追踪可疑路径和上游保护、源与投影的双向覆盖，区分确定违例、unknown和纯建议。没有证据不能编造"已验证"；不能靠多个模型赞同提升为事实。每个结论必须附带：(a) 执行了什么命令/检查，(b) 输出是什么，(c) 输出如何支持结论。不能用"应该通过"替代实际运行。跳过任何验证步骤 = 在撒谎，不是在验证。
-4. 不修改冻结业务对象、模型目标和oracle。测试环境/夹具修复仅限本次已批准写域，保留前后证据并保持被审对象与预期不变；否则停止沟通。
-5. 当 task.scene=pdca-verify，本 Check 验证 Do 的检查过程、报告和证据是否可靠，不递归创建新的审查 Agent 或无限检查自身。
+1. **Scope Review**：Plan 与真实 diff/产物逐项对照，找遗漏和范围膨胀。
+2. **Consistency Review**：直接交叉阅读 Skill、authority、Plan、model/mapping、records 和实现，找语义冲突。
+3. **Adversarial Review**：假设 Do 结论错误，主动寻找绕过路径、边界条件、stale evidence 和反例。
+4. **Evidence Review**：每个重要结论绑定 subject、authority/AC、observation、counterevidence、reasoning、limitation。
 
-## 报告与停止
+找不到反例不自动 PASS；证据不足就是 unknown/not_run。
 
-分别报告任务执行是否完整、对象 pass/fail/unknown、交付是否可用。保存报告并提出 Act 处置或新 Do 返修选项，随后等待。用户认可不使 fail 变 PASS，Check 不自动返工。
+## 工具只提供事实
 
-**幂等性：** 对相同对象版本重复 Check 产生相同结论。不因重复执行改变 pass/fail 判定。
+允许使用 git、搜索/读取、格式解析器、shell/compiler syntax check，以及 TARGET_ROOT 已有构建/测试/静态分析工具。
+它们提供事实证据，不解释 PDCA。
 
-## 决策分类
+**禁止新增项目专用 semantic validator 来重新编码 PDCA 规则。**
+不要用 Python/Shell assert “Skill 数量”“authority 值”“阶段边界”“ontology 加载策略”等；
+这些直接由 AI 阅读当前权威判断。若规则本身冲突，报告 UNKNOWN/BLOCKING，而不是修改 validator 让它通过。
 
-Check 中遇到的判定按类型处理：
+## 第二视角
 
-| 类型 | 定义 | 处理 |
-|------|------|------|
-| **机械型** | 有明确规则可自动判定（如：退出码非 0 = 失败） | 静默判定，报告结果 |
-| **品味型** | 合理的人可能有不同判断（如：命名是否清晰） | 标记为建议，提交用户判断 |
-| **歧义型** | 信息不足以判定，或规则本身有冲突 | 触发 [Confusion Protocol](#confusion-protocol) |
+高影响或存在确认偏差时，可以让独立 AI 做一次只读 review pass。
+只给 minimum sufficient context，不创建新 PDCA，不轮询、不让 reviewer 修改对象。
+其 findings 只是待核验 claim；主 Check 必须继续验证证据与反证。
+正式独立 verification 仍需用户显式创建 pdca-verify。
 
-## 范围漂移检测
+## 报告
 
-Check 必须验证：Do 是否做了批准范围外的事。
+Finding 可标为 BLOCKING / NON_BLOCKING / UNKNOWN；最终 verdict 仍使用
+[EVIDENCE-01](../../ontology/concept/pdca-evidence.md) 与
+[VERDICT-01](../../ontology/concept/pdca-verdict.md) 的既有语义。
 
-1. 对照 Plan 固定的需求和写域，逐项检查 Do 的实际产物
-2. 标记"Do 做了但 Plan 未批准"的产物（范围膨胀）
-3. 标记"Plan 批准了但 Do 未做"的产物（范围遗漏）
-4. 范围膨胀必须报告，由用户决定接受或回滚；不静默接受
-
-## Confusion Protocol
-
-当 Check 遇到高风险歧义（规则冲突、信息不足、判定可能影响业务安全）时：
-
-1. **停止**：不猜测、不自动选择"看起来合理"的选项
-2. **列出**：歧义点、两种（或多种）可能的解释、各自的影响
-3. **等待**：用户明确选择或提供额外信息后才继续
-4. **记录**：歧义及用户决策写入 event 记录，供后续引用
-
-## 反合理化守卫
-
-Check 阶段必须警惕以下常见自欺模式：
-
-| 你的理由 | 真相 | 正确做法 |
-|---------|------|---------|
-| "代码看起来对" | 看起来对 ≠ 测试通过 | 运行验证命令，用输出证明 |
-| "之前测试通过了" | 之前 ≠ 现在 | 重新运行当前版本的测试 |
-| "这是简单改动不会有 bug" | 简单改动更容易遗漏回归 | 至少运行相关测试 |
-| "用户说没问题" | 用户说的是期望，不是验证结果 | 自己执行验证，报告实际输出 |
+保存证据和结论，提出 Act 或新 Do 选项后停止。用户认可不使 fail 变 PASS，Check 不自动返工或进入 Act。
