@@ -40,7 +40,9 @@ Verify 不重新建模、不重新拆任务，也不读取实现 Agent 的完整
 
 ## 独立上下文
 
-Fresh verify Agent 只接收当前 node 的最小子图、固定 implementation/mapping 和必要证据。
+Fresh verify Agent 初始只接收当前 node 的最小子图、固定 implementation/mapping 和必要证据。
+按 [CONTEXT-01](../../ontology/process/select-task-subgraph.md) 在获准读域沿具体线索寻找未建模依赖和反证；
+最小子图不限制发现模型遗漏，但补充事实不授予写权，也不改变固定模型/实现版本。
 不继承 implement Agent 的调试历史、推理过程、未固定假设或父/兄弟 conversation，
 以减少确认偏差与上下文污染。
 
@@ -53,5 +55,6 @@ Fresh verify Agent 只接收当前 node 的最小子图、固定 implementation/
 | Check | 使用 AI Scope/Consistency/Adversarial/Evidence 四遍审查，核验 Do 的证据与结论 |
 | Act | 用户明确选择接受、失败归档、提出返工或获准发布 |
 
-发现模型根本错误时报告 affected node/relation/constraint，由用户决定是否启动新的 pdca-model；
-不能在 verify 内静默修改模型或 implementation。
+模型遗漏按 [EVOLVE-01](../../ontology/concept/ontology-evolution.md) 记录证据、影响和修订建议；
+在已批准验证范围内可继续安全核验，不因发现问题就自动转入 modeling。
+确证违例不能 PASS，证据不足保持 unknown/not_run；不得修改模型、implementation 或 oracle。

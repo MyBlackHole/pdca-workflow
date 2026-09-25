@@ -20,9 +20,10 @@ root bootstrap 则绑定固定 root_seed_ref 和受控初始事实集。父 Agen
 也遵循 [CONTRACT-01](../concept/pdca-execution-contract.md)，不创建 node/task/attempt，
 不要求该执行者运行 Plan/Check/Act。
 
-如果 Work Unit 暴露新的独立 ontology responsibility、关系端点、可拒收成果或授权边界，
-当前 Do 停止扩张，回到 modeling/[DECOMP-01](../concept/task-decomposition.md)形成正式节点候选；
-只有用户批准创建后才进入本契约。
+Work Unit 发现模型缺口时，把证据交回原任务并停止超出 Contract 的动作；原任务按
+[EVOLVE-01](../concept/ontology-evolution.md) 区分内部细化、修订建议与职责变更，
+不因出现新关系端点就自动启动 modeling。只有符合 [DECOMP-01](../concept/task-decomposition.md)
+且已有固定模型来源的正式节点候选，经用户批准创建后才进入本契约。
 
 ## 用户显式创建正式任务
 

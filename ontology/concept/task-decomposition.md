@@ -8,7 +8,7 @@ dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
 status: active
 authority: normative
-revision: 4.0.0-rc.3
+revision: 4.0.0-rc.4
 dcterms_modified: '2026-09-25'
 summary: DECOMP-01：正式子任务由本体实体关系驱动，并形成独立上下文边界
 ---
@@ -46,6 +46,10 @@ ontology object / relation
 
 关系本身只是候选来源。只有 NODE-01 的正式任务资格成立时才形成 child seed：
 独立职责、固定 I/O、可独立拒收成果、独立验证边界、明确组合责任。
+
+在获准 modeling Do 内，允许按 [EVOLVE-01](ontology-evolution.md) 细化并记录候选对象/关系及 child seed；
+新增内部实体本身不要求创建独立任务。候选不覆盖已冻结工作树；只有模型交付获准固定后，
+具备来源版本的 seed 才可用于后续正式创建，不能用尚未形成的 revision 预先派发。
 
 如果无法从模型解释“为什么这是一个独立职责”，就不能为了控制 token、提高并行度或代码结构漂亮而创建正式 task。
 
@@ -86,8 +90,9 @@ formal ontology-backed task
 Work Unit 不产生新的 node_id，不拥有新的 ontology responsibility，不创建新的 task/attempt，
 也不能替代 fresh Agent 的正式上下文隔离。
 
-如果 Work Unit 执行中发现新的独立 ontology responsibility 或原模型缺失，
-停止当前扩张，返回 modeling/decomposition 候选；不能把它静默升级成子任务。
+Work Unit 发现模型遗漏或独立职责时，停止超出 Contract 的动作并把证据交回原任务。
+原任务按 EVOLVE-01 区分获准 modeling Do 的内部细化与其他场景的修订建议；
+需要变更承诺/权限时等待用户，不能自行改变 Contract、转场或升级成正式子任务。
 
 ## 禁止的拆分依据
 
