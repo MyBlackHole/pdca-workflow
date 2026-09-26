@@ -7,7 +7,8 @@ status: active
 
 # 能力核验：记录格式
 
-本契约定义该记录的 schema、字段与填写约束；以下完整 Markdown 示例是规范格式。字段中的 null、空列表及未验证状态表示尚未取得事实，不构成授权、执行成功或资源取得证明。按实际证据填写，保留原始来源与未知。
+本契约只保存 CAP-01 的宿主能力证据，不记录 task 创建结果。
+null/空列表/not_run 表示事实尚未取得，不得升级为“支持”。
 
 ## 示例
 
@@ -27,7 +28,9 @@ limitations: []
 
 # 能力核验
 
-列真实宿主／工具／配置、输入继承、交互、恢复、写域、消息来源的适用性。环境核验可按版本复用，本次实际调用不能略过。
+记录真实宿主/工具/配置及 CAP-01 所需能力的证据、适用范围和 limitation。
+环境级证据只在相关版本/配置未变化且范围相同时复用；本次 dispatch 的真实 request/receipt/identity
+仍写入 dispatch record，不由 capability-check 代替。
 
-只填写已观察内容；未跑为not_run。脚本静态通过不升级真实隔离或阶段执行状态。
+静态脚本、工具名称、Agent 自述或一个 ID 都不能单独升级 fresh / communicate / continue / isolation 结论。
 ```
