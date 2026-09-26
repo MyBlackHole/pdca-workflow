@@ -1,6 +1,6 @@
 # Skill 入口，共同资源中心
 
-总入口定位和显式绑定；辅助入口只读提出建议；阶段入口操作已有任务；场景入口提供对象与方法。
+总入口定位和显式绑定；辅助入口只读提出建议；阶段入口操作已有任务；场景入口只负责显式选择、创建前置与路由，场景语义由 SCENE-01 提供。
 `skills/catalog.json` 是唯一运行入口名录。安装器只把这九个入口注册到宿主发现目录；
 同仓库其他工程 Skill 只作为参考资产，不因位于 `skills/` 而自动获得运行资格。
 
@@ -12,9 +12,9 @@
 | [pdca-do](pdca-do/SKILL.md) | 用户明确启动或继续现有 PDCA 任务的 Do 阶段时使用。不自动 Check。 |
 | [pdca-check](pdca-check/SKILL.md) | 用户明确启动现有 PDCA 任务的 Check 时使用。不修改业务对象或自动返工。 |
 | [pdca-act](pdca-act/SKILL.md) | 用户明确批准现有 PDCA 任务的 Act 处置时使用。不启动下一场景。 |
-| [pdca-model](pdca-model/SKILL.md) | 用户明确选择本体建模场景，或已有建模任务需要场景方法时使用。不以知识地图冒充模型。 |
-| [pdca-implement](pdca-implement/SKILL.md) | 用户明确选择本体投影场景，或已有投影任务需要场景方法时使用。不脱离模型。 |
-| [pdca-verify](pdca-verify/SKILL.md) | 用户明确选择本体符合性验证，或该任务需要核验方法时使用。不把链接检查当语义证明。 |
+| [pdca-model](pdca-model/SKILL.md) | 用户明确选择本体建模场景，或已有建模任务需要定位场景规则时使用；具体场景语义读 SCENE-01。 |
+| [pdca-implement](pdca-implement/SKILL.md) | 用户明确选择本体投影场景，或已有投影任务需要定位场景规则时使用；具体场景语义读 SCENE-01。 |
+| [pdca-verify](pdca-verify/SKILL.md) | 用户明确选择本体符合性验证，或已有验证任务需要定位场景规则时使用；具体场景语义读 SCENE-01。 |
 
 九个运行 Skill 都保持为**薄入口**：
 
