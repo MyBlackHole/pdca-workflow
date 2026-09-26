@@ -18,7 +18,7 @@ Do-only Work Unit 不进入本契约，按 CONTRACT-01 执行。
 创建前必须已经存在并固定：
 
 1. TASK-01 合法的 task/attempt 身份；root bootstrap 的例外也由 TASK-01 判定；
-2. CONTEXT-01 选出的 assignment refs 与允许的 record/product scope；
+2. CONTEXT-01 选出的 assignment refs，以及当前 task/Plan 已批准的 record/product scope；
 3. 适用于当前宿主/配置的 CAP-01 能力证据；
 4. 用户针对该具名 task 的未撤销 creation authorization；
 5. 唯一 `dispatch_request_id`，以及本任务 record/control scope 的实际写权。
