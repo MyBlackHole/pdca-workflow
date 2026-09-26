@@ -5,16 +5,18 @@
 
 链接存在、搜索命中、同领域、文件更详细或 frontmatter 含 `authority`，都不等于必须加载或已经采用。
 
-## 开始／恢复
+## 入口与恢复
 
-先读最小集合：
+任何入口先读当前运行 Skill；随后只按事件追加：
 
-1. 当前运行 Skill；
-2. 当前项目 context、自己的 task、最后完整事件和待确认 request/response；
-3. [共同恢复入口](contracts/entry-recovery.md)。
+- **`pdca` 定位/绑定**：读取 [project-workspace](contracts/project-workspace.md) 和当前 project context；只有状态/继续/恢复涉及具体 task 时才追加 [entry-recovery](contracts/entry-recovery.md)。
+- **`pdca-assist`**：读取 project-workspace、当前项目导航以及形成候选真正需要的 records/获准业务材料；只有候选依赖某个 task 的连续性时才追加 entry-recovery。
+- **phase / 已有 scene task**：读取自己的 task、最后完整事件、待确认 request/response 与 entry-recovery。
+- **scene task creation**：先读取 TASK/CAP/CONTEXT 与 agent-dispatch 所需最小输入；创建成功仍等待新 Agent 的 Plan 操作。
 
 只有需要解析某个规则 ID 时才查看 [INDEX](INDEX.md) 对应项；不要先把 28 项全部读入上下文。
-不要默认扫描 `domain/`、`entity/`、`pattern/`、legacy 或兄弟任务历史。
+不要默认扫描 `domain/`、`entity/`、`pattern/`、legacy、整个 source tree 或兄弟任务历史。
+Assist 的“查重/历史拒绝”也只沿当前候选的具体对象和获准读域检查，不构成全项目扫描授权。
 
 ## 新建正式任务
 
