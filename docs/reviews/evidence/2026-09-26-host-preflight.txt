@@ -1,0 +1,36 @@
+# Local host capability observations; not a host acceptance result.
+# Probe scope: executable availability and public repository connectivity only.
+# No credentials, environment variables or host-auth files were read.
+
+$ command -v git
+/usr/bin/git
+exit_code=0
+
+$ command -v sh
+/usr/bin/sh
+exit_code=0
+
+$ command -v node
+/opt/nvm/versions/node/v22.16.0/bin/node
+exit_code=0
+
+$ command -v npm
+/opt/nvm/versions/node/v22.16.0/bin/npm
+exit_code=0
+
+$ command -v codex
+exit_code=1
+
+$ command -v opencode
+exit_code=1
+
+$ command -v claude
+exit_code=1
+
+$ git --version
+git version 2.47.3
+exit_code=0
+
+$ GIT_TERMINAL_PROMPT=0 git ls-remote --exit-code https://github.com/MyBlackHole/pdca-workflow.git HEAD
+fatal: unable to access 'https://github.com/MyBlackHole/pdca-workflow.git/': Could not resolve host: github.com
+exit_code=128
