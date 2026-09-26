@@ -17,6 +17,10 @@
 | [pdca-verify](pdca-verify/SKILL.md) | 用户明确选择本体符合性验证，或该任务需要核验方法时使用。不把链接检查当语义证明。 |
 
 四阶段每次匹配用户操作后启动，完成后停止；一个任务使用多个 Skill 但保持原 Agent。
+四个阶段 Skill 刻意保持为**薄运行入口**：共同恢复/授权核对以
+[entry-recovery](../ontology/contracts/entry-recovery.md) 为准，阶段语义以对应 `flow-*.md` 为准，
+场景差异以 scene Skill 为准，Do-only Work Unit 以 CONTRACT-01 为准。入口只保留阶段特有的触发、
+最小加载和停止边界；发现重复规则时应回到上述 authority 收敛，而不是维护第二份副本。
 已有 task 绑定优先，读取场景方法不创建场景任务。中央项目/任务登记和资源预约对所有入口相同；
 业务项目不自动生成 `.pdca/`。记录写入与 Git 提交分别授权。
 
