@@ -61,7 +61,7 @@ Do-only Work Unit 只是正式 Task 内的局部执行切片，不产生新的 n
 
 ## 阶段与场景
 
-总入口 `$pdca` 负责绑定、定位和分流，`$pdca-assist` 负责只读建议。四个阶段入口 `$pdca-plan`、`$pdca-do`、`$pdca-check`、`$pdca-act` 操作已有任务；三个本体场景入口分别提供建模、投影和符合性验证的对象与方法，完整名称见 [Skill 索引](skills/README.md)。
+总入口 `$pdca` 负责绑定、定位和分流，`$pdca-assist` 负责只读建议。四个阶段入口 `$pdca-plan`、`$pdca-do`、`$pdca-check`、`$pdca-act` 操作已有任务；三个本体场景入口只负责显式选择、创建前置与路由，建模/投影/符合性验证的具体场景语义统一由 [SCENE-01](ontology/process/work-scenarios.md) 定义，入口名见 [Skill 索引](skills/README.md)。
 
 每个场景、节点和 attempt 都由绑定的可交互 Agent 完成四阶段。切换 Skill 不换 Agent；父会话调用阶段入口时，只无损路由用户原始操作到原实例，不监工、不代答、不接管。不能继续原实例时阻断。
 
