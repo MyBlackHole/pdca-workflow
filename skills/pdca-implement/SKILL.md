@@ -19,7 +19,7 @@ metadata:
 ## 唯一场景语义来源
 
 Implement 的对象、阶段义务、mapping、跨场景身份与验收，统一读取
-[SCENE-01 的 pdca-implement 章节](../../ontology/process/work-scenarios.md#pdca-implement把模型投影成真实实体)。
+[SCENE-01 的 pdca-implement 章节](../../ontology/process/work-scenarios.md)。
 
 本入口只额外强调：
 
