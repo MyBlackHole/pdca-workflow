@@ -7,8 +7,8 @@ status: active
 
 # 独立任务书：记录格式
 
-本契约定义正式 ontology-backed task 派发给 fresh Agent 的固定输入。
-字段中的 null/空列表只表示尚未取得事实，不产生授权。
+本契约只定义 **fresh Agent 实际接收的固定 assignment 字段**。
+Task 身份语义以 TASK-01 为准，输入选择以 CONTEXT-01 为准；字段为空只表示事实未取得，不产生授权。
 
 ## 示例
 
@@ -38,16 +38,12 @@ creation_authorization_ref: null
 
 # 独立任务书
 
-普通 task 传递用户已确认的目标、当前 ontology/work node、固定 parent seed、必要 relation/constraint、
-dependency deliverables、scene 输入和 CONTEXT-01 选择出的 minimum sufficient refs。
+普通 task 的身份字段引用 TASK-01 已固定对象；`input_refs/definition_refs/context_refs`
+只保存 CONTEXT-01 选出的 minimum sufficient context，不复制父/兄弟完整活动历史。
 
-唯一 root modeling bootstrap 尚无 node/revision 时，`root_seed_ref` 必须指向固定的用户目标/范围/事实来源；
-ontology/node 字段保持真实的 null/空，不用占位模型冒充。
+root modeling bootstrap 的 node/revision 为空时按 TASK-01 保持 null，并由 `root_seed_ref`
+与 CONTEXT-01 的 bootstrap 输入固定真实起点，不造占位模型。
 
-不复制父/兄弟完整对话，不附带 unrelated ontology branch，不把共享记忆当隐式输入。
-每个 ref 应能说明角色和固定版本/摘要；无法解释用途的材料不应默认加入。
-
-你是本任务的独立可交互 Agent。先向用户提出本任务 Plan 目标请求；
-获准后只执行当前阶段。每阶段结束保存产物、报告下一目标并等待。
-不要由父 Agent 代答、代写或监控。不自动创建后代；新的 ontology responsibility 只形成 seed 待用户选择。
+allowed scope 是 assignment 边界，不证明宿主实际拥有对应能力；能力事实由 CAP-01 / capability-check 记录。
+`creation_authorization_ref` 只证明用户批准创建该具名 task，不授权 Plan 或任何后续 phase。
 ```
