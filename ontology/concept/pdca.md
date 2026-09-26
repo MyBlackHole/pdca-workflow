@@ -72,6 +72,18 @@ pdca-model交付项目本体源及工作实例；pdca-implement从固定模型�
 
 ## 权威与读集
 
-下列 28 项原有权威 ID 保留，由 [INDEX](../INDEX.md) 定位；[LOAD-MAP](../LOAD-MAP.md) 定义 AI 按事件最小读取的方法。规则只维护在当前 authority/Skill/phase/scene 契约中，不通过 validator 或额外 manifest 再实现一遍。其他资产只有经 REUSE/ADOPT 固定版本后才是任务参考。
+下列 28 项原有权威 ID 保留，由 [INDEX](../INDEX.md) 定位；[LOAD-MAP](../LOAD-MAP.md) 定义 AI 按事件最小读取的方法。规则只维护在当前 authority、phase flow、SCENE-01 与明确引用的契约中；Skill 是发现/路由入口，不再复制一份 phase/scene 语义。不得通过 validator 或额外 manifest 再实现一遍。其他资产只有经 REUSE/ADOPT 固定版本后才是任务参考。
 
-当前最短路径：九个 Skill 入口 → [LOAD-MAP](../LOAD-MAP.md) → [共同恢复入口](../contracts/entry-recovery.md) → 集中 task/confirmation → 当前阶段与当前 scene 的方法。阶段与场景是两个维度，加载或切换Skill不新建Agent、不自动授权。权限／恢复／模型细则在相关事件发生时读取。
+## 版本域
+
+仓库中的版本号有三个不同语义域，不能相互比较或据此自动升级：
+
+- `skills/catalog.json.version` 与各 Skill 的 `metadata.version`：**runtime Skill bundle version**，只描述入口包/发现面的发布版本；
+- 本文件的 `protocol_revision`：**PDCA protocol revision**，描述当前协议线与整体控制语义；
+- 各 ontology asset 的 `revision`：**asset revision**，只描述该 authority/知识资产自身的内容修订，可在同一 protocol 内独立变化。
+
+因此 `5.0.0-rc.2` 的 Skill bundle 与 `4.0.0-rc.x` 的 protocol/asset 并不表示“新旧规则谁覆盖谁”。
+当前规则身份由 **Git HEAD + INDEX 定位 + 当前 task 固定 refs/adoption** 决定；已有任务不会因为任一版本字段变化而自动改绑、
+自动采用或获得新授权。需要跨版本恢复时仍按 RECOVERY-01/ADOPT-01 核对实际来源、适用性和用户决定。
+
+当前最短路径：九个 Skill 入口 → [LOAD-MAP](../LOAD-MAP.md) → [共同恢复入口](../contracts/entry-recovery.md) → 集中 task/confirmation → 当前 phase flow + SCENE-01 对应场景。阶段与场景是两个维度，加载或切换 Skill 不新建 Agent、不自动授权。权限／恢复／模型细则在相关事件发生时读取。
