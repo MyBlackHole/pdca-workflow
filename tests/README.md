@@ -39,3 +39,7 @@ CI 成功不表示 Check PASS。
 
 [host-acceptance.md](host-acceptance.md) 验证真实宿主发现、Agent 身份/恢复、阶段交互、资源与授权语义。
 这些项目仍需真实宿主或人工/AI 现场执行，不能由静态脚本替代。
+
+首个现场实验见 [host-smoke.md](host-smoke.md)：先核验原生能力，再由真实用户逐阶段推进一个 root modeling 任务，
+最后从其固定 child seed 核验 fresh Agent 的输入隔离。它是人工操作说明，不是执行器或新增 authority；
+缺少宿主能力时保留阻断证据，不改写 H1–H18 的 `NOT_RUN`。
