@@ -86,4 +86,4 @@ pdca-model交付项目本体源及工作实例；pdca-implement从固定模型�
 当前规则身份由 **Git HEAD + INDEX 定位 + 当前 task 固定 refs/adoption** 决定；已有任务不会因为任一版本字段变化而自动改绑、
 自动采用或获得新授权。需要跨版本恢复时仍按 RECOVERY-01/ADOPT-01 核对实际来源、适用性和用户决定。
 
-当前最短路径：九个 Skill 入口 → [LOAD-MAP](../LOAD-MAP.md) → [共同恢复入口](../contracts/entry-recovery.md) → 集中 task/confirmation → 当前 phase flow + SCENE-01 对应场景。阶段与场景是两个维度，加载或切换 Skill 不新建 Agent、不自动授权。权限／恢复／模型细则在相关事件发生时读取。
+当前最短路径：九个 Skill 入口 → [LOAD-MAP](../LOAD-MAP.md) → 按事件读取 project-workspace / entry-recovery / task-create authority → 当前 phase flow + SCENE-01 对应场景。没有 task 的定位或 Assist 不为形式完整强行加载 task 历史；已有 task 的连续性也不能跳过 entry-recovery。阶段与场景是两个维度，加载或切换 Skill 不新建 Agent、不自动授权。
