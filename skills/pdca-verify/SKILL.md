@@ -19,7 +19,7 @@ CONTEXT-01 子图和必要行为证据提出具名 verify task 输入，由用�
 ## 唯一场景语义来源
 
 Verify 的验证链、阶段义务、上下文隔离、finding 与处置，统一读取
-[SCENE-01 的 pdca-verify 章节](../../ontology/process/work-scenarios.md#pdca-verify验证实现是否忠实于模型和需求)。
+[SCENE-01 的 pdca-verify 章节](../../ontology/process/work-scenarios.md)。
 
 本入口只额外强调：
 
