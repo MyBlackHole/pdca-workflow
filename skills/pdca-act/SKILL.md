@@ -13,7 +13,8 @@ metadata:
 只路由真实用户操作回原 Agent；不可路由就阻断。
 
 当前用户操作必须明确对应当前 Check 报告、产物版本和具体处置范围。
-读取[Act 方法](../../ontology/process/flow-act.md)和当前 scene Skill 的“阶段方法”；
+读取[Act 方法](../../ontology/process/flow-act.md)与 [SCENE-01](../../ontology/process/work-scenarios.md)
+中当前 `task.scene` 对应章节；scene Skill 只负责入口/路由。
 资源、发布、知识采用等规则按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 的实际事件读取。
 
 ## 本阶段动作
