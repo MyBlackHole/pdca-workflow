@@ -27,7 +27,7 @@ Plan 目标并等待，不把 task creation 当作 Plan 启动。
 ## 唯一场景语义来源
 
 Model 的对象、阶段义务、跨场景身份与最终交付，统一读取
-[SCENE-01 的 pdca-model 章节](../../ontology/process/work-scenarios.md#pdca-model定义应该是什么)。
+[SCENE-01 的 pdca-model 章节](../../ontology/process/work-scenarios.md)。
 
 本入口只额外强调三条边界：
 
