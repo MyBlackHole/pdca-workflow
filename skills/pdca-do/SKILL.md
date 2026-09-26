@@ -15,8 +15,8 @@ metadata:
 - 当前会话不是原任务执行者时，只路由真实用户操作回原 Agent；不可路由就阻断。
 - 必须存在已完成且仍匹配当前对象的 Plan，并有 Plan 完成后的真实 Do `phase_start`。
 - 返修使用新的 Do run；已有 operation/result 先对账，不通过重放制造第二份副作用。
-- 读取[Do 方法](../../ontology/process/flow-do.md)和当前 scene Skill 的“阶段方法”；
-  其他 authority 仅按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 的事件需要读取。
+- 读取[Do 方法](../../ontology/process/flow-do.md)与 [SCENE-01](../../ontology/process/work-scenarios.md)
+  中当前 `task.scene` 对应章节；scene Skill 只负责入口/路由。其他 authority 仅按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 的事件需要读取。
 
 ## 本阶段动作
 

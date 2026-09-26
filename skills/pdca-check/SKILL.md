@@ -13,8 +13,9 @@ metadata:
 只路由真实用户操作回原 Agent；不可路由就阻断。
 
 必须绑定当前用户启动的 Check run、最新 Do 产物、固定 Plan/AC/oracle 和实际 subject 版本。
-对象变化后旧 PASS/旧证据失效。读取[Check 方法](../../ontology/process/flow-check.md)、
-当前 scene Skill 的“阶段方法”，其余规则按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 按需读取。
+对象变化后旧 PASS/旧证据失效。读取[Check 方法](../../ontology/process/flow-check.md)与
+[SCENE-01](../../ontology/process/work-scenarios.md) 中当前 `task.scene` 对应章节；scene Skill 只负责入口/路由。
+其余规则按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 按需读取。
 
 ## 审查
 

@@ -1,7 +1,7 @@
 # 按需读集
 
 本文件定义 **AI 如何最小化读取当前规则与知识**。它是加载方法，不是第二套规则清单。
-当前规则身份以 [INDEX](INDEX.md)、当前 Skill、phase/scene 方法和它们明确引用的当前契约为准。
+当前规则身份以 [INDEX](INDEX.md)、当前运行 Skill、phase flow、SCENE-01 和它们明确引用的当前契约为准。
 
 链接存在、搜索命中、同领域、文件更详细或 frontmatter 含 `authority`，都不等于必须加载或已经采用。
 
@@ -33,9 +33,10 @@
 
 - GATE-01；
 - 当前 phase 的 `process/flow-*.md`；
-- SCENE-01；
-- 当前 scene Skill 中对应阶段方法；
+- SCENE-01 中当前 `task.scene` 对应章节；
 - Plan 已固定、当前阶段确实需要的其他 authority。
+
+scene Skill 只在用户显式选择/定位场景时作为入口读取；阶段执行不再为了取得第二份阶段方法而重复加载 scene Skill。
 
 不要因为 authority 数量有限就全量注入。阶段方法引用某规则时，再读取该规则。
 
