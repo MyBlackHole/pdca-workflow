@@ -16,12 +16,15 @@
 | [pdca-implement](pdca-implement/SKILL.md) | 用户明确选择本体投影场景，或已有投影任务需要场景方法时使用。不脱离模型。 |
 | [pdca-verify](pdca-verify/SKILL.md) | 用户明确选择本体符合性验证，或该任务需要核验方法时使用。不把链接检查当语义证明。 |
 
-四阶段每次匹配用户操作后启动，完成后停止；一个任务使用多个 Skill 但保持原 Agent。
-四个阶段 Skill 刻意保持为**薄运行入口**：共同恢复/授权核对以
-[entry-recovery](../ontology/contracts/entry-recovery.md) 为准，阶段语义以对应 `flow-*.md` 为准，
-场景语义以 [SCENE-01](../ontology/process/work-scenarios.md) 为准，Do-only Work Unit 以 CONTRACT-01 为准。
-三个 scene Skill 同样只负责显式场景选择、任务创建前置和路由，不维护第二份四阶段方法。
-发现重复规则时应回到上述 authority 收敛，而不是维护副本。
+九个运行 Skill 都保持为**薄入口**：
+
+- `pdca`：项目定位、绑定与用户操作分流；绑定/Git 规则以 project-workspace 为准，task 连续性以 entry-recovery 为准；
+- `pdca-assist`：只读产生少量有证据的候选，不默认全项目扫描，不创建任何运行对象；
+- 四个 phase Skill：只保留阶段触发和阶段特有边界；共同恢复以 entry-recovery、阶段方法以 `flow-*.md` 为准；
+- 三个 scene Skill：只保留场景选择、创建前置和路由；场景语义以 [SCENE-01](../ontology/process/work-scenarios.md) 为准；
+- Do-only Work Unit 只以 CONTRACT-01 为准。
+
+发现重复规则时回到现有 authority 收敛，不在 Skill/README 维护第二份副本。
 
 Skill 的 `5.0.0-rc.2` 是运行入口包版本，不与 ontology/protocol 的 `4.0.0-rc.x` 比大小；
 版本域的唯一说明见 [PDCA：版本域](../ontology/concept/pdca.md#版本域)。
