@@ -1,6 +1,6 @@
 # 当前执行权威索引 · 4.0.0-rc.3
 
-只列 28 项沿用 ID 的当前规则权威；它是 AI 查询 authority 的目录，不是要求一次性加载的 manifest。具体何时读取由 [LOAD-MAP](LOAD-MAP.md)、当前 Skill、phase/scene 方法和事件需要决定。旧 INDEX 完整字节在 legacy。参考库未删除，按 REUSE 检索并经 ADOPT 固定采用，不自动执行其方法。
+只列 28 项沿用 ID 的当前规则权威；它是 AI 查询 authority 的目录，不是要求一次性加载的 manifest。具体何时读取由 [LOAD-MAP](LOAD-MAP.md)、当前 Skill、phase/scene 方法和事件需要决定。历史原文的可用性见[来源说明](provenance/README.md)，不假定存在 legacy 副本。参考库未删除，按 REUSE 检索并经 ADOPT 固定采用，不自动执行其方法。
 
 | ID | 当前文件 |
 |---|---|

@@ -4,13 +4,13 @@ id: ontology:domain/skill-advance-phase
 type: domain
 semantic_kind: individual
 layer: Knowledge
-status: active
+status: archived
 authority: reference
-revision: 3.1.0
+revision: 3.1.1
 summary: 阶段推进动作
 dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
-dcterms_modified: '2026-09-12'
+dcterms_modified: '2026-09-26'
 relations:
   instance_of:
   - ontology:concept/knowledge-artifact
@@ -23,6 +23,10 @@ validation:
 provenance:
   pre_review_revision: 2.0.0
 ---
+
+> 归档说明（2026-09-26）：本页重复当前阶段事件方法，且历史正文的“单阶段回执”未区分开始、完成等事件。
+> 当前方法见 [TRANSITION-01](../../concept/pdca-transition.md) 与 [GATE-01](../../concept/pdca-gate.md)。
+> 下方保留原正文供比较，不作为新任务操作入口；替代链接不自动迁移既有采用，验证状态仍为 unverified。
 
 # 阶段推进动作
 

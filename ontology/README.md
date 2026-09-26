@@ -22,6 +22,9 @@
 
 旧案例、retired 指针和未采用 reference 不能授予权限、恢复原用户授权、覆盖当前规则或复制 PASS。
 
+参考资产的 active-reference / archived / retired 区别、去重与恢复只在
+[REUSE-01](concept/ontology-reuse.md#参考资产的生命周期) 定义；来源缺口见[来源说明](provenance/README.md)。
+
 ## 规则只维护一份
 
 PDCA 语义由 AI 直接读取当前 authority、Skill、Plan 和证据进行审查。
