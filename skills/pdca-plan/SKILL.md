@@ -15,8 +15,8 @@ Git 追溯、用户回应、撤权与资源的一致性核对；本 Skill 不再
 - 当前会话不是原任务执行者时，只把真实用户操作路由回原 Agent，然后停止本地执行；不可路由就阻断。
 - 无正式 task 时返回 `pdca` 定位/创建，不在阶段入口创建替代任务。
 - 只有当前用户操作与展示的 Plan 目标匹配时才开始；已有明确有效回应不重复索取。
-- 读取[Plan 方法](../../ontology/process/flow-plan.md)、[场景义务](../../ontology/process/work-scenarios.md)
-  和当前 scene Skill 的“阶段方法”。其余 authority 按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 按需读取。
+- 读取[Plan 方法](../../ontology/process/flow-plan.md)与 [SCENE-01](../../ontology/process/work-scenarios.md)
+  中当前 `task.scene` 对应章节。scene Skill 只负责场景入口/路由，不再维护第二份阶段方法；其余 authority 按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 按需读取。
 
 Plan 未启动前只沟通问题、范围和目标，不生成正式模型、业务实现或其他 Do 产物。
 
