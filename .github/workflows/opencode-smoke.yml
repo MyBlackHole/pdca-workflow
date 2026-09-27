@@ -1040,20 +1040,34 @@ jobs:
               role_messages.append((role, "\n".join(text_parts)))
 
           roles = [role for role, _ in role_messages]
-          target = ["user", "assistant", "user", "assistant"]
+          user_indexes = [
+              index for index, (role, _) in enumerate(role_messages)
+              if role == "user"
+          ]
+          if len(user_indexes) != 2:
+              raise SystemExit(f"expected exactly two exported user turns, got {user_indexes!r} roles={roles!r}")
 
-          start = None
-          for index in range(0, len(roles) - len(target) + 1):
-              if roles[index:index + len(target)] == target:
-                  start = index
-                  break
-          if start is None:
-              raise SystemExit(f"exported role order does not contain {target}: {roles!r}")
+          first_user_index, second_user_index = user_indexes
+          if first_user_index >= second_user_index:
+              raise SystemExit(f"invalid user turn order: {user_indexes!r}")
 
-          turn1_user = role_messages[start][1]
-          turn1_assistant = role_messages[start + 1][1]
-          turn2_user = role_messages[start + 2][1]
-          turn2_assistant = role_messages[start + 3][1]
+          first_assistants = [
+              text for role, text in role_messages[first_user_index + 1:second_user_index]
+              if role == "assistant"
+          ]
+          second_assistants = [
+              text for role, text in role_messages[second_user_index + 1:]
+              if role == "assistant"
+          ]
+          if not first_assistants:
+              raise SystemExit(f"no assistant response between user turns: {roles!r}")
+          if not second_assistants:
+              raise SystemExit(f"no assistant response after second user turn: {roles!r}")
+
+          turn1_user = role_messages[first_user_index][1]
+          turn1_assistant = first_assistants[-1]
+          turn2_user = role_messages[second_user_index][1]
+          turn2_assistant = second_assistants[-1]
 
           if "synthetic OpenCode session-continuity diagnostic" not in turn1_user:
               raise SystemExit("first exported user turn marker missing")
@@ -1080,6 +1094,9 @@ jobs:
               "export_top_level_keys": top_keys,
               "role_sequence": roles,
               "ordered_two_turn_transcript": True,
+              "user_turn_count": 2,
+              "assistant_messages_between_turns": len(first_assistants),
+              "assistant_messages_after_second_turn": len(second_assistants),
               "first_user_contains_runtime_token": True,
               "second_user_reinjects_runtime_token": False,
               "second_assistant_recovers_runtime_token": True,
