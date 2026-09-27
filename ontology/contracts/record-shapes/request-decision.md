@@ -1,6 +1,6 @@
 ---
 schema: pdca.contract/v4
-protocol_revision: 4.0.0-rc.4
+protocol_revision: 4.0.0-rc.5
 authority: normative
 status: active
 ---
@@ -15,7 +15,7 @@ decision 是可审计投影，不是 Gate，不写 transition，也不直接改�
 ```markdown
 ---
 schema: pdca.request-decision/v4
-protocol_revision: 4.0.0-rc.4
+protocol_revision: 4.0.0-rc.5
 task_id: null
 attempt: null
 decision_id: null

@@ -4,7 +4,7 @@ PDCA 在一个 Git 工作副本中集中管理规则、本体、项目记录与�
 
 [安装、更新与宿主发现](INSTALL.md) · [Skill 索引](skills/README.md) · [当前本体](ontology/README.md) · [AI 审查与现场验收](tests/README.md)
 
-当前 release candidate：**protocol `4.0.0-rc.4` / Skill bundle `5.0.0-rc.3` / record schema `v4`**。本轮语义变更、兼容性与未验收范围见 [rc.4 release note](docs/releases/2026-09-27-protocol-4.0.0-rc.4.md)。
+当前 release candidate：**protocol `4.0.0-rc.5` / Skill bundle `5.0.0-rc.3` / record schema `v4`**。本体构建语义、兼容性与未验收范围见 [rc.5 release note](docs/releases/2026-09-27-protocol-4.0.0-rc.5.md)。
 
 ## 开始使用
 
@@ -43,8 +43,8 @@ TARGET_ROOT/
 ```text
 用户目标
   -> root modeling bootstrap
-  -> candidate ontology / work instance
-  -> candidate composition + node qualification
+  -> candidate ontology model root / work instance
+  -> semantic closure + candidate composition/node qualification
   -> Check
   -> Act 固定 ontology/tree/node revision
   -> DECOMP task seed candidate
@@ -54,7 +54,7 @@ TARGET_ROOT/
   -> 独立 PDCA
 ```
 
-首次 root modeling 是唯一允许在尚无 ontology node 时创建的 bootstrap task；它负责经 Check/Act 固定第一个 root node/revision。
+首次 root modeling 是唯一允许在尚无 ontology node 时创建的 bootstrap task；它负责构建唯一 model root，完成 requirement/object/relation/constraint/provenance/unknown semantic closure，再经 Check/Act 固定第一个 ontology/tree/root node revision。
 **候选 ontology/tree/node 在固定前不能提前包装成正式 child seed。** 后续正式 child、implement、verify task 都必须绑定 fixed node/revision。
 
 同一个 node 在三个场景中保持语义身份：Model 定义“应该是什么”，Implement 把模型投影到真实实体，

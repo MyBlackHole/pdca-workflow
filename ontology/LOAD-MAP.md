@@ -72,14 +72,18 @@ Check `phase_completed` 后先保持 awaiting_confirmation，按用户下一操�
 
 按实际事件读取，不一次性加载整条链：
 
-- **查找既有知识/定义**：REUSE-01 只产 candidate；搜索命中不进入 task 输入；
-- **candidate 要作为 ontology/model definition 使用**：按 ONTOLOGY-01 核对语义源资格，再由 ADOPT-01 固定 revision/content/applicability 到当前 refs；
-- **当前 modeling 产生或修改模型**：EVOLVE-01 固定 M1→M2 delta；不自动 adoption/publish/task creation；
-- **需要工作组成视图**：TREE-01 从版本化 ontology/work relation 形成 candidate composition；fixed tree 需 source revision 在 Act 后固定且 digest 匹配；
+- **查找既有知识/定义**：REUSE-01 只产 semantic-unit candidates；搜索命中不进入 task 输入；
+- **candidate 要作为当前模型输入**：先按 ONTOLOGY-01 核对其 definition/claim/constraint 语义与 provenance，再由 ADOPT-01 只固定实际采用的 semantic units、适用范围与 explicit exclusions；
+- **构建 candidate project ontology**：读 ONTOLOGY-01；先形成唯一 model root，再按 requirement coverage → definitions/work instances → relation semantics → constraints/provenance/unknown 建模；
+- **当前 modeling 产生或修改 revision**：EVOLVE-01 固定 M1→M2 delta；ontology-revision 的 payload_ref 作为 model root ref，不自动 adoption/publish/task creation；
+- **Modeling Check**：按 ONTOLOGY-01 做 semantic closure；只在需要 composition/dependency/node 判断时追加 TREE-01 / DEPENDENCY-01 / NODE-01；
+- **需要工作组成视图**：TREE-01 只从有明确 composition implication 的 relation 形成 candidate composition；
+- **需要真实输入依赖**：DEPENDENCY-01 只从明确 consumer output/interface relation 固定 dependency，不从 generic relates_to 推导；
 - **需要判断独立 work node**：NODE-01 只做 qualification；candidate qualification 不等于 formal node；
-- **需要正式 task seed**：只有 Act 后已经 fixed 的 tree/node 才读 DECOMP-01；seed ready 仍不创建 task。
+- **需要正式 task seed**：只有 Modeling Act 后 fixed ontology/tree/node 才读 DECOMP-01；seed ready 仍不创建 task。
 
 不要因为 modeling 会“最终需要这些东西”就默认同时加载 REUSE/ADOPT/EVOLVE/TREE/NODE/DECOMP。
+reference file 是来源容器，不等于其中全部 relations、recipes、local paths 或 historical claims 都进入 model。
 只在当前动作真正进入对应边界时追加。
 
 Do-only Work Unit 与独立 review pass 都只接收 minimum sufficient context，不继承整个知识库和父/兄弟活动历史。

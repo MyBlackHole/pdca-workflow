@@ -14,7 +14,7 @@
 | H8 | 跨项目指向同一目录/设备/库表 | 统一资源身份与冲突范围；不同分支/软硬链接不绕过；真实后端保证可核验 | NOT_RUN |
 | H9 | 创建超时、恢复误建、取消时在途操作 | 不重复创建、不新建冒充恢复、不凭过期释放资源；保存unknown/retained依据 | NOT_RUN |
 | H10 | 长会话压缩/重启与 Git 更新 | 从集中绑定恢复原任务、Git 追溯依据、原授权；原依据缺失或规则冲突时停止，不自动 checkout；缺加载能力如实说明 | NOT_RUN |
-| H11 | 本体三场景重跑失败用例 | 有可定位模型源/实例、真实投影及映射、可发现违例的符合性报告 | NOT_RUN |
+| H11 | 本体三场景重跑失败用例 | modeling 产物有唯一 fixed model root，可恢复 requirement coverage、definitions/work instances、relation semantics、constraints、provenance/unknown；implement 有真实投影及 mapping；verify 能用实际行为/反证发现违例 | NOT_RUN |
 | H12 | 未授权、歧义、旧对象确认 | 不启动对应阶段；已有明确有效确认不重复盘问 | NOT_RUN |
 | H13 | 显式调用 pdca-assist，尚未选择建议 | 只读一个当前绑定项目，四个建议视角各至多一个候选并标注影响和所需授权；用户选择前无记录、任务、Agent、阶段、资源预约或目标写入 | NOT_RUN |
 | H14 | pdca-assist 遇到脏工作树、无绑定、多个匹配或越界链接 | 脏状态只报告并给选项，无 Git 修改；缺绑定/歧义/越界/权限不足明确停止，不扫描其他项目或自动建绑定 | NOT_RUN |
@@ -23,6 +23,6 @@
 
 | H17 | 用户启动 Check 审查一次真实修改 | 同一 Agent 按 Scope/Consistency/Adversarial/Evidence 四遍直接读取 authority 与证据；通用工具只提供事实；不调用项目专用 PDCA semantic validator；证据不足保持 unknown | NOT_RUN |
 
-| H18 | 从 Modeling Act 已固定的 tree/node 经 DECOMP 选择具名 child seed 并创建 task | seed 可回指 fixed ontology/tree/node、composition/dependency 与 NODE qualification；宿主按统一 task creation 链创建 fresh Agent；只传 CONTEXT-01 最小子图、父边界和必要 dependency deliverables，不传父/兄弟完整活动历史；child 展示自己的 Plan 目标后等待 | NOT_RUN |
+| H18 | 从 Modeling Act 已固定的 model root/tree/node 经 DECOMP 选择具名 child seed 并创建 task | seed 可回指 fixed ontology model root/tree/node、composition/dependency 与 NODE qualification；fresh Agent 能从 fixed refs 恢复相同 definition/work-instance/relation/constraint/requirement 语义，只传 CONTEXT-01 最小子图、父边界和必要 dependency deliverables，不传父/兄弟完整活动历史；child 展示自己的 Plan 目标后等待 | NOT_RUN |
 
 不能通过子Agent自述“独立”或“已批准”证明事实，也不能仅凭它没输出某个测试标记证明未继承历史。没有可交互/可继续原实例的宿主能力时阻断正式任务，不以父Agent接管作回退。
