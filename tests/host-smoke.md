@@ -53,7 +53,7 @@ PDCA_ROOT，不能为了实验在 TARGET_ROOT 建 `.pdca/`。测试写入仅限�
 > 为一个无持久化的示例建立领域模型。计数初值为 0，上界为 2；increment 的结果依次为
 > 1、2、2；read 不改变状态；reset 恢复为 0。标签职责把合法读数表示为 `count=N`。
 > 计数状态与标签表示应能分别描述输入、输出、约束及可拒收条件；组合时标签只能消费合法读数。
-> 本轮只交付模型、工作实例、关系和验收依据，不写产品代码、不发布公共知识、不创建后续任务。
+> root modeling task 只交付模型、工作实例、关系和验收依据，不写产品代码、不发布公共知识，也不自动创建后续任务；本实验在该 attempt archived 后会由用户另行从 fixed node 经 DECOMP 创建一个 child，以专门验证 task creation/context isolation。
 
 原 Agent 在获准 modeling Do 中形成实际对象 ID、关系、candidate composition 与 node qualification；
 上述职责名不是预填 node_id。Modeling Do/Check 不产生正式 child seed；只有 Act 固定 ontology/tree/node 后，DECOMP 才能形成 task seed candidate。模型需保留原需求来源，不能只生成调度树。
