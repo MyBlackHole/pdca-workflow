@@ -44,20 +44,6 @@ jobs:
             test -s "$HOME/.agents/skills/$skill/SKILL.md"
           done
 
-          # Real-directory control skill: proves whether OpenCode scans ~/.agents/skills at all.
-          mkdir -p "$HOME/.agents/skills/opencode-control"
-          cat >"$HOME/.agents/skills/opencode-control/SKILL.md" <<'EOF'
-          ---
-          name: opencode-control
-          description: Control skill used only by the OpenCode compatibility smoke.
-          ---
-
-          # OpenCode Control
-          EOF
-
-          echo "Resolved PDCA skill files through symlinks:"
-          find -L "$HOME/.agents/skills" -maxdepth 2 -name SKILL.md -print | sort
-
       - name: Install OpenCode CLI
         shell: bash
         run: |
@@ -133,7 +119,7 @@ jobs:
           print("OpenCode CLI discovered and parsed all nine PDCA runtime skills.")
           PY
 
-      - name: Start OpenCode server
+      - name: Start OpenCode server for non-gating diagnostics
         shell: bash
         run: |
           set -euo pipefail
@@ -156,17 +142,19 @@ jobs:
           fi
           cat "$RUNNER_TEMP/opencode-health.json"
 
-      - name: Probe OpenCode discovery through installer directory symlinks
-        id: symlink_probe
+      - name: Collect headless server skill-discovery diagnostic
         continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
           export HOME="$TEST_HOME"
-          curl -fsS -H "x-opencode-directory: $GITHUB_WORKSPACE" http://127.0.0.1:4096/api/skill >"$RUNNER_TEMP/opencode-skills-symlink.json"
-          cat "$RUNNER_TEMP/opencode-skills-symlink.json"
+          curl -fsS \
+            -H "x-opencode-directory: $GITHUB_WORKSPACE" \
+            http://127.0.0.1:4096/api/skill \
+            >"$RUNNER_TEMP/opencode-server-skills.json"
+          cat "$RUNNER_TEMP/opencode-server-skills.json"
 
-          python3 - "$RUNNER_TEMP/opencode-skills-symlink.json" <<'PY'
+          python3 - "$RUNNER_TEMP/opencode-server-skills.json" <<'PY'
           import json
           import sys
 
@@ -176,183 +164,14 @@ jobs:
           }
           data = json.load(open(sys.argv[1], encoding="utf-8"))
           names = {item.get("name") for item in data.get("data", []) if isinstance(item, dict)}
-          if "opencode-control" not in names:
-              raise SystemExit(f"~/.agents/skills real-directory control was not discovered: {sorted(names)}")
-          discovered = names & expected
-          print("PDCA via directory symlinks:", sorted(discovered))
-          if discovered != expected:
+          discovered = sorted(names & expected)
+          print("headless server PDCA skills:", discovered)
+          if set(discovered) != expected:
               raise SystemExit(
-                  "installer directory-symlink discovery mismatch: "
-                  f"expected={sorted(expected)} discovered={sorted(discovered)}"
+                  "Headless server instance did not expose all external PDCA skills; "
+                  "this is diagnostic only. CLI compatibility is gated by opencode debug skill."
               )
           PY
-
-      - name: Probe real-directory copies to isolate symlink behavior
-        continue-on-error: true
-        shell: bash
-        run: |
-          set -euo pipefail
-          export HOME="$TEST_HOME"
-
-          kill "$(cat "$RUNNER_TEMP/opencode-server.pid")" || true
-          sleep 1
-
-          expected=(pdca pdca-assist pdca-plan pdca-do pdca-check pdca-act pdca-model pdca-implement pdca-verify)
-          for skill in "${expected[@]}"; do
-            rm "$HOME/.agents/skills/$skill"
-            cp -a "$HOME/.agents/pdca/skills/$skill" "$HOME/.agents/skills/$skill"
-          done
-
-          opencode serve --hostname 127.0.0.1 --port 4096 >"$RUNNER_TEMP/opencode-server-copy.log" 2>&1 &
-          echo $! >"$RUNNER_TEMP/opencode-server.pid"
-          for _ in $(seq 1 30); do
-            curl --max-time 2 -fsS http://127.0.0.1:4096/api/health >/dev/null && break
-            sleep 1
-          done
-
-          curl -fsS -H "x-opencode-directory: $GITHUB_WORKSPACE" http://127.0.0.1:4096/api/skill >"$RUNNER_TEMP/opencode-skills-copy.json"
-          python3 - "$RUNNER_TEMP/opencode-skills-copy.json" <<'PY'
-          import json
-          import sys
-          expected = {
-              "pdca", "pdca-assist", "pdca-plan", "pdca-do", "pdca-check",
-              "pdca-act", "pdca-model", "pdca-implement", "pdca-verify",
-          }
-          data = json.load(open(sys.argv[1], encoding="utf-8"))
-          names = {item.get("name") for item in data.get("data", []) if isinstance(item, dict)}
-          discovered = names & expected
-          print("PDCA via real directories:", sorted(discovered))
-          if discovered != expected:
-              raise SystemExit(f"real-directory discovery mismatch: {sorted(discovered)}")
-          PY
-
-      - name: Probe central checkout through explicit OpenCode skills.paths
-        continue-on-error: true
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          kill "$(cat "$RUNNER_TEMP/opencode-server.pid")" || true
-          sleep 1
-
-          explicit_home=/tmp/pdca-opencode-explicit-home
-          rm -rf "$explicit_home"
-          mkdir -p "$explicit_home"
-          export HOME="$explicit_home"
-          export OPENCODE_TEST_HOME="$explicit_home"
-          export OPENCODE_CONFIG_CONTENT='{"skills":{"paths":["/tmp/pdca-opencode-home/.agents/pdca/skills"]}}'
-
-          /tmp/pdca-opencode-home/.opencode/bin/opencode serve --hostname 127.0.0.1 --port 4097 >"$RUNNER_TEMP/opencode-server-explicit.log" 2>&1 &
-          echo $! >"$RUNNER_TEMP/opencode-explicit-server.pid"
-          for _ in $(seq 1 30); do
-            curl --max-time 2 -fsS http://127.0.0.1:4097/api/health >/dev/null && break
-            sleep 1
-          done
-
-          curl -fsS -H "x-opencode-directory: $GITHUB_WORKSPACE" http://127.0.0.1:4097/api/skill >"$RUNNER_TEMP/opencode-skills-explicit.json"
-          cat "$RUNNER_TEMP/opencode-skills-explicit.json"
-
-          python3 - "$RUNNER_TEMP/opencode-skills-explicit.json" <<'PY'
-          import json
-          import sys
-          expected = {
-              "pdca", "pdca-assist", "pdca-plan", "pdca-do", "pdca-check",
-              "pdca-act", "pdca-model", "pdca-implement", "pdca-verify",
-          }
-          data = json.load(open(sys.argv[1], encoding="utf-8"))
-          names = {item.get("name") for item in data.get("data", []) if isinstance(item, dict)}
-          discovered = names & expected
-          print("PDCA via explicit skills.paths:", sorted(discovered))
-          if discovered != expected:
-              raise SystemExit(f"explicit skills.paths discovery mismatch: {sorted(discovered)}")
-          PY
-
-      - name: Activate pdca skill from central checkout without provider execution
-        if: always()
-        continue-on-error: true
-        shell: bash
-        run: |
-          set -euo pipefail
-          export HOME=/tmp/pdca-opencode-explicit-home
-          export OPENCODE_TEST_HOME=/tmp/pdca-opencode-explicit-home
-          export OPENCODE_CONFIG_CONTENT='{"skills":{"paths":["/tmp/pdca-opencode-home/.agents/pdca/skills"]}}'
-
-          python3 - "$GITHUB_WORKSPACE" "$RUNNER_TEMP" <<'PY'
-          import json
-          import sys
-          import urllib.request
-
-          root = sys.argv[1]
-          tmp = sys.argv[2]
-          base = "http://127.0.0.1:4097"
-
-          def request(path, method="GET", body=None):
-              payload = None if body is None else json.dumps(body).encode()
-              req = urllib.request.Request(
-                  base + path,
-                  data=payload,
-                  method=method,
-                  headers={**({"Content-Type": "application/json"} if payload is not None else {}), "x-opencode-directory": root},
-              )
-              with urllib.request.urlopen(req, timeout=10) as response:
-                  raw = response.read()
-                  return response.status, json.loads(raw) if raw else None
-
-          status, created = request("/api/session", "POST", {"location": {"directory": root}})
-          if status != 200:
-              raise SystemExit(f"session create status={status}")
-
-          def find_session_id(value):
-              if isinstance(value, str) and value.startswith("ses_"):
-                  return value
-              if isinstance(value, list):
-                  for item in value:
-                      found = find_session_id(item)
-                      if found:
-                          return found
-              if isinstance(value, dict):
-                  for item in value.values():
-                      found = find_session_id(item)
-                      if found:
-                          return found
-              return None
-
-          sid = find_session_id(created)
-          if not sid:
-              raise SystemExit(f"could not locate session id in response: {created!r}")
-
-          status, _ = request(f"/api/session/{sid}/skill", "POST", {"skill": "pdca", "resume": False})
-          if status != 204:
-              raise SystemExit(f"skill activation status={status}")
-
-          status, messages = request(f"/api/session/{sid}/message")
-          if status != 200:
-              raise SystemExit(f"message list status={status}")
-
-          def find_pdca_skill(value):
-              if isinstance(value, dict):
-                  if value.get("type") == "skill" and value.get("skill") == "pdca":
-                      body = value.get("text", "")
-                      if "PDCA：定位、绑定与运行入口分流" not in body:
-                          raise SystemExit("pdca skill message present but body marker missing")
-                      return True
-                  return any(find_pdca_skill(v) for v in value.values())
-              if isinstance(value, list):
-                  return any(find_pdca_skill(v) for v in value)
-              return False
-
-          if not find_pdca_skill(messages):
-              raise SystemExit("activated pdca skill message not found")
-
-          with open(tmp + "/opencode-session-create.json", "w", encoding="utf-8") as fp:
-              json.dump(created, fp, ensure_ascii=False, indent=2)
-          with open(tmp + "/opencode-session-messages.json", "w", encoding="utf-8") as fp:
-              json.dump(messages, fp, ensure_ascii=False, indent=2)
-
-          print("session:", sid)
-          print("central pdca skill activation: verified")
-          PY
-
       - name: Report provider boundary
         shell: bash
         run: |
@@ -391,13 +210,7 @@ jobs:
           name: opencode-compat-smoke
           if-no-files-found: ignore
           path: |
-            ${{ runner.temp }}/opencode-health.json
             ${{ runner.temp }}/opencode-debug-skills.json
-            ${{ runner.temp }}/opencode-skills-symlink.json
-            ${{ runner.temp }}/opencode-skills-copy.json
-            ${{ runner.temp }}/opencode-skills-explicit.json
-            ${{ runner.temp }}/opencode-session-create.json
-            ${{ runner.temp }}/opencode-session-messages.json
+            ${{ runner.temp }}/opencode-health.json
+            ${{ runner.temp }}/opencode-server-skills.json
             ${{ runner.temp }}/opencode-server.log
-            ${{ runner.temp }}/opencode-server-copy.log
-            ${{ runner.temp }}/opencode-server-explicit.log
