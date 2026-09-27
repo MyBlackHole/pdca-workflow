@@ -26,9 +26,11 @@ PDCA_ROOT/
   ontology/                       # 当前规则、记录格式与按需采用的知识
     projects/<project>/           # 按 work/revision 隔离的项目模型
   records/
-    projects/<project>/workspaces/<workspace>/project-context.md
+    projects/<project>/workspaces/<workspace>/
+      project-context.md
+      capability-checks/<record-ref>.md  # 该绑定范围的环境级 CAP-01 证据
     works/<project>/<work>/        # 工作树、模型版本、投影映射
-    tasks/<task>/                 # task、plan、control、events 与证据
+    tasks/<task>/                 # task、plan、control、events、invocation capability 与证据
     resources/<reservation>.md    # 全中心实际资源预约
 TARGET_ROOT/
   <获准的业务源码、产品测试、文档或配置>
