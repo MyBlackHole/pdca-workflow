@@ -1,6 +1,6 @@
 ---
 schema: pdca.contract/v4
-protocol_revision: 4.0.0-rc.2
+protocol_revision: 4.0.0-rc.3
 authority: normative
 status: active
 ---
@@ -15,7 +15,7 @@ null/空列表/not_run 表示事实尚未取得，不得升级为“支持”。
 ```markdown
 ---
 schema: pdca.capability-check/v4
-protocol_revision: 4.0.0-rc.2
+protocol_revision: 4.0.0-rc.3
 task_id: null
 attempt: null
 environment_ref: null
