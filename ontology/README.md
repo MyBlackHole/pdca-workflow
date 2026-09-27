@@ -16,6 +16,8 @@
 
 这些内容物理上可以共存，但 AI 不应递归加载整个目录。
 
+**目录名不是 project ontology 类型系统。** 当前 `domain/entity/pattern/fact/principle` 主要是可检索 reference library；真正绑定某个 project/work 的 ontology revision 应进入 `ontology/projects/<project>/works/<work>/<revision>`（或显式采用的外部固定模型），并满足 ONTOLOGY-01。当前 main 尚无 `ontology/projects/` 实例，因此项目本体构建仍未经过真实样例验证；维护审查见 [本体构建审查](../docs/reviews/2026-09-27-ontology-construction.md)。
+
 参考资产进入任务必须经过 [REUSE-01](concept/ontology-reuse.md) 与
 [ADOPT-01](concept/ontology-adoption.md)：先检索候选，再固定 id/revision/内容、来源、适用目标和限制。
 搜索命中、链接存在、同名概念、`authority` 字段或“内容更详细”都不能自动把 reference 变成当前规则。
