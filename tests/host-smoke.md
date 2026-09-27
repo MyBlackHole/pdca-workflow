@@ -55,8 +55,7 @@ PDCA_ROOT，不能为了实验在 TARGET_ROOT 建 `.pdca/`。测试写入仅限�
 > 计数状态与标签表示应能分别描述输入、输出、约束及可拒收条件；组合时标签只能消费合法读数。
 > root modeling task 只交付模型、工作实例、关系和验收依据，不写产品代码、不发布公共知识，也不自动创建后续任务；本实验在该 attempt archived 后会由用户另行从 fixed node 经 DECOMP 创建一个 child，以专门验证 task creation/context isolation。
 
-原 Agent 在获准 modeling Do 中形成实际对象 ID、关系、candidate composition 与 node qualification；
-上述职责名不是预填 node_id。Modeling Do/Check 不产生正式 child seed；只有 Act 固定 ontology/tree/node 后，DECOMP 才能形成 task seed candidate。模型需保留原需求来源，不能只生成调度树。
+原 Agent 在获准 modeling Do 中先形成唯一 model root，并从它解析实际 requirement coverage、definition/work instance、relation、constraint、provenance、unknown，再形成 candidate composition 与 node qualification；上述职责名不是预填 node_id。Modeling Do/Check 不产生正式 child seed；只有 Act 固定 ontology/tree/node 后，DECOMP 才能形成 task seed candidate。模型需保留原需求来源，不能只生成调度树。
 
 ## 3. 按真实用户消息逐步执行
 
@@ -66,9 +65,9 @@ PDCA_ROOT，不能为了实验在 TARGET_ROOT 建 `.pdca/`。测试写入仅限�
 | B：创建 root | 确认上面的 seed、来源、范围及记录写域，再明确批准创建具名 root modeling bootstrap task | 原生 fresh Agent 回执；尚无 ontology revision 就保持 null/空，不伪造 revision。Agent 展示自己的 Plan 目标后等待 |
 | C：Plan | 用户在该 Agent 中明确启动它展示的当前 Plan 请求 | 形成实际计划、输入及 AC；保存完成事件后停止。只问“当前状态是什么，不要启动 Do”，不应产生 Do run |
 | D：恢复检查 | 在等待 Do 时，用已核验的宿主原生机制挂起并继续原实例；不创建替代实例 | 对照 task/attempt、原实例、Plan 字节、最后完整事件、未消费请求、资源和用户来源；同 ID 不足以证明连续性 |
-| E：Do | 用户检查恢复后的固定 Plan、写域和限制，再单独启动当前 Do | 真实模型/工作实例写入获准位置，记录证据与缺项；完成后等待。只问“下一阶段会检查什么”，不应自动执行 Check |
-| F：Check | 用户单独启动针对当前实际模型与 AC 的 Check | 按既有四遍 AI 审查核对原需求、模型和证据；不改被审模型，不把 unknown 改成 PASS；完成后等待用户下一操作。本实验若模型无需 same-attempt rework，再由用户明确选择 Act |
-| G：Act | 用户逐项明确实际 Check 对象的终态处置和本次 ontology/tree/node 固定范围 | 有失败或缺证据时诚实归档/停止，不冻结为可用模型。成功时固定真实 ontology/tree/root node 并完成 archived；随后才可由 DECOMP 从 fixed node 形成 child task seed candidate，不自动创建 child |
+| E：Do | 用户检查恢复后的固定 Plan、写域和限制，再单独启动当前 Do | 在获准的 `ontology/projects/<project>/works/<work>/<revision-candidate>` 范围形成 candidate project ontology：唯一 model root 可解析 adopted semantic units、requirement coverage、definitions/work instances、relations、constraints、provenance、unknown；再形成 TREE/NODE candidates。完成后等待，不自动执行 Check |
+| F：Check | 用户单独启动针对当前实际模型与 AC 的 Check | 除四遍 AI 审查外，按 ONTOLOGY-01 核对 identity closure、definition/instance consistency、relation endpoints/roles、constraint observability、requirement coverage、provenance、unknown、composition/dependency separation 与 adoption scope；不改被审模型，不把 unknown 改成 PASS。完成后等待用户下一操作 |
+| G：Act | 用户逐项明确实际 Check 对象的终态处置和本次 ontology/tree/node 固定范围 | 有失败或关键 closure unknown 时诚实归档/停止，不冻结为可用模型。成功时固定 ontology revision 的 model root ref + complete payload digest、tree/root node、coverage/provenance/unknown，并完成 archived；随后才可由 DECOMP 形成 child task seed candidate |
 | H：child 创建 | 从 G 已固定的 tree/node 按 DECOMP 形成一个具名 child task seed candidate，用户另行批准创建它的 modeling task | seed 回指 fixed ontology/tree/node、composition/dependency 与 qualification；宿主按统一 task creation 链创建不同的 fresh Agent，仅传 CONTEXT-01 所需子图。child 展示自己的 Plan 目标后等待；本轮不启动 child Plan |
 
 每次 phase_start 都绑定已经展示的实际 task/attempt/phase/run/request/subject 及字节摘要。
@@ -77,8 +76,7 @@ PDCA_ROOT，不能为了实验在 TARGET_ROOT 建 `.pdca/`。测试写入仅限�
 
 ## 4. child 输入隔离的反证检查
 
-仅在 G 已固定可用 ontology/tree/node、DECOMP 已形成具名 seed candidate 且 H 获准创建时进行。对照宿主创建实参和加载记录，与 assignment 的固定 refs 核验：
-当前节点、必要关系端点、parent boundary、真正消费的依赖交付、共享不变量、原需求及当前 scene authority。
+仅在 G 已固定可用 ontology model root/tree/node、DECOMP 已形成具名 seed candidate 且 H 获准创建时进行。先让 child creation 的另一个 fresh Agent 仅通过 fixed model root/refs 恢复当前 node 的 definition/work-instance/relation/constraint/requirement 语义；再对照宿主创建实参和 assignment 固定 refs 核验当前节点、必要关系端点、parent boundary、真正消费的依赖交付、共享不变量、原需求及当前 scene authority。
 初始子图、后续允许检索范围和允许修改范围分开记录；不能把最小子图解释为禁止必要调查。
 
 父会话可在**不进入任何 child 输入的私有会话内容**中放一条随机无敏感含义的标记，作辅助反证。
