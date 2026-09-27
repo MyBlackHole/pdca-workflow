@@ -13,8 +13,7 @@ metadata:
 `pdca-verify` 场景，不把普通 Check 或一次性第二视角升级成正式 verification。
 
 已有 verify task 时回原 Agent；当前会话不是执行者时只路由真实用户操作，不接管。
-没有 matching task 时，只能基于固定 node/revision、implementation/mapping version、需求/AC、
-CONTEXT-01 子图和必要行为证据提出具名 verify task 输入，由用户显式创建 fresh Agent。
+没有 matching task 时，只能基于固定 node/revision、implementation/mapping version、需求/AC 和必要行为证据提出具名 verify task 输入；用户选择后统一按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 的“新建正式任务”顺序完成 TASK/CONTEXT/CAP/CONFIRM 与 agent-dispatch。
 
 ## 唯一场景语义来源
 
