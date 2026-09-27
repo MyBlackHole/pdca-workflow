@@ -187,11 +187,128 @@ jobs:
 
           if [ "${#present[@]}" -eq 0 ]; then
             echo "No provider credential is present in this job."
-            echo "Model execution, native fresh-Agent reasoning, H11 and H18 remain intentionally unexecuted."
+            echo "No credential-backed model execution is available; a public free-model diagnostic runs next."
           else
             echo "Provider credential presence detected (names only): ${present[*]}"
             echo "This smoke does not consume repository secrets automatically."
           fi
+
+      - name: Probe public free model with bounded-counter ontology
+        id: public_model
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          export HOME="$TEST_HOME"
+          unset OPENCODE_DISABLE_MODELS_FETCH
+          cd "$GITHUB_WORKSPACE"
+
+          python3 - \
+            ontology/projects/pdca-host-smoke/works/bounded-counter/candidate-0.2.0/model.md \
+            "$RUNNER_TEMP/bounded-counter-core.md" <<'PY'
+          import pathlib
+          import sys
+
+          src = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+          marker = "## 8. Derived work projection candidates"
+          if marker not in src:
+              raise SystemExit("bounded-counter projection marker missing")
+          pathlib.Path(sys.argv[2]).write_text(src.split(marker, 1)[0], encoding="utf-8")
+          PY
+
+          cat >"$RUNNER_TEMP/opencode-public-model-prompt.txt" <<'EOF'
+          This is a synthetic compatibility test with no private data.
+          First use the OpenCode skill tool to load the skill named `pdca`.
+          Do not modify files and do not use Section 8 or any precomputed projection.
+          Use only the attached bounded-counter ontology core as domain evidence.
+
+          Reconstruct:
+          1. the unique composition topology;
+          2. the dependency candidate and whether it is ready;
+          3. the three work-node semantic responsibilities.
+
+          In your final answer output one compact JSON object with exactly these keys:
+          `tree`, `dependency`, `nodes`, `ready`, `limitations`.
+          The JSON must mention INST-SYSTEM, INST-COUNTER, INST-LABEL, legal_count_value, and ready=false.
+          EOF
+
+          models=(
+            opencode/mimo-v2.6-flash-free
+            opencode/mimo-v2.5-free
+            opencode/nemotron-3-ultra-free
+          )
+
+          success=0
+          : >"$RUNNER_TEMP/opencode-public-model-attempts.log"
+          for model in "${models[@]}"; do
+            echo "=== $model ===" | tee -a "$RUNNER_TEMP/opencode-public-model-attempts.log"
+            set +e
+            timeout 180 opencode run \
+              --model "$model" \
+              --format json \
+              --file "$RUNNER_TEMP/bounded-counter-core.md" \
+              -- \
+              "$(cat "$RUNNER_TEMP/opencode-public-model-prompt.txt")" \
+              >"$RUNNER_TEMP/opencode-public-model.jsonl" \
+              2>"$RUNNER_TEMP/opencode-public-model.stderr"
+            status=$?
+            set -e
+            cat "$RUNNER_TEMP/opencode-public-model.stderr" | tee -a "$RUNNER_TEMP/opencode-public-model-attempts.log"
+            if [ "$status" -eq 0 ]; then
+              echo "selected_model=$model" | tee -a "$RUNNER_TEMP/opencode-public-model-attempts.log"
+              success=1
+              break
+            fi
+            echo "exit_status=$status" | tee -a "$RUNNER_TEMP/opencode-public-model-attempts.log"
+          done
+
+          if [ "$success" -ne 1 ]; then
+            echo "No public free model completed successfully."
+            exit 1
+          fi
+
+          python3 - "$RUNNER_TEMP/opencode-public-model.jsonl" <<'PY'
+          import json
+          import sys
+
+          events = []
+          for line in open(sys.argv[1], encoding="utf-8"):
+              line = line.strip()
+              if not line:
+                  continue
+              try:
+                  events.append(json.loads(line))
+              except json.JSONDecodeError:
+                  continue
+
+          skill_calls = []
+          texts = []
+          for event in events:
+              if event.get("type") == "tool_use":
+                  part = event.get("part") or {}
+                  if part.get("tool") == "skill":
+                      skill_calls.append(part)
+              if event.get("type") == "text":
+                  part = event.get("part") or {}
+                  text = part.get("text")
+                  if isinstance(text, str):
+                      texts.append(text)
+
+          if not skill_calls:
+              raise SystemExit("model completed but did not call the skill tool")
+
+          final = texts[-1] if texts else ""
+          required = ["INST-SYSTEM", "INST-COUNTER", "INST-LABEL", "legal_count_value"]
+          missing = [item for item in required if item not in final]
+          normalized = final.replace(" ", "").lower()
+          if "ready=false" not in normalized and "\"ready\":false" not in normalized:
+              missing.append("ready=false")
+          if missing:
+              raise SystemExit(f"final semantic reconstruction missing: {missing}; final={final!r}")
+
+          print("public free-model reasoning completed with PDCA skill use")
+          print(final)
+          PY
 
       - name: Dump OpenCode diagnostics
         if: always()
@@ -214,3 +331,8 @@ jobs:
             ${{ runner.temp }}/opencode-health.json
             ${{ runner.temp }}/opencode-server-skills.json
             ${{ runner.temp }}/opencode-server.log
+            ${{ runner.temp }}/bounded-counter-core.md
+            ${{ runner.temp }}/opencode-public-model-prompt.txt
+            ${{ runner.temp }}/opencode-public-model.jsonl
+            ${{ runner.temp }}/opencode-public-model.stderr
+            ${{ runner.temp }}/opencode-public-model-attempts.log

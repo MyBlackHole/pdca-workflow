@@ -92,7 +92,9 @@ OpenCode 官方 Agent Skills 发现规则包含全局兼容目录 `~/.agents/ski
 
 headless `opencode serve` 的 `/api/skill` 在同一 Actions 环境中只返回内置 Skill，没有暴露 external PDCA Skills；该路径目前仅保留为非门禁诊断，不能据此否定 CLI 发现能力，也不能声称 server/session 集成已通过。
 
-兼容 smoke 不读取模型 provider 凭据；当前 Actions 也没有 provider credential，因此只证明 **CLI 安装 + Skill discovery/parse**。模型执行、native fresh-Agent reasoning、session 交互、H11/H18 与完整现场验收仍未执行。维护证据见 [OpenCode 兼容性审查](docs/reviews/2026-09-27-opencode-compatibility.md)。
+兼容 smoke 不读取用户提供的 provider 凭据。OpenCode v1.18.32 在无 `OPENCODE_API_KEY` 时可通过 public provider 路径访问启用的免费模型；真实 Actions 已使用 `opencode/mimo-v2.6-flash-free` 完成一次 bounded-counter ontology-core-only 推理，并验证模型实际调用原生 `skill(pdca)`，恢复出正确 composition、dependency candidate、三类 node responsibility 与 `ready=false`。该 free-model probe 保持非阻断，因为公共免费端点可能限流或下线；证据见 [OpenCode public-model ontology recovery](docs/reviews/2026-09-27-opencode-public-model-recovery.md)。
+
+这仍不等于正式 PDCA fresh-Agent host acceptance：没有 root Modeling 的 Plan/Do/Check/Act fixation、fixed assignment/context 初始化、原 Agent continuation 或完整 implement/verify scene。因此 H1/H11/H18 与其余现场验收仍按实际清单保持未执行。基础 CLI discovery 证据见 [OpenCode 兼容性审查](docs/reviews/2026-09-27-opencode-compatibility.md)。
 
 安装器只注册九个运行入口。宿主是否支持用户级发现路径、符号链接、显式调用和重载，
 要以现场版本与实际工具为准；不能从文件存在推导“宿主一定发现”。
