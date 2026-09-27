@@ -49,9 +49,9 @@ Assist 的“查重/历史拒绝”也只沿当前候选的具体对象和获准
 业务方法产生固定结果后：
 
 1. 按 TRANSITION-01 写同 run 的 `phase_completed`；
-2. 按 STATE-01 投影最后实际 phase 与 `awaiting_confirmation`；
-3. 可以向用户展示下一固定对象，但不生成下一 phase 授权。
-4. Act 的已授权终态处置完成后，再写 `archived`，STATE 投影为 `phase=archive, completed`。
+2. Plan/Do/Check：按 STATE-01 保持最后实际 phase 并投影 `awaiting_confirmation`；可以展示下一固定对象，但不生成授权；
+3. Act：不进入 awaiting_confirmation；同一已授权 Act 继续终态收尾，完成后写 `archived` 并由 STATE 投影 `phase=archive, completed`；
+4. Act terminalization 若因未知副作用、资源或控制事实无法继续，按 STATE/CONTROL 投影真实 blocked/stopping/interrupted，不请求“第五阶段确认”来掩盖问题。
 
 scene Skill 只在用户显式选择/定位场景时作为入口读取；phase 执行不为取得重复方法再次加载它。
 不要因为 authority 数量有限就全量注入；业务方法引用某规则时，再读取该规则。
