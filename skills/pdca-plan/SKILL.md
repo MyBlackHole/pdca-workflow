@@ -14,11 +14,8 @@ Git 追溯、用户回应、撤权与资源的一致性核对；本 Skill 不再
 
 - 当前会话不是原任务执行者时，只把真实用户操作路由回原 Agent，然后停止本地执行；不可路由就阻断。
 - 无正式 task 时返回 `pdca` 定位/创建，不在阶段入口创建替代任务。
-- 只有当前用户操作与展示的 Plan 目标匹配时才开始；已有明确有效回应不重复索取。
-- 读取[Plan 方法](../../ontology/process/flow-plan.md)与 [SCENE-01](../../ontology/process/work-scenarios.md)
-  中当前 `task.scene` 对应章节。scene Skill 只负责场景入口/路由，不再维护第二份阶段方法；其余 authority 按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 按需读取。
-
-Plan 未启动前只沟通问题、范围和目标，不生成正式模型、业务实现或其他 Do 产物。
+- 按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 的 phase_start 链完成 CONFIRM → GATE → TRANSITION → STATE；没有 `phase_started(plan)` receipt 就不进入业务方法。
+- 读取[Plan 方法](../../ontology/process/flow-plan.md)与 [SCENE-01](../../ontology/process/work-scenarios.md) 当前 scene 章节。
 
 ## 本阶段必须固定
 
@@ -39,8 +36,6 @@ Plan 至少把以下内容变成可验收输入，而不是执行说明的占位
 
 ## 完成与停止
 
-保存 plan、固定输入、验收基线和必要 seed，记录 `phase_completed`，报告下一 Do 的固定对象、
-写域、资源和限制，然后停止。
-
-Do 的 `phase_start` 必须来自 Plan 完成后的新用户操作；最初“开始”、Plan 内预批准或
-future blanket approval 都不能自动启动 Do。重复 Plan 从已固定输入恢复，不重复创建产物。
+固定 plan、输入、验收基线和必要 seed 后，按 LOAD-MAP 的 phase completion 链写
+`phase_completed(plan)` 并投影 awaiting_confirmation；报告下一 Do 候选对象后停止。
+下一阶段授权仍由 CONFIRM-01 单独产生。重复 Plan 从固定输入恢复，不重复创建产物。

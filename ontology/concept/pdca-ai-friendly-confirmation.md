@@ -9,8 +9,8 @@ dcterms_created: 2026-09-04
 status: active
 authority: normative
 revision: 4.0.0-rc.1
-dcterms_modified: '2026-09-14'
-summary: CONFIRM-01：每阶段目标沟通与用户显式启动
+dcterms_modified: '2026-09-27'
+summary: CONFIRM-01：把真实用户回应绑定到固定对象
 confirmation_spec:
   kind_phases:
     phase_start:
@@ -33,30 +33,52 @@ confirmation_spec:
   - migrate
 ---
 
-# CONFIRM-01：每阶段目标沟通与用户显式启动
+# CONFIRM-01：用户授权事实
 
-## 请求与授权
+CONFIRM-01 只回答：**一条可核实的用户回应，是否明确授权了某个已经固定的对象/动作。**
+它不判断 phase 是否具备启动条件，不写 transition，也不决定 task execution_state。
 
-所有 Plan、Do、Check、Act 的**开始**都要有 `kind=phase_start` 请求；`phase` 表示待启动的目标阶段。Plan 入口请求包含问题、目标、范围、非目标、约束和预期产物；Do 包含批准计划和写域；Check 固定产物及验收依据；Act 固定检查结论、处置、发布／知识权限。
+## 三类记录
 
-请求显示给用户，包含 task/attempt/scene、目标阶段、run_id、原会话、固定输入及 subject_ref/digest。对象摘要由实际字节计算，不能用“待计算”、模板占位或仅标题。首次 Plan 前只做目标沟通和最小能力核验，不能把建模／写业务文件放到所谓准备步骤。
+授权链只使用现有三类记录：
 
-上阶段报告可同时提出下一阶段对象；一个明确回应即可启动，不重复审批。只有一个未变的当前待确认事项时自然语言“同意”可绑定它；多个事项或内容变化必须澄清。可批量批准**已经存在且逐项具名**的不同任务当前对象，不预批未来阶段或未来模型版本。
+1. **request**：固定待决定的对象；
+2. **response**：保存可核实的原始用户回应及来源；
+3. **request-decision**：把 response 与 request 匹配并记录 consumed / rejected / cancelled / superseded。
 
-`clarification` 只补事实，不授权阶段／扩大写域。`confirmed` 表示允许该阶段开始，不表示验收通过。阶段完成且所有检查通过也不产生下一阶段授权。
+精确字段只以对应 record-shape 为准，不在本页重复 schema。
 
-## 工作级操作不是第五阶段
+## Phase start
 
-具名任务创建、整树冻结、场景启动、迁移可复用同一request/response/decision用途，kind=work_action、scope_kind=work，绑定work_id、tree_revision、action和固定对象；task/attempt/phase/run留空。不得拿工作级消息直接批准未来阶段。一次真实消息可同时明确列出当前已固定的工作动作与阶段对象，各自记录引用，不重复盘问。共享发布如属于当前Act，应列入Act的具体处置权限，不另启动隐藏流程。
+Plan / Do / Check / Act 的开始都使用 `kind=phase_start`。
+请求必须让用户能知道“批准的到底是什么”，至少固定对应 task/attempt、目标 phase/run、
+subject 及其版本/摘要、当前会话和本 phase 需要用户决定的范围。
+
+phase 的具体业务输入由各 `flow-*.md` 定义；CONFIRM 只负责固定待批准对象，不重新定义 Plan/Do/Check/Act 方法。
+
+- `clarification` 只补事实，不授权 phase 或扩大写域；
+- `confirmed` 只表示用户明确允许这个固定 phase_start 对象，**不表示 GATE 已通过**；
+- 上一阶段完成、PASS、ready、Agent 建议都不能替代新的 phase_start 授权；
+- 不允许预批未来 phase、未来 run 或未来模型/产物版本。
+
+如果只有一个未变化的当前待确认对象，用户自然语言“同意”可以匹配它；
+有多个对象、对象已变化或语义不唯一时必须澄清，不能猜。
+
+## Work action
+
+task creation、tree freeze、scene start、migration 等不是第五阶段，使用 `kind=work_action`。
+它们固定 work/action/subject，不产生 phase_start，也不能预批随后 Plan。
+
+一次真实用户消息可以同时明确批准多个**已经固定且逐项具名**的对象，
+但每个对象仍有自己的 request/decision 引用；不能用一个宽泛批准覆盖尚不存在的 future object。
 
 ## 来源与消费
 
-使用原生用户消息 ID／可恢复 transcript、actor、路由会话和原始文本。Agent 可保存引用或抄录，但不得将自己的总结、父 Agent转述、`source:user` 标签当真实来源。哈希只固定内容，不认证发言者。无法核实用户消息就等待，不自动补 signed/consumed。
+只接受可核实的原生用户来源：消息 ID、可恢复 transcript、actor、conversation/routing 事实等。
+Agent 总结、父 Agent 转述、`source:user` 标签或内容哈希都不能独立认证“用户已批准”。
 
-请求、响应、request-decision 沿用三个现有记录用途。匹配 task/attempt/request/phase/run/subject/conversation；请求终局只有 consumed、rejected、cancelled、superseded。消耗一次后重复消息幂等返回原状态，不能启动新 run。物化 decision 必须引用实际 response 和可信顺序；执行者自填 confirmed 没有原生来源仍无效。
+decision 是可审计投影，不是签发器。它必须引用真实 response 与可信顺序；
+相同 request 消费一次后重复投递幂等返回既有结果，不创建第二个 run。
 
-## 等待与变更
-
-阶段结束保存完成事件，execution_state=awaiting_confirmation，当前 phase 保持最后实际阶段。无超时自动批准；取消／撤权优先。输入、目标、验收或计划变化使关联未消费请求失效，新对象重新沟通。已批准但尚未执行的对象变化同样不得运行。
-
-Plan 完成不是 Do 授权；Do 完成不是 Check 授权；Check 完成不是 Act 授权。Act 启动需明确是否仅归档、是否发布或沉淀；用户未授权发布，不从“接受”推断。树冻结、知识发布和新场景另有具名对象，不被阶段批准覆盖。
+subject / 目标 / oracle / 固定输入发生变化时，原未消费或已确认对象都不能直接用于新对象；
+旧 decision 保留历史，新的固定对象重新请求。是否因此能启动 phase 由 GATE-01 判断。

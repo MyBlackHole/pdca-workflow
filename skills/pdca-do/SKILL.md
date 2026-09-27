@@ -13,10 +13,9 @@ metadata:
 用户回应、撤权与资源核对都以该入口为准，本 Skill 不重复定义。
 
 - 当前会话不是原任务执行者时，只路由真实用户操作回原 Agent；不可路由就阻断。
-- 必须存在已完成且仍匹配当前对象的 Plan，并有 Plan 完成后的真实 Do `phase_start`。
-- 返修使用新的 Do run；已有 operation/result 先对账，不通过重放制造第二份副作用。
-- 读取[Do 方法](../../ontology/process/flow-do.md)与 [SCENE-01](../../ontology/process/work-scenarios.md)
-  中当前 `task.scene` 对应章节；scene Skill 只负责入口/路由。其他 authority 仅按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 的事件需要读取。
+- 按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 的 phase_start 链核验 Plan predecessor、当前授权与写域，并写入 `phase_started(do)` 后才进入业务方法。
+- 返修使用新的 Do run；是否仍可留在原 attempt 由 REWORK-01 + GATE-01 判断，已有 operation/result 先对账。
+- 读取[Do 方法](../../ontology/process/flow-do.md)与 [SCENE-01](../../ontology/process/work-scenarios.md) 当前 scene 章节。
 
 ## 本阶段动作
 
@@ -34,7 +33,6 @@ Work Unit 发现新的独立 ontology responsibility 时停止越界部分，按
 
 ## 完成与停止
 
-固定本 run 的真实产物、mapping/模型版本、命令或工具结果、证据、失败与未验证范围，
-保存 `phase_completed`，报告下一 Check 应核验的对象版本和标准，然后停止。
-
-Check 必须由新的用户操作启动；Do 不顺手执行 Check/Act，也不让父 Agent 代做收尾。
+固定本 run 的真实产物、mapping/模型版本、工具结果、证据、失败与未验证范围后，
+按 LOAD-MAP 的 phase completion 链写 `phase_completed(do)` 并投影 awaiting_confirmation。
+报告下一 Check 候选对象后停止；Do 不顺手执行 Check/Act。

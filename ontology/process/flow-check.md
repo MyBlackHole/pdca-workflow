@@ -15,13 +15,13 @@ summary: Check：AI 直接依据权威、对象与证据审查，不用脚本重
 
 # Check：AI 直接审查事实与符合性
 
-## 进入前
+## 方法边界
 
-用户明确启动当前 Check run，绑定最新 Do 产物、固定 Plan、原需求、模型/映射及 AC/oracle。
-同一任务保持原 Agent。检查对象变化使旧请求和旧 PASS 失效；不能复用旧证据证明新字节。
+Check 的用户授权、Do predecessor、subject freshness、started receipt 与 running 状态由
+CONFIRM-01 / GATE-01 / TRANSITION-01 / STATE-01 处理。本页只定义 **Check run 已开始之后** 的审查方法。
 
-Check 的规则来源只读取当前动作需要的权威：当前 Skill、[按需读集](../LOAD-MAP.md)、
-当前 phase/scene 方法、Plan 固定的 normative 规则，以及已经明确采用并固定版本的参考资产。
+Check 只读取当前动作需要的权威：当前 Skill、[按需读集](../LOAD-MAP.md)、当前 phase/scene 方法、
+Plan 固定的 normative 规则，以及已明确采用并固定版本的参考资产。
 **禁止为了验证这些规则而再写一套项目专用 validator。**
 
 ## 四遍 AI 审查
@@ -116,7 +116,8 @@ AI 可以自主使用**通用事实工具**获取证据，例如：
 pass/fail/unknown/not_run，以及 task_execution、subject_conformance、delivery_usable、scene coverage；
 不要再建立一套平行评分系统。
 
-## 完成与等待
+## 结果包
 
-保存真实证据、反证、Finding、局限和最终 verdict。向用户报告接受、返修、延期或失败归档选项，
-然后停止。Check 不自动修改冻结业务对象，不自动回 Do，不自动进入 Act。
+固定真实 evidence、counterevidence、Finding、limitation 与最终 verdict。
+它们作为本 Check run 的完成结果交给 TRANSITION-01；Check 方法不修改冻结业务对象，
+也不产生返工 Do 或 Act 的授权。

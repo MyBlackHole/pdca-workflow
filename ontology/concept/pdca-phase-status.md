@@ -9,47 +9,46 @@ dcterms_created: 2026-09-04
 status: active
 authority: normative
 revision: 4.0.0-rc.1
-dcterms_modified: '2026-09-14'
-summary: STATE-01：当前状态是索引，不是授权
-state_spec:
-  method_phases: &id001
-  - plan
-  - do
-  - check
-  - act
-  allowed_phases_by_state:
-    running: *id001
-    awaiting_confirmation: *id001
-    awaiting_input: *id001
-    blocked: *id001
-    stopping: *id001
-    interrupted: *id001
-    unexecuted:
-    - plan
-    blocked_unexecuted:
-    - plan
-    completed:
-    - archive
+dcterms_modified: '2026-09-27'
+summary: STATE-01：task 当前状态是事件事实的派生索引
 ---
 
-# STATE-01：当前状态是索引，不是授权
+# STATE-01：派生状态，不负责授权
 
-phase 编码仍为 plan/do/check/act/archive；方法阶段只有前四个。初始 task.phase=plan 表示当前目标，不表示 Plan 已执行。
+STATE-01 只回答：**根据已保存的 transition、control、pending request 与未决 operation，task 当前应显示什么状态。**
+`phase` / `execution_state` 是导航索引，不是 permission matrix；能否开始某 phase 只由 GATE-01 判断。
 
-| execution_state | plan | do | check | act | archive |
-|---|---|---|---|---|---|
-| unexecuted | 允许 | 禁止 | 禁止 | 禁止 | 禁止 |
-| running | 允许 | 允许 | 允许 | 允许 | 禁止 |
-| awaiting_confirmation | 允许 | 允许 | 允许 | 允许 | 禁止 |
-| awaiting_input | 允许 | 允许 | 允许 | 允许 | 禁止 |
-| blocked | 允许 | 允许 | 允许 | 允许 | 禁止 |
-| blocked_unexecuted | 允许 | 禁止 | 禁止 | 禁止 | 禁止 |
-| stopping | 允许 | 允许 | 允许 | 允许 | 禁止 |
-| interrupted | 允许 | 允许 | 允许 | 允许 | 禁止 |
-| completed | 禁止 | 禁止 | 禁止 | 禁止 | 允许 |
+方法 phase 仍为 `plan/do/check/act`，终态索引可使用 `archive`。
 
-初始未批准 Plan 和任何阶段完成后均可等待确认；pending_request_ref指向具体待启动阶段。running必须可回链到当前run的合法phase_start消费及未撤销写权。完成阶段只写phase_completed事件并等待，不自动改变phase。
+## execution_state 的含义
 
-恢复以不可变事件、请求来源、固定产物及实际未决操作重建task.md；不能相信一项布尔值或mtime。completed仅表示按已授权Act收尾且完整循环有据；业务／本体符合性可为fail或unknown。interrupted保留最后阶段，不补造四阶段。
+| execution_state | 派生事实 |
+|---|---|
+| unexecuted | task 已创建但没有任何 `phase_started`；`phase=plan` 只是首个目标 |
+| blocked_unexecuted | 首个 Plan 尚未开始，且创建后存在能力/身份/输入等阻断事实 |
+| running | 存在当前 run 的 `phase_started` 尚未完成；或 Act 方法已完成但同一授权内的终态 `archived` 尚未落链，task 仍在 terminalization |
+| awaiting_input | 当前 run 未完成，并有 clarification / 必要外部输入等待 |
+| awaiting_confirmation | 最近实际 phase 已完成，当前没有运行中的 run，等待新的用户对象决定；也可有 pending request |
+| blocked | 已有执行历史，但当前 continuation/start 所需事实存在 unresolved/unknown 阻断 |
+| stopping | CONTROL-01 的停止/撤权已生效，正在结清或隔离实际副作用/资源 |
+| interrupted | 原 run/attempt 已停止且未正常完成，保留最后实际 phase 和未决事实 |
+| completed | Act 已完成且存在匹配 `archived` receipt；`phase=archive` |
 
-一个任务等待不阻止其他获准阶段；等待会话是否占执行位由真实宿主能力决定，不由父 Agent 心跳判断。
+`completed` 只表示这个 task/attempt 的流程封存，不表示业务对象一定 PASS；
+subject conformance / delivery usability 仍由 VERDICT-01 表达。
+
+## 投影规则
+
+- task 初始 `phase=plan` 不表示 Plan 已授权或启动；
+- `phase_started(P)` 后投影 `phase=P, execution_state=running`；
+- run 内等待 clarification 可投影 awaiting_input，但 run/phase 身份不变；
+- `phase_completed(P)` 对 Plan/Do/Check 保持 `phase=P` 并投影 awaiting_confirmation；不要自动改成下一 phase；
+- `phase_completed(act)` 不产生第五次确认：若同一 Act 的 `archived` 尚未写入，保持 `phase=act` 的 terminalization；能继续时视为 running，出现 unresolved/unknown 时按事实投影 blocked/stopping/interrupted；
+- 有 cancel/revoke 时优先投影 stopping/interrupted，不能被普通 completion 文件覆盖；
+- `archived` 后投影 `phase=archive, execution_state=completed`。
+
+task.md 的状态索引必须能回链到最后完整 transition、control、request/decision 与未决 operation。
+恢复时重新派生；不能相信布尔值、mtime、目录数量或 Agent 自述。
+
+STATE 不判断“下一 phase 允许不允许”。pending request 也只表示有待用户决定的固定对象；
+只有 CONFIRM 产生匹配授权且 GATE 当前仍 ready，才可能随后记录新的 `phase_started`。
