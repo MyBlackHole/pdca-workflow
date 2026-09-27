@@ -4,7 +4,7 @@
 [LOAD-MAP](LOAD-MAP.md) 定义 AI 在不同事件下的最小读取方法；
 [三场景](process/work-scenarios.md) 定义真实交付对象。
 
-阶段方法位于 `process/flow-*.md`，场景义务统一位于 [SCENE-01](process/work-scenarios.md)；scene Skill 只是发现/路由入口。每次只按当前 phase、scene 和真实事件读取需要的部分。版本字段的三个语义域见 [PDCA：版本域](concept/pdca.md#版本域)。
+阶段方法位于 `process/flow-*.md`，场景义务统一位于 [SCENE-01](process/work-scenarios.md)；scene Skill 只是发现/路由入口。每次只按当前 phase、scene 和真实事件读取需要的部分。版本域见 [PDCA：版本域](concept/pdca.md#版本域)；record schema major 与 protocol revision 的关系见 [record-shape 索引](contracts/record-shapes/index.md#schema-major-与-protocol-revision)。
 
 ## 物理知识库不等于当前任务上下文
 
