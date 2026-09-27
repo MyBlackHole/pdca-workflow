@@ -13,9 +13,10 @@ dcterms_modified: '2026-09-27'
 summary: VERDICT-01：只聚合 evidence，不把执行成功混成对象符合
 ---
 
-# VERDICT-01：Evidence → Verdict
+# VERDICT-01：Evidence → Check verdict；final delivery dimensions 保持分离
 
-VERDICT-01 只回答：**如何把当前固定 subject 的必需 evidence 聚合为 task Check 结论。**
+VERDICT-01 主要回答：**如何把当前固定 subject 的必需 evidence 聚合为 Check 的 AC 结果与 subject_conformance。**
+它同时定义最终交付中几个维度为什么必须分开，但不让 Check 提前计算 Act/scene 才能确定的事实。
 它不执行测试、不产生 evidence、不决定用户下一步授权。
 
 ## AC aggregation
@@ -29,18 +30,24 @@ VERDICT-01 只回答：**如何把当前固定 subject 的必需 evidence 聚合
 
 新的 subject/version 不能复用旧 verdict；必须重新聚合对新 subject 仍有效的 evidence。
 
-## 四个维度分开
+## Check verdict 与最终交付维度分开
 
-- **task_execution**：这个 PDCA task/run 是否按自身流程完成；
-- **subject_conformance**：被审对象是否符合固定 AC/oracle；
-- **delivery_usable**：最终交付是否在当前明确处置/限制下可用；
-- **scene_coverage**：model / implement / verify 哪些真的运行并有据。
+Check 当前直接聚合的只有：
 
-正确发现 fail 的 Check/Verify task 可以 task_execution=completed，同时 subject_conformance=fail。
-task archived 也不等于整个 work 或所有 scene 已完成。
+- **acceptance_results**：逐 AC 的 pass/fail/unknown/not_run；
+- **subject_conformance**：当前固定 subject 是否符合这些必需 AC/oracle。
+
+最终 delivery 还会引用三个独立事实维度：
+
+- **task_execution**：由 TRANSITION/STATE 的真实生命周期事实决定；
+- **delivery_usable**：由完成后的具体 Act 处置、限制与真实发布/使用范围决定；
+- **scene_coverage**：由 model / implement / verify 的实际 task/records 决定。
+
+因此 Check 不应提前把“conformance PASS”写成 `delivery_usable=true`，也不能因为 verify 尚未运行就伪造 scene coverage。
+正确发现 fail 的 Check/Verify task可以最终 task_execution=completed，同时 subject_conformance=fail。
 
 用户风险接受、失败归档或发布处置不能改写 evidence/subject_conformance；
-具体处置由 Act 记录，未运行的 scene 保持 not_run。
+它们只影响后续 Act/delivery 事实，未运行的 scene 保持 not_run。
 
 工作级整体完成需要固定节点集合、必需 scene coverage、组合/依赖符合及无阻断 unknown；
 不能由单个 task verdict 推导整个 work PASS。
