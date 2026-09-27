@@ -7,7 +7,8 @@ status: active
 
 # 原生派发事实：记录格式
 
-本契约定义该记录的 schema、字段与填写约束；以下完整 Markdown 示例是规范格式。字段中的 null、空列表及未验证状态表示尚未取得事实，不构成授权、执行成功或资源取得证明。按实际证据填写，保留原始来源与未知。
+本契约只记录 agent-dispatch 的**一次原生创建事务事实**。
+字段中的 null/空值表示未取得证据，不构成授权、创建成功或隔离证明。
 
 ## 示例
 
@@ -32,7 +33,10 @@ handoff_completed: false
 
 # 原生派发事实
 
-填写实际调用／参数／原始返回与原生身份。pending/accepted/unknown/blocked/error分别说明；未知只对账原request。false表示尚未证实，不是默认失败产品。
+`assignment_ref/digest` 固定本次实际提交的 assignment；
+`capability_check_ref` 指向 CAP-01 的适用能力证据；
+receipt、Agent/conversation identity 与 isolation/autonomy evidence 只记录真实宿主回执或可观察事实。
 
-新上下文、可交互、原会话继续分别引用证据。字段写accepted不创造Agent；工具结果看不到独立原生身份或状态时保留unknown。派发成功不授权Plan。
+`status=accepted` 本身不创造 Agent，也不授权 Plan；缺失必要身份/回执时保持 unknown/blocked。
+unknown 只对账同一 `dispatch_request_id`，不通过第二次创建制造新的副作用。
 ```

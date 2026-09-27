@@ -21,8 +21,7 @@ metadata:
 
 - **绑定/改绑**：展示 project-workspace 要求的真实身份与待写路径；只有用户明确批准对应记录写入后才保存。
 - **状态**：只读当前绑定项目的导航，报告实际 task/scene/phase、待用户事项和未决资源；涉及某 task 连续性时按 entry-recovery 核对原 Agent 与事件。
-- **创建正式任务**：只有用户明确选择具名 task 后，按 TASK-01 / CAP-01 /
-  [agent-dispatch](../../ontology/contracts/agent-dispatch.md) 创建；新 Agent 展示自己的 Plan 目标后等待，creation 不等于 Plan 启动。
+- **创建正式任务**：只有用户明确选择具名 task 后，按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 的“新建正式任务”读集固定身份、上下文、宿主资格和创建授权，再由 [agent-dispatch](../../ontology/contracts/agent-dispatch.md) 原生创建一次；新 Agent 展示自己的 Plan 目标后等待。
 - **阶段**：路由到 `pdca-plan/do/check/act`；**场景**：路由到 `pdca-model/implement/verify`；
   场景对象和跨场景终态只以 [SCENE-01](../../ontology/process/work-scenarios.md) 为准。
 - **只读建议**：只有用户显式调用时进入 `pdca-assist`。

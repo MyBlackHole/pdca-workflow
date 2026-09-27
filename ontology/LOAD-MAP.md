@@ -12,7 +12,7 @@
 - **`pdca` 定位/绑定**：读取 [project-workspace](contracts/project-workspace.md) 和当前 project context；只有状态/继续/恢复涉及具体 task 时才追加 [entry-recovery](contracts/entry-recovery.md)。
 - **`pdca-assist`**：读取 project-workspace、当前项目导航以及形成候选真正需要的 records/获准业务材料；只有候选依赖某个 task 的连续性时才追加 entry-recovery。
 - **phase / 已有 scene task**：读取自己的 task、最后完整事件、待确认 request/response 与 entry-recovery。
-- **scene task creation**：先读取 TASK/CAP/CONTEXT 与 agent-dispatch 所需最小输入；创建成功仍等待新 Agent 的 Plan 操作。
+- **正式 task creation**：依次读取 TASK-01（身份/attempt）、CONTEXT-01（assignment refs）、CAP-01（宿主资格）、CONFIRM-01（具名 creation authorization）与 agent-dispatch（一次原生创建）；创建成功仍等待新 Agent 的 Plan 操作。
 
 只有需要解析某个规则 ID 时才查看 [INDEX](INDEX.md) 对应项；不要先把 28 项全部读入上下文。
 不要默认扫描 `domain/`、`entity/`、`pattern/`、legacy、整个 source tree 或兄弟任务历史。
@@ -20,12 +20,13 @@ Assist 的“查重/历史拒绝”也只沿当前候选的具体对象和获准
 
 ## 新建正式任务
 
-按事件追加读取：
+按职责读取，不互相替代：
 
-- TASK-01；
-- CAP-01；
-- CONFIRM-01；
-- 需要真实创建时读 [agent-dispatch](contracts/agent-dispatch.md)。
+1. TASK-01 固定 task/attempt 的语义身份；
+2. CONTEXT-01 选择 minimum sufficient assignment refs；
+3. CAP-01 核验当前宿主/配置是否具备所需原生能力；
+4. CONFIRM-01 核验用户对该具名 task 的 creation authorization；
+5. 只有需要真实创建时才读 [agent-dispatch](contracts/agent-dispatch.md)，执行一次原生创建事务。
 
 项目新增或改绑时才读 [project-workspace](contracts/project-workspace.md)。
 

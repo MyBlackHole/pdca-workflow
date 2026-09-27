@@ -17,7 +17,7 @@ status: active
 
 | 事件 | 下一方法 | 停止条件 |
 |---|---|---|
-| 新工作明确创建 | [TASK](../concept/pdca-task.md)、[CAP](../concept/capability-protocol.md)、[派发](agent-dispatch.md) | 新 Agent 展示 Plan 目标后等待，不把创建授权当阶段批准 |
+| 新工作明确创建 | 按 [LOAD-MAP](../LOAD-MAP.md) 的“新建正式任务”读取 TASK / CONTEXT / CAP / CONFIRM，再执行[派发](agent-dispatch.md) | 新 Agent 展示 Plan 目标后等待，不把创建授权当阶段批准 |
 | 启动一个阶段 | [CONFIRM](../concept/pdca-ai-friendly-confirmation.md)、[GATE](../concept/pdca-gate.md)、对应阶段 Skill | 任何不匹配、能力不足或撤权则阻断 |
 | 阶段完成 | 保存真实产物与完成事件，报告下一目标 | 保持最后实际阶段，awaiting_confirmation；不自动切换 |
 | 恢复／压缩／重启 | [RECOVERY](../concept/pdca-recovery.md) | 原身份、状态、输入与资源不能恢复则停止 |

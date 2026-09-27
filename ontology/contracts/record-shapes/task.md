@@ -43,16 +43,13 @@ dispatch_ref: null
 
 # 本任务说明与状态索引
 
-用户问题/目标、当前 node responsibility、范围/非目标、预期 output、AC/oracle、约束与当前待确认事项。
-引用真实原消息，不由父 Agent 代定目标。
+字段保存 TASK-01 定义的 task/attempt 语义身份与当前状态导航；用户目标、node responsibility、
+AC/oracle 等正文必须引用真实固定来源，不由父 Agent 代定。
 
-普通 ontology-backed task 的 `ontology_revision + node_id + scene + attempt` 是任务语义身份的一部分。
-唯一 root modeling bootstrap 在模型字段尚为空时必须设置 `root_seed_ref`；root seed 固定用户目标/范围/来源，
-不能作为 child task 的替代模型。
+普通 task 的 node/revision/scene/attempt 按 TASK-01 固定；root bootstrap 只使用 `root_seed_ref`
+表达唯一例外。上下文选择只引用 CONTEXT-01 的结果，派发事实只引用 `dispatch_ref`，不在 task record
+复制 assignment 或 dispatch 内容。
 
-`context_refs` 是 CONTEXT-01 选择出的具名必要输入，不是完整父上下文的快照；
-`dependency_refs` 指向固定依赖交付/接口，不指向兄弟完整活动历史。
-
-phase 初始 plan 不代表 Plan 已运行。每次依最后完整事件重建；
-阶段完成保持最后 phase 并置 awaiting_confirmation。字段本身不产生批准。
+`phase` / `execution_state` 是状态索引，不是授权。实际 phase/run 必须从最后完整事件、
+request/response/decision 恢复；初始 `phase: plan` 不表示 Plan 已启动。
 ```
