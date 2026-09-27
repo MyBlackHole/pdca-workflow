@@ -1,6 +1,7 @@
 ---
 model_kind: project_ontology
 model_root_id: project-ontology:pdca-host-smoke/bounded-counter@candidate-0.1.0
+model_root_ref: ontology/projects/pdca-host-smoke/works/bounded-counter/candidate-0.1.0/model.md
 project_id: pdca-host-smoke
 work_id: bounded-counter
 revision: candidate-0.1.0
@@ -14,6 +15,14 @@ fixed_by_modeling_act: false
 
 This file is the unique model root for the bounded-counter construction candidate.
 It is a real project ontology artifact, but it has **not** been fixed by a host-executed Modeling Act and must not be treated as host acceptance evidence.
+
+Layer boundary in this model root:
+
+- **ontology core**: Definitions, Work Instances, Relation Definitions/Instances, Constraints/Invariants;
+- **traceability**: Requirement Coverage, Provenance, Unknowns/Limitations;
+- **derived work projection**: candidate TREE, DEPENDENCY and NODE qualifications.
+
+Traceability and work projection are linked to the ontology but are not domain ontology facts themselves.
 
 ## 1. Requirement traceability
 
@@ -109,6 +118,7 @@ No in-scope requirement is currently partial, uncovered or not_applicable.
 - cardinality: many readings may be consumed over time
 - composition implication: no
 - dependency implication: yes, on interface `legal_count_value`
+- projection note: the semantic relation direction is producer -> consumer; the derived dependency is read as consumer depends on producer/interface and therefore points logically from NODE-LABEL to NODE-COUNTER
 - provenance: REQ-COMP-001
 
 ## 4. Relation instances
@@ -199,6 +209,7 @@ No in-scope requirement is currently partial, uncovered or not_applicable.
 - kind: user_requirement
 - source: `tests/host-smoke.md` bounded-counter seed in protocol rc.5 repository
 - repository: `MyBlackHole/pdca-workflow`
+- commit: `3d16861e95692fd2131ae40882cd5c7e6e8f9353`
 - source limitation: this maintenance construction uses the checked-in smoke requirement text; it is not a native host user-message receipt
 
 ### SRC-PROTOCOL
@@ -206,6 +217,7 @@ No in-scope requirement is currently partial, uncovered or not_applicable.
 - kind: normative_protocol
 - source: ONTOLOGY-01 / SCENE-01 at protocol 4.0.0-rc.5
 - repository: `MyBlackHole/pdca-workflow`
+- commit: `3d16861e95692fd2131ae40882cd5c7e6e8f9353`
 - source limitation: protocol semantics are current repository rules; this artifact itself is not evidence that a host obeys them
 
 ## 7. Unknowns and limitations
@@ -305,5 +317,6 @@ NODE-LABEL
 - unknown completeness: host fixation, cross-Agent recovery and implementation evidence remain explicit
 - composition/dependency separation: explicit
 - adoption scope: no external reference semantic unit is adopted in this candidate
+- payload fixation: current candidate bytes are identifiable by Git path/blob during review, but a formal complete payload digest is intentionally deferred until Modeling Act fixation
 
 This self-review is maintenance evidence only. It is not a formal Modeling Check and does not fix the candidate revision.
