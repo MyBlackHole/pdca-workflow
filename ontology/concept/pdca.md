@@ -8,10 +8,10 @@ dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
 status: active
 authority: normative
-revision: 4.0.0-rc.3
+revision: 4.0.0-rc.4
 dcterms_modified: '2026-09-27'
 summary: PDCA：用户控制推进，独立任务执行
-protocol_revision: 4.0.0-rc.3
+protocol_revision: 4.0.0-rc.4
 rule_authorities:
   TREE-01: ontology:concept/work-ontology-tree
   NODE-01: ontology:concept/work-node-contract
