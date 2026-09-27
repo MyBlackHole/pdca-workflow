@@ -71,7 +71,7 @@ Do-only Work Unit 只是正式 Task 内的局部执行切片，不产生新的 n
 
 PDCA 语义不通过项目专用验证脚本重复实现。Check 直接读取固定 Plan、当前 authority、真实 diff/产物和证据，按 Scope、Consistency、Adversarial、Evidence 四遍进行 AI 审查。
 
-Git、文本搜索、格式解析器、编译器、shell syntax check 以及业务项目已有测试可以提供事实；它们不解释 PDCA，也不替代 Check。规则冲突或证据不足时保持 unknown，而不是修改 validator 让检查通过。
+需要可执行 case 时，CASE-01 先固定 oracle，TEST-01 只保存实际 observation；EVIDENCE-01 把 claim 绑定到 observation/反证，VERDICT-01 再聚合当前 subject 的必需 AC。Git、编译器、业务项目测试和独立 reviewer 都只是事实/claim 来源，不会因为“退出 0”或“另一个 Agent 同意”直接产生 PASS。正式 pdca-verify 是独立 scene/task，不等于 Check 内的一次性第二视角。
 
 ## Git 来源与记录授权
 

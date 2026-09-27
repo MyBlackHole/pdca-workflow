@@ -5,9 +5,10 @@ authority: normative
 status: active
 ---
 
-# Check结论，等待用户决定：记录格式
+# Check verdict aggregate：记录格式
 
-本契约定义该记录的 schema、字段与填写约束；以下完整 Markdown 示例是规范格式。字段中的 null、空列表及未验证状态表示尚未取得事实，不构成授权、执行成功或资源取得证明。按实际证据填写，保留原始来源与未知。
+本契约只保存 VERDICT-01 对当前 Check subject 的聚合结果。
+它不执行 test/review，不生成 evidence，也不产生下一阶段授权。
 
 ## 示例
 
@@ -27,9 +28,13 @@ recommendation: null
 limitations: []
 ---
 
-# Check结论，等待用户决定
+# Check verdict aggregate
 
-逐AC列pass/fail/unknown/not_run和来源，区分确定违例、未验证及建议。检查成功不代表对象成功；缺本体源／映射不能用多数PASS遮盖。
+`acceptance_results` 逐 AC 引用 EVIDENCE-01 的 pass/fail/unknown/not_run；
+`subject_conformance` 只按 VERDICT-01 聚合当前固定 subject 的必需 evidence。
+多数 PASS 不能覆盖必需 fail/unknown/not_run。
 
-推荐接受、Do返修、延期或Act仅归档；未收到对应阶段启动操作不执行。用户认可不改写actual和oracle。
+`recommendation` 只是后续 Act/Do 的候选处置说明，不是用户授权，也不能改写 actual/oracle/conformance。
+task_execution、delivery_usable、scene coverage 如需汇总，由 delivery record 引用真实 conclusion/Act/scene facts，
+不要在 conclusion 里凭建议推断。
 ```

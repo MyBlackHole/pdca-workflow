@@ -9,16 +9,45 @@ dcterms_created: 2026-09-04
 status: active
 authority: normative
 revision: 4.0.0-rc.1
-dcterms_modified: '2026-09-14'
-summary: VERDICT-01：执行完成、对象符合和工作完成分离
+dcterms_modified: '2026-09-27'
+summary: VERDICT-01：只聚合 evidence，不把执行成功混成对象符合
 ---
 
-# VERDICT-01：执行完成、对象符合和工作完成分离
+# VERDICT-01：Evidence → Check verdict；final delivery dimensions 保持分离
 
-每个AC使用pass/fail/unknown/not_run并说明来源；结论区分task_execution、subject_conformance、delivery_usable和场景覆盖。多数PASS不能覆盖必需fail／unknown；自定义较窄套件不能删除SCENE要求的真实本体源。
+VERDICT-01 主要回答：**如何把当前固定 subject 的必需 evidence 聚合为 Check 的 AC 结果与 subject_conformance。**
+它同时定义最终交付中几个维度为什么必须分开，但不让 Check 提前计算 Act/scene 才能确定的事实。
+它不执行测试、不产生 evidence、不决定用户下一步授权。
 
-正确发现不符合的审查任务可以完成，但被审对象仍不符合。用户可批准Act仅失败归档，不自动使delivery_usable=true；风险接受需具体对象与限制，不伪造测试PASS。
+## AC aggregation
 
-modeling本地完成、整树冻结、projection实现可用、verification通过、发布已授权是不同事实。场景未运行保持not_run；不能以一个task=archive宣布整个工作完成。
+每个必需 AC 使用 EVIDENCE-01 的 `pass/fail/unknown/not_run`，并保留 evidence refs：
 
-全工作通过需固定节点集合、所有必需三场景任务的真实覆盖、目标和组合符合、无阻断未知，且发布／使用范围得到明确处置。阶段结束只是等待下一次操作，不自动生成后继。
+- 任一必需 AC 有确定 fail，subject_conformance 不能 PASS；
+- 任一必需 AC 为 unknown/not_run，不能用多数 PASS 覆盖，整体保持相应不确定；
+- 只有当前 subject 的全部必需 AC 有足够 evidence 且无阻断反证，才能得到 conformance PASS；
+- 可选维护建议不能伪装成必需 AC fail。
+
+新的 subject/version 不能复用旧 verdict；必须重新聚合对新 subject 仍有效的 evidence。
+
+## Check verdict 与最终交付维度分开
+
+Check 当前直接聚合的只有：
+
+- **acceptance_results**：逐 AC 的 pass/fail/unknown/not_run；
+- **subject_conformance**：当前固定 subject 是否符合这些必需 AC/oracle。
+
+最终 delivery 还会引用三个独立事实维度：
+
+- **task_execution**：由 TRANSITION/STATE 的真实生命周期事实决定；
+- **delivery_usable**：由完成后的具体 Act 处置、限制与真实发布/使用范围决定；
+- **scene_coverage**：由 model / implement / verify 的实际 task/records 决定。
+
+因此 Check 不应提前把“conformance PASS”写成 `delivery_usable=true`，也不能因为 verify 尚未运行就伪造 scene coverage。
+正确发现 fail 的 Check/Verify task可以最终 task_execution=completed，同时 subject_conformance=fail。
+
+用户风险接受、失败归档或发布处置不能改写 evidence/subject_conformance；
+它们只影响后续 Act/delivery 事实，未运行的 scene 保持 not_run。
+
+工作级整体完成需要固定节点集合、必需 scene coverage、组合/依赖符合及无阻断 unknown；
+不能由单个 task verdict 推导整个 work PASS。

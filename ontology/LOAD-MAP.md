@@ -67,13 +67,29 @@ Plan/Check 需要领域知识时：
 
 Do-only Work Unit 与独立 review pass 都只接收 minimum sufficient context，不继承整个知识库和父/兄弟活动历史。
 
-## Check
+## Check / Evidence
 
-Check 直接读取权威、Plan、真实对象、diff/产物与证据，按 [flow-check](process/flow-check.md)
-执行 Scope / Consistency / Adversarial / Evidence 四遍 AI 审查。
+Check 的最小主链是：
+
+```text
+fixed subject + Plan/AC + relevant authority
+  -> flow-check Scope / Consistency / Adversarial
+  -> EVIDENCE-01 per decisive claim
+  -> VERDICT-01 aggregate
+```
+
+只在实际需要时追加：
+
+- 需要在看到 actual 前固定可判定 oracle/case：CASE-01；
+- 需要实际运行行为/工具并保存 observation：TEST-01；
+- 需要一次性独立第二视角：REVIEW-01；finding 回当前 Check，不直接进入 verdict；
+- 正式独立 verification：SCENE-01 / `pdca-verify`，不是 REVIEW-01 的一次性 pass。
+
+不要因为进入 Check 就默认加载全部 CASE/TEST/REVIEW 资产。已有可复核 observation 可以直接进入 EVIDENCE-01；
+需要新的 test run 才读 TEST-01。
 
 **不要创建项目专用 semantic validator 来重新实现 PDCA 规则。**
-通用工具可以提供事实；规则解释与符合性判断由 AI 直接完成。
+通用工具只提供 observation；claim evidence binding 由 EVIDENCE-01，最终聚合由 VERDICT-01 完成。
 
 ## 事件触发读取
 

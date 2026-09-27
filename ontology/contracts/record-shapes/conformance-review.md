@@ -5,9 +5,10 @@ authority: normative
 status: active
 ---
 
-# 三向符合性：记录格式
+# Verify scene conformance matrix：记录格式
 
-本契约定义该记录的 schema、字段与填写约束；以下完整 Markdown 示例是规范格式。字段中的 null、空列表及未验证状态表示尚未取得事实，不构成授权、执行成功或资源取得证明。按实际证据填写，保留原始来源与未知。
+本契约只保存 `pdca-verify` scene 的结构化 requirement/model/implementation/behavior 核验矩阵。
+它不是当前 task 的 Check conclusion，也不替代 EVIDENCE-01 / VERDICT-01。
 
 ## 示例
 
@@ -25,11 +26,17 @@ findings: []
 result: not_run
 ---
 
-# 三向符合性
+# Verify scene conformance matrix
 
-原需求→模型：每项义务有对象／约束或明确缺口。
-模型→投影：每项采用约束映射到目标位置，目标的实质主张无无依据增加。
-产物→行为：实际运行覆盖适用预期及反例，未运行保持not_run。
+`findings` 可记录：
 
-每行给requirement/object/constraint/target/observation/verdict，保留反证。哈希、链接和文件数量不能代替这些核对。
+- requirement -> model 的覆盖/缺口；
+- model -> implementation 的 mapping/无依据增加；
+- implementation -> behavior 的实际 observation；
+- 必要 composition/dependency interface 一致性。
+
+每个 finding 保留 subject、requirement/definition/target、observation/evidence refs、counterevidence 与 limitation。
+`result` 只是这个 scene matrix 的局部 summary claim；Verify task 的正式 Check verdict 仍由 conclusion/VERDICT-01 聚合。
+
+哈希、链接、文件数量、独立 Agent 身份或 reviewer 共识都不能替代 observation/evidence。
 ```

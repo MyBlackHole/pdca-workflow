@@ -9,16 +9,45 @@ dcterms_created: 2026-09-04
 status: active
 authority: normative
 revision: 4.0.0-rc.1
-dcterms_modified: '2026-09-14'
-summary: EVIDENCE-01：对象—执行—观察—判断
+dcterms_modified: '2026-09-27'
+summary: EVIDENCE-01：把固定 claim 绑定到 observation 与反证
 ---
 
-# EVIDENCE-01：对象—执行—观察—判断
+# EVIDENCE-01：Claim → Evidence
 
-证据记录固定被检查对象、预期AC／oracle、实际输入、执行工具与版本、原始结果位置、退出状态及局限。命令成功不等于业务符合，检测器正确发现违例可表示检测成功而对象失败。
+EVIDENCE-01 只回答：**某个固定 subject 上的某条 claim / AC，由哪些真实 observation 支持、反驳或仍无法判断。**
+它不定义 case、不执行测试，也不汇总整个 task 的最终 verdict。
 
-顺序：确认对象及摘要 → 核对执行是否实际发生 → 比较actual/expected → 检查反证／覆盖 → 汇总必需AC。没有run不能补PASS；测试标记为not_run／error／unknown而不是推定失败产品或成功。
+## Evidence binding
 
-问题报告区分确定违例、待核验主张和建议。具体代码／模型位置、可达路径、触发条件、支持及反证应可复核；搜不到名字不证明不存在。未来设计风险与已观察问题分开。
+一条 evidence 至少绑定：
 
-同一最终产物的必需证据集合才能支持交付。产物改变使相关Check和未来Act对象失效；旧run保留不覆盖。用户认可结果不覆盖实际违例或unknown。
+- subject/version；
+- claim / acceptance ref；
+- expected/oracle；
+- actual observation；
+- tool/raw result/source refs；
+- counterevidence；
+- local status；
+- limitation。
+
+`pass/fail/unknown/not_run/error` 是**这条 claim/AC 对当前 subject 的局部证据状态**：
+
+- pass：actual 与固定 oracle 一致，且当前必要反证检查未推翻；
+- fail：有可复核事实违反固定 oracle；
+- unknown：证据不足、冲突或无法可靠解释；
+- not_run：要求的观察没有实际发生；
+- error：观察机制/基础设施失败，不能直接归因被审对象。
+
+没有 run 不能补 PASS。测试器正确发现对象违例时，可以“测试执行成功 + claim fail”；
+两者必须分开。
+
+## Evidence hygiene
+
+搜索不到名字不证明不存在；链接/摘要不证明语义；静态 observation 不自动证明动态行为；
+未来设计风险与已观察违例分开。reviewer/Agent 的结论先是 claim，只有绑定可复核 observation 后才进入 evidence。
+
+subject 变化会使相关 evidence 对新对象 stale；旧 evidence 不覆盖、不删除。
+用户认可、风险接受或后续处置也不会改写 observed actual/local status。
+
+整个 task 的 AC 聚合、subject_conformance、delivery_usable 与 scene coverage 只由 VERDICT-01 处理。

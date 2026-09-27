@@ -38,7 +38,13 @@ limitations: []
 
 # 本任务实际交付
 
-modeling列真正本体源、采用和实例；projection列固定源／目标／映射；verification列需求／模型／产物核对和实际证据。不能以产品文档列表自动充当本体源。
+delivery 是 task/Act 的最终汇总索引，不重新计算 evidence 或 verdict。
 
-场景覆盖按真实记录填，不能推断未来场景。业务失败可诚实归档，delivery_usable不因用户确认自动true。Act只执行具体批准的发布／归档／知识动作。
+- `test_run_refs` 只指真实 TEST observation；
+- `check_ref` 指向 conclusion/VERDICT 聚合结果；
+- `task_execution/subject_conformance` 从真实 task/conclusion 事实引用，不在此重判；
+- `delivery_usable` 来自已完成的具体 Act 处置及 limitation，不因“用户认可”自动 true；
+- `scene_coverage` 只按实际 scene task/records 填，未运行保持 not_run。
+
+modeling/implementation/verification 的具体交付仍列真实 ontology/artifact/mapping/evidence refs，不用文件列表冒充符合性。
 ```
