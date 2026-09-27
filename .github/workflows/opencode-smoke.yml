@@ -633,6 +633,7 @@ jobs:
                       continue
 
               skill_parts = []
+              tool_names = []
               texts = []
               session_ids = set()
               for event in events:
@@ -641,7 +642,9 @@ jobs:
                       session_ids.add(sid)
                   if event.get("type") == "tool_use":
                       part = event.get("part") or {}
-                      if part.get("tool") == "skill":
+                      tool = part.get("tool")
+                      tool_names.append(tool)
+                      if tool == "skill":
                           skill_parts.append(part)
                   if event.get("type") == "text":
                       part = event.get("part") or {}
@@ -651,6 +654,11 @@ jobs:
 
               if not skill_parts or not any("pdca" in json.dumps(p, ensure_ascii=False).lower() for p in skill_parts):
                   raise SystemExit(f"{path}: pdca skill tool call missing")
+              unexpected_tools = [tool for tool in tool_names if tool != "skill"]
+              if unexpected_tools:
+                  raise SystemExit(f"{path}: unexpected tool access outside supplied context: {unexpected_tools}")
+              if tool_names.count("skill") != 1:
+                  raise SystemExit(f"{path}: expected exactly one skill tool call, got {tool_names}")
               if len(session_ids) != 1:
                   raise SystemExit(f"{path}: expected one session id, got {sorted(session_ids)}")
               if not texts:
@@ -720,6 +728,7 @@ jobs:
               "same_semantics": True,
               "different_sessions": True,
               "excluded_context_respected": True,
+              "tool_boundary_respected": True,
           }
           pathlib.Path(sys.argv[5]).write_text(
               json.dumps(summary, ensure_ascii=False, indent=2),
