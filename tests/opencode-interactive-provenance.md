@@ -84,6 +84,33 @@ interactive prompt input
 
 但 submit 处没有保存“真人 actor”字段；因此仍需要独立记录真人输入动作，再与 host export 对账。
 
+### 2.1 不要把 V2 admission event 套到当前 TUI
+
+OpenCode v1.18.32 的生成客户端同时包含 legacy Session 与真正 V2 Session 两套 API：
+
+```text
+当前 TUI 使用:
+client.session.prompt()
+  -> POST /session/{sessionID}/message
+
+真正 V2 durable admission:
+client.v2.session.prompt()
+  -> POST /api/session/{sessionID}/prompt
+  -> admittedSeq / session.next.prompt.admitted
+```
+
+OpenCode 自身测试还明确验证：
+
+```text
+legacy prompt emits message events without session.next events
+```
+
+因此本探针**不得**把 `session.next.prompt.admitted`、`admittedSeq` 或 V2 prompt receipt
+当成 v1.18.32 当前交互 TUI 的提交证据。详细来源见
+[OpenCode v1.18.32 TUI admission-event boundary](../docs/reviews/2026-09-28-opencode-tui-admission-boundary.md)。
+
+如果未来 TUI 真正切到 `client.v2.session.prompt()`，必须按新版本/新配置重新取证，不能沿用本结论。
+
 ## 3. 探针前提
 
 仅在以下条件同时满足时执行：
@@ -226,7 +253,8 @@ real operator
 ```text
 TUI submit
   -> session.create if needed
-  -> session.prompt(sessionID, parts)
+  -> client.session.prompt(sessionID, parts)
+  -> legacy POST /session/{sessionID}/message
 ```
 
 源码事实不能单独证明本次真人输入，但可以解释输入从 TUI 到 session 的真实 route。
@@ -258,7 +286,8 @@ same exact challenge
 - 同一 challenge 出现在多个 session；
 - session ID 是根据“最新”猜出来，而不是 challenge 对账；
 - TUI 版本与用于解释 route 的源码版本不一致或无法说明；
-- 用户只看到 assistant 回答，却没有输入动作的独立证据。
+- 用户只看到 assistant 回答，却没有输入动作的独立证据；
+- 把 `session.next.prompt.admitted` 或 V2 `admittedSeq` 当成当前 v1.18.32 TUI 的 receipt。
 
 任一关键点无法排除，结果保持 `unknown`。
 

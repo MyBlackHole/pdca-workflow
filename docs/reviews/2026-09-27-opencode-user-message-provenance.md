@@ -145,3 +145,10 @@ OpenCode v1.18.32 当前已经具备很强的 session identity / persistence / c
 由真人提交一次性 challenge，独立记录 TUI 输入动作，再与该版本实际
 `submit -> session.create(必要时) -> session.prompt` 路由和 host-side export 对账。
 该探针仍需现场执行，不能由文档或 CI 替代。
+
+后续源码核对还确认：v1.18.32 当前 TUI 的 `client.session.prompt()` 仍走 legacy
+`POST /session/{sessionID}/message`；真正带 durable admission receipt 的
+`client.v2.session.prompt()` 是另一条 `POST /api/session/{sessionID}/prompt` 路径。
+OpenCode 自身测试明确要求 legacy prompt 不产生任何 `session.next.*` event。
+因此当前 TUI 不能用 `session.next.prompt.admitted` 代替真人输入证据；见
+[OpenCode TUI admission-event boundary](2026-09-28-opencode-tui-admission-boundary.md)。
