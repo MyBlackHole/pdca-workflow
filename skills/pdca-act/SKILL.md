@@ -2,7 +2,7 @@
 name: pdca-act
 description: 用户明确批准现有 PDCA 任务的 Act 终态处置时使用。不用于同 attempt 返工，也不启动下一场景。
 metadata:
-  version: 5.0.0-rc.2
+  version: 5.0.0-rc.3
 ---
 
 # Act：执行终态处置并封存当前 attempt
