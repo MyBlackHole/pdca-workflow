@@ -86,8 +86,16 @@ BLOCKING / NON_BLOCKING / UNKNOWN 只是当前报告中的 finding 标签，不�
 最终 Check 只按 [VERDICT-01](../concept/pdca-verdict.md) 聚合当前 subject 的 acceptance_results / subject_conformance。
 task_execution、delivery_usable、scene_coverage 分别由生命周期、Act 和真实 scene records 在最终 delivery 中汇总，Check 不提前推断。
 
-## 结果包
+## 结果包与后续候选
 
 固定 evidence refs、counterevidence、findings、limitations、acceptance_results 与 subject_conformance。
-它们作为当前 Check run 的 result package 交给 TRANSITION-01；Check 不修改冻结 subject，
-也不产生返工 Do 或 Act 授权。
+它们作为当前 Check run 的 result package 交给 TRANSITION-01；Check 不修改冻结 subject，也不产生后续授权。
+
+Check 可以基于 verdict **说明候选方向**：
+
+- 当前 Plan/baseline/AC/identity 不变且修复仍在原边界：按 REWORK-01 判断是否可形成同-attempt 新 Do candidate；
+- 需要终态接受、限制性使用、失败归档或发布：形成 Act disposition candidate；
+- 需要改变目标/oracle/model identity/Agent 或已 terminal：说明需要新 attempt/task candidate；
+- 已存在 fixed task seed 且 dependency ready：可由 SCHED-01 另行形成 creation candidate。
+
+候选只是导航；用户下一条真实操作决定进入哪个入口。
