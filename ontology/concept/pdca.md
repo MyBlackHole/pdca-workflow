@@ -9,7 +9,7 @@ dcterms_created: 2026-09-04
 status: active
 authority: normative
 revision: 4.0.0-rc.3
-dcterms_modified: '2026-09-25'
+dcterms_modified: '2026-09-27'
 summary: PDCA：用户控制推进，独立任务执行
 protocol_revision: 4.0.0-rc.3
 rule_authorities:
@@ -56,7 +56,7 @@ design_spec:
 
 # PDCA：用户控制推进，独立任务执行
 
-每个独立节点／场景／attempt由自己的真实、可交互Agent完成Plan→Do→Check→Act；同任务保持原会话。用户确认每阶段目标并显式启动，阶段内自主，结束保存产物后等待。宿主只创建／路由／提供资源；父Agent不监控、代答、补阶段或审批。
+每个独立节点／场景／attempt由自己的真实、可交互Agent完成Plan→Do→Check→Act；同任务保持原会话。用户显式启动各阶段：Plan/Do/Check 完成后保存产物并等待下一真实操作；Act 是当前 attempt 的终态处置，完成后同一授权下 terminalize/archive，不再等待“第五阶段”。宿主只创建／路由／提供资源；父Agent不监控、代答、补阶段或审批。
 
 ## 唯一控制原则
 
@@ -80,9 +80,9 @@ pdca-model交付项目本体源及工作实例；pdca-implement从固定模型�
 
 下列 28 项原有权威 ID 保留，由 [INDEX](../INDEX.md) 定位；[LOAD-MAP](../LOAD-MAP.md) 定义 AI 按事件最小读取的方法。规则只维护在当前 authority、phase flow、SCENE-01 与明确引用的契约中；Skill 是发现/路由入口，不再复制一份 phase/scene 语义。不得通过 validator 或额外 manifest 再实现一遍。其他资产只有经 REUSE/ADOPT 固定版本后才是任务参考。
 
-## 版本域
+## Version domains
 
-仓库中的版本号有三个不同语义域，不能相互比较或据此自动升级：
+仓库中的版本字段属于不同语义域，不能相互比较或据此自动升级：
 
 - `skills/catalog.json.version` 与各 Skill 的 `metadata.version`：**runtime Skill bundle version**，只描述入口包/发现面的发布版本；
 - 本文件的 `protocol_revision`：**PDCA protocol revision**，描述当前协议线与整体控制语义；

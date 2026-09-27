@@ -47,8 +47,8 @@ Work Unit 是**当前已批准 Do 内的执行接口**，不是新的 PDCA task�
 | Ψ — Evidence | 必须返回的证据以及允许声明的 claims |
 
 Contract 只描述局部执行边界，不复制父 Plan，也不产生平行的 Goal/Phase 对象。
-一个 Work Unit 超出 S/R、改变 O/Φ、需要新增不可逆副作用，或暴露新的独立业务目标时，
-必须停止；不能在 Work Unit 内自行扩大父 Do 授权。
+一个 Work Unit 超出 S/R、改变 O/Φ、需要新增不可逆副作用，或暴露新的独立 ontology/business responsibility 时，
+必须停止；不能在 Work Unit 内自行扩大父 Do 授权。新的 responsibility 只作为证据返回原 task，先走 EVOLVE/TREE/NODE candidate；未固定前不能直接进入 DECOMP。
 
 ### minimum sufficient context
 
@@ -84,9 +84,7 @@ Work Unit 可有数据依赖和阻塞边；ready 只意味着在**当前已批�
 
 ## 正式工作节点不是 Work Unit
 
-正式节点首先必须来自固定 ontology/work instance 中的具名 object/node 与语义关系，
-再按 [NODE-01](work-node-contract.md) / [DECOMP-01](task-decomposition.md)
-验证独立职责、固定 I/O、可独立拒收成果和验证边界。
+正式节点必须来自版本化 ontology/work relation，经 TREE-01 composition projection 与 NODE-01 qualification，并在 Modeling Act 后固定为 formal node；只有这种 fixed qualified node 才能由 [DECOMP-01](task-decomposition.md) 形成 task seed candidate。
 用户批准创建后，它绑定 node_id/ontology revision，由 fresh Agent 使用
 [CONTEXT-01](../process/select-task-subgraph.md) 选择出的 minimum sufficient subgraph
 执行完整 Plan→Do→Check→Act。

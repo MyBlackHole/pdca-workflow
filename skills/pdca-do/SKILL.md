@@ -9,8 +9,8 @@ metadata:
 
 ## 进入 Do
 
-先执行[共同恢复入口](../../ontology/contracts/entry-recovery.md)。根、原 task/Agent、Git 依据、
-用户回应、撤权与资源核对都以该入口为准，本 Skill 不重复定义。
+先执行[共同恢复入口](../../ontology/contracts/entry-recovery.md)。它只定位根、原 task/Agent、Git 来源、
+待决对象与未决 control/resource/dependency refs；具体授权、资源和依赖判断分别交给当前 authority，本 Skill 不重复定义。
 
 - 当前会话不是原任务执行者时，只路由真实用户操作回原 Agent；不可路由就阻断。
 - 按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 的 phase_start 链核验 Plan predecessor、当前授权与写域，并写入 `phase_started(do)` 后才进入业务方法。
@@ -28,8 +28,7 @@ metadata:
 Contract 的字段、结果结构、上下文隔离、unknown 对账和“不轮询/不监工”语义都只以 CONTRACT-01 为准；
 本 Skill 不再复制第二份 Work Unit 规范。
 
-Work Unit 发现新的独立 ontology responsibility 时停止越界部分，按 DECOMP-01 形成候选证据；
-不要在 Do 内自动创建正式 task、切换 scene 或改变父 Plan。
+Work Unit 发现新的独立 ontology responsibility 时停止越界部分，把证据交回原 task，并先形成 EVOLVE/TREE/NODE candidate；只有 Modeling Check/Act 固定成 formal node 后，DECOMP-01 才能形成 task seed candidate。不要在 Do 内自动创建正式 task、切换 scene 或改变父 Plan。
 
 ## 完成与停止
 

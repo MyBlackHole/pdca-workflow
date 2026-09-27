@@ -43,7 +43,7 @@ composition 与 dependency 分开：父“包含”子不等于父一定消费�
 - task execution_state=running；
 - source task 的完整历史可以被读取。
 
-SCHED-01 可以消费 ready 事实产生“可启动候选”；真正创建/启动仍走 TASK/CONFIRM/GATE。
+SCHED-01 可以消费 ready 事实产生 **task creation candidate**。若用户选择创建，走 TASK/CONTEXT/CAP/CONFIRM/agent-dispatch；已存在 task 的 phase 是否可启动，则另走 CONFIRM/GATE。dependency ready 不把这两条链合并。
 
 ## Stale
 

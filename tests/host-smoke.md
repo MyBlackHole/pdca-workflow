@@ -5,7 +5,7 @@
 [CONFIRM-01](../ontology/concept/pdca-ai-friendly-confirmation.md)、
 [CONTEXT-01](../ontology/process/select-task-subgraph.md) 和 [H1–H18](host-acceptance.md)。
 
-先验证一个 root modeling 任务的创建、四阶段、等待与原实例继续，再验证一个 ontology-backed child
+先验证一个 root modeling 任务的创建、Plan/Do/Check 等待、Act terminalization 与原实例继续，再验证一个 ontology-backed child
 的创建和最小输入。**不是一次证明整个宿主兼容，也不包含实现与独立符合性三场景的完整验收。**
 
 本文只给操作员阅读。不要把整份实验说明、后续确认用语、父会话私有探针或审查预期注入任务 Agent。
@@ -53,10 +53,10 @@ PDCA_ROOT，不能为了实验在 TARGET_ROOT 建 `.pdca/`。测试写入仅限�
 > 为一个无持久化的示例建立领域模型。计数初值为 0，上界为 2；increment 的结果依次为
 > 1、2、2；read 不改变状态；reset 恢复为 0。标签职责把合法读数表示为 `count=N`。
 > 计数状态与标签表示应能分别描述输入、输出、约束及可拒收条件；组合时标签只能消费合法读数。
-> 本轮只交付模型、工作实例、关系和验收依据，不写产品代码、不发布公共知识、不创建后续任务。
+> root modeling task 只交付模型、工作实例、关系和验收依据，不写产品代码、不发布公共知识，也不自动创建后续任务；本实验在该 attempt archived 后会由用户另行从 fixed node 经 DECOMP 创建一个 child，以专门验证 task creation/context isolation。
 
-原 Agent 在获准 modeling 阶段决定实际对象 ID、关系、节点粒度与 child seed；
-上述职责名不是预填 node_id。模型需保留原需求来源，不能只生成调度树。
+原 Agent 在获准 modeling Do 中形成实际对象 ID、关系、candidate composition 与 node qualification；
+上述职责名不是预填 node_id。Modeling Do/Check 不产生正式 child seed；只有 Act 固定 ontology/tree/node 后，DECOMP 才能形成 task seed candidate。模型需保留原需求来源，不能只生成调度树。
 
 ## 3. 按真实用户消息逐步执行
 
@@ -67,9 +67,9 @@ PDCA_ROOT，不能为了实验在 TARGET_ROOT 建 `.pdca/`。测试写入仅限�
 | C：Plan | 用户在该 Agent 中明确启动它展示的当前 Plan 请求 | 形成实际计划、输入及 AC；保存完成事件后停止。只问“当前状态是什么，不要启动 Do”，不应产生 Do run |
 | D：恢复检查 | 在等待 Do 时，用已核验的宿主原生机制挂起并继续原实例；不创建替代实例 | 对照 task/attempt、原实例、Plan 字节、最后完整事件、未消费请求、资源和用户来源；同 ID 不足以证明连续性 |
 | E：Do | 用户检查恢复后的固定 Plan、写域和限制，再单独启动当前 Do | 真实模型/工作实例写入获准位置，记录证据与缺项；完成后等待。只问“下一阶段会检查什么”，不应自动执行 Check |
-| F：Check | 用户单独启动针对当前实际模型与 AC 的 Check | 按既有四遍 AI 审查核对原需求、模型和证据；不改被审模型，不把 unknown 改成 PASS；完成后等待 Act |
-| G：Act | 用户逐项明确实际 Check 对象的处置和本次模型/节点固定范围 | 有失败或缺证据时诚实归档/停止，不冻结为可用模型。只有已获准且实际可用的 root node/revision/seed 才进入下一步；不自动创建 child |
-| H：child 创建 | 用户从实际已固定的 root 模型选择一个可独立拒收的具名 child seed，另行批准创建它的 modeling task | 绑定实际 node/relation/constraint/revision；宿主创建不同的 fresh Agent，仅传所需子图。child 展示自己的 Plan 目标后等待；本轮不启动 child Plan |
+| F：Check | 用户单独启动针对当前实际模型与 AC 的 Check | 按既有四遍 AI 审查核对原需求、模型和证据；不改被审模型，不把 unknown 改成 PASS；完成后等待用户下一操作。本实验若模型无需 same-attempt rework，再由用户明确选择 Act |
+| G：Act | 用户逐项明确实际 Check 对象的终态处置和本次 ontology/tree/node 固定范围 | 有失败或缺证据时诚实归档/停止，不冻结为可用模型。成功时固定真实 ontology/tree/root node 并完成 archived；随后才可由 DECOMP 从 fixed node 形成 child task seed candidate，不自动创建 child |
+| H：child 创建 | 从 G 已固定的 tree/node 按 DECOMP 形成一个具名 child task seed candidate，用户另行批准创建它的 modeling task | seed 回指 fixed ontology/tree/node、composition/dependency 与 qualification；宿主按统一 task creation 链创建不同的 fresh Agent，仅传 CONTEXT-01 所需子图。child 展示自己的 Plan 目标后等待；本轮不启动 child Plan |
 
 每次 phase_start 都绑定已经展示的实际 task/attempt/phase/run/request/subject 及字节摘要。
 操作员从真实回执取得这些值，不从本文生成；已有有效批准不重复索取。
@@ -77,7 +77,7 @@ PDCA_ROOT，不能为了实验在 TARGET_ROOT 建 `.pdca/`。测试写入仅限�
 
 ## 4. child 输入隔离的反证检查
 
-仅在 G 已固定可用模型且 H 获准时进行。对照宿主创建实参和加载记录，与 assignment 的固定 refs 核验：
+仅在 G 已固定可用 ontology/tree/node、DECOMP 已形成具名 seed candidate 且 H 获准创建时进行。对照宿主创建实参和加载记录，与 assignment 的固定 refs 核验：
 当前节点、必要关系端点、parent boundary、真正消费的依赖交付、共享不变量、原需求及当前 scene authority。
 初始子图、后续允许检索范围和允许修改范围分开记录；不能把最小子图解释为禁止必要调查。
 
@@ -92,8 +92,8 @@ PDCA_ROOT，不能为了实验在 TARGET_ROOT 建 `.pdca/`。测试写入仅限�
 ## 5. 收集证据与界定覆盖
 
 使用既有 task/assignment/baseline、request/原始 response/decision、dispatch、event 和 evidence，
-不创建新 schema 或上下文 manifest。证据按 subject、authority/AC、observation、counterevidence、
-reasoning、limitation 组织；缺项保留未知，实际产物不存在时不得填“已完成”。
+不创建新 schema 或上下文 manifest。需要可执行 oracle 时先固定 CASE；真实工具/行为只由 TEST 保存 observation；
+EVIDENCE-01 把 decisive claim 绑定到当前 subject 的 observation/counterevidence，VERDICT-01 再聚合 Check 结论。缺项保留 unknown/not_run，实际产物不存在时不得填“已完成”。
 
 需要用户授权后才导出 transcript/回执；原始材料保存在获准的本地私有证据位置，按既有 ignore 规则处理。
 公共 PR 只放人工检查过的脱敏摘要和必要引用，不提交凭证、认证配置、无关会话或真实私有业务数据。
@@ -102,7 +102,7 @@ reasoning、limitation 组织；缺项保留未知，实际产物不存在时不
 | 验收项 | 本实验真正覆盖的范围 |
 |---|---|
 | H1、H3、H4、H6、H12、H17 | 仅本次宿主/版本/配置和 root modeling 案例中的发现、创建、阶段边界、方法读取及 AI Check；H12 只含本文澄清不授权的反例，未覆盖全部歧义/旧对象/重复消息情形 |
-| H18 | 仅一个已固定 child modeling seed 的创建与初始输入；不证明 child 四阶段或全部多 Agent 行为 |
+| H18 | 仅一个由 fixed tree/node 经 DECOMP 形成的 child task seed 的创建与初始输入；不证明 child 四阶段或全部多 Agent 行为 |
 | H2 | 仅一个实验绑定；两个项目、多 worktree、冲突和别名仍未覆盖 |
 | H10 | 仅等待时原实例继续；未测试崩溃、长上下文压缩、Git 更新或身份丢失恢复 |
 | H5、H7–H9、H11、H13–H16 | 不在本轮；尤其没有资源并发、完整三场景、Assist 或 Work Unit 委派验收 |

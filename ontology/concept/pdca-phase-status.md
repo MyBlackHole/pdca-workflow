@@ -35,7 +35,7 @@ STATE-01 只回答：**根据已保存的 transition、control、pending request
 | completed | Act 已完成且存在匹配 `archived` receipt；`phase=archive` |
 
 `completed` 只表示这个 task/attempt 的流程封存，不表示业务对象一定 PASS；
-subject conformance / delivery usability 仍由 VERDICT-01 表达。
+subject_conformance 由 VERDICT-01 的 Check 聚合表达，delivery_usable 则由已完成的具体 Act 处置、限制与真实使用/发布范围决定。
 
 ## 投影规则
 

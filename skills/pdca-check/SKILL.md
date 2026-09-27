@@ -39,5 +39,4 @@ Finding 可使用 flow-check 定义的 BLOCKING / NON_BLOCKING / UNKNOWN；
 最终 verdict 仍使用 EVIDENCE-01 / VERDICT-01 的既有语义。
 
 固定证据、反证、限制和 verdict 后，按 LOAD-MAP 的 phase completion 链写
-`phase_completed(check)` 并投影 awaiting_confirmation。向用户展示 Act 或新 Do 候选后停止；
-Check 不修改冻结业务对象，也不自动返工。
+`phase_completed(check)` 并投影 awaiting_confirmation。按 flow-check / LOAD-MAP 展示同-attempt rework、Act 终态处置或 future-work 候选后停止；Check 不修改冻结业务对象，也不自动执行任何后续路径。
