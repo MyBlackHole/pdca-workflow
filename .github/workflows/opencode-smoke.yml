@@ -430,6 +430,305 @@ jobs:
           print("two fresh OpenCode sessions recovered equivalent bounded-counter semantics")
           PY
 
+      - name: Probe minimum label-child context in two fresh public-model sessions
+        id: child_context
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          export HOME="$TEST_HOME"
+          unset OPENCODE_DISABLE_MODELS_FETCH
+          cd "$GITHUB_WORKSPACE"
+
+          cat >"$RUNNER_TEMP/bounded-counter-label-child-context.md" <<'EOF'
+          # Synthetic pre-H18 label-child minimum context
+
+          This file is a test-only CONTEXT-01 selection derived from bounded-counter candidate-0.3.0.
+          It is not a fixed assignment record and does not make the candidate a formal node.
+
+          ## Current candidate node
+
+          - node identity: NODE-LABEL
+          - ontology/work ref: INST-LABEL
+          - responsibility: format a legal count reading
+          - input: legal_count_value
+          - output: exact label text
+          - constraints: C-LABEL, C-LABEL-INPUT
+          - parent composition: REL-COMP-SYSTEM-LABEL
+          - dependency: REL-CONSUMES-LEGAL-READING
+          - acceptance:
+            - legal inputs 0,1,2 map exactly to count=0,count=1,count=2
+            - consumed input is constrained by C-LABEL-INPUT and originates from legal_count_value
+          - oracle: reject if a legal input is formatted differently or an out-of-domain value can reach the formatter
+
+          ## Definition and work instance
+
+          DEF-LABEL:
+          - semantic kind: stateless component
+          - responsibility: map a legal count value N to the exact text count=N
+          - input: legal count value
+          - output: label text
+
+          INST-LABEL:
+          - instance_of: DEF-LABEL
+
+          ## Parent boundary
+
+          INST-SYSTEM:
+          - role in this context: direct aggregate parent identity only
+
+          REL-COMP-SYSTEM-LABEL:
+          - source: INST-SYSTEM
+          - target: INST-LABEL
+          - shared interface: system supplies a legal count value and receives exact label text
+          - shared invariant: label behavior satisfies C-LABEL and C-LABEL-INPUT
+          - parent composition responsibility: aggregate guarantees that legal counter readings can be represented as labels
+
+          ## Required dependency endpoint
+
+          INST-COUNTER:
+          - role in this context: producer endpoint identity only
+          - internal counter implementation/operation semantics are intentionally not included
+
+          REL-CONSUMES-LEGAL-READING:
+          - source: INST-COUNTER
+          - target: INST-LABEL
+          - producer/consumer direction: INST-COUNTER -> INST-LABEL
+          - interface: legal_count_value
+          - interface contract: integer N where 0 <= N <= 2
+          - consumer interpretation: label responsibility depends on this producer/interface
+          - fixed deliverable version/digest: not_fixed
+          - ready evidence: none
+          - ready: false
+
+          ## Constraints
+
+          C-LABEL:
+          - subject: INST-LABEL
+          - predicate: for legal N, output is exactly count=N
+          - applicability: N in [0,2]
+          - requirement: REQ-LABEL-001
+
+          C-LABEL-INPUT:
+          - subject: REL-CONSUMES-LEGAL-READING
+          - predicate: formatter input N satisfies 0 <= N <= 2 and originates from legal_count_value
+          - requirement: REQ-COMP-001
+
+          ## Requirements
+
+          REQ-LABEL-001:
+          - legal counter reading N is represented as count=N
+
+          REQ-COMP-001:
+          - label formatting consumes only a legal counter reading
+
+          ## Explicitly excluded from this initial context
+
+          - DEF-COUNTER full definition
+          - counter increment semantics and C-INC
+          - counter reset semantics and C-RESET
+          - counter initialization/read implementation details C-INIT/C-READ
+          - NODE-COUNTER full work-node contract
+          - sibling task conversation/history
+          - parent Plan/Do/Check/Act activity history
+          - unrelated ontology branches
+          - implementation artifacts
+          - behavior evidence
+
+          The child may report these excluded facts as unavailable/not_in_context, but must not invent them.
+          EOF
+
+          cat >"$RUNNER_TEMP/opencode-child-context-prompt.txt" <<'EOF'
+          This is a synthetic compatibility test with no private data.
+          First use the OpenCode skill tool to load the skill named pdca.
+          Do not modify files.
+          Treat the attached file as the complete initial context for this child.
+          Do not fill excluded facts from general knowledge or assumptions.
+
+          Return exactly one JSON object with no extra prose:
+          {
+            "current_node": "NODE-LABEL",
+            "work_instance": "INST-LABEL",
+            "responsibility": "...",
+            "input_interface": "legal_count_value",
+            "producer_endpoint": "INST-COUNTER",
+            "constraints": ["C-LABEL", "C-LABEL-INPUT"],
+            "requirements": ["REQ-LABEL-001", "REQ-COMP-001"],
+            "dependency_ready": false,
+            "excluded": {
+              "counter_increment_semantics": "not_in_context",
+              "counter_reset_semantics": "not_in_context",
+              "parent_activity_history": "not_in_context",
+              "sibling_full_context": "not_in_context"
+            },
+            "limitations": ["..."]
+          }
+          EOF
+
+          models=(
+            opencode/mimo-v2.6-flash-free
+            opencode/mimo-v2.5-free
+            opencode/nemotron-3-ultra-free
+          )
+
+          run_one() {
+            run="$1"
+            success=0
+            : >"$RUNNER_TEMP/opencode-child-$run-attempts.log"
+            for model in "${models[@]}"; do
+              echo "=== $model ===" | tee -a "$RUNNER_TEMP/opencode-child-$run-attempts.log"
+              set +e
+              timeout 180 opencode run \
+                --model "$model" \
+                --format json \
+                --file "$RUNNER_TEMP/bounded-counter-label-child-context.md" \
+                -- \
+                "$(cat "$RUNNER_TEMP/opencode-child-context-prompt.txt")" \
+                >"$RUNNER_TEMP/opencode-child-$run.jsonl" \
+                2>"$RUNNER_TEMP/opencode-child-$run.stderr"
+              status=$?
+              set -e
+              cat "$RUNNER_TEMP/opencode-child-$run.stderr" | tee -a "$RUNNER_TEMP/opencode-child-$run-attempts.log"
+              if [ "$status" -eq 0 ]; then
+                echo "$model" >"$RUNNER_TEMP/opencode-child-$run.model"
+                success=1
+                break
+              fi
+              echo "exit_status=$status" | tee -a "$RUNNER_TEMP/opencode-child-$run-attempts.log"
+            done
+            [ "$success" -eq 1 ] || return 1
+          }
+
+          run_one run1
+          run_one run2
+
+          python3 - \
+            "$RUNNER_TEMP/opencode-child-run1.jsonl" \
+            "$RUNNER_TEMP/opencode-child-run2.jsonl" \
+            "$RUNNER_TEMP/opencode-child-run1.model" \
+            "$RUNNER_TEMP/opencode-child-run2.model" \
+            "$RUNNER_TEMP/opencode-child-context-summary.json" <<'PY'
+          import json
+          import pathlib
+          import sys
+
+          expected_constraints = {"C-LABEL", "C-LABEL-INPUT"}
+          expected_requirements = {"REQ-LABEL-001", "REQ-COMP-001"}
+          excluded_expected = {
+              "counter_increment_semantics": "not_in_context",
+              "counter_reset_semantics": "not_in_context",
+              "parent_activity_history": "not_in_context",
+              "sibling_full_context": "not_in_context",
+          }
+
+          def load_run(path):
+              events = []
+              for line in pathlib.Path(path).read_text(encoding="utf-8").splitlines():
+                  line = line.strip()
+                  if not line:
+                      continue
+                  try:
+                      events.append(json.loads(line))
+                  except json.JSONDecodeError:
+                      continue
+
+              skill_parts = []
+              texts = []
+              session_ids = set()
+              for event in events:
+                  sid = event.get("sessionID")
+                  if isinstance(sid, str):
+                      session_ids.add(sid)
+                  if event.get("type") == "tool_use":
+                      part = event.get("part") or {}
+                      if part.get("tool") == "skill":
+                          skill_parts.append(part)
+                  if event.get("type") == "text":
+                      part = event.get("part") or {}
+                      value = part.get("text")
+                      if isinstance(value, str) and value.strip():
+                          texts.append(value.strip())
+
+              if not skill_parts or not any("pdca" in json.dumps(p, ensure_ascii=False).lower() for p in skill_parts):
+                  raise SystemExit(f"{path}: pdca skill tool call missing")
+              if len(session_ids) != 1:
+                  raise SystemExit(f"{path}: expected one session id, got {sorted(session_ids)}")
+              if not texts:
+                  raise SystemExit(f"{path}: no final text")
+
+              final = texts[-1]
+              left, right = final.find("{"), final.rfind("}")
+              if left < 0 or right <= left:
+                  raise SystemExit(f"{path}: JSON object missing: {final!r}")
+              obj = json.loads(final[left:right + 1])
+
+              expected_keys = {
+                  "current_node", "work_instance", "responsibility", "input_interface",
+                  "producer_endpoint", "constraints", "requirements", "dependency_ready",
+                  "excluded", "limitations",
+              }
+              if set(obj) != expected_keys:
+                  raise SystemExit(f"{path}: unexpected keys: {sorted(obj)}")
+              if obj["current_node"] != "NODE-LABEL" or obj["work_instance"] != "INST-LABEL":
+                  raise SystemExit(f"{path}: wrong current-node identity: {obj!r}")
+              if obj["input_interface"] != "legal_count_value" or obj["producer_endpoint"] != "INST-COUNTER":
+                  raise SystemExit(f"{path}: wrong dependency endpoint/interface: {obj!r}")
+              if set(obj["constraints"]) != expected_constraints:
+                  raise SystemExit(f"{path}: wrong constraints: {obj['constraints']!r}")
+              if set(obj["requirements"]) != expected_requirements:
+                  raise SystemExit(f"{path}: wrong requirements: {obj['requirements']!r}")
+              if obj["dependency_ready"] is not False:
+                  raise SystemExit(f"{path}: dependency must remain not ready")
+              if obj["excluded"] != excluded_expected:
+                  raise SystemExit(f"{path}: excluded-context contract violated: {obj['excluded']!r}")
+              if not isinstance(obj["responsibility"], str) or not obj["responsibility"].strip():
+                  raise SystemExit(f"{path}: responsibility missing")
+              if not isinstance(obj["limitations"], list) or not obj["limitations"]:
+                  raise SystemExit(f"{path}: limitations missing")
+
+              normalized = {
+                  "current_node": obj["current_node"],
+                  "work_instance": obj["work_instance"],
+                  "input_interface": obj["input_interface"],
+                  "producer_endpoint": obj["producer_endpoint"],
+                  "constraints": sorted(obj["constraints"]),
+                  "requirements": sorted(obj["requirements"]),
+                  "dependency_ready": obj["dependency_ready"],
+                  "excluded": obj["excluded"],
+              }
+              return next(iter(session_ids)), normalized, obj
+
+          sid1, norm1, raw1 = load_run(sys.argv[1])
+          sid2, norm2, raw2 = load_run(sys.argv[2])
+          if sid1 == sid2:
+              raise SystemExit(f"child-context runs reused session id {sid1}")
+          if norm1 != norm2:
+              raise SystemExit(f"child-context normalized semantics differ: {norm1!r} != {norm2!r}")
+
+          summary = {
+              "run1": {
+                  "session_id": sid1,
+                  "model": pathlib.Path(sys.argv[3]).read_text().strip(),
+                  "answer": raw1,
+              },
+              "run2": {
+                  "session_id": sid2,
+                  "model": pathlib.Path(sys.argv[4]).read_text().strip(),
+                  "answer": raw2,
+              },
+              "normalized_context_semantics": norm1,
+              "same_semantics": True,
+              "different_sessions": True,
+              "excluded_context_respected": True,
+          }
+          pathlib.Path(sys.argv[5]).write_text(
+              json.dumps(summary, ensure_ascii=False, indent=2),
+              encoding="utf-8",
+          )
+          print(json.dumps(summary, ensure_ascii=False, indent=2))
+          print("two fresh OpenCode sessions respected the same minimum label-child context")
+          PY
+
       - name: Dump OpenCode diagnostics
         if: always()
         shell: bash
@@ -462,3 +761,14 @@ jobs:
             ${{ runner.temp }}/opencode-fresh-run2-attempts.log
             ${{ runner.temp }}/opencode-fresh-run2.model
             ${{ runner.temp }}/opencode-fresh-recovery-summary.json
+            ${{ runner.temp }}/bounded-counter-label-child-context.md
+            ${{ runner.temp }}/opencode-child-context-prompt.txt
+            ${{ runner.temp }}/opencode-child-run1.jsonl
+            ${{ runner.temp }}/opencode-child-run1.stderr
+            ${{ runner.temp }}/opencode-child-run1-attempts.log
+            ${{ runner.temp }}/opencode-child-run1.model
+            ${{ runner.temp }}/opencode-child-run2.jsonl
+            ${{ runner.temp }}/opencode-child-run2.stderr
+            ${{ runner.temp }}/opencode-child-run2-attempts.log
+            ${{ runner.temp }}/opencode-child-run2.model
+            ${{ runner.temp }}/opencode-child-context-summary.json
