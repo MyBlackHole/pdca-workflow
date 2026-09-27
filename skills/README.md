@@ -11,7 +11,7 @@
 | [pdca-plan](pdca-plan/SKILL.md) | 用户明确启动或继续现有 PDCA 任务的 Plan 阶段时使用。 |
 | [pdca-do](pdca-do/SKILL.md) | 用户明确启动或继续现有 PDCA 任务的 Do 阶段时使用。不自动 Check。 |
 | [pdca-check](pdca-check/SKILL.md) | 用户明确启动现有 PDCA 任务的 Check 时使用。不修改业务对象或自动返工。 |
-| [pdca-act](pdca-act/SKILL.md) | 用户明确批准现有 PDCA 任务的 Act 处置时使用。不启动下一场景。 |
+| [pdca-act](pdca-act/SKILL.md) | 用户明确批准现有 PDCA 任务的 Act 终态处置时使用。不用于同-attempt rework，也不启动下一场景。 |
 | [pdca-model](pdca-model/SKILL.md) | 用户明确选择本体建模场景，或已有建模任务需要定位场景规则时使用；具体场景语义读 SCENE-01。 |
 | [pdca-implement](pdca-implement/SKILL.md) | 用户明确选择本体投影场景，或已有投影任务需要定位场景规则时使用；具体场景语义读 SCENE-01。 |
 | [pdca-verify](pdca-verify/SKILL.md) | 用户明确选择本体符合性验证，或已有验证任务需要定位场景规则时使用；具体场景语义读 SCENE-01。 |
@@ -27,7 +27,7 @@
 发现重复规则时回到现有 authority 收敛，不在 Skill/README 维护第二份副本。
 
 Skill 的 `5.0.0-rc.2` 是运行入口包版本，不与 ontology/protocol 的 `4.0.0-rc.x` 比大小；
-版本域的唯一说明见 [PDCA：版本域](../ontology/concept/pdca.md#版本域)。
+版本域的唯一说明见 [PDCA：Version domains](../ontology/concept/pdca.md#version-domains)。
 已有 task 绑定优先，读取场景方法不创建场景任务。中央项目/任务登记和资源预约对所有入口相同；
 业务项目不自动生成 `.pdca/`。记录写入与 Git 提交分别授权。
 
@@ -39,9 +39,9 @@ Skill 的 `5.0.0-rc.2` 是运行入口包版本，不与 ontology/protocol 的 `
 
 正式 task 与 Do-only Work Unit 必须分开：
 
-- 正式节点只按 [NODE-01](../ontology/concept/work-node-contract.md) /
-  [DECOMP-01](../ontology/concept/task-decomposition.md) 从固定 ontology/work relation 形成，
-  并由 [CONTEXT-01](../ontology/process/select-task-subgraph.md) 建立独立上下文边界；
+- 正式 task seed 只来自 Modeling Act 后已经 fixed 的 TREE/NODE；NODE-01 负责 qualification，
+  [DECOMP-01](../ontology/concept/task-decomposition.md) 只把 fixed qualified node 变成 seed candidate，
+  [CONTEXT-01](../ontology/process/select-task-subgraph.md) 再建立独立上下文边界；
 - Work Unit 只按 [CONTRACT-01](../ontology/concept/pdca-execution-contract.md) 服务于当前已批准 Do，
   不创建 node/task/attempt，也不获得新的 ontology responsibility；
 - LOC、工时、token、并行度或 Agent 置信度都不能单独产生正式任务。
