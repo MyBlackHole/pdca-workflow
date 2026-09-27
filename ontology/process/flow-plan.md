@@ -15,11 +15,10 @@ summary: Plan：与你确认问题，再形成计划
 
 # Plan：与你确认问题，再形成计划
 
-## 进入前
+## 方法边界
 
-本任务独立 Agent 已绑定；用户看到当前 Plan 目标并作匹配 `phase_start` 操作。
-先确认问题、范围/非目标、预期交付及约束；已有明确答案引用，不重复盘问。
-未批准时只沟通，不建本体、不改业务文件。
+phase_start 的用户授权、Gate、started receipt 与 running 状态由 CONFIRM-01 / GATE-01 /
+TRANSITION-01 / STATE-01 统一处理。本页只定义 **Plan run 已开始之后** 的计划方法。
 
 ## 本阶段自主执行
 
@@ -41,11 +40,7 @@ AC/oracle、测试/反例、写域和停止条件。
 
 不使用 LOC、预计工时、模块数量、token、并行度或 Agent 置信度作为正式拆分依据。
 
-## 完成与等待
+## 结果包
 
-保存 plan、基线、输入清单和必要模型 seed，标记 `phase_completed`。
-向用户报告计划以及下一 Do 的固定对象、写域和限制，然后停止。
-
-Do 的 `phase_start` 必须来自 Plan `phase_completed` **之后的新用户操作**。
-Plan 期间的预批准、最初“开始”、future blanket approval，或“如果 Plan 通过就继续”
-都不能启动 Do。
+Plan 方法产出固定 plan、baseline、输入清单、AC/oracle、写域/资源边界和必要 seed。
+这些结果交给 TRANSITION-01 作为本 run 的 `phase_completed` 依据；下一 Do 的授权不由本页生成。
