@@ -738,6 +738,228 @@ jobs:
           print("two fresh OpenCode sessions respected the same minimum label-child context")
           PY
 
+      - name: Probe explicit OpenCode session continuation
+        id: session_continuity
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          export HOME="$TEST_HOME"
+          unset OPENCODE_DISABLE_MODELS_FETCH
+          cd "$GITHUB_WORKSPACE"
+
+          python3 - "$RUNNER_TEMP/opencode-continuity-token.txt" <<'PY'
+          import pathlib
+          import secrets
+          import sys
+
+          token = "pdca-continuity-" + secrets.token_hex(16)
+          pathlib.Path(sys.argv[1]).write_text(token, encoding="utf-8")
+          PY
+
+          token="$(cat "$RUNNER_TEMP/opencode-continuity-token.txt")"
+          cat >"$RUNNER_TEMP/opencode-continuity-first-prompt.txt" <<EOF
+          This is a synthetic OpenCode session-continuity diagnostic with no private data.
+          First use the OpenCode skill tool to load the skill named pdca.
+          Do not modify files and do not read/search the repository.
+          Remember this opaque runtime token for the next message in this same session:
+
+          $token
+
+          Return exactly one JSON object with no extra prose:
+          {
+            "continuity_token": "$token",
+            "state": "waiting_for_followup"
+          }
+          EOF
+
+          models=(
+            opencode/mimo-v2.6-flash-free
+            opencode/mimo-v2.5-free
+            opencode/nemotron-3-ultra-free
+          )
+
+          success=0
+          : >"$RUNNER_TEMP/opencode-continuity-first-attempts.log"
+          for model in "${models[@]}"; do
+            echo "=== $model ===" | tee -a "$RUNNER_TEMP/opencode-continuity-first-attempts.log"
+            set +e
+            timeout 180 opencode run               --model "$model"               --format json               --               "$(cat "$RUNNER_TEMP/opencode-continuity-first-prompt.txt")"               >"$RUNNER_TEMP/opencode-continuity-first.jsonl"               2>"$RUNNER_TEMP/opencode-continuity-first.stderr"
+            status=$?
+            set -e
+            cat "$RUNNER_TEMP/opencode-continuity-first.stderr" | tee -a "$RUNNER_TEMP/opencode-continuity-first-attempts.log"
+            if [ "$status" -eq 0 ]; then
+              echo "$model" >"$RUNNER_TEMP/opencode-continuity-first.model"
+              success=1
+              break
+            fi
+            echo "exit_status=$status" | tee -a "$RUNNER_TEMP/opencode-continuity-first-attempts.log"
+          done
+          [ "$success" -eq 1 ] || {
+            echo "No public free model completed the first continuity turn."
+            exit 1
+          }
+
+          python3 -             "$RUNNER_TEMP/opencode-continuity-first.jsonl"             "$RUNNER_TEMP/opencode-continuity-token.txt"             "$RUNNER_TEMP/opencode-continuity-session.txt" <<'PY'
+          import json
+          import pathlib
+          import sys
+
+          events = []
+          for line in pathlib.Path(sys.argv[1]).read_text(encoding="utf-8").splitlines():
+              line = line.strip()
+              if not line:
+                  continue
+              try:
+                  events.append(json.loads(line))
+              except json.JSONDecodeError:
+                  continue
+
+          session_ids = {
+              event.get("sessionID")
+              for event in events
+              if isinstance(event.get("sessionID"), str)
+          }
+          tool_names = []
+          skill_parts = []
+          texts = []
+          for event in events:
+              if event.get("type") == "tool_use":
+                  part = event.get("part") or {}
+                  tool = part.get("tool")
+                  tool_names.append(tool)
+                  if tool == "skill":
+                      skill_parts.append(part)
+              if event.get("type") == "text":
+                  part = event.get("part") or {}
+                  value = part.get("text")
+                  if isinstance(value, str) and value.strip():
+                      texts.append(value.strip())
+
+          if len(session_ids) != 1:
+              raise SystemExit(f"first turn: expected one session id, got {sorted(session_ids)}")
+          if not skill_parts or not any(
+              "pdca" in json.dumps(part, ensure_ascii=False).lower()
+              for part in skill_parts
+          ):
+              raise SystemExit("first turn: pdca skill call missing")
+          unexpected = [name for name in tool_names if name != "skill"]
+          if unexpected:
+              raise SystemExit(f"first turn: unexpected repository/tool access: {unexpected}")
+          if not texts:
+              raise SystemExit("first turn: no final text")
+
+          final = texts[-1]
+          left, right = final.find("{"), final.rfind("}")
+          if left < 0 or right <= left:
+              raise SystemExit(f"first turn: JSON object missing: {final!r}")
+          obj = json.loads(final[left:right + 1])
+          token = pathlib.Path(sys.argv[2]).read_text(encoding="utf-8")
+          if obj != {"continuity_token": token, "state": "waiting_for_followup"}:
+              raise SystemExit(f"first turn: unexpected state: {obj!r}")
+
+          sid = next(iter(session_ids))
+          pathlib.Path(sys.argv[3]).write_text(sid, encoding="utf-8")
+          print(f"first turn session: {sid}")
+          PY
+
+          cat >"$RUNNER_TEMP/opencode-continuity-second-prompt.txt" <<'EOF'
+          Continue this existing session. Do not read/search files or use repository tools.
+          Recover the opaque continuity token from the preceding user message and the prior state.
+
+          Return exactly one JSON object with no extra prose:
+          {
+            "continuity_token": "<the exact prior token>",
+            "prior_state": "waiting_for_followup",
+            "state": "continued_original_session"
+          }
+          EOF
+
+          sid="$(cat "$RUNNER_TEMP/opencode-continuity-session.txt")"
+          model="$(cat "$RUNNER_TEMP/opencode-continuity-first.model")"
+          set +e
+          timeout 180 opencode run             --session "$sid"             --model "$model"             --format json             --             "$(cat "$RUNNER_TEMP/opencode-continuity-second-prompt.txt")"             >"$RUNNER_TEMP/opencode-continuity-second.jsonl"             2>"$RUNNER_TEMP/opencode-continuity-second.stderr"
+          status=$?
+          set -e
+          cat "$RUNNER_TEMP/opencode-continuity-second.stderr"
+          [ "$status" -eq 0 ] || exit "$status"
+
+          python3 -             "$RUNNER_TEMP/opencode-continuity-second.jsonl"             "$RUNNER_TEMP/opencode-continuity-token.txt"             "$RUNNER_TEMP/opencode-continuity-session.txt"             "$RUNNER_TEMP/opencode-continuity-first.model"             "$RUNNER_TEMP/opencode-continuity-summary.json" <<'PY'
+          import hashlib
+          import json
+          import pathlib
+          import sys
+
+          events = []
+          for line in pathlib.Path(sys.argv[1]).read_text(encoding="utf-8").splitlines():
+              line = line.strip()
+              if not line:
+                  continue
+              try:
+                  events.append(json.loads(line))
+              except json.JSONDecodeError:
+                  continue
+
+          expected_sid = pathlib.Path(sys.argv[3]).read_text(encoding="utf-8")
+          session_ids = {
+              event.get("sessionID")
+              for event in events
+              if isinstance(event.get("sessionID"), str)
+          }
+          if session_ids != {expected_sid}:
+              raise SystemExit(
+                  f"second turn: session changed: expected={expected_sid!r} actual={sorted(session_ids)!r}"
+              )
+
+          tool_names = []
+          texts = []
+          for event in events:
+              if event.get("type") == "tool_use":
+                  part = event.get("part") or {}
+                  tool_names.append(part.get("tool"))
+              if event.get("type") == "text":
+                  part = event.get("part") or {}
+                  value = part.get("text")
+                  if isinstance(value, str) and value.strip():
+                      texts.append(value.strip())
+
+          unexpected = [name for name in tool_names if name != "skill"]
+          if unexpected:
+              raise SystemExit(f"second turn: unexpected repository/tool access: {unexpected}")
+          if not texts:
+              raise SystemExit("second turn: no final text")
+
+          final = texts[-1]
+          left, right = final.find("{"), final.rfind("}")
+          if left < 0 or right <= left:
+              raise SystemExit(f"second turn: JSON object missing: {final!r}")
+          obj = json.loads(final[left:right + 1])
+
+          token = pathlib.Path(sys.argv[2]).read_text(encoding="utf-8")
+          expected = {
+              "continuity_token": token,
+              "prior_state": "waiting_for_followup",
+              "state": "continued_original_session",
+          }
+          if obj != expected:
+              raise SystemExit(f"second turn: previous session state not recovered: {obj!r}")
+
+          summary = {
+              "session_id": expected_sid,
+              "model": pathlib.Path(sys.argv[4]).read_text(encoding="utf-8").strip(),
+              "same_session": True,
+              "prior_state_recovered": True,
+              "repository_tools_not_used": True,
+              "token_sha256": hashlib.sha256(token.encode()).hexdigest(),
+          }
+          pathlib.Path(sys.argv[5]).write_text(
+              json.dumps(summary, ensure_ascii=False, indent=2),
+              encoding="utf-8",
+          )
+          print(json.dumps(summary, ensure_ascii=False, indent=2))
+          print("OpenCode --session continued the original session and recovered prior in-session state")
+          PY
+
       - name: Dump OpenCode diagnostics
         if: always()
         shell: bash
@@ -781,3 +1003,11 @@ jobs:
             ${{ runner.temp }}/opencode-child-run2-attempts.log
             ${{ runner.temp }}/opencode-child-run2.model
             ${{ runner.temp }}/opencode-child-context-summary.json
+            ${{ runner.temp }}/opencode-continuity-first.jsonl
+            ${{ runner.temp }}/opencode-continuity-first.stderr
+            ${{ runner.temp }}/opencode-continuity-first-attempts.log
+            ${{ runner.temp }}/opencode-continuity-first.model
+            ${{ runner.temp }}/opencode-continuity-session.txt
+            ${{ runner.temp }}/opencode-continuity-second.jsonl
+            ${{ runner.temp }}/opencode-continuity-second.stderr
+            ${{ runner.temp }}/opencode-continuity-summary.json
