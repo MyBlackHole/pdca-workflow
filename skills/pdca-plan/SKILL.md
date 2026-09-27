@@ -9,8 +9,8 @@ metadata:
 
 ## 进入 Plan
 
-先执行[共同恢复入口](../../ontology/contracts/entry-recovery.md)。它负责根、项目、原 task/Agent、
-Git 追溯、用户回应、撤权与资源的一致性核对；本 Skill 不再复制这些规则。
+先执行[共同恢复入口](../../ontology/contracts/entry-recovery.md)。它负责定位根、项目、原 task/Agent、
+Git 来源、待决对象及未决 control/resource/dependency refs；具体授权、资源、依赖语义再由对应 authority 判断，本 Skill 不复制这些规则。
 
 - 当前会话不是原任务执行者时，只把真实用户操作路由回原 Agent，然后停止本地执行；不可路由就阻断。
 - 无正式 task 时返回 `pdca` 定位/创建，不在阶段入口创建替代任务。
