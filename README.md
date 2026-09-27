@@ -67,7 +67,18 @@ Do-only Work Unit 只是正式 Task 内的局部执行切片，不产生新的 n
 
 每个场景、节点和 attempt 都由绑定的可交互 Agent 完成四阶段。切换 Skill 不换 Agent；父会话调用阶段入口时，只无损路由用户原始操作到原实例，不监工、不代答、不接管。不能继续原实例时阻断。
 
-仅发现或加载 Skill 不授权创建或启动。任务获准创建后，原任务 Agent 先确认 Plan 目标并等待；每个阶段由用户明确启动，完成后报告产物、限制和下一目标并等待。三个场景各有完整 PDCA，读取场景方法不再次创建任务，也不自动串联场景。
+仅发现或加载 Skill 不授权创建或启动。任务获准创建后，原任务 Agent 先确认 Plan 目标并等待；Plan/Do/Check 都由用户明确启动，完成后报告产物、限制和下一候选并等待。Act 也是显式启动，但它是当前 attempt 的终态处置：完成后同一授权下 terminalize/archive，不再等待“第五阶段”。三个场景各有完整 PDCA，读取场景方法不再次创建任务，也不自动串联场景。
+
+## Check 后的下一步不是自动流程
+
+Check 结束后只产生候选方向：
+
+- 同一 Plan/baseline/AC/identity 与写域不变时，可按 REWORK-01 判断是否继续同 attempt 的新 Do；此时**不先进入 Act**；
+- 接受、限制性使用、失败归档或发布当前结果时，才进入 Act；
+- 需要改变目标/oracle/model identity/Agent 或当前 attempt 已终态时，只形成新 attempt/task 候选；
+- 已存在 fixed task seed 且 dependency ready 时，SCHED-01 只负责提示可创建候选，不自动派发。
+
+Act 一旦完成并 archived，当前 attempt 不再回到 Do。经验沉淀也不是默认收尾动作；只有 Act 明确授权 learning/persist/publish 时才使用 LEARN-01，共享发布后的知识也只是 REUSE candidate，其他 task 仍需显式 REUSE→ADOPT。
 
 ## AI 审查
 
