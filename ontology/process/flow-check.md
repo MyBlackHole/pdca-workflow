@@ -83,11 +83,11 @@ Git、搜索/读取、解析器、编译器、TARGET_ROOT 已有 test/build/stat
 BLOCKING / NON_BLOCKING / UNKNOWN 只是当前报告中的 finding 标签，不新增持久化评分体系。
 是否使某个 AC fail/unknown，必须能回链到 EVIDENCE-01。
 
-最终 Check 结论只按 [VERDICT-01](../concept/pdca-verdict.md) 聚合当前 subject 的必需 evidence，
-区分 task_execution / subject_conformance / delivery_usable / scene_coverage。
+最终 Check 只按 [VERDICT-01](../concept/pdca-verdict.md) 聚合当前 subject 的 acceptance_results / subject_conformance。
+task_execution、delivery_usable、scene_coverage 分别由生命周期、Act 和真实 scene records 在最终 delivery 中汇总，Check 不提前推断。
 
 ## 结果包
 
-固定 evidence refs、counterevidence、findings、limitations 与 VERDICT-01 聚合结果。
+固定 evidence refs、counterevidence、findings、limitations、acceptance_results 与 subject_conformance。
 它们作为当前 Check run 的 result package 交给 TRANSITION-01；Check 不修改冻结 subject，
 也不产生返工 Do 或 Act 授权。
