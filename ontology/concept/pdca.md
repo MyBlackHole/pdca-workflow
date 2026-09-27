@@ -64,6 +64,12 @@ design_spec:
 
 四阶段沟通复用任务说明、计划、请求／真实响应和证据；不新增第五阶段或平行GoalContract。每次恢复先读项目状态与原始依据；状态索引和摘要不创造权威。
 
+阶段控制链固定为：
+
+`CONFIRM authorization fact → GATE ready/blocked → TRANSITION event receipt → STATE derived index`。
+
+四层不可互相替代：confirmed 不等于 ready，ready 不等于 running，状态字段也不能反向创造授权。
+
 ## 三场景是真实对象链
 
 pdca-model交付项目本体源及工作实例；pdca-implement从固定模型产生目标实体并记录映射；pdca-verify核对需求、模型、产物与必要实际行为。每个场景内部仍有四阶段，不以四份文字假装执行。Markdown可承载本体，文件格式本身不是验收依据。
