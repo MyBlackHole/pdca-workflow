@@ -2,7 +2,7 @@
 name: pdca-do
 description: 用户明确启动或继续现有 PDCA 任务的 Do 阶段时使用。不自动 Check。
 metadata:
-  version: 5.0.0-rc.2
+  version: 5.0.0-rc.3
 ---
 
 # Do：执行已批准计划
