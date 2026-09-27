@@ -18,8 +18,8 @@ status: active
 | 事件 | 下一方法 | 停止条件 |
 |---|---|---|
 | 新工作明确创建 | 按 [LOAD-MAP](../LOAD-MAP.md) 的“新建正式任务”读取 TASK / CONTEXT / CAP / CONFIRM，再执行[派发](agent-dispatch.md) | 新 Agent 展示 Plan 目标后等待，不把创建授权当阶段批准 |
-| 启动一个阶段 | [CONFIRM](../concept/pdca-ai-friendly-confirmation.md)、[GATE](../concept/pdca-gate.md)、对应阶段 Skill | 任何不匹配、能力不足或撤权则阻断 |
-| 阶段完成 | 保存真实产物与完成事件，报告下一目标 | 保持最后实际阶段，awaiting_confirmation；不自动切换 |
+| 启动一个阶段 | 按 [LOAD-MAP](../LOAD-MAP.md) 的 phase_start 顺序执行 CONFIRM → GATE → TRANSITION → STATE，再进入对应阶段 Skill | confirmed 但 Gate 不 ready、事件写入不完整或状态投影无法回链时均不开始业务方法 |
+| 阶段完成 | 按 LOAD-MAP 的 completion 顺序保存真实结果 → phase_completed → STATE 投影；Act 终态再 archived | 不自动产生下一 phase 授权或切换 phase |
 | 恢复／压缩／重启 | [RECOVERY](../concept/pdca-recovery.md) | 原身份、状态、输入与资源不能恢复则停止 |
 | 停止／取消 | [CONTROL](../concept/task-control.md)及 RESOURCE | 优先止损和结清；不需要父 Agent 循环监工 |
 
