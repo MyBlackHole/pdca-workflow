@@ -193,8 +193,8 @@ jobs:
             echo "This smoke does not consume repository secrets automatically."
           fi
 
-      - name: Probe public free model with bounded-counter ontology
-        id: public_model
+      - name: Probe two fresh public-model sessions from ontology core only
+        id: fresh_recovery
         continue-on-error: true
         shell: bash
         run: |
@@ -204,32 +204,52 @@ jobs:
           cd "$GITHUB_WORKSPACE"
 
           python3 - \
-            ontology/projects/pdca-host-smoke/works/bounded-counter/candidate-0.2.0/model.md \
-            "$RUNNER_TEMP/bounded-counter-core.md" <<'PY'
+            ontology/projects/pdca-host-smoke/works/bounded-counter/candidate-0.3.0/model.md \
+            "$RUNNER_TEMP/bounded-counter-core-0.3.md" <<'PY'
           import pathlib
+          import re
           import sys
 
           src = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
           marker = "## 8. Derived work projection candidates"
           if marker not in src:
               raise SystemExit("bounded-counter projection marker missing")
-          pathlib.Path(sys.argv[2]).write_text(src.split(marker, 1)[0], encoding="utf-8")
+          core = src.split(marker, 1)[0]
+          leaks = sorted(set(re.findall(r"\bNODE-[A-Z0-9-]+\b", core)))
+          if leaks:
+              raise SystemExit(f"derived NODE identity leaked into ontology core: {leaks}")
+          pathlib.Path(sys.argv[2]).write_text(core, encoding="utf-8")
+          print("ontology-core NODE identity leaks: 0")
           PY
 
-          cat >"$RUNNER_TEMP/opencode-public-model-prompt.txt" <<'EOF'
+          cat >"$RUNNER_TEMP/opencode-fresh-recovery-prompt.txt" <<'EOF'
           This is a synthetic compatibility test with no private data.
           First use the OpenCode skill tool to load the skill named `pdca`.
-          Do not modify files and do not use Section 8 or any precomputed projection.
-          Use only the attached bounded-counter ontology core as domain evidence.
+          Do not modify files. Do not invent or assume any precomputed work-node identity.
+          Use only the attached bounded-counter ontology core and traceability as domain evidence.
 
-          Reconstruct:
-          1. the unique composition topology;
-          2. the dependency candidate and whether it is ready;
-          3. the three work-node semantic responsibilities.
+          Reconstruct the semantic work projection:
+          - the unique composition root and component instances;
+          - the producer/consumer dependency candidate and interface;
+          - whether that dependency is ready;
+          - one concise responsibility statement for each work instance.
 
-          In your final answer output one compact JSON object with exactly these keys:
-          `tree`, `dependency`, `nodes`, `ready`, `limitations`.
-          The JSON must mention INST-SYSTEM, INST-COUNTER, INST-LABEL, legal_count_value, and ready=false.
+          Output exactly one JSON object with this shape and no extra prose:
+          {
+            "tree": {"root": "INST-SYSTEM", "children": ["INST-COUNTER", "INST-LABEL"]},
+            "dependency": {
+              "producer": "INST-COUNTER",
+              "consumer": "INST-LABEL",
+              "interface": "legal_count_value",
+              "ready": false
+            },
+            "responsibilities": {
+              "INST-SYSTEM": "...",
+              "INST-COUNTER": "...",
+              "INST-LABEL": "..."
+            },
+            "limitations": ["..."]
+          }
           EOF
 
           models=(
@@ -238,76 +258,166 @@ jobs:
             opencode/nemotron-3-ultra-free
           )
 
-          success=0
-          : >"$RUNNER_TEMP/opencode-public-model-attempts.log"
-          for model in "${models[@]}"; do
-            echo "=== $model ===" | tee -a "$RUNNER_TEMP/opencode-public-model-attempts.log"
-            set +e
-            timeout 180 opencode run \
-              --model "$model" \
-              --format json \
-              --file "$RUNNER_TEMP/bounded-counter-core.md" \
-              -- \
-              "$(cat "$RUNNER_TEMP/opencode-public-model-prompt.txt")" \
-              >"$RUNNER_TEMP/opencode-public-model.jsonl" \
-              2>"$RUNNER_TEMP/opencode-public-model.stderr"
-            status=$?
-            set -e
-            cat "$RUNNER_TEMP/opencode-public-model.stderr" | tee -a "$RUNNER_TEMP/opencode-public-model-attempts.log"
-            if [ "$status" -eq 0 ]; then
-              echo "selected_model=$model" | tee -a "$RUNNER_TEMP/opencode-public-model-attempts.log"
-              success=1
-              break
+          run_one() {
+            run="$1"
+            success=0
+            : >"$RUNNER_TEMP/opencode-fresh-$run-attempts.log"
+            for model in "${models[@]}"; do
+              echo "=== $model ===" | tee -a "$RUNNER_TEMP/opencode-fresh-$run-attempts.log"
+              set +e
+              timeout 180 opencode run \
+                --model "$model" \
+                --format json \
+                --file "$RUNNER_TEMP/bounded-counter-core-0.3.md" \
+                -- \
+                "$(cat "$RUNNER_TEMP/opencode-fresh-recovery-prompt.txt")" \
+                >"$RUNNER_TEMP/opencode-fresh-$run.jsonl" \
+                2>"$RUNNER_TEMP/opencode-fresh-$run.stderr"
+              status=$?
+              set -e
+              cat "$RUNNER_TEMP/opencode-fresh-$run.stderr" | tee -a "$RUNNER_TEMP/opencode-fresh-$run-attempts.log"
+              if [ "$status" -eq 0 ]; then
+                echo "$model" >"$RUNNER_TEMP/opencode-fresh-$run.model"
+                echo "selected_model=$model" | tee -a "$RUNNER_TEMP/opencode-fresh-$run-attempts.log"
+                success=1
+                break
+              fi
+              echo "exit_status=$status" | tee -a "$RUNNER_TEMP/opencode-fresh-$run-attempts.log"
+            done
+            if [ "$success" -ne 1 ]; then
+              echo "No public free model completed fresh run $run."
+              return 1
             fi
-            echo "exit_status=$status" | tee -a "$RUNNER_TEMP/opencode-public-model-attempts.log"
-          done
+          }
 
-          if [ "$success" -ne 1 ]; then
-            echo "No public free model completed successfully."
-            exit 1
-          fi
+          run_one run1
+          run_one run2
 
-          python3 - "$RUNNER_TEMP/opencode-public-model.jsonl" <<'PY'
+          python3 - \
+            "$RUNNER_TEMP/opencode-fresh-run1.jsonl" \
+            "$RUNNER_TEMP/opencode-fresh-run2.jsonl" \
+            "$RUNNER_TEMP/opencode-fresh-run1.model" \
+            "$RUNNER_TEMP/opencode-fresh-run2.model" \
+            "$RUNNER_TEMP/opencode-fresh-recovery-summary.json" <<'PY'
           import json
+          import pathlib
           import sys
 
-          events = []
-          for line in open(sys.argv[1], encoding="utf-8"):
-              line = line.strip()
-              if not line:
-                  continue
+          expected_children = {"INST-COUNTER", "INST-LABEL"}
+          expected_instances = {"INST-SYSTEM", "INST-COUNTER", "INST-LABEL"}
+
+          def load_run(path):
+              events = []
+              for line in pathlib.Path(path).read_text(encoding="utf-8").splitlines():
+                  line = line.strip()
+                  if not line:
+                      continue
+                  try:
+                      events.append(json.loads(line))
+                  except json.JSONDecodeError:
+                      continue
+
+              skill_parts = []
+              texts = []
+              session_ids = set()
+              for event in events:
+                  sid = event.get("sessionID")
+                  if isinstance(sid, str):
+                      session_ids.add(sid)
+                  if event.get("type") == "tool_use":
+                      part = event.get("part") or {}
+                      if part.get("tool") == "skill":
+                          skill_parts.append(part)
+                  if event.get("type") == "text":
+                      part = event.get("part") or {}
+                      value = part.get("text")
+                      if isinstance(value, str) and value.strip():
+                          texts.append(value.strip())
+
+              if not skill_parts:
+                  raise SystemExit(f"{path}: model did not call the skill tool")
+              if not any("pdca" in json.dumps(part, ensure_ascii=False).lower() for part in skill_parts):
+                  raise SystemExit(f"{path}: skill tool call did not reference pdca")
+              if len(session_ids) != 1:
+                  raise SystemExit(f"{path}: expected exactly one session id, got {sorted(session_ids)}")
+              if not texts:
+                  raise SystemExit(f"{path}: no final text event")
+
+              final = texts[-1]
+              left = final.find("{")
+              right = final.rfind("}")
+              if left < 0 or right <= left:
+                  raise SystemExit(f"{path}: final answer does not contain a JSON object: {final!r}")
               try:
-                  events.append(json.loads(line))
-              except json.JSONDecodeError:
-                  continue
+                  obj = json.loads(final[left:right + 1])
+              except json.JSONDecodeError as exc:
+                  raise SystemExit(f"{path}: invalid final JSON: {exc}: {final!r}")
 
-          skill_calls = []
-          texts = []
-          for event in events:
-              if event.get("type") == "tool_use":
-                  part = event.get("part") or {}
-                  if part.get("tool") == "skill":
-                      skill_calls.append(part)
-              if event.get("type") == "text":
-                  part = event.get("part") or {}
-                  text = part.get("text")
-                  if isinstance(text, str):
-                      texts.append(text)
+              if set(obj) != {"tree", "dependency", "responsibilities", "limitations"}:
+                  raise SystemExit(f"{path}: unexpected top-level keys: {sorted(obj)}")
 
-          if not skill_calls:
-              raise SystemExit("model completed but did not call the skill tool")
+              tree = obj["tree"]
+              if tree.get("root") != "INST-SYSTEM":
+                  raise SystemExit(f"{path}: wrong tree root: {tree!r}")
+              if set(tree.get("children") or []) != expected_children:
+                  raise SystemExit(f"{path}: wrong tree children: {tree!r}")
 
-          final = texts[-1] if texts else ""
-          required = ["INST-SYSTEM", "INST-COUNTER", "INST-LABEL", "legal_count_value"]
-          missing = [item for item in required if item not in final]
-          normalized = final.replace(" ", "").lower()
-          if "ready=false" not in normalized and "\"ready\":false" not in normalized:
-              missing.append("ready=false")
-          if missing:
-              raise SystemExit(f"final semantic reconstruction missing: {missing}; final={final!r}")
+              dep = obj["dependency"]
+              expected_dep = {
+                  "producer": "INST-COUNTER",
+                  "consumer": "INST-LABEL",
+                  "interface": "legal_count_value",
+                  "ready": False,
+              }
+              for key, value in expected_dep.items():
+                  if dep.get(key) != value:
+                      raise SystemExit(f"{path}: dependency {key} mismatch: {dep!r}")
 
-          print("public free-model reasoning completed with PDCA skill use")
-          print(final)
+              responsibilities = obj["responsibilities"]
+              if set(responsibilities) != expected_instances:
+                  raise SystemExit(f"{path}: responsibility instances mismatch: {sorted(responsibilities)}")
+              if not all(isinstance(v, str) and v.strip() for v in responsibilities.values()):
+                  raise SystemExit(f"{path}: empty responsibility text")
+
+              limitations = obj["limitations"]
+              if not isinstance(limitations, list) or not limitations:
+                  raise SystemExit(f"{path}: limitations must be a nonempty list")
+
+              normalized = {
+                  "tree": {
+                      "root": tree["root"],
+                      "children": sorted(tree["children"]),
+                  },
+                  "dependency": expected_dep,
+                  "responsibility_instances": sorted(responsibilities),
+              }
+              return next(iter(session_ids)), normalized, obj
+
+          sid1, norm1, raw1 = load_run(sys.argv[1])
+          sid2, norm2, raw2 = load_run(sys.argv[2])
+          if sid1 == sid2:
+              raise SystemExit(f"fresh runs reused the same session id: {sid1}")
+          if norm1 != norm2:
+              raise SystemExit(f"fresh-session normalized semantics differ: run1={norm1!r} run2={norm2!r}")
+
+          summary = {
+              "run1": {
+                  "session_id": sid1,
+                  "model": pathlib.Path(sys.argv[3]).read_text().strip(),
+                  "answer": raw1,
+              },
+              "run2": {
+                  "session_id": sid2,
+                  "model": pathlib.Path(sys.argv[4]).read_text().strip(),
+                  "answer": raw2,
+              },
+              "normalized_semantics": norm1,
+              "same_semantics": True,
+              "different_sessions": True,
+          }
+          pathlib.Path(sys.argv[5]).write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+          print(json.dumps(summary, ensure_ascii=False, indent=2))
+          print("two fresh OpenCode sessions recovered equivalent bounded-counter semantics")
           PY
 
       - name: Dump OpenCode diagnostics
@@ -331,8 +441,14 @@ jobs:
             ${{ runner.temp }}/opencode-health.json
             ${{ runner.temp }}/opencode-server-skills.json
             ${{ runner.temp }}/opencode-server.log
-            ${{ runner.temp }}/bounded-counter-core.md
-            ${{ runner.temp }}/opencode-public-model-prompt.txt
-            ${{ runner.temp }}/opencode-public-model.jsonl
-            ${{ runner.temp }}/opencode-public-model.stderr
-            ${{ runner.temp }}/opencode-public-model-attempts.log
+            ${{ runner.temp }}/bounded-counter-core-0.3.md
+            ${{ runner.temp }}/opencode-fresh-recovery-prompt.txt
+            ${{ runner.temp }}/opencode-fresh-run1.jsonl
+            ${{ runner.temp }}/opencode-fresh-run1.stderr
+            ${{ runner.temp }}/opencode-fresh-run1-attempts.log
+            ${{ runner.temp }}/opencode-fresh-run1.model
+            ${{ runner.temp }}/opencode-fresh-run2.jsonl
+            ${{ runner.temp }}/opencode-fresh-run2.stderr
+            ${{ runner.temp }}/opencode-fresh-run2-attempts.log
+            ${{ runner.temp }}/opencode-fresh-run2.model
+            ${{ runner.temp }}/opencode-fresh-recovery-summary.json
