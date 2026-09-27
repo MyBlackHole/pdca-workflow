@@ -5,9 +5,10 @@ authority: normative
 status: active
 ---
 
-# 主张、实际证据、反证与结论：记录格式
+# Claim evidence binding：记录格式
 
-本契约定义该记录的 schema、字段与填写约束；以下完整 Markdown 示例是规范格式。字段中的 null、空列表及未验证状态表示尚未取得事实，不构成授权、执行成功或资源取得证明。按实际证据填写，保留原始来源与未知。
+本契约只保存 EVIDENCE-01 的**局部 claim ↔ observation** 事实。
+它不定义 case、不执行 test，也不代表整个 task 的最终 verdict。
 
 ## 示例
 
@@ -30,9 +31,13 @@ status: not_run
 limitations: []
 ---
 
-# 主张、实际证据、反证与结论
+# Claim evidence binding
 
-status区分pass/fail/unknown/not_run/error；默认not_run，不靠输出存在推断执行。工具退出码与对象结果分开，记录实际版本、输入、命令和原始结果。
+`status=pass/fail/unknown/not_run/error` 只表示当前固定 subject 上这条 claim/AC 的局部 evidence 状态。
+expected/oracle 必须可追溯到 Plan/CASE；actual 必须来自真实 observation/source。
 
-静态来源不证明动态恢复或性能；unknown不强判二选一。实际结果必须被最终AC汇总消费。
+tool/command 成功与 subject conformance 分开；reviewer finding 也只是 claim，必须有 observation/raw refs 才能升级 evidence。
+当前 subject 变化后旧 evidence 保留历史，不自动用于新版本。
+
+整个 Check/task 的 subject_conformance 与其他 verdict 维度只写 conclusion/VERDICT-01。
 ```
