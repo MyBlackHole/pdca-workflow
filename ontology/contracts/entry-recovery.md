@@ -12,7 +12,7 @@ status: active
 1. **根与项目。** 从用户指定或既有会话的集中 `records/projects/<project>/workspaces/<workspace>/project-context.md` 只读定位一个绑定，核对项目/工作区身份及真实 `target_root`、`pdca_root`、`records_root`。既有任务绑定优先于 cwd/环境变量；与 Skill 真实路径所在 Git 根冲突时停止，不能转到 TARGET_ROOT/.pdca。新增或修改绑定须按[项目契约](project-workspace.md)先取得记录写入授权；多个绑定或多个候选任务时询问，不选最新。
 2. **原任务。** 读取自己的 task、dispatch 原生身份、最后完整事件、run 与待请求。阶段 Skill 收到调用但当前会话不是该执行者时，只路由真实用户操作至原实例并停止本地执行；不可路由就阻断，不重新 spawn、不由父 Agent 代做。
 3. **Git 依据。** 按 [project-workspace](project-workspace.md) 的只读 Git 快照与写记录前追溯规则，核对当前 HEAD/工作树状态和记录的 `rules_git_head`/`rules_git_status`。采集失败、原任务依据缺失，或规则变化影响既有授权/适用性时停止并报告；恢复不自动重写 task、切换历史版本或取得 Git 修改权限。
-4. **本次授权。** 核对 request/原始用户 response/消费、task/attempt/phase/run/subject 和撤销；加载 Skill、状态 running、上阶段 PASS 均不代替授权。重复回应不启动新 run；目标或输入变动先重新沟通。
+4. **待决对象。** 只定位当前 request/response/decision、task/attempt/phase/run/subject 与撤权事实；不要在 recovery 中重新解释授权。需要启动 phase 时由 CONFIRM-01 产生/核对 authorization fact，再由 GATE-01 判断当前是否 ready。
 5. **资源。** 按 [RESOURCE](../concept/resource-ownership.md)核对集中预约与真实后端作用域。记录和模型写入也有拥有者，不能把集中根当全局可写区。结果未知保留占用，只对账原操作。
 
 | 事件 | 下一方法 | 停止条件 |
