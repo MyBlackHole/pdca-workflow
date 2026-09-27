@@ -27,6 +27,7 @@ jobs:
           python3 - <<'PY'
           import json
           import pathlib
+          import re
           root = pathlib.Path(".")
           version = (root / "VERSION").read_text(encoding="utf-8").strip()
           catalog = json.loads((root / "skills/catalog.json").read_text(encoding="utf-8"))
@@ -61,10 +62,32 @@ jobs:
                       f"{entry['path']}: metadata.version={skill_version!r}, expected={catalog_version!r}"
                   )
 
-          if mismatches:
-              raise SystemExit("Skill bundle version mismatch:\n" + "\n".join(mismatches))
+          installer = (root / "install.sh").read_text(encoding="utf-8")
+          match = re.search(r"(?m)^runtime_skills='([^']*)'$", installer)
+          if not match:
+              mismatches.append("install.sh: runtime_skills bootstrap mirror missing")
+          else:
+              installer_names = match.group(1).split()
+              catalog_names = [entry.get("name") for entry in catalog.get("skills", [])]
+              if installer_names != catalog_names:
+                  mismatches.append(
+                      "install.sh runtime_skills differs from catalog order/names: "
+                      f"{installer_names!r} != {catalog_names!r}"
+                  )
 
-          print(f"Skill bundle metadata consistent: {catalog_version}")
+          for entry in catalog.get("skills", []):
+              name = entry.get("name")
+              expected_path = f"skills/{name}/SKILL.md"
+              if entry.get("path") != expected_path:
+                  mismatches.append(
+                      f"catalog path for {name!r} is {entry.get('path')!r}, "
+                      f"but installer expects {expected_path!r}"
+                  )
+
+          if mismatches:
+              raise SystemExit("Skill bundle packaging mismatch:\n" + "\n".join(mismatches))
+
+          print(f"Skill bundle packaging metadata consistent: {catalog_version}")
           PY
 
       - name: Whitespace
