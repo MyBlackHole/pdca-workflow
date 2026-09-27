@@ -52,6 +52,33 @@ PDCA 语义由 AI 直接读取当前 authority、Skill、Plan 和证据进行审
 以及 TARGET_ROOT 自己已有的测试。CASE-01 在执行前固定 oracle，TEST-01 只保存实际 observation，
 EVIDENCE-01 将 decisive claim 绑定到 observation/counterevidence，最终 Check 只按 VERDICT-01 聚合。
 
+## Rework / schedule / learning
+
+Check 后的 continuation 分三类，不能互相替代：
+
+```text
+same attempt fix
+  -> REWORK-01
+  -> new Do phase_start
+
+terminal disposition
+  -> Act
+  -> archived
+
+future work
+  -> fixed seed/dependency facts
+  -> SCHED-01 candidate
+  -> user create
+
+optional learning
+  -> explicit Act scope
+  -> LEARN-01 candidate/persist/publish
+  -> REUSE candidate only
+```
+
+Act 是当前 attempt 的终态处置；同-attempt rework 必须发生在 Act 之前。
+LEARN 不自动写共享知识、不改 verdict，也不让其他 task 自动采用。
+
 ## Check
 
 Check 使用 [flow-check](process/flow-check.md) 的四遍方法：
