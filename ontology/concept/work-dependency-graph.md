@@ -9,56 +9,56 @@ dcterms_created: '2026-09-12'
 status: active
 authority: normative
 revision: 4.0.0-rc.2
-dcterms_modified: '2026-09-25'
-summary: DEPENDENCY-01：从本体关系投影真实产物依赖，依赖不等于授权
+dcterms_modified: '2026-09-27'
+summary: DEPENDENCY-01：固定交付依赖的 ready / stale 事实
 ---
 
-# DEPENDENCY-01：本体关系到任务依赖
+# DEPENDENCY-01：任务输入依赖
 
-领域 ontology 可以表达组成、使用、产生、消费、约束、引用等多种关系；
-工作 dependency graph 只投影其中**会影响任务输入可用性或组合正确性**的关系。
+DEPENDENCY-01 只回答：**一个 task 真正消费的固定交付/interface 是否可用，以及源变化后哪些消费者输入变 stale。**
+它不授权 task/phase、不创建 Agent、不直接改变 execution_state。
 
-因此：
+## Dependency edge
 
-- ontology relation 存在，不自动等于 task dependency；
-- task dependency 必须能说明来自哪个 ontology/work relation；
-- composition tree 与 data/product dependency graph 分开保存；
-- dependency edge 不创造用户授权。
+dependency edge 必须来自能解释的 ontology/work relation，并固定：
 
-## Dependency Edge
+- source node / target node；
+- 来源 relation；
+- consumer 真正需要的 output/interface；
+- 固定 version/digest；
+- ready 的实际交付证据；
+- source 变化时受影响的 consumer refs/evidence。
 
-每条任务依赖至少说明：
+composition 与 dependency 分开：父“包含”子不等于父一定消费子交付。
+只有当前 consumer 确实需要某个固定 output/interface 时才建立数据/产物 dependency。
 
-- source node；
-- target node；
-- 来源 ontology/work relation；
-- target 实际需要的固定 output/interface；
-- output/version 可用性的证据；
-- source 变化后哪些 evidence 会 stale。
+## Ready
 
-不能只依据目录、task name 或 PASS 字段声明 dependency ready。
+`ready` 只表示：**这个 dependency edge 指向的固定交付当前可作为 consumer 输入。**
 
-例如父节点“包含”孩子是 composition；只有父 implement/verify 真正需要孩子固定交付时，
-才另外存在 child output -> parent input 的 dependency。
+它不表示：
 
-## Ready 与失效
+- consumer task 已获用户授权；
+- phase Gate ready；
+- task execution_state=running；
+- source task 的完整历史可以被读取。
 
-有向数据依赖应无环；若领域存在反馈关系，应通过固定版本/iteration 说明，而不是制造运行时循环等待。
+SCHED-01 可以消费 ready 事实产生“可启动候选”；真正创建/启动仍走 TASK/CONFIRM/GATE。
 
-输入 ready 只表示该 task 的固定依赖已经可用，可以向用户提出启动建议；
-没有用户操作不能自动创建 task、Agent 或推进阶段。
+## Stale
 
-源 ontology revision、dependency relation 或实际 output 变化后，相关 context refs、mapping、
-Check/Verify evidence 必须标 stale；不能继续沿用旧组合结论。
+当 source ontology revision、relation、output/interface 或固定 version/digest 变化时，
+只把**受影响的 consumer dependency refs、mapping、baseline/evidence** 标为 stale。
+历史 evidence 不覆盖或删除，保留它当时对应的旧 subject。
 
-## 上下文用途
+stale 的后续影响按消费者当前时点决定：
 
-CONTEXT-01 读取 dependency graph 时，只取当前 task 真正需要的：
+- 尚未启动的新 phase：GATE-01 的 freshness/predecessor 检查会阻断旧 subject；
+- 正在运行的 phase：如果固定输入已经被实际替换或不再适用，按 CONFIRM/GATE/CONTROL 的边界停止受影响动作；
+- recovery：RECOVERY-01 只识别 stale fact 并路由到本规则，不自行重算依赖；
+- 新版本采用：按 ADOPT-01 / CONTEXT-01 固定新的 consumer 输入，不静默改写旧 assignment/baseline。
 
-- dependency node 的固定接口/交付；
-- 对应 relation 含义；
-- version/digest；
-- applicability / limitation。
+## Context consumption
 
-**不读取 dependency task 的完整 Plan/Do/Check/Act 历史。**
-依赖提供的是固定事实与交付，不是另一个 Agent 的活动上下文。
+CONTEXT-01 对 dependency 只读取 consumer 真正需要的固定 deliverable/interface、relation、version/digest 与 limitation。
+不读取 source task 的完整 Plan/Do/Check/Act 历史，也不用 source PASS 代替 consumer 自己的验证。

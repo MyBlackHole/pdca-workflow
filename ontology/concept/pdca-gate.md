@@ -25,11 +25,11 @@ GATE-01 只回答：**这个已经被用户授权的固定 phase_start，在当�
 1. **identity**：task、attempt、scene、原 Agent/conversation 与目标 run 匹配；
 2. **authorization**：存在 CONFIRM-01 产生的、匹配当前固定对象且未撤销的 positive decision；
 3. **predecessor**：TRANSITION-01 的完整事件链满足该 phase 的前置顺序；
-4. **freshness**：subject、固定输入、baseline/dependency/version 未发生使原授权失效的变化；
-5. **control**：没有已生效的 cancel/revoke/stopping 条件；
-6. **resources/capability**：本 phase 实际需要的写域、资源、工具和宿主能力当前可用。
+4. **freshness**：subject、固定输入和 baseline 未变化；DEPENDENCY-01 没有把本 phase 实际消费的固定 dependency ref 标为 stale；
+5. **control**：CONTROL-01 没有已生效的 pause/cancel/revoke/system stop 阻止该动作；
+6. **resources/capability**：RESOURCE-01 证明本 phase 所需真实资源保证当前成立，CAP-01 证明宿主能力可用；工具/写域仍在本次固定授权范围。
 
-任何一项 unknown / 不满足，都只阻断本次 phase_start；不能自动换目标、放宽 oracle、重建 Agent 或产生新授权。
+任何一项 unknown / 不满足，都只阻断本次 phase_start；Gate 不负责修复 dependency、释放资源、清除 control 或恢复 Agent，只引用对应 authority 的事实。
 
 ## Phase 特有前提
 

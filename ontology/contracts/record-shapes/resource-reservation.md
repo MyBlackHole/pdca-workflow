@@ -5,9 +5,10 @@ authority: normative
 status: active
 ---
 
-# 集中资源预约：记录格式
+# 资源 reservation 事实：记录格式
 
-本契约定义该记录的 schema、字段与填写约束；以下完整 Markdown 示例是规范格式。字段中的 null、空列表及未验证状态表示尚未取得事实，不构成授权、执行成功或资源取得证明。按实际证据填写，保留原始来源与未知。
+本契约只保存 RESOURCE-01 的真实 ownership / reservation 事实。
+字段为空表示事实未取得；写入状态值不会产生后端锁、授权或 task state。
 
 ## 示例
 
@@ -34,11 +35,15 @@ retained_scope: null
 release_conditions: []
 ---
 
-# 集中资源预约
+# 资源 reservation 事实
 
-保存到PDCA_ROOT/records/resources/<reservation_id>.md；各项目共用冲突范围，task中仅保存引用。resource_set逐项列backend/namespace/canonical_object_id/scope/access，记录真实对象规范化依据。
+`resource_set` 保存真实 canonical resource identity、scope/access 与规范化证据。
+`requested / held / revoking / released / retained` 只记录 RESOURCE-01 已核实的生命周期事实。
 
-requested、held、revoking、released、retained只记录事实。held需要实际取得回执，不因填表产生锁；epoch只有后端真实支持才填。停止、过期或归档不直接released。retained记录未决影响、隔离范围与后继可用条件。
+- held 需要真实 backend acquire/ownership 依据；
+- revoking 引用控制/撤销依据，但不等于已释放；
+- released 需要 settlement 证明 owner 与在途 operation 已结清；
+- retained 保存未决影响、隔离范围和 release conditions。
 
-单一账本写者是元数据/资源职责，不负责替任务推进阶段；不能由父Agent轮询监工替代。读取其他任务仅限必要冲突元数据，不读取完整上下文。
+reservation state 不直接授权 phase，也不直接修改 task execution_state；GATE/STATE 只消费这些事实。
 ```
