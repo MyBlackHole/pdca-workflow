@@ -13,9 +13,9 @@ PDCA 不维护项目专用语义验证脚本。
 1. **Scope Review**：Plan 与真实 diff/产物对照，发现遗漏和范围膨胀；
 2. **Consistency Review**：Skill、authority、Plan、model/mapping、records 与实现交叉核对；
 3. **Adversarial Review**：主动寻找能够推翻当前结论的反例、绕过路径和 stale evidence；
-4. **Evidence Review**：每个重要结论绑定 subject、authority/AC、observation、counterevidence、reasoning、limitation。
+4. **Evidence Review**：对 decisive claim 按 EVIDENCE-01 绑定当前 subject 的 observation/counterevidence；需要预定义 oracle 时读 CASE-01，需要真实执行时由 TEST-01 保存 observation。
 
-最终 verdict 继续使用 EVIDENCE-01 / VERDICT-01；证据不足保持 unknown/not_run。
+最终 Check 只由 VERDICT-01 聚合 acceptance_results / subject_conformance；task_execution、delivery_usable、scene_coverage 分别来自生命周期、Act 与真实 scene records。证据不足保持 unknown/not_run。
 
 ## 工具边界
 
