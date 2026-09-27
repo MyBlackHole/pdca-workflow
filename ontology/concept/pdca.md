@@ -87,9 +87,9 @@ pdca-model交付项目本体源及工作实例；pdca-implement从固定模型�
 - `skills/catalog.json.version` 与各 Skill 的 `metadata.version`：**runtime Skill bundle version**，只描述入口包/发现面的发布版本；
 - 本文件的 `protocol_revision`：**PDCA protocol revision**，描述当前协议线与整体控制语义；
 - 各 ontology asset 的 `revision`：**asset revision**，只描述该 authority/知识资产自身的内容修订，可在同一 protocol 内独立变化。
+- active `pdca.contract/v4` 与 record template 中的 `protocol_revision`：必须声明当前 protocol 语义版本；`/v4` 只是 schema major，不是 protocol rc 版本。
 
 因此 `5.0.0-rc.2` 的 Skill bundle 与 `4.0.0-rc.x` 的 protocol/asset 并不表示“新旧规则谁覆盖谁”。
-当前规则身份由 **Git HEAD + INDEX 定位 + 当前 task 固定 refs/adoption** 决定；已有任务不会因为任一版本字段变化而自动改绑、
-自动采用或获得新授权。需要跨版本恢复时仍按 RECOVERY-01/ADOPT-01 核对实际来源、适用性和用户决定。
+当前规则身份由 **Git HEAD + INDEX 定位 + 当前 task 固定 refs/adoption** 决定；active contract/template 跟随当前 protocol，只约束新写入/当前格式解释，不追写历史实例。已有任务不会因为任一版本字段变化而自动改绑、自动采用或获得新授权。需要跨版本恢复时仍按 RECOVERY-01/ADOPT-01 核对实际来源、适用性和用户决定。
 
 当前最短路径：九个 Skill 入口 → [LOAD-MAP](../LOAD-MAP.md) → 按事件读取 project-workspace / entry-recovery / task-create authority；只有真正进入 phase 时才追加当前 phase flow + SCENE-01 对应场景。没有 task 的定位或 Assist 不为形式完整强行加载 task 历史；已有 task 的连续性也不能跳过 entry-recovery。阶段与场景是两个维度，加载或切换 Skill 不新建 Agent、不自动授权。
