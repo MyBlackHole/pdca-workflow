@@ -21,8 +21,7 @@ metadata:
 - **首次 root modeling**：当前 work 尚无 node 时，仅允许 TASK-01 定义的唯一 root modeling bootstrap，
   固定 root goal seed、范围、事实来源和预期模型；尚未形成的 node/revision 保持空，不造占位值。
 
-正式创建按 [agent-dispatch](../../ontology/contracts/agent-dispatch.md)；创建成功后新 Agent 只展示自己的
-Plan 目标并等待，不把 task creation 当作 Plan 启动。
+用户选择具名 modeling task 后，按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 的“新建正式任务”顺序固定 TASK/CONTEXT/CAP/CONFIRM，再由 agent-dispatch 原生创建一次。创建成功后新 Agent 只展示自己的 Plan 目标并等待，不把 task creation 当作 Plan 启动。
 
 ## 唯一场景语义来源
 
