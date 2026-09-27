@@ -40,9 +40,9 @@ Task 不是任意 prompt，也不是执行步骤的容器。除唯一 root model
 - 固定用户确认的 root goal seed；
 - node / ontology revision 等尚未形成的字段保持真实 null/空；
 - 不以占位 node/revision 冒充模型；
-- bootstrap 只负责建立第一个 root node/revision，不能据此创建 child/implement/verify task。
+- bootstrap 只负责经 Modeling Check/Act 固定第一个 root ontology/tree/node revision，不能据此提前创建 child/implement/verify task。
 
-root modeling Act 固定首个 node/revision 后，后续正式 task 全部回到普通 ontology-backed 规则。
+root modeling Act 固定首个 ontology/tree/root node 后，后续正式 task 全部回到普通 ontology-backed 规则；child seed 仍须由 DECOMP 从 fixed qualified node 产生。
 
 ## Task 与执行者
 
