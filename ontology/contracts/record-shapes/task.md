@@ -50,6 +50,5 @@ AC/oracle 等正文必须引用真实固定来源，不由父 Agent 代定。
 表达唯一例外。上下文选择只引用 CONTEXT-01 的结果，派发事实只引用 `dispatch_ref`，不在 task record
 复制 assignment 或 dispatch 内容。
 
-`phase` / `execution_state` 是状态索引，不是授权。实际 phase/run 必须从最后完整事件、
-request/response/decision 恢复；初始 `phase: plan` 不表示 Plan 已启动。
+`phase` / `execution_state` 只保存 STATE-01 的派生投影，不是授权。恢复时从完整 transition、control、pending request/decision 与未决 operation 重新派生；`last_transition` / `current_run_ref` / `pending_request_ref` 只是导航指针。初始 `phase: plan` 不表示 Plan 已授权、Gate ready 或已经启动。
 ```
