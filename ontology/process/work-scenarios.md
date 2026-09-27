@@ -106,9 +106,12 @@ Act 固定 implementation release/mapping；未运行 pdca-verify 时仍为 not_
 3. implementation → behavior：实际行为是否满足模型和需求；
 4. composition/dependency：当前节点与必要邻接节点的固定接口是否一致。
 
-错误模型和错误实现不能互相证明。审查 Agent 不修改被审业务对象或 oracle。
-Plan 固定验证问题和标准；Do 实施核验；Check 使用 AI 四遍审查验证核验本身；
-Act 由用户选择接受、失败归档、返工或获准发布。
+错误模型和错误实现不能互相证明。verify Agent 按 REVIEW-01 保持独立且不修改被审业务对象或 oracle。
+
+Plan 固定验证问题、CASE/oracle 与需要的 observation；Do 执行 requirement/model/mapping/behavior 核验，
+TEST-01 只保存实际 observation，EVIDENCE-01 将 findings/observations 绑定到固定 claim。
+conformance-review record 保存本 scene 的结构化验证矩阵；Check 再用 flow-check 审查 verify task 自身，
+最终 task 结论只由 VERDICT-01 聚合。Act 只执行用户明确批准的处置。
 
 ## 覆盖与依赖
 
