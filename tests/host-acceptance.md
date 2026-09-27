@@ -7,7 +7,7 @@
 | H1 | 在Codex/OpenCode新会话发现技能 | 只发现 skills/catalog.json 所列九个运行入口；未注册的工程参考 Skill 不进入全局发现面；正文定位到同一集中 Git 工作副本；不创建业务项目.pdca | NOT_RUN |
 | H2 | 总入口登记/定位两个项目和多个worktree | 定位只读；写绑定前核验记录写入授权，保存 Git HEAD/工作树状态，提交另需授权；作用域不串用，不能只选basename或最新任务 | NOT_RUN |
 | H3 | 场景入口获准创建一个任务 | 真实新可交互Agent、受控初始输入，先展示Plan目标并等待 | NOT_RUN |
-| H4 | 四阶段分别由用户启动 | 同一Agent/会话逐阶段执行，完成后停住；加载Skill本身不授权 | NOT_RUN |
+| H4 | 四阶段分别由用户启动 | 同一Agent/会话执行；Plan/Do/Check 完成后等待下一真实操作，Act 完成后同一授权下 terminalize/archive，不出现第五阶段等待；加载Skill本身不授权 | NOT_RUN |
 | H5 | 父会话直接调用pdca-do | 消息送回原执行者，不在父会话执行，不创建新Agent；不可路由明确阻断 | NOT_RUN |
 | H6 | 阶段读取场景方法 | 不递归触发场景建任务；建模/投影/验证各有实际交付，三者内部各有完整PDCA | NOT_RUN |
 | H7 | 两任务等待/执行交错 | 等待用户只暂停自己，父Agent不轮询监控；真实资源冲突仍阻断 | NOT_RUN |
@@ -23,6 +23,6 @@
 
 | H17 | 用户启动 Check 审查一次真实修改 | 同一 Agent 按 Scope/Consistency/Adversarial/Evidence 四遍直接读取 authority 与证据；通用工具只提供事实；不调用项目专用 PDCA semantic validator；证据不足保持 unknown | NOT_RUN |
 
-| H18 | 从一个已固定 modeling node 选择具名 child 并创建 task | child seed 可回指 ontology object/relation/constraint；宿主创建 fresh Agent；只传 CONTEXT-01 最小子图、父 seed 和必要 dependency deliverables，不传父/兄弟完整活动历史；child 展示自己的 Plan 目标后等待 | NOT_RUN |
+| H18 | 从 Modeling Act 已固定的 tree/node 经 DECOMP 选择具名 child seed 并创建 task | seed 可回指 fixed ontology/tree/node、composition/dependency 与 NODE qualification；宿主按统一 task creation 链创建 fresh Agent；只传 CONTEXT-01 最小子图、父边界和必要 dependency deliverables，不传父/兄弟完整活动历史；child 展示自己的 Plan 目标后等待 | NOT_RUN |
 
 不能通过子Agent自述“独立”或“已批准”证明事实，也不能仅凭它没输出某个测试标记证明未继承历史。没有可交互/可继续原实例的宿主能力时阻断正式任务，不以父Agent接管作回退。
