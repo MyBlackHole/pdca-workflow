@@ -27,8 +27,6 @@ jobs:
           python3 - <<'PY'
           import json
           import pathlib
-          import re
-
           root = pathlib.Path(".")
           version = (root / "VERSION").read_text(encoding="utf-8").strip()
           catalog = json.loads((root / "skills/catalog.json").read_text(encoding="utf-8"))
@@ -40,17 +38,24 @@ jobs:
               )
 
           mismatches = []
-          pattern = re.compile(
-              r"(?ms)^metadata:\n(?:(?:  ).*\n)*?  version:\s*([^\s#]+)\s*$"
-          )
           for entry in catalog.get("skills", []):
               path = root / entry["path"]
-              text = path.read_text(encoding="utf-8")
-              match = pattern.search(text)
-              if not match:
+              lines = path.read_text(encoding="utf-8").splitlines()
+              skill_version = None
+              for index, line in enumerate(lines):
+                  if line != "metadata:":
+                      continue
+                  for child in lines[index + 1:]:
+                      if child and not child.startswith("  "):
+                          break
+                      if child.startswith("  version:"):
+                          skill_version = child.split(":", 1)[1].strip()
+                          break
+                  break
+
+              if not skill_version:
                   mismatches.append(f"{entry['path']}: metadata.version missing")
                   continue
-              skill_version = match.group(1)
               if skill_version != catalog_version:
                   mismatches.append(
                       f"{entry['path']}: metadata.version={skill_version!r}, expected={catalog_version!r}"
