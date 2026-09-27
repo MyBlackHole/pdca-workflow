@@ -26,7 +26,7 @@ STATE-01 只回答：**根据已保存的 transition、control、pending request
 |---|---|
 | unexecuted | task 已创建但没有任何 `phase_started`；`phase=plan` 只是首个目标 |
 | blocked_unexecuted | 首个 Plan 尚未开始，且创建后存在能力/身份/输入等阻断事实 |
-| running | 存在当前 run 的 `phase_started`，尚无匹配 `phase_completed` 或生效的停止事实 |
+| running | 存在当前 run 的 `phase_started` 尚未完成；或 Act 方法已完成但同一授权内的终态 `archived` 尚未落链，task 仍在 terminalization |
 | awaiting_input | 当前 run 未完成，并有 clarification / 必要外部输入等待 |
 | awaiting_confirmation | 最近实际 phase 已完成，当前没有运行中的 run，等待新的用户对象决定；也可有 pending request |
 | blocked | 已有执行历史，但当前 continuation/start 所需事实存在 unresolved/unknown 阻断 |
@@ -42,7 +42,8 @@ subject conformance / delivery usability 仍由 VERDICT-01 表达。
 - task 初始 `phase=plan` 不表示 Plan 已授权或启动；
 - `phase_started(P)` 后投影 `phase=P, execution_state=running`；
 - run 内等待 clarification 可投影 awaiting_input，但 run/phase 身份不变；
-- `phase_completed(P)` 后保持 `phase=P`，投影 awaiting_confirmation；不要自动改成下一 phase；
+- `phase_completed(P)` 对 Plan/Do/Check 保持 `phase=P` 并投影 awaiting_confirmation；不要自动改成下一 phase；
+- `phase_completed(act)` 不产生第五次确认：若同一 Act 的 `archived` 尚未写入，保持 `phase=act` 的 terminalization；能继续时视为 running，出现 unresolved/unknown 时按事实投影 blocked/stopping/interrupted；
 - 有 cancel/revoke 时优先投影 stopping/interrupted，不能被普通 completion 文件覆盖；
 - `archived` 后投影 `phase=archive, execution_state=completed`。
 
