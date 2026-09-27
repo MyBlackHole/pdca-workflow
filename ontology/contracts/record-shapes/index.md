@@ -1,6 +1,6 @@
 ---
 schema: pdca.contract/v4
-protocol_revision: 4.0.0-rc.2
+protocol_revision: 4.0.0-rc.3
 authority: normative
 status: active
 ---
@@ -8,6 +8,14 @@ status: active
 # 4.x 当前记录格式
 
 下表中的记录契约是当前格式的唯一权威，字段与完整示例在各自契约中。其他旧格式不适用，不能混用 schema 或旧自动转换。
+
+## Schema major and protocol revision
+
+`pdca.* /v4` 表示**记录格式 major**；`protocol_revision` 表示该当前 active contract/template 所属的 **PDCA protocol 语义版本**。两者不是同一个版本轴。
+
+当前 protocol 为 `4.0.0-rc.3`，因此本目录所有 active current contract 及其示例都必须声明 `protocol_revision: 4.0.0-rc.3`。未来 protocol 升级若仍兼容 schema v4，可以继续使用 `/v4`，但 active template 的 `protocol_revision` 应随当前协议更新。
+
+**已有历史 record 不自动迁移。** task/attempt 已固定的旧 record 保留原字节与原 `protocol_revision`，恢复时按 RECOVERY-01 结合其原始 Git 来源/固定 refs 判断是否仍可解释；不能为了“对齐当前版本”批量重写活动或历史记录。
 
 | 用途 | 记录契约 |
 |---|---|
