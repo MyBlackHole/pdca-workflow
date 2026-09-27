@@ -2,7 +2,7 @@
 name: pdca-verify
 description: 用户明确选择本体符合性验证，或已有验证任务需要定位场景规则时使用。验证同一节点的需求→模型→实现→行为。
 metadata:
-  version: 5.0.0-rc.2
+  version: 5.0.0-rc.3
 ---
 
 # Verify：进入独立符合性验证场景
