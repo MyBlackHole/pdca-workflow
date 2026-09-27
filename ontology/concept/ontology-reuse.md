@@ -48,4 +48,4 @@ active 不等于 verified/PASS；archived/retired 也不会自动迁移或撤销
 原始来源缺失时如实标 unknown，不补造旧正文或证据。
 
 去重/归档按对象语义、独立主张、来源、版本和实际用途判断，不按字数、年龄、引用次数或置信度阈值批量处置。
-reference lifecycle 的修改需要对应知识库写域授权；共享发布也不是 REUSE 的默认副作用。
+reference lifecycle 的修改需要对应知识库写域授权，并以新的 revision/可追溯 Git 变化保留旧状态事实；不能原地抹掉历史来源或让旧 task 引用随 status 变化。共享发布也不是 REUSE 的默认副作用。
