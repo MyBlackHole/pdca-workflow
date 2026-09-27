@@ -84,6 +84,6 @@ root modeling Act 固定 node/revision 后，后续 task 使用下面的普通�
 切换模型/依赖版本、改变 task 对象、目标、AC/oracle 或计划时，按 CONFIRM-01 重新沟通；
 未采用 reference 仍只按 REUSE/ADOPT 处理。
 
-发现新 ontology responsibility 时按 EVOLVE-01 / DECOMP-01 形成候选，不自动创建 task。
+发现新 ontology responsibility 时先按 EVOLVE-01 形成 model revision candidate；经 TREE/NODE 与 Modeling Act 固定成正式 node 后，才由 DECOMP-01 形成 task seed candidate。CONTEXT 不把草稿 responsibility 直接升级成 task。
 Do-only Work Unit 的局部 context 由 CONTRACT-01 从本 task context 继续切片；
 恢复/压缩由 RECOVERY-01 重新读取原 refs，不由 CONTEXT-01 定义另一套恢复摘要。
