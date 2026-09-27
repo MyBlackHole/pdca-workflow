@@ -1,6 +1,6 @@
 ---
 schema: pdca.contract/v4
-protocol_revision: 4.0.0-rc.4
+protocol_revision: 4.0.0-rc.5
 authority: normative
 status: active
 ---
@@ -15,7 +15,7 @@ Task 身份语义以 TASK-01 为准，输入选择以 CONTEXT-01 为准；字段
 ```markdown
 ---
 schema: pdca.agent-assignment/v4
-protocol_revision: 4.0.0-rc.4
+protocol_revision: 4.0.0-rc.5
 task_id: null
 attempt: null
 work_id: null
