@@ -1,4 +1,4 @@
-# 当前执行权威索引 · protocol 4.0.0-rc.4
+# 当前执行权威索引 · protocol 4.0.0-rc.5
 
 只列 28 项沿用 ID 的当前规则权威；标题中的版本是 protocol revision，不是要求所有资产 `revision` 相同。单个 authority 可有独立 asset revision。它是 AI 查询 authority 的目录，不是要求一次性加载的 manifest。具体何时读取由 [LOAD-MAP](LOAD-MAP.md)、当前 Skill、phase/scene 方法和事件需要决定。历史原文的可用性见[来源说明](provenance/README.md)，不假定存在 legacy 副本。参考库未删除，按 REUSE 检索并经 ADOPT 固定采用，不自动执行其方法。
 

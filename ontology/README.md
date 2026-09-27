@@ -16,7 +16,7 @@
 
 这些内容物理上可以共存，但 AI 不应递归加载整个目录。
 
-**目录名不是 project ontology 类型系统。** 当前 `domain/entity/pattern/fact/principle` 主要是可检索 reference library；真正绑定某个 project/work 的 ontology revision 应进入 `ontology/projects/<project>/works/<work>/<revision>`（或显式采用的外部固定模型），并满足 ONTOLOGY-01。当前 main 尚无 `ontology/projects/` 实例，因此项目本体构建仍未经过真实样例验证；维护审查见 [本体构建审查](../docs/reviews/2026-09-27-ontology-construction.md)。
+**目录名不是 project ontology 类型系统。** 当前 `domain/entity/pattern/fact/principle` 主要是可检索 reference library；真正绑定某个 project/work 的 ontology revision 应进入 `ontology/projects/<project>/works/<work>/<revision>`（或显式采用的外部固定模型），并满足 ONTOLOGY-01 的 semantic construction contract：每个 revision 有唯一 model root，可解析 requirement coverage、definitions/work instances、relations、constraints、provenance 与 unknown。当前 main 尚无 `ontology/projects/` 实例，因此这套构建协议仍未经过真实样例验证；维护审查见 [本体构建审查](../docs/reviews/2026-09-27-ontology-construction.md)。
 
 参考资产进入任务必须经过 [REUSE-01](concept/ontology-reuse.md) 与
 [ADOPT-01](concept/ontology-adoption.md)：先检索候选，再固定 id/revision/内容、来源、适用目标和限制。
@@ -29,12 +29,12 @@
 当前建模链按职责分开：
 
 ```text
-ONTOLOGY-01   definition/model 是否具备可采用语义
-REUSE-01      找 candidate
-ADOPT-01      固定 revision/content 成为当前输入
+ONTOLOGY-01   model root + semantic construction / closure
+REUSE-01      找 semantic-unit candidate
+ADOPT-01      固定选中的 definition/claim/constraint
 EVOLVE-01     固定 M1 -> M2 candidate delta
-TREE-01       ontology/work relation -> composition candidate
-NODE-01       work candidate -> node qualification
+TREE-01       explicit composition relation -> tree candidate
+NODE-01       work instance responsibility -> node qualification
 Modeling Act  固定 ontology/tree/node revisions
 DECOMP-01     fixed qualified node -> task seed candidate
 ```

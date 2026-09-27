@@ -8,7 +8,7 @@ dcterms_license: CC-BY-4.0
 dcterms_created: '2026-09-12'
 status: active
 authority: normative
-revision: 4.0.0-rc.2
+revision: 4.0.0-rc.3
 dcterms_modified: '2026-09-27'
 summary: REUSE-01：检索和评估候选 reference，不把命中自动变成任务输入
 ---
@@ -30,9 +30,11 @@ REUSE-01 只回答：**当前目标是否有值得复用的固定候选定义，
 - 建议动作：reuse / local_extension / revise / create。
 
 候选只进入“待评估材料”，不自动进入 assignment/baseline/model。
-只有 ADOPT-01 才能把固定 candidate 变成当前 work/task 输入。
+候选应尽量按 **semantic unit** 标识可复用范围，例如 definition、relation definition、constraint、claim；一个 reference file 只是来源容器，不默认表示其中所有正文、历史关系、validation recipe 或 local path 都应被采用。
+只有 ADOPT-01 才能把选中的固定 candidate units 变成当前 work/task 输入。
 
 不复制整个知识库，不导入候选的原会话/活动历史，也不因为资料更详细就让它覆盖当前 normative authority。
+候选包含 retired rule 引用、unverified claim、environment-local path 或历史 task 结论时，必须把这些作为 limitation/unknown 暴露，不能随 candidate 一并升级成 current evidence。
 
 ## Reference lifecycle
 
