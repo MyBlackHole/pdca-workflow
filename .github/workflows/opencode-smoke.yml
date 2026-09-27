@@ -16,6 +16,9 @@ jobs:
     timeout-minutes: 15
     env:
       TEST_HOME: /tmp/pdca-opencode-home
+      OPENCODE_TEST_HOME: /tmp/pdca-opencode-home
+      OPENCODE_DISABLE_EXTERNAL_SKILLS: "false"
+      OPENCODE_DISABLE_CLAUDE_CODE_SKILLS: "false"
       OPENCODE_VERSION: "1.18.32"
       OPENCODE_SHA256: "3046e0404fdc60fb80307e7a47824ba07477364178a4d09baa8548496dd6d43b"
       OPENCODE_DISABLE_AUTOUPDATE: "1"
@@ -90,7 +93,7 @@ jobs:
 
           healthy=0
           for _ in $(seq 1 30); do
-            if curl -fsS http://127.0.0.1:4096/api/health >"$RUNNER_TEMP/opencode-health.json"; then
+            if curl --max-time 2 -fsS http://127.0.0.1:4096/api/health >"$RUNNER_TEMP/opencode-health.json"; then
               healthy=1
               break
             fi
@@ -152,7 +155,7 @@ jobs:
           opencode serve --hostname 127.0.0.1 --port 4096 >"$RUNNER_TEMP/opencode-server-copy.log" 2>&1 &
           echo $! >"$RUNNER_TEMP/opencode-server.pid"
           for _ in $(seq 1 30); do
-            curl -fsS http://127.0.0.1:4096/api/health >/dev/null && break
+            curl --max-time 2 -fsS http://127.0.0.1:4096/api/health >/dev/null && break
             sleep 1
           done
 
@@ -184,12 +187,13 @@ jobs:
           rm -rf "$explicit_home"
           mkdir -p "$explicit_home"
           export HOME="$explicit_home"
+          export OPENCODE_TEST_HOME="$explicit_home"
           export OPENCODE_CONFIG_CONTENT='{"skills":{"paths":["/tmp/pdca-opencode-home/.agents/pdca/skills"]}}'
 
           /tmp/pdca-opencode-home/.opencode/bin/opencode serve --hostname 127.0.0.1 --port 4097 >"$RUNNER_TEMP/opencode-server-explicit.log" 2>&1 &
           echo $! >"$RUNNER_TEMP/opencode-explicit-server.pid"
           for _ in $(seq 1 30); do
-            curl -fsS http://127.0.0.1:4097/api/health >/dev/null && break
+            curl --max-time 2 -fsS http://127.0.0.1:4097/api/health >/dev/null && break
             sleep 1
           done
 
@@ -216,6 +220,7 @@ jobs:
         run: |
           set -euo pipefail
           export HOME=/tmp/pdca-opencode-explicit-home
+          export OPENCODE_TEST_HOME=/tmp/pdca-opencode-explicit-home
           export OPENCODE_CONFIG_CONTENT='{"skills":{"paths":["/tmp/pdca-opencode-home/.agents/pdca/skills"]}}'
 
           python3 - "$GITHUB_WORKSPACE" "$RUNNER_TEMP" <<'PY'
