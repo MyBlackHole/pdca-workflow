@@ -29,8 +29,7 @@ PDCA_ROOT 与 TARGET_ROOT，并按其中的只读 Git 快照规则采集需要�
 - **证据审阅**：现有 evidence 与固定 AC/oracle 的具体缺口；
 - **协作交接**：原 Agent、待回应请求或固定 deliverable/interface 的交接缺口。
 
-每个候选只写：事实依据、建议动作、影响对象、继续所需授权。新增正式职责时只说明应回
-modeling/DECOMP 形成 seed，不由 Assist 创建任务结构。
+每个候选只写：事实依据、建议动作、影响对象、继续所需授权。发现新的 ontology responsibility 时，只说明应回 modeling 形成 EVOLVE/TREE/NODE candidate；经 Modeling Check/Act 固定为 formal node 后，才可由 DECOMP 形成 task seed。Assist 本身不创建任何结构。
 
 只对当前候选做反重复检查：获准读域已有等价实现/决定时优先复用；同一候选已有明确拒绝/wontfix 时说明原因，
 除非用户重提或事实变化不再推动。无法从最小读集判断时标 unknown，不扩大扫描来“证明没有”。
