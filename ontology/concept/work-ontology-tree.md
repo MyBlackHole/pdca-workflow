@@ -10,12 +10,12 @@ status: active
 authority: normative
 revision: 4.0.0-rc.2
 dcterms_modified: '2026-09-27'
-summary: TREE-01：把固定 ontology/work relation 投影为 composition tree
+summary: TREE-01：把版本化 ontology/work relation 投影为 composition tree
 ---
 
 # TREE-01：Composition projection
 
-TREE-01 只回答：**固定 ontology/work instance 中哪些语义关系构成当前工作的父子 composition。**
+TREE-01 只回答：**一个明确版本化的 ontology/work payload 中，哪些语义关系构成当前工作的父子 composition。**
 它不定义 node 资格、不生成 task seed，也不承担 dependency graph。
 
 ## 输入
@@ -29,8 +29,7 @@ TREE-01 只回答：**固定 ontology/work instance 中哪些语义关系构成�
 - 用户目标/requirement coverage；
 - 能解释 composition 的 ontology/work relations。
 
-首次 root modeling 在尚无 ontology node 时只有 root goal seed；它不是树节点。
-root modeling 固定第一个 ontology/work node 后，才开始普通 tree projection。
+首次 root modeling 开始时只有 root goal seed；seed 本身不是树节点。Modeling Do 形成具名、版本化的 proposed ontology/root work candidate 后，TREE 可以对该 proposed payload 形成 candidate composition；只有 Modeling Act 固定 source revision/tree/node 后，这些结构才可供 DECOMP 使用。
 
 ## Composition edge
 
