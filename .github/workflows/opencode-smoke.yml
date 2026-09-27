@@ -2,14 +2,9 @@ name: OpenCode Compatibility Smoke
 
 on:
   pull_request:
-    paths:
-      - ".github/workflows/opencode-smoke.yml"
-      - "install.sh"
-      - "INSTALL.md"
-      - "skills/**"
-      - "ontology/contracts/project-workspace.md"
-      - "ontology/contracts/entry-recovery.md"
-      - "ontology/concept/capability-protocol.md"
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
