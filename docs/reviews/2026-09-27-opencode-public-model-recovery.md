@@ -7,8 +7,10 @@
 ## Environment
 
 - OpenCode: `v1.18.32`
-- GitHub Actions run: `36317798199`
-- job: `108615697335`
+- primary GitHub Actions run: `36317798199`
+- primary job: `108615697335`
+- confirmation rerun: `36317955837`
+- confirmation job: `108616130041`
 - repository protocol: `4.0.0-rc.5`
 - provider credential: none
 - selected model: `opencode/mimo-v2.6-flash-free`
@@ -133,6 +135,26 @@ This run still does not satisfy formal H11/H18 because it does not include:
 The model was a fresh `opencode run` inference, but that is not equivalent to the protocol's formal fresh-Agent task lifecycle.
 
 Therefore H1–H18 remain `NOT_RUN`.
+
+## Reproducibility rerun
+
+After documenting the first successful run, the same probe was executed again from the updated branch.
+
+The confirmation run again selected:
+
+`opencode/mimo-v2.6-flash-free`
+
+and again passed all runtime assertions:
+
+- native `skill` tool call occurred;
+- `pdca` Skill was usable by the model session;
+- `INST-SYSTEM`, `INST-COUNTER`, `INST-LABEL` were recovered;
+- composition topology matched the ontology core;
+- `legal_count_value` dependency semantics were recovered;
+- `ready=false` was preserved;
+- limitations about candidate/fixation/implementation evidence were retained.
+
+This second success reduces the chance that the first observation was a one-off provider response, while still not turning a volatile public endpoint into a hard CI dependency.
 
 ## CI policy
 
