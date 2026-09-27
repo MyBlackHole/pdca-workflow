@@ -1,6 +1,6 @@
 ---
 schema: pdca.contract/v4
-protocol_revision: 4.0.0-rc.3
+protocol_revision: 4.0.0-rc.4
 authority: normative
 status: active
 ---
@@ -15,7 +15,7 @@ null/空值表示事实未取得；request 本身不产生授权，也不表示 
 ```markdown
 ---
 schema: pdca.request/v4
-protocol_revision: 4.0.0-rc.3
+protocol_revision: 4.0.0-rc.4
 task_id: null
 attempt: null
 request_id: null
