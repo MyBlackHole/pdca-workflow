@@ -11,6 +11,11 @@ PDCA_ROOT统一保存规则、本体、任务与资源；TARGET_ROOT仅是业务
 
 项目身份由用户选择并集中登记，工作区对应规范化真实路径；不能只据目录basename或Git remote推导唯一项目。多个分支/worktree可属于同一project而有不同workspace。目录移动、两个ID指向同一目标、路径别名或多个匹配必须核对，不静默改绑。
 
+该 workspace 的环境级 CAP-01 证据不建立新的全局记录树；在绑定目录下使用
+`capability-checks/<record-ref>.md` 保存，精确格式与复用边界以
+[capability-check](record-shapes/capability-check.md) 为准。创建该记录仍属于集中记录写入，必须已有该 project/workspace
+绑定并取得具体路径的记录写入授权；未绑定时不得用临时目录名、cwd 或宿主名猜 project/workspace。
+
 现有 task 固定绑定优先于环境变量、cwd 和当前入口版本；入口真实路径所在 Git 根必须与绑定的 PDCA_ROOT 一致，冲突即停止。更新集中 Git 工作副本不自动改绑或升级活动任务。业务写域、任务记录写域、公共知识与共享发布分别授权；全中心统一判断实际资源冲突。
 
 `pdca` 只读定位已有绑定；新增或修改绑定前列明具体文件并核对用户的记录写入授权。明确批准后按[上下文格式](record-shapes/project-task-context.md)保存 `project_id`、`workspace_id`、`target_root`、`pdca_root`、`records_root`、`rules_git_head` 与 `rules_git_status`。记录根必须是 PDCA_ROOT/records；真实路径不能经符号链接写入其他根。登记只新增获准元数据，不创建任务、不批准阶段、不修改目标项目指令或 ignore。
