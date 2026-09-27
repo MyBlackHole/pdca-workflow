@@ -61,4 +61,4 @@ root modeling Act 固定首个 node/revision 后，后续正式 task 全部回�
 - phase 启动与推进：按 CONFIRM-01 / GATE-01 / TRANSITION-01。
 
 创建 task 不启动 Plan；task ready、依赖 ready 或上阶段 PASS 也不产生未来 phase 授权。
-子 task 可以产生新的 ontology-backed seed，但不能自动创建后代。
+任务执行中若发现新的 ontology responsibility，只能先形成 EVOLVE/TREE/NODE candidate；经 Modeling Check/Act 固定为正式 node 后，才由 DECOMP-01 形成后续 task seed candidate。任何 task 都不能把草稿责任直接变成后代任务。
