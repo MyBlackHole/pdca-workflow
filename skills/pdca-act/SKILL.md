@@ -12,10 +12,10 @@ metadata:
 先执行[共同恢复入口](../../ontology/contracts/entry-recovery.md)。当前会话不是原任务执行者时，
 只路由真实用户操作回原 Agent；不可路由就阻断。
 
-当前用户操作必须明确对应当前 Check 报告、产物版本和具体处置范围。
-读取[Act 方法](../../ontology/process/flow-act.md)与 [SCENE-01](../../ontology/process/work-scenarios.md)
-中当前 `task.scene` 对应章节；scene Skill 只负责入口/路由。
-资源、发布、知识采用等规则按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 的实际事件读取。
+按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 的 phase_start 链核对当前 Check predecessor、
+固定处置 subject/version、用户授权范围及资源条件，并写入 `phase_started(act)` 后才执行处置。
+读取[Act 方法](../../ontology/process/flow-act.md)与 [SCENE-01](../../ontology/process/work-scenarios.md) 当前 scene 章节；
+资源、发布、知识采用等规则仍按实际事件读取。
 
 ## 本阶段动作
 
@@ -30,7 +30,6 @@ metadata:
 
 ## 完成与停止
 
-固定最终交付、模型/mapping/implementation 版本、处置证据、资源结果和实际 scene coverage，
-保存 `phase_completed` 与 `archived`，报告未决事项后停止。
-
-Act 不自动创建 child、启动下一 scene、新 attempt 或第五阶段。
+固定最终交付、模型/mapping/implementation 版本、处置证据、资源结果和 scene coverage 后，
+按 LOAD-MAP 的 completion 链写 `phase_completed(act)`；本 Act 已授权终态处置完成后再写 `archived`，
+STATE 投影 completed/archive。报告未决事项后停止，不自动创建 child、下一 scene 或新 attempt。
