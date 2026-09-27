@@ -5,9 +5,10 @@ authority: normative
 status: active
 ---
 
-# 阶段事件，不再是固定四条自动边：记录格式
+# 阶段事件 receipt：记录格式
 
-本契约定义该记录的 schema、字段与填写约束；以下完整 Markdown 示例是规范格式。字段中的 null、空列表及未验证状态表示尚未取得事实，不构成授权、执行成功或资源取得证明。按实际证据填写，保留原始来源与未知。
+本契约只定义 TRANSITION-01 的不可变阶段事件 receipt。
+字段为空表示事实未取得；receipt 不生成授权，也不直接定义 task 当前状态。
 
 ## 示例
 
@@ -34,9 +35,15 @@ observed_control_revision: null
 recorded_at: null
 ---
 
-# 阶段事件，不再是固定四条自动边
+# 阶段事件 receipt
 
-event=phase_started/phase_completed/archived。开始引用该run的真实phase_start消费；完成引用实际产物与证据，之后等待。序号单任务递增，前驱链固定，重试幂等。
+`event` 只使用 `phase_started / phase_completed / archived`。
 
-Check后同目标返修须新Do run及用户操作，再重新Check。未改变目标时沿用原Agent；新attempt另起完整PDCA。事件不是业务副作用的exactly-once保证，未知先对账。
+- phase_started 引用本次 GATE 实际消费的 confirmation decision 与固定输入；
+- phase_completed 引用同 run 的真实 result/evidence；
+- archived 引用已完成 Act 的最终处置结果。
+
+`sequence + previous_ref/digest` 固定同 task/attempt 的事件顺序。
+重复同一 run/event 不追加第二份同义事实；链分叉或前驱不明时停止。
+返工、新 attempt 和业务 operation 的规则不由这个 record-shape 定义。
 ```
