@@ -92,7 +92,7 @@ OpenCode 官方 Agent Skills 发现规则包含全局兼容目录 `~/.agents/ski
 
 headless `opencode serve` 的 `/api/skill` 在同一 Actions 环境中只返回内置 Skill，没有暴露 external PDCA Skills；该路径目前仅保留为非门禁诊断，不能据此否定 CLI 发现能力，也不能声称 server/session 集成已通过。
 
-兼容 smoke 不读取用户提供的 provider 凭据。OpenCode v1.18.32 在无 `OPENCODE_API_KEY` 时可通过 public provider 路径访问启用的免费模型；真实 Actions 已使用 `opencode/mimo-v2.6-flash-free` 完成一次 bounded-counter ontology-core-only 推理，并验证模型实际调用原生 `skill(pdca)`，恢复出正确 composition、dependency candidate、三类 node responsibility 与 `ready=false`。该 free-model probe 保持非阻断，因为公共免费端点可能限流或下线；证据见 [OpenCode public-model ontology recovery](docs/reviews/2026-09-27-opencode-public-model-recovery.md)。
+兼容 smoke 不读取用户提供的 provider 凭据。OpenCode v1.18.32 在无 `OPENCODE_API_KEY` 时可通过 public provider 路径访问启用的免费模型；真实 Actions 已使用 `opencode/mimo-v2.6-flash-free` 完成 bounded-counter ontology-core-only 推理，并验证模型实际调用原生 `skill(pdca)`。随后又用 `candidate-0.3.0` 的纯 ontology core 启动两个独立 `opencode run` session：两次 session ID 不同、Section 1–7 中 `NODE-*` 泄漏为 0，但恢复出的 composition、producer/consumer dependency、三类 work-instance responsibility 与 `ready=false` 归一化后完全一致。free-model probe 保持非阻断，因为公共免费端点可能限流或下线；证据见 [单次 public-model recovery](docs/reviews/2026-09-27-opencode-public-model-recovery.md) 与 [fresh-session recovery](docs/reviews/2026-09-27-opencode-fresh-session-recovery.md)。
 
 这仍不等于正式 PDCA fresh-Agent host acceptance：没有 root Modeling 的 Plan/Do/Check/Act fixation、fixed assignment/context 初始化、原 Agent continuation 或完整 implement/verify scene。因此 H1/H11/H18 与其余现场验收仍按实际清单保持未执行。基础 CLI discovery 证据见 [OpenCode 兼容性审查](docs/reviews/2026-09-27-opencode-compatibility.md)。
 
