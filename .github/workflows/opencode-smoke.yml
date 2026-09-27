@@ -38,6 +38,62 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Classify public-model probe scope
+        id: scope
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PUSH_BEFORE_SHA: ${{ github.event.before }}
+          CURRENT_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          case "$EVENT_NAME" in
+            pull_request)
+              base="$PR_BASE_SHA"
+              head="$PR_HEAD_SHA"
+              ;;
+            push)
+              base="$PUSH_BEFORE_SHA"
+              head="$CURRENT_SHA"
+              ;;
+            *)
+              echo "run_model_probes=true" >>"$GITHUB_OUTPUT"
+              echo "No reliable comparison range for $EVENT_NAME; running all public-model probes."
+              exit 0
+              ;;
+          esac
+
+          case "$base" in
+            ""|0000000000000000000000000000000000000000)
+              echo "run_model_probes=true" >>"$GITHUB_OUTPUT"
+              echo "Missing comparison base; running all public-model probes."
+              exit 0
+              ;;
+          esac
+
+          changes="$(git diff --name-only "$base" "$head")"
+          printf 'Changed files:\n%s\n' "$changes"
+
+          run_model_probes=false
+          while IFS= read -r changed; do
+            case "$changed" in
+              .github/workflows/opencode-smoke.yml|skills/*|ontology/projects/pdca-host-smoke/works/bounded-counter/*)
+                run_model_probes=true
+                break
+                ;;
+            esac
+          done <<EOF
+          $changes
+          EOF
+
+          echo "run_model_probes=$run_model_probes" >>"$GITHUB_OUTPUT"
+          echo "Public-model probes: $run_model_probes"
 
       - name: Install PDCA into isolated HOME
         shell: bash
@@ -204,6 +260,7 @@ jobs:
           fi
 
       - name: Probe two fresh public-model sessions from ontology core only
+        if: steps.scope.outputs.run_model_probes == 'true'
         id: fresh_recovery
         continue-on-error: true
         shell: bash
@@ -431,6 +488,7 @@ jobs:
           PY
 
       - name: Probe minimum label-child context in two fresh public-model sessions
+        if: steps.scope.outputs.run_model_probes == 'true'
         id: child_context
         continue-on-error: true
         shell: bash
@@ -739,6 +797,7 @@ jobs:
           PY
 
       - name: Probe explicit OpenCode session continuation
+        if: steps.scope.outputs.run_model_probes == 'true'
         id: session_continuity
         continue-on-error: true
         shell: bash
@@ -961,6 +1020,7 @@ jobs:
           PY
 
       - name: Verify persisted OpenCode session transcript
+        if: steps.scope.outputs.run_model_probes == 'true'
         id: session_transcript
         continue-on-error: true
         shell: bash
