@@ -1,6 +1,6 @@
 ---
 schema: pdca.contract/v4
-protocol_revision: 4.0.0-rc.2
+protocol_revision: 4.0.0-rc.3
 authority: normative
 status: active
 ---
@@ -15,7 +15,7 @@ status: active
 ```markdown
 ---
 schema: pdca.dispatch/v4
-protocol_revision: 4.0.0-rc.2
+protocol_revision: 4.0.0-rc.3
 task_id: null
 attempt: null
 dispatch_request_id: null
