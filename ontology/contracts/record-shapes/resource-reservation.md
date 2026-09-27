@@ -1,6 +1,6 @@
 ---
 schema: pdca.contract/v4
-protocol_revision: 4.0.0-rc.3
+protocol_revision: 4.0.0-rc.4
 authority: normative
 status: active
 ---
@@ -15,7 +15,7 @@ status: active
 ```markdown
 ---
 schema: pdca.resource-reservation/v4
-protocol_revision: 4.0.0-rc.3
+protocol_revision: 4.0.0-rc.4
 reservation_id: null
 owner_task_id: null
 owner_attempt: null

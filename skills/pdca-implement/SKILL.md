@@ -2,7 +2,7 @@
 name: pdca-implement
 description: 用户明确选择本体投影场景，或已有投影任务需要定位场景规则时使用。只实现固定本体节点，不重新定义模型。
 metadata:
-  version: 5.0.0-rc.2
+  version: 5.0.0-rc.3
 ---
 
 # Implement：进入本体投影场景

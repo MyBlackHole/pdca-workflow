@@ -26,7 +26,7 @@
 
 发现重复规则时回到现有 authority 收敛，不在 Skill/README 维护第二份副本。
 
-Skill 的 `5.0.0-rc.2` 是运行入口包版本，不与 ontology/protocol 的 `4.0.0-rc.x` 比大小；
+Skill 的 `5.0.0-rc.3` 是运行入口包版本，不与 ontology/protocol 的 `4.0.0-rc.x` 比大小；
 版本域的唯一说明见 [PDCA：Version domains](../ontology/concept/pdca.md#version-domains)。
 已有 task 绑定优先，读取场景方法不创建场景任务。中央项目/任务登记和资源预约对所有入口相同；
 业务项目不自动生成 `.pdca/`。记录写入与 Git 提交分别授权。

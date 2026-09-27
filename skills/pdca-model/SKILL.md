@@ -2,7 +2,7 @@
 name: pdca-model
 description: 用户明确选择本体建模场景，或已有建模任务需要定位场景规则时使用。建模固定 ontology/work 语义；任务结构由 TREE/NODE/DECOMP 后续投影。
 metadata:
-  version: 5.0.0-rc.2
+  version: 5.0.0-rc.3
 ---
 
 # Model：进入本体建模场景
