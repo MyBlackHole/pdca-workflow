@@ -1007,21 +1007,37 @@ jobs:
           if not contains_exact_string(exported, sid):
               raise SystemExit("export does not contain the continued session id")
 
+          if not isinstance(exported, dict):
+              raise SystemExit(f"unexpected export type: {type(exported).__name__}")
+          if set(exported) != {"info", "messages"}:
+              raise SystemExit(f"unexpected export top-level keys: {sorted(exported)}")
+
+          info = exported["info"]
+          messages = exported["messages"]
+          if not isinstance(info, dict) or info.get("id") != sid:
+              raise SystemExit(f"export info.id mismatch: {info!r}")
+          if not isinstance(messages, list):
+              raise SystemExit("export messages is not a list")
+
           role_messages = []
-
-          def visit(value):
-              if isinstance(value, dict):
-                  role = value.get("role")
-                  if role in {"user", "assistant"}:
-                      role_messages.append((role, "\n".join(strings(value))))
-                      return
-                  for child in value.values():
-                      visit(child)
-              elif isinstance(value, list):
-                  for child in value:
-                      visit(child)
-
-          visit(exported)
+          for message in messages:
+              if not isinstance(message, dict):
+                  continue
+              message_info = message.get("info")
+              parts = message.get("parts")
+              if not isinstance(message_info, dict) or not isinstance(parts, list):
+                  continue
+              role = message_info.get("role")
+              if role not in {"user", "assistant"}:
+                  continue
+              text_parts = [
+                  part.get("text")
+                  for part in parts
+                  if isinstance(part, dict)
+                  and part.get("type") == "text"
+                  and isinstance(part.get("text"), str)
+              ]
+              role_messages.append((role, "\n".join(text_parts)))
 
           roles = [role for role, _ in role_messages]
           target = ["user", "assistant", "user", "assistant"]
@@ -1055,7 +1071,7 @@ jobs:
           if token not in turn2_assistant:
               raise SystemExit("continued assistant did not recover runtime token")
 
-          top_keys = sorted(exported) if isinstance(exported, dict) else None
+          top_keys = sorted(exported)
           summary = {
               "session_id": sid,
               "session_list_contains_session": True,
