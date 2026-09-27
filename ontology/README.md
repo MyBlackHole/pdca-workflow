@@ -30,8 +30,9 @@
 PDCA 语义由 AI 直接读取当前 authority、Skill、Plan 和证据进行审查。
 **禁止建立项目专用 Python/Shell validator，把同一语义重新编码成 assert、数字阈值或第二份 manifest。**
 
-通用工具可以用于采集事实，例如 Git、文本搜索、格式解析器、编译器、shell syntax check
-以及 TARGET_ROOT 自己已有的测试；工具输出只是 evidence，最终符合性判断仍由 AI 的 Check 完成。
+通用工具可以用于采集 observation，例如 Git、文本搜索、格式解析器、编译器、shell syntax check
+以及 TARGET_ROOT 自己已有的测试。CASE-01 在执行前固定 oracle，TEST-01 只保存实际 observation，
+EVIDENCE-01 将 decisive claim 绑定到 observation/counterevidence，最终 Check 只按 VERDICT-01 聚合。
 
 ## Check
 
@@ -42,8 +43,8 @@ Check 使用 [flow-check](process/flow-check.md) 的四遍方法：
 3. Adversarial Review；
 4. Evidence Review。
 
-需要第二视角时可以使用一次性只读独立 AI，但它的 findings 仍是待核验 claim，不替代当前 Check，
-也不自动建立新的 PDCA 生命周期。
+需要第二视角时按 REVIEW-01 使用一次性只读独立 AI；findings 仍只是待核验 claim，必须回到 EVIDENCE-01。
+正式独立 verification 是用户显式创建的 pdca-verify scene/task，不由一次性 review 自动升级。
 
 ## 文档质量
 
