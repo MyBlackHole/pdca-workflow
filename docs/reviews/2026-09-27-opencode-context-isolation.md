@@ -68,6 +68,29 @@ CI 在 JSON event stream 中验证 Skill tool call，缺少 `pdca` Skill use 即
 
 两个运行均通过。
 
+## Tool-use boundary
+
+原始 OpenCode JSONL event stream 进一步显示，两次 child-context 运行的 **唯一 tool call 都是 `skill(pdca)`**。
+
+没有出现：
+
+- `read`；
+- `glob`；
+- `grep`；
+- `bash`；
+- 其他文件读取/搜索工具。
+
+这很重要：它证明模型不是先声明 excluded facts 为 `not_in_context`，同时又通过仓库工具把完整 ontology/counter/parent history 重新读回来。
+
+因此 CI 现在把 tool trace 也作为 hard assertion：
+
+```text
+tool calls == [skill(pdca)]
+```
+
+任何额外 tool access 都使 child-context probe 失败。
+
+
 ## Required semantic output
 
 每个 session 必须恢复：
@@ -119,6 +142,7 @@ workflow 同时记录：
 same_semantics: true
 different_sessions: true
 excluded_context_respected: true
+tool_boundary_respected: true
 ```
 
 并输出：
@@ -172,4 +196,4 @@ H1–H18 状态保持不变。
 
 该 probe 使用公共免费模型，因此保持 non-blocking；免费 endpoint 的暂时不可用不能使稳定 CLI compatibility gate 失败。
 
-当 probe 成功时，其结构化 assertion 是强约束：模型必须使用 `pdca` Skill、恢复当前 child semantics、保持 dependency `ready=false`，并明确尊重 excluded-context contract。
+当 probe 成功时，其结构化 assertion 是强约束：模型必须使用 `pdca` Skill、恢复当前 child semantics、保持 dependency `ready=false`，明确尊重 excluded-context contract，并且不能通过任何额外文件/搜索工具越过这个 initial-context 边界。
