@@ -43,7 +43,7 @@ OpenCode compatibility smoke 的安装、CLI Skill discovery 与基础 server di
 精确切换到当前 workflow checkout HEAD；后续 OpenCode 检查必须断言并读取该 HEAD，不能把安装器重新 clone 的
 远端 `main` 当作当前 PR/push 的 Skill 证据。
 
-public free-model recovery / child-context / continuation / transcript probe 只在其语义输入
+Public free-model recovery / child-context / continuation / transcript probe 只在其语义输入
 （runtime Skills、bounded-counter host-smoke ontology）或 smoke workflow 自身变化时运行。
 仅修改 `install.sh` 仍验证真实安装与发现，但不重复执行与该改动无关的模型语义探针；
 手工 `workflow_dispatch` 保守运行全套。OpenCode smoke 的期望运行入口直接读取
