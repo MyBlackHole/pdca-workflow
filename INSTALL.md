@@ -17,6 +17,11 @@ curl -fsSL https://raw.githubusercontent.com/MyBlackHole/pdca-workflow/main/inst
 `pdca`、`pdca-assist`、四阶段和三个场景入口可被宿主全局发现。这样避免参考材料误触发，
 也允许 `~/.agents/skills` 同时保存其他项目的 Skill。
 
+安装器为了在 **clone 之前**拒绝发现目录中的同名冲突，保留一份入口名称的 bootstrap mirror；
+它不是第二个运行入口 authority。Mechanical Checks 会把该 mirror 的名称/顺序以及安装器固定的
+`skills/<name>/SKILL.md` 路径假设与 `skills/catalog.json` 逐项对齐。修改运行入口时必须先改 catalog，
+再同步安装器 mirror；不通过机械检查的漂移不能合并。
+
 ### 路径、入口与冲突规则
 
 - `~/.agents` 必须是普通目录；若是符号链接则拒绝。HOME 中的既有链接先解析到物理目录。

@@ -33,8 +33,9 @@ PDCA 不维护项目专用语义验证脚本。
 ## CI
 
 CI 只保留低维护成本、与 PDCA 语义无关的机械检查，例如 shell syntax、`git diff --check`
-以及 Skill bundle 发布元数据的一致性（`VERSION`、catalog version、catalog 所列 Skill 的 metadata.version）。
-版本检查只验证同一发布版本字符串是否一致，不验证 Skill 数量、authority、阶段边界或其他 PDCA 语义。
+以及 Skill bundle 发布/安装元数据的一致性（`VERSION`、catalog version、catalog 所列 Skill 的 metadata.version、
+安装器 clone 前必须使用的入口 bootstrap mirror 与 canonical Skill 路径）。
+这些检查只验证同一发布/安装元数据是否一致，不验证 Skill 数量阈值、authority、阶段边界或其他 PDCA 语义。
 CI 成功不表示 Check PASS。
 
 ## 现场验收

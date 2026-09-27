@@ -3,6 +3,9 @@
 set -eu
 
 repository='https://github.com/MyBlackHole/pdca-workflow.git'
+# Bootstrap mirror: needed before clone so destination-name conflicts are rejected
+# before a nonempty checkout exists. Mechanical CI keeps this identical to
+# skills/catalog.json (names, order, and canonical skills/<name>/SKILL.md paths).
 runtime_skills='pdca pdca-assist pdca-plan pdca-do pdca-check pdca-act pdca-model pdca-implement pdca-verify'
 
 fail() { printf '%s\n' "$*" >&2; exit 1; }
@@ -151,6 +154,6 @@ done
 printf '%s\n' \
     "PDCA root: $pdca_root" \
     "Skill discovery directory: $skills_dir" \
-    'Runtime skill links: pdca, pdca-assist, pdca-plan, pdca-do, pdca-check, pdca-act, pdca-model, pdca-implement, pdca-verify' \
+    "Runtime skill links: $runtime_skills" \
     'Start a new host session and invoke: $pdca' \
     "Update manually: git -C \"$pdca_root\" pull"
