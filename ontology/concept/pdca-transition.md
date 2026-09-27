@@ -16,19 +16,12 @@ transition_protocol:
   - phase_started
   - phase_completed
   - archived
-  initial_phase: plan
   normal_order:
   - plan
   - do
   - check
   - act
-  rework_edges:
-  - - check
-    - do
-  start_requires_user: true
-  phase_completion_auto_advances: false
   sequence_allocator: task_writer_monotonic
-  terminal_phase: archive
 ---
 
 # TRANSITION-01：阶段事件链
