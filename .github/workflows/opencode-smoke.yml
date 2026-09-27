@@ -95,13 +95,36 @@ jobs:
           echo "run_model_probes=$run_model_probes" >>"$GITHUB_OUTPUT"
           echo "Public-model probes: $run_model_probes"
 
-      - name: Install PDCA into isolated HOME
+      - name: Install PDCA and pin compatibility root to current checkout
         shell: bash
         run: |
           set -euo pipefail
           export HOME="$TEST_HOME"
           mkdir -p "$HOME"
+
+          source_head="$(git rev-parse HEAD)"
+          bundle="$RUNNER_TEMP/pdca-current-checkout.bundle"
+          git bundle create "$bundle" HEAD
+
+          # First execute the production installer unchanged. It intentionally
+          # clones the public default branch, which validates real install/link
+          # behavior but is not sufficient for PR Skill compatibility testing.
           sh ./install.sh
+
+          installed_default_head="$(git -C "$HOME/.agents/pdca" rev-parse HEAD)"
+          printf 'Production install head: %s\n' "$installed_default_head"
+          printf 'Workflow checkout head: %s\n' "$source_head"
+
+          # Keep the exact production layout/symlinks, but move only the
+          # ephemeral CI checkout to this workflow's HEAD so all subsequent
+          # OpenCode discovery/model probes exercise the actual PR/push bytes.
+          git -C "$HOME/.agents/pdca" fetch "$bundle" HEAD
+          git -C "$HOME/.agents/pdca" checkout --detach FETCH_HEAD
+
+          installed_test_head="$(git -C "$HOME/.agents/pdca" rev-parse HEAD)"
+          test "$installed_test_head" = "$source_head"
+          test -z "$(git -C "$HOME/.agents/pdca" status --porcelain)"
+          printf 'Compatibility test root pinned to workflow HEAD: %s\n' "$installed_test_head"
 
           mapfile -t expected < <(
             python3 - <<'PY'

@@ -93,7 +93,7 @@ done
 
 OpenCode 官方 Agent Skills 发现规则包含全局兼容目录 `~/.agents/skills/<name>/SKILL.md`，与本安装器的九个运行入口布局一致；Skill 由宿主按需通过原生 skill 能力加载，而不是把全部正文默认注入每个会话。
 
-仓库的 `.github/workflows/opencode-smoke.yml` 在隔离 HOME 中运行真实 `install.sh`，下载并校验固定 OpenCode CLI，然后以 OpenCode 自带的 `opencode debug skill` 作为兼容门禁。当前对 **OpenCode v1.18.32** 的真实 Actions 结果已经确认：九个 PDCA runtime Skill 都能从安装器生成的 `~/.agents/skills/<name>/SKILL.md` 路径被发现、解析，并读取到实际 Skill 正文。
+仓库的 `.github/workflows/opencode-smoke.yml` 在隔离 HOME 中先运行**未改写的真实 `install.sh`**，验证生产 clone/链接行为；随后只在该临时 CI 工作副本中用本地 Git bundle 把 `~/.agents/pdca` 精确切换到当前 workflow checkout HEAD，并硬断言两边 HEAD 一致。这样生产安装器仍按默认远端 `main` 工作，而 PR/push 的后续 OpenCode discovery/model probes 实际读取的是本次待验证字节，不会因为安装器重新 clone `main` 而误测旧 Skill。之后 workflow 下载并校验固定 OpenCode CLI，以 OpenCode 自带的 `opencode debug skill` 作为兼容门禁。当前对 **OpenCode v1.18.32** 的真实 Actions 结果已经确认：catalog 中的 PDCA runtime Skill 都能从安装布局生成的 `~/.agents/skills/<name>/SKILL.md` 路径被发现、解析，并读取到实际 Skill 正文。
 
 headless `opencode serve` 的 `/api/skill` 在同一 Actions 环境中只返回内置 Skill，没有暴露 external PDCA Skills；该路径目前仅保留为非门禁诊断，不能据此否定 CLI 发现能力，也不能声称 server/session 集成已通过。
 
