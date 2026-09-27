@@ -5,9 +5,10 @@ authority: normative
 status: active
 ---
 
-# 实际副作用操作：记录格式
+# Side-effect operation 事实：记录格式
 
-本契约定义该记录的 schema、字段与填写约束；以下完整 Markdown 示例是规范格式。字段中的 null、空列表及未验证状态表示尚未取得事实，不构成授权、执行成功或资源取得证明。按实际证据填写，保留原始来源与未知。
+本契约只保存一次真实副作用调用的事实与对账状态。
+它不是执行器、资源锁、重试策略或 phase 授权。
 
 ## 示例
 
@@ -30,9 +31,13 @@ result_ref: null
 reconciliation_ref: null
 ---
 
-# 实际副作用操作
+# Side-effect operation 事实
 
-保存到本任务集中记录区。登记和调用间中断不能证明尚未调用；无返回记录unknown并查询原operation。planned/submitted/unknown/succeeded/failed/settled是观察状态，不是执行器。
+`planned / submitted / unknown / succeeded / failed / settled` 只描述观察到的调用状态。
+登记与调用之间中断不能证明“未调用”；无可靠返回时保持 unknown，并以同一 operation_id 对账原请求。
 
-只在原任务、原run及同一后端已验证幂等语义内重试；用户批准阶段不授权扩大参数或资源范围。后端失败、对象失败、结果未知分别记录，原结果不覆盖。
+`idempotency_key/evidence` 只记录后端真实幂等依据，不因为字段存在就允许重试。
+是否可重试、是否阻止资源 released，由 RESOURCE-01 根据真实 backend/reconciliation 事实判断。
+
+operation record 不改变 task phase/state，也不创造额外参数、资源范围或用户授权。
 ```
