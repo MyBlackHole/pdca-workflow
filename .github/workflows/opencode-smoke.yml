@@ -112,7 +112,7 @@ jobs:
         run: |
           set -euo pipefail
           export HOME="$TEST_HOME"
-          curl -fsS http://127.0.0.1:4096/api/skill >"$RUNNER_TEMP/opencode-skills-symlink.json"
+          curl -fsS -H "x-opencode-directory: $GITHUB_WORKSPACE" http://127.0.0.1:4096/api/skill >"$RUNNER_TEMP/opencode-skills-symlink.json"
           cat "$RUNNER_TEMP/opencode-skills-symlink.json"
 
           python3 - "$RUNNER_TEMP/opencode-skills-symlink.json" <<'PY'
@@ -159,7 +159,7 @@ jobs:
             sleep 1
           done
 
-          curl -fsS http://127.0.0.1:4096/api/skill >"$RUNNER_TEMP/opencode-skills-copy.json"
+          curl -fsS -H "x-opencode-directory: $GITHUB_WORKSPACE" http://127.0.0.1:4096/api/skill >"$RUNNER_TEMP/opencode-skills-copy.json"
           python3 - "$RUNNER_TEMP/opencode-skills-copy.json" <<'PY'
           import json
           import sys
@@ -197,7 +197,7 @@ jobs:
             sleep 1
           done
 
-          curl -fsS http://127.0.0.1:4097/api/skill >"$RUNNER_TEMP/opencode-skills-explicit.json"
+          curl -fsS -H "x-opencode-directory: $GITHUB_WORKSPACE" http://127.0.0.1:4097/api/skill >"$RUNNER_TEMP/opencode-skills-explicit.json"
           cat "$RUNNER_TEMP/opencode-skills-explicit.json"
 
           python3 - "$RUNNER_TEMP/opencode-skills-explicit.json" <<'PY'
@@ -238,7 +238,7 @@ jobs:
                   base + path,
                   data=payload,
                   method=method,
-                  headers={"Content-Type": "application/json"} if payload is not None else {},
+                  headers={**({"Content-Type": "application/json"} if payload is not None else {}), "x-opencode-directory": root},
               )
               with urllib.request.urlopen(req, timeout=10) as response:
                   raw = response.read()
