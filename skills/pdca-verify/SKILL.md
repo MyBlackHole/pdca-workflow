@@ -18,14 +18,14 @@ CONTEXT-01 子图和必要行为证据提出具名 verify task 输入，由用�
 
 ## 唯一场景语义来源
 
-Verify 的验证链、阶段义务、上下文隔离、finding 与处置，统一读取
-[SCENE-01 的 pdca-verify 章节](../../ontology/process/work-scenarios.md)。
+Verify 的验证对象链与 scene-specific 义务统一读取
+[SCENE-01](../../ontology/process/work-scenarios.md)；独立 reviewer 的上下文/只读边界只按 REVIEW-01，evidence/verdict 分别按 EVIDENCE-01 / VERDICT-01。
 
 本入口只额外强调：
 
 - Verify 绑定与被审实现相同的语义 node 和明确 revision，不重新建模或重拆任务；
 - 实现报告与其他 Agent 结论只是 claim，不能替代固定 implementation、行为观察与反证；
-- fresh verify Agent 不继承 implement/父/兄弟完整活动历史；追加调查仍受 CONTEXT-01 的读域/写域区分；
+- fresh verify Agent 的独立性同时满足 CONTEXT-01 与 REVIEW-01；不继承 implement/父/兄弟完整活动历史；
 - 审查对象、模型或实现不能由 Verify 修改；模型遗漏按 EVOLVE-01 报告，证据不足保持 unknown/not_run。
 
 阶段执行时使用 `pdca-plan/do/check/act`。scene Skill 不复制四阶段方法。
