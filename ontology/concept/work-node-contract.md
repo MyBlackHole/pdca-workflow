@@ -38,7 +38,9 @@ task initial context 由 CONTEXT-01 从本 node + relations/dependencies 中选�
 
 ## Qualification
 
-candidate 只有同时满足以下条件才是正式 node：
+candidate 可以在 Modeling Do/Check 中先做 qualification；只有其 source ontology/tree revision 在 Act 后固定且 qualification 依据仍匹配，才成为可供 DECOMP 使用的正式 node。
+
+qualification 必须同时满足：
 
 1. 当前目标中有独立 semantic responsibility；
 2. inputs/outputs 可以固定；
