@@ -41,6 +41,8 @@ PDCA_ROOT，不能为了实验在 TARGET_ROOT 建 `.pdca/`。测试写入仅限�
 | writes | 实际可用的实验记录/模型写域、资源拥有者及后端依据；不是“已开启沙箱”一句话 |
 | events | 创建、完成、失败、取消的原生回执来源和可核查顺序 |
 
+**OpenCode v1.18.32 已知边界。** 维护级 Actions 已证明 `session list` / `export` 能核验 session identity、两条 user-role 消息、native Skill tool 消息与续接后的 assistant response；但该版本持久化的 UserMessage 没有外部 sender/actor/ingress/transport 字段。因此 `role=user` 只能证明 OpenCode 将输入记录为 user-role，不能单独证明真人来源。现场使用 OpenCode 时，必须再从**实际接入路径**取得能把真实用户动作绑定到对应 session/message 的原生 receipt/audit/event；该路径没有这类证据时，CAP-01 `communicate` 的来源/路由部分保持 unknown，不能用 transcript、session ID 或 Agent 自述补齐。维护证据见 [OpenCode user-message provenance boundary](../docs/reviews/2026-09-27-opencode-user-message-provenance.md)。
+
 缺环境级证据时，先由用户明确批准一个**无业务写入的能力探测会话**，只测试上述宿主机制，
 不把它登记为正式 task 或补写四阶段。探测材料也只保存在获准的试验证据位置。
 没有相应接口、无法核验用户来源、原生输入不可观察或恢复语义未知时，停在这里；
