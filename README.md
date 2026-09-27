@@ -4,6 +4,8 @@ PDCA 在一个 Git 工作副本中集中管理规则、本体、项目记录与�
 
 [安装、更新与宿主发现](INSTALL.md) · [Skill 索引](skills/README.md) · [当前本体](ontology/README.md) · [AI 审查与现场验收](tests/README.md)
 
+当前 release candidate：**protocol `4.0.0-rc.4` / Skill bundle `5.0.0-rc.3` / record schema `v4`**。本轮语义变更、兼容性与未验收范围见 [rc.4 release note](docs/releases/2026-09-27-protocol-4.0.0-rc.4.md)。
+
 ## 开始使用
 
 按 [INSTALL](INSTALL.md) 安装后，在宿主中显式调用 `$pdca`，提供项目真实路径、`project_id` 与 `workspace_id`。它先只读定位已有绑定；新增或修改绑定时，会列出具体集中记录路径，核对用户的记录写入授权后才保存。缺失、多个匹配或根冲突时停止说明，不按目录名、Git remote 或最新任务猜测身份。
