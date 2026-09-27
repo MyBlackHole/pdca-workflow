@@ -960,6 +960,156 @@ jobs:
           print("OpenCode --session continued the original session and recovered prior in-session state")
           PY
 
+      - name: Verify persisted OpenCode session transcript
+        id: session_transcript
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          export HOME="$TEST_HOME"
+          cd "$GITHUB_WORKSPACE"
+
+          sid="$(cat "$RUNNER_TEMP/opencode-continuity-session.txt")"
+          token="$(cat "$RUNNER_TEMP/opencode-continuity-token.txt")"
+
+          opencode session list --max-count 20 --format json             >"$RUNNER_TEMP/opencode-session-list.json"
+
+          opencode export "$sid"             >"$RUNNER_TEMP/opencode-continuity-export.json"             2>"$RUNNER_TEMP/opencode-continuity-export.stderr"
+
+          cat "$RUNNER_TEMP/opencode-continuity-export.stderr"
+
+          python3 -             "$RUNNER_TEMP/opencode-session-list.json"             "$RUNNER_TEMP/opencode-continuity-export.json"             "$RUNNER_TEMP/opencode-continuity-session.txt"             "$RUNNER_TEMP/opencode-continuity-token.txt"             "$RUNNER_TEMP/opencode-continuity-transcript-summary.json" <<'PY'
+          import hashlib
+          import json
+          import pathlib
+          import sys
+
+          session_list = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
+          exported = json.loads(pathlib.Path(sys.argv[2]).read_text(encoding="utf-8"))
+          sid = pathlib.Path(sys.argv[3]).read_text(encoding="utf-8")
+          token = pathlib.Path(sys.argv[4]).read_text(encoding="utf-8")
+
+          def strings(value):
+              if isinstance(value, str):
+                  yield value
+              elif isinstance(value, dict):
+                  for child in value.values():
+                      yield from strings(child)
+              elif isinstance(value, list):
+                  for child in value:
+                      yield from strings(child)
+
+          def contains_exact_string(value, expected):
+              return any(item == expected for item in strings(value))
+
+          if not contains_exact_string(session_list, sid):
+              raise SystemExit("session list does not contain the continued session id")
+          if not contains_exact_string(exported, sid):
+              raise SystemExit("export does not contain the continued session id")
+
+          if not isinstance(exported, dict):
+              raise SystemExit(f"unexpected export type: {type(exported).__name__}")
+          if set(exported) != {"info", "messages"}:
+              raise SystemExit(f"unexpected export top-level keys: {sorted(exported)}")
+
+          info = exported["info"]
+          messages = exported["messages"]
+          if not isinstance(info, dict) or info.get("id") != sid:
+              raise SystemExit(f"export info.id mismatch: {info!r}")
+          if not isinstance(messages, list):
+              raise SystemExit("export messages is not a list")
+
+          role_messages = []
+          for message in messages:
+              if not isinstance(message, dict):
+                  continue
+              message_info = message.get("info")
+              parts = message.get("parts")
+              if not isinstance(message_info, dict) or not isinstance(parts, list):
+                  continue
+              role = message_info.get("role")
+              if role not in {"user", "assistant"}:
+                  continue
+              text_parts = [
+                  part.get("text")
+                  for part in parts
+                  if isinstance(part, dict)
+                  and part.get("type") == "text"
+                  and isinstance(part.get("text"), str)
+              ]
+              role_messages.append((role, "\n".join(text_parts)))
+
+          roles = [role for role, _ in role_messages]
+          user_indexes = [
+              index for index, (role, _) in enumerate(role_messages)
+              if role == "user"
+          ]
+          if len(user_indexes) != 2:
+              raise SystemExit(f"expected exactly two exported user turns, got {user_indexes!r} roles={roles!r}")
+
+          first_user_index, second_user_index = user_indexes
+          if first_user_index >= second_user_index:
+              raise SystemExit(f"invalid user turn order: {user_indexes!r}")
+
+          first_assistants = [
+              text for role, text in role_messages[first_user_index + 1:second_user_index]
+              if role == "assistant"
+          ]
+          second_assistants = [
+              text for role, text in role_messages[second_user_index + 1:]
+              if role == "assistant"
+          ]
+          if not first_assistants:
+              raise SystemExit(f"no assistant response between user turns: {roles!r}")
+          if not second_assistants:
+              raise SystemExit(f"no assistant response after second user turn: {roles!r}")
+
+          turn1_user = role_messages[first_user_index][1]
+          turn1_assistant = first_assistants[-1]
+          turn2_user = role_messages[second_user_index][1]
+          turn2_assistant = second_assistants[-1]
+
+          if "synthetic OpenCode session-continuity diagnostic" not in turn1_user:
+              raise SystemExit("first exported user turn marker missing")
+          if token not in turn1_user:
+              raise SystemExit("runtime continuity token missing from first exported user turn")
+          if '"state": "waiting_for_followup"' not in turn1_assistant:
+              raise SystemExit("first exported assistant state missing")
+
+          if "Continue this existing session." not in turn2_user:
+              raise SystemExit("second exported user turn marker missing")
+          if token in turn2_user:
+              raise SystemExit("runtime token was re-injected into second user turn")
+          if '"state": "continued_original_session"' not in turn2_assistant:
+              raise SystemExit("second exported assistant continuation state missing")
+          if token not in turn2_assistant:
+              raise SystemExit("continued assistant did not recover runtime token")
+
+          top_keys = sorted(exported)
+          summary = {
+              "session_id": sid,
+              "session_list_contains_session": True,
+              "export_contains_session_id": True,
+              "export_top_level_type": type(exported).__name__,
+              "export_top_level_keys": top_keys,
+              "role_sequence": roles,
+              "ordered_two_turn_transcript": True,
+              "user_turn_count": 2,
+              "assistant_messages_between_turns": len(first_assistants),
+              "assistant_messages_after_second_turn": len(second_assistants),
+              "first_user_contains_runtime_token": True,
+              "second_user_reinjects_runtime_token": False,
+              "second_assistant_recovers_runtime_token": True,
+              "token_sha256": hashlib.sha256(token.encode()).hexdigest(),
+          }
+          pathlib.Path(sys.argv[5]).write_text(
+              json.dumps(summary, ensure_ascii=False, indent=2),
+              encoding="utf-8",
+          )
+          print(json.dumps(summary, ensure_ascii=False, indent=2))
+          print("OpenCode persisted the continued session as an ordered two-turn user/assistant transcript")
+          PY
+
       - name: Dump OpenCode diagnostics
         if: always()
         shell: bash
@@ -1011,3 +1161,7 @@ jobs:
             ${{ runner.temp }}/opencode-continuity-second.jsonl
             ${{ runner.temp }}/opencode-continuity-second.stderr
             ${{ runner.temp }}/opencode-continuity-summary.json
+            ${{ runner.temp }}/opencode-session-list.json
+            ${{ runner.temp }}/opencode-continuity-export.json
+            ${{ runner.temp }}/opencode-continuity-export.stderr
+            ${{ runner.temp }}/opencode-continuity-transcript-summary.json

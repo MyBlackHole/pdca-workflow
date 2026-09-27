@@ -91,6 +91,8 @@ fresh session creation
 
 所以 `tests/host-acceptance.md` 的 H1-H18 保持原状态；本结果只能作为未来现场 CAP-01 / continuation 核验的环境级候选证据。
 
+后续又通过 OpenCode 自身的 `session list` 与 `export` 直接核验同一 session 的持久化消息顺序、两条 user turn、native Skill tool assistant message，以及第二条 user 未重新注入 runtime token；见 [persisted session transcript review](2026-09-27-opencode-session-transcript.md)。
+
 ## CI policy
 
 session-continuity probe 使用公共免费模型，因此和现有 model probes 一样保持 `continue-on-error`。公共免费端点暂时不可用时不能据此否定稳定的 CLI Skill compatibility；但一旦 probe 成功，其 session identity、state recovery 与 tool-boundary assertion 必须全部满足。
