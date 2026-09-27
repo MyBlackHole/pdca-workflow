@@ -9,8 +9,8 @@ status: active
 revision: 4.0.0-rc.2
 dcterms_license: CC-BY-4.0
 dcterms_created: '2026-09-12'
-dcterms_modified: '2026-09-14'
-summary: RESOURCE-01：集中资源预约，独立任务不互相越权
+dcterms_modified: '2026-09-27'
+summary: RESOURCE-01：真实共享资源的取得、持有与结清
 resource_spec:
   record_root: PDCA_ROOT/records/resources
   conflict_scope: canonical_actual_resources_across_all_projects_and_tasks
@@ -21,34 +21,52 @@ resource_spec:
   ledger_is_backend_lock: false
 ---
 
-# RESOURCE-01：集中资源预约，独立任务不互相越权
+# RESOURCE-01：真实资源 ownership
 
-## 资源中心与真实对象
+RESOURCE-01 只回答：**某个 task/attempt 对哪些真实共享对象拥有何种可证明的访问保证，以及这些占用何时真正结清。**
+它不批准 phase、不决定 task state，也不解释 dependency ready。
 
-所有project/workspace/work/node/scene/attempt在同一个PDCA_ROOT登记资源；不能按项目建立互不相见的预约库。实际对象才是资源键：backend、namespace、canonical_object_id、scope、access与规范化证据。不同task、分支、目录字符串不能证明隔离。
+## 资源身份与冲突
 
-文件核对realpath、祖先/子树重叠、硬链接或挂载别名及检查后替换；远端核对租户、端点、库表、设备或对象身份。无法证明不同就视为可能冲突。对跨任务冲突只读必要资源元数据，不能借集中登记读取其他任务完整历史。
+资源键来自真实对象而不是任务名/路径字符串：backend、namespace、canonical object identity、scope、access。
+文件需考虑 realpath、祖先/子树重叠、硬链接/挂载别名与检查后替换；远端需核对租户、端点、库表、设备等真实身份。
 
-规则与快照只读；模型草稿、公共知识发布、任务私有记录和业务TARGET_ROOT是不同写域。用户授权阶段不表示任意写集中根，也不代替真实资源权限。
+无法证明两个写目标互不重叠时，按可能冲突处理。跨任务只读取判断冲突所需的资源元数据，不导入其他 task 历史。
 
-## 预约与取得
+## 预约生命周期
 
-[预约记录契约](../contracts/record-shapes/resource-reservation.md)位于集中records/resources；由宿主提供的资源管理能力或用户指定的单一账本写者持有元数据写权。它是资源服务职责，不是父Agent的阶段监督职责。任务Agent提出请求、提供操作回执并独立执行；不得并发手改同一预约。
+记录格式见 [resource-reservation](../contracts/record-shapes/resource-reservation.md)。
 
-requested → held → revoking → released/retained。held必须引用实际取得回执与规范化资源集合；requested或纯Markdown中自填held不提供排他。恢复旧预约不得更换owner_task_id/attempt；新拥有者另有取得依据，旧拥有者不能释放新预约。
+`requested → held → revoking → released | retained`
 
-- isolated_private：实际私有记录/业务工作区且无重叠外部副作用，仍检查共享发布。
-- cooperative_serial：只在用户接受且目标允许的保证范围，由单一资源入口串行执行冲突访问；不声称能阻挡失控进程。
-- enforced_exclusive：真实后端排他、fencing或可证明旧访问已失效；整数epoch仅在后端真实支持时使用。需要此保证但缺后端时阻断，不自动降级。
+- requested：提出资源请求，不表示已取得；
+- held：必须有真实 backend acquire/ownership 依据；
+- revoking：停止新增依赖该 ownership 的业务动作，并撤销/隔离访问；
+- released：owner、在途 operation 与后端访问都已有结清证据；
+- retained：仍有未决影响或无法安全释放，记录隔离范围与 release conditions。
 
-多个资源原子取得完整集合，或用统一规范顺序try-acquire；失败后有据释放已取得部分再等待，不能持A无限等B。非冲突的已授权任务继续，不需要父Agent轮询。等待用户或子交付时只保留确有必要的占用，不阻塞对方必须写入的资源；不能安全释放的保留并说明。
+停止会话、心跳消失、租期到期、删除锁文件、phase/task completed 都不会自动得到 released。
 
-## 操作、未知与结清
+## 保证等级
 
-每个有副作用的调用按[operation](../contracts/record-shapes/operation.md)保存task/attempt/run、operation_id、资源/预约、参数摘要、幂等依据与原生请求结果。先登记再调用；崩溃或超时没有返回仍为unknown，不推断未执行。仅在同一后端幂等键已核验，或查询证明未产生副作用时重试，不宣称exactly-once。
+- **isolated_private**：真实私有且无重叠外部副作用；
+- **cooperative_serial**：由单一入口协作串行，不能声称阻挡同权限失控进程；
+- **enforced_exclusive**：后端真实排他/fencing，旧访问已可证明失效。
 
-每次副作用、恢复、资源路径或权限变化重新核对拥有者和实际目标。取消先停止新增动作，撤销访问并核对已接纳的在途操作；停止会话、租期过期、心跳消失、删除锁文件或task completed均不自动released。
+需要更强保证但后端不支持时保持 blocked，不自动降级。
 
-released需要owner匹配、撤权依据及在途结清；未决影响进入retained并记录实际隔离范围与解除条件。只有后继不相交或旧影响已结清时才能重用。同一任务完成Act可如实记录保留隔离，但不得宣称所有资源释放。
+多资源要么原子取得完整集合，要么按统一顺序 try-acquire 并有据释放失败前已取得部分；
+不能持 A 无限等待 B。
 
-安装器不实现这些业务锁、后端仲裁或fencing；本包恢复的是集中语义、记录与验收方法。真实能力不满足就阻断对应动作，绝不让父Agent监工冒充安全保证。
+## Side-effect operation 与结清
+
+副作用调用事实只记录在 [operation](../contracts/record-shapes/operation.md)。
+RESOURCE 使用这些事实判断 ownership 是否能安全释放：
+
+- submitted/unknown operation 在未对账前阻止相关资源进入 released；
+- unknown 只对账原 operation，不因超时推定未执行；
+- 只有后端幂等语义已有证据，或查询证明原调用未产生副作用时，才允许安全重试；
+- owner/target/resource path/permission 变化时重新核对实际对象。
+
+CONTROL-01 的 cancel/revoke 可以触发资源进入 revoking，但真正 released/retained 只由本规则按实际结清证据决定。
+RESOURCE 状态事实由 STATE/GATE 消费；资源记录本身不会自动修改 task execution_state 或生成授权。
