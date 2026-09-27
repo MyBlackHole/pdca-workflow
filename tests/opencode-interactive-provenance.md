@@ -297,6 +297,11 @@ same exact challenge
 [capability-check](../ontology/contracts/record-shapes/capability-check.md)
 保存证据引用，不新增 schema。
 
+如果此时 project/workspace 绑定已经按用户授权持久化，环境级结果写入同一绑定目录的
+`capability-checks/<record-ref>.md`；如果尚未绑定，只保留获准的私有 probe 原始材料并保持结果未持久化，
+先回到 [host-smoke](host-smoke.md) 的绑定步骤。不得为了保存本探针自行创建 `records/capabilities/`
+或根据 TARGET_ROOT / cwd 猜 project/workspace。
+
 建议记录的语义是：
 
 ```text
