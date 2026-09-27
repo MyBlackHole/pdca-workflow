@@ -47,4 +47,6 @@ delivery 是 task/Act 的最终汇总索引，不重新计算 evidence 或 verdi
 - `scene_coverage` 只按实际 scene task/records 填，未运行保持 not_run。
 
 modeling/implementation/verification 的具体交付仍列真实 ontology/artifact/mapping/evidence refs，不用文件列表冒充符合性。
+
+交付说明应如实披露 AI 参与的生成/审查范围，并把 AI 形成的 claim/reasoning 与工具、运行行为、外部来源产生的 observation/evidence 区分。该 provenance 说明不会提升 evidence status，也不产生 Git 提交、发布、采用或其他写入授权。
 ```
