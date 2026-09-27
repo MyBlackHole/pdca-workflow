@@ -71,6 +71,14 @@ jobs:
           echo "$HOME/.opencode/bin" >> "$GITHUB_PATH"
           "$HOME/.opencode/bin/opencode" --version
 
+      - name: Report OpenCode external-skill flags
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in OPENCODE_DISABLE_EXTERNAL_SKILLS OPENCODE_DISABLE_CLAUDE_CODE_SKILLS OPENCODE_DISABLE_CLAUDE_CODE OPENCODE_PURE; do
+            printf '%s=%s\n' "$name" "${!name-<unset>}"
+          done
+
       - name: Start OpenCode server
         shell: bash
         run: |
@@ -126,6 +134,7 @@ jobs:
           PY
 
       - name: Probe real-directory copies to isolate symlink behavior
+        continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
