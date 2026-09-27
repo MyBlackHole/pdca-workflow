@@ -16,7 +16,9 @@
 
 这些内容物理上可以共存，但 AI 不应递归加载整个目录。
 
-**目录名不是 project ontology 类型系统。** 当前 `domain/entity/pattern/fact/principle` 主要是可检索 reference library；真正绑定某个 project/work 的 ontology revision 应进入 `ontology/projects/<project>/works/<work>/<revision>`（或显式采用的外部固定模型），并满足 ONTOLOGY-01 的 semantic construction contract：每个 revision 有唯一 model root，可解析 requirement coverage、definitions/work instances、relations、constraints、provenance 与 unknown。当前 main 尚无 `ontology/projects/` 实例，因此这套构建协议仍未经过真实样例验证；维护审查见 [本体构建审查](../docs/reviews/2026-09-27-ontology-construction.md)。
+**目录名不是 project ontology 类型系统。** 当前 `domain/entity/pattern/fact/principle` 主要是可检索 reference library；真正绑定某个 project/work 的 ontology revision 应进入 `ontology/projects/<project>/works/<work>/<revision>`（或显式采用的外部固定模型），并满足 ONTOLOGY-01 的 semantic construction contract：每个 revision 有唯一 model root，可解析 requirement coverage、definitions/work instances、relations、constraints、provenance 与 unknown。
+
+当前仓库已加入第一份 **candidate** project ontology：[`bounded-counter candidate-0.1.0`](projects/pdca-host-smoke/works/bounded-counter/candidate-0.1.0/model.md)。它用于验证 rc.5 的建模语义，但明确 `fixed_by_modeling_act: false`，因此不是 host-smoke PASS 或 fixed revision；维护审查见 [bounded-counter project ontology 审查](../docs/reviews/2026-09-27-bounded-counter-project-ontology.md)。构建协议背景审查见 [本体构建审查](../docs/reviews/2026-09-27-ontology-construction.md)。
 
 参考资产进入任务必须经过 [REUSE-01](concept/ontology-reuse.md) 与
 [ADOPT-01](concept/ontology-adoption.md)：先检索候选，再固定 id/revision/内容、来源、适用目标和限制。
