@@ -5,9 +5,10 @@ authority: normative
 status: active
 ---
 
-# 确认消费记录：记录格式
+# 用户回应匹配与消费：记录格式
 
-本契约定义该记录的 schema、字段与填写约束；以下完整 Markdown 示例是规范格式。字段中的 null、空列表及未验证状态表示尚未取得事实，不构成授权、执行成功或资源取得证明。按实际证据填写，保留原始来源与未知。
+本契约只记录 CONFIRM-01 中 **response 如何匹配并消费 request**。
+decision 是可审计投影，不是 Gate，不写 transition，也不直接改变 task execution_state。
 
 ## 示例
 
@@ -36,11 +37,12 @@ source_ref: null
 backend_order_receipt_ref: null
 ---
 
-# 确认消费记录
+# 用户回应匹配与消费
 
-固定请求、原始响应来源及真实顺序，核对task/attempt/phase/run/会话/对象一致。只有consumed + confirmed且未撤权可启动该run；rejected/cancelled/superseded不授权。
+固定 request、原始 response、subject/conversation/identity 匹配及可信顺序。
+`terminal_state` 记录 consumed / rejected / cancelled / superseded；
+只有 consumed 且 response=confirmed 才形成 **positive authorization fact**。
 
-工作级work_action按work/tree/action/固定对象匹配，不虚构task/phase；离线task trace检查器不涵盖工作级裁决。
-
-这是可审计投影，不是签发器。不能凭执行Agent自填字段产生批准。相同请求重复返回原状态，不能重放；新对象要新请求，迟到消息不复活。
+positive authorization 仍不等于 phase 可以开始；GATE-01 还要检查 predecessor、freshness、
+control、resource/capability 等当前条件。相同 request 重复投递返回既有 decision，不再次消费。
 ```
