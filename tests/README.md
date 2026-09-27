@@ -43,3 +43,7 @@ CI 成功不表示 Check PASS。
 首个现场实验见 [host-smoke.md](host-smoke.md)：先核验原生能力，再由真实用户逐阶段推进一个 root modeling 任务，
 最后从其固定 child seed 核验 fresh Agent 的输入隔离。它是人工操作说明，不是执行器或新增 authority；
 缺少宿主能力时保留阻断证据，不改写 H1–H18 的 `NOT_RUN`。
+
+OpenCode v1.18.32 如需先补 `communicate` 的真人来源/路由证据，使用
+[opencode-interactive-provenance.md](opencode-interactive-provenance.md) 做一次无业务写入的交互 TUI challenge 探针。
+该探针必须由真人在 TUI 中提交，不能由 CI、`opencode run`、REST/SDK 或父 Agent 模拟。
