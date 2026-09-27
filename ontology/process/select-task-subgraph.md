@@ -31,7 +31,7 @@ Task 身份由 TASK-01 定义，宿主 fresh 能力由 CAP-01 判断，实际创
 - 当前创建授权引用。
 
 不得因为尚无 node 就默认传整个 ontology、source tree、project history 或父 conversation。
-root modeling Act 固定 node/revision 后，后续 task 使用下面的普通规则。
+root modeling Act 固定 ontology/tree/root node revisions 后，后续 task 才使用下面的普通 ontology-backed 规则；正式 child seed 仍由 DECOMP 基于 fixed qualified node 产生。
 
 ## 普通 ontology-backed task
 
