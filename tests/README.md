@@ -42,7 +42,8 @@ OpenCode compatibility smoke 的安装、CLI Skill discovery 与基础 server di
 public free-model recovery / child-context / continuation / transcript probe 只在其语义输入
 （runtime Skills、bounded-counter host-smoke ontology）或 smoke workflow 自身变化时运行。
 仅修改 `install.sh` 仍验证真实安装与发现，但不重复执行与该改动无关的模型语义探针；
-手工 `workflow_dispatch` 保守运行全套。
+手工 `workflow_dispatch` 保守运行全套。OpenCode smoke 的期望运行入口直接读取
+`skills/catalog.json`，不再维护独立九项名单；同时仍把 catalog 之外意外暴露的 `pdca` / `pdca-*` Skill 视为 discovery 失败。
 
 ## 现场验收
 
