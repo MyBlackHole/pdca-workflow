@@ -247,6 +247,7 @@ jobs:
               --model "$model" \
               --format json \
               --file "$RUNNER_TEMP/bounded-counter-core.md" \
+              -- \
               "$(cat "$RUNNER_TEMP/opencode-public-model-prompt.txt")" \
               >"$RUNNER_TEMP/opencode-public-model.jsonl" \
               2>"$RUNNER_TEMP/opencode-public-model.stderr"
