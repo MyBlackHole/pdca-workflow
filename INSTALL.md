@@ -88,7 +88,11 @@ done
 
 OpenCode 官方 Agent Skills 发现规则包含全局兼容目录 `~/.agents/skills/<name>/SKILL.md`，与本安装器的九个运行入口布局一致；Skill 由宿主按需通过原生 skill 能力加载，而不是把全部正文默认注入每个会话。
 
-仓库的 `.github/workflows/opencode-smoke.yml` 会在隔离 HOME 中运行真实 `install.sh`、安装固定 OpenCode CLI 版本，并通过 OpenCode HTTP API 检查九个 PDCA Skill 的实际发现和显式加载。该兼容 smoke 不使用模型 provider 凭据，因此不能替代 fresh-Agent reasoning、H11/H18 或完整现场验收。
+仓库的 `.github/workflows/opencode-smoke.yml` 在隔离 HOME 中运行真实 `install.sh`，下载并校验固定 OpenCode CLI，然后以 OpenCode 自带的 `opencode debug skill` 作为兼容门禁。当前对 **OpenCode v1.18.32** 的真实 Actions 结果已经确认：九个 PDCA runtime Skill 都能从安装器生成的 `~/.agents/skills/<name>/SKILL.md` 路径被发现、解析，并读取到实际 Skill 正文。
+
+headless `opencode serve` 的 `/api/skill` 在同一 Actions 环境中只返回内置 Skill，没有暴露 external PDCA Skills；该路径目前仅保留为非门禁诊断，不能据此否定 CLI 发现能力，也不能声称 server/session 集成已通过。
+
+兼容 smoke 不读取模型 provider 凭据；当前 Actions 也没有 provider credential，因此只证明 **CLI 安装 + Skill discovery/parse**。模型执行、native fresh-Agent reasoning、session 交互、H11/H18 与完整现场验收仍未执行。维护证据见 [OpenCode 兼容性审查](docs/reviews/2026-09-27-opencode-compatibility.md)。
 
 安装器只注册九个运行入口。宿主是否支持用户级发现路径、符号链接、显式调用和重载，
 要以现场版本与实际工具为准；不能从文件存在推导“宿主一定发现”。
