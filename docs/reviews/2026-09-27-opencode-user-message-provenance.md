@@ -139,3 +139,9 @@ OpenCode v1.18.32 当前已经具备很强的 session identity / persistence / c
 > 实际使用的 OpenCode 接入路径，能否提供独立证据把真人操作绑定到对应 session/message？
 
 只有这个问题在现场得到肯定证据后，CAP-01 的 `communicate` 才能从当前的环境级部分证据继续向正式 task creation 前提推进。
+
+针对 OpenCode v1.18.32 的交互 TUI，后续现场路径已经收敛为
+[OpenCode 交互 TUI 消息来源现场探针](../../tests/opencode-interactive-provenance.md)：
+由真人提交一次性 challenge，独立记录 TUI 输入动作，再与该版本实际
+`submit -> session.create(必要时) -> session.prompt` 路由和 host-side export 对账。
+该探针仍需现场执行，不能由文档或 CI 替代。
