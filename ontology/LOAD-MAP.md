@@ -30,18 +30,31 @@ Assist 的“查重/历史拒绝”也只沿当前候选的具体对象和获准
 
 项目新增或改绑时才读 [project-workspace](contracts/project-workspace.md)。
 
-## 启动阶段
+## 启动与完成阶段
 
-追加读取：
+### phase_start
 
-- GATE-01；
-- 当前 phase 的 `process/flow-*.md`；
-- SCENE-01 中当前 `task.scene` 对应章节；
-- Plan 已固定、当前阶段确实需要的其他 authority。
+按职责顺序读取：
 
-scene Skill 只在用户显式选择/定位场景时作为入口读取；阶段执行不再为了取得第二份阶段方法而重复加载 scene Skill。
+1. CONFIRM-01：核对真实用户 response 是否已消费为当前固定 phase/run/subject 的 positive authorization；
+2. GATE-01：结合 identity、predecessor、freshness、control、resource/capability 判断当前是否 ready；
+3. ready 后按 TRANSITION-01 写入匹配的 `phase_started` receipt；
+4. 按 STATE-01 从新事件链投影 `phase=<current>, execution_state=running`；
+5. 再执行当前 phase 的 `process/flow-*.md` 与 SCENE-01 中当前 `task.scene` 对应业务方法。
 
-不要因为 authority 数量有限就全量注入。阶段方法引用某规则时，再读取该规则。
+`confirmed` 不等于 ready，ready 也不等于 running；缺少 `phase_started` receipt 时不得仅靠 task 状态字段冒充已启动。
+
+### phase completion
+
+业务方法产生固定结果后：
+
+1. 按 TRANSITION-01 写同 run 的 `phase_completed`；
+2. 按 STATE-01 投影最后实际 phase 与 `awaiting_confirmation`；
+3. 可以向用户展示下一固定对象，但不生成下一 phase 授权。
+4. Act 的已授权终态处置完成后，再写 `archived`，STATE 投影为 `phase=archive, completed`。
+
+scene Skill 只在用户显式选择/定位场景时作为入口读取；phase 执行不为取得重复方法再次加载它。
+不要因为 authority 数量有限就全量注入；业务方法引用某规则时，再读取该规则。
 
 ## 参考知识
 
