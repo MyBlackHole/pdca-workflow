@@ -5,9 +5,10 @@ authority: normative
 status: active
 ---
 
-# 领域本体定义或复用修订：记录格式
+# Ontology revision delta：记录格式
 
-本契约定义该记录的 schema、字段与填写约束；以下完整 Markdown 示例是规范格式。字段中的 null、空列表及未验证状态表示尚未取得事实，不构成授权、执行成功或资源取得证明。按实际证据填写，保留原始来源与未知。
+本契约只保存 EVOLVE-01 的 **M1 → M2 revision proposal / fixed revision provenance**。
+它不表示当前 task 已采用 M2，也不生成 TREE/NODE/task seed。
 
 ## 示例
 
@@ -30,9 +31,14 @@ unknown_claims: []
 adoption_ref: null
 ---
 
-# 领域本体定义或复用修订
+# Ontology revision delta
 
-正文／payload必须可定位：对象id及含义、属性类型／单位／范围、关系端点及语义、约束／不变量、实例或不适用理由、来源与unknown。可用Markdown+结构化字段，不要求另建YAML文件。
+`base_revision` 是固定 M1；首次 root modeling 可以真实为空。
+`proposed_revision + payload_ref/digest + change_set` 固定 M2 candidate 与来源/requirement/constraint 检查。
 
-definition版本与工作节点id区分；仅登记任务、源码路径或章节不自动构成本体。Check既看结构也看原需求和事实。复用已有固定定义时记录适用性，不为数量复制对象。
+Modeling Act 固定 M2 后，这份记录可以作为 revision provenance；但其他 task 是否采用该 revision 仍由 ADOPT-01
+通过既有 task/assignment/baseline refs 明确绑定。`adoption_ref` 只允许指向这样的下游采用事实，
+不是“字段非空即可自动 adopted”的开关。
+
+definition revision 与 work node/tree/task identity 分开；TREE/NODE/DECOMP 分别处理结构投影、节点资格与 task seed。
 ```
