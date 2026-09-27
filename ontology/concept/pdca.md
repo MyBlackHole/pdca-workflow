@@ -84,7 +84,7 @@ pdca-model交付项目本体源及工作实例；pdca-implement从固定模型�
 
 仓库中的版本字段属于不同语义域，不能相互比较或据此自动升级：
 
-- `skills/catalog.json.version` 与各 Skill 的 `metadata.version`：**runtime Skill bundle version**，只描述入口包/发现面的发布版本；
+- 仓库根 `VERSION`、`skills/catalog.json.version` 与各 Skill 的 `metadata.version`：**runtime Skill bundle version**，三者必须一致，只描述入口包/发现面的发布版本；
 - 本文件的 `protocol_revision`：**PDCA protocol revision**，描述当前协议线与整体控制语义；
 - 各 ontology asset 的 `revision`：**asset revision**，只描述该 authority/知识资产自身的内容修订，可在同一 protocol 内独立变化。
 - active `pdca.contract/v4` 与 record template 中的 `protocol_revision`：必须声明当前 protocol 语义版本；`/v4` 只是 schema major，不是 protocol rc 版本。
