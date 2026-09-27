@@ -9,115 +9,85 @@ dcterms_created: 2026-09-04
 status: active
 authority: normative
 revision: 4.0.0-rc.2
-dcterms_modified: '2026-09-25'
-summary: Check：AI 直接依据权威、对象与证据审查，不用脚本重写 PDCA 语义
+dcterms_modified: '2026-09-27'
+summary: Check：审查 scope/consistency/adversarial evidence，再由 VERDICT 聚合
 ---
 
 # Check：AI 直接审查事实与符合性
 
 ## 方法边界
 
-Check 的用户授权、Do predecessor、subject freshness、started receipt 与 running 状态由
-CONFIRM-01 / GATE-01 / TRANSITION-01 / STATE-01 处理。本页只定义 **Check run 已开始之后** 的审查方法。
+Check 的授权、predecessor、subject freshness 与 phase lifecycle 由 CONFIRM/GATE/TRANSITION/STATE 处理。
+本页只定义 **Check run 已开始之后** 的审查方法。
 
-Check 只读取当前动作需要的权威：当前 Skill、[按需读集](../LOAD-MAP.md)、当前 phase/scene 方法、
-Plan 固定的 normative 规则，以及已明确采用并固定版本的参考资产。
-**禁止为了验证这些规则而再写一套项目专用 validator。**
+Check 读取当前 subject、固定 Plan/AC/oracle、必要 authority、真实 diff/artifact/mapping 和已有 evidence。
+不得新增项目专用 semantic validator 去复制 PDCA 规则。
 
-## 四遍 AI 审查
+## 四遍审查
 
 ### 1. Scope Review
 
-先回答“实际改了什么”，不要先判断好坏：
+先核对“实际对象是什么、实际改了什么”：
 
-- 对照 Plan 的目标、非目标、写域、required actions、AC/oracle；
-- 查看真实 diff、最终产物、mapping、records 与 Do 证据；
-- 标出 Plan 要求但未完成的遗漏；
-- 标出 Do 实际产生但 Plan 未批准的范围膨胀；
-- 对象、版本或摘要不一致时停止使用旧证据。
+- Plan required actions / non-goals / write scope 与真实 diff/artifact 是否一致；
+- 是否有遗漏或未批准范围膨胀；
+- subject/version/digest 是否仍是本次 Check 固定对象；
+- stale evidence 是否被错误用于新对象。
 
 ### 2. Consistency Review
 
-直接阅读权威和实际内容，检查语义是否互相冲突：
-
-- Skill ↔ phase 方法 ↔ scene 方法；
-- authority ↔ Plan/AC ↔ implementation；
-- model ↔ mapping ↔ target；
-- task/request/response ↔ 实际阶段状态与授权；
-- 当前规则 ↔ 已采用 reference 的版本和适用范围。
-
-链接存在、字符串相同、命令退出 0 都不能替代语义一致性。发现两份权威互相冲突时记为 unknown/阻断，
-不要由 Check 自行选择更喜欢的一份。
+交叉核对当前需要的 authority、Plan/AC、model/mapping、implementation 与 records。
+链接存在、字符串相同、命令退出 0 都不能证明语义一致。
+当前 authority 或固定 reference 相互冲突时保持 unknown/blocking，不由 Check 自选“更喜欢”的版本。
 
 ### 3. Adversarial Review
 
-假设当前 Do 的结论是错的，主动寻找能够推翻它的反例：
+主动尝试推翻当前 claim：
 
-- 是否有未覆盖的输入、边界、失败路径或并发路径；
-- 是否能绕过授权、作用域、资源或状态约束；
-- 是否存在 stale evidence、旧版本、错误对象或“两个错误互相证明”；
-- 是否有上游保护使表面问题实际不可达，或表面正常路径隐藏真实违例；
-- 是否存在与当前 claim 相反的证据。
+- 边界/失败/并发路径是否遗漏；
+- 授权、scope、resource、state 是否可被绕过；
+- 是否存在旧对象、stale evidence 或“两个错误互相证明”；
+- 是否已有保护使表面问题不可达；
+- 是否有与当前结论相反的 observation。
 
-找不到反例不是 PASS；必须再进入 Evidence Review。
+没有找到反例不自动 PASS。
 
 ### 4. Evidence Review
 
-重要结论按 [EVIDENCE-01](../concept/pdca-evidence.md) 组织，不创建新的 ReviewContract：
+对每个会影响 AC/verdict 的 claim，按 [EVIDENCE-01](../concept/pdca-evidence.md) 绑定真实 observation。
 
-- **subject**：被审对象及固定版本/位置；
-- **authority / AC**：判断依据；
-- **observation**：实际看到或执行得到的事实；
-- **counterevidence**：主动寻找过的反证及结果；
-- **reasoning**：事实为什么支持或不能支持结论；
-- **limitation**：未覆盖范围、环境限制和不确定性。
+- 需要预先定义行为 oracle/case 时读 CASE-01；
+- 需要实际运行工具/行为时按 TEST-01 保存 observation；
+- 直接代码/模型/配置检查也必须固定 subject/source，并作为 observation 进入 evidence；
+- reviewer finding 只按 REVIEW-01 当待核验 claim；
+- 缺 actual、来源冲突或覆盖不足时保持 unknown/not_run/error。
 
-缺少必需证据时使用 unknown/not_run；不得用“应该”“看起来”“另一个 Agent 也认为”补 PASS。
+本页不再复制 Evidence 字段表；精确 evidence record 以 EVIDENCE-01 与 record-shape 为准。
 
 ## 工具边界
 
-AI 可以自主使用**通用事实工具**获取证据，例如：
+Git、搜索/读取、解析器、编译器、TARGET_ROOT 已有 test/build/static-analysis 与获准外部来源都只是事实工具。
+测试成功证明测试执行事实，不自动证明业务符合；测试器错误也不能直接归因 subject。
 
-- Git diff/status/show/log；
-- 文本搜索、文件读取、JSON/YAML 解析器；
-- shell/compiler 的语法检查；
-- TARGET_ROOT 自己已有的 unit/integration/system tests、构建器和静态分析工具；
-- 用户明确允许的外部事实来源。
+## 独立第二视角
 
-这些工具只回答“事实是什么”。
+需要一次性独立 reviewer 时按 [REVIEW-01](independent-work-review.md)：
+只给 minimum sufficient review context，只读 subject，不创建新 task/attempt。
+其 findings 回到当前 Check 经 EVIDENCE-01 核验。
 
-**不得新增或依赖专门解释 PDCA 语义的验证程序**，例如用 Python/Shell 重新编码：
-“必须有几个 Skill”“哪个 authority 必须是什么”“哪个阶段允许做什么”“哪些 ontology 能加载”等。
-这类语义直接由 AI 读取当前权威进行审查。已有目标项目测试可以验证产品行为，但不能取代 PDCA 语义审查。
+正式独立 verification 必须由用户创建 `pdca-verify` task，其场景语义只由 SCENE-01 定义；
+一次性 reviewer 不能冒充正式 verify。
 
-## 可选独立第二视角
+## Finding 与 Verdict
 
-当修改影响多个权威、授权边界、恢复语义或 Check 自身难以推翻原结论时，可使用宿主提供的独立 AI
-作为**一次性只读第二视角**：
+BLOCKING / NON_BLOCKING / UNKNOWN 只是当前报告中的 finding 标签，不新增持久化评分体系。
+是否使某个 AC fail/unknown，必须能回链到 EVIDENCE-01。
 
-1. 只给 minimum sufficient review context：subject、固定 Plan/AC、相关 authority、diff/产物和已有证据；
-2. 不把父任务完整活动历史作为默认输入；
-3. 不创建新的 PDCA task/attempt，不让 reviewer 执行 Plan/Do/Act；
-4. 不轮询、不监工；只消费一次原生返回；
-5. reviewer 的结论只是待核验 claim，主 Check 仍按 EVIDENCE-01 验证其证据和反证。
-
-需要真正独立的符合性场景时，仍由用户显式创建 [REVIEW-01](independent-work-review.md) / pdca-verify，
-不能把一次性第二视角冒充正式 verification。
-
-## Finding 与最终 Verdict
-
-审查发现可在报告中用三个轻量标签表达，不新增持久化 schema：
-
-- **BLOCKING**：有明确 authority/AC 和证据支持的违例；对应相关 AC 为 fail。
-- **NON_BLOCKING**：不违反当前 AC 的维护性/设计建议；不能伪装成 fail。
-- **UNKNOWN**：证据不足、权威冲突或环境无法核验；对应 AC 保持 unknown/not_run。
-
-最终任务结论仍严格使用 [VERDICT-01](../concept/pdca-verdict.md) 的
-pass/fail/unknown/not_run，以及 task_execution、subject_conformance、delivery_usable、scene coverage；
-不要再建立一套平行评分系统。
+最终 Check 结论只按 [VERDICT-01](../concept/pdca-verdict.md) 聚合当前 subject 的必需 evidence，
+区分 task_execution / subject_conformance / delivery_usable / scene_coverage。
 
 ## 结果包
 
-固定真实 evidence、counterevidence、Finding、limitation 与最终 verdict。
-它们作为本 Check run 的完成结果交给 TRANSITION-01；Check 方法不修改冻结业务对象，
-也不产生返工 Do 或 Act 的授权。
+固定 evidence refs、counterevidence、findings、limitations 与 VERDICT-01 聚合结果。
+它们作为当前 Check run 的 result package 交给 TRANSITION-01；Check 不修改冻结 subject，
+也不产生返工 Do 或 Act 授权。
