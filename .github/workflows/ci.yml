@@ -21,5 +21,51 @@ jobs:
       - name: Shell syntax
         run: sh -n install.sh
 
+      - name: Skill bundle version consistency
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import pathlib
+          root = pathlib.Path(".")
+          version = (root / "VERSION").read_text(encoding="utf-8").strip()
+          catalog = json.loads((root / "skills/catalog.json").read_text(encoding="utf-8"))
+          catalog_version = catalog.get("version")
+
+          if version != catalog_version:
+              raise SystemExit(
+                  f"VERSION mismatch: VERSION={version!r} catalog.version={catalog_version!r}"
+              )
+
+          mismatches = []
+          for entry in catalog.get("skills", []):
+              path = root / entry["path"]
+              lines = path.read_text(encoding="utf-8").splitlines()
+              skill_version = None
+              for index, line in enumerate(lines):
+                  if line != "metadata:":
+                      continue
+                  for child in lines[index + 1:]:
+                      if child and not child.startswith("  "):
+                          break
+                      if child.startswith("  version:"):
+                          skill_version = child.split(":", 1)[1].strip()
+                          break
+                  break
+
+              if not skill_version:
+                  mismatches.append(f"{entry['path']}: metadata.version missing")
+                  continue
+              if skill_version != catalog_version:
+                  mismatches.append(
+                      f"{entry['path']}: metadata.version={skill_version!r}, expected={catalog_version!r}"
+                  )
+
+          if mismatches:
+              raise SystemExit("Skill bundle version mismatch:\n" + "\n".join(mismatches))
+
+          print(f"Skill bundle metadata consistent: {catalog_version}")
+          PY
+
       - name: Whitespace
         run: git diff --check HEAD^ HEAD
