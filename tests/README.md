@@ -38,6 +38,12 @@ CI 只保留低维护成本、与 PDCA 语义无关的机械检查，例如 shel
 这些检查只验证同一发布/安装元数据是否一致，不验证 Skill 数量阈值、authority、阶段边界或其他 PDCA 语义。
 CI 成功不表示 Check PASS。
 
+OpenCode compatibility smoke 的安装、CLI Skill discovery 与基础 server diagnostics 用于宿主兼容性；
+public free-model recovery / child-context / continuation / transcript probe 只在其语义输入
+（runtime Skills、bounded-counter host-smoke ontology）或 smoke workflow 自身变化时运行。
+仅修改 `install.sh` 仍验证真实安装与发现，但不重复执行与该改动无关的模型语义探针；
+手工 `workflow_dispatch` 保守运行全套。
+
 ## 现场验收
 
 [host-acceptance.md](host-acceptance.md) 验证真实宿主发现、Agent 身份/恢复、阶段交互、资源与授权语义。
