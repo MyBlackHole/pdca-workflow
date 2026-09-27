@@ -77,12 +77,19 @@ Check 直接读取权威、Plan、真实对象、diff/产物与证据，按 [flo
 
 ## 事件触发读取
 
-- 恢复失败／压缩：RECOVERY-01；
-- 停止／取消：CONTROL-01；
-- 实际资源冲突：RESOURCE-01；
-- 正式工作节点分解：DECOMP-01；
-- 知识复用／采用：REUSE-01、ADOPT-01；
-- 写某类 record：先读 [record shape 索引](contracts/record-shapes/index.md)，再只读该具体类型契约。
+按事实类型只追加对应 authority：
+
+- **恢复／压缩／重启**：RECOVERY-01 只判定原 task/attempt/Agent 连续性；发现未决 control/resource/dependency 后再分别追加对应 authority；
+- **pause / cancel / revoke / stop**：CONTROL-01；它只产生停止约束，不替资源结清或新 attempt；
+- **资源冲突／取得／撤销／释放／retained**：RESOURCE-01；若有关副作用调用，再只读相关 operation record；
+- **dependency output/version ready 或 stale**：DEPENDENCY-01；它只产生输入可用性/失效事实，不授权 task/phase；
+- **phase_start**：GATE-01 只消费上述已固定事实，不在 Gate 内重新实现 recovery/control/resource/dependency；
+- **正式工作节点分解**：DECOMP-01；
+- **知识复用／采用**：REUSE-01、ADOPT-01；
+- **写某类 record**：先读 [record shape 索引](contracts/record-shapes/index.md)，再只读该具体类型契约。
+
+不要因为一次 recovery 同时看到了 resource + dependency + control，就把三套规则默认全部加载；
+只读取当前阻断或动作真正涉及的那一类。
 
 ## 禁止的默认行为
 
