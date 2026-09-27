@@ -56,6 +56,18 @@ Assist 的“查重/历史拒绝”也只沿当前候选的具体对象和获准
 scene Skill 只在用户显式选择/定位场景时作为入口读取；phase 执行不为取得重复方法再次加载它。
 不要因为 authority 数量有限就全量注入；业务方法引用某规则时，再读取该规则。
 
+## Check 后分流与 Act
+
+Check `phase_completed` 后先保持 awaiting_confirmation，按用户下一操作只读取对应规则：
+
+- **同-attempt 修复**：读 REWORK-01。只有固定 task/scene/node/ontology、Plan baseline、AC/oracle、Agent 和 write/resource boundary 都不变且 attempt 未 terminal，才形成新的 Do candidate；随后重新走 CONFIRM → GATE。**不先进入 Act。**
+- **当前 attempt 终态处置**：进入 Act；Act 是 terminal disposition，完成/archived 后不能回到同一 attempt 的 Do。
+- **需要新 attempt/task**：REWORK-01 只说明为何不能同-attempt；旧 attempt 先按 Act/CONTROL 安全终结，新对象仍走 TASK/CONFIRM/dispatch。
+- **已有 fixed task seed 的后续工作**：只有需要列出创建候选时读 SCHED-01；SCHED 不负责 phase/rework/new attempt。
+- **经验/共享知识**：只有 Act request 明确包含 learning/persist/publish 时才读 LEARN-01；shared reference 发布成功后只进入 REUSE candidate pool，其他 task 仍需 REUSE→ADOPT。
+
+不要把“返工建议”“下一个 ready task”“值得沉淀的经验”合并为一个自动 follow-up 流程。
+
 ## Ontology / reference lifecycle
 
 按实际事件读取，不一次性加载整条链：
@@ -108,6 +120,9 @@ fixed subject + Plan/AC + relevant authority
 - **正式工作节点分解**：先确认 fixed TREE/NODE，再读 DECOMP-01；
 - **知识检索／采用**：candidate discovery 读 REUSE-01；真正绑定固定 ontology input 才追加 ONTOLOGY-01 / ADOPT-01；
 - **model revision / composition / node qualification**：分别按 EVOLVE-01 / TREE-01 / NODE-01 的实际事件追加；
+- **Check 后同-attempt rework**：只在用户考虑继续修当前 attempt 时读 REWORK-01；
+- **fixed seed creation candidates**：只在需要展示后续任务候选时读 SCHED-01；
+- **Act learning/publish**：只有当前 Act scope 明确涉及经验/知识写入时读 LEARN-01；
 - **写某类 record**：先读 [record shape 索引](contracts/record-shapes/index.md)，再只读该具体类型契约。
 
 不要因为一次 recovery 同时看到了 resource + dependency + control，就把三套规则默认全部加载；
