@@ -5,9 +5,10 @@ authority: normative
 status: active
 ---
 
-# 用户真实回应副本：记录格式
+# 用户真实回应：记录格式
 
-本契约定义该记录的 schema、字段与填写约束；以下完整 Markdown 示例是规范格式。字段中的 null、空列表及未验证状态表示尚未取得事实，不构成授权、执行成功或资源取得证明。按实际证据填写，保留原始来源与未知。
+本契约只保存 CONFIRM-01 使用的**原始用户回应事实**。
+它不判断回应是否匹配 request，也不产生授权结果。
 
 ## 示例
 
@@ -33,9 +34,11 @@ host_received_event_ref: null
 recorded_at: null
 ---
 
-# 用户真实回应副本
+# 用户真实回应
 
-保留可核实的原生消息ID／transcript、用户actor、原始文字及当前显示对象。confirmed/rejected/needs_change/clarification_answer不互换。
+保存原始文字、可核实消息/transcript 来源、actor、conversation/routing 与宿主接收事实。
+`response` 记录用户表达（如 confirmed/rejected/needs_change/clarification_answer），
+但是否能消费为当前 request 的授权由 request-decision 另行匹配。
 
-执行Agent可抄录真实消息，但不能认证自己生成的批准，不能用父Agent转述或source:user标签冒充原始用户来源。摘要不认证身份；无法核对保持等待。时间未知留空，不倒填。
+Agent 抄录、父 Agent 转述、标签或哈希不能替代真实用户来源；来源无法核实时保持 unknown/等待。
 ```
