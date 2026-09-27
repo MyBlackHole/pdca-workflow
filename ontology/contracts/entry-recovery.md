@@ -13,14 +13,14 @@ status: active
 2. **原任务。** 读取自己的 task、dispatch 原生身份、最后完整事件、run 与待请求。阶段 Skill 收到调用但当前会话不是该执行者时，只路由真实用户操作至原实例并停止本地执行；不可路由就阻断，不重新 spawn、不由父 Agent 代做。
 3. **Git 依据。** 按 [project-workspace](project-workspace.md) 的只读 Git 快照与写记录前追溯规则，核对当前 HEAD/工作树状态和记录的 `rules_git_head`/`rules_git_status`。采集失败、原任务依据缺失，或规则变化影响既有授权/适用性时停止并报告；恢复不自动重写 task、切换历史版本或取得 Git 修改权限。
 4. **待决对象。** 只定位当前 request/response/decision、task/attempt/phase/run/subject 与撤权事实；不要在 recovery 中重新解释授权。需要启动 phase 时由 CONFIRM-01 产生/核对 authorization fact，再由 GATE-01 判断当前是否 ready。
-5. **资源。** 按 [RESOURCE](../concept/resource-ownership.md)核对集中预约与真实后端作用域。记录和模型写入也有拥有者，不能把集中根当全局可写区。结果未知保留占用，只对账原操作。
+5. **未决事实索引。** 只收集 current control、reservation/operation、dependency refs，不在共同入口里重新解释它们。恢复/启动时分别交给 CONTROL-01、RESOURCE-01、DEPENDENCY-01；unknown operation 仍只对账原 operation。
 
 | 事件 | 下一方法 | 停止条件 |
 |---|---|---|
 | 新工作明确创建 | 按 [LOAD-MAP](../LOAD-MAP.md) 的“新建正式任务”读取 TASK / CONTEXT / CAP / CONFIRM，再执行[派发](agent-dispatch.md) | 新 Agent 展示 Plan 目标后等待，不把创建授权当阶段批准 |
 | 启动一个阶段 | 按 [LOAD-MAP](../LOAD-MAP.md) 的 phase_start 顺序执行 CONFIRM → GATE → TRANSITION → STATE，再进入对应阶段 Skill | confirmed 但 Gate 不 ready、事件写入不完整或状态投影无法回链时均不开始业务方法 |
 | 阶段完成 | 按 LOAD-MAP 的 completion 顺序保存真实结果 → phase_completed → STATE 投影；Act 终态再 archived | 不自动产生下一 phase 授权或切换 phase |
-| 恢复／压缩／重启 | [RECOVERY](../concept/pdca-recovery.md) | 原身份、状态、输入与资源不能恢复则停止 |
-| 停止／取消 | [CONTROL](../concept/task-control.md)及 RESOURCE | 优先止损和结清；不需要父 Agent 循环监工 |
+| 恢复／压缩／重启 | RECOVERY-01 先判定原 task/attempt/Agent 连续性，再把 control/resource/dependency 未决事实路由给各自 authority | 原身份、事件链或关键固定 refs 无法证明连续时保持 blocked，不 spawn 替代实例 |
+| 停止／取消／撤权 | CONTROL-01 决定停止约束；RESOURCE-01 根据真实 operation/ownership 事实完成 revoking → released/retained | 不因会话结束、超时或 completed 自动宣称资源已释放 |
 
 阶段动作、场景方法与只读辅助在 [Skill 索引](../../skills/README.md)。读场景的方法段不会再次创建任务。相同规则已读可复用；变化的 Git 状态、授权和实际资源必须重核。没有自动重载的宿主需显式调用入口，不能以文件存在承诺永不遗忘。
