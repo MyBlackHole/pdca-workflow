@@ -84,6 +84,12 @@ done
 
 ## 宿主发现与可选引导
 
+### OpenCode
+
+OpenCode 官方 Agent Skills 发现规则包含全局兼容目录 `~/.agents/skills/<name>/SKILL.md`，与本安装器的九个运行入口布局一致；Skill 由宿主按需通过原生 skill 能力加载，而不是把全部正文默认注入每个会话。
+
+仓库的 `.github/workflows/opencode-smoke.yml` 会在隔离 HOME 中运行真实 `install.sh`、安装固定 OpenCode CLI 版本，并通过 OpenCode HTTP API 检查九个 PDCA Skill 的实际发现和显式加载。该兼容 smoke 不使用模型 provider 凭据，因此不能替代 fresh-Agent reasoning、H11/H18 或完整现场验收。
+
 安装器只注册九个运行入口。宿主是否支持用户级发现路径、符号链接、显式调用和重载，
 要以现场版本与实际工具为准；不能从文件存在推导“宿主一定发现”。
 
