@@ -8,8 +8,8 @@ dcterms_license: CC-BY-4.0
 dcterms_created: '2026-09-12'
 status: active
 authority: normative
-revision: 4.0.0-rc.4
-dcterms_modified: '2026-09-25'
+revision: 4.0.0-rc.5
+dcterms_modified: '2026-09-27'
 summary: SCENE-01：同一本体工作节点依次建模、实现投影、验证实现
 scene_ids:
 - pdca-model
@@ -51,25 +51,85 @@ Implement/Verify 不得静默修改 node responsibility、composition 或 ontolo
 
 ## pdca-model：定义“应该是什么”
 
-Plan 固定用户目标、事实来源与建模范围；需要参考知识时先由 REUSE-01 找 candidate，
-只有经 ADOPT-01 明确绑定的固定定义才成为本次输入。
+Plan 固定用户目标、in-scope requirements、事实来源与建模范围；需要参考知识时先由 REUSE-01 找 semantic-unit candidates，
+只有经 ADOPT-01 明确绑定的固定 definition/relation-definition/constraint/claim 才成为本次 modeling input。
 
-Do 建立或按 EVOLVE-01 细化候选 ontology revision / work instance，并可基于该版本化 payload：
+### Do：构建 candidate project ontology revision
 
-- 按 ONTOLOGY-01 形成 objects/attributes/relations/constraints/requirement coverage；
-- 按 TREE-01 形成 candidate composition projection；
-- 按 NODE-01 对 candidate work node 做 qualification；
-- 形成 dependency relation candidates，交由 DEPENDENCY-01 固定真实 consumer dependency。
+Do 建立或按 EVOLVE-01 细化 candidate ontology revision，并为该 revision 固定唯一 model root ref。
+从 model root 必须能够解析 ONTOLOGY-01 的 semantic construction contract：
+
+- adopted definitions 与 explicit exclusions；
+- requirement refs 与 covered / partial / uncovered / not_applicable coverage；
+- object definitions；
+- current work instances；
+- relation definitions 与 relation instances；
+- constraints / invariants；
+- provenance/source refs；
+- unknown / limitations。
+
+建模时必须保持以下层次：
+
+```text
+Definition
+  -> Work Instance
+  -> semantic relations / constraints
+  -> TREE / DEPENDENCY projection
+  -> NODE qualification
+```
+
+不能把 reference entity、work instance、work node、task 当成同一个对象的不同名字。
+generic `relates_to`、目录层级、文件相邻、实现调用顺序都不能自动成为 composition/dependency。
+
+在 candidate model semantics 已足够解释后：
+
+- TREE-01 只从有明确 composition implication 的 relation 形成 candidate tree；
+- DEPENDENCY-01 只从真实 consumer output/interface relation 形成 dependency candidate；
+- NODE-01 对 candidate work node 做 qualification。
 
 **Modeling Do/Check 不产生正式 task seed。**
-Check 对照原需求、固定输入、EVOLVE delta、TREE integrity 和 NODE qualification 审查候选 M2/tree/node。
 
-Act 只按批准范围固定新的 ontology revision、tree revision 与合格 node。
-固定完成后，DECOMP-01 才能从这些已固定 node 产生后续 task seed candidate；
+### Check：semantic closure
+
+除普通 flow-check 外，Modeling Check 必须按 ONTOLOGY-01 主动检查：
+
+1. model root 与关键 refs 的 identity closure；
+2. Definition / Work Instance / Node / Task 没有身份混用；
+3. relation type、meaning、source/target role、endpoint closure 与必要 cardinality；
+4. constraint/invariant 与 observation/test signal 分离且可审查；
+5. 所有 in-scope requirement 有明确 coverage 状态；
+6. provenance 可定位，local-only source 明确 environment limitation；
+7. 关键 unknown 有 impact 与 resolution condition；
+8. composition 与 dependency 没有由 generic relation 猜测产生；
+9. adopted reference 只使用 ADOPT-01 明确选择的 semantic units，retired/unverified/local-history 内容没有被隐式升级。
+
+同时检查 EVOLVE delta、TREE integrity 与 NODE qualification；任一关键 closure unknown 时保持 unknown/blocked，
+不能用“文档很完整”“图很多”“已有 reference”代替语义闭合。
+
+### Act：固定 revision
+
+Act 只按批准范围固定：
+
+- ontology revision + model root ref + complete payload digest；
+- requirement coverage；
+- fixed tree revision；
+- qualified formal nodes；
+- provenance/unknown/limitations。
+
+固定完成后，DECOMP-01 才能从这些 fixed qualified nodes 产生 task seed candidate。
 这些 seed 仍需用户选择创建，不自动采用到其他 task、不自动启动 child/implement/verify。
 
-首次 root modeling 也遵守同一时序：root goal seed → candidate model/tree/node → Check → Act 固定第一个 root node/revision → 才允许后续 DECOMP。
+首次 root modeling 同样遵守：
 
+```text
+root goal seed
+  -> candidate model root + work instance
+  -> relation/constraint/coverage closure
+  -> candidate TREE/NODE
+  -> Check
+  -> Act fixes ontology/tree/root node
+  -> DECOMP
+```
 ## pdca-implement：把模型投影成真实实体
 
 输入当前 `node_id`、固定 ontology revision、CONTEXT-01 子图、目标位置和 mapping rules。
