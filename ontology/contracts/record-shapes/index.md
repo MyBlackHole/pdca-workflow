@@ -9,7 +9,7 @@ status: active
 
 下表中的记录契约是当前格式的唯一权威，字段与完整示例在各自契约中。其他旧格式不适用，不能混用 schema 或旧自动转换。
 
-## Schema major 与 protocol revision
+## Schema major and protocol revision
 
 `pdca.* /v4` 表示**记录格式 major**；`protocol_revision` 表示该当前 active contract/template 所属的 **PDCA protocol 语义版本**。两者不是同一个版本轴。
 
