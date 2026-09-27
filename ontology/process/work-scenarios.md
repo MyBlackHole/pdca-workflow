@@ -110,7 +110,8 @@ Act 固定 implementation release/mapping；未运行 pdca-verify 时仍为 not_
 Plan 固定验证问题、CASE/oracle 与需要的 observation；Do 执行 requirement/model/mapping/behavior 核验，
 TEST-01 只保存实际 observation，EVIDENCE-01 将 findings/observations 绑定到固定 claim。
 conformance-review record 保存本 scene 的结构化验证矩阵；Check 再用 flow-check 审查 verify task 自身，
-最终 task 结论只由 VERDICT-01 聚合。Act 只执行用户明确批准的处置。
+最终 task 结论只由 VERDICT-01 聚合。若是 verify task 自身可在同一 Plan 边界内修正的执行问题，先按 REWORK-01 走新的 Do；
+被审 implementation/model 的缺陷只形成外部后续 task/attempt candidate。Act 只执行当前 verify attempt 的终态处置。
 
 ## 覆盖与依赖
 
