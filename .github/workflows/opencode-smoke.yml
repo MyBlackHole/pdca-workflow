@@ -2,9 +2,19 @@ name: OpenCode Compatibility Smoke
 
 on:
   pull_request:
+    paths:
+      - ".github/workflows/opencode-smoke.yml"
+      - "install.sh"
+      - "skills/**"
+      - "ontology/projects/pdca-host-smoke/works/bounded-counter/**"
   push:
     branches:
       - main
+    paths:
+      - ".github/workflows/opencode-smoke.yml"
+      - "install.sh"
+      - "skills/**"
+      - "ontology/projects/pdca-host-smoke/works/bounded-counter/**"
   workflow_dispatch:
 
 permissions:
