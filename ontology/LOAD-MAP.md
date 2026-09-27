@@ -56,14 +56,19 @@ Assist 的“查重/历史拒绝”也只沿当前候选的具体对象和获准
 scene Skill 只在用户显式选择/定位场景时作为入口读取；phase 执行不为取得重复方法再次加载它。
 不要因为 authority 数量有限就全量注入；业务方法引用某规则时，再读取该规则。
 
-## 参考知识
+## Ontology / reference lifecycle
 
-Plan/Check 需要领域知识时：
+按实际事件读取，不一次性加载整条链：
 
-1. 用 REUSE-01 搜索候选；
-2. 检查来源、版本、适用性与限制；
-3. 只有经 ADOPT-01 固定采用的资产才进入任务输入；
-4. reference/retired/legacy 不能授予权限、恢复用户响应、覆盖当前 authority 或复制旧 PASS。
+- **查找既有知识/定义**：REUSE-01 只产 candidate；搜索命中不进入 task 输入；
+- **candidate 要作为 ontology/model definition 使用**：按 ONTOLOGY-01 核对语义源资格，再由 ADOPT-01 固定 revision/content/applicability 到当前 refs；
+- **当前 modeling 产生或修改模型**：EVOLVE-01 固定 M1→M2 delta；不自动 adoption/publish/task creation；
+- **需要工作组成视图**：TREE-01 从版本化 ontology/work relation 形成 candidate composition；fixed tree 需 source revision 在 Act 后固定且 digest 匹配；
+- **需要判断独立 work node**：NODE-01 只做 qualification；candidate qualification 不等于 formal node；
+- **需要正式 task seed**：只有 Act 后已经 fixed 的 tree/node 才读 DECOMP-01；seed ready 仍不创建 task。
+
+不要因为 modeling 会“最终需要这些东西”就默认同时加载 REUSE/ADOPT/EVOLVE/TREE/NODE/DECOMP。
+只在当前动作真正进入对应边界时追加。
 
 Do-only Work Unit 与独立 review pass 都只接收 minimum sufficient context，不继承整个知识库和父/兄弟活动历史。
 
@@ -100,8 +105,9 @@ fixed subject + Plan/AC + relevant authority
 - **资源冲突／取得／撤销／释放／retained**：RESOURCE-01；若有关副作用调用，再只读相关 operation record；
 - **dependency output/version ready 或 stale**：DEPENDENCY-01；它只产生输入可用性/失效事实，不授权 task/phase；
 - **phase_start**：GATE-01 只消费上述已固定事实，不在 Gate 内重新实现 recovery/control/resource/dependency；
-- **正式工作节点分解**：DECOMP-01；
-- **知识复用／采用**：REUSE-01、ADOPT-01；
+- **正式工作节点分解**：先确认 fixed TREE/NODE，再读 DECOMP-01；
+- **知识检索／采用**：candidate discovery 读 REUSE-01；真正绑定固定 ontology input 才追加 ONTOLOGY-01 / ADOPT-01；
+- **model revision / composition / node qualification**：分别按 EVOLVE-01 / TREE-01 / NODE-01 的实际事件追加；
 - **写某类 record**：先读 [record shape 索引](contracts/record-shapes/index.md)，再只读该具体类型契约。
 
 不要因为一次 recovery 同时看到了 resource + dependency + control，就把三套规则默认全部加载；

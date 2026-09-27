@@ -22,8 +22,26 @@
 
 旧案例、retired 指针和未采用 reference 不能授予权限、恢复原用户授权、覆盖当前规则或复制 PASS。
 
-参考资产的 active-reference / archived / retired 区别、去重与恢复只在
-[REUSE-01](concept/ontology-reuse.md#参考资产的生命周期) 定义；来源缺口见[来源说明](provenance/README.md)。
+## Ontology lifecycle
+
+当前建模链按职责分开：
+
+```text
+ONTOLOGY-01   definition/model 是否具备可采用语义
+REUSE-01      找 candidate
+ADOPT-01      固定 revision/content 成为当前输入
+EVOLVE-01     固定 M1 -> M2 candidate delta
+TREE-01       ontology/work relation -> composition candidate
+NODE-01       work candidate -> node qualification
+Modeling Act  固定 ontology/tree/node revisions
+DECOMP-01     fixed qualified node -> task seed candidate
+```
+
+candidate、adopted input、proposed revision、fixed node、task seed 是不同事实，不能因为后一步“将来可能需要”就提前合并。
+正式 task creation 仍由 TASK/CONFIRM/agent-dispatch 处理；DECOMP seed 本身不创建 Agent。
+
+reference 的 active / archived / retired 候选资格、去重与恢复只在
+[REUSE-01](concept/ontology-reuse.md#reference-lifecycle) 定义；来源缺口见[来源说明](provenance/README.md)。
 
 ## 规则只维护一份
 

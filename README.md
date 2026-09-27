@@ -41,17 +41,19 @@ TARGET_ROOT/
 ```text
 用户目标
   -> root modeling bootstrap
-  -> ontology object / relation / constraint
-  -> work node
-  -> task seed
+  -> candidate ontology / work instance
+  -> candidate composition + node qualification
+  -> Check
+  -> Act 固定 ontology/tree/node revision
+  -> DECOMP task seed candidate
   -> 用户创建
   -> fresh Agent
-  -> minimum sufficient ontology subgraph
+  -> CONTEXT minimum sufficient subgraph
   -> 独立 PDCA
 ```
 
-首次 root modeling 是唯一允许在尚无 ontology node 时创建的 bootstrap task；它负责建立第一个 root node/revision。
-之后的正式 child、implement、verify task 都必须绑定固定 node/revision。
+首次 root modeling 是唯一允许在尚无 ontology node 时创建的 bootstrap task；它负责经 Check/Act 固定第一个 root node/revision。
+**候选 ontology/tree/node 在固定前不能提前包装成正式 child seed。** 后续正式 child、implement、verify task 都必须绑定 fixed node/revision。
 
 同一个 node 在三个场景中保持语义身份：Model 定义“应该是什么”，Implement 把模型投影到真实实体，
 Verify 检查 requirement→model→implementation→behavior。正式拆分同时建立上下文边界：

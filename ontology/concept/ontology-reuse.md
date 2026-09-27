@@ -9,45 +9,43 @@ dcterms_created: '2026-09-12'
 status: active
 authority: normative
 revision: 4.0.0-rc.2
-dcterms_modified: '2026-09-26'
-summary: REUSE-01：先找既有定义，再决定复用
+dcterms_modified: '2026-09-27'
+summary: REUSE-01：检索和评估候选 reference，不把命中自动变成任务输入
 ---
 
-# REUSE-01：先找既有定义，再决定复用
+# REUSE-01：Reference candidate discovery
 
-Plan按目标检索项目／明确允许共享库，逐义务比对版本、证据和适用限制。决定reuse、local_extension、revise或create并给依据；资料命中不等于采用。
+REUSE-01 只回答：**当前目标是否有值得复用的固定候选定义，以及候选的来源/版本/适用性缺口是什么。**
+搜索命中、相似标题、同领域或 `authority: reference` 都不等于已采用。
 
-复用固定定义与采用记录可以成为modeling产物，不要求复制全库；但必须有实际工作实例、定义引用和适用性检查。未知资料不因被采用就已验证；补证范围进入计划。
+## 候选输出
 
-只导入具名固定材料，不带入原会话。共享发布是Act单独批准的动作；local_only不等于未做本体，shared_required不允许用候选冒充发布。
+只在当前获准项目/共享知识源中检索，候选至少固定：
 
-## 参考资产的生命周期
+- definition/reference id；
+- revision / digest / 实际来源位置；
+- provenance 与 claim verification 状态；
+- 与当前 requirement/work 的拟适用部分；
+- 已知限制、冲突和 unknown；
+- 建议动作：reuse / local_extension / revise / create。
 
-本节只治理 `authority: reference` 的知识资产，不改变正式 Task、项目模型或当前 normative 规则的生命周期。
-复用现有 `status` 与 `revision` 字段；`active-reference` 是 `authority: reference` + `status: active` 的简称，不是新 schema 或新 status 值。
+候选只进入“待评估材料”，不自动进入 assignment/baseline/model。
+只有 ADOPT-01 才能把固定 candidate 变成当前 work/task 输入。
 
-| 状态 | 含义 | 新任务的处理 |
-|---|---|---|
-| active-reference | 可检索的参考候选，不代表内容已验证 | 逐主张核对来源、版本与适用性，再按 ADOPT 固定采用 |
-| archived | 保留正文供历史比较；因已说明的重复、替代或适用性问题退出一般候选 | 不作为普通新任务的执行依据；历史研究可在获准读域内查阅，重新采用前先审查并获准恢复为新的 active 修订 |
-| retired | 保留旧 ID/路径的兼容指针；指针不等于原文 | 不采用指针作为知识定义或运行规则；需要替代对象时单独定位并重新核对，不能静默改写引用 |
+不复制整个知识库，不导入候选的原会话/活动历史，也不因为资料更详细就让它覆盖当前 normative authority。
 
-新采用时同时核对当前处置说明和拟采用的固定修订，不能换用旧 active 字样绕过归档或退役。
+## Reference lifecycle
 
-生命周期与验证结论分开。`claim_status: unverified` 不等于错误、重复或无价值；active 不等于 PASS，
-归档也不把 unverified 改成 verified。原始来源缺失时明确缺口，不能补造历史正文、测试结果或肯定结论。
+本节只管理 `authority: reference` 资产作为**候选库条目**的可检索状态，不管理项目模型或已采用输入。
 
-## 去重、归档与恢复
+| reference 状态 | 候选语义 |
+|---|---|
+| active | 可作为新检索候选；仍需逐主张核对来源/版本/适用性 |
+| archived | 保留历史正文，一般不作为新采用候选；恢复 active 需新的审查与获准修改 |
+| retired | 仅保留兼容定位/指针；不能把指针当定义正文采用 |
 
-AI 直接比较对象语义、独立主张、版本/环境、来源和引用用途，给出保留、修订、归档或退役的理由。
-相似标题不证明重复，短定义可能是关系锚点；不按字数、年龄、未引用次数或置信度阈值批量处置。
-没有足够证据就保留候选及未知，不为减少文件数删除领域研究或独立证据。
+active 不等于 verified/PASS；archived/retired 也不会自动迁移或撤销已经固定采用旧 revision 的 task。
+原始来源缺失时如实标 unknown，不补造旧正文或证据。
 
-处置必须在获准写域内进行，并增加 revision，在资产正文或现有审查记录说明原因、替代定位和来源缺口。
-采用原位归档：保留 ID、路径、原正文、来源和既有验证标记，不搬目录、不自动改写引用。
-退役指针没有原文时明确标注缺失，不声称另存了副本。恢复 active 同样需要新的适用性审查与获准修改，
-不能只改 status，也不能凭重新检索命中自动恢复。
-
-已采用旧修订的任务继续按 [ADOPT-01](ontology-adoption.md) 核对固定来源；归档本身不迁移任务、
-撤销原授权或让旧证据自动过期。发现影响正确性的反证时只停止受影响动作并报告，不因整理知识库全局停工。
-这些判断沿用 AI 审查，不新增生命周期 manifest、调度器或项目专用语义 validator。
+去重/归档按对象语义、独立主张、来源、版本和实际用途判断，不按字数、年龄、引用次数或置信度阈值批量处置。
+reference lifecycle 的修改需要对应知识库写域授权，并以新的 revision/可追溯 Git 变化保留旧状态事实；不能原地抹掉历史来源或让旧 task 引用随 status 变化。共享发布也不是 REUSE 的默认副作用。

@@ -9,102 +9,50 @@ dcterms_created: 2026-09-04
 status: active
 authority: normative
 revision: 4.0.0-rc.4
-dcterms_modified: '2026-09-25'
-summary: DECOMP-01：正式子任务由本体实体关系驱动，并形成独立上下文边界
+dcterms_modified: '2026-09-27'
+summary: DECOMP-01：从合格固定 work node 产生正式 task seed
 ---
 
-# DECOMP-01：本体驱动正式任务拆分
+# DECOMP-01：Node → Task seed
 
-本页只定义**正式 PDCA 工作节点/子任务**如何产生。
-正式拆分的第一依据是当前固定 ontology/work instance 中已经存在的对象、关系和约束，
-不是代码量、工时、模块数量、token、并行度或 Agent 主观复杂度。
+DECOMP-01 只回答：**哪些已经固定且满足 NODE-01 的 work node，可以形成供用户选择的正式 task seed。**
+它不创造 ontology/node、不选择完整 context、不创建 Agent，也不执行 task。
 
-## 正式拆分链
+## Preconditions
 
-```text
-ontology object / relation
-        -> work node candidate
-        -> independent responsibility check
-        -> task seed
-        -> user selects/creates task
-        -> fresh Agent
-        -> minimum sufficient ontology subgraph
-        -> independent PDCA
-```
+普通 task seed 必须回指：
 
-不得绕过前半段，直接从“实现步骤很多”生成正式子 Agent。
+- fixed ontology revision；
+- fixed tree revision / node_id；
+- NODE-01 已满足的 node contract；
+- parent composition ref；
+- 必要 dependency refs；
+- 当前 scene 与 scene-specific AC/input 要求。
 
-## 候选来源
+尚未固定的 M2 candidate、未冻结 tree、只有 relation 但不满足 NODE qualification 的对象，都不能被 DECOMP 预先包装成正式 task。
 
-候选 child 必须能回指：
+## Seed output
 
-- 当前固定 ontology revision；
-- 一个具名 ontology object/work instance；
-- 与父节点之间的语义关系；
-- 必要 dependency relation；
-- 适用于该节点的 constraints/invariants。
+DECOMP 只产生：
 
-关系本身只是候选来源。只有 NODE-01 的正式任务资格成立时才形成 child seed：
-独立职责、固定 I/O、可独立拒收成果、独立验证边界、明确组合责任。
+- node/work/scene identity；
+- responsibility；
+- fixed I/O 与 AC/oracle refs；
+- parent/composition refs；
+- dependency refs；
+- initial scope/context selection 的输入锚点；
+- 为什么它是独立 task 的 qualification evidence。
 
-在获准 modeling Do 内，允许按 [EVOLVE-01](ontology-evolution.md) 细化并记录候选对象/关系及 child seed；
-新增内部实体本身不要求创建独立任务。候选不覆盖已冻结工作树；只有模型交付获准固定后，
-具备来源版本的 seed 才可用于后续正式创建，不能用尚未形成的 revision 预先派发。
+CONTEXT-01 随后根据这些锚点选择 minimum sufficient assignment refs；
+TASK-01 定义 task/attempt 身份；用户明确选择后，agent-dispatch 才创建 fresh Agent。
 
-如果无法从模型解释“为什么这是一个独立职责”，就不能为了控制 token、提高并行度或代码结构漂亮而创建正式 task。
+seed ready 不等于 task 已创建，不产生 Plan 或未来 phase 授权。
 
-## 拆分也是上下文隔离
+## 与 modeling / Work Unit 的边界
 
-创建正式 child 的重要目的之一是建立**语义上下文边界**。
-child 不继承父/兄弟完整对话，而由 CONTEXT-01 从固定 ontology/work graph 中选择
-minimum sufficient subgraph，包括当前 node、必要 relation endpoints、依赖交付、共享不变量、
-固定需求和 scene 所需对象。
+modeling Do 可以通过 EVOLVE/TREE/NODE 形成新的 node candidate 与 qualification evidence，
+但 DECOMP 只消费**已固定**的 node/tree revision，不把草稿 candidate 直接派发。
 
-因此：
-
-- 不用父 Agent 的长历史作为 child 的默认上下文；
-- 不用“把整个 ontology 都发过去”替代子图选择；
-- 不以摘要压缩代替语义选择；
-- 不通过共享记忆把兄弟任务活动状态重新混入。
-
-## Seed 与创建
-
-分解只产生 candidate seed、来源关系、dependency、I/O、AC、组合责任和上下文边界。
-父 Agent 可以说明为什么候选成立，但不能自行把候选变成已授权任务。
-
-用户明确选择具名 child 后，宿主按 TASK-01 / agent-dispatch 创建 fresh Agent。
-新 child、新 scene、新 attempt 均不继承未来阶段授权。
-
-## Work Unit 的位置
-
-Do-only Work Unit 不是正式任务拆分机制。
-
-它只在**已经存在且已批准的正式 task 的 Do 内部**组织局部执行：
-
-```text
-formal ontology-backed task
-        -> Do
-        -> local Work Unit / command / isolated execution slice
-```
-
-Work Unit 不产生新的 node_id，不拥有新的 ontology responsibility，不创建新的 task/attempt，
-也不能替代 fresh Agent 的正式上下文隔离。
-
-Work Unit 发现模型遗漏或独立职责时，停止超出 Contract 的动作并把证据交回原任务。
-原任务按 EVOLVE-01 区分获准 modeling Do 的内部细化与其他场景的修订建议；
-需要变更承诺/权限时等待用户，不能自行改变 Contract、转场或升级成正式子任务。
-
-## 禁止的拆分依据
-
-以下单独存在时均不能创建正式节点：
-
-- 文件/目录/函数数量；
-- LOC；
-- 预计工时；
-- token 或上下文长度；
-- Agent 置信度；
-- “可以并行”；
-- “需要第二个 Agent”；
-- 一个执行命令或测试步骤。
-
-这些可以影响当前 task 内执行方式，但不能创造新的 ontology responsibility。
+Do-only Work Unit 不是 DECOMP 对象。它没有新 node_id/ontology responsibility，只按 CONTRACT-01
+组织现有 task Do 内的局部执行。文件数、LOC、工时、token、并行度、Agent 数量/置信度、
+单个命令或测试步骤都不能单独产生正式 task seed。

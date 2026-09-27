@@ -51,25 +51,24 @@ Implement/Verify 不得静默修改 node responsibility、composition 或 ontolo
 
 ## pdca-model：定义“应该是什么”
 
-输入用户目标、固定事实来源和已采用定义。
-Do 建立领域 ontology 及当前 work instance：
+Plan 固定用户目标、事实来源与建模范围；需要参考知识时先由 REUSE-01 找 candidate，
+只有经 ADOPT-01 明确绑定的固定定义才成为本次输入。
 
-- objects/entities；
-- attributes；
-- semantic relations；
-- constraints/invariants；
-- requirement coverage；
-- work node candidates；
-- composition relation；
-- dependency relation candidates；
-- current node / direct child seed / leaf reason。
+Do 建立或按 EVOLVE-01 细化候选 ontology revision / work instance，并可基于该版本化 payload：
 
-正式 child seed 必须按 TREE-01 / NODE-01 / DECOMP-01 从模型关系产生，
-不能由代码结构、LOC、token 或并行需求反推一个“模型节点”。
+- 按 ONTOLOGY-01 形成 objects/attributes/relations/constraints/requirement coverage；
+- 按 TREE-01 形成 candidate composition projection；
+- 按 NODE-01 对 candidate work node 做 qualification；
+- 形成 dependency relation candidates，交由 DEPENDENCY-01 固定真实 consumer dependency。
 
-modeling Do 的内部细化、职责变更与 M1→M2 关系由 EVOLVE-01 定义；输入版本固定不等于禁止产生新候选。
-Check 对照原需求、固定输入、变化差量和反例验证候选模型覆盖、关系含义和约束可检验性。
-Act 只按批准范围固定 ontology revision / work tree / node seed；不自动采用到其他任务、创建孩子或启动 implement。
+**Modeling Do/Check 不产生正式 task seed。**
+Check 对照原需求、固定输入、EVOLVE delta、TREE integrity 和 NODE qualification 审查候选 M2/tree/node。
+
+Act 只按批准范围固定新的 ontology revision、tree revision 与合格 node。
+固定完成后，DECOMP-01 才能从这些已固定 node 产生后续 task seed candidate；
+这些 seed 仍需用户选择创建，不自动采用到其他 task、不自动启动 child/implement/verify。
+
+首次 root modeling 也遵守同一时序：root goal seed → candidate model/tree/node → Check → Act 固定第一个 root node/revision → 才允许后续 DECOMP。
 
 ## pdca-implement：把模型投影成真实实体
 

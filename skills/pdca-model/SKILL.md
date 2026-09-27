@@ -1,6 +1,6 @@
 ---
 name: pdca-model
-description: 用户明确选择本体建模场景，或已有建模任务需要定位场景规则时使用。模型决定正式任务结构与上下文边界。
+description: 用户明确选择本体建模场景，或已有建模任务需要定位场景规则时使用。建模固定 ontology/work 语义；任务结构由 TREE/NODE/DECOMP 后续投影。
 metadata:
   version: 5.0.0-rc.2
 ---
@@ -31,8 +31,8 @@ Model 的对象、阶段义务、跨场景身份与最终交付，统一读取
 
 本入口只额外强调三条边界：
 
-- Model 必须形成可定位的 ontology object/relation/constraint 与 work instance，不能用设计说明或任务树替代模型；
-- 正式 child seed 必须由 TREE-01 / NODE-01 / DECOMP-01 从固定模型关系产生，不能从 LOC、文件、token 或并行需求反推；
-- modeling Do 的内部细化与职责变化只按 EVOLVE-01 判断；候选新 revision/child 不自动改变其他任务的采用版本或创建权限。
+- Model 必须形成符合 ONTOLOGY-01 的可定位 ontology object/relation/constraint 与 work instance，不能用设计说明或任务树替代模型；
+- Modeling Do/Check 只形成并审查 revision/tree/node candidates；Act 固定 ontology/tree/node 后，DECOMP-01 才能产生正式 child task seed；
+- modeling 内部细化与职责变化只按 EVOLVE-01；新的 revision 不自动被其他 task ADOPT，也不因 candidate 存在获得创建权限。
 
 阶段执行时使用 `pdca-plan/do/check/act`。scene Skill 不复制四份阶段方法，也不自动串联 implement/verify。

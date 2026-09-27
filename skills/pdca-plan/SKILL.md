@@ -27,8 +27,7 @@ Plan 至少把以下内容变成可验收输入，而不是执行说明的占位
 - 业务/模型/记录读写域、资源要求和停止条件；
 - 每个执行步骤的具体动作、预期结果和验证方式。
 
-需要正式 child 时，按 NODE-01 / DECOMP-01 / CONTEXT-01 检查其固定 ontology 来源、
-独立职责、I/O、可独立拒收成果和上下文边界，只形成 seed；是否创建仍由用户工作级操作决定。
+需要正式 child 时，只有目标 child 已经属于 fixed tree/node 且满足 NODE-01，才按 DECOMP-01 形成 task seed candidate，并让 CONTEXT-01 后续选择 assignment refs。Plan 新发现但尚未固定的 responsibility 只能进入 EVOLVE/TREE/NODE candidate，不得提前 seed；是否创建仍由用户工作级操作决定。
 
 只是当前 Do 的局部执行切片时，引用
 [CONTRACT-01](../../ontology/concept/pdca-execution-contract.md) 定义 Do-only Work Unit；
@@ -36,6 +35,6 @@ Plan 至少把以下内容变成可验收输入，而不是执行说明的占位
 
 ## 完成与停止
 
-固定 plan、输入、验收基线和必要 seed 后，按 LOAD-MAP 的 phase completion 链写
+固定 plan、输入、验收基线，以及前提已满足时的 task seed candidate 后，按 LOAD-MAP 的 phase completion 链写
 `phase_completed(plan)` 并投影 awaiting_confirmation；报告下一 Do 候选对象后停止。
 下一阶段授权仍由 CONFIRM-01 单独产生。重复 Plan 从固定输入恢复，不重复创建产物。
