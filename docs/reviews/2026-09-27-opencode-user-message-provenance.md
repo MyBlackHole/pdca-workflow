@@ -59,7 +59,7 @@ id
 sessionID
 role = "user"
 time.created
-format? 
+format?
 summary?
 agent
 model
