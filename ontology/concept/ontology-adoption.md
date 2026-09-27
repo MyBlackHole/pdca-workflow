@@ -44,3 +44,8 @@ ADOPT-01 只回答：**哪个固定 ontology definition/revision 被当前 work/
 不能仅凭旧摘要或替代链接静默继续。
 
 新 revision 是否产生由 EVOLVE-01 决定；采用后的 dependency/context 失效由 DEPENDENCY-01 / CONTEXT-01 消费。
+
+
+## 落地而不新增 schema
+
+ADOPT 不要求新建 adoption manifest。当前 task/work 的采用事实直接落到已有 task/assignment/baseline 的固定 definition/input refs，并引用对应 authorization/decision；需要 provenance 时可由 ontology-revision 的 `adoption_ref` 指向该既有绑定。这个字段只是下游采用指针，不使 proposed revision 自动变成 adopted input。
