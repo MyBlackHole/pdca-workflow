@@ -103,7 +103,23 @@ jobs:
           mkdir -p "$HOME"
           sh ./install.sh
 
-          expected=(pdca pdca-assist pdca-plan pdca-do pdca-check pdca-act pdca-model pdca-implement pdca-verify)
+          mapfile -t expected < <(
+            python3 - <<'PY'
+          import json
+
+          catalog = json.load(open("skills/catalog.json", encoding="utf-8"))
+          for entry in catalog.get("skills", []):
+              name = entry.get("name")
+              if not isinstance(name, str) or not name:
+                  raise SystemExit(f"invalid catalog Skill name: {name!r}")
+              print(name)
+          PY
+          )
+          [ "${#expected[@]}" -gt 0 ] || {
+            echo "Runtime Skill catalog is empty." >&2
+            exit 1
+          }
+
           for skill in "${expected[@]}"; do
             test -L "$HOME/.agents/skills/$skill"
             test "$(readlink "$HOME/.agents/skills/$skill")" = "$HOME/.agents/pdca/skills/$skill"
@@ -149,10 +165,14 @@ jobs:
           import re
           import sys
 
+          catalog = json.load(open("skills/catalog.json", encoding="utf-8"))
           expected = {
-              "pdca", "pdca-assist", "pdca-plan", "pdca-do", "pdca-check",
-              "pdca-act", "pdca-model", "pdca-implement", "pdca-verify",
+              entry.get("name")
+              for entry in catalog.get("skills", [])
+              if isinstance(entry, dict) and isinstance(entry.get("name"), str)
           }
+          if not expected:
+              raise SystemExit("runtime Skill catalog is empty")
 
           data = json.load(open(sys.argv[1], encoding="utf-8"))
           if not isinstance(data, list):
@@ -163,10 +183,17 @@ jobs:
               for item in data
               if isinstance(item, dict) and isinstance(item.get("name"), str)
           }
-          discovered = {name for name in by_name if re.fullmatch(r"pdca(?:-[a-z]+)*", name)}
-          if discovered != expected:
+          discovered = set(by_name) & expected
+          unexpected_pdca = {
+              name
+              for name in by_name
+              if re.fullmatch(r"pdca(?:-[a-z]+)*", name) and name not in expected
+          }
+          if discovered != expected or unexpected_pdca:
               raise SystemExit(
-                  f"OpenCode CLI PDCA discovery mismatch: expected={sorted(expected)} discovered={sorted(discovered)}"
+                  "OpenCode CLI PDCA discovery mismatch: "
+                  f"expected={sorted(expected)} discovered={sorted(discovered)} "
+                  f"unexpected_pdca={sorted(unexpected_pdca)}"
               )
 
           for name in sorted(expected):
@@ -182,7 +209,7 @@ jobs:
           if "PDCA：定位、绑定与运行入口分流" not in pdca.get("content", ""):
               raise SystemExit("pdca Skill body marker missing")
 
-          print("OpenCode CLI discovered and parsed all nine PDCA runtime skills.")
+          print(f"OpenCode CLI discovered and parsed all {len(expected)} catalogued PDCA runtime skills.")
           PY
 
       - name: Start OpenCode server for non-gating diagnostics
@@ -224,10 +251,15 @@ jobs:
           import json
           import sys
 
+          catalog = json.load(open("skills/catalog.json", encoding="utf-8"))
           expected = {
-              "pdca", "pdca-assist", "pdca-plan", "pdca-do", "pdca-check",
-              "pdca-act", "pdca-model", "pdca-implement", "pdca-verify",
+              entry.get("name")
+              for entry in catalog.get("skills", [])
+              if isinstance(entry, dict) and isinstance(entry.get("name"), str)
           }
+          if not expected:
+              raise SystemExit("runtime Skill catalog is empty")
+
           data = json.load(open(sys.argv[1], encoding="utf-8"))
           names = {item.get("name") for item in data.get("data", []) if isinstance(item, dict)}
           discovered = sorted(names & expected)
