@@ -20,9 +20,11 @@ TREE-01 只回答：**固定 ontology/work instance 中哪些语义关系构成�
 
 ## 输入
 
-普通工作树投影必须基于：
+工作树 candidate 可以基于一个**明确版本化且有 payload digest 的 proposed ontology revision**；但只有 source ontology revision 已被 Modeling Act 固定，且 payload/digest 与投影时一致，tree 才能成为 fixed tree revision。
 
-- 已固定/adopted ontology revision；
+投影输入至少包括：
+
+- fixed ontology revision，或明确版本化的 proposed revision/payload digest；
 - 当前 work instance；
 - 用户目标/requirement coverage；
 - 能解释 composition 的 ontology/work relations。
@@ -47,7 +49,7 @@ TREE 只保存 composition 视图。数据/产物依赖由 DEPENDENCY-01 单独�
 
 ## Tree integrity
 
-固定 tree revision 时检查：
+candidate tree 在 Check 中先检查：
 
 - root 唯一；
 - composition 无环；
@@ -56,8 +58,8 @@ TREE 只保存 composition 视图。数据/产物依赖由 DEPENDENCY-01 单独�
 - parent/child 语义关系能解释；
 - unknown / 未决 composition 明确保留。
 
-树中的每个正式节点必须另外满足 NODE-01。
-哪些合格 node 要形成正式 task seed，由 DECOMP-01 决定；TREE 不直接创建 child/task/Agent。
+树中的 candidate node 还必须分别经过 NODE-01 qualification。Modeling Act 只有在 source ontology revision 与 candidate tree/node 都通过当前 Check 后，才按批准范围固定 ontology/tree/node revisions。
+哪些已固定合格 node 要形成正式 task seed，由 DECOMP-01 在之后处理；TREE 不直接创建 child/task/Agent。
 
-用户冻结 tree revision 只允许后续 task 引用该固定结构，不自动启动 model/implement/verify。
+用户冻结 tree revision 只允许后续 task/DECOMP 引用该固定结构，不自动启动 model/implement/verify。
 领域 ontology 可以包含大量不进入 composition tree 的非组成关系。
