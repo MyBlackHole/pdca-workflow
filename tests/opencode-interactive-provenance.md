@@ -219,7 +219,7 @@ script --help | grep -F -- '--log-in'
 probe_dir="$(mktemp -d)"
 chmod 700 "$probe_dir"
 
-challenge="PDCA-HUMAN-PROBE-$(openssl rand -hex 16)"
+challenge="PDCA-HUMAN-PROBE-$(od -An -N16 -tx1 /dev/urandom | tr -d ' \n')"
 printf '%s\n' "$challenge" >"$probe_dir/challenge.txt"
 printf '%s' "$challenge" | sha256sum >"$probe_dir/challenge.sha256"
 
