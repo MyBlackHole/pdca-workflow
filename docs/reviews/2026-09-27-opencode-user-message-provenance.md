@@ -159,3 +159,8 @@ OpenCode 自身测试明确要求 legacy prompt 不产生任何 `session.next.*`
 因此现场 probe 仍采用“独立 TTY input evidence + 当前版本 submit route + host export”三方对账。
 Linux/util-linux 的具体无秘密 input-logging 步骤已经写入
 [OpenCode 交互 TUI 消息来源现场探针](../../tests/opencode-interactive-provenance.md)。
+
+进一步核对 TUI 的 `session.export` 后，现场对账不再需要从近期 session 排序猜 ID：
+v1.18.32 的 `formatTranscript()` 会把完整 `Session ID` 写入当前 TUI 的 Markdown export。
+因此 probe 在收到 challenge ACK 后只执行内置 `/export`（不是第二条业务消息），
+再用该文件中的完整 ID 调用 `opencode export <exact-id>` 获取 host-side JSON。
