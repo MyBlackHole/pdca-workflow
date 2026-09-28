@@ -164,3 +164,5 @@ Linux/util-linux 的具体无秘密 input-logging 步骤已经写入
 v1.18.32 的 `formatTranscript()` 会把完整 `Session ID` 写入当前 TUI 的 Markdown export。
 因此 probe 在收到 challenge ACK 后只执行内置 `/export`（不是第二条业务消息），
 再用该文件中的完整 ID 调用 `opencode export <exact-id>` 获取 host-side JSON。
+TUI probe 同时覆盖 `VISUAL=true EDITOR=true`，因为 v1.18.32 的 `openEditor()` 按
+`VISUAL || EDITOR` 选择外部编辑器；只覆盖 `EDITOR` 不能保证无交互。
