@@ -84,7 +84,19 @@ interactive prompt input
 
 但 submit 处没有保存“真人 actor”字段；因此仍需要独立记录真人输入动作，再与 host export 对账。
 
-### 2.1 不要把 V2 admission event 套到当前 TUI
+### 2.1 现有 TUI hook 不能替代真人来源证据
+
+OpenCode v1.18.32 还暴露了几个看似相关、但不足以充当提交 receipt 的接口：
+
+- `session_prompt.onSubmit` / `PromptProps.onSubmit` 是**无参数回调**；
+- Prompt 的实现是在已经清空当前 prompt state 之后才调用 `props.onSubmit?.()`，因此该回调本身没有本次提交的 text/messageID；
+- `tui.command.execute` 是 server/HTTP 发布给 TUI 的**入站控制事件**，TUI 收到后执行指定 command；它不是用户按下 submit 时自动发出的出站审计事件；
+- `tui.prompt.append` 也是把文本追加到 TUI prompt 的入站事件，不是用户输入记录。
+
+因此本探针不安装 plugin/adaptor 去“补” provenance，也不把这些接口改写成真人提交回执。当前版本仍需要一个与 OpenCode session store 独立的真实 TTY 输入证据。
+
+
+### 2.2 不要把 V2 admission event 套到当前 TUI
 
 OpenCode v1.18.32 的生成客户端同时包含 legacy Session 与真正 V2 Session 两套 API：
 
@@ -189,6 +201,63 @@ CI 模拟 role=user
 
 **不能只用 OpenCode export 代替这一步**，因为 export 自身没有 human-origin provenance。
 
+#### Linux / util-linux 推荐做法
+
+如果现场 Linux 的 util-linux `script` 支持 `--log-in`，可以在一个**专门用于本探针、不会出现密码/token/业务秘密**的终端中保存独立输入日志。
+
+先确认当前 `script` 支持 input logging：
+
+```sh
+script --help | grep -F -- '--log-in'
+```
+
+没有该选项时不要退化成普通 output-only `script` 并宣称已记录用户输入；改用终端/OS 的独立录制方式。
+
+建议在 TARGET_ROOT / PDCA_ROOT **之外**建立仅当前用户可读的临时证据目录：
+
+```sh
+probe_dir="$(mktemp -d)"
+chmod 700 "$probe_dir"
+
+challenge="PDCA-HUMAN-PROBE-$(openssl rand -hex 16)"
+printf '%s\n' "$challenge" >"$probe_dir/challenge.txt"
+printf '%s' "$challenge" | sha256sum >"$probe_dir/challenge.sha256"
+
+{
+    date --iso-8601=seconds
+    tty
+    pwd -P
+    opencode --version
+} >"$probe_dir/preflight.txt"
+
+printf 'Probe directory: %s\nChallenge: %s\n' "$probe_dir" "$challenge"
+```
+
+然后从这个专用终端启动交互 TUI，并同时记录输入、输出和 timing：
+
+```sh
+script -q -e \
+    --log-in "$probe_dir/input.log" \
+    --log-out "$probe_dir/output.log" \
+    --log-timing "$probe_dir/timing.log" \
+    -c 'opencode'
+```
+
+`--log-in` 会记录该伪终端会话中的**全部输入**，包括终端关闭 echo 时输入的内容。因此：
+
+- 这次录制只能用于无秘密 probe；
+- TUI 若出现登录、密码、token、sudo 或其他敏感输入提示，立即退出，不在该录制会话中输入凭据；
+- 不把 `input.log` / `output.log` 提交到公共 Git；
+- probe 完成后按本次 evidence retention 约定保留或安全删除原始日志。
+
+退出 TUI 后，先在私有证据目录验证 exact challenge 确实出现在独立 input log：
+
+```sh
+LC_ALL=C grep -aF -- "$challenge" "$probe_dir/input.log"
+```
+
+该命中只证明 challenge 经过这个录制的 TTY 输入流；最终仍需与 OpenCode host-side export 的 session/message/time 做后续对账。
+
 ### 5.3 用户手工提交
 
 用户在 TUI prompt 中手工键入或人工粘贴：
@@ -287,6 +356,9 @@ same exact challenge
 - session ID 是根据“最新”猜出来，而不是 challenge 对账；
 - TUI 版本与用于解释 route 的源码版本不一致或无法说明；
 - 用户只看到 assistant 回答，却没有输入动作的独立证据；
+- 只记录 TUI output、没有独立 input stream，却声称已证明真人输入；
+- input recorder 会话中出现密码/token 等敏感输入，导致证据本身不适合保留或发布；
+- 把 `session_prompt.onSubmit`、`tui.command.execute`、`tui.prompt.append` 当成当前用户提交的 provenance receipt；
 - 把 `session.next.prompt.admitted` 或 V2 `admittedSeq` 当成当前 v1.18.32 TUI 的 receipt。
 
 任一关键点无法排除，结果保持 `unknown`。
