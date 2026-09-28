@@ -216,6 +216,7 @@ script --help | grep -F -- '--log-in'
 建议在 TARGET_ROOT / PDCA_ROOT **之外**建立仅当前用户可读的临时证据目录：
 
 ```sh
+umask 077
 probe_dir="$(mktemp -d)"
 chmod 700 "$probe_dir"
 
