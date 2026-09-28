@@ -242,7 +242,7 @@ script -q -e \
     --log-in "$probe_dir/input.log" \
     --log-out "$probe_dir/output.log" \
     --log-timing "$probe_dir/timing.log" \
-    -c 'EDITOR=true opencode'
+    -c 'VISUAL=true EDITOR=true opencode'
 ```
 
 `--log-in` 会记录该伪终端会话中的**全部输入**，包括终端关闭 echo 时输入的内容。因此：
@@ -282,8 +282,9 @@ Do not modify files. Do not start any PDCA phase.
 ```
 
 选择正常保存，并保留默认 `session-<id-prefix>.md` 文件名；不要选择只打开不保存。
-本 probe 从 `probe_dir` 启动 TUI，且设置 `EDITOR=true`，因此导出文件留在私有 probe 目录，
-不会写入 TARGET_ROOT / PDCA_ROOT，也不会再打开交互编辑器。
+本 probe 从 `probe_dir` 启动 TUI，并同时设置 `VISUAL=true EDITOR=true`。OpenCode 的
+`openEditor()` 优先读取 `VISUAL`、其次读取 `EDITOR`；两者都覆盖为 `true` 才能避免用户环境里已有
+`VISUAL=vim` 等配置重新打开交互编辑器。导出文件因此留在私有 probe 目录，不会写入 TARGET_ROOT / PDCA_ROOT。
 
 OpenCode v1.18.32 的 TUI transcript formatter 会在导出正文首部写入：
 
