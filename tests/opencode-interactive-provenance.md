@@ -236,11 +236,13 @@ printf 'Probe directory: %s\nChallenge: %s\n' "$probe_dir" "$challenge"
 然后从这个专用终端启动交互 TUI，并同时记录输入、输出和 timing：
 
 ```sh
+cd "$probe_dir"
+
 script -q -e \
     --log-in "$probe_dir/input.log" \
     --log-out "$probe_dir/output.log" \
     --log-timing "$probe_dir/timing.log" \
-    -c 'opencode'
+    -c 'EDITOR=true opencode'
 ```
 
 `--log-in` 会记录该伪终端会话中的**全部输入**，包括终端关闭 echo 时输入的内容。因此：
@@ -273,21 +275,70 @@ Do not modify files. Do not start any PDCA phase.
 
 这条消息不是 task creation，也不是 phase_start。
 
-收到 assistant 回应后停止，不自动发送第二条业务消息。
+收到 assistant 回应后，**不要发送第二条业务消息**。接着在同一个 TUI 中执行内置：
 
-## 6. Host-side 对账
-
-在不修改 session 的情况下，使用 OpenCode 自身的只读能力：
-
-```sh
-opencode session list --max-count 10 --format json
-opencode export <candidate-session-id>
+```text
+/export
 ```
 
-如果同时存在多个近期 session，只能通过本次唯一 challenge 与时间窗口定位；
-不得凭“最新 session”猜测。
+选择正常保存，并保留默认 `session-<id-prefix>.md` 文件名；不要选择只打开不保存。
+本 probe 从 `probe_dir` 启动 TUI，且设置 `EDITOR=true`，因此导出文件留在私有 probe 目录，
+不会写入 TARGET_ROOT / PDCA_ROOT，也不会再打开交互编辑器。
 
-在 export 中必须找到唯一对应 user message，并记录：
+OpenCode v1.18.32 的 TUI transcript formatter 会在导出正文首部写入：
+
+```text
+**Session ID:** <完整 session id>
+```
+
+所以这个 TUI 原生导出可把“当前正在操作的会话”绑定到完整 session ID，
+无需退出后按“最近会话”猜测候选。
+
+完成 `/export` 后退出 TUI。
+
+## 6. Host-side 精确对账
+
+退出 TUI 后，先确认私有 probe 目录里恰好有一个本次 session Markdown：
+
+```sh
+set -- "$probe_dir"/session-*.md
+[ "$#" -eq 1 ] && [ -f "$1" ] || {
+    printf 'Expected exactly one saved TUI session export in %s\n' "$probe_dir" >&2
+    false
+}
+tui_export="$1"
+
+session_id="$(
+    sed -n 's/^\*\*Session ID:\*\* //p' "$tui_export" | head -n 1
+)"
+case "$session_id" in
+    ses_*) ;;
+    *)
+        printf 'Invalid or missing Session ID in %s\n' "$tui_export" >&2
+        false
+        ;;
+esac
+
+LC_ALL=C grep -aF -- "$challenge" "$tui_export"
+printf 'Exact TUI session: %s\n' "$session_id"
+```
+
+这里的 `session_id` 来自**当前 TUI 自己导出的 transcript**，不是从 session list 的排序推测。
+
+再用同一个完整 ID 读取 OpenCode host-side JSON：
+
+```sh
+opencode session list --max-count 10 --format json >"$probe_dir/session-list.json"
+LC_ALL=C grep -aF -- "$session_id" "$probe_dir/session-list.json"
+
+opencode export "$session_id" >"$probe_dir/session.json"
+LC_ALL=C grep -aF -- "$challenge" "$probe_dir/session.json"
+```
+
+如果 session list 的窗口不足以包含该 ID，不因此换成另一个“最新 session”；
+`opencode export "$session_id"` 的 exact-ID 结果和 TUI export 仍是主要对账对象，并把 list limitation 记录下来。
+
+在 host export 中必须找到唯一对应 user message，并记录：
 
 - `info.id`；
 - `info.sessionID`；
@@ -353,7 +404,8 @@ same exact challenge
 - 录制材料与 export 的 challenge 不一致；
 - 录制时间与 exported user message 时间无法合理对应；
 - 同一 challenge 出现在多个 session；
-- session ID 是根据“最新”猜出来，而不是 challenge 对账；
+- session ID 是根据“最新”猜出来，而不是当前 TUI `/export` 正文中的完整 ID；
+- TUI 导出没有保存、保存到了业务目录，或同一 probe 目录出现多个无法唯一归属的 `session-*.md`；
 - TUI 版本与用于解释 route 的源码版本不一致或无法说明；
 - 用户只看到 assistant 回答，却没有输入动作的独立证据；
 - 只记录 TUI output、没有独立 input stream，却声称已证明真人输入；
