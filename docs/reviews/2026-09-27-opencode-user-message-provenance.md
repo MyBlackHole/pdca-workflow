@@ -152,3 +152,10 @@ OpenCode v1.18.32 当前已经具备很强的 session identity / persistence / c
 OpenCode 自身测试明确要求 legacy prompt 不产生任何 `session.next.*` event。
 因此当前 TUI 不能用 `session.next.prompt.admitted` 代替真人输入证据；见
 [OpenCode TUI admission-event boundary](2026-09-28-opencode-tui-admission-boundary.md)。
+
+继续核对 TUI hook 后也没有找到可替代真人输入证据的原生 outbound receipt：
+`session_prompt.onSubmit` 是无参数回调且在 prompt 清空后调用；
+`tui.command.execute` / `tui.prompt.append` 是 server/HTTP -> TUI 的入站控制事件。
+因此现场 probe 仍采用“独立 TTY input evidence + 当前版本 submit route + host export”三方对账。
+Linux/util-linux 的具体无秘密 input-logging 步骤已经写入
+[OpenCode 交互 TUI 消息来源现场探针](../../tests/opencode-interactive-provenance.md)。
