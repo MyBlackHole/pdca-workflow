@@ -17,6 +17,7 @@
 - Use fixture root `tests/.pdca-ai-ontology-20261023-01/`; keep `pdca-root/`, `target/`, `spec/`, `control/`, `evidence/`, and temporary output separate.
 - Never read or write the centralized real `records/`; never copy the whole working tree, provider config, credentials, existing control/evidence, or unrelated untracked files into the fixture.
 - Only snapshot the exact source allowlist in Task 2. Record each source path, Git state, and SHA-256, including dirty working-tree versions.
+- Keep the operator scenario/oracle outside the Mini's context; do not inject test expectations into the business source or Mini instructions.
 - Set every test process's temporary/cache directories inside the fixture. Do not write tests, logs, build outputs, or caches under `/tmp`.
 - Keep H11's formatter-only oracle and `NOT_RUN` host-acceptance status unchanged. The RPC integration scenario has a separate ID and verdict.
 - Confirm the actual OpenCode Mini runtime model is GPT-6 Luna Max before attributing observations to that model.
@@ -34,19 +35,19 @@
 - Consumes: the approved TCP RPC request in the conversation, the formatter oracle in `tests/h11-live-scenario.md`, and the full-evaluation spec above.
 - Produces: a scenario ID `PDCA-AI-RPC-01`, fixed source facts, explicit unknowns, phase evidence requirements, and pass/fail/unknown rules for a multi-node integration scenario.
 
-- [ ] **Step 1: Write the scenario contract.**
+- [x] **Step 1: Write the scenario contract.**
 
   Include these approved facts verbatim in substance: custom TCP RPC; a four-byte big-endian length prefix whose value covers the UTF-8 JSON payload bytes; an RPC method that exposes `format_count(n)`; the function accepts non-bool integers 0, 1, and 2 and returns exactly `count=N`, rejects bool/non-integers/out-of-range integers with `ValueError`, and is stateless with no external I/O; Python 3 standard library as the target runtime. State explicitly that these describe the fixture workload, not the PDCA project's implementation language.
 
-- [ ] **Step 2: Mark unresolved RPC decisions as unknown.**
+- [x] **Step 2: Mark unresolved RPC decisions as unknown.**
 
   List the request/response JSON envelope, error response, maximum frame size, connection lifetime, concurrency, and timeout behavior as undecided unless a prior user message explicitly fixes a value. Require Model to ask the user or block the affected decision; the scenario must not invent defaults.
 
-- [ ] **Step 3: Define the ontology and workflow oracle.**
+- [x] **Step 3: Define the ontology and workflow oracle.**
 
   Require evidence for source classification, definition/work-instance separation, relation schema/instance separation, constraints, work decomposition, node qualification, composition/dependency, unknown preservation, source→model→artifact mappings, native phase transitions, independent observations, and the four verification chains. Define formatter-only evidence as H11 history, not proof of integration acceptance.
 
-- [ ] **Step 4: Check the new scenario document.**
+- [x] **Step 4: Check the new scenario document.**
 
   Run: `git diff --check -- tests/pdca-ai-ontology-evaluation.md`
 
@@ -56,12 +57,14 @@
 
 **Files:**
 - Create: `tests/.pdca-ai-ontology-20261023-01/pdca-root/`
+- Create: `tests/.pdca-ai-ontology-20261023-01/pdca-root/.git/`
 - Create: `tests/.pdca-ai-ontology-20261023-01/target/`
 - Create: `tests/.pdca-ai-ontology-20261023-01/control/`
 - Create: `tests/.pdca-ai-ontology-20261023-01/evidence/`
 - Create: `tests/.pdca-ai-ontology-20261023-01/tmp/`
 - Create: `tests/.pdca-ai-ontology-20261023-01/spec/rpc-service.md`
-- Create: `tests/.pdca-ai-ontology-20261023-01/control/source-manifest.sha256`
+- Create: `tests/.pdca-ai-ontology-20261023-01/control/source-allowlist.txt`
+- Create: `tests/.pdca-ai-ontology-20261023-01/control/source-manifest.tsv`
 
 **Interfaces:**
 - Consumes: the exact source allowlist below and the scenario contract from Task 1.
@@ -73,18 +76,62 @@ Allowed PDCA source files:
 AGENTS.md
 ontology/INDEX.md
 ontology/LOAD-MAP.md
+ontology/README.md
+ontology/concept/capability-protocol.md
+ontology/concept/ontology-adoption.md
 ontology/concept/ontology-asset.md
+ontology/concept/ontology-evolution.md
+ontology/concept/ontology-reuse.md
+ontology/concept/pdca-ai-friendly-confirmation.md
+ontology/concept/pdca-continuous-improvement.md
+ontology/concept/pdca-evidence.md
+ontology/concept/pdca-execution-contract.md
 ontology/concept/pdca-gate.md
+ontology/concept/pdca-phase-status.md
+ontology/concept/pdca-recovery.md
+ontology/concept/pdca-task.md
+ontology/concept/pdca-transition.md
 ontology/concept/pdca-verdict.md
+ontology/concept/resource-ownership.md
+ontology/concept/task-control.md
+ontology/concept/task-decomposition.md
+ontology/concept/task-rework.md
+ontology/concept/task-test-case.md
+ontology/concept/task-unit-test.md
+ontology/concept/work-dependency-graph.md
+ontology/concept/work-node-contract.md
+ontology/concept/work-ontology-tree.md
+ontology/concept/work-tree-scheduling.md
+ontology/contracts/agent-dispatch.md
 ontology/contracts/entry-recovery.md
 ontology/contracts/project-workspace.md
 ontology/contracts/record-shapes/agent-assignment.md
+ontology/contracts/record-shapes/baseline.md
 ontology/contracts/record-shapes/capability-check.md
+ontology/contracts/record-shapes/conclusion.md
+ontology/contracts/record-shapes/conformance-review.md
+ontology/contracts/record-shapes/delivery.md
+ontology/contracts/record-shapes/dispatch.md
+ontology/contracts/record-shapes/evidence.md
+ontology/contracts/record-shapes/index.md
+ontology/contracts/record-shapes/ontology-revision.md
+ontology/contracts/record-shapes/operation.md
 ontology/contracts/record-shapes/project-task-context.md
+ontology/contracts/record-shapes/request-decision.md
+ontology/contracts/record-shapes/request.md
+ontology/contracts/record-shapes/resource-reservation.md
 ontology/contracts/record-shapes/response.md
+ontology/contracts/record-shapes/task.md
+ontology/contracts/record-shapes/transition.md
+ontology/process/flow-act.md
 ontology/process/flow-check.md
+ontology/process/flow-do.md
+ontology/process/flow-plan.md
+ontology/process/independent-work-review.md
+ontology/process/pdca-flow-model.md
 ontology/process/select-task-subgraph.md
 ontology/process/work-scenarios.md
+skills/README.md
 skills/pdca/SKILL.md
 skills/pdca-assist/SKILL.md
 skills/pdca-act/SKILL.md
@@ -94,12 +141,13 @@ skills/pdca-implement/SKILL.md
 skills/pdca-model/SKILL.md
 skills/pdca-plan/SKILL.md
 skills/pdca-verify/SKILL.md
-tests/h11-live-scenario.md
-tests/host-acceptance.md
-tests/pdca-ai-ontology-evaluation.md
 ```
 
-- [ ] **Step 1: Verify the fixture path is unused.**
+This is a finite copy allowlist, not an instruction to preload all ontology assets. In the fixture, OpenCode must still follow `ontology/LOAD-MAP.md`, the active Skill, and the current scene's dependency-driven read set.
+
+The operator reads these outer-repository documents without copying or injecting them into the Mini context: `tests/h11-live-scenario.md`, `tests/host-acceptance.md`, and `tests/pdca-ai-ontology-evaluation.md`.
+
+- [x] **Step 1: Verify the fixture path is unused.**
 
   Run: `test ! -e tests/.pdca-ai-ontology-20261023-01`
 
@@ -109,15 +157,19 @@ tests/pdca-ai-ontology-evaluation.md
 
   Build the fixture `pdca-root/` from the listed files only. Do not copy `.git`, `records/`, `.ignore`, `opencode.json`, provider configuration, credentials, existing H11 control/evidence, or any other working-tree content. Record each copied source's repository-relative path, Git status, and SHA-256 in the source manifest.
 
-- [ ] **Step 3: Create an isolated target Git root.**
+- [ ] **Step 3: Freeze the allowlisted PDCA root in a new local Git repository.**
+
+  Run `git init` in fixture `pdca-root/`, add only the allowlisted snapshot, and commit it as the immutable baseline. Verify `git -C tests/.pdca-ai-ontology-20261023-01/pdca-root rev-parse --show-toplevel` resolves to that exact directory and record its commit SHA. This is a new fixture-local Git history; do not copy the source repository's `.git` directory.
+
+- [ ] **Step 4: Create an isolated target Git root.**
 
   Initialize Git in `target/`, verify its Git top-level resolves to that directory, and ensure it contains no `.pdca/` and no imported product artifacts. Keep target source empty until the separate fixture file `spec/rpc-service.md` is shown to and confirmed by the user.
 
-- [ ] **Step 4: Confirm the test source before formal Model creation.**
+- [ ] **Step 5: Confirm the test source before formal Model creation.**
 
   Assemble `spec/rpc-service.md` only from the approved source facts and formatter oracle. Show its exact content and digest to the user before creating the Model task. Record any newly supplied decisions as separate source statements with provenance; preserve all remaining questions as unknown.
 
-- [ ] **Step 5: Verify isolation and snapshot integrity.**
+- [ ] **Step 6: Verify isolation and snapshot integrity.**
 
   Resolve both Git roots, compare every fixture source digest with the source manifest, confirm no `records/`, provider config, or credentials were copied, and record the outer repository HEAD plus exact fixture-path status. Stop with `NOT_RUN` if any boundary cannot be verified.
 
@@ -133,7 +185,7 @@ tests/pdca-ai-ontology-evaluation.md
 
 - [ ] **Step 1: Start a fresh dedicated Mini session using the existing runbook procedure.**
 
-  Record the native OpenCode version, session ID, actual model, loaded instructions and physical Skill Base. Do not copy provider credentials into the fixture or evidence files.
+  Record the native OpenCode version, session ID, actual model, loaded instructions and physical Skill Base, declared MCP server count, runtime MCP tool count and schemas. Do not copy provider credentials into the fixture or evidence files.
 
 - [ ] **Step 2: Confirm GPT-6 Luna Max and fixture cwd.**
 
