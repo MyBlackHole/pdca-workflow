@@ -153,15 +153,15 @@ The operator reads these outer-repository documents without copying or injecting
 
   Expected: exit 0. If it exists, stop without overwriting it; revise this plan to a reviewed unused fixture path.
 
-- [ ] **Step 2: Copy only the allowlisted source files.**
+- [x] **Step 2: Copy only the allowlisted source files.**
 
   Build the fixture `pdca-root/` from the listed files only. Do not copy `.git`, `records/`, `.ignore`, `opencode.json`, provider configuration, credentials, existing H11 control/evidence, or any other working-tree content. Record each copied source's repository-relative path, Git status, and SHA-256 in the source manifest.
 
-- [ ] **Step 3: Freeze the allowlisted PDCA root in a new local Git repository.**
+- [x] **Step 3: Freeze the allowlisted PDCA root in a new local Git repository.**
 
   Run `git init` in fixture `pdca-root/`, add only the allowlisted snapshot, and commit it as the immutable baseline. Verify `git -C tests/.pdca-ai-ontology-20261023-01/pdca-root rev-parse --show-toplevel` resolves to that exact directory and record its commit SHA. This is a new fixture-local Git history; do not copy the source repository's `.git` directory.
 
-- [ ] **Step 4: Create an isolated target Git root.**
+- [x] **Step 4: Create an isolated target Git root.**
 
   Initialize Git in `target/`, verify its Git top-level resolves to that directory, and ensure it contains no `.pdca/` and no imported product artifacts. Keep target source empty until the separate fixture file `spec/rpc-service.md` is shown to and confirmed by the user.
 
