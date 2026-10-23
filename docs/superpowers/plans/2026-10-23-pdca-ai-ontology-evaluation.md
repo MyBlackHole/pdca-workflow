@@ -165,11 +165,11 @@ The operator reads these outer-repository documents without copying or injecting
 
   Initialize Git in `target/`, verify its Git top-level resolves to that directory, and ensure it contains no `.pdca/` and no imported product artifacts. Keep target source empty until the separate fixture file `spec/rpc-service.md` is shown to and confirmed by the user.
 
-- [ ] **Step 5: Confirm the test source before formal Model creation.**
+- [x] **Step 5: Confirm the test source before formal Model creation.**
 
   Assemble `spec/rpc-service.md` only from the approved source facts and formatter oracle. Show its exact content and digest to the user before creating the Model task. Record any newly supplied decisions as separate source statements with provenance; preserve all remaining questions as unknown.
 
-- [ ] **Step 6: Verify isolation and snapshot integrity.**
+- [x] **Step 6: Verify isolation and snapshot integrity.**
 
   Resolve both Git roots, compare every fixture source digest with the source manifest, confirm no `records/`, provider config, or credentials were copied, and record the outer repository HEAD plus exact fixture-path status. Stop with `NOT_RUN` if any boundary cannot be verified.
 
