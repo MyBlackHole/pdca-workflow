@@ -28,6 +28,8 @@
 
 使用此前已确认的合成 RPC 需求作为工作负载：自定义 TCP RPC，4 字节大端长度前缀覆盖 UTF-8 JSON 负载，提供 `format_count(n)` 语义。Python 3 标准库是此前确认的目标项目实现环境。测试开始时从原始用户消息和已批准选择逐项核对 source set、摘要和来源；历史实现报告或模型补写不能冒充用户 source。
 
+已有 `tests/h11-live-scenario.md` 的固定 oracle 只覆盖无状态 formatter 节点，不能用来声称 TCP adapter、组合关系或完整 RPC 已验收。本次以 H11 的隔离、来源与证据要求为宿主约束；formatter 的既有结果只作历史基线。若要评估多节点 RPC 集成，执行计划须为它固定独立 scenario ID、经确认的 source inventory、AC/oracle 和写域；不得静默扩展 H11，也不得把新场景结果回写成 H11 PASS。
+
 Model 阶段必须把已明确的需求与未决定的接口事实分开。凡此前未明确的请求/响应 envelope、错误响应、最大帧长、连接关闭/持续策略、并发或超时等语义，应标为 unknown 并询问或阻塞；不得为完成代码而自行填成产品要求。用户作出的新选择作为具来源的新决定加入后续基线，不回写或改述旧 source。
 
 该工作负载至少要让模型表达 formatter 与 TCP adapter 的职责，以及服务组合和 adapter 对 formatter 的接口/依赖关系。模型可根据来源细化 definitions、work instances、关系和约束；每项细化都须标明直接来源、语义拆分或推论。若资格或组合责任不确定，保持 unknown，不据目录、文件、消息数量直接生成正式节点或任务。
@@ -37,13 +39,13 @@ Model 阶段必须把已明确的需求与未决定的接口事实分开。凡�
 ### 4.1 环境与基线
 
 1. 建立隔离 fixture，分别设置 PDCA Git 工作副本、TARGET_ROOT、control/evidence 与 fixture 内临时目录；不得读写集中真实 `records/`。按 `tests/h11-live-scenario.md` 核验 Skill Base、Instructions、PDCA_ROOT、TARGET_ROOT、绑定和 Git 根来源；测试进程的临时目录指向 fixture 内路径，不向 `/tmp` 写入测试文件、日志、构建物或缓存。
-2. 从当前工作树制作只读测试快照，逐文件记录 Git 状态和 SHA-256；规则副本与来源不一致、目录/绑定无法核验、实际写域不能隔离时，停止并记录 `NOT_RUN`。不能只记录 HEAD 来代表未提交规则。
+2. 测试快照只能包含执行计划逐项列出的规则、Skill、入口说明和场景文件。不得复制整个工作树，也不得把 `records/`、control/evidence、OpenCode 配置、凭据或无关未跟踪产物带入 fixture。对每个允许文件记录来源路径、Git 状态和 SHA-256；需要的未提交规则必须逐项列入 allowlist 并固定摘要。来源无法核验、目录/绑定无法核验或实际写域不能隔离时，停止并记录 `NOT_RUN`，不能只记录 HEAD 代表未提交规则。
 3. 使用专用 OpenCode Mini 会话。运行时确认实际 OpenCode 版本、会话 ID、模型确为用户指定的 `GPT-6 Luna Max`、实际生效配置、Skill/Instructions 物理来源、工具权限与返回；任一不符时不把结果归因给目标模型，保持 `NOT_RUN`。
 4. 先对冻结快照测基线，测试中不修改本体、Skills 或 scenario。采集原生消息、工具调用、输入/输出、路径、退出码、对象摘要和权限结果；不以 Mini 最终自述或摘要替代原生证据。
 
 ### 4.2 本体建模及分解
 
-依据原始 source 执行 Model 的 Plan→Do→Check→Act，逐项评估：
+Model task 按 Plan→Do→Check→Act 推进。后续 Implement 和 Verify 各自使用独立 task/scene，也分别执行 Plan→Do→Check→Act；任何一个 task 的阶段批准都不授权另一个 task。逐项评估：
 
 - source inventory、直接陈述/语义拆分/推论分类和来源引用是否闭合；
 - ontology asset 的定义与工作实例是否分层；关系 schema 与关系 instance 是否分层；约束是否能指出适用对象与来源；
@@ -53,13 +55,13 @@ Model 阶段必须把已明确的需求与未决定的接口事实分开。凡�
 
 ### 4.3 按固定本体实现
 
-从已固定且 qualified 的节点启动 Implement；不得在 Implement 中重定义 ontology。对每条 source requirement 到模型、模型到实现 artifact 的映射，记录精确 source/node、目标 artifact、投影语义、覆盖范围和可观察信号。至少覆盖 formatter、TCP adapter 及其组合/接口责任；target artifact 的语言语法不得泄漏为 PDCA 本体规则。
+从已固定且 qualified 的节点启动 Implement，并在该 task 内按 Plan→Do→Check→Act 推进；不得在 Implement 中重定义 ontology。对每条 source requirement 到模型、模型到实现 artifact 的映射，记录精确 source/node、目标 artifact、投影语义、覆盖范围和可观察信号。多节点场景至少覆盖 formatter、TCP adapter 及其组合/接口责任；target artifact 的语言语法不得泄漏为 PDCA 本体规则。
 
 执行实际测试并保留红/绿与失败恢复证据。测试通过只能说明对应观测通过，不能代替独立 Check；当实现发现模型缺失或冲突时，应按固定 EVOLVE 路径停止当前实现，不得先改模型再继续。
 
 ### 4.4 独立 Verify 与终态
 
-依固定 source、模型版本、qualified node、mapping、release digest 和 oracle，由 fresh Agent 执行独立 Verify。Verify 必须重新取得实现行为 observations，而不能把 Implement 的报告或 signal 当成 observation；逐项检查 requirement→model、model→implementation、implementation→behavior 和 composition/dependency 四条链。通过与失败场景、未覆盖项、mutant/control 结果、release subject 结果分别记账，不能互相替代。按原生确认和权限规则分别完成 Check 与 Act。
+依固定 source、模型版本、qualified node、mapping、release digest 和 oracle，由 fresh Agent 在独立 Verify task 中按 Plan→Do→Check→Act 执行验证。Verify 必须重新取得实现行为 observations，而不能把 Implement 的报告或 signal 当成 observation；逐项检查 requirement→model、model→implementation、implementation→behavior 和 composition/dependency 四条链。通过与失败场景、未覆盖项、mutant/control 结果、release subject 结果分别记账，不能互相替代。每个阶段按原生确认和权限规则分别推进。
 
 每个 task/scene 保持 task execution、subject conformance、scene coverage 和 delivery usability 分开判定。任何影响 source、scope、语义或映射的 unknown 均阻止 work-level complete。若中途受阻，保留 NOT_RUN/unknown 与已观察失败，不为形成完整流程而虚构完成状态。
 
