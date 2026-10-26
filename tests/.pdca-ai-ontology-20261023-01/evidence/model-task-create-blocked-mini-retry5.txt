@@ -1,0 +1,32 @@
+# Native OpenCode Mini evidence: Model task creation blocked
+
+- Session: `ses_e97d23fbfffeAqTmlWm0AJlngW`
+- User message: `msg_1683b5191001yStGYBxdJ3hZvr`
+- Assistant final reply: `msg_1683f347f001kZNay0ah7715HN`
+- OpenCode: `2.1.2`; model: `openai/gpt-6-luna [max]`
+- Fixture cwd: `/home/black/.agents/pdca/tests/.pdca-ai-ontology-20261023-01/target`
+- Native session outcome: `succeeded`
+- Session timestamps (UTC): `2026-10-23T09:53:11.555000+00:00`–`2026-10-23T10:12:45.704000+00:00`
+- Tool calls in this turn: 25 (read=10, shell=14, skill=1)
+- Native session inbox rows for this session: 0; persisted event rows: 0.
+
+## Mini user input (exact native message text)
+
+用户本轮原文已明确确认：“确认并创建一个 Model task”。这确认的是你上方展示的 root seed “PDCA-AI-RPC-01 — 自定义 TCP RPC 暴露 format_count(n)”；按其精确边界，仅使用已批准 source S1–S6，Python 3 只为 fixture 环境；S5 保持二级 H11 oracle 来源未独立批准/核验；所有列明 RPC 未知项继续保持 unknown。
+
+请现在通过冻结 Skill 要求的原生 PDCA root-model bootstrap/dispatch 流程创建恰好一个 Model task，使用系统生成的 task_id；不要手工写记录或臆造 ID。先重读必要的 binding/source snapshots，遵守所有身份与写入门禁；若门禁满足，创建后读取并核验原生生成的 task 和记录，报告实际 task_id、写入路径、binding 更新、dispatch/handoff/Plan 状态及准确的读写路径和证据。不要启动 Plan/Model 工作或任何阶段，不写 ontology/business files，不创建额外 task；完成后停止等待。若门禁失败或必须执行尚未授权的工作/校验，请不写入，报告具体阻断与证据。
+
+## Mini final reply (exact native text part)
+
+**未创建 task，门禁阻断；没有写入或启动任何阶段。**
+
+本轮确认的具名 root seed 已固定，但正式创建还必须通过 CAP-01 并执行 agent-dispatch 原生事务。CAP-01 要求能核验原生创建、用户可达的通信与续作、暂停/控制、写域和事件回执；其中任一能力为 unknown 或 unavailable，创建即 blocked。当前工具中只有通用 subagent 能力，没有可核验的 PDCA task/dispatch 事务，无法据此生成并验证系统 `task_id`、assignment、原生 receipt 或相应控制与事件链。binding 中 `record_writes` 也为空。用通用 subagent 替代或手写记录均不符合要求。
+
+**复核证据：**
+
+- binding 路径已重新检查并读取：`/home/black/.agents/pdca/tests/.pdca-ai-ontology-20261023-01/pdca-root/records/projects/opencode-pdca-h11-20261022/workspaces/format-count/project-context.md`。ID 对及根路径仍匹配；`task_id`、`attempt` 为 `null`，`record_writes`、`target_writes` 为空。
+- 当前集中根 HEAD 为 `e7551d62b6bb135bf4aba3705c24091f0bce0a6b`，status 为 `?? records/`；目标 HEAD 为 `b2aa9ba9dd86875381efbffaaeede2fe9c00ae28`，工作树干净。未枚举或读取 `records/`。
+- 批准 source 已按精确路径复核；路径无符号链接，SHA-256 仍为 `38bb9936969d85e448f808d886b92548dce781b024d771a41a4af0cdd3e9f158`。S5 的 H11 次级来源仍未独立核验，未扩大读取范围。
+- 已读取创建流程所需的 TASK-01、CONTEXT-01、CAP-01、CONFIRM-01 和 agent-dispatch；这些规则不允许在 CAP 能力未证实的情况下把正式 task 记作已派发。
+
+因此没有生成 `task_id`，没有创建或更新 binding、task、assignment、dispatch 或 confirmation 记录；也没有 dispatch/handoff、Plan 或 Model 阶段状态。**写入路径：无。** 仅读取上述 binding、批准 source，以及对应 PDCA 入口、契约和创建 authority 文件。

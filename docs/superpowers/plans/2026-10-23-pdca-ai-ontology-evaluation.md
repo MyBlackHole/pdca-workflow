@@ -165,6 +165,10 @@ The operator reads these outer-repository documents without copying or injecting
 
   Initialize Git in `target/`, verify its Git top-level resolves to that directory, and ensure it contains no `.pdca/` and no imported product artifacts. Keep target source empty until the separate fixture file `spec/rpc-service.md` is shown to and confirmed by the user.
 
+  Self-review finding: checking only `--show-toplevel` left `target/` as an unborn repository. The native Model entry later failed `git -C <TARGET_ROOT> rev-parse HEAD` before seed preparation. Future fixture setup must verify a usable HEAD; creating an empty initial commit requires separate user authorization and is not automatic repair.
+
+  Follow-up: after the user explicitly authorized exactly one empty baseline commit, the operator created `b2aa9ba9dd86875381efbffaaeede2fe9c00ae28` in `target/` with no files staged, remote, or push. The next native Model entry still must verify its own root and Git snapshots before using the workload.
+
 - [x] **Step 5: Confirm the test source before formal Model creation.**
 
   Assemble `spec/rpc-service.md` only from the approved source facts and formatter oracle. Show its exact content and digest to the user before creating the Model task. Record any newly supplied decisions as separate source statements with provenance; preserve all remaining questions as unknown.
@@ -183,17 +187,35 @@ The operator reads these outer-repository documents without copying or injecting
 - Consumes: fixture roots from Task 2 and the startup procedure in `tests/h11-live-scenario.md`.
 - Produces: actual runtime/config/model/tool/source observations and a field-by-field fixture binding comparison.
 
-- [ ] **Step 1: Start a fresh dedicated Mini session using the existing runbook procedure.**
+- [x] **Step 1: Start a fresh dedicated Mini session using the existing runbook procedure.**
 
-  Record the native OpenCode version, session ID, actual model, loaded instructions and physical Skill Base, declared MCP server count, runtime MCP tool count and schemas. Do not copy provider credentials into the fixture or evidence files.
+  Run Mini in a tmux pane inside an isolated user systemd scope: use `ProtectHome=read-only` and `ProtectSystem=strict`, bind only the fixture and the single read-only host-side test config file, and mark the maintainer checkout's Skills/instructions plus global Skill directories inaccessible. Keep XDG config/data/cache/state, `OPENCODE_DB`, and temporary paths inside the fixture. This prevents host Skills from entering the model context while preserving the target cwd. Record the native OpenCode version, session ID, actual model, loaded instructions and physical Skill Base, declared MCP server count, runtime MCP tool count and schemas. Do not copy provider credentials into the fixture or evidence files.
 
-- [ ] **Step 2: Confirm GPT-6 Luna Max and fixture cwd.**
+  Evidence: `control/runtime-observation.json`, the original transcript `evidence/runtime-precheck-mini-4.txt`, and fresh runtime transcript `evidence/runtime-precheck-mini-retry3.txt`. The fresh runtime used `pdca-ai-ontology-20261023-retry3b.service`; two preceding startup attempts failed before OpenCode launched because multi-path systemd properties were not quoted. The fresh preflight showed zero available MCP tools; its MCP declaration count remained unknown because `opencode mcp list` reported its managed-service port occupied. It also spent 2m14s on an overbroad runtime inventory and fetched CLI documentation before returning. No provider configuration or authentication response was exposed.
+
+- [x] **Step 2: Confirm GPT-6 Luna Max and fixture cwd.**
 
   Run the runbook shell smoke check and require `pwd` to resolve to `tests/.pdca-ai-ontology-20261023-01/target`. Require the actual model to be GPT-6 Luna Max. If either check fails, preserve the evidence and stop with `NOT_RUN`.
 
-- [ ] **Step 3: Verify binding only after the identity gate.**
+  Evidence: runtime Mini session `ses_e98087f03ffea0xqQvNcyX0HLw` and fresh session `ses_e97e6bd0dffeyUIjA5b9GdOCYL`; both show GPT-6 Luna Max and the fixture cwd. The fresh session's Mini shell `pwd` returned the exact target path.
+
+- [x] **Step 3: Verify binding only after the identity gate.**
 
   Confirm `project_id=opencode-pdca-h11-20261022`, `workspace_id=format-count`, `records_root` under fixture `pdca-root/records/`, `ontology_root` under fixture `pdca-root/ontology/projects/opencode-pdca-h11-20261022/`, and `target_root` at fixture `target/`. Do not read any binding record before the runbook's identity gate passes.
+
+  Evidence: the exact write authorization, native Mini reply in `evidence/binding-write-mini-4.txt`, and operator path/hash check in `control/binding-observation.json`. The single approved record was created after a clean write-time rules snapshot; target status was empty at that time. The later target change was only the separately authorized empty baseline commit; no task or phase exists.
+
+- [x] **Step 4: Verify the target Git HEAD before preparing a root seed.**
+
+  Run the native Model entry's required `GIT_OPTIONAL_LOCKS=0 git -C <TARGET_ROOT> rev-parse HEAD` preflight. If it fails, stop before reading the business source or creating a root seed, task, or phase; do not initialize or repair the target implicitly.
+
+  Result history: the first native entry stopped because `target/` was an unborn repository. After explicit user authorization, the operator created the single empty baseline commit `b2aa9ba9dd86875381efbffaaeede2fe9c00ae28`; the earlier operator stop-boundary deviation remains recorded below and in `control/root-seed-precheck-observation.json`.
+
+  A fresh Mini session then loaded `$pdca-model` and passed the exact binding identity/path check. One shell command supplied a nonexistent workdir missing the `/tests/` path segment; a later call without explicit `workdir` succeeded. Another early entry used a relative source path and stopped at `target/spec/rpc-service.md`. Each stopped entry was preserved rather than resumed.
+
+  The latest fresh Model entry verified the exact binding and both Git snapshots: target HEAD `b2aa9ba9dd86875381efbffaaeede2fe9c00ae28` with empty status, and PDCA root HEAD `e7551d62b6bb135bf4aba3705c24091f0bce0a6b` with `?? records/`. It did not enumerate or read `records/`. The exact approved sibling fixture source was checked as a regular file with no symlink path, and its SHA matched `38bb9936969d85e448f808d886b92548dce781b024d771a41a4af0cdd3e9f158`. Mini presented the named root seed proposal and, at that checkpoint, awaited explicit user confirmation. It preserved unknown RPC choices, did not claim requirement coverage, and flagged the S5 secondary H11 oracle provenance as not independently approved or verified in this round. No seed record, Model task, phase, ontology file, or business file existed at that checkpoint.
+
+  Evidence: native replies `msg_1680c8bc7001HA8hZUgI0g91a5`, `msg_1681e6f5b0011sQuNWxdfuqD0x`, `msg_16829e659001K7mQFd97sRlJeU`, and `msg_168327330001j5og0nOJw0epfQ`; transcripts and native tool outcomes under `tests/.pdca-ai-ontology-20261023-01/evidence/`; and both control observations. The user later confirmed the exact proposal and authorized one Model task; the subsequent native dispatch attempt and its blocker are recorded under Task 4, Step 1.
 
 ### Task 4: Run Model and fix a qualified multi-node model
 
@@ -209,6 +231,10 @@ The operator reads these outer-repository documents without copying or injecting
 - [ ] **Step 1: Obtain the current root seed confirmation and create exactly one Model task.**
 
   Use the native PDCA entry and dispatch path. Capture the user-visible seed and approval before creating records. Let the native operation generate the task ID; record the actual return. Do not fabricate IDs or treat dispatch completion as accepted handoff.
+
+  **Current status: `BLOCKED_CAP_01_DISPATCH` (2026-10-23).** The user confirmed `PDCA-AI-RPC-01 — 自定义 TCP RPC 暴露 format_count(n)` and authorized exactly one Model task. Mini re-read the binding, dispatch rules, confirmed source, and snapshots, then stopped before writing because its runtime exposed no verifiable CAP-01 compliant PDCA task/dispatch transaction; the binding's `record_writes` and `target_writes` are empty. The session completed successfully, but no task ID, assignment, dispatch receipt, binding update, seed record, or phase was created. Its 25 native calls were one skill load, ten reads, and fourteen shell checks; none dispatched or wrote. No inbox or persisted event receipt was available for this session. `pdca_evaluation_status` remains `NOT_RUN`; Steps 2 and 3 have not run. Resume only after the Mini host exposes verifiable CAP-01 dispatch and scoped record-write capability, using this same confirmed seed.
+
+  Evidence: [Mini transcript](../../../tests/.pdca-ai-ontology-20261023-01/evidence/model-task-create-blocked-mini-retry5.txt), [native tool outcomes](../../../tests/.pdca-ai-ontology-20261023-01/evidence/model-task-create-tool-results-mini-retry5.txt), and the two control observations under `tests/.pdca-ai-ontology-20261023-01/control/`.
 
 - [ ] **Step 2: Run Model Plan→Do→Check→Act in one Agent attempt.**
 
