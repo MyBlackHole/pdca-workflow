@@ -20,10 +20,14 @@
 - [Adding krefs](https://docs.kernel.org/core-api/kref.html)：发布前取引用、查找与存活保护。
 - [What is RCU?](https://docs.kernel.org/RCU/whatisRCU.html)：发布、读侧保护、宽限期与回收。
 - [Workqueue](https://docs.kernel.org/core-api/workqueue.html)：threaded/BH 队列及取消、flush 等 API 契约。
+- [Generic mutex subsystem](https://docs.kernel.org/locking/mutex-design.html)：mutex 语义及 unlock 调用期间的对象存活约束。
+- [How realtime kernels differ](https://docs.kernel.org/core-api/real-time/differences.html)：RT 的上下文变化及分配/释放、等待的限制。
 
 ## 内存、设备与接口
 
 - [Memory allocation guide](https://docs.kernel.org/core-api/memory-allocation.html)：分配类型、GFP 与失败处理。
+- [Scope-based cleanup helpers](https://docs.kernel.org/core-api/cleanup.html)：内核 C 作用域清理、声明逆序、guard 与所有权移交。
+- [GFP masks from FS/IO context](https://docs.kernel.org/core-api/gfp_mask-from-fs-io.html)：NOFS/NOIO 作用域与回收递归约束。
 - [Managed device resources](https://docs.kernel.org/driver-api/driver-model/devres.html)：devres 生命周期与资源释放。
 - [Dynamic DMA mapping guide](https://docs.kernel.org/core-api/dma-api-howto.html)：DMA 地址、方向、映射和一致性。
 - [Bus-independent device access](https://docs.kernel.org/driver-api/device-io.html)：MMIO 与设备访问接口。

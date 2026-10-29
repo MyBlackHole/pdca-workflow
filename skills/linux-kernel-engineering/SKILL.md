@@ -2,7 +2,7 @@
 name: linux-kernel-engineering
 description: Use when developing or reviewing Linux userspace systems code, kernel modules, drivers, or UAPI in C, C-style C++ without C++ libraries, or Rust, especially for ownership, concurrency, error recovery, ABI compatibility, and measured performance. 适用于用户态与内核态系统开发及 Linux 内核工程规范审查。
 metadata:
-  version: 1.1.0
+  version: 1.2.0
 ---
 
 # Linux 内核工程实践
@@ -37,6 +37,7 @@ metadata:
 - ioctl、共享内存、网络/磁盘格式等边界：读上述对应环境资料中的接口部分；跨用户/内核时同时读两份。
 - 选择检查、构建、测试、基准或准备交付：读 [验证与审查](references/verification.md)。
 - 确认依据、版本差异或进一步查 API：读 [官方资料索引](references/sources.md)。
+- 从本地内核源码学习规范、比较官方文档或引入主线新写法：读 [源码与规范比对](references/source-comparison.md)，固定提交并区分接口契约、实例和迁移条件。
 
 ## 核心决策
 
