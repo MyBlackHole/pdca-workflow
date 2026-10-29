@@ -14,7 +14,9 @@
 
 - mutex 只用于允许睡眠的场合。spinlock/raw_spinlock 的选择来自上下文与共享关系；不要用关本 CPU 中断替代跨 CPU 互斥。
 - PREEMPT_RT 下 `spinlock_t`、rwlock 等语义变化，不能套用非 RT 的禁抢占/IRQ 假设。确需硬中断级保护时审慎使用极短的 raw 锁区域，而不是把所有锁都替换成 raw 锁。
-- 持锁区域不调用可能 fault/睡眠的 uaccess、分配或阻塞等待；特别检查与同一锁有关的 cancel、flush 和 synchronize 操作是否会死锁。
+- 在不可睡眠上下文或持有禁止睡眠的自旋/raw 锁时，不调用可能 fault/睡眠的 uaccess、分配或阻塞等待。PREEMPT_RT 的锁约束单独核对。
+- 可睡眠进程上下文中持 mutex 并不天然禁止 `GFP_KERNEL` 分配或 uaccess；核对回收、fault、回调及锁顺序是否产生同锁依赖或死锁。把慢操作移出 mutex 是需要维持生命周期和事务一致性的设计选择，不能一概当成正确性修复。
+- cancel、flush 和 synchronize 等等待操作若可能等待需要当前持有锁的执行者，会形成死锁；按实际依赖安排等待点。
 - `READ_ONCE`/`WRITE_ONCE` 限定特定访问行为，不自动建立完整的跨 CPU 发布协议。原子 API 按具体操作/后缀核对排序，不能假定所有 `atomic_*` 都是全屏障。
 - 对象引用采用适合的 `refcount_t`/kref；从共享集合查找到取得引用期间确保对象尚存活，交付异步执行者之前持有/转移引用。
 - RCU 需分别证明读侧保护、指针发布、写者同步和延迟回收；引用计数不能替代 RCU grace period。睡眠条件取决于所选 RCU 家族和读侧上下文，不能概括为所有 RCU 都一样。
