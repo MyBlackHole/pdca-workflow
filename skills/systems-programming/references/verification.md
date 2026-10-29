@@ -2,7 +2,7 @@
 
 先找项目已有构建和测试入口，只运行与改动和风险相关的检查。不能将格式检查等同于语义正确，也不能把压力测试无报告当作并发证明。
 
-本页只补充系统编程的验证方法。完整测试策略、框架与覆盖规划使用 [testing-strategy](../../testing-strategy/SKILL.md)，通用 diff/PR 审查流程使用 [code-review-checklist](../../code-review-checklist/SKILL.md)；普通资源改动不因此自动展开完整策略或通用审查流程。
+本页补充当前改动的针对性验证。完整测试策略、框架与覆盖规划使用 [测试策略](testing-strategy.md)，通用 diff/PR 审查流程使用 [代码审查](code-review.md)；普通资源改动不因此自动展开完整策略或通用审查流程。
 
 ## 输出目录约束
 
