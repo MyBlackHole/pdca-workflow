@@ -10,7 +10,7 @@
 
 1. 核对行为：需求是否满足，公开 API/ABI、错误、副作用、顺序和兼容契约是否保持；实现是否含未经授权的扩展。
 2. 沿实际调用者和状态转换检查正常、失败、取消及清理路径，跨文件核对声明、布局、配置和消费者。
-3. 根据可触发风险深入：资源与并发读 [共同原则](engineering-principles.md) 和 [内存与锁设计](memory-and-lock-design.md)；攻击面读 [安全边界](security-boundaries.md)；构建读 [构建与依赖](build-and-dependencies.md)；测试证据读 [验证与审查](verification.md)。
+3. 根据可触发风险深入：资源与并发读 [共同原则](../principles/engineering.md) 和 [内存与锁设计](../principles/memory-and-locks.md)；攻击面读 [安全边界](security-review.md)；构建读 [构建与依赖](build-and-dependencies.md)；测试证据读 [改动验证](validation.md)。
 4. 检查测试是否观察真实行为、是否触达目标分支；已有通过结果能支持什么、仍缺什么。压力测试或工具无报告不替代生命周期和同步证明。
 5. 先报告有证据的正确性、生命周期、安全和兼容问题；性能结论需要负载及数据，再按项目要求处理风格与维护性。
 

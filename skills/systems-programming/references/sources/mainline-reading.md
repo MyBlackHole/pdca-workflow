@@ -1,6 +1,6 @@
 # 源码与规范比对
 
-用于从本地 Linux 主线/目标树提炼工程方法，或判断一个新写法能否用于当前项目。结合 [内存与锁设计](memory-and-lock-design.md)、[内核约束](kernelspace.md) 和 [资料索引](sources.md)，不要仅凭出现次数或某个驱动的写法建立规则。
+用于从本地 Linux 主线/目标树提炼工程方法，或判断一个新写法能否用于当前项目。结合 [内存与锁设计](../principles/memory-and-locks.md)、[内核约束](../environments/kernelspace.md) 和 [资料索引](official-docs.md)，不要仅凭出现次数或某个驱动的写法建立规则。
 
 ## 固定真实来源
 

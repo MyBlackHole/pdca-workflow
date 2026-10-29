@@ -11,9 +11,9 @@
 ## 输入与资源
 
 - 核对长度、计数、偏移、类型、标志、保留字段、编码与规范化顺序。加乘及对齐运算在分配/访问前检查；解析成功只说明满足某种格式，不等于满足权限或业务状态。
-- 检查总量、并发量、重试、解压/解析成本与失败回收，避免攻击者通过合法小请求累积无界资源。详细预算和背压设计由 [内存与锁设计](memory-and-lock-design.md) 提供。
+- 检查总量、并发量、重试、解压/解析成本与失败回收，避免攻击者通过合法小请求累积无界资源。详细预算和背压设计由 [内存与锁设计](../principles/memory-and-locks.md) 提供。
 - 指针的非空/对齐、局部变量置空、引用计数不单独证明完整访问安全。检查有效范围、初始化、别名、对象存活及并发；发布/取得引用/取消/回调/释放的真实协议见系统资料。
-- 内核异步接口不能借用可随时改变或消失的用户数据。复制或固定页面的方案分别证明输入稳定性、预算、完成、取消和释放；固定页面本身不保证内容不变，依据 [内核态约束](kernelspace.md) 审查。
+- 内核异步接口不能借用可随时改变或消失的用户数据。复制或固定页面的方案分别证明输入稳定性、预算、完成、取消和释放；固定页面本身不保证内容不变，依据 [内核态约束](../environments/kernelspace.md) 审查。
 
 ## 注入与解释边界
 
@@ -47,7 +47,7 @@ SSRF 独立检查 URL 协议、解析、目标地址及端口、代理、重定�
 | Go | 权限及解释边界、共享状态、goroutine/取消与资源退出、错误传播；不把编译通过或 race 一次无报告当完备证明 |
 | Python | URL/路径、命令参数、SQL、动态执行、反序列化、权限及敏感错误信息；不以 try/except 或禁 shell 作为全部防护 |
 
-Rust 指针访问前提可核对 [官方指针 Safety](https://doc.rust-lang.org/std/ptr/index.html#safety) 与 [unsafe 契约](https://doc.rust-lang.org/reference/unsafe-keyword.html)。Linux 规范来源及版本处理见 [资料索引](sources.md)。
+Rust 指针访问前提可核对 [官方指针 Safety](https://doc.rust-lang.org/std/ptr/index.html#safety) 与 [unsafe 契约](https://doc.rust-lang.org/reference/unsafe-keyword.html)。Linux 规范来源及版本处理见 [资料索引](../sources/official-docs.md)。
 
 ## 反例与证据
 

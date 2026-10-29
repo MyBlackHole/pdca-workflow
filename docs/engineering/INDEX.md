@@ -1,18 +1,18 @@
 # 工程技能入口迁移
 
-本仓库本轮涉及的工程技能统一为 [systems-programming](../../skills/systems-programming/SKILL.md)，版本 3.0.0。其 SKILL.md 按实际任务选择内部参考资料；本页只记录旧入口的迁移位置，不另建规则来源。
+本仓库本轮涉及的工程技能统一为 [systems-programming](../../skills/systems-programming/SKILL.md)；当前版本以该技能元数据为准。其 SKILL.md 按实际任务选择内部参考资料；本页只记录旧入口的迁移位置，不另建规则来源。
 
 | 原工程入口 | 统一入口内的资料 |
 | --- | --- |
-| secure-coding | [安全边界](../../skills/systems-programming/references/security-boundaries.md) |
-| systematic-debugging | [根因调查](../../skills/systems-programming/references/debugging.md) |
-| testing-strategy | [测试策略](../../skills/systems-programming/references/testing-strategy.md) |
-| tdd-workflow | [测试先行与回归循环](../../skills/systems-programming/references/tdd.md) |
-| code-review-checklist | [代码审查](../../skills/systems-programming/references/code-review.md) |
-| build-config | [构建与依赖](../../skills/systems-programming/references/build-and-dependencies.md) |
-| code-comments | [编码与文档](../../skills/systems-programming/references/coding-and-documentation.md)，专门补注另见项目约定 |
-| chinese-environment | [可选项目约定](../../skills/systems-programming/references/project-conventions.md) |
-| feature-commit-format、bug-commit-format | [提交与变更说明](../../skills/systems-programming/references/git-commit.md) |
+| secure-coding | [安全边界](../../skills/systems-programming/references/workflows/security-review.md) |
+| systematic-debugging | [根因调查](../../skills/systems-programming/references/workflows/debugging.md) |
+| testing-strategy | [测试策略](../../skills/systems-programming/references/workflows/testing-strategy.md) |
+| tdd-workflow | [测试先行与回归循环](../../skills/systems-programming/references/workflows/test-driven-development.md) |
+| code-review-checklist | [代码审查](../../skills/systems-programming/references/workflows/code-review.md) |
+| build-config | [构建与依赖](../../skills/systems-programming/references/workflows/build-and-dependencies.md) |
+| code-comments | [编码与文档](../../skills/systems-programming/references/principles/coding-and-documentation.md)，专门补注另见项目约定 |
+| chinese-environment | [可选项目约定](../../skills/systems-programming/references/principles/project-conventions.md) |
+| feature-commit-format、bug-commit-format | [提交与变更说明](../../skills/systems-programming/references/workflows/git-commit.md) |
 
 中间整理过程中创建的 git-commit 独立入口同样归入上述参考，不作为最终技能保留。旧工程 SKILL.md 不保留别名副本；使用时统一调用 `$systems-programming`。
 

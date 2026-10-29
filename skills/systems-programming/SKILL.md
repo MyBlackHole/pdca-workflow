@@ -2,7 +2,7 @@
 name: systems-programming
 description: Use when designing, implementing, debugging, auditing, testing, reviewing, building, documenting, or preparing authorized Git commits for software, especially C, C-style C++ without C++ libraries, Rust, or Linux userspace/kernel code. 软件工程统一入口。
 metadata:
-  version: 3.0.0
+  version: 3.1.0
 ---
 
 # 系统编程与软件工程
@@ -17,25 +17,34 @@ metadata:
 - Linux API 资料聚焦目标源码树、版本、架构和配置；其他平台迁移原则后另核对平台契约。不将最新文档或单个主线实例当成所有版本的保证。
 - 只修改获准对象；保留其他人的工作。用户已授权的必要设计、实现与验证连续推进，不重复请求例行确认；提交、推送、外部发送及生产变更仍需要对应授权。
 
+## 资料分类
+
+- `references/principles/`：共同工程约束、资源设计、编码文档与可选项目约定。
+- `references/workflows/`：调试、安全、测试、验证、审查、构建与提交的任务方法。
+- `references/environments/`：用户态/内核态执行环境、API 和上下文限制。
+- `references/sources/`：官方依据定位、本地主线阅读与版本比对方法。
+
+分类说明资料职责，不代表整个目录都要读取。按下面任务直接定位文件，再补本次相关的原则和环境约束。
+
 ## 按任务读取
 
 先从获准的需求、构建入口、调用者和邻近代码确认环境、接口、执行上下文、生命周期及验证条件。只询问现有资料无法确定且会影响正确性的事项；其他独立工作继续推进。
 
 | 当前任务或风险 | 读取资料 |
 | --- | --- |
-| 设计、实现与正确性分析 | [共同工程原则](references/engineering-principles.md)；源码及接口文档按 [编码与文档](references/coding-and-documentation.md) |
-| 分配、缓冲、异步对象、共享状态或同步路径 | [内存与锁设计](references/memory-and-lock-design.md)，落实下方主动设计要求 |
-| C/C++/Rust 用户态、进程、线程、I/O 或 FFI | [用户态适配](references/userspace.md) |
-| 内核、驱动、IRQ、DMA、workqueue 或 Rust for Linux | [内核态约束](references/kernelspace.md)；跨用户/内核边界同时核对用户态契约 |
-| 实际故障、构建失败、测试失败或异常行为 | [根因调查](references/debugging.md) |
-| 安全审计、安全关键边界或漏洞修复 | [安全边界](references/security-boundaries.md)；普通功能不因此自动展开全量审计 |
-| 测试体系、框架或覆盖规划 | [测试策略](references/testing-strategy.md)；需要测试先行方法时读 [TDD](references/tdd.md) |
-| 当前改动的检查、回归、故障注入或基准 | [验证与审查](references/verification.md)，不自动重建完整测试体系 |
-| diff/PR 或明确的代码审查任务 | [代码审查](references/code-review.md)，再读取实际风险对应的领域资料 |
-| 构建、依赖、工具链或交叉编译配置 | [构建与依赖](references/build-and-dependencies.md) |
-| 普通注释、接口文档或技术说明 | [编码与文档](references/coding-and-documentation.md)；仅明确采用中文项目或专门补注时读 [项目约定](references/project-conventions.md) |
-| 准备或执行已授权 Git 提交 | [提交与变更说明](references/git-commit.md) |
-| 查询官方依据、版本差异或学习本地主线写法 | [官方资料索引](references/sources.md) 与按需 [源码/规范比对](references/source-comparison.md) |
+| 设计、实现与正确性分析 | [共同工程原则](references/principles/engineering.md)；源码及接口文档按 [编码与文档](references/principles/coding-and-documentation.md) |
+| 分配、缓冲、异步对象、共享状态或同步路径 | [内存与锁设计](references/principles/memory-and-locks.md)，落实下方主动设计要求 |
+| C/C++/Rust 用户态、进程、线程、I/O 或 FFI | [用户态适配](references/environments/userspace.md) |
+| 内核、驱动、IRQ、DMA、workqueue 或 Rust for Linux | [内核态约束](references/environments/kernelspace.md)；跨用户/内核边界同时核对用户态契约 |
+| 实际故障、构建失败、测试失败或异常行为 | [根因调查](references/workflows/debugging.md) |
+| 安全审计、安全关键边界或漏洞修复 | [安全边界](references/workflows/security-review.md)；普通功能不因此自动展开全量审计 |
+| 测试体系、框架或覆盖规划 | [测试策略](references/workflows/testing-strategy.md)；需要测试先行方法时读 [TDD](references/workflows/test-driven-development.md) |
+| 当前改动的检查、回归、故障注入或基准 | [改动验证](references/workflows/validation.md)，不自动重建完整测试体系 |
+| diff/PR 或明确的代码审查任务 | [代码审查](references/workflows/code-review.md)，再读取实际风险对应的领域资料 |
+| 构建、依赖、工具链或交叉编译配置 | [构建与依赖](references/workflows/build-and-dependencies.md) |
+| 普通注释、接口文档或技术说明 | [编码与文档](references/principles/coding-and-documentation.md)；仅明确采用中文项目或专门中文补注时读 [项目约定](references/principles/project-conventions.md) |
+| 准备或执行已授权 Git 提交 | [提交与变更说明](references/workflows/git-commit.md) |
+| 查询官方依据、版本差异或学习本地主线写法 | [官方资料索引](references/sources/official-docs.md) 与按需 [源码/规范比对](references/sources/mainline-reading.md) |
 
 只读取当前任务需要的资料。普通开发直接承担相关设计、必要注释、构建约束和验证，不要求用户额外调用其他工程技能；README 错字等低风险修改不扩展为业务测试、审计或项目翻译。
 

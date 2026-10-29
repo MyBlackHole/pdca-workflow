@@ -1,6 +1,6 @@
 # 用户态适配
 
-适用于 Linux 用户态 C、以 C 风格编写的 C++ 和 Rust。共同原则见 [工程原则](engineering-principles.md)；接口类型定义仍以实际库与系统契约为准。
+适用于 Linux 用户态 C、以 C 风格编写的 C++ 和 Rust。共同原则见 [工程原则](../principles/engineering.md)；接口类型定义仍以实际库与系统契约为准。
 
 ## C 与 C 风格 C++
 
