@@ -2,7 +2,7 @@
 name: systems-programming
 description: Use when designing, implementing, debugging, auditing, testing, reviewing, building, documenting, or preparing authorized Git commits for software, especially C, C-style C++ without C++ libraries, Rust, or Linux userspace/kernel code. 软件工程统一入口。
 metadata:
-  version: 3.1.0
+  version: 3.1.1
 ---
 
 # 系统编程与软件工程
@@ -38,7 +38,8 @@ metadata:
 | 内核、驱动、IRQ、DMA、workqueue 或 Rust for Linux | [内核态约束](references/environments/kernelspace.md)；跨用户/内核边界同时核对用户态契约 |
 | 实际故障、构建失败、测试失败或异常行为 | [根因调查](references/workflows/debugging.md) |
 | 安全审计、安全关键边界或漏洞修复 | [安全边界](references/workflows/security-review.md)；普通功能不因此自动展开全量审计 |
-| 测试体系、框架或覆盖规划 | [测试策略](references/workflows/testing-strategy.md)；需要测试先行方法时读 [TDD](references/workflows/test-driven-development.md) |
+| 测试体系、框架、覆盖规划或断言/替身设计 | [测试策略](references/workflows/testing-strategy.md)，单项测试只读相关小节 |
+| 测试先行或回归循环 | [TDD](references/workflows/test-driven-development.md) |
 | 当前改动的检查、回归、故障注入或基准 | [改动验证](references/workflows/validation.md)，不自动重建完整测试体系 |
 | diff/PR 或明确的代码审查任务 | [代码审查](references/workflows/code-review.md)，再读取实际风险对应的领域资料 |
 | 构建、依赖、工具链或交叉编译配置 | [构建与依赖](references/workflows/build-and-dependencies.md) |
@@ -73,6 +74,6 @@ metadata:
 
 按任务规模说明实际行为或发现、相关设计决定、关键契约、实际验证和未覆盖项。发现给出位置、触发条件及影响；性能结论给出条件、基线和数据。静态推断、拟运行、未运行与实际通过分别表述。
 
-编写或运行测试前确认全部临时文件、日志、缓存和构建产物能写入工作区，**不向 `/tmp` 创建或写入测试产物**。无法重定向的测试不运行并说明原因；仅设置 TMPDIR 不代表所有子工具都遵守。保护凭证与个人信息，不输出完整环境或无关敏感数据。
+测试产物只写工作区，**禁止向 `/tmp` 创建或写入测试文件、临时目录、日志、构建产物或缓存**；运行前按 [输出目录约束](references/workflows/validation.md#输出目录约束) 核对子工具及受限情况。保护凭证与个人信息，不输出完整环境或无关敏感数据。
 
 本包其他工程入口已收敛于此，迁移位置见 [工程资料索引](../../docs/engineering/INDEX.md)。PDCA 阶段与场景仍是独立任务流程，不由本技能自动启动。
