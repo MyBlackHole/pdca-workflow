@@ -33,6 +33,15 @@
 | [Sequence counters/seqlock](https://docs.kernel.org/locking/seqlock.html)、[What is RCU](https://docs.kernel.org/RCU/whatisRCU.html)、[RCU 与模块卸载](https://docs.kernel.org/RCU/rcubarrier.html) | [复杂读侧同步](../environments/kernelspace.md#复杂读侧同步)：采用这些机制前核对写者、抢占/读者上下文、家族、指针及回调回收条件 |
 | [Memory allocation](https://docs.kernel.org/core-api/memory-allocation.html)、[GFP FS/IO scopes](https://docs.kernel.org/core-api/gfp_mask-from-fs-io.html) | [内核资源](../environments/kernelspace.md#内存资源与设备)：GFP、回收、计量及保留；预算设计另由 [内存与锁](../principles/memory-and-locks.md#内存先所有权和预算再分配器) 维护 |
 | [Scope-based cleanup](https://docs.kernel.org/core-api/cleanup.html) | [C 作用域清理](../environments/kernelspace.md#c-作用域清理)：采用 helpers 前核对作用域、声明顺序与移交 |
+| [Completions](https://docs.kernel.org/scheduler/completion.html)、[Driver basics](https://docs.kernel.org/driver-api/basics.html) | [等待与停止](../environments/kernelspace.md#等待per-cpu-与停止)：wait/completion、超时后存活、轮次复用及 timer 最终停止；调用上下文和具体版本按原文/声明核对 |
+| [this_cpu operations](https://docs.kernel.org/core-api/this_cpu_ops.html) | [per-CPU](../environments/kernelspace.md#等待per-cpu-与停止)：单次本地操作、指针迁移、远端访问及复合状态的不同保证 |
+
+## 数据结构与表示
+
+| 主题与官方原文 | 技能内责任与触发条件 |
+| --- | --- |
+| [Linked lists](https://docs.kernel.org/core-api/list.html)、[XArray](https://docs.kernel.org/core-api/xarray.html) | [容器与身份](../principles/data-and-interfaces.md#容器与身份协议)：选择访问结构、侵入式节点、safe 遍历的范围、查找与对象存活；采用具体结构前专项核对 |
+| [Kernel API](https://docs.kernel.org/core-api/kernel-api.html)、[snprintf(3)](https://man7.org/linux/man-pages/man3/snprintf.3.html) | [数据与缓冲](../principles/data-and-interfaces.md#数据表示与缓冲)：字符串/字节、实际写入与所需长度、有符号错误和解析；内核与 libc 的实际接口分别核对 |
 
 ## 接口、设备与子系统
 
@@ -44,6 +53,7 @@
 | [Device drivers](https://docs.kernel.org/driver-api/driver-model/driver.html)、[Devres](https://docs.kernel.org/driver-api/driver-model/devres.html)、[Runtime PM](https://docs.kernel.org/power/runtime_pm.html) | [设备专项](../environments/kernelspace.md#设备时间与专项接口)：probe/defer、资源、解绑及 PM 的任务触发检查 |
 | [Delay/sleep](https://docs.kernel.org/timers/delay_sleep_functions.html)、[Timekeeping](https://docs.kernel.org/core-api/timekeeping.html) | [时间与等待](../environments/kernelspace.md#设备时间与专项接口)：新增延迟、超时或时钟使用前核对上下文、精度和目标 API |
 | [Sysfs](https://docs.kernel.org/filesystems/sysfs.html)、[Netlink introduction](https://docs.kernel.org/userspace-api/netlink/intro.html) | [专项接口](../environments/kernelspace.md#设备时间与专项接口)：具体属性/family、文档、交互与生命周期专项核对 |
+| [VFS](https://docs.kernel.org/filesystems/vfs.html)、[mmap(2)](https://man7.org/linux/man-pages/man2/mmap.2.html) | [文件操作与映射](../environments/kernelspace.md#文件操作poll-与映射)、[用户态](../environments/userspace.md#进程与事件循环)：poll 登记、非阻塞、flush/release、file/VMA 与设备资源的不同生命周期；mmap 入口演进按目标树处理 |
 | [Kernel subsystem documentation](https://docs.kernel.org/subsystem-apis.html) | 文件系统、块层、网络、调度、MM、BPF、设备树、总线等的定位入口；任务触及时读取目标子系统原文、声明及实际调用者。这些领域保留专项核对责任，不声称摘要覆盖全部实现约束 |
 
 ## 验证工具与内核语言

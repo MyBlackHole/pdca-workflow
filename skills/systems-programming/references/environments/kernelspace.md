@@ -2,7 +2,7 @@
 
 首先确认目标源码树、架构、配置、子系统及 PREEMPT_RT。以下为决策依据，不保证每个列出的 API 在目标内核都存在。具体函数及清理顺序核对树内声明、文档和调用者。
 
-按需定位：执行环境与清理、锁与复杂读侧同步、分配/DMA、UAPI、设备与时间、Rust、许可。准备上游贡献时先采用 [内核贡献流程](../workflows/kernel-contribution.md)。
+按需定位：执行环境与清理、锁与复杂读侧同步、等待/per-CPU/停止、分配/DMA、UAPI/poll/mmap、设备与时间、Rust、许可。容器与句柄按 [数据结构与接口](../principles/data-and-interfaces.md)，准备上游贡献时先采用 [内核贡献流程](../workflows/kernel-contribution.md)。
 
 ## 风格与执行环境
 
@@ -57,6 +57,12 @@
 | MMIO | 使用适用的 ioremap/readl/writel 等平台抽象；不能用普通内存原子/volatile 指针访问替代 |
 | DMA | 区分 CPU 虚拟/物理/DMA 地址；设置 mask、处理 mapping error、方向和 map/unmap/sync 配对；CPU 锁不能代替设备可见性保证 |
 
+错误结果逐 API 区分 NULL、`ERR_PTR`、可选资源不存在和有效对象。采用 `IS_ERR`/`PTR_ERR` 等适合的判定，保留 `-EPROBE_DEFER` 等原因；`IS_ERR_OR_NULL` 仅在两者都应走同一分支时使用。只清理真正取得的资源，不能解引用或释放错误指针，也不重复释放仍由 devres 持有的资源。
+
+DMA coherent 提供相应的一致性保证，不自动排列描述符内容、所有权位及 doorbell。按硬件与目标 DMA/MMIO 契约核对 `dma_wmb`/`dma_rmb` 等排序；PCI 等 posted write 在需要确认已到达时采用适当的同设备读回/平台办法，不能把普通 CPU 锁或编译器屏障当成设备完成确认。
+
+coherent 分配的 CPU 地址和 DMA handle 用途分开，采用匹配的 free；streaming 映射采用匹配的 unmap/sync、方向及原始参数。释放前确认硬件不再访问并收敛软件使用者；停止 IRQ 通知不等于停止 DMA，不能把所有映射都按同一 unmap 流程清理。
+
 分配与映射均处理失败；内存压力、高阶分配失败和设备移除是正常错误分支。需要预分配、池化或保留资源时给出容量和耗尽策略。
 
 PREEMPT_RT 下释放内存也可能涉及分配器内部锁；分配和释放均核对调用上下文，必要时将实际回收延后到允许的执行环境。
@@ -66,6 +72,15 @@ PREEMPT_RT 下释放内存也可能涉及分配器内部锁；分配和释放均
 目标树的类型化分配 helper（如 `kmalloc_obj`、数组/柔性数组 helpers）核对实现、默认 GFP、溢出和计数字段规则；不能因省略参数而在不可睡眠路径隐含使用 GFP_KERNEL，也不要求旧树增加该 API。
 
 回收路径依赖工作项时，结合 NOFS/NOIO 作用域核对队列进展保证和等待关系；`WQ_MEM_RECLAIM`/rescuer 与 mempool 分别解决特定问题，均不能据此假定所有依赖都会前进或资源/锁循环已消除。
+
+## 等待、per-CPU 与停止
+
+- `wait_event*` 等围绕持久状态谓词等待，包含正常就绪、停止、设备失效和适用的信号/超时。使用目标等待原语建立“登记后复查”协议，状态先以正确同步方式发布再唤醒；唤醒不是状态本身。手写 `waitqueue_active` 等锁外省略唤醒的优化，必须核对配对排序，不能用 `READ_ONCE` 或裸标志替代完整协议。
+- completion 适合通知已发生事件，允许先完成后等待；不充当共享数据互斥锁。按具体 wait 变体区分完成、超时和信号的返回值，不能把“返回非负”统一当成功。
+- 栈上 completion 只在所有异步访问确实早于栈退出时可用；等待超时/被信号打断不取消生产者。`reinit_completion` 清除状态但不收敛参与者，必须避免上一轮生产/等待与新轮复用竞争；`complete_all` 后的 done 状态不证明所有等待者已退出。
+- `this_cpu_ptr` 等得到的本 CPU 地址不能在允许迁移后继续凭“当前 CPU 独占”使用；固定迁移、禁止抢占、IRQ 保护和互斥各有不同效果。复合操作、远端访问和 CPU 热插拔/回收按目标 per-CPU/RT 原文证明，不把单次 this_cpu 操作的保证扩展为整个多步协议。
+- 普通 timer_list 回调按其实际 softirq/RT 上下文核对，不能因是回调就取得可睡眠 mutex。timer 与 worker 相互重新生产时，停止协议须覆盖所有 rearm 来源。目标支持且适用时采用 `timer_shutdown_sync` 等最终禁入机制；`timer_delete_sync` 等同步删除只有其禁止并发重启的前提成立才足够。
+- 同步等待的锁依赖和总退出顺序仍按 [生命周期与退出协议](../principles/memory-and-locks.md#生命周期与退出协议)；不是把 shutdown/cancel 函数排列一次就证明模块可以释放。源码、等待及 per-CPU 依据见 [官方映射](../sources/official-docs.md#并发生命周期与资源)。
 
 ## UAPI、ioctl 与不可信输入
 
@@ -79,6 +94,13 @@ PREEMPT_RT 下释放内存也可能涉及分配器内部锁；分配和释放均
 - 已发布命令不因版本号重新解释旧字段。语义变化使用新命令并保留旧命令；大小可扩展结构需使用子系统既有协议、能力发现和兼容规则，不能只在结构末尾随意加成员。
 - 时间表示明确定义位宽、单位、时钟域和绝对/相对语义；避免直接导出本机 timespec/timeval。持续时间/截止时间通常选择单调时钟，持久日历时间按实际需求另行定义。
 - 对 read/write/poll/mmap、netlink、sysfs 等也明确权限、阻塞、取消、部分成功和文件/设备关闭后的生命周期；选用已有子系统接口，避免重复造通信协议。
+
+## 文件操作、poll 与映射
+
+- 驱动 `poll` 通常先 `poll_wait` 登记相关等待队列，再以正确同步读取 readiness，避免检查到登记之间丢事件；登记不等于等待就绪，其回调仍可能分配或睡眠，不能据此推定可在原子上下文调用。状态变化先发布再唤醒，返回当前适用的读/写/错误/挂断条件；read/write 在 O_NONBLOCK 下无可用进度且非终态时按契约返回 `-EAGAIN`，不能直接等待数据。
+- `flush`、关闭单个 fd、最后 file 引用的 `release` 及设备解绑是不同事件。正常保留 `vm_file` 的映射持有 file 引用，close(fd) 后映射仍在不自动证明 use-after-free；必须追踪实际引用与释放路径，也不能把 file 存活当成物理设备仍可用。
+- 映射检查 offset/长度/算术、权限、保护/缓存属性、支持的内存种类及 fork/拆分/失效行为。`vm_private_data` 的所有者可能由 file、独立 VMA 引用或其他明确协议维持；核对初始映射与后续 VMA open/close 的真实调用次数，不能假设初始 `.open` 自动替你取得引用。
+- 新映射核对目标树的 `mmap_prepare`/`mmap` 入口及推荐方法，不从旧驱动直接复制平台特定 remap 或 fault 处理。相关 VFS/MM 和总线契约依 [专项原文](../sources/official-docs.md#接口设备与子系统) 读取；module owner、device 引用及 backing pages 的保证分别证明。
 
 ## 设备、时间与专项接口
 

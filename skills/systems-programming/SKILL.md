@@ -2,7 +2,7 @@
 name: systems-programming
 description: Use when designing, implementing, debugging, auditing, testing, reviewing, building, documenting, or preparing authorized Git commits for software, especially C, C-style C++ without C++ libraries, Rust, or Linux userspace/kernel code. 软件工程统一入口。
 metadata:
-  version: 3.2.0
+  version: 3.3.0
 ---
 
 # 系统编程与软件工程
@@ -36,6 +36,7 @@ metadata:
 | --- | --- |
 | 设计、实现与正确性分析 | [共同工程原则](references/principles/engineering.md)；源码及接口文档按 [编码与文档](references/principles/coding-and-documentation.md) |
 | 分配、缓冲、异步对象、共享状态或同步路径 | [内存与锁设计](references/principles/memory-and-locks.md)，落实下方主动设计要求 |
+| 容器、索引/句柄、数据表示、字符串缓冲或回调接口 | [数据结构与接口](references/principles/data-and-interfaces.md)，再按实际环境核对 API |
 | C/C++/Rust 用户态、进程、线程、I/O 或 FFI | [用户态适配](references/environments/userspace.md) |
 | 内核、驱动、IRQ、DMA、workqueue 或 Rust for Linux | [内核态约束](references/environments/kernelspace.md)；跨用户/内核边界同时核对用户态契约 |
 | Linux 上游贡献、补丁准备，或明确要求遵循上游 AI 贡献规范 | [内核贡献流程](references/workflows/kernel-contribution.md)，先落实其完整原文读取和人工提交要求 |
