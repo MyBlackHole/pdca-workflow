@@ -1,0 +1,1 @@
+obj-$(CONFIG_KUNIT_SYSTEMS_RESOURCE_TEST) += systems-resource-test.o
