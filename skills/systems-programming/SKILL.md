@@ -2,12 +2,14 @@
 name: systems-programming
 description: Use when designing, implementing, debugging, auditing, testing, reviewing, building, documenting, or preparing authorized Git commits for software, especially C, C-style C++ without C++ libraries, Rust, or Linux userspace/kernel code. 软件工程统一入口。
 metadata:
-  version: 3.1.1
+  version: 3.2.0
 ---
 
 # 系统编程与软件工程
 
 统一承载本包的工程规范和任务方法。以 Linux 内核的资源纪律、并发设计、可维护性、兼容性和可验证性为基础，覆盖设计、实现、调试、安全、测试、审查、构建、文档及提交；详细内容按实际任务读取参考文件。
+
+归纳官方规范与实际实现中的设计理由，形成能在未来内核态、用户态开发中执行和验证的规则；具体 API、排版及贡献流程按目标环境采用。源码学习按 [规范与实现比对](references/sources/mainline-reading.md) 区分共同原则和局部约定。
 
 ## 适用边界
 
@@ -36,6 +38,7 @@ metadata:
 | 分配、缓冲、异步对象、共享状态或同步路径 | [内存与锁设计](references/principles/memory-and-locks.md)，落实下方主动设计要求 |
 | C/C++/Rust 用户态、进程、线程、I/O 或 FFI | [用户态适配](references/environments/userspace.md) |
 | 内核、驱动、IRQ、DMA、workqueue 或 Rust for Linux | [内核态约束](references/environments/kernelspace.md)；跨用户/内核边界同时核对用户态契约 |
+| Linux 上游贡献、补丁准备，或明确要求遵循上游 AI 贡献规范 | [内核贡献流程](references/workflows/kernel-contribution.md)，先落实其完整原文读取和人工提交要求 |
 | 实际故障、构建失败、测试失败或异常行为 | [根因调查](references/workflows/debugging.md) |
 | 安全审计、安全关键边界或漏洞修复 | [安全边界](references/workflows/security-review.md)；普通功能不因此自动展开全量审计 |
 | 测试体系、框架、覆盖规划或断言/替身设计 | [测试策略](references/workflows/testing-strategy.md)，单项测试只读相关小节 |
@@ -47,7 +50,7 @@ metadata:
 | 准备或执行已授权 Git 提交 | [提交与变更说明](references/workflows/git-commit.md) |
 | 查询官方依据、版本差异或学习本地主线写法 | [官方资料索引](references/sources/official-docs.md) 与按需 [源码/规范比对](references/sources/mainline-reading.md) |
 
-只读取当前任务需要的资料。普通开发直接承担相关设计、必要注释、构建约束和验证，不要求用户额外调用其他工程技能；README 错字等低风险修改不扩展为业务测试、审计或项目翻译。
+只读取当前任务需要的资料；Linux 贡献流程明确要求完整读取的原文不能用本技能摘要替代。普通开发直接承担相关设计、必要注释、构建约束和验证；README 错字等低风险修改不扩展为业务测试、审计或项目翻译。Linux 专项的官方依据、适用条件和维护位置见 [覆盖映射](references/sources/official-docs.md)。
 
 ## 核心决策
 
@@ -56,7 +59,7 @@ metadata:
 3. 内存可见性、共享状态一致性与对象存活分别证明；`volatile`、引用计数或单个原子变量不是完整并发协议。
 4. 外部 API/ABI、数据格式、错误和可观察行为需要兼容依据；内部实现可以演进。
 5. 性能优化依据代表性测量；不凭“内核也这样写”加入池化、RCU、无锁结构或零拷贝。保留简单方案时说明其满足条件的原因。
-6. 工程方法服从本次风险和环境，不强加测试比例、覆盖率目标、假设数量、全量清单、语言迁移或每次提交升版。
+6. 工程方法服从本次风险和环境；目标项目或上游明确要求的检查按其条件执行，其余不统一强加测试比例、覆盖率目标、假设数量、全量清单、语言迁移或每次提交升版。
 
 ## 主动资源设计
 

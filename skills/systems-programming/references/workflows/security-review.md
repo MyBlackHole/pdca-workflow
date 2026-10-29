@@ -49,6 +49,12 @@ SSRF 独立检查 URL 协议、解析、目标地址及端口、代理、重定�
 
 Rust 指针访问前提可核对 [官方指针 Safety](https://doc.rust-lang.org/std/ptr/index.html#safety) 与 [unsafe 契约](https://doc.rust-lang.org/reference/unsafe-keyword.html)。Linux 规范来源及版本处理见 [资料索引](../sources/official-docs.md)。
 
+## Linux 内核问题分类
+
+只在内核问题分类/报告时采用 Linux threat model：固定受支持的内核版本、配置、攻击者初始权限及被跨越的资源边界，分别核对 capability 所属 namespace、管理员主动授权、调试/实验配置和生产环境。崩溃、告警或敏感 API 名称本身不能证明漏洞，也不能仅因调用者在某个 namespace 中为 root 就推断拥有宿主全部权限。
+
+分类与拟议报告完整核对当前 [安全问题及 threat model 原文](../sources/official-docs.md#风格文档与贡献)。普通缺陷、安全问题和回归的报告材料及人工提交边界由 [内核贡献流程](kernel-contribution.md#回归与安全问题) 维护；不以本页通用审计方法替代上游分流政策。
+
 ## 反例与证据
 
 对实际怀疑的边界安排最小反例：权限不同的对象、规范化与使用对象不一致、跨阶段输入变化、接近容量上限的并发请求、失败/取消/清理交错。负例必须触达所要检查的条件，记录现有防护是否提前拒绝。

@@ -1,52 +1,66 @@
-# 官方资料索引
+# 官方依据与覆盖映射
 
-整理日期：2026-10-29。以下链接用于查规范与 API；在线文档持续变化，不绑定本 skill 到“最新内核”。实践优先级：用户/项目要求 → 目标树 `Documentation/` 与子系统约定 → 匹配版本的官方资料 → 在线通用参考。遇到差异检查源码声明、实现与调用者，注明适用版本，不猜测 API 可用性。
+核对日期：2026-10-29。在线文档持续变化，不绑定本技能到“最新内核”。实践优先级：用户/项目要求 → 目标树 `Documentation/` 与子系统约定 → 匹配版本官方资料 → 在线参考；当前上游贡献政策另按其生效范围核对。差异结合声明、实现和调用者解释，记录版本与限制。
 
-本 skill 是选择性工程提炼，不复制手册，也不主张 Linux 内核的每一种技术都适合每个用户态项目。
+本表映射工程提炼和专项读取责任，不声称已将所有 Linux 文档、子系统细节或所有版本完整编入技能。**规则提炼**由对应资料维护；**专项核对**表示任务触及时必须读取目标原文及必要源码后才能作相应结论。链接存在、已经读到和已经运行验证是不同证据。按本次主题选择行，不全量加载本表链接。
 
-## 风格与协作
+## 风格、文档与贡献
 
-- [Linux kernel coding style](https://docs.kernel.org/process/coding-style.html)：内核 C 风格、控制流、命名和清理原则。
-- [Development process](https://docs.kernel.org/process/development-process.html)：子系统协作与开发流程。
-- [Submitting patches](https://docs.kernel.org/process/submitting-patches.html)：单个逻辑变更、自包含说明、性能取舍及补丁准备。
-- [Stable API nonsense](https://docs.kernel.org/process/stable-api-nonsense.html)：稳定用户接口与不保证稳定的内核内部接口的区别。
-- [Deprecated interfaces](https://docs.kernel.org/process/deprecated.html)：旧接口、分配算术和 BUG/WARN 的使用边界。
+| 主题与官方原文 | 技能内责任与触发条件 |
+| --- | --- |
+| [开发文档总目录](https://docs.kernel.org/process/index.html)、[Development process](https://docs.kernel.org/process/development-process.html) | [贡献流程](../workflows/kernel-contribution.md)：上游贡献时核对完整流程、行为准则及子系统/维护树的附加要求；社区专门政策按实际主题读取 |
+| [Linux kernel coding style](https://docs.kernel.org/process/coding-style.html) | [编码与文档](../principles/coding-and-documentation.md#linux-内核编码与文档)：提炼 C 风格、类型、宏与条件编译；原型、汇编等完整细则专项核对，不能凭摘要声称全文符合 |
+| [Kernel-doc](https://docs.kernel.org/doc-guide/kernel-doc.html) | [编码与文档](../principles/coding-and-documentation.md#linux-内核编码与文档)：C 全局/导出接口与类型文档；源文件和公开头检查由验证资料维护 |
+| [Submitting patches](https://docs.kernel.org/process/submitting-patches.html)、[stable 规则](https://docs.kernel.org/process/stable-kernel-rules.html) | [贡献流程](../workflows/kernel-contribution.md)：补丁系列、标签、修订、维护者和回补；只有实际准备对应贡献时启用 |
+| [AI Coding Assistants](https://docs.kernel.org/process/coding-assistants.html)、[生成内容规范](https://docs.kernel.org/process/generated-content.html) | [AI 归属与人工认证](../workflows/kernel-contribution.md#ai-归属与人工认证)：Linux 贡献中的 DCO、辅助标记、来源和人工提交；该流程的必读原文须完整读取 |
+| [Licensing rules](https://docs.kernel.org/process/license-rules.html) | [许可证与来源](../environments/kernelspace.md#许可证与来源)：文件 SPDX、UAPI 例外、模块信息与来源；不推广为用户态项目的 GPL 要求 |
+| [Handling regressions](https://docs.kernel.org/process/handling-regressions.html)、[Security bugs](https://docs.kernel.org/process/security-bugs.html)、[Threat model](https://docs.kernel.org/process/threat-model.html) | [贡献流程](../workflows/kernel-contribution.md#回归与安全问题) 和 [安全分类](../workflows/security-review.md#linux-内核问题分类)：拟报告时完整核对版本、证据、分流及材料处理政策 |
 
-## 并发与生命周期
+## 构建与配置
 
-- [Lock types and rules](https://docs.kernel.org/locking/locktypes.html)：锁类别、嵌套、PREEMPT_RT 差异。
-- [Atomic types](https://docs.kernel.org/core-api/wrappers/atomic_t.html)：各操作的原子性与排序语义。
-- [Volatile considered harmful](https://docs.kernel.org/process/volatile-considered-harmful.html)：volatile 不替代同步。
-- [Adding krefs](https://docs.kernel.org/core-api/kref.html)：发布前取引用、查找与存活保护。
-- [What is RCU?](https://docs.kernel.org/RCU/whatisRCU.html)：发布、读侧保护、宽限期与回收。
-- [Workqueue](https://docs.kernel.org/core-api/workqueue.html)：threaded/BH 队列及取消、flush 等 API 契约。
-- [Generic mutex subsystem](https://docs.kernel.org/locking/mutex-design.html)：mutex 语义及 unlock 调用期间的对象存活约束。
-- [How realtime kernels differ](https://docs.kernel.org/core-api/real-time/differences.html)：RT 的上下文变化及分配/释放、等待的限制。
+| 主题与官方原文 | 技能内责任与触发条件 |
+| --- | --- |
+| [Linux Kernel Makefiles](https://docs.kernel.org/kbuild/makefiles.html)、[Kconfig Language](https://docs.kernel.org/kbuild/kconfig-language.html) | [构建与依赖](../workflows/build-and-dependencies.md#linux-kbuild-与-kconfig)：依赖、n/m/y、对象与选项作用域；配置或构建变化时核对目标树语法和符号可达性 |
+| [Patch submission checklist](https://docs.kernel.org/process/submit-checklist.html) | [内核验证](../workflows/validation.md#内核构建与文档检查)：适用配置矩阵、独立输出、架构、文档及调试检查；声明上游检查完成前逐项对照，缺少条件如实记录 |
 
-## 内存、设备与接口
+## 并发、生命周期与资源
 
-- [Memory allocation guide](https://docs.kernel.org/core-api/memory-allocation.html)：分配类型、GFP 与失败处理。
-- [Scope-based cleanup helpers](https://docs.kernel.org/core-api/cleanup.html)：内核 C 作用域清理、声明逆序、guard 与所有权移交。
-- [GFP masks from FS/IO context](https://docs.kernel.org/core-api/gfp_mask-from-fs-io.html)：NOFS/NOIO 作用域与回收递归约束。
-- [Managed device resources](https://docs.kernel.org/driver-api/driver-model/devres.html)：devres 生命周期与资源释放。
-- [Dynamic DMA mapping guide](https://docs.kernel.org/core-api/dma-api-howto.html)：DMA 地址、方向、映射和一致性。
-- [Bus-independent device access](https://docs.kernel.org/driver-api/device-io.html)：MMIO 与设备访问接口。
-- [ioctl interfaces](https://docs.kernel.org/driver-api/ioctl.html)：新命令、布局、时间戳、compat 和错误约定；新接口优先参考这份资料。
-- [(How to avoid) Botching up ioctls](https://docs.kernel.org/process/botching-up-ioctls.html)：历史经验和反例；时间等具体类型选择以目标树与较新的接口文档为准。
-- [Kernel hacking guide](https://docs.kernel.org/kernel-hacking/hacking.html)：常见上下文及 uaccess 入门；含历史内容，现代上下文细节应对照目标树。
-- [printk basics](https://docs.kernel.org/core-api/printk-basics.html)：日志级别、格式及使用方式。
+| 主题与官方原文 | 技能内责任与触发条件 |
+| --- | --- |
+| [Lock types](https://docs.kernel.org/locking/locktypes.html)、[Generic mutex](https://docs.kernel.org/locking/mutex-design.html)、[Realtime differences](https://docs.kernel.org/core-api/real-time/differences.html) | [内核锁约束](../environments/kernelspace.md#锁内存序与生命周期)：类型、嵌套、RT 上下文和 unlock 存活；改变锁或上下文时专项核对 |
+| [Atomic types](https://docs.kernel.org/core-api/wrappers/atomic_t.html)、[Volatile](https://docs.kernel.org/process/volatile-considered-harmful.html) | [同步设计](../principles/memory-and-locks.md#锁先减少共享再缩小临界区)：发布/反向交接与可见性；具体操作和 LKMM 排序由目标原文/源码核对 |
+| [Adding krefs](https://docs.kernel.org/core-api/kref.html)、[Workqueue](https://docs.kernel.org/core-api/workqueue.html) | [生命周期](../principles/memory-and-locks.md#生命周期与退出协议) 与内核环境：取得引用、threaded/BH 和异步停止；具体 callback/取消语义专项核对 |
+| [Sequence counters/seqlock](https://docs.kernel.org/locking/seqlock.html)、[What is RCU](https://docs.kernel.org/RCU/whatisRCU.html)、[RCU 与模块卸载](https://docs.kernel.org/RCU/rcubarrier.html) | [复杂读侧同步](../environments/kernelspace.md#复杂读侧同步)：采用这些机制前核对写者、抢占/读者上下文、家族、指针及回调回收条件 |
+| [Memory allocation](https://docs.kernel.org/core-api/memory-allocation.html)、[GFP FS/IO scopes](https://docs.kernel.org/core-api/gfp_mask-from-fs-io.html) | [内核资源](../environments/kernelspace.md#内存资源与设备)：GFP、回收、计量及保留；预算设计另由 [内存与锁](../principles/memory-and-locks.md#内存先所有权和预算再分配器) 维护 |
+| [Scope-based cleanup](https://docs.kernel.org/core-api/cleanup.html) | [C 作用域清理](../environments/kernelspace.md#c-作用域清理)：采用 helpers 前核对作用域、声明顺序与移交 |
 
-## 验证与语言
+## 接口、设备与子系统
 
-- [Kernel testing guide](https://docs.kernel.org/dev-tools/testing-overview.html)：KUnit 与 kselftest 的职责。
-- [Checkpatch](https://docs.kernel.org/dev-tools/checkpatch.html)、[Sparse](https://docs.kernel.org/dev-tools/sparse.html)、[KCSAN](https://docs.kernel.org/dev-tools/kcsan.html)：检查范围和局限。
-- [Rust for Linux general information](https://docs.kernel.org/rust/general-information.html)：no_std、目标树文档和 Rust 检查入口。
-- [Rust atomics](https://doc.rust-lang.org/nomicon/atomics.html)：Rust 用户态原子和内存模型；不替代内核的具体抽象契约。
-- [C++ draft: data races](https://eel.is/c++draft/intro.races)：语言级数据竞争和同步；即使代码只采用 C 风格，C++ 编译仍须遵守它的语义。
+| 主题与官方原文 | 技能内责任与触发条件 |
+| --- | --- |
+| [Stable API nonsense](https://docs.kernel.org/process/stable-api-nonsense.html)、[ioctl interfaces](https://docs.kernel.org/driver-api/ioctl.html)、[Botching up ioctls](https://docs.kernel.org/process/botching-up-ioctls.html) | [UAPI](../environments/kernelspace.md#uapiioctl-与不可信输入)：稳定外部契约、布局、compat、copy 和命令语义；历史 ioctl 经验以目标树及现代接口文档为准 |
+| [Kernel hacking guide](https://docs.kernel.org/kernel-hacking/hacking.html)、[Deprecated interfaces](https://docs.kernel.org/process/deprecated.html) | 内核环境：上下文与旧接口的辨识线索；含历史内容，使用前核对目标树，不能直接推广旧例子 |
+| [DMA guide](https://docs.kernel.org/core-api/dma-api-howto.html)、[Device I/O](https://docs.kernel.org/driver-api/device-io.html) | [内核资源](../environments/kernelspace.md#内存资源与设备)：地址、映射、方向、同步与 MMIO；涉及硬件访问时专项核对 |
+| [Device drivers](https://docs.kernel.org/driver-api/driver-model/driver.html)、[Devres](https://docs.kernel.org/driver-api/driver-model/devres.html)、[Runtime PM](https://docs.kernel.org/power/runtime_pm.html) | [设备专项](../environments/kernelspace.md#设备时间与专项接口)：probe/defer、资源、解绑及 PM 的任务触发检查 |
+| [Delay/sleep](https://docs.kernel.org/timers/delay_sleep_functions.html)、[Timekeeping](https://docs.kernel.org/core-api/timekeeping.html) | [时间与等待](../environments/kernelspace.md#设备时间与专项接口)：新增延迟、超时或时钟使用前核对上下文、精度和目标 API |
+| [Sysfs](https://docs.kernel.org/filesystems/sysfs.html)、[Netlink introduction](https://docs.kernel.org/userspace-api/netlink/intro.html) | [专项接口](../environments/kernelspace.md#设备时间与专项接口)：具体属性/family、文档、交互与生命周期专项核对 |
+| [Kernel subsystem documentation](https://docs.kernel.org/subsystem-apis.html) | 文件系统、块层、网络、调度、MM、BPF、设备树、总线等的定位入口；任务触及时读取目标子系统原文、声明及实际调用者。这些领域保留专项核对责任，不声称摘要覆盖全部实现约束 |
 
-- [Linux close(2)](https://man7.org/linux/man-pages/man2/close.2.html)：错误后 fd 复用及不能盲目重试 close 的原因。
-- [Linux write(2)](https://man7.org/linux/man-pages/man2/write.2.html)：短写、错误、持久性和返回约定。
-- [Linux pthreads(7)](https://man7.org/linux/man-pages/man7/pthreads.7.html)：pthread 的错误返回约定及线程共享状态。
-- [Linux signal-safety(7)](https://man7.org/linux/man-pages/man7/signal-safety.7.html)：异步信号安全函数与信号处理器约束。
+## 验证工具与内核语言
 
-用户态其他接口细节查目标系统的 man pages、libc 文档和 POSIX，例如 `pthread_cond_wait`、`pthread_condattr_setclock` 和 `read`。不要把内核 handler 的规则直接套给 libc 包装函数。
+| 主题与官方原文 | 技能内责任与触发条件 |
+| --- | --- |
+| [Kernel testing](https://docs.kernel.org/dev-tools/testing-overview.html)、[Checkpatch](https://docs.kernel.org/dev-tools/checkpatch.html)、[Sparse](https://docs.kernel.org/dev-tools/sparse.html)、[KCSAN](https://docs.kernel.org/dev-tools/kcsan.html) | [改动验证](../workflows/validation.md)：KUnit/kselftest、工具能力与局限；按风险和目标支持选择，工具无报告不代替证明 |
+| [Printk basics](https://docs.kernel.org/core-api/printk-basics.html) | [可观测性](../environments/kernelspace.md#可观测性框架与-rust)：日志、动态调试和限速；具体格式符/地址披露专项核对 |
+| [Rust general information](https://docs.kernel.org/rust/general-information.html)、[Rust coding guidelines](https://docs.kernel.org/rust/coding-guidelines.html) | [内核环境](../environments/kernelspace.md#可观测性框架与-rust)、[编码与文档](../principles/coding-and-documentation.md#linux-内核编码与文档)：no_std、树内抽象、FFI、rustdoc 与 Safety；新增 Rust 代码前核对目标树支持 |
+
+## 用户态与语言
+
+| 主题与官方原文 | 技能内责任与触发条件 |
+| --- | --- |
+| [close(2)](https://man7.org/linux/man-pages/man2/close.2.html)、[write(2)](https://man7.org/linux/man-pages/man2/write.2.html)、[pthreads(7)](https://man7.org/linux/man-pages/man7/pthreads.7.html) | [用户态](../environments/userspace.md)：返回值、短操作、错误与线程；具体调用契约查目标系统 man pages/libc/POSIX |
+| [signal-safety(7)](https://man7.org/linux/man-pages/man7/signal-safety.7.html)、[fork(2)](https://man7.org/linux/man-pages/man2/fork.2.html)、[epoll(7)](https://man7.org/linux/man-pages/man7/epoll.7.html) | [进程与事件循环](../environments/userspace.md#进程与事件循环)：fork/exec、信号、事件触发与 fd 存活；涉及这些路径时读取对应原文 |
+| [fsync(2)](https://man7.org/linux/man-pages/man2/fsync.2.html)、[rename(2)](https://man7.org/linux/man-pages/man2/rename.2.html) | [持久性](../environments/userspace.md#文件更新与持久性)：替换、文件/目录同步与失败阶段，最终保证另核对目标文件系统/存储契约 |
+| [Rust atomics](https://doc.rust-lang.org/nomicon/atomics.html)、[C++ data races](https://eel.is/c++draft/intro.races) | 用户态语言模型与 FFI；C 风格 C++ 仍服从 C++ 语义，Rust 库选择不受 C++ 禁库规则影响；不能替代内核的具体抽象契约 |
+
+维护或评估覆盖时，按上述官方入口检查新增/变更主题，给它确定唯一规则位置、适用条件和针对性场景。未读的专门规范、未采用的子系统以及未运行的配置都保留为明确边界，不用链接数或场景数计算“全部 Linux 规范通过率”。
