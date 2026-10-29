@@ -1,6 +1,6 @@
 # 官方依据与覆盖映射
 
-核对日期：2026-10-30（本轮专项：kthread/workqueue 与用户态等待/I/O；其余主题沿用前次依据，按任务重新核对）。在线文档持续变化，不绑定本技能到“最新内核”。实践优先级：用户/项目要求 → 目标树 `Documentation/` 与子系统约定 → 匹配版本官方资料 → 在线参考；当前上游贡献政策另按其生效范围核对。差异结合声明、实现和调用者解释，记录版本与限制。
+核对日期：2026-10-30（本轮专项：规范入口与贡献政策版本、kthread/workqueue 与用户态等待/I/O；其余主题沿用前次依据，按任务重新核对）。在线文档持续变化，不绑定本技能到“最新内核”。实践优先级：用户/项目要求 → 目标树 `Documentation/` 与子系统约定 → 匹配版本官方资料 → 在线参考；当前上游贡献政策另按其生效范围核对。差异结合声明、实现和调用者解释，记录版本与限制。
 
 本表映射工程提炼和专项读取责任，不声称已将所有 Linux 文档、子系统细节或所有版本完整编入技能。**规则提炼**由对应资料维护；**专项核对**表示任务触及时必须读取目标原文及必要源码后才能作相应结论。链接存在、已经读到和已经运行验证是不同证据。按本次主题选择行，不全量加载本表链接。
 
@@ -12,7 +12,7 @@
 | [Linux kernel coding style](https://docs.kernel.org/process/coding-style.html) | [编码与文档](../principles/coding-and-documentation.md#linux-内核编码与文档)：提炼 C 风格、类型、宏与条件编译；原型、汇编等完整细则专项核对，不能凭摘要声称全文符合 |
 | [Kernel-doc](https://docs.kernel.org/doc-guide/kernel-doc.html) | [编码与文档](../principles/coding-and-documentation.md#linux-内核编码与文档)：C 全局/导出接口与类型文档；源文件和公开头检查由验证资料维护 |
 | [Submitting patches](https://docs.kernel.org/process/submitting-patches.html)、[stable 规则](https://docs.kernel.org/process/stable-kernel-rules.html) | [贡献流程](../workflows/kernel-contribution.md)：补丁系列、标签、修订、维护者和回补；只有实际准备对应贡献时启用 |
-| [AI Coding Assistants](https://docs.kernel.org/process/coding-assistants.html)、[生成内容规范](https://docs.kernel.org/process/generated-content.html) | [AI 归属与人工认证](../workflows/kernel-contribution.md#ai-归属与人工认证)：Linux 贡献中的 DCO、辅助标记、来源和人工提交；该流程的必读原文须完整读取 |
+| [AI Coding Assistants](https://docs.kernel.org/process/coding-assistants.html)、[生成内容规范](https://docs.kernel.org/process/generated-content.html) | [AI 归属与人工认证](../workflows/kernel-contribution.md#ai-归属与人工认证)：Linux 贡献中的 DCO、工具来源披露、适用政策要求的归属标记和人工提交；该流程的必读原文须完整读取，滚动渲染页不能证明目标政策版本 |
 | [Licensing rules](https://docs.kernel.org/process/license-rules.html) | [许可证与来源](../environments/kernelspace.md#许可证与来源)：文件 SPDX、UAPI 例外、模块信息与来源；不推广为用户态项目的 GPL 要求 |
 | [Handling regressions](https://docs.kernel.org/process/handling-regressions.html)、[Security bugs](https://docs.kernel.org/process/security-bugs.html)、[Threat model](https://docs.kernel.org/process/threat-model.html) | [贡献流程](../workflows/kernel-contribution.md#回归与安全问题) 和 [安全分类](../workflows/security-review.md#linux-内核问题分类)：拟报告时完整核对版本、证据、分流及材料处理政策 |
 
