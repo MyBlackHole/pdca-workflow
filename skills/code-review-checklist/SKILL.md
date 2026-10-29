@@ -1,8 +1,8 @@
 ---
 name: code-review-checklist
-description: 代码审查、PR 审查或 C/C++/Rust/Go/Python 质量保证时使用。
+description: 对代码变更、diff 或 PR 进行通用质量审查时使用，覆盖 C/C++/Rust/Go/Python 的变更正确性、范围和审查意见。
 metadata:
-  version: 5.0.0-rc.2
+  version: 5.0.0-rc.3
 ---
 
 # Code Review Checklist (代码审查检查清单)
@@ -11,7 +11,11 @@ metadata:
 
 Systematic code review framework that ensures consistent coverage across all review dimensions. Apply the review flow, then check language-specific items. Never rely on ad-hoc bug hunting alone.
 
-**Companion skills:** `secure-coding` (deep security review), `build-config` (build file correctness)
+## 适用范围与配合
+
+本技能负责通用代码变更审查的流程、覆盖维度和问题呈现；不因普通开发、构建或测试任务自动启动完整 PR 审查。按本次 diff 的实际风险选择配套技能：资源、并发、异步生命周期和 ABI/UAPI 使用 [systems-programming](../systems-programming/SKILL.md)，专项安全问题使用 [secure-coding](../secure-coding/SKILL.md)，构建配置使用 [build-config](../build-config/SKILL.md)。
+
+语言清单只检查项目实际使用的特性，不要求为满足清单引入库或重构。C 风格 C++ 禁 C++ 库时，按 C 路径检查显式所有权、成对释放和现有同步原语，C++ 库/模板/异常等未使用项标为不适用；内核及 `no_std` Rust 服从目标树接口。
 
 ### 必须遵循 (MANDATORY)
 
@@ -70,7 +74,7 @@ Systematic code review framework that ensures consistent coverage across all rev
 - [ ] 边界条件有正确处理吗？(空值、零、最大值、空集合)
 - [ ] 数值运算有溢出/除零风险吗？
 - [ ] 并发访问有竞态条件吗？
-- [ ] 资源清理保证执行吗？(RAII / defer / finally)
+- [ ] 资源清理在成功、失败和取消路径均有保证吗？(显式退出/逆序释放或项目允许的 RAII / defer / finally)
 - [ ] 错误路径有测试吗？(不是只有 happy path)
 - [ ] 类型转换安全吗？(隐式转换、窄化转换)
 
@@ -122,7 +126,7 @@ Systematic code review framework that ensures consistent coverage across all rev
 |------|--------|
 | 内存安全 | [ ] `malloc`/`calloc`/`realloc` 返回值检查了吗？ |
 | 内存安全 | [ ] 数组/指针访问在边界内吗？(off-by-one 是最常见 bug) |
-| 内存安全 | [ ] `free` 后指针置 NULL 了吗？(use-after-free 预防) |
+| 内存安全 | [ ] 释放前所有别名、借用和异步使用者都已结束，或受有效回收协议保护吗？置 NULL 不能替代存活证明。 |
 | 缓冲区 | [ ] `strcpy`/`sprintf`/`gets`/`scanf("%s")` 等不安全函数被替换为 `strncpy`/`snprintf`/`fgets` 了吗？ |
 | 缓冲区 | [ ] `strncpy`/`strncat` 结果是否确保 NULL 终止？ |
 | 资源 | [ ] 文件描述符、互斥锁、socket 在所有路径上都关闭了吗？ |
@@ -133,9 +137,11 @@ Systematic code review framework that ensures consistent coverage across all rev
 
 ### C++
 
+只审查当前项目允许且 diff 实际涉及的特性；C 风格且禁库的路径遵守上方适用范围，不以未采用智能指针或标准库作为缺陷。
+
 | 类别 | 检查项 |
 |------|--------|
-| 资源管理 | [ ] 使用 RAII (智能指针/容器) 而非手动 `new`/`delete` 吗？ |
+| 资源管理 | [ ] 所有权和释放路径明确吗？项目允许并采用的 RAII/容器是否正确，显式管理是否覆盖失败和取消？ |
 | 资源管理 | [ ] 异常安全：异常抛出时资源正确释放了吗？ |
 | 移动语义 | [ ] 大对象按值传递时提供了移动构造函数/赋值吗？ |
 | 移动语义 | [ ] `std::move` 使用后原对象状态有注释说明吗？ |
@@ -143,7 +149,7 @@ Systematic code review framework that ensures consistent coverage across all rev
 | 模板 | [ ] SFINAE / concept / requires 约束正确吗？ |
 | 虚函数 | [ ] 基类析构函数是 `virtual` 吗？ |
 | 虚函数 | [ ] `override` 关键字标记所有重写函数吗？ |
-| 并发 | [ ] `std::mutex` 作用域最小化了吗？(使用 `std::lock_guard`/`std::scoped_lock`) |
+| 并发 | [ ] 现有锁的保护范围、锁外对象存活和等待顺序正确吗？使用标准库时另查 guard 的作用域；不以缩短持锁破坏正确性。 |
 | 并发 | [ ] 条件变量有 spurious wakeup 处理吗？ |
 | STL | [ ] 迭代器使用时容器没有被修改吗？(迭代器失效) |
 | STL | [ ] 引用/指针没有悬空吗？(局部变量地址返回) |
@@ -156,7 +162,7 @@ Systematic code review framework that ensures consistent coverage across all rev
 | 所有权 | [ ] `unsafe` 代码块有安全注释说明不变式吗？ |
 | 所有权 | [ ] `unsafe` 块最小化了吗？(能封装在 safe 抽象中吗？) |
 | 错误处理 | [ ] 使用了 `Result<T, E>` 而非 `panic!`/`unwrap()`/`expect()` 处理可恢复错误吗？ |
-| 错误处理 | [ ] 自定义错误类型实现了 `std::error::Error` 吗？ |
+| 错误处理 | [ ] 错误类型符合目标环境约定吗？内核及 `no_std` 不强制使用用户态 `std::error::Error`。 |
 | 并发 | [ ] `Send`/`Sync` 的自动实现是否安全？(特殊成员) |
 | 并发 | [ ] `Arc` 用于跨线程共享，`Rc` 仅用于单线程吗？ |
 | 性能 | [ ] 热点路径有无不必要的 `clone()`？(考虑借用替代) |

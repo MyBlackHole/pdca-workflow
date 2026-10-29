@@ -2,7 +2,7 @@
 name: secure-coding
 description: 安全审查、安全关键逻辑实现或 C/C++/Rust/Go/Python 安全审计时使用。
 metadata:
-  version: 5.0.0-rc.2
+  version: 5.0.0-rc.3
 ---
 
 # Secure Coding (安全编码规范)
@@ -12,6 +12,13 @@ metadata:
 Language-specific secure coding guidelines for C, C++, Rust, Go, and Python. Each section covers the most common security risks with unsafe vs safe code comparisons.
 
 All Chinese annotations follow `// 备注:` format (see `code-comments` skill).
+
+## 适用范围与配合
+
+- 本技能负责安全审计与安全关键实现：信任边界、权限、恶意输入、注入、敏感数据及漏洞触发条件。普通功能开发不因使用 C/C++/Rust 就自动展开完整安全审计。
+- 系统资源的所有权、分配预算、锁协议和异步退出设计使用 [systems-programming](../systems-programming/SKILL.md)；安全关键系统接口同时使用两者，分别说明资源不变量和安全边界。仅做专项安全审计时，不必再加载通用 PR 审查流程。
+- 先确认项目语言和执行环境，再使用下方示例。C 风格 C++ 禁用 C++ 库时，使用 C 接口、显式所有权和项目现有同步原语，不推荐智能指针、STL 或 `std::mutex`。内核及 `no_std` Rust 使用目标树支持的类型和接口，不能照搬用户态 `std`、异步运行库或错误库。
+- 示例只说明局部风险与前提；标注“安全”不替代调用者、别名、并发和完整生命周期证明。
 
 ---
 
@@ -37,7 +44,7 @@ snprintf(buf, sizeof(buf), "%s", input);
 
 ### 2. 释放后使用 (Use-After-Free)
 
-**风险**: 指针释放后未置空，继续使用
+**风险**: 对象释放后，原指针、别名或异步回调仍访问该对象。仅将一个指针置空不能使其他访问者失效。
 
 ```
 // ❌ 不安全
@@ -45,10 +52,12 @@ free(ptr);
 // ... 其他代码 ...
 ptr->field = value;  //  ptr 已释放
 
-// ✅ 安全 — 释放后立即置空
+// 在唯一所有权且没有在途使用者的前提下，使当前持有位置失效
 free(ptr);
 ptr = NULL;
 ```
+
+共享或异步对象须在释放前禁止新增使用者，并等待已有使用者结束，或使用经过证明的引用/延迟回收协议；不能以置空替代该协议。
 
 ### 3. 格式字符串漏洞
 
@@ -96,6 +105,8 @@ size_t total = count * sizeof(element);
 ---
 
 ## C++ 安全
+
+以下条目仅适用于项目允许且实际使用的 C++ 特性。C 风格且禁 C++ 库的路径按 C 安全和显式资源生命周期审查，不要求引入这些设施。
 
 ### 1. 智能指针误用
 
@@ -185,7 +196,7 @@ class Base { virtual ~Base(); };
 
 ### 1. Unsafe 块审查
 
-**风险**: `unsafe` 块绕过了 Rust 的所有安全保证
+**风险**: `unsafe` 操作需要开发者证明编译器无法检查的安全前提；`unsafe` 不会取消借用检查等其他规则。
 
 **Unsafe 块必须满足的条件**：
 - 裸指针解引用前确保指针**有效**、**对齐**、**非空**
@@ -199,13 +210,13 @@ unsafe {
     let val = *ptr;  // 指针可能悬空或未对齐
 }
 
-// ✅ 安全 — 验证指针后再解引用
-if (!ptr.is_null() && ptr.is_aligned()) {
-    unsafe {
-        let val = *ptr;
-    }
+// 非空和对齐仍不能证明对象存活；接口允许时直接接收有效借用
+fn read_value(value: &i32) -> i32 {
+    *value
 }
 ```
+
+确实需要裸指针接口时，按该操作的完整安全契约证明可访问范围、初始化、对象存活、别名及并发约束；不能只检查非空和对齐就解引用。
 
 ### 2. unwrap() 滥用
 

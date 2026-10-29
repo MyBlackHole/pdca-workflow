@@ -1,0 +1,3 @@
+interface:
+  display_name: "系统编程与资源设计"
+  short_description: "借鉴 Linux 内核规范，主动设计用户态与内核态的内存、锁及接口"

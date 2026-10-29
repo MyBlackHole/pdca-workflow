@@ -2,7 +2,7 @@
 name: build-config
 description: 构建配置搭建、依赖管理或 C/C++/Rust/Go/Python 构建系统切换时使用。
 metadata:
-  version: 5.0.0-rc.2
+  version: 5.0.0-rc.3
 ---
 
 # Build Config (构建配置速查)
@@ -11,7 +11,11 @@ metadata:
 
 Quick-reference build configuration patterns for C, C++, Rust, Go, and Python. Each language section covers the build file structure, dependency management, common commands, and best practices.
 
-**Companion skill:** `secure-coding` for compiler security flags and safe dependency practices.
+## 适用范围与配合
+
+本技能负责构建、依赖、工具链与运行器配置。优先沿用项目已有构建系统、语言模式和依赖政策；下面的 xmake、C++ 库及 Rust 依赖均为示例，不能作为迁移或添加依赖的理由。C 风格 C++ 禁 C++ 库时，不加入 `fmt`、STL 等依赖，也不因文件后缀为 `.cpp` 自动启用异常、RTTI 或升级语言标准。
+
+内核及 `no_std` 的编译、链接和可用依赖服从目标源码树；用户态安全编译参数不直接套入 Kbuild。资源和并发设计使用 [systems-programming](../systems-programming/SKILL.md)，专项编译安全或依赖安全问题使用 [secure-coding](../secure-coding/SKILL.md)；仅在这些子任务实际出现时读取。
 
 ---
 

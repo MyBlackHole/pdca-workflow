@@ -1,13 +1,13 @@
 ---
-name: linux-kernel-engineering
-description: Use when developing or reviewing Linux userspace systems code, kernel modules, drivers, or UAPI in C, C-style C++ without C++ libraries, or Rust, especially for ownership, concurrency, error recovery, ABI compatibility, and measured performance. 适用于用户态与内核态系统开发及 Linux 内核工程规范审查。
+name: systems-programming
+description: Use when designing, implementing, or reviewing C, C-style C++ without C++ libraries, or Rust systems code involving ownership, memory budgets, shared-state synchronization, asynchronous shutdown, kernel execution contexts, or ABI/UAPI compatibility. 适用于用户态与内核态的系统资源、并发和接口设计。
 metadata:
-  version: 1.2.0
+  version: 2.0.0
 ---
 
-# Linux 内核工程实践
+# 系统编程与资源设计
 
-以 Linux 内核的可维护性、资源纪律、并发设计、兼容性和可验证性为基础，按实际执行环境选择实现。此技能是工程实践指南，不是内核全部子系统的 API 手册。
+以 Linux 内核的可维护性、资源纪律、并发设计、兼容性和可验证性为基础，主动设计用户态与内核态的内存、锁及接口。平台 API 资料聚焦 Linux；用于其他平台时迁移设计原则，另行核对平台契约。此技能不是内核全部子系统的 API 手册。
 
 ## 适用边界
 
@@ -15,6 +15,20 @@ metadata:
 - Rust 单独沿用所有权、安全边界与同步设计；用户态遵守项目 Rust 约定，内核态使用目标树支持的 Rust 抽象。
 - 遵守用户和项目既有约束。普通改动不附带全仓格式化、语言迁移或替换依赖。遇到已有 C++ 库，只在本次授权范围内应用上述约束，不自动重写整个项目。
 - 本文“共同原则”是跨环境的工程提炼；内核专用规则只约束内核路径。准确 API、配置和子系统约定以**目标源码树**为准，不能将在线最新文档当作旧内核的接口保证。
+
+## 与其他工程技能的分工
+
+按当前任务选择主技能，仅在具体子任务需要时读取配套技能；不因语言相同自动加载全部技能。
+
+| 当前任务 | 主技能与配合条件 |
+| --- | --- |
+| 所有权、分配预算、锁协议、异步退出或 ABI/UAPI 设计及专项审查 | 本技能；负责资源模型、不变量、实现取舍及针对性验证 |
+| 安全审计、权限/信任边界、注入、敏感数据或漏洞修复 | [secure-coding](../secure-coding/SKILL.md)；涉及系统资源与并发证明时配合本技能 |
+| diff/PR 的通用质量审查 | [code-review-checklist](../code-review-checklist/SKILL.md)；资源与接口语义使用本技能，专项安全问题使用 secure-coding |
+| 测试框架、覆盖范围或完整测试策略 | [testing-strategy](../testing-strategy/SKILL.md)；本技能只补资源耗尽、并发交错、退出及 ABI 等领域场景 |
+| 构建、依赖或工具链配置 | [build-config](../build-config/SKILL.md)；本技能提供执行环境限制，不附带构建系统迁移或新增依赖 |
+
+边界检查、失败处理和对象存活是系统设计的基本条件，仍在本技能中保留；专项安全审计再展开攻击面与可利用性。配套技能的语言示例服从本次项目配置：C 风格 C++ 不引入 C++ 库，内核 Rust 不套用用户态 `std` 示例。
 
 ## 工作入口
 

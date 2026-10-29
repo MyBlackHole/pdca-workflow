@@ -1,3 +1,0 @@
-interface:
-  display_name: "Linux 内核工程实践"
-  short_description: "基于 Linux 内核规范，适用于 C 为主的用户态与内核态开发"
