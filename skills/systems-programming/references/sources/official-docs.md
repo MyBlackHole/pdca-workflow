@@ -1,6 +1,6 @@
 # 官方依据与覆盖映射
 
-核对日期：2026-10-29。在线文档持续变化，不绑定本技能到“最新内核”。实践优先级：用户/项目要求 → 目标树 `Documentation/` 与子系统约定 → 匹配版本官方资料 → 在线参考；当前上游贡献政策另按其生效范围核对。差异结合声明、实现和调用者解释，记录版本与限制。
+核对日期：2026-10-30（本轮专项：kthread/workqueue 与用户态等待/I/O；其余主题沿用前次依据，按任务重新核对）。在线文档持续变化，不绑定本技能到“最新内核”。实践优先级：用户/项目要求 → 目标树 `Documentation/` 与子系统约定 → 匹配版本官方资料 → 在线参考；当前上游贡献政策另按其生效范围核对。差异结合声明、实现和调用者解释，记录版本与限制。
 
 本表映射工程提炼和专项读取责任，不声称已将所有 Linux 文档、子系统细节或所有版本完整编入技能。**规则提炼**由对应资料维护；**专项核对**表示任务触及时必须读取目标原文及必要源码后才能作相应结论。链接存在、已经读到和已经运行验证是不同证据。按本次主题选择行，不全量加载本表链接。
 
@@ -33,7 +33,7 @@
 | [Sequence counters/seqlock](https://docs.kernel.org/locking/seqlock.html)、[What is RCU](https://docs.kernel.org/RCU/whatisRCU.html)、[RCU 与模块卸载](https://docs.kernel.org/RCU/rcubarrier.html) | [复杂读侧同步](../environments/kernelspace.md#复杂读侧同步)：采用这些机制前核对写者、抢占/读者上下文、家族、指针及回调回收条件 |
 | [Memory allocation](https://docs.kernel.org/core-api/memory-allocation.html)、[GFP FS/IO scopes](https://docs.kernel.org/core-api/gfp_mask-from-fs-io.html) | [内核资源](../environments/kernelspace.md#内存资源与设备)：GFP、回收、计量及保留；预算设计另由 [内存与锁](../principles/memory-and-locks.md#内存先所有权和预算再分配器) 维护 |
 | [Scope-based cleanup](https://docs.kernel.org/core-api/cleanup.html) | [C 作用域清理](../environments/kernelspace.md#c-作用域清理)：采用 helpers 前核对作用域、声明顺序与移交 |
-| [Completions](https://docs.kernel.org/scheduler/completion.html)、[Driver basics](https://docs.kernel.org/driver-api/basics.html) | [等待与停止](../environments/kernelspace.md#等待per-cpu-与停止)：wait/completion、超时后存活、轮次复用及 timer 最终停止；调用上下文和具体版本按原文/声明核对 |
+| [Completions](https://docs.kernel.org/scheduler/completion.html)、[Driver basics](https://docs.kernel.org/driver-api/basics.html) | [等待与停止](../environments/kernelspace.md#等待per-cpu-与停止)：wait/completion、kthread 启动/合作停止及 task 存活、超时和轮次复用、timer 最终停止；调用上下文和具体版本按原文/声明核对 |
 | [this_cpu operations](https://docs.kernel.org/core-api/this_cpu_ops.html) | [per-CPU](../environments/kernelspace.md#等待per-cpu-与停止)：单次本地操作、指针迁移、远端访问及复合状态的不同保证 |
 
 ## 数据结构与表示
@@ -68,7 +68,8 @@
 
 | 主题与官方原文 | 技能内责任与触发条件 |
 | --- | --- |
-| [close(2)](https://man7.org/linux/man-pages/man2/close.2.html)、[write(2)](https://man7.org/linux/man-pages/man2/write.2.html)、[pthreads(7)](https://man7.org/linux/man-pages/man7/pthreads.7.html) | [用户态](../environments/userspace.md)：返回值、短操作、错误与线程；具体调用契约查目标系统 man pages/libc/POSIX |
+| [close(2)](https://man7.org/linux/man-pages/man2/close.2.html)、[write(2)](https://man7.org/linux/man-pages/man2/write.2.html)、[recv(2)](https://man7.org/linux/man-pages/man2/recv.2.html)、[send(2)](https://man7.org/linux/man-pages/man2/send.2.html)、[pthreads(7)](https://man7.org/linux/man-pages/man7/pthreads.7.html) | [用户态](../environments/userspace.md)：返回值、短操作、空数据报、SIGPIPE、错误与线程；具体调用契约查目标系统 man pages/libc/POSIX |
+| [POSIX 条件变量时钟](https://man7.org/linux/man-pages/man3/pthread_condattr_getclock.3p.html)、[glibc 显式时钟等待](https://sourceware.org/glibc/manual/latest/html_node/Waiting-with-Explicit-Clocks.html) | [线程等待](../environments/userspace.md#线程信号与取消)：截止时间与条件变量/等待接口使用相同时钟；默认与可选能力按目标平台核对，不能沿用历史 LinuxThreads 页面对现代实现的属性描述 |
 | [signal-safety(7)](https://man7.org/linux/man-pages/man7/signal-safety.7.html)、[fork(2)](https://man7.org/linux/man-pages/man2/fork.2.html)、[epoll(7)](https://man7.org/linux/man-pages/man7/epoll.7.html) | [进程与事件循环](../environments/userspace.md#进程与事件循环)：fork/exec、信号、事件触发与 fd 存活；涉及这些路径时读取对应原文 |
 | [fsync(2)](https://man7.org/linux/man-pages/man2/fsync.2.html)、[rename(2)](https://man7.org/linux/man-pages/man2/rename.2.html) | [持久性](../environments/userspace.md#文件更新与持久性)：替换、文件/目录同步与失败阶段，最终保证另核对目标文件系统/存储契约 |
 | [Rust atomics](https://doc.rust-lang.org/nomicon/atomics.html)、[C++ data races](https://eel.is/c++draft/intro.races) | 用户态语言模型与 FFI；C 风格 C++ 仍服从 C++ 语义，Rust 库选择不受 C++ 禁库规则影响；不能替代内核的具体抽象契约 |
