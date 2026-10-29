@@ -18,7 +18,7 @@
 | --- | --- | --- |
 | 容器选择与安全遍历：[list](https://docs.kernel.org/core-api/list.html) | `Documentation/core-api/list.rst:320–363,753–775`、`include/linux/list.h:909–929,975–989`；safe 缓存下一项，锁释放及并发删除另有约束 | 按访问模式比较连续存储、链表和索引；safe 不是并发或生命周期保证。用户态用项目 C 抽象重新证明 |
 | 索引与对象引用：[XArray](https://docs.kernel.org/core-api/xarray.html) | `Documentation/core-api/xarray.rst:185–247`；`lib/xarray.c:1600–1638` 的 xa_load 在返回前结束内部读侧保护 | 索引内部保护不替调用者取得对象使用权。查找、取引用与删除形成完整协议；ID/fd/槽位复用另有身份问题 |
-| completion 与等待：[Completions](https://docs.kernel.org/scheduler/completion.html)、[Driver basics](https://docs.kernel.org/driver-api/basics.html) | `include/linux/completion.h:60–102`、`kernel/sched/completion.c:1–85,155–176,330–363`；`include/linux/wait.h:96–127,300–363` | 超时不是生产者取消；重新初始化不是收敛上一轮参与者；done 不是所有等待者已退出的证明。用户态条件等待也围绕同步谓词、停止与存活协议 |
+| completion 与等待：[Completions](https://docs.kernel.org/scheduler/completion.html)、[Driver basics](https://docs.kernel.org/driver-api/basics.html) | `include/linux/completion.h:60–102`、`kernel/sched/completion.c:1–85,155–176,330–358`；`include/linux/wait.h:96–127,300–363` | 超时不是生产者取消；重新初始化不是收敛上一轮参与者；done 不是所有等待者已退出的证明。用户态条件等待也围绕同步谓词、停止与存活协议 |
 | per-CPU 与迁移：[this_cpu](https://docs.kernel.org/core-api/this_cpu_ops.html) | `Documentation/core-api/this_cpu_ops.rst:124–157,281–318` 区分指针、单次操作及远端访问 | 旧 CPU 地址未必立即失效，但不能继续按当前 CPU 独占使用。迁移约束、互斥及复合状态不能互相替代 |
 | timer/work 重新生产：[Driver basics](https://docs.kernel.org/driver-api/basics.html) | `kernel/time/timer.c:1630–1721`；delete_sync 的禁止重启前提与 shutdown_sync 的最终禁入语义不同 | 按目标版本和回调上下文停止全部生产来源，再等待与回收；用户态 timer/线程机制按实际接口采用 |
 | poll 登记、read 与非阻塞：[VFS](https://docs.kernel.org/filesystems/vfs.html) | `include/linux/poll.h:34–69` 的 qproc；`fs/select.c:158–177,219–237` 的回调可使用 GFP_KERNEL；`drivers/uio/uio.c:543–634` 先登记再检查并处理 O_NONBLOCK | 登记后按同步协议读 readiness，不丢就绪变化；登记过程可能分配/睡眠。用户态事件循环继续按自身 epoll/poll 及 fd 契约处理 |
@@ -115,6 +115,17 @@ parent public-API checks: passed
 最终复核支持其作为未来内核态/用户态开发的工程入口。这里的完整性是本次统一规范、可执行设计决策和专项读取责任的完整闭环；不将所有 Linux 子系统、架构、硬件和未来版本的文档复制进 skill。触及具体接口时仍须按目标树、声明、调用者与配置取得证据；这项责任已写入技能。
 
 没有修改或构建目标 Linux，没有取得硬件 DMA、真实驱动 VFS、内核配置矩阵、掉电恢复或性能基准结果。用户态队列案例只能证明该受控契约在实际场景中的表现，不能据此认证所有未来代码或声称已经测得加速。
+
+## 提交后复查（93f2875）
+
+按用户复查请求，以 `93f287592f8d7390d0a9222fb21982306906b80a` 为基线，重新执行四遍维护审查。本节补记后续观察，前文保留 3.3.0 当次实施及验证的范围。
+
+- **Scope Review**：直接审读入口与 18 份 references、UI 元数据及本报告；独立只读审查另核对工程索引、两份前轮报告及隔离实现/测试/日志。未枚举仓库或源码树，未启动正式 PDCA 生命周期。
+- **Consistency Review**：重新核对官方 Kconfig、cleanup、PREEMPT_RT、AI 贡献、completion、XArray、VFS 和 DMA 原文的相关条文，并读取本地 poll/select、completion、XArray、timer、VFS 和 igb 相关路径。未发现影响技能规则正确性的冲突；未将这八份在线资料的核对扩大为全部官方文档认证。
+- **Adversarial Review**：重点反查索引保护与对象存活、等待结束与异步回收、删除定时器与禁止重启、fd/file/VMA 引用以及 DMA 一致性与顺序是否被混同。一次性 fresh-context 只读审查 `systems_skill_rereview` 独立检查内部规则和真实验收材料，未报告确定缺陷；其未读取官方原文或 Linux 源码，不代替本节的技术核对。
+- **Evidence Review**：发现一处非阻断的来源范围笔误：上表将 `kernel/sched/completion.c` 的尾部片段写到 363 行，实际文件共 358 行，现修正为 330–358。重新读取 `completion_done` 及其返回前锁同步，文件 SHA-256 仍与下表一致；技术结论不变。独立审查另核实队列实现和父级测试哈希与报告一致、11 个 C 用例及 C++ 日志与实际断言对应，未将失败的 ptrace 或未运行的 sanitizer 记为通过。
+
+本次只修正报告引用并记录复查，技能规则及版本保持 3.3.0。176 个本地链接/锚点检查无错误，报告 diff 空白检查退出 0，五份受保护文件的 SHA-256 与复查开始时一致。没有重新运行此前已通过的实现测试，没有新增内核、硬件、sanitizer 或性能证据；历史场景的 fresh-context 属性不由保留的代码与运行日志独立证明。现有材料支持有限案例及规则审查，不支持普遍能力或所有未来代码正确的保证。
 
 ## 本轮源码内容标识
 
