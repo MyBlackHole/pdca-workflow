@@ -1,6 +1,6 @@
 # 官方依据与覆盖映射
 
-核对日期：2026-10-30。本轮按 Linux 7.3.0 源树核对 `Documentation/index.rst`、`subsystem-apis.rst` 及相关分类索引。在线文档和目标树会变化，不绑定本技能到单一“最新内核”。实践优先级：用户明确要求 → 目标树 `Documentation/`、子系统约定和维护者要求 → 匹配版本官方资料 → 在线参考；上游贡献政策另按适用版本核对。差异结合声明、实现和调用者解释，记录版本与限制。
+核对日期：2026-10-30。本轮比对对象是本地 `linux-7.3` 目录内本轮实际读取的获准文档与源码文件。未核实该目录的 Git 提交、Makefile 版本、上游来源或整树修改状态，因此不能据此称其为最新主线或已认证的完整 Linux 7.3.0 树。在线文档和目标树会变化，不绑定本技能到单一“最新内核”。实践优先级：用户明确要求 → 目标树 `Documentation/`、子系统约定和维护者要求 → 匹配版本官方资料 → 在线参考；上游贡献政策另按适用版本核对。差异结合声明、实现和调用者解释，记录版本与限制。
 
 本技能把 Linux 内核工程经验作为强制工程基线。覆盖要求是：目标树文档总目录中的每个开发领域都必须有定位入口；任务涉及该领域时，AI **必须**读完适用的目标版本规范、子系统规则及相关声明/调用路径，并按其要求实现和验证。摘要和映射不能代替适用原文。Linux 文档自身仍在持续整理，因此不能声称任何固定摘要包含了所有版本、架构、硬件和子系统细节；未能从获准来源确认的要求必须列为未知，不能默默略过。链接存在、读过原文和实际运行验证是不同证据。
 
@@ -52,10 +52,20 @@
 | [Atomic types](https://docs.kernel.org/core-api/wrappers/atomic_t.html)、[Volatile](https://docs.kernel.org/process/volatile-considered-harmful.html) | [同步设计](../principles/memory-and-locks.md#锁先减少共享再缩小临界区)：发布/反向交接与可见性；具体操作和 LKMM 排序由目标原文/源码核对 |
 | [Adding krefs](https://docs.kernel.org/core-api/kref.html)、[Workqueue](https://docs.kernel.org/core-api/workqueue.html) | [生命周期](../principles/memory-and-locks.md#生命周期与退出协议) 与内核环境：取得引用、threaded/BH 和异步停止；具体 callback/取消语义专项核对 |
 | [Sequence counters/seqlock](https://docs.kernel.org/locking/seqlock.html)、[What is RCU](https://docs.kernel.org/RCU/whatisRCU.html)、[RCU 与模块卸载](https://docs.kernel.org/RCU/rcubarrier.html) | [复杂读侧同步](../environments/kernelspace.md#复杂读侧同步)：采用这些机制前核对写者、抢占/读者上下文、家族、指针及回调回收条件 |
+| [Linux Kernel Memory Consistency Model (LKMM)](https://docs.kernel.org/dev-tools/lkmm/index.html) | [内核并发内存模型证明义务](../principles/memory-and-locks.md#内核并发内存模型的证明义务)：自定义屏障、发布协议和无锁算法触发 litmus 推理；区分说明性示例与可执行 litmus |
 | [Memory allocation](https://docs.kernel.org/core-api/memory-allocation.html)、[GFP FS/IO scopes](https://docs.kernel.org/core-api/gfp_mask-from-fs-io.html) | [内核资源](../environments/kernelspace.md#内存资源与设备)：GFP、回收、计量及保留；预算设计另由 [内存与锁](../principles/memory-and-locks.md#内存先所有权和预算再分配器) 维护 |
 | [Scope-based cleanup](https://docs.kernel.org/core-api/cleanup.html) | [C 作用域清理](../environments/kernelspace.md#c-作用域清理)：采用 helpers 前核对作用域、声明顺序与移交 |
 | [Completions](https://docs.kernel.org/scheduler/completion.html)、[Driver basics](https://docs.kernel.org/driver-api/basics.html) | [等待与停止](../environments/kernelspace.md#等待per-cpu-与停止)：wait/completion、kthread 启动/合作停止及 task 存活、超时和轮次复用、timer 最终停止；调用上下文和具体版本按原文/声明核对 |
 | [this_cpu operations](https://docs.kernel.org/core-api/this_cpu_ops.html) | [per-CPU](../environments/kernelspace.md#等待per-cpu-与停止)：单次本地操作、指针迁移、远端访问及复合状态的不同保证 |
+
+## MM、IRQ 与电源管理
+
+| 主题与官方原文 | 技能内责任与触发条件 |
+| --- | --- |
+| [Process Addresses](https://docs.kernel.org/mm/process_addrs.html)、[Page Tables](https://docs.kernel.org/mm/page_tables.html)、[Physical Memory](https://docs.kernel.org/mm/physical_memory.html) | [进程地址与页表生命周期](../environments/kernelspace.md#进程地址与页表生命周期)：触及 VMA、fault、PTE/PMD、zap、页表回收或 backing page 时分别核对稳定性、锁与架构 helper；通用规则不替代 MM 专项原文 |
+| [Generic IRQ handling](https://docs.kernel.org/core-api/genericirq.html) | [IRQ 与 PM 生命周期](../environments/kernelspace.md#irq-与-pm-生命周期)：区分 hardirq/threaded handler 的同步范围，核对共享中断、设备中断源及等待上下文 |
+| [Device Power Management Basics](https://docs.kernel.org/driver-api/pm/devices.html) | [IRQ 与 PM 生命周期](../environments/kernelspace.md#irq-与-pm-生命周期)：设备依赖顺序、noirq 限制、回调跳过和 suspend/resume 期间设备/IRQ/DMA 静止；具体设备策略另读子系统规范 |
+| [Lockdep design](https://docs.kernel.org/locking/lockdep-design.html) | [内核锁约束](../environments/kernelspace.md#锁内存序与生命周期)：涉及 IRQ-safe/unsafe 类别、锁嵌套、反向顺序或 lockdep assertion 时读取原文并验证实际调用链 |
 
 ## 数据结构与表示
 
@@ -81,7 +91,7 @@
 
 | 主题与官方原文 | 技能内责任与触发条件 |
 | --- | --- |
-| [Kernel testing](https://docs.kernel.org/dev-tools/testing-overview.html)、[Checkpatch](https://docs.kernel.org/dev-tools/checkpatch.html)、[Sparse](https://docs.kernel.org/dev-tools/sparse.html)、[KCSAN](https://docs.kernel.org/dev-tools/kcsan.html) | [改动验证](../workflows/validation.md)：KUnit/kselftest、工具能力与局限；按风险和目标支持选择，工具无报告不代替证明 |
+| [Kernel testing](https://docs.kernel.org/dev-tools/testing-overview.html)、[KUnit](https://docs.kernel.org/dev-tools/kunit/index.html)、[Checkpatch](https://docs.kernel.org/dev-tools/checkpatch.html)、[Sparse](https://docs.kernel.org/dev-tools/sparse.html)、[Coccinelle](https://docs.kernel.org/dev-tools/coccinelle.html)、[KASAN](https://docs.kernel.org/dev-tools/kasan.html)、[KCSAN](https://docs.kernel.org/dev-tools/kcsan.html) | [改动验证](../workflows/validation.md)：按内存安全、竞争、接口和改写风险选择工具；区分采样/覆盖边界，工具无报告不代替证明 |
 | [Printk basics](https://docs.kernel.org/core-api/printk-basics.html) | [可观测性](../environments/kernelspace.md#可观测性框架与-rust)：日志、动态调试和限速；具体格式符/地址披露专项核对 |
 | [Rust general information](https://docs.kernel.org/rust/general-information.html)、[Rust coding guidelines](https://docs.kernel.org/rust/coding-guidelines.html) | [内核环境](../environments/kernelspace.md#可观测性框架与-rust)、[编码与文档](../principles/coding-and-documentation.md#linux-内核编码与文档)：no_std、树内抽象、FFI、rustdoc 与 Safety；新增 Rust 代码前核对目标树支持 |
 

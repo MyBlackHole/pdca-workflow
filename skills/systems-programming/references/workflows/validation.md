@@ -24,6 +24,8 @@
 
 这是可选工具映射，不要求每次全部启用。不同 sanitizer/config 可能需要分别构建运行；支持程度以目标工具链/架构为准，不强行组合全部开关。
 
+KCSAN 使用采样方式检测数据竞争，未报告竞态只能说明本次配置和执行未观察到已检测的问题，不能证明缺少屏障的发布协议正确。内核内存序或自定义无锁协议变更，除动态测试外须按 [LKMM 证明义务](../principles/memory-and-locks.md#内核并发内存模型的证明义务) 检查允许结果；KASAN/KCSAN、KUnit、Coccinelle、Sparse 等具体能力与配置以目标树 [`Documentation/dev-tools/`](https://docs.kernel.org/dev-tools/index.html) 相应专题为准，不把工具无报告当正确性证明。
+
 ## 内核构建与文档检查
 
 内核变更按目标树提交检查表和子系统 CI 要求列出适用矩阵，声明满足上游流程前逐项对照 [官方检查表](../sources/official-docs.md#构建与配置)。普通用户态或无关文档修改不启动该矩阵。

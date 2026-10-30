@@ -34,6 +34,7 @@
 - 对象引用采用适合的 `refcount_t`/kref；取得与交付引用的存活依据按 [生命周期与退出协议](../principles/memory-and-locks.md#生命周期与退出协议) 检查。只能在已有有效引用或其他存活保护下 `kref_get()`；从表/链表查找时，保护必须一直覆盖到成功取得引用。`kref_get_unless_zero()` 必须检查结果且仍须保护查找期间的对象内存。引用计数 API 不替代内部状态锁，也不保证与 `atomic_t` 相同的内存序。
 - 按锁原语实际类别和目标 PREEMPT_RT 配置检查嵌套：sleeping lock 不能嵌在 CPU-local/spinning 锁中；通常顺序为 sleeping lock → `spinlock_t`/`rwlock_t`/`local_lock` → `raw_spinlock_t`/bit spinlock。`local_lock` 是本 CPU 作用域保护，不提供跨 CPU 互斥；有所有者语义的锁须由持有它的 task 解锁；semaphore 没有此所有者语义，rwsem 仅特定 reader-release API 允许非持有者释放。新设计不要用 semaphore 同时承担互斥和等待，应分别评估 mutex 与 completion/waitqueue。
 - 卸载/失败回滚遵循 [异步退出协议](../principles/memory-and-locks.md#生命周期与退出协议)，按设备依赖同步 IRQ、定时器、work、DMA 等。`cancel_work_sync` 不是阻止所有未来 queue 的开关；`devm_*` 也不自动消除活动回调的竞态。
+- 对无锁共享访问、屏障、发布/获取或依赖排序，必须按 [内核并发内存模型证明义务](../principles/memory-and-locks.md#内核并发内存模型的证明义务) 写清访问者与允许结果；复杂或自定义排序要用 LKMM litmus 验证，不凭架构经验或短时压力测试下结论。
 
 ## 复杂读侧同步
 
@@ -43,6 +44,27 @@
 - seqcount 的重试检查不保护可替换指针的对象存活；写者若能释放读者正在跟随的指针，事后重试已经太晚。指针须有独立存活依据或换用适合的结构。快照复制在读区内完成，重试不得重复提交不可撤销副作用。
 - RCU 分别证明读侧保护、初始化与指针发布、写者同步和延迟回收；引用计数不能替代 grace period，RCU 也不自动序列化写者。调用者需要主动阻塞时通常评估 SRCU 等合适家族；RT、追踪、NMI 等场合按所选家族原文判断，不概括为所有 RCU 均可或均不可睡眠。
 - 停止后仍有模块内 RCU 回调时，等待 grace period 不等于等待已排队回调执行完。先阻止新增来源，再按实际采用的家族/实例核对 `rcu_barrier`、`srcu_barrier` 等回调收敛；它们也不反向替代所有 grace-period 要求。
+
+## 进程地址与页表生命周期
+
+用户地址空间、VMA、页表页和映射的 backing page 有不同生命周期。持有 `mmap_lock` 或稳定 VMA 元数据，不等于 backing pages 或页表项一直有效；缺页处理也可能主动放下 `mmap_lock`，返回时必须按路径重新验证。改变页表或实现 walk/zap/install/free 时，先读目标树 [Process Addresses](https://docs.kernel.org/mm/process_addrs.html)、[Page Tables](https://docs.kernel.org/mm/page_tables.html) 和对应 MM API，再选择对应层级锁与架构 helper。
+
+- 页表遍历、安装、清除与释放各有不同的同步要求。安装不得只凭反向映射锁推断合法；释放页表前必须满足目标 helper 所要求的 zap 和禁止新 fault/修改等前置条件。
+- PTE 访问与更新使用树内页表 helper 和规定的 PTE 锁/重验证协议；不要把一次读到的 PMD/PTE 当成在锁外持续有效的指针。大页、并发拆分/合并、页迁移与架构差异均可能改变层级及有效性。
+- 页表级别可在不同架构折叠。按抽象层级和目标架构 API 编写，不能假设五级结构每一级都实际存在，也不能用另一架构的源码替代目标架构契约。
+
+内核 MM 文档 `Documentation/mm/process_addrs.rst` 与 `page_tables.rst` 定义地址空间和页表约束；`mm/memory.c` 的缺页路径展示 `mmap_lock` 可能被释放后重新取得。遇到页回收、迁移、反向映射或分配器内部规则时，继续读取对应 MM 专项文档和目标树调用链；不能由本段推导出未核对的 MM API 保证。
+
+## IRQ 与 PM 生命周期
+
+把 hardirq、threaded IRQ、work 和设备硬件源分别画进停止依赖图；对象内存、handler 活动、设备中断源和 DMA 停止是不同条件。
+
+- 选择 IRQ 同步 API 前确认等待覆盖范围：`synchronize_hardirq()` 不等待 threaded handler；`synchronize_irq()` 等待相应 handler，可能睡眠，须在可抢占上下文调用。同步期间不能持有 handler 仍需取得的资源。`disable_irq()` 会等待 handler，`disable_irq_nosync()` 不等待；不能混为同一停止保证。
+- 共享 IRQ 释放前先关闭本设备的中断源，并保证 primary handler 能识别是否由本设备触发；`dev_id` 必须满足目标 IRQ API 的唯一性/非空要求。停内核 IRQ 线不等同于设备已停止产生中断或 DMA。
+- system suspend 按设备依赖处理：suspend 通常自子设备向父设备，resume 反向；`*_noirq` 阶段常规 IRQ handler 已关闭（`IRQF_NO_SUSPEND` 是显式例外），属于受限上下文，先静止 IRQ/DMA 并核对可用 API。恢复时 `resume_noirq` 完成 handler 开启前必须做的工作。
+- 不能假设每个 PM 回调每轮必定运行。根据 direct-complete 等目标树策略检查可能跳过的阶段；运行时 PM 与系统睡眠回调之间的状态转换按设备文档及调用链证明。
+
+依据是目标树 `Documentation/core-api/genericirq.rst`、`kernel/irq/manage.c` 的 API 注释、`Documentation/driver-api/pm/devices.rst` 及 PM 回调实现。硬件是否真正静止还须由设备协议及平台证据支持，软件同步 API 本身不能证明这一点。
 
 ## 内存、资源与设备
 

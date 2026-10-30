@@ -46,6 +46,9 @@
 | --- | --- | --- |
 | 现代 C 清理机制 | [C 作用域清理](../environments/kernelspace.md#c-作用域清理) | helper 实现、作用域与具体移交/退出路径 |
 | mutex、引用及发布 | [锁与生命周期](../environments/kernelspace.md#锁内存序与生命周期) | 内部访问结束点、调用者持有关系与回收依据 |
+| LKMM、屏障与 RCU | [内核并发内存模型证明义务](../principles/memory-and-locks.md#内核并发内存模型的证明义务)、[复杂读侧同步](../environments/kernelspace.md#复杂读侧同步) | 将 `tools/memory-model/Documentation/` 的规则与实际 API 语义对照；`kernel/rcu/tree.c`、`lib/refcount.c` 中的实现仅说明对应树/配置，不可推广为通用屏障配方 |
+| VMA、fault 与页表访问 | [进程地址与页表生命周期](../environments/kernelspace.md#进程地址与页表生命周期) | 对照 `Documentation/mm/process_addrs.rst`、`page_tables.rst` 与 `mm/memory.c` 的锁释放/重取路径；区分 VMA 元数据稳定、页表项有效和 backing page 存活 |
+| IRQ 停止、PM 与设备解绑 | [IRQ 与 PM 生命周期](../environments/kernelspace.md#irq-与-pm-生命周期) | 对照 `Documentation/core-api/genericirq.rst`、`Documentation/driver-api/pm/devices.rst` 和 `kernel/irq/manage.c`、`drivers/base/power/main.c`；按 handler 类型、回调阶段、硬件源和 DMA 分别追踪 |
 | GFP、memcg、mempool 与回收进展 | [内核资源](../environments/kernelspace.md#内存资源与设备) | 配置、分配/释放上下文、底层分配器及等待依赖 |
 | 队列预算与锁外操作 | [内存与锁设计](../principles/memory-and-locks.md) | 设计条件在已读路径中是否全部成立 |
 | 规范与 API 定位 | [官方资料索引](official-docs.md) | 树内文档与匹配版本官方资料的差异 |
