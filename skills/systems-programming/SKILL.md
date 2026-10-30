@@ -2,7 +2,7 @@
 name: systems-programming
 description: Use when designing, implementing, debugging, auditing, testing, reviewing, building, documenting, or preparing authorized Git commits for software, especially C, C-style C++ without C++ libraries, Rust, or Linux userspace/kernel code. 软件工程统一入口。
 metadata:
-  version: 3.5.1
+  version: 3.5.2
 ---
 
 # 系统编程与软件工程
@@ -77,7 +77,7 @@ metadata:
 
 ## 交付与证据
 
-按任务规模说明实际行为或发现、相关设计决定、关键契约、实际验证和未覆盖项。发现给出位置、触发条件及影响；性能结论给出条件、基线和数据。静态推断、拟运行、未运行与实际通过分别表述。
+按任务规模说明实际行为或发现、相关设计决定、关键契约、实际验证和未覆盖项。发现给出位置、触发条件及影响；性能结论给出条件、基线和数据。静态推断、拟运行、未运行与实际通过分别表述。Linux 内核开发任务必须说明目标源码树版本，并逐项列出本次实际核对的官方文档/子系统约定的路径和章节或标题；相关原文未读、配置未构建或目标环境无法验证的内容必须标为未核对/未验证。仅查看本技能摘要、文档索引或链接，不能声称符合完整规范；遇到无法取得的适用原文时，明确列出限制和未知，不得默默略过。
 
 测试产物只写工作区，**禁止向 `/tmp` 创建或写入测试文件、临时目录、日志、构建产物或缓存**；运行前按 [输出目录约束](references/workflows/validation.md#输出目录约束) 核对子工具及受限情况。保护凭证与个人信息，不输出完整环境或无关敏感数据。
 
