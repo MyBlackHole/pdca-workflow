@@ -31,6 +31,15 @@ AI 查错/修复的贡献开始前，完整读取适用的 development-process�
 - 使用 MAINTAINERS、历史及 `scripts/get_maintainer.pl` 定位真正相关的维护者/列表，接口变更核对用户 API 和手册维护者。格式使用原文规定的纯文本补丁；修订说明与不应进入永久提交记录的内容放在 cover letter 或 `---` 后，不混入提交正文。
 - 回应审查意见，提交新版时说明相对上版的变化并保留实际获得且仍适用的标签；不可变的重发与修改后的新版分别使用 RESEND 和版本号。人类发送前复核收件人、附件/正文及系列完整性。
 
+## 补丁证据、说明与接口文档
+
+- 每个补丁只解决一个可独立审查的问题；补丁系列中每一步都应保持可构建且行为合理。提交说明须自足，写清问题、用户可见影响、触发条件、技术方案和实际验证；性能、内存、栈或代码尺寸收益须给出可复核数据和代价。标题用祈使语气并简明描述改动和原因，摘要不超过 75 个字符；永久说明按上游格式换行至约 75 列。
+- 只在证据成立时写 `Fixes:`、`Closes:`、`Link:`、`Reported-by:` 等标签；引用引入提交时保留至少 12 位标识及原摘要。`Tested-by:`、`Reviewed-by:`、`Acked-by:` 等需要对应人员真实授权，不根据 AI 自审或本地命令自行生成。
+- 新增/变更 UAPI 写入 `Documentation/ABI/`；新增 ioctl 更新编号登记；新增全局 kernel API 使用 kernel-doc；proc 项、启动参数、模块参数分别维护对应文档/描述。新 Kconfig 项提供 help，默认关闭，除非目标 Kconfig 规则允许有据可查的例外。接口变更核对用户态兼容并抄送适用的 API 审阅渠道。
+- 补丁风格检查是审查提示，不是证明；对最终保留的报告提供理由。内存屏障需在代码旁说明其排序目的。编译、配置、架构、故障注入和测试证据按 [内核专项检查](validation.md#内核专项检查的证据边界) 对照，并如实区分通过、未运行和不适用。
+
+本节依据本地 `linux-7.3` 树中的 `Documentation/process/submitting-patches.rst`（“Describe your changes”、“Separate your changes”、“Style-check your changes”、“The canonical patch format”）、`Documentation/process/submit-checklist.rst`（“Review Kconfig changes”、“Provide documentation”、“Check your code with tools”）、`Documentation/driver-api/ioctl.rst`（“Interface versions”）和 `Documentation/userspace-api/ioctl/ioctl-number.rst`。
+
 ## 回归与安全问题
 
 回归固定首次受影响范围、已知良好版本及必要的 bisect 证据；按目标上游流程准备修复或回退方案，不以现有测试通过否定用户回归。需要时准备 regression tracker/regzbot 的关联信息，标清报告与修复，跟踪工具不替代修复证据。

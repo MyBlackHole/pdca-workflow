@@ -35,6 +35,16 @@
 
 以上命令也受 [输出目录约束](#输出目录约束) 限制；运行前核对子工具，不能取得的证据如实报告。
 
+## 内核专项检查的证据边界
+
+本地 `linux-7.3` 树中的 `Documentation/process/submit-checklist.rst` 的 “Review your code”、“Review Kconfig changes”、“Provide documentation”、“Check your code with tools”、“Build your code”、“Test your code”，以及 `Documentation/dev-tools/testing-overview.rst` 的 “The Difference Between KUnit and kselftest”、“Dynamic Analysis Tools”、“Static Analysis Tools” 是内核验证清单的依据。按改动触及的配置、架构与风险选择检查；对适用但环境不具备的项目标记未验证，不以单一构建或无告警宣称全覆盖。
+
+- 直接包含声明所用 API 的头文件，不依赖传递 include。每个新增/修改的内存屏障须有代码注释说明需要的排序关系及原因。
+- 对相关配置核验 `=y`、`=m`、`=n` 和依赖组合；按目标树与变更影响评估 `allnoconfig`、`allmodconfig`、独立 `O=` 构建和跨架构/32-64 位/大小端。新增 Kconfig 项有帮助说明，并遵守默认关闭规则及已记录例外。
+- 按风险运行 `scripts/checkpatch.pl`、Sparse；审查并解释剩余报告。栈敏感内核路径运行 `make checkstack` 并调查大于 512 字节的函数栈帧（作为候选问题）；条件允许时增加 `KCFLAGS=-W`、Smatch 或 Coccinelle 检查。静态工具的报告需判读，不能机械修复误报。
+- 内核内部小单元/错误路径优先评估 KUnit；可从用户态观察的系统接口与整功能路径评估 kselftest，新增系统调用须有对应 kselftest。覆盖率工具用于找未执行区域，不替代行为断言。KASAN、UBSAN、KCSAN、KFENCE、lockdep 等动态分析与适用测试组合运行，并分别记录配置与实际触发的场景。
+- 对新增 ioctl、proc/sysfs、启动/模块参数和全局 API，同时验证其 ABI/文档要求；ioctl 需验证旧新组合、compat 布局、保留字段、权限、错误路径及资源清理。
+
 ## 有意义的场景
 
 从本次改动选择适用项，不为纯格式或低风险文档改动新增业务测试。设计新用例时按 [单项测试的质量](testing-strategy.md#单项测试的质量) 核对断言与交错；使用既有检查不因此重做完整测试规划。

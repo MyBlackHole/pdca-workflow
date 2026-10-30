@@ -31,7 +31,8 @@
 - cancel、flush 和 synchronize 等等待操作若可能等待需要当前持有锁的执行者，会形成死锁；按实际依赖安排等待点。
 - mutex 及其所在对象至少存活到 `mutex_unlock()` 调用返回，并收敛其他使用者；内部发布点或其他线程观察到锁空闲均不构成回收证明。
 - `READ_ONCE`/`WRITE_ONCE` 限定特定访问行为，不自动建立完整的跨 CPU 发布协议。原子 API 按具体操作/后缀核对排序，不能假定所有 `atomic_*` 都是全屏障。
-- 对象引用采用适合的 `refcount_t`/kref；取得与交付引用的存活依据按 [生命周期与退出协议](../principles/memory-and-locks.md#生命周期与退出协议) 检查。
+- 对象引用采用适合的 `refcount_t`/kref；取得与交付引用的存活依据按 [生命周期与退出协议](../principles/memory-and-locks.md#生命周期与退出协议) 检查。只能在已有有效引用或其他存活保护下 `kref_get()`；从表/链表查找时，保护必须一直覆盖到成功取得引用。`kref_get_unless_zero()` 必须检查结果且仍须保护查找期间的对象内存。引用计数 API 不替代内部状态锁，也不保证与 `atomic_t` 相同的内存序。
+- 按锁原语实际类别和目标 PREEMPT_RT 配置检查嵌套：sleeping lock 不能嵌在 CPU-local/spinning 锁中；通常顺序为 sleeping lock → `spinlock_t`/`rwlock_t`/`local_lock` → `raw_spinlock_t`/bit spinlock。`local_lock` 是本 CPU 作用域保护，不提供跨 CPU 互斥；有所有者语义的锁须由持有它的 task 解锁；semaphore 没有此所有者语义，rwsem 仅特定 reader-release API 允许非持有者释放。新设计不要用 semaphore 同时承担互斥和等待，应分别评估 mutex 与 completion/waitqueue。
 - 卸载/失败回滚遵循 [异步退出协议](../principles/memory-and-locks.md#生命周期与退出协议)，按设备依赖同步 IRQ、定时器、work、DMA 等。`cancel_work_sync` 不是阻止所有未来 queue 的开关；`devm_*` 也不自动消除活动回调的竞态。
 
 ## 复杂读侧同步
@@ -65,7 +66,15 @@ coherent 分配的 CPU 地址和 DMA handle 用途分开，采用匹配的 free�
 
 分配与映射均处理失败；内存压力、高阶分配失败和设备移除是正常错误分支。需要预分配、池化或保留资源时给出容量和耗尽策略。
 
-PREEMPT_RT 下释放内存也可能涉及分配器内部锁；分配和释放均核对调用上下文，必要时将实际回收延后到允许的执行环境。
+PREEMPT_RT 下释放内存也可能涉及分配器内部锁；分配和释放均核对调用上下文，必要时将实际回收延后到允许的执行环境。除目标 API 契约确实要求且已证明无死锁进展条件外，不使用 `__GFP_NOFAIL`：它可能无限循环等待成功，不能代替容量设计或错误处理，尤其不适用于大阶分配。`GFP_NOWAIT` 可能失败，必须通过可行退路或错误返回处理；仅在确有理由访问保留资源时使用 `GFP_ATOMIC`，并仍处理失败。
+
+DMA 设计须遵守更具体的约束：
+
+- 先以 `dma_set_mask*()` 声明设备地址能力并检查结果；失败后不得假定 DMA 可用，应降级到非 DMA 路径或停止该设备功能。
+- DMA 地址必须来自 DMA API。不能直接把 CPU 虚拟/物理地址互换，也不能把 `vmalloc`、内核映像、模块映像或栈地址当作普通 DMA 缓冲。区分 coherent 与 streaming 映射；后者逐次检查映射错误，并按相同设备、大小、方向及原始 scatterlist 参数配对 unmap/sync。映射一部分失败时，撤销已成功取得的所有映射。
+- 设备方向尽可能精确。coherent 只保证相应的 CPU/设备可见性，不保证描述符字段、所有权标志和 doorbell 的先后次序；根据设备协议使用正确的 DMA/MMIO barrier。释放映射或缓冲前，先确认硬件已停止访问。
+
+`Documentation/core-api/memory-allocation.rst`（“Get Free Page flags”、“Selecting memory allocator”）和 `Documentation/core-api/dma-api-howto.rst`（“What memory is DMA'able?”、“DMA addressing capabilities”、“Types of DMA mappings”、“Using Coherent DMA mappings”、“Using Streaming DMA mappings”、“Handling Errors”）是本节内核分配与 DMA 规则的核对依据；逐项以目标树 API 声明、设备约束和子系统调用者为准。
 
 `mempool.min_nr` 是最小保留元素数，不是最大活跃分配数；常规分配先尝试底层分配器，失败再使用保留。硬上限另行计量和准入，进展还需核对资源需求、并发及等待依赖。
 
@@ -81,7 +90,10 @@ PREEMPT_RT 下释放内存也可能涉及分配器内部锁；分配和释放均
 - 使用 kthread 时区分 create 后显式唤醒与 run 可能在返回前进入线程函数：启动前发布好线程所需上下文，并处理错误指针。`kthread_stop` 请求合作停止并等待退出，不会强制终止任意阻塞操作；工作等待谓词和其他阻塞路径须能观察停止并退出。保存的 task 指针不自动证明对象仍存活；线程可能自行退出时，在其可能退出之前建立适当存活保障，或采用不再访问该指针的收敛协议。完成通知不等于线程已退出，不能在 `kthread_run` 后凭裸指针补引用来修复已发生的退出竞态。
 - `this_cpu_ptr` 等得到的本 CPU 地址不能在允许迁移后继续凭“当前 CPU 独占”使用；固定迁移、禁止抢占、IRQ 保护和互斥各有不同效果。复合操作、远端访问和 CPU 热插拔/回收按目标 per-CPU/RT 原文证明，不把单次 this_cpu 操作的保证扩展为整个多步协议。
 - 普通 timer_list 回调按其实际 softirq/RT 上下文核对，不能因是回调就取得可睡眠 mutex。timer 与 worker 相互重新生产时，停止协议须覆盖所有 rearm 来源。目标支持且适用时采用 `timer_shutdown_sync` 等最终禁入机制；`timer_delete_sync` 等同步删除只有其禁止并发重启的前提成立才足够。
-- 同步等待的锁依赖和总退出顺序仍按 [生命周期与退出协议](../principles/memory-and-locks.md#生命周期与退出协议)；不是把 shutdown/cancel 函数排列一次就证明模块可以释放。源码、等待及 per-CPU 依据见 [官方映射](../sources/official-docs.md#并发生命周期与资源)。
+- 普通 threaded workqueue 与 BH workqueue 的上下文不同；BH work item 不得睡眠。仅当 work function 未改变、工作项未被排到另一个 workqueue 且未重新初始化时，内核才保证同一工作项全系统至多一个 worker 同时执行；打破任一条件前须重新证明重入安全。`max_active` 限制执行并发，不限制生产者已排队的总工作或字节；分别建立有界准入和背压。需要严格顺序时使用目标树的 ordered workqueue 机制，不以 `WQ_UNBOUND + max_active=1` 代替。
+- 可能参与内存回收路径的 workqueue 必须有 `WQ_MEM_RECLAIM` 的前进保证；若回收工作之间存在依赖，按目标树要求安排独立的 rescue-worker 域，仍需排查锁和资源循环。不要因为共享 system workqueue 就默认它不会被无关生产者压满。
+- completion 只表示某个事件已发信号，不是锁。阻塞等待只在允许睡眠且中断状态满足 API 前提的上下文中使用；精确处理成功、超时和信号返回。动态/栈上 completion 必须活到最后一个 waiter、signaler 和 `reinit_completion()` 访问结束；不得在仍有并发 waiter 时重置，也不得把 `complete_all()` 当成可重复的通知。
+- 同步等待的锁依赖和总退出顺序仍按 [生命周期与退出协议](../principles/memory-and-locks.md#生命周期与退出协议)；不是把 shutdown/cancel 函数排列一次就证明模块可以释放。`Documentation/locking/locktypes.rst`（“Lock categories”、“local_lock”、“PREEMPT_RT caveats”、“Lock type nesting rules”）、`Documentation/core-api/kref.rst`、`Documentation/core-api/workqueue.rst`（“Guidelines”、“Non-reentrance Conditions”）和 `Documentation/scheduler/completion.rst`（“Initializing completions”、“Waiting for completions”、“Signaling completions”）是核对依据；per-CPU 与其他等待语义见 [官方映射](../sources/official-docs.md#并发生命周期与资源)。
 
 ## UAPI、ioctl 与不可信输入
 
@@ -89,12 +101,16 @@ PREEMPT_RT 下释放内存也可能涉及分配器内部锁；分配和释放均
 - 固定请求头复制到内核后验证；嵌套缓冲区有独立的长度/方向/算术/权限检查。需要一致快照时复制一次后使用副本，不能重复读取用户内存形成 double-fetch。
 - 异步任务优先持有内核副本。若性能确需固定用户页，另行证明 pin/unpin、进程退出、取消、内存失效、DMA 及长期固定约束；仅保存指针或固定页面都不代表内容不会并发变化。
 - UAPI 使用明确位宽类型，布局避免本机 `long`、`size_t`、裸指针、enum 和隐含 padding。按需要使用 `__aligned_u64`、显式保留字段及正确的用户指针转换，验证 32/64 位布局及 compat 路径。
+- 变长 ioctl 的命令参数使用固定布局、固定大小的请求头；payload 通过显式长度和用户指针另行传递，在内核逐项校验长度、溢出与权限。`_IO*` 编码的类型大小有限（13/14 位，最大 8191 字节），不能把变长 payload 本身编码成命令类型。
+- 目标需支持 64 位内核运行 32 位用户态时，ioctl 实现须接通 `.compat_ioctl`。仅当所有命令参数都是布局兼容的结构指针时才使用 `compat_ptr_ioctl()` 等通用 helper；自定义 handler 将指针参数转换为 `compat_ptr(arg)`，标量参数不得转换。ABI 中以 `__u64` 表示的用户地址在校验 ABI 格式后用 `u64_to_user_ptr()` 转换，之后仍须通过 uaccess API 访问，不能把整数地址当作已验证可访问的内核指针或长期传递。
 - 新接口清零输出和 padding，校验未知 flags、保留字段及长度上界；既有 ABI 先保留已发布语义，不盲目增加会拒绝旧应用的检查。
-- ioctl 使用正确方向的 `_IO/_IOR/_IOW/_IOWR` 和类型参数，**不传 `sizeof(type)` 代替类型**。未知命令按接口约定返回 `-ENOTTY` 等正确结果。
+- ioctl 使用正确方向的 `_IO/_IOR/_IOW/_IOWR` 和类型参数，**不传 `sizeof(type)` 代替类型**。新命令核对 `Documentation/userspace-api/ioctl/ioctl-number.rst` 中的编号范围，预留扩展空间；新增 ioctl 同时更新该表和 `Documentation/ABI/`。未知命令按接口约定返回 `-ENOTTY` 等正确结果。
 - handler 返回值依回调契约，常见为 0/负 errno；不要把所有内核函数一概改为该约定，也不混淆 ERR_PTR 与 NULL。
-- 已发布命令不因版本号重新解释旧字段。语义变化使用新命令并保留旧命令；大小可扩展结构需使用子系统既有协议、能力发现和兼容规则，不能只在结构末尾随意加成员。
+- 已发布命令不因版本号重新解释旧字段。语义变化使用新命令并保留旧命令；扩展结构前定义能力发现和旧内核/新用户态的行为，校验未知 flags、保留字段及 padding，并拒绝非零的未定义输入。大小可扩展结构需使用子系统既有协议和 compat 规则，不能只在结构末尾随意加成员；不得将此前忽略的随机 padding 语义永久固化。
 - 时间表示明确定义位宽、单位、时钟域和绝对/相对语义；避免直接导出本机 timespec/timeval。持续时间/截止时间通常选择单调时钟，持久日历时间按实际需求另行定义。
 - 对 read/write/poll/mmap、netlink、sysfs 等也明确权限、阻塞、取消、部分成功和文件/设备关闭后的生命周期；选用已有子系统接口，避免重复造通信协议。
+
+依据本地 `linux-7.3` 树：`Documentation/driver-api/ioctl.rst`（“Command number definitions”、“Interface versions”、“Return code”、“32-bit compat mode”、“Structure layout”、“Information leaks”）、`Documentation/process/botching-up-ioctls.rst`（“Basics”、“Fun with Error Paths”、“Time, Waiting and Missing it”、“Leaking Resources, Not”）及 `Documentation/userspace-api/ioctl/ioctl-number.rst`。兼容已发布 ABI 优先于把新规则机械套到旧接口。
 
 ## 文件操作、poll 与映射
 
