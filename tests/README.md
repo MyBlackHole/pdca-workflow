@@ -36,7 +36,14 @@ CI 只保留低维护成本、与 PDCA 语义无关的机械检查，例如 shel
 以及 Skill bundle 发布/安装元数据的一致性（`VERSION`、catalog version、catalog 所列 Skill 的 metadata.version、
 安装器 clone 前必须使用的入口 bootstrap mirror 与 canonical Skill 路径）。
 这些检查只验证同一发布/安装元数据是否一致，不验证 Skill 数量阈值、authority、阶段边界或其他 PDCA 语义。
-CI 成功不表示 Check PASS。
+CI 成功不表示 Check PASS。`Mechanical result gate` 只在 mechanical job 实际 success 时通过，
+不把 skipped/cancelled/failure 当作成功；它不读取或判定语义验收结果。
+机械检查还核对 `install.sh` 的 Git 执行位与实际可执行性；PR 检查固定 head 相对 merge-base 的完整差异，
+push 检查事件 before→after 的完整差异，首次 push 使用空树。基线缺失直接失败，不退回只查最后一次提交。
+
+需要让检查阻止合并时，仓库管理员必须在远端配置 required checks；提交 workflow 或 PR 模板本身不启用保护。
+语义相关修改还须完成明确范围的 AI 审查/现场验收，不把绿色机械 gate 当作语义批准。
+当前凭据的绕过权限、检查来源与最终 SHA 均需单独核对；本仓库不自动修改远端管理设置。
 
 OpenCode compatibility smoke 的安装、CLI Skill discovery 与基础 server diagnostics 用于宿主兼容性。
 它先真实执行生产 `install.sh` 验证默认 clone/链接，再把隔离 HOME 中的临时安装根通过本地 Git bundle
@@ -61,3 +68,13 @@ Public free-model recovery / child-context / continuation / transcript probe 只
 OpenCode v1.18.32 如需先补 `communicate` 的真人来源/路由证据，使用
 [opencode-interactive-provenance.md](opencode-interactive-provenance.md) 做一次无业务写入的交互 TUI challenge 探针。
 该探针必须由真人在 TUI 中提交，不能由 CI、`opencode run`、REST/SDK 或父 Agent 模拟。
+
+## AI 使用与维护的防退化验收
+
+[ai-change-acceptance.md](ai-change-acceptance.md) 将当前要求关联到最小读集、维护挑战与现场案例，
+不重复实现 authority，不新增 schema 或自动裁决器。先固定获准 base、候选 head 和预期，再分别保存观察；
+候选中修改规则或删除测试不能自动使原预期失效。
+
+接口事实、一次性只读 AI 审查、真实宿主操作必须分开记录。普通知识/记录新增只检查相关来源、引用、
+敏感信息与授权；安装/Skill/协议变更执行受影响案例。未触及的路径可说明理由不重跑，不能将未跑计成通过。
+新增验收设计不等于已经执行；H1–H18 的状态只随相应原生证据改变。

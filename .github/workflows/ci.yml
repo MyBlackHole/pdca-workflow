@@ -12,11 +12,21 @@ permissions:
 jobs:
   mechanical:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
+          persist-credentials: false
+
+      - name: Installer executable mode
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f install.sh && test ! -L install.sh && test -x install.sh
+          test "$(git ls-files --stage -- install.sh | awk '{print $1}')" = 100755
 
       - name: Shell syntax
         run: sh -n install.sh
@@ -90,5 +100,53 @@ jobs:
           print(f"Skill bundle packaging metadata consistent: {catalog_version}")
           PY
 
-      - name: Whitespace
-        run: git diff --check HEAD^ HEAD
+      - name: Whitespace over the complete change
+        shell: bash
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+          EVENT_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          commit_exists() {
+            [[ "$1" =~ ^[0-9a-f]{40}$ ]] && git cat-file -e "$1^{commit}"
+          }
+          case "$GITHUB_EVENT_NAME" in
+            pull_request)
+              commit_exists "$PR_BASE_SHA"
+              commit_exists "$PR_HEAD_SHA"
+              test "$(git rev-parse HEAD)" = "$PR_HEAD_SHA"
+              base=$(git merge-base "$PR_BASE_SHA" "$PR_HEAD_SHA")
+              ;;
+            push)
+              commit_exists "$EVENT_SHA"
+              test "$(git rev-parse HEAD)" = "$EVENT_SHA"
+              if [ "$PUSH_BEFORE" = 0000000000000000000000000000000000000000 ]; then
+                base=$(git hash-object -t tree --stdin </dev/null)
+              else
+                # Missing history is an error, not permission to inspect HEAD^ only.
+                commit_exists "$PUSH_BEFORE"
+                base=$PUSH_BEFORE
+              fi
+              ;;
+            *) echo "Unsupported event: $GITHUB_EVENT_NAME" >&2; exit 1 ;;
+          esac
+          printf 'Checked base: %s\nChecked head: %s\n' "$base" "$(git rev-parse HEAD)"
+          git diff --check "$base" HEAD
+
+  mechanical-gate:
+    name: Mechanical result gate
+    if: ${{ always() }}
+    needs: mechanical
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require actual mechanical success
+        shell: bash
+        env:
+          MECHANICAL_RESULT: ${{ needs.mechanical.result }}
+        run: |
+          set -euo pipefail
+          test "$MECHANICAL_RESULT" = success
+          echo "Mechanical checks succeeded; AI review and host acceptance are separate evidence." >> "$GITHUB_STEP_SUMMARY"

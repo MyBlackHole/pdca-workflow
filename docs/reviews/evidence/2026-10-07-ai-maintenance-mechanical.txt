@@ -1,0 +1,36 @@
+机械控制记录（不是 AI/宿主验收）
+基线提交：138451df49a9f01d0b7a65a92921210b4c41fa68
+输入：临时 Git 仓库、明确标识的合成安装入口与包装元数据。
+执行：提取候选 .github/workflows/ci.yml 的 run 命令，用本地 bash/git/python3 运行。
+未运行：完整生产安装、独立 AI 比较、真人阶段确认、原生任务连续性、本体三场景。
+候选 workflow SHA-256：74153511b4b92054516504d83b6b80ba657c8d19c27145512bfc281b07dba1ed
+
+PASS | syntax: Installer executable mode | expected_success=True | exit=0
+PASS | syntax: Shell syntax | expected_success=True | exit=0
+PASS | syntax: Skill bundle version consistency | expected_success=True | exit=0
+PASS | syntax: Whitespace over the complete change | expected_success=True | exit=0
+PASS | syntax: Require actual mechanical success | expected_success=True | exit=0
+PASS | installer 100755 regular file | expected_success=True | exit=0
+PASS | old shell syntax ignores executable loss | expected_success=True | exit=0
+PASS | working copy executable loss rejected | expected_success=False | exit=1
+PASS | Git mode loss rejected even with local x bit | expected_success=False | exit=1
+PASS | symlink installer rejected | expected_success=False | exit=1
+PASS | first push checks empty tree | expected_success=True | exit=0
+PASS | old HEAD-parent check misses earlier pushed whitespace | expected_success=True | exit=0
+PASS | whole push detects earlier whitespace | expected_success=False | exit=2
+PASS | whole PR detects earlier whitespace | expected_success=False | exit=2
+PASS | whole clean push succeeds | expected_success=True | exit=0
+PASS | whole clean PR succeeds | expected_success=True | exit=0
+PASS | mismatched checkout rejected | expected_success=False | exit=1
+PASS | missing push baseline rejected | expected_success=False | exit=128
+PASS | malformed PR revision rejected | expected_success=False | exit=1
+PASS | unsupported event rejected | expected_success=False | exit=1
+PASS | gate upstream='success' | expected_success=True | exit=0
+PASS | gate upstream='skipped' | expected_success=False | exit=1
+PASS | gate upstream='cancelled' | expected_success=False | exit=1
+PASS | gate upstream='failure' | expected_success=False | exit=1
+PASS | gate upstream='' | expected_success=False | exit=1
+PASS | existing packaging check valid synthetic input | expected_success=True | exit=0
+PASS | existing packaging check stale synthetic metadata rejected | expected_success=False | exit=1
+
+27/27 有限控制满足预期。旧命令的 expected_success=True 用于复现漏检，不代表旧行为正确。
