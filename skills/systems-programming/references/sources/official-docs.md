@@ -1,8 +1,29 @@
 # 官方依据与覆盖映射
 
-核对日期：2026-10-30（本轮专项：规范入口与贡献政策版本、kthread/workqueue 与用户态等待/I/O；其余主题沿用前次依据，按任务重新核对）。在线文档持续变化，不绑定本技能到“最新内核”。实践优先级：用户/项目要求 → 目标树 `Documentation/` 与子系统约定 → 匹配版本官方资料 → 在线参考；当前上游贡献政策另按其生效范围核对。差异结合声明、实现和调用者解释，记录版本与限制。
+核对日期：2026-10-30。本轮按 Linux 7.3.0 源树核对 `Documentation/index.rst`、`subsystem-apis.rst` 及相关分类索引。在线文档和目标树会变化，不绑定本技能到单一“最新内核”。实践优先级：用户明确要求 → 目标树 `Documentation/`、子系统约定和维护者要求 → 匹配版本官方资料 → 在线参考；上游贡献政策另按适用版本核对。差异结合声明、实现和调用者解释，记录版本与限制。
 
-本表映射工程提炼和专项读取责任，不声称已将所有 Linux 文档、子系统细节或所有版本完整编入技能。**规则提炼**由对应资料维护；**专项核对**表示任务触及时必须读取目标原文及必要源码后才能作相应结论。链接存在、已经读到和已经运行验证是不同证据。按本次主题选择行，不全量加载本表链接。
+本技能把 Linux 内核工程经验作为强制工程基线。覆盖要求是：目标树文档总目录中的每个开发领域都必须有定位入口；任务涉及该领域时，AI **必须**读完适用的目标版本规范、子系统规则及相关声明/调用路径，并按其要求实现和验证。摘要和映射不能代替适用原文。Linux 文档自身仍在持续整理，因此不能声称任何固定摘要包含了所有版本、架构、硬件和子系统细节；未能从获准来源确认的要求必须列为未知，不能默默略过。链接存在、读过原文和实际运行验证是不同证据。
+
+## 官方文档总目录的全域入口
+
+按目标树 `Documentation/index.rst` 逐类定位。每项都是任务触发后必须走的入口；继续沿目标树的 `toctree` 找到具体章节，不得只读索引就宣称已经遵守规范。
+
+| 官方文档领域 | 入口与覆盖范围 | AI 必须执行 |
+| --- | --- | --- |
+| 开发社区与上游流程 | `Documentation/process/index.rst`：开发过程、补丁与检查表、coding style、语言指南、社区政策、许可、回归/安全问题、maintainer handbook、deprecated API、syscall/ioctl 指引、AI/生成内容政策 | 上游变更前按 [贡献流程](../workflows/kernel-contribution.md) 逐项读取适用的完整原文；定位维护者并遵守子系统要求，不用本技能摘要替代政策正文 |
+| 内核内部 API 与锁 | `Documentation/core-api/`、`Documentation/driver-api/`、`Documentation/locking/`、`Documentation/subsystem-apis.rst` | 识别真实子系统和回调上下文；读取其 API 契约、生命周期、错误和锁规则，再检查目标头文件、实现和调用者 |
+| 子系统完整目录 | `Documentation/subsystem-apis.rst`：核心 `mm`、`power`、`scheduler`、`timers`、`locking`；人机接口 `input`、`hid`、`sound`、`gpu`、`fb`、`leds`；网络 `networking`、`netlabel`、`infiniband`、`mhi`；存储 `filesystems`、`block`、`cdrom`、`scsi`、`target`、`nvme`；其他 `accounting`、`cpu-freq`、`edac`、`fpga`、`i2c`、`iio`、`pcmcia`、`spi`、`w1`、`watchdog`、`virt`、`hwmon`、`accel`、`security`、`crypto`、`bpf`、`usb`、`PCI`、`misc-devices`、`peci`、`wmi`、`tee`，以及 `core-api`、`driver-api` | 对应任务必须沿目标树 `Documentation/<领域>/`、`MAINTAINERS`、该子系统已有模式及其 API 使用者核对；列表是完整路由目录，不代表本技能在此复制每个子系统的接口细节 |
+| 开发工具与验证 | `Documentation/dev-tools/index.rst`、`Documentation/dev-tools/testing-overview.rst`：checkpatch、clang-format、Coccinelle、Sparse、KUnit、kselftest、KASAN、KMSAN、UBSAN、KCSAN、KFENCE、kmemleak、LKMM、kcov、KTAP 等；另有 `Documentation/kernel-hacking/`、`Documentation/process/debugging/`、`Documentation/fault-injection/`、`Documentation/trace/` | 按风险和改动选择适用工具；必须解释工具配置和结果能证明什么、不能证明什么，并按 [验证规则](../workflows/validation.md) 记录未运行项 |
+| 文档与许可证 | `Documentation/doc-guide/index.rst`、`Documentation/process/license-rules.rst`、`Documentation/ABI/` | 修改文档或公开接口时核对 Sphinx、kernel-doc、ABI 分类/格式、许可和来源要求，并运行目标树对应文档检查 |
+| 构建、配置与用户可见管理接口 | `Documentation/kbuild/`、`Documentation/admin-guide/`、`Documentation/admin-guide/reporting-issues.rst` | 构建/配置变更核对 Kbuild/Kconfig 和配置组合；新增管理接口或问题报告按对应流程阅读原文 |
+| Linux 用户态 API | `Documentation/userspace-api/index.rst`、目标系统 man-pages、libc/POSIX 资料 | 跨内核/用户边界时必须区分 UAPI 契约与用户程序实现；内核编码风格不能替代 syscall、libc、POSIX、文件系统或协议的真实语义 |
+| 随内核源码发布的用户态工具 | `Documentation/tools/index.rst` 及目标工具目录文档 | 修改 `tools/` 下程序时遵守该工具的语言、构建、测试及兼容约定，不把内核执行上下文套到用户态 |
+| 固件与 Devicetree | `Documentation/firmware-guide/index.rst`、`Documentation/devicetree/index.rst` 及 bindings | 固件/ACPI/DT 变更必须核对 schema、绑定兼容、资源解析与相关子系统要求；不能只验证驱动 C 代码 |
+| 架构相关规则 | `Documentation/arch/index.rst` 与具体 `Documentation/arch/<arch>/` | 汇编、内存模型、原子、缓存、ABI、异常/中断及屏障按目标架构逐项核对；不能由另一架构源码推断通用保证 |
+| livepatch、Rust 与其他专门领域 | `Documentation/livepatch/`、`Documentation/rust/`、目标树其它专门文档；旧材料见 `Documentation/staging/` | 任务触及时读取专题全文和目标树实现；staging/历史材料先确认其仍适用，不把示例或过时说明当成当前规范 |
+| 文档翻译 | `Documentation/translations/index.rst` 及对应语言目录 | 仅在修改翻译或多语言文档时核对翻译流程、源文档版本和同步要求；英文源文规范仍是技术契约依据 |
+
+上述总目录用于确认没有跳过开发领域，不要求每次把整棵文档树全部装入上下文。任务开始时，AI 必须识别其改动涉及的领域并读取对应原文；发生跨子系统、跨架构或跨 UAPI 边界时，必须分别读取相关规范。
 
 ## 风格、文档与贡献
 
