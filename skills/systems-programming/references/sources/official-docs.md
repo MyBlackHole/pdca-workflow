@@ -10,7 +10,7 @@
 
 | 官方文档领域 | 入口与覆盖范围 | AI 必须执行 |
 | --- | --- | --- |
-| 开发社区与上游流程 | `Documentation/process/index.rst`：开发过程、补丁与检查表、coding style、语言指南、社区政策、许可、回归/安全问题、maintainer handbook、deprecated API、syscall/ioctl 指引、AI/生成内容政策 | 上游变更前按 [贡献流程](../workflows/kernel-contribution.md) 逐项读取适用的完整原文；定位维护者并遵守子系统要求，不用本技能摘要替代政策正文 |
+| 开发社区与上游流程 | `Documentation/process/index.rst`：开发过程、补丁与检查表、coding style、语言指南、社区政策、许可、回归/安全问题、maintainer handbook、deprecated API、syscall/ioctl 指引、AI/生成内容政策 | AI 参与 Linux 内核 bug 定位、复现或修复，以及准备上游变更时，按 [贡献流程](../workflows/kernel-contribution.md) 读取适用的完整原文；定位维护者并遵守子系统要求，不用本技能摘要替代政策正文 |
 | 内核内部 API 与锁 | `Documentation/core-api/`、`Documentation/driver-api/`、`Documentation/locking/`、`Documentation/subsystem-apis.rst` | 识别真实子系统和回调上下文；读取其 API 契约、生命周期、错误和锁规则，再检查目标头文件、实现和调用者 |
 | 子系统完整目录 | `Documentation/subsystem-apis.rst`：核心 `mm`、`power`、`scheduler`、`timers`、`locking`；人机接口 `input`、`hid`、`sound`、`gpu`、`fb`、`leds`；网络 `networking`、`netlabel`、`infiniband`、`mhi`；存储 `filesystems`、`block`、`cdrom`、`scsi`、`target`、`nvme`；其他 `accounting`、`cpu-freq`、`edac`、`fpga`、`i2c`、`iio`、`pcmcia`、`spi`、`w1`、`watchdog`、`virt`、`hwmon`、`accel`、`security`、`crypto`、`bpf`、`usb`、`PCI`、`misc-devices`、`peci`、`wmi`、`tee`，以及 `core-api`、`driver-api` | 对应任务必须沿目标树 `Documentation/<领域>/`、`MAINTAINERS`、该子系统已有模式及其 API 使用者核对；列表是完整路由目录，不代表本技能在此复制每个子系统的接口细节 |
 | 开发工具与验证 | `Documentation/dev-tools/index.rst`、`Documentation/dev-tools/testing-overview.rst`：checkpatch、clang-format、Coccinelle、Sparse、KUnit、kselftest、KASAN、KMSAN、UBSAN、KCSAN、KFENCE、kmemleak、LKMM、kcov、KTAP 等；另有 `Documentation/kernel-hacking/`、`Documentation/process/debugging/`、`Documentation/fault-injection/`、`Documentation/trace/` | 按风险和改动选择适用工具；必须解释工具配置和结果能证明什么、不能证明什么，并按 [验证规则](../workflows/validation.md) 记录未运行项 |
@@ -33,7 +33,7 @@
 | [Linux kernel coding style](https://docs.kernel.org/process/coding-style.html) | [编码与文档](../principles/coding-and-documentation.md#linux-内核编码与文档)：提炼 C 风格、类型、宏与条件编译；原型、汇编等完整细则专项核对，不能凭摘要声称全文符合 |
 | [Kernel-doc](https://docs.kernel.org/doc-guide/kernel-doc.html) | [编码与文档](../principles/coding-and-documentation.md#linux-内核编码与文档)：C 全局/导出接口与类型文档；源文件和公开头检查由验证资料维护 |
 | [Submitting patches](https://docs.kernel.org/process/submitting-patches.html)、[stable 规则](https://docs.kernel.org/process/stable-kernel-rules.html) | [贡献流程](../workflows/kernel-contribution.md)：补丁系列、标签、修订、维护者和回补；只有实际准备对应贡献时启用 |
-| [AI Coding Assistants](https://docs.kernel.org/process/coding-assistants.html)、[生成内容规范](https://docs.kernel.org/process/generated-content.html) | [AI 归属与人工认证](../workflows/kernel-contribution.md#ai-归属与人工认证)：Linux 贡献中的 DCO、工具来源披露、适用政策要求的归属标记和人工提交；该流程的必读原文须完整读取，滚动渲染页不能证明目标政策版本 |
+| [AI Coding Assistants](https://docs.kernel.org/process/coding-assistants.html)、[生成内容规范](https://docs.kernel.org/process/generated-content.html) | [AI 归属与人工认证](../workflows/kernel-contribution.md#ai-归属与人工认证)：AI 参与内核 bug 定位/复现/修复时完整读取适用的 AI 指引与开发流程；准备 Linux 贡献时另核对 DCO、工具来源披露及适用的归属标记。必读原文须完整读取，滚动渲染页不能证明目标政策版本 |
 | [Licensing rules](https://docs.kernel.org/process/license-rules.html) | [许可证与来源](../environments/kernelspace.md#许可证与来源)：文件 SPDX、UAPI 例外、模块信息与来源；不推广为用户态项目的 GPL 要求 |
 | [Handling regressions](https://docs.kernel.org/process/handling-regressions.html)、[Security bugs](https://docs.kernel.org/process/security-bugs.html)、[Threat model](https://docs.kernel.org/process/threat-model.html) | [贡献流程](../workflows/kernel-contribution.md#回归与安全问题) 和 [安全分类](../workflows/security-review.md#linux-内核问题分类)：拟报告时完整核对版本、证据、分流及材料处理政策 |
 

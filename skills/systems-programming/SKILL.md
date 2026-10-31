@@ -2,7 +2,7 @@
 name: systems-programming
 description: Use when designing, implementing, debugging, auditing, testing, reviewing, building, documenting, or preparing authorized Git commits for software, especially C, C-style C++ without C++ libraries, Rust, or Linux userspace/kernel code. 软件工程统一入口。
 metadata:
-  version: 3.5.3
+  version: 3.5.4
 ---
 
 # 系统编程与软件工程
@@ -40,7 +40,7 @@ metadata:
 | 容器、索引/句柄、数据表示、字符串缓冲或回调接口 | [数据结构与接口](references/principles/data-and-interfaces.md)，再按实际环境核对 API |
 | C/C++/Rust 用户态、进程、线程、I/O 或 FFI | [用户态适配](references/environments/userspace.md) |
 | 内核、驱动、IRQ、DMA、workqueue 或 Rust for Linux | [内核态约束](references/environments/kernelspace.md)；跨用户/内核边界同时核对用户态契约 |
-| Linux 上游贡献、补丁准备，或明确要求遵循上游 AI 贡献规范 | [内核贡献流程](references/workflows/kernel-contribution.md)，先落实其完整原文读取和人工提交要求 |
+| AI 参与 Linux 内核 bug 定位、复现或修复；Linux 上游贡献、补丁准备，或明确要求遵循上游 AI 贡献规范 | [内核贡献流程](references/workflows/kernel-contribution.md)，完整读取适用的 AI 指引与开发流程原文；提交和发送仍按授权要求处理 |
 | 实际故障、构建失败、测试失败或异常行为 | [根因调查](references/workflows/debugging.md) |
 | 安全审计、安全关键边界或漏洞修复 | [安全边界](references/workflows/security-review.md)；普通功能不因此自动展开全量审计 |
 | 测试体系、框架、覆盖规划或断言/替身设计 | [测试策略](references/workflows/testing-strategy.md)，单项测试只读相关小节 |

@@ -31,7 +31,7 @@
 - cancel、flush 和 synchronize 等等待操作若可能等待需要当前持有锁的执行者，会形成死锁；按实际依赖安排等待点。
 - mutex 及其所在对象至少存活到 `mutex_unlock()` 调用返回，并收敛其他使用者；内部发布点或其他线程观察到锁空闲均不构成回收证明。
 - `READ_ONCE`/`WRITE_ONCE` 限定特定访问行为，不自动建立完整的跨 CPU 发布协议。原子 API 按具体操作/后缀核对排序，不能假定所有 `atomic_*` 都是全屏障。
-- 对象引用采用适合的 `refcount_t`/kref；取得与交付引用的存活依据按 [生命周期与退出协议](../principles/memory-and-locks.md#生命周期与退出协议) 检查。只能在已有有效引用或其他存活保护下 `kref_get()`；从表/链表查找时，保护必须一直覆盖到成功取得引用。`kref_get_unless_zero()` 必须检查结果且仍须保护查找期间的对象内存。引用计数 API 不替代内部状态锁，也不保证与 `atomic_t` 相同的内存序。
+- 遵守 Linux 内核 coding-style 第 11 节：在创建/销毁所在单线程上下文之外可见的数据结构必须有明确的引用计数生命周期，可由对象自身或明确持有它的外层对象提供，并证明其覆盖最后一次访问；锁不能代替生命周期引用。采用适合的 `refcount_t`/kref；取得与交付引用的存活依据按 [生命周期与退出协议](../principles/memory-and-locks.md#生命周期与退出协议) 检查。只能在已有有效引用或其他存活保护下 `kref_get()`；从表/链表查找时，保护必须一直覆盖到成功取得引用。`kref_get_unless_zero()` 必须检查结果且仍须保护查找期间的对象内存。移交已有引用时由接收方承接并停止发送方访问，不为同一引用重复增减。引用计数 API 不替代内部状态锁，也不保证与 `atomic_t` 相同的内存序。
 - 按锁原语实际类别和目标 PREEMPT_RT 配置检查嵌套：sleeping lock 不能嵌在 CPU-local/spinning 锁中；通常顺序为 sleeping lock → `spinlock_t`/`rwlock_t`/`local_lock` → `raw_spinlock_t`/bit spinlock。`local_lock` 是本 CPU 作用域保护，不提供跨 CPU 互斥；有所有者语义的锁须由持有它的 task 解锁；semaphore 没有此所有者语义，rwsem 仅特定 reader-release API 允许非持有者释放。新设计不要用 semaphore 同时承担互斥和等待，应分别评估 mutex 与 completion/waitqueue。
 - 卸载/失败回滚遵循 [异步退出协议](../principles/memory-and-locks.md#生命周期与退出协议)，按设备依赖同步 IRQ、定时器、work、DMA 等。`cancel_work_sync` 不是阻止所有未来 queue 的开关；`devm_*` 也不自动消除活动回调的竞态。
 - 对无锁共享访问、屏障、发布/获取或依赖排序，必须按 [内核并发内存模型证明义务](../principles/memory-and-locks.md#内核并发内存模型的证明义务) 写清访问者与允许结果；复杂或自定义排序要用 LKMM litmus 验证，不凭架构经验或短时压力测试下结论。
