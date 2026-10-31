@@ -8,8 +8,8 @@ dcterms_license: CC-BY-4.0
 dcterms_created: '2026-09-12'
 status: active
 authority: normative
-revision: 4.0.0-rc.5
-dcterms_modified: '2026-09-27'
+revision: 4.0.0-rc.7
+dcterms_modified: '2026-10-22'
 summary: SCENE-01：同一本体工作节点依次建模、实现投影、验证实现
 scene_ids:
 - pdca-model
@@ -45,13 +45,13 @@ user requirement
 - 相同 responsibility 与核心 relation/constraint；
 - scene-specific 输入/输出与 AC。
 
-Implement/Verify 不得静默修改 node responsibility、composition 或 ontology meaning。
+Implement/Verify 不得修改已固定的 node responsibility、composition 或 ontology meaning。
 模型缺失或错误时按 [EVOLVE-01](../concept/ontology-evolution.md) 处置：停止依赖错误模型的实施，
 在原授权范围内继续核实、报告；不在实现/验证场景修补模型或重新拆一棵任务树。
 
 ## pdca-model：定义“应该是什么”
 
-Plan 固定用户目标、in-scope requirements、事实来源与建模范围；需要参考知识时先由 REUSE-01 找 semantic-unit candidates，
+Plan 固定用户目标、source set、in-scope requirements、事实来源与建模范围；需要参考知识时先由 REUSE-01 找 semantic-unit candidates，
 只有经 ADOPT-01 明确绑定的固定 definition/relation-definition/constraint/claim 才成为本次 modeling input。
 
 ### Do：构建 candidate project ontology revision
@@ -60,7 +60,7 @@ Do 建立或按 EVOLVE-01 细化 candidate ontology revision，并为该 revisio
 从 model root 必须能够解析 ONTOLOGY-01 的 semantic construction contract：
 
 - adopted definitions 与 explicit exclusions；
-- requirement refs 与 covered / partial / uncovered / not_applicable coverage；
+- 固定 Model Plan source-set refs、已识别 source requirement refs 与 covered / partial / uncovered / not_applicable 分类；not_applicable 排除当前 work scope 时须回指 source ref、固定 scope boundary 与理由；
 - object definitions；
 - current work instances；
 - relation definitions 与 relation instances；
@@ -97,7 +97,7 @@ generic `relates_to`、目录层级、文件相邻、实现调用顺序都不能
 2. Definition / Work Instance / Node / Task 没有身份混用；
 3. relation type、meaning、source/target role、endpoint closure 与必要 cardinality；
 4. constraint/invariant 与 observation/test signal 分离且可审查；
-5. 所有 in-scope requirement 有明确 coverage 状态；
+5. fixed Model Plan source set 与 model root 的 source refs / requirement inventory 已逐项对账；每项已识别 requirement 都有明确分类与来源，not_applicable 排除项回指固定 scope boundary 并说明理由；source 未审、不可读或 set 边界不明时保持 unknown；
 6. provenance 可定位，local-only source 明确 environment limitation；
 7. 关键 unknown 有 impact 与 resolution condition；
 8. composition 与 dependency 没有由 generic relation 猜测产生；
@@ -132,15 +132,20 @@ root goal seed
 ```
 ## pdca-implement：把模型投影成真实实体
 
-输入当前 `node_id`、固定 ontology revision、CONTEXT-01 子图、目标位置和 mapping rules。
+输入当前 `node_id`、固定 ontology revision、CONTEXT-01 子图、目标位置与获准写域。
+新建 Implement task 的输入可带 target-specific mapping proposal；它必须回指固定 model/revision，且不属于 node 的模型语义。
+Implement Plan 在 Do 前基于固定 model refs 与 target constraints 细化并固定 mapping rules：每条规则引用来源 definition/work instance/object/relation/constraint，指定实现 target、保持的 projection semantics 与预期 verification signal；同时保留 model 中已固定的 source set、scope、requirement 分类和 unknown，不得静默改变、遗漏或把 partial/uncovered 升级为 covered；改变 source set、scope 或 coverage 必须回到建模并固定新 revision。
+若没有保真投影方案，Plan 标记阻塞并按 EVOLVE-01 报告证据与候选；不得在 Do 中临时发明、遗漏或改写映射，也不自动切换到 modeling 场景。
 Do 生成代码、文档、配置、数据结构或其他真实实体，并记录：
 
 ```text
-ontology object / relation / constraint
+fixed model source ref (definition / work instance / object / relation / constraint)
             -> implementation target
             -> projection rule
-            -> verification signal
+            -> expected verification signal
 ```
+
+verification signal 只用于定位要观察的行为，不是实际 observation 或符合性证据。
 
 Implement 只实现当前 node 的责任和允许写域。
 已有模型中的正式 child 由自己的 task/Agent 实现；当前 task 不把兄弟/孩子完整上下文吸入父任务。
@@ -148,7 +153,7 @@ Implement 只实现当前 node 的责任和允许写域。
 如果 Do 内需要局部拆执行，可以使用 Work Unit；Work Unit 不创造 node_id 或正式 child。
 发现新的独立职责时按 EVOLVE-01 报告并停止受影响的扩张；不自动切换 modeling 或派发任务。
 
-Check 双向检查 source→target 遗漏与 target→source 无模型依据增加，并运行必要产品验证。
+Check 对照已批准的 Plan mapping baseline 双向检查 source→target 遗漏与 target→source 无模型依据增加，并运行必要产品验证；这是 Implement task 自身的 Check，不替代独立 `pdca-verify`。
 Act 固定 implementation release/mapping；未运行 pdca-verify 时仍为 not_run。
 
 ## pdca-verify：验证实现是否忠实于模型和需求
@@ -160,8 +165,8 @@ Act 固定 implementation release/mapping；未运行 pdca-verify 时仍为 not_
 
 验证链：
 
-1. requirement → model：需求是否被该节点模型覆盖；
-2. model → implementation：object/relation/constraint 是否被忠实投影；
+1. requirement → model：当前 node 与必要邻接节点所引用的 source requirement 是否能回指固定 Model Plan source set 与来源；是否有固定分类；留在 scope 内的 requirement 是否有模型承载，partial/uncovered 不得默认为 covered；not_applicable 是否回指 source ref、固定 scope boundary 与排除理由；未审/不可读 source 或 scope/meaning/source 未决时保留 unknown，不猜成 covered 或 not_applicable；
+2. model → implementation：实现相关的 definition/work instance/object/relation/constraint 是否按获准 Implement Plan 的 mapping 忠实投影，且没有无模型依据的实现增项；mapping 与 Implement 报告只是 claim，Verify 必须独立检查真实 artifact；
 3. implementation → behavior：实际行为是否满足模型和需求；
 4. composition/dependency：当前节点与必要邻接节点的固定接口是否一致。
 
@@ -169,6 +174,7 @@ Act 固定 implementation release/mapping；未运行 pdca-verify 时仍为 not_
 
 Plan 固定验证问题、CASE/oracle 与需要的 observation；Do 执行 requirement/model/mapping/behavior 核验，
 TEST-01 只保存实际 observation，EVIDENCE-01 将 findings/observations 绑定到固定 claim。
+每个 Verify CASE 必须映射到被审 node 的 requirement 与固定 AC/oracle；可以细化可观察条件或增加 scene-specific AC，但不得替换、降低或遗漏 node 的必需 AC。映射不清时保持 unknown，不以 CASE 自定的较弱 oracle 判为符合。
 conformance-review record 保存本 scene 的结构化验证矩阵；Check 再用 flow-check 审查 verify task 自身，
 最终 task 结论只由 VERDICT-01 聚合。若是 verify task 自身可在同一 Plan 边界内修正的执行问题，先按 REWORK-01 走新的 Do；
 被审 implementation/model 的缺陷只形成外部后续 task/attempt candidate。Act 只执行当前 verify attempt 的终态处置。

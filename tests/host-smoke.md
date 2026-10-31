@@ -27,6 +27,7 @@ GIT_OPTIONAL_LOCKS=0 git -C "$PDCA_ROOT" status --porcelain
 ```
 
 `PDCA_ROOT` 须先由操作员设置为实际核对过的绝对路径；不要原样执行空变量示例。
+该路径的规范化结果必须与当前加载 Skill 所属集中 Git 工作副本一致；不得用 cwd 或 `TARGET_ROOT` 代替。
 工作树非空时说明哪些未提交改动属于测试依据，不自动 stash、pull、checkout 或恢复历史版本。
 
 选择一个新的、无生产数据的 TARGET_ROOT 和不冲突的 project/workspace/work 标识；集中记录仍归
@@ -41,12 +42,12 @@ PDCA_ROOT，不能为了实验在 TARGET_ROOT 建 `.pdca/`。测试写入仅限�
 | writes | 实际可用的实验记录/模型写域、资源拥有者及后端依据；不是“已开启沙箱”一句话 |
 | events | 创建、完成、失败、取消的原生回执来源和可核查顺序 |
 
-**OpenCode v1.18.32 已知边界。** 维护级 Actions 已证明 `session list` / `export` 能核验 session identity、两条 user-role 消息、native Skill tool 消息与续接后的 assistant response；但该版本持久化的 UserMessage 没有外部 sender/actor/ingress/transport 字段。因此 `role=user` 只能证明 OpenCode 将输入记录为 user-role，不能单独证明真人来源。现场使用 OpenCode 时，必须再从**实际接入路径**取得能把真实用户动作绑定到对应 session/message 的原生 receipt/audit/event；该路径没有这类证据时，CAP-01 `communicate` 的来源/路由部分保持 unknown，不能用 transcript、session ID 或 Agent 自述补齐。维护证据见 [OpenCode user-message provenance boundary](../docs/reviews/2026-09-27-opencode-user-message-provenance.md)。
+**OpenCode user-message 来源边界。** 维护级 Actions 已证明 v1.18.32 的 `session list` / `export` 能核验 session identity、两条 user-role 消息、native Skill tool 消息与续接后的 assistant response；v2.0.32 也能续接并导出 TUI transcript。但 v1.18.32 UserMessage 与 v2.0.32 `SessionMessage.User` 均没有专用外部 sender/actor/ingress/TTY receipt 字段。因此 `role=user` 或 `type=user` 只能证明 OpenCode 将输入记录为 user 类型，不能单独证明真人来源。现场使用 OpenCode 时，必须再从**实际接入路径**取得能把真实用户动作绑定到对应 session/message 的独立证据；该路径没有这类证据时，CAP-01 `communicate` 的来源部分保持 unknown，不能用 transcript、session ID 或 Agent 自述补齐。维护证据见 [OpenCode user-message provenance boundary](../docs/reviews/2026-09-27-opencode-user-message-provenance.md)。
 
-如果实际路径是 **OpenCode v1.18.32 交互 TUI**，先按
+如果实际路径是 **OpenCode 交互 TUI**，先按
 [OpenCode 交互 TUI 消息来源现场探针](opencode-interactive-provenance.md)
 执行一次无业务写入的 challenge 对账。它用独立真人输入记录 + TUI 版本级 submit 路由 + host-side session/export 三方核验；
-文档存在本身不代表该探针已经执行。
+该探针分别说明 v1.18.32 与 v2.0.32 的路由和导出方式。父 Agent 或 tmux 自动注入不能充当真人输入证据；文档存在本身不代表该探针已经执行。
 
 缺环境级证据时，先由用户明确批准一个**无业务写入的能力探测会话**，只测试上述宿主机制，
 不把它登记为正式 task 或补写四阶段。探测材料也只保存在获准的试验证据位置。
@@ -106,7 +107,7 @@ EVIDENCE-01 把 decisive claim 绑定到当前 subject 的 observation/counterev
 
 | 验收项 | 本实验真正覆盖的范围 |
 |---|---|
-| H1、H3、H4、H6、H12、H17 | 仅本次宿主/版本/配置和 root modeling 案例中的发现、创建、阶段边界、方法读取及 AI Check；H12 只含本文澄清不授权的反例，未覆盖全部歧义/旧对象/重复消息情形 |
+| H1、H3、H4、H6、H12、H17 | 仅本次宿主/版本/配置和 root modeling 案例中的发现、创建、阶段边界、方法读取及 AI Check；H12 只测试本文的未授权反例，未覆盖无匹配任务、原身份/事件缺失、多匹配或旧确认分支 |
 | H18 | 仅一个由 fixed tree/node 经 DECOMP 形成的 child task seed 的创建与初始输入；不证明 child 四阶段或全部多 Agent 行为 |
 | H2 | 仅一个实验绑定；两个项目、多 worktree、冲突和别名仍未覆盖 |
 | H10 | 仅等待时原实例继续；未测试崩溃、长上下文压缩、Git 更新或身份丢失恢复 |

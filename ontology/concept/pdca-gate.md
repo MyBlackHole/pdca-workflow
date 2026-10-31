@@ -8,8 +8,8 @@ dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
 status: active
 authority: normative
-revision: 4.0.0-rc.1
-dcterms_modified: '2026-09-27'
+revision: 4.0.0-rc.2
+dcterms_modified: '2026-10-22'
 summary: GATE-01：判断一个固定 phase_start 此刻能否开始
 ---
 
@@ -30,6 +30,8 @@ GATE-01 只回答：**这个已经被用户授权的固定 phase_start，在当�
 6. **resources/capability**：RESOURCE-01 证明本 phase 所需真实资源保证当前成立，CAP-01 证明宿主能力可用；工具/写域仍在本次固定授权范围。
 
 任何一项 unknown / 不满足，都只阻断本次 phase_start；Gate 不负责修复 dependency、释放资源、清除 control 或恢复 Agent，只引用对应 authority 的事实。
+
+涉及业务、模型或过程记录写入时，资源依据须包含 RESOURCE-01 所需的集中预约元数据读取与真实权利核验，取得这些事实后才能判 ready。目录缺失、读取被拒或尚未核对都不能推成“无冲突”；空账本也不等于取得资源。Do 的写前再次核验不能补作已经发生的 phase_started 的启动依据。
 
 ## Phase 特有前提
 

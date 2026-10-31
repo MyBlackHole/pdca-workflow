@@ -132,7 +132,7 @@ this prompt
 
 ## 结论
 
-OpenCode v1.18.32 当前已经具备很强的 session identity / persistence / continuation 可观察性，但 **session transcript 不携带足以单独证明真人消息来源的 provenance**。
+截至 2026-09-27，OpenCode v1.18.32 已具备很强的 session identity / persistence / continuation 可观察性，但 **该版本的 session transcript 不携带足以单独证明真人消息来源的 provenance**。
 
 下一次正式现场验收的关键问题已经从“OpenCode 能不能续接会话”收敛为：
 
@@ -166,3 +166,42 @@ v1.18.32 的 `formatTranscript()` 会把完整 `Session ID` 写入当前 TUI 的
 再用该文件中的完整 ID 调用 `opencode export <exact-id>` 获取 host-side JSON。
 TUI probe 同时覆盖 `VISUAL=true EDITOR=true`，因为 v1.18.32 的 `openEditor()` 按
 `VISUAL || EDITOR` 选择外部编辑器；只覆盖 `EDITOR` 不能保证无交互。
+
+## 2026-10-20：v2.0.32 路由与导出更新
+
+本机现装 OpenCode 为 `v2.0.32`。复核上游 tag `v2.0.32`，commit 为
+`843a6c514e606b436a7fe713422ace0a93ad3d61`。此前正文中的 legacy route、没有
+`session.next.*` 事件、文件名和 `VISUAL` 处理结论均只适用于 v1.18.32，不能拿来解释当前 TUI。
+
+v2.0.32 当前 TUI 提交路径为：
+
+```text
+Prompt.submitInner() 读取 input.plainText
+  -> 无 session 时 data.session.create(...)
+  -> data.session.prompt({ sessionID, text, ... })
+  -> POST /api/session/{sessionID}/prompt
+  -> durable inbox admission / enqueued echo
+```
+
+来源：上游固定版本的
+[`prompt/index.tsx`](https://github.com/anomalyco/opencode/blob/843a6c514e606b436a7fe713422ace0a93ad3d61/packages/tui/src/component/prompt/index.tsx)、
+[`solid/data.ts`](https://github.com/anomalyco/opencode/blob/843a6c514e606b436a7fe713422ace0a93ad3d61/packages/client/src/solid/data.ts)、
+[`generated/client.ts`](https://github.com/anomalyco/opencode/blob/843a6c514e606b436a7fe713422ace0a93ad3d61/packages/client/src/promise/generated/client.ts)
+和 [`session-message.ts`](https://github.com/anomalyco/opencode/blob/843a6c514e606b436a7fe713422ace0a93ad3d61/packages/schema/src/session-message.ts)。
+`SessionMessage.User` schema 有 id、可选 metadata、创建时间、text/files/agents/skills 与 `type=user`，但没有专用外部 actor/ingress/TTY receipt 字段；当前 TUI prompt caller 不传 metadata。插件仍可能写入通用 metadata，但除非来源有独立可信约束，它也不能证明真人身份。新的 durable inbox admission 能支持“prompt 已被接收”的核验，不证明提交者身份。
+
+v2.0.32 TUI 的 `/export` 会读取当前 session ID 并调用 `client.api.session.export()`，Markdown formatter 写入完整 `Session ID`。保存流程现在打开选项对话框，并把 Markdown 写入 `node:os.tmpdir()` 下的随机 `session-<uuid>.md`，而非 v1.18.32 的默认 `session-<id-prefix>.md` 路径；POSIX 上可在启动 TUI 前设置 `TMPDIR` 将其重定向到工作区测试目录。现场 probe 必须核验结果对话框给出的精确路径确实位于该目录，再复制到私有证据目录。实现见上游固定版本的
+[`routes/session/index.tsx`](https://github.com/anomalyco/opencode/blob/843a6c514e606b436a7fe713422ace0a93ad3d61/packages/tui/src/routes/session/index.tsx)。
+
+本机 v2.0.32 synthetic TUI continuation probe 曾由 Agent 注入两条输入，并成功导出 transcript。这只验证了当前 TUI 会话续接和导出操作；没有证明真人来源，不能把 CAP-01 `communicate` 升为 PASS。现场步骤已更新至
+[OpenCode 交互 TUI 消息来源现场探针](../../tests/opencode-interactive-provenance.md)。
+
+同日又在专用 tmux session 中重新打开该 synthetic TUI session，执行 `/export` 并选择 Markdown / save to file：结果对话框给出临时路径，文件在继承 `umask 077` 后为 mode `0600`，正文含完整 session ID 与 synthetic challenge。随后用 v2.0.32 的 `opencode session export <session-id>` 读取 host JSON；核验结果为 session ID 匹配、2 条 user、2 条 assistant、恰好 1 条 user 含该 challenge。TUI export 与 JSON 分别保存在 `/tmp/pdca-v2032-export-doc-check-20261020/tui-session.md`、`/tmp/pdca-session-export-v2032.json`，原始 TUI export 也保存在 `/tmp/session-6ee2933b-c0a3-4499-9e4c-a6323b863916.md`；相关文件均限制为当前用户可读。challenge SHA-256：`ed63a696d37ea8be0a1e912e103ee4b8eefd9241599ec314cc81ebfdc95f4051`。
+
+该次操作通过 tmux 自动化完成，输入本来就是 synthetic；它验证 `/export` 的保存路径、权限和新 CLI host export 的 session/message 对账步骤，**不**是物理真人输入，也不改变 probe `NOT_RUN`、CAP-01 `communicate` `unknown` 或 H1-H18 `NOT_RUN`。
+
+## 2026-10-21：v2.1.1 工作区路径与 umask 实测
+
+在本机 OpenCode v2.1.1 的专用 tmux 会话中，对已有 synthetic session 只执行 `/export`，没有提交新的业务 prompt。先将 `TMPDIR` 指向工作区 `tests/` 下的私有目录；TUI 实际保存到该目录中的 `session-<uuid>.md`，没有写到系统临时目录。首次启动未设置 `umask 077` 时，新文件为 `0644`；按现场步骤重跑并在启动前设置 `umask 077` 后，新文件为 `0600`。后一次导出文件为 32,557 字节，路径及模式在清理前核验；TUI 退出且确认没有进程占用后，已删除本轮导出和 Bun 临时缓存。
+
+这次 Agent 通过 tmux 操作、复用 synthetic session 的实测只验证 v2.1.1 的 `TMPDIR` 路径和文件权限，不验证 export 正文与 host JSON 的对账，也不证明真人来源；probe、CAP-01 `communicate` 与 H1-H18 状态均不变。

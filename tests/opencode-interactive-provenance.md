@@ -22,7 +22,9 @@
 - 保留两条 user-role 消息、native Skill tool assistant message 与 final assistant response；
 - 在第二条 user 没有重新注入 runtime token 的情况下，从原 session 历史恢复 token。
 
-但 v1.18.32 的 persisted UserMessage 没有 sender/actor/ingress/transport provenance。
+另一次 v2.0.32 维护级 TUI 续接与导出只使用了 Agent 注入的输入，没有真人键入证据，不能算作本探针执行。
+
+v1.18.32 与 v2.0.32 的 TUI 提交 API 已不同，但两版的 user-message 记录都不能单独证明真人来源：v1.18.32 的 UserMessage 没有 sender/actor/ingress/transport provenance；v2.0.32 的 User schema 也没有专用的来源字段，且当前 TUI prompt 路径不传来源 metadata。
 因此：
 
 ```text
@@ -38,7 +40,9 @@ export 里的 role=user
 - [OpenCode user-message provenance boundary](../docs/reviews/2026-09-27-opencode-user-message-provenance.md)
 - [OpenCode persisted session transcript](../docs/reviews/2026-09-27-opencode-session-transcript.md)
 
-## 2. v1.18.32 的 TUI 路由事实
+## 2. 按版本核对 TUI 提交路由
+
+### 2.1 OpenCode v1.18.32
 
 本探针依赖的版本级源码依据是 OpenCode commit：
 
@@ -84,7 +88,28 @@ interactive prompt input
 
 但 submit 处没有保存“真人 actor”字段；因此仍需要独立记录真人输入动作，再与 host export 对账。
 
-### 2.1 现有 TUI hook 不能替代真人来源证据
+### 2.2 OpenCode v2.0.32
+
+本机已安装版本为 `opencode v2.0.32`。对应源码 tag 指向 commit：
+
+`843a6c514e606b436a7fe713422ace0a93ad3d61`
+
+`packages/tui/package.json` 标记版本为 `2.0.32`。该 revision 的 TUI submit 路径位于
+[`prompt/index.tsx`](https://github.com/anomalyco/opencode/blob/843a6c514e606b436a7fe713422ace0a93ad3d61/packages/tui/src/component/prompt/index.tsx)，数据层与 endpoint 分别见
+[`solid/data.ts`](https://github.com/anomalyco/opencode/blob/843a6c514e606b436a7fe713422ace0a93ad3d61/packages/client/src/solid/data.ts) 和
+[`generated/client.ts`](https://github.com/anomalyco/opencode/blob/843a6c514e606b436a7fe713422ace0a93ad3d61/packages/client/src/promise/generated/client.ts)：
+
+1. `submitInner()` 同步读取 prompt editor 的 `input.plainText`；
+2. 没有当前 session 时调用 `data.session.create(...)`，否则沿用当前 session ID；
+3. 普通 prompt 经 `data.session.prompt({ sessionID, text, ... })` 发送；
+4. client 将该调用发送到 `POST /api/session/{sessionID}/prompt`，由 durable inbox 处理。
+
+该版本的 `PromptProps.onSubmit` 仍是无参数回调，而且在 composer 清空后调用。`SessionMessage.User`
+的固定字段是 id、可选 metadata、创建时间、text/files/agents/skills 和 `type=user`；没有专用真人 actor、ingress 或 TTY receipt 字段。当前 TUI 的 `data.session.prompt()` 调用没有传入 metadata；即使插件提供通用 metadata，也不能单独证明真人身份或 TTY 来源。
+
+因此 v2.0.32 的路径可核对 prompt 到 session 的 admission 与持久化，不能单独证明 prompt 是真人在 TUI 输入。
+
+### 2.3 现有 TUI hook 不能替代真人来源证据
 
 OpenCode v1.18.32 还暴露了几个看似相关、但不足以充当提交 receipt 的接口：
 
@@ -93,10 +118,10 @@ OpenCode v1.18.32 还暴露了几个看似相关、但不足以充当提交 rece
 - `tui.command.execute` 是 server/HTTP 发布给 TUI 的**入站控制事件**，TUI 收到后执行指定 command；它不是用户按下 submit 时自动发出的出站审计事件；
 - `tui.prompt.append` 也是把文本追加到 TUI prompt 的入站事件，不是用户输入记录。
 
-因此本探针不安装 plugin/adaptor 去“补” provenance，也不把这些接口改写成真人提交回执。当前版本仍需要一个与 OpenCode session store 独立的真实 TTY 输入证据。
+v2.0.32 的 `PromptProps.onSubmit` 也没有参数，并在 prompt state 清空后触发；它同样不能提供本次 text、message ID 或真人身份。因此本探针不安装 plugin/adaptor 去“补” provenance，也不把这些接口改写成真人提交回执。当前版本仍需要一个与 OpenCode session store 独立的真实 TTY 输入证据。
 
 
-### 2.2 不要把 V2 admission event 套到当前 TUI
+### 2.4 Admission receipt 仍不是真人来源证据
 
 OpenCode v1.18.32 的生成客户端同时包含 legacy Session 与真正 V2 Session 两套 API：
 
@@ -118,10 +143,10 @@ legacy prompt emits message events without session.next events
 ```
 
 因此本探针**不得**把 `session.next.prompt.admitted`、`admittedSeq` 或 V2 prompt receipt
-当成 v1.18.32 当前交互 TUI 的提交证据。详细来源见
+当成 v1.18.32 当前交互 TUI 的提交证据。v2.0.32 当前 TUI 已使用 `/api/session/{sessionID}/prompt` 的 durable inbox admission 路径；相应 admission 事件最多证明一条 prompt 被接收，仍不能证明是谁在 TUI 输入。详细来源见
 [OpenCode v1.18.32 TUI admission-event boundary](../docs/reviews/2026-09-28-opencode-tui-admission-boundary.md)。
 
-如果未来 TUI 真正切到 `client.v2.session.prompt()`，必须按新版本/新配置重新取证，不能沿用本结论。
+版本、配置或 TUI route 改变时，必须按当前源码重新取证，不能沿用旧版本的路由结论。
 
 ## 3. 探针前提
 
@@ -170,7 +195,7 @@ challenge 的要求：
 - 当前 relevant config / memory / instruction 设置；
 - 当前没有自动 prompt 注入机制的事实。
 
-然后**人工启动交互式 `opencode` TUI**。
+然后由操作员**在该终端人工启动交互式 `opencode` TUI**。本探针要求真人在操作终端直接键入或手工粘贴 challenge 并触发 submit；父 Agent 使用 `tmux send-keys`、脚本或其他自动化方式注入 challenge，只能作为 TUI 路由模拟，不能把 A 项真人动作证据标记为通过。
 
 不要使用：
 
@@ -192,10 +217,11 @@ CI 模拟 role=user
 
 可接受形式取决于现场环境，例如：
 
-- 终端自身的会话录制；
-- OS/终端审计；
-- 由操作员保留的原始屏幕/输入录制；
-- 其他能够显示“该 challenge 是在这个交互 TTY 的 OpenCode prompt 中由用户提交”的证据。
+- 能同时识别操作员、目标 TTY 与键入/手工粘贴及 submit 动作的同期观察记录或录制；
+- 能把登录用户和该 TTY 输入事件绑定起来的 OS/终端审计；
+- 其他能够支持“这名操作员在这个交互 TTY 的 OpenCode prompt 中提交了该 challenge”的证据。
+
+只显示 TUI 输出或只记录 PTY 输入字节的材料，不识别实际输入者，不能单独把 human-origin 标为通过。`script --log-in` 可作为输入字节的补充记录，不能替代操作者来源证据。
 
 该材料只用于本次无敏感 probe。不要在存在密码、token 或业务秘密的终端开启全量输入记录。
 
@@ -213,12 +239,29 @@ script --help | grep -F -- '--log-in'
 
 没有该选项时不要退化成普通 output-only `script` 并宣称已记录用户输入；改用终端/OS 的独立录制方式。
 
-建议在 TARGET_ROOT / PDCA_ROOT **之外**建立仅当前用户可读的临时证据目录：
+在当前工作区已有的 `tests/` 输出目录中创建仅当前用户可读的临时证据目录。v2.0.32 的 TUI 导出实现调用 `node:os.tmpdir()`；在 POSIX 上该 API 尊重 `TMPDIR`，因此必须在启动 TUI 前将它指向工作区内的专用目录。若工作区的 `tests/` 实际解析到 `/tmp`，停止探针，不改用系统临时目录。
 
 ```sh
+set -eu
 umask 077
-probe_dir="$(mktemp -d)"
+pdca_root="$(git rev-parse --show-toplevel)"
+test_output_dir="$(realpath -e "$pdca_root/tests")"
+case "$test_output_dir" in
+    /tmp|/tmp/*)
+        printf 'tests output directory resolves under /tmp; refusing to run: %s\n' "$test_output_dir" >&2
+        exit 1
+        ;;
+esac
+probe_dir="$(mktemp -d "$test_output_dir/opencode-provenance.XXXXXXXX")"
 chmod 700 "$probe_dir"
+mkdir -m 700 "$probe_dir/tmp"
+export TMPDIR="$(realpath -e "$probe_dir/tmp")"
+case "$TMPDIR" in
+    /tmp|/tmp/*)
+        printf 'TMPDIR resolves under /tmp; refusing to run: %s\n' "$TMPDIR" >&2
+        exit 1
+        ;;
+esac
 
 challenge="PDCA-HUMAN-PROBE-$(od -An -N16 -tx1 /dev/urandom | tr -d ' \n')"
 printf '%s\n' "$challenge" >"$probe_dir/challenge.txt"
@@ -260,6 +303,7 @@ LC_ALL=C grep -aF -- "$challenge" "$probe_dir/input.log"
 ```
 
 该命中只证明 challenge 经过这个录制的 TTY 输入流；最终仍需与 OpenCode host-side export 的 session/message/time 做后续对账。
+`script --log-in` 不认证输入来源，tmux/程序注入也会成为 PTY 输入字节。只有操作员亲自操作且该动作有独立观察或记录时，A 项才可能通过；仅有 `input.log` 与 transcript 时，真人来源仍为 `unknown`。
 
 ### 5.3 用户手工提交
 
@@ -282,12 +326,15 @@ Do not modify files. Do not start any PDCA phase.
 /export
 ```
 
-选择正常保存，并保留默认 `session-<id-prefix>.md` 文件名；不要选择只打开不保存。
-本 probe 从 `probe_dir` 启动 TUI，并同时设置 `VISUAL=true EDITOR=true`。OpenCode 的
-`openEditor()` 优先读取 `VISUAL`、其次读取 `EDITOR`；两者都覆盖为 `true` 才能避免用户环境里已有
-`VISUAL=vim` 等配置重新打开交互编辑器。导出文件因此留在私有 probe 目录，不会写入 TARGET_ROOT / PDCA_ROOT。
+按实际版本完成导出：
 
-OpenCode v1.18.32 的 TUI transcript formatter 会在导出正文首部写入：
+- **v1.18.32：**选择保存并保留 `session-<id-prefix>.md` 文件名。为避免外部编辑器，启动命令覆盖 `VISUAL=true EDITOR=true`；该版本 `openEditor()` 按 `VISUAL || EDITOR` 选择编辑器。导出文件应落在私有 `probe_dir`。
+- **v2.0.32：**`/export` 打开导出选项。选择 Markdown 和 **save to file**，不要选择 copy。OpenCode 在固定源码中使用 `node:os.tmpdir()` 构造导出路径，因此 TUI 应把文件写到启动前设置的 `$TMPDIR`。结果对话框显示实际路径；确认它位于 `$probe_dir/tmp/`，记录该精确路径，退出 TUI 后按下节复制到私有 `probe_dir`。若实际路径不在该目录，停止，不读取、复制或清理该文件。启动前设置的 `umask 077` 会限制本次 TUI 创建文件的权限。
+
+v2.0.32 的 TUI Markdown formatter 与保存路径实现见上游固定版本的
+[`routes/session/index.tsx`](https://github.com/anomalyco/opencode/blob/843a6c514e606b436a7fe713422ace0a93ad3d61/packages/tui/src/routes/session/index.tsx)。
+
+两版的 TUI Markdown transcript formatter 都会在导出正文首部写入：
 
 ```text
 **Session ID:** <完整 session id>
@@ -300,15 +347,31 @@ OpenCode v1.18.32 的 TUI transcript formatter 会在导出正文首部写入：
 
 ## 6. Host-side 精确对账
 
-退出 TUI 后，先确认私有 probe 目录里恰好有一个本次 session Markdown：
+退出 TUI 后，先把 TUI Markdown export 放入私有 probe 目录，统一命名为 `tui-session.md`：
+
+- v1.18.32：将该版本保存在 `probe_dir` 中的 `session-*.md` 文件移入/复制为该路径；
+- v2.0.32：使用导出结果对话框显示的**精确路径**作为 `tui_export_source`，并先确认其规范化路径仍在 `$probe_dir/tmp/`，再执行：
 
 ```sh
-set -- "$probe_dir"/session-*.md
-[ "$#" -eq 1 ] && [ -f "$1" ] || {
-    printf 'Expected exactly one saved TUI session export in %s\n' "$probe_dir" >&2
+set -eu
+tui_export_source="$probe_dir/tmp/session-<uuid>.md" # 替换为 TUI 结果对话框显示的精确路径
+tui_export_source="$(realpath -e "$tui_export_source")"
+case "$tui_export_source" in
+    "$probe_dir"/tmp/session-*.md) ;;
+    *) printf 'TUI export is outside the workspace TMPDIR; stopping: %s\n' "$tui_export_source" >&2; exit 1 ;;
+esac
+cp -- "$tui_export_source" "$probe_dir/tui-session.md"
+chmod 600 "$probe_dir/tui-session.md"
+```
+
+确认没有其他 TUI export 被误认为本次结果，并核对该文件包含本次 challenge。随后按固定文件名读取：
+
+```sh
+tui_export="$probe_dir/tui-session.md"
+[ -f "$tui_export" ] || {
+    printf 'Missing saved TUI session export: %s\n' "$tui_export" >&2
     false
 }
-tui_export="$1"
 
 session_id="$(
     sed -n 's/^\*\*Session ID:\*\* //p' "$tui_export" | head -n 1
@@ -333,24 +396,23 @@ printf 'Exact TUI session: %s\n' "$session_id"
 opencode session list --max-count 10 --format json >"$probe_dir/session-list.json"
 LC_ALL=C grep -aF -- "$session_id" "$probe_dir/session-list.json"
 
-opencode export "$session_id" >"$probe_dir/session.json"
+case "$(opencode --version)" in
+    *v1.18.32*) opencode export "$session_id" >"$probe_dir/session.json" ;;
+    *v2.0.32*) opencode session export "$session_id" >"$probe_dir/session.json" ;;
+    *) printf 'Unverified OpenCode export command for %s\n' "$(opencode --version)" >&2; false ;;
+esac
 LC_ALL=C grep -aF -- "$challenge" "$probe_dir/session.json"
 ```
 
 如果 session list 的窗口不足以包含该 ID，不因此换成另一个“最新 session”；
-`opencode export "$session_id"` 的 exact-ID 结果和 TUI export 仍是主要对账对象，并把 list limitation 记录下来。
+按当前版本执行的 exact-ID host export 与 TUI export 仍是主要对账对象，并把 list limitation 记录下来。
 
-在 host export 中必须找到唯一对应 user message，并记录：
+在 host export 中必须确认 `export.info.id == session_id`，并找到唯一对应的 user message。
+逐版本记录 message identity 与内容：
 
-- `info.id`；
-- `info.sessionID`；
-- `info.time.created`；
-- `info.agent`；
-- `info.model`；
-- user text part 中的 exact challenge；
-- 后续 assistant message/part；
-- session 的创建/更新时间；
-- challenge digest。
+- **v1.18.32：**user message 的 `info.id`、`info.sessionID`、`info.time.created`、`info.agent`、`info.model`、`info.role=user` 及对应 text part；
+- **v2.0.32：**user message 的 `id`、`type=user`、`time.created` 和 `text`。此版本 message 没有单独的 `sessionID` 字段，通过外层 `export.info.id` 将整个 `messages` 集合绑定到 session；
+- 两版都记录后续 assistant message/part、外层 session 创建/更新时间和 challenge digest。
 
 原始 export 保存在获准的私有证据位置；公共 PR 不提交不必要的完整 transcript。
 
@@ -368,15 +430,25 @@ real operator
   -> submitted exact challenge
 ```
 
+独立记录必须支持操作员确实亲自在 TUI 提交 challenge。PTY input log 本身只证明字节到达 TUI 所在的终端，不识别键盘操作人与 `tmux send-keys` / 其他注入者；无法独立核实操作者时，A 保持 `unknown`。
+
 ### B. TUI 路由证据
 
 按当前版本实际实现确认：
 
 ```text
-TUI submit
+v1.18.32:
+  TUI submit
   -> session.create if needed
   -> client.session.prompt(sessionID, parts)
-  -> legacy POST /session/{sessionID}/message
+  -> POST /session/{sessionID}/message
+
+v2.0.32:
+  TUI submitInner()
+  -> data.session.create if needed
+  -> data.session.prompt({ sessionID, text, ... })
+  -> POST /api/session/{sessionID}/prompt
+  -> durable inbox admission
 ```
 
 源码事实不能单独证明本次真人输入，但可以解释输入从 TUI 到 session 的真实 route。
@@ -413,7 +485,7 @@ same exact challenge
 - 只记录 TUI output、没有独立 input stream，却声称已证明真人输入；
 - input recorder 会话中出现密码/token 等敏感输入，导致证据本身不适合保留或发布；
 - 把 `session_prompt.onSubmit`、`tui.command.execute`、`tui.prompt.append` 当成当前用户提交的 provenance receipt；
-- 把 `session.next.prompt.admitted` 或 V2 `admittedSeq` 当成当前 v1.18.32 TUI 的 receipt。
+- 对 v1.18.32，把 `session.next.prompt.admitted` 或 V2 `admittedSeq` 当成当前 legacy TUI 的 receipt；对 v2.0.32，把 durable inbox admission 当成真人来源证明。
 
 任一关键点无法排除，结果保持 `unknown`。
 
@@ -469,7 +541,7 @@ result:
 
 本文只是可执行探针说明。
 
-截至本文创建时：
+截至 2026-10-20：
 
 ```text
 interactive TUI provenance probe = NOT_RUN

@@ -1,5 +1,7 @@
 # PDCA Git Installation and Assistant Implementation Plan
 
+> **Status: historical starting plan, not a current execution checklist.** Later design and testing rules are authoritative in [the PDCA AI work-assistant design](../specs/2026-09-14-pdca-ai-work-assistant-design.md) and [tests/README.md](../../../tests/README.md). In particular, the current project avoids tests that re-encode PDCA semantic rules; this file's unchecked boxes do not report current implementation status.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Replace the copy/snapshot installer with a safe Git-clone plus Skills-directory symlink installer, add `$pdca-assist`, and remove superseded package layers.

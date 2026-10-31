@@ -21,6 +21,11 @@ jobs:
       - name: Shell syntax
         run: sh -n install.sh
 
+      - name: Installer filesystem behavior
+        env:
+          TMPDIR: ${{ github.workspace }}/tests
+        run: python3 -m unittest discover -s tests -v
+
       - name: Skill bundle version consistency
         shell: bash
         run: |

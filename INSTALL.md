@@ -93,6 +93,17 @@ done
 
 OpenCode 官方 Agent Skills 发现规则包含全局兼容目录 `~/.agents/skills/<name>/SKILL.md`，与本安装器的九个运行入口布局一致；Skill 由宿主按需通过原生 skill 能力加载，而不是把全部正文默认注入每个会话。
 
+入口身份门禁需要在首次文件/搜索工具调用前生效。PDCA 仓库根的 `opencode.json` 只在该仓库作为 OpenCode 项目根时加载；从业务 `TARGET_ROOT` 启动的会话不会自动继承它。若要在任意项目根使用 PDCA Skill，应将集中副本的 `AGENTS.md` 合并进 OpenCode 用户级配置的 `instructions` 数组，例如：
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["~/.agents/pdca/AGENTS.md"]
+}
+```
+
+合并现有配置时保留原有设置和其它 `instructions` 项，不要用示例覆盖整个文件。OpenCode 支持用 `instructions` 路径列表加载模型指令，详见[官方配置文档](https://docs.opencode.ai/docs/config/)。安装器不会自动修改用户级配置；没有配置该入口时，不能把 PDCA 仓库内的 `opencode.json` 当作 TARGET_ROOT 会话的全局保护。
+
 仓库的 `.github/workflows/opencode-smoke.yml` 在隔离 HOME 中先运行**未改写的真实 `install.sh`**，验证生产 clone/链接行为；随后只在该临时 CI 工作副本中用本地 Git bundle 把 `~/.agents/pdca` 精确切换到当前 workflow checkout HEAD，并硬断言两边 HEAD 一致。这样生产安装器仍按默认远端 `main` 工作，而 PR/push 的后续 OpenCode discovery/model probes 实际读取的是本次待验证字节，不会因为安装器重新 clone `main` 而误测旧 Skill。之后 workflow 下载并校验固定 OpenCode CLI，以 OpenCode 自带的 `opencode debug skill` 作为兼容门禁。当前对 **OpenCode v1.18.32** 的真实 Actions 结果已经确认：catalog 中的 PDCA runtime Skill 都能从安装布局生成的 `~/.agents/skills/<name>/SKILL.md` 路径被发现、解析，并读取到实际 Skill 正文。
 
 headless `opencode serve` 的 `/api/skill` 在同一 Actions 环境中只返回内置 Skill，没有暴露 external PDCA Skills；该路径目前仅保留为非门禁诊断，不能据此否定 CLI 发现能力，也不能声称 server/session 集成已通过。

@@ -25,6 +25,25 @@
 
 上述总目录用于确认没有跳过开发领域，不要求每次把整棵文档树全部装入上下文。任务开始时，AI 必须识别其改动涉及的领域并读取对应原文；发生跨子系统、跨架构或跨 UAPI 边界时，必须分别读取相关规范。
 
+## Linux 内核开发生命周期
+
+以下阶段门槛用于让相关规范进入实际决策，不要求每个任务机械完成所有阶段。每项内核工作都必须识别当前阶段、目标和受影响的后续阶段；不能因改动小而跳过其真实影响到的启动、运行、关闭或 ABI 路径。
+
+| 阶段 | AI 必须完成的判断与证据 |
+| --- | --- |
+| 需求与适用范围 | 固定目标树版本/提交、架构、配置、工具链、硬件/固件和目标部署分支；识别用户可见接口及支持的 built-in/module、RT、32/64 位等组合。未承诺的兼容范围要明示，不凭单次构建扩大保证。 |
+| 设计 | 列出正常、失败、重试、停止和恢复的状态转换；分别证明对象所有权、共享状态同步、外部契约、部分成功回滚及兼容行为。优先正确且可审查的设计，已有抽象只有在语义和生命周期匹配时复用。 |
+| 实现与运行集成 | 把变更放入真实 init/probe、发布使用、重配置/挂起、remove/unload 或 shutdown/reboot 路径；核对初始化顺序、回调上下文和最后一次访问。不得以另一生命周期回调代替目标路径。 |
+| 验证 | 按 [改动验证](../workflows/validation.md) 为受影响的阶段选择配置、错误注入、重复转换、并发和硬件场景；记录实际执行和缺失证据。构建、静态检查、运行测试及硬件验证分别说明其证明边界。 |
+| 评审与合入 | 上游贡献时确认维护者和子系统附加要求，遵循 [开发过程](https://docs.kernel.org/process/development-process.html)、[补丁提交](https://docs.kernel.org/process/submitting-patches.html) 与目标树检查表；按集成队列/`linux-next`/合并窗口/RC 阶段准备适用补丁，不把本地可编译等同于上游已接受。 |
+| 发布与分支维护 | 处理已合入变更的回归报告，按 [回归处理](https://docs.kernel.org/process/handling-regressions.html) 确定修复、回退或升级路径；需要稳定版回移时按 [stable 规则](https://docs.kernel.org/process/stable-kernel-rules.html) 核对主线状态、适用版本、标签和最终回移补丁。产品支持分支、LTS 维护者与结束时间须按当时的 [官方维护版本清单](https://www.kernel.org/category/releases.html) 核实；不得假定每个主线版本都是 LTS 或承诺固定支持期。状态必须有可核验证据。 |
+| 安全响应 | 安全问题按 [安全报告流程](https://docs.kernel.org/process/security-bugs.html) 处理分流、受影响版本、证据和披露边界；不得将尚未公开的漏洞材料并入公开报告流程。 |
+| ABI 弃用与功能退役 | 公开 ABI 按 `Documentation/ABI/` 记录稳定性、使用者和弃用/移除依据；新增弃用或删除前检查迁移/通知条件与目标树 [弃用规范](https://docs.kernel.org/process/deprecated.html)，并同步清理代码、配置、文档、测试、维护归属及使用者。 |
+
+若交付范围包含可安装内核、外部模块或设备产品，还须按目标系统核对模块签名、镜像安装、引导配置、升级/回退及恢复流程。它们是产品交付责任，不应冒充 Linux 上游补丁规则；未包含时标明范围边界。
+
+完成报告给出：当前生命周期阶段、已验证阶段、未覆盖但适用的阶段、证据和下一责任方。区分“本地实现/验证”“已发送/已评审”“已合入”“已发布/回移”“已部署”“已弃用/删除”；不得把一个状态推定为另一个状态。
+
 ## 风格、文档与贡献
 
 | 主题与官方原文 | 技能内责任与触发条件 |
@@ -36,6 +55,7 @@
 | [AI Coding Assistants](https://docs.kernel.org/process/coding-assistants.html)、[生成内容规范](https://docs.kernel.org/process/generated-content.html) | [AI 归属与人工认证](../workflows/kernel-contribution.md#ai-归属与人工认证)：AI 参与内核 bug 定位/复现/修复时完整读取适用的 AI 指引与开发流程；准备 Linux 贡献时另核对 DCO、工具来源披露及适用的归属标记。必读原文须完整读取，滚动渲染页不能证明目标政策版本 |
 | [Licensing rules](https://docs.kernel.org/process/license-rules.html) | [许可证与来源](../environments/kernelspace.md#许可证与来源)：文件 SPDX、UAPI 例外、模块信息与来源；不推广为用户态项目的 GPL 要求 |
 | [Handling regressions](https://docs.kernel.org/process/handling-regressions.html)、[Security bugs](https://docs.kernel.org/process/security-bugs.html)、[Threat model](https://docs.kernel.org/process/threat-model.html) | [贡献流程](../workflows/kernel-contribution.md#回归与安全问题) 和 [安全分类](../workflows/security-review.md#linux-内核问题分类)：拟报告时完整核对版本、证据、分流及材料处理政策 |
+| [Development process](https://docs.kernel.org/process/development-process.html)、[Handling regressions](https://docs.kernel.org/process/handling-regressions.html) | [Linux 内核开发生命周期](#linux-内核开发生命周期)：需求到 linux-next、merge window、RC、发布后回归跟踪与稳定版修复；依据目标树/当期上游规则判断，不硬编码随时间变化的发布节奏 |
 
 ## 构建与配置
 
@@ -66,6 +86,13 @@
 | [Generic IRQ handling](https://docs.kernel.org/core-api/genericirq.html) | [IRQ 与 PM 生命周期](../environments/kernelspace.md#irq-与-pm-生命周期)：区分 hardirq/threaded handler 的同步范围，核对共享中断、设备中断源及等待上下文 |
 | [Device Power Management Basics](https://docs.kernel.org/driver-api/pm/devices.html) | [IRQ 与 PM 生命周期](../environments/kernelspace.md#irq-与-pm-生命周期)：设备依赖顺序、noirq 限制、回调跳过和 suspend/resume 期间设备/IRQ/DMA 静止；具体设备策略另读子系统规范 |
 | [Lockdep design](https://docs.kernel.org/locking/lockdep-design.html) | [内核锁约束](../environments/kernelspace.md#锁内存序与生命周期)：涉及 IRQ-safe/unsafe 类别、锁嵌套、反向顺序或 lockdep assertion 时读取原文并验证实际调用链 |
+
+## 启动、模块与系统交付
+
+| 主题与官方原文 | 技能内责任与触发条件 |
+| --- | --- |
+| [Driver entry/exit](https://docs.kernel.org/driver-api/basics.html)、[Module signing](https://docs.kernel.org/admin-guide/module-signing.html)、目标架构启动文档 | [启动、模块加载与系统关闭](../environments/kernelspace.md#启动模块加载与系统关闭)：initcall/module_init/module_exit、built-in/module 差异、签名及启动/卸载/关闭路径；仅按任务触及的专题读取匹配版本原文 |
+| [Kernel releases](https://www.kernel.org/category/releases.html) | [Linux 内核开发生命周期](#linux-内核开发生命周期)：产品目标分支、stable/LTS 维护者及支持结束日期；每次按官方当前列表核实，不固化过期版本清单 |
 
 ## 数据结构与表示
 

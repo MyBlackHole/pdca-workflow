@@ -12,6 +12,11 @@ metadata:
 先执行[共同恢复入口](../../ontology/contracts/entry-recovery.md)。当前会话不是原任务执行者时，
 只路由真实用户操作回原 Agent；不可路由就阻断。
 
+**身份门禁是 Act 的硬停止条件，优先于下方全部处置规则。** 共同恢复未能唯一核验
+`project_id/workspace_id`，或续做既有任务时未唯一定位 `task_id`、当前 attempt 与原执行 Agent，
+必须只逐字输出共同恢复入口定义的身份门禁短答并立即停止。此时不得继续 Act 专属的 LOAD-MAP、
+项目绑定、记录或授权核验，不得读取 Act 方法/场景规则，也不得补充字段解释、业务判断或后续步骤。
+
 如果 Check 后用户选择的是 **同-attempt rework**，先按 REWORK-01 判断资格；成立时应进入新的 Do request，
 **不要进入 Act**。Act 只处理当前 attempt 的终态处置。
 

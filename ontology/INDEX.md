@@ -1,12 +1,17 @@
 # 当前执行权威索引 · protocol 4.0.0-rc.5
 
-只列 28 项沿用 ID 的当前规则权威；标题中的版本是 protocol revision，不是要求所有资产 `revision` 相同。单个 authority 可有独立 asset revision。它是 AI 查询 authority 的目录，不是要求一次性加载的 manifest。具体何时读取由 [LOAD-MAP](LOAD-MAP.md)、当前 Skill、phase/scene 方法和事件需要决定。历史原文的可用性见[来源说明](provenance/README.md)，不假定存在 legacy 副本。参考库未删除，按 REUSE 检索并经 ADOPT 固定采用，不自动执行其方法。
+只列 33 项带 ID 的当前规则权威；标题中的版本是 protocol revision，不是要求所有资产 `revision` 相同。单个 authority 可有独立 asset revision。它是 AI 查询 authority 的目录，不是要求一次性加载的 manifest。具体何时读取由 [LOAD-MAP](LOAD-MAP.md)、当前 Skill、phase/scene 方法和事件需要决定。历史原文的可用性见[来源说明](provenance/README.md)，不假定存在 legacy 副本。参考库未删除，按 REUSE 检索并经 ADOPT 固定采用，不自动执行其方法。
 
 | ID | 当前文件 |
 |---|---|
 | TREE-01 | [ontology:concept/work-ontology-tree](concept/work-ontology-tree.md) |
 | NODE-01 | [ontology:concept/work-node-contract](concept/work-node-contract.md) |
 | SCENE-01 | [ontology:process/work-scenarios](process/work-scenarios.md) |
+| `ontology:process/flow-plan` | [ontology:process/flow-plan](process/flow-plan.md) |
+| `ontology:process/flow-do` | [ontology:process/flow-do](process/flow-do.md) |
+| `ontology:process/flow-check` | [ontology:process/flow-check](process/flow-check.md) |
+| `ontology:process/flow-act` | [ontology:process/flow-act](process/flow-act.md) |
+| `ontology:process/pdca-flow-model` | [ontology:process/pdca-flow-model](process/pdca-flow-model.md) |
 | SCHED-01 | [ontology:concept/work-tree-scheduling](concept/work-tree-scheduling.md) |
 | TASK-01 | [ontology:concept/pdca-task](concept/pdca-task.md) |
 | CAP-01 | [ontology:concept/capability-protocol](concept/capability-protocol.md) |

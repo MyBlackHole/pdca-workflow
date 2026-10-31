@@ -1,5 +1,7 @@
 # PDCA AI Work Assistant and Release Consolidation Implementation Plan
 
+> **Status: superseded historical plan.** Its `release.json` architecture was not adopted. Current requirements are owned by [the PDCA AI work-assistant design](../specs/2026-09-14-pdca-ai-work-assistant-design.md), and current local checks are defined in [tests/README.md](../../../tests/README.md). Do not execute this plan's steps; its unchecked boxes are not current work status.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Add the user-controlled `$pdca-assist` workbench while consolidating current-release control into `release.json` and removing redundant root and bootstrap material without invalidating historical task snapshots.

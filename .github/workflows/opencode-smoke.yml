@@ -5,7 +5,15 @@ on:
     paths:
       - ".github/workflows/opencode-smoke.yml"
       - "install.sh"
+      - "AGENTS.md"
+      - "opencode.json"
       - "skills/**"
+      - "ontology/INDEX.md"
+      - "ontology/LOAD-MAP.md"
+      - "ontology/contracts/agent-dispatch.md"
+      - "ontology/contracts/entry-recovery.md"
+      - "ontology/contracts/project-workspace.md"
+      - "ontology/process/work-scenarios.md"
       - "ontology/projects/pdca-host-smoke/works/bounded-counter/**"
   push:
     branches:
@@ -13,7 +21,15 @@ on:
     paths:
       - ".github/workflows/opencode-smoke.yml"
       - "install.sh"
+      - "AGENTS.md"
+      - "opencode.json"
       - "skills/**"
+      - "ontology/INDEX.md"
+      - "ontology/LOAD-MAP.md"
+      - "ontology/contracts/agent-dispatch.md"
+      - "ontology/contracts/entry-recovery.md"
+      - "ontology/contracts/project-workspace.md"
+      - "ontology/process/work-scenarios.md"
       - "ontology/projects/pdca-host-smoke/works/bounded-counter/**"
   workflow_dispatch:
 
@@ -23,10 +39,10 @@ permissions:
 jobs:
   opencode-smoke:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # Three serial model probes can use up to 16 attempts at 180 seconds each
+    # (48 minutes); leave time for installation, diagnostics, and artifact upload.
+    timeout-minutes: 60
     env:
-      TEST_HOME: /tmp/pdca-opencode-home
-      OPENCODE_TEST_HOME: /tmp/pdca-opencode-home
       OPENCODE_DISABLE_EXTERNAL_SKILLS: "false"
       OPENCODE_DISABLE_CLAUDE_CODE_SKILLS: "false"
       OPENCODE_VERSION: "1.18.32"
@@ -40,6 +56,35 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Set workspace-local OpenCode test paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          # RUNNER_TEMP and GITHUB_ENV are injected by the GitHub Actions runner.
+          # shellcheck disable=SC2153
+          runner_temp="$(realpath -e "$RUNNER_TEMP")"
+          case "$runner_temp" in
+            /tmp|/tmp/*)
+              echo "RUNNER_TEMP resolves under /tmp; refusing to create test files there: $runner_temp" >&2
+              exit 1
+              ;;
+          esac
+          # shellcheck disable=SC2153
+          github_env="$(realpath -e "$GITHUB_ENV")"
+          case "$github_env" in
+            /tmp|/tmp/*)
+              echo "GITHUB_ENV resolves under /tmp; refusing to write test configuration there: $github_env" >&2
+              exit 1
+              ;;
+          esac
+          test_home="$runner_temp/pdca-opencode-home"
+          mkdir -p "$test_home"
+          {
+            printf 'TEST_HOME=%s\n' "$test_home"
+            printf 'OPENCODE_TEST_HOME=%s\n' "$test_home"
+            printf 'TMPDIR=%s\n' "$runner_temp"
+          } >>"$GITHUB_ENV"
 
       - name: Classify public-model probe scope
         id: scope
@@ -82,8 +127,19 @@ jobs:
 
           run_model_probes=false
           while IFS= read -r changed; do
+            # Keep this list aligned with pull_request/push paths above and tests/README.md.
             case "$changed" in
-              .github/workflows/opencode-smoke.yml|skills/*|ontology/projects/pdca-host-smoke/works/bounded-counter/*)
+              .github/workflows/opencode-smoke.yml|\
+              AGENTS.md|\
+              opencode.json|\
+              skills/*|\
+              ontology/INDEX.md|\
+              ontology/LOAD-MAP.md|\
+              ontology/contracts/agent-dispatch.md|\
+              ontology/contracts/entry-recovery.md|\
+              ontology/contracts/project-workspace.md|\
+              ontology/process/work-scenarios.md|\
+              ontology/projects/pdca-host-smoke/works/bounded-counter/*)
                 run_model_probes=true
                 break
                 ;;
@@ -259,6 +315,7 @@ jobs:
 
       - name: Collect headless server skill-discovery diagnostic
         continue-on-error: true
+        id: server_skill_discovery
         shell: bash
         run: |
           set -euo pipefail
@@ -325,8 +382,8 @@ jobs:
           cd "$GITHUB_WORKSPACE"
 
           python3 - \
-            ontology/projects/pdca-host-smoke/works/bounded-counter/candidate-0.3.0/model.md \
-            "$RUNNER_TEMP/bounded-counter-core-0.3.md" <<'PY'
+            ontology/projects/pdca-host-smoke/works/bounded-counter/candidate-0.9.0/model.md \
+            "$RUNNER_TEMP/bounded-counter-core-0.9.md" <<'PY'
           import pathlib
           import re
           import sys
@@ -336,16 +393,31 @@ jobs:
           if marker not in src:
               raise SystemExit("bounded-counter projection marker missing")
           core = src.split(marker, 1)[0]
-          leaks = sorted(set(re.findall(r"\bNODE-[A-Z0-9-]+\b", core)))
+          allowed_oracle_references = {
+              "AC-NODE-COUNTER-1..4": 1,
+              "AC-NODE-LABEL-1..2": 1,
+              "NODE-COUNTER acceptance oracle": 1,
+          }
+          unclassified_core = core
+          for reference, expected_count in allowed_oracle_references.items():
+              actual_count = unclassified_core.count(reference)
+              if actual_count != expected_count:
+                  raise SystemExit(
+                      f"unexpected projected-node oracle reference {reference!r}: "
+                      f"expected {expected_count}, found {actual_count}"
+                  )
+              unclassified_core = unclassified_core.replace(reference, " ")
+          leaks = sorted(set(re.findall(r"\bNODE-[A-Z0-9-]+\b", unclassified_core)))
           if leaks:
-              raise SystemExit(f"derived NODE identity leaked into ontology core: {leaks}")
+              raise SystemExit(f"derived-node declaration/projection leaked into ontology core: {leaks}")
           pathlib.Path(sys.argv[2]).write_text(core, encoding="utf-8")
-          print("ontology-core NODE identity leaks: 0")
+          print("unapproved derived-node declarations/projection references: 0")
           PY
 
           cat >"$RUNNER_TEMP/opencode-fresh-recovery-prompt.txt" <<'EOF'
           This is a synthetic compatibility test with no private data.
           First use the OpenCode skill tool to load the skill named `pdca`.
+          After that Skill call, do not call any other tool; the attached ontology core is the only domain input.
           Do not modify files. Do not invent or assume any precomputed work-node identity.
           Use only the attached bounded-counter ontology core and traceability as domain evidence.
 
@@ -353,17 +425,63 @@ jobs:
           - the unique composition root and component instances;
           - the producer/consumer dependency candidate and interface;
           - whether that dependency is ready;
+          - the exact seven covered requirement IDs, including REQ-MODEL-SHAPE-001; keep REQ-SCOPE-001 only in the separate scope_coverage object;
+          - the seeded counter state contract: initial state 0; increment results 1,2,2 from that initial state; read state nonmutation; reset-to-zero; keep operation result channels/meanings unknown where unspecified;
+          - C-READ requires an independent state observation surface; its availability and any read return value remain unknown;
+          - legal-reading label composition preserves N as count=N, while concrete operation mapping, call count, and freshness/reuse policy remain unknown;
+          - negative out-of-range rejection observability remains unknown;
+          - the unresolved source-scope requirement and unknown, without inventing persistence behavior or claiming full coverage;
           - one concise responsibility statement for each work instance.
 
           Output exactly one JSON object with this shape and no extra prose:
+          Ensure strict JSON syntax and do not use a Markdown fence. Escape any double quote inside a string as `\"`, or paraphrase without quote characters.
           {
             "tree": {"root": "INST-SYSTEM", "children": ["INST-COUNTER", "INST-LABEL"]},
             "dependency": {
               "producer": "INST-COUNTER",
               "consumer": "INST-LABEL",
               "interface": "legal_count_value",
+              "interface_contract": {
+                "legal_reading_range": [0, 2],
+                "formatter_preserves_value_as_label": true,
+                "concrete_operation_mapping": "unknown",
+                "read_invocation_count_policy": "unknown",
+                "freshness_reuse_policy": "unknown"
+              },
               "ready": false
             },
+            "counter_contract": {
+              "initial_state": 0,
+              "increment_results_from_initial": [1, 2, 2],
+              "read_state_effect": "non_mutating",
+              "read_result_contract": "unknown",
+              "read_state_observation_surface": "unknown",
+              "reset_state_effect": "restores_to_zero",
+              "reset_result_contract": "unknown",
+              "reset_observation": "next_increment_result_1"
+            },
+            "scope_coverage": {
+              "uncovered_requirements": ["REQ-SCOPE-001"],
+              "unknowns": ["U-PERSISTENCE-SCOPE"],
+              "all_requirements_covered": false,
+              "persistence_semantics_resolved": false
+            },
+            "covered_requirements": [
+              "REQ-BC-001",
+              "REQ-BC-002",
+              "REQ-BC-003",
+              "REQ-BC-004",
+              "REQ-LABEL-001",
+              "REQ-COMP-001",
+              "REQ-MODEL-SHAPE-001"
+            ],
+            "unknowns": [
+              "U-READ-OBSERVABILITY",
+              "U-OPERATION-RETURN-CONTRACT",
+              "U-LABEL-READ-MAPPING",
+              "U-LABEL-REJECTION-OBSERVABILITY",
+              "U-PERSISTENCE-SCOPE"
+            ],
             "responsibilities": {
               "INST-SYSTEM": "...",
               "INST-COUNTER": "...",
@@ -389,7 +507,7 @@ jobs:
               timeout 180 opencode run \
                 --model "$model" \
                 --format json \
-                --file "$RUNNER_TEMP/bounded-counter-core-0.3.md" \
+                --file "$RUNNER_TEMP/bounded-counter-core-0.9.md" \
                 -- \
                 "$(cat "$RUNNER_TEMP/opencode-fresh-recovery-prompt.txt")" \
                 >"$RUNNER_TEMP/opencode-fresh-$run.jsonl" \
@@ -426,19 +544,52 @@ jobs:
 
           expected_children = {"INST-COUNTER", "INST-LABEL"}
           expected_instances = {"INST-SYSTEM", "INST-COUNTER", "INST-LABEL"}
+          expected_covered_requirements = {
+              "REQ-BC-001",
+              "REQ-BC-002",
+              "REQ-BC-003",
+              "REQ-BC-004",
+              "REQ-LABEL-001",
+              "REQ-COMP-001",
+              "REQ-MODEL-SHAPE-001",
+          }
+          expected_counter_contract = {
+              "initial_state": 0,
+              "increment_results_from_initial": [1, 2, 2],
+              "read_state_effect": "non_mutating",
+              "read_result_contract": "unknown",
+              "read_state_observation_surface": "unknown",
+              "reset_state_effect": "restores_to_zero",
+              "reset_result_contract": "unknown",
+              "reset_observation": "next_increment_result_1",
+          }
+          expected_unknowns = {
+              "U-READ-OBSERVABILITY",
+              "U-OPERATION-RETURN-CONTRACT",
+              "U-LABEL-READ-MAPPING",
+              "U-LABEL-REJECTION-OBSERVABILITY",
+              "U-PERSISTENCE-SCOPE",
+          }
+          expected_scope_coverage = {
+              "uncovered_requirements": ["REQ-SCOPE-001"],
+              "unknowns": ["U-PERSISTENCE-SCOPE"],
+              "all_requirements_covered": False,
+              "persistence_semantics_resolved": False,
+          }
 
           def load_run(path):
               events = []
-              for line in pathlib.Path(path).read_text(encoding="utf-8").splitlines():
+              for line_number, line in enumerate(pathlib.Path(path).read_text(encoding="utf-8").splitlines(), start=1):
                   line = line.strip()
                   if not line:
                       continue
                   try:
                       events.append(json.loads(line))
-                  except json.JSONDecodeError:
-                      continue
+                  except json.JSONDecodeError as exc:
+                      raise SystemExit(f"{path}:{line_number}: invalid OpenCode JSONL event: {exc}")
 
               skill_parts = []
+              tool_names = []
               texts = []
               session_ids = set()
               for event in events:
@@ -447,6 +598,7 @@ jobs:
                       session_ids.add(sid)
                   if event.get("type") == "tool_use":
                       part = event.get("part") or {}
+                      tool_names.append(part.get("tool"))
                       if part.get("tool") == "skill":
                           skill_parts.append(part)
                   if event.get("type") == "text":
@@ -459,35 +611,113 @@ jobs:
                   raise SystemExit(f"{path}: model did not call the skill tool")
               if not any("pdca" in json.dumps(part, ensure_ascii=False).lower() for part in skill_parts):
                   raise SystemExit(f"{path}: skill tool call did not reference pdca")
+              unexpected_tools = [tool for tool in tool_names if tool != "skill"]
+              if unexpected_tools:
+                  raise SystemExit(f"{path}: unexpected tool access outside supplied ontology core: {unexpected_tools}")
+              if tool_names.count("skill") != 1:
+                  raise SystemExit(f"{path}: expected exactly one skill tool call, got {tool_names}")
               if len(session_ids) != 1:
                   raise SystemExit(f"{path}: expected exactly one session id, got {sorted(session_ids)}")
               if not texts:
                   raise SystemExit(f"{path}: no final text event")
 
               final = texts[-1]
-              left = final.find("{")
-              right = final.rfind("}")
-              if left < 0 or right <= left:
-                  raise SystemExit(f"{path}: final answer does not contain a JSON object: {final!r}")
               try:
-                  obj = json.loads(final[left:right + 1])
+                  obj = json.loads(final)
               except json.JSONDecodeError as exc:
-                  raise SystemExit(f"{path}: invalid final JSON: {exc}: {final!r}")
+                  raise SystemExit(f"{path}: final answer must be exactly one JSON object: {exc}: {final!r}")
+              if not isinstance(obj, dict):
+                  raise SystemExit(f"{path}: final JSON value must be an object, got {type(obj).__name__}")
 
-              if set(obj) != {"tree", "dependency", "responsibilities", "limitations"}:
+              if "scope_coverage" not in obj:
+                  raise SystemExit(f"{path}: missing required scope_coverage")
+              if set(obj) != {"tree", "dependency", "counter_contract", "scope_coverage", "covered_requirements", "unknowns", "responsibilities", "limitations"}:
                   raise SystemExit(f"{path}: unexpected top-level keys: {sorted(obj)}")
 
               tree = obj["tree"]
+              if not isinstance(tree, dict) or set(tree) != {"root", "children"}:
+                  raise SystemExit(f"{path}: tree shape mismatch: {tree!r}")
               if tree.get("root") != "INST-SYSTEM":
                   raise SystemExit(f"{path}: wrong tree root: {tree!r}")
-              if set(tree.get("children") or []) != expected_children:
+              children = tree.get("children")
+              if (not isinstance(children, list)
+                      or len(children) != len(expected_children)
+                      or not all(isinstance(item, str) for item in children)
+                      or set(children) != expected_children):
                   raise SystemExit(f"{path}: wrong tree children: {tree!r}")
 
+              counter_contract = obj["counter_contract"]
+              if not isinstance(counter_contract, dict) or set(counter_contract) != set(expected_counter_contract):
+                  raise SystemExit(f"{path}: counter contract shape mismatch: {counter_contract!r}")
+              increment_results = counter_contract.get("increment_results_from_initial")
+              if (not isinstance(increment_results, list)
+                      or len(increment_results) != 3
+                      or not all(type(item) is int for item in increment_results)):
+                  raise SystemExit(f"{path}: increment results must be three JSON integers")
+              if (type(counter_contract.get("initial_state")) is not int
+                      or counter_contract.get("initial_state") != 0):
+                  raise SystemExit(f"{path}: initial state must be JSON integer 0")
+              for key in ("read_state_effect", "read_result_contract", "read_state_observation_surface",
+                          "reset_state_effect", "reset_result_contract", "reset_observation"):
+                  if not isinstance(counter_contract.get(key), str):
+                      raise SystemExit(f"{path}: counter_contract.{key} must be a string")
+              if counter_contract != expected_counter_contract:
+                  raise SystemExit(
+                      f"{path}: seeded counter/unknown contract mismatch: "
+                      f"{counter_contract!r}"
+                  )
+              unknowns = obj["unknowns"]
+              if (not isinstance(unknowns, list)
+                      or len(unknowns) != len(expected_unknowns)
+                      or not all(isinstance(item, str) for item in unknowns)
+                      or set(unknowns) != expected_unknowns):
+                  raise SystemExit(f"{path}: unknown set mismatch: {unknowns!r}")
+              scope_coverage = obj["scope_coverage"]
+              if not isinstance(scope_coverage, dict):
+                  raise SystemExit(f"{path}: scope coverage mismatch: {scope_coverage!r}")
+              for key in ("all_requirements_covered", "persistence_semantics_resolved"):
+                  if type(scope_coverage.get(key)) is not bool:
+                      raise SystemExit(f"{path}: scope_coverage.{key} must be a JSON boolean")
+              if obj["scope_coverage"] != expected_scope_coverage:
+                  raise SystemExit(f"{path}: scope coverage mismatch: {obj['scope_coverage']!r}")
+              covered_requirements = obj["covered_requirements"]
+              if (not isinstance(covered_requirements, list)
+                      or len(covered_requirements) != len(expected_covered_requirements)
+                      or not all(isinstance(item, str) for item in covered_requirements)
+                      or set(covered_requirements) != expected_covered_requirements):
+                  raise SystemExit(
+                      f"{path}: covered requirement IDs mismatch: {covered_requirements!r}"
+                  )
+
               dep = obj["dependency"]
+              if not isinstance(dep, dict) or set(dep) != {
+                  "producer", "consumer", "interface", "interface_contract", "ready"
+              }:
+                  raise SystemExit(f"{path}: dependency shape mismatch: {dep!r}")
+              if not isinstance(dep.get("interface_contract"), dict) or set(dep["interface_contract"]) != {
+                  "legal_reading_range", "formatter_preserves_value_as_label", "concrete_operation_mapping",
+                  "read_invocation_count_policy", "freshness_reuse_policy"
+              }:
+                  raise SystemExit(f"{path}: dependency interface contract shape mismatch: {dep!r}")
+              legal_range = dep["interface_contract"].get("legal_reading_range")
+              if (not isinstance(legal_range, list) or len(legal_range) != 2
+                      or not all(type(item) is int for item in legal_range)):
+                  raise SystemExit(f"{path}: legal reading range must contain JSON integers")
+              if type(dep["interface_contract"].get("formatter_preserves_value_as_label")) is not bool:
+                  raise SystemExit(f"{path}: formatter_preserves_value_as_label must be a JSON boolean")
+              if type(dep.get("ready")) is not bool:
+                  raise SystemExit(f"{path}: dependency.ready must be a JSON boolean")
               expected_dep = {
                   "producer": "INST-COUNTER",
                   "consumer": "INST-LABEL",
                   "interface": "legal_count_value",
+                  "interface_contract": {
+                      "legal_reading_range": [0, 2],
+                      "formatter_preserves_value_as_label": True,
+                      "concrete_operation_mapping": "unknown",
+                      "read_invocation_count_policy": "unknown",
+                      "freshness_reuse_policy": "unknown",
+                  },
                   "ready": False,
               }
               for key, value in expected_dep.items():
@@ -495,14 +725,17 @@ jobs:
                       raise SystemExit(f"{path}: dependency {key} mismatch: {dep!r}")
 
               responsibilities = obj["responsibilities"]
+              if not isinstance(responsibilities, dict):
+                  raise SystemExit(f"{path}: responsibilities must be an object")
               if set(responsibilities) != expected_instances:
                   raise SystemExit(f"{path}: responsibility instances mismatch: {sorted(responsibilities)}")
               if not all(isinstance(v, str) and v.strip() for v in responsibilities.values()):
                   raise SystemExit(f"{path}: empty responsibility text")
 
               limitations = obj["limitations"]
-              if not isinstance(limitations, list) or not limitations:
-                  raise SystemExit(f"{path}: limitations must be a nonempty list")
+              if (not isinstance(limitations, list) or not limitations
+                      or not all(isinstance(item, str) and item.strip() for item in limitations)):
+                  raise SystemExit(f"{path}: limitations must be a nonempty list of nonempty strings")
 
               normalized = {
                   "tree": {
@@ -510,6 +743,10 @@ jobs:
                       "children": sorted(tree["children"]),
                   },
                   "dependency": expected_dep,
+                  "counter_contract": expected_counter_contract,
+                  "scope_coverage": expected_scope_coverage,
+                  "covered_requirements": sorted(expected_covered_requirements),
+                  "unknowns": sorted(expected_unknowns),
                   "responsibility_instances": sorted(responsibilities),
               }
               return next(iter(session_ids)), normalized, obj
@@ -555,11 +792,12 @@ jobs:
           cat >"$RUNNER_TEMP/bounded-counter-label-child-context.md" <<'EOF'
           # Synthetic pre-H18 label-child minimum context
 
-          This file is a test-only CONTEXT-01 selection derived from bounded-counter candidate-0.3.0.
+          This file is a test-only CONTEXT-01 selection derived from bounded-counter candidate-0.9.0.
           It is not a fixed assignment record and does not make the candidate a formal node.
 
           ## Current candidate node
 
+          - model revision: candidate-0.9.0
           - node identity: NODE-LABEL
           - ontology/work ref: INST-LABEL
           - responsibility: format a legal count reading
@@ -570,8 +808,8 @@ jobs:
           - dependency: REL-CONSUMES-LEGAL-READING
           - acceptance:
             - legal inputs 0,1,2 map exactly to count=0,count=1,count=2
-            - consumed input is constrained by C-LABEL-INPUT and originates from legal_count_value
-          - oracle: reject if a legal input is formatted differently or an out-of-domain value can reach the formatter
+            - a legal reading N in [0,2] is represented as `count=N`; concrete operation mapping and read invocation/reuse policy remain unknown under U-LABEL-READ-MAPPING
+          - oracle: reject if a legal reading is formatted as a different number; assess an out-of-range rejection only when a permitted observable boundary exists, otherwise retain U-LABEL-REJECTION-OBSERVABILITY
 
           ## Definition and work instance
 
@@ -600,14 +838,17 @@ jobs:
 
           INST-COUNTER:
           - role in this context: producer endpoint identity only
-          - internal counter implementation/operation semantics are intentionally not included
+          - required producer operation: unspecified; `legal_count_value` denotes the semantic value of a legal reading, while concrete operation mapping and result contracts remain unknown
+          - internal counter state and implementation details are intentionally not included
 
           REL-CONSUMES-LEGAL-READING:
           - source: INST-COUNTER
           - target: INST-LABEL
           - producer/consumer direction: INST-COUNTER -> INST-LABEL
           - interface: legal_count_value
-          - interface contract: integer N where 0 <= N <= 2
+          - interface revision: candidate-0.9.0
+          - interface contract: semantic value N in [0,2] that the formatter represents as `count=N`; concrete operation mapping, invocation count, freshness, and reuse are unknown
+          - `read()` return semantics remain unknown under U-OPERATION-RETURN-CONTRACT
           - consumer interpretation: label responsibility depends on this producer/interface
           - fixed deliverable version/digest: not_fixed
           - ready evidence: none
@@ -623,7 +864,9 @@ jobs:
 
           C-LABEL-INPUT:
           - subject: REL-CONSUMES-LEGAL-READING
-          - predicate: formatter input N satisfies 0 <= N <= 2 and originates from legal_count_value
+          - predicate: every formatter input represents a legal reading N in [0,2], and the output represents the same N as `count=N`; concrete operation mapping and call/reuse policy are unknown
+          - expected invariant: each label represents only a legal reading value and preserves its semantic number in the formatted text
+          - observation signal: pair an available legal reading value N with formatter output `count=N`; do not infer a specific operation, call count, freshness, or reuse policy
           - requirement: REQ-COMP-001
 
           ## Requirements
@@ -634,12 +877,29 @@ jobs:
           REQ-COMP-001:
           - label formatting consumes only a legal counter reading
 
+          REQ-MODEL-SHAPE-001:
+          - statement: Counter state and label representation are separately described by inputs, outputs, constraints, and rejectable conditions.
+          - classification: root-model requirement
+          - projection in this child: the label-side inputs, outputs, constraints, and rejectable conditions are included above
+          - counter boundary: INST-COUNTER remains a producer endpoint only; counter state and internal definitions/behavior remain excluded
+
+          ## Unresolved root-scope boundary
+
+          - source phrase: 无持久化的示例
+          - uncovered root requirement: REQ-SCOPE-001
+          - unresolved root unknown: U-PERSISTENCE-SCOPE
+          - unresolved operation/mapping unknowns: U-OPERATION-RETURN-CONTRACT, U-LABEL-READ-MAPPING, U-LABEL-REJECTION-OBSERVABILITY
+          - root coverage claim: blocked
+          - impact on local label behavior: unknown
+          - this context does not establish whether the phrase constrains local label behavior
+
           ## Explicitly excluded from this initial context
 
           - DEF-COUNTER full definition
           - counter increment semantics and C-INC
           - counter reset semantics and C-RESET
-          - counter initialization/read implementation details C-INIT/C-READ
+          - counter initialization details C-INIT
+          - internal read() implementation details and state behavior beyond the current legal-reading interface boundary
           - NODE-COUNTER full work-node contract
           - sibling task conversation/history
           - parent Plan/Do/Check/Act activity history
@@ -656,16 +916,37 @@ jobs:
           Do not modify files.
           Treat the attached file as the complete initial context for this child.
           Do not fill excluded facts from general knowledge or assumptions.
+          Do not reconstruct, rename, or infer omitted identifier names or their semantics.
+          Use an identifier only when its exact spelling appears in the attached context.
+          Preserve the unresolved root-scope boundary. Report its impact on local label behavior as unknown.
+          Preserve operation-result, concrete operation-mapping, call-count, freshness/reuse, and negative-boundary observability unknowns exactly; do not infer a read-return or one-read-per-label rule.
 
           Return exactly one JSON object with no extra prose:
+          Ensure strict JSON syntax and do not use a Markdown fence. Escape any double quote inside a string as `\"`, or paraphrase without quote characters.
           {
             "current_node": "NODE-LABEL",
             "work_instance": "INST-LABEL",
             "responsibility": "...",
             "input_interface": "legal_count_value",
             "producer_endpoint": "INST-COUNTER",
+            "interface_contract": {
+              "legal_reading_range": [0, 2],
+              "formatter_preserves_value_as_label": true,
+              "concrete_operation_mapping": "unknown",
+              "read_invocation_count_policy": "unknown",
+              "freshness_reuse_policy": "unknown",
+              "read_result_contract": "unknown",
+              "negative_boundary_observability": "unknown"
+            },
+            "unknowns": ["U-OPERATION-RETURN-CONTRACT", "U-LABEL-READ-MAPPING", "U-LABEL-REJECTION-OBSERVABILITY"],
             "constraints": ["C-LABEL", "C-LABEL-INPUT"],
-            "requirements": ["REQ-LABEL-001", "REQ-COMP-001"],
+            "requirements": ["REQ-LABEL-001", "REQ-COMP-001", "REQ-MODEL-SHAPE-001"],
+            "root_scope_boundary": {
+              "uncovered_requirement": "REQ-SCOPE-001",
+              "unknown": "U-PERSISTENCE-SCOPE",
+              "root_coverage_blocked": true,
+              "local_label_impact": "unknown"
+            },
             "dependency_ready": false,
             "excluded": {
               "counter_increment_semantics": "not_in_context",
@@ -719,13 +1000,54 @@ jobs:
             "$RUNNER_TEMP/opencode-child-run2.jsonl" \
             "$RUNNER_TEMP/opencode-child-run1.model" \
             "$RUNNER_TEMP/opencode-child-run2.model" \
-            "$RUNNER_TEMP/opencode-child-context-summary.json" <<'PY'
+            "$RUNNER_TEMP/opencode-child-context-summary.json" \
+            "$RUNNER_TEMP/bounded-counter-label-child-context.md" <<'PY'
           import json
           import pathlib
+          import re
           import sys
 
+          identifier_pattern = re.compile(r"(?<![A-Za-z0-9_-])[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+(?![A-Za-z0-9_-])")
+          fixture_identifiers = set(identifier_pattern.findall(
+              pathlib.Path(sys.argv[6]).read_text(encoding="utf-8")
+          ))
+          if not fixture_identifiers:
+              raise SystemExit("child-context fixture has no identifier-like tokens")
+
+          def response_identifiers(value):
+              if isinstance(value, str):
+                  return set(identifier_pattern.findall(value))
+              if isinstance(value, dict):
+                  return set().union(*(
+                      response_identifiers(key) | response_identifiers(item)
+                      for key, item in value.items()
+                  ))
+              if isinstance(value, list):
+                  return set().union(*(response_identifiers(item) for item in value))
+              return set()
+
           expected_constraints = {"C-LABEL", "C-LABEL-INPUT"}
-          expected_requirements = {"REQ-LABEL-001", "REQ-COMP-001"}
+          expected_interface_contract = {
+              "legal_reading_range": [0, 2],
+              "formatter_preserves_value_as_label": True,
+              "concrete_operation_mapping": "unknown",
+              "read_invocation_count_policy": "unknown",
+              "freshness_reuse_policy": "unknown",
+              "read_result_contract": "unknown",
+              "negative_boundary_observability": "unknown",
+          }
+          expected_unknowns = {
+              "U-OPERATION-RETURN-CONTRACT",
+              "U-LABEL-READ-MAPPING",
+              "U-LABEL-REJECTION-OBSERVABILITY",
+          }
+          expected_requirements = {"REQ-LABEL-001", "REQ-COMP-001", "REQ-MODEL-SHAPE-001"}
+          expected_root_scope_boundary = {
+              "uncovered_requirement": "REQ-SCOPE-001",
+              "unknown": "U-PERSISTENCE-SCOPE",
+              "root_coverage_blocked": True,
+              "local_label_impact": "unknown",
+          }
           excluded_expected = {
               "counter_increment_semantics": "not_in_context",
               "counter_reset_semantics": "not_in_context",
@@ -735,14 +1057,14 @@ jobs:
 
           def load_run(path):
               events = []
-              for line in pathlib.Path(path).read_text(encoding="utf-8").splitlines():
+              for line_number, line in enumerate(pathlib.Path(path).read_text(encoding="utf-8").splitlines(), start=1):
                   line = line.strip()
                   if not line:
                       continue
                   try:
                       events.append(json.loads(line))
-                  except json.JSONDecodeError:
-                      continue
+                  except json.JSONDecodeError as exc:
+                      raise SystemExit(f"{path}:{line_number}: invalid OpenCode JSONL event: {exc}")
 
               skill_parts = []
               tool_names = []
@@ -777,15 +1099,21 @@ jobs:
                   raise SystemExit(f"{path}: no final text")
 
               final = texts[-1]
-              left, right = final.find("{"), final.rfind("}")
-              if left < 0 or right <= left:
-                  raise SystemExit(f"{path}: JSON object missing: {final!r}")
-              obj = json.loads(final[left:right + 1])
+              try:
+                  obj = json.loads(final)
+              except json.JSONDecodeError as exc:
+                  raise SystemExit(f"{path}: final answer must be exactly one JSON object: {exc}: {final!r}")
+              if not isinstance(obj, dict):
+                  raise SystemExit(f"{path}: final JSON value must be an object, got {type(obj).__name__}")
+
+              unsupported = response_identifiers(obj) - fixture_identifiers
+              if unsupported:
+                  raise SystemExit(f"{path}: identifiers absent from child context: {sorted(unsupported)}")
 
               expected_keys = {
                   "current_node", "work_instance", "responsibility", "input_interface",
-                  "producer_endpoint", "constraints", "requirements", "dependency_ready",
-                  "excluded", "limitations",
+                  "producer_endpoint", "interface_contract", "unknowns", "constraints", "requirements", "dependency_ready",
+                  "root_scope_boundary", "excluded", "limitations",
               }
               if set(obj) != expected_keys:
                   raise SystemExit(f"{path}: unexpected keys: {sorted(obj)}")
@@ -793,26 +1121,54 @@ jobs:
                   raise SystemExit(f"{path}: wrong current-node identity: {obj!r}")
               if obj["input_interface"] != "legal_count_value" or obj["producer_endpoint"] != "INST-COUNTER":
                   raise SystemExit(f"{path}: wrong dependency endpoint/interface: {obj!r}")
-              if set(obj["constraints"]) != expected_constraints:
+              if obj["interface_contract"] != expected_interface_contract:
+                  raise SystemExit(f"{path}: interface contract mismatch: {obj.get('interface_contract')!r}")
+              if (not isinstance(obj["interface_contract"].get("legal_reading_range"), list)
+                      or len(obj["interface_contract"]["legal_reading_range"]) != 2
+                      or not all(type(item) is int for item in obj["interface_contract"]["legal_reading_range"])):
+                  raise SystemExit(f"{path}: legal_reading_range must contain JSON integers")
+              if type(obj["interface_contract"].get("formatter_preserves_value_as_label")) is not bool:
+                  raise SystemExit(f"{path}: formatter_preserves_value_as_label must be a JSON boolean")
+              if (not isinstance(obj["unknowns"], list)
+                      or len(obj["unknowns"]) != len(expected_unknowns)
+                      or not all(isinstance(item, str) for item in obj["unknowns"])
+                      or set(obj["unknowns"]) != expected_unknowns):
+                  raise SystemExit(f"{path}: interface unknowns mismatch: {obj['unknowns']!r}")
+              if (not isinstance(obj["constraints"], list)
+                      or len(obj["constraints"]) != len(expected_constraints)
+                      or not all(isinstance(item, str) for item in obj["constraints"])
+                      or set(obj["constraints"]) != expected_constraints):
                   raise SystemExit(f"{path}: wrong constraints: {obj['constraints']!r}")
-              if set(obj["requirements"]) != expected_requirements:
+              if (not isinstance(obj["requirements"], list)
+                      or len(obj["requirements"]) != len(expected_requirements)
+                      or not all(isinstance(item, str) for item in obj["requirements"])
+                      or set(obj["requirements"]) != expected_requirements):
                   raise SystemExit(f"{path}: wrong requirements: {obj['requirements']!r}")
+              root_scope_boundary = obj["root_scope_boundary"]
+              if not isinstance(root_scope_boundary, dict) or type(root_scope_boundary.get("root_coverage_blocked")) is not bool:
+                  raise SystemExit(f"{path}: root_scope_boundary.root_coverage_blocked must be a JSON boolean")
+              if obj["root_scope_boundary"] != expected_root_scope_boundary:
+                  raise SystemExit(f"{path}: root-scope boundary mismatch: {obj['root_scope_boundary']!r}")
               if obj["dependency_ready"] is not False:
                   raise SystemExit(f"{path}: dependency must remain not ready")
-              if obj["excluded"] != excluded_expected:
+              if not isinstance(obj["excluded"], dict) or obj["excluded"] != excluded_expected:
                   raise SystemExit(f"{path}: excluded-context contract violated: {obj['excluded']!r}")
               if not isinstance(obj["responsibility"], str) or not obj["responsibility"].strip():
                   raise SystemExit(f"{path}: responsibility missing")
-              if not isinstance(obj["limitations"], list) or not obj["limitations"]:
-                  raise SystemExit(f"{path}: limitations missing")
+              if (not isinstance(obj["limitations"], list) or not obj["limitations"]
+                      or not all(isinstance(item, str) and item.strip() for item in obj["limitations"])):
+                  raise SystemExit(f"{path}: limitations must be a nonempty list of nonempty strings")
 
               normalized = {
                   "current_node": obj["current_node"],
                   "work_instance": obj["work_instance"],
                   "input_interface": obj["input_interface"],
                   "producer_endpoint": obj["producer_endpoint"],
+                  "interface_contract": obj["interface_contract"],
+                  "unknowns": sorted(obj["unknowns"]),
                   "constraints": sorted(obj["constraints"]),
                   "requirements": sorted(obj["requirements"]),
+                  "root_scope_boundary": expected_root_scope_boundary,
                   "dependency_ready": obj["dependency_ready"],
                   "excluded": obj["excluded"],
               }
@@ -919,14 +1275,15 @@ jobs:
           import sys
 
           events = []
-          for line in pathlib.Path(sys.argv[1]).read_text(encoding="utf-8").splitlines():
+          event_path = pathlib.Path(sys.argv[1])
+          for line_number, line in enumerate(event_path.read_text(encoding="utf-8").splitlines(), start=1):
               line = line.strip()
               if not line:
                   continue
               try:
                   events.append(json.loads(line))
-              except json.JSONDecodeError:
-                  continue
+              except json.JSONDecodeError as exc:
+                  raise SystemExit(f"{event_path}:{line_number}: invalid OpenCode JSONL event: {exc}")
 
           session_ids = {
               event.get("sessionID")
@@ -963,10 +1320,12 @@ jobs:
               raise SystemExit("first turn: no final text")
 
           final = texts[-1]
-          left, right = final.find("{"), final.rfind("}")
-          if left < 0 or right <= left:
-              raise SystemExit(f"first turn: JSON object missing: {final!r}")
-          obj = json.loads(final[left:right + 1])
+          try:
+              obj = json.loads(final)
+          except json.JSONDecodeError as exc:
+              raise SystemExit(f"first turn: final answer must be exactly one JSON object: {exc}: {final!r}")
+          if not isinstance(obj, dict):
+              raise SystemExit(f"first turn: final JSON value must be an object, got {type(obj).__name__}")
           token = pathlib.Path(sys.argv[2]).read_text(encoding="utf-8")
           if obj != {"continuity_token": token, "state": "waiting_for_followup"}:
               raise SystemExit(f"first turn: unexpected state: {obj!r}")
@@ -1004,14 +1363,15 @@ jobs:
           import sys
 
           events = []
-          for line in pathlib.Path(sys.argv[1]).read_text(encoding="utf-8").splitlines():
+          event_path = pathlib.Path(sys.argv[1])
+          for line_number, line in enumerate(event_path.read_text(encoding="utf-8").splitlines(), start=1):
               line = line.strip()
               if not line:
                   continue
               try:
                   events.append(json.loads(line))
-              except json.JSONDecodeError:
-                  continue
+              except json.JSONDecodeError as exc:
+                  raise SystemExit(f"{event_path}:{line_number}: invalid OpenCode JSONL event: {exc}")
 
           expected_sid = pathlib.Path(sys.argv[3]).read_text(encoding="utf-8")
           session_ids = {
@@ -1043,10 +1403,12 @@ jobs:
               raise SystemExit("second turn: no final text")
 
           final = texts[-1]
-          left, right = final.find("{"), final.rfind("}")
-          if left < 0 or right <= left:
-              raise SystemExit(f"second turn: JSON object missing: {final!r}")
-          obj = json.loads(final[left:right + 1])
+          try:
+              obj = json.loads(final)
+          except json.JSONDecodeError as exc:
+              raise SystemExit(f"second turn: final answer must be exactly one JSON object: {exc}: {final!r}")
+          if not isinstance(obj, dict):
+              raise SystemExit(f"second turn: final JSON value must be an object, got {type(obj).__name__}")
 
           token = pathlib.Path(sys.argv[2]).read_text(encoding="utf-8")
           expected = {
@@ -1084,7 +1446,6 @@ jobs:
           cd "$GITHUB_WORKSPACE"
 
           sid="$(cat "$RUNNER_TEMP/opencode-continuity-session.txt")"
-          token="$(cat "$RUNNER_TEMP/opencode-continuity-token.txt")"
 
           opencode session list --max-count 20 --format json             >"$RUNNER_TEMP/opencode-session-list.json"
 
@@ -1224,6 +1585,43 @@ jobs:
           print("OpenCode persisted the continued session as an ordered two-turn user/assistant transcript")
           PY
 
+      - name: Summarize non-gating diagnostic outcomes
+        if: always()
+        env:
+          RUN_MODEL_PROBES: ${{ steps.scope.outputs.run_model_probes }}
+          SERVER_SKILL_OUTCOME: ${{ steps.server_skill_discovery.outcome }}
+          SERVER_SKILL_CONCLUSION: ${{ steps.server_skill_discovery.conclusion }}
+          FRESH_OUTCOME: ${{ steps.fresh_recovery.outcome }}
+          FRESH_CONCLUSION: ${{ steps.fresh_recovery.conclusion }}
+          CHILD_OUTCOME: ${{ steps.child_context.outcome }}
+          CHILD_CONCLUSION: ${{ steps.child_context.conclusion }}
+          CONTINUITY_OUTCOME: ${{ steps.session_continuity.outcome }}
+          CONTINUITY_CONCLUSION: ${{ steps.session_continuity.conclusion }}
+          TRANSCRIPT_OUTCOME: ${{ steps.session_transcript.outcome }}
+          TRANSCRIPT_CONCLUSION: ${{ steps.session_transcript.conclusion }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          rows=(
+            "Headless server Skill discovery|$SERVER_SKILL_OUTCOME|$SERVER_SKILL_CONCLUSION"
+            "Fresh ontology recovery|$FRESH_OUTCOME|$FRESH_CONCLUSION"
+            "Minimum child context|$CHILD_OUTCOME|$CHILD_CONCLUSION"
+            "Session continuation|$CONTINUITY_OUTCOME|$CONTINUITY_CONCLUSION"
+            "Persisted transcript check|$TRANSCRIPT_OUTCOME|$TRANSCRIPT_CONCLUSION"
+          )
+
+          {
+            printf '## OpenCode non-gating diagnostics\n\n'
+            printf 'Public-model probes requested: %s\n\n' "${RUN_MODEL_PROBES:-unknown}"
+            printf '| Probe | Step outcome | Workflow conclusion |\n|---|---|---|\n'
+            for row in "${rows[@]}"; do
+              IFS='|' read -r name outcome conclusion <<<"$row"
+              printf '| %s | %s | %s |\n' "$name" "${outcome:-unknown}" "${conclusion:-unknown}"
+            done
+            printf '\nSteps marked continue-on-error can report an outcome of failure while the workflow conclusion is success. Inspect the uploaded artifacts to distinguish unavailable model services from probe/parser failures; a successful job alone does not mean these diagnostics passed.\n'
+          } >>"$GITHUB_STEP_SUMMARY"
+
       - name: Dump OpenCode diagnostics
         if: always()
         shell: bash
@@ -1245,7 +1643,7 @@ jobs:
             ${{ runner.temp }}/opencode-health.json
             ${{ runner.temp }}/opencode-server-skills.json
             ${{ runner.temp }}/opencode-server.log
-            ${{ runner.temp }}/bounded-counter-core-0.3.md
+            ${{ runner.temp }}/bounded-counter-core-0.9.md
             ${{ runner.temp }}/opencode-fresh-recovery-prompt.txt
             ${{ runner.temp }}/opencode-fresh-run1.jsonl
             ${{ runner.temp }}/opencode-fresh-run1.stderr

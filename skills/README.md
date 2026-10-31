@@ -28,7 +28,9 @@
 
 Skill 的 `5.0.0-rc.3` 是运行入口包版本，不与 ontology/protocol 的 `4.0.0-rc.x` 比大小；
 版本域的唯一说明见 [PDCA：Version domains](../ontology/concept/pdca.md#version-domains)。
-已有 task 绑定优先，读取场景方法不创建场景任务。中央项目/任务登记和资源预约对所有入口相同；
+继续或恢复既有 task 时，使用其固定的 project/workspace 身份；`pdca_root` 与显式 `PDCA_ROOT` 仍按
+[项目绑定契约](../ontology/contracts/project-workspace.md)核验是否与当前 Skill 入口根一致，cwd 不推断集中根。
+读取场景方法不创建场景任务。中央项目/任务登记和资源预约对所有入口相同；
 业务项目不自动生成 `.pdca/`。记录写入与 Git 提交分别授权。
 
 正文相对链接从集中工作副本解析，不生成导出副本或规则快照。更新由用户自行使用 Git 完成，

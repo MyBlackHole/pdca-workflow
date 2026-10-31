@@ -2,6 +2,7 @@
 
 本文件定义 **AI 如何最小化读取当前规则与知识**。它是加载方法，不是第二套规则清单。
 当前规则身份以 [INDEX](INDEX.md)、当前运行 Skill、phase flow、SCENE-01 和它们明确引用的当前契约为准。
+所有入口都按 [project-workspace](contracts/project-workspace.md) 确定规范化 `PDCA_ROOT`；cwd 和 `TARGET_ROOT` 不作为集中根回退来源。
 
 链接存在、搜索命中、同领域、文件更详细或 frontmatter 含 `authority`，都不等于必须加载或已经采用。
 
@@ -9,12 +10,12 @@
 
 任何入口先读当前运行 Skill；随后只按事件追加：
 
-- **`pdca` 定位/绑定**：读取 [project-workspace](contracts/project-workspace.md) 和当前 project context；只有状态/继续/恢复涉及具体 task 时才追加 [entry-recovery](contracts/entry-recovery.md)。
-- **`pdca-assist`**：读取 project-workspace、当前项目导航以及形成候选真正需要的 records/获准业务材料；只有候选依赖某个 task 的连续性时才追加 entry-recovery。
-- **phase / 已有 scene task**：读取自己的 task、最后完整事件、待确认 request/response 与 entry-recovery。
+- **`pdca` 定位/绑定**：先从 `$pdca` 已核验的会话身份、当前 task 固定身份或用户本轮明确给出的唯一 ID 对取得 `project_id`/`workspace_id`；缺失或歧义时停止并询问，不搜索或枚举 `records/`。身份唯一后读取 [project-workspace](contracts/project-workspace.md)，只核验并读取精确 `project-context.md`；只有状态/继续/恢复涉及具体 task 时才追加 [entry-recovery](contracts/entry-recovery.md)。
+- **`pdca-assist`**：按 project-workspace 验证唯一身份来源与安全 ID path components，并在读取前对唯一预期绑定路径执行精确 path-resolution / 无符号链接检查；若来源包含多个候选、用户不确定 ID，或 ID/路径检查失败，在读取任何候选记录前停止并返回 `$pdca`。额外读取授权不能替代唯一身份来源，也不能授权 Assist 对比多个候选绑定来消歧。不得用 glob/basename 搜索或枚举 `records/projects/`、项目或 `workspaces/` 父目录定位该文件；之后只读取该 workspace 的必要 records、当前项目导航与绑定 `TARGET_ROOT` 内获准材料。Git 快照须使用该契约规定的 `GIT_OPTIONAL_LOCKS=0` 命令；路径规范化与根关系结论必须有实际 path-resolution 结果，cwd 不扩大读取或 Git 检查范围；只有候选依赖某个 task 的连续性时才追加 entry-recovery。
+- **phase / 已有 scene task**：先确认唯一、精确的 task_id；多个候选或无法确认原任务时先询问，不读取候选记录来比较、不选最新、不搜索 `records/`。身份明确后读取自己的 task、最后完整事件、待确认 request/response 与 entry-recovery。
 - **正式 task creation**：依次读取 TASK-01（身份/attempt）、CONTEXT-01（assignment refs）、CAP-01（宿主资格）、CONFIRM-01（具名 creation authorization）与 agent-dispatch（一次原生创建）；创建成功仍等待新 Agent 的 Plan 操作。
 
-只有需要解析某个规则 ID 时才查看 [INDEX](INDEX.md) 对应项；不要先把 28 项全部读入上下文。
+只有需要解析某个规则 ID 时才查看 [INDEX](INDEX.md) 对应项；不要先把全部规则 ID 读入上下文。
 不要默认扫描 `domain/`、`entity/`、`pattern/`、legacy、整个 source tree 或兄弟任务历史。
 Assist 的“查重/历史拒绝”也只沿当前候选的具体对象和获准读域检查，不构成全项目扫描授权。
 
@@ -135,7 +136,7 @@ fixed subject + Plan/AC + relevant authority
 ## 禁止的默认行为
 
 - 不递归加载 `ontology/`；
-- 不全量加载 28 个规则 ID；
+- 不全量加载规则 ID；
 - 不读取兄弟任务完整历史；
 - 不因 reference 更详细就让它覆盖当前规则；
 - 不把 retired、legacy、未采用知识放入默认上下文；

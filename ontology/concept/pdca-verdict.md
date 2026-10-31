@@ -8,8 +8,8 @@ dcterms_license: CC-BY-4.0
 dcterms_created: 2026-09-04
 status: active
 authority: normative
-revision: 4.0.0-rc.1
-dcterms_modified: '2026-09-27'
+revision: 4.0.0-rc.3
+dcterms_modified: '2026-10-22'
 summary: VERDICT-01：只聚合 evidence，不把执行成功混成对象符合
 ---
 
@@ -49,5 +49,9 @@ Check 当前直接聚合的只有：
 用户风险接受、失败归档或发布处置不能改写 evidence/subject_conformance；
 它们只影响后续 Act/delivery 事实，未运行的 scene 保持 not_run。
 
-工作级整体完成需要固定节点集合、必需 scene coverage、组合/依赖符合及无阻断 unknown；
-不能由单个 task verdict 推导整个 work PASS。
+工作级整体完成需要固定节点集合、必需 scene coverage、组合/依赖符合，并证明固定 Model Plan source set 已与 model root 的 source refs / requirement inventory 对账：纳入 work scope 的 requirement 必须 `covered`；排除项必须回指 requirement source、固定 scope boundary，并有来源依据地固定为 `not_applicable`。
+`partial`、`uncovered` 是已知未完成义务，`unknown` 是无法判定义务；任一状态都阻止声明 work-level overall complete。显式记录这些状态不等于接受或关闭缺口；source 未审、不可读、source set/applicability 无法闭合时也不得声明 complete。
+
+work-level overall complete 是基于固定 work root 与跨 node/scene evidence 的整体结论，不是某个 Check 的 `subject_conformance` 字段。任何对外完成声明都应能回指 Model Plan 固定 source set、work root/revision/digest、node 集合、requirement coverage、必需 scene 证据及组合/依赖结论；这些依据缺失、陈旧或冲突时不得声明 complete。
+
+节点的 `subject_conformance` 仍只回答该节点固定的必需 AC；节点 PASS 不得覆盖 work-level requirement coverage 缺口，也不能由单个 task verdict 推导整个 work PASS。

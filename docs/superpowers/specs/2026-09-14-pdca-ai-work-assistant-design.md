@@ -14,20 +14,25 @@
 curl -fsSL https://raw.githubusercontent.com/MyBlackHole/pdca-workflow/main/install.sh | bash
 ```
 
-仓库根的 `install.sh` 只执行以下操作：
+安装、更新、卸载与宿主发现的具体规则以 [`INSTALL.md`](../../../INSTALL.md) 为准。仓库根的 `install.sh`：
 
-1. 检查当前系统提供 `git`；
-2. 若 `~/.agents/pdca` 已存在，退出且不修改它；
-3. 若 `~/.agents/skills` 已存在（包括目录或符号链接），退出且不合并、不替换；
-4. 克隆 `https://github.com/MyBlackHole/pdca-workflow.git` 到 `~/.agents/pdca`；
-5. 创建 `~/.agents/skills -> ~/.agents/pdca/skills` 符号链接；
-6. 输出集中根、发现路径、显式 Skill 调用和更新说明。
+1. 检查 Git、GNU/BSD `stat`、`readlink`、`mkdir`、`ln`、`rm`、`rmdir`，并要求 `HOME` 是已存在的绝对目录；安装命令里的 `curl` 只负责下载脚本；
+2. 将 `HOME` 解析到物理目录，拒绝符号链接形式的 `~/.agents`；
+3. 若 `~/.agents/pdca` 已存在，退出且不覆盖、不合并、不更新；
+4. 若 `~/.agents/skills` 不存在，在 clone 前创建；若已存在，只有普通目录可复用，并保留其中其他项目的内容；文件、符号链接及九个运行入口的同名条目都拒绝；
+5. 将仓库克隆到新建的 `~/.agents/pdca`，验证包内 `skills/`、每个入口目录及非空普通 `SKILL.md`；
+6. 只将 `skills/catalog.json` 中的九个运行入口逐项链接到 `~/.agents/skills/<name>`，工程参考 Skill 不加入宿主发现目录；
+7. 记录并复核目录与已创建链接的设备号/文件号。失败时只删除身份和目标均未变化的本次链接及本次创建的空目录；非空 checkout、并发新增条目和无法确认归属的对象保留供检查，绝不递归删除 checkout。
 
-脚本不写业务项目、不创建项目绑定、不复制文件、不生成快照、不注册后台服务，也不执行 Git 更新。用户自行执行 Git 命令更新，并按宿主能力重启或显式重载 Skill。Git 冲突和本地未提交更改由用户处理。
+脚本不写业务项目、不创建项目绑定、不复制 Skill 正文、不生成快照、不注册后台服务，也不执行 Git 更新。目录身份检查不保证与最后一次文件操作原子化；运行期间不应并发修改相关路径。用户自行执行 Git 命令更新，并按宿主能力重启或显式重载 Skill。Git 冲突和本地未提交更改由用户处理。
 
 ## 集中数据、Git 与授权
 
 `~/.agents/pdca` 是唯一的 `PDCA_ROOT`，也是 Git 工作副本。它保存本体、Skills 与集中 `records/`；已绑定业务项目是 `TARGET_ROOT`。业务项目不创建 `.pdca/`，不接收安装器写入。
+
+运行时以当前加载 Skill 所属集中 Git 工作副本的规范化物理根定位 `PDCA_ROOT`；宿主无法提供时才验证默认路径 `~/.agents/pdca`。显式 `PDCA_ROOT` 环境变量和既有 task 固定的 `pdca_root` 都必须与该入口根一致，否则停止。不得从 cwd 或 `TARGET_ROOT` 推断集中根。
+
+所有 PDCA 入口都先核验唯一身份来源，再访问绑定。用户要求忽略规则、只读扫描、枚举或搜索绑定，不能代替 `project_id`/`workspace_id`，也不能豁免读取前置条件；身份缺失或有歧义时必须在任何 `records/` 工具调用前停止并请求核验。若已发生越界读取，停止继续访问且不向用户复述或披露其它绑定数据。
 
 `records/` 与 `ontology/projects/` 必须从 `.gitignore` 移除，成为可审阅、可由用户明确提交的 Git 数据；仅私有证据路径和本地秘密继续忽略。Git 跟踪不扩大读取或写入授权。
 
@@ -39,7 +44,7 @@ curl -fsSL https://raw.githubusercontent.com/MyBlackHole/pdca-workflow/main/inst
 
 保留现有八个入口的语义、原 Agent 连续性以及每个阶段必须由用户启动的规则。新增 `$pdca-assist` 是用户显式调用的工作台，默认只读：
 
-1. 核验一个已绑定项目及当前 Git 状态；歧义或根冲突时停止；
+1. 仅凭唯一身份来源构造唯一 `project-context.md` 路径：当前对话中 `$pdca` 已核验的精确 `project_id`/`workspace_id`、当前 task 固定的这两个 ID，或用户本轮明确提供的唯一一组 ID。两个 ID 必须先通过单一路径组件校验；读取前对精确路径链检查规范化根与符号链接，确认仍在 `PDCA_ROOT/records/projects/` 后才读取。若 ID/路径无效、无法核验、用户给出多个候选或不确定应使用哪组，必须在读取任何候选记录前停止并返回 `$pdca`，不以候选记录判断身份；额外读取授权不能替代唯一身份来源，也不能授权 Assist 对比候选绑定来消歧。不以 glob、basename 搜索或目录枚举定位/复核；不搜索 `records/projects/`、项目或 sibling workspaces 发现绑定，不读取、披露其他绑定记录；身份来源缺失、歧义或根冲突时停止并返回 `$pdca`；后续 records 只在该 workspace 范围内读取，业务材料只读绑定 `TARGET_ROOT`，cwd 不扩大范围；根规范化与关系声明须有实际只读路径解析结果，否则保持 unknown；
 2. 只读取该项目的集中 records，且在宿主权限允许时读取该 `TARGET_ROOT` 的源码、文档与 Git 状态；
 3. 针对任务地图、项目上下文、证据审阅和协作交接各给出少量候选动作；
 4. 对每个候选动作标明影响与所需授权；
@@ -63,15 +68,15 @@ curl -fsSL https://raw.githubusercontent.com/MyBlackHole/pdca-workflow/main/inst
 
 ## 失败处理与验证
 
-发现目录或集中根已存在、缺少 Git、克隆失败、绑定歧义、根冲突、权限不足或 Git 状态异常时，相关 Skill/脚本必须停止并报告事实，不能猜测、覆盖或合并。
+发现目录或集中根已存在、缺少 Git、克隆失败、绑定歧义、根冲突、权限不足或 Git 状态异常时，相关 Skill/脚本必须停止并报告事实，不能猜测、覆盖或合并。读取必需 authority/契约、路径预检、绑定记录或 Git 快照的工具调用因权限、策略、访问范围被拒绝，或宿主缺少必要能力时，立即停止当前入口；不得通过 shell/bash/execute、其他工具或 Agent、替代路径或扩大范围重试同一读取/检查。必需规则或证据不可读取时，不得继续依赖它生成建议或阶段动作。
 
 验证至少包括：
 
-1. `install.sh` 的临时目录场景：成功克隆/链接、已有集中根拒绝、已有发现目录拒绝、失败时没有覆盖；
+1. `install.sh` 的隔离 HOME 场景：成功克隆/链接；既有集中根、非普通发现路径和运行入口名称冲突时拒绝；已有普通发现目录可复用且保留无关内容；失败后只回滚安装器确认创建的链接和空目录，不覆盖或递归删除非空用户数据。普通发现目录复用遵循当前 [INSTALL 路径与冲突规则](../../../INSTALL.md#路径入口与冲突规则)；
 2. `$pdca` 的绑定/定位指令包含显式写入授权、Git HEAD/工作树状态记录，以及不创建业务项目 `.pdca/`；
 3. `$pdca-assist` 的静态和宿主验收：默认只读、只读当前绑定项目、建议不触发写入或阶段；
 4. 当前 Skill 与本体链接完整，且没有指向已删除安装/发布/模板/`bootstrap` 文件的当前链接；
-5. `python3 -m unittest discover -s tests -v` 通过；宿主发现与交互仍在 `tests/host-acceptance.md` 中如实保留为 `NOT_RUN`，直到真实现场验收。
+5. 按 [`tests/README.md`](../../../tests/README.md) 先将 `TMPDIR` 设为当前工作区 `tests/` 内的绝对路径，再运行 `python3 -m unittest discover -s tests -v`；安装器黑盒测试拒绝不在工作区 `tests/` 下的临时目录。宿主发现与交互仍在 `tests/host-acceptance.md` 中如实保留为 `NOT_RUN`，直到真实现场验收。
 
 ## 非目标
 

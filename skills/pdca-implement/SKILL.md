@@ -13,7 +13,7 @@ metadata:
 `pdca-implement` 场景，不承担 phase 的授权或执行。
 
 已有 implement task 时回原 Agent；当前会话不是执行者时只路由真实用户操作，不接管。
-没有 matching task 时，只能基于已固定的 node/revision、目标写域和 mapping 提出具名 task creation 输入；用户选择后统一按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 的“新建正式任务”顺序完成 TASK/CONTEXT/CAP/CONFIRM 与 agent-dispatch，不能直接开始实现。
+没有 matching task 时，只能基于已固定的 node/revision、目标写域和可回指固定 model refs 的 target-specific mapping proposal 提出具名 task creation 输入；proposal 不是已固定 mapping，正式规则须按 SCENE-01 在 Implement Plan 中完成后才能进入 Do。用户选择后统一按 [LOAD-MAP](../../ontology/LOAD-MAP.md) 的“新建正式任务”顺序完成 TASK/CONTEXT/CAP/CONFIRM 与 agent-dispatch，不能直接开始实现。
 
 ## 唯一场景语义来源
 

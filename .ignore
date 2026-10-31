@@ -1,0 +1,3 @@
+# Central PDCA records require a verified identity and exact paths.
+# Keep the root records tree out of ripgrep-backed recursive search and glob.
+/records/

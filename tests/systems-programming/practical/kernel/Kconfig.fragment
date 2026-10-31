@@ -1,5 +1,0 @@
-config KUNIT_SYSTEMS_RESOURCE_TEST
-	bool "Systems programming resource validation"
-	depends on KUNIT
-	help
-	  Exercise asynchronous work, cancellation and completion lifetimes.

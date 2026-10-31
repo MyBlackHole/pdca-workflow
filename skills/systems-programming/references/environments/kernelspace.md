@@ -12,6 +12,19 @@
 - **workqueue 并不一律可睡眠**：普通 threaded workqueue 与 BH workqueue 的上下文不同；核对队列标志与具体 callback。
 - 尽量缩小中断/不可睡眠路径，将可延迟操作交给合适线程上下文。访问调用进程的用户指针应在有正确用户地址空间和允许 fault 的上下文处理；移到普通 worker 不会自动让原始用户指针可用。
 
+## 启动、模块加载与系统关闭
+
+启动和关闭路径须按目标树、配置、架构及子系统核实，不能仅从驱动 `probe()`/`remove()` 推断：
+
+- `module_init()` 对 built-in 代码和可加载模块分别进入内核 initcall 与模块插入路径；`module_exit()` 对 built-in 代码不执行。核对实际 initcall 依赖、调用上下文及其返回值如何影响目标启动/加载路径，不为规避未理解的顺序问题随意调整 initcall level。
+- 初始化按资源取得顺序建立所有权；任何中途失败都只撤销已取得资源，并使重试或之后的 probe 不会观察到半初始化状态。分别验证 built-in/module 配置（若两者都受支持）、失败点和重复初始化/绑定。
+- `__init`/`__initdata` 内容可在初始化后释放；不得把它们的地址保存到长期运行对象、回调或导出接口。`__exit` 及 init/exit 宏的保留或丢弃语义按 built-in/module 目标配置核对，不能依赖其他配置下才存在的代码。
+- 模块卸载、设备解绑与系统 shutdown/reboot/kexec 是不同路径。卸载/解绑须撤销软件注册、停止新工作并排空在途使用者；系统关闭回调的目标通常是让硬件在新内核接管前停止中断/DMA 等活动，不得把 remove 清理直接当作 shutdown 实现。只在目标总线/子系统要求时实现相应回调，并核对其调用条件和顺序。
+- suspend/resume 是可恢复的状态转换，不是最终关闭。分别证明状态保存、恢复、失败回滚，以及 direct-complete 或目标树可能跳过的回调阶段；系统关机不保证先走过普通 remove 或完整 suspend 路径。
+- 若任务涉及引导配置、initramfs、模块签名或发布内核镜像，继续读取目标树启动、架构、admin-guide 与发行交付规范；验证配置、密钥和回滚要求。产品部署、引导器更新和现场恢复只在本任务交付范围内纳入，不从上游补丁流程推定。
+
+目标树的 `Documentation/driver-api/basics.rst`（Driver Entry and Exit points）、对应设备/总线的 probe/remove/shutdown 文档、架构启动说明及 `Documentation/admin-guide/` 是本节定位入口。需要跟踪启动时序时，可核对目标树 `initcall_debug` 等调试设施；线上文档只用于定位，不替代匹配版本的目标树原文。
+
 ## C 作用域清理
 
 目标树支持、子系统接受且工具链满足时，评估 `__free()`、`guard()`/`scoped_guard()`、`return_ptr()` 等内核 C 抽象；禁止 C++ 库不限制这些机制。旧树和用户态工程沿用各自清理方式，不强行移植宏。

@@ -44,7 +44,8 @@ root modeling Act 固定 ontology/tree/root node revisions 后，后续 task 才
 4. **dependency deliverables**：当前 task 真正消费的固定 interface/version/output；
 5. **shared invariants**：明确适用于当前 node 的跨节点约束；
 6. **original requirements**：当前 node/scene 要覆盖的用户需求与来源；
-7. **scene inputs**：model 的事实/复用定义，implement 的固定 model/mapping/写域，
+7. **scene inputs**：model 的事实/复用定义；implement 的固定 model refs 与写域，
+   assignment 可附 target-specific mapping proposal，正式 mapping 在 Plan 中固定并进入 baseline；
    verify 的固定 requirement/model/implementation/mapping/行为证据；
 8. **current-event authority**：按 LOAD-MAP 只加入当前创建/phase/资源/恢复事件需要的规则。
 

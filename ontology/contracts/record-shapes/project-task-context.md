@@ -33,7 +33,7 @@ target_writes: []
 
 # 项目／任务上下文
 
-集中保存为PDCA_ROOT/records/projects/<project_id>/workspaces/<workspace_id>/project-context.md；项目级task_id/attempt留null，任务固定其副本和摘要。pdca_root是持久集中根，records_root=PDCA_ROOT/records，ontology_root=PDCA_ROOT/ontology/projects/<project_id>；工作模型按work/revision隔离。不要在TARGET_ROOT创建流程数据目录。
+集中保存为 `PDCA_ROOT/records/projects/<project_id>/workspaces/<workspace_id>/project-context.md`。`project_id` 与 `workspace_id` 必须是当前宿主可表示的安全单一路径组件。对该绑定记录的任何读取、创建或更新，都按[项目绑定契约](../project-workspace.md)校验 ID、精确路径链、无符号链接与规范化根关系；本格式不降低该契约的要求。项目级 `task_id`/`attempt` 留 `null`，任务固定其副本和摘要。`pdca_root` 是持久集中根，`records_root=PDCA_ROOT/records`，`ontology_root=PDCA_ROOT/ontology/projects/<project_id>`；工作模型按 work/revision 隔离。不要在 `TARGET_ROOT` 创建流程数据目录。
 
 PDCA_ROOT 是统一保存规则、本体与过程资料的集中 Git 工作副本。新增或修改本记录须先核对用户对具体记录路径的记录写入授权。每次获准写入绑定、任务或事件前，在 PDCA_ROOT 只读执行 GIT_OPTIONAL_LOCKS=0 git rev-parse HEAD 与 GIT_OPTIONAL_LOCKS=0 git status --porcelain，禁用可选索引写入，分别将结果写入 rules_git_head 与 rules_git_status；干净工作树的状态为空字符串，null 仅用于尚未填写的格式示例，命令失败或无有效 HEAD 时停止，不保存为已验证绑定。
 
